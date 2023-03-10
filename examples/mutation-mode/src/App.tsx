@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { FloatButton } from "antd";
 import { DemoSidebar, useDemoSidebar } from "@refinedev/demo-sidebar";
@@ -17,6 +17,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}

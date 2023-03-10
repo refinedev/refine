@@ -5,8 +5,8 @@
     "dependencies": {
         "@googlemaps/react-wrapper": "^1.1.35",
         "@types/google.maps": "^3.50.4",
-        "@refinedev/core": "^3.101.0",
-        "@refinedev/cli": "^1.17.1",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/cli": "^1.17.2",
         "@refinedev/mui": "^3.61.5",
         "@refinedev/kbar": "0.10.2",
         "@refinedev/react-hook-form": "^3.37.2",

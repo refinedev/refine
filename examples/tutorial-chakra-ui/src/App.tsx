@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import {
@@ -18,6 +18,7 @@ import { ProductShow } from "pages/products/show";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ChakraProvider theme={refineTheme}>
                 <Refine
                     routerProvider={routerProvider}

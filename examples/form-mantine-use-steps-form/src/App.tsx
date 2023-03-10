@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -16,6 +16,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <MantineProvider
                 theme={LightTheme}
                 withNormalizeCSS

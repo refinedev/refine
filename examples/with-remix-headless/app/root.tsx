@@ -7,7 +7,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/remix-router";
 
@@ -28,6 +28,7 @@ export default function App() {
                 <Links />
             </head>
             <body>
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}

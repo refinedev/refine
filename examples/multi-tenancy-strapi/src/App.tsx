@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -24,6 +24,7 @@ import { authProvider, axiosInstance } from "./authProvider";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <StoreProvider>
                 <Refine
                     authProvider={authProvider}

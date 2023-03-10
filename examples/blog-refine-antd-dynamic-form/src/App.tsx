@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -11,6 +11,7 @@ import PostList from "pages/PostList";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 notificationProvider={notificationProvider}
                 routerProvider={routerProvider}

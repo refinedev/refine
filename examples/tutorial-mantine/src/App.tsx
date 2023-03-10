@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -19,6 +19,7 @@ import { ProductShow } from "pages/products/show";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <MantineProvider
                 theme={LightTheme}
                 withNormalizeCSS

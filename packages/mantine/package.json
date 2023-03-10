@@ -29,7 +29,7 @@
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@refinedev/cli": "^1.11.0",
-        "@refinedev/core": "^3.101.0",
+        "@refinedev/core": "^3.101.2",
         "@refinedev/ui-tests": "^0.11.6",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",

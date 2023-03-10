@@ -1,6 +1,10 @@
 import React from "react";
 
-import { Refine, LegacyAuthProvider as AuthProvider } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -123,6 +127,7 @@ function App() {
 
     return (
         <ColorModeContextProvider>
+            <GitHubBanner />
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>

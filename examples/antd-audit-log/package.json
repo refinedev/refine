@@ -5,8 +5,8 @@
     "dependencies": {
         "@refinedev/antd": "^4.7.3",
         "@refinedev/antd-audit-log": "^3.29.1",
-        "@refinedev/core": "^3.101.0",
-        "@refinedev/cli": "^1.17.1",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/cli": "^1.17.2",
         "@refinedev/react-router-v6": "^3.38.0",
         "@refinedev/sdk": "^0.8.0",
         "@refinedev/simple-rest": "^3.37.4",

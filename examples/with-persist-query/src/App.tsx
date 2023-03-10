@@ -1,4 +1,4 @@
-import { Refine, ErrorComponent } from "@refinedev/core";
+import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
 import { QueryClient } from "@tanstack/react-query";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -31,6 +31,7 @@ persistQueryClient({
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}

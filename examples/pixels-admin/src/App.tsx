@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { ErrorComponent, Layout, notificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
@@ -21,6 +21,7 @@ import { AuthPage } from "pages/auth";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ConfigProvider
                 theme={{
                     token: {

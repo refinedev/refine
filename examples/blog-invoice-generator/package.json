@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.101.0",
-        "@refinedev/cli": "^1.17.1",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/cli": "^1.17.2",
         "@refinedev/react-router-v6": "^3.38.0",
         "@refinedev/strapi-v4": "^3.39.6",
         "@react-pdf/renderer": "^3.0.1",

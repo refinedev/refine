@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/airtable";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -15,6 +15,7 @@ const BASE_ID = "appKYl1H4k9g73sBT";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_TOKEN, BASE_ID)}
                 routerProvider={routerProvider}

@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -29,6 +29,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ColorSchemeProvider
                 colorScheme={colorScheme}
                 toggleColorScheme={toggleColorScheme}

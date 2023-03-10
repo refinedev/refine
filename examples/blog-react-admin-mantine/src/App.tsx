@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 import {
@@ -29,6 +29,7 @@ import { PostList, PostCreate, PostEdit } from "./pages/posts";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <MantineProvider
                 theme={LightTheme}
                 withNormalizeCSS

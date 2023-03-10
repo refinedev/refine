@@ -1,4 +1,9 @@
-import { Authenticated, ErrorComponent, Refine } from "@refinedev/core";
+import {
+    Authenticated,
+    ErrorComponent,
+    GitHubBanner,
+    Refine,
+} from "@refinedev/core";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
@@ -21,6 +26,7 @@ import "./app.css";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={original}>
                 <Refine
                     routerProvider={routerProvider}

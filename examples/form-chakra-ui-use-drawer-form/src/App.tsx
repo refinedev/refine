@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
     Layout,
@@ -15,6 +15,7 @@ import { PostList } from "./pages";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ChakraProvider theme={refineTheme}>
                 <Refine
                     routerProvider={routerProvider}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -18,6 +18,7 @@ import DashboardPage from "pages/dashBoardPage";
 function App() {
     return (
         <DndProvider backend={HTML5Backend}>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 notificationProvider={notificationProvider}

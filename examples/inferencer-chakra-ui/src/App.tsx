@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
     Layout,
@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ChakraProvider theme={refineTheme}>
                 <Refine
                     notificationProvider={notificationProvider()}

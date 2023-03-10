@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     ErrorComponent,
@@ -25,6 +25,7 @@ function App() {
     const dataProvider = DataProvider(API_URL, axiosInstance);
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider}
                 authProvider={authProvider}

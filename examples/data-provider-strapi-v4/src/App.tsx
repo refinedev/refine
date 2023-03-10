@@ -1,4 +1,9 @@
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -98,6 +103,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}

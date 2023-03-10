@@ -1,4 +1,4 @@
-import { Refine, Authenticated } from "@refinedev/core";
+import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -20,6 +20,7 @@ import "styles/style.css";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ConfigProvider
                 theme={{
                     token: {
