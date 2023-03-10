@@ -29,7 +29,11 @@ import { RefineLayoutSiderProps } from "../types";
 
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({
+    Title: TitleFromProps,
+    render,
+    meta,
+}) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
@@ -37,7 +41,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const NewLink = useLink();
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
-    const Title = useTitle();
+    const TitleFromContext = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const breakpoint = Grid.useBreakpoint();
@@ -50,7 +54,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const RenderToTitle = Title ?? DefaultTitle;
+    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
