@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     MantineProvider,
     NotificationsProvider,
@@ -19,6 +19,7 @@ const App: React.FC = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
+                <GitHubBanner />
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(

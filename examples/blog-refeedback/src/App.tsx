@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 
 import {
     notificationProvider,
@@ -23,23 +23,26 @@ function App() {
     const { authProvider, axiosInstance } = strapiAuthProvider(API_URL);
     const dataProvider = DataProvider(API_URL, axiosInstance);
     return (
-        <Refine
-            dataProvider={dataProvider}
-            authProvider={authProvider}
-            Header={Header}
-            Layout={Layout}
-            OffLayoutArea={OffLayoutArea}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "feedbacks",
-                    list: FeedbackList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider}
+                authProvider={authProvider}
+                Header={Header}
+                Layout={Layout}
+                OffLayoutArea={OffLayoutArea}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "feedbacks",
+                        list: FeedbackList,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                LoginPage={LoginPage}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 }
 

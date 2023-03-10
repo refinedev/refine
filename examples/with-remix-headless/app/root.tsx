@@ -7,7 +7,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { AuthPage, Refine } from "@pankod/refine-core";
+import { GitHubBanner, AuthPage, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
 
@@ -30,6 +30,7 @@ export default function App() {
                 <Links />
             </head>
             <body>
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}

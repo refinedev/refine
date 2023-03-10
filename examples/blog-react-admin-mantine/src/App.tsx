@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 import {
@@ -28,6 +28,7 @@ function App() {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
+                <GitHubBanner />
                 <Refine
                     authProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}

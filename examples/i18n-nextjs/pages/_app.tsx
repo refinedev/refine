@@ -1,5 +1,5 @@
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import { AppProps } from "next/app";
 
 import { appWithTranslation, useTranslation } from "next-i18next";
@@ -28,27 +28,30 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     };
 
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            i18nProvider={i18nProvider}
-            Header={Header}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        >
-            <Component {...pageProps} />
-        </Refine>
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                i18nProvider={i18nProvider}
+                Header={Header}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            >
+                <Component {...pageProps} />
+            </Refine>
+        </>
     );
 }
 

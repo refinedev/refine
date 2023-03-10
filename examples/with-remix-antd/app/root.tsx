@@ -7,7 +7,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     AuthPage,
     ErrorComponent,
@@ -39,6 +39,7 @@ export default function App(): JSX.Element {
                 <Links />
             </head>
             <body>
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}

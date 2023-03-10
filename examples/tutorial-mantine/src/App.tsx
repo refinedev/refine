@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     NotificationsProvider,
     notificationProvider,
@@ -25,6 +25,7 @@ function App() {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",

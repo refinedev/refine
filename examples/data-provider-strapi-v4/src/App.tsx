@@ -1,4 +1,4 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -83,33 +83,36 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                },
-                {
-                    name: "users",
-                    list: UsersList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                authProvider={authProvider}
+                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        create: CategoryCreate,
+                        edit: CategoryEdit,
+                    },
+                    {
+                        name: "users",
+                        list: UsersList,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                LoginPage={LoginPage}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

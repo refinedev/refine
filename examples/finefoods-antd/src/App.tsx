@@ -1,5 +1,5 @@
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
 import routerProvider from "@pankod/refine-react-router-v6";
 import {
@@ -47,6 +47,7 @@ const App: React.FC = () => {
 
     return (
         <RefineKbarProvider>
+            <GitHubBanner />
             <Refine
                 routerProvider={{
                     ...routerProvider,

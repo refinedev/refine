@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -16,29 +16,32 @@ const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={{
-                default: dataProvider(API_URL),
-                categories: dataProvider(CATEGORIES_API_URL),
-                fineFoods: dataProvider(FINE_FOODS_API_URL),
-            }}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-                {
-                    name: "categories",
-                    options: {
-                        dataProviderName: "categories",
+        <>
+            <GitHubBanner />{" "}
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={{
+                    default: dataProvider(API_URL),
+                    categories: dataProvider(CATEGORIES_API_URL),
+                    fineFoods: dataProvider(FINE_FOODS_API_URL),
+                }}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
                     },
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                    {
+                        name: "categories",
+                        options: {
+                            dataProviderName: "categories",
+                        },
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

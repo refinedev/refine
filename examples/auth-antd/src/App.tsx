@@ -1,4 +1,4 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -79,93 +79,96 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: (
-                            <AuthPage
-                                type="register"
-                                providers={[
-                                    {
-                                        name: "google",
-                                        label: "Sign in with Google",
-                                        icon: (
-                                            <GoogleOutlined
-                                                style={{
-                                                    fontSize: 24,
-                                                    lineHeight: 0,
-                                                }}
-                                            />
-                                        ),
-                                    },
-                                    {
-                                        name: "github",
-                                        label: "Sign in with GitHub",
-                                        icon: (
-                                            <GithubOutlined
-                                                style={{
-                                                    fontSize: 24,
-                                                    lineHeight: 0,
-                                                }}
-                                            />
-                                        ),
-                                    },
-                                ]}
-                            />
-                        ),
-                    },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            DashboardPage={DashboardPage}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            LoginPage={() => (
-                <AuthPage
-                    providers={[
+        <>
+            <GitHubBanner />
+            <Refine
+                authProvider={authProvider}
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={{
+                    ...routerProvider,
+                    routes: [
                         {
-                            name: "google",
-                            label: "Sign in with Google",
-                            icon: (
-                                <GoogleOutlined
-                                    style={{ fontSize: 24, lineHeight: 0 }}
+                            path: "/register",
+                            element: (
+                                <AuthPage
+                                    type="register"
+                                    providers={[
+                                        {
+                                            name: "google",
+                                            label: "Sign in with Google",
+                                            icon: (
+                                                <GoogleOutlined
+                                                    style={{
+                                                        fontSize: 24,
+                                                        lineHeight: 0,
+                                                    }}
+                                                />
+                                            ),
+                                        },
+                                        {
+                                            name: "github",
+                                            label: "Sign in with GitHub",
+                                            icon: (
+                                                <GithubOutlined
+                                                    style={{
+                                                        fontSize: 24,
+                                                        lineHeight: 0,
+                                                    }}
+                                                />
+                                            ),
+                                        },
+                                    ]}
                                 />
                             ),
                         },
                         {
-                            name: "github",
-                            label: "Sign in with GitHub",
-                            icon: (
-                                <GithubOutlined
-                                    style={{ fontSize: 24, lineHeight: 0 }}
-                                />
-                            ),
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
                         },
-                    ]}
-                />
-            )}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
+                }}
+                DashboardPage={DashboardPage}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                LoginPage={() => (
+                    <AuthPage
+                        providers={[
+                            {
+                                name: "google",
+                                label: "Sign in with Google",
+                                icon: (
+                                    <GoogleOutlined
+                                        style={{ fontSize: 24, lineHeight: 0 }}
+                                    />
+                                ),
+                            },
+                            {
+                                name: "github",
+                                label: "Sign in with GitHub",
+                                icon: (
+                                    <GithubOutlined
+                                        style={{ fontSize: 24, lineHeight: 0 }}
+                                    />
+                                ),
+                            },
+                        ]}
+                    />
+                )}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

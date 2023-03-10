@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -36,62 +36,65 @@ const cerbos = new Cerbos("https://demo-pdp.cerbos.cloud", {
 const App: React.FC = () => {
     const role = localStorage.getItem("role") ?? "admin";
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            accessControlProvider={{
-                can: async ({ action, params, resource }) => {
-                    const result = await cerbos.checkResource({
-                        principal: {
-                            id: "demoUser", // Fake a user ID
-                            roles: [role],
-                            policyVersion: "default",
-                            // this is where user attributes can be passed
-                            attributes: {},
-                        },
-                        resource: {
-                            kind: resource,
-                            policyVersion: "default",
-                            id: params?.id + "" || "new",
-                            attributes: params,
-                        },
-                        // the list of actions on the resource to check authorization for
-                        actions: [action],
-                    });
-                    return Promise.resolve({
-                        can: result.isAllowed(action) || false,
-                    });
-                },
-            }}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    create: UserCreate,
-                    edit: UserEdit,
-                    show: UserShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-            Header={() => <Header role={role} />}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                accessControlProvider={{
+                    can: async ({ action, params, resource }) => {
+                        const result = await cerbos.checkResource({
+                            principal: {
+                                id: "demoUser", // Fake a user ID
+                                roles: [role],
+                                policyVersion: "default",
+                                // this is where user attributes can be passed
+                                attributes: {},
+                            },
+                            resource: {
+                                kind: resource,
+                                policyVersion: "default",
+                                id: params?.id + "" || "new",
+                                attributes: params,
+                            },
+                            // the list of actions on the resource to check authorization for
+                            actions: [action],
+                        });
+                        return Promise.resolve({
+                            can: result.isAllowed(action) || false,
+                        });
+                    },
+                }}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                    {
+                        name: "users",
+                        list: UserList,
+                        create: UserCreate,
+                        edit: UserEdit,
+                        show: UserShow,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        create: CategoryCreate,
+                        edit: CategoryEdit,
+                        show: CategoryShow,
+                    },
+                ]}
+                Header={() => <Header role={role} />}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

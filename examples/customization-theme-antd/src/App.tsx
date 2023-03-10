@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -41,6 +41,7 @@ const App: React.FC = () => {
                 },
             }}
         >
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}

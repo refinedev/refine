@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
@@ -12,24 +12,29 @@ import "src/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[{ name: "users" }]}
-        >
-            <Head>
-                <title>Finefoods headless storefront example - refine</title>
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-                />
-                <link rel="icon" type="image/png" href="/favicon.ico" />
-            </Head>
-            <BasketContextProvider>
-                <Component {...pageProps} />
-            </BasketContextProvider>
-        </Refine>
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                Layout={Layout}
+                resources={[{ name: "users" }]}
+            >
+                <Head>
+                    <title>
+                        Finefoods headless storefront example - refine
+                    </title>
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+                    />
+                    <link rel="icon" type="image/png" href="/favicon.ico" />
+                </Head>
+                <BasketContextProvider>
+                    <Component {...pageProps} />
+                </BasketContextProvider>
+            </Refine>
+        </>
     );
 }
 

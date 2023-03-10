@@ -1,4 +1,4 @@
-import { Refine, AuthProvider, useGetIdentity } from "@pankod/refine-core";
+import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -138,68 +138,71 @@ const authProvider: AuthProvider = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            liveProvider={liveProvider(supabaseClient)}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
-                    },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="login"
-                    providers={[
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(supabaseClient)}
+                liveProvider={liveProvider(supabaseClient)}
+                routerProvider={{
+                    ...routerProvider,
+                    routes: [
                         {
-                            name: "google",
-                            label: "Sign in with Google",
-                            icon: (
-                                <GoogleOutlined
-                                    style={{ fontSize: 18, lineHeight: 0 }}
-                                />
-                            ),
+                            path: "/register",
+                            element: <AuthPage type="register" />,
                         },
-                    ]}
-                    formProps={{
-                        initialValues: {
-                            email: "info@refine.dev",
-                            password: "refine-supabase",
+                        {
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
                         },
-                    }}
-                />
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            /**
-             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @pankod/refine-supabase v4.
-             * Therefore, enabling global live mode will cause unexpected behaviors.
-             * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
-             */
-            options={{ liveMode: "off" }}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
+                }}
+                authProvider={authProvider}
+                LoginPage={() => (
+                    <AuthPage
+                        type="login"
+                        providers={[
+                            {
+                                name: "google",
+                                label: "Sign in with Google",
+                                icon: (
+                                    <GoogleOutlined
+                                        style={{ fontSize: 18, lineHeight: 0 }}
+                                    />
+                                ),
+                            },
+                        ]}
+                        formProps={{
+                            initialValues: {
+                                email: "info@refine.dev",
+                                password: "refine-supabase",
+                            },
+                        }}
+                    />
+                )}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                ]}
+                /**
+                 * Multiple subscriptions are currently not supported with the supabase JS client v2 and @pankod/refine-supabase v4.
+                 * Therefore, enabling global live mode will cause unexpected behaviors.
+                 * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
+                 */
+                options={{ liveMode: "off" }}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

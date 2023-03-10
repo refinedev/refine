@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     ConfigProvider,
@@ -17,6 +17,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ConfigProvider direction={"rtl"}>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}

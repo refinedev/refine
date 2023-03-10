@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -30,45 +30,48 @@ function App() {
     const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
 
     return (
-        <Refine
-            routerProvider={routerProvider}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            dataProvider={dataProvider}
-            authProvider={authProvider}
-            LoginPage={LoginPage}
-            resources={[
-                {
-                    name: "companies",
-                    options: { label: "Company" },
-                    list: CompanyList,
-                    icon: <InfoCircleOutlined />,
-                },
-                {
-                    name: "clients",
-                    list: ClientList,
-                    icon: <TeamOutlined />,
-                },
-                {
-                    name: "contacts",
-                    list: ContactsList,
-                    edit: EditContact,
-                    icon: <UserAddOutlined />,
-                },
-                {
-                    name: "missions",
-                    list: MissionList,
-                    icon: <SlidersOutlined />,
-                },
-                {
-                    name: "invoices",
-                    list: InvoiceList,
-                    create: CreateInvoice,
-                    edit: EditInvoice,
-                    icon: <FileAddOutlined />,
-                },
-            ]}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                dataProvider={dataProvider}
+                authProvider={authProvider}
+                LoginPage={LoginPage}
+                resources={[
+                    {
+                        name: "companies",
+                        options: { label: "Company" },
+                        list: CompanyList,
+                        icon: <InfoCircleOutlined />,
+                    },
+                    {
+                        name: "clients",
+                        list: ClientList,
+                        icon: <TeamOutlined />,
+                    },
+                    {
+                        name: "contacts",
+                        list: ContactsList,
+                        edit: EditContact,
+                        icon: <UserAddOutlined />,
+                    },
+                    {
+                        name: "missions",
+                        list: MissionList,
+                        icon: <SlidersOutlined />,
+                    },
+                    {
+                        name: "invoices",
+                        list: InvoiceList,
+                        create: CreateInvoice,
+                        edit: EditInvoice,
+                        icon: <FileAddOutlined />,
+                    },
+                ]}
+            />
+        </>
     );
 }
 

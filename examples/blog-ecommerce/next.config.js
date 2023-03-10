@@ -1,7 +1,11 @@
-const withPlugins = require("next-compose-plugins");
+/**
+ * @type {import('next').NextConfig}
+ */
 
-module.exports = withPlugins([], {
+const nextConfig = {
     experimental: {
         newNextLinkBehavior: true,
     },
-});
+};
+
+module.exports = nextConfig;

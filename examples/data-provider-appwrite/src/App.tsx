@@ -1,4 +1,4 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -58,33 +58,36 @@ const authProvider: AuthProvider = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            liveProvider={liveProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            options={{ liveMode: "auto" }}
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            LoginPage={Login}
-            resources={[
-                {
-                    name: "61c43ad33b857",
-                    create: PostsCreate,
-                    list: PostsList,
-                    edit: PostsEdit,
-                    show: PostsShow,
-                    options: {
-                        label: "Post",
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                liveProvider={liveProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                options={{ liveMode: "auto" }}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                LoginPage={Login}
+                resources={[
+                    {
+                        name: "61c43ad33b857",
+                        create: PostsCreate,
+                        list: PostsList,
+                        edit: PostsEdit,
+                        show: PostsShow,
+                        options: {
+                            label: "Post",
+                        },
                     },
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

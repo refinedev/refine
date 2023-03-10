@@ -1,7 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -21,38 +21,41 @@ import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                { name: "users" },
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-            options={{ syncWithLocation: true }}
-            notificationProvider={notificationProvider}
-            LoginPage={() => (
-                <AuthPage
-                    formProps={{
-                        initialValues: {
-                            email: "admin@refine.dev",
-                            password: "password",
-                        },
-                    }}
-                />
-            )}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        >
-            <Component {...pageProps} />
-        </Refine>
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    { name: "users" },
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
+                options={{ syncWithLocation: true }}
+                notificationProvider={notificationProvider}
+                LoginPage={() => (
+                    <AuthPage
+                        formProps={{
+                            initialValues: {
+                                email: "admin@refine.dev",
+                                password: "password",
+                            },
+                        }}
+                    />
+                )}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            >
+                <Component {...pageProps} />
+            </Refine>
+        </>
     );
 }
 

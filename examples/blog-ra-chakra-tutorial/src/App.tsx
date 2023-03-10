@@ -1,5 +1,5 @@
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     ChakraProvider,
@@ -18,6 +18,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 function App() {
     return (
         <ChakraProvider theme={refineTheme}>
+            <GitHubBanner />
             <Refine
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}

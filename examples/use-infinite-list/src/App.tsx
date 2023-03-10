@@ -1,4 +1,4 @@
-import { LayoutProps, Refine } from "@pankod/refine-core";
+import { GitHubBanner, LayoutProps, Refine } from "@pankod/refine-core";
 import routerProvider, { Link } from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -31,24 +31,27 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev"),
-                github: githubDataProvider(),
-            }}
-            routerProvider={routerProvider}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-                {
-                    name: "commits",
-                    list: CommitList,
-                },
-            ]}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={{
+                    default: dataProvider("https://api.fake-rest.refine.dev"),
+                    github: githubDataProvider(),
+                }}
+                routerProvider={routerProvider}
+                Layout={Layout}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                    },
+                    {
+                        name: "commits",
+                        list: CommitList,
+                    },
+                ]}
+            />
+        </>
     );
 };
 

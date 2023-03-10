@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -21,43 +21,46 @@ import { Login } from "./pages/login";
 
 function App() {
     return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
-            LoginPage={Login}
-            routerProvider={{
-                ...routerProvider,
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(supabaseClient)}
+                authProvider={authProvider}
+                LoginPage={Login}
+                routerProvider={{
+                    ...routerProvider,
 
-                routes: [
+                    routes: [
+                        {
+                            exact: true,
+                            component: MoviesList,
+                            path: "/movies",
+                        },
+                        {
+                            exact: true,
+                            component: MovieShow,
+                            path: "/:resource(movies)/:action(show)/:id",
+                        },
+                    ],
+                }}
+                resources={[
                     {
-                        exact: true,
-                        component: MoviesList,
-                        path: "/movies",
-                    },
-                    {
-                        exact: true,
-                        component: MovieShow,
-                        path: "/:resource(movies)/:action(show)/:id",
-                    },
-                ],
-            }}
-            resources={[
-                {
-                    name: "movies",
-                    list: AdminMovieList,
-                    create: AdminMovieCreate,
-                    show: AdminMovieShow,
-                    edit: AdminMovieEdit,
+                        name: "movies",
+                        list: AdminMovieList,
+                        create: AdminMovieCreate,
+                        show: AdminMovieShow,
+                        edit: AdminMovieEdit,
 
-                    options: {
-                        route: "admin/movies",
+                        options: {
+                            route: "admin/movies",
+                        },
                     },
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 }
 

@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     ReadyPage,
@@ -37,6 +37,7 @@ function App() {
                 },
             }}
         >
+            <GitHubBanner />
             <Refine
                 auditLogProvider={auditLogProvider}
                 authProvider={authProvider}

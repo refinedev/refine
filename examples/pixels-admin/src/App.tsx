@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     Layout,
     notificationProvider,
@@ -37,6 +37,7 @@ function App() {
                 },
             }}
         >
+            <GitHubBanner />
             <Refine
                 auditLogProvider={auditLogProvider}
                 dataProvider={dataProvider(supabaseClient)}

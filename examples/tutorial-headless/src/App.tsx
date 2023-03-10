@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -12,19 +12,22 @@ import { ProductCreate } from "pages/products/create";
 
 function App() {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "products",
-                    list: ProductList,
-                    show: ProductShow,
-                    create: ProductCreate,
-                    edit: ProductEdit,
-                },
-            ]}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: ProductList,
+                        show: ProductShow,
+                        create: ProductCreate,
+                        edit: ProductEdit,
+                    },
+                ]}
+            />
+        </>
     );
 }
 

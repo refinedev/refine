@@ -2,7 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@pankod/refine-strapi-v4";
@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js"
                 />
             </Head>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider}

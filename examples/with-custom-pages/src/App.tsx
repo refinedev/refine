@@ -1,4 +1,9 @@
-import { Refine, AuthProvider, Authenticated } from "@pankod/refine-core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthProvider,
+    Authenticated,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     AuthPage,
@@ -46,46 +51,49 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        element: <PostReview />,
-                        path: "/public-page",
-                    },
-                    {
-                        element: <AuthenticatedPostReview />,
-                        path: "/authenticated-page",
-                        layout: true,
-                    },
-                ] as typeof routerProvider.routes,
-            }}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            LoginPage={() => (
-                <AuthPage
-                    formProps={{
-                        initialValues: {
-                            email: "admin@refine.dev",
-                            password: "password",
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={{
+                    ...routerProvider,
+                    routes: [
+                        {
+                            element: <PostReview />,
+                            path: "/public-page",
                         },
-                    }}
-                />
-            )}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                        {
+                            element: <AuthenticatedPostReview />,
+                            path: "/authenticated-page",
+                            layout: true,
+                        },
+                    ] as typeof routerProvider.routes,
+                }}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                LoginPage={() => (
+                    <AuthPage
+                        formProps={{
+                            initialValues: {
+                                email: "admin@refine.dev",
+                                password: "password",
+                            },
+                        }}
+                    />
+                )}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

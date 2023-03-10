@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -20,6 +20,7 @@ import { authProvider, axiosInstance } from "./authProvider";
 const App: React.FC = () => {
     return (
         <StoreProvider>
+            <GitHubBanner />
             <Refine
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}

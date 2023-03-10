@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -20,6 +20,7 @@ function App() {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
+                <GitHubBanner />
                 <Refine
                     notificationProvider={notificationProvider}
                     Layout={Layout}
