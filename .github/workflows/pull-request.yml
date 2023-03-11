@@ -4,7 +4,7 @@ on: [pull_request]
 jobs:
   commit-lint:
     runs-on: ubuntu-latest
-    name: Lint and Commitlint
+    name: Commitlint
     steps:
       - uses: actions/checkout@v1
         with:
@@ -12,7 +12,7 @@ jobs:
       - uses: wagoid/commitlint-github-action@v5
   lint:
     runs-on: ubuntu-latest
-    name: Lint and Commitlint
+    name: Lint
     steps:
       - uses: actions/checkout@v1
         with:
