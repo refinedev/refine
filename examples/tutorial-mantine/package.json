@@ -21,10 +21,10 @@
         "@refinedev/react-router-v6": "^3.18.0",
         "@refinedev/inferencer": "^2.8.2",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "5.10.4",
-        "@mantine/hooks": "5.10.4",
-        "@mantine/form": "5.10.4",
-        "@mantine/notifications": "5.10.4"
+        "@mantine/core": "^5.10.4",
+        "@mantine/hooks": "^5.10.4",
+        "@mantine/form": "^5.10.4",
+        "@mantine/notifications": "^5.10.4"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",
