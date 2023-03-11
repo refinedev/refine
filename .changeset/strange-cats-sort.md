@@ -23,11 +23,11 @@ If the packages are not installed, you can install them with your package manage
 > You don't have to install all of these packages below. Only install the packages you use.
 
 ```bash
-npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+npm install @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
 # or
-pnpm add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+pnpm add @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
 # or
-yarn add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+yarn add @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
 ```
 
 After that, you can import them from related packages directly.

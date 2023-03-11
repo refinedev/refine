@@ -10,7 +10,7 @@ import CodeBlock from '@theme/CodeBlock';
 
 ### Motivation behind the release
 
-In refine v4, we had a target of making **refine** available in every platform you can use React and make it easy to use in both existing projects and new ones. This also comes with making **refine** flexible and a better fit for a wider use cases. This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. Our aim is to make **refine** a friend for a developer by providing abstractions and ways to separate concerns and manage the data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. Changes are done in our API in a manner to allow you to use **refine** in every use case and incrementally adopt for your existing projects. 
+In refine v4, we had a target of making **refine** available in every platform you can use React and make it easy to use in both existing projects and new ones. This also comes with making **refine** flexible and a better fit for a wider use cases. This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. Our aim is to make **refine** a friend for a developer by providing abstractions and ways to separate concerns and manage the data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. Changes are done in our API in a manner to allow you to use **refine** in every use case and incrementally adopt for your existing projects.
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
@@ -53,7 +53,7 @@ You must make this change for all packages that start with `@pankod`.
 
 ### `routerProvider`
 
-refine v4 includes a new interface for the `routerProvider` prop. It is now smaller and more flexible by leaving the control of the routes to the user and only constructing the communication and the bindings the router and **refine**. 
+refine v4 includes a new interface for the `routerProvider` prop. It is now smaller and more flexible by leaving the control of the routes to the user and only constructing the communication and the bindings the router and **refine**.
 
 `routerProvider` is now optional and you can use **refine** without a router. Passing one enables such features as, inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs, etc.
 
@@ -79,9 +79,9 @@ const App = () => {
 
 ### `resources`
 
-With the new `routerProvider` interface, we also made changes to the `resources` prop, which is now working more like the interaction and connection point between your API and the app rather than a necessity for the router to work. Your router can work without resources, in the same way your resources can work without a router. 
+With the new `routerProvider` interface, we also made changes to the `resources` prop, which is now working more like the interaction and connection point between your API and the app rather than a necessity for the router to work. Your router can work without resources, in the same way your resources can work without a router.
 
-Now, you can define your actions (`list`, `create`, `edit`, `show`, `clone`) as paths rather than components. This will allow you to define custom routes for actions and also use the full potential of your router without being restricted to the routes created automatically. 
+Now, you can define your actions (`list`, `create`, `edit`, `show`, `clone`) as paths rather than components. This will allow you to define custom routes for actions and also use the full potential of your router without being restricted to the routes created automatically.
 
 Defining custom routes enables nested routes and parameters for your resources, such as;
 
@@ -97,11 +97,11 @@ resources={[
 ]}
 ```
 
-In the above example, you can see that the detail page of a product can have a nested structure and also supports additional parameters. These parameters can be passed along with the `meta` properties in such hooks and components. Existing parameters in the URL will also be used when constructing the navigation path. 
+In the above example, you can see that the detail page of a product can have a nested structure and also supports additional parameters. These parameters can be passed along with the `meta` properties in such hooks and components. Existing parameters in the URL will also be used when constructing the navigation path.
 
 The existing method for passing components to the actions are still supported and uses the default paths when an action has a component value but the new `routerProvider` doesn't create routes for it automatically. To achieve this, you can use the `RefineRoutes` components from the router packages. To learn more about changes about routing in resources, please check [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
 
-We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name. 
+We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name.
 
 The `route` property is now deprecated with the new routing system which lets users define custom routes per action.
 
@@ -1093,7 +1093,7 @@ values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 
 <TabItem value="npm">
 
 ```bash
-npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+npm install @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
 ```
 
 </TabItem>
@@ -1101,7 +1101,7 @@ npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @
 <TabItem value="pnpm">
 
 ```bash
-pnpm add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+pnpm add @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
 ```
 
 </TabItem>
@@ -1109,7 +1109,7 @@ pnpm add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @man
 <TabItem value="yarn">
 
 ```bash
-yarn add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+yarn add @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
 ```
 
 </TabItem>
