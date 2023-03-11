@@ -1,5 +1,8 @@
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -13,6 +16,10 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 resources={[{ name: "posts", list: "/posts" }]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -22,6 +29,7 @@ const App: React.FC = () => {
                     <Route path="/posts" element={<DummyList />} />
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
