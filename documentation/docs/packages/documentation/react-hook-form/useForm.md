@@ -543,7 +543,9 @@ It will be passed to the [`dataProvider`][data-provider]'s method as a params. T
 
 ```tsx
 useForm({
-    resource: "categories",
+    refineCoreProps: {
+        resource: "categories",
+    }
 });
 ```
 
