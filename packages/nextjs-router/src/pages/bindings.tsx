@@ -127,12 +127,14 @@ export const routerBindings: RouterBindings = {
                 pathname: cleanPathname,
                 params: {
                     ...combinedParams,
-                    current: convertToNumberIfPossible(combinedParams.current),
+                    current: convertToNumberIfPossible(
+                        combinedParams.current as string,
+                    ) as number | undefined,
                     pageSize: convertToNumberIfPossible(
-                        combinedParams.pageSize,
-                    ),
+                        combinedParams.pageSize as string,
+                    ) as number | undefined,
                     to: combinedParams.to
-                        ? decodeURIComponent(combinedParams.to)
+                        ? decodeURIComponent(combinedParams.to as string)
                         : undefined,
                 },
             };
