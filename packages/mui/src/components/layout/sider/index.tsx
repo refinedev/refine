@@ -158,7 +158,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                                         sx={{
                                             justifyContent: "center",
                                             minWidth: 36,
-                                            color: "primary.contrastText",
+                                            color: "secondary.contrastText",
                                         }}
                                     >
                                         {icon ?? <ListOutlined />}
@@ -233,7 +233,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                                 sx={{
                                     justifyContent: "center",
                                     minWidth: 36,
-                                    color: "primary.contrastText",
+                                    color: "secondary.contrastText",
                                 }}
                             >
                                 {icon ?? <ListOutlined />}
@@ -284,7 +284,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                         sx={{
                             justifyContent: "center",
                             minWidth: 36,
-                            color: "primary.contrastText",
+                            color: "secondary.contrastText",
                         }}
                     >
                         <Dashboard />
@@ -318,7 +318,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                     sx={{
                         justifyContent: "center",
                         minWidth: 36,
-                        color: "primary.contrastText",
+                        color: "secondary.contrastText",
                     }}
                 >
                     <Logout />
@@ -355,7 +355,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     };
 
     const drawer = (
-        <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
+        <List disablePadding sx={{ mt: 1, color: "secondary.contrastText" }}>
             {renderSider()}
         </List>
     );
@@ -445,7 +445,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                     <Button
                         sx={{
                             background: "rgba(0,0,0,.5)",
-                            color: "primary.contrastText",
+                            color: "secondary.contrastText",
                             textAlign: "center",
                             borderRadius: 0,
                             borderTop: "1px solid #ffffff1a",
