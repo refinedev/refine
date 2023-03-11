@@ -10,7 +10,10 @@ import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -61,6 +64,10 @@ const App: React.FC = () => {
                                 },
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
@@ -128,6 +135,7 @@ const App: React.FC = () => {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

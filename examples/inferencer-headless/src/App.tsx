@@ -1,5 +1,8 @@
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import "./App.css";
@@ -45,6 +48,10 @@ const App: React.FC = () => {
                         },
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -92,6 +99,7 @@ const App: React.FC = () => {
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

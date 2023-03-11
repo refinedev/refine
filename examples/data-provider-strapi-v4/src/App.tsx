@@ -14,6 +14,7 @@ import { DataProvider, AuthHelper } from "@refinedev/strapi-v4";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import axios from "axios";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -130,6 +131,10 @@ const App: React.FC = () => {
                     },
                 ]}
                 notificationProvider={notificationProvider}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -166,7 +171,7 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
+                                <NavigateToResource resource="posts" />
                             </Authenticated>
                         }
                     >
@@ -197,6 +202,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

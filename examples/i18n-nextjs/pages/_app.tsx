@@ -6,7 +6,9 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 
 import { notificationProvider, Layout } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/nextjs-router";
 
 import { Header } from "@components";
 
@@ -43,10 +45,15 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     },
                 ]}
                 notificationProvider={notificationProvider}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Layout Header={Header}>
                     <Component {...pageProps} />
                 </Layout>
+                <UnsavedChangesNotifier />
             </Refine>
         </>
     );

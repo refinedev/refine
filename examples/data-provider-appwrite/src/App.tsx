@@ -13,6 +13,7 @@ import {
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -109,7 +110,6 @@ const App: React.FC = () => {
                 liveProvider={liveProvider(appwriteClient, {
                     databaseId: "default",
                 })}
-                options={{ liveMode: "auto" }}
                 authProvider={authProvider}
                 routerProvider={routerProvider}
                 resources={[
@@ -125,6 +125,11 @@ const App: React.FC = () => {
                     },
                 ]}
                 notificationProvider={notificationProvider}
+                options={{
+                    liveMode: "auto",
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -156,7 +161,7 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
+                                <NavigateToResource resource="posts" />
                             </Authenticated>
                         }
                     >
@@ -175,6 +180,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
