@@ -95,7 +95,10 @@ const App: React.FC = () => {
                 redirectTo: "/",
             };
         },
-        onError: async () => ({}),
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
         check: async () => {
             return localStorage.getItem("email")
                 ? { authenticated: true }

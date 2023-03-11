@@ -221,7 +221,10 @@ const authProvider = {
     check: async () => ({
         authenticated: true,
     }),
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     getPermissions: async () => ["admin"],
     getIdentity: async () => null,
 };

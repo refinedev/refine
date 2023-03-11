@@ -61,7 +61,10 @@ const authProvider = {
             redirectTo: window.__refineAuthStatus ? undefined : "/login",
         };
     },
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     getPermissions: async () => null,
     getIdentity: async () => null,
 };
@@ -132,7 +135,10 @@ setRefineProps({ Sider: () => null });
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { AuthPage, Layout } from "@refinedev/antd";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -149,33 +155,29 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         {/* highlight-start */}
                         <Route
                             path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                />
-                            )}
+                            element={<AuthPage type="login" />}
                         />
                         {/* highlight-end */}
                     </Route>
@@ -208,7 +210,10 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -228,24 +233,24 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         {/* highlight-next-line */}
                         <Route path="/login" element={<AuthPage />} />
@@ -297,7 +302,10 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -317,28 +325,31 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route path="/login" element={<AuthPage />} />
                         {/* highlight-next-line */}
-                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -387,7 +398,10 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -407,29 +421,35 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route path="/login" element={<AuthPage />} />
-                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
                         {/* highlight-next-line */}
-                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -478,7 +498,10 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -498,30 +521,39 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route path="/login" element={<AuthPage />} />
-                        <Route path="/register" element={<AuthPage type="register" />} />
-                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
                         {/* highlight-next-line */}
-                        <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -587,8 +619,8 @@ const MyLoginPage = () => {
                 },
             ]}
         />
-    )
-}
+    );
+};
 ```
 
 ### `rememberMe`
@@ -616,19 +648,15 @@ const MyLoginPage = () => {
                         padding: 3,
                     }}
                 >
-                    <Form.Item
-                        name="remember"
-                        valuePropName="checked"
-                        noStyle
-                    >
+                    <Form.Item name="remember" valuePropName="checked" noStyle>
                         <Checkbox>Custom remember me</Checkbox>
                     </Form.Item>
                 </div>
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `loginLink`
@@ -657,8 +685,8 @@ const MyRegisterPage = () => {
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `registerLink`
@@ -688,8 +716,8 @@ const MyLoginPage = () => {
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `forgotPasswordLink`
@@ -719,8 +747,8 @@ const MyLoginPage = () => {
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `wrapperProps`
@@ -740,8 +768,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `contentProps`
@@ -766,8 +794,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `formProps`
@@ -790,8 +818,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `renderContent`
@@ -822,8 +850,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ## API Reference

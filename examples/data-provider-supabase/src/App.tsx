@@ -192,7 +192,10 @@ const authProvider: AuthBindings = {
             redirectTo: "/login",
         };
     },
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     check: async () => {
         try {
             const { data } = await supabaseClient.auth.getSession();

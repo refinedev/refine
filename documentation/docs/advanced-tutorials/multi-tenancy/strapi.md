@@ -88,7 +88,10 @@ export const authProvider: AuthBindings = {
             redirectTo: "/",
         };
     },
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
@@ -152,7 +155,10 @@ strapiAuthHelper.me("token", {
 import { Refine, Authenticated } from "@refinedev/core";
 import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -361,12 +367,7 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
-import {
-    useMenu,
-    useLogout,
-    CanAccess,
-    TreeMenuItem,
-} from "@refinedev/core";
+import { useMenu, useLogout, CanAccess, TreeMenuItem } from "@refinedev/core";
 import { Layout, Menu, Grid } from "antd";
 import {
     UnorderedListOutlined,

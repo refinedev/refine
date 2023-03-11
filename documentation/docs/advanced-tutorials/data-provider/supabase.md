@@ -329,7 +329,10 @@ const authProvider: AuthBindings = {
             redirectTo: "/",
         };
     },
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     check: async () => {
         try {
             const { data } = await supabaseClient.auth.getSession();
@@ -450,7 +453,6 @@ Let's add a listing page to show data retrieved from Supabase API in the table. 
 <p>
 
 ```tsx title="src/pages/posts/list.tsx"
-
 import {
     List,
     useTable,
@@ -993,15 +995,18 @@ Normally, refine shows a default login page when `authProvider` and `resources` 
 Let's check out the `LoginPage` property:
 
 ```tsx title="src/App.tsx"
-import { Refine, Authenticated } from '@refinedev/core';
+import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
-import { AuthPage } from '@refinedev/antd';
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+import { AuthPage } from "@refinedev/antd";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 //highlight-end
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import authProvider from './authProvider';
+import authProvider from "./authProvider";
 
 /* ... */
 
@@ -1016,7 +1021,7 @@ function App() {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
@@ -1024,26 +1029,34 @@ function App() {
                                     <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
-                        <Route path="/posts" element={<div>dummy list page</div>} />
+                        <Route
+                            path="/posts"
+                            element={<div>dummy list page</div>}
+                        />
                     </Route>
                     <Route
-                        element={(
-                            <Authenticated
-                                fallback={(
-                                    <Outlet />
-                                )}
-                            >
+                        element={
+                            <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         {/* highlight-start */}
                         <Route path="/login" element={<AuthPage />} />
-                        <Route path="/register" element={<AuthPage type="register" />} />
-                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                        <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
                         {/* highlight-end */}
                     </Route>
                 </Routes>
@@ -1116,9 +1129,9 @@ Social login feature can be activated by setting `provider` property of the `<Au
 
 ```tsx title="src/App.tsx"
 //highlight-start
-import { AuthPage } from '@refinedev/antd';
+import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined } from "@ant-design/icons";
-  //highlight-end
+//highlight-end
 
 const MyLoginPage = () => {
     return (
@@ -1136,8 +1149,8 @@ const MyLoginPage = () => {
                 },
             ]}
         />
-    )
-}
+    );
+};
 ```
 
 This will add a new Google login button to the login page. After the user successfully logs in, the app will redirect back to the app.
@@ -1198,10 +1211,10 @@ Required Supabase Real Time setup is already done in the [`@refinedev/supabase`]
 We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@refinedev/core';
+import { Refine } from "@refinedev/core";
 //highlight-start
 import { liveProvider } from "@refinedev/supabase";
-import { supabaseClient } from 'utility';
+import { supabaseClient } from "utility";
 //highlight-end
 
 /* ... */
@@ -1210,8 +1223,8 @@ function App() {
     return (
         <Refine
             //highlight-start
-             liveProvider={liveProvider(supabaseClient)}
-             options={{ liveMode: "auto" }}
+            liveProvider={liveProvider(supabaseClient)}
+            options={{ liveMode: "auto" }}
             //highlight-end
             /* ... */
         >

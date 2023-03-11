@@ -317,45 +317,48 @@ const App = () => {
         },
     };
 
-      window.__refineAuthStatus = true;
+    window.__refineAuthStatus = true;
 
-const authProvider = {
-    login: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        window.__refineAuthStatus = false;
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    check: async () => ({
-        authenticated: window.__refineAuthStatus ? true : false,
-        redirectTo: window.__refineAuthStatus ? undefined : "/login",
-    }),
-    onError: async () => ({}),
-    getPermissions: async () => ["admin"],
-    getIdentity: async () => null,
-};
+    const authProvider = {
+        login: async () => {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        },
+        register: async () => {
+            return {
+                success: true,
+            };
+        },
+        forgotPassword: async () => {
+            return {
+                success: true,
+            };
+        },
+        updatePassword: async () => {
+            return {
+                success: true,
+            };
+        },
+        logout: async () => {
+            window.__refineAuthStatus = false;
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        },
+        check: async () => ({
+            authenticated: window.__refineAuthStatus ? true : false,
+            redirectTo: window.__refineAuthStatus ? undefined : "/login",
+        }),
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        getPermissions: async () => ["admin"],
+        getIdentity: async () => null,
+    };
 
     return (
         <Refine

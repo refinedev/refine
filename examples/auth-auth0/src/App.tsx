@@ -41,8 +41,9 @@ const App: React.FC = () => {
                 success: true,
             };
         },
-        onError: async () => {
-            return {};
+        onError: async (error) => {
+            console.error(error);
+            return { error };
         },
         check: async () => {
             try {

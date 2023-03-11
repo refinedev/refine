@@ -108,7 +108,10 @@ const App: React.FC = () => {
                 redirectTo: "/login",
             };
         },
-        onError: async () => ({}),
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
         check: async () =>
             localStorage.getItem("email")
                 ? {

@@ -26,12 +26,7 @@ interface IPost {
 // visible-block-start
 import { useMany } from "@refinedev/core";
 
-import {
-    List,
-    TextField,
-    TagField,
-    useTable,
-} from "@refinedev/antd";
+import { List, TextField, TagField, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -231,7 +226,10 @@ const authProvider = {
     check: async () => ({
         authenticated: true,
     }),
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     getPermissions: async () => ["admin"],
     getIdentity: async () => null,
 };
