@@ -13,6 +13,7 @@ import {
     TLoginData,
     TRegisterData,
 } from "../../../interfaces";
+import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
 
 export type UseRegisterLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -91,6 +92,7 @@ export function useRegister<TVariables = {}>({
 }: UseRegisterProps<TVariables> | UseRegisterLegacyProps<TVariables> = {}):
     | UseRegisterReturnType<TVariables>
     | UseRegisterLegacyReturnType<TVariables> {
+    const invalidateAuthStore = useInvalidateAuthStore();
     const routerType = useRouterType();
     const go = useGo();
     const { replace } = useNavigation();
@@ -124,6 +126,8 @@ export function useRegister<TVariables = {}>({
                     replace("/");
                 }
             }
+
+            invalidateAuthStore();
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -157,6 +161,8 @@ export function useRegister<TVariables = {}>({
                     }
                     close?.("register-error");
                 }
+
+                invalidateAuthStore();
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));
