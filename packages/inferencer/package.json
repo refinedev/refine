@@ -75,7 +75,7 @@
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
         "@ant-design/icons": "^5.0.1",
-        "@chakra-ui/react": "^2.3.6",
+        "@chakra-ui/react": "^2.5.1",
         "@mantine/core": "5.10.4",
         "@mantine/hooks": "5.10.4",
         "@mantine/form": "5.10.4",
