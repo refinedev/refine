@@ -18,6 +18,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OpenNotificationParams, TLoginData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 import React from "react";
+import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
 
 export type UseLoginLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -96,6 +97,7 @@ export function useLogin<TVariables = {}>({
 }: UseLoginProps<TVariables> | UseLoginLegacyProps<TVariables> = {}):
     | UseLoginLegacyReturnType<TVariables>
     | UseLoginReturnType<TVariables> {
+    const invalidateAuthStore = useInvalidateAuthStore();
     const routerType = useRouterType();
 
     const go = useGo();
@@ -138,13 +140,11 @@ export function useLogin<TVariables = {}>({
 
             if (to && success) {
                 if (routerType === "legacy") {
-                    return replace(to as string);
+                    replace(to as string);
                 } else {
-                    return go({ to: to as string, type: "replace" });
+                    go({ to: to as string, type: "replace" });
                 }
-            }
-
-            if (redirectTo) {
+            } else if (redirectTo) {
                 if (routerType === "legacy") {
                     replace(redirectTo);
                 } else {
@@ -155,6 +155,10 @@ export function useLogin<TVariables = {}>({
                     replace("/");
                 }
             }
+
+            setTimeout(() => {
+                invalidateAuthStore();
+            });
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -170,10 +174,10 @@ export function useLogin<TVariables = {}>({
     >(["useLogin", "v3LegacyAuthProviderCompatible"], legacyLoginFromContext, {
         onSuccess: (redirectPathFromAuth) => {
             if (to) {
-                return replace(to as string);
+                replace(to as string);
             }
 
-            if (redirectPathFromAuth !== false) {
+            if (redirectPathFromAuth !== false && !to) {
                 if (typeof redirectPathFromAuth === "string") {
                     if (routerType === "legacy") {
                         replace(redirectPathFromAuth);
@@ -188,7 +192,12 @@ export function useLogin<TVariables = {}>({
                     }
                 }
             }
+
             close?.("login-error");
+
+            setTimeout(() => {
+                invalidateAuthStore();
+            });
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
