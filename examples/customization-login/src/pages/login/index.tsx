@@ -55,8 +55,6 @@ export const Login: React.FC = () => {
                                 }}
                                 requiredMark={false}
                                 initialValues={{
-                                    username: "admin",
-                                    password: "1234",
                                     remember: false,
                                 }}
                             >

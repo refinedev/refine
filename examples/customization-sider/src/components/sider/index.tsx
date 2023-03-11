@@ -1,72 +1,43 @@
-import React, { CSSProperties, useState } from "react";
-import { Layout, Menu, Grid, ConfigProvider, Drawer, Button } from "antd";
+import React, { useState } from "react";
+import {
+    ITreeMenu,
+    CanAccess,
+    useRefineContext,
+    useIsExistAuthentication,
+    useTranslate,
+    useLogout,
+    useMenu,
+} from "@refinedev/core";
+import { Link } from "react-router-dom";
+import { Sider } from "@refinedev/antd";
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
     UnorderedListOutlined,
-    BarsOutlined,
 } from "@ant-design/icons";
-import {
-    useTranslate,
-    useLogout,
-    useTitle,
-    CanAccess,
-    ITreeMenu,
-    useIsExistAuthentication,
-    useRouterContext,
-    useMenu,
-    useRefineContext,
-    useLink,
-    useRouterType,
-    useActiveAuthProvider,
-    pickNotDeprecated,
-} from "@refinedev/core";
-import { RefineLayoutSiderProps, Title as DefaultTitle } from "@refinedev/antd";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-const drawerButtonStyles: CSSProperties = {
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-    position: "fixed",
-    top: 64,
-    zIndex: 999,
-};
-
-const { SubMenu } = Menu;
-
-export const CustomSider: React.FC<RefineLayoutSiderProps> = ({
-    Title: TitleFromProps,
-    render,
-    meta,
-}) => {
+export const CustomSider: typeof Sider = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const routerType = useRouterType();
-    const NewLink = useLink();
-    const { Link: LegacyLink } = useRouterContext();
-    const Link = routerType === "legacy" ? LegacyLink : NewLink;
-    const TitleFromContext = useTitle();
+    const { mutate: mutateLogout } = useLogout();
     const translate = useTranslate();
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
-    const breakpoint = Grid.useBreakpoint();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const { hasDashboard } = useRefineContext();
-    const authProvider = useActiveAuthProvider();
-    const { mutate: mutateLogout } = useLogout({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+    const { SubMenu } = Menu;
+
+    const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
-
-    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const {
                 icon,
                 label,
                 route,
-                key,
                 name,
                 children,
                 parentName,
@@ -76,46 +47,35 @@ export const CustomSider: React.FC<RefineLayoutSiderProps> = ({
 
             if (children.length > 0) {
                 return (
-                    <CanAccess
-                        key={item.key}
-                        resource={name.toLowerCase()}
-                        action="list"
-                        params={{
-                            resource: item,
-                        }}
+                    <SubMenu
+                        key={route}
+                        icon={icon ?? <UnorderedListOutlined />}
+                        title={label}
                     >
-                        <SubMenu
-                            key={item.key}
-                            icon={icon ?? <UnorderedListOutlined />}
-                            title={label}
-                        >
-                            {renderTreeView(children, selectedKey)}
-                        </SubMenu>
-                    </CanAccess>
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
                 );
             }
-            const isSelected = key === selectedKey;
+            const isSelected = route === selectedKey;
             const isRoute = !(
-                pickNotDeprecated(meta?.parent, options?.parent, parentName) !==
-                    undefined && children.length === 0
+                (meta?.parent ?? options?.parent ?? parentName) !== undefined &&
+                children.length === 0
             );
             return (
                 <CanAccess
-                    key={item.key}
+                    key={route}
                     resource={name.toLowerCase()}
                     action="list"
-                    params={{
-                        resource: item,
-                    }}
+                    params={{ resource: item }}
                 >
                     <Menu.Item
-                        key={item.key}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route ?? ""}>{label}</Link>
+                        {route ? <Link to={route}>{label}</Link> : label}
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -170,96 +130,51 @@ export const CustomSider: React.FC<RefineLayoutSiderProps> = ({
         );
     };
 
-    const renderMenu = () => {
-        return (
-            <>
-                <Menu
-                    theme="dark"
-                    selectedKeys={selectedKey ? [selectedKey] : []}
-                    defaultOpenKeys={defaultOpenKeys}
-                    mode="inline"
-                    onClick={() => {
-                        setDrawerOpen(false);
-                        if (!breakpoint.lg) {
-                            setCollapsed(true);
-                        }
-                    }}
-                >
-                    {renderSider()}
-                </Menu>
-            </>
-        );
-    };
-
-    const renderDrawerSider = () => {
-        return (
-            <>
-                <Drawer
-                    open={drawerOpen}
-                    onClose={() => setDrawerOpen(false)}
-                    placement="left"
-                    closable={false}
-                    width={200}
-                    bodyStyle={{
-                        padding: 0,
-                    }}
-                    maskClosable={true}
-                >
-                    <Layout>
-                        <Layout.Sider
-                            style={{ height: "100vh", overflow: "hidden" }}
-                        >
-                            <RenderToTitle collapsed={false} />
-                            {renderMenu()}
-                        </Layout.Sider>
-                    </Layout>
-                </Drawer>
-                <Button
-                    style={drawerButtonStyles}
-                    size="large"
-                    onClick={() => setDrawerOpen(true)}
-                    icon={<BarsOutlined />}
-                ></Button>
-            </>
-        );
-    };
-
-    const renderContent = () => {
-        if (isMobile) {
-            return renderDrawerSider();
-        }
-
-        return (
-            <Layout.Sider
-                collapsible
-                collapsed={collapsed}
-                onCollapse={(collapsed: boolean): void =>
-                    setCollapsed(collapsed)
-                }
-                collapsedWidth={80}
-                breakpoint="lg"
-            >
-                <RenderToTitle collapsed={collapsed} />
-                {renderMenu()}
-            </Layout.Sider>
-        );
-    };
-
     return (
-        <ConfigProvider
-            theme={{
-                components: {
-                    Menu: {
-                        colorItemBg: "transparent",
-                        colorItemText: "#fff",
-                        colorItemTextSelected: "#fff",
-                        colorItemBgSelected: "transparent",
-                        colorItemTextHover: "#fff",
-                    },
-                },
-            }}
+        <AntdLayout.Sider
+            collapsible
+            collapsedWidth={isMobile ? 0 : 80}
+            collapsed={collapsed}
+            breakpoint="lg"
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            {renderContent()}
-        </ConfigProvider>
+            <Link to="/">
+                {collapsed ? (
+                    <img
+                        src="/refine-collapsed.svg"
+                        alt="Refine"
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "12px 24px",
+                        }}
+                    />
+                ) : (
+                    <img
+                        src="/refine.svg"
+                        alt="Refine"
+                        style={{
+                            width: "200px",
+                            padding: "12px 24px",
+                        }}
+                    />
+                )}
+            </Link>
+            <Menu
+                theme="dark"
+                defaultOpenKeys={defaultOpenKeys}
+                selectedKeys={[selectedKey]}
+                mode="inline"
+                onClick={() => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+                }}
+            >
+                {renderSider()}
+            </Menu>
+        </AntdLayout.Sider>
     );
 };
