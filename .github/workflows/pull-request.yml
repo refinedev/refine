@@ -2,14 +2,19 @@ name: PR Checks
 on: [pull_request]
 
 jobs:
-  lint:
+  commit-lint:
     runs-on: ubuntu-latest
-    name: Lint and Commitlint
+    name: Commitlint
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - uses: actions/checkout@v1
       - name: lint
         run: |
           npm ci
