@@ -8,7 +8,7 @@ import {
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { parse, stringify } from "qs";
-import React, { useContext } from "react";
+import React, { ComponentProps, useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
 import { convertToNumberIfPossible } from "src/common/convert-to-number-if-possible";
 
@@ -152,5 +152,10 @@ export const routerBindings: RouterBindings = {
 
         return fn;
     },
-    Link: ({ to, ...rest }) => <Link href={to} {...rest} />,
+    Link: React.forwardRef<
+        HTMLAnchorElement,
+        ComponentProps<NonNullable<RouterBindings["Link"]>>
+    >(function RefineLink({ to, ...props }, ref) {
+        return <Link href={to} {...props} ref={ref} />;
+    }),
 };

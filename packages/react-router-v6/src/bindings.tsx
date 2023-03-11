@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import {
     GoConfig,
     ParseResponse,
@@ -126,5 +126,10 @@ export const routerBindings: RouterBindings = {
 
         return fn;
     },
-    Link: ({ to, ...rest }) => <Link to={to} {...rest} />,
+    Link: React.forwardRef<
+        HTMLAnchorElement,
+        ComponentProps<NonNullable<RouterBindings["Link"]>>
+    >(function RefineLink(props, ref) {
+        return <Link {...props} ref={ref} />;
+    }),
 };

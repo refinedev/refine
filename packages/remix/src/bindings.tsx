@@ -7,7 +7,7 @@ import {
 } from "@refinedev/core";
 import { useParams, useLocation, useNavigate, Link } from "@remix-run/react";
 import { parse, stringify } from "qs";
-import React, { useCallback, useContext } from "react";
+import React, { ComponentProps, useCallback, useContext } from "react";
 import { paramsFromCurrentPath } from "./params-from-current-path";
 import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
 
@@ -141,5 +141,10 @@ export const routerBindings: RouterBindings = {
 
         return fn;
     },
-    Link: ({ to, ...rest }) => <Link to={to} {...rest} />,
+    Link: React.forwardRef<
+        HTMLAnchorElement,
+        ComponentProps<NonNullable<RouterBindings["Link"]>>
+    >(function RefineLink(props, ref) {
+        return <Link {...props} ref={ref} />;
+    }),
 };
