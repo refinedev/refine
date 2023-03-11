@@ -18,10 +18,10 @@ export const separateImportsMantine = (j: JSCodeshift, source: Collection) => {
             source: { value: "@pankod/refine-mantine" },
         }).length > 0
     ) {
-        config.addPackage("@mantine/core", "^5.5.6");
-        config.addPackage("@mantine/hooks", "^5.5.6");
-        config.addPackage("@mantine/form", "^5.5.6");
-        config.addPackage("@mantine/notifications", "^5.5.6");
+        config.addPackage("@mantine/core", "^5.10.4");
+        config.addPackage("@mantine/hooks", "^5.10.4");
+        config.addPackage("@mantine/form", "^5.10.4");
+        config.addPackage("@mantine/notifications", "^5.10.4");
         config.addPackage("@emotion/react", "^11.8.2");
     }
 
