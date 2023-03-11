@@ -573,7 +573,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     return (
         <Create
             isLoading={formLoading}
-            headerButtons={
+            footerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button
