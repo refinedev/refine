@@ -11,6 +11,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -226,7 +227,7 @@ const App: React.FC = () => {
                                 <Route
                                     element={
                                         <Authenticated fallback={<Outlet />}>
-                                            <NavigateToResource />
+                                            <NavigateToResource resource="dashboard" />
                                         </Authenticated>
                                     }
                                 >
@@ -298,6 +299,7 @@ const App: React.FC = () => {
                                     />
                                 </Route>
                             </Routes>
+                            <UnsavedChangesNotifier />
                         </Refine>
                     </RefineSnackbarProvider>
                 </ColorModeContextProvider>

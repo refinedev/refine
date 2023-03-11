@@ -6,7 +6,10 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -29,6 +32,10 @@ const App: React.FC = () => {
                             list: "/posts",
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
@@ -48,6 +55,7 @@ const App: React.FC = () => {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </ChakraProvider>
         </BrowserRouter>

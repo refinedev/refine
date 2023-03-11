@@ -6,7 +6,10 @@ import {
     LightTheme,
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -36,6 +39,10 @@ const App: React.FC = () => {
                                 list: "/posts",
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
@@ -57,6 +64,7 @@ const App: React.FC = () => {
                         </Routes>
                     </Refine>
                 </NotificationsProvider>
+                <UnsavedChangesNotifier />
             </MantineProvider>
         </BrowserRouter>
     );
