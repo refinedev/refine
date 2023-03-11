@@ -15,8 +15,6 @@ jobs:
     name: Lint
     steps:
       - uses: actions/checkout@v1
-        with:
-          fetch-depth: 0
       - name: lint
         run: |
           npm ci
