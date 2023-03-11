@@ -15,8 +15,10 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -28,7 +30,6 @@ import {
 } from "pages/categories";
 import { DashboardPage } from "pages/dashboard";
 import { ILoginDto } from "interfaces";
-
 import refineSDK from "utils/refine-sdk";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -164,6 +165,10 @@ const App: React.FC = () => {
                         });
                     },
                 }}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -201,7 +206,10 @@ const App: React.FC = () => {
                             </Authenticated>
                         }
                     >
-                        <Route path="/login" element={<AuthPage />} />
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
                     </Route>
 
                     <Route
@@ -216,6 +224,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

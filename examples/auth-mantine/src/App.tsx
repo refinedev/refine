@@ -17,6 +17,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
@@ -145,6 +146,10 @@ const App: React.FC = () => {
                                 create: "/posts/create",
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
@@ -253,6 +258,7 @@ const App: React.FC = () => {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </NotificationsProvider>
             </MantineProvider>
