@@ -15,7 +15,7 @@
     "peerDependencies": {
         "@refinedev/cli": "^1.1.1",
         "@refinedev/core": "^3.101.2",
-        "@chakra-ui/react": "^2.3.6",
+        "@chakra-ui/react": "^2.5.1",
         "react-hook-form": "^7.30.0",
         "dayjs": "^1.10.7",
         "react": "^17.0.0 || ^18.0.0",
