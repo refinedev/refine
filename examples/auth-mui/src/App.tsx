@@ -264,17 +264,8 @@ const App: React.FC = () => {
                                         <AuthPage
                                             type="register"
                                             formProps={{
-                                                onSubmit: (formValues) => {
-                                                    console.log(
-                                                        JSON.stringify(
-                                                            formValues,
-                                                            null,
-                                                            2,
-                                                        ),
-                                                    );
-                                                },
                                                 defaultValues: {
-                                                    email: "test@mail.com",
+                                                    email: "test@example.com",
                                                 },
                                             }}
                                             providers={[
