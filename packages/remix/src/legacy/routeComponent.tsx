@@ -62,7 +62,7 @@ export function RemixRouteComponent(
                  * in the resources array, no matter if it has a list component or not.
                  */
 
-                push(`/${resources[0].route}`);
+                push(`/${resources[0].route?.replace(/^\//, "")}`);
             }
         }
     }, [pathname]);
