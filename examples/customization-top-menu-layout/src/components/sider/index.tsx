@@ -11,8 +11,8 @@ export const CustomSider: React.FC = () => {
         <>
             {Title && <Title collapsed={false} />}
             <Menu theme="dark" selectedKeys={[selectedKey]} mode="horizontal">
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
+                {menuItems.map(({ icon, route, label, key }) => (
+                    <Menu.Item key={key} icon={icon}>
                         <Link to={route ?? ""}>{label}</Link>
                     </Menu.Item>
                 ))}

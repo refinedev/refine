@@ -3,7 +3,10 @@ import { RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { StarOutlined } from "@ant-design/icons";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
@@ -45,6 +48,10 @@ const App: React.FC = () => {
                         },
                     ]}
                     notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
@@ -83,6 +90,7 @@ const App: React.FC = () => {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </RefineKbarProvider>
         </BrowserRouter>
