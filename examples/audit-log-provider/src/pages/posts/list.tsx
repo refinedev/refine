@@ -20,7 +20,12 @@ export const PostList: React.FC = () => {
 
     return (
         <div>
-            <button onClick={() => create("posts")}>Create Post</button>
+            <button
+                style={{ marginBottom: "8px" }}
+                onClick={() => create("posts")}
+            >
+                Create Post
+            </button>
             <table>
                 <thead>
                     <tr>
