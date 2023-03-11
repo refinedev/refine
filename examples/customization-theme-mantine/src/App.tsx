@@ -11,10 +11,7 @@ import { ColorSchemeProvider } from "@mantine/styles";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, ColorScheme, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -61,10 +58,6 @@ const App: React.FC = () => {
                                     edit: "/posts/edit/:id",
                                 },
                             ]}
-                            options={{
-                                syncWithLocation: true,
-                                warnWhenUnsavedChanges: true,
-                            }}
                         >
                             <Routes>
                                 <Route
@@ -103,7 +96,6 @@ const App: React.FC = () => {
                                     />
                                 </Route>
                             </Routes>
-                            <UnsavedChangesNotifier />
                         </Refine>
                     </NotificationsProvider>
                 </MantineProvider>
