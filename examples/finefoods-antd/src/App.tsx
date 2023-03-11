@@ -5,6 +5,7 @@ import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import {
@@ -201,7 +202,7 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
+                                    <NavigateToResource resource="dashboard" />
                                 </Authenticated>
                             }
                         >
@@ -259,6 +260,7 @@ const App: React.FC = () => {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </RefineKbarProvider>
         </BrowserRouter>
