@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
 import { useNavigation } from "@hooks";
 import { ILegacyAuthContext, IAuthBindingsContext } from "../../interfaces";
@@ -18,20 +17,12 @@ export const LegacyAuthContextProvider: React.FC<
     }
 > = ({ children, isProvided, ...authOperations }) => {
     const { replace } = useNavigation();
-    const queryClient = useQueryClient();
-
-    const invalidateAuthStore = () => {
-        queryClient.invalidateQueries(["useAuthenticated"]);
-        queryClient.invalidateQueries(["getUserIdentity"]);
-        queryClient.invalidateQueries(["usePermissions"]);
-    };
 
     const loginFunc = async (params: any) => {
         try {
             const result = await authOperations.login?.(params);
 
-            invalidateAuthStore();
-            return Promise.resolve(result);
+            return result;
         } catch (error) {
             return Promise.reject(error);
         }
@@ -41,8 +32,7 @@ export const LegacyAuthContextProvider: React.FC<
         try {
             const result = await authOperations.register?.(params);
 
-            invalidateAuthStore();
-            return Promise.resolve(result);
+            return result;
         } catch (error) {
             return Promise.reject(error);
         }
@@ -52,9 +42,7 @@ export const LegacyAuthContextProvider: React.FC<
         try {
             const redirectPath = await authOperations.logout?.(params);
 
-            invalidateAuthStore();
-
-            return Promise.resolve(redirectPath);
+            return redirectPath;
         } catch (error) {
             return Promise.reject(error);
         }
@@ -96,21 +84,11 @@ export const AuthBindingsContext = React.createContext<
 export const AuthBindingsContextProvider: React.FC<
     PropsWithChildren<IAuthBindingsContext>
 > = ({ children, isProvided, ...authBindings }) => {
-    const queryClient = useQueryClient();
-
-    const invalidateAuthStore = () => {
-        queryClient.invalidateQueries(["useAuthenticated"]);
-        queryClient.invalidateQueries(["getUserIdentity"]);
-        queryClient.invalidateQueries(["usePermissions"]);
-    };
-
     const handleLogin = async (params: unknown) => {
         try {
             const result = await authBindings.login?.(params);
 
-            invalidateAuthStore();
-
-            return Promise.resolve(result);
+            return result;
         } catch (error) {
             console.warn(
                 "Unhandled Error in login: refine always expects a resolved promise.",
@@ -124,9 +102,7 @@ export const AuthBindingsContextProvider: React.FC<
         try {
             const result = await authBindings.register?.(params);
 
-            invalidateAuthStore();
-
-            return Promise.resolve(result);
+            return result;
         } catch (error) {
             console.warn(
                 "Unhandled Error in register: refine always expects a resolved promise.",
@@ -140,9 +116,7 @@ export const AuthBindingsContextProvider: React.FC<
         try {
             const result = await authBindings.logout?.(params);
 
-            invalidateAuthStore();
-
-            return Promise.resolve(result);
+            return result;
         } catch (error) {
             console.warn(
                 "Unhandled Error in logout: refine always expects a resolved promise.",
