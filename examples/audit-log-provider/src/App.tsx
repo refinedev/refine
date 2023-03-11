@@ -14,6 +14,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
+            <div style={{ marginBottom: "10px" }} />
             <Refine
                 auditLogProvider={{
                     get: async ({ resource, meta }) => {
