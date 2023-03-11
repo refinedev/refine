@@ -1,6 +1,9 @@
 import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PostList, PostCreate, PostEdit } from "pages/posts";
@@ -22,6 +25,10 @@ const App: React.FC = () => {
                         edit: "/posts/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -37,6 +44,7 @@ const App: React.FC = () => {
 
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
