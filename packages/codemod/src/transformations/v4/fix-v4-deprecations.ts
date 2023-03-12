@@ -697,6 +697,106 @@ const fixUseListHasPaginationToPaginationMode = (
     });
 };
 
+const fixUseSelectHasPaginationToPaginationMode = (
+    j: JSCodeshift,
+    source: Collection,
+) => {
+    const useSelectHooks = source.find(j.CallExpression, {
+        callee: {
+            name: "useSelect",
+        },
+    });
+
+    useSelectHooks.replaceWith((p) => {
+        const hasPaginationProperty = (
+            p.node.arguments[0] as ObjectExpression
+        ).properties.find(
+            (p: Property) => (p.key as Identifier).name === "hasPagination",
+        );
+
+        const paginationProperty = (
+            p.node.arguments[0] as ObjectExpression
+        ).properties.find(
+            (p: Property) => (p.key as Identifier).name === "pagination",
+        );
+
+        if (hasPaginationProperty) {
+            if (paginationProperty) {
+                (paginationProperty as any).value.properties.push(
+                    j.property(
+                        "init",
+                        j.identifier("mode"),
+                        j.literal(
+                            (
+                                (hasPaginationProperty as ObjectProperty)
+                                    .value as BooleanLiteral
+                            ).value
+                                ? "server"
+                                : "off",
+                        ),
+                    ),
+                );
+            } else {
+                (p.node.arguments[0] as ObjectExpression).properties.push(
+                    j.property(
+                        "init",
+                        j.identifier("pagination"),
+                        j.objectExpression([
+                            j.property(
+                                "init",
+                                j.identifier("mode"),
+                                j.literal(
+                                    (
+                                        (
+                                            hasPaginationProperty as ObjectProperty
+                                        ).value as BooleanLiteral
+                                    ).value
+                                        ? "server"
+                                        : "off",
+                                ),
+                            ),
+                        ]),
+                    ),
+                );
+            }
+        }
+
+        if (!hasPaginationProperty) {
+            if (paginationProperty) {
+                (paginationProperty as any).value.properties.push(
+                    j.property(
+                        "init",
+                        j.identifier("mode"),
+                        j.stringLiteral("server"),
+                    ),
+                );
+            } else {
+                (p.node.arguments[0] as ObjectExpression).properties.push(
+                    j.property(
+                        "init",
+                        j.identifier("pagination"),
+                        j.objectExpression([
+                            j.property(
+                                "init",
+                                j.identifier("mode"),
+                                j.stringLiteral("server"),
+                            ),
+                        ]),
+                    ),
+                );
+            }
+        }
+
+        (p.node.arguments[0] as ObjectExpression).properties = (
+            p.node.arguments[0] as ObjectExpression
+        ).properties.filter(
+            (p: Property) => (p.key as Identifier).name !== "hasPagination",
+        );
+
+        return p.node;
+    });
+};
+
 const useCustomConfigSortToSorters = (j: JSCodeshift, source: Collection) => {
     const useCustomHooks = source.find(j.CallExpression, {
         callee: {
@@ -866,6 +966,7 @@ export const fixV4Deprecations = async (j: JSCodeshift, source: Collection) => {
     fixDeprecatedReactTableProps(j, source);
     fixDeprecatedUseTableProps(j, source);
     fixUseListHasPaginationToPaginationMode(j, source);
+    fixUseSelectHasPaginationToPaginationMode(j, source);
     useCustomConfigSortToSorters(j, source);
     setSortertoSetSorters(j, source);
     addCommentToUseSimpleList(j, source);
