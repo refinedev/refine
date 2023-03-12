@@ -18,6 +18,7 @@ import { DataProvider } from "@refinedev/strapi-v4";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -158,6 +159,7 @@ function App() {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </NotificationsProvider>
             </MantineProvider>

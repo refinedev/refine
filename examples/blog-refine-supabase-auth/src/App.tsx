@@ -7,6 +7,7 @@ import {
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider } from "@refinedev/supabase";
@@ -26,6 +27,10 @@ function App() {
                 dataProvider={dataProvider(supabaseClient)}
                 authProvider={authProvider}
                 resources={[{ name: "countries", list: "/countries" }]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
@@ -70,6 +75,7 @@ function App() {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
