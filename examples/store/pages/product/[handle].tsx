@@ -1,6 +1,5 @@
 import {
     useList,
-    LayoutWrapper,
     IResourceComponentsProps,
     GetListResponse,
 } from "@refinedev/core";
@@ -41,14 +40,14 @@ const ProductShow: React.FC<
     });
 
     return (
-        <LayoutWrapper>
+        <>
             {record ? (
                 <ProductView
                     product={record}
                     relatedProducts={relatedProducts?.data ?? []}
                 />
             ) : null}
-        </LayoutWrapper>
+        </>
     );
 };
 
