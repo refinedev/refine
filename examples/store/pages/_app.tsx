@@ -1,6 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import Script from "next/script";
+import { NextPage } from "next";
 
 import { GetListResponse, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
@@ -18,13 +19,31 @@ import "@assets/main.css";
 import "@assets/chrome-bug.css";
 import "keen-slider/keen-slider.min.css";
 
-function MyApp({
-    Component,
-    pageProps,
-}: AppProps<{ categories: GetListResponse<ProductCollection> }>): JSX.Element {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    noLayout?: boolean;
+};
+
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
+    categories: GetListResponse<ProductCollection>;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     const { categories } = pageProps;
 
     useAnalytics();
+
+    const renderComponent = () => {
+        if (!Component.noLayout) {
+            return (
+                <Layout categories={categories}>
+                    <Component {...pageProps} />
+                </Layout>
+            );
+        }
+
+        return <Component {...pageProps} />;
+    };
 
     return (
         <ManagedUIContext>
@@ -62,9 +81,7 @@ function MyApp({
                         gtag('config', 'G-7BSVVDBPMB');
                         `}
                     </Script>
-                    <Layout categories={categories}>
-                        <Component {...pageProps} />
-                    </Layout>
+                    {renderComponent()}
                 </CartProvider>
             </Refine>
         </ManagedUIContext>
