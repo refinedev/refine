@@ -73,5 +73,6 @@ export const authProvider = (API_URL: string): AuthBindings => {
 
             return { ...session.customer };
         },
+        getPermissions: () => Promise.resolve(),
     };
 };
