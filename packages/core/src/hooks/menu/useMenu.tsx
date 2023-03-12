@@ -9,7 +9,6 @@ import {
     FlatTreeItem,
     createTree,
 } from "@definitions/helpers/menu/create-tree";
-import { ResourceRouterParams } from "src/interfaces";
 
 type UseMenuReturnType = {
     defaultOpenKeys: string[];
@@ -55,8 +54,8 @@ export const useMenu = (
     const routerType = useRouterType();
     const { resource, resources } = useResource();
     const { pathname } = useParsed();
-    const { useParams } = useRouterContext();
-    const { resource: legacyPath } = useParams<ResourceRouterParams>();
+    const { useLocation } = useRouterContext();
+    const { pathname: legacyPath } = useLocation();
 
     const cleanPathname =
         routerType === "legacy"
