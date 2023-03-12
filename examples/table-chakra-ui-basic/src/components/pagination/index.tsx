@@ -35,13 +35,14 @@ export const Pagination: FC<PaginationProps> = ({
                     </IconButton>
                 )}
 
-                {pagination?.items.map((page) => {
-                    if (typeof page === "string")
-                        return <span key={page}>...</span>;
+                {pagination?.items.map((page, i) => {
+                    if (typeof page === "string") {
+                        return <span key={i}>...</span>;
+                    }
 
                     return (
                         <Button
-                            key={page}
+                            key={i}
                             onClick={() => setCurrent(page)}
                             variant={page === current ? "solid" : "outline"}
                         >

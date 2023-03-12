@@ -8,7 +8,10 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
@@ -42,6 +45,10 @@ function App() {
                                 edit: "/products/edit/:id",
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Layout>
                             <Routes>
@@ -71,6 +78,7 @@ function App() {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Routes>
                         </Layout>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </NotificationsProvider>
             </MantineProvider>

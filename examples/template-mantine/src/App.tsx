@@ -6,7 +6,9 @@ import {
     ErrorComponent,
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -28,12 +30,17 @@ function App() {
                             "https://api.fake-rest.refine.dev",
                         )}
                         notificationProvider={notificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route index element={<WelcomePage />} />
 
                             <Route path="*" element={<ErrorComponent />} />
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </NotificationsProvider>
             </MantineProvider>

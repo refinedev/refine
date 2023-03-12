@@ -19,8 +19,8 @@ import {
     Td,
     TableContainer,
     HStack,
-    Text,
     Select,
+    Box,
 } from "@chakra-ui/react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -174,13 +174,13 @@ export const PostList: React.FC = () => {
                                     <Th key={header.id}>
                                         {!header.isPlaceholder && (
                                             <HStack spacing="2">
-                                                <Text>
+                                                <Box>
                                                     {flexRender(
                                                         header.column.columnDef
                                                             .header,
                                                         header.getContext(),
                                                     )}
-                                                </Text>
+                                                </Box>
                                                 <HStack spacing="2">
                                                     <ColumnSorter
                                                         column={header.column}
