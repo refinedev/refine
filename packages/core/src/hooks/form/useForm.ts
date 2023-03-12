@@ -270,8 +270,9 @@ export const useForm = <
         routerType === "legacy" ? legacyActionFromRoute : actionFromRouter;
     const action =
         actionFromProps ??
-        (fallbackAction === "show" ? "create" : fallbackAction) ??
-        "create";
+        (fallbackAction === "edit" || fallbackAction === "clone"
+            ? fallbackAction
+            : "create");
 
     const resourceWithRoute = useResourceWithRoute();
     let resource: IResourceItem | undefined;
