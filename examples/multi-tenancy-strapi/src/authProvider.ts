@@ -25,6 +25,7 @@ export const authProvider: AuthBindings = {
 
                 return {
                     success: true,
+                    redirectTo: "/",
                 };
             }
         } catch (error: any) {

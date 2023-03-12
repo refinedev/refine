@@ -3,7 +3,10 @@ import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { FloatButton } from "antd";
 import { DemoSidebar, useDemoSidebar } from "@refinedev/demo-sidebar";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
@@ -21,6 +24,10 @@ const App: React.FC = () => {
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
                 {...refineProps}
                 resources={[
                     {
@@ -63,6 +70,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

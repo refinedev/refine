@@ -6,7 +6,10 @@ import {
     AuthPage,
 } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import {
     BrowserRouter,
     Routes,
@@ -36,7 +39,11 @@ function App() {
                     liveProvider={liveProvider(appwriteClient)}
                     dataProvider={dataProvider(appwriteClient)}
                     authProvider={authProvider}
-                    options={{ liveMode: "auto" }}
+                    options={{
+                        liveMode: "auto",
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                     resources={[
                         {
                             name: "61cb01b17ef57",
@@ -118,6 +125,7 @@ function App() {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </StoreProvider>
         </BrowserRouter>
