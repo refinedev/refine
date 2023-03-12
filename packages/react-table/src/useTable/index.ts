@@ -14,6 +14,7 @@ import {
     TableOptions,
     Table,
     getCoreRowModel,
+    ColumnFilter,
 } from "@tanstack/react-table";
 
 export type UseTableReturnType<
@@ -92,7 +93,7 @@ export function useTable<
     } = useTableResult;
 
     const logicalFilters: LogicalFilter[] = [];
-    filtersCore.map((filter) => {
+    filtersCore.forEach((filter) => {
         if (
             filter.operator !== "or" &&
             filter.operator !== "and" &&
@@ -120,6 +121,10 @@ export function useTable<
             })),
             columnFilters: logicalFilters.map((filter) => ({
                 id: filter.field,
+                operator: filter.operator as Exclude<
+                    CrudOperators,
+                    "or" | "and"
+                >,
                 value: filter.value,
             })),
             ...reactTableInitialState,
@@ -168,9 +173,15 @@ export function useTable<
     useEffect(() => {
         const crudFilters: LogicalFilter[] = [];
 
-        columnFilters?.map((filter) => {
-            const operator = (columns.find((c) => c.id === filter.id) as any)
-                ?.meta?.filterOperator as Exclude<CrudOperators, "or" | "and">;
+        columnFilters?.forEach((filter) => {
+            const operator =
+                (
+                    filter as ColumnFilter & {
+                        operator?: Exclude<CrudOperators, "or" | "and">;
+                    }
+                ).operator ??
+                ((columns.find((c) => c.id === filter.id) as any)?.meta
+                    ?.filterOperator as Exclude<CrudOperators, "or" | "and">);
 
             crudFilters.push({
                 field: filter.id,
@@ -189,7 +200,7 @@ export function useTable<
                 ),
         );
 
-        filteredArray?.map((filter) => {
+        filteredArray?.forEach((filter) => {
             crudFilters.push({
                 field: filter.field,
                 operator: filter.operator,

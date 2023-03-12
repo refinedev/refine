@@ -130,8 +130,8 @@ describe("useTable Hook", () => {
             { field: "active", value: true, operator: "eq" },
         ]);
         expect(state.columnFilters).toEqual([
-            { id: "title", value: "Hello2" },
-            { id: "active", value: true },
+            { id: "title", value: "Hello2", operator: "contains" },
+            { id: "active", value: true, operator: "eq" },
         ]);
 
         act(() => {
@@ -151,7 +151,7 @@ describe("useTable Hook", () => {
         ]);
         expect(result.current.options.state.columnFilters).toEqual([
             { id: "title", value: "Hello" },
-            { id: "active", value: true },
+            { id: "active", operator: "eq", value: true },
         ]);
 
         act(() => {
@@ -169,7 +169,7 @@ describe("useTable Hook", () => {
             { field: "active", value: true, operator: "eq" },
         ]);
         expect(result.current.options.state.columnFilters).toEqual([
-            { id: "active", value: true },
+            { id: "active", operator: "eq", value: true },
         ]);
     });
 
@@ -278,8 +278,8 @@ describe("useTable Hook", () => {
             { field: "title", value: "Hello", operator: "contains" },
         ]);
         expect(state.columnFilters).toEqual([
-            { id: "title", value: "Hello" },
-            { id: "category.id", value: 1 },
+            { id: "title", operator: "contains", value: "Hello" },
+            { id: "category.id", operator: "eq", value: 1 },
         ]);
 
         act(() => {
@@ -299,7 +299,7 @@ describe("useTable Hook", () => {
         ]);
         expect(result.current.options.state.columnFilters).toEqual([
             { id: "title", value: "Test" },
-            { id: "category.id", value: 1 },
+            { id: "category.id", operator: "eq", value: 1 },
         ]);
 
         act(() => {
@@ -317,7 +317,7 @@ describe("useTable Hook", () => {
             { field: "category.id", value: 1, operator: "eq" },
         ]);
         expect(result.current.options.state.columnFilters).toEqual([
-            { id: "category.id", value: 1 },
+            { id: "category.id", operator: "eq", value: 1 },
         ]);
     });
 
