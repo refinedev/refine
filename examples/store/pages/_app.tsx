@@ -34,15 +34,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     useAnalytics();
 
     const renderComponent = () => {
-        if (!Component.noLayout) {
-            return (
-                <Layout categories={categories}>
-                    <Component {...pageProps} />
-                </Layout>
-            );
+        if (Component.noLayout) {
+            return <Component {...pageProps} />;
         }
 
-        return <Component {...pageProps} />;
+        return (
+            <Layout categories={categories}>
+                <Component {...pageProps} />
+            </Layout>
+        );
     };
 
     return (
