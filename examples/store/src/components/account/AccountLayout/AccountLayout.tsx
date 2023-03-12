@@ -1,14 +1,13 @@
 import React, { PropsWithChildren } from "react";
 import { useGetIdentity } from "@refinedev/core";
+import { Customer } from "@medusajs/medusa";
 
 import { AccountNav, LoadingDots, UnderlineLink } from "@components";
 
 import s from "./AccountLayout.module.css";
 
 export const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
-    const { data } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data } = useGetIdentity<Omit<Customer, "password_hash">>();
 
     if (!data) {
         return (

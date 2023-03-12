@@ -1,7 +1,6 @@
 import {
     GetListResponse,
     IResourceComponentsProps,
-    LayoutWrapper,
     useTable,
 } from "@refinedev/core";
 import { dataProvider } from "@refinedev/medusa";
@@ -44,11 +43,7 @@ const SearchPage: React.FC<
         hasPagination: false,
     });
 
-    return (
-        <LayoutWrapper>
-            <Search products={tableQueryResult?.data?.data} />
-        </LayoutWrapper>
-    );
+    return <Search products={tableQueryResult?.data?.data} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

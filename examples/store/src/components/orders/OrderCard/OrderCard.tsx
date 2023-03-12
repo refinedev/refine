@@ -75,9 +75,7 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
                         query: { id: order.id },
                     }}
                 >
-                    <a>
-                        <Button>See details</Button>
-                    </a>
+                    <Button>See details</Button>
                 </Link>
             </div>
         </div>
