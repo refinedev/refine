@@ -914,7 +914,7 @@ const resourceOptionstoMeta = (j: JSCodeshift, source: Collection) => {
 
     refineElement.forEach((path) => {
         const resources = path.node.openingElement.attributes.find(
-            (p) => (p as JSXAttribute).name.name === "resources",
+            (p) => (p as JSXAttribute).name?.name === "resources",
         );
 
         if (!resources) {
