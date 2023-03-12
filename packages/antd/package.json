@@ -11,7 +11,8 @@
         "build": "tsup --format esm,cjs,iife --minify --legacy-output",
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build",
-        "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
+        "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css",
+        "postinstall": "echo \"refine v4 is released 🎉 \nThe new version is 100% backward compatible. You can upgrade to v4 with a single command! \nSee the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x \n\""
     },
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",
@@ -51,7 +52,7 @@
         "@ant-design/pro-layout": "7.8.3",
         "@pankod/refine-ui-types": "^0.14.2",
         "@tanstack/react-query": "^4.10.1",
-        "antd": "^5.0.5",
+        "antd": "^5.0.3",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",
         "remark-gfm": "^1.0.0",
