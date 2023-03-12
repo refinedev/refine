@@ -168,6 +168,7 @@ export const authProvider: AuthBindings = {
 
         return {
             success: true,
+            redirectTo: "/",
         };
     },
     onError: async (_error: any) => ({}),

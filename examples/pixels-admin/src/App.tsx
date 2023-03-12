@@ -2,7 +2,10 @@ import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { ErrorComponent, Layout, notificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Title } from "./components/layout";
@@ -53,6 +56,10 @@ function App() {
                             list: "/canvases",
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
@@ -71,7 +78,7 @@ function App() {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
+                                    <NavigateToResource resource="users" />
                                 </Authenticated>
                             }
                         >
@@ -106,6 +113,7 @@ function App() {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>
