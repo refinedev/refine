@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate, useResource, useParsed } from "..";
+import { useTranslate, useResource, useParsed, useRouterContext } from "..";
 import { userFriendlyResourceName, pickNotDeprecated } from "@definitions";
 import { useRouterType } from "../../contexts/router-picker";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
@@ -9,6 +9,7 @@ import {
     FlatTreeItem,
     createTree,
 } from "@definitions/helpers/menu/create-tree";
+import { ResourceRouterParams } from "src/interfaces";
 
 type UseMenuReturnType = {
     defaultOpenKeys: string[];
@@ -26,6 +27,13 @@ export type TreeMenuItem = FlatTreeItem & {
     icon?: React.ReactNode;
     label?: string;
     children: TreeMenuItem[];
+};
+
+const getCleanPath = (pathname: string) => {
+    return pathname
+        .split("?")[0]
+        .split("#")[0]
+        .replace(/(.+)(\/$)/, "$1");
 };
 
 /**
@@ -47,17 +55,21 @@ export const useMenu = (
     const routerType = useRouterType();
     const { resource, resources } = useResource();
     const { pathname } = useParsed();
+    const { useParams } = useRouterContext();
+    const { resource: legacyPath } = useParams<ResourceRouterParams>();
 
-    const cleanPathname = pathname
-        ? pathname
-              .split("?")[0]
-              .split("#")[0]
-              .replace(/(.+)(\/$)/, "$1")
-        : undefined;
+    const cleanPathname =
+        routerType === "legacy"
+            ? getCleanPath(legacyPath)
+            : pathname
+            ? getCleanPath(pathname)
+            : undefined;
+
+    const cleanRoute = `/${(cleanPathname ?? "").replace(/^\//, "")}`;
 
     const selectedKey = resource
-        ? createResourceKey(resource, resources)
-        : cleanPathname ?? "";
+        ? createResourceKey(resource, resources, routerType === "legacy")
+        : cleanRoute ?? "";
 
     const defaultOpenKeys = React.useMemo(() => {
         if (!resource) return [];
@@ -114,7 +126,7 @@ export const useMenu = (
     );
 
     const treeItems = React.useMemo(() => {
-        const treeMenuItems = createTree(resources);
+        const treeMenuItems = createTree(resources, routerType === "legacy");
 
         // add paths to items and their nodes recursively
         const prepare = (items: TreeMenuItem[]): TreeMenuItem[] => {
@@ -132,7 +144,7 @@ export const useMenu = (
         };
 
         return prepare(treeMenuItems);
-    }, [resources]);
+    }, [resources, routerType]);
 
     return {
         defaultOpenKeys,
