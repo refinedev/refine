@@ -42,7 +42,7 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "react-hook-form": "^7.22.1"
+    "react-hook-form": "^7.30.0"
   },
   "repository": {
     "type": "git",

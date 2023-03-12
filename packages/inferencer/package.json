@@ -132,7 +132,7 @@
     },
     "dependencies": {
         "@tabler/icons": "^1.1.0",
-        "@pankod/refine-core": "^3.88.0",
+        "@pankod/refine-core": "^3.97.0",
         "dayjs": "^1.10.7",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
