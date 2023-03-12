@@ -12,7 +12,10 @@ export type FlatTreeItem = IResourceItem & {
     children: FlatTreeItem[];
 };
 
-export const createTree = (resources: IResourceItem[]): FlatTreeItem[] => {
+export const createTree = (
+    resources: IResourceItem[],
+    legacy = false,
+): FlatTreeItem[] => {
     const root: Tree = {
         item: {
             name: "__root__",
@@ -33,7 +36,10 @@ export const createTree = (resources: IResourceItem[]): FlatTreeItem[] => {
         let currentTree = root;
 
         parents.forEach((parent) => {
-            const key = parent.identifier ?? parent.name;
+            const key =
+                (legacy ? parent.route : undefined) ??
+                parent.identifier ??
+                parent.name;
 
             if (!currentTree.children[key]) {
                 currentTree.children[key] = {
@@ -44,7 +50,10 @@ export const createTree = (resources: IResourceItem[]): FlatTreeItem[] => {
             currentTree = currentTree.children[key];
         });
 
-        const key = resource.identifier ?? resource.name;
+        const key =
+            (legacy ? resource.route : undefined) ??
+            resource.identifier ??
+            resource.name;
 
         if (!currentTree.children[key]) {
             currentTree.children[key] = {
@@ -61,6 +70,7 @@ export const createTree = (resources: IResourceItem[]): FlatTreeItem[] => {
             const itemKey = createResourceKey(
                 tree.children[key].item,
                 resources,
+                legacy,
             );
             const item: FlatTreeItem = {
                 ...tree.children[key].item,
