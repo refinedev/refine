@@ -31,6 +31,7 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
+    "start": "refine start",
     "dev": "refine start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",

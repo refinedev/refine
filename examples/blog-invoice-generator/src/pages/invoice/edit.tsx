@@ -15,7 +15,7 @@ export const InvoiceEdit: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: companySelectProps } = useSelect({
         resource: "companies",
-        defaultValue: defaultValue?.company.id,
+        defaultValue: defaultValue?.company?.id,
         optionLabel: "name",
     });
 

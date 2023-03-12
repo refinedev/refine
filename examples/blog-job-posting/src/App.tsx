@@ -1,5 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import nestjsxCrudDataProvider from "@refinedev/nestjsx-crud";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
@@ -72,6 +75,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

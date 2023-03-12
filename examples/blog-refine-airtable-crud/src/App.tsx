@@ -2,7 +2,10 @@ import React from "react";
 import "./index.css";
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Layout } from "components/Layout";
@@ -53,6 +56,7 @@ function App() {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

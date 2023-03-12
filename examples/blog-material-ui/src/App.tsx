@@ -12,6 +12,7 @@ import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -52,6 +53,7 @@ function App() {
                         options={{
                             mutationMode: "undoable",
                             syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
                         }}
                     >
                         <Routes>
@@ -122,6 +124,7 @@ function App() {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

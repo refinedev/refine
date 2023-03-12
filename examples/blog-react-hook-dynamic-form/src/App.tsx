@@ -16,7 +16,10 @@ import UserCreate from "pages/userCreate";
 import UserEdit from "pages/userEdit";
 import UserList from "pages/userList";
 
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -44,6 +47,10 @@ function App() {
                                 edit: "/users/edit/:id",
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
@@ -73,6 +80,7 @@ function App() {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

@@ -3,7 +3,7 @@ import Column from "../components/columns";
 import Cards from "../components/cards";
 import { useState, useEffect } from "react";
 import { ColumnTypes } from "components/constants/enums";
-import { Space } from "@pankod/refine-antd";
+import { Space } from "antd";
 import useData from "components/constants/useData";
 
 function DashboardPage() {
