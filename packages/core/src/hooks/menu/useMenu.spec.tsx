@@ -102,7 +102,7 @@ describe("useMenu Hook", () => {
             }),
         });
 
-        expect(result.current.selectedKey).toEqual("posts");
+        expect(result.current.selectedKey).toEqual("/posts");
     });
 
     it("should have the defaultOpenKeys = [/CMS]", async () => {
@@ -147,7 +147,7 @@ describe("useMenu Hook", () => {
         });
 
         expect(result.current.defaultOpenKeys).toEqual(
-            expect.arrayContaining(["CMS", "CMS/posts"]),
+            expect.arrayContaining(["/CMS", "/CMS/posts"]),
         );
     });
 
@@ -198,9 +198,9 @@ describe("useMenu Hook", () => {
 
         expect(result.current.defaultOpenKeys).toEqual(
             expect.arrayContaining([
-                "CMS",
-                "CMS/categories",
-                "CMS/categories/posts",
+                "/CMS",
+                "/CMS/categories",
+                "/CMS/categories/posts",
             ]),
         );
     });

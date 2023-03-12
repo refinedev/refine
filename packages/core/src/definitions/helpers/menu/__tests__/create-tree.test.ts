@@ -15,7 +15,7 @@ describe("createTree", () => {
         expect(createTree(resources)).toEqual([
             {
                 name: "posts",
-                key: "posts",
+                key: "/posts",
                 children: [],
             },
         ]);
@@ -34,12 +34,12 @@ describe("createTree", () => {
         expect(createTree(resources)).toEqual([
             {
                 name: "posts",
-                key: "posts",
+                key: "/posts",
                 children: [],
             },
             {
                 name: "comments",
-                key: "comments",
+                key: "/comments",
                 children: [],
             },
         ]);
@@ -62,11 +62,11 @@ describe("createTree", () => {
         expect(createTree(resources)).toEqual([
             {
                 name: "posts",
-                key: "posts",
+                key: "/posts",
                 children: [
                     {
                         name: "comments",
-                        key: "posts/comments",
+                        key: "/posts/comments",
                         meta: { parent: "posts" },
                         children: [],
                     },
@@ -74,7 +74,7 @@ describe("createTree", () => {
             },
             {
                 name: "categories",
-                key: "categories",
+                key: "/categories",
                 children: [],
             },
         ]);
@@ -98,16 +98,16 @@ describe("createTree", () => {
         expect(createTree(resources)).toEqual([
             {
                 name: "cms",
-                key: "cms",
+                key: "/cms",
                 children: [
                     {
                         name: "posts",
-                        key: "cms/posts",
+                        key: "/cms/posts",
                         meta: { parent: "cms" },
                         children: [
                             {
                                 name: "comments",
-                                key: "cms/posts/comments",
+                                key: "/cms/posts/comments",
                                 meta: { parent: "posts" },
                                 children: [],
                             },
@@ -117,7 +117,7 @@ describe("createTree", () => {
             },
             {
                 name: "categories",
-                key: "categories",
+                key: "/categories",
                 children: [],
             },
         ]);
@@ -143,18 +143,18 @@ describe("createTree", () => {
         expect(createTree(resources)).toEqual([
             {
                 name: "posts",
-                key: "posts",
+                key: "/posts",
                 children: [
                     {
                         name: "posts",
-                        key: "posts/recent-posts",
+                        key: "/posts/recent-posts",
                         identifier: "recent-posts",
                         meta: { parent: "posts" },
                         children: [],
                     },
                     {
                         name: "posts",
-                        key: "posts/featured-posts",
+                        key: "/posts/featured-posts",
                         identifier: "featured-posts",
                         meta: { parent: "posts" },
                         children: [],
