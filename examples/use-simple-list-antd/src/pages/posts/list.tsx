@@ -1,7 +1,11 @@
-import { useMany, CrudFilters, HttpError } from "@refinedev/core";
-
+import { useMemo } from "react";
+import {
+    useMany,
+    CrudFilters,
+    HttpError,
+    getDefaultFilter,
+} from "@refinedev/core";
 import { List, useSimpleList, NumberField, useSelect } from "@refinedev/antd";
-
 import {
     Typography,
     List as AntdList,
@@ -10,6 +14,7 @@ import {
     Form,
     DatePicker,
 } from "antd";
+import dayjs from "dayjs";
 
 const { RangePicker } = DatePicker;
 const { Text } = Typography;
@@ -17,7 +22,7 @@ const { Text } = Typography;
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { listProps, searchFormProps } = useSimpleList<
+    const { listProps, searchFormProps, filters } = useSimpleList<
         IPost,
         HttpError,
         IPostFilterVariables
@@ -89,7 +94,21 @@ export const PostList: React.FC = () => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+        defaultValue: getDefaultFilter("category.id", filters),
     });
+
+    const createdAt = useMemo(() => {
+        const start = getDefaultFilter("createdAt", filters, "gte");
+        const end = getDefaultFilter("createdAt", filters, "lte");
+
+        const startFrom = dayjs(start);
+        const endAt = dayjs(end);
+
+        if (start && end) {
+            return [startFrom, endAt];
+        }
+        return undefined;
+    }, [filters]);
 
     return (
         <List>
@@ -97,6 +116,10 @@ export const PostList: React.FC = () => {
                 {...searchFormProps}
                 layout="vertical"
                 onValuesChange={() => searchFormProps.form?.submit()}
+                initialValues={{
+                    category: getDefaultFilter("category.id", filters),
+                    createdAt,
+                }}
             >
                 <Space wrap>
                     <Form.Item label="Category" name="category">
