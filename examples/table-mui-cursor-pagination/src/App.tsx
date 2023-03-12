@@ -8,7 +8,10 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { dataProvider } from "rest-data-provider";
@@ -37,6 +40,10 @@ const App: React.FC = () => {
                                 },
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
@@ -49,7 +56,7 @@ const App: React.FC = () => {
                                 <Route
                                     index
                                     element={
-                                        <NavigateToResource resource="posts" />
+                                        <NavigateToResource resource="repos/refinedev/refine/commits" />
                                     }
                                 />
 
@@ -61,6 +68,7 @@ const App: React.FC = () => {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

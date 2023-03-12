@@ -1,6 +1,9 @@
 import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { PostList } from "./pages/posts";
@@ -18,6 +21,10 @@ const App: React.FC = () => {
                         list: PostList,
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route index element={<NavigateToResource />} />
@@ -26,6 +33,7 @@ const App: React.FC = () => {
 
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

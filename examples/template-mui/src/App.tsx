@@ -8,7 +8,9 @@ import {
 } from "@refinedev/mui";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 
@@ -28,6 +30,10 @@ function App() {
                             "https://api.fake-rest.refine.dev",
                         )}
                         notificationProvider={notificationProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route index element={<WelcomePage />} />
@@ -35,6 +41,7 @@ function App() {
                             <Route path="*" element={<ErrorComponent />} />
                         </Routes>
                     </Refine>
+                    <UnsavedChangesNotifier />
                 </RefineSnackbarProvider>
             </ThemeProvider>
         </BrowserRouter>

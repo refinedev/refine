@@ -12,7 +12,7 @@ import { ICategory, IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        initialCurrent: 2,
+        initialCurrent: 1,
         initialPageSize: 10,
         initialSorter: [
             {

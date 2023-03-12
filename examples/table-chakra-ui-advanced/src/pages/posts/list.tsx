@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
@@ -24,13 +24,13 @@ import {
     Td,
     TableContainer,
     HStack,
-    Text,
     Select,
     Checkbox,
     Button,
     IconButton,
     Input,
     Textarea,
+    Box,
 } from "@chakra-ui/react";
 
 import { useForm } from "@refinedev/react-hook-form";
@@ -348,14 +348,14 @@ export const PostList: React.FC = () => {
                                         <Th key={header.id}>
                                             {!header.isPlaceholder && (
                                                 <HStack spacing="2">
-                                                    <Text>
+                                                    <Box>
                                                         {flexRender(
                                                             header.column
                                                                 .columnDef
                                                                 .header,
                                                             header.getContext(),
                                                         )}
-                                                    </Text>
+                                                    </Box>
                                                     <HStack spacing="2">
                                                         <ColumnSorter
                                                             column={
@@ -381,8 +381,8 @@ export const PostList: React.FC = () => {
                                     return renderEditRow(row);
                                 } else
                                     return (
-                                        <>
-                                            <Tr key={row.id}>
+                                        <Fragment key={row.id}>
+                                            <Tr>
                                                 {row
                                                     .getVisibleCells()
                                                     .map((cell) => {
@@ -417,7 +417,7 @@ export const PostList: React.FC = () => {
                                                     </Td>
                                                 </Tr>
                                             )}
-                                        </>
+                                        </Fragment>
                                     );
                             })}
                         </Tbody>
