@@ -8,6 +8,7 @@ import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OpenNotificationParams, TLogoutData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
+import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
 
 type Variables = {
     redirectPath?: string | false;
@@ -97,6 +98,7 @@ export function useLogout<TVariables = {}>({
 }: UseLogoutProps<TVariables> | UseLogoutLegacyProps<TVariables> = {}):
     | UseLogoutLegacyReturnType<TVariables>
     | UseLogoutReturnType<TVariables> {
+    const invalidateAuthStore = useInvalidateAuthStore();
     const routerType = useRouterType();
     const go = useGo();
     const { push } = useNavigation();
@@ -133,6 +135,8 @@ export function useLogout<TVariables = {}>({
                     }
                 }
             }
+
+            invalidateAuthStore();
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -170,6 +174,8 @@ export function useLogout<TVariables = {}>({
                 } else {
                     go({ to: "/login" });
                 }
+
+                invalidateAuthStore();
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));
