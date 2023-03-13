@@ -61,7 +61,11 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (hasPankodCLIInDependencies || hasPankodCLIInDevDependencies) {
-        devDependencies["@refinedev/cli"] = "latest";
+        dependencies["@refinedev/cli"] = "latest";
+    }
+
+    if (hasPankodCLIInDevDependencies) {
+        delete devDependencies["@pankod/refine-cli"];
     }
 
     Object.keys(dependencies).forEach((dep) => {
@@ -103,7 +107,6 @@ export default function transformer(file: FileInfo, api: API): string {
     authProviderToLegacyAuthProvider(j, source);
     metaDataToMeta(j, source);
     moveDeprecatedAccessControlProps(j, source);
-    // renameResourcePropInButtons(j, source);
     resourceNameToResourceForButtons(j, source);
     routerToLegacyRouter(j, source);
     separateImportsAntD(j, source);
