@@ -1,5 +1,5 @@
 ---
-"@refinedev/ui-tests": minor
+"@refinedev/ui-tests": major
 ---
 
 -   Buttons and CRUD tests are updated to use `resource.meta` property instead of `resource.options` property.

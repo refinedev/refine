@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": minor
+"@refinedev/core": major
 ---
 
 ## `useList` hook

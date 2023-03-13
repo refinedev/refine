@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": minor
+"@refinedev/core": major
 ---
 
 -   `options` prop of resource is now deprecated. Use `meta` prop instead.

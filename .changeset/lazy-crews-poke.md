@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-table": minor
+"@refinedev/react-table": major
 ---
 
 `useTable` return values and properties are updated.

@@ -1,5 +1,5 @@
 ---
-"@refinedev/mui": minor
+"@refinedev/mui": major
 ---
 
 `useDataGrid` return values and properties are updated.

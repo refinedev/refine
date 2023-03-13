@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": minor
+"@refinedev/core": major
 ---
 
 Added a helper function to pick not deprecated value. Gives priority according to the order of the arguments.

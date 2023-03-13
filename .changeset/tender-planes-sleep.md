@@ -1,5 +1,5 @@
 ---
-"@refinedev/codemod": minor
+"@refinedev/codemod": major
 ---
 
 -   Added transformation function to renamed `AuthProvider` to `LegacyAuthProvider`.
