@@ -213,15 +213,17 @@ export async function run(): Promise<void> {
 
     if (selectedTransformer === "refine3-to-refine4") {
         const isAntdVersion3x = await checkAntdVersionIs3x();
+
         if (isAntdVersion3x) {
             console.log();
             console.log(
-                `${chalk.yellow(
-                    `You are using antd 3.x.x, please upgrade to antd 4.x.x first.`,
-                )}`,
+                `You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.`,
             );
             console.log(
-                `Refer to Migration Guide: ${chalk.green(
+                `Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.`,
+            );
+            console.log(
+                `To upgrade now, visit Migration Guide document > ${chalk.green(
                     "https://refine.dev/docs/api-reference/antd/migration-guide/v4-to-v5/",
                 )}`,
             );

@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 resources={[
                     {
