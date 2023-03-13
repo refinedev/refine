@@ -77,7 +77,7 @@ Thanks to its flexibility, **refine** can be seamlessly integrated into existing
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerBindings from "@refinedev/react-router-v6"
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { HeadlessInferencer } from "@refinedev/inferencer";
 
 const App: React.FC = () => {
@@ -124,7 +124,7 @@ export default App;
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerBindings from "@refinedev/react-router-v6"
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout, ErrorComponent } from "@refinedev/antd";
 import { AntdInferencer } from "@refinedev/inferencer";
 
@@ -180,7 +180,7 @@ export default App;
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerBindings from "@refinedev/react-router-v6"
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout, ErrorComponent } from "@refinedev/chakra-ui";
 import { ChakraUIInferencer } from "@refinedev/inferencer";
 
@@ -236,7 +236,7 @@ export default App;
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerBindings from "@refinedev/react-router-v6"
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout, ErrorComponent } from "@refinedev/mantine";
 import { MantineInferencer } from "@refinedev/inferencer";
 
@@ -291,7 +291,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import routerBindings from "@refinedev/react-router-v6"
 import { Layout, ErrorComponent } from "@refinedev/mui";
 import { MuiInferencer } from "@refinedev/inferencer";
