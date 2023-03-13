@@ -41,7 +41,9 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -61,7 +63,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     resources={[
                         {
                             name: "products",
@@ -71,26 +75,40 @@ const App = () => {
                             edit: "/products/edit/:id",
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
-                            )}
+                            }
                         >
                             {/* highlight-start */}
                             <Route path="products">
                                 <Route index element={<ChakraUIInferencer />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -130,7 +148,9 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 setInitialRoutes(["/products"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -150,7 +170,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     //highlight-start
                     resources={[
                         {
@@ -162,26 +184,40 @@ const App = () => {
                         },
                     ]}
                     //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
-                            )}
+                            }
                         >
                             {/* highlight-start */}
                             <Route path="products">
                                 <Route index element={<ChakraUIInferencer />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -201,7 +237,9 @@ You should see the create page for the `products` resource that was generated by
 setInitialRoutes(["/products/create"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -221,7 +259,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     //highlight-start
                     resources={[
                         {
@@ -233,26 +273,40 @@ const App = () => {
                         },
                     ]}
                     //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
-                            )}
+                            }
                         >
                             {/* highlight-start */}
                             <Route path="products">
                                 <Route index element={<ChakraUIInferencer />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -272,7 +326,9 @@ You should see the edit page for the `products` resource with the id `123` that 
 setInitialRoutes(["/products/edit/123"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -292,7 +348,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     resources={[
                         {
                             name: "products",
@@ -302,26 +360,40 @@ const App = () => {
                             edit: "/products/edit/:id",
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
-                            )}
+                            }
                         >
                             {/* highlight-start */}
                             <Route path="products">
                                 <Route index element={<ChakraUIInferencer />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -341,7 +413,9 @@ You should see the show page for the `products` resource with the id `123` that 
 setInitialRoutes(["/products/show/123"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -361,7 +435,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     //highlight-start
                     resources={[
                         {
@@ -373,26 +449,40 @@ const App = () => {
                         },
                     ]}
                     //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
-                            )}
+                            }
                         >
                             {/* highlight-start */}
                             <Route path="products">
                                 <Route index element={<ChakraUIInferencer />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>

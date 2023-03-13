@@ -49,7 +49,9 @@ import {
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
@@ -77,26 +79,40 @@ const App: React.FC = () => {
                                 edit: "/products/edit/:id",
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 {/* highlight-start */}
                                 <Route path="products">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -145,7 +161,9 @@ import {
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
@@ -175,26 +193,40 @@ const App: React.FC = () => {
                             },
                         ]}
                         //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 {/* highlight-start */}
                                 <Route path="products">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -223,7 +255,9 @@ import {
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
@@ -253,26 +287,40 @@ const App: React.FC = () => {
                             },
                         ]}
                         //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 {/* highlight-start */}
                                 <Route path="products">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -301,7 +349,9 @@ import {
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
@@ -331,26 +381,40 @@ const App: React.FC = () => {
                             },
                         ]}
                         //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 {/* highlight-start */}
                                 <Route path="products">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -379,7 +443,9 @@ import {
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
@@ -409,26 +475,40 @@ const App: React.FC = () => {
                             },
                         ]}
                         //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 {/* highlight-start */}
                                 <Route path="products">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
