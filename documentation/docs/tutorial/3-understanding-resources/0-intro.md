@@ -76,6 +76,7 @@ Thanks to its flexibility, **refine** can be seamlessly integrated into existing
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6"
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
 import { HeadlessInferencer } from "@refinedev/inferencer";
 
@@ -84,6 +85,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerBindings}
                 //highlight-start
                 resources={[
                     {
@@ -121,6 +123,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6"
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
 import { Layout, ErrorComponent } from "@refinedev/antd";
 import { AntdInferencer } from "@refinedev/inferencer";
@@ -130,6 +133,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerBindings}
                 //highlight-start
                 resources={[
                     {
@@ -151,7 +155,7 @@ const App: React.FC = () => {
                         }
                     >
                         <Route path="products">
-                            <Route index element={<AntdInferencer  />} />
+                            <Route index element={<AntdInferencer />} />
                             <Route path="show/:id" element={<AntdInferencer />} />
                             <Route path="edit/:id" element={<AntdInferencer />} />
                             <Route path="create" element={<AntdInferencer />} />
@@ -175,6 +179,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6"
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
 import { Layout, ErrorComponent } from "@refinedev/chakra-ui";
 import { ChakraUIInferencer } from "@refinedev/inferencer";
@@ -184,6 +189,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerBindings}
                 //highlight-start
                 resources={[
                     {
@@ -205,7 +211,7 @@ const App: React.FC = () => {
                         }
                     >
                         <Route path="products">
-                            <Route index element={<ChakraUIInferencer  />} />
+                            <Route index element={<ChakraUIInferencer />} />
                             <Route path="show/:id" element={<ChakraUIInferencer />} />
                             <Route path="edit/:id" element={<ChakraUIInferencer />} />
                             <Route path="create" element={<ChakraUIInferencer />} />
@@ -229,6 +235,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6"
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
 import { Layout, ErrorComponent } from "@refinedev/mantine";
 import { MantineInferencer } from "@refinedev/inferencer";
@@ -238,6 +245,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerBindings}
                 //highlight-start
                 resources={[
                     {
@@ -259,7 +267,7 @@ const App: React.FC = () => {
                         }
                     >
                         <Route path="products">
-                            <Route index element={<MantineInferencer  />} />
+                            <Route index element={<MantineInferencer />} />
                             <Route path="show/:id" element={<MantineInferencer />} />
                             <Route path="edit/:id" element={<MantineInferencer />} />
                             <Route path="create" element={<MantineInferencer />} />
@@ -284,6 +292,7 @@ export default App;
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import routerBindings from "@refinedev/react-router-v6"
 import { Layout, ErrorComponent } from "@refinedev/mui";
 import { MuiInferencer } from "@refinedev/inferencer";
 
@@ -292,6 +301,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerBindings}
                 //highlight-start
                 resources={[
                     {
@@ -313,7 +323,7 @@ const App: React.FC = () => {
                         }
                     >
                         <Route path="products">
-                            <Route index element={<MuiInferencer  />} />
+                            <Route index element={<MuiInferencer />} />
                             <Route path="show/:id" element={<MuiInferencer />} />
                             <Route path="edit/:id" element={<MuiInferencer />} />
                             <Route path="create" element={<MuiInferencer />} />
