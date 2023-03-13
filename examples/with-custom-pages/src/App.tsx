@@ -14,6 +14,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
+    UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import {
     BrowserRouter,
@@ -84,6 +85,10 @@ const App: React.FC = () => {
                     },
                 ]}
                 notificationProvider={notificationProvider}
+                options={{
+                    warnWhenUnsavedChanges: true,
+                    syncWithLocation: true,
+                }}
             >
                 <Routes>
                     <Route index element={<Navigate to="post-review" />} />
@@ -142,6 +147,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
