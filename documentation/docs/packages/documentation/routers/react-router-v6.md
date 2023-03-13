@@ -14,7 +14,7 @@ npm i @refinedev/react-router-v6 react-router-dom
 We recommend using `create refine-app` to initialize your refine projects. It gives you a good boilerplate to start with using React Router v6.
 
 ```sh
-npm create refine-app@latest -- -o refine-react my-refine-app
+npm create refine-app@latest -- -p refine-react my-refine-app
 ```
 
 :::
