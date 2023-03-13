@@ -19,6 +19,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { ...uploadProps } = useStrapiUpload({

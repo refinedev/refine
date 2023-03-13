@@ -1,17 +1,16 @@
+import React from "react";
+
 import { GitHubBanner, Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
 import {
     notificationProvider,
     refineTheme,
+    ReadyPage,
     ErrorComponent,
     Layout,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { ProductList } from "pages/products/list";
 import { ProductCreate } from "pages/products/create";
@@ -20,61 +19,26 @@ import { ProductShow } from "pages/products/show";
 
 function App() {
     return (
-        <BrowserRouter>
+        <ChakraProvider theme={refineTheme}>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider()}
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/products",
-                            show: "/products/show/:id",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Layout>
-                        <Routes>
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="products" />
-                                }
-                            />
-
-                            <Route path="/products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                                <Route
-                                    path="create"
-                                    element={<ProductCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<ProductEdit />}
-                                />
-                            </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </ChakraProvider>
-        </BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
+                Layout={Layout}
+                legacyRouterProvider={routerProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: ProductList,
+                        show: ProductShow,
+                        create: ProductCreate,
+                        edit: ProductEdit,
+                    },
+                ]}
+            />
+        </ChakraProvider>
     );
 }
 

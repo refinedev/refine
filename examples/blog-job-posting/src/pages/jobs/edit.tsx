@@ -1,6 +1,5 @@
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Checkbox, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -13,6 +12,10 @@ export const JobEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: companySelectProps } = useSelect<ICompany>({
         resource: "companies",
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

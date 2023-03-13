@@ -1,17 +1,19 @@
 import {
-    GitHubBanner,
     Refine,
-    AuthBindings,
-    Authenticated,
+    LegacyAuthProvider as AuthProvider,
+    GitHubBanner,
 } from "@refinedev/core";
+
 import {
     Layout,
     ErrorComponent,
+    ReadyPage,
     LightTheme,
     notificationProvider,
     RefineSnackbarProvider,
     AuthPage,
 } from "@refinedev/mui";
+
 import {
     CssBaseline,
     GlobalStyles,
@@ -20,115 +22,68 @@ import {
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { useFormContext } from "react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
-            if (email) {
-                localStorage.setItem("email", email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            localStorage.setItem("email", email);
+            return Promise.resolve();
         },
-        register: async (params) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        updatePassword: async (params) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
-                return {
-                    success: true,
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid password"),
-            };
+            return Promise.reject();
         },
-        forgotPassword: async (params) => {
+        forgotPassword: (params) => {
             if (params.email) {
-                //we can send email with reset password link here
-                return {
-                    success: true,
-                };
+                //we can send email with forgot password link here
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email"),
-            };
+            return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("email");
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        check: async () =>
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
             localStorage.getItem("email")
-                ? {
-                      authenticated: true,
-                  }
-                : {
-                      authenticated: false,
-                      error: new Error("Not authenticated"),
-                      logout: true,
-                      redirectTo: "/login",
-                  },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => ({
-            id: 1,
-            name: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                name: "Jane Doe",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+            }),
     };
 
     const RememeberMe = () => {
@@ -156,172 +111,107 @@ const App: React.FC = () => {
     };
 
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                />
-                <RefineSnackbarProvider>
-                    <Refine
-                        authProvider={authProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
-                        resources={[
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <GitHubBanner />
+                <Refine
+                    legacyAuthProvider={authProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    legacyRouterProvider={{
+                        ...routerProvider,
+                        routes: [
                             {
-                                name: "posts",
-                                list: "/posts",
-                                edit: "/posts/edit/:id",
-                                create: "/posts/create",
+                                path: "/register",
+                                element: (
+                                    <AuthPage
+                                        type="register"
+                                        formProps={{
+                                            onSubmit: (formValues) => {
+                                                console.log(
+                                                    JSON.stringify(
+                                                        formValues,
+                                                        null,
+                                                        2,
+                                                    ),
+                                                );
+                                            },
+                                            defaultValues: {
+                                                email: "test@mail.com",
+                                            },
+                                        }}
+                                        providers={[
+                                            {
+                                                name: "google",
+                                                label: "Sign in with Google",
+                                                icon: (
+                                                    <GoogleIcon
+                                                        style={{ fontSize: 24 }}
+                                                    />
+                                                ),
+                                            },
+                                            {
+                                                name: "github",
+                                                label: "Sign in with GitHub",
+                                                icon: (
+                                                    <GitHubIcon
+                                                        style={{ fontSize: 24 }}
+                                                    />
+                                                ),
+                                            },
+                                        ]}
+                                    />
+                                ),
                             },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
-
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <AuthPage
-                                            type="login"
-                                            rememberMe={<RememeberMe />}
-                                            providers={[
-                                                {
-                                                    name: "google",
-                                                    label: "Sign in with Google",
-                                                    icon: (
-                                                        <GoogleIcon
-                                                            style={{
-                                                                fontSize: 24,
-                                                            }}
-                                                        />
-                                                    ),
-                                                },
-                                                {
-                                                    name: "github",
-                                                    label: "Sign in with GitHub",
-                                                    icon: (
-                                                        <GitHubIcon
-                                                            style={{
-                                                                fontSize: 24,
-                                                            }}
-                                                        />
-                                                    ),
-                                                },
-                                            ]}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path="/register"
-                                    element={
-                                        <AuthPage
-                                            type="register"
-                                            formProps={{
-                                                defaultValues: {
-                                                    email: "test@example.com",
-                                                },
-                                            }}
-                                            providers={[
-                                                {
-                                                    name: "google",
-                                                    label: "Sign in with Google",
-                                                    icon: (
-                                                        <GoogleIcon
-                                                            style={{
-                                                                fontSize: 24,
-                                                            }}
-                                                        />
-                                                    ),
-                                                },
-                                                {
-                                                    name: "github",
-                                                    label: "Sign in with GitHub",
-                                                    icon: (
-                                                        <GitHubIcon
-                                                            style={{
-                                                                fontSize: 24,
-                                                            }}
-                                                        />
-                                                    ),
-                                                },
-                                            ]}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path="/forgot-password"
-                                    element={<AuthPage type="forgotPassword" />}
-                                />
-                                <Route
-                                    path="/update-password"
-                                    element={<AuthPage type="updatePassword" />}
-                                />
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated>
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+                            {
+                                path: "/forgot-password",
+                                element: <AuthPage type="forgotPassword" />,
+                            },
+                            {
+                                path: "/update-password",
+                                element: <AuthPage type="updatePassword" />,
+                            },
+                        ],
+                    }}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    LoginPage={() => (
+                        <AuthPage
+                            providers={[
+                                {
+                                    name: "google",
+                                    label: "Sign in with Google",
+                                    icon: (
+                                        <GoogleIcon style={{ fontSize: 24 }} />
+                                    ),
+                                },
+                                {
+                                    name: "github",
+                                    label: "Sign in with GitHub",
+                                    icon: (
+                                        <GitHubIcon style={{ fontSize: 24 }} />
+                                    ),
+                                },
+                            ]}
+                            rememberMe={<RememeberMe />}
+                        />
+                    )}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostsList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
     );
 };
 

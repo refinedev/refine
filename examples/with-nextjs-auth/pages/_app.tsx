@@ -2,65 +2,65 @@ import React from "react";
 import { AppProps } from "next/app";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { Layout, notificationProvider } from "@refinedev/antd";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+    AuthPage,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 import "@refinedev/antd/dist/reset.css";
 
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
-import { API_URL } from "src/constants";
-import type { NextPage } from "next";
+import { API_URL } from "../src/constants";
 
-export type ExtendedNextPage = NextPage & {
-    noLayout?: boolean;
-};
+import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 
-type ExtendedAppProps = AppProps & {
-    Component: ExtendedNextPage;
-};
-
-function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
-    const renderComponent = () => {
-        if (Component.noLayout) {
-            return <Component {...pageProps} />;
-        }
-
-        return (
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        );
-    };
-
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
             <GitHubBanner />
             <Refine
-                routerProvider={routerProvider}
-                authProvider={authProvider}
+                legacyRouterProvider={routerProvider}
+                legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(API_URL)}
                 resources={[
-                    { name: "users", list: "/users" },
+                    { name: "users" },
                     {
                         name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
                     },
                 ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
+                options={{ syncWithLocation: true }}
                 notificationProvider={notificationProvider}
+                /**
+                 * `LoginPage` property is used to render `/login` page, which is the redirect path for unauthenticated users.
+                 * Other auth pages, such as `/register`, `/forgot-password` etc. are not handled by refine.
+                 * You need to create routes for them based on your router provider.
+                 * In this example, we've created pages at `/pages` directory for the auth pages.
+                 * Please check out `/pages/register.tsx`, `/pages/forgot-password.tsx` and `/pages/update-password.tsx` files for more details.
+                 */
+                LoginPage={() => (
+                    <AuthPage
+                        formProps={{
+                            initialValues: {
+                                email: "admin@refine.dev",
+                                password: "password",
+                            },
+                        }}
+                    />
+                )}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
             >
-                {renderComponent()}
-                <UnsavedChangesNotifier />
+                <Component {...pageProps} />
             </Refine>
         </>
     );

@@ -1,5 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps, BaseRecord, useMany } from "@refinedev/core";
+
 import {
     useTable,
     List,
@@ -19,6 +20,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({

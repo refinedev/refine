@@ -6,7 +6,6 @@ import {
     useMany,
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {

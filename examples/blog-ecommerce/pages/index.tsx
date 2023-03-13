@@ -1,10 +1,10 @@
 import { GetServerSideProps } from "next";
-import { GetListResponse, useTable } from "@refinedev/core";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
-import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 
 import { API_URL } from "src/constants";
 import { IProduct, IStore } from "src/interfaces";
+import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { ProductCard, FilterButton } from "src/components";
 
 type ItemProps = {
@@ -16,11 +16,16 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
     const { tableQueryResult, setFilters, current, setCurrent, pageSize } =
         useTable<IProduct>({
             resource: "products",
+
             queryOptions: {
                 initialData: products,
             },
-            initialPageSize: 9,
-            metaData: { populate: ["image"] },
+
+            meta: { populate: ["image"] },
+
+            pagination: {
+                pageSize: 9,
+            },
         });
 
     const totalPageCount = Math.ceil(
@@ -28,7 +33,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
     );
 
     return (
-        <>
+        <LayoutWrapper>
             <Flex mt={6} gap={2}>
                 <FilterButton
                     setFilters={() =>
@@ -105,7 +110,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                     );
                 })}
             </Flex>
-        </>
+        </LayoutWrapper>
     );
 };
 
@@ -114,7 +119,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async () => {
     const data = await DataProvider(API_URL + "/api").getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 

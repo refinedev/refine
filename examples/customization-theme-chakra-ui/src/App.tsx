@@ -3,73 +3,39 @@ import {
     ErrorComponent,
     Layout,
     refineTheme,
+    ReadyPage,
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 import { Header } from "./components/header";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <ChakraProvider theme={refineTheme}>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider()}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout Header={Header}>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </ChakraProvider>
-        </BrowserRouter>
+            <Refine
+                legacyRouterProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
+                Layout={Layout}
+                Header={Header}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        show: PostShow,
+                        create: PostCreate,
+                        edit: PostEdit,
+                    },
+                ]}
+            />
+        </ChakraProvider>
     );
 };
 

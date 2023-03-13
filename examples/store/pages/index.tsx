@@ -1,19 +1,12 @@
 import { GetServerSideProps } from "next";
-import { GetListResponse } from "@refinedev/core";
+export { NextRouteComponent as default } from "@refinedev/nextjs-router/legacy";
 import { dataProvider } from "@refinedev/medusa";
 import { Product, StoreCartsRes } from "@medusajs/medusa";
 import nookies from "nookies";
 
-import { Dashboard } from "@components";
 import { getSearchStaticProps } from "@lib/search-props";
 import { API_URL } from "@lib/constants";
 import { CART_KEY } from "@lib/context";
-
-const Home: React.FC<{ initialData: GetListResponse<Product> }> = ({
-    initialData,
-}) => <Dashboard initialData={initialData} />;
-
-export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const cookies = nookies.get(context);

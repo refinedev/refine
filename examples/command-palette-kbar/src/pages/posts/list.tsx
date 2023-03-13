@@ -11,9 +11,7 @@ import {
     FilterDropdown,
     TagField,
 } from "@refinedev/antd";
-
 import { Table, Space, Select, Radio } from "antd";
-
 import { useTable, useSelect } from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -38,6 +36,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         defaultValue: getDefaultFilter("category.id", filters, "in"),
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

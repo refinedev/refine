@@ -1,30 +1,34 @@
 import React, { useState } from "react";
+
 import {
     useTitle,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
     useLogout,
     useIsExistAuthentication,
     useMenu,
 } from "@refinedev/core";
-import {
-    UnorderedListOutlined,
-    LogoutOutlined,
-    AppstoreAddOutlined,
-} from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Layout as AntdLayout, Menu, Grid } from "antd";
-import { Link } from "react-router-dom";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { mutate: mutateLogout } = useLogout();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const isExistAuthentication = useIsExistAuthentication();
 
     const isMobile =
@@ -38,7 +42,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <UnorderedListOutlined />}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -61,9 +65,11 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                        <Link to={route || "/"}>{label}</Link>
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -77,7 +83,7 @@ export const CustomSider: React.FC = () => {
         <Menu.Item
             key="logout"
             onClick={() => mutateLogout()}
-            icon={<LogoutOutlined />}
+            icon={<Icons.LogoutOutlined />}
         >
             Logout
         </Menu.Item>
@@ -102,7 +108,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={"/"} icon={<AppstoreAddOutlined />}>
+                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
                     <StoreSelect />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}

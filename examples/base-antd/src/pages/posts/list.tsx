@@ -39,6 +39,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         defaultValue: getDefaultFilter("category.id", filters, "in"),
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

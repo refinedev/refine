@@ -1,41 +1,42 @@
 {
-    "name": "multi-level-menu",
-    "version": "3.25.0",
-    "private": true,
-    "dependencies": {
-        "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.101.2",
-        "@refinedev/cli": "^1.17.2",
-        "@pankod/refine-react-location": "^3.36.2",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/simple-rest": "^3.37.4",
-        "@types/node": "^12.20.11",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "@uiw/react-md-editor": "^3.19.5",
-        "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
-        "typescript": "^4.7.4",
-        "antd": "^5.0.5"
-    },
-    "scripts": {
-        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
-        "eject": "react-scripts eject",
-        "refine": "refine"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "multi-level-menu",
+  "version": "3.25.0",
+  "private": true,
+  "dependencies": {
+    "@pankod/refine-react-location": "^3.36.2",
+    "@refinedev/antd": "*",
+    "@refinedev/cli": "*",
+    "@refinedev/core": "*",
+    "@refinedev/react-router-v6": "*",
+    "@refinedev/simple-rest": "*",
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@uiw/react-md-editor": "^3.19.5",
+    "antd": "^5.0.5",
+    "cross-env": "^7.0.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "^5.0.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

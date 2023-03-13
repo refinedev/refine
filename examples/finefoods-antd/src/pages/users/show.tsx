@@ -4,7 +4,6 @@ import {
     IResourceComponentsProps,
     useTranslate,
 } from "@refinedev/core";
-
 import {
     useTable,
     List,
@@ -14,12 +13,10 @@ import {
     DateField,
 } from "@refinedev/antd";
 
-import {
-    UserOutlined,
-    PhoneOutlined,
-    CalendarOutlined,
-    CheckOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Typography,
     Avatar,
@@ -46,30 +43,41 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const { data } = queryResult;
     const user = data?.data;
 
-    const { tableProps, sorter } = useTable<
+    const { tableProps, sorters: sorter } = useTable<
         IOrder,
         HttpError,
         IOrderFilterVariables
     >({
         resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "user.id",
-                operator: "eq",
-                value: user?.id,
-            },
-        ],
-        initialPageSize: 4,
+
         queryOptions: {
             enabled: user !== undefined,
         },
+
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 4,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "user.id",
+                    operator: "eq",
+                    value: user?.id,
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     return (
@@ -112,17 +120,17 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                                 }}
                             >
                                 <Typography.Text>
-                                    <UserOutlined />{" "}
+                                    <Icons.UserOutlined />{" "}
                                     {t(`users.fields.gender.${user?.gender}`)}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <PhoneOutlined /> {user?.gsm}
+                                    <Icons.PhoneOutlined /> {user?.gsm}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <CalendarOutlined /> {user?.createdAt}
+                                    <Icons.CalendarOutlined /> {user?.createdAt}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <CheckOutlined />{" "}
+                                    <Icons.CheckOutlined />{" "}
                                     {user?.isActive
                                         ? t("users.fields.isActive.true")
                                         : t("users.fields.isActive.false")}

@@ -5,7 +5,6 @@ import {
     useResource,
 } from "@refinedev/core";
 import { Edit } from "@refinedev/antd";
-
 import { Form, Input } from "antd";
 
 import { IProduct } from "interfaces";

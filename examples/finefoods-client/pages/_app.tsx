@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 
 import { Layout } from "@components";
 import { BasketContextProvider } from "@context";
@@ -15,8 +15,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <>
             <GitHubBanner />
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
+                Layout={Layout}
+                resources={[{ name: "users" }]}
             >
                 <Head>
                     <title>
@@ -29,9 +31,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     <link rel="icon" type="image/png" href="/favicon.ico" />
                 </Head>
                 <BasketContextProvider>
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
+                    <Component {...pageProps} />
                 </BasketContextProvider>
             </Refine>
         </>

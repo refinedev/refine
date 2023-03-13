@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useOne, useNavigation, useImport } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import { IPost, ICategory, ICsvPost } from "interfaces";
@@ -99,7 +98,9 @@ export const PostList: React.FC = () => {
         getState,
         setPageIndex,
         setPageSize,
-    } = useTable<IPost>({ columns });
+    } = useTable<IPost>({
+        columns,
+    });
 
     return (
         <>

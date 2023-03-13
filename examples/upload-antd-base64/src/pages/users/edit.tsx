@@ -4,9 +4,7 @@ import {
     file2Base64,
     HttpError,
 } from "@refinedev/core";
-
 import { Edit, useForm, getValueFromEvent } from "@refinedev/antd";
-
 import { Form, Input, Upload } from "antd";
 
 import { IUser, IUserVariable } from "interfaces";

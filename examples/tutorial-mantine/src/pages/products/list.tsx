@@ -13,7 +13,6 @@ import {
     DeleteButton,
     MarkdownField,
 } from "@refinedev/mantine";
-
 import { ScrollArea, Table, Pagination, Group } from "@mantine/core";
 
 import { ColumnSorter } from "../../components/table/ColumnSorter";

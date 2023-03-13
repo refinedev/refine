@@ -17,14 +17,12 @@ import { Table, Space, Select } from "antd";
 import { ICategory, IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
+    const {
+        tableProps,
+        filters,
+        sorters: sorter,
+    } = useTable<IPost>({
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -36,12 +34,26 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 "created_at",
             ],
         },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-        metaData: {
+
+        meta: {
             fields: ["id", "title"],
+        },
+
+        pagination: {
+            mode: "server",
         },
     });
 
@@ -105,7 +117,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
-                                metaData={{
+                                meta={{
                                     fields: [
                                         "id",
                                         "content",

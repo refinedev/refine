@@ -4,7 +4,6 @@ import {
     useNavigation,
     useShow,
 } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -13,8 +12,13 @@ import {
     useModal,
 } from "@refinedev/antd";
 
-import { FormOutlined, MoreOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Table, Dropdown, Menu, Avatar } from "antd";
+
+const { FormOutlined } = Icons;
 
 import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";
@@ -130,7 +134,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                                 overlay={moreMenu(record.id)}
                                 trigger={["click"]}
                             >
-                                <MoreOutlined
+                                <Icons.MoreOutlined
                                     style={{
                                         fontSize: 24,
                                     }}

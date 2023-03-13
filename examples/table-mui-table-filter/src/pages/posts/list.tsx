@@ -22,18 +22,16 @@ import {
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { SearchOutlined } from "@mui/icons-material";
 import { useForm } from "@refinedev/react-hook-form";
-
 import { Controller } from "react-hook-form";
 
 import { ICategory, IPost, IPostFilterVariables } from "interfaces";
 
-export const PostList: React.FC = () => {
+export const PostsList: React.FC = () => {
     const { dataGridProps, filters, search } = useDataGrid<
         IPost,
         HttpError,
         IPostFilterVariables
     >({
-        initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, category, status } = params;
@@ -57,6 +55,10 @@ export const PostList: React.FC = () => {
             );
 
             return filters;
+        },
+
+        pagination: {
+            pageSize: 10,
         },
     });
 

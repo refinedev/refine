@@ -1,42 +1,30 @@
+import React from "react";
+
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     refineTheme,
-    WelcomePage,
+    ReadyPage,
     ErrorComponent,
+    Layout,
 } from "@refinedev/chakra-ui";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 function App() {
     return (
-        <BrowserRouter>
+        <ChakraProvider theme={refineTheme}>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route index element={<WelcomePage />} />
-
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </ChakraProvider>
-        </BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
+                Layout={Layout}
+                legacyRouterProvider={routerProvider}
+            />
+        </ChakraProvider>
     );
 }
 

@@ -1,5 +1,4 @@
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import { HackathonerType, TeamType } from "interfaces";
@@ -12,6 +11,10 @@ export const HackathonersCreate: React.FC = () => {
         resource: "teams",
         defaultValue: queryResult?.data?.data?.team_id,
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

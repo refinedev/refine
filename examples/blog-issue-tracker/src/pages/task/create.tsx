@@ -1,7 +1,5 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useForm, Create, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select, DatePicker } from "antd";
 
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
@@ -11,20 +9,36 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: labelSelectProps } = useSelect<ILabel>({
         resource: "label",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: prioritySelectPorps } = useSelect<IPriority>({
         resource: "priority",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: assigneSelectProps } = useSelect<IAuthUser>({
         resource: "users",
         optionValue: "id",
         optionLabel: "email",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: statusSelectProps } = useSelect<IStatus>({
         resource: "status",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

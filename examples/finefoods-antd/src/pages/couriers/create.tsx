@@ -3,7 +3,6 @@ import {
     useTranslate,
     useApiUrl,
 } from "@refinedev/core";
-
 import {
     Create,
     SaveButton,
@@ -33,7 +32,7 @@ const { Text } = Typography;
 
 import { ICourier, IStore } from "interfaces";
 
-export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
+export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const {
         current,
@@ -47,6 +46,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const formList = [
@@ -246,7 +249,8 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
         <>
             <Create
                 isLoading={queryResult?.isFetching}
-                footerButtons={
+                saveButtonProps={saveButtonProps}
+                headerButtons={
                     <>
                         {current > 0 && (
                             <Button

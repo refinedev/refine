@@ -1,12 +1,14 @@
 import { GetServerSideProps } from "next";
-import { useGetIdentity, useOne } from "@refinedev/core";
-import { Customer, StoreCustomersListOrdersRes } from "@medusajs/medusa";
+import { LayoutWrapper, useGetIdentity, useOne } from "@refinedev/core";
+import { StoreCustomersListOrdersRes } from "@medusajs/medusa";
 
 import { AccountLayout, Overview } from "@components/account";
 import { getSearchStaticProps } from "@lib/search-props";
 
 const ProfilePage: React.FC = () => {
-    const { data } = useGetIdentity<Omit<Customer, "password_hash">>();
+    const { data } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     const ordersData = useOne<StoreCustomersListOrdersRes>({
         resource: "customers",
@@ -14,12 +16,14 @@ const ProfilePage: React.FC = () => {
     });
 
     return (
-        <AccountLayout>
-            <Overview
-                orders={ordersData.data?.data.orders || []}
-                customer={data}
-            />
-        </AccountLayout>
+        <LayoutWrapper>
+            <AccountLayout>
+                <Overview
+                    orders={ordersData.data?.data.orders || []}
+                    customer={data}
+                />
+            </AccountLayout>
+        </LayoutWrapper>
     );
 };
 

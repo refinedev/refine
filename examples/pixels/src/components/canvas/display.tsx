@@ -15,9 +15,11 @@ export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
     const { data } = useList<Pixel>({
         resource: "pixels",
         liveMode: "auto",
+
         meta: {
             select: "*, users(id, full_name, avatar_url)",
         },
+
         filters: [
             {
                 field: "canvas_id",
@@ -25,12 +27,14 @@ export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
                 value: id,
             },
         ],
+
         sorters: [
             {
                 field: "created_at",
                 order: "desc",
             },
         ],
+
         pagination: {
             mode: "off",
         },

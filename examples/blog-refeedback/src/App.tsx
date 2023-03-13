@@ -1,4 +1,4 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 
 import {
     notificationProvider,
@@ -6,12 +6,7 @@ import {
     ErrorComponent,
 } from "@refinedev/antd";
 
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import "@refinedev/antd/dist/reset.css";
 import { DataProvider } from "@refinedev/strapi";
@@ -28,74 +23,26 @@ function App() {
     const { authProvider, axiosInstance } = strapiAuthProvider(API_URL);
     const dataProvider = DataProvider(API_URL, axiosInstance);
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
+                legacyAuthProvider={authProvider}
+                Header={Header}
+                Layout={Layout}
+                OffLayoutArea={OffLayoutArea}
+                legacyRouterProvider={routerProvider}
                 resources={[
                     {
                         name: "feedbacks",
-                        list: "/feedbacks",
+                        list: FeedbackList,
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout
-                                    Header={Header}
-                                    OffLayoutArea={OffLayoutArea}
-                                >
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="feedbacks" />
-                            }
-                        />
-
-                        <Route path="/feedbacks" element={<FeedbackList />} />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="feedbacks" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<LoginPage />} />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                LoginPage={LoginPage}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 }
 

@@ -104,7 +104,9 @@ export const PostList: React.FC = () => {
         nextPage,
         previousPage,
         setPageSize,
-    } = useTable<IPost>({ columns });
+    } = useTable<IPost>({
+        columns,
+    });
 
     const categoryIds = tableData?.data?.map((item) => item.category[0]) ?? [];
 
@@ -180,8 +182,8 @@ export const PostList: React.FC = () => {
                 </tbody>
             </table>
 
-            <div className="mx-auto mt-12 flex items-center justify-between">
-                <div className="mx-auto flex items-center justify-between md:w-7/12">
+            <div className="flex items-center justify-between mx-auto mt-12">
+                <div className="md:w-7/12 flex items-center justify-between mx-auto">
                     <button
                         className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
                         onClick={() => setPageIndex(0)}
@@ -220,7 +222,7 @@ export const PostList: React.FC = () => {
                     <div className="px-5">
                         Go to page:
                         <input
-                            className="block rounded-[8px] border p-2"
+                            className="p-2 block border rounded-[8px]"
                             type="number"
                             defaultValue={getState().pagination.pageIndex + 1}
                             onChange={(e) => {
@@ -232,7 +234,7 @@ export const PostList: React.FC = () => {
                         />
                     </div>{" "}
                     <select
-                        className="w-[50%] border px-5"
+                        className="px-5 border w-[50%]"
                         value={getState().pagination.pageSize}
                         onChange={(e) => {
                             setPageSize(Number(e.target.value));

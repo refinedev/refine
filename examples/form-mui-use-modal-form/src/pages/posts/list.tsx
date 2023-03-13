@@ -7,7 +7,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { CreatePostModal, EditPostModal } from "components";
 import { ICategory, IPost } from "interfaces";
 
-export const PostList: React.FC = () => {
+export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);

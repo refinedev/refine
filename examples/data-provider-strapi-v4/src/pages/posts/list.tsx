@@ -23,17 +23,20 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [locale, setLocale] = useState("en");
     const [publicationState, setPublicationState] = useState("live");
 
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        metaData: {
+    const { tableProps, sorters: sorter } = useTable<IPost>({
+        meta: {
             populate: ["category", "cover"],
             locale,
             publicationState,
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
         },
     });
 
@@ -41,7 +44,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        metaData: { locale },
+        meta: { locale },
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

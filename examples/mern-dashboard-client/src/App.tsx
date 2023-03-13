@@ -116,7 +116,7 @@ function App() {
             return Promise.reject();
         },
 
-        getPermissions: async () => null,
+        getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
@@ -127,10 +127,10 @@ function App() {
 
     return (
         <ColorModeContextProvider>
-            <GitHubBanner />
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider("http://localhost:8080/api/v1")}
                     notificationProvider={notificationProvider}
@@ -163,7 +163,7 @@ function App() {
                         },
                         {
                             name: "my-profile",
-                            options: { label: "My Profile " },
+                            meta: { label: "My Profile " },
                             list: MyProfile,
                             icon: <AccountCircleOutlined />,
                         },

@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 
 export const TOKEN_KEY = "refine-auth";
 
@@ -7,42 +7,29 @@ const password = "1234";
 
 localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ username, password }) => {
         localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
-        return {
-            success: true,
-        };
+        return Promise.resolve();
     },
-    logout: async () => {
+    logout: () => {
         localStorage.removeItem(TOKEN_KEY);
-        return {
-            success: true,
-        };
+        return Promise.resolve();
     },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => {
+    checkError: () => Promise.resolve(),
+    checkAuth: () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return {
-                authenticated: true,
-            };
+            return Promise.resolve();
         }
 
-        return {
-            authenticated: false,
-            logout: true,
-            redirectTo: "/login",
-        };
+        return Promise.reject();
     },
-    getPermissions: async () => null,
-    getIdentity: async () => {
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return null;
+            return Promise.reject();
         }
 
         return Promise.resolve({

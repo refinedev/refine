@@ -1,36 +1,37 @@
 {
-    "name": "base-mantine",
-    "private": true,
-    "scripts": {
-        "start": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview",
-        "refine": "refine"
-    },
-    "dependencies": {
-        "@refinedev/mantine": "^1.15.10",
-        "@refinedev/core": "^3.101.2",
-        "@refinedev/cli": "^1.17.2",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/simple-rest": "^3.37.4",
-        "@refinedev/react-table": "^4.9.1",
-        "@tanstack/react-table": "^8.2.6",
-        "@mantine/rte": "^5.4.1",
-        "@tabler/icons": "^1.1.0",
-        "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/form": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0"
-    },
-    "devDependencies": {
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "@vitejs/plugin-react": "^1.0.7",
-        "typescript": "^4.7.4",
-        "vite": "^2.8.0"
-    },
-    "version": "3.25.0"
+  "name": "base-mantine",
+  "private": true,
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "refine": "refine"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@mantine/core": "^5.10.4",
+    "@mantine/form": "^5.10.4",
+    "@mantine/hooks": "^5.10.4",
+    "@mantine/notifications": "^5.10.4",
+    "@mantine/rte": "^5.4.1",
+    "@refinedev/cli": "*",
+    "@refinedev/core": "*",
+    "@refinedev/mantine": "*",
+    "@refinedev/react-router-v6": "*",
+    "@refinedev/react-table": "*",
+    "@refinedev/simple-rest": "*",
+    "@tabler/icons": "^1.1.0",
+    "@tanstack/react-table": "^8.2.6",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.0.7",
+    "typescript": "^4.7.4",
+    "vite": "^2.8.0"
+  },
+  "version": "3.25.0"
 }

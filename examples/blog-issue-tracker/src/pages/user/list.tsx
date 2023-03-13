@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useTable, List } from "@refinedev/antd";
-
 import { Table } from "antd";
 
 import { IAuthUser } from "interfaces";

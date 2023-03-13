@@ -1,6 +1,6 @@
 import * as React from "react";
+import { useRouterContext } from "@refinedev/core";
 import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
-import { Link } from "react-router-dom";
 import { Image } from "antd";
 
 import { SponsorsBanner } from "components/banners";
@@ -24,6 +24,8 @@ const contentProps = {
 };
 
 const renderAuthContent = (content: React.ReactNode) => {
+    const { Link } = useRouterContext();
+
     return (
         <div
             style={{

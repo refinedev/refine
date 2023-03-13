@@ -1,7 +1,6 @@
 import React from "react";
 import { Option, useSelect, useUpdateMany } from "@refinedev/core";
 import { useDataGrid, List } from "@refinedev/mui";
-
 import { Button } from "@mui/material";
 import {
     DataGrid,
@@ -11,7 +10,7 @@ import {
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostList: React.FC = () => {
+export const PostsList: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
         [],
     );
@@ -37,7 +36,9 @@ export const PostList: React.FC = () => {
     };
 
     const { dataGridProps } = useDataGrid<IPost>({
-        initialPageSize: 10,
+        pagination: {
+            pageSize: 10,
+        },
     });
 
     const {
@@ -45,6 +46,10 @@ export const PostList: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "off",
+        },
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(
@@ -95,7 +100,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List
-            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
             headerButtons={
                 <Button
                     onClick={() => updateSelectedItems()}

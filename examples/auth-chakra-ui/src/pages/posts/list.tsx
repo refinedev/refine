@@ -9,7 +9,6 @@ import {
     DeleteButton,
     DateField,
 } from "@refinedev/chakra-ui";
-
 import {
     Table,
     Thead,
@@ -136,13 +135,16 @@ export const PostList: React.FC = () => {
         },
     } = useTable({
         columns,
+
         refineCoreProps: {
-            initialSorter: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+            sorters: {
+                initial: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
+            },
         },
     });
 

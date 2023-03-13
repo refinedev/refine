@@ -1,8 +1,7 @@
 import {
-    GitHubBanner,
     Refine,
-    AuthBindings,
-    Authenticated,
+    LegacyAuthProvider as AuthProvider,
+    GitHubBanner,
 } from "@refinedev/core";
 import {
     notificationProvider,
@@ -10,19 +9,10 @@ import {
     ErrorComponent,
     AuthPage,
 } from "@refinedev/antd";
-import {
-    GoogleOutlined,
-    GithubOutlined,
-    DashboardOutlined,
-} from "@ant-design/icons";
+import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -32,198 +22,78 @@ import { DashboardPage } from "pages/dashboard";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
-        login: async ({ providerName, email }) => {
+    const authProvider: AuthProvider = {
+        login: async ({ email, providerName }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
 
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        register: async (params) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        updatePassword: async (params) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
-                return {
-                    success: true,
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid password"),
-            };
+            return Promise.reject();
         },
-        forgotPassword: async (params) => {
+        forgotPassword: (params) => {
             if (params.email) {
-                //we can send email with reset password link here
-                return {
-                    success: true,
-                };
+                //we can send email with forgot password link here
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email"),
-            };
+            return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("email");
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        check: async () =>
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
             localStorage.getItem("email")
-                ? {
-                      authenticated: true,
-                  }
-                : {
-                      authenticated: false,
-                      error: new Error("Not authenticated"),
-                      logout: true,
-                      redirectTo: "/login",
-                  },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => ({
-            id: 1,
-            name: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                name: "Jane Doe",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+            }),
     };
 
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "dashboard",
-                        list: "/",
-                        meta: {
-                            label: "Dashboard",
-                            icon: <DashboardOutlined />,
-                        },
-                    },
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        edit: "/posts/edit/:id",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={
-                                <AuthPage
-                                    type="login"
-                                    providers={[
-                                        {
-                                            name: "google",
-                                            label: "Sign in with Google",
-                                            icon: (
-                                                <GoogleOutlined
-                                                    style={{
-                                                        fontSize: 24,
-                                                        lineHeight: 0,
-                                                    }}
-                                                />
-                                            ),
-                                        },
-                                        {
-                                            name: "github",
-                                            label: "Sign in with GitHub",
-                                            icon: (
-                                                <GithubOutlined
-                                                    style={{
-                                                        fontSize: 24,
-                                                        lineHeight: 0,
-                                                    }}
-                                                />
-                                            ),
-                                        },
-                                    ]}
-                                />
-                            }
-                        />
-                        <Route
-                            path="/register"
-                            element={
+                legacyRouterProvider={{
+                    ...routerProvider,
+                    routes: [
+                        {
+                            path: "/register",
+                            element: (
                                 <AuthPage
                                     type="register"
                                     providers={[
@@ -253,33 +123,56 @@ const App: React.FC = () => {
                                         },
                                     ]}
                                 />
-                            }
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                            ),
+                        },
+                        {
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
+                        },
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
+                }}
+                DashboardPage={DashboardPage}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                LoginPage={() => (
+                    <AuthPage
+                        providers={[
+                            {
+                                name: "google",
+                                label: "Sign in with Google",
+                                icon: (
+                                    <GoogleOutlined
+                                        style={{ fontSize: 24, lineHeight: 0 }}
+                                    />
+                                ),
+                            },
+                            {
+                                name: "github",
+                                label: "Sign in with GitHub",
+                                icon: (
+                                    <GithubOutlined
+                                        style={{ fontSize: 24, lineHeight: 0 }}
+                                    />
+                                ),
+                            },
+                        ]}
+                    />
+                )}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

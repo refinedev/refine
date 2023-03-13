@@ -1,5 +1,4 @@
 import { useMany } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -7,7 +6,6 @@ import {
     EditButton,
     TextField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { HackathonerType, TeamType } from "interfaces";

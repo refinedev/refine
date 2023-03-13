@@ -1,5 +1,4 @@
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -8,7 +7,6 @@ import {
     ShowButton,
     DeleteButton,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";

@@ -1,7 +1,5 @@
 import { useImport, useExport, useNotification, useOne } from "@refinedev/core";
-
 import { useDataGrid, ImportButton, List, ExportButton } from "@refinedev/mui";
-
 import { Stack } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
@@ -57,7 +55,7 @@ export const ImportList: React.FC = () => {
 
     return (
         <List
-            headerProps={{
+            cardHeaderProps={{
                 action: (
                     <Stack direction="row">
                         <ImportButton

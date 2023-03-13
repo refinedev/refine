@@ -1,81 +1,45 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
+
 import {
     Layout,
     ErrorComponent,
+    ReadyPage,
     LightTheme,
     notificationProvider,
     SnackbarProvider,
 } from "@refinedev/mui";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import { ThemeProvider } from "@mui/material/styles";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
-
-const API_URL = "https://api.fake-rest.refine.dev";
+import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <SnackbarProvider>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(API_URL)}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
-
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </SnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+        <ThemeProvider theme={LightTheme}>
+            <SnackbarProvider>
+                <GitHubBanner />
+                <Refine
+                    legacyRouterProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostsList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                        },
+                    ]}
+                />
+            </SnackbarProvider>
+        </ThemeProvider>
     );
 };
 

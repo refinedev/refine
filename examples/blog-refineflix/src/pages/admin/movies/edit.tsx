@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Upload } from "antd";
 

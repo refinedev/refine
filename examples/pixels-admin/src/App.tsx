@@ -1,16 +1,17 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, Layout, notificationProvider } from "@refinedev/antd";
+import React from "react";
+
+import { GitHubBanner, Refine } from "@refinedev/core";
+import {
+    Layout,
+    notificationProvider,
+    ReadyPage,
+    ErrorComponent,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
 import { Title } from "./components/layout";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { supabaseClient } from "utility";
-
 import "@refinedev/antd/dist/reset.css";
 
 import {
@@ -23,100 +24,68 @@ import { AuthPage } from "pages/auth";
 
 function App() {
     return (
-        <BrowserRouter>
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorPrimary: "#3ecf8e",
+                    colorText: "#80808a",
+                    colorError: "#fa541c",
+                    colorBgLayout: "#f0f2f5",
+                    colorLink: "#3ecf8e",
+                    colorLinkActive: "#3ecf8e",
+                    colorLinkHover: "#3ecf8e",
+                },
+            }}
+        >
             <GitHubBanner />
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#3ecf8e",
-                        colorText: "#80808a",
-                        colorError: "#fa541c",
-                        colorBgLayout: "#f0f2f5",
-                        colorLink: "#3ecf8e",
-                        colorLinkActive: "#3ecf8e",
-                        colorLinkHover: "#3ecf8e",
-                    },
+            <Refine
+                auditLogProvider={auditLogProvider}
+                dataProvider={dataProvider(supabaseClient)}
+                liveProvider={liveProvider(supabaseClient)}
+                legacyAuthProvider={authProvider}
+                accessControlProvider={accessControlProvider}
+                legacyRouterProvider={{
+                    ...routerProvider,
+                    routes: [
+                        {
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
+                        },
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
                 }}
-            >
-                <Refine
-                    auditLogProvider={auditLogProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    accessControlProvider={accessControlProvider}
-                    routerProvider={routerBindings}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                        },
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout Title={Title}>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
-                            <Route path="/users" element={<UserList />} />
-                            <Route path="/canvases" element={<CanvasList />} />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="users" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        registerLink={false}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
+                resources={[
+                    {
+                        name: "users",
+                        list: UserList,
+                    },
+                    {
+                        name: "canvases",
+                        list: CanvasList,
+                    },
+                ]}
+                LoginPage={() => (
+                    <AuthPage
+                        type="login"
+                        formProps={{
+                            initialValues: {
+                                email: "info@refine.dev",
+                                password: "refine-supabase",
+                            },
+                        }}
+                        registerLink={false}
+                    />
+                )}
+                notificationProvider={notificationProvider}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
+                Layout={Layout}
+                Title={Title}
+            />
+        </ConfigProvider>
     );
 }
 

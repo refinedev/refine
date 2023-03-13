@@ -1,9 +1,5 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 import { Layout } from "components/Layout";
 import "index.css";
@@ -12,46 +8,21 @@ import { CategoryList } from "pages/category/list";
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
+        <>
+            <GitHubBanner />{" "}
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 resources={[
                     {
                         name: "categories",
-                        list: "/categories",
-                        create: "/categories/create",
+                        create: CategoryCreate,
+                        list: CategoryList,
                     },
                 ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="categories" />
-                            }
-                        />
-                        <Route path="/categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                        </Route>
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                Layout={({ children }) => <Layout> {children}</Layout>}
+            />
+        </>
     );
 }
 

@@ -63,7 +63,9 @@ export const PostList: React.FC = () => {
         previousPage,
         setPageSize,
         getColumn,
-    } = useTable<IPost>({ columns });
+    } = useTable<IPost>({
+        columns,
+    });
 
     const titleColumn = getColumn("title");
 

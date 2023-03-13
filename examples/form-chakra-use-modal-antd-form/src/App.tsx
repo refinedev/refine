@@ -3,59 +3,35 @@ import {
     ErrorComponent,
     Layout,
     refineTheme,
+    ReadyPage,
     notificationProvider,
 } from "@refinedev/chakra-ui";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { PostList } from "./pages";
 
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const App: React.FC = () => (
-    <BrowserRouter>
-        <GitHubBanner />
+const App: React.FC = () => {
+    return (
         <ChakraProvider theme={refineTheme}>
+            <GitHubBanner />
             <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
+                legacyRouterProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 notificationProvider={notificationProvider()}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
+                        list: PostList,
                     },
                 ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+            />
         </ChakraProvider>
-    </BrowserRouter>
-);
+    );
+};
 
 export default App;

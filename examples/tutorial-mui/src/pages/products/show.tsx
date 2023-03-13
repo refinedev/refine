@@ -5,7 +5,6 @@ import {
     TextFieldComponent as TextField,
     MarkdownField,
 } from "@refinedev/mui";
-
 import { Typography, Stack } from "@mui/material";
 
 export const ProductShow = () => {

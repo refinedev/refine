@@ -9,7 +9,6 @@ import {
     DeleteButton,
     DateField,
 } from "@refinedev/chakra-ui";
-
 import {
     Table,
     Thead,
@@ -19,8 +18,8 @@ import {
     Td,
     TableContainer,
     HStack,
+    Text,
     Select,
-    Box,
 } from "@chakra-ui/react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -136,13 +135,16 @@ export const PostList: React.FC = () => {
         },
     } = useTable({
         columns,
+
         refineCoreProps: {
-            initialSorter: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+            sorters: {
+                initial: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
+            },
         },
     });
 
@@ -174,13 +176,13 @@ export const PostList: React.FC = () => {
                                     <Th key={header.id}>
                                         {!header.isPlaceholder && (
                                             <HStack spacing="2">
-                                                <Box>
+                                                <Text>
                                                     {flexRender(
                                                         header.column.columnDef
                                                             .header,
                                                         header.getContext(),
                                                     )}
-                                                </Box>
+                                                </Text>
                                                 <HStack spacing="2">
                                                     <ColumnSorter
                                                         column={header.column}

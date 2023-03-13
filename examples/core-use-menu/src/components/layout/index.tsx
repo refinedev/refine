@@ -2,13 +2,15 @@ import React from "react";
 import {
     useMenu,
     LayoutProps,
+    useRouterContext,
     useRefineContext,
     ITreeMenu,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
+    const { Link } = useRouterContext();
     const { hasDashboard } = useRefineContext();
 
     const renderMenuItems = (items: ITreeMenu[]) => {
@@ -16,27 +18,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <>
                 {items.map(({ name, label, icon, route }) => {
                     const isSelected = route === selectedKey;
-
                     return (
                         <li key={name}>
-                            {route ? (
-                                <Link
-                                    to={route}
-                                    style={{
-                                        fontWeight: isSelected
-                                            ? "bold"
-                                            : "normal",
-                                    }}
-                                >
-                                    {icon}
-                                    <span>{label ?? name}</span>
-                                </Link>
-                            ) : (
-                                <div>
-                                    {icon}
-                                    <span>{label ?? name}</span>
-                                </div>
-                            )}
+                            <Link
+                                to={route}
+                                style={{
+                                    fontWeight: isSelected ? "bold" : "normal",
+                                }}
+                            >
+                                {icon}
+                                <span>{label ?? name}</span>
+                            </Link>
                         </li>
                     );
                 })}

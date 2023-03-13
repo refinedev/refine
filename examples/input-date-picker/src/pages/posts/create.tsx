@@ -13,6 +13,10 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

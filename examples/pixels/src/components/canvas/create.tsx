@@ -3,7 +3,6 @@ import { useGetIdentity } from "@refinedev/core";
 import { Form, FormProps, Input, Modal, ModalProps, Radio } from "antd";
 
 import { getRandomName, DEFAULT_CANVAS_SIZE } from "utility";
-import { User } from "types";
 
 type CreateCanvasProps = {
     modalProps: ModalProps;
@@ -14,7 +13,9 @@ export const CreateCanvas: React.FC<CreateCanvasProps> = ({
     modalProps,
     formProps,
 }) => {
-    const { data: user } = useGetIdentity<User | null>();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     const [values, setValues] = useState(() => {
         const name = getRandomName();

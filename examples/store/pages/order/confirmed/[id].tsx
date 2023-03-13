@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useOne } from "@refinedev/core";
+import { useOne, LayoutWrapper } from "@refinedev/core";
 import { Order } from "@medusajs/medusa";
 
 import { IS_BROWSER } from "@lib/isBrowser";
@@ -40,7 +40,9 @@ const Confirmed: React.FC = () => {
                     description="You purchase was successful"
                 />
 
-                <OrderCompletedTemplate order={data.data.order} />
+                <LayoutWrapper>
+                    <OrderCompletedTemplate order={data.data.order} />
+                </LayoutWrapper>
             </>
         );
     }

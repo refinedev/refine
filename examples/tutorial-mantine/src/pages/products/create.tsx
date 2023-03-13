@@ -1,5 +1,4 @@
 import { Create, useForm, useSelect } from "@refinedev/mantine";
-
 import { TextInput, Textarea, Select } from "@mantine/core";
 
 export const ProductCreate = () => {
@@ -20,6 +19,10 @@ export const ProductCreate = () => {
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

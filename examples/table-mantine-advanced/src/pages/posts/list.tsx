@@ -69,6 +69,10 @@ export const PostList: React.FC = () => {
 
     const { selectProps: filterSelectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -226,6 +230,10 @@ export const PostList: React.FC = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: categoryIds,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     setOptions((prev) => ({

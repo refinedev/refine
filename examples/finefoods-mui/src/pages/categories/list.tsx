@@ -7,6 +7,7 @@ import {
 import { useForm, useModalForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+
 import {
     List,
     BooleanField,
@@ -137,6 +138,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         refineCore: { tableQueryResult },
     } = useTable<ICategory>({
         columns,
+
         initialState: {
             sorting: [{ id: "title", desc: false }],
         },
@@ -213,7 +215,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     }, []);
 
     return (
-        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <form onSubmit={handleSubmit(onFinish)}>
                 <TableContainer>
                     <Table size="small">
@@ -316,15 +318,21 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     const { dataGridProps } = useDataGrid<IProduct>({
         resource: "products",
-        initialPageSize: 5,
-        permanentFilter: [
-            {
-                field: "category.id",
-                operator: "eq",
-                value: record.id,
-            },
-        ],
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 5,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: record.id,
+                },
+            ],
+        },
     });
 
     const columns = React.useMemo<GridColumns<IProduct>>(
@@ -431,7 +439,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     return (
         <List
-            headerProps={{
+            cardHeaderProps={{
                 title: t("products.products"),
             }}
         >

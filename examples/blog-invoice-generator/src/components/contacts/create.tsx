@@ -1,5 +1,4 @@
 import { useSelect } from "@refinedev/antd";
-
 import { Form, Modal, Input, ModalProps, FormProps, Select } from "antd";
 
 type CreateContactProps = {
@@ -17,6 +16,10 @@ export const CreateContact: React.FC<CreateContactProps> = ({
         resource: "clients",
         optionValue: "id",
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

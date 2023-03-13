@@ -15,21 +15,30 @@ export const RecentOrders: React.FC = () => {
 
     const { dataGridProps } = useDataGrid<IOrder>({
         resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        initialPageSize: 4,
-        permanentFilter: [
-            {
-                field: "status.text",
-                operator: "eq",
-                value: "Pending",
-            },
-        ],
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 4,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "status.text",
+                    operator: "eq",
+                    value: "Pending",
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const columns = React.useMemo<GridColumns<IOrder>>(

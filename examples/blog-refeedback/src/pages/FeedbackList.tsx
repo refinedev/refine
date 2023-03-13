@@ -1,5 +1,4 @@
 import { CrudFilters, HttpError, useUpdate } from "@refinedev/core";
-
 import { List, useSimpleList, DateField } from "@refinedev/antd";
 
 import {
@@ -32,25 +31,26 @@ const addTagColor = (type: FeedBackType) => {
 };
 
 export const FeedbackList: React.FC = () => {
-    const { listProps, searchFormProps } = useSimpleList<
-        IFeedback,
-        HttpError,
-        IFeedbackFilterVariables
-    >({
-        initialSorter: [{ field: "created_at", order: "desc" }],
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { type } = params;
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
+        { listProps, searchFormProps } = useSimpleList<
+            IFeedback,
+            HttpError,
+            IFeedbackFilterVariables
+        >({
+            initialSorter: [{ field: "created_at", order: "desc" }],
+            onSearch: (params) => {
+                const filters: CrudFilters = [];
+                const { type } = params;
 
-            filters.push({
-                field: "type",
-                operator: "eq",
-                value: type || undefined,
-            });
+                filters.push({
+                    field: "type",
+                    operator: "eq",
+                    value: type || undefined,
+                });
 
-            return filters;
-        },
-    });
+                return filters;
+            },
+        });
 
     const { mutate, isLoading } = useUpdate();
 

@@ -1,12 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
@@ -17,10 +12,10 @@ const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
+        <>
+            <GitHubBanner />{" "}
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={{
                     default: dataProvider(API_URL),
                     categories: dataProvider(CATEGORIES_API_URL),
@@ -29,7 +24,7 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
+                        list: PostList,
                     },
                     {
                         name: "categories",
@@ -39,30 +34,10 @@ const App: React.FC = () => {
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

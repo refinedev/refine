@@ -1,4 +1,5 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
+
 import {
     Layout,
     ErrorComponent,
@@ -6,73 +7,39 @@ import {
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
+
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { dataProvider } from "rest-data-provider";
-import { PostList } from "pages/posts";
+import { PostsList } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                />
-                <RefineSnackbarProvider>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider("https://api.github.com")}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "repos/refinedev/refine/commits",
-                                list: "/repos/refinedev/refine/commits",
-                                meta: {
-                                    label: "Commits",
-                                },
+            <RefineSnackbarProvider>
+                <Refine
+                    legacyRouterProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.github.com")}
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "repos/refinedev/refine/commits",
+                            list: PostsList,
+                            meta: {
+                                label: "Commits",
                             },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="repos/refinedev/refine/commits" />
-                                    }
-                                />
-
-                                <Route
-                                    path="/repos/refinedev/refine/commits"
-                                    element={<PostList />}
-                                />
-
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
     );
 };
 

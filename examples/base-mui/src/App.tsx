@@ -1,86 +1,50 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
+
 import {
     Layout,
+    LoginPage,
     ErrorComponent,
+    ReadyPage,
     LightTheme,
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
+
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <GitHubBanner />
+                <Refine
+                    legacyRouterProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    LoginPage={LoginPage}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostsList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                        },
+                    ]}
                 />
-                <RefineSnackbarProvider>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
-
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+            </RefineSnackbarProvider>
+        </ThemeProvider>
     );
 };
 

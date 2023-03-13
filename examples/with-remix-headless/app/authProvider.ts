@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
 
@@ -15,74 +15,50 @@ const mockUsers = [
 
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthBindings = {
-    login: async ({ email }) => {
+export const authProvider: AuthProvider = {
+    login: () => {
         // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.email === email);
+        const user = mockUsers[0];
 
         if (user) {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return {
-                success: true,
-                redirectTo: "/",
-            };
+            return Promise.resolve();
         }
 
-        return {
-            success: false,
-        };
+        return Promise.reject();
     },
-    logout: async () => {
+    logout: () => {
         Cookies.remove(COOKIE_NAME);
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+        return Promise.resolve();
     },
-    onError: async (error) => {
+    checkError: (error) => {
         if (error && error.statusCode === 401) {
-            return {
-                error: new Error("Unauthorized"),
-                logout: true,
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         }
 
-        return {};
+        return Promise.resolve();
     },
-    check: async (request) => {
+    checkAuth: async (context) => {
         let user = undefined;
-        if (request) {
-            const hasCookie = request.headers.get("Cookie");
-            if (hasCookie) {
-                const parsedCookie = cookie.parse(
-                    request.headers.get("Cookie"),
-                );
-                user = parsedCookie[COOKIE_NAME];
-            }
+        if (context) {
+            const { request } = context;
+            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+            user = parsedCookie[COOKIE_NAME];
         } else {
             const parsedCookie = Cookies.get(COOKIE_NAME);
             user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
         }
 
         if (!user) {
-            return {
-                authenticated: false,
-                error: new Error("Unauthorized"),
-                logout: true,
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         }
-
-        return {
-            authenticated: true,
-        };
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        return null;
+        return Promise.resolve();
     },
-    getIdentity: async () => {
-        return null;
+    getUserIdentity: async () => {
+        return Promise.resolve();
     },
 };

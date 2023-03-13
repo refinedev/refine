@@ -37,7 +37,7 @@ export const EditPostDrawer: React.FC<
         >
             <Edit
                 saveButtonProps={saveButtonProps}
-                headerProps={{
+                cardHeaderProps={{
                     action: (
                         <IconButton
                             onClick={() => close()}

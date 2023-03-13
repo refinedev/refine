@@ -6,12 +6,14 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const createModalFormReturnValues = useModalForm<IPost, HttpError, IPost>({

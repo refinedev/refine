@@ -1,71 +1,45 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
+
 import {
     Layout,
     ErrorComponent,
+    ReadyPage,
     LightTheme,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
+
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { ImportList } from "pages/list";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <GitHubBanner />
+                <Refine
+                    legacyRouterProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: ImportList,
+                        },
+                    ]}
                 />
-                <RefineSnackbarProvider>
-                    <Refine
-                        routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
-                        dataProvider={dataProvider(API_URL)}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
-                                <Route path="/posts" element={<ImportList />} />
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+            </RefineSnackbarProvider>
+        </ThemeProvider>
     );
 };
 

@@ -3,7 +3,6 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { List, EditButton, ShowButton, FilterDropdown } from "@refinedev/antd";
 import { Table, Space, Input } from "antd";
 import { useTable } from "@refinedev/antd";
-
 import { useCloudMutation } from "@refinedev/cloud";
 
 import { IProduct } from "interfaces";
@@ -19,9 +18,13 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
     const { tableProps } = useTable<IProduct>({
         syncWithLocation: true,
-        hasPagination: false,
+
         queryOptions: {
             enabled: false,
+        },
+
+        pagination: {
+            mode: "off",
         },
     });
 

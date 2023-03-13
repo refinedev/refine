@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, SaveButton, useSelect, useStepsForm } from "@refinedev/antd";
-
 import { Form, Input, Select, Button, Steps } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -17,6 +15,10 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const formList = [

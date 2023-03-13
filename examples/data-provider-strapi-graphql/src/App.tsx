@@ -1,17 +1,11 @@
 import {
-    AuthBindings,
-    Authenticated,
     GitHubBanner,
+    LegacyAuthProvider as AuthProvider,
     Refine,
 } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -23,7 +17,7 @@ const API_URL = "https://api.strapi.refine.dev/graphql";
 const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
             // eslint-disable-next-line
@@ -46,45 +40,27 @@ const authProvider: AuthBindings = {
             localStorage.setItem("token", data.jwt);
             client.setHeader("Authorization", `Bearer ${data.jwt}`);
 
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        } catch (error: any) {
-            return {
-                success: false,
-                error: new Error(error),
-            };
+            return Promise.resolve();
+        } catch (error) {
+            return Promise.reject(error);
         }
     },
     logout: async () => {
         localStorage.removeItem("token");
         client.setHeader("Authorization", "");
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+        return Promise.resolve("/");
     },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => {
+    checkError: () => Promise.resolve(),
+    checkAuth: () => {
         const jwt = localStorage.getItem("token");
 
         if (!jwt) {
-            return {
-                authenticated: false,
-                error: new Error("Not authenticated"),
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         }
 
         client.setHeader("Authorization", `Bearer ${jwt}`);
 
-        return {
-            authenticated: true,
-        };
+        return Promise.resolve();
     },
     getPermissions: async () => {
         try {
@@ -103,12 +79,12 @@ const authProvider: AuthBindings = {
             });
             const { role } = data;
 
-            return role;
+            return Promise.resolve(role);
         } catch (error) {
-            return null;
+            return Promise.reject(error);
         }
     },
-    getIdentity: async () => {
+    getUserIdentity: async () => {
         try {
             // eslint-disable-next-line
             const { data } = await gqlDataProvider.custom!({
@@ -120,93 +96,41 @@ const authProvider: AuthBindings = {
                 },
             });
             const { id, username, email } = data;
-            return {
+            return Promise.resolve({
                 id,
                 name: username,
                 email,
-            };
+            });
         } catch (error) {
-            return error;
+            return Promise.reject(error);
         }
     },
 };
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
                 dataProvider={gqlDataProvider}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
+                legacyAuthProvider={authProvider}
+                LoginPage={Login}
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                        meta: {
-                            canDelete: true,
-                        },
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<Login />} />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

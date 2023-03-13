@@ -1,13 +1,12 @@
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Select, Input } from "antd";
 
 import { IContact } from "interfaces";
 
-export const ContactEdit: React.FC<IResourceComponentsProps> = () => {
+export const EditContact: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IContact>({
-        metaData: { populate: ["client"] },
+        meta: { populate: ["client"] },
     });
 
     const defaultClientCompany = queryResult?.data?.data;
@@ -17,6 +16,10 @@ export const ContactEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: defaultClientCompany?.client?.id,
         optionValue: "id",
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

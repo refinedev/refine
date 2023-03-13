@@ -73,6 +73,7 @@ export const PostList: React.FC = ({}) => {
         getColumn,
     } = useTable<IPost>({
         columns,
+
         refineCoreProps: {
             queryOptions: {
                 initialData,

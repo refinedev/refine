@@ -26,6 +26,10 @@ export const EditPostModal: React.FC<
     const { selectProps } = useSelect({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

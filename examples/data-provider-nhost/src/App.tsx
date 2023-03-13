@@ -1,7 +1,6 @@
 import {
-    AuthBindings,
-    Authenticated,
     GitHubBanner,
+    LegacyAuthProvider as AuthProvider,
     Refine,
 } from "@refinedev/core";
 import {
@@ -10,22 +9,21 @@ import {
     AuthPage,
     ErrorComponent,
 } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 import { nhost } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+import {
+    CategoriesList,
+    CategoriesCreate,
+    CategoriesEdit,
+} from "pages/categories";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         const { error } = await nhost.auth.signIn({
             email,
@@ -33,191 +31,96 @@ const authProvider: AuthBindings = {
         });
 
         if (error) {
-            return {
-                success: false,
-                error: {
-                    message: error.message,
-                    name: "Login Error",
-                },
-            };
+            return Promise.reject(error);
         }
 
-        return {
-            success: true,
-            redirectTo: "/",
-        };
+        return Promise.resolve();
     },
     logout: async () => {
         const { error } = await nhost.auth.signOut();
         if (error) {
-            return {
-                success: false,
-                error: {
-                    message: error.message,
-                    name: "Login Error",
-                },
-            };
+            return Promise.reject(error);
         }
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+        return Promise.resolve("/");
     },
-    onError: async (error) => {
+    checkError: (error) => {
         if (error.status === 401) {
-            nhost.auth.refreshSession();
+            return nhost.auth.refreshSession();
         }
-
-        return {};
+        return Promise.resolve();
     },
-    check: async () => {
+    checkAuth: async () => {
         const isAuthenticated = await nhost.auth.isAuthenticatedAsync();
         if (isAuthenticated) {
-            return {
-                authenticated: true,
-            };
+            return Promise.resolve();
         }
 
-        return {
-            authenticated: false,
-            error: new Error("Not authenticated"),
-            logout: true,
-            redirectTo: "/login",
-        };
+        return Promise.reject();
     },
-    getPermissions: async () => {
+    getPermissions: () => {
         const user = nhost.auth.getUser();
         if (user) {
-            return user.roles;
+            return Promise.resolve(user.roles);
         }
 
-        return [];
+        return Promise.resolve([]);
     },
-    getIdentity: async () => {
+    getUserIdentity: () => {
         const user = nhost.auth.getUser();
         if (user) {
-            return {
+            return Promise.resolve({
                 ...user,
                 name: user.displayName,
                 avatar: user.avatarUrl,
-            };
+            });
         }
 
-        return null;
+        return Promise.resolve({});
     },
 };
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <NhostAuthProvider nhost={nhost}>
             <GitHubBanner />
-            <NhostAuthProvider nhost={nhost}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(nhost)}
-                    // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
-                    // liveProvider={liveProvider(gqlWebSocketClient)}
-                    // options={{ liveMode: "auto" }}
-                    authProvider={authProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-
-                            <Route path="/categories">
-                                <Route index element={<CategoryList />} />
-                                <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                            </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        formProps={{
-                                            initialValues: {
-                                                email: "info@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </NhostAuthProvider>
-        </BrowserRouter>
+            <Refine
+                legacyRouterProvider={routerProvider}
+                dataProvider={dataProvider(nhost)}
+                // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+                // liveProvider={liveProvider(gqlWebSocketClient)}
+                // options={{ liveMode: "auto" }}
+                legacyAuthProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoriesList,
+                        create: CategoriesCreate,
+                        edit: CategoriesEdit,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                LoginPage={() => (
+                    <AuthPage
+                        formProps={{
+                            initialValues: {
+                                email: "info@refine.dev",
+                                password: "demodemo",
+                            },
+                        }}
+                    />
+                )}
+                catchAll={<ErrorComponent />}
+            />
+        </NhostAuthProvider>
     );
 };
 

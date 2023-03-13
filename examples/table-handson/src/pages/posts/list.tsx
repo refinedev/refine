@@ -35,7 +35,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         tableQueryResult: { data: { data } = { data: [] } },
     } = useTable<IPost>({
         resource: "posts",
-        hasPagination: false,
+
+        pagination: {
+            mode: "off",
+        },
     });
 
     const categoryIds = new Set(data?.map((post) => post.category.id) ?? []);
@@ -44,6 +47,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { options } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: [...categoryIds],
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const updateRow = (row: number, field: string, value: string) => {

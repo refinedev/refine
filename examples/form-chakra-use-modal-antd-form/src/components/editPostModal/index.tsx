@@ -29,6 +29,7 @@ export const EditPostModal: React.FC<UseModalFormReturnType> = ({
         resource: "categories",
         pagination: {
             pageSize: 9999,
+            mode: "server",
         },
     });
 

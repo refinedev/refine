@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useGetIdentity } from "@refinedev/core";
-
 import { useModal } from "@refinedev/antd";
 
 import {
@@ -24,7 +23,9 @@ export const DashboardPage: React.FC = () => {
     const { data, isLoading } = useGetIdentity<{
         address: string;
         balance: string;
-    }>();
+    }>({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { modalProps, show, close } = useModal();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);

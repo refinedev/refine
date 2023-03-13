@@ -15,20 +15,27 @@ import { Table, Space, Select } from "antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
+    const { tableProps, sorters: sorter } = useTable<IPost>({
+        meta: {
             select: "*, categories(title)",
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
         },
     });
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

@@ -9,23 +9,20 @@ export const PostList: React.FC = () => {
     const { show, close, visible } = useModal();
     const [historyId, setHistoryId] = useState<number>();
     const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
     const { edit, create } = useNavigation();
 
     return (
         <div>
-            <button
-                style={{ marginBottom: "8px" }}
-                onClick={() => create("posts")}
-            >
-                Create Post
-            </button>
+            <button onClick={() => create("posts")}>Create Post</button>
             <table>
                 <thead>
                     <tr>

@@ -6,7 +6,6 @@ import {
     DateField,
     List,
 } from "@refinedev/mui";
-
 import { Stack } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
@@ -14,7 +13,7 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });

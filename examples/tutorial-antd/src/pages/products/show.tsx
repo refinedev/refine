@@ -7,7 +7,6 @@ import {
     TextField,
     MarkdownField,
 } from "@refinedev/antd";
-
 import { Typography } from "antd";
 
 const { Title } = Typography;

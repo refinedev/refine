@@ -7,20 +7,20 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, AuthPage, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/remix-router";
+import routerProvider from "@refinedev/remix-router/legacy";
 
+import { PostCreate, PostEdit, PostList } from "./pages/posts";
 import { authProvider } from "./authProvider";
-import { API_URL } from "./constants";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
     title: "New Remix + Refine App",
     viewport: "width=device-width,initial-scale=1",
 });
+
+const API_URL = "https://api.fake-rest.refine.dev";
 
 export default function App() {
     return (
@@ -33,23 +33,20 @@ export default function App() {
                 <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
+                    legacyRouterProvider={routerProvider}
+                    legacyAuthProvider={authProvider}
                     resources={[
                         {
                             name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
+                            list: PostList,
+                            create: PostCreate,
+                            edit: PostEdit,
                         },
                     ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
+                    LoginPage={AuthPage}
+                    options={{ syncWithLocation: true }}
                 >
                     <Outlet />
-                    <UnsavedChangesNotifier />
                 </Refine>
                 <ScrollRestoration />
                 <Scripts />

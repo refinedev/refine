@@ -1,7 +1,6 @@
+import { useState } from "react";
 import { HttpError, IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
 
@@ -10,7 +9,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, IPostVariables, ICategory } from "interfaces";
 import { normalizeFile, storage } from "utility";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<
         IPost,
         HttpError,
@@ -21,6 +20,10 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         resource: "61c43adc284ac",
         optionLabel: "title",
         optionValue: "id",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

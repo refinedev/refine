@@ -4,7 +4,6 @@ import {
     EmailField,
     EditButton,
 } from "@refinedev/antd";
-
 import { Card, Typography } from "antd";
 
 import { ICompany } from "interfaces";

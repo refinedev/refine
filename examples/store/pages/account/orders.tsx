@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
+import { LayoutWrapper } from "@refinedev/core";
 
 import { AccountLayout } from "@components/account";
 import { OrdersTemplate } from "@components/orders/OrdersTemplate";
@@ -10,9 +11,11 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 const Orders: NextPage = () => {
     return (
-        <AccountLayout>
-            <OrdersTemplate />
-        </AccountLayout>
+        <LayoutWrapper>
+            <AccountLayout>
+                <OrdersTemplate />
+            </AccountLayout>
+        </LayoutWrapper>
     );
 };
 

@@ -1,17 +1,11 @@
 import {
-    GitHubBanner,
     Refine,
-    AuthBindings,
-    Authenticated,
+    LegacyAuthProvider as AuthProvider,
+    GitHubBanner,
 } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import axios from "axios";
 
@@ -30,148 +24,70 @@ const App: React.FC = () => {
         return <div>Loading...</div>;
     }
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async () => {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const { to } = Object.fromEntries(urlSearchParams.entries());
             await keycloak.login({
                 redirectUri: to ? `${window.location.origin}${to}` : undefined,
             });
-            return {
-                success: false,
-                error: new Error("Login failed"),
-            };
+            return Promise.resolve(false);
         },
         logout: async () => {
-            try {
-                await keycloak.logout({
-                    redirectUri: window.location.origin,
-                });
-                return {
-                    success: true,
-                    redirectTo: "/login",
-                };
-            } catch (error) {
-                return {
-                    success: false,
-                    error: new Error("Logout failed"),
-                };
-            }
+            await keycloak.logout({
+                redirectUri: window.location.origin,
+            });
+            return Promise.resolve();
         },
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        check: async () => {
+        checkError: () => Promise.resolve(),
+        checkAuth: async () => {
             try {
                 const { token } = keycloak;
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token}`,
                     };
-                    return {
-                        authenticated: true,
-                    };
+                    return Promise.resolve();
                 } else {
-                    return {
-                        authenticated: false,
-                        logout: true,
-                        redirectTo: "/login",
-                        error: new Error("Token not found"),
-                    };
+                    return Promise.reject();
                 }
             } catch (error) {
-                return {
-                    authenticated: false,
-                    logout: true,
-                    redirectTo: "/login",
-                    error: new Error("Token not found"),
-                };
+                return Promise.reject();
             }
         },
-        getPermissions: async () => null,
-        getIdentity: async () => {
+        getPermissions: () => Promise.resolve(),
+        getUserIdentity: async () => {
             if (keycloak?.tokenParsed) {
-                return {
+                return Promise.resolve({
                     name: keycloak.tokenParsed.family_name,
-                };
+                });
             }
-            return null;
+            return Promise.reject();
         },
     };
 
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
-                authProvider={authProvider}
+                LoginPage={Login}
+                legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(API_URL, axios)}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<Login />} />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

@@ -18,13 +18,18 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     const { mutate: mutateDelete } = useDelete();
 
     const { dataGridProps } = useDataGrid<ICourier>({
-        initialPageSize: 10,
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        pagination: {
+            pageSize: 10,
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const columns = React.useMemo<GridColumns<ICourier>>(
@@ -117,7 +122,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     );
 
     return (
-        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <DataGrid
                 {...dataGridProps}
                 columns={columns}

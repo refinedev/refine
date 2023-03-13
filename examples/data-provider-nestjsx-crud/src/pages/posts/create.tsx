@@ -1,13 +1,11 @@
 import React from "react";
 import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
-
 import {
     Create,
     useForm,
     useSelect,
     useFileUploadState,
 } from "@refinedev/antd";
-
 import { Form, Input, Upload, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -21,10 +19,18 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: tagsSelectProps } = useSelect<ITags>({
         resource: "tags",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { isLoading, onChange } = useFileUploadState();

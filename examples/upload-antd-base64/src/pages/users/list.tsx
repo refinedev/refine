@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -8,7 +7,6 @@ import {
     ShowButton,
     EmailField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IUser } from "interfaces";

@@ -47,7 +47,7 @@ export const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
                                                           },
                                                       }}
                                                   >
-                                                      {item.title}
+                                                      <a>{item.title}</a>
                                                   </Link>
                                               </h3>
                                               <LineItemOptions

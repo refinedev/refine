@@ -1,7 +1,5 @@
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
-
 import { Create, useForm } from "@refinedev/antd";
-
 import {
     Form,
     Input,

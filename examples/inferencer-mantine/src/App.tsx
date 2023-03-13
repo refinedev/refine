@@ -2,153 +2,60 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
+    ReadyPage,
     notificationProvider,
     LightTheme,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/styles";
+import { MantineProvider, Global } from "@mantine/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <MantineProvider
-                theme={LightTheme}
-                withNormalizeCSS
-                withGlobalStyles
-            >
-                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "samples",
-                                list: "/samples",
-                                create: "/samples/create",
-                                edit: "/samples/edit/:id",
-                                show: "/samples/show/:id",
-                                meta: {
-                                    canDelete: true,
-                                },
-                            },
-                            {
-                                name: "categories",
-                                list: "/categories",
-                                create: "/categories/create",
-                                edit: "/categories/edit/:id",
-                                show: "/categories/show/:id",
-                                meta: {
-                                    canDelete: true,
-                                },
-                            },
-                            {
-                                name: "users",
-                                list: "/users",
-                                create: "/users/create",
-                                edit: "/users/edit/:id",
-                                show: "/users/show/:id",
-                                meta: {
-                                    canDelete: true,
-                                },
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="samples" />
-                                    }
-                                />
-
-                                <Route path="samples">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-
-                                <Route path="categories">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-
-                                <Route path="users">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
-
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </NotificationsProvider>
-            </MantineProvider>
-        </BrowserRouter>
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <GitHubBanner />
+                <Refine
+                    legacyRouterProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: MantineInferencer,
+                            edit: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            canDelete: true,
+                        },
+                        {
+                            name: "categories",
+                            list: MantineInferencer,
+                            edit: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            canDelete: true,
+                        },
+                        {
+                            name: "users",
+                            list: MantineInferencer,
+                            edit: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            canDelete: true,
+                        },
+                    ]}
+                />
+            </NotificationsProvider>
+        </MantineProvider>
     );
 };
 

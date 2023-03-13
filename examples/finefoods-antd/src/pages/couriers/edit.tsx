@@ -3,7 +3,6 @@ import {
     useTranslate,
     useApiUrl,
 } from "@refinedev/core";
-
 import {
     Edit,
     SaveButton,
@@ -33,7 +32,7 @@ const { Text } = Typography;
 
 import { ICourier, IStore } from "interfaces";
 
-export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
+export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const {
         current,
@@ -49,6 +48,10 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
         defaultValue: courierData?.store.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const formList = [

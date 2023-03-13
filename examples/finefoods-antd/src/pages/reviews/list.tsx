@@ -5,15 +5,12 @@ import {
     useNavigation,
     IResourceComponentsProps,
 } from "@refinedev/core";
-
 import { List, useTable } from "@refinedev/antd";
 
-import {
-    CheckCircleOutlined,
-    CloseCircleOutlined,
-    StarOutlined,
-    MoreOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Table,
     Space,
@@ -36,13 +33,15 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { tableProps } = useTable<IReview>({
-        permanentFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "pending",
-            },
-        ],
+        filters: {
+            permanent: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "pending",
+                },
+            ],
+        },
     });
 
     const { mutate, isLoading } = useUpdateMany<IReview>();
@@ -96,7 +95,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <CheckCircleOutlined
+                    <Icons.CheckCircleOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -117,7 +116,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <CloseCircleOutlined
+                    <Icons.CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -141,7 +140,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             onClick={() => updateSelectedItems("approved")}
                             loading={isLoading}
                             icon={
-                                <CheckCircleOutlined
+                                <Icons.CheckCircleOutlined
                                     style={{ color: "green" }}
                                 />
                             }
@@ -153,7 +152,9 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             onClick={() => updateSelectedItems("rejected")}
                             loading={isLoading}
                             icon={
-                                <CloseCircleOutlined style={{ color: "red" }} />
+                                <Icons.CloseCircleOutlined
+                                    style={{ color: "red" }}
+                                />
                             }
                         >
                             {t("buttons.rejectAll")}
@@ -211,7 +212,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 {value}
                             </Typography.Text>
                             <Rate
-                                character={<StarOutlined />}
+                                character={<Icons.StarOutlined />}
                                 disabled
                                 value={value}
                                 style={{
@@ -229,7 +230,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             overlay={moreMenu(record.id)}
                             trigger={["click"]}
                         >
-                            <MoreOutlined
+                            <Icons.MoreOutlined
                                 style={{
                                     fontSize: 24,
                                 }}

@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-import { CloseOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Card, Button, Typography } from "antd";
 
 import { TypePage } from "./typePage";
 import { InputPage } from "./inputPage";
 
+const { CloseOutlined, ArrowLeftOutlined } = Icons;
 const { Title } = Typography;
 
 export const Feedback = () => {

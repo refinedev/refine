@@ -1,4 +1,5 @@
 import { IResourceComponentsProps } from "@refinedev/core";
+
 import {
     List,
     TextField,
@@ -15,13 +16,15 @@ import { Table, Space } from "antd";
 import { ICompany } from "interfaces";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<ICompany>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+    const { tableProps, sorters: sorter } = useTable<ICompany>({
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     return (

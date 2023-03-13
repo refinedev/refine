@@ -7,11 +7,12 @@ import { IOrder } from "interfaces";
 const { Text } = Typography;
 
 export const TrendingMenu: React.FC = () => {
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        pagination: { pageSize: 5 },
-        syncWithLocation: false,
-    });
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IOrder>({
+            resource: "orders",
+            pagination: { pageSize: 5 },
+            syncWithLocation: false,
+        });
 
     return (
         <AntdList

@@ -6,33 +6,42 @@ import { DataGridPro, GridColumns } from "@mui/x-data-grid-pro";
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostList: React.FC = () => {
+export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        initialCurrent: 2,
-        initialPageSize: 10,
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        initialFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-            {
-                field: "title",
-                operator: "contains",
-                value: "A",
-            },
-        ],
         syncWithLocation: true,
+
+        pagination: {
+            current: 2,
+            pageSize: 10,
+        },
+
+        filters: {
+            initial: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+                {
+                    field: "title",
+                    operator: "contains",
+                    value: "A",
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "title",
+                    order: "asc",
+                },
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     const {
@@ -40,7 +49,10 @@ export const PostList: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
-        hasPagination: false,
+
+        pagination: {
+            mode: "off",
+        },
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(

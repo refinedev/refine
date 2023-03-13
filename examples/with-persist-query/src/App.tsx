@@ -1,10 +1,6 @@
-import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { QueryClient } from "@tanstack/react-query";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 import "./App.css";
 
@@ -33,44 +29,26 @@ persistQueryClient({
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 options={{
                     reactQuery: {
                         clientConfig: queryClient,
                     },
-                    warnWhenUnsavedChanges: true,
-                    syncWithLocation: true,
                 }}
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
                     },
                 ]}
-            >
-                <Routes>
-                    <Route
-                        index
-                        element={<NavigateToResource resource="posts" />}
-                    />
-
-                    <Route path="posts">
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
-                        <Route path="edit/:id" element={<PostEdit />} />
-                    </Route>
-
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+            />
+        </>
     );
 };
 

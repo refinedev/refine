@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -10,6 +9,10 @@ export const PostCreate = () => {
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

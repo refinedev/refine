@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
 
@@ -16,8 +14,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        metaData: {
+
+        meta: {
             fields: ["id", "title"],
+        },
+
+        pagination: {
+            mode: "server",
         },
     });
 

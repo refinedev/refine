@@ -3,7 +3,6 @@ import {
     useMany,
     useTranslate,
 } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -11,7 +10,6 @@ import {
     EditButton,
     ShowButton,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";

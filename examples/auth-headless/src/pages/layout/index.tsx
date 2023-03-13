@@ -2,7 +2,9 @@ import { useLogout } from "@refinedev/core";
 import React, { FC, PropsWithChildren } from "react";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
-    const { mutate: logout } = useLogout();
+    const { mutate: logout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     return (
         <div>

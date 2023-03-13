@@ -1,47 +1,19 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
+
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-    LightTheme,
-    notificationProvider,
-    RefineSnackbarProvider,
-    WelcomePage,
-} from "@refinedev/mui";
-import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                />
-                <RefineSnackbarProvider>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(API_URL)}
-                        notificationProvider={notificationProvider}
-                        options={{
-                            warnWhenUnsavedChanges: true,
-                            syncWithLocation: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route path="*" element={<WelcomePage />} />
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+            <Refine
+                legacyRouterProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+            />
+        </>
     );
 };
 

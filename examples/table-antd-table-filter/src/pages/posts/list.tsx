@@ -4,7 +4,6 @@ import {
     CrudFilters,
     HttpError,
 } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -15,7 +14,9 @@ import {
     DateField,
 } from "@refinedev/antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,
@@ -177,6 +178,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (
@@ -184,7 +189,7 @@ const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
             <Form.Item label="Search" name="q">
                 <Input
                     placeholder="ID, Title, Content, etc."
-                    prefix={<SearchOutlined />}
+                    prefix={<Icons.SearchOutlined />}
                 />
             </Form.Item>
             <Form.Item label="Status" name="status">

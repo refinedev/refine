@@ -1,52 +1,27 @@
-import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { PostList, PostCreate, PostEdit } from "pages/posts";
-
 import "./App.css";
+
+import { PostList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
                     },
                 ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        index
-                        element={<NavigateToResource resource="posts" />}
-                    />
-
-                    <Route path="/posts">
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
-                        <Route path="edit/:id" element={<PostEdit />} />
-                    </Route>
-
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+            />
+        </>
     );
 };
 

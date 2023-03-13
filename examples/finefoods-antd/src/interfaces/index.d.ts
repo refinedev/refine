@@ -39,12 +39,6 @@ export interface IUser {
     addresses: IAddress[];
 }
 
-export interface IIdentity {
-    id: number;
-    name: string;
-    avatar: string;
-}
-
 export interface IAddress {
     text: string;
     coordinate: [string, string];

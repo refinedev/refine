@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+
 import {
+    useTitle,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
     useRefineContext,
     useIsExistAuthentication,
     useTranslate,
     useLogout,
     useMenu,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+
 import { Sider } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import {
@@ -21,7 +24,11 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: typeof Sider = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout();
+    const { Link } = useRouterContext();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
+    const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const { hasDashboard } = useRefineContext();
@@ -34,16 +41,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
-            const {
-                icon,
-                label,
-                route,
-                name,
-                children,
-                parentName,
-                meta,
-                options,
-            } = item;
+            const { icon, label, route, name, children, parentName } = item;
 
             if (children.length > 0) {
                 return (
@@ -58,8 +56,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
             }
             const isSelected = route === selectedKey;
             const isRoute = !(
-                (meta?.parent ?? options?.parent ?? parentName) !== undefined &&
-                children.length === 0
+                parentName !== undefined && children.length === 0
             );
             return (
                 <CanAccess
@@ -75,7 +72,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        {route ? <Link to={route}>{label}</Link> : label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -139,31 +136,8 @@ export const CustomSider: typeof Sider = ({ render }) => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Link to="/">
-                {collapsed ? (
-                    <img
-                        src="/refine-collapsed.svg"
-                        alt="Refine"
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            padding: "12px 24px",
-                        }}
-                    />
-                ) : (
-                    <img
-                        src="/refine.svg"
-                        alt="Refine"
-                        style={{
-                            width: "200px",
-                            padding: "12px 24px",
-                        }}
-                    />
-                )}
-            </Link>
+            {Title && <Title collapsed={collapsed} />}
             <Menu
-                theme="dark"
                 defaultOpenKeys={defaultOpenKeys}
                 selectedKeys={[selectedKey]}
                 mode="inline"

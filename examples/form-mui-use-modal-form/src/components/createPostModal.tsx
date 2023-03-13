@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
-
 import { Controller } from "react-hook-form";
 
 import { ICategory, IPost } from "interfaces";

@@ -1,5 +1,6 @@
 import Select from "rc-select";
 import { IResourceComponentsProps } from "@refinedev/core";
+
 import {
     List,
     TextField,
@@ -18,17 +19,23 @@ import { Table, Space } from "antd";
 import { ICompany, IJob } from "interfaces";
 
 export const JobList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IJob>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+    const { tableProps, sorters: sorter } = useTable<IJob>({
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const { selectProps: companySelectProps } = useSelect<ICompany>({
         resource: "companies",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

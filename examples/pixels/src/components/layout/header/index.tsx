@@ -1,30 +1,35 @@
 import React from "react";
 import {
-    useIsAuthenticated,
+    useGetIdentity,
     useLogout,
     useMenu,
     useNavigation,
-    useParsed,
+    useRouterContext,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
 import { useModalForm } from "@refinedev/antd";
 
-import {
-    PlusSquareOutlined,
-    LogoutOutlined,
-    LoginOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";
 
+const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
+
 export const Header: React.FC = () => {
-    const { data } = useIsAuthenticated();
-    const { mutate: mutateLogout } = useLogout();
+    const { Link, useLocation } = useRouterContext();
+    const { isError } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
-    const { pathname } = useParsed();
+    const { pathname } = useLocation();
 
     const { modalProps, formProps, show } = useModalForm<Canvas>({
         resource: "canvases",
@@ -32,15 +37,13 @@ export const Header: React.FC = () => {
         redirect: "show",
     });
 
-    const isAuthenticated = data?.authenticated;
+    const isLogin = !isError;
 
     const handleRedirect = () => {
-        if (!pathname) {
-            return push("/login");
-        }
-
+        console.log({ pathname });
         if (pathname === "/") {
-            return push("/login");
+            push("/login");
+            return;
         }
 
         push(`/login?to=${encodeURIComponent(pathname)}`);
@@ -81,7 +84,7 @@ export const Header: React.FC = () => {
                     <Button
                         icon={<PlusSquareOutlined />}
                         onClick={() => {
-                            if (isAuthenticated) {
+                            if (isLogin) {
                                 show();
                             } else {
                                 handleRedirect();
@@ -91,7 +94,7 @@ export const Header: React.FC = () => {
                     >
                         Create
                     </Button>
-                    {isAuthenticated ? (
+                    {isLogin ? (
                         <Button
                             type="primary"
                             danger

@@ -20,6 +20,10 @@ export const BasicDataGrid: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "off",
+        },
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(

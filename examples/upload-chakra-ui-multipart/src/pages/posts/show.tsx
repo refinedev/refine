@@ -1,6 +1,5 @@
 import { useShow, useOne } from "@refinedev/core";
 import { Show, MarkdownField } from "@refinedev/chakra-ui";
-
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 import { ICategory, IPost } from "../../interfaces";

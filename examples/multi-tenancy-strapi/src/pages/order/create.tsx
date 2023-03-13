@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
 import { StoreContext } from "context/store";
 
-export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
+export const CreateOrder: React.FC<IResourceComponentsProps> = () => {
     const [store] = useContext(StoreContext);
     const { formProps, saveButtonProps } = useForm<IOrder, HttpError, IOrder>();
 
@@ -17,6 +15,10 @@ export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         filters: [{ field: "stores][id]", operator: "eq", value: store }],
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

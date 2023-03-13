@@ -1,6 +1,5 @@
 import { IResourceComponentsProps, useShow } from "@refinedev/core";
 import { Show } from "@refinedev/antd";
-
 import { Typography } from "antd";
 
 import { ICompany } from "interfaces";

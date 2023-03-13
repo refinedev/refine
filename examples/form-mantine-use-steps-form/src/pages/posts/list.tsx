@@ -3,7 +3,6 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
 import { List, EditButton, DeleteButton, DateField } from "@refinedev/mantine";
-
 import {
     Box,
     Group,

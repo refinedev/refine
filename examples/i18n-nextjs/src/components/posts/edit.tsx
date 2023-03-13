@@ -1,7 +1,5 @@
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
-
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
@@ -14,6 +12,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

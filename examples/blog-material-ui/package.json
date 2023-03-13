@@ -1,55 +1,55 @@
 {
-    "name": "blog-material-ui",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^13.1.1",
-        "@testing-library/user-event": "^14.1.1",
-        "@types/jest": "^29.2.4",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "react-scripts": "^5.0.0",
-        "web-vitals": "^1.1.1",
-        "@refinedev/core": "^3.101.2",
-        "@refinedev/cli": "^1.17.2",
-        "@refinedev/mui": "^3.61.5",
-        "@refinedev/react-hook-form": "^3.37.2",
-        "@mui/icons-material": "^5.8.3",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/strapi-v4": "^3.39.6",
-        "@emotion/react": "^11.8.2",
-        "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.8.6",
-        "@mui/x-data-grid": "^5.12.1",
-        "axios": "^0.26.1",
-        "react-hook-form": "^7.30.0"
-    },
-    "devDependencies": {
-        "@types/node": "^12.20.11",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "typescript": "^4.7.4"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "dev": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "refine": "refine"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "blog-material-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.3",
+    "@mui/lab": "^5.0.0-alpha.85",
+    "@mui/material": "^5.8.6",
+    "@mui/x-data-grid": "^5.12.1",
+    "@refinedev/cli": "*",
+    "@refinedev/core": "*",
+    "@refinedev/mui": "*",
+    "@refinedev/react-hook-form": "*",
+    "@refinedev/react-router-v6": "*",
+    "@refinedev/strapi-v4": "*",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "@types/jest": "^29.2.4",
+    "axios": "^0.26.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-hook-form": "^7.30.0",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "^5.0.0",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

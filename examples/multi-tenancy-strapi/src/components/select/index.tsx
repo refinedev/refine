@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useSelect } from "@refinedev/antd";
-
 import { Select } from "antd";
 
 import { StoreContext } from "context/store";
@@ -17,6 +16,10 @@ export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
         resource: "stores",
         optionLabel: "title",
         optionValue: "id",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const handleChange = (selectedValue: string) => {

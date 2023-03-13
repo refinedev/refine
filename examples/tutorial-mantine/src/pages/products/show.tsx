@@ -5,7 +5,6 @@ import {
     TextField,
     MarkdownField,
 } from "@refinedev/mantine";
-
 import { Title } from "@mantine/core";
 
 export const ProductShow = () => {

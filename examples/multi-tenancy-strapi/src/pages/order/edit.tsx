@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-
 import { useForm, useSelect, Edit } from "@refinedev/antd";
-
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
@@ -15,7 +13,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IOrder
     >({
-        metaData: { populate: "product" },
+        meta: { populate: "product" },
     });
 
     const productData = queryResult?.data?.data;
@@ -26,6 +24,10 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         filters: [{ field: "stores][id]", operator: "eq", value: store }],
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

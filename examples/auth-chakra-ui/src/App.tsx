@@ -1,252 +1,156 @@
 import {
-    AuthBindings,
-    Authenticated,
-    GitHubBanner,
     Refine,
+    LegacyAuthProvider as AuthProvider,
+    GitHubBanner,
 } from "@refinedev/core";
+
 import {
     AuthPage,
     Layout,
     ErrorComponent,
+    ReadyPage,
     refineTheme,
     notificationProvider,
 } from "@refinedev/chakra-ui";
+
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
 
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        register: async (params) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        updatePassword: async (params) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
-                return {
-                    success: true,
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid password"),
-            };
+            return Promise.reject();
         },
-        forgotPassword: async (params) => {
+        forgotPassword: (params) => {
             if (params.email) {
                 //we can send email with reset password link here
-                return {
-                    success: true,
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email"),
-            };
+            return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("email");
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        check: async () =>
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
             localStorage.getItem("email")
-                ? {
-                      authenticated: true,
-                  }
-                : {
-                      authenticated: false,
-                      error: new Error("Not authenticated"),
-                      logout: true,
-                      redirectTo: "/login",
-                  },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => ({
-            id: 1,
-            name: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                name: "Jane Doe",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+            }),
     };
 
     return (
-        <BrowserRouter>
+        <ChakraProvider theme={refineTheme}>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    notificationProvider={notificationProvider()}
-                    resources={[
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                legacyAuthProvider={authProvider}
+                notificationProvider={notificationProvider()}
+                legacyRouterProvider={{
+                    ...routerProvider,
+                    routes: [
                         {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                            create: "/posts/create",
+                            path: "/register",
+                            element: (
+                                <AuthPage
+                                    type="register"
+                                    providers={[
+                                        {
+                                            name: "google",
+                                            label: "Sign in with Google",
+                                            icon: <IconBrandGoogle />,
+                                        },
+                                        {
+                                            name: "github",
+                                            label: "Sign in with GitHub",
+                                            icon: <IconBrandGithub />,
+                                        },
+                                    ]}
+                                />
+                            ),
                         },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        providers={[
-                                            {
-                                                name: "google",
-                                                label: "Sign in with Google",
-                                                icon: <IconBrandGoogle />,
-                                            },
-                                            {
-                                                name: "github",
-                                                label: "Sign in with GitHub",
-                                                icon: <IconBrandGithub />,
-                                            },
-                                        ]}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={
-                                    <AuthPage
-                                        type="register"
-                                        providers={[
-                                            {
-                                                name: "google",
-                                                label: "Sign in with Google",
-                                                icon: <IconBrandGoogle />,
-                                            },
-                                            {
-                                                name: "github",
-                                                label: "Sign in with GitHub",
-                                                icon: <IconBrandGithub />,
-                                            },
-                                        ]}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </ChakraProvider>
-        </BrowserRouter>
+                        {
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
+                        },
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
+                }}
+                LoginPage={() => (
+                    <AuthPage
+                        providers={[
+                            {
+                                name: "google",
+                                label: "Sign in with Google",
+                                icon: <IconBrandGoogle />,
+                            },
+                            {
+                                name: "github",
+                                label: "Sign in with GitHub",
+                                icon: <IconBrandGithub />,
+                            },
+                        ]}
+                    />
+                )}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
+                Layout={Layout}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        show: PostShow,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                ]}
+            />
+        </ChakraProvider>
     );
 };
 

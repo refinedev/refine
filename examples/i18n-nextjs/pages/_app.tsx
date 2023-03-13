@@ -4,13 +4,11 @@ import { AppProps } from "next/app";
 
 import { appWithTranslation, useTranslation } from "next-i18next";
 
-import { notificationProvider, Layout } from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 
-import { Header } from "@components";
+import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 
 import "@refinedev/antd/dist/reset.css";
 import "@styles/global.css";
@@ -29,31 +27,25 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <>
             <GitHubBanner />
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 i18nProvider={i18nProvider}
+                Header={Header}
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                        meta: {
-                            canDelete: true,
-                        },
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
             >
-                <Layout Header={Header}>
-                    <Component {...pageProps} />
-                </Layout>
-                <UnsavedChangesNotifier />
+                <Component {...pageProps} />
             </Refine>
         </>
     );

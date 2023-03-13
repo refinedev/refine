@@ -34,7 +34,9 @@ export const CustomerMenuContent: React.FC = () => {
     router.beforePopState;
     const { pathname } = useRouter();
 
-    const { mutate: logout } = useLogout<{ redirectTo: string }>();
+    const { mutate: logout } = useLogout<{ redirectPath: string }>({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {
         _.preventDefault();
@@ -87,7 +89,7 @@ export const CustomerMenuContent: React.FC = () => {
                         className={cn(s.link, "border-accent-2 mt-4 border-t")}
                         onClick={() =>
                             logout({
-                                redirectTo: "/",
+                                redirectPath: "/",
                             })
                         }
                     >

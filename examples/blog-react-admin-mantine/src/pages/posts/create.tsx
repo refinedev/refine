@@ -1,5 +1,4 @@
 import { Create, useForm, useSelect } from "@refinedev/mantine";
-
 import { TextInput, Select } from "@mantine/core";
 
 import { ICategory } from "interfaces";
@@ -32,6 +31,10 @@ export const PostCreate = () => {
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

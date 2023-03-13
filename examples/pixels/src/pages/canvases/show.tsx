@@ -3,13 +3,15 @@ import {
     useCreate,
     useGetIdentity,
     useNavigation,
+    useRouterContext,
     useShow,
-    useParsed,
-    useIsAuthenticated,
 } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
-import { LeftOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
@@ -19,17 +21,18 @@ import { colors } from "utility";
 import { Canvas } from "types";
 import { LogList } from "components/logs";
 
+const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
-type Colors = typeof colors;
-
 export const CanvasShow: React.FC = () => {
-    const { pathname } = useParsed();
-    const [color, setColor] = useState<Colors[number]>("black");
+    const { Link, useLocation } = useRouterContext();
+    const { pathname } = useLocation();
+    const [color, setColor] = useState<(typeof colors)[number]>("black");
     const { modalProps, show, close } = useModal();
-    const { data: identity } = useGetIdentity<any>();
-    const { data: { authenticated } = {} } = useIsAuthenticated();
 
+    const { data: identity } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
@@ -37,12 +40,8 @@ export const CanvasShow: React.FC = () => {
     const { list, push } = useNavigation();
 
     const onSubmit = (x: number, y: number) => {
-        if (!authenticated) {
-            if (pathname) {
-                return push(`/login?to=${encodeURIComponent(pathname)}`);
-            }
-
-            return push(`/login`);
+        if (!identity) {
+            return push(`/login?to=${encodeURIComponent(pathname)}`);
         }
 
         if (typeof x === "number" && typeof y === "number" && canvas?.id) {

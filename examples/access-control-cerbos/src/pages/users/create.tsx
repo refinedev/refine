@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, useForm } from "@refinedev/antd";
-
 import { Form, Input } from "antd";
 
 import { IUser } from "interfaces";

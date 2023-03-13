@@ -1,30 +1,44 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useForm, Edit, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
-export const TaskEdit: React.FC<IResourceComponentsProps> = () => {
+export const EditTask: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ITask>();
 
     const { selectProps: labelSelectProps } = useSelect<ITask>({
         resource: "label",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: priorityProps } = useSelect<IPriority>({
         resource: "priority",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: assigneProps } = useSelect<IAuthUser>({
         resource: "users",
         optionValue: "id",
         optionLabel: "email",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: statusProps } = useSelect<IStatus>({
         resource: "status",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

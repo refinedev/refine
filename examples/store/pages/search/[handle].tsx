@@ -1,4 +1,4 @@
-import { GetListResponse, useTable } from "@refinedev/core";
+import { GetListResponse, LayoutWrapper, useTable } from "@refinedev/core";
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@refinedev/medusa";
 import { Product, ProductCollection } from "@medusajs/medusa";
@@ -18,28 +18,40 @@ const SearchPage: React.FC<{
 
     const { tableQueryResult } = useTable<Product>({
         resource: "products",
-        initialFilter: [
-            {
-                field: "cart_id",
-                value: cartId,
-                operator: "eq",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "collection_id",
-                operator: "eq",
-                value: [collection.id],
-            },
-        ],
+
         queryOptions: {
             initialData,
             keepPreviousData: false,
         },
-        hasPagination: false,
+
+        pagination: {
+            mode: "off",
+        },
+
+        filters: {
+            initial: [
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+            ],
+
+            permanent: [
+                {
+                    field: "collection_id",
+                    operator: "eq",
+                    value: [collection.id],
+                },
+            ],
+        },
     });
 
-    return <Search products={tableQueryResult?.data?.data} />;
+    return (
+        <LayoutWrapper>
+            <Search products={tableQueryResult?.data?.data} />
+        </LayoutWrapper>
+    );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

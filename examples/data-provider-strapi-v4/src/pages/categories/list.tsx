@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -8,7 +7,6 @@ import {
     DateField,
     DeleteButton,
 } from "@refinedev/antd";
-
 import { Table, Space, Form, Radio } from "antd";
 
 import { ICategory } from "interfaces";
@@ -17,7 +15,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const [locale, setLocale] = useState("en");
 
     const { tableProps } = useTable<ICategory>({
-        metaData: {
+        meta: {
             locale,
         },
     });

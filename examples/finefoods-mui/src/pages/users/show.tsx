@@ -60,24 +60,35 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         IOrderFilterVariables
     >({
         resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "user.id",
-                operator: "eq",
-                value: user?.id,
-            },
-        ],
-        initialPageSize: 4,
+
         queryOptions: {
             enabled: user !== undefined,
         },
+
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 4,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "user.id",
+                    operator: "eq",
+                    value: user?.id,
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const columns = React.useMemo<GridColumns<IOrder>>(
@@ -219,8 +230,8 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
                     <List
-                        headerProps={{ title: t("orders.orders") }}
-                        wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                        cardHeaderProps={{ title: t("orders.orders") }}
+                        cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
                     >
                         <DataGrid
                             {...dataGridProps}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
-import { HttpError, useIsAuthenticated, useLogin } from "@refinedev/core";
+import { HttpError, useAuthenticated, useLogin } from "@refinedev/core";
 
 import { useUI } from "@lib/context";
 import { emailRegex } from "@lib/regex";
@@ -22,8 +22,12 @@ const LoginView: React.FC = () => {
 
     // Form State
     const { setModalView, closeModal } = useUI();
-    const { mutate: login, isLoading } = useLogin();
-    const { isSuccess } = useIsAuthenticated();
+    const { mutate: login, isLoading } = useLogin({
+        v3LegacyAuthProviderCompatible: true,
+    });
+    const { isSuccess } = useAuthenticated({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     useEffect(() => {
         if (isSuccess) {

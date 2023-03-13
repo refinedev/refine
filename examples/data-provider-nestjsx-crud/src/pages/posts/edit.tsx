@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
-
 import { Edit, useForm, useSelect, useFileUploadState } from "@refinedev/antd";
-
 import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -18,11 +16,19 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: tagsSelectProps } = useSelect<ITags>({
         resource: "tags",
         defaultValue: postData?.tags.map((tag) => tag.id),
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { isLoading, onChange } = useFileUploadState();

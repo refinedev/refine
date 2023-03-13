@@ -7,8 +7,8 @@ const nextConfig = {
         newNextLinkBehavior: true,
     },
     transpilePackages: [
-        "@refinedev/antd",
-        "@refinedev/inferencer",
+        "@pankod/refine-antd",
+        "@pankod/refine-inferencer",
         "antd",
         "@ant-design/pro-components",
         "@ant-design/pro-layout",

@@ -11,6 +11,7 @@ import {
     useTable,
     useSelect,
 } from "@refinedev/antd";
+
 import { Table, Space, Select, Radio } from "antd";
 import { LogButton } from "@refinedev/antd-audit-log";
 
@@ -36,6 +37,10 @@ export const PostList: React.FC = () => {
         optionLabel: "title",
         optionValue: "id",
         defaultValue: getDefaultFilter("category.id", filters, "in"),
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

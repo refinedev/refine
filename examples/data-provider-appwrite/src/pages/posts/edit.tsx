@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpError, IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
 
@@ -11,7 +9,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, IPostVariables, ICategory } from "interfaces";
 import { normalizeFile, storage } from "utility";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
@@ -37,6 +35,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.categoryId,
         optionLabel: "title",
         optionValue: "id",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

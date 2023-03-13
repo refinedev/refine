@@ -1,50 +1,40 @@
+import React from "react";
+
 import { GitHubBanner, Refine } from "@refinedev/core";
+
 import {
     notificationProvider,
     RefineSnackbarProvider,
+    Layout,
     LightTheme,
-    WelcomePage,
+    ReadyPage,
     ErrorComponent,
 } from "@refinedev/mui";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <GitHubBanner />
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    legacyRouterProvider={routerProvider}
                 />
-                <RefineSnackbarProvider>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route index element={<WelcomePage />} />
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Refine>
-                    <UnsavedChangesNotifier />
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
+            </RefineSnackbarProvider>
+        </ThemeProvider>
     );
 }
 

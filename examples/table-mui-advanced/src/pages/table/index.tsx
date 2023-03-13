@@ -31,7 +31,6 @@ import {
 } from "@mui/material";
 
 import { useForm } from "@refinedev/react-hook-form";
-
 import { Controller } from "react-hook-form";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -217,6 +216,10 @@ export const PostList: React.FC = () => {
     const { options } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: categoryIds,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const renderRowSubComponent = useCallback(

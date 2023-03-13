@@ -1,33 +1,43 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useForm, useSelect, Edit } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import { IInvoice } from "interfaces";
 
-export const InvoiceEdit: React.FC<IResourceComponentsProps> = () => {
+export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
-        metaData: { populate: ["company", "contact", "missions"] },
+        meta: { populate: ["company", "contact", "missions"] },
     });
 
     const defaultValue = queryResult?.data?.data;
 
     const { selectProps: companySelectProps } = useSelect({
         resource: "companies",
-        defaultValue: defaultValue?.company?.id,
+        defaultValue: defaultValue?.company.id,
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: contactSelectProps } = useSelect({
         resource: "contacts",
         defaultValue: defaultValue?.contact?.id,
         optionLabel: "first_name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const { selectProps: missionSelectProps } = useSelect({
         resource: "missions",
         optionLabel: "mission",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

@@ -1,5 +1,4 @@
 import { useTranslate, useApiUrl } from "@refinedev/core";
-
 import { Edit, getValueFromEvent, useSelect } from "@refinedev/antd";
 
 import {
@@ -40,6 +39,10 @@ export const EditProduct: React.FC<EditProductProps> = ({
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

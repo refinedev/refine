@@ -1,10 +1,5 @@
 import { AuthPage } from "@refinedev/antd";
-import { ExtendedNextPage } from "./_app";
 
-const Register: ExtendedNextPage = () => {
+export default function Register() {
     return <AuthPage type="register" />;
-};
-
-Register.noLayout = true;
-
-export default Register;
+}

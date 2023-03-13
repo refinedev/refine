@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useCreate, useGo } from "@refinedev/core";
+import { useCreate, useNavigation } from "@refinedev/core";
 
 import {
     useBasketContext,
@@ -12,7 +12,7 @@ import { IOrder } from "@interfaces";
 
 export const OrdersModal: React.FC = () => {
     const ref = useRef(null);
-    const go = useGo();
+    const { replace } = useNavigation();
     const { setOrdersModalVisible } = useOrdesModalContext();
     const { orders, totalPrice, products, dispatch } = useBasketContext();
     const { mutate } = useCreate<IOrder>();
@@ -74,10 +74,10 @@ export const OrdersModal: React.FC = () => {
                                         },
                                         {
                                             onSuccess: (data) => {
-                                                go({
-                                                    to: `/order/${data.data.id}`,
-                                                    type: "replace",
-                                                });
+                                                replace(
+                                                    "/order/[id]",
+                                                    `/order/${data.data.id}`,
+                                                );
                                                 setOrdersModalVisible(false);
                                                 dispatch({
                                                     type: "resetBasket",

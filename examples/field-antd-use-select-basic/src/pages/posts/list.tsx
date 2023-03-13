@@ -31,6 +31,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         fetchSize: 20,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

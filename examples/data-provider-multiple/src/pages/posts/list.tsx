@@ -27,10 +27,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         syncWithLocation: true,
     });
 
-    const { listProps } = useSimpleList<IProducts>({
-        resource: "products",
-        dataProviderName: "fineFoods",
-    });
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IProducts>({
+            resource: "products",
+            dataProviderName: "fineFoods",
+        });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -47,6 +48,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         defaultValue: getDefaultFilter("category.id", filters, "in"),
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     const renderItem = (item: IProducts) => {
@@ -121,6 +126,24 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                         <Radio value="rejected">Rejected</Radio>
                                     </Radio.Group>
                                 </FilterDropdown>
+                            )}
+                        />
+                        <Table.Column<IPost>
+                            title="Actions"
+                            dataIndex="actions"
+                            render={(_, record) => (
+                                <Space>
+                                    <EditButton
+                                        hideText
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                    <ShowButton
+                                        hideText
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
                             )}
                         />
                     </Table>

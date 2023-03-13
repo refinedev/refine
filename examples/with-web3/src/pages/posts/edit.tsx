@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -14,6 +13,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<IPost>({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

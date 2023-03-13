@@ -11,7 +11,10 @@ import {
     useDrawerForm,
 } from "@refinedev/antd";
 
-import { FormOutlined, MoreOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Table,
     Space,
@@ -61,7 +64,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <FormOutlined
+                    <Icons.FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -165,7 +168,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     overlay={moreMenu(record)}
                                     trigger={["click"]}
                                 >
-                                    <MoreOutlined
+                                    <Icons.MoreOutlined
                                         onClick={(e) => e.stopPropagation()}
                                         style={{
                                             fontSize: 24,
@@ -186,14 +189,17 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     const { tableProps: postTableProps } = useTable<IProduct>({
         resource: "products",
-        permanentFilter: [
-            {
-                field: "category.id",
-                operator: "eq",
-                value: record.id,
-            },
-        ],
         syncWithLocation: false,
+
+        filters: {
+            permanent: [
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: record.id,
+                },
+            ],
+        },
     });
 
     const {
@@ -221,7 +227,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <FormOutlined
+                    <Icons.FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -289,7 +295,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                             overlay={moreMenu(record)}
                             trigger={["click"]}
                         >
-                            <MoreOutlined
+                            <Icons.MoreOutlined
                                 onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,

@@ -1,5 +1,4 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import { CriteriaType, HackathonType } from "interfaces";
@@ -11,6 +10,10 @@ export const CriteriasEdit: React.FC = () => {
         resource: "hackathons",
         defaultValue: queryResult?.data?.data?.hackathon_id,
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

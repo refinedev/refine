@@ -1,5 +1,4 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select } from "antd";
 
 import { HackathonerType, TeamType } from "interfaces";
@@ -10,6 +9,10 @@ export const HackathonersEdit: React.FC = () => {
     const { selectProps: teamsSelectProps } = useSelect<TeamType>({
         resource: "teams",
         optionLabel: "name",
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

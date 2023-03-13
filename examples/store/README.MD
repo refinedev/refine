@@ -78,6 +78,6 @@ npm run start
 - [refine documentation](https://refine.dev/docs/getting-started/overview/)
 - [Medusa documentation](https://docs.medusajs.com/quickstart/quick-start)
 - [Data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/)
-  - [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
+  - [@pankod/refine-medusa](https://www.npmjs.com/package/@pankod/refine-medusa)
 - [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
-  - [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
+  - [@pankod/refine-medusa](https://www.npmjs.com/package/@pankod/refine-medusa)

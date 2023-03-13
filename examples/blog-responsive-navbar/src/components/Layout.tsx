@@ -1,9 +1,10 @@
-import { useMenu, LayoutProps } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems } = useMenu();
+
+    const { Link } = useRouterContext();
 
     return (
         <div className="flex min-h-screen flex-col">

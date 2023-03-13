@@ -1,5 +1,4 @@
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
-
 import { NumberInput, TextInput, Textarea, Select } from "@mantine/core";
 
 export const ProductEdit = () => {
@@ -24,6 +23,10 @@ export const ProductEdit = () => {
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
         defaultValue: productsData?.category?.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

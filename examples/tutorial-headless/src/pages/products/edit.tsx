@@ -18,6 +18,10 @@ export const ProductEdit = () => {
     const { options: categoryOptions } = useSelect({
         resource: "categories",
         defaultValue: productsData?.category?.id,
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     React.useEffect(() => {

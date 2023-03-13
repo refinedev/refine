@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
@@ -19,6 +17,10 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         filters: [{ field: "storeId", operator: "eq", value: store }],
+
+        pagination: {
+            mode: "server",
+        },
     });
 
     return (

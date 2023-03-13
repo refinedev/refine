@@ -1,50 +1,36 @@
+import React from "react";
+
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
+    Layout,
     LightTheme,
-    WelcomePage,
+    ReadyPage,
     ErrorComponent,
 } from "@refinedev/mantine";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 function App() {
     return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <MantineProvider
-                theme={LightTheme}
-                withNormalizeCSS
-                withGlobalStyles
-            >
-                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route index element={<WelcomePage />} />
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </NotificationsProvider>
-            </MantineProvider>
-        </BrowserRouter>
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <GitHubBanner />
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    legacyRouterProvider={routerProvider}
+                />
+            </NotificationsProvider>
+        </MantineProvider>
     );
 }
 

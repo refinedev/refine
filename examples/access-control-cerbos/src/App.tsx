@@ -1,11 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
@@ -36,10 +32,10 @@ const cerbos = new Cerbos("https://demo-pdp.cerbos.cloud", {
 const App: React.FC = () => {
     const role = localStorage.getItem("role") ?? "admin";
     return (
-        <BrowserRouter>
+        <>
             <GitHubBanner />
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 accessControlProvider={{
                     can: async ({ action, params, resource }) => {
@@ -52,7 +48,7 @@ const App: React.FC = () => {
                                 attributes: {},
                             },
                             resource: {
-                                kind: resource ?? "",
+                                kind: resource,
                                 policyVersion: "default",
                                 id: params?.id + "" || "new",
                                 attributes: params,
@@ -68,75 +64,33 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        meta: {
-                            canDelete: true,
-                        },
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
                     },
                     {
                         name: "users",
-                        list: "/users",
-                        show: "/users/show/:id",
-                        create: "/users/create",
-                        edit: "/users/edit/:id",
+                        list: UserList,
+                        create: UserCreate,
+                        edit: UserEdit,
+                        show: UserShow,
                     },
                     {
                         name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                        create: "/categories/create",
-                        edit: "/categories/edit/:id",
+                        list: CategoryList,
+                        create: CategoryCreate,
+                        edit: CategoryEdit,
+                        show: CategoryShow,
                     },
                 ]}
+                Header={() => <Header role={role} />}
                 notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout Header={() => <Header role={role} />}>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-
-                        <Route path="/users">
-                            <Route index element={<UserList />} />
-                            <Route path="create" element={<UserCreate />} />
-                            <Route path="edit/:id" element={<UserEdit />} />
-                            <Route path="show/:id" element={<UserShow />} />
-                        </Route>
-
-                        <Route path="/categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                            <Route path="edit/:id" element={<CategoryEdit />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 
