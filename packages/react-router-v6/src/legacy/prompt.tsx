@@ -7,9 +7,14 @@ export const Prompt: React.FC<PromptProps> = ({
     when,
     setWarnWhen,
 }) => {
-    usePrompt(message, when, () => {
-        setWarnWhen?.(false);
-    });
+    usePrompt(
+        message,
+        when,
+        () => {
+            setWarnWhen?.(false);
+        },
+        true,
+    );
 
     return null;
 };
