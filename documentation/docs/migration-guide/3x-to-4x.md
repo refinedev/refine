@@ -499,11 +499,11 @@ useList({
 
 ## **`@pankod/refine-antd` changes**
 
-:::caution
+:::caution refine@4 uses version 5 of Ant Design.
 
-Before upgrading to **refine&#64;4**, it is necessary to first upgrade from "&#64;refinedev/antd&#64;3.x.x" to "&#64;refinedev/antd&#64;4.x.x"
+Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
 
-[Refer to the Antd Design Migration Guide for detailed information. →](docs/api-reference/antd/migration-guide/v4-to-v5/)
+[To upgrade now, visit Migration Guide document >](/docs/api-reference/antd/migration-guide/v4-to-v5/)
 
 :::
 
