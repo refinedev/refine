@@ -1,5 +1,16 @@
 # @pankod/refine-ui-types
 
+## 0.15.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-core@3.102.0
+
 ## 0.14.2
 
 ### Patch Changes
