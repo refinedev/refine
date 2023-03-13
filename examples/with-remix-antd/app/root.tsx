@@ -10,7 +10,9 @@ import {
 import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/remix-router";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/remix-router";
 
 import resetStyle from "@refinedev/antd/dist/reset.css";
 
@@ -46,9 +48,13 @@ export default function App(): JSX.Element {
                             show: "/posts/show/:id",
                         },
                     ]}
-                    options={{ syncWithLocation: true }}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Outlet />
+                    <UnsavedChangesNotifier />
                 </Refine>
                 <ScrollRestoration />
                 <Scripts />
