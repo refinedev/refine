@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-simple-rest",
   "description": "refine simple REST data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.38.0",
+  "version": "3.39.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -25,8 +25,8 @@
   "module": "dist/esm/index.js",
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@pankod/refine-cli": "^1.18.0",
-    "@pankod/refine-core": "^3.102.0",
+    "@pankod/refine-cli": "^1.19.0",
+    "@pankod/refine-core": "^3.103.0",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
