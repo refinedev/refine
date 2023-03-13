@@ -85,7 +85,7 @@ const changelogFunctions = {
 
 
       const prefix = [
-        users === null ? "" : ` Thanks ${users}!`,
+        users === null ? "" : ` Thanks ${users}! \n`,
       ].join("");
 
     return `\n\n-${prefix ? `${prefix} -` : ""} ${firstLine}\n${futureLines
