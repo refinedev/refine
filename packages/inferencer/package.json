@@ -58,7 +58,8 @@
         "start": "tsup --watch --format esm,cjs,iife --legacy-output",
         "build": "tsup --format esm,cjs,iife --minify --legacy-output",
         "test": "jest --passWithNoTests --runInBand",
-        "prepare": "npm run build"
+        "prepare": "npm run build",
+        "postinstall": "echo \"refine v4 is released 🎉 \nThe new version is 100% backward compatible. You can upgrade to v4 with a single command! \nSee the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x \n\""
     },
     "peerDependencies": {
         "@refinedev/antd": "^4.0.0",

@@ -8,7 +8,8 @@
     "build": "next build && rm -rf .next/cache",
     "start:prod": "next start",
     "lint": "next lint",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "postinstall": "echo \"refine v4 is released 🎉 \nThe new version is 100% backward compatible. You can upgrade to v4 with a single command! \nSee the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x \n\""
   },
   "dependencies": {
     "@refinedev/antd": "^4.1.0",

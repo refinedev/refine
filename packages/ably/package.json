@@ -1,7 +1,7 @@
 {
   "name": "@refinedev/ably",
   "description": "refine ably live provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.29.0",
+  "version": "3.30.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -17,7 +17,8 @@
     "start": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "postinstall": "echo \"refine v4 is released 🎉 \nThe new version is 100% backward compatible. You can upgrade to v4 with a single command! \nSee the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x \n\""
   },
   "author": "refine",
   "module": "dist/esm/index.js",
