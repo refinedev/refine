@@ -31,84 +31,9 @@ If you are using the legacy router provider, it can be imported from `@refinedev
 
 ## Usage
 
-`@refinedev/react-router-v6` is not restricting you to use the router in a specific way and it is up to you to decide how you want to use it. Though, we provide a simple way to use it with the **refine**'s resources through the [`RefineRoutes`](#refineroutes) component. Although, manually defining the routes may be more flexible and suited for your project. But the [`RefineRoutes`](#refineroutes) will also work for many use cases and scenarios and it will save you some time to get started.
+`@refinedev/react-router-v6` is not restricting you to use the router in a specific way and it is up to you to decide how you want to use it. 
 
-### Basic Usage
-
-We'll use [`RefineRoutes`](#refineroutes) to render our resource components and we'll also add an error page for the routes that are not defined which will be a custom route. You're free to add additional routes inside the `RefineRoutes` component's children function. 
-
-```tsx title=App.tsx
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-// highlight-start
-import routerProvider, { RefineRoutes } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// highlight-end
-
-import { PostList, PostCreate } from "pages/posts";
-import { CategoryList, CategoryShow } from "pages/categories";
-
-import { Layout } from "components/Layout";
-import { ErrorComponent } from "components/Error";
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                // highlight-next-line
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        // highlight-start
-                        list: PostList,
-                        create: PostCreate,
-                        // highlight-end
-                    },
-                    {
-                        name: "categories",
-                        // highlight-start
-                        list: CategoryList,
-                        show: {
-                            component: CategoryShow,
-                            path: "/categories/:id/details", // Notice that we can also define the path here
-                        },
-                        // highlight-end
-                    }
-                ]}
-            >
-                <Layout>
-                    {/* highlight-start */}
-                    <RefineRoutes>
-                        {(routes) => (
-                            <Routes>
-                                <Route index element={<NavigateToResource />} />
-                                {routes}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        )}
-                    </RefineRoutes>
-                    {/* highlight-end */}
-                </Layout>
-        </BrowserRouter>
-    )
-}
-```
-
-We've defined our resource actions using components to let the `RefineRoutes` render them. We can also define the path for each action. If we don't define the path, the `RefineRoutes` will use the default paths for the actions. 
-
-[Refer to "Understanding the Resources" section of our tutorial for detailed information. &#8594][resources]
-
-💡 We also defined the `show` action's path as `/categories/:id/details` which will override the default path.
-
-The `index` route is defined with the `NavigateToResource` component which will redirect the user to the list page of the first defined resource. 
-
-We also added a catch-all route which will render the `ErrorComponent` for the routes that are not defined.
-
-### Advanced Usage
-
-You can also define your routes manually and provide the action paths to the `resources` array of `<Refine>`. For advanced use cases and enterprise applications, you might want to go with this approach to have more control over your routes. In our examples, we've used this approach to demonstrate the flexibility of the router provider and the route handling process.
+You can define your routes manually and provide the action paths to the `resources` array of `<Refine>`. From basic to advanced use cases and enterprise applications, you will have full control over your routes. In our examples, we've used this approach to demonstrate the flexibility of the router provider and the route handling process.
 
 In the below example, we're defining the routes for both the resources and the custom routes manually and only applying the `Layout` for the `posts` resource routes.
 
@@ -180,6 +105,81 @@ Your action definitions in the resources can contain additional parameters and n
 **refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
 
 :::
+
+### Basic Usage with `<RefineRoutes>`
+
+We also provide a simple way to use `react-router-dom` with the **refine**'s resources through the [`RefineRoutes`](#refineroutes) component. Manually defining the routes may be more flexible and suited for your project but the [`RefineRoutes`](#refineroutes) will also work for basic use cases and it will save you some time to get started. We don't recommend using the basic approach if you want to have more control over your routes.
+
+We'll use [`RefineRoutes`](#refineroutes) to render our resource components and we'll also add an error page for the routes that are not defined which will be a custom route. You're free to add additional routes inside the `RefineRoutes` component's children function. 
+
+```tsx title=App.tsx
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+// highlight-start
+import routerProvider, { RefineRoutes } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// highlight-end
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+import { Layout } from "components/Layout";
+import { ErrorComponent } from "components/Error";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                // highlight-next-line
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        // highlight-start
+                        list: PostList,
+                        create: PostCreate,
+                        // highlight-end
+                    },
+                    {
+                        name: "categories",
+                        // highlight-start
+                        list: CategoryList,
+                        show: {
+                            component: CategoryShow,
+                            path: "/categories/:id/details", // Notice that we can also define the path here
+                        },
+                        // highlight-end
+                    }
+                ]}
+            >
+                <Layout>
+                    {/* highlight-start */}
+                    <RefineRoutes>
+                        {(routes) => (
+                            <Routes>
+                                <Route index element={<NavigateToResource />} />
+                                {routes}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        )}
+                    </RefineRoutes>
+                    {/* highlight-end */}
+                </Layout>
+        </BrowserRouter>
+    )
+}
+```
+
+We've defined our resource actions using components to let the `RefineRoutes` render them. We can also define the path for each action. If we don't define the path, the `RefineRoutes` will use the default paths for the actions. 
+
+[Refer to "Understanding the Resources" section of our tutorial for detailed information. &#8594][resources]
+
+💡 We also defined the `show` action's path as `/categories/:id/details` which will override the default path.
+
+The `index` route is defined with the `NavigateToResource` component which will redirect the user to the list page of the first defined resource. 
+
+We also added a catch-all route which will render the `ErrorComponent` for the routes that are not defined.
 
 ## Additional Components
 
