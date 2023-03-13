@@ -110,7 +110,7 @@ In refine v4, you can define your actions (`list`, `create`, `edit`, `show`, `cl
 ```tsx
 resources={[
     {
-        name: "product",
+        name: "products",
         list: "/:tenantId/products",
         show: "/:tenantId/products/:id",
         edit: "/:tenantId/products/:id/edit",
