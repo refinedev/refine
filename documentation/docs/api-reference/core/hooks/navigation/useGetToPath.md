@@ -11,7 +11,7 @@ This is useful when you want to navigate to a specific action of a resource and 
 ## Basic Usage
 
 ```tsx
-import { useGetToPath, useGo } from "@pankod/refine-core";
+import { useGetToPath, useGo } from "@refinedev/core";
 
 // Let's assume that we have a resource named `posts` and the `edit` action path is `/:authorId/posts/:id/edit`
 

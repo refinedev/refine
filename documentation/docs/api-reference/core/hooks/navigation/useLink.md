@@ -15,16 +15,12 @@ It's recommended to use the `Link` component from your router library instead of
 ## Basic Usage
 
 ```tsx
-import { useLink } from "@pankod/refine-core";
+import { useLink } from "@refinedev/core";
 
 const MyComponent = () => {
     const Link = useLink();
 
-    return (
-        <Link to="/posts">
-            Posts
-        </Link>
-    );
+    return <Link to="/posts">Posts</Link>;
 };
 ```
 
@@ -35,6 +31,3 @@ const MyComponent = () => {
 This is the path that the link will navigate to. It should be a string.
 
 [routerprovider]: /docs/api-reference/core/providers/router-provider.md
-
-
-

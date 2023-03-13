@@ -19,7 +19,7 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter } from "react-router-dom";
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -121,16 +121,16 @@ const App: React.FC = () => {
                     {
                         name: "samples",
                         list: "/samples",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         {/* highlight-next-line */}
                         <Route path="/samples" element={<AntdInferencer />} />
@@ -176,19 +176,22 @@ const App: React.FC = () => {
                     {
                         name: "samples",
                         show: "/samples/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         {/* highlight-next-line */}
-                        <Route path="/samples/show/:id" element={<AntdInferencer />} />
+                        <Route
+                            path="/samples/show/:id"
+                            element={<AntdInferencer />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -231,19 +234,22 @@ const App: React.FC = () => {
                     {
                         name: "samples",
                         create: "/samples/create",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         {/* highlight-next-line */}
-                        <Route path="/samples/create" element={<AntdInferencer />} />
+                        <Route
+                            path="/samples/create"
+                            element={<AntdInferencer />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -286,19 +292,22 @@ const App: React.FC = () => {
                     {
                         name: "samples",
                         edit: "/samples/edit/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         {/* highlight-next-line */}
-                        <Route path="/samples/edit/:id" element={<AntdInferencer />} />
+                        <Route
+                            path="/samples/edit/:id"
+                            element={<AntdInferencer />}
+                        />
                     </Route>
                 </Routes>
             </Refine>

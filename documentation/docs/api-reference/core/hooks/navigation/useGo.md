@@ -9,7 +9,7 @@ sidebar_label: useGo 🆕
 ## Basic Usage
 
 ```tsx
-import { useGo } from "@pankod/refine-core";
+import { useGo } from "@refinedev/core";
 
 const MyComponent = () => {
     const go = useGo();
@@ -26,10 +26,10 @@ const MyComponent = () => {
                                 operator: "contains",
                                 value: "Refine",
                             },
-                        ]
+                        ],
                     },
                     type: "push",
-                })
+                });
             }}
         >
             Go Posts With Default Filters
@@ -52,9 +52,9 @@ The `query` parameter is the query parameters you want to add to the path. It is
 
 The `type` parameter is the type of navigation you want to perform. It can be one of the following:
 
-- `push`: It adds a new entry to the history stack.
-- `replace`: It replaces the current entry on the history stack.
-- `path`: Returns the navigation path for the given config. Doesn't mutate the history stack at all.
+-   `push`: It adds a new entry to the history stack.
+-   `replace`: It replaces the current entry on the history stack.
+-   `path`: Returns the navigation path for the given config. Doesn't mutate the history stack at all.
 
 ### `hash`
 

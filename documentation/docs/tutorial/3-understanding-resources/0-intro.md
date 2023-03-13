@@ -49,9 +49,21 @@ In order to initialize the app, the `dataProvider` is the only required prop to 
 
 [Refer to the `<Refine>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
+## What is resource?
+
 In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
 
-To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions it can perform which can be defined as paths, components or both and additional metadata such as the label, the icon, audit log settings, nesting etc.
+## Resources and Routes
+
+Paths are used to hint refine to do things like rendering menu items, breadcrumbs and handling form redirections. It completely detached from the router logic. Routes should be handled by your framework (React Router, NextJS, Remix).
+
+This flexibility allows refine to be used inside existing web applications independently, without limiting users. refine can be attached to routes where it's needed. Doesn't interfere with your routing logic. This means refine can be used with enterprise-grade applications with challenging requirements like nested routes, multi-tenancy etc.
+
+With this approach allows for greater flexibility and scalability in the application, as new resources can be added or modified easily, without affecting the existing code.
+
+## Defining Resource
+
+To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions it can perform which can be defined as paths and additional metadata such as the label, the icon, audit log settings, nesting etc.
 
 Here's a simple example of how to add a resource to a **refine** app:
 
@@ -85,9 +97,9 @@ export default App;
 
 ## Defining Actions for a Resource
 
-A resource can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone`. These actions except `delete`, are defined in the properties of the resource object. These definitions can be done in multiple ways.
+A resource can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone`. These actions except `delete`, are defined in the properties of the resource object.
 
-### Using Paths (Recommended)
+### Using Paths
 
 The simplest way to define the actions is to provide the path of the page. For example, if we want to define the `list` action of the `products` resource, we can do it as follows:
 
@@ -119,39 +131,6 @@ Additional parameters can also be defined in the path. For example, if we want t
 ```
 
 These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `products` resource as `/:userId/products/create` and the user is currently on the `/:userId/products` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/products/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
-
-### Using Components
-
-In addition to paths, we can also define the actions using components. These components can later be rendered through the complementary components from the router packages such as `RefineRoutes`. In this case, **refine** will assign default routes to actions like following:
-
--   `list` - `/resourceName`
--   `show` - `/resourceName/show/:id`
--   `create` - `/resourceName/create`
--   `edit` - `/resourceName/edit/:id`
--   `clone` - `/resourceName/clone/:id`
-
-For example, if we want to define the `list` action of the `products` resource, we can do it as follows:
-
-```tsx
-{
-    name: "products",
-    list: ProductList,
-}
-```
-
-### Using Both Paths and Components
-
-We can also define the actions using both paths and components. In this case, the path will be used to render the component by the `RefineRoutes` component, which can be imported from router packages. For example, if we want to define the `show` action of the `products` resource, we can do it as follows:
-
-```tsx
-{
-    name: "products",
-    show: {
-        path: "/products/show/:id",
-        component: ProductShow,
-    }
-}
-```
 
 :::tip
 

@@ -6,7 +6,7 @@ title: Remix
 **refine** provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between **refine** and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
 
 ```bash
-npm i @pankod/refine-remix-router
+npm i @refinedev/remix-router
 ```
 
 :::tip
@@ -23,26 +23,26 @@ npm create refine-app@latest -- -o refine-remix my-refine-remix-app
 
 :::note Legacy Router
 
-`@pankod/refine-remix-router` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
+`@refinedev/remix-router` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
 
-If you are using the legacy router provider, it can be imported from `@pankod/refine-remix-router/legacy` and passed to the `legacyRouterProvider` prop of the `Refine` component.
+If you are using the legacy router provider, it can be imported from `@refinedev/remix-router/legacy` and passed to the `legacyRouterProvider` prop of the `Refine` component.
 
 :::
 
 ## Basic Usage
 
-We'll use the `routerProvider` from `@pankod/refine-remix-router` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our routes in `app/routes` directory.
+We'll use the `routerProvider` from `@refinedev/remix-router` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our routes in `app/routes` directory.
 
 We'll create four pages for our resources:
 
-- `app/routes/posts.tsx` - List page for posts
-- `app/routes/posts.show.$id.tsx` - Detail page for posts
-- `app/routes/categories.tsx` - List page for categories
-- `app/routes/categories.show.$id.tsx` - Detail page for categories
+-   `app/routes/posts.tsx` - List page for posts
+-   `app/routes/posts.show.$id.tsx` - Detail page for posts
+-   `app/routes/categories.tsx` - List page for categories
+-   `app/routes/categories.show.$id.tsx` - Detail page for categories
 
 And we'll create one page for the index route and use it to redirect to the `posts` resource:
 
-- `app/routes/index.tsx` - Index page
+-   `app/routes/index.tsx` - Index page
 
 Let's start with the initialization of the **refine** app in the `app/root.tsx` file:
 
@@ -56,9 +56,9 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-remix-router";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/remix-router";
 
 import { Layout } from "components/Layout";
 
@@ -71,7 +71,9 @@ export default function App(): JSX.Element {
             </head>
             <body>
                 <Refine
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     // highlight-next-line
                     routerProvider={routerProvider}
                     resources={[
@@ -84,7 +86,7 @@ export default function App(): JSX.Element {
                             name: "categories",
                             list: "/categories",
                             show: "/categories/show/:id",
-                        }
+                        },
                     ]}
                 >
                     <Layout>
@@ -98,7 +100,6 @@ export default function App(): JSX.Element {
         </html>
     );
 }
-
 ```
 
 :::tip
@@ -118,19 +119,21 @@ Your action definitions in the resources can contain additional parameters and n
 Now we can create our pages in the `pages` directory:
 
 ```tsx title=app/routes/posts.tsx
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 import { NavLink } from "@remix-run/react";
 
 type IPost = {
     id: string;
     title: string;
     description: string;
-}
+};
 
 export default function PostList() {
     // `posts` resource will be inferred from the route.
     // Because we've defined `/posts` as the `list` action of the `posts` resource.
-    const { tableQueryResult: { data, isLoading } } = useTable<IPost>();
+    const {
+        tableQueryResult: { data, isLoading },
+    } = useTable<IPost>();
 
     const getToPath = useGetToPath();
 
@@ -146,8 +149,8 @@ export default function PostList() {
                             <NavLink
                                 to={getToPath({
                                     resource: "categories",
-                                    action: "show" ,
-                                    meta: { id: category.id }
+                                    action: "show",
+                                    meta: { id: category.id },
                                 })}
                             >
                                 {post.title}
@@ -157,12 +160,12 @@ export default function PostList() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 ```
 
 ```tsx title=app/routes/posts.show.$id.tsx
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 type IPost = {
     id: string;
@@ -190,18 +193,20 @@ export default function PostShow() {
 ```
 
 ```tsx title=app/routes/categories.tsx
-import { useTable, getToPath } from "@pankod/refine-core";
+import { useTable, getToPath } from "@refinedev/core";
 import { NavLink } from "@remix-run/react";
 
 type ICategory = {
     id: string;
     label: string;
-}
+};
 
 export default function CategoryList() {
     // `categories` resource will be inferred from the route.
     // Because we've defined `/categories` as the `list` action of the `categories` resource.
-    const { tableQueryResult: { data, isLoading } } = useTable<ICategory>();
+    const {
+        tableQueryResult: { data, isLoading },
+    } = useTable<ICategory>();
 
     const getToPath = useGetToPath();
 
@@ -217,8 +222,8 @@ export default function CategoryList() {
                             <NavLink
                                 to={getToPath({
                                     resource: "categories",
-                                    action: "show" ,
-                                    meta: { id: category.id }
+                                    action: "show",
+                                    meta: { id: category.id },
                                 })}
                             >
                                 {category.label}
@@ -228,22 +233,24 @@ export default function CategoryList() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 ```
 
 ```tsx title=app/routes/categories.show.$id.tsx
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 type ICategory = {
     id: string;
     label: string;
-}
+};
 
 export default function CategoryShow() {
     // `categories` resource and the `id` will be inferred from the route.
     // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-    const { queryResult: { data, isLoading } } = useShow<ICategory>();
+    const {
+        queryResult: { data, isLoading },
+    } = useShow<ICategory>();
 
     const categoryData = data?.data;
 
@@ -264,18 +271,16 @@ Even though we're using the `NavigateToResource` component, when using Remix it'
 :::
 
 ```tsx title=app/routes/index.tsx
-import { NavigateToResource } from "@pankod/refine-remix-router";
+import { NavigateToResource } from "@refinedev/remix-router";
 
 export default function Index() {
-    return (
-        <NavigateToResource />
-    );
+    return <NavigateToResource />;
 }
 ```
 
 ## Additional Components
 
-`@pankod/refine-remix-router` package also includes some additional components that can be useful in some cases.
+`@refinedev/remix-router` package also includes some additional components that can be useful in some cases.
 
 ### `RefineRoutes`
 
@@ -301,10 +306,10 @@ return (
             {
                 name: "categories",
                 list: "/categories",
-            }
+            },
         ]}
     >
-    {/* ... */}
+        {/* ... */}
     </Refine>
 );
 ```
@@ -312,7 +317,7 @@ return (
 Then, we'll create a catch-all route to render the matching route in our resources:
 
 ```tsx title=app/routes/$.tsx
-import { RefineRoutes } from "@pankod/refine-remix-router";
+import { RefineRoutes } from "@refinedev/remix-router";
 
 import { ErrorPage } from "components/error";
 
@@ -321,7 +326,7 @@ export default function CatchAll() {
         <RefineRoutes>
             {(matchingRoute) => {
                 if (matchingRoute) {
-                    return {matchingRoute};
+                    return { matchingRoute };
                 }
 
                 return <ErrorPage />;
@@ -336,11 +341,11 @@ When components are used to define the resource actions, default paths will be u
 
 Default paths are:
 
-- `list`: `/resources`
-- `create`: `/resources/create`
-- `edit`: `/resources/edit/:id`
-- `show`: `/resources/show/:id`
-:::
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+    :::
 
 #### Properties
 
@@ -351,12 +356,10 @@ Default paths are:
 A basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
 
 ```tsx title=app/routes/index.tsx
-import { NavigateToResource } from "@pankod/refine-remix-router";
+import { NavigateToResource } from "@refinedev/remix-router";
 
 export default function IndexPage() {
-    return (
-        <NavigateToResource />
-    );
+    return <NavigateToResource />;
 }
 ```
 
@@ -373,17 +376,17 @@ This component enables the `warnWhenUnsavedChanges` feature of **refine**. It wi
 Place this component inside the `<Refine>` components children to enable this feature.
 
 ```tsx title=app/root.tsx
-import { Refine } from "@pankod/refine-core";
-import { UnsavedChangesNotifier } from "@pankod/refine-remix-router";
+import { Refine } from "@refinedev/core";
+import { UnsavedChangesNotifier } from "@refinedev/remix-router";
 
 export default function App(): JSX.Element {
     return (
         <Refine
-            /* ... */
+        /* ... */
         >
-                <Outlet />
-                {/* highlight-next-line */}
-                <UnsavedChangesNotifier />
+            <Outlet />
+            {/* highlight-next-line */}
+            <UnsavedChangesNotifier />
         </Refine>
     );
 }
@@ -405,11 +408,11 @@ This function can be used to parse the query parameters of a table page. It can 
 
 In Remix you can achieve authentication control in multiple ways;
 
-You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@pankod/refine-core` to protect your pages from unauthorized access.
+You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthorized access.
 
 Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
-Using a server side approach is recommended but you can use any approach you want. 
+Using a server side approach is recommended but you can use any approach you want.
 
 There are two ways to do Server Side Authentication with Remix. You can choose one of the two methods according to your use case.
 
@@ -424,13 +427,12 @@ You can use `:param` syntax to define parameters in your routes.
 
 ### How to make SSR work?
 
-You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can use `loader` function and pass the data to your page as a prop. 
+You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can use `loader` function and pass the data to your page as a prop.
 
 All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
 
 ```tsx
-
-import { useList } from "@pankod/refine";
+import { useList } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
 
 import { dataProvider } from "src/providers";
@@ -439,7 +441,7 @@ type IPost = {
     id: number;
     title: string;
     description: string;
-}
+};
 
 export async function loader() {
     const { data } = await dataProvider.getList<IPost>("posts", {
@@ -455,17 +457,15 @@ export async function loader() {
 export default function Posts() {
     const initialPosts = useLoaderData<typeof loader>();
 
-    const { tableQueryResult: { data } } = useTable<IPost>({
+    const {
+        tableQueryResult: { data },
+    } = useTable<IPost>({
         queryOptions: {
             initialData: initialPosts,
-        }
+        },
     });
 
-    return (
-        <>
-            {/* ... */}
-        </>
-    );
+    return <>{/* ... */}</>;
 }
 ```
 
@@ -476,8 +476,8 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 ```tsx
 import { json, LoaderFunction } from "@remix-run/node";
 // highligt-next-line
-import { parseTableParams } from "@pankod/refine-remix-router";
-import dataProvider from "@pankod/refine-simple-rest";
+import { parseTableParams } from "@refinedev/remix-router";
+import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -501,11 +501,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 };
 
 export default function MyListRoute() {
-    return (
-        <>
-            {/* ... */}
-        </>
-    );
+    return <>{/* ... */}</>;
 }
 ```
 
@@ -516,7 +512,7 @@ export default function MyListRoute() {
 First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][authprovider].
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
     {
@@ -669,7 +665,7 @@ Now let's create our login page
 
 ```tsx title="app/routes/login.tsx"
 import React from "react";
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@refinedev/core";
 
 import { login, createUserSession } from "~/session.server";
 import { ActionFunction } from "@remix-run/node";
@@ -809,7 +805,7 @@ npm i -D @types/js-cookie
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 // highlight-start
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
@@ -951,7 +947,7 @@ export default function NotFound() {
         <Authenticated>
             <div>I'm the 404 page for the authenticated users.</div>
         </Authenticated>
-    )
+    );
 }
 ```
 
@@ -963,7 +959,7 @@ export default function NotFound() {
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [remix]: https://remix.run/
-[remixrouter]: https://www.npmjs.com/package/@pankod/remix-router
+[remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
 [refine]: /api-reference/core/components/refine-config.md
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
 [usetable]: /docs/api-reference/core/hooks/useTable

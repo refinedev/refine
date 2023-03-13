@@ -19,10 +19,10 @@ Some of the changes are:
 
 :::info A little more clarification
 
-| **refine** package                | Ant Design version |
-| --------------------------------- | ------------------ |
-| &#64;pankod/refine-antd&#64;3.x.x | antd&#64;4.x.x     |
-| &#64;pankod/refine-antd&#64;4.x.x | antd&#64;5.x.x     |
+| **refine** package            | Ant Design version |
+| ----------------------------- | ------------------ |
+| &#64;refinedev/antd&#64;3.x.x | antd&#64;4.x.x     |
+| &#64;refinedev/antd&#64;4.x.x | antd&#64;5.x.x     |
 
 :::
 

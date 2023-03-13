@@ -22,7 +22,7 @@ type DocgenContent = Record<string, Record<string, DeclarationType>>;
 /** CONSTANTS */
 const packagesDir = path.join(__dirname, "./../..", "./packages");
 
-const packagePrefix = "@pankod";
+const packagePrefix = "@refinedev";
 
 const sourceDir = "./src";
 
@@ -191,7 +191,7 @@ const getOutputFileName = (packageName: string, dir: string) => {
 const declarationFilter = (declaration: ParentType) => {
     return (
         !declaration.fileName.includes("node_modules") ||
-        declaration.fileName.includes("@pankod")
+        declaration.fileName.includes("@refinedev")
     );
 };
 

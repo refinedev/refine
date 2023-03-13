@@ -9,7 +9,7 @@ sidebar_label: useParsed 🆕
 ## Basic Usage
 
 ```tsx
-import { useParsed } from "@pankod/refine-core";
+import { useParsed } from "@refinedev/core";
 
 const MyComponent = () => {
     const {
@@ -22,8 +22,8 @@ const MyComponent = () => {
             sorters,
             current,
             pageSize,
-            ...restParams, // Any other parameters are also parsed and available in `params`
-        }
+            ...restParams // Any other parameters are also parsed and available in `params`
+        },
     } = useParsed();
 
     /* ... */
