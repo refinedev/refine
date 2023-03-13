@@ -17,7 +17,7 @@
     "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
     "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
-    "prepare": "npm run build",
+    "prepare": "npm run build"
   },
   "author": "refine",
   "module": "dist/esm/index.js",
