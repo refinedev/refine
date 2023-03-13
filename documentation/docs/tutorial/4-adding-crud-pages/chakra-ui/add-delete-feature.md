@@ -67,7 +67,9 @@ When we define a resource, we can enable the delete feature on the show page and
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -90,20 +92,27 @@ const App = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider}
                     resources={[
                         {
                             name: "products",
                             // highlight-start
                             meta: {
-                                canDelete: true
-                            }
+                                canDelete: true,
+                            },
                             // highlight-end
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     {/* ... */}
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>

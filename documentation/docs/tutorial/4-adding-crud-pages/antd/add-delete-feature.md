@@ -55,12 +55,10 @@ When we define a resource, we can enable the delete feature on the show page and
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
-import routerBindings from "@refinedev/react-router-v6";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter } from "react-router-dom";
@@ -84,13 +82,18 @@ const App: React.FC = () => {
                         name: "products",
                         // highlight-start
                         meta: {
-                            canDelete: true
-                        }
+                            canDelete: true,
+                        },
                         // highlight-end
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 {/* ... */}
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

@@ -29,25 +29,25 @@ The tutorial content will continue as if it were the **Ant Design** selection.
 
 <UIConditional is="chakra-ui">
 
-The tutorial content will continue as if it were the **Chakra UI** selection.
+The tutorial content will continue as if the **Chakra UI** option has been selected.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-The tutorial content will continue as if it were the **headless** selection.
+The tutorial content will continue as if the **headless** option has been selected.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-The tutorial content will continue as if it were the **Mantine** selection.
+The tutorial content will continue as if the **Mantine** option has been selected.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-The tutorial content will continue as if it were the **Material UI*** selection.
+The tutorial content will continue as if the **Material UI** option has been selected.
 
 </UIConditional>
 

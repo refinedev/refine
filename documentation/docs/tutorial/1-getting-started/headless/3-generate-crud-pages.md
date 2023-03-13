@@ -77,7 +77,9 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
@@ -97,17 +99,28 @@ const App = () => {
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     {/* highlight-start */}
                     <Route path="products">
                         <Route index element={<HeadlessInferencer />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
@@ -146,7 +159,9 @@ setInitialRoutes(["/products"]);
 
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
@@ -166,17 +181,28 @@ const App = () => {
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     {/* highlight-start */}
                     <Route path="products">
                         <Route index element={<HeadlessInferencer />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
@@ -196,7 +222,9 @@ setInitialRoutes(["/products/create"]);
 
 import { Refine } from "@refinedev/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
@@ -215,17 +243,28 @@ const App = () => {
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     {/* highlight-start */}
                     <Route path="products">
                         <Route index element={<HeadlessInferencer />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
@@ -244,7 +283,9 @@ setInitialRoutes(["/products/edit/123"]);
 
 import { Refine } from "@refinedev/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
@@ -263,17 +304,28 @@ const App = () => {
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     {/* highlight-start */}
                     <Route path="products">
                         <Route index element={<HeadlessInferencer />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
@@ -292,7 +344,9 @@ setInitialRoutes(["/products/show/123"]);
 
 import { Refine } from "@refinedev/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
@@ -311,17 +365,28 @@ const App = () => {
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     {/* highlight-start */}
                     <Route path="products">
                         <Route index element={<HeadlessInferencer />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

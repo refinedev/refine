@@ -52,10 +52,18 @@ const App = () => {
                 ]}
             >
                 <Routes>
-                    <Route path="/products" element={<HeadlessInferencer />} />
-                    <Route path="/products/show/:id" element={<HeadlessInferencer />} />
-                    <Route path="/products/edit/:id" element={<HeadlessInferencer />} />
-                    <Route path="/products/create" element={<HeadlessInferencer />} />
+                    <Route path="/products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -157,7 +165,6 @@ import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 //highlight-next-line
@@ -172,6 +179,7 @@ const App = () => {
                 resources={[
                     {
                         name: "products",
+                        // highlight-next-line
                         list: "/products",
                         show: "/products/show/:id",
                         create: "/products/create",
@@ -183,8 +191,14 @@ const App = () => {
                     <Route path="products">
                         {/* highlight-next-line */}
                         <Route index element={<ProductList />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                 </Routes>

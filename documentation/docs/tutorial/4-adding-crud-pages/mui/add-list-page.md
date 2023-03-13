@@ -68,17 +68,26 @@ const App: React.FC = () => {
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 <Route path="products">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
@@ -203,7 +212,6 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 //highlight-next-line
@@ -234,18 +242,27 @@ const App: React.FC = () => {
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 <Route path="products">
                                     {/* highlight-next-line */}
                                     <Route index element={<ProductList />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
