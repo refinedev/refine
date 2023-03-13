@@ -1,5 +1,69 @@
 # @pankod/refine-react-hook-form
 
+## 4.0.0
+
+### Major Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    All `react-hook-form` imports re-exported from `@refinedev/react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
+
+    If the package is not installed, you can install it with your package manager:
+
+    ```bash
+    npm install react-hook-form
+    # or
+    pnpm add react-hook-form
+    # or
+    yarn add react-hook-form
+    ```
+
+    After that, you can import them from `react-hook-form` package directly.
+
+    ```diff
+    - import { useForm, Controller } from "@refinedev/react-hook-form";
+
+    + import { useForm } from "@refinedev/react-hook-form";
+    + import { Controller } from "react-hook-form";
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated the components to match the changes in routing system of `@refinedev/core`.
+
+    ## `meta` property in components
+
+    This includes `meta` props in buttons and `Sider` component. `meta` property can be used to pass additional parameters to the navigation paths.
+
+    For a `posts` resource definition like this:
+
+    ```tsx
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/:authorId/posts/:id",
+            }
+        ]}
+    >
+    ```
+
+    You can pass `authorId` to the `ShowButton` component like this:
+
+    ```tsx
+    <ShowButton resource="posts" id="1" meta={{ authorId: 123 }}>
+    ```
+
+    This will navigate to `/123/posts/1` path.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
 ## 3.38.0
 
 ### Minor Changes

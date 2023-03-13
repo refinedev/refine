@@ -1,5 +1,133 @@
 # @pankod/refine-mantine
 
+## 2.0.0
+
+### Major Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `meta` prop is added. To ensure backward compatibility, `metaData` prop will be used if `meta` prop is not provided.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated the components to match the changes in routing system of `@refinedev/core`.
+
+    ## `meta` property in components
+
+    This includes `meta` props in buttons and `Sider` component. `meta` property can be used to pass additional parameters to the navigation paths.
+
+    For a `posts` resource definition like this:
+
+    ```tsx
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/:authorId/posts/:id",
+            }
+        ]}
+    >
+    ```
+
+    You can pass `authorId` to the `ShowButton` component like this:
+
+    ```tsx
+    <ShowButton resource="posts" id="1" meta={{ authorId: 123 }}>
+    ```
+
+    This will navigate to `/123/posts/1` path.
+
+    ## `syncWithLocation` support in `useModalForm` hook
+
+    `useModalForm` hook now support `syncWithLocation` prop. This prop can be used to sync the visibility state of them with the location via query params.
+
+    You can pass a boolean or an object with `key` and `syncId` properties.
+
+    -   `key` is used to define the query param key. Default value is inferred from the resource and the action. For example `posts-create` for `posts` resource and `create` action.
+
+    -   `syncId` is used to include the `id` property in the query param key. Default value is `false`. This is useful for `edit` and `clone` actions.
+
+    ## Removed props
+
+    `ignoreAccessControlProvider` prop is removed from buttons.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    -   `useSelect`'s `sort` prop is now deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useSelect({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    -   `<ReadyPage>` isnow deprecated.
+    -   Created a `<WelcomePage>` component to welcome users.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    ## 🪄 Migrating your project automatically with refine-codemod ✨
+
+    [`@refinedev/codemod`](https://github.com/refinedev/refine/tree/master/packages/codemod) package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
+
+    Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+
+    ```sh
+    npx @refinedev/codemod refine3-to-refine4
+    ```
+
+    And it's done. Now your project uses `refine@4.x.x`.
+
+    ## 📝 Changelog
+
+    All **Mantine** components re-exported from `@refinedev/mantine` have been removed. You should import them from Mantine packages directly.
+
+    If the packages are not installed, you can install them with your package manager:
+
+    > You don't have to install all of these packages below. Only install the packages you use.
+
+    ```bash
+    npm install @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
+    # or
+    pnpm add @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
+    # or
+    yarn add @mantine/core@5 @emotion/react @mantine/hooks@5 @mantine/notifications@5 @mantine/form@5
+    ```
+
+    After that, you can import them from related packages directly.
+
+    ```diff
+    - import {
+    -    MantineProvider,
+    -    NotificationsProvider,
+    -    TextInput,
+    -    Select,
+    -    List,
+    -    useSelect,
+    - } from "@refinedev/mantine";
+
+    + import { useSelect, List } from "@refinedev/mantine";
+    + import { MantineProvider, TextInput, Select } from "@mantine/core";
+    + import { NotificationsProvider } from "@mantine/notifications";
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Added legacy auth provider and new auth provider support to all components and hooks.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated buttons with `resource` property. `resourceNameOrRouteName` is now deprecated but kept working until next major version.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
 ## 1.16.0
 
 ### Minor Changes
