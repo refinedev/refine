@@ -501,7 +501,7 @@ useList({
 
 :::caution
 
-Before upgrading to **refine@4**, it is necessary to first upgrade from "@refinedev/antd@3.x.x" to "@refinedev/antd@4.x.x"
+Before upgrading to **refine&#64;4**, it is necessary to first upgrade from "&#64;refinedev/antd&#64;3.x.x" to "&#64;refinedev/antd&#64;4.x.x"
 
 [Refer to the Antd Design Migration Guide for detailed information. →](docs/api-reference/antd/migration-guide/v4-to-v5/)
 
