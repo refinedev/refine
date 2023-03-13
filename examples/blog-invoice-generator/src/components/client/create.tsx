@@ -1,5 +1,6 @@
+import { Create, useSelect, useModalForm } from "@refinedev/antd";
+
 import {
-    Create,
     Drawer,
     DrawerProps,
     Form,
@@ -8,10 +9,8 @@ import {
     ButtonProps,
     Grid,
     Select,
-    useSelect,
-    useModalForm,
     Button,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";

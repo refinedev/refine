@@ -1,16 +1,16 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
-    Table,
     TextField,
     useTable,
     getDefaultSortOrder,
-    Space,
     EditButton,
     DeleteButton,
     TagField,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space } from "antd";
 
 import { ICompany } from "interfaces";
 

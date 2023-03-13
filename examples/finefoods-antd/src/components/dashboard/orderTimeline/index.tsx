@@ -1,12 +1,12 @@
-import { useTranslate, useNavigation } from "@pankod/refine-core";
+import { useTranslate, useNavigation } from "@refinedev/core";
+import { useSimpleList } from "@refinedev/antd";
 import {
     Typography,
-    useSimpleList,
-    AntdList,
+    List as AntdList,
     Tooltip,
     ConfigProvider,
     theme,
-} from "@pankod/refine-antd";
+} from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -35,7 +35,6 @@ export const OrderTimeline: React.FC = () => {
         ],
         pagination: {
             pageSize: 6,
-            simple: true,
         },
         syncWithLocation: false,
     });
@@ -86,7 +85,13 @@ export const OrderTimeline: React.FC = () => {
     };
 
     return (
-        <AntdList {...listProps}>
+        <AntdList
+            {...listProps}
+            pagination={{
+                ...listProps.pagination,
+                simple: true,
+            }}
+        >
             <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm }}>
                 <Timeline>
                     {dataSource?.map(

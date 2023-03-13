@@ -19,16 +19,16 @@ Some of the changes are:
 
 :::info A little more clarification
 
-| **refine** package                | Ant Design version |
-| --------------------------------- | ------------------ |
-| &#64;pankod/refine-antd&#64;3.x.x | antd&#64;4.x.x     |
-| &#64;pankod/refine-antd&#64;4.x.x | antd&#64;5.x.x     |
+| **refine** package                                               | Ant Design version |
+| ---------------------------------------------------------------- | ------------------ |
+| &#64;pankod/refine-antd&#64;3.x.x                                | antd&#64;4.x.x     |
+| &#64;pankod/refine-antd&#64;4.x.x, &#64;refinedev/antd&#64;5.x.x | antd&#64;5.x.x     |
 
 :::
 
 ## Updating the packages
 
-[`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) must be updated to `4.x.x`
+[`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) must be updated to `4.x.x`
 
 <Tabs
 defaultValue="refine-cli"
@@ -52,7 +52,7 @@ npm run refine update
 <TabItem value="manual">
 
 ```bash
-npm i @pankod/refine-antd@latest
+npm i @refinedev/antd@latest
 ```
 
 </TabItem>
@@ -61,15 +61,15 @@ npm i @pankod/refine-antd@latest
 
 ## 🪄 Migrating your project automatically with Codemod ✨ (recommended)
 
-`@pankod/refine-codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) version from 3.x.x to 4.x.x.
+`@refinedev/codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) version from 3.x.x to 4.x.x.
 
 Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
 
 ```sh
-npx @pankod/refine-codemod antd4-to-antd5
+npx @refinedev/codemod antd4-to-antd5
 ```
 
-And it's done. Now your project uses `@pankod/refine-antd@4.x.x`.
+And it's done. Now your project uses `@refinedev/antd@4.x.x`.
 
 > 🚨 Customized or swizzled [components](#customized-sider) and [.less](#less-users) files cannot be migrated automatically. You need to migrate them manually.
 
@@ -77,16 +77,16 @@ And it's done. Now your project uses `@pankod/refine-antd@4.x.x`.
 
 ### Updating Imports
 
--   CSS files are no longer included in package. Since CSS-in-JS supports importing on demand, the original `styles/antd.less` has also been abandoned. If you need to reset some basic styles, please import `@pankod/refine-antd/dist/reset.css`
+-   CSS files are no longer included in package. Since CSS-in-JS supports importing on demand, the original `styles/antd.less` has also been abandoned. If you need to reset some basic styles, please import `@refinedev/antd/dist/reset.css`
 
 ```diff title="App.tsx"
-- import "@pankod/refine-antd/dist/styles.min.css";
-+ import "@pankod/refine-antd/dist/reset.css";
+- import "@refinedev/antd/dist/styles.min.css";
++ import "@refinedev/antd/dist/reset.css";
 ```
 
 ### Updating Props
 
-`actionButtons` and `pageHeaderProps` props was deprecated on `@pankod/refine-antd@3.x.x` and removed on `@pankod/refine-antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to incosistency with all UI packages. Use `headerButtons` and `headerProps` props instead.
+`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to incosistency with all UI packages. Use `headerButtons` and `headerProps` props instead.
 
 ```diff title="List.tsx"
 - <List actionButtons={actionButtons} pageHeaderProps={pageHeaderProps}>
@@ -162,7 +162,7 @@ Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to 
 
 ### Compile errors
 
-Some users repored ([issue#1](https://discord.com/channels/837692625737613362/1056236230641209396/1056236230641209396), [issue#2](https://discord.com/channels/837692625737613362/1056592183702061177/1056592183702061177)) compile errors after upgrading from `@pankod/refine-antd@3.x.x` to `@pankod/refine-antd@4.x.x`. They also provided solutions.
+Some users repored ([issue#1](https://discord.com/channels/837692625737613362/1056236230641209396/1056236230641209396), [issue#2](https://discord.com/channels/837692625737613362/1056592183702061177/1056592183702061177)) compile errors after upgrading from `@refinedev/antd@3.x.x` to `@refinedev/antd@4.x.x`. They also provided solutions.
 
 #### Solution 1
 

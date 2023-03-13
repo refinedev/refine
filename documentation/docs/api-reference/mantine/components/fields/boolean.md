@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -17,18 +17,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -82,11 +82,13 @@ Let's see how we can use `<BooleanField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, Table, Pagination, BooleanField } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { List, BooleanField } from "@refinedev/mantine";
+import { Table, Pagination } from "@mantine/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { IconX, IconCheck } from "@tabler/icons";
 
 const PostList: React.FC = () => {
@@ -199,7 +201,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
+<PropsTable module="@refinedev/mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
 
 :::tip External Props
 It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip/?t=props).

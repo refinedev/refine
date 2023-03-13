@@ -1,14 +1,14 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    ConfigProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { ConfigProvider } from "antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -16,25 +16,56 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ConfigProvider direction={"rtl"}>
+        <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </ConfigProvider>
+            <ConfigProvider direction={"rtl"}>
+                <Refine
+                    dataProvider={dataProvider(API_URL)}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
+        </BrowserRouter>
     );
 };
 

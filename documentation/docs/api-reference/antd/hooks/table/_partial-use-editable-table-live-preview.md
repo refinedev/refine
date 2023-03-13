@@ -2,27 +2,21 @@
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps } from "@pankod/refine-core";
-
 import {
     List,
-    Table,
-    Form,
-    Space,
-    Button,
     SaveButton,
     EditButton,
-    Input,
     TextField,
     useEditableTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table, Form, Space, Button, Input } from "antd";
 
 interface IPost {
     id: number;
     title: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const {
         tableProps,
         formProps,

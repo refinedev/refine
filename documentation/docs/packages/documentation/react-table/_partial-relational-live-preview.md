@@ -10,8 +10,9 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, HttpError, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, HttpError, useMany } from "@refinedev/core";
 
 interface ICategory {
     id: number;

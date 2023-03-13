@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { cardType, ColumnTypes } from "./constants/enums";
-import { Card } from "@pankod/refine-antd";
+import { Card } from "antd";
 
 type obj = {
     name: {};

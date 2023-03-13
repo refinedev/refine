@@ -1,7 +1,9 @@
 import React from "react";
-import type { RefineProps } from "@pankod/refine-core";
+import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineChakra from "@pankod/refine-chakra-ui";
+import * as RefineChakra from "@refinedev/chakra-ui";
+import * as ChakraUI from "@chakra-ui/react";
+import * as ReactHookForm from "react-hook-form";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -15,9 +17,11 @@ const RefineChakraDemo: React.FC<
     }
 
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             <RefineCommonScope.RefineCore.Refine
-                routerProvider={RefineCommonScope.RefineReactRouterV6.default}
+                legacyRouterProvider={
+                    RefineCommonScope.LegacyRefineReactRouterV6.default
+                }
                 dataProvider={RefineCommonScope.RefineSimpleRest.default(
                     SIMPLE_REST_API_URL,
                 )}
@@ -33,7 +37,7 @@ const RefineChakraDemo: React.FC<
                 }}
                 {...rest}
             />
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
@@ -47,6 +51,8 @@ const AntdScope = {
     // RefineMantineDemo,
     RefineChakra,
     RefineChakraDemo,
+    ChakraUI,
+    ReactHookForm,
     // // Other Packages
     // RefineReactHookForm,
     // RefineReactTable,

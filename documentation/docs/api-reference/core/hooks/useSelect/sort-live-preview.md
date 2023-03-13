@@ -1,7 +1,7 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { useSelect } from "@pankod/refine-core";
+import { useSelect } from "@refinedev/core";
 
 interface ICategory {
     id: number;
@@ -13,17 +13,17 @@ const ProductCreate: React.FC = () => {
     const { options } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
     return (
-        <> 
+        <>
             <label>
                 Select a category:
                 <select>
@@ -33,10 +33,13 @@ const ProductCreate: React.FC = () => {
                         </option>
                     ))}
                 </select>
-                <button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle</button>
-            </label>            
+                <button
+                    onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+                >
+                    Toggle
+                </button>
+            </label>
         </>
-        
     );
 };
 // visible-block-end

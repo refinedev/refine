@@ -1,20 +1,18 @@
-import { useMany, useCan } from "@pankod/refine-core";
+import { useMany, useCan } from "@refinedev/core";
 
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     FilterDropdown,
     useSelect,
-    Select,
-    Radio,
     TagField,
     NumberField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space, Select, Radio } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 

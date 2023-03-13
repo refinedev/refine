@@ -1,48 +1,86 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
-    CssBaseline,
-    GlobalStyles,
     RefineSnackbarProvider,
     notificationProvider,
-} from "@pankod/refine-mui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { PostsList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "pages/posts";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts";
 
 const App: React.FC = () => {
     return (
-        <ColorModeContextProvider>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <GitHubBanner />
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    Header={Header}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostsList,
-                            create: PostCreate,
-                            edit: PostEdit,
-                        },
-                    ]}
+        <BrowserRouter>
+            <GitHubBanner />
+            <ColorModeContextProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
                 />
-            </RefineSnackbarProvider>
-        </ColorModeContextProvider>
+                <RefineSnackbarProvider>
+                    <Refine
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout Header={Header}>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                </Route>
+
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ColorModeContextProvider>
+        </BrowserRouter>
     );
 };
 

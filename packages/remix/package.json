@@ -1,11 +1,34 @@
 {
-  "name": "@pankod/refine-remix-router",
+  "name": "@refinedev/remix-router",
   "description": "refine Remix router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "1.8.0",
   "license": "MIT",
+  "private": false,
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "private": false,
+  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    },
+    "./legacy": {
+      "types": "./dist/legacy/index.d.ts",
+      "import": "./dist/esm/legacy.js",
+      "require": "./dist/legacy.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/index.d.ts"
+      ],
+      "legacy": [
+        "dist/legacy/index.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist",
     "src"
@@ -17,13 +40,11 @@
     "start": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife  --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
-    "prepare": "npm run build",
-    "postinstall": "echo \"refine v4 is released 🎉 \nThe new version is 100% backward compatible. You can upgrade to v4 with a single command! \nSee the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x \n\""
+    "prepare": "npm run build"
   },
   "author": "refine",
-  "module": "dist/esm/index.js",
   "devDependencies": {
-    "@pankod/refine-core": "^3.102.0",
+    "@refinedev/core": "^3.101.2",
     "remix": "^1.6.7",
     "@remix-run/react": "^1.6.7",
     "@remix-run/node": "^1.6.7",
@@ -36,8 +57,11 @@
     "tslib": "^2.3.1",
     "tsup": "^5.11.13"
   },
+  "dependencies": {
+    "qs": "^6.10.1"
+  },
   "peerDependencies": {
-    "@pankod/refine-core": "^3.23.2",
+    "@refinedev/core": "^3.23.2",
     "remix": "*",
     "@remix-run/react": "*",
     "@remix-run/node": "*",

@@ -1,5 +1,11 @@
 import React from "react";
-import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
+import {
+    RegisterPageProps,
+    RegisterFormTypes,
+    useRouterType,
+    useLink,
+    useActiveAuthProvider,
+} from "@refinedev/core";
 import {
     Row,
     Col,
@@ -14,11 +20,7 @@ import {
     FormProps,
     Divider,
 } from "antd";
-import {
-    useTranslate,
-    useRouterContext,
-    useRegister,
-} from "@pankod/refine-core";
+import { useTranslate, useRouterContext, useRegister } from "@refinedev/core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
@@ -41,9 +43,16 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 }) => {
     const [form] = Form.useForm<RegisterFormTypes>();
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
 
-    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
+    const authProvider = useActiveAuthProvider();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -156,14 +165,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                 "pages.login.buttons.haveAccount",
                                 "Have an account?",
                             )}{" "}
-                            <Link
+                            <ActiveLink
                                 style={{
                                     fontWeight: "bold",
                                 }}
                                 to="/login"
                             >
                                 {translate("pages.login.signin", "Sign in")}
-                            </Link>
+                            </ActiveLink>
                         </Text>
                     )}
                 </div>

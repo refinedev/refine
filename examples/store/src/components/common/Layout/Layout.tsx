@@ -1,5 +1,5 @@
 import cn from "clsx";
-import { GetListResponse, LayoutProps, useList } from "@pankod/refine-core";
+import { GetListResponse, LayoutProps, useList } from "@refinedev/core";
 import dynamic from "next/dynamic";
 import { ProductCollection } from "@medusajs/medusa";
 

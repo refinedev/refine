@@ -14,7 +14,7 @@ describe("pickDataProvider", () => {
         const resources: IResourceItem[] = [
             {
                 name: "resourceName",
-                options: {
+                meta: {
                     dataProviderName: "custom-provider",
                 },
             },
@@ -28,7 +28,7 @@ describe("pickDataProvider", () => {
         const resources: IResourceItem[] = [
             {
                 name: "resourceName",
-                options: {
+                meta: {
                     dataProviderName: "custom-provider",
                 },
             },

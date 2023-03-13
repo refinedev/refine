@@ -1,11 +1,11 @@
 import {
-    Card,
     DeleteButton,
     UrlField,
     EmailField,
     EditButton,
-    Typography,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Card, Typography } from "antd";
 
 import { ICompany } from "interfaces";
 import { API_URL } from "../../constants";

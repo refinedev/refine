@@ -1,6 +1,6 @@
 import React from "react";
-import { Row, Button } from "antd";
-import { pageReadyTests } from "@pankod/refine-ui-tests";
+import { Button } from "antd";
+import { pageReadyTests } from "@refinedev/ui-tests";
 
 import { render } from "@test";
 

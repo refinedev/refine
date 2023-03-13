@@ -3,17 +3,14 @@ import {
     useCreate,
     useGetIdentity,
     useNavigation,
-    useRouterContext,
     useShow,
-} from "@pankod/refine-core";
-import {
-    Button,
-    Typography,
-    Icons,
-    Spin,
-    Modal,
-    useModal,
-} from "@pankod/refine-antd";
+    useParsed,
+    useIsAuthenticated,
+} from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
+
+import { LeftOutlined } from "@ant-design/icons";
+import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -22,16 +19,17 @@ import { colors } from "utility";
 import { Canvas } from "types";
 import { LogList } from "components/logs";
 
-const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
-export const CanvasShow: React.FC = () => {
-    const { Link, useLocation } = useRouterContext();
-    const { pathname } = useLocation();
-    const [color, setColor] = useState<(typeof colors)[number]>("black");
-    const { modalProps, show, close } = useModal();
+type Colors = typeof colors;
 
-    const { data: identity } = useGetIdentity();
+export const CanvasShow: React.FC = () => {
+    const { pathname } = useParsed();
+    const [color, setColor] = useState<Colors[number]>("black");
+    const { modalProps, show, close } = useModal();
+    const { data: identity } = useGetIdentity<any>();
+    const { data: { authenticated } = {} } = useIsAuthenticated();
+
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
@@ -39,8 +37,12 @@ export const CanvasShow: React.FC = () => {
     const { list, push } = useNavigation();
 
     const onSubmit = (x: number, y: number) => {
-        if (!identity) {
-            return push(`/login?to=${encodeURIComponent(pathname)}`);
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
+            }
+
+            return push(`/login`);
         }
 
         if (typeof x === "number" && typeof y === "number" && canvas?.id) {
@@ -53,7 +55,7 @@ export const CanvasShow: React.FC = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
-                metaData: {
+                meta: {
                     canvas,
                 },
                 successNotification: false,

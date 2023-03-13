@@ -3,30 +3,34 @@ import {
     useMany,
     CrudFilters,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     useSelect,
+    DateField,
+} from "@refinedev/antd";
+
+import { SearchOutlined } from "@ant-design/icons";
+
+import {
+    Table,
+    Space,
     Form,
     Input,
     Button,
     DatePicker,
-    DateField,
     Card,
-    Icons,
     Select,
     Tag,
     FormProps,
     Row,
     Col,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 
@@ -180,7 +184,7 @@ const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
             <Form.Item label="Search" name="q">
                 <Input
                     placeholder="ID, Title, Content, etc."
-                    prefix={<Icons.SearchOutlined />}
+                    prefix={<SearchOutlined />}
                 />
             </Form.Item>
             <Form.Item label="Status" name="status">

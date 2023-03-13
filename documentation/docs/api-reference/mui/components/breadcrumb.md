@@ -1,6 +1,7 @@
 ---
 id: mui-breadcrumb
 title: Breadcrumb
+sidebar_label: Breadcrumb 🆙
 swizzle: true
 ---
 
@@ -12,7 +13,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mui";
+import { Show, Breadcrumb } from "@refinedev/mui";
 
 const PostShow: React.FC = () => {
     return (
@@ -72,6 +73,14 @@ render(
 );
 ```
 
+:::info Legacy Behavior (Dashboard Page)
+
+In earlier versions of **refine**, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **refine**, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
+
+In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
+
+:::
+
 ## Properties
 
 ### `breadcrumbProps`
@@ -79,7 +88,7 @@ render(
 `<Breadcrumb>` component uses the Material UI [Breadcrumb][mui-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
     return (
@@ -92,13 +101,39 @@ export const PostList: React.FC = () => {
 
 ### `showHome`
 
-If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
+If you have a page with route `/`, it will be used as the root of the hierarchy and shown in the `Breadcrumb` with a home icon. To hide the root item, set `showHome` to `false.`
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    return <List breadcrumb={<Breadcrumb showHome={false} />}>...</List>;
+    return (
+        <List
+            // highlight-next-line
+            breadcrumb={<Breadcrumb showHome={true} />}
+        >
+            ...
+        </List>
+    );
+};
+```
+
+### `meta`
+
+If your routes has additional parameters in their paths, you can pass the `meta` property to the `<Breadcrumb>` component to use them while creating the paths and filling the parameters in the paths. By default, existing URL parameters are used. You can use `meta` to override them or add new ones.
+
+```tsx
+import { List, Breadcrumb } from "@refinedev/mui";
+
+export const PostList: React.FC = () => {
+    return (
+        <List
+            // highlight-next-line
+            breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
+        >
+            ...
+        </List>
+    );
 };
 ```
 
@@ -107,7 +142,7 @@ export const PostList: React.FC = () => {
 If you don't want to show the resource icons on the breadcrumb, you can set `hideIcons` to `true`.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
     return (
@@ -119,7 +154,7 @@ export const PostList: React.FC = () => {
 ## API Reference
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/Breadcrumb"
+<PropsTable module="@refinedev/mui/Breadcrumb"
 breadcrumbProps-type="[BreadcrumbProps](https://mui.com/material-ui/react-breadcrumbs/#main-content)"
 breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://mui.com/material-ui/react-breadcrumbs/#api)"
 />

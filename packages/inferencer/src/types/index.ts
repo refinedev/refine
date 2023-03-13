@@ -1,4 +1,4 @@
-import { IResourceItem } from "@pankod/refine-core";
+import { IResourceItem } from "@refinedev/core";
 import React from "react";
 
 export type InferType =

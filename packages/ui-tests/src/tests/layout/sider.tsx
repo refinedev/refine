@@ -1,9 +1,10 @@
 import React from "react";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutSiderProps } from "@refinedev/ui-types";
 
 import { act, render, TestWrapper, waitFor } from "@test";
+import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
 
-const mockAuthProvider = {
+const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
     login: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
@@ -13,10 +14,18 @@ const mockAuthProvider = {
     isProvided: true,
 };
 
+const mockAuthProvider: AuthBindings = {
+    check: () => Promise.resolve({ authenticated: true }),
+    login: () => Promise.resolve({ success: true }),
+    logout: () => Promise.resolve({ success: true }),
+    getPermissions: () => Promise.resolve(["admin"]),
+    onError: () => Promise.resolve({}),
+};
+
 export const layoutSiderTests = function (
     SiderElement: React.ComponentType<RefineLayoutSiderProps>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Sider Element", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
         it("should render successful", async () => {
             const { container } = render(<SiderElement />, {
                 wrapper: TestWrapper({}),
@@ -28,7 +37,7 @@ export const layoutSiderTests = function (
         it("should render logout menu item successful", async () => {
             const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
-                    authProvider: mockAuthProvider,
+                    legacyAuthProvider: mockLegacyAuthProvider,
                 }),
             });
 
@@ -41,7 +50,7 @@ export const layoutSiderTests = function (
         it("should work menu item click", async () => {
             const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
-                    authProvider: mockAuthProvider,
+                    legacyAuthProvider: mockLegacyAuthProvider,
                 }),
             });
 
@@ -51,10 +60,33 @@ export const layoutSiderTests = function (
             );
         });
 
+        // NOTE : Will be removed in v5
+        it("should work legacy logout menu item click", async () => {
+            const logoutMockedAuthProvider = {
+                ...mockLegacyAuthProvider,
+                logout: jest.fn().mockImplementation(() => Promise.resolve()),
+            };
+            const { getAllByText } = render(<SiderElement />, {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: logoutMockedAuthProvider,
+                }),
+            });
+
+            await act(async () => {
+                getAllByText("Logout")[0].click();
+            });
+
+            expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
+        });
+
         it("should work logout menu item click", async () => {
             const logoutMockedAuthProvider = {
                 ...mockAuthProvider,
-                logout: jest.fn().mockImplementation(() => Promise.resolve()),
+                logout: jest
+                    .fn()
+                    .mockImplementation(() =>
+                        Promise.resolve({ success: true }),
+                    ),
             };
             const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
@@ -120,7 +152,7 @@ export const layoutSiderTests = function (
                 />,
                 {
                     wrapper: TestWrapper({
-                        authProvider: mockAuthProvider,
+                        legacyAuthProvider: mockLegacyAuthProvider,
                         DashboardPage: function Dashboard() {
                             return <div>Dashboard</div>;
                         },

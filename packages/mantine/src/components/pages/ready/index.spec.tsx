@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mantine/core";
-import { pageReadyTests } from "@pankod/refine-ui-tests";
+import { pageReadyTests } from "@refinedev/ui-tests";
 
 import { render } from "@test";
 

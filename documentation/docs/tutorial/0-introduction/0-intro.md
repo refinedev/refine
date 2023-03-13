@@ -9,14 +9,14 @@ tutorial:
 
 ## About this Tutorial
 
-In this tutorial, you'll learn how to use **refine** by building a fully-functioning CRUD app, from scratch to full launch! 🚀
+This tutorial will guide you through the process of building a fully-functional CRUD app using **refine**. From setting up your development environment to launching your app, you will learn all the necessary steps to get started with **refine**. 🚀
 
 We'll cover the following topics:
 
 -   Setting up your development environment
--   Create your first refine app
--   Understanding the [`dataProvider`](/docs/api-reference/core/providers/data-provider/)
--   What is the [`resources`](docs/api-reference/core/components/refine-config.md#resources) concept
+-   Create your first **refine** app
+-   Understanding [`dataProvider`](/docs/api-reference/core/providers/data-provider/)
+-   The concept of resources [`resources`](docs/api-reference/core/components/refine-config.md#resources)
 -   Adding CRUD pages
 <!-- -   Understanding the `authProvider` -->
 

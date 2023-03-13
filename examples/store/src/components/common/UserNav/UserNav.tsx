@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthenticated } from "@pankod/refine-core";
+import { useIsAuthenticated } from "@refinedev/core";
 import cn from "clsx";
 import Link from "next/link";
 import { LineItem } from "@medusajs/medusa";
@@ -27,7 +27,7 @@ export const UserNav: React.FC<{
     const countItem = (count: number, item: LineItem) => count + item.quantity;
 
     const itemsCount = cart?.items.reduce(countItem, 0) ?? 0;
-    const { isSuccess } = useAuthenticated();
+    const { isSuccess } = useIsAuthenticated();
 
     const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
         useUI();

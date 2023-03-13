@@ -1,12 +1,17 @@
 import { IQueryKeys } from "src/interfaces";
 import { QueryKey } from "@tanstack/react-query";
 
-import { MetaDataQuery } from "src/interfaces";
+import { MetaQuery } from "src/interfaces";
+import { pickNotDeprecated } from "../pickNotDeprecated";
 
 export const queryKeys = (
     resource?: string,
     dataProviderName?: string,
-    metaData?: MetaDataQuery | undefined,
+    meta?: MetaQuery,
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery | undefined,
 ): IQueryKeys => {
     const providerName = dataProviderName || "default";
     const keys: IQueryKeys = {
@@ -15,20 +20,23 @@ export const queryKeys = (
         list: (config) => [
             ...keys.resourceAll,
             "list",
-            { ...config, ...metaData } as QueryKey,
+            {
+                ...config,
+                ...(pickNotDeprecated(meta, metaData) || {}),
+            } as QueryKey,
         ],
         many: (ids) =>
             [
                 ...keys.resourceAll,
                 "getMany",
                 (ids && ids.map(String)) as QueryKey,
-                { ...metaData } as QueryKey,
+                { ...(pickNotDeprecated(meta, metaData) || {}) } as QueryKey,
             ].filter((item) => item !== undefined),
         detail: (id) => [
             ...keys.resourceAll,
             "detail",
             id?.toString(),
-            { ...metaData } as QueryKey,
+            { ...(pickNotDeprecated(meta, metaData) || {}) } as QueryKey,
         ],
         logList: (meta) =>
             ["logList", resource, meta as any, metaData as QueryKey].filter(

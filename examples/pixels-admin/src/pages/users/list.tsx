@@ -1,8 +1,8 @@
-import React from "react";
-import { useTable, List, Table, Avatar, Icons } from "@pankod/refine-antd";
-import { TUser } from "types/user";
+import { useTable, List } from "@refinedev/antd";
+import { Table, Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
-const { UserOutlined } = Icons;
+import { TUser } from "types/user";
 
 export const UserList = () => {
     const { tableProps } = useTable<TUser>();

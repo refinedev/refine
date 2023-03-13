@@ -1,4 +1,4 @@
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 import { IPost } from "interfaces";
 import { useEffect, useState } from "react";
 

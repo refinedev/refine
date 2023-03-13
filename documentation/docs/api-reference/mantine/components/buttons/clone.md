@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -39,18 +39,18 @@ const ClonePage = () => {
 
     return (
         <div>
-            <RefineMantine.Text italic color="dimmed" size="sm">
+            <MantineCore.Text italic color="dimmed" size="sm">
                 URL Parameters:
-            </RefineMantine.Text>
-            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
-            <RefineMantine.Space h="md" />
-            <RefineMantine.Button
+            </MantineCore.Text>
+            <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+            <MantineCore.Space h="md" />
+            <MantineCore.Button
                 size="xs"
                 variant="outline"
                 onClick={() => list("posts")}
             >
                 Go back
-            </RefineMantine.Button>
+            </MantineCore.Button>
         </div>
     );
 };
@@ -67,11 +67,14 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, Table, Pagination, CloneButton } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { List, CloneButton } from "@refinedev/mantine";
+import { Table, Pagination } from "@mantine/core";
+
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -172,7 +175,7 @@ interface IPost {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -198,10 +201,10 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mantine";
+import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
     return <CloneButton recordItemId="123" />;
@@ -210,7 +213,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -229,34 +232,34 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/123`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 :::note
 **`<CloneButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mantine";
+import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
     return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <CloneButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -278,7 +281,21 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <CloneButton meta={{ authorId: "10" }} />
+    );
+};
+```
 
 ### `hideText`
 
@@ -287,10 +304,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mantine";
+import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
     return <CloneButton hideText />;
@@ -299,7 +316,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -323,15 +340,66 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { CloneButton } from "@pankod/refine-mantine";
+import { CloneButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-    return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <CloneButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { CloneButton } from "@refinedev/mantine";
+
+const MyCloneComponent = () => {
+    return (
+        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            resources={[
+                {
+                    name: "posts",
+                    list: MyCloneComponent,
+                },
+                {
+                    name: "categories",
+                    create: ClonePage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
 
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/CloneButton" />
+<PropsTable module="@refinedev/mantine/CloneButton" />

@@ -1,8 +1,13 @@
 import React from "react";
 import { Button } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-import { useOne, useTranslate, useResource } from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import {
+    useOne,
+    useTranslate,
+    useResource,
+    pickNotDeprecated,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { RefreshButtonProps } from "../types";
 
@@ -13,10 +18,11 @@ import { RefreshButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/refresh-button} for more details.
  */
 export const RefreshButton: React.FC<RefreshButtonProps> = ({
-    resourceName: propResourceName,
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    meta,
     metaData,
     dataProviderName,
     children,
@@ -25,19 +31,18 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { resourceName, id } = useResource({
-        resourceName: propResourceName,
-        resourceNameOrRouteName: propResourceNameOrRouteName,
-        recordItemId,
-    });
+    const { resource, id } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { refetch, isFetching } = useOne({
-        resource: resourceName,
-        id: id ?? "",
+        resource: resource?.name,
+        id: recordItemId ?? id,
         queryOptions: {
             enabled: false,
         },
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode: "off",
         dataProviderName,
     });

@@ -8,25 +8,32 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakr
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 ## Introduction
+
 In building data-intensive applications like React admin dashboards and in-house applications, among others, speed, customizability, and performance are of the essence as these applications are pivotal in the management of most businesses and software. This has led developers to opt for solutions like refine that provide these qualities out of the box.  
 [refine](https://github.com/refinedev/refine) is a React-based framework that helps to build data-intensive applications in due time. It does this by providing hooks, providers, and components that provide room for UI customizability, and data management, as well as easy integration with any custom backend APIs and popular backend services like Strapi, Hasura, etc.
 
 In this React admin panel tutorial, we will be creating an admin application with refine that will be built with [ChakraUI](https://chakra-ui.com/), an enterprise-level React component library, and [Strapi](https://strapi.io/), a popular backend service, as its backend provider.
 
-
-
-
 ## Benefits of using refine
-refine accelerates development by creating a higher abstraction of most functionalities such as routing, data providers, authentication, internationalization, layouts, asynchronous state management, and many others that developers would have to set up from scratch if building the application from the ground up. 
 
-With refine, you have the choice to build your application with a custom design (a headless approach) or a UI component library. refine includes integrations for some component libraries and design systems, like Material UI, Chakra UI, Ant Design, and Mantime. 
+refine accelerates development by creating a higher abstraction of most functionalities such as routing, data providers, authentication, internationalization, layouts, asynchronous state management, and many others that developers would have to set up from scratch if building the application from the ground up.
+
+With refine, you have the choice to build your application with a custom design (a headless approach) or a UI component library. refine includes integrations for some component libraries and design systems, like Material UI, Chakra UI, Ant Design, and Mantime.
 
 It can also be integrated into any REST or GraphQL backend service and includes out-of-the-box support for popular BAAS (backend as a service) such as NestJs CRUD, Airtable, Strapi, Supabase, Altogic, and others.
 
-A peculiarity of refine is that it provides a lot of out-of-the-box functionality for rapid development while still allowing for extreme customization. You can build a variety of applications with refine, and it isn't limited to major use cases like React admin panels, B2B applications, and dashboards. In this React admin tutorial, we will be illustrating how to build a CRUD app with refine. 
+A peculiarity of refine is that it provides a lot of out-of-the-box functionality for rapid development while still allowing for extreme customization. You can build a variety of applications with refine, and it isn't limited to major use cases like React admin panels, B2B applications, and dashboards. In this React admin tutorial, we will be illustrating how to build a CRUD app with refine.
 
 Whether you're a beginner or an experienced developer, this React admin tutorial will walk you through the entire process, step by step, and show you how to integrate Strapi as your backend CMS to create an amazing React admin panel.
 
@@ -36,14 +43,16 @@ Strapi is a free and open-source headless Content Management System built on Nod
 Strapi provides a user-friendly admin panel for content editors to manage content without having to write code, while also providing a flexible content modeling system that can be tailored to fit specific project needs.
 
 ## Constituents of A refine Application
+
 Before delving in to build the CRUD React admin tutorial app, we need to know the constitutents of an refine application.
 
 ### The `<Refine/>` Component
+
 The [`<Refine/>`](https://refine.dev/docs/api-reference/core/components/refine-config/) acts as the entrypoint of the application. it is a component that recieves the configurations passed into it as [react props](https://reactjs.org/docs/components-and-props.html).
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostList } from "pages/posts";
 
@@ -66,18 +75,17 @@ const App: React.FC = () => {
 export default App;
 ```
 
-
 There are a variety of configurations that can be passed into a refine application. they are:
 
-* **DataProvider**: a data provider enables a refine application connect to an external API or service. A dataProvider sends HTTP requests and receives responses via predefined methods.
+-   **DataProvider**: a data provider enables a refine application connect to an external API or service. A dataProvider sends HTTP requests and receives responses via predefined methods.
 
 Here is a sample on how to adding a dataProvider to the refine component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import { authProvider, axiosInstance } from "./authProvider";
-import { DataProvider } from "@pankod/refine-strapi-v4";
- 
+import { DataProvider } from "@refinedev/strapi-v4";
+
 function App() {
  return (
    <Refine
@@ -86,18 +94,16 @@ function App() {
    />
  );
 }
- 
+
 export default App;
 ```
 
+-   **Resources** A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
-* **Resources** A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
-  
-
-* In order to create a resource, we have to pass the resources property which will be an **array** of **objects** with each object specifying the pages route name and the basic operations the pages under that route name can perform which are the list(displaying records from an API or service), create(add or creating a record to an API or service), edit(modifying an existing record from an API or service), show(display a specific record from an API or service) operations. to the `<Refine />` component.
+-   In order to create a resource, we have to pass the resources property which will be an **array** of **objects** with each object specifying the pages route name and the basic operations the pages under that route name can perform which are the list(displaying records from an API or service), create(add or creating a record to an API or service), edit(modifying an existing record from an API or service), show(display a specific record from an API or service) operations. to the `<Refine />` component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -122,14 +128,13 @@ const App: React.FC = () => {
 export default App;
 ```
 
-
 ## Bootstrapping the refine Application
 
 To create our refine application for this article, we will use the `create refine-app` wizard.
 
 `create refine-app` comes with built-in templates for the CRA, Next.js, and Remix environments, allowing you to setup a refine project quickly. It also provides an array of options for automatically configuring your UI framework, i18n, router, authentication, and data provider settings.
 
- In order to use this, execute the following command:
+In order to use this, execute the following command:
 
 ```
 npm create refine-app@latest <name of your application>
@@ -137,14 +142,11 @@ npm create refine-app@latest <name of your application>
 
 You will be directed to the CLI wizard after running the command. To complete the CLI wizard, select the following options:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2Fcli.png"  alt="react admin tutorial" />
 </div>
 
 <br/>
-
-
 
 When these options are selected, the CLI will bootstrap a refine application with the Strapi-v4 provider.
 
@@ -155,7 +157,6 @@ npm run dev
 ```
 
 The refine application should be up and running after you run the command. To access it, go to http://localhost:3000.
-
 
 <div class="img-container">
     <div class="window">
@@ -169,9 +170,9 @@ The refine application should be up and running after you run the command. To ac
 
 <br />
 
-
 ## Utilizing the Strapi v4 Provider in refine
-On installation, since we selected the strapi-v4 data provider, refine adds a fake strapi API url to the data provider of the refine application 
+
+On installation, since we selected the strapi-v4 data provider, refine adds a fake strapi API url to the data provider of the refine application
 
 ```
 https://api.strapi-v4.refine.dev
@@ -187,32 +188,37 @@ It's worth noting that the authProvider's login method is especially important. 
 
 ```ts title="src/authProvider.ts"
 export const authProvider: AuthProvider = {
-  //highlight-start
-  login: async ({ email, password }) => {
-  
-    const { data, status } = await strapiAuthHelper.login(email, password);
-    //highlight-end
-    if (status === 200) {
-      localStorage.setItem(TOKEN_KEY, data.jwt);
+    //highlight-start
+    login: async ({ email, password }) => {
+        const { data, status } = await strapiAuthHelper.login(email, password);
+        //highlight-end
+        if (status === 200) {
+            localStorage.setItem(TOKEN_KEY, data.jwt);
 
-      // set header axios instance
-      axiosInstance.defaults.headers.common = {
-        Authorization: `Bearer ${data.jwt}`,
-      };
+            // set header axios instance
+            axiosInstance.defaults.headers.common = {
+                Authorization: `Bearer ${data.jwt}`,
+            };
 
-      return Promise.resolve();
-    }
-    return Promise.reject();
-  },
-  ...
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
+        return {
+            success: false,
+            error: new Error("Invalid email or password"),
+        };
+    },
+    ...
 };
 ```
 
 ## Implementing CRUD operations on React admin panel
+
 We will implement **CRUD** operations such as listing, creating, and editing records in our React admin tutorial application.
 
 In this article, we describe our React admin tutorial app, which is one that can track the list of posts created, as well as have the functionality of viewing a post as well as updating and deleting a post, respectively.
-
 
 ### Listing records
 
@@ -228,7 +234,7 @@ export interface IPost {
     title: string;
     content: string;
     category: any;
-    publishedAt: string
+    publishedAt: string;
     createdAt: string;
 }
 ```
@@ -245,25 +251,27 @@ import {
     IResourceComponentsProps,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import {
     List,
-    TableContainer,
+    ShowButton,
+    EditButton,
+    DeleteButton,
+    DateField,
+} from "@refinedev/chakra-ui";
+import {
     Table,
     Thead,
+    Tbody,
     Tr,
     Th,
-    Tbody,
     Td,
+    TableContainer,
     HStack,
-    Button,
-    IconButton,
-    usePagination,
-    Box,
-    EditButton,
-    ShowButton,
-} from "@pankod/refine-chakra-ui";
+    Text,
+    Select,
+} from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 import { IPost } from "interfaces";
 
@@ -287,7 +295,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 cell: function render({ getValue, table }) {
                     return (
                         <DateField value={getValue() as string} format="LLL" />
-                    )
+                    );
                 },
             },
             {
@@ -326,7 +334,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     } = useTable({
         columns,
     });
-
 
     setOptions((prev) => ({
         ...prev,
@@ -374,55 +381,52 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     );
 };
 ```
+
 </p>
 </details>
 
-In the code above, we use the [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from the `@pankod/refine-react-table` package to fetch records from Strapi. the `useTable()` maps the records into rows based on the `columns` variable definition.
-
-
+In the code above, we use the [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from the `@refinedev/react-table` package to fetch records from Strapi. the `useTable()` maps the records into rows based on the `columns` variable definition.
 
 After this, we can now add the component `<PostList/>` in the `list.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
-  notificationProvider,
-  ChakraProvider,
-  refineTheme,
-  ReadyPage,
-  ErrorComponent,
-  Layout,
-  AuthPage,
-} from "@pankod/refine-chakra-ui";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+    notificationProvider,
+    refineTheme,
+    ReadyPage,
+    ErrorComponent,
+    Layout,
+    AuthPage,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6";
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
-import { PostList} from './pages/posts';
-
+import { PostList } from "./pages/posts";
 
 function App() {
-  return (
-    <ChakraProvider theme={refineTheme}>
-      <Refine
-        ...
-         // highlight-start
-        LoginPage={AuthPage}
-        resources={[
-          {
-            name: "posts",
-            list: PostList,
-          }
-          // highlight-end
-        ]}
-      />
-    </ChakraProvider>
-  );
+    return (
+        <ChakraProvider theme={refineTheme}>
+            <Refine
+                ...
+                // highlight-start
+                LoginPage={AuthPage}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                    },
+                    // highlight-end
+                ]}
+            />
+        </ChakraProvider>
+    );
 }
 
 export default App;
-
 ```
 
 After adding the rescource, the application will now redirect to the URL specified by the name property.
@@ -434,8 +438,8 @@ It will prompt you to log in to the app. Since we are using refine's `fake strap
 
 Check that the URL is routed to /posts and that posts are present.
 
-
 #### Handling Relationships
+
 When retrieving recorda, relations are not populated. Hence, We will use the `metaData` option to populate the Strapi v4 API with relational data (category data in our case).
 
 [Refer to docs for handling relations with strapi](https://refine.dev/docs/advanced-tutorials/data-provider/strapi-v4/#relations-population)
@@ -465,7 +469,6 @@ const {
 });
 ```
 
-
 To show category field in table, we need to add new column to the PostList component.
 
 ```tsx title="src/pages/posts/list.tsx"
@@ -486,10 +489,6 @@ const columns = React.useMemo<GridColumns<IPost>>(
     );
 ```
 
-
-
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -502,11 +501,9 @@ const columns = React.useMemo<GridColumns<IPost>>(
 
 <br />
 
-
-
 #### Pagination Of Listed Records
-Next, we will add Pagination to our application. in order to achieve this, the `usePagination` hook provides certain functions that handle pagination. They are:
 
+Next, we will add Pagination to our application. in order to achieve this, the `usePagination` hook provides certain functions that handle pagination. They are:
 
 We will go to update the `<PostList/>` component with the code below:
 
@@ -520,10 +517,17 @@ import {
     IResourceComponentsProps,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import {
     List,
+    usePagination,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+    DateField,
+} from "@refinedev/chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -534,11 +538,8 @@ import {
     HStack,
     Button,
     IconButton,
-    usePagination,
     Box,
-    EditButton,
-    ShowButton,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 import { IPost } from "interfaces";
 
@@ -549,7 +550,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         ],
         [],
     );
-        
+
 
     const {
         getHeaderGroups,
@@ -646,19 +647,15 @@ const Pagination: React.FC<PaginationProps> = ({
 </p>
 </details>
 
- 
 In the code above, we create a `<Pagination/>` components which accepts properties:
 
-- `current`: This property holds the current page number obtained from the `useTable()` hook, 
-- `pageCount`: This property holds the total amount of pages present from the `useTable()` hook, 
-- `setCurrent()`: This property sets the current page number to an value. it handles the navigation to either the next page or the previous page.
-
-
-
-
+-   `current`: This property holds the current page number obtained from the `useTable()` hook,
+-   `pageCount`: This property holds the total amount of pages present from the `useTable()` hook,
+-   `setCurrent()`: This property sets the current page number to an value. it handles the navigation to either the next page or the previous page.
 
 ### Viewing a record
-To view a record, we will use the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook, which is included in the `@pankod/refine-core` package.
+
+To view a record, we will use the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook, which is included in the `@refinedev/core` package.
 The hook `useShow()` allows you to retrieve the desired record. It uses the `getOne` method from the dataProvider passed to `<Refine/>` as the query function.
 
 We'll add a `show.tsx` file in the `posts` folder under the `pages` folder next, with the following code:
@@ -667,22 +664,16 @@ We'll add a `show.tsx` file in the `posts` folder under the `pages` folder next,
 <summary>Show code </summary>
 <p>
 
-
 ```tsx title="src/pages/posts/show.tsx"
-import { useOne, useShow } from "@pankod/refine-core";
-import {
-    Show,
-    Heading,
-    NumberField,
-    TextField,
-    DateField,
-} from "@pankod/refine-chakra-ui";
+import { useOne, useShow } from "@refinedev/core";
+import { Show, NumberField, TextField } from "@refinedev/chakra-ui";
+import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
     const { queryResult } = useShow({
         metaData: {
             populate: ["category"],
-        }
+        },
     });
     const { data, isLoading } = queryResult;
 
@@ -736,7 +727,7 @@ export const PostShow = () => {
             <Heading as="h5" size="sm" mt={4}>
                 Locale
             </Heading>
-           <TextField value={record?.locale} />
+            <TextField value={record?.locale} />
         </Show>
     );
 };
@@ -745,8 +736,6 @@ export const PostShow = () => {
 </p>
 </details>
 
-
-
 After this, we can now add the component `<PostShow/>` in the `show.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
@@ -754,7 +743,7 @@ After this, we can now add the component `<PostShow/>` in the `show.tsx` file to
 import {
     PostList,
     //highlight-next-line
-    PostShow 
+    PostShow
 } from './pages/posts';
 
 function App() {
@@ -777,7 +766,6 @@ function App() {
 export default App;
 ```
 
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -790,19 +778,16 @@ export default App;
 
 <br />
 
-
 ---
 
 <PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
-
-
 ### Creating a record
-To create a record, we will use the `@pankod/refine-react-hook-form` package.
-It provides the [`useForm()`](https://refine.dev/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
 
+To create a record, we will use the `@refinedev/react-hook-form` package.
+It provides the [`useForm()`](https://refine.dev/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
 
 Next, in the `posts` folder under the `pages` folder, we'll include a `create`.tsx file with the following code:
 
@@ -810,20 +795,19 @@ Next, in the `posts` folder under the `pages` folder, we'll include a `create`.t
 <summary>Show code</summary>
 <p>
 
-
 ```tsx title="src/pages/posts/create.tsx"
 import React from "react";
+import { Create } from "@refinedev/chakra-ui";
 import {
-    Create,
     FormControl,
     FormLabel,
     FormErrorMessage,
     Input,
     Textarea,
     Select,
-} from "@pankod/refine-chakra-ui";
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@chakra-ui/react";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 export const PostCreate = () => {
     const {
@@ -898,9 +882,9 @@ export const PostCreate = () => {
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [(@pankod/refine-react-hook-form)](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. This library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [(@refinedev/react-hook-form)](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. This library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
 
-we use methods provided by the `useForm()` hook like  `register()` to validate the new post we will add into Strapi. 
+we use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into Strapi.
 The hooks also provide an object like `saveButtonProps` which accepts the properties shown below:
 
 ```
@@ -909,8 +893,8 @@ The hooks also provide an object like `saveButtonProps` which accepts the proper
     onClick: (e: React.BaseSyntheticEvent<object, any, any>) => void;
 }
 ```
-These properties handles the submission of the form action, button loading, and disable states.
 
+These properties handles the submission of the form action, button loading, and disable states.
 
 After this, we can now add the component `<PostCreate/>` in the `create.tsx` file to our resource present in the `App.tsx` file
 
@@ -943,7 +927,6 @@ function App() {
 export default App;
 ```
 
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -957,6 +940,7 @@ export default App;
 <br />
 
 ### Modifying/Editing records.
+
 For editing a record, we will add an `edit.tsx` file In the `posts` folder under the pages folder and add the code below to the file:
 
 <details>
@@ -965,16 +949,16 @@ For editing a record, we will add an `edit.tsx` file In the `posts` folder under
 
 ```tsx title="src/pages/posts/edit.tsx"
 import React from "react";
+import { Edit } from "@refinedev/chakra-ui";
 import {
-    Edit,
     FormControl,
     FormLabel,
     FormErrorMessage,
     Input,
     Select,
-} from "@pankod/refine-chakra-ui";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+} from "@chakra-ui/react";
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect } from "@refinedev/core";
 
 export const PostEdit = () => {
     const {
@@ -984,11 +968,11 @@ export const PostEdit = () => {
         resetField,
         formState: { errors },
     } = useForm({
-        refineCoreProps : {
+        refineCoreProps: {
             metaData: {
                 populate: ["category"],
-            }
-        }
+            },
+        },
     });
 
     const postsData = queryResult?.data?.data;
@@ -1017,7 +1001,7 @@ export const PostEdit = () => {
                     {(errors as any)?.id?.message as string}
                 </FormErrorMessage>
             </FormControl>
-            
+
             <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input
@@ -1062,7 +1046,7 @@ export const PostEdit = () => {
                     {(errors as any)?.category?.id?.message as string}
                 </FormErrorMessage>
             </FormControl>
-         
+
             <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
                 <FormLabel>Created At</FormLabel>
                 <Input
@@ -1119,13 +1103,12 @@ export const PostEdit = () => {
     );
 };
 ```
+
 </p>
 </details>
 
-In the code above, just like in the `<PostCreate/>` component, we use methods provided by the `useForm()` hook like  `register()` to validate the new post we will add into Strapi. 
+In the code above, just like in the `<PostCreate/>` component, we use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into Strapi.
 The hooks also provide an object like `saveButtonProps` which handles the submission of the form action, button loading, and disable states
-
-
 
 After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `App.tsx` file
 
@@ -1133,7 +1116,7 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
 import {
      ...
      // highlight-next-line
-     PostEdit 
+     PostEdit
 } from "./pages/posts";
 
 
@@ -1160,7 +1143,6 @@ function App() {
 export default App;
 ```
 
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -1174,6 +1156,7 @@ export default App;
 <br />
 
 ### Deleting post record
+
 To delete a record, We'll add a **Delete** button so we'll need to update our `<PostList/> `component to include the button to the actions row. Add the highlighted lines below to the existing list component.
 
 ```tsx title="src/pages/posts/list.tsx"
@@ -1181,7 +1164,7 @@ To delete a record, We'll add a **Delete** button so we'll need to update our `<
 export const PostList: React.FC = () => {
  const { show, edit, create } = useNavigation();
  const { mutate } = useDelete();
- 
+
  const columns = React.useMemo<ColumnDef<IPost>[]>(
    () => [
 	...,
@@ -1208,10 +1191,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-
-
 Another way to include a delete button on the `<PostEdit>` page. To display the delete button on the edit page and the view page, the `canDelete` prop must be passed to the resource object.
-
 
 ```tsx title="src/App.tsx"
 ...
@@ -1235,10 +1215,6 @@ function App() {
 export default App;
 ```
 
-
-
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -1251,18 +1227,17 @@ export default App;
 
 <br />
 
-
 ### Implement sorting of listed records
-Since the `@pankod/refine-react-table package` is based on the `Tanstack` Table package, we can add sorting and filtering features to our table.
 
-Let's make a `<ColumnSorter/>` component for our table header. This component will be in charge of changing the table's sorting state. 
+Since the `@refinedev/react-table package` is based on the `Tanstack` Table package, we can add sorting and filtering features to our table.
+
+Let's make a `<ColumnSorter/>` component for our table header. This component will be in charge of changing the table's sorting state.
 we create a new folder named `components` under the `src` folder. Under that folder, add a `ColumnSorter.tsx` file with the following code:
-
 
 ```tsx title="src/components/ColumnSorter.tsx"
 import { IconButton } from "@chakra-ui/react";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
-import type { Column } from "@pankod/refine-react-table";
+import { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
     column,
@@ -1289,16 +1264,14 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
 };
 ```
 
-In the code above, the `<ColumnSorter/>` is a simple component that displays a button. 
+In the code above, the `<ColumnSorter/>` is a simple component that displays a button.
 The `column.getToggleSortingHandler()` method is called when the user clicks on the button. This method will alter the table's sorting state.
 
 Also, we use the `column.getCanSort()` method to determine if the column is sortable. If it is, We will render the `<ColumnSorter/>` component and vice-versa.
 
 Once the column is sorted, the `IconChevronDown` icon will be rendered. Otherwise, the `IconSelector` icon will be rendered.
 
-
-Next, we import the ``<ColumnSorter/>`` component to the list.tsx file located at the `src/pages/posts/` directory and add the component to the `<Th/>` of the table as a child as shown below:
-
+Next, we import the `<ColumnSorter/>` component to the list.tsx file located at the `src/pages/posts/` directory and add the component to the `<Th/>` of the table as a child as shown below:
 
 ```tsx title="src/pages/posts/list.tsx"
 ...
@@ -1310,7 +1283,7 @@ import { ColumnSorter } from "components/ColumnSorter";
         {headerGroup.headers.map((header) => (
             <Th key={header.id}>
                 {
-            !header.isPlaceholder 
+            !header.isPlaceholder
             && flexRender(header.column.columnDef.header,
                                                  header.getContext(),
         )}
@@ -1335,13 +1308,10 @@ You can set the `enableSorting` property of the column to false in the column de
 },
 ```
 
-
-
-
 ### Implement filters on listed records
-Firstly, Let's make a `<ColumnFilter/>` component for our table header. This component will handle the filtering of listed records. 
-we create a new folder named `components` under the `src` folder. Under that folder, add a `ColumnFilter.tsx` file with the following code:
 
+Firstly, Let's make a `<ColumnFilter/>` component for our table header. This component will handle the filtering of listed records.
+we create a new folder named `components` under the `src` folder. Under that folder, add a `ColumnFilter.tsx` file with the following code:
 
 <details>
 <summary>Show code</summary>
@@ -1357,15 +1327,14 @@ import {
     MenuList,
     VStack,
     HStack,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
-import type { Column } from "@pankod/refine-react-table";
+import { Column } from "@tanstack/react-table";
 
-export const ColumnFilter: React.FC<{ column: Column<any, any>; }> = ({
+export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
     column,
 }) => {
-
-    const [state, setState] = useState(null as null | { value: any; });
+    const [state, setState] = useState(null as null | { value: any });
 
     if (!column.getCanFilter()) {
         return null;
@@ -1457,12 +1426,9 @@ export const ColumnFilter: React.FC<{ column: Column<any, any>; }> = ({
 </p>
 </details>
 
-
-In the code above, `<ColumnFilter/>` is a button. on clicking the button, a menu will be opened. In the menu exists a filter element of the column that is being rendered. The filter element is an `<Input/>` component in which you can add a value which  will be used to subsequently filter the records based on that value.
-
+In the code above, `<ColumnFilter/>` is a button. on clicking the button, a menu will be opened. In the menu exists a filter element of the column that is being rendered. The filter element is an `<Input/>` component in which you can add a value which will be used to subsequently filter the records based on that value.
 
 Next, we Import the `<ColumnFilter/>` component to the list.tsx file located at the `src/pages/posts/` directory and add the component to the `<Th/>` of the table just like we did the `<ColumnSorter/>` component.
-
 
 ```tsx title="src/pages/posts/list.tsx"
 import { ColumnFilter } from "components/ColumnFilter";
@@ -1475,7 +1441,7 @@ import { ColumnFilter } from "components/ColumnFilter";
         {headerGroup.headers.map((header) => (
             <Th key={header.id}>
                 {
-            !header.isPlaceholder 
+            !header.isPlaceholder
             && flexRender(header.column.columnDef.header,
                                                  header.getContext(),
         )}
@@ -1536,9 +1502,6 @@ We can also disable filtering for the `actions` column by setting the column's e
 },
 ```
 
-
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -1551,21 +1514,19 @@ We can also disable filtering for the `actions` column by setting the column's e
 
 <br />
 
-
-
-
 ### Implementing mutation mode.
-Mutation modes controls how side-effects or actions like deletion, creation, updating, etc are applied. refine provides three mutation modes namely: 
-* pessimistic: In this mode, UI updates are delayed until the server confirms the mutation.
-* undoable: In this mode, UI updates are immediately applied, but the mutation can be reversed.
-* optimistic: UI updates are immediately updated before confirmed by server.
+
+Mutation modes controls how side-effects or actions like deletion, creation, updating, etc are applied. refine provides three mutation modes namely:
+
+-   pessimistic: In this mode, UI updates are delayed until the server confirms the mutation.
+-   undoable: In this mode, UI updates are immediately applied, but the mutation can be reversed.
+-   optimistic: UI updates are immediately updated before confirmed by server.
 
 We will implement undoable mutation mode. The mutation is applied locally, and redirection and UI updates are performed as soon as the mutation is successful. It then Waits for a configurable amount of time before applying the mutation.
 
 During the timeout, the mutation from the notification can be cancelled using an undo button and the UI will revert the changes to its previous state.
 
 To enable mutation mode, we will set the `mutationMode` property in the Refine component options property.
-
 
 ```tsx title="src/App.tsx"
 ...
@@ -1582,8 +1543,6 @@ function App() {
 export default App;
 ```
 
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -1596,16 +1555,17 @@ export default App;
 
 <br />
 
-
 ## Conclusion
+
 In this article, we covered how to create a React admin panel with refine. We also learnt:
-* How to bootstrap a refine application.
-* Connecting a Strapiv4 data provider to a refine application.
-* implemented CRUD operations on a refine application.
+
+-   How to bootstrap a refine application.
+-   Connecting a Strapiv4 data provider to a refine application.
+-   implemented CRUD operations on a refine application.
 
 If you're looking to build a robust and dynamic admin panel for your web application, then this React admin tutorial is just what you need.
 
-This article demonstrates the flexibility that comes with using refine to create web applications. refine is a fantastic tool that accelerates development by abstracting many time-consuming tasks, giving the developer more time to focus on the application's core business logic. 
+This article demonstrates the flexibility that comes with using refine to create web applications. refine is a fantastic tool that accelerates development by abstracting many time-consuming tasks, giving the developer more time to focus on the application's core business logic.
 
 It also comes with detailed documentation that will get you started. Visit [here](https://refine.dev/docs/getting-started/overview/) to access the documentation.
 

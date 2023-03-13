@@ -1,4 +1,4 @@
-import { LayoutProps, useLogout } from "@pankod/refine-core";
+import { LayoutProps, useLogout } from "@refinedev/core";
 import { Button } from "react-daisyui";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {

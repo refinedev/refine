@@ -2,25 +2,21 @@ import {
     IResourceComponentsProps,
     useMany,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
-    Table,
     TextField,
-    Space,
     EditButton,
     ShowButton,
     FilterDropdown,
-    Select,
-    Radio,
     TagField,
-    Collapse,
     useTable,
     useSelect,
     useSimpleList,
-    AntdList,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space, Select, Radio, Collapse, List as AntdList } from "antd";
 
 import { IPost, ICategory, IProducts } from "interfaces";
 
@@ -125,24 +121,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                         <Radio value="rejected">Rejected</Radio>
                                     </Radio.Group>
                                 </FilterDropdown>
-                            )}
-                        />
-                        <Table.Column<IPost>
-                            title="Actions"
-                            dataIndex="actions"
-                            render={(_, record) => (
-                                <Space>
-                                    <EditButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    <ShowButton
-                                        hideText
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                </Space>
                             )}
                         />
                     </Table>

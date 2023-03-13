@@ -4,23 +4,20 @@ import {
     IResourceComponentsProps,
     HttpError,
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     useTable,
     List,
-    Table,
     TextField,
     TagField,
     DateField,
-    Space,
     ShowButton,
     EditButton,
     DeleteButton,
-    Row,
-    Col,
-    Card,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space, Row, Col, Card } from "antd";
 
 import {
     ILabel,

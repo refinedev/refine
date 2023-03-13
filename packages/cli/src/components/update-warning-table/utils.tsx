@@ -4,12 +4,12 @@ import { getDependencies, getPreferedPM, getScripts } from "@utils/package";
 import UpdateWarningTable, { UpdateWarningTableProps } from "./table";
 
 export const getCommand = async () => {
-    const fallbackCommand = `npx @pankod/refine-cli update`;
+    const fallbackCommand = `npx @refinedev/cli update`;
 
     const dependencies = getDependencies();
     const scriptKeys = Object.keys(getScripts());
 
-    const hasCli = dependencies.includes("@pankod/refine-cli");
+    const hasCli = dependencies.includes("@refinedev/cli");
     const hasScript = scriptKeys.includes("refine");
 
     if (!hasCli && !hasScript) {

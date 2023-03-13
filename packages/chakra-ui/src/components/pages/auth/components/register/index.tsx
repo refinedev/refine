@@ -1,13 +1,16 @@
 import React from "react";
 import {
     useTranslate,
+    useRouterType,
+    useLink,
     useRouterContext,
     useRegister,
     RegisterPageProps,
     RegisterFormTypes,
     BaseRecord,
     HttpError,
-} from "@pankod/refine-core";
+    useActiveAuthProvider,
+} from "@refinedev/core";
 import {
     Box,
     BoxProps,
@@ -21,7 +24,7 @@ import {
     VStack,
     Link as ChakraLink,
 } from "@chakra-ui/react";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
@@ -42,9 +45,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const translate = useTranslate();
-    const { mutate } = useRegister();
+    const authProvider = useActiveAuthProvider();
+    const { mutate } = useRegister({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const {
         register,
         handleSubmit,

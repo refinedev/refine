@@ -2,15 +2,14 @@ import React from "react";
 import { ButtonProps, notification, UploadProps, Progress } from "antd";
 import {
     useTranslate,
-    useResourceWithRoute,
-    useRouterContext,
+    useResource,
     BaseRecord,
     HttpError,
-    ResourceRouterParams,
     useImport as useImportCore,
     UseImportReturnType,
     ImportOptions,
-} from "@pankod/refine-core";
+    pickNotDeprecated,
+} from "@refinedev/core";
 
 /**
  * `useImport` hook allows you to handle your csv import logic easily.
@@ -29,11 +28,13 @@ export const useImport = <
     TError extends HttpError = HttpError,
     TVariables = any,
 >({
+    resource: resourceFromProp,
     resourceName,
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
+    meta,
     metaData,
     dataProviderName,
     onProgress: onProgressFromProp,
@@ -46,12 +47,7 @@ export const useImport = <
 } => {
     const t = useTranslate();
 
-    const resourceWithRoute = useResourceWithRoute();
-    const { useParams } = useRouterContext();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const { name: resource } = resourceWithRoute(
-        resourceName ?? routeResourceName,
-    );
+    const { resource } = useResource(resourceFromProp ?? resourceName);
 
     const { mutationResult, isLoading, handleChange } = useImportCore<
         TItem,
@@ -59,11 +55,12 @@ export const useImport = <
         TError,
         TVariables
     >({
-        resourceName,
+        resource: resource?.identifier ?? resource?.name,
         mapData,
         paparseOptions,
         batchSize,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
         onFinish,
         onProgress:

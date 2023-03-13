@@ -1,4 +1,4 @@
-import { HttpError, useForm } from "@pankod/refine-core";
+import { HttpError, useForm } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 import { useEffect, useState } from "react";

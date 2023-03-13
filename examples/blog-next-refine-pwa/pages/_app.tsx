@@ -1,8 +1,10 @@
 import React from "react";
 import { AppProps } from "next/app";
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
-import dataProvider from "@pankod/refine-simple-rest";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
 import { Layout } from "@components/Layout";
 
 import "src/styles/global.css";
@@ -16,10 +18,15 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[{ name: "products" }]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
-                <Component {...pageProps} />
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+                <UnsavedChangesNotifier />
             </Refine>
         </>
     );

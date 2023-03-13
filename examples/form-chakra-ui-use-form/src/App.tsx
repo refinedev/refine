@@ -1,107 +1,68 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    ChakraProvider,
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    ReadyPage,
-} from "@pankod/refine-chakra-ui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import {
-    IconAppWindow,
-    IconBrandMercedes,
-    IconBrandApple,
-    IconCurling,
-} from "@tabler/icons";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import { ErrorComponent, Layout, refineTheme } from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 
-const DashboardPage = () => {
-    return <span>dashboard</span>;
-};
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                DashboardPage={DashboardPage}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                authProvider={{
-                    login: async ({ email, providerName }) => {
-                        localStorage.setItem("email", email);
-                        return Promise.resolve();
-                    },
-                    register: (params) => {
-                        if (params.email && params.password) {
-                            localStorage.setItem("email", params.email);
-                            return Promise.resolve();
-                        }
-                        return Promise.reject();
-                    },
-                    updatePassword: (params) => {
-                        if (params.newPassword) {
-                            //we can update password here
-                            return Promise.resolve();
-                        }
-                        return Promise.reject();
-                    },
-                    forgotPassword: (params) => {
-                        if (params.email) {
-                            //we can send email with forgot password link here
-                            return Promise.resolve();
-                        }
-                        return Promise.reject();
-                    },
-                    logout: () => {
-                        localStorage.removeItem("email");
-                        return Promise.resolve();
-                    },
-                    checkError: () => Promise.resolve(),
-                    checkAuth: () =>
-                        localStorage.getItem("email")
-                            ? Promise.resolve()
-                            : Promise.reject(),
-                    getPermissions: () => Promise.resolve(["admin"]),
-                    getUserIdentity: () =>
-                        Promise.resolve({
-                            id: 1,
-                            name: "Jane Doe",
-                            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-                        }),
-                }}
-                resources={[
-                    {
-                        name: "foo",
-                        icon: <IconAppWindow size={20} />,
-                    },
-                    {
-                        parentName: "foo",
-                        name: "bar",
-                        icon: <IconBrandMercedes size={20} />,
-                    },
-                    {
-                        parentName: "bar",
-                        name: "baz",
-                        icon: <IconBrandApple size={20} />,
-                    },
-                    {
-                        parentName: "baz",
-                        icon: <IconCurling size={20} />,
-                        name: "posts",
-                        list: PostList,
-                        show: PostShow,
-                        create: PostCreate,
-                        edit: PostEdit,
-                    },
-                ]}
-            />
-        </ChakraProvider>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 };
 

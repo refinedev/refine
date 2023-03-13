@@ -1,20 +1,15 @@
 import React, { useState } from "react";
-import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    Typography,
     EditButton,
     ShowButton,
     useTable,
     useModalForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Form, Select, Input, Modal, Space, Typography } from "antd";
 
 import { IPost } from "interfaces";
 

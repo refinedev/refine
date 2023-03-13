@@ -58,7 +58,7 @@ describe("useLog Hook", () => {
                     resources: [
                         {
                             name: "posts",
-                            options: { auditLog: { permissions: ["create"] } },
+                            meta: { auditLog: { permissions: ["create"] } },
                         },
                     ],
                     auditLogProvider: {
@@ -93,7 +93,7 @@ describe("useLog Hook", () => {
                     resources: [
                         {
                             name: "posts",
-                            options: { auditLog: { permissions: ["update"] } },
+                            meta: { auditLog: { permissions: ["update"] } },
                         },
                     ],
                     auditLogProvider: {

@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import {
-    Button,
     CreateButton,
     CloneButton,
     DeleteButton,
@@ -11,7 +10,9 @@ import {
     ListButton,
     ImportButton,
     ShowButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+
+import { Button } from "@mui/material";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

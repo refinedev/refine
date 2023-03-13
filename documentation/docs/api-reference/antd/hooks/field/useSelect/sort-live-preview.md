@@ -1,7 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { useSelect, Select, Button } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
+import { Select, Button } from "antd";
 
 interface ICategory {
     id: number;
@@ -14,22 +15,25 @@ const PostCreate: React.FC = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
     return (
         <>
-            <Select 
-                placeholder={`Ordered Categories: ${order}`} style={{ width: 300 }}
+            <Select
+                placeholder={`Ordered Categories: ${order}`}
+                style={{ width: 300 }}
                 {...selectProps}
             />
-            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
+            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+                Toggle Order
+            </Button>
         </>
     );
 };

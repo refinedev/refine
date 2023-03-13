@@ -1,11 +1,8 @@
-import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    Show,
-    Typography,
-    MarkdownField,
-    RefreshButton,
-} from "@pankod/refine-antd";
+import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
+
+import { Typography } from "antd";
 
 import { IPost } from "interfaces";
 

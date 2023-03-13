@@ -1,31 +1,42 @@
-import React from "react";
-
-import { GitHubBanner, Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    ChakraProvider,
     refineTheme,
-    ReadyPage,
+    WelcomePage,
     ErrorComponent,
-    Layout,
-} from "@pankod/refine-chakra-ui";
-
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/chakra-ui";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 
 function App() {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider()}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                Layout={Layout}
-                routerProvider={routerProvider}
-            />
-        </ChakraProvider>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 }
 

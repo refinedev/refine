@@ -1,20 +1,15 @@
 import { ComponentMeta } from "@storybook/react";
 import {
-    Button,
     EditButton,
-    Form,
-    Input,
     List,
     MarkdownField,
     SaveButton,
-    Select,
-    Space,
-    Table,
     TextField,
     useEditableTable,
     useSelect,
-} from "@pankod/refine-antd";
-import { useMany, useDeleteMany } from "@pankod/refine-core";
+} from "@refinedev/antd";
+import { Button, Form, Input, Select, Space, Table } from "antd";
+import { useMany, useDeleteMany } from "@refinedev/core";
 import { IPost, ICategory } from "../../interfaces";
 import React, { useState } from "react";
 

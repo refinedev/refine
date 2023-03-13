@@ -25,7 +25,7 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -72,7 +72,7 @@ describe("getList", () => {
                     value: ["1"],
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",

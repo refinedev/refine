@@ -16,7 +16,7 @@ The `useApiUrl` hook does not expect any parameter. It will run the `getApiUrl` 
 
 ```tsx
 //highlight-next-line
-import { useCustom, useApiUrl } from "@pankod/refine-core";
+import { useCustom, useApiUrl } from "@refinedev/core";
 
 interface PostUniqueCheckResponse {
     isAvailable: boolean;

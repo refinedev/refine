@@ -1,14 +1,8 @@
 import React from "react";
-import {
-    Form,
-    FormProps,
-    Input,
-    useSelect,
-    Select,
-    DatePicker,
-    Icons,
-    Button,
-} from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
+
+import { SearchOutlined } from "@ant-design/icons";
+import { Form, FormProps, Input, Select, DatePicker, Button } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -36,7 +30,7 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
     return (
         <Form layout="vertical" {...formProps}>
             <Form.Item label="Search" name="title">
-                <Input placeholder="Title" prefix={<Icons.SearchOutlined />} />
+                <Input placeholder="Title" prefix={<SearchOutlined />} />
             </Form.Item>
             <Form.Item label="Label" name="label">
                 <Select

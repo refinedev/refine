@@ -1,4 +1,4 @@
-import { LiveProvider } from "@pankod/refine-core";
+import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
 
 import {
@@ -18,19 +18,18 @@ export const liveProvider = (client: Client): LiveProvider => {
         subscribe: ({ callback, params }) => {
             const {
                 resource,
-                metaData,
+                meta,
                 pagination,
-                hasPagination,
-                sort,
+                sorters,
                 filters,
                 subscriptionType,
                 id,
                 ids,
             } = params ?? {};
 
-            if (!metaData) {
+            if (!meta) {
                 throw new Error(
-                    "[useSubscription]: `metaData` is required in `params` for graphql subscriptions",
+                    "[useSubscription]: `meta` is required in `params` for graphql subscriptions",
                 );
             }
 
@@ -53,10 +52,9 @@ export const liveProvider = (client: Client): LiveProvider => {
                 id,
                 resource,
                 filters,
-                hasPagination,
-                metaData,
+                meta,
                 pagination,
-                sort,
+                sorters,
             });
 
             const onNext = (payload: any) => {

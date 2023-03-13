@@ -10,14 +10,14 @@ describe("getMany", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).getMany!({
             resource: "posts",
             ids: [
                 "72fab741-2352-49cb-8b31-06ae4be2f1d1",
                 "acfff044-c728-4030-8d50-330b9224d99b",
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

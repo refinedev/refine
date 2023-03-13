@@ -5,9 +5,9 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
     Sider: () => null,
@@ -16,18 +16,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -43,12 +43,14 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List, Table, Pagination, DeleteButton } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { List, DeleteButton } from "@refinedev/mantine";
+import { Table, Pagination } from "@mantine/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -169,11 +171,11 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="123" />;
@@ -222,22 +224,22 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
     return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <DeleteButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
@@ -295,11 +297,11 @@ For example, let's `console.log` after deletion:
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
     return (
@@ -358,11 +360,11 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="1" mutationMode="undoable" />;
@@ -411,11 +413,11 @@ It is used to show and not show the text of the button. When `true`, only the bu
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="1" hideText />;
@@ -463,12 +465,83 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <DeleteButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@refinedev/mantine";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+                {
+                    name: "categories",
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+
+:::note
+**`<DeleteButton>`** component reads the resource name from the route by default.
+:::
 
 ## How to override confirm texts?
 
@@ -476,11 +549,11 @@ You can change the text that appears when you confirm a transaction with `confir
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@refinedev/mantine";
 
 const MyDeleteComponent = () => {
     return (
@@ -536,4 +609,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/DeleteButton" />
+<PropsTable module="@refinedev/mantine/DeleteButton" />

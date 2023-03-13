@@ -281,8 +281,8 @@ This is a basic `CMS` app that was created with **refine**'s **headless** featur
 ```tsx title="src/pages/CreatePost"
 import { useState } from "react";
 //highlight-next-line
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect, useApiUrl } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect, useApiUrl } from "@refinedev/core";
 
 import axios from "axios";
 

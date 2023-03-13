@@ -4,8 +4,10 @@ import {
     useNavigation,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(

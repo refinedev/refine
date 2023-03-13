@@ -1,14 +1,14 @@
 import {
     List,
-    Table,
     TagField,
     useTable,
-    Space,
     EditButton,
     DeleteButton,
     useModalForm,
     EmailField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space } from "antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";

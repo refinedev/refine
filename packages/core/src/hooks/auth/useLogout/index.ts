@@ -1,19 +1,21 @@
-import React from "react";
 import {
     useMutation,
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
 
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext, TLogoutData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
+import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
+import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { OpenNotificationParams, TLogoutData } from "../../../interfaces";
+import { AuthActionResponse } from "src/interfaces/bindings/auth";
+import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
 
 type Variables = {
     redirectPath?: string | false;
 };
 
-export type UseLogoutProps<TVariables> = {
+export type UseLogoutLegacyProps<TVariables> = {
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<
             TLogoutData,
@@ -25,56 +27,173 @@ export type UseLogoutProps<TVariables> = {
     >;
 };
 
+export type UseLogoutProps<TVariables> = {
+    v3LegacyAuthProviderCompatible?: false;
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            AuthActionResponse,
+            Error,
+            (TVariables & Variables) | void,
+            unknown
+        >,
+        "mutationFn"
+    >;
+};
+
+export type UseLogoutCombinedProps<TVariables> = {
+    v3LegacyAuthProviderCompatible: boolean;
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            AuthActionResponse | TLogoutData,
+            Error,
+            (TVariables & Variables) | void,
+            unknown
+        >,
+        "mutationFn"
+    >;
+};
+
+export type UseLogoutLegacyReturnType<TVariables> = UseMutationResult<
+    TLogoutData,
+    Error,
+    (TVariables & Variables) | void,
+    unknown
+>;
+
+export type UseLogoutReturnType<TVariables> = UseMutationResult<
+    AuthActionResponse,
+    Error,
+    (TVariables & Variables) | void,
+    unknown
+>;
+
+export type UseLogoutCombinedReturnType<TVariables> = UseMutationResult<
+    AuthActionResponse | TLogoutData,
+    Error,
+    (TVariables & Variables) | void,
+    unknown
+>;
+
+export function useLogout<TVariables = {}>(
+    props: UseLogoutLegacyProps<TVariables>,
+): UseLogoutLegacyReturnType<TVariables>;
+
+export function useLogout<TVariables = {}>(
+    props?: UseLogoutProps<TVariables>,
+): UseLogoutReturnType<TVariables>;
+
+export function useLogout<TVariables = {}>(
+    props?: UseLogoutCombinedProps<TVariables>,
+): UseLogoutCombinedReturnType<TVariables>;
+
 /**
  * `useLogout` calls the `logout` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
  *
  * @see {@link https://refine.dev/docs/core/hooks/auth/useLogout} for more details.
  *
  */
-export const useLogout = <TVariables = {}>({
+export function useLogout<TVariables = {}>({
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
-}: UseLogoutProps<TVariables> = {}): UseMutationResult<
-    TLogoutData,
-    Error,
-    (TVariables & Variables) | void,
-    unknown
-> => {
+}: UseLogoutProps<TVariables> | UseLogoutLegacyProps<TVariables> = {}):
+    | UseLogoutLegacyReturnType<TVariables>
+    | UseLogoutReturnType<TVariables> {
+    const invalidateAuthStore = useInvalidateAuthStore();
+    const routerType = useRouterType();
+    const go = useGo();
     const { push } = useNavigation();
-    const { logout: logoutFromContext } =
-        React.useContext<IAuthContext>(AuthContext);
-    const { open } = useNotification();
+    const { open, close } = useNotification();
+    const { logout: legacyLogoutFromContext } = useLegacyAuthContext();
+    const { logout: logoutFromContext } = useAuthBindingsContext();
 
-    const queryResponse = useMutation<
-        TLogoutData,
+    const mutation = useMutation<
+        AuthActionResponse,
         Error,
         (TVariables & Variables) | void,
         unknown
     >(["useLogout"], logoutFromContext, {
         onSuccess: (data, variables) => {
-            const redirectPath = variables?.redirectPath ?? data;
+            const { success, error, redirectTo } = data;
+            const { redirectPath } = variables ?? {};
 
-            if (redirectPath === false) {
-                return;
+            const redirect = redirectPath ?? redirectTo;
+
+            if (success) {
+                close?.("useLogout-error");
             }
 
-            if (redirectPath) {
-                push(redirectPath);
-                return;
+            if (error || !success) {
+                open?.(buildNotification(error));
             }
 
-            push("/login");
+            if (redirect !== false) {
+                if (routerType === "legacy") {
+                    push(redirect ?? "/login");
+                } else {
+                    if (redirect) {
+                        go({ to: redirect });
+                    }
+                }
+            }
+
+            invalidateAuthStore();
         },
-        onError: (error: Error) => {
-            open?.({
-                key: "useLogout-error",
-                type: "error",
-                message: error?.name || "Logout Error",
-                description:
-                    error?.message || "Something went wrong during logout",
-            });
+        onError: (error: any) => {
+            open?.(buildNotification(error));
         },
-        ...mutationOptions,
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
-    return queryResponse;
+    const v3LegacyAuthProviderCompatibleMutation = useMutation<
+        TLogoutData,
+        Error,
+        (TVariables & Variables) | void,
+        unknown
+    >(
+        ["useLogout", "v3LegacyAuthProviderCompatible"],
+        legacyLogoutFromContext,
+        {
+            onSuccess: (data, variables) => {
+                const redirectPath = variables?.redirectPath ?? data;
+
+                if (redirectPath === false) {
+                    return;
+                }
+
+                if (redirectPath) {
+                    if (routerType === "legacy") {
+                        push(redirectPath);
+                    } else {
+                        go({ to: redirectPath });
+                    }
+                    return;
+                }
+
+                if (routerType === "legacy") {
+                    push("/login");
+                } else {
+                    go({ to: "/login" });
+                }
+
+                invalidateAuthStore();
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
+            },
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+        },
+    );
+
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
+}
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        key: "useLogout-error",
+        type: "error",
+        message: error?.name || "Logout Error",
+        description: error?.message || "Something went wrong during logout",
+    };
 };

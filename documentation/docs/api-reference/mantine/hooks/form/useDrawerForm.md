@@ -1,6 +1,7 @@
 ---
 id: useDrawerForm
 title: useDrawerForm
+sidebar_label: useDrawerForm 🆙
 ---
 
 [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
@@ -8,7 +9,7 @@ title: useDrawerForm
 We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
 :::info
-`useDrawerForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+`useDrawerForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
@@ -31,25 +32,27 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
+import {
+    List,
+    // highlight-next-line
+    useModalForm as useDrawerForm,
+    SaveButton,
+} from "@refinedev/mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
     Drawer,
     Select,
     TextInput,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -251,26 +254,28 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
+import {
+    List,
+    // highlight-next-line
+    useModalForm as useDrawerForm,
+    EditButton,
+    SaveButton,
+} from "@refinedev/mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
     Drawer,
     Select,
     TextInput,
-    EditButton,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -593,6 +598,20 @@ const drawerForm = useDrawerForm({
     modalProps: {
         autoResetForm: false,
     },
+});
+```
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the drawers visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const drawerForm = useDrawerForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 

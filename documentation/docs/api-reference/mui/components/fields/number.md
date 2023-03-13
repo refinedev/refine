@@ -4,7 +4,6 @@ title: Number
 swizzle: true
 ---
 
-
 This field is used to display a number formatted according to the browser locale, right aligned. and uses [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to display date format.
 
 :::info-tip Swizzle
@@ -21,12 +20,11 @@ If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     NumberField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -84,7 +82,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/NumberField" value-description="Number value" />
+<PropsTable module="@refinedev/mui/NumberField" value-description="Number value" />
 
 :::tip External Props
 It also accepts all props of Material UI [Text](https://mui.com/material-ui/react-text-field/).

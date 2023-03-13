@@ -1,16 +1,9 @@
 import React from "react";
-import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
+import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
 
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    useFileUploadState,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect, useFileUploadState } from "@refinedev/antd";
+
+import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

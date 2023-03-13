@@ -10,71 +10,129 @@ tutorial:
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: (params) => {
+    login: async () => {
         window.__refineAuthStatus = true;
-        console.log("login: ", params);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    register: (params) => {
-        console.log("register: ", params);
-        return Promise.resolve();
+    register: async () => {
+        return {
+            success: true,
+        };
     },
-    forgotPassword: () => {
-        console.log("forgotPassword: ", params);
-        return Promise.resolve();
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
     },
-    updatePassword: () => {
-        console.log("updatePassword: ", params);
-        return Promise.resolve();
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
     },
-    logout: () => {
+    logout: async () => {
         window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkAuth: () =>
-        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+    check: async () => {
+        return {
+            authenticated: window.__refineAuthStatus ? true : false,
+            redirectTo: window.__refineAuthStatus ? undefined : "/login",
+        };
+    },
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => null,
 };
 
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { Refine, Authenticated, AuthPage } from "@refinedev/core";
+import routerBindings, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/login", element: <AuthPage /> },
+        <BrowserRouter>
+            <Refine
+                authProvider={authProvider}
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
                     {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        edit: "/products/edit/:id",
+                        create: "/products/create",
                     },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            resources={[
-                {
-                    name: "products",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="products">
+                            <Route index element={<HeadlessInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="create"
+                                element={<HeadlessInferencer />}
+                            />
+                        </Route>
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -96,44 +154,71 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
     ```tsx
-    import { AuthPage } from "@pankod/refine-core";
+    import { AuthPage } from "@refinedev/core";
     ```
 
-2. Add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+2. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings, {
+        NavigateToResource,
+        CatchAllNavigate,
+    } from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
     const App = () => {
         return (
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                //highlight-start
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [{ path: "/login", element: <AuthPage /> }],
-                }}
-                //highlight-end
-                resources={[
-                    {
-                        name: "products",
-                        list: ProductList,
-                        edit: ProductEdit,
-                        show: ProductShow,
-                        create: ProductCreate,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Outlet />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         );
     };
     ```
@@ -155,7 +240,6 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 
     :::
 
-
 3. Run the app and navigate to the `/login` page.
 
 ```tsx live previewOnly previewHeight=400px url=http://localhost:3000/login
@@ -164,73 +248,76 @@ setInitialRoutes(["/login"]);
 render(<App />);
 ```
 
-<br />
-
-:::tip
-
-You can also use the `LoginPage` prop of the `<Refine/>` component to render the login page.
-
-```tsx
-<Refine
-    authProvider={authProvider}
-    routerProvider={routerProvider}
-    ...
-    //highlight-start
-    LoginPage={AuthPage}
-    //highlight-end
-/>
-```
-
-[Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config.md#loginpage)
-
-:::
-
 ## Register Page
 
 Register page is used to register new users. It provides a basic form to enter email and password. After submitting the form, it sends the email and password to the auth provider's `register` method via `useRegister` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings, {
+        NavigateToResource,
+        CatchAllNavigate,
+    } from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { authProvider } from "./authProvider";
 
     const App = () => {
         return (
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [
-                        { path: "/login", element: <AuthPage /> },
-                        //highlight-start
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
                         {
-                            path: "/register",
-                            element: <AuthPage type="register" />,
+                            name: "products",
+                            list: "/products",
                         },
-                        //highlight-end
-                    ],
-                }}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "products",
-                        list: ProductList,
-                        edit: ProductEdit,
-                        show: ProductShow,
-                        create: ProductCreate,
-                    },
-                ]}
-            />
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Outlet />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         );
     };
     ```
@@ -264,51 +351,76 @@ render(<App />);
 
 Forgot password page is used to send a reset password link to the user's email. It provides a basic form to enter email. After submitting the form, it sends the email to the auth provider's `forgotPassword` method via `useForgotPassword` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings, {
+        NavigateToResource,
+        CatchAllNavigate,
+    } from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { authProvider } from "./authProvider";
 
     const App = () => {
         return (
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [
-                        { path: "/login", element: <AuthPage /> },
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
                         {
-                            path: "/register",
-                            element: <AuthPage type="register" />,
+                            name: "products",
+                            list: "/products",
                         },
-                        //highlight-start
-                        {
-                            path: "/forgot-password",
-                            element: <AuthPage type="forgotPassword" />,
-                        },
-                        //highlight-end
-                    ],
-                }}
-                resources={[
-                    {
-                        name: "products",
-                        list: ProductList,
-                        edit: ProductEdit,
-                        show: ProductShow,
-                        create: ProductCreate,
-                    },
-                ]}
-            />
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Outlet />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         );
     };
     ```
@@ -343,56 +455,80 @@ render(<App />);
 
 Update password page is used to update the user's password. It provides a basic form to enter new password and confirm password. After submitting the form, it sends the new password and confirm password to the auth provider's `updatePassword` method via `useUpdatePassword` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings, {
+        NavigateToResource,
+        CatchAllNavigate,
+    } from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { authProvider } from "./authProvider";
 
     const App = () => {
         return (
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [
-                        { path: "/login", element: <AuthPage /> },
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
                         {
-                            path: "/register",
-                            element: <AuthPage type="register" />,
+                            name: "products",
+                            list: "/products",
                         },
-                        {
-                            path: "/forgot-password",
-                            element: <AuthPage type="forgotPassword" />,
-                        },
-                        //highlight-start
-                        {
-                            path: "/update-password",
-                            element: <AuthPage type="updatePassword" />,
-                        },
-                        //highlight-end
-                    ],
-                }}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "products",
-                        list: ProductList,
-                        edit: ProductEdit,
-                        show: ProductShow,
-                        create: ProductCreate,
-                    },
-                ]}
-            />
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Outlet />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         );
     };
     ```
@@ -438,12 +574,12 @@ Let's customize the auth pages.
     npm run refine swizzle
     ```
 
-2. Select the `@pankod/refine-core` package.
+2. Select the `@refinedev/core` package.
 
     ```bash
         ? Which package do you want to swizzle?
         UI Framework
-        ❯  @pankod/refine-core
+        ❯  @refinedev/core
     ```
 
 3. Select the `AuthPage` component.

@@ -1,22 +1,25 @@
 ---
 id: useForm
 title: useForm
+sidebar_label: useForm 🆙
 source: packages/mantine/src/hooks/form/useForm/index.ts
 ---
 
 ```tsx live shared
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
     Edit as MantineEdit,
     Create as MantineCreate,
     List as MantineList,
-    Form as MantineForm,
-    Input as MantineInput,
     useTable as useMantineTable,
     EditButton as MantineEditButton,
     CloneButton as MantineCloneButton,
+} from "@refinedev/mantine";
+import {
+    Input as MantineInput,
     Box as MantineBox,
     Group as MantineGroup,
     ScrollArea as MantineScrollArea,
@@ -25,7 +28,7 @@ import {
     TextInput as MantineTextInput,
     Text as MantineText,
     Textarea as MantineTextarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 interface IPost {
     id: number;
@@ -232,7 +235,8 @@ const PostCreate: React.FC = () => {
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx
-import { Edit, Select, TextInput, useForm } from "@pankod/refine-mantine";
+import { Edit, useForm } from "@refinedev/mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
@@ -292,11 +296,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
-By default, it determines the `action` from route.
-
--   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
--   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
+By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -322,13 +322,8 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Create,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Create, useForm } from "@refinedev/mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -398,13 +393,8 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Edit,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Edit, useForm } from "@refinedev/mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostEditPage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -476,13 +466,8 @@ setInitialRoutes(["/posts/clone/123"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Create,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Create, useForm } from "@refinedev/mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -729,19 +714,20 @@ useForm({
 }
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following three purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+-   To provide additional parameters to the redirection path after the form is submitted. If your route has additional parameters, you can use `meta` to provide them.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
     refineCoreProps: {
-        metaData: {
+        meta: {
             headers: { "x-meta-data": "true" },
         },
     },
@@ -750,8 +736,8 @@ useForm({
 const myDataProvider = {
     //...
     // highlight-start
-    create: async ({ resource, variables, metaData }) => {
-        const headers = metaData?.headers ?? {};
+    create: async ({ resource, variables, meta }) => {
+        const headers = meta?.headers ?? {};
         // highlight-end
         const url = `${apiUrl}/${resource}`;
 
@@ -950,8 +936,8 @@ It is useful when you want to `invalidate` other resources don't have relation w
 
 ```tsx
 import React from "react";
-import { useInvalidate } from "@pankod/refine-core";
-import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+import { useInvalidate } from "@refinedev/core";
+import { useForm } from "@refinedev/mantine";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -979,7 +965,8 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { Create, TextInput, useForm } from "@pankod/refine-mantine";
+import { Create, useForm } from "@refinedev/mantine";
+import { TextInput } from "@mantine/core";
 
 const UserCreate: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
@@ -1027,14 +1014,14 @@ Also, we added the following return values.
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-mantine";
+import { useForm } from "@refinedev/mantine";
 
 const { ... } = useForm({
     ..., // @mantine/form's useForm props
     refineCoreProps: {
         resource: "posts",
         redirect: false,
-        //  @pankod/refine-core's useForm props
+        //  @refinedev/core's useForm props
     },
 });
 ```
@@ -1048,14 +1035,14 @@ Returns all the return values of the [`useForm`][use-form-mantine] hook provided
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const {
     ..., // @mantine/form's useForm return values
     saveButtonProps,
     refineCore: {
         queryResult,
-        ...  // @pankod/refine-core's useForm return values
+        ...  // @refinedev/core's useForm return values
     },
 } = useForm({ ... });
 ```

@@ -1,6 +1,6 @@
 import React from "react";
-import { useList, useMany } from "@pankod/refine-core";
-import { Row, Col, Card } from "@pankod/refine-antd";
+import { useList, useMany } from "@refinedev/core";
+import { Row, Col, Card } from "antd";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 import { TaskChart } from "components/task/pie";
 import { groupBy } from "helper";
@@ -10,10 +10,14 @@ export const Dashboard = () => {
         resource: "tasks",
     });
 
-    const labelIds = taskList.data?.data.map((item) => item.label) ?? [];
-    const priorityIds = taskList.data?.data.map((item) => item.priority) ?? [];
-    const assignedIds = taskList.data?.data.map((item) => item.users) ?? [];
-    const statusIds = taskList.data?.data.map((item) => item.status) ?? [];
+    const labelIds =
+        taskList.data?.data.map((item) => item.label).filter(Boolean) ?? [];
+    const priorityIds =
+        taskList.data?.data.map((item) => item.priority).filter(Boolean) ?? [];
+    const assignedIds =
+        taskList.data?.data.map((item) => item.users).filter(Boolean) ?? [];
+    const statusIds =
+        taskList.data?.data.map((item) => item.status).filter(Boolean) ?? [];
 
     const { data: labels } = useMany<ILabel>({
         resource: "label",

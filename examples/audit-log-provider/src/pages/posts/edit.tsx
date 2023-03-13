@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useModal, useResource, useSelect } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useModal, useResource, useSelect } from "@refinedev/core";
 
 import { Modal } from "../../components/modal";
 import { History } from "../../components/history";
@@ -81,7 +81,9 @@ export const PostEdit: React.FC = () => {
             </form>
 
             <Modal isOpen={visible} onClose={close}>
-                <History resource={resourceName} id={id} />
+                {resourceName && id && (
+                    <History resource={resourceName} id={id} />
+                )}
             </Modal>
         </>
     );

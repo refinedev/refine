@@ -1,4 +1,5 @@
-import { IResourceItem } from "@pankod/refine-core";
+import { IResourceItem } from "@refinedev/core";
+import { pickNotDeprecated } from "@refinedev/core";
 
 /**
  * Picks the data provider for the given resource. Which can be overridden by the resource itself.
@@ -14,8 +15,9 @@ export function pickDataProvider(
 
     const resource = resources?.find((item) => item.name === resourceName);
 
-    if (resource?.options?.dataProviderName) {
-        return resource.options.dataProviderName;
+    const meta = pickNotDeprecated(resource?.meta, resource?.options);
+    if (meta?.dataProviderName) {
+        return meta.dataProviderName;
     }
 
     return "default";

@@ -4,13 +4,10 @@ import {
     HttpError,
     CrudFilters,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
+import { useDataGrid, TagField, List, useAutocomplete } from "@refinedev/mui";
+
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    TagField,
-    List,
     Grid,
     Box,
     Button,
@@ -19,15 +16,18 @@ import {
     CardHeader,
     InputAdornment,
     TextField,
-    useAutocomplete,
     Autocomplete,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { SearchOutlined } from "@mui/icons-material";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 import { ICategory, IPost, IPostFilterVariables } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps, filters, search } = useDataGrid<
         IPost,
         HttpError,

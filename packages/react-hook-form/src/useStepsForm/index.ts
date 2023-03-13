@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
-import { BaseRecord, HttpError } from "@pankod/refine-core";
+import { BaseRecord, HttpError } from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 

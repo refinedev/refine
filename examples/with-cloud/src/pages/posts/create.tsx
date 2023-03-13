@@ -1,18 +1,13 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Create,
-    Form,
-    Input,
-    RcFile,
-    Select,
-    Upload,
-} from "@pankod/refine-antd";
-import { useForm, useSelect } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
+import { RcFile } from "antd/lib/upload/interface";
+import { Form, Input, Select, Upload } from "antd";
+import { useForm, useSelect } from "@refinedev/antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { useSdk } from "@pankod/refine-cloud";
+import { useSdk } from "@refinedev/cloud";
 
 import { normalizeFile } from "utility/normalize";
 import { IPost, ICategory } from "interfaces";

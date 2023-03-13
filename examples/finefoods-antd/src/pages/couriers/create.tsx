@@ -2,27 +2,30 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useApiUrl,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
+
+import {
+    Create,
+    SaveButton,
+    getValueFromEvent,
+    useStepsForm,
+    useSelect,
+} from "@refinedev/antd";
 
 import {
     Form,
-    Create,
     Select,
     Upload,
     Input,
     Button,
-    SaveButton,
     Steps,
-    getValueFromEvent,
-    useStepsForm,
-    useSelect,
     Typography,
     Space,
     Avatar,
     Row,
     Col,
     InputProps,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import InputMask from "react-input-mask";
 
@@ -30,7 +33,7 @@ const { Text } = Typography;
 
 import { ICourier, IStore } from "interfaces";
 
-export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
+export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const {
         current,

@@ -1,4 +1,4 @@
-import { buttonCreateTests } from "@pankod/refine-ui-tests";
+import { buttonCreateTests } from "@refinedev/ui-tests";
 
 import { CreateButton } from "./";
 

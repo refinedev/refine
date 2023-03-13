@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: sharedRouterProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
@@ -17,9 +17,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
@@ -28,20 +28,20 @@ const EditPage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        <ChakraUI.VStack alignItems="flex-start">
+            <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+            </ChakraUI.Text>
+            <ChakraUI.Code>{JSON.stringify(params)}</ChakraUI.Code>
 
-            <RefineChakra.Button
+            <ChakraUI.Button
                 size="sm"
                 onClick={() => list("posts")}
                 colorScheme="green"
             >
                 Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
+            </ChakraUI.Button>
+        </ChakraUI.VStack>
     );
 };
 ```
@@ -56,11 +56,16 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
+import { Refine, useNavigation, useRouterContext } from "@refinedev/core";
 
 // visible-block-start
 import {
     List,
+
+    // highlight-next-line
+    EditButton,
+} from "@refinedev/chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -68,10 +73,9 @@ import {
     Th,
     Tbody,
     Td,
-    // highlight-next-line
-    EditButton,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -192,10 +196,10 @@ render(
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-chakra-ui";
+import { EditButton } from "@refinedev/chakra-ui";
 
 const MyEditComponent = () => {
     return <EditButton colorScheme="black" recordItemId="123" />;
@@ -223,17 +227,136 @@ render(
 );
 ```
 
-### `resourceNameOrRouteName`
+### `resource`
+
+Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { EditButton } from "@refinedev/chakra-ui";
+
+const MyEditComponent = () => {
+    return (
+        <EditButton
+            colorScheme="black"
+            resource="categories"
+            recordItemId="2"
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyEditComponent,
+                },
+                {
+                    name: "categories",
+                    edit: EditPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `edit` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `edit` action route is defined by the pattern: `/posts/:authorId/edit/:id`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <EditButton meta={{ authorId: "10" }} />
+    );
+};
+```
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { EditButton } from "@refinedev/chakra-ui";
+
+const MyEditComponent = () => {
+    return <EditButton colorScheme="black" recordItemId="123" hideText />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyEditComponent,
+                    edit: EditPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `accessControl`
+
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { EditButton } from "@refinedev/chakra-ui";
+
+export const MyListComponent = () => {
+    return (
+        <EditButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
+};
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-chakra-ui";
+import { EditButton } from "@refinedev/chakra-ui";
 
 const MyEditComponent = () => {
     return (
@@ -272,62 +395,8 @@ render(
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@pankod/refine-core";
-
-// visible-block-start
-import { EditButton } from "@pankod/refine-chakra-ui";
-
-const MyEditComponent = () => {
-    return <EditButton colorScheme="black" recordItemId="123" hideText />;
-};
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyEditComponent,
-                    edit: EditPage,
-                },
-            ]}
-        />
-    );
-};
-
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
-```
-
-### `accessControl`
-
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx
-import { EditButton } from "@pankod/refine-chakra-ui";
-
-export const MyListComponent = () => {
-    return (
-        <EditButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
-};
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/EditButton" />
+<PropsTable module="@refinedev/chakra-ui/EditButton" />

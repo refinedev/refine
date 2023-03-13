@@ -1,19 +1,17 @@
 import { useState } from "react";
+import { useResource, useDataProvider } from "@hooks";
 import {
-    useResource,
-    useResourceWithRoute,
-    useRouterContext,
-    useDataProvider,
-} from "@hooks";
-import {
-    ResourceRouterParams,
     BaseRecord,
     MapDataFn,
     CrudSorting,
     CrudFilters,
-    MetaDataQuery,
+    MetaQuery,
 } from "../../interfaces";
-import { userFriendlyResourceName, pickDataProvider } from "@definitions";
+import {
+    userFriendlyResourceName,
+    pickDataProvider,
+    pickNotDeprecated,
+} from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
 
 type UseExportOptionsType<
@@ -23,16 +21,27 @@ type UseExportOptionsType<
     /**
      * Resource name for API data interactions
      * @default Resource name that it reads from route
+     * @deprecated `resourceName` is deprecated. Use `resource` instead.
      */
     resourceName?: string;
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
     /**
      * A mapping function that runs for every record. Mapped data will be included in the file contents
      */
     mapData?: MapDataFn<TData, TVariables>;
     /**
      *  Sorts records
+     *  @deprecated `sorter` is deprecated. Use `sorters` instead.
      */
     sorter?: CrudSorting;
+    /**
+     *  Sorts records
+     */
+    sorters?: CrudSorting;
     /**
      *  Filters records
      */
@@ -50,7 +59,12 @@ type UseExportOptionsType<
     /**
      *  Metadata query for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     *  Metadata query for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
@@ -80,39 +94,36 @@ export const useExport = <
     TVariables = any,
 >({
     resourceName,
+    resource: resourceFromProps,
     sorter,
+    sorters,
     filters,
     maxItemCount,
     pageSize = 20,
     mapData = (item) => item as any,
     exportOptions,
+    meta,
     metaData,
     dataProviderName,
     onError,
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
-    const { resources } = useResource();
-
-    const resourceWithRoute = useResourceWithRoute();
     const dataProvider = useDataProvider();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    let { name: resource } = resourceWithRoute(routeResourceName);
-
-    if (resourceName) {
-        resource = resourceName;
-    }
+    const { resource, resources } = useResource();
 
     const filename = `${userFriendlyResourceName(
-        resource,
+        resource?.name,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
+        pickDataProvider(
+            resource?.identifier ?? resource?.name,
+            dataProviderName,
+            resources,
+        ),
     );
 
     const triggerExport = async () => {
@@ -125,14 +136,17 @@ export const useExport = <
         while (preparingData) {
             try {
                 const { data, total } = await getList<TData>({
-                    resource,
+                    resource: resource?.name ?? "",
                     filters,
-                    sort: sorter,
+                    sort: pickNotDeprecated(sorters, sorter),
+                    sorters: pickNotDeprecated(sorters, sorter),
                     pagination: {
                         current,
                         pageSize,
+                        mode: "server",
                     },
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                 });
 
                 current++;

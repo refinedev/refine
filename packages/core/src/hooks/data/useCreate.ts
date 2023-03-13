@@ -4,25 +4,29 @@ import {
     UseMutationResult,
 } from "@tanstack/react-query";
 import pluralize from "pluralize";
-import { pickDataProvider } from "@definitions/helpers";
+import {
+    pickDataProvider,
+    pickNotDeprecated,
+    useActiveAuthProvider,
+} from "@definitions/helpers";
 
 import {
     CreateResponse,
     BaseRecord,
     HttpError,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     IQueryKeys,
 } from "../../interfaces";
 import {
     useResource,
     useTranslate,
-    useCheckError,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useLog,
     useInvalidate,
+    useOnError,
 } from "@hooks";
 
 type useCreateParams<TVariables> = {
@@ -35,9 +39,14 @@ type useCreateParams<TVariables> = {
      */
     values: TVariables;
     /**
-     *  Metadata query for `dataProvider`
+     * Meta data for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Meta data for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
@@ -99,7 +108,10 @@ export const useCreate = <
     TError,
     TVariables
 > => {
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
 
@@ -119,6 +131,7 @@ export const useCreate = <
         ({
             resource,
             values,
+            meta,
             metaData,
             dataProviderName,
         }: useCreateParams<TVariables>) => {
@@ -127,7 +140,8 @@ export const useCreate = <
             ).create<TData, TVariables>({
                 resource,
                 variables: values,
-                metaData,
+                meta: pickNotDeprecated(meta, metaData),
+                metaData: pickNotDeprecated(meta, metaData),
             });
         },
         {
@@ -139,6 +153,7 @@ export const useCreate = <
                     dataProviderName,
                     invalidates = ["list", "many"],
                     values,
+                    meta,
                     metaData,
                 },
             ) => {
@@ -185,7 +200,7 @@ export const useCreate = <
                 });
 
                 const { fields, operation, variables, ...rest } =
-                    metaData || {};
+                    pickNotDeprecated(meta, metaData) || {};
 
                 log?.mutate({
                     action: "create",

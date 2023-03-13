@@ -1,5 +1,5 @@
-import { useOne } from "@pankod/refine-core";
-import { useFormContext } from "@pankod/refine-react-hook-form";
+import { useOne } from "@refinedev/core";
+import { useFormContext } from "react-hook-form";
 import { Cart } from "@medusajs/medusa";
 
 import { useCartContext } from "@lib/context";

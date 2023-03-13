@@ -10,7 +10,7 @@ import {
     RefineFieldTagProps,
     RefineFieldTextProps,
     RefineFieldUrlProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 import { TablerIconProps } from "@tabler/icons";
 import { ConfigType } from "dayjs";
 import { ReactMarkdownOptions } from "react-markdown";

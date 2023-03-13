@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
+import { RefineFieldUrlProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
@@ -8,7 +8,7 @@ export const fieldUrlTests = function (
         RefineFieldUrlProps<string | undefined, any, any>
     >,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Url Field", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Url Field", () => {
         const url = "https://www.google.com/";
 
         it("renders urlField with given value", () => {

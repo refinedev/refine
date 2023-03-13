@@ -1,8 +1,16 @@
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
 import {
     List,
+    ShowButton,
+    EditButton,
+    DeleteButton,
+    DateField,
+} from "@refinedev/chakra-ui";
+
+import {
     Table,
     Thead,
     Tbody,
@@ -11,13 +19,9 @@ import {
     Td,
     TableContainer,
     HStack,
-    Text,
-    ShowButton,
-    EditButton,
-    DeleteButton,
     Select,
-    DateField,
-} from "@pankod/refine-chakra-ui";
+    Box,
+} from "@chakra-ui/react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { Pagination } from "../../components/pagination";
@@ -170,13 +174,13 @@ export const PostList: React.FC = () => {
                                     <Th key={header.id}>
                                         {!header.isPlaceholder && (
                                             <HStack spacing="2">
-                                                <Text>
+                                                <Box>
                                                     {flexRender(
                                                         header.column.columnDef
                                                             .header,
                                                         header.getContext(),
                                                     )}
-                                                </Text>
+                                                </Box>
                                                 <HStack spacing="2">
                                                     <ColumnSorter
                                                         column={header.column}

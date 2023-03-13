@@ -5,8 +5,8 @@ import {
     getDefaultFilter,
     useList,
     useTranslate,
-} from "@pankod/refine-core";
-import { Stack, Grid } from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { Stack, Grid } from "@mui/material";
 
 import { ICategory } from "interfaces";
 

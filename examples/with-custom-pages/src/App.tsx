@@ -1,99 +1,155 @@
 import {
     GitHubBanner,
     Refine,
-    AuthProvider,
     Authenticated,
-} from "@pankod/refine-core";
+    AuthBindings,
+} from "@refinedev/core";
 import {
     notificationProvider,
     AuthPage,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Outlet,
+    Navigate,
+} from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { PostReview } from "pages/post-review";
+import { Sider } from "components/sider";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const AuthenticatedPostReview = () => {
-    return (
-        <Authenticated>
-            <PostReview />
-        </Authenticated>
-    );
-};
-
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
-        login: ({ email }) => {
+    const authProvider: AuthBindings = {
+        login: async ({ email }) => {
             if (email) {
                 localStorage.setItem("email", email);
-                return Promise.resolve();
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
             }
 
-            return Promise.reject();
+            return {
+                success: false,
+                message: "Invalid email or password",
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("email");
-            return Promise.resolve();
+            return { redirectTo: "/login", success: true };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () =>
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        check: async () =>
             localStorage.getItem("email")
-                ? Promise.resolve()
-                : Promise.reject(),
-        getPermissions: () => Promise.resolve(["admin"]),
+                ? {
+                      authenticated: true,
+                  }
+                : {
+                      authenticated: false,
+                      redirectTo: "/login",
+                  },
+        getPermissions: async () => ["admin"],
     };
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [
-                        {
-                            element: <PostReview />,
-                            path: "/public-page",
-                        },
-                        {
-                            element: <AuthenticatedPostReview />,
-                            path: "/authenticated-page",
-                            layout: true,
-                        },
-                    ] as typeof routerProvider.routes,
-                }}
+                routerProvider={routerProvider}
                 authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                LoginPage={() => (
-                    <AuthPage
-                        formProps={{
-                            initialValues: {
-                                email: "admin@refine.dev",
-                                password: "password",
-                            },
-                        }}
-                    />
-                )}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    warnWhenUnsavedChanges: true,
+                    syncWithLocation: true,
+                }}
+            >
+                <Routes>
+                    <Route index element={<Navigate to="post-review" />} />
+
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout Sider={() => <Sider />}>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+
+                        <Route path="post-review" element={<PostReview />} />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={
+                                <AuthPage
+                                    formProps={{
+                                        initialValues: {
+                                            email: "admin@refine.dev",
+                                            password: "password",
+                                        },
+                                    }}
+                                />
+                            }
+                        />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

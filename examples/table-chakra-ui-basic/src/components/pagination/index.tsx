@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { IconButton, usePagination } from "@pankod/refine-chakra-ui";
+import { usePagination } from "@refinedev/chakra-ui";
+
+import { IconButton } from "@chakra-ui/react";
 
 type PaginationProps = {
     current: number;
@@ -33,13 +35,14 @@ export const Pagination: FC<PaginationProps> = ({
                     </IconButton>
                 )}
 
-                {pagination?.items.map((page) => {
-                    if (typeof page === "string")
-                        return <span key={page}>...</span>;
+                {pagination?.items.map((page, i) => {
+                    if (typeof page === "string") {
+                        return <span key={i}>...</span>;
+                    }
 
                     return (
                         <Button
-                            key={page}
+                            key={i}
                             onClick={() => setCurrent(page)}
                             variant={page === current ? "solid" : "outline"}
                         >

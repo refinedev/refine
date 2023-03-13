@@ -3,7 +3,8 @@ import {
     HttpError,
     UseSelectProps,
     UseSelectReturnType,
-} from "@pankod/refine-core";
+    BaseRecord,
+} from "@refinedev/core";
 import { AutocompleteProps } from "@mui/material/Autocomplete";
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
@@ -21,7 +22,7 @@ type AutocompletePropsType<TData> = Required<
     >
 >;
 
-export type UseAutocompleteReturnType<TData> = Omit<
+export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
     UseSelectReturnType<TData>,
     "options"
 > & {
@@ -29,13 +30,15 @@ export type UseAutocompleteReturnType<TData> = Omit<
 };
 
 export const useAutocomplete = <
-    TData = any,
+    TData extends BaseRecord = any,
     TError extends HttpError = HttpError,
 >(
     props: UseAutocompleteProps<TData, TError>,
 ): UseAutocompleteReturnType<TData> => {
-    const { queryResult, defaultValueQueryResult, onSearch } =
-        useSelectCore(props);
+    const { queryResult, defaultValueQueryResult, onSearch } = useSelectCore<
+        TData,
+        TError
+    >(props);
 
     return {
         autocompleteProps: {

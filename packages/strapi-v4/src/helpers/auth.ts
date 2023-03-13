@@ -1,4 +1,4 @@
-import { MetaDataQuery } from "@pankod/refine-core";
+import { MetaQuery, pickNotDeprecated } from "@refinedev/core";
 import axios from "axios";
 import { stringify } from "qs";
 
@@ -27,7 +27,11 @@ interface IUser {
 }
 
 export type MeOptions = {
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
 };
 
 export const AuthHelper = (apiUrl: string) => ({
@@ -40,10 +44,11 @@ export const AuthHelper = (apiUrl: string) => ({
         });
     },
     me: async (token: string, options?: MeOptions) => {
-        const { metaData } = options ?? {};
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
+        const { metaData, meta: _meta } = options ?? {};
+        const meta = pickNotDeprecated(_meta, metaData);
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
 
         const query = {
             locale,

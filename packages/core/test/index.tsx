@@ -1,13 +1,15 @@
 import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MemoryRouter } from "react-router-dom";
 
-import { AuthContextProvider } from "@contexts/auth";
+import {
+    AuthBindingsContextProvider,
+    LegacyAuthContextProvider,
+} from "@contexts/auth";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-    IAuthContext,
+    ILegacyAuthContext,
     I18nProvider,
     IAccessControlContext,
     ILiveContext,
@@ -15,17 +17,21 @@ import {
     IDataMultipleContextProvider,
     IDataContextProvider,
     IAuditLogContext,
+    RouterBindings,
+    IRouterContext,
+    AuthBindings,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
-import { RouterContextProvider } from "@contexts/router";
+import { LegacyRouterContextProvider } from "@contexts/legacy-router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 
-import { MockRouterProvider } from "@test";
+import { RouterBindingsProvider } from "@contexts/router";
+import { RouterPickerProvider } from "@contexts/router-picker";
 
 export const queryClient = new QueryClient({
     logger: {
@@ -49,7 +55,8 @@ beforeEach(() => {
 });
 
 export interface ITestWrapperProps {
-    authProvider?: IAuthContext;
+    legacyAuthProvider?: ILegacyAuthContext;
+    authProvider?: AuthBindings;
     dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
     notificationProvider?: INotificationContext;
@@ -57,7 +64,8 @@ export interface ITestWrapperProps {
     liveProvider?: ILiveContext;
     resources?: IResourceItem[];
     children?: React.ReactNode;
-    routerInitialEntries?: string[];
+    legacyRouterProvider?: IRouterContext;
+    routerProvider?: RouterBindings;
     refineProvider?: IRefineContextProvider;
     auditLogProvider?: IAuditLogContext;
 }
@@ -65,25 +73,64 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
     props: ITestWrapperProps,
 ) => React.FC<{ children: ReactNode }> = ({
+    legacyAuthProvider,
     authProvider,
     dataProvider,
     resources,
     i18nProvider,
     notificationProvider,
     accessControlProvider,
-    routerInitialEntries,
+    legacyRouterProvider,
+    routerProvider,
     refineProvider,
     liveProvider,
     auditLogProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
-        const withResource = resources ? (
-            <ResourceContextProvider resources={resources}>
+        const withRouterPicker = (
+            <RouterPickerProvider
+                value={
+                    routerProvider
+                        ? "new"
+                        : legacyRouterProvider
+                        ? "legacy"
+                        : "new"
+                }
+            >
                 {children}
+            </RouterPickerProvider>
+        );
+
+        const withLegacyRouter = legacyRouterProvider ? (
+            <LegacyRouterContextProvider {...legacyRouterProvider}>
+                {withRouterPicker}
+            </LegacyRouterContextProvider>
+        ) : (
+            withRouterPicker
+        );
+
+        const withRouterBindings = routerProvider ? (
+            <RouterBindingsProvider router={routerProvider}>
+                {withLegacyRouter}
+            </RouterBindingsProvider>
+        ) : (
+            withLegacyRouter
+        );
+
+        const withResource = resources ? (
+            <ResourceContextProvider
+                resources={resources.map((r) => ({
+                    ...r,
+                    options: {
+                        route: r.options?.route ?? r.route,
+                    },
+                }))}
+            >
+                {withRouterBindings}
             </ResourceContextProvider>
         ) : (
-            children
+            withRouterBindings
         );
         const withData = dataProvider ? (
             <DataContextProvider {...dataProvider}>
@@ -139,15 +186,26 @@ export const TestWrapper: (
             </UndoableQueueContextProvider>
         );
 
+        const withLegacyAuth = legacyAuthProvider ? (
+            <LegacyAuthContextProvider
+                {...legacyAuthProvider}
+                isProvided={Boolean(legacyAuthProvider)}
+            >
+                {withNotification}
+            </LegacyAuthContextProvider>
+        ) : (
+            withNotification
+        );
+
         const withAuth = authProvider ? (
-            <AuthContextProvider
+            <AuthBindingsContextProvider
                 {...authProvider}
                 isProvided={Boolean(authProvider)}
             >
-                {withNotification}
-            </AuthContextProvider>
+                {withLegacyAuth}
+            </AuthBindingsContextProvider>
         ) : (
-            withNotification
+            withLegacyAuth
         );
 
         const withRefine = refineProvider ? (
@@ -159,20 +217,17 @@ export const TestWrapper: (
         );
 
         return (
-            <RouterContextProvider {...MockRouterProvider}>
-                <MemoryRouter initialEntries={routerInitialEntries}>
-                    <QueryClientProvider client={queryClient}>
-                        {withRefine}
-                    </QueryClientProvider>
-                </MemoryRouter>
-            </RouterContextProvider>
+            <QueryClientProvider client={queryClient}>
+                {withRefine}
+            </QueryClientProvider>
         );
     };
 };
 
 export {
     MockJSONServer,
-    MockRouterProvider,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
     MockAccessControlProvider,
     MockLiveProvider,
 } from "./dataMocks";

@@ -241,10 +241,10 @@ Here the query will look like:
 ## Handle filters in a data provider
 
 ```tsx title="dataProvider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 const dataProvider = (): DataProvider => ({
-    getList: async ({ resource, pagination, filters, sort }) => {
+    getList: async ({ resource, pagination, filters, sorters }) => {
         if (filters) {
             filters.map((filter) => {
                 if (filter.operator !== "or" && filter.operator !== "and" && "field" in filter) {

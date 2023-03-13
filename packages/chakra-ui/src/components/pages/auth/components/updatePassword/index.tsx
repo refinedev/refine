@@ -6,7 +6,8 @@ import {
     UpdatePasswordPageProps,
     BaseRecord,
     HttpError,
-} from "@pankod/refine-core";
+    useActiveAuthProvider,
+} from "@refinedev/core";
 import {
     Box,
     BoxProps,
@@ -17,7 +18,7 @@ import {
     Heading,
     Input,
 } from "@chakra-ui/react";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
@@ -36,7 +37,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const translate = useTranslate();
-    const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const {
         register,
         watch,

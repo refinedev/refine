@@ -1,14 +1,14 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     BooleanField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space } from "antd";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -77,12 +77,12 @@ const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     <Space>
                         <EditButton
                             size="small"
-                            resourceName="posts"
+                            resourceNameOrRouteName="posts"
                             recordItemId={record.id}
                         />
                         <ShowButton
                             size="small"
-                            resourceName="posts"
+                            resourceNameOrRouteName="posts"
                             recordItemId={record.id}
                         />
                     </Space>

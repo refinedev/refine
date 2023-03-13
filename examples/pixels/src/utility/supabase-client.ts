@@ -1,4 +1,4 @@
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 // use env variables in production
 const SUPABASE_URL = "https://ifbdnkfqbypnkmwcfdes.supabase.co";

@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -44,21 +44,20 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
-    Title,
-    Text,
     MarkdownField,
     //highlight-next-line
     RefreshButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
+import { Title, Text } from "@mantine/core";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -118,10 +117,10 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mantine";
+import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
     return <RefreshButton recordItemId="123" />;
@@ -154,21 +153,21 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mantine";
+import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
     return (
-        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <RefreshButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
@@ -206,10 +205,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mantine";
+import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
     return <RefreshButton hideText recordItemId="123" />;
@@ -236,8 +235,55 @@ render(
 );
 ```
 
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { RefreshButton } from "@refinedev/mantine";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyRefreshComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/RefreshButton" />
+<PropsTable module="@refinedev/mantine/RefreshButton" />

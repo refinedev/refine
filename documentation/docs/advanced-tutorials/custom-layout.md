@@ -1,146 +1,93 @@
 ---
 id: custom-layout
 title: Custom Layout
+sidebar_label: Custom Layout 🆙
 ---
 
-You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`][layoutwrapper] components.
+**refine** supports any layout you want with no restrictions and also provides default layouts with its UI packages. You are free to use them or create your own with the help of **refine**'s hooks and components. You can also use the [`swizzle`][cli] command to customize the default layouts and adapt them to your needs.
 
-Both of these components can accept the listed props for customization. [`<Refine>`][refine] is for global customization and the [`<LayoutWrapper>`][layoutwrapper] is for local.
+## Layout Elements
 
--   [`Layout`][layout]
--   [`Sider`][sider]
--   [`Footer`][footer]
--   [`Header`][header]
--   [`OffLayoutArea`][offlayoutarea]
--   [`Title`][title]
+### `Layout`
 
-## Usage
+`<Layout>` components are designed to wrap your pages and provide a dashboard-like layout. `<Layout>` accepts rest of the layout elements in props.
 
-:::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
-:::
+| Prop                              | Type        | Description                                     |
+| --------------------------------- | ----------- | ----------------------------------------------- |
+| [`Sider`](#sider)                 | `React.FC`  | Component to render menu aside                  |
+| [`Header`](#header)               | `React.FC`  | Component to render at the top of the layout    |
+| [`Title`](#title)                 | `React.FC`  | Component to render inside `<Sider>`            |
+| [`Footer`](#footer)               | `React.FC`  | Component to render at the bottom of the layout |
+| [`OffLayoutArea`](#offlayoutarea) | `React.FC`  | Component to render outside of the layout       |
+| `children`                        | `ReactNode` | Page content.                                   |
 
-Let's look at an example of modifying the default layout to have a top menu layout.
+### `Sider`
 
-```tsx title="/src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+`<Sider>` components are designed to render menu items according to the resources you have defined in `<Refine>` components. [`useMenu`][usemenu] hook is used under the hood to generate menu items.
 
-import "@pankod/refine-antd/dist/reset.css";
+| Prop              | Type                                          | Description                                                               |
+| ----------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
+| [`Title`](#title) | `React.FC`                                    | Component to render at the top                                            |
+| `render`          | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<Sider>` |
+| `meta`            | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                  |
 
-import { PostList } from "pages/posts";
-// highlight-next-line
-import { CustomSider } from "components";
+### `SiderRenderFunction`
 
-const { Link } = routerProvider;
+```tsx
+type SiderRenderFunction = (props: {
+    items: JSX.Element[];
+    logout: React.ReactNode;
+    dashboard: React.ReactNode;
+    collapsed: boolean;
+}) => React.ReactNode;
+```
 
-const API_URL = "https://api.fake-rest.refine.dev";
+You can use the `render` prop to customize the render of the `<Sider>` without needing to swizzle the whole component.
 
-const App: React.FC = () => {
+```tsx title="Using Render Prop"
+import { Sider } from "@refinedev/antd";
+
+const CustomSider = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            Layout={({ children, Footer, OffLayoutArea }) => (
-                <AntdLayout>
-                    <AntdLayout.Header>
-                        <CustomSider />
-                    </AntdLayout.Header>
-                    <AntdLayout.Content>
-                        <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        {Footer && <Footer />}
-                    </AntdLayout.Content>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout>
-            )}
-            // highlight-end
-            Title={() => (
-                <Link to="/" style={{ float: "left", marginRight: "10px" }}>
-                    <img src="/refine.svg" alt="Refine" />
-                </Link>
-            )}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
+        <Sider
+            render={({ items, logout, collapsed }) => {
+                return (
+                    <>
+                        <div>My Custom Element</div>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
         />
     );
 };
-
-export default App;
 ```
 
-Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. When we override [`<Layout>`][layout], we put the `<CustomSider>` (instead of the [`<Sider>`][sider] that was provided to [`<Layout>`][layout] to render it by default) on top of [`<AntdLayout>`][antdlayout].
+### `Header`
 
-So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
+`<Header>` components are designed to render a header at the top of the layout.
 
-```tsx title="/src/components/sider/index.tsx"
-import { useTitle, useMenu } from "@pankod/refine-core";
-import { Menu } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+### `Title`
 
-const { Link } = routerProvider;
+`<Title>` components are designed to render a title inside the `<Sider>` component. By default, it renders the **refine** logo with a link to the index page.
 
-export const CustomSider: React.FC = () => {
-    // highlight-start
-    const Title = useTitle();
-    const { menuItems, selectedKey } = useMenu();
-    // highlight-end
+### `Footer`
 
-    return (
-        <>
-            // highlight-start
-            {Title && <Title collapsed={false} />}
-            <Menu selectedKeys={[selectedKey]} mode="horizontal">
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route ?? ""}>{label}</Link>
-                    </Menu.Item>
-                ))}
-            </Menu>
-            // highlight-end
-        </>
-    );
-};
-```
+`<Footer>` components are designed to render a footer at the bottom of the layout.
 
-Here, we use [`useMenu`][usemenu] hook to get the list of current resources and print it.
+### `OffLayoutArea`
 
-:::info
-By default, [`<Sider>`][sider] is responsible for rendering [`<Title>`][title]. It gets this component (configured by [`<Refine>`][refine] and/or [`<LayoutWrapper>`][layoutwrapper]) by [`useTitle`][usetitle] hook.
-:::
-
-:::info
-This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][layoutwrapper]
-:::
+`<OffLayoutArea>` components are designed to render elements outside of the layout.
 
 ## Example
 
-Here's how it looks in the end:
+Here's an example of a custom layout, made with help of **refine**'s hooks and components.
+
+You can find more examples about custom layouts for different UI packages in the [examples](/docs/examples) section.
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
 [refine]: /docs/api-reference/core/components/refine-config
-[layout]: /docs/api-reference/core/components/refine-config#layout
-[sider]: /docs/api-reference/core/components/refine-config#sider
-[footer]: /docs/api-reference/core/components/refine-config#footer
-[header]: /docs/api-reference/core/components/refine-config#header
-[offlayoutarea]: /docs/api-reference/core/components/refine-config#offlayoutarea
-[title]: /docs/api-reference/core/components/refine-config#title
-[layoutwrapper]: /docs/api-reference/core/components/layout-wrapper
-[custom page example]: /advanced-tutorials/custom-pages
-[custom page example code]: /examples/customization/topMenuLayout
-[antdlayout]: https://ant.design/components/layout/
-[usemenu]: /docs/api-reference/core/hooks/ui/useMenu
-[usetitle]: /docs/api-reference/core/hooks/refine/useTitle
+[cli]: /docs/packages/documentation/cli#swizzle
+[usemenu]: /docs/api-reference/core/hooks/ui/useMenu/

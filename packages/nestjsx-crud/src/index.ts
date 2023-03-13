@@ -17,7 +17,8 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
-} from "@pankod/refine-core";
+    Pagination,
+} from "@refinedev/core";
 import { stringify } from "query-string";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
@@ -151,11 +152,11 @@ const handleJoin = (
 
 const handlePagination = (
     query: RequestQueryBuilder,
-    hasPagination: boolean,
-    pageSize: number,
-    current: number,
+    pagination?: Pagination,
 ) => {
-    if (hasPagination) {
+    const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
+
+    if (mode === "server") {
         query
             .setLimit(pageSize)
             .setPage(current)
@@ -165,8 +166,8 @@ const handlePagination = (
     return query;
 };
 
-const handleSort = (query: RequestQueryBuilder, sort?: CrudSorting) => {
-    const sortBy = generateSort(sort);
+const handleSort = (query: RequestQueryBuilder, sorters?: CrudSorting) => {
+    const sortBy = generateSort(sorters);
     if (sortBy) {
         query.sortBy(sortBy);
     }
@@ -178,24 +179,15 @@ const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-        metaData,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
-
-        const { current = 1, pageSize = 10 } = pagination ?? {};
 
         let query = RequestQueryBuilder.create();
 
         query = handleFilter(query, filters);
-        query = handleJoin(query, metaData?.join);
-        query = handlePagination(query, hasPagination, pageSize, current);
-        query = handleSort(query, sort);
+        query = handleJoin(query, meta?.join);
+        query = handlePagination(query, pagination);
+        query = handleSort(query, sorters);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -205,7 +197,7 @@ const NestsxCrud = (
         };
     },
 
-    getMany: async ({ resource, ids, metaData }) => {
+    getMany: async ({ resource, ids, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
         let query = RequestQueryBuilder.create().setFilter({
@@ -214,7 +206,7 @@ const NestsxCrud = (
             value: ids,
         });
 
-        query = handleJoin(query, metaData?.join);
+        query = handleJoin(query, meta?.join);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -306,9 +298,9 @@ const NestsxCrud = (
     custom: async ({
         url,
         method,
-        metaData,
+        meta,
         filters,
-        sort,
+        sorters,
         payload,
         query,
         headers,
@@ -317,9 +309,9 @@ const NestsxCrud = (
 
         requestQueryBuilder = handleFilter(requestQueryBuilder, filters);
 
-        requestQueryBuilder = handleJoin(requestQueryBuilder, metaData?.join);
+        requestQueryBuilder = handleJoin(requestQueryBuilder, meta?.join);
 
-        requestQueryBuilder = handleSort(requestQueryBuilder, sort);
+        requestQueryBuilder = handleSort(requestQueryBuilder, sorters);
 
         let requestUrl = `${url}?${requestQueryBuilder.query()}`;
 

@@ -4,7 +4,7 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("create", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).create({
             resource: "posts",
             variables: {
@@ -12,7 +12,7 @@ describe("create", () => {
                 title: "Lorem ipsum dolore",
                 category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
             },
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

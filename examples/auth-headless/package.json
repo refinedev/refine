@@ -8,12 +8,13 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.102.0",
-        "@pankod/refine-cli": "^1.18.0",
-        "@pankod/refine-react-hook-form": "^3.38.0",
-        "@pankod/refine-react-table": "^4.10.0",
-        "@pankod/refine-react-router-v6": "^3.39.0",
-        "@pankod/refine-simple-rest": "^3.38.0",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/cli": "^1.17.2",
+        "@refinedev/react-hook-form": "^3.37.2",
+        "@refinedev/react-table": "^4.9.1",
+        "@tanstack/react-table": "^8.2.6",
+        "@refinedev/react-router-v6": "^3.38.0",
+        "@refinedev/simple-rest": "^3.37.4",
         "react": "^18.0.0",
         "react-dom": "^18.0.0"
     },

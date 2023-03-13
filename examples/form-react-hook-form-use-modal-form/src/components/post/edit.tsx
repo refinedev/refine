@@ -1,5 +1,5 @@
-import { HttpError } from "@pankod/refine-core";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+import { HttpError } from "@refinedev/core";
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { Modal } from "components/modal";
 import { IPost } from "interfaces";

@@ -4,18 +4,13 @@ import {
     useDeleteMany,
     useMany,
     useSelect,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { alpha } from "@mui/material/styles";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import { DeleteButton, EditButton, SaveButton, List } from "@refinedev/mui";
+
 import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
-import {
-    DeleteButton,
-    EditButton,
-    SaveButton,
     Button,
     TextField,
     Stack,
@@ -33,9 +28,11 @@ import {
     TableBody,
     TableSortLabel,
     TablePagination,
-    List,
-} from "@pankod/refine-mui";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+} from "@mui/material";
+
+import { useForm } from "@refinedev/react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 import MDEditor from "@uiw/react-md-editor";
 

@@ -9,13 +9,14 @@ import pluralize from "pluralize";
 import {
     useResource,
     useCancelNotification,
-    useCheckError,
     useMutationMode,
     useTranslate,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useInvalidate,
+    useLog,
+    useOnError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -27,7 +28,7 @@ import {
     QueryResponse,
     PrevContext as UpdateContext,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
@@ -35,6 +36,8 @@ import {
     queryKeys,
     pickDataProvider,
     handleMultiple,
+    pickNotDeprecated,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
@@ -44,7 +47,15 @@ type UpdateManyParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
-    metaData?: MetaDataQuery;
+    /**
+     * meta data for `dataProvider`
+     */
+    meta?: MetaQuery;
+    /**
+     * meta data for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
@@ -108,11 +119,15 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
+    const { log } = useLog();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -127,6 +142,7 @@ export const useUpdateMany = <
             onCancel,
             mutationMode,
             undoableTimeout,
+            meta,
             metaData,
             dataProviderName,
         }: UpdateManyParams<TVariables>) => {
@@ -146,7 +162,8 @@ export const useUpdateMany = <
                         resource,
                         ids,
                         variables: values,
-                        metaData,
+                        meta: pickNotDeprecated(meta, metaData),
+                        metaData: pickNotDeprecated(meta, metaData),
                     });
                 } else {
                     return handleMultiple(
@@ -155,7 +172,8 @@ export const useUpdateMany = <
                                 resource,
                                 id,
                                 variables: values,
-                                metaData,
+                                meta: pickNotDeprecated(meta, metaData),
+                                metaData: pickNotDeprecated(meta, metaData),
                             }),
                         ),
                     );
@@ -205,12 +223,14 @@ export const useUpdateMany = <
                 values,
                 mutationMode,
                 dataProviderName,
+                meta,
                 metaData,
             }) => {
                 const queryKey = queryKeys(
                     resource,
                     pickDataProvider(resource, dataProviderName, resources),
-                    metaData,
+                    pickNotDeprecated(meta, metaData),
+                    pickNotDeprecated(meta, metaData),
                 );
 
                 const mutationModePropOrContext =
@@ -347,7 +367,16 @@ export const useUpdateMany = <
             },
             onSuccess: (
                 data,
-                { ids, resource, successNotification, values },
+                {
+                    ids,
+                    resource,
+                    meta,
+                    metaData,
+                    dataProviderName,
+                    successNotification,
+                    values,
+                },
+                context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
@@ -382,6 +411,44 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
+                });
+
+                const previousData: any[] = [];
+                if (context) {
+                    ids.forEach((id) => {
+                        const queryData = queryClient.getQueryData<
+                            UpdateManyResponse<TData>
+                        >(context.queryKey.detail(id));
+
+                        previousData.push(
+                            Object.keys(values || {}).reduce<any>(
+                                (acc, item: any) => {
+                                    acc[item] = queryData?.data?.[item];
+                                    return acc;
+                                },
+                                {},
+                            ),
+                        );
+                    });
+                }
+
+                const { fields, operation, variables, ...rest } =
+                    pickNotDeprecated(meta, metaData) || {};
+
+                log?.mutate({
+                    action: "updateMany",
+                    resource,
+                    data: values,
+                    previousData,
+                    meta: {
+                        ids,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ...rest,
+                    },
                 });
             },
             onError: (

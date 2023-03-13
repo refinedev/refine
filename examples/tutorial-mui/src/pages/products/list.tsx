@@ -1,15 +1,14 @@
 import React from "react";
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     EditButton,
     ShowButton,
     DeleteButton,
     List,
     MarkdownField,
-} from "@pankod/refine-mui";
-import { useMany } from "@pankod/refine-core";
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { useMany } from "@refinedev/core";
 
 export const ProductList = () => {
     const { dataGridProps } = useDataGrid();

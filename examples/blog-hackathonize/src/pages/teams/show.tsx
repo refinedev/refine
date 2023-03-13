@@ -1,5 +1,6 @@
-import { useShow } from "@pankod/refine-core";
-import { Show, Typography } from "@pankod/refine-antd";
+import { useShow } from "@refinedev/core";
+import { Show } from "@refinedev/antd";
+import { Typography } from "antd";
 import { TeamType } from "interfaces";
 const { Title, Text } = Typography;
 

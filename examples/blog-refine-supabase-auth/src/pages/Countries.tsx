@@ -1,4 +1,4 @@
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { Table } from "react-daisyui";
 
 const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];

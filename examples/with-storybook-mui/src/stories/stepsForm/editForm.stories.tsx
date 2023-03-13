@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
+import { Edit, SaveButton } from "@refinedev/mui";
 import {
     TextField,
     MenuItem,
-    Edit,
     Button,
-    SaveButton,
     Box,
     Stepper,
     Step,
     StepButton,
-} from "@pankod/refine-mui";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+} from "@mui/material";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

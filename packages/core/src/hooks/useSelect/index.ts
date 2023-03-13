@@ -14,11 +14,15 @@ import {
     CrudFilters,
     SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
     LiveModeProps,
     BaseKey,
     Pagination,
+    MetaQuery,
+    Prettify,
 } from "../../interfaces";
+import { pickNotDeprecated } from "@definitions/helpers";
+import { pickResource } from "@definitions/helpers/pick-resource";
+import { useResource } from "../resource/useResource/index";
 
 export type UseSelectProps<TData, TError> = {
     /**
@@ -29,16 +33,21 @@ export type UseSelectProps<TData, TError> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: string;
+    optionLabel?: keyof TData extends string ? keyof TData : never;
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: string;
+    optionValue?: keyof TData extends string ? keyof TData : never;
+    /**
+     * Allow us to sort the options
+     * @deprecated Use `sorters` instead
+     */
+    sort?: CrudSorting;
     /**
      * Allow us to sort the options
      */
-    sort?: CrudSorting;
+    sorters?: CrudSorting;
     /**
      * Resource name for API data interactions
      */
@@ -61,11 +70,20 @@ export type UseSelectProps<TData, TError> = {
      * @type {  current?: number; pageSize?: number;}
      * @default `undefined`
      */
-    pagination?: Pagination;
+    pagination?: Prettify<
+        Omit<Pagination, "mode"> & {
+            /**
+             * Whether to use server side pagination or not.
+             * @default "off"
+             */
+            mode?: Pagination["mode"];
+        }
+    >;
     /**
      * Disabling pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
      * @type boolean
-     * @default `undefined`
+     * @default `false`
+     * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
      */
     hasPagination?: boolean;
     /**
@@ -78,10 +96,14 @@ export type UseSelectProps<TData, TError> = {
      */
     onSearch?: (value: string) => CrudFilters;
     /**
-     * Metadata query for `dataProvider`
-     * @default `{}`
+     * Additional meta data to pass to the `useMany` from the data provider
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Additional meta data to pass to the `useMany` from the data provider
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      * @default `default`
@@ -114,8 +136,9 @@ export const useSelect = <
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
     const {
-        resource,
+        resource: resourceFromProps,
         sort,
+        sorters,
         filters = [],
         optionLabel = "title",
         optionValue = "id",
@@ -126,15 +149,25 @@ export const useSelect = <
         queryOptions,
         fetchSize,
         pagination,
-        hasPagination,
+        hasPagination = false,
         liveMode,
         defaultValue = [],
         onLiveEvent,
         onSearch: onSearchFromProp,
         liveParams,
+        meta,
         metaData,
         dataProviderName,
     } = props;
+
+    const { resources } = useResource();
+
+    /**
+     * Since `identifier` is an optional but prioritized way to match resources, users can provide identifier instead of resource name.
+     */
+    const pickedResource = pickResource(resourceFromProps, resources);
+
+    const resource = pickedResource?.name ?? resourceFromProps;
 
     const defaultValues = Array.isArray(defaultValue)
         ? defaultValue
@@ -144,8 +177,8 @@ export const useSelect = <
         (data: GetManyResponse<TData>) => {
             setSelectedOptions(
                 data.data.map((item) => ({
-                    label: get(item, optionLabel),
-                    value: get(item, optionValue),
+                    label: get(item, optionLabel) as string,
+                    value: get(item, optionValue) as string,
                 })),
             );
         },
@@ -168,7 +201,8 @@ export const useSelect = <
                 defaultValueQueryOptions?.onSuccess?.(data);
             },
         },
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode: "off",
         dataProviderName,
     });
@@ -178,8 +212,8 @@ export const useSelect = <
             {
                 setOptions(
                     data.data.map((item) => ({
-                        label: get(item, optionLabel),
-                        value: get(item, optionValue),
+                        label: get(item, optionLabel) as string,
+                        value: get(item, optionValue) as string,
                     })),
                 );
             }
@@ -189,15 +223,14 @@ export const useSelect = <
 
     const queryResult = useList<TData, TError>({
         resource,
-        config: {
-            sort,
-            filters: filters.concat(search),
-            pagination: {
-                current: pagination?.current,
-                pageSize: pagination?.pageSize ?? fetchSize,
-            },
-            hasPagination,
+        sorters: pickNotDeprecated(sorters, sort),
+        filters: filters.concat(search),
+        pagination: {
+            current: pagination?.current,
+            pageSize: pagination?.pageSize ?? fetchSize,
+            mode: pagination?.mode,
         },
+        hasPagination,
         queryOptions: {
             ...queryOptions,
             onSuccess: (data) => {
@@ -207,7 +240,8 @@ export const useSelect = <
         },
         successNotification,
         errorNotification,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode,
         liveParams,
         onLiveEvent,

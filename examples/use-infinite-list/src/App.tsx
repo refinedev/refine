@@ -1,10 +1,20 @@
-import { GitHubBanner, LayoutProps, Refine } from "@pankod/refine-core";
-import routerProvider, { Link } from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import {
+    GitHubBanner,
+    Refine,
+    LayoutProps,
+    ErrorComponent,
+} from "@refinedev/core";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import dataProvider from "@refinedev/simple-rest";
 
 import { githubDataProvider } from "github-data-provider";
 import { PostList } from "pages/posts/list";
 import { CommitList } from "pages/commits/list";
+
 import "./App.css";
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
@@ -31,27 +41,52 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
 
 const App: React.FC = () => {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
+                routerProvider={routerProvider}
                 dataProvider={{
                     default: dataProvider("https://api.fake-rest.refine.dev"),
                     github: githubDataProvider(),
                 }}
-                routerProvider={routerProvider}
-                Layout={Layout}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
+                        list: "/posts",
                     },
                     {
                         name: "commits",
-                        list: CommitList,
+                        list: "/commits",
                     },
                 ]}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts" element={<PostList />} />
+
+                        <Route path="/commits" element={<CommitList />} />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

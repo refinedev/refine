@@ -1,7 +1,7 @@
 import React from "react";
 import { ColumnTypes } from "./enums";
 import { IProduct } from "components/constants/models";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 
 function useData() {
     //Fetching data from the products endpoint

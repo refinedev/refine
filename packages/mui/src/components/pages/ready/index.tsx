@@ -1,7 +1,10 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
+import { RefineReadyPageProps } from "@refinedev/ui-types";
 import { Stack, Grid, Typography, Button, Link } from "@mui/material";
 
+/**
+ * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ */
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     const renderCode = (text: string) => (
         <Typography

@@ -3,21 +3,37 @@ id: useForgotPassword
 title: useForgotPassword
 siderbar_label: useForgotPassword
 description: useForgotPassword data hook from refine is a modified version of react-query's useMutation for registration.
+source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 
-`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It forgot passwords the user if `forgotPassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
 
-Data that is resolved from `forgotPassword` will be returned as the `data` in the query result.
+Data that is resolved from `forgotPassword` will be returned as the `data` in the query result with the following type:
+
+```ts
+type AuthActionResponse = {
+    success: boolean;
+    redirectTo?: string;
+    error?: Error;
+    [key: string]: unknown;
+};
+```
+
+-   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
+    -   When `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values `{ name: "Forgot Password Error", message: "Invalid credentials" }`.
+-   `redirectTo`: If has a value, the app will be redirected to the given URL.
+-   `error`: If has a value, a notification will be shown with the error message and name.
+-   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
 Normally refine provides a default forgot password page. If you prefer to use this default forgot password page, there is no need to handle forgot password flow manually.  
-If we want to build a custom forgotPassword page instead of default one that comes with refine, `useForgotPassword` can be used like this:
+If we want to build a custom forgotPassword page instead of the default one that comes with **refine**, `useForgotPassword` can be used like this:
 
 ```tsx title="pages/customForgotPasswordPage"
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 type forgotPasswordVariables = {
     email: string;
@@ -46,66 +62,41 @@ export const forgotPasswordPage = () => {
 A type parameter for the values can be provided to `useForgotPassword`.
 
 ```tsx
+import { useForgotPassword } from "@refinedev/core";
+
 const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 ```
 
 :::
 
-## Redirection after forgotPassword
+### Redirection after forgotPassword
 
-We have 2 options for redirecting the app after forgotPassword successfully .
-
--   A custom url can be resolved from the promise returned from the `forgotPassword` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
+A custom URL can be given to mutate the function from the `useForgotPassword` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: () => {
-        ...
-        return Promise.resolve("/custom-url");
-    }
-}
-```
-
-A custom url can be given to mutate function from the `useForgotPassword` hook if you want to redirect yourself to a certain url.
-
-```tsx
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 const { mutate: forgotPassword } = useForgotPassword();
 
 forgotPassword({ redirectPath: "/custom-url" });
 ```
 
-Then, you can handle this url in your `forgotPassword` method of the `authProvider`.
+Then, you can handle this URL in your `forgotPassword` method of the `authProvider`.
 
 ```tsx
+import type { AuthBindings } from "@refinedev/core";
 
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
-
+const authProvider: AuthBindings = {
+    // ---
+    forgotPassword: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
-
--   If the promise returned from the `forgotPassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
-```
-
-:::tip
-If the promise returned from `forgotPassword` is resolved with nothing, app won't be redirected to any route by default.
-:::
 
 :::caution
 This hook can only be used if `authProvider` is provided.

@@ -1,50 +1,74 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 export const TOKEN_KEY = "refine-auth";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
-        return Promise.resolve();
+        return {
+            success: true,
+        };
     },
     register: async ({ email, password }) => {
         try {
             await authProvider.login({ email, password });
-            return Promise.resolve();
+            return {
+                success: true,
+            };
         } catch (error) {
-            return Promise.reject();
+            return {
+                success: false,
+                error: new Error("Invalid email or password"),
+            };
         }
     },
     updatePassword: async () => {
-        return Promise.resolve();
+        return {
+            success: true,
+        };
     },
     forgotPassword: async () => {
-        return Promise.resolve();
+        return {
+            success: true,
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            error: new Error("Invalid token"),
+            logout: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
-        return Promise.resolve({
+        return {
             id: 1,
             name: "James Sullivan",
             avatar: "https://i.pravatar.cc/150",
-        });
+        };
     },
 };

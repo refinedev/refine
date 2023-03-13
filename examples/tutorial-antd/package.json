@@ -3,12 +3,12 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-antd": "^4.8.0",
-        "@pankod/refine-cli": "^1.18.0",
-        "@pankod/refine-core": "^3.102.0",
-        "@pankod/refine-inferencer": "^2.9.0",
-        "@pankod/refine-react-router-v6": "^3.39.0",
-        "@pankod/refine-simple-rest": "^3.38.0",
+        "@refinedev/antd": "^4.7.3",
+        "@refinedev/cli": "^1.17.2",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/inferencer": "^2.8.2",
+        "@refinedev/react-router-v6": "^3.18.0",
+        "@refinedev/simple-rest": "^3.18.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -16,7 +16,9 @@
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-scripts": "^5.0.0",
-        "web-vitals": "^1.1.1"
+        "web-vitals": "^1.1.1",
+        "antd": "^5.0.5",
+        "@ant-design/icons": "^5.0.1"
     },
     "devDependencies": {
         "@types/node": "^12.20.11",

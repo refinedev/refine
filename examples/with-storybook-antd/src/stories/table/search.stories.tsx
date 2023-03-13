@@ -1,27 +1,31 @@
 import { ComponentMeta } from "@storybook/react";
 import {
-    Button,
-    Card,
-    Col,
     DateField,
-    DatePicker,
     EditButton,
-    Form,
-    FormProps,
-    Icons,
-    Input,
     List,
-    Row,
-    Select,
     ShowButton,
-    Space,
-    Table,
-    Tag,
     TextField,
     useSelect,
     useTable,
-} from "@pankod/refine-antd";
-import { HttpError, CrudFilters, useMany } from "@pankod/refine-core";
+} from "@refinedev/antd";
+import { SearchOutlined } from "@ant-design/icons";
+
+import {
+    Button,
+    Card,
+    Col,
+    DatePicker,
+    Form,
+    FormProps,
+    Input,
+    Row,
+    Select,
+    Space,
+    Table,
+    Tag,
+} from "antd";
+
+import { HttpError, CrudFilters, useMany } from "@refinedev/core";
 import { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
 
 import { RefineWithLayout } from "../../../.storybook/preview";
@@ -181,7 +185,7 @@ const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
             <Form.Item label="Search" name="q">
                 <Input
                     placeholder="ID, Title, Content, etc."
-                    prefix={<Icons.SearchOutlined />}
+                    prefix={<SearchOutlined />}
                 />
             </Form.Item>
             <Form.Item label="Status" name="status">

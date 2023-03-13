@@ -8,10 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
+Just be aware that the source code example in this post have been updated to version 4.x.x.
 
+:::
 
 
 
@@ -81,7 +86,7 @@ With these collections and features we have created, we can now create subscribe
 Now let's refine the subscription panel. With [superplate](https://github.com/pankod/superplate), we can quickly create a refine project
 
 ```bash
-npx superplate-cli email-subscription-panel
+npm create refine-app@latest email-subscription-panel -- -b v3
 ```
 
 Select the following options to complete the CLI wizard:
@@ -144,7 +149,7 @@ Let's list our messages and subscribers with refine. Here are the changes we nee
 import { Refine, Resource } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { DataProvider } from "@pankod/refine-strapi";
+import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
 

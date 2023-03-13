@@ -1,6 +1,6 @@
-import React from "react";
-import { useLogList } from "@pankod/refine-core";
-import { Avatar, AntdList, Typography } from "@pankod/refine-antd";
+import { useLogList } from "@refinedev/core";
+import { Avatar, List as AntdList, Typography } from "antd";
+
 import { formattedDate, timeFromNow } from "utility/time";
 import { TCanvas } from "types";
 

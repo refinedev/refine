@@ -1,5 +1,11 @@
-import * as RefineMui from "@pankod/refine-mui";
-import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as RefineMui from "@refinedev/mui";
+import * as RefineReactHookForm from "@refinedev/react-hook-form";
+import * as EmotionReact from "@emotion/react";
+import * as EmotionStyled from "@emotion/styled";
+import * as MuiLab from "@mui/lab";
+import * as MuiMaterial from "@mui/material";
+import * as MuiXDataGrid from "@mui/x-data-grid";
+import * as ReactHookForm from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -41,9 +47,9 @@ export const renderer = ({
     );
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
-        ["Edit", "@pankod/refine-mui"],
-        ["Box", "@pankod/refine-mui"],
-        ["useForm", "@pankod/refine-react-hook-form"],
+        ["Edit", "@refinedev/mui"],
+        ["Box", "@mui/material"],
+        ["useForm", "@refinedev/react-hook-form"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -54,7 +60,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useAutocomplete", "@pankod/refine-mui"]);
+                imports.push(["useAutocomplete", "@refinedev/mui"]);
                 let val = accessor(
                     recordName,
                     field.key,
@@ -91,8 +97,8 @@ export const renderer = ({
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
             imports.push(
-                ["Autocomplete", "@pankod/refine-mui"],
-                ["Controller", "@pankod/refine-react-hook-form"],
+                ["Autocomplete", "@mui/material"],
+                ["Controller", "react-hook-form"],
             );
             const variableName = getVariableName(
                 field.key,
@@ -202,10 +208,10 @@ export const renderer = ({
             field.type === "date" ||
             field.type === "richtext"
         ) {
-            imports.push(["TextField", "@pankod/refine-mui"]);
+            imports.push(["TextField", "@mui/material"]);
 
             if (field.multiple) {
-                imports.push(["Box", "@pankod/refine-mui"]);
+                imports.push(["Box", "@mui/material"]);
 
                 const val = dotAccessor(field.key, "${index}", field.accessor);
 
@@ -297,13 +303,13 @@ export const renderer = ({
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
             imports.push(
-                ["Checkbox", "@pankod/refine-mui"],
-                ["FormControlLabel", "@pankod/refine-mui"],
-                ["Controller", "@pankod/refine-react-hook-form"],
+                ["Checkbox", "@mui/material"],
+                ["FormControlLabel", "@mui/material"],
+                ["Controller", "@refinedev/react-hook-form"],
             );
 
             if (field.multiple) {
-                imports.push(["Box", "@pankod/refine-mui"]);
+                imports.push(["Box", "@mui/material"]);
 
                 const val = dotAccessor(field.key, "${index}", field.accessor);
 
@@ -369,7 +375,7 @@ export const renderer = ({
 
             return `
                 {/* 
-                    DatePicker component is not included in "@pankod/refine-mui" package.
+                    DatePicker component is not included in "@refinedev/mui" package.
                     To use a <DatePicker> component, you can follow the official documentation for Material UI.
                     
                     Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
@@ -450,12 +456,18 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@pankod/refine-mui", "RefineMui", RefineMui],
+        ["@refinedev/mui", "RefineMui", RefineMui],
         [
-            "@pankod/refine-react-hook-form",
+            "@refinedev/react-hook-form",
             "RefineReactHookForm",
             RefineReactHookForm,
         ],
+        ["@emotion/react", "EmotionReact", EmotionReact],
+        ["@emotion/styled", "EmotionStyled", EmotionStyled],
+        ["@mui/lab", "MuiLab", MuiLab],
+        ["@mui/material", "MuiMaterial", MuiMaterial],
+        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+        ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

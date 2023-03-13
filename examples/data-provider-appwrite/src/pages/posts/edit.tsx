@@ -1,23 +1,17 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    Edit,
-    Form,
-    Input,
-    RcFile,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+
+import { RcFile } from "antd/lib/upload/interface";
+import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, IPostVariables, ICategory } from "interfaces";
 import { normalizeFile, storage } from "utility";
 
-export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,

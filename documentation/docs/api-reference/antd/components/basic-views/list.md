@@ -24,15 +24,10 @@ interface IPost {
 }
 
 // visible-block-start
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
-import {
-    List,
-    Table,
-    TextField,
-    TagField,
-    useTable,
-} from "@pankod/refine-antd";
+import { List, TextField, TagField, useTable } from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>({
@@ -108,7 +103,7 @@ It allows adding a title for the `<List>` component. if you don't pass title pro
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 
 const PostList: React.FC = () => {
     return (
@@ -135,18 +130,16 @@ render(
 
 ### `resource`
 
-`<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+`<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 setInitialRoutes(["/custom"]);
 
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { List } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { List } from "@refinedev/antd";
 
 const CustomPage: React.FC = () => {
     return (
@@ -156,11 +149,12 @@ const CustomPage: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
+        <RefineAntdDemo
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -176,7 +170,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(<App />);
 ```
@@ -203,17 +196,47 @@ const customDataProvider = {
 };
 
 const authProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve("admin"),
-    getUserIdentity: () => Promise.resolve(),
+    login: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    check: async () => ({
+        authenticated: true,
+    }),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
 };
 
 // visible-block-start
-import { List } from "@pankod/refine-antd";
-import { usePermissions } from "@pankod/refine-core";
+import { List } from "@refinedev/antd";
+import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -252,7 +275,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
@@ -262,7 +285,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
@@ -305,11 +328,11 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 
 const PostList: React.FC = () => {
     return (
@@ -350,7 +373,7 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 
 const PostList: React.FC = () => {
     return (
@@ -390,7 +413,7 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 
 const PostList: React.FC = () => {
     return (
@@ -429,7 +452,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostList: React.FC = () => {
     return (
@@ -470,7 +494,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostList: React.FC = () => {
     return (
@@ -508,7 +533,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/List" 
+<PropsTable module="@refinedev/antd/List" 
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 createButtonProps-type="[`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName: string }`"

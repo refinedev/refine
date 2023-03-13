@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
+import { RefineReadyPageProps } from "@refinedev/ui-types";
 import {
     Box,
     Code,
@@ -10,6 +10,9 @@ import {
     Image,
 } from "@chakra-ui/react";
 
+/**
+ * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ */
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <Box

@@ -1,7 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { useSelect, Select } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
+import { Select } from "antd";
 
 interface ICategory {
     id: number;
@@ -17,14 +18,15 @@ const PostCreate: React.FC = () => {
                 field: "title",
                 operator: "contains",
                 value,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
     return (
-        <Select 
-            placeholder="Select a category" style={{ width: 300 }}
+        <Select
+            placeholder="Select a category"
+            style={{ width: 300 }}
             {...selectProps}
         />
     );

@@ -12,7 +12,6 @@ import { dev, build, start, run } from "@commands/runner";
 import "@utils/env";
 import { getPackageJson } from "@utils/package";
 import { telemetryHook } from "@telemetryindex";
-import V4Notifier from "./v4-notifier";
 
 const bootstrap = () => {
     let packageJson;
@@ -59,8 +58,6 @@ const bootstrap = () => {
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];
-
-        V4Notifier();
 
         if (["run"].includes(command)) return;
 

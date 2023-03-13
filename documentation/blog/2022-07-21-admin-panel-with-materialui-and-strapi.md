@@ -10,6 +10,16 @@ is_featured: true
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
+
 ## Introduction
 We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/)  feature using industry-standard best tools. 
 
@@ -65,7 +75,7 @@ We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to creat
 
 Run the following command
 ```
-npx superplate-cli -p refine-react material-ui-example
+npm create refine-app@latest material-ui-example -- -p refine-react -b v3
 ```
 
 Select the following options to complete CLI wizard:
@@ -161,7 +171,7 @@ import {
     GridColumns,
     DateField,
     List,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
@@ -193,7 +203,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-We import and use Material UI components from refine's `@pankod/refine-mui` to show data.
+We import and use Material UI components from refine's `@refinedev/mui` to show data.
 
 
  [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
@@ -243,7 +253,7 @@ We'll add `/posts/` endpoint from our example API as a resource.
 We'll add the highlighted code to our `App.tsx` to connect to the endpoint and List page.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -254,9 +264,9 @@ import {
     LightTheme,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+} from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
@@ -319,7 +329,7 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 
 
 ### Handling relational data
-Relations are not populated when fetching entries. We'll use `metaData` option to use relational population for Strapi v4 API.
+Relations are not populated when fetching entries. We'll use `meta` option to use relational population for Strapi v4 API.
 
 The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population) feature of Strapi v4. 
 
@@ -328,7 +338,7 @@ We'll set `populate` parameter to define which fields will be populated.
 ```tsx title="src/pages/post/list.tsx"
   const { dataGridProps } = useDataGrid<IPost>({
         //highlight-start
-        metaData: {
+        meta: {
             populate: ["category"],
         },
         //highlight-end
@@ -387,20 +397,20 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
 
 
-The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
+The React Hook Form library has been integrated with **refine** ([`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
 
 First, we'll create PostCreate page to create new records.
 
 ```tsx title="src/pages/posts/create"
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import {
     Box,
     TextField,
     Autocomplete,
     useAutocomplete,
     Create,
-} from "@pankod/refine-mui";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+} from "@refinedev/mui";
+import { useForm, Controller } from "@refinedev/react-hook-form";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -559,15 +569,15 @@ Try it on the browser and see if you can create new posts from scratch.
 We'll start by creating a new `<PostEdit>` page responsible for editing a existed single record:
 
 ```tsx title="src/pages/posts/edit.tsx"
-import { HttpError } from "@pankod/refine-core";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { HttpError } from "@refinedev/core";
+import { Controller, useForm } from "@refinedev/react-hook-form";
 import {
     Edit,
     Box,
     TextField,
     Autocomplete,
     useAutocomplete,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -579,7 +589,7 @@ export const PostEdit: React.FC = () => {
         control,
         formState: { errors },
     } = useForm<IPost, HttpError, IPost & { category: ICategory }>({
-        refineCoreProps: { metaData: { populate: ["category"] } },
+        refineCoreProps: { meta: { populate: ["category"] } },
     });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
@@ -677,13 +687,13 @@ import {
     Stack,
     EditButton,
     //highlight-end
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });
@@ -817,13 +827,13 @@ import {
     Stack,
     //highlight-next-line
     DeleteButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });

@@ -1,13 +1,8 @@
 import React from "react";
-import {
-    Button,
-    Form,
-    Input,
-    Space,
-    useForm,
-    Create,
-    Icons,
-} from "@pankod/refine-antd";
+import { useForm, Create } from "@refinedev/antd";
+
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Space } from "antd";
 
 interface IFormValue {
     name: string;
@@ -103,14 +98,14 @@ export default function PostCreate(Props: any) {
                                                     remove(field.name)
                                                 }
                                                 style={{ marginTop: "5px" }}
-                                                icon={<Icons.DeleteOutlined />}
+                                                icon={<DeleteOutlined />}
                                             ></Button>
                                         </Space>
                                     );
                                 })}
                                 <Form.Item>
                                     <Button
-                                        icon={<Icons.PlusOutlined />}
+                                        icon={<PlusOutlined />}
                                         type="dashed"
                                         block
                                         style={{ maxWidth: "893px" }}

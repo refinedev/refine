@@ -8,8 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 
 
@@ -79,7 +86,7 @@ Before we get into the nitty-gritty of how React Hook Form works and how to use 
 First things first, open your command line tool, cd to your folder of choice, and run the following command to bootstrap a refine React template using the [superplate CLI](https://github.com/pankod/superplate) tool:
 
 ```
-npx superplate-cli -p refine-react tutorial
+npm create refine-app@latest tutorial -- -p refine-react -b v3
 ```
 
 After running the command, you’ll be prompted to choose your preferences for the project.  
@@ -117,11 +124,11 @@ The second command will start the development server for our project and automat
 
 You should see a similar refine welcome page rendered to your browser just like in the image above.
 
-Next, we'll install the refine React Hook Form package and set up refine. To do that, go back to the command line and run the following command to install the `@pankod/refine-react-hook-form` package:
+Next, we'll install the refine React Hook Form package and set up refine. To do that, go back to the command line and run the following command to install the `@refinedev/react-hook-form` package:
 
 
 ```
-npm i @pankod/refine-react-hook-form
+npm i @refinedev/react-hook-form
 ```
 
 After installation, open the project folder in your IDE of choice, in our case, we'll be using VS code. The next step is to create a pages subfolder inside the src folder and add a create.tsx file.
@@ -134,7 +141,7 @@ To do so, open the `App.tsx` file and import the `create.tsx` file, then add it 
 
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -145,9 +152,9 @@ import {
     LightTheme,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import Create from "pages/create";
 
 function App() {
@@ -193,7 +200,7 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 interface iformValue {
     firstname: string;
@@ -382,7 +389,7 @@ Since we're using MUI for our project, our focus will be on the Controller hook.
 Now to integrate React Hook Form into our application, we'll import the Controller component and the `useForm` hook inside the `create.tsx` file like so:
 
 ```tsx
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { Controller, useForm } from "@refinedev/react-hook-form";
 ```
 
 Next, we'll wrap the `<TextField>` components with the Controller component:
@@ -399,8 +406,8 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
-import { Controller } from "@pankod/refine-react-hook-form";
+} from "@refinedev/mui";
+import { Controller } from "@refinedev/react-hook-form";
 
 const Create: React.FC = (props) => {
     return (
@@ -549,7 +556,7 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 interface IFormValue {
     firstname: string;
@@ -698,8 +705,8 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+} from "@refinedev/mui";
+import { Controller, useForm } from "@refinedev/react-hook-form";
 
 //highlight-start
 import * as Yup from "yup";

@@ -3,10 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.102.0",
-        "@pankod/refine-cli": "^1.18.0",
-        "@pankod/refine-react-router-v6": "^3.39.0",
-        "@pankod/refine-supabase": "^4.2.0",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/cli": "^1.17.2",
+        "@refinedev/react-router-v6": "^3.38.0",
+        "@refinedev/supabase": "^4.1.2",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -28,6 +28,7 @@
     },
     "scripts": {
         "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
+        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",

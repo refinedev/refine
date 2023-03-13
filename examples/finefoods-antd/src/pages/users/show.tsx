@@ -3,26 +3,34 @@ import {
     HttpError,
     IResourceComponentsProps,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
-    Typography,
     useTable,
+    List,
+    TextField,
+    getDefaultSortOrder,
+    NumberField,
+    DateField,
+} from "@refinedev/antd";
+
+import {
+    UserOutlined,
+    PhoneOutlined,
+    CalendarOutlined,
+    CheckOutlined,
+} from "@ant-design/icons";
+import {
+    Typography,
     Avatar,
     Row,
     Col,
     Card,
     Space,
-    Icons,
-    List,
     Table,
     Grid,
-    TextField,
-    getDefaultSortOrder,
-    NumberField,
     Popover,
-    DateField,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { OrderStatus } from "components";
 
@@ -104,17 +112,17 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                                 }}
                             >
                                 <Typography.Text>
-                                    <Icons.UserOutlined />{" "}
+                                    <UserOutlined />{" "}
                                     {t(`users.fields.gender.${user?.gender}`)}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <Icons.PhoneOutlined /> {user?.gsm}
+                                    <PhoneOutlined /> {user?.gsm}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <Icons.CalendarOutlined /> {user?.createdAt}
+                                    <CalendarOutlined /> {user?.createdAt}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <Icons.CheckOutlined />{" "}
+                                    <CheckOutlined />{" "}
                                     {user?.isActive
                                         ? t("users.fields.isActive.true")
                                         : t("users.fields.isActive.false")}

@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import {
     useNavigation,
     useTranslate,
-    useResourceWithRoute,
-    useRouterContext,
+    useResource,
+    useGo,
+    useRouterType,
 } from "@hooks";
-import { ResourceErrorRouterParams, ActionWithPage } from "../../../interfaces";
 
 /**
  * When the app is navigated to a non-existent route, refine shows a default error page.
@@ -16,36 +16,27 @@ import { ResourceErrorRouterParams, ActionWithPage } from "../../../interfaces";
  */
 export const ErrorComponent: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
-    const { push } = useNavigation();
     const translate = useTranslate();
-    const actionTypes: ActionWithPage[] = ["edit", "create", "show"];
+    const { push } = useNavigation();
+    const go = useGo();
+    const routerType = useRouterType();
 
-    const { useParams } = useRouterContext();
-
-    const params = useParams<ResourceErrorRouterParams>();
-    const resource = useResourceWithRoute();
+    const { resource, action } = useResource();
 
     useEffect(() => {
-        if (params.resource) {
-            const resourceFromRoute = resource(params.resource);
-            if (
-                params.action &&
-                actionTypes.includes(params.action) &&
-                !resourceFromRoute[params.action]
-            ) {
-                setErrorMessage(
-                    translate(
-                        "pages.error.info",
-                        {
-                            action: params.action,
-                            resource: params.resource,
-                        },
-                        `You may have forgotten to add the "${params.action}" component to "${params.resource}" resource.`,
-                    ),
-                );
-            }
+        if (resource && action) {
+            setErrorMessage(
+                translate(
+                    "pages.error.info",
+                    {
+                        action: action,
+                        resource: resource?.name,
+                    },
+                    `You may have forgotten to add the "${action}" component to "${resource?.name}" resource.`,
+                ),
+            );
         }
-    }, [params]);
+    }, [resource, action]);
 
     return (
         <>
@@ -57,7 +48,15 @@ export const ErrorComponent: React.FC = () => {
                 )}
             </h1>
             {errorMessage && <p>{errorMessage}</p>}
-            <button onClick={() => push("/")}>
+            <button
+                onClick={() => {
+                    if (routerType === "legacy") {
+                        push("/");
+                    } else {
+                        go({ to: "/" });
+                    }
+                }}
+            >
                 {translate("pages.error.backHome", undefined, "Back Home")}
             </button>
         </>

@@ -1,6 +1,7 @@
 ---
 id: real-time
 title: Live / Realtime
+sidebar_label: Live / Realtime 🆙
 ---
 
 **refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine>`](/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
@@ -14,11 +15,11 @@ We will be using [Ably](https://ably.com) in this guide to provide Realtime feat
 We need to install the Ably live provider package from **refine**.
 
 ```bash
-npm install @pankod/refine-ably
+npm install @refinedev/ably
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Setup
@@ -31,60 +32,74 @@ The app will have one resource: **posts** with [CRUD pages(list, create, edit, a
 
 ## Adding `liveProvider`
 
-Firstly we create a Ably client for [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
+Firstly we create a Ably client for [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
 
 ```ts title="src/utility/ablyClient.ts"
-import { Ably } from "@pankod/refine-ably";
+import { Ably } from "@refinedev/ably";
 
 export const ablyClient = new Ably.Realtime("your-api-key");
 ```
 
-Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) to `<Refine>`.
+Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 //highlight-next-line
-import { liveProvider } from "@pankod/refine-ably";
+import { liveProvider } from "@refinedev/ably";
 
 //highlight-next-line
 import { ablyClient } from "utility/ablyClient";
+
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            //highlight-start
-            liveProvider={liveProvider(ablyClient)}
-            options={{ liveMode: "auto" }}
-            //highlight-end
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                //highlight-start
+                liveProvider={liveProvider(ablyClient)}
+                options={{ liveMode: "auto" }}
+                //highlight-end
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: '/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        meta: { canDelete: true },
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -206,64 +221,57 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import {
-    useTitle,
-    ITreeMenu,
-    CanAccess,
-    useRouterContext,
-    useMenu,
-} from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+import { TreeMenuItem, CanAccess, useMenu } from "@refinedev/core";
+import { Layout, Menu, Grid } from "antd";
+import { UnorderedListOutlined } from "@ant-design/icons";
+
+import { Link } from "react-router-dom";
+
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: React.FC = ({ Title }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+        return tree.map((item: TreeMenuItem) => {
+            const { icon, label, route, key, name, children, meta } = item;
 
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        key={key}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
                     </SubMenu>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                meta?.parent !== undefined && children.length === 0
             );
+
             return (
                 <CanAccess
-                    key={route}
+                    key={key}
                     resource={name.toLowerCase()}
                     action="list"
                 >
                     <Menu.Item
-                        key={route}
+                        key={key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
-                        {!collapsed && isSelected && (
-                            <Icons.UnorderedListOutlined />
-                        )}
+                        {!collapsed && isSelected && <UnorderedListOutlined />}
                     </Menu.Item>
                 </CanAccess>
             );
@@ -271,7 +279,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -291,7 +299,7 @@ export const CustomSider: React.FC = () => {
             >
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```
@@ -303,30 +311,30 @@ Now, let's add a badge for the number of create and update events for **_posts_*
 ```tsx
 import React, { useState } from "react";
 import {
-    useTitle,
-    ITreeMenu,
+    TreeMenuItem,
     CanAccess,
     useMenu,
     //highlight-start
     useSubscription,
     //highlight-end
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
-    AntdLayout,
+    Layout,
     Menu,
     Grid,
-    Icons,
     //highlight-start
     Badge,
     //highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
+import { UnorderedListOutlined } from "@ant-design/icons";
+
+import { Link } from "react-router-dom";
+
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: React.FC = ({ Title }) => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
@@ -341,39 +349,37 @@ export const CustomSider: React.FC = () => {
     });
     //highlight-end
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+        return tree.map((item: TreeMenuItem) => {
+            const { icon, label, route, key, name, children, meta } = item;
 
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        key={key}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
                     </SubMenu>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                meta?.parent !== undefined && children.length === 0
             );
             return (
                 <CanAccess
-                    key={route}
+                    key={key}
                     resource={name.toLowerCase()}
                     action="list"
                 >
                     <Menu.Item
-                        key={route}
+                        key={key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         //highlight-start
                         <div>
@@ -394,7 +400,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -420,7 +426,7 @@ export const CustomSider: React.FC = () => {
             >
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```

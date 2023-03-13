@@ -1,18 +1,14 @@
-import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
 
-import {
-    Show,
-    Typography,
-    MarkdownField,
-    Space,
-    ImageField,
-} from "@pankod/refine-antd";
+import { Show, MarkdownField, ImageField } from "@refinedev/antd";
+
+import { Typography, Space } from "antd";
 
 import { IPost, ICategory, IFile } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostsShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

@@ -1,5 +1,5 @@
 import React from "react";
-import { pageErrorTests } from "@pankod/refine-ui-tests";
+import { pageErrorTests } from "@refinedev/ui-tests";
 import ReactRouterDom, { Route, Routes } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 

@@ -1,19 +1,19 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     DeleteButton,
     DateField,
     getDefaultSortOrder,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space } from "antd";
 
 import { ICategory } from "interfaces";
 
-export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<ICategory>({
         initialSorter: [
             {

@@ -7,7 +7,7 @@ describe("getMany", () => {
         const { data } = await dataProvider(client).getMany!({
             resource: "posts",
             ids: ["45", "46"],
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

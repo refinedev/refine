@@ -69,7 +69,7 @@ export const useCurrentTutorial = () => {
     const unitsArray = Object.entries(separatedByUnit)
         .map(([key, value]) => ({
             unit: key,
-            no: unitsConfig[key].no,
+            no: unitsConfig[key]?.no,
             title: unitsConfig[key].label,
             ...(key === unit && isTutorial && { current: true }),
             docs: value
@@ -79,7 +79,7 @@ export const useCurrentTutorial = () => {
                 }))
                 .filter(filterNotPreferred),
         }))
-        .sort((a, b) => a.no - b.no);
+        .sort((a, b) => a?.no - b?.no);
 
     return isTutorial
         ? {

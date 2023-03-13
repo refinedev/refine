@@ -4,7 +4,6 @@ title: Boolean
 swizzle: true
 ---
 
-
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://mui.com/material-ui/react-tooltip/#main-content) values from Material UI.
 
 :::info-tip Swizzle
@@ -54,12 +53,11 @@ const IconCheck = () => (
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     BooleanField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -120,7 +118,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/BooleanField" 
+<PropsTable module="@refinedev/mui/BooleanField" 
 title-description="The text shown in the tooltip" 
 title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
 trueIcon-default="[`<CheckOutlined />`](https://mui.com/material-ui/material-icons/)"

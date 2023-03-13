@@ -1,10 +1,14 @@
 import React from "react";
 import {
+    matchResourceFromRoute,
     useBreadcrumb,
+    useLink,
     useRefineContext,
+    useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+    useRouterType,
+} from "@refinedev/core";
+import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import {
     Breadcrumb as ChakraBreadcrumb,
     BreadcrumbProps as ChakraBreadcrumbProps,
@@ -19,22 +23,33 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    meta,
 }) => {
-    const { breadcrumbs } = useBreadcrumb();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const { breadcrumbs } = useBreadcrumb({ meta });
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
     const { hasDashboard } = useRefineContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     if (breadcrumbs.length === 1) {
         return null;
     }
 
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
     return (
         <ChakraBreadcrumb mb="3" {...breadcrumbProps}>
-            {showHome && hasDashboard && (
+            {showHome && (hasDashboard || rootRouteResource?.found) && (
                 <BreadcrumbItem>
-                    <Link to="/">
-                        <IconHome size={20} />
-                    </Link>
+                    <ActiveLink to="/">
+                        {rootRouteResource?.resource?.meta?.icon ?? (
+                            <IconHome size={20} />
+                        )}
+                    </ActiveLink>
                 </BreadcrumbItem>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
@@ -44,7 +59,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                         {href ? (
                             <BreadcrumbLink
                                 ml={2}
-                                as={Link}
+                                as={ActiveLink}
                                 to={href}
                                 href={href}
                             >

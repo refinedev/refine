@@ -10,11 +10,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import {
-    IResourceComponentsProps,
-    useTable,
-    HttpError,
-} from "@pankod/refine-core";
+import { useTable, HttpError } from "@refinedev/core";
 
 interface IPost {
     id: number;
@@ -24,7 +20,7 @@ interface IPost {
     createdAt: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableQueryResult } = useTable<IPost, HttpError>();
     const posts = tableQueryResult?.data?.data ?? [];
 

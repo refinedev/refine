@@ -1,7 +1,7 @@
 ---
 id: useModal
 title: useModal
-description: useModal example of @pankod/refine-core
+description: useModal example of @refinedev/core
 example-title: Refine's useModal hook
 example-tags: [headless,refine-hooks]
 ---

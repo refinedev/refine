@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
 
 export const dataProvider = (
@@ -10,16 +10,14 @@ export const dataProvider = (
     Required<DataProvider>,
     "createMany" | "updateMany" | "deleteMany"
 > => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
 
@@ -28,14 +26,14 @@ export const dataProvider = (
             _end?: number;
             _sort?: string;
             _order?: string;
-        } = hasPagination
-            ? {
-                  _start: (current - 1) * pageSize,
-                  _end: current * pageSize,
-              }
-            : {};
+        } = {};
 
-        const generatedSort = generateSort(sort);
+        if (mode === "server") {
+            query._start = (current - 1) * pageSize;
+            query._end = current * pageSize;
+        }
+
+        const generatedSort = generateSort(sorters);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -50,7 +48,7 @@ export const dataProvider = (
 
         return {
             data,
-            total,
+            total: total || data.length,
         };
     },
 
@@ -110,11 +108,19 @@ export const dataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const generatedSort = generateSort(sort);
+        if (sorters) {
+            const generatedSort = generateSort(sorters);
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;
                 const sortQuery = {

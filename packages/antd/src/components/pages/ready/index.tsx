@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
+import { RefineReadyPageProps } from "@refinedev/ui-types";
 import { Row, Col, Typography, Space, Button } from "antd";
 import { ReadOutlined, FolderOutlined, TeamOutlined } from "@ant-design/icons";
 
@@ -39,6 +39,7 @@ const { Title } = Typography;
  * **refine** shows a default ready page on root route when no `resources` is passed to the `<Refine>` component as a property.
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#readypage} for more details.
+ * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
  */
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (

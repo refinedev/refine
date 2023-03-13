@@ -1,20 +1,19 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 import {
     List,
-    Table,
     TextField,
     useTable,
     getDefaultSortOrder,
     DateField,
-    Space,
     EditButton,
     DeleteButton,
     useSelect,
     TagField,
     FilterDropdown,
-    Select,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Form, Input, Select, Table, Space } from "antd";
+
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {

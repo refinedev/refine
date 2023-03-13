@@ -1,11 +1,8 @@
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
-import {
-    useSimpleList,
-    AntdList,
-    List,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { useSimpleList, List, useModalForm } from "@refinedev/antd";
+
+import { List as AntdList } from "antd";
 
 import { ICompany } from "interfaces";
 import { CompanyItem, CreateCompany, EditCompany } from "components/company";

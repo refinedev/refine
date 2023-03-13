@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
@@ -16,9 +16,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -35,12 +35,16 @@ Let's see how we can use `<DateField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import {
     List,
+    // highlight-next-line
+    DateField,
+} from "@refinedev/chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -48,10 +52,9 @@ import {
     Th,
     Tbody,
     Td,
-    // highlight-next-line
-    DateField,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -136,7 +139,6 @@ const App = () => {
     return (
         <Refine
             notificationProvider={RefineChakra.notificationProvider()}
-            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -158,7 +160,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/DateField" format-default="`L`" />
+<PropsTable module="@refinedev/chakra-ui/DateField" format-default="`L`" />
 
 :::tip External Props
 It also accepts all props of Chakra UI [Text](https://chakra-ui.com/docs/components/text/usage).

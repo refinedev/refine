@@ -1,13 +1,13 @@
+import { Create } from "@refinedev/chakra-ui";
 import {
-    Create,
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
     Select,
-} from "@pankod/refine-chakra-ui";
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@chakra-ui/react";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { IPost } from "../../interfaces";
 

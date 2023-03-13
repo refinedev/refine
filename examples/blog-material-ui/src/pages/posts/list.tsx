@@ -1,14 +1,14 @@
 import React from "react";
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     EditButton,
     DeleteButton,
     DateField,
     List,
-    Stack,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+
+import { Stack } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { IPost } from "interfaces";
 

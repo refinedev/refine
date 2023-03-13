@@ -18,5 +18,5 @@
 ## Install
 
 ```
-npm install @pankod/refine-inferencer
+npm install @refinedev/inferencer
 ```

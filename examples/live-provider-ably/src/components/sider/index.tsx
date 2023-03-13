@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 import {
-    useTitle,
     useSubscription,
     CanAccess,
     ITreeMenu,
-    useRouterContext,
-} from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Menu,
     useMenu,
-    Grid,
-    Icons,
-    Badge,
-} from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { Link } from "react-router-dom";
+import { UnorderedListOutlined } from "@ant-design/icons";
+import { Layout as AntdLayout, Menu, Grid, Badge } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+import { Title } from "@refinedev/antd";
 
 export const CustomSider: React.FC = () => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { SubMenu } = Menu;
 
     const { menuItems, selectedKey } = useMenu();
@@ -43,7 +36,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -66,11 +59,9 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route || "/"}>{label}</Link>
                         {label === "Posts" && (
                             <Badge
                                 size="small"
@@ -96,7 +87,7 @@ export const CustomSider: React.FC = () => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            {Title && <Title collapsed={collapsed} />}
+            <Title collapsed={collapsed} />
 
             <Menu
                 selectedKeys={[selectedKey]}

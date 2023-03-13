@@ -1,8 +1,4 @@
-/**
- * @type {import('next').NextConfig}
- */
-
-const nextConfig = {
+module.exports = {
     experimental: {
         newNextLinkBehavior: true,
     },
@@ -11,5 +7,3 @@ const nextConfig = {
         path: "https://refine-store.imgix.net/",
     },
 };
-
-module.exports = nextConfig;

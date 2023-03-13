@@ -15,18 +15,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -50,18 +50,13 @@ We'll show what `<Create>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import {
-    Create,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+import { Create, useForm, useSelect } from "@refinedev/mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm<IPost>({
@@ -123,7 +118,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -158,12 +153,13 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create, Title } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
+import { Title } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
     return (
@@ -178,7 +174,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -209,12 +205,12 @@ render(
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -229,7 +225,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -254,18 +250,17 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { Layout } from "@refinedev/mantine";
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { Layout, Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
     return (
@@ -275,11 +270,12 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -296,7 +292,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -311,12 +306,12 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -331,7 +326,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -360,12 +355,12 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -380,7 +375,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -405,7 +400,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
 
@@ -415,12 +410,12 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create, Breadcrumb } from "@pankod/refine-mantine";
+import { Create, Breadcrumb } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -447,7 +442,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -472,18 +467,18 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@refinedev/mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
 [Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -506,7 +501,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -537,12 +532,12 @@ If you want to customize the header of the `<Create/>` component, you can use th
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -565,7 +560,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -596,12 +591,12 @@ If you want to customize the content of the `<Create/>` component, you can use t
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=320px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -624,7 +619,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -653,12 +648,13 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
     return (
@@ -681,7 +677,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -712,12 +708,13 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
     return (
@@ -741,7 +738,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -770,12 +767,13 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
     return (
@@ -798,7 +796,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -829,12 +827,12 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
     return (
@@ -861,7 +859,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -888,4 +886,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
+<PropsTable module="@refinedev/mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>

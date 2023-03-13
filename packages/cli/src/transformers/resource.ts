@@ -27,22 +27,30 @@ export default function transformer(file: FileInfo, api: API, options: any) {
 
     // prepare actions
     const actions = options.__actions.split(",");
-    const actionPageComponents = actions.map(
-        (action: string) =>
-            `${options.__resource}${uppercaseFirstChar(action)}`,
-    );
 
-    // add import for resource
-    const newImport = j.importDeclaration(
-        [
-            j.importDefaultSpecifier(
-                j.identifier(`{ ${actionPageComponents.join(", ")} }`),
-            ),
-        ],
-        j.stringLiteral(
-            `${options.__pathAlias}/${options.__resourceFolderName}`,
-        ),
-    );
+    const getComponentName = (resource: string, action: string) => {
+        return `${resource}${uppercaseFirstChar(action)}`;
+    };
+
+    const getPath = (resourceName: string, action: string) => {
+        if (action === "list") {
+            return `/${resourceName}`;
+        }
+
+        if (action === "create") {
+            return `/${resourceName}/create`;
+        }
+
+        if (action === "edit") {
+            return `/${resourceName}/edit/:id`;
+        }
+
+        if (action === "show") {
+            return `/${resourceName}/show/:id`;
+        }
+
+        return `/${resourceName}`;
+    };
 
     const resourceProperty = [
         j.property(
@@ -51,23 +59,38 @@ export default function transformer(file: FileInfo, api: API, options: any) {
             j.stringLiteral(options.__resourceName),
         ),
     ];
+
     actions.map((item: string) => {
         resourceProperty.push(
             j.property(
                 "init",
                 j.identifier(item),
-                j.identifier(
-                    `${options.__resource}${uppercaseFirstChar(item)}`,
-                ),
+                j.stringLiteral(getPath(options.__resourceName, item)),
             ),
         );
     });
 
-    // find last import index
-    const lastImportIndex = source.find(j.ImportDeclaration).length - 1;
+    const lines = [
+        `* `,
+        ` *`,
+        ` * Resource is default with default paths, you need to add the components to the paths accordingly.`,
+        ` * You can also add custom paths to the resource.`,
+        ` * `,
+    ];
 
-    // add import
-    source.find(j.ImportDeclaration).at(lastImportIndex).insertAfter(newImport);
+    actions.map((item: string) => {
+        lines.push(
+            ` * Use \`<${getComponentName(
+                options.__resource,
+                item,
+            )}/>\` component at \`${getPath(
+                options.__resourceName,
+                item,
+            )}\` path.`,
+        );
+    });
+
+    lines.push(` *`, ` *`);
 
     rootElement.replaceWith((path) => {
         const attributes = path.node.openingElement.attributes;
@@ -80,15 +103,23 @@ export default function transformer(file: FileInfo, api: API, options: any) {
                 attr.type === "JSXAttribute" && attr.name.name === "resources",
         );
 
+        const resourceObjectExpression = j.objectExpression(resourceProperty);
+
+        resourceObjectExpression.properties[0].comments = [
+            {
+                type: "Block",
+                value: `${lines.join("\n")}`,
+                leading: true,
+            },
+        ];
+
         // if no resources prop, add it
         if (resourcePropIndex === -1) {
             attributes.push(
                 j.jsxAttribute(
                     j.jsxIdentifier("resources"),
                     j.jsxExpressionContainer(
-                        j.arrayExpression([
-                            j.objectExpression(resourceProperty),
-                        ]),
+                        j.arrayExpression([resourceObjectExpression]),
                     ),
                 ),
             );
@@ -106,7 +137,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
                 j.jsxExpressionContainer(
                     j.arrayExpression([
                         j.spreadElement(resourceValue.expression),
-                        j.objectExpression(resourceProperty),
+                        resourceObjectExpression,
                     ]),
                 ),
             );
@@ -116,11 +147,10 @@ export default function transformer(file: FileInfo, api: API, options: any) {
 
         // resources={[...resources]} => resources={[...resources, {name: "post", list: List}]}
         const resourceArray = resourceValue.expression as ArrayExpression;
-        resourceArray.elements.push(j.objectExpression(resourceProperty));
+        resourceArray.elements.push(resourceObjectExpression);
 
         return path.node;
     });
 
-    console.log(source.toSource());
     return source.toSource();
 }

@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-chakra-ui tutorial
     ```
+
     > Only support yarn@1 version.
 
     </TabItem>
@@ -119,30 +120,32 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
+    WelcomePage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
+import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-            />
-        </ChakraProvider>
+        <BrowserRouter>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                >
+                    <WelcomePage />
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 };
 

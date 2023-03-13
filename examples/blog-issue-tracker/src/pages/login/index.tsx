@@ -1,16 +1,16 @@
 import React from "react";
-import { useLogin, useNavigation } from "@pankod/refine-core";
+import { useLogin, useNavigation } from "@refinedev/core";
 
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout as AntdLayout,
     Card,
     Typography,
     Form,
     Input,
     Button,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import "./styles.css";
 

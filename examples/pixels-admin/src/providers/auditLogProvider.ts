@@ -1,5 +1,6 @@
-import { AuditLogProvider } from "@pankod/refine-core";
-import { dataProvider } from "@pankod/refine-supabase";
+import { AuditLogProvider } from "@refinedev/core";
+import { dataProvider } from "@refinedev/supabase";
+
 import { supabaseClient } from "utility";
 
 export const auditLogProvider: AuditLogProvider = {

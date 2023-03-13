@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { TestWrapper } from "@test";
 
 import { useDataGrid } from "./";
-import { CrudFilters } from "@pankod/refine-core";
+import { CrudFilters } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
 
 describe("useDataGrid Hook", () => {
@@ -61,24 +61,53 @@ describe("useDataGrid Hook", () => {
         expect(result.current.current).toEqual(1);
     });
 
-    it("with no pagination", async () => {
+    it.each(["client", "server"] as const)(
+        "when pagination mode is %s, should set pagination props in dataGridProps",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useDataGrid({
+                        pagination: {
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.dataGridProps).toEqual(
+                expect.objectContaining({
+                    pageSize: 25,
+                    page: 0,
+                }),
+            );
+        },
+    );
+
+    it("when pagination mode is off, should not set pagination props in dataGridProps", async () => {
         const { result } = renderHook(
             () =>
-                useDataGrid<any, any>({
-                    resource: "posts",
-                    hasPagination: false,
+                useDataGrid({
+                    pagination: {
+                        mode: "off",
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),
             },
         );
 
-        await waitFor(() => {
-            expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
-        });
-
-        expect(result.current.current).toBeUndefined();
-        expect(result.current.pageSize).toBeUndefined();
-        expect(result.current.pageCount).toBeUndefined();
+        expect(result.current.dataGridProps).toEqual(
+            expect.not.objectContaining({
+                pageSize: 25,
+                page: 0,
+            }),
+        );
+        expect(result.current.dataGridProps).toEqual(
+            expect.objectContaining({
+                paginationMode: "client",
+            }),
+        );
     });
 });

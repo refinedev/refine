@@ -21,7 +21,7 @@ describe("getMany", () => {
         const { data } = await dataProvider(supabaseClient).getMany!({
             resource: "posts",
             ids: ["3", "61"],
-            metaData: {
+            meta: {
                 select: "title",
             },
         });

@@ -1,20 +1,12 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    Upload,
-    Radio,
-} from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, Upload, Radio } from "antd";
 import {
     useStrapiUpload,
     getValueProps,
     mediaUploadMapper,
-} from "@pankod/refine-strapi-v4";
+} from "@refinedev/strapi-v4";
 
 import MDEditor from "@uiw/react-md-editor";
 

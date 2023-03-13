@@ -1,9 +1,11 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm } from "@refinedev/antd";
+
+import { Form, Input } from "antd";
 
 import { ICategory } from "interfaces";
 
-export const CategoriesEdit: React.FC<IResourceComponentsProps> = () => {
+export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();
 
     return (

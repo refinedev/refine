@@ -1,21 +1,17 @@
-import {
-    IResourceComponentsProps,
-    getDefaultFilter,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
     DateField,
-    Space,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
 

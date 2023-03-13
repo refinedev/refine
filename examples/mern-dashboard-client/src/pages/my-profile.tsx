@@ -1,9 +1,11 @@
-import { useGetIdentity, useOne } from "@pankod/refine-core";
+import { useGetIdentity, useOne } from "@refinedev/core";
 
 import { Profile } from "components";
 
 const MyProfile = () => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { data, isLoading, isError } = useOne({
         resource: "users",
         id: user?.userid,

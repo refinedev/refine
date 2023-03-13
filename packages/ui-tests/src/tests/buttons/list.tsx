@@ -2,7 +2,7 @@ import React from "react";
 import {
     RefineListButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { Route, Routes } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Route, Routes } from "react-router-dom";
 export const buttonListTests = function (
     ListButton: React.ComponentType<RefineListButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / List Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / List Button", () => {
         const list = jest.fn();
 
         it("should render button successfuly", async () => {
@@ -49,9 +49,7 @@ export const buttonListTests = function (
                 </Routes>,
                 {
                     wrapper: TestWrapper({
-                        resources: [
-                            { name: "posts", options: { label: "test" } },
-                        ],
+                        resources: [{ name: "posts", meta: { label: "test" } }],
                         routerInitialEntries: ["/posts"],
                     }),
                 },
@@ -110,7 +108,13 @@ export const buttonListTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <ListButton ignoreAccessControlProvider>List</ListButton>,
+                <ListButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    List
+                </ListButton>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts" }],

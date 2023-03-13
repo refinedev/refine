@@ -1,14 +1,20 @@
-import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -32,8 +38,8 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 });
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
-        login: ({ credential }: CredentialResponse) => {
+    const authProvider: AuthBindings = {
+        login: async ({ credential }: CredentialResponse) => {
             const profileObj = credential ? parseJwt(credential) : null;
 
             if (profileObj) {
@@ -44,13 +50,20 @@ const App: React.FC = () => {
                         avatar: profileObj.picture,
                     }),
                 );
+
+                localStorage.setItem("token", `${credential}`);
+
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
             }
 
-            localStorage.setItem("token", `${credential}`);
-
-            return Promise.resolve();
+            return {
+                success: false,
+            };
         },
-        logout: () => {
+        logout: async () => {
             const token = localStorage.getItem("token");
 
             if (token && typeof window !== "undefined") {
@@ -58,53 +71,117 @@ const App: React.FC = () => {
                 localStorage.removeItem("user");
                 axios.defaults.headers.common = {};
                 window.google?.accounts.id.revoke(token, () => {
-                    return Promise.resolve();
+                    return {};
                 });
             }
 
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        check: async () => {
             const token = localStorage.getItem("token");
 
             if (token) {
-                return Promise.resolve();
+                return {
+                    authenticated: true,
+                };
             }
-            return Promise.reject();
-        },
 
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+            return {
+                authenticated: false,
+                error: new Error("Not authenticated"),
+                logout: true,
+                redirectTo: "/login",
+            };
+        },
+        getPermissions: async () => null,
+        getIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
-                return Promise.resolve(JSON.parse(user));
+                return JSON.parse(user);
             }
+
+            return null;
         },
     };
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL, axiosInstance)}
-                routerProvider={routerProvider}
                 authProvider={authProvider}
-                LoginPage={Login}
+                routerProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        edit: "/posts/edit/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

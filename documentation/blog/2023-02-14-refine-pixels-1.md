@@ -8,6 +8,16 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pix
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code examples in this post have been updated to version 4.x.x.
+
+:::
+
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="refine banner" />
 
   <br/>
@@ -59,10 +69,10 @@ In a nutshell, you can build rock-solid CRUD apps easily using refine✨.
 Everything in **refine** is centered around the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component, which is configured via a set of provider props that each requires a provider object to be passed in. A typical application of providers on the `<Refine />` component looks like this:
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { liveProvider } from "@pankod/refine-supabase";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { liveProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 
 <Refine

@@ -9,30 +9,35 @@ import {
     HttpError,
     BaseRecord,
     BaseKey,
-    MetaDataQuery,
     LiveModeProps,
     SuccessErrorNotification,
+    MetaQuery,
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useTranslate,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
+    useOnError,
 } from "@hooks";
-import { queryKeys, pickDataProvider } from "@definitions";
+import {
+    queryKeys,
+    pickDataProvider,
+    pickNotDeprecated,
+    useActiveAuthProvider,
+} from "@definitions";
 
 export type UseOneProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      */
-    resource: string;
+    resource?: string;
     /**
      * id of the item in the resource
      * @type [`BaseKey`](/docs/api-reference/core/interfaceReferences/#basekey)
      */
-    id: BaseKey;
+    id?: BaseKey;
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
@@ -40,7 +45,12 @@ export type UseOneProps<TData, TError> = {
     /**
      * Metadata query for `dataProvider`,
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Meta data query for `dataProvider`,
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      * @default `"default"``
@@ -69,6 +79,7 @@ export const useOne = <
     queryOptions,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     onLiveEvent,
@@ -80,14 +91,18 @@ export const useOne = <
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
-        metaData,
+        pickNotDeprecated(meta, metaData),
+        pickNotDeprecated(meta, metaData),
     );
 
     const { getOne } = dataProvider(
         pickDataProvider(resource, dataProviderName, resources),
     );
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     useResourceSubscription({
@@ -97,11 +112,15 @@ export const useOne = <
         params: {
             ids: id ? [id] : [],
             id: id,
-            metaData,
+            meta: pickNotDeprecated(meta, metaData),
+            metaData: pickNotDeprecated(meta, metaData),
             subscriptionType: "useOne",
             ...liveParams,
         },
-        enabled: queryOptions?.enabled,
+        enabled:
+            typeof queryOptions?.enabled !== "undefined"
+                ? queryOptions?.enabled
+                : typeof resource !== "undefined" && typeof id !== "undefined",
         liveMode,
         onLiveEvent,
     });
@@ -110,10 +129,18 @@ export const useOne = <
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
             getOne<TData>({
-                resource,
-                id,
+                resource: resource!,
+                id: id!,
+                meta: {
+                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
                 metaData: {
-                    ...metaData,
+                    ...(pickNotDeprecated(meta, metaData) || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -123,12 +150,23 @@ export const useOne = <
             }),
         {
             ...queryOptions,
+            enabled:
+                typeof queryOptions?.enabled !== "undefined"
+                    ? queryOptions?.enabled
+                    : typeof id !== "undefined",
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { id, metaData }, resource)
+                        ? successNotification(
+                              data,
+                              {
+                                  id,
+                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                              },
+                              resource,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig);
@@ -139,7 +177,14 @@ export const useOne = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, { id, metaData }, resource)
+                        ? errorNotification(
+                              err,
+                              {
+                                  id,
+                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                              },
+                              resource,
+                          )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {

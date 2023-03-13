@@ -4,7 +4,10 @@ export type TRegisterData = void | false | string;
 export type TForgotPasswordData = void | false | string;
 export type TUpdatePasswordData = void | false | string;
 
-export interface AuthProvider {
+/**
+ * @deprecated `LegacyAuthProvider` is deprecated with refine@4, use `AuthBindings` instead, however, we still support `LegacyAuthProvider` for backward compatibility.
+ */
+export interface LegacyAuthProvider {
     login: (params: any) => Promise<TLoginData>;
     register?: (params: any) => Promise<TRegisterData>;
     forgotPassword?: (params: any) => Promise<TForgotPasswordData>;
@@ -16,6 +19,9 @@ export interface AuthProvider {
     getUserIdentity?: (params?: any) => Promise<any>;
 }
 
-export interface IAuthContext extends Partial<AuthProvider> {
+/**
+ * @deprecated `IAuthContext` is deprecated with refine@4, use `AuthBindingsContext` instead, however, we still support `IAuthContext` for backward compatibility.
+ */
+export interface ILegacyAuthContext extends Partial<LegacyAuthProvider> {
     isProvided?: boolean;
 }

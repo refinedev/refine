@@ -4,7 +4,6 @@ title: Refresh
 swizzle: true
 ---
 
-
 `<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
@@ -15,13 +14,13 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     // highlight-next-line
     RefreshButton,
     Show,
-    Typography,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -64,7 +63,7 @@ render(
                             <p>Your list page here</p>
                         </RefineAntd.List>
                     );
-                }
+                },
             },
         ]}
     />,
@@ -79,12 +78,12 @@ render(
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-antd";
+import { RefreshButton } from "@refinedev/antd";
 
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            resourceNameOrRouteName="posts" 
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -111,19 +110,19 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed.
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-antd";
+import { RefreshButton } from "@refinedev/antd";
 
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
             // highlight-next-line
-            resourceNameOrRouteName="posts" 
+            resource="posts"
         />
     );
 };
@@ -137,8 +136,8 @@ render(
                 name: "posts",
             },
             {
-                name: "categories"
-            }
+                name: "categories",
+            },
         ]}
         DashboardPage={MyRefreshComponent}
     />,
@@ -157,7 +156,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-antd";
+import { RefreshButton } from "@refinedev/antd";
 
 const MyRefreshComponent = () => {
     return (
@@ -182,11 +181,53 @@ render(
 );
 ```
 
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+
+```tsx live disableScroll previewHeight=120px
+// visible-block-start
+import { RefreshButton } from "@refinedev/antd";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            // highlight-next-line
+            resourceNameOrRouteName="posts"
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+            },
+        ]}
+        DashboardPage={MyRefreshComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/RefreshButton" />
+<PropsTable module="@refinedev/antd/RefreshButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

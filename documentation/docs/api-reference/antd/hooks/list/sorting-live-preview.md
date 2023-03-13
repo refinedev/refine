@@ -2,7 +2,8 @@
 setInitialRoutes(["/products"]);
 
 // visible-block-start
-import { Typography, AntdList, useSimpleList } from "@pankod/refine-antd";
+import { useSimpleList } from "@refinedev/antd";
+import { Typography, List } from "antd";
 
 const { Text } = Typography;
 
@@ -16,25 +17,27 @@ interface IProduct {
 const ProductList: React.FC = () => {
     const { listProps } = useSimpleList<IProduct>({
         // highlight-start
-        initialSorter: [
-            {
-                field: "name",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "name",
+                    order: "desc",
+                },
+            ],
+        },
         // highlight-end
     });
 
-    return <AntdList {...listProps} renderItem={renderItem} />;
+    return <List {...listProps} renderItem={renderItem} />;
 };
 
 const renderItem = (item: IProduct) => {
     const { id, name, description, price } = item;
 
     return (
-        <AntdList.Item actions={[<Text key={id}>{price}</Text>]}>
-            <AntdList.Item.Meta title={name} description={description} />
-        </AntdList.Item>
+        <List.Item actions={[<Text key={id}>{price}</Text>]}>
+            <List.Item.Meta title={name} description={description} />
+        </List.Item>
     );
 };
 // visible-block-end

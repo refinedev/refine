@@ -1,7 +1,7 @@
 ---
 id: data-provider
 title: Data Provider
-sidebar_label: Data Provider
+sidebar_label: Data Provider 🆙
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
@@ -25,7 +25,7 @@ Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetch
 To activate the data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import dataProvider from "./dataProvider";
 
@@ -43,12 +43,18 @@ const App: React.FC = () => {
 Here is an example of using multiple data providers in your app:
 
 ```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
+setInitialRoutes(["/posts"]);
 setRefineProps({ Sider: () => null });
+
 // visible-block-start
-import { Refine, useList } from "@pankod/refine-core";
-import { Layout, Collapse, Tag } from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useList } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/antd";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Collapse, Tag } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
@@ -67,32 +73,38 @@ interface IProduct {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            Layout={Layout}
-            // highlight-start
-            dataProvider={{
-                default: dataProvider(API_URL),
-                fineFoods: dataProvider(FINE_FOODS_API_URL),
-            }}
-            // highlight-end
-            resources={[
-                {
-                    // highlight-next-line
-                    // **refine** will use the `default` data provider for this resource
-                    name: "posts",
-                    list: PostList,
-                },
-                {
-                    name: "products",
-                    options: {
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                // highlight-start
+                dataProvider={{
+                    default: dataProvider(API_URL),
+                    fineFoods: dataProvider(FINE_FOODS_API_URL),
+                }}
+                // highlight-end
+                resources={[
+                    {
                         // highlight-next-line
-                        // **refine** will use the `fineFoods` data provider for this resource
-                        dataProviderName: "fineFoods",
+                        // **refine** will use the `default` data provider for this resource
+                        name: "posts",
+                        list: "/posts",
                     },
-                },
-            ]}
-        />
+                    {
+                        name: "products",
+                        meta: {
+                            // highlight-start
+                            // **refine** will use the `fineFoods` data provider for this resource
+                            dataProviderName: "fineFoods",
+                            // highlight-end
+                        },
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route path="/posts" element={<PostList />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -167,7 +179,9 @@ const App = () => {
                 default: defaultDataProvider,
                 example: exampleDataProvider,
             }}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -184,7 +198,7 @@ useTable({
 });
 ```
 
--   **Using `options.dataProviderName` property in your resource config**
+-   **Using `meta.dataProviderName` property in your resource config**
 
 This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
 
@@ -203,7 +217,7 @@ const App = () => {
                 },
                 {
                     name: "products",
-                    options: {
+                    meta: {
                         // **refine** will use the `exampleDataProvider` data provider for this resource
                         dataProviderName: "exampleDataProvider",
                     },
@@ -219,37 +233,36 @@ const App = () => {
 Data provider's methods are expected to return a Promise. So, you can use these async methods to [create a data provider][create-a-data-provider].
 
 ```tsx
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 const dataProvider: DataProvider = {
     // required methods
-    getList: ({
+     ({
         resource,
         pagination,
-        hasPagination,
-        sort,
+        sorters,
         filters,
-        metaData,
+        meta,
     }) => Promise,
-    create: ({ resource, variables, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
+    create: ({ resource, variables, meta }) => Promise,
+    update: ({ resource, id, variables, meta }) => Promise,
+    deleteOne: ({ resource, id, variables, meta }) => Promise,
+    getOne: ({ resource, id, meta }) => Promise,
     getApiUrl: () => "",
     // optional methods
-    getMany: ({ resource, ids, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
-    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    getMany: ({ resource, ids, meta }) => Promise,
+    createMany: ({ resource, variables, meta }) => Promise,
+    deleteMany: ({ resource, ids, variables, meta }) => Promise,
+    updateMany: ({ resource, ids, variables, meta }) => Promise,
     custom: ({
         url,
         method,
         filters,
-        sort,
+        sorters,
         payload,
         query,
         headers,
-        metaData,
+        meta,
     }) => Promise,
 };
 ```
@@ -266,22 +279,15 @@ Data hooks are used to operate CRUD actions like creating a new record, listing 
 ### getList <PropTag required />
 
 `getList` method is used to get a list of resources with sorting, filtering, and pagination features.
-It takes `resource`, `sort`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
+It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
 
 **refine** will consume this `getList` method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
 ```ts
-getList: async ({
-    resource,
-    hasPagination,
-    pagination,
-    sort,
-    filter,
-    metaData,
-}) => {
-    const { current, pageSize } = pagination;
-    const { field, order } = sort;
-    const { field, operator, value } = filter;
+getList: async ({ resource, pagination, sorters, filters, meta }) => {
+    const { current, pageSize, mode } = pagination;
+    const { field, order } = sorters;
+    const { field, operator, value } = filters;
 
     // You can handle the request according to your API requirements.
 
@@ -300,14 +306,13 @@ getList: async ({
 
 **Parameter Types:**
 
-| Name           | Type                             |
-| -------------- | -------------------------------- |
-| resource       | `string`                         |
-| hasPagination? | `boolean` _(defaults to `true`)_ |
-| pagination?    | [`Pagination`][pagination]       |
-| sort?          | [`CrudSorting`][crud-sorting]    |
-| filters?       | [`CrudFilters`][crud-filters]    |
-| metaData?      | [`MetaDataQuery`][meta-data]     |
+| Name        | Type                          |
+| ----------- | ----------------------------- |
+| resource    | `string`                      |
+| pagination? | [`Pagination`][pagination]    |
+| sorters?    | [`CrudSorting`][crud-sorting] |
+| filters?    | [`CrudFilters`][crud-filters] |
+| meta?       | [`MetaDataQuery`][meta-data]  |
 
 ### create <PropTag required/>
 
@@ -316,7 +321,7 @@ The `create` method creates a new record with the `resource` and `variables` par
 **refine** will consume this `create` method using the [`useCreate`][use-create] data hook.
 
 ```ts
-create: async ({ resource, variables, metaData }) => {
+create: async ({ resource, variables, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -331,7 +336,7 @@ create: async ({ resource, variables, metaData }) => {
 | --------- | ---------------------------- | ------- |
 | resource  | `string`                     |         |
 | variables | `TVariables`                 | `{}`    |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| meta?     | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`.
 
@@ -342,7 +347,7 @@ The `update` method updates the record with the `resource`, `id`, and, `variable
 **refine** will consume this `update` method using the [`useUpdate`][use-update] data hook.
 
 ```ts
-update: async ({ resource, id, variables, metaData }) => {
+update: async ({ resource, id, variables, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -358,7 +363,7 @@ update: async ({ resource, id, variables, metaData }) => {
 | resource  | `string`                     |         |
 | id        | [BaseKey][basekey]           |         |
 | variables | `TVariables`                 | `{}`    |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| meta?     | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`.
 
@@ -369,7 +374,7 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 **refine** will consume this `deleteOne` method using the [`useDelete`][use-delete] data hook.
 
 ```ts
-deleteOne: async ({ resource, id, variables, metaData }) => {
+deleteOne: async ({ resource, id, variables, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -385,7 +390,7 @@ deleteOne: async ({ resource, id, variables, metaData }) => {
 | resource  | `string`                     |         |
 | id        | [BaseKey][basekey]           |         |
 | variables | `TVariables[]`               | `{}`    |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| meta?     | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`.
 
@@ -396,7 +401,7 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 **refine** will consume this `getOne` method using the [`useOne`][use-one] data hook.
 
 ```ts
-getOne: async ({ resource, id, metaData }) => {
+getOne: async ({ resource, id, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -407,11 +412,11 @@ getOne: async ({ resource, id, metaData }) => {
 
 **Parameter Types:**
 
-| Name      | Type                         | Default |
-| --------- | ---------------------------- | ------- |
-| resource  | `string`                     |         |
-| id        | [BaseKey][basekey]           |         |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| Name     | Type                         | Default |
+| -------- | ---------------------------- | ------- |
+| resource | `string`                     |         |
+| id       | [BaseKey][basekey]           |         |
+| meta?    | [`MetaDataQuery`][meta-data] |
 
 ### getApiUrl <PropTag required />
 
@@ -420,7 +425,7 @@ The `getApiUrl` method returns the `apiUrl` value.
 **refine** will consume this `getApiUrl` method using the [`useApiUrl`][use-api-url] data hook.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     getApiUrl: () => apiUrl,
@@ -440,11 +445,11 @@ custom: async ({
     url,
     method,
     filters,
-    sort,
+    sorters,
     payload,
     query,
     headers,
-    metaData,
+    meta,
 }) => {
     // You can handle the request according to your API requirements.
 
@@ -456,16 +461,16 @@ custom: async ({
 
 **Parameter Types**
 
-| Name      | Type                                                       |
-| --------- | ---------------------------------------------------------- |
-| url       | `string`                                                   |
-| method    | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
-| sort?     | [`CrudSorting`][crud-sorting]                              |
-| filters?  | [`CrudFilters`][crud-filters]                              |
-| payload?  | `{}`                                                       |
-| query?    | `{}`                                                       |
-| headers?  | `{}`                                                       |
-| metaData? | [`MetaDataQuery`][meta-data]                               |
+| Name     | Type                                                       |
+| -------- | ---------------------------------------------------------- |
+| url      | `string`                                                   |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
+| sorters? | [`CrudSorting`][crud-sorting]                              |
+| filters? | [`CrudFilters`][crud-filters]                              |
+| payload? | `{}`                                                       |
+| query?   | `{}`                                                       |
+| headers? | `{}`                                                       |
+| meta?    | [`MetaDataQuery`][meta-data]                               |
 
 ## Bulk Actions
 
@@ -482,7 +487,7 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 **refine** will consume this `getMany` method using the [`useMany`][use-many] data hook.
 
 ```ts
-getMany: async ({ resource, ids, metaData }) => {
+getMany: async ({ resource, ids, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -493,11 +498,11 @@ getMany: async ({ resource, ids, metaData }) => {
 
 **Parameter Types:**
 
-| Name      | Type                         | Default |
-| --------- | ---------------------------- | ------- |
-| resource  | `string`                     |         |
-| ids       | [[BaseKey][basekey]]         |         |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| Name     | Type                         | Default |
+| -------- | ---------------------------- | ------- |
+| resource | `string`                     |         |
+| ids      | [[BaseKey][basekey]]         |         |
+| meta?    | [`MetaDataQuery`][meta-data] |
 
 ### createMany
 
@@ -506,7 +511,7 @@ This method allows us to create multiple items in a resource. Implementation of 
 **refine** will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
 
 ```ts
-createMany: async ({ resource, variables, metaData }) => {
+createMany: async ({ resource, variables, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -521,7 +526,7 @@ createMany: async ({ resource, variables, metaData }) => {
 | --------- | ---------------------------- | ------- |
 | resource  | `string`                     |         |
 | variables | `TVariables[]`               | `{}`    |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| meta?     | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useCreateMany`][use-create-many] to type `variables`.
 
@@ -532,7 +537,7 @@ This method allows us to delete multiple items in a resource. Implementation of 
 **refine** will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
 
 ```ts
-deleteMany: async ({ resource, ids, variables, metaData }) => {
+deleteMany: async ({ resource, ids, variables, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -546,7 +551,7 @@ deleteMany: async ({ resource, ids, variables, metaData }) => {
 | resource  | `string`                     |         |
 | ids       | [[BaseKey][basekey]]         |         |
 | variables | `TVariables[]`               | `{}`    |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| meta?     | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useDeleteMany`][use-delete-many] to type `variables`.
 
@@ -557,7 +562,7 @@ This method allows us to update multiple items in a resource. Implementation of 
 **refine** will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
 
 ```ts
-updateMany: async ({ resource, ids, variables, metaData }) => {
+updateMany: async ({ resource, ids, variables, meta }) => {
     // You can handle the request according to your API requirements.
 
     return {
@@ -571,7 +576,7 @@ updateMany: async ({ resource, ids, variables, metaData }) => {
 | resource  | `string`                     |         |
 | ids       | [[BaseKey][basekey]]         |         |
 | variables | `TVariables[]`               | `{}`    |
-| metaData? | [`MetaDataQuery`][meta-data] |
+| meta?     | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdateMany`][use-update-many] to type `variables`.
 
@@ -582,7 +587,7 @@ updateMany: async ({ resource, ids, variables, metaData }) => {
 Here is a basic example of how to implement error handling in your data provider.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider, HttpError } from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     getOne: async ({ resource, id }) => {
@@ -623,7 +628,7 @@ Also, Axios interceptor can be used to transform the error from the response bef
 ```ts title="src/data-provider.ts"
 // highlight-start
 import axios from "axios";
-import { DataProvider, HttpError } from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@refinedev/core";
 // highlight-end
 import { stringify } from "query-string";
 
@@ -652,25 +657,25 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-## metaData Usage
+## meta Usage
 
-When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `metaData` field, which allows the sent parameter to be easily accessed by the data provider.
+When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `meta` field, which allows the sent parameter to be easily accessed by the data provider.
 
 :::tip
-The `metaData` parameter can be used in all data, form, and table hooks.
+The `meta` parameter can be used in all data, form, and table hooks.
 :::
 
-Here is an example of how to send a custom header parameter to the `getOne` method using `metaData`:
+Here is an example of how to send a custom header parameter to the `getOne` method using `meta`:
 
--   Send a custom header parameter to the [`getOne`](#getone) method using `metaData`.
+-   Send a custom header parameter to the [`getOne`](#getone) method using `meta`.
 
 ```ts title="post/edit.tsx"
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 
 useOne({
     resource: "post",
     id: "1",
-    metaData: {
+    meta: {
         headers: {
             "x-custom-header": "hello world",
         },
@@ -678,16 +683,16 @@ useOne({
 });
 ```
 
--   Get the `metaData` parameter from the data provider.
+-   Get the `meta` parameter from the data provider.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
   ...
-  getOne: async ({ resource, id, variables, metaData }) => {
+  getOne: async ({ resource, id, variables, meta }) => {
     // highlight-next-line
-    const { headers } = metaData;
+    const { headers } = meta;
     const url = `${apiUrl}/${resource}/${id}`;
 
     // highlight-start
@@ -739,10 +744,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 In some cases, you may need to override the method of **refine** data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
+For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
 ```tsx
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
@@ -758,7 +763,7 @@ const myDataProvider = {
     },
 };
 
-<Refine dataProvider={myDataProvider} />;
+<Refine dataProvider={myDataProvider}>{/* ... */}</Refine>;
 ```
 
 [basekey]: /docs/api-reference/core/interfaceReferences/#basekey

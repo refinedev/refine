@@ -1,4 +1,4 @@
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 import { IPost } from "../../interfaces/post";
 

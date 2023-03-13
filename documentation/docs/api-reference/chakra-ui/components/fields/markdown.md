@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
@@ -16,9 +16,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -35,18 +35,17 @@ Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
-    Heading,
-    Text,
     // highlight-next-line
     MarkdownField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
+import { Heading, Text } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
@@ -59,7 +58,6 @@ const PostShow: React.FC = () => {
                 Id
             </Heading>
             <Text mt={2}>{record?.id}</Text>
-
             <Heading as="h5" size="sm" mt={4}>
                 Content
             </Heading>
@@ -109,4 +107,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@refinedev/chakra-ui/MarkdownField" value-description="Markdown data to render"/>

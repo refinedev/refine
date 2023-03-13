@@ -1,25 +1,30 @@
 import React from "react";
 import {
-    useGetIdentity,
+    useIsAuthenticated,
     useLogout,
     useMenu,
     useNavigation,
-    useRouterContext,
-} from "@pankod/refine-core";
-import { Button, Image, Space, Icons, useModalForm } from "@pankod/refine-antd";
+    useParsed,
+} from "@refinedev/core";
+import { Link } from "react-router-dom";
+import { useModalForm } from "@refinedev/antd";
+
+import {
+    PlusSquareOutlined,
+    LogoutOutlined,
+    LoginOutlined,
+} from "@ant-design/icons";
+import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";
 
-const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
-
 export const Header: React.FC = () => {
-    const { Link, useLocation } = useRouterContext();
-    const { isError } = useGetIdentity();
+    const { data } = useIsAuthenticated();
     const { mutate: mutateLogout } = useLogout();
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
-    const { pathname } = useLocation();
+    const { pathname } = useParsed();
 
     const { modalProps, formProps, show } = useModalForm<Canvas>({
         resource: "canvases",
@@ -27,13 +32,15 @@ export const Header: React.FC = () => {
         redirect: "show",
     });
 
-    const isLogin = !isError;
+    const isAuthenticated = data?.authenticated;
 
     const handleRedirect = () => {
-        console.log({ pathname });
+        if (!pathname) {
+            return push("/login");
+        }
+
         if (pathname === "/") {
-            push("/login");
-            return;
+            return push("/login");
         }
 
         push(`/login?to=${encodeURIComponent(pathname)}`);
@@ -74,7 +81,7 @@ export const Header: React.FC = () => {
                     <Button
                         icon={<PlusSquareOutlined />}
                         onClick={() => {
-                            if (isLogin) {
+                            if (isAuthenticated) {
                                 show();
                             } else {
                                 handleRedirect();
@@ -84,7 +91,7 @@ export const Header: React.FC = () => {
                     >
                         Create
                     </Button>
-                    {isLogin ? (
+                    {isAuthenticated ? (
                         <Button
                             type="primary"
                             danger

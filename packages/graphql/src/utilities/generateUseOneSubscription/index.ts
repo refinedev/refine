@@ -1,11 +1,11 @@
-import { MetaDataQuery, BaseKey } from "@pankod/refine-core";
+import { MetaQuery, BaseKey } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 
 type GenerateUseOneSubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta: MetaQuery;
     id?: BaseKey;
 };
 
@@ -17,7 +17,7 @@ type GenerateUseOneSubscriptionReturnValues = {
 
 export const generateUseOneSubscription = ({
     resource,
-    metaData,
+    meta,
     id,
 }: GenerateUseOneSubscriptionParams): GenerateUseOneSubscriptionReturnValues => {
     if (!id) {
@@ -29,14 +29,14 @@ export const generateUseOneSubscription = ({
     const singularResource = pluralize.singular(resource);
     const camelResource = camelCase(singularResource);
 
-    const operation = metaData.operation ?? camelResource;
+    const operation = meta.operation ?? camelResource;
 
     const { query, variables } = gql.query({
         operation,
         variables: {
             id: { value: id, type: "ID", required: true },
         },
-        fields: metaData.fields,
+        fields: meta.fields,
     });
 
     return { query, variables, operation };

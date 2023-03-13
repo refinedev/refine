@@ -1,4 +1,4 @@
-import { TestWrapper, MockJSONServer } from "@test";
+import { TestWrapper, MockJSONServer, mockRouterBindings } from "@test";
 import { renderHook } from "@testing-library/react";
 import * as papaparse from "papaparse";
 
@@ -72,6 +72,10 @@ describe("useImport hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }],
+                    routerProvider: mockRouterBindings({
+                        pathname: "/posts",
+                        resource: { name: "posts" },
+                    }),
                 }),
             },
         );
@@ -151,6 +155,10 @@ describe("useImport hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: mockDataProvider,
                     resources: [{ name: "posts" }],
+                    routerProvider: mockRouterBindings({
+                        pathname: "/posts",
+                        resource: { name: "posts" },
+                    }),
                 }),
             },
         );
@@ -193,6 +201,10 @@ describe("useImport hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: mockDataProvider,
                     resources: [{ name: "posts" }],
+                    routerProvider: mockRouterBindings({
+                        pathname: "/posts",
+                        resource: { name: "posts" },
+                    }),
                 }),
             },
         );
@@ -215,7 +227,7 @@ describe("useImport hook", () => {
         const { result } = renderHook(
             () =>
                 useImport({
-                    resourceName: "tests",
+                    resource: "tests",
                     onFinish: () => {
                         expect(
                             mockDataProvider.default?.createMany,
@@ -293,7 +305,7 @@ describe("useImport hook", () => {
             const { result } = renderHook(
                 () =>
                     useImport({
-                        resourceName: "posts",
+                        resource: "posts",
                         onFinish: ({ succeeded }) => {
                             expect(succeeded[0].request).toEqual(parsedData);
                         },
@@ -331,7 +343,7 @@ describe("useImport hook", () => {
             const { result } = renderHook(
                 () =>
                     useImport({
-                        resourceName: "posts",
+                        resource: "posts",
                         onFinish: ({ errored }) => {
                             expect(errored[0].response[0]).toEqual({
                                 message: "something happened",
@@ -393,6 +405,10 @@ describe("useImport hook", () => {
                     wrapper: TestWrapper({
                         dataProvider: mockDataProvider,
                         resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings({
+                            pathname: "/posts",
+                            resource: { name: "posts" },
+                        }),
                     }),
                 },
             );
@@ -438,7 +454,7 @@ describe("useImport hook", () => {
                 () =>
                     useImport({
                         batchSize: 1,
-                        resourceName: "posts",
+                        resource: "posts",
                         onFinish: ({ succeeded }) => {
                             expect(succeeded[0].response[0]).toEqual(
                                 parsedData[0],
@@ -455,6 +471,10 @@ describe("useImport hook", () => {
                     wrapper: TestWrapper({
                         dataProvider: mockDataProvider,
                         resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings({
+                            pathname: "/posts",
+                            resource: { name: "posts" },
+                        }),
                     }),
                 },
             );

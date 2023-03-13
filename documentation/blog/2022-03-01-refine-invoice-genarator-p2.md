@@ -17,13 +17,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
+Just be aware that the source code example in this post have been updated to version 4.x.x.
 
-
-
-
+:::
 
 Looking for an invoice generator that is easy to use and lets you customize your invoices? With **refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
 
@@ -97,7 +99,7 @@ import {
     TagField,
     useModalForm,
     EditButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 
@@ -184,7 +186,7 @@ import {
     ModalProps,
     FormProps,
     InputNumber,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 type CreateMissionProps = {
     modalProps: ModalProps;
@@ -238,7 +240,7 @@ import {
     useTable,
     TagField,
     useModalForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 import { CreateMission, EditMission } from "components/mission";
@@ -322,9 +324,9 @@ Let's put the `Invoice Collections` fields that we created with Strapi into our 
 
 Thanks to the [refine-strapi-v4 dataProvider](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population), we can use the data of collections that are related to each other.
 
-In order to use the fields of the collections that are related to each other, we must populate the collections in `metaData`.
+In order to use the fields of the collections that are related to each other, we must populate the collections in `meta`.
 
-Populate the contacts, companies and missions related with our Invoice collection in metaData.
+Populate the contacts, companies and missions related with our Invoice collection in meta.
 
 <details>
 <summary>Show Code</summary>
@@ -345,7 +347,7 @@ import {
     Icons,
     Button,
     Modal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IInvoice } from "interfaces";
 import { PdfLayout } from "components/pdf";
@@ -355,7 +357,7 @@ const { FilePdfOutlined } = Icons;
 export const InvoiceList: React.FC = () => {
     //highlight-start
     const { tableProps } = useTable<IInvoice>({
-        metaData: {
+        meta: {
             populate: {
                 contact: { populate: ["client"] },
                 company: { populate: ["logo"] },
@@ -484,7 +486,7 @@ Then, we fill our refine [Create](https://refine.dev/docs/ui-frameworks/antd/com
 <p>
 
 ```tsx title="src/pages/invoice/CreateInvoice"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Create,
@@ -494,7 +496,7 @@ import {
     useForm,
     useSelect,
     DatePicker,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
@@ -627,7 +629,7 @@ Let's create a button to display our PDF arrangement in the Invoice List, as wel
 ```tsx title="src/pages/invoice/InvoiceList.tsx"
 import { useState } from "react";
 //highlight-next-line
-import { useModal } from "@pankod/refine-core";
+import { useModal } from "@refinedev/core";
 import {
     List,
     Table,
@@ -641,7 +643,7 @@ import {
     Icons,
     Button,
     Modal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IInvoice } from "interfaces";
 import { PdfLayout } from "components/pdf";
@@ -653,7 +655,7 @@ export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();
 
     const { tableProps } = useTable<IInvoice>({
-        metaData: {
+        meta: {
             populate: {
                 contact: { populate: ["client"] },
                 company: { populate: ["logo"] },
@@ -1063,9 +1065,10 @@ const styles = StyleSheet.create({
 ## Example
 
 :::note Demo Credentials
+
 -   `Username`: demo
 -   `Password`: demodemo
-:::
+    :::
 
 :::note
 PDF download may not work in codeSandbox mode. With [**this**](https://n59710.csb.app/invoices) link, you can open the example in the browser and try it.

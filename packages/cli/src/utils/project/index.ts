@@ -40,22 +40,22 @@ export const getUIFramework = (): UIFrameworks | undefined => {
     const dependencies = getDependencies();
 
     // check for antd
-    if (dependencies.includes("@pankod/refine-antd")) {
+    if (dependencies.includes("@refinedev/antd")) {
         return UIFrameworks.ANTD;
     }
 
     // check for mui
-    if (dependencies.includes("@pankod/refine-mui")) {
+    if (dependencies.includes("@refinedev/mui")) {
         return UIFrameworks.MUI;
     }
 
     // check for chakra
-    if (dependencies.includes("@pankod/refine-chakra-ui")) {
+    if (dependencies.includes("@refinedev/chakra-ui")) {
         return UIFrameworks.CHAKRA;
     }
 
     // check for mantine
-    if (dependencies.includes("@pankod/refine-mantine")) {
+    if (dependencies.includes("@refinedev/mantine")) {
         return UIFrameworks.MANTINE;
     }
 

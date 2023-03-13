@@ -1,7 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { Select, useSelect } from "@pankod/refine-mantine";
+import { useSelect } from "@refinedev/mantine";
+import { Select } from "@mantine/core";
 
 interface ICategory {
     id: number;
@@ -17,8 +18,8 @@ const ProductCreate: React.FC = () => {
                 field: "title",
                 operator: "contains",
                 value,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 

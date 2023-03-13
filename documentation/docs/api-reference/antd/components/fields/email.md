@@ -4,7 +4,6 @@ title: Email
 swizzle: true
 ---
 
-
 This field is used to display email values. It uses the [`<Link>`](https://ant.design/components/typography/#FAQ) component of [`<Typography>`](https://ant.design/components/typography) from Ant Design.
 
 :::info-tip Swizzle
@@ -17,13 +16,13 @@ Let's see how we can use `<EmailField>` with the example in the user list.
 
 ```tsx live
 // visible-block-start
-import { 
+import {
     List,
-    Table,
     useTable,
     // highlight-next-line
-    EmailField
-} from "@pankod/refine-antd";
+    EmailField,
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const UserList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -32,7 +31,7 @@ const UserList: React.FC = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                 <Table.Column
+                <Table.Column
                     dataIndex="email"
                     title="Email"
                     // highlight-next-line
@@ -56,19 +55,20 @@ render(
         resources={[
             {
                 name: "users",
-                list: UserList
+                list: UserList,
             },
         ]}
     />,
 );
 ```
+
 :::tip
 `<EmailField>` uses "mailto:" in the href prop of the `<Link>` component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 :::
 
 ## API Reference
 
-<PropsTable module="@pankod/refine-antd/EmailField" />
+<PropsTable module="@refinedev/antd/EmailField" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).

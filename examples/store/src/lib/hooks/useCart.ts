@@ -1,4 +1,4 @@
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 import { Cart, StoreCartsRes } from "@medusajs/medusa";
 
 interface useCartProps {

@@ -1,7 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { DataGrid, GridColumns, useDataGrid } from "@pankod/refine-mui";
-import { useMany } from "@pankod/refine-core";
+import { useDataGrid } from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { useMany } from "@refinedev/core";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 import { ICategory, IPost } from "interfaces";

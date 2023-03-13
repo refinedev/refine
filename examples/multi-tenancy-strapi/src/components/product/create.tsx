@@ -1,7 +1,8 @@
-import { useApiUrl } from "@pankod/refine-core";
+import { useApiUrl } from "@refinedev/core";
+
+import { Create } from "@refinedev/antd";
 
 import {
-    Create,
     Drawer,
     DrawerProps,
     Form,
@@ -10,7 +11,7 @@ import {
     ButtonProps,
     Upload,
     Grid,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { StoreContext } from "context/store";
 import { useContext } from "react";
@@ -19,7 +20,7 @@ import {
     useStrapiUpload,
     mediaUploadMapper,
     getValueProps,
-} from "@pankod/refine-strapi-v4";
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 
