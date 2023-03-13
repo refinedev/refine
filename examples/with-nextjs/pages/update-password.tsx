@@ -1,5 +1,10 @@
 import { AuthPage } from "@refinedev/antd";
+import { ExtendedNextPage } from "./_app";
 
-export default function UpdatePassword() {
+const UpdatePassword: ExtendedNextPage = () => {
     return <AuthPage type="updatePassword" />;
-}
+};
+
+UpdatePassword.noLayout = true;
+
+export default UpdatePassword;
