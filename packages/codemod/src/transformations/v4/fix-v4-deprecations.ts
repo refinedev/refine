@@ -720,7 +720,11 @@ const fixUseSelectHasPaginationToPaginationMode = (
             (p: Property) => (p.key as Identifier).name === "pagination",
         );
 
-        if (hasPaginationProperty) {
+        const hasMode = (
+            paginationProperty as unknown as any
+        )?.value?.properties?.find((p) => (p["name"] = "mode"));
+
+        if (hasPaginationProperty && !hasMode) {
             if (paginationProperty) {
                 (paginationProperty as any).value.properties.push(
                     j.property(
@@ -761,7 +765,7 @@ const fixUseSelectHasPaginationToPaginationMode = (
             }
         }
 
-        if (!hasPaginationProperty) {
+        if (!hasPaginationProperty && !hasMode) {
             if (paginationProperty) {
                 (paginationProperty as any).value.properties.push(
                     j.property(
