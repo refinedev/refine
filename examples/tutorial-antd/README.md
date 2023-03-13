@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example tutorial-antd
 
 <br/>
 
-[![Open tutorial-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/tutorial-antd?view=preview&theme=dark&codemirror=1)
+[![Open tutorial-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/tutorial-antd?view=preview&theme=dark&codemirror=1)
         

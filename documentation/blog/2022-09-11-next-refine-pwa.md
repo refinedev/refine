@@ -721,7 +721,7 @@ The purpose of this tutorial is to give you a headstart with refine and its ecos
 
 ## Project source code
 
-https://github.com/refinedev/refine/tree/next/examples/blog/next-refine-pwa
+https://github.com/refinedev/refine/tree/master/examples/blog/next-refine-pwa
 
 
 <br/>

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example i18n-react
 
 <br/>
 
-[![Open i18n-react example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/i18n-react?view=preview&theme=dark&codemirror=1)
+[![Open i18n-react example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/i18n-react?view=preview&theme=dark&codemirror=1)
         

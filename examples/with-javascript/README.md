@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-javascript
 
 <br/>
 
-[![Open with-javascript example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-javascript?view=preview&theme=dark&codemirror=1)
+[![Open with-javascript example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/with-javascript?view=preview&theme=dark&codemirror=1)
         

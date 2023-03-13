@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-antd-use-editable-table
 
 <br/>
 
-[![Open table-antd-use-editable-table example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/table-antd-use-editable-table?view=preview&theme=dark&codemirror=1)
+[![Open table-antd-use-editable-table example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/table-antd-use-editable-table?view=preview&theme=dark&codemirror=1)
         

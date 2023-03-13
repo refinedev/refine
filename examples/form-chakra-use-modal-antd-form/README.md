@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-chakra-use-modal-antd-form
 
 <br/>
 
-[![Open form-chakra-use-modal-antd-form example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/form-chakra-use-modal-antd-form?view=preview&theme=dark&codemirror=1)
+[![Open form-chakra-use-modal-antd-form example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/form-chakra-use-modal-antd-form?view=preview&theme=dark&codemirror=1)
         

@@ -13,8 +13,8 @@ This post is the first part of an admin dashboard app built using [**refine**](h
 
 This is Day 5, and **refineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities within a week.
 
-- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/next/examples/pixels-admin)
-- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/next/examples/pixels)
+- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
+- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
 
 ### refineWeek series
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
