@@ -1,5 +1,5 @@
 import { Authenticated, Refine } from "@refinedev/core";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
@@ -35,11 +35,14 @@ import {
  * Also you can pass a `resource` prop to navigate to a specific resource.
  * This is an **optional** component to use in your app.
  *
+ * - `CatchAllNavigate`: A component that navigates to the provided `to` prop and appends the current location's pathname to the `to` query params.
+ *
  */
 import routerBindings, {
     RefineRoutes,
     NavigateToResource,
     UnsavedChangesNotifier,
+    CatchAllNavigate,
 } from "@refinedev/react-router-v6";
 
 import "@refinedev/antd/dist/reset.css";
@@ -96,6 +99,10 @@ const App: React.FC = () => {
                 routerProvider={routerBindings}
                 dataProvider={dataProvider(API_URL)}
                 notificationProvider={notificationProvider}
+                options={{
+                    warnWhenUnsavedChanges: true,
+                    syncWithLocation: true,
+                }}
                 /**
                  * We've also made some changes in the `resources` prop and in the definition of the resources.
                  *
@@ -199,96 +206,75 @@ const App: React.FC = () => {
                 <RefineRoutes>
                     {(resourceRoutes) => (
                         /**
-                         * For now, we'll wrap the whole `Routes` component with the `Authenticated` component.
-                         * This can also be done individually for each route.
                          *
-                         * By default, the `Authenticated` component will try to redirect,
-                         * - If your auth provider's `check` function returns a `redirectTo` property.
-                         * It  will be used as the redirect path.
-                         * - If not but `redirectOnFail` property is set to a string, it will be used as the redirect path.
+                         * `resourceRoutes` is an array of routes for the resources.
+                         * `react-router-dom` requires to wrap the routes with a `Routes` component.
                          *
-                         * Now, we'll use `Authenticated` to render `fallback` property.
-                         * When `fallback` is passed, redirect will not happen.
+                         * We'll wrap the routes with `Authenticated` component to protect the routes.
+                         * If the user is not authenticated, `Authenticated` component will redirect the user to the login page.
+                         * If the user is authenticated, it will render the routes with the `Layout` component wrapper.
                          *
-                         * We'll render Auth components and redirection logic inside the `fallback` property.
+                         * We'll also have another route for the login page.
+                         * It will be rendered if the user is not authenticated.
+                         * If the user is authenticated, it will redirect the user to the first resource's list page.
                          *
-                         * In your app, you are free to use the `Authenticated` component wherever you like.
-                         * Wrapping it to `Routes` is just presented as an example usage.
                          */
-                        <Authenticated
-                            /**
-                             * You can also use `redirectOnFail` property to handle the redirect. But this property will not work when `fallback` is provided.
-                             * If you're rendering your authentication routes somewhere else, you can skip `fallback` and use `redirectOnFail` instead.
-                             */
-                            fallback={
-                                <Routes>
-                                    <Route
-                                        path="/login"
-                                        element={<AuthPage type="login" />}
-                                    />
-                                    {/* This route will redirect all routes to `/login` except `/login` itself. */}
-                                    <Route
-                                        path="*"
-                                        element={
-                                            <>
-                                                <Navigate to="/login" />
-                                            </>
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
                                         }
-                                    />
-                                </Routes>
-                            }
-                        >
-                            {/**
-                             * We're using our `Layout` to wrap the `Routes`.
-                             * You can use the `Layout` and other layout related components wherever you like.
-                             *
-                             * `Layout` component also accepts all the layout related props,
-                             * that were previously passsed to the <Refine> component.
-                             *
-                             * Since we want to apply the Layout for all the authenticated pages.
-                             * We'll wrap them around the `Routes` component.
-                             *
-                             * As an alternative approach, we could use them inside each of our pages.
-                             */}
-                            <Layout Sider={Sider}>
-                                <Routes>
-                                    {resourceRoutes}
-                                    {/**
-                                     * Since we've defined the `create` property as a path,
-                                     * we need to define the route for it here.
-                                     */}
-                                    <Route
-                                        path="/create-new-post"
-                                        element={<PostCreate />}
-                                    />
-                                    {/**
-                                     * Let's define an additional route apart from the resource routes.
-                                     */}
-                                    <Route
-                                        path="/about"
-                                        element={
-                                            <div>A custom route at `/path`</div>
-                                        }
-                                    />
-                                    {/**
-                                     * Now, we can start replacing the behavior of the deprecated usages.
-                                     *
-                                     * We'll create an index route, then use `NavigateToResource` component to redirect it to the first resource.
-                                     */}
-                                    <Route
-                                        index
-                                        element={<NavigateToResource />}
-                                    />
-                                    {/**
-                                     * Now, we'll use the `ErrorComponent` to handle 404s
-                                     */}
-                                    <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
-                                    />
-                                </Routes>
-                            </Layout>
-                        </Authenticated>
+                                    >
+                                        <Layout Sider={Sider}>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                }
+                            >
+                                {resourceRoutes}
+                                {/**
+                                 * Since we've defined the `create` property as a path,
+                                 * we need to define the route for it here.
+                                 */}
+                                <Route
+                                    path="/create-new-post"
+                                    element={<PostCreate />}
+                                />
+                                {/**
+                                 * Let's define an additional route apart from the resource routes.
+                                 */}
+                                <Route
+                                    path="/about"
+                                    element={
+                                        <div>A custom route at `/path`</div>
+                                    }
+                                />
+                                {/**
+                                 * Now, we can start replacing the behavior of the deprecated usages.
+                                 *
+                                 * We'll create an index route, then use `NavigateToResource` component to redirect it to the first resource.
+                                 */}
+                                <Route index element={<NavigateToResource />} />
+                                {/**
+                                 * Now, we'll use the `ErrorComponent` to handle 404s
+                                 */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={<AuthPage type="login" />}
+                                />
+                            </Route>
+                        </Routes>
                     )}
                 </RefineRoutes>
                 {/**

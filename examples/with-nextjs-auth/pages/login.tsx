@@ -1,6 +1,7 @@
 import { AuthPage } from "@refinedev/antd";
+import { ExtendedNextPage } from "./_app";
 
-export default function Login() {
+const Login: ExtendedNextPage = () => {
     return (
         <AuthPage
             type="login"
@@ -12,4 +13,8 @@ export default function Login() {
             }}
         />
     );
-}
+};
+
+Login.noLayout = true;
+
+export default Login;

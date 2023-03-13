@@ -2,7 +2,6 @@ import { GetServerSideProps } from "next";
 import { GetListResponse } from "@refinedev/core";
 import {
     useTable,
-    Layout,
     List,
     EditButton,
     ShowButton,
@@ -26,37 +25,35 @@ const PostList: React.FC<{ initialData: GetListResponse<IPost> }> = ({
     });
 
     return (
-        <Layout>
-            <List>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="status" title="Status" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_text, record): React.ReactNode => {
-                            return (
-                                <Space>
-                                    <EditButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    <ShowButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                    <DeleteButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                </Space>
-                            );
-                        }}
-                    />
-                </Table>
-            </List>
-        </Layout>
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="status" title="Status" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <Space>
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
+        </List>
     );
 };
 

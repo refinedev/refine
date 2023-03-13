@@ -2,17 +2,40 @@ import React from "react";
 import { AppProps } from "next/app";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/antd";
+import { Layout, notificationProvider } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
 
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
 import { API_URL } from "src/constants";
+import type { NextPage } from "next";
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+export type ExtendedNextPage = NextPage & {
+    noLayout?: boolean;
+};
+
+type ExtendedAppProps = AppProps & {
+    Component: ExtendedNextPage;
+};
+
+function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
+    const renderComponent = () => {
+        if (Component.noLayout) {
+            return <Component {...pageProps} />;
+        }
+
+        return (
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        );
+    };
+
     return (
         <>
             <GitHubBanner />
@@ -30,10 +53,14 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                         show: "/posts/show/:id",
                     },
                 ]}
-                options={{ syncWithLocation: true }}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
                 notificationProvider={notificationProvider}
             >
-                <Component {...pageProps} />
+                {renderComponent()}
+                <UnsavedChangesNotifier />
             </Refine>
         </>
     );

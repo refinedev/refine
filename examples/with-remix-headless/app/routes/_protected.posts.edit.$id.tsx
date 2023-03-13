@@ -1,20 +1,39 @@
+import { useEffect } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import { LoaderArgs, redirect } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { json, LoaderArgs } from "@remix-run/node";
+import dataProvider from "@refinedev/simple-rest";
 
-import { authProvider } from "~/authProvider";
+import { API_URL } from "~/constants";
+import { IPost } from "~/interfaces";
 
-const PostCreate: React.FC = () => {
+const PostEdit: React.FC = () => {
+    const { initialData } = useLoaderData<typeof loader>();
+
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
+        resetField,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        warnWhenUnsavedChanges: true,
+        refineCoreProps: {
+            queryOptions: {
+                initialData,
+            },
+        },
+    });
 
     const { options } = useSelect({
         resource: "categories",
+        defaultValue: queryResult?.data?.data.category.id,
     });
+
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -31,12 +50,11 @@ const PostCreate: React.FC = () => {
             <br />
             <label>Category: </label>
             <select
-                defaultValue={""}
-                {...register("category.id", { required: true })}
+                {...register("category.id", {
+                    required: true,
+                })}
+                defaultValue={queryResult?.data?.data.category.id}
             >
-                <option value={""} disabled>
-                    Please select
-                </option>
                 {options?.map((category) => (
                     <option key={category.value} value={category.value}>
                         {category.label}
@@ -60,14 +78,13 @@ const PostCreate: React.FC = () => {
     );
 };
 
-export default PostCreate;
+export default PostEdit;
 
-export async function loader({ request }: LoaderArgs) {
-    const { authenticated, redirectTo } = await authProvider.check(request);
+export async function loader({ params }: LoaderArgs) {
+    const data = await dataProvider(API_URL).getOne<IPost>({
+        resource: "posts",
+        id: params?.id as string,
+    });
 
-    if (!authenticated) {
-        throw redirect(redirectTo ?? "/login");
-    }
-
-    return {};
+    return json({ initialData: data });
 }

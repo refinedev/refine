@@ -37,7 +37,9 @@ export default function RootLayout({
                             },
                         },
                     ]}
-                    options={{ syncWithLocation: true }}
+                    options={{
+                        syncWithLocation: true,
+                    }}
                     notificationProvider={notificationProvider}
                 >
                     {children}

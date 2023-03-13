@@ -1,6 +1,9 @@
 import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
 import { QueryClient } from "@tanstack/react-query";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import "./App.css";
@@ -39,6 +42,8 @@ const App: React.FC = () => {
                     reactQuery: {
                         clientConfig: queryClient,
                     },
+                    warnWhenUnsavedChanges: true,
+                    syncWithLocation: true,
                 }}
                 resources={[
                     {
@@ -63,6 +68,7 @@ const App: React.FC = () => {
 
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
