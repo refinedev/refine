@@ -216,6 +216,10 @@ export async function run(): Promise<void> {
 
         if (isAntdVersion3x) {
             console.log();
+
+            console.log(
+                `Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4`,
+            );
             console.log(
                 `You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.`,
             );
@@ -227,6 +231,7 @@ export async function run(): Promise<void> {
                     "https://refine.dev/docs/api-reference/antd/migration-guide/v4-to-v5/",
                 )}`,
             );
+
             process.exit(0);
         }
     }
