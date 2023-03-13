@@ -35,14 +35,30 @@ We'll use the `routerProvider` from `@refinedev/remix-router` to set up the rout
 
 We'll create four pages for our resources:
 
--   `app/routes/posts.tsx` - List page for posts
--   `app/routes/posts.show.$id.tsx` - Detail page for posts
--   `app/routes/categories.tsx` - List page for categories
--   `app/routes/categories.show.$id.tsx` - Detail page for categories
+- `app/routes/posts._index.tsx` - List page for posts
+- `app/routes/posts.show.$id.tsx` - Detail page for posts
+- `app/routes/categories._index.tsx` - List page for categories
+- `app/routes/categories.show.$id.tsx` - Detail page for categories
 
 And we'll create one page for the index route and use it to redirect to the `posts` resource:
 
--   `app/routes/index.tsx` - Index page
+- `app/routes/_index.tsx` - Index page
+
+:::note
+
+Notice that we're using the V2 for route file naming convention for our routes. You can find more information about it in the [Remix documentation](https://remix.run/docs/en/main/file-conventions/route-files-v2).
+
+Currently, to enable that you need to add the following line to your `remix.config.js` file:
+
+```node title=remix.config.js
+module.exports = {
+  future: {
+    v2_routeConvention: true,
+  },
+};
+```
+
+:::
 
 Let's start with the initialization of the **refine** app in the `app/root.tsx` file:
 
@@ -116,9 +132,9 @@ Your action definitions in the resources can contain additional parameters and n
 
 :::
 
-Now we can create our pages in the `pages` directory:
+Now we can create our pages in the `routes` directory:
 
-```tsx title=app/routes/posts.tsx
+```tsx title=app/routes/posts._index.tsx
 import { useTable } from "@refinedev/core";
 import { NavLink } from "@remix-run/react";
 
@@ -192,7 +208,7 @@ export default function PostShow() {
 }
 ```
 
-```tsx title=app/routes/categories.tsx
+```tsx title=app/routes/categories._index.tsx
 import { useTable, getToPath } from "@refinedev/core";
 import { NavLink } from "@remix-run/react";
 
@@ -270,7 +286,7 @@ Even though we're using the `NavigateToResource` component, when using Remix it'
 
 :::
 
-```tsx title=app/routes/index.tsx
+```tsx title=app/routes/_index.tsx
 import { NavigateToResource } from "@refinedev/remix-router";
 
 export default function Index() {
@@ -903,7 +919,7 @@ Tadaa! that's all! 🎉
 
 Now, we can check the authentication in loaders of our routes.
 
-```tsx title="app/routes/index.tsx"
+```tsx title="app/routes/_index.tsx"
 import { json, LoaderFunction } from "@remix-run/node";
 import { authProvider } from "~/authProvider";
 

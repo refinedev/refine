@@ -122,7 +122,7 @@ The existing method for passing components to the actions are still supported an
 
 We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name.
 
-The `route` property is now deprecated with the new routing system which lets users define custom routes per action.
+The `route` property is now deprecated. The new routing system lets users define custom routes per action.
 
 ```diff
 resources={[
@@ -832,7 +832,7 @@ useImport({
 
 ### `useDrawerForm` and `useModalForm` hooks
 
-These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
+It is now possible to sync these hooks' visibility state with location by using the `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
 
 ```tsx
 useDrawerForm({
