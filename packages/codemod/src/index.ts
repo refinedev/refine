@@ -21,6 +21,7 @@ import path from "path";
 import execa from "execa";
 import chalk from "chalk";
 import isGitClean from "is-git-clean";
+import { checkAntdVersionIs3x } from "./helpers/check-antd-version-is-3x";
 
 export const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
 export const transformerDirectory = path.join(
@@ -209,6 +210,24 @@ export async function run(): Promise<void> {
     const filesExpanded = expandFilePathsIfNeeded([filesBeforeExpansion]);
 
     const selectedTransformer = cli.input[0] || transformer;
+
+    if (selectedTransformer === "refine3-to-refine4") {
+        const isAntdVersion3x = await checkAntdVersionIs3x();
+        if (isAntdVersion3x) {
+            console.log();
+            console.log(
+                `${chalk.yellow(
+                    `You are using antd 3.x.x, please upgrade to antd 4.x.x first.`,
+                )}`,
+            );
+            console.log(
+                `Refer to Migration Guide: ${chalk.green(
+                    "https://refine.dev/docs/api-reference/antd/migration-guide/v4-to-v5/",
+                )}`,
+            );
+            process.exit(0);
+        }
+    }
 
     if (!filesExpanded.length) {
         console.log(
