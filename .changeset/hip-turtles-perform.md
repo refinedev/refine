@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-ui-types": minor
+"@refinedev/ui-types": minor
 ---
 
 - `resourceNameOrRouteName` prop is deprecated in buttons.

@@ -1,7 +1,7 @@
 import React from "react";
 import { unstable_useBlocker as useBlocker } from "@remix-run/react";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
