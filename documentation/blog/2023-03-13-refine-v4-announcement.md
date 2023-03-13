@@ -166,7 +166,7 @@ However, this method had its limitations as rejected promises are typically asso
 
 With the latest update, `authProvider` methods in refine v4 will always return a resolved promise containing an object with a success key. This key indicates whether the operation was successful or not. In case of failure, an optional error key carrying an Error object can be used to notify users. This enhancement to the `authProvider` interface makes it easier for developers to manage authentication operations and streamline the debugging process.
 
-[Refer to Auth Provider Migration Guide for all implemented updates.](https://6408cb88db14bb74ea996de5--refine-doc-preview.netlify.app/docs/migration-guide/auth-provider/)
+[Refer to Auth Provider Migration Guide for all implemented updates.](https://refine.dev/docs/migration-guide/auth-provider/)
 
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
