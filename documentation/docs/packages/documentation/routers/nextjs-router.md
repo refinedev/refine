@@ -6,7 +6,7 @@ title: Next.js
 **refine** provides router bindings and utilities for [Next.js](https://nextjs.org/). This package will provide easy integration between **refine** and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
 
 ```bash
-npm i @pankod/refine-nextjs-router
+npm i @refinedev/nextjs-router
 ```
 
 :::tip
@@ -23,9 +23,9 @@ npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
 
 :::note Legacy Router
 
-`@pankod/refine-nextjs-router` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
+`@refinedev/nextjs-router` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
 
-If you are using the legacy router provider, it can be imported from `@pankod/refine-nextjs-router/legacy` for the `/pages` directory and `@pankod/refine-nextjs-router/legacy-app` for the `/app` directory and passed to the `legacyRouterProvider` prop of the `Refine` component.
+If you are using the legacy router provider, it can be imported from `@refinedev/nextjs-router/legacy` for the `/pages` directory and `@refinedev/nextjs-router/legacy-app` for the `/app` directory and passed to the `legacyRouterProvider` prop of the `Refine` component.
 
 :::
 
@@ -33,25 +33,25 @@ If you are using the legacy router provider, it can be imported from `@pankod/re
 
 ### `/pages` Directory
 
-We'll use the `routerProvider` from `@pankod/refine-nextjs-router` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our pages in the `pages` directory.
+We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our pages in the `pages` directory.
 
 We'll create four pages for our resources:
 
-- `pages/posts/index.tsx` - List page for posts
-- `pages/posts/show/[id].tsx` - Detail page for posts
-- `pages/categories/index.tsx` - List page for categories
-- `pages/categories/show/[id].tsx` - Detail page for categories
+-   `pages/posts/index.tsx` - List page for posts
+-   `pages/posts/show/[id].tsx` - Detail page for posts
+-   `pages/categories/index.tsx` - List page for categories
+-   `pages/categories/show/[id].tsx` - Detail page for categories
 
 And we'll create one page for the index route and use it to redirect to the `posts` resource:
 
-- `pages/index.tsx` - Index page
+-   `pages/index.tsx` - Index page
 
 Let's start with the initialization of the **refine** app in the `_app.tsx` file:
 
 ```tsx title=_app.tsx
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router";
 
 import { Layout } from "components/Layout";
 
@@ -71,7 +71,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
                     name: "categories",
                     list: "/categories",
                     show: "/categories/show/:id",
-                }
+                },
             ]}
         >
             <Layout>
@@ -80,7 +80,6 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         </Refine>
     );
 }
-
 ```
 
 :::tip
@@ -100,19 +99,21 @@ Your action definitions in the resources can contain additional parameters and n
 Now we can create our pages in the `pages` directory:
 
 ```tsx title=pages/posts/index.tsx
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type IPost = {
     id: string;
     title: string;
     description: string;
-}
+};
 
 export default function PostList() {
     // `posts` resource will be inferred from the route.
     // Because we've defined `/posts` as the `list` action of the `posts` resource.
-    const { tableQueryResult: { data, isLoading } } = useTable<IPost>();
+    const {
+        tableQueryResult: { data, isLoading },
+    } = useTable<IPost>();
 
     const tableData = data?.data;
 
@@ -131,12 +132,12 @@ export default function PostList() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 ```
 
 ```tsx title=pages/posts/show/[id].tsx
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 type IPost = {
     id: string;
@@ -164,18 +165,20 @@ export default function PostShow() {
 ```
 
 ```tsx title=pages/categories/index.tsx
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type ICategory = {
     id: string;
     label: string;
-}
+};
 
 export default function CategoryList() {
     // `categories` resource will be inferred from the route.
     // Because we've defined `/categories` as the `list` action of the `categories` resource.
-    const { tableQueryResult: { data, isLoading } } = useTable<ICategory>();
+    const {
+        tableQueryResult: { data, isLoading },
+    } = useTable<ICategory>();
 
     const tableData = data?.data;
 
@@ -194,22 +197,24 @@ export default function CategoryList() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 ```
 
 ```tsx title=pages/categories/show/[id].tsx
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 type ICategory = {
     id: string;
     label: string;
-}
+};
 
 export default function CategoryShow() {
     // `categories` resource and the `id` will be inferred from the route.
     // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-    const { queryResult: { data, isLoading } } = useShow<ICategory>();
+    const {
+        queryResult: { data, isLoading },
+    } = useShow<ICategory>();
 
     const categoryData = data?.data;
 
@@ -230,38 +235,36 @@ Even though we're using the `NavigateToResource` component, when using Next.js i
 :::
 
 ```tsx title=pages/index.tsx
-import { NavigateToResource } from "@pankod/refine-nextjs-router";
+import { NavigateToResource } from "@refinedev/nextjs-router";
 
 export default function Home() {
-    return (
-        <NavigateToResource />
-    );
+    return <NavigateToResource />;
 }
 ```
 
 ### `/app` Directory
 
-We'll use the `routerProvider` from `@pankod/refine-nextjs-router/app` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
+We'll use the `routerProvider` from `@refinedev/nextjs-router/app` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
 
 We'll create four routes for our resources:
 
-- `app/posts/page.tsx` - List page for posts
-- `app/posts/show/[id]/page.tsx` - Detail page for posts
-- `app/categories/page.tsx` - List page for categories
-- `app/categories/show/[id]/page.tsx` - Detail page for categories
+-   `app/posts/page.tsx` - List page for posts
+-   `app/posts/show/[id]/page.tsx` - Detail page for posts
+-   `app/categories/page.tsx` - List page for categories
+-   `app/categories/show/[id]/page.tsx` - Detail page for categories
 
 And we'll create one route for the index and use it to redirect to the `posts` resource:
 
-- `app/page.tsx` - Index page
+-   `app/page.tsx` - Index page
 
 Let's start with the initialization of the **refine** app in the `app/layout.tsx` file:
 
 ```tsx title=app/layout.tsx
 "use client";
 
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/app";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router/app";
 
 import { Layout } from "components/Layout";
 
@@ -274,7 +277,9 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <Refine
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     // highlight-next-line
                     routerProvider={routerProvider}
                     resources={[
@@ -287,20 +292,17 @@ export default function RootLayout({
                             name: "categories",
                             list: "/categories",
                             show: "/categories/show/:id",
-                        }
+                        },
                     ]}
                 >
                     {/* We're defining `Layout` here but you might want to have different layouts per your page. */}
                     {/* This is totally fine for refine, you can place your Layout wherever you like. */}
-                    <Layout>
-                        {children}
-                    </Layout>
+                    <Layout>{children}</Layout>
                 </Refine>
             </body>
         </html>
     );
 }
-
 ```
 
 :::tip
@@ -322,19 +324,21 @@ Now we can create our pages in the `app` directory:
 ```tsx title=app/posts/page.tsx
 "use client";
 
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type IPost = {
     id: string;
     title: string;
     description: string;
-}
+};
 
 export default function PostList() {
     // `posts` resource will be inferred from the route.
     // Because we've defined `/posts` as the `list` action of the `posts` resource.
-    const { tableQueryResult: { data, isLoading } } = useTable<IPost>();
+    const {
+        tableQueryResult: { data, isLoading },
+    } = useTable<IPost>();
 
     const tableData = data?.data;
 
@@ -353,14 +357,14 @@ export default function PostList() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 ```
 
 ```tsx title=pages/posts/show/[id]/page.tsx
 "use client";
 
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 type IPost = {
     id: string;
@@ -390,18 +394,20 @@ export default function PostShow() {
 ```tsx title=pages/categories/page.tsx
 "use client";
 
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type ICategory = {
     id: string;
     label: string;
-}
+};
 
 export default function CategoryList() {
     // `categories` resource will be inferred from the route.
     // Because we've defined `/categories` as the `list` action of the `categories` resource.
-    const { tableQueryResult: { data, isLoading } } = useTable<ICategory>();
+    const {
+        tableQueryResult: { data, isLoading },
+    } = useTable<ICategory>();
 
     const tableData = data?.data;
 
@@ -420,24 +426,26 @@ export default function CategoryList() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 ```
 
 ```tsx title=pages/categories/show/[id]/page.tsx
 "use client";
 
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 type ICategory = {
     id: string;
     label: string;
-}
+};
 
 export default function CategoryShow() {
     // `categories` resource and the `id` will be inferred from the route.
     // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-    const { queryResult: { data, isLoading } } = useShow<ICategory>();
+    const {
+        queryResult: { data, isLoading },
+    } = useShow<ICategory>();
 
     const categoryData = data?.data;
 
@@ -458,18 +466,16 @@ Even though we're using the `NavigateToResource` component, when using Next.js i
 :::
 
 ```tsx title=app/page.tsx
-import { NavigateToResource } from "@pankod/refine-nextjs-router/app";
+import { NavigateToResource } from "@refinedev/nextjs-router/app";
 
 export default function IndexPage() {
-    return (
-        <NavigateToResource />
-    );
+    return <NavigateToResource />;
 }
 ```
 
 ## Additional Components
 
-`@pankod/refine-nextjs-router` package also includes some additional components that can be useful in some cases.
+`@refinedev/nextjs-router` package also includes some additional components that can be useful in some cases.
 
 ### `RefineRoutes`
 
@@ -495,10 +501,10 @@ return (
             {
                 name: "categories",
                 list: "/categories",
-            }
+            },
         ]}
     >
-    {/* ... */}
+        {/* ... */}
     </Refine>
 );
 ```
@@ -508,7 +514,7 @@ Then, we'll create a catch-all route to render the matching route in our resourc
 #### In `pages/[[...refine]].tsx`
 
 ```tsx title=pages/[[...refine]].tsx
-import { RefineRoutes } from "@pankod/refine-nextjs-router";
+import { RefineRoutes } from "@refinedev/nextjs-router";
 
 import { ErrorPage } from "components/error";
 
@@ -517,7 +523,7 @@ export default function CatchAll() {
         <RefineRoutes>
             {(matchingRoute) => {
                 if (matchingRoute) {
-                    return {matchingRoute};
+                    return { matchingRoute };
                 }
 
                 return <ErrorPage />;
@@ -534,14 +540,14 @@ If you're using experimental `appDir` in your Next.js project, you can create a 
 ```tsx title=app/[[...refine]]/page.tsx
 "use client";
 
-import { RefineRoutes } from "@pankod/refine-nextjs-router/app";
+import { RefineRoutes } from "@refinedev/nextjs-router/app";
 
 export default function CatchAll() {
     return (
         <RefineRoutes>
             {(matchingRoute) => {
                 if (matchingRoute) {
-                    return {matchingRoute};
+                    return { matchingRoute };
                 }
 
                 return <ErrorPage />;
@@ -556,11 +562,11 @@ When components are used to define the resource actions, default paths will be u
 
 Default paths are:
 
-- `list`: `/resources`
-- `create`: `/resources/create`
-- `edit`: `/resources/edit/:id`
-- `show`: `/resources/show/:id`
-:::
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+    :::
 
 #### Properties
 
@@ -573,12 +579,10 @@ A basic component to navigate to a resource page. It is useful when you want to 
 #### In `pages/index.tsx`
 
 ```tsx title=pages/index.tsx
-import { NavigateToResource } from "@pankod/refine-nextjs-router";
+import { NavigateToResource } from "@refinedev/nextjs-router";
 
 export default function IndexPage() {
-    return (
-        <NavigateToResource />
-    );
+    return <NavigateToResource />;
 }
 ```
 
@@ -587,12 +591,10 @@ export default function IndexPage() {
 ```tsx title=app/page.tsx
 "use client";
 
-import { NavigateToResource } from "@pankod/refine-nextjs-router/app";
+import { NavigateToResource } from "@refinedev/nextjs-router/app";
 
 export default function IndexPage() {
-    return (
-        <NavigateToResource />
-    );
+    return <NavigateToResource />;
 }
 ```
 
@@ -609,17 +611,17 @@ This component enables the `warnWhenUnsavedChanges` feature of **refine**. It wi
 Place this component inside the `<Refine>` components children to enable this feature.
 
 ```tsx title=_app.tsx
-import { Refine } from "@pankod/refine-core";
-import { UnsavedChangesNotifier } from "@pankod/refine-nextjs-router";
+import { Refine } from "@refinedev/core";
+import { UnsavedChangesNotifier } from "@refinedev/nextjs-router";
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            /* ... */
+        /* ... */
         >
-                <Component {...pageProps} />
-                {/* highlight-next-line */}
-                <UnsavedChangesNotifier />
+            <Component {...pageProps} />
+            {/* highlight-next-line */}
+            <UnsavedChangesNotifier />
         </Refine>
     );
 }
@@ -645,7 +647,7 @@ This function can be used to parse the query parameters of a table page. It can 
 
 In Next.js you can achieve authentication control in multiple ways;
 
-You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@pankod/refine-core` to protect your pages from unauthorized access.
+You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthorized access.
 
 Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages.
 
@@ -659,13 +661,12 @@ You can use `:param` syntax to define parameters in your routes.
 
 ### How to make SSR work?
 
-You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop. 
+You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop.
 
 All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
 
 ```tsx
-
-import { useList } from "@pankod/refine";
+import { useList } from "@refinedev/core";
 
 import { dataProvider } from "src/providers";
 
@@ -673,7 +674,7 @@ type IPost = {
     id: number;
     title: string;
     description: string;
-}
+};
 
 export const getServerSideProps = async () => {
     const { data } = await dataProvider.getList<IPost>("posts", {
@@ -691,17 +692,15 @@ export const getServerSideProps = async () => {
 };
 
 export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
-    const { tableQueryResult: { data } } = useTable<IPost>({
+    const {
+        tableQueryResult: { data },
+    } = useTable<IPost>({
         queryOptions: {
             initialData: posts,
-        }
+        },
     });
 
-    return (
-        <>
-            {/* ... */}
-        </>
-    );
+    return <>{/* ... */}</>;
 }
 ```
 
@@ -711,8 +710,8 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 
 ```tsx
 // highligt-next-line
-import { parseTableParams } from "@pankod/refine-nextjs-router";
-import dataProvider from "@pankod/refine-simple-rest";
+import { parseTableParams } from "@refinedev/nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -738,13 +737,9 @@ export const getServerSideProps = ({ params, resolvedUrl }) => {
             props: {},
         };
     }
-}
+};
 export default function MyListPage({ initialData }) {
-    return (
-        <>
-            {/* ... */}
-        </>
-    );
+    return <>{/* ... */}</>;
 }
 ```
 
@@ -761,7 +756,7 @@ npm i nookies
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 // highlight-start
 import nookies from "nookies";
 // highlight-end
@@ -912,11 +907,7 @@ Login.layout = "auth";
 
 ```tsx title="pages/posts/index.tsx"
 export default function Posts() {
-    return (
-        <div>
-            {/* ... */}
-        </div>
-    );
+    return <div>{/* ... */}</div>;
 }
 
 Posts.layout = "default";
@@ -956,16 +947,16 @@ You can find out more about this at [Next.js documentation for multiple layouts]
 We'll define the types in `_app.tsx` file.
 
 ```tsx title="pages/_app.tsx"
-import type { NextPage } from 'next'
-import type { AppProps } from 'next/app'
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
 
 export type PageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  layout?: keyof typeof Layouts;
-}
+    layout?: keyof typeof Layouts;
+};
 
 type AppPropsWithLayout = AppProps & {
-  Component: PageWithLayout
-}
+    Component: PageWithLayout;
+};
 
 // Then we'll change the type of `MyApp` components props to `AppPropsWithLayout`.
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {

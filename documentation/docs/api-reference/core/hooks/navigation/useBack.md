@@ -9,18 +9,13 @@ sidebar_label: useBack 🆕
 ## Basic Usage
 
 ```tsx
-import { useBack } from "@pankod/refine-core";
+import { useBack } from "@refinedev/core";
 
 const MyComponent = () => {
     const back = useBack();
 
-    return (
-        <Button onClick={() => back()}>
-            Go Back
-        </Button>
-    );
+    return <Button onClick={() => back()}>Go Back</Button>;
 };
 ```
 
 [routerprovider]: /docs/api-reference/core/providers/router-provider.md
-

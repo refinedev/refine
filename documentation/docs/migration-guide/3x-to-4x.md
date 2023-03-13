@@ -26,11 +26,11 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 :::caution Known Issues in refine-codemod
 
-- [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
+-   [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
 
-- [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
+-   [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
 
-- While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
+-   While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
 
 :::
 
@@ -438,6 +438,7 @@ useCustom({
 -   });
 +   useResource("products");
 ```
+
 ### `useResourceWithRoute` hook
 
 This hook is now deprecated and obsolete when using the new `routerProvider` property. Please use `useResource` instead.
@@ -449,7 +450,7 @@ Instead of returning an empty `selectedKey` value, now `useMenu` will return `un
 Also this hook now accepts `meta` property, an object of parameters to use when additional parameters are present in the resource `list` paths. Such as, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu, you can do;
 
 ```tsx
-const { menuItems } = useMenu({ meta: { authorId: 123 }});
+const { menuItems } = useMenu({ meta: { authorId: 123 } });
 ```
 
 This won't be necessary if there's already a `authorId` parameter present in the current URL. **refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu` and these items will not be returned.
@@ -497,6 +498,14 @@ useList({
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
 ## **`@pankod/refine-antd` changes**
+
+:::caution refine@4 uses version 5 of Ant Design.
+
+Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
+
+[To upgrade now, visit Migration Guide document >](/docs/api-reference/antd/migration-guide/v4-to-v5/)
+
+:::
 
 ### Import changes
 
@@ -802,7 +811,7 @@ useImport({
 +import { useMenu } from "@refinedev/core";
 ```
 
-### `useDrawerForm` and `useModalForm`  hooks
+### `useDrawerForm` and `useModalForm` hooks
 
 These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
 
@@ -811,8 +820,8 @@ useDrawerForm({
     syncWithLocation: {
         key: "my-drawer",
         syncId: true,
-    }
-})
+    },
+});
 ```
 
 If `key` is not provided, `${resource.name}-${action}` will be used by default.

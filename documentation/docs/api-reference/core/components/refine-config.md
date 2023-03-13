@@ -75,9 +75,9 @@ const App: React.FC = () => {
 
 **refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **refine**. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
 
-- React Router via `@pankod/refine-react-router-v6`
-- Next.js via `@pankod/refine-nextjs-router`
-- Remix via `@pankod/refine-remix-router`
+-   React Router via `@refinedev/react-router-v6`
+-   Next.js via `@refinedev/nextjs-router`
+-   Remix via `@refinedev/remix-router`
 
 It's also possible to create a custom router bindings for your routing needs.
 
@@ -159,7 +159,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object  to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -175,7 +175,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object  to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -191,7 +191,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object  to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -207,7 +207,7 @@ You can also pass a component to this property. In this case the default value f
 There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
 :::info
-Passing a component or an object  to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
 :::
 
 :::caution Legacy Router
@@ -279,14 +279,14 @@ This value is used by the `useMenu` and `useBreadcrumb` hooks.
     /* ... */
     resources={[
         {
-            name: "parent"
+            name: "parent",
         },
         {
             name: "child",
             meta: {
                 // highlight-next-line
-                parent: "parent"
-            }
+                parent: "parent",
+            },
         },
     ]}
 />
@@ -487,7 +487,7 @@ When you have unsaved changes and try to leave the current page, **refine** show
 To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
 
 :::info
-    This feature also requires `UnsavedChangesNotifier` component to be mounted. You can import this component from your router package.
+This feature also requires `UnsavedChangesNotifier` component to be mounted. You can import this component from your router package.
 :::
 
 <br />
@@ -671,7 +671,7 @@ const App: React.FC = () => {
 
 <br />
 
-## ~~`LoginPage`~~ 
+## ~~`LoginPage`~~
 
 :::caution Deprecated
 
