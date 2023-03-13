@@ -9,7 +9,7 @@ const changelogFunctions = {
     dependenciesUpdated,
     options
   ) => {
-    return "";
+    return "\n";
   },
   getReleaseLine: async (changeset, type, options) => {
     if (!options || !options.repo) {
@@ -88,7 +88,7 @@ const changelogFunctions = {
         users === null ? "" : ` Thanks ${users}! \n`,
       ].join("");
 
-    return `\n\n-${prefix ? `${prefix} -` : ""} ${firstLine}\n${futureLines
+    return `\n\n-${prefix ? `${prefix} ` : ""} ${firstLine}\n${futureLines
       .map((l) => `  ${l}`)
       .join("\n")}`;
   },
