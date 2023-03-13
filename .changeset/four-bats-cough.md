@@ -38,4 +38,4 @@
 ---
 
 -   refine v4 release announcement added to "postinstall".
-    -   refine v4 is released 🎉 \nThe new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+    -   refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
