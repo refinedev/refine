@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { GetListResponse } from "@refinedev/core";
-import { useTable, List, getDefaultSortOrder, Layout } from "@refinedev/antd";
+import { useTable, List, getDefaultSortOrder } from "@refinedev/antd";
 import { Table } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import { parseTableParams } from "@refinedev/nextjs-router";
@@ -21,29 +21,24 @@ export const UserList: React.FC<{ initialData: GetListResponse<IUser> }> = ({
     });
 
     return (
-        <Layout>
-            <List title="Users">
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column
-                        dataIndex="id"
-                        title="ID"
-                        sorter={{
-                            multiple: 1,
-                        }}
-                        defaultSortOrder={getDefaultSortOrder("id", sorters)}
-                    />
-                    <Table.Column
-                        dataIndex="firstName"
-                        title="Name"
-                        sorter={{ multiple: 2 }}
-                        defaultSortOrder={getDefaultSortOrder(
-                            "firstName",
-                            sorters,
-                        )}
-                    />
-                </Table>
-            </List>
-        </Layout>
+        <List title="Users">
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="id"
+                    title="ID"
+                    sorter={{
+                        multiple: 1,
+                    }}
+                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
+                />
+                <Table.Column
+                    dataIndex="firstName"
+                    title="Name"
+                    sorter={{ multiple: 2 }}
+                    defaultSortOrder={getDefaultSortOrder("firstName", sorters)}
+                />
+            </Table>
+        </List>
     );
 };
 

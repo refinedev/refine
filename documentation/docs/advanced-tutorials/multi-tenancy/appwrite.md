@@ -54,9 +54,7 @@ const App: React.FC = () => {
                 routerProvider={routerProvider}
                 notificationProvider={notificationProvider}
             >
-                <Layout>
-                    {/* ... */}
-                </Layout>
+                <Layout>{/* ... */}</Layout>
             </Refine>
         </BrowserRouter>
     );
@@ -217,11 +215,7 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
-import {
-    useMenu,
-    TreeMenuItem,
-    CanAccess,
-} from "@refinedev/core";
+import { useMenu, TreeMenuItem, CanAccess } from "@refinedev/core";
 import { Layout, Menu, Grid } from "antd";
 import { AppstoreAddOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
@@ -352,7 +346,7 @@ import {
     useDrawerForm,
     CreateButton,
     List,
-} from "@pankod/refine";
+} from "@refinedev/core";
 
 import { IProduct } from "interfaces";
 import { ProductItem } from "components/product";
@@ -370,9 +364,7 @@ export const ProductList: React.FC = () => {
 
     return (
         <>
-            <List
-                headerButtons={<CreateButton onClick={() => createShow()} />}
-            >
+            <List headerButtons={<CreateButton onClick={() => createShow()} />}>
                 <AntdList
                     grid={{ gutter: 16, xs: 1 }}
                     style={{
@@ -595,7 +587,10 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 import { Refine, Authenticated } from "@refinedev/core";
 import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -636,7 +631,7 @@ function App() {
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
@@ -644,23 +639,22 @@ function App() {
                                         <Outlet />
                                     </Layout>
                                 </Authenticated>
-                            )}
+                            }
                         >
                             <Route path="products">
                                 <Route index element={<ProductList />} />
-                                <Route path="show:id" element={<ProductShow />} />
+                                <Route
+                                    path="show:id"
+                                    element={<ProductShow />}
+                                />
                             </Route>
                         </Route>
                         <Route
-                            element={(
-                                <Authenticated
-                                    fallback={(
-                                        <Outlet />
-                                    )}
-                                >
+                            element={
+                                <Authenticated fallback={<Outlet />}>
                                     <NavigateToResource />
                                 </Authenticated>
-                            )}
+                            }
                         >
                             <Route path="/login" element={<Login />} />
                         </Route>

@@ -1,5 +1,10 @@
 import { AuthPage } from "@refinedev/antd";
+import { ExtendedNextPage } from "./_app";
 
-export default function ForgotPassword() {
+const ForgotPassword: ExtendedNextPage = () => {
     return <AuthPage type="forgotPassword" />;
-}
+};
+
+ForgotPassword.noLayout = true;
+
+export default ForgotPassword;

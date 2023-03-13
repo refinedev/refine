@@ -14,7 +14,6 @@ Make sure you include them in your dependencies.
 
 :::
 
-
 ## Usage
 
 Inferencer components can be imported from `@refinedev/inferencer/headless`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
@@ -28,7 +27,7 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter } from "react-router-dom";
 // highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
@@ -36,20 +35,20 @@ import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 const App = () => {
     return (
         <BrowserRouter>
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "samples",
-                    list: "/posts",
-                },
-            ]}
-        >
-            <Routes>
-                {/* highlight-next-line */}
-                <Route path="/posts" element={<HeadlessInferencer />} />
-            </Routes>
-        </Refine>
+            <Refine
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "samples",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    {/* highlight-next-line */}
+                    <Route path="/posts" element={<HeadlessInferencer />} />
+                </Routes>
+            </Refine>
         </BrowserRouter>
     );
 };
@@ -139,9 +138,18 @@ const App: React.FC = () => {
                 <Routes>
                     {/** highlight-next-line */}
                     <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route path="/samples/create" element={<HeadlessInferencer />} />
-                    <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
-                    <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+                    <Route
+                        path="/samples/create"
+                        element={<HeadlessInferencer />}
+                    />
+                    <Route
+                        path="/samples/show/:id"
+                        element={<HeadlessInferencer />}
+                    />
+                    <Route
+                        path="/samples/edit/:id"
+                        element={<HeadlessInferencer />}
+                    />
                     <Route path="*" element={<div>Not Found</div>} />
                 </Routes>
             </Refine>
@@ -192,10 +200,19 @@ const App: React.FC = () => {
             >
                 <Routes>
                     <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route path="/samples/create" element={<HeadlessInferencer />} />
+                    <Route
+                        path="/samples/create"
+                        element={<HeadlessInferencer />}
+                    />
                     {/** highlight-next-line */}
-                    <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
-                    <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+                    <Route
+                        path="/samples/show/:id"
+                        element={<HeadlessInferencer />}
+                    />
+                    <Route
+                        path="/samples/edit/:id"
+                        element={<HeadlessInferencer />}
+                    />
                     <Route path="*" element={<div>Not Found</div>} />
                 </Routes>
             </Refine>
@@ -247,9 +264,18 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/samples" element={<HeadlessInferencer />} />
                     {/** highlight-next-line */}
-                    <Route path="/samples/create" element={<HeadlessInferencer />} />
-                    <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
-                    <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+                    <Route
+                        path="/samples/create"
+                        element={<HeadlessInferencer />}
+                    />
+                    <Route
+                        path="/samples/show/:id"
+                        element={<HeadlessInferencer />}
+                    />
+                    <Route
+                        path="/samples/edit/:id"
+                        element={<HeadlessInferencer />}
+                    />
                     <Route path="*" element={<div>Not Found</div>} />
                 </Routes>
             </Refine>
@@ -300,10 +326,19 @@ const App: React.FC = () => {
             >
                 <Routes>
                     <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route path="/samples/create" element={<HeadlessInferencer />} />
-                    <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
+                    <Route
+                        path="/samples/create"
+                        element={<HeadlessInferencer />}
+                    />
+                    <Route
+                        path="/samples/show/:id"
+                        element={<HeadlessInferencer />}
+                    />
                     {/** highlight-next-line */}
-                    <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+                    <Route
+                        path="/samples/edit/:id"
+                        element={<HeadlessInferencer />}
+                    />
                     <Route path="*" element={<div>Not Found</div>} />
                 </Routes>
             </Refine>

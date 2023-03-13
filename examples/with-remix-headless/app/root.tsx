@@ -9,7 +9,9 @@ import {
 } from "@remix-run/react";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/remix-router";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/remix-router";
 
 import { authProvider } from "./authProvider";
 import { API_URL } from "./constants";
@@ -41,9 +43,13 @@ export default function App() {
                             edit: "/posts/edit/:id",
                         },
                     ]}
-                    options={{ syncWithLocation: true }}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Outlet />
+                    <UnsavedChangesNotifier />
                 </Refine>
                 <ScrollRestoration />
                 <Scripts />

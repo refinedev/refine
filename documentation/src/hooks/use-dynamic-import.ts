@@ -20,7 +20,7 @@ export type DeclarationType = Omit<ComponentDoc, "methods"> &
 
 export const useDynamicImport = (
     name: string,
-    prefix = "@pankod/",
+    prefix = "@refinedev/",
 ): DeclarationType | null => {
     const [props, setProps] = useState<DeclarationType>(null);
 

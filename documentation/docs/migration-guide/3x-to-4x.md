@@ -10,8 +10,12 @@ import CodeBlock from '@theme/CodeBlock';
 
 ### Motivation behind the release
 
-In refine v4, we had a target of making **refine** available in every platform you can use React and make it easy to use in both existing projects and new ones. This also comes with making **refine** flexible and a better fit for a wider use cases. This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. Our aim is to make **refine** a friend for a developer by providing abstractions and ways to separate concerns and manage the data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. Changes are done in our API in a manner to allow you to use **refine** in every use case and incrementally adopt for your existing projects.
+After a year since the release of v3, we have addressed the most requested and questioned areas by the community. **refine v4** features better developer experience, and new functionalities to simplify the work of developers. 
 
+It has also been designed to make refine accessible on all platforms that support React, and to ensure that it can be seamlessly integrated into new and existing projects.
+This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. 
+
+We have introduced abstractions and techniques that make it easier for developers to manage concerns such as data management, routing, authorization, layouts, and more, without limiting the functionality of other tools and libraries they may prefer to use. These changes in our API enable you to use **refine** v4 in every use case and gradually integrate it into your existing projects.
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
 [`@refinedev/codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
@@ -26,11 +30,11 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 :::caution Known Issues in refine-codemod
 
-- [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
+-   [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
 
-- [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
+-   [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
 
-- While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
+-   While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
 
 :::
 
@@ -48,6 +52,13 @@ npm i @refinedev/core @refinedev/antd @refinedev/..
 :::caution
 You must make this change for all packages that start with `@pankod`.
 :::
+
+
+
+## New NPM organization
+
+
+refine has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
 
 ## **`@pankod/refine-core` changes**
 
@@ -89,15 +100,23 @@ Defining custom routes enables nested routes and parameters for your resources, 
 resources={[
     {
         name: "products",
-        // highlight-start
-        list: "/products",
-        show: "/categories/:categoryId/products/:id"
-        // highlight-end
+        list: "/:tenantId/products",
+        show: "/:tenantId/products/:id",
+        edit: "/:tenantId/products/:id/edit",
+        create: "/:tenantId/products/create",
     }
 ]}
 ```
 
+:::info
+This is only a resource definition, which must be handled within the preferred router structure.
+:::
+
+As you can see, the new enterprise-grade routing structure allows for effortless handling of multi-tenant structures.
+
 In the above example, you can see that the detail page of a product can have a nested structure and also supports additional parameters. These parameters can be passed along with the `meta` properties in such hooks and components. Existing parameters in the URL will also be used when constructing the navigation path.
+
+
 
 The existing method for passing components to the actions are still supported and uses the default paths when an action has a component value but the new `routerProvider` doesn't create routes for it automatically. To achieve this, you can use the `RefineRoutes` components from the router packages. To learn more about changes about routing in resources, please check [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
 
@@ -438,6 +457,7 @@ useCustom({
 -   });
 +   useResource("products");
 ```
+
 ### `useResourceWithRoute` hook
 
 This hook is now deprecated and obsolete when using the new `routerProvider` property. Please use `useResource` instead.
@@ -449,7 +469,7 @@ Instead of returning an empty `selectedKey` value, now `useMenu` will return `un
 Also this hook now accepts `meta` property, an object of parameters to use when additional parameters are present in the resource `list` paths. Such as, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu, you can do;
 
 ```tsx
-const { menuItems } = useMenu({ meta: { authorId: 123 }});
+const { menuItems } = useMenu({ meta: { authorId: 123 } });
 ```
 
 This won't be necessary if there's already a `authorId` parameter present in the current URL. **refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu` and these items will not be returned.
@@ -497,6 +517,14 @@ useList({
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
 ## **`@pankod/refine-antd` changes**
+
+:::caution refine@4 uses version 5 of Ant Design.
+
+Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
+
+[To upgrade now, visit Migration Guide document >](/docs/api-reference/antd/migration-guide/v4-to-v5/)
+
+:::
 
 ### Import changes
 
@@ -802,7 +830,7 @@ useImport({
 +import { useMenu } from "@refinedev/core";
 ```
 
-### `useDrawerForm` and `useModalForm`  hooks
+### `useDrawerForm` and `useModalForm` hooks
 
 These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
 
@@ -811,8 +839,8 @@ useDrawerForm({
     syncWithLocation: {
         key: "my-drawer",
         syncId: true,
-    }
-})
+    },
+});
 ```
 
 If `key` is not provided, `${resource.name}-${action}` will be used by default.

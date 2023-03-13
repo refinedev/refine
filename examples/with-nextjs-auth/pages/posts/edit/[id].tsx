@@ -1,4 +1,4 @@
-import { useForm, useSelect, Edit, Layout } from "@refinedev/antd";
+import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { GetOneResponse } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { Form, Input, Select } from "antd";
@@ -23,36 +23,34 @@ const PostEdit: React.FC<{ initialData: GetOneResponse<IPost> }> = ({
     });
 
     return (
-        <Layout>
-            <Edit saveButtonProps={saveButtonProps}>
-                <Form {...formProps} layout="vertical">
-                    <Form.Item label="Title" name="title">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Status" name="status">
-                        <Select
-                            options={[
-                                {
-                                    label: "Published",
-                                    value: "published",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                                {
-                                    label: "Rejected",
-                                    value: "rejected",
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Category" name={["category", "id"]}>
-                        <Select {...categorySelectProps} />
-                    </Form.Item>
-                </Form>
-            </Edit>
-        </Layout>
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Status" name="status">
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+                <Form.Item label="Category" name={["category", "id"]}>
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+            </Form>
+        </Edit>
     );
 };
 

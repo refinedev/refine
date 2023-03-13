@@ -46,18 +46,28 @@ export function usePrompt(
     message: string,
     when = true,
     onConfirm?: () => void,
+    legacy = false,
 ) {
+    const warnWhenListener = React.useCallback(
+        (e: { preventDefault: () => void; returnValue: string }) => {
+            e.preventDefault();
+
+            e.returnValue = message;
+
+            return e.returnValue;
+        },
+        [message],
+    );
+
     React.useEffect(() => {
-        if (when) {
-            window.onbeforeunload = function () {
-                return message;
-            };
+        if (when && !legacy) {
+            window.addEventListener("beforeunload", warnWhenListener);
         }
 
         return () => {
-            window.onbeforeunload = null;
+            window.removeEventListener("beforeunload", warnWhenListener);
         };
-    }, [message, when]);
+    }, [warnWhenListener, when, legacy]);
 
     const confirmExit = React.useCallback(() => {
         const confirm = window.confirm(message);

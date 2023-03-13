@@ -3,11 +3,10 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { useNavigation } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs, redirect } from "@remix-run/node";
+import { json, LoaderArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 import { parseTableParams } from "@refinedev/remix-router";
 
-import { authProvider } from "~/authProvider";
 import { API_URL } from "~/constants";
 import { IPost } from "~/interfaces";
 
@@ -206,12 +205,6 @@ const PostList: React.FC = () => {
 export default PostList;
 
 export async function loader({ request }: LoaderArgs) {
-    const { authenticated, redirectTo } = await authProvider.check(request);
-
-    if (!authenticated) {
-        throw redirect(redirectTo ?? "/login");
-    }
-
     const url = new URL(request.url);
 
     const { pagination, filters, sorters } = parseTableParams(url.search);

@@ -412,6 +412,16 @@ Additional parameters can also be defined in the path. For example, if we want t
 
 These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `products` resource as `/:userId/products/create` and the user is currently on the `/:userId/products` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/products/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
 
+:::tip
+
+Features related to routing such as the inference of the resource by the route, the generation of the routes (optional) and etc. require the use of the `routerProvider` prop of the `<Refine/>` component.
+
+[Refer to the documentation for more information &#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+
+When using the **refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
+
+:::
+
 ## Learn More
 
 Learn more about [resources](/docs/api-reference/core/components/refine-config/#resources) in the API reference.

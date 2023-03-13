@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { GetOneResponse, useOne, useShow } from "@refinedev/core";
-import { Show, Layout } from "@refinedev/antd";
+import { Show } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -30,20 +30,18 @@ const PostShow: React.FC<{ initialData: GetOneResponse<IPost> }> = ({
     });
 
     return (
-        <Layout>
-            <Show isLoading={isLoading}>
-                <Title level={5}>Title</Title>
-                <Text>{record?.title}</Text>
+        <Show isLoading={isLoading}>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
 
-                <Title level={5}>Status</Title>
-                <Text>
-                    <Tag>{record?.status}</Tag>
-                </Text>
+            <Title level={5}>Status</Title>
+            <Text>
+                <Tag>{record?.status}</Tag>
+            </Text>
 
-                <Title level={5}>Category</Title>
-                <Text>{categoryData?.data.title}</Text>
-            </Show>
-        </Layout>
+            <Title level={5}>Category</Title>
+            <Text>{categoryData?.data.title}</Text>
+        </Show>
     );
 };
 

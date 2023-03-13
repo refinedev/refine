@@ -6,7 +6,7 @@ title: React Router v6
 **refine** provides router bindings and utilities for [React Router v6](https://reactrouter.com/). It is built on top of the [react-router-dom](https://reactrouter.com/web/guides/quick-start) package. This package will provide easy integration between **refine** and **react-router-dom** for both existing projects and new projects.
 
 ```bash
-npm i @pankod/refine-react-router-v6 react-router-dom
+npm i @refinedev/react-router-v6 react-router-dom
 ```
 
 :::tip
@@ -23,9 +23,9 @@ npm create refine-app@latest -- -o refine-react my-refine-app
 
 :::note Legacy Router
 
-`@pankod/refine-react-router-v6` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
+`@refinedev/react-router-v6` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
 
-If you are using the legacy router provider, it can be imported from `@pankod/refine-react-router-v6/legacy` and passed to the `legacyRouterProvider` prop of the `Refine` component.
+If you are using the legacy router provider, it can be imported from `@refinedev/react-router-v6/legacy` and passed to the `legacyRouterProvider` prop of the `Refine` component.
 
 :::
 
@@ -36,10 +36,10 @@ We'll use the components from the `react-router-dom` package to create our route
 Providing the `routerProvider` prop to `<Refine>` component will let **refine** communicate with the router. Our package also provides the [`NavigateToResource`](#navigatetoresource) component that can be used to navigate to the list page of a resource.
 
 ```tsx title=App.tsx
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 // highlight-start
-import routerProvider, { NavigateToResource } from "@pankod/refine-react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // highlight-end
 
@@ -95,7 +95,7 @@ Your action definitions in the resources can contain additional parameters and n
 
 ## Additional Components
 
-`@pankod/refine-react-router-v6` package also includes some additional components that can be useful in some cases.
+`@refinedev/react-router-v6` package also includes some additional components that can be useful in some cases.
 
 ### `RefineRoutes`
 
@@ -108,7 +108,6 @@ This is not the recommended way to create routes since it may limit the use of t
 :::
 
 ```tsx
-
 const App = () => {
     return (
         <BrowserRouter>
@@ -123,25 +122,22 @@ const App = () => {
                         name: "categories",
                         list: CategoryList,
                         create: CategoryCreate,
-                    }
+                    },
                 ]}
             >
                 {/* highlight-start */}
                 <RefineRoutes>
                     {(routes) => (
                         <Layout>
-                            <Routes>
-                                {routes}
-                            </Routes>
+                            <Routes>{routes}</Routes>
                         </Layout>
                     )}
                 </RefineRoutes>
                 {/* highlight-end */}
             </Refine>
         </BrowserRouter>
-    )
-}
-
+    );
+};
 ```
 
 :::info
@@ -149,11 +145,11 @@ When components are used to define the resource actions, default paths will be u
 
 Default paths are:
 
-- `list`: `/resources`
-- `create`: `/resources/create`
-- `edit`: `/resources/edit/:id`
-- `show`: `/resources/show/:id`
-:::
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+    :::
 
 #### Properties
 
@@ -217,8 +213,8 @@ const App = () => {
                 {/* ... */}
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 #### Properties
@@ -235,9 +231,7 @@ This component can be useful when you wrap your whole `Routes` component with an
 
 The same behavior can also be achieved by default with the `Authenticated` component, but in cases like the one described above, it is not possible to use it because it would redirect to the login page every time the user navigates to a different page while being unauthenticated. (e.g. users won't be able to navigate to the `/register` page if they are not logged in)
 
-
 ```tsx
-
 /**
  * Current location: /posts/show/1
  * and the authentication fails
@@ -247,18 +241,24 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
-                /* ... */
+            /* ... */
             >
                 <Authenticated
-                    fallback={(
+                    fallback={
                         <Routes>
-                            <Route path="/login" element={<AuthPage type="login" />} />
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
                             {/* highlight-next-line */}
-                            <Route path="*" element={<CatchAllNavigate to="/login" />} />
+                            <Route
+                                path="*"
+                                element={<CatchAllNavigate to="/login" />}
+                            />
                             {/* This component will catch all the routes and redirect to `/login` by adding them to `to` query */}
                             {/* The result will be `/login?to=/posts/show/1` */}
                         </Routes>
-                    )}
+                    }
                 >
                     <Routes>
                         <Route path="/posts/show/:id" element={<PostList />} />
@@ -266,9 +266,8 @@ const App = () => {
                 </Authenticated>
             </Refine>
         </BrowserRouter>
-    )
-}
-
+    );
+};
 ```
 
 #### Properties
@@ -289,10 +288,14 @@ You can pass your **refine** routes to the `children` of `Authenticated` compone
 
 ```tsx title=App.tsx
 // highlight-next-line
-import { Refine, Authenticated } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 // highlight-start
-import routerProvider, { RefineRoutes, NavigateToResource, CatchAllNavigate } from "@pankod/refine-react-router-v6";
+import routerProvider, {
+    RefineRoutes,
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 // highlight-end
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -321,25 +324,41 @@ const App = () => {
                         name: "categories",
                         list: CategoryList,
                         show: CategoryShow,
-                    }
+                    },
                 ]}
             >
                 <RefineRoutes>
                     {(routes) => (
                         <Authenticated
-                            fallback={(
+                            fallback={
                                 <Routes>
-                                    <Route path="/login" element={<AuthPage type="login" />} />
-                                    <Route path="*" element={<CatchAllNavigate to="/login" />} />
+                                    <Route
+                                        path="/login"
+                                        element={<AuthPage type="login" />}
+                                    />
+                                    <Route
+                                        path="*"
+                                        element={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    />
                                 </Routes>
-                            )}
+                            }
                         >
                             <Layout>
                                 <Routes>
-                                    <Route index element={<NavigateToResource resource="posts" />} />
+                                    <Route
+                                        index
+                                        element={
+                                            <NavigateToResource resource="posts" />
+                                        }
+                                    />
                                     {/* highlight-next-line */}
                                     {routes}
-                                    <Route path="*" element={<ErrorComponent />} />
+                                    <Route
+                                        path="*"
+                                        element={<ErrorComponent />}
+                                    />
                                 </Routes>
                             </Layout>
                         </Authenticated>
@@ -347,9 +366,8 @@ const App = () => {
                 </RefineRoutes>
             </Refine>
         </BrowserRouter>
-    )
-}
-
+    );
+};
 ```
 
 ### How to handle optional authentication, redirects and layouts with authentication?
@@ -359,7 +377,7 @@ In the below example, you'll find different cases for route definitions, we've u
 For optional authentication, in our `authProvider` implementation's `check` method, we can pass `authentication: false` and `redirectTo: undefined` to indicate that the current user is not authenticated but we don't want to redirect them to the login page. This is useful, when some pages in our app are public and don't require authentication and some pages are private and require authentication.
 
 ```tsx title=authProvider.ts
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 export const authProvider: AuthBindings = {
     check: async () => {
@@ -369,18 +387,21 @@ export const authProvider: AuthBindings = {
             // highlight-next-line
             authentication: isAuthenticated,
             // notice that we omit the `redirectTo` property
-        }
+        };
     },
     // ...
 };
 ```
 
-In our `App.tsx`, while defining the routes, we'll leverage the `Outlet` component from `react-router-dom` and `Authenticated` component from `@pankod/refine-core`.
+In our `App.tsx`, while defining the routes, we'll leverage the `Outlet` component from `react-router-dom` and `Authenticated` component from `@refinedev/core`.
 
 ```tsx title=App.tsx
-import { Refine, Authenticated } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 
 // highlight-next-line
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -431,7 +452,7 @@ export const App = () => {
                     >
                         <Route
                             path="/login"
-                            element={ <AuthPage type="login" />}
+                            element={<AuthPage type="login" />}
                         />
                         <Route
                             path="/register"
@@ -479,8 +500,8 @@ export const App = () => {
                 </Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 ### Handling 404s
@@ -495,7 +516,7 @@ Let's start with defining the `Refine` component.
 
 ```tsx title=App.tsx
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6"; 
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -525,32 +546,28 @@ export const App = () => {
                     },
                 ]}
             >
-                <Routes>
-                    {/* ... */}
-                </Routes>
+                <Routes>{/* ... */}</Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 Now, we can add the routes with authentication control. We should place them inside the `Routes` component.
 
 ```tsx
-    <Route
-        element={
-            <Authenticated
-                fallback={<CatchAllNavigate to="/login" />}
-            >
-                <Layout>
-                    <Outlet />
-                </Layout>
-            </Authenticated>
-        }
-    >
-        <Route path="/posts" element={<PostList />} />
-        <Route path="/categories" element={<CategoryList />} />
-    </Route>
+<Route
+    element={
+        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+            <Layout>
+                <Outlet />
+            </Layout>
+        </Authenticated>
+    }
+>
+    <Route path="/posts" element={<PostList />} />
+    <Route path="/categories" element={<CategoryList />} />
+</Route>
 ```
 
 This will render the `/posts` and `/categories` routes for authenticated users and apply the `Layout` when rendering. If the current visitor is not authenticated, it will redirect them to the `/login` route.
@@ -558,18 +575,15 @@ This will render the `/posts` and `/categories` routes for authenticated users a
 Let's add the `/login` route.
 
 ```tsx
-    <Route
-        element={
-            <Authenticated fallback={<Outlet />}>
-                <NavigateToResource />
-            </Authenticated>
-        }
-    >
-        <Route
-            path="/login"
-            element={ <AuthPage type="login" />}
-        />
-    </Route>
+<Route
+    element={
+        <Authenticated fallback={<Outlet />}>
+            <NavigateToResource />
+        </Authenticated>
+    }
+>
+    <Route path="/login" element={<AuthPage type="login" />} />
+</Route>
 ```
 
 This will render the `/login` route for not authenticated users and redirect the authenticated users to the `/posts` route.
@@ -577,17 +591,17 @@ This will render the `/login` route for not authenticated users and redirect the
 And finally, we will add a catch-all route (`*`) and render the `ErrorPage` component.
 
 ```tsx
-    <Route
-        element={
-            <Authenticated fallback={<Outlet />}>
-                <Layout>
-                    <Outlet />
-                </Layout>
-            </Authenticated>
-        }
-    >
-        <Route path="*" element={<ErrorPage />} />
-    </Route>
+<Route
+    element={
+        <Authenticated fallback={<Outlet />}>
+            <Layout>
+                <Outlet />
+            </Layout>
+        </Authenticated>
+    }
+>
+    <Route path="*" element={<ErrorPage />} />
+</Route>
 ```
 
 We will render the `ErrorPage` component for both authenticated and not authenticated users. Only authenticated users will be able to use the sider component we have in the layout.
@@ -597,35 +611,33 @@ We will render the `ErrorPage` component for both authenticated and not authenti
 The difference from the previous example is in the wrapper of the `*` route. Now we will redirect the unauthenticated users to the `/login` route and show the `ErrorPage` component for authenticated users only.
 
 ```tsx
-    <Route
-        element={
-            <Authenticated
-                fallback={<CatchAllNavigate to="/login" />}
-            >
-                <Layout>
-                    <Outlet />
-                </Layout>
-            </Authenticated>
-        }
-    >
-        <Route path="*" element={<ErrorPage />} />
-    </Route>
+<Route
+    element={
+        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+            <Layout>
+                <Outlet />
+            </Layout>
+        </Authenticated>
+    }
+>
+    <Route path="*" element={<ErrorPage />} />
+</Route>
 ```
 
 We can also omit the `fallback` property and let the default redirect flow handle the unauthenticated users.
 
 ```tsx
-    <Route
-        element={
-            <Authenticated>
-                <Layout>
-                    <Outlet />
-                </Layout>
-            </Authenticated>
-        }
-    >
-        <Route path="*" element={<ErrorPage />} />
-    </Route>
+<Route
+    element={
+        <Authenticated>
+            <Layout>
+                <Outlet />
+            </Layout>
+        </Authenticated>
+    }
+>
+    <Route path="*" element={<ErrorPage />} />
+</Route>
 ```
 
 This means we will look for the `redirectTo` property in the `authProvider`'s `check` method. If it's defined, `<Authenticated>` component will redirect the user to the `redirectTo` route.
