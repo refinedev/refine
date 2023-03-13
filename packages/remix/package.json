@@ -9,26 +9,26 @@
   "module": "dist/esm/index.js",
   "exports": {
     ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/esm/index.js",
-        "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
     },
     "./legacy": {
-        "types": "./dist/legacy/index.d.ts",
-        "import": "./dist/esm/legacy.js",
-        "require": "./dist/legacy.js"
+      "types": "./dist/legacy/index.d.ts",
+      "import": "./dist/esm/legacy.js",
+      "require": "./dist/legacy.js"
     }
-},
-"typesVersions": {
+  },
+  "typesVersions": {
     "*": {
-        ".": [
-            "dist/index.d.ts"
-        ],
-        "legacy": [
-            "dist/legacy/index.d.ts"
-        ]
+      ".": [
+        "dist/index.d.ts"
+      ],
+      "legacy": [
+        "dist/legacy/index.d.ts"
+      ]
     }
-},
+  },
   "files": [
     "dist",
     "src"
@@ -58,7 +58,7 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-      "qs": "^6.10.1"
+    "qs": "^6.10.1"
   },
   "peerDependencies": {
     "@refinedev/core": "^3.23.2",

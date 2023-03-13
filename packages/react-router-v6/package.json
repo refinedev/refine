@@ -16,24 +16,24 @@
   "typings": "dist/index.d.ts",
   "module": "dist/esm/index.js",
   "exports": {
-      ".": {
-          "import": "./dist/esm/index.js",
-          "require": "./dist/index.js"
-      },
-      "./legacy": {
-          "import": "./dist/esm/legacy.js",
-          "require": "./dist/legacy.js"
-      }
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    },
+    "./legacy": {
+      "import": "./dist/esm/legacy.js",
+      "require": "./dist/legacy.js"
+    }
   },
   "typesVersions": {
-      "*": {
-          ".": [
-              "dist/index.d.ts"
-          ],
-          "legacy": [
-              "dist/legacy/index.d.ts"
-          ]
-      }
+    "*": {
+      ".": [
+        "dist/index.d.ts"
+      ],
+      "legacy": [
+        "dist/legacy/index.d.ts"
+      ]
+    }
   },
   "scripts": {
     "start": "tsup --watch --format esm,cjs,iife --legacy-output",
