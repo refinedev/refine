@@ -24,25 +24,6 @@ export const UnsavedChangesNotifier: React.FC<UnsavedChangesNotifierProps> = ({
         return translate(translationKey, message);
     }, [translationKey, message, translate]);
 
-    const warnWhenListener = React.useCallback(
-        (e: { preventDefault: () => void; returnValue: string }) => {
-            e.preventDefault();
-
-            e.returnValue = warnMessage;
-
-            return e.returnValue;
-        },
-        [warnMessage],
-    );
-
-    React.useEffect(() => {
-        if (warnWhen) {
-            window.addEventListener("beforeunload", warnWhenListener);
-        }
-
-        return window.removeEventListener("beforeunload", warnWhenListener);
-    }, [warnWhen, warnWhenListener]);
-
     usePrompt(warnMessage, warnWhen, () => {
         setWarnWhen?.(false);
     });
