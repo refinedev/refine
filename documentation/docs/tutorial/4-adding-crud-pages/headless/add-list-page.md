@@ -52,10 +52,18 @@ const App = () => {
                 ]}
             >
                 <Routes>
-                    <Route path="/products" element={<HeadlessInferencer />} />
-                    <Route path="/products/show/:id" element={<HeadlessInferencer />} />
-                    <Route path="/products/edit/:id" element={<HeadlessInferencer />} />
-                    <Route path="/products/create" element={<HeadlessInferencer />} />
+                    <Route path="/products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -183,8 +191,14 @@ const App = () => {
                     <Route path="products">
                         {/* highlight-next-line */}
                         <Route index element={<ProductList />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                 </Routes>
