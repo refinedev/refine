@@ -97,6 +97,7 @@ export function runTransform({ files, flags, transformer }) {
     args.push("--ignore-pattern=**/.next/**");
     args.push("--ignore-pattern=**/dist/**");
     args.push("--ignore-pattern=**/.cache/**");
+    args.push("--ignore-pattern=theme.d.ts");
 
     args.push("--extensions=tsx,ts,jsx,js");
     args.push("--parser=tsx");
