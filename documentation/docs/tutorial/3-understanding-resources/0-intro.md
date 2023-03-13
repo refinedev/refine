@@ -55,45 +55,284 @@ These props enable the configuration of various aspects of the application, such
 
 In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
 
-To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions it can perform which can be defined as paths, components or both and additional metadata such as the label, the icon, audit log settings, nesting etc.
+To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions and additional metadata such as label, icon, audit log settings, and sider menu nesting etc.
 
-## Note on resources and routes
+:::note
+
+The action paths we define in resources helps **refine** to render menu items, breadcrumbs, and handle form redirections, among other things. This means **refine** co-exists with your routes and complements them and doesn't impose any limitation.
+
+:::
+
+### Note on resources and routes
 
 Path definitions in the resource configuration helps **refine** to recognize the available actions for the resource at that particular path. This way, **refine** can automatically identify the resource based on the current path, without requiring users to manually specify the resource prop in their hooks and components.
 
-The paths we define in resources helps **refine** to render menu items, breadcrumbs, and handle form redirections, among other things.
+It's important to note that **route management will be handled by your preferred framework** (React Router, Next.js, Remix). This makes it possible to use **refine** with any React (Web, Electron, React Native etc.) application, without any constraints.
 
-However, it's important to note that **route management should be handled by your preferred framework**, not by **refine**. This makes it possible to use **refine** with any web application, without any constraints.
+Thanks to its flexibility, **refine** can be seamlessly integrated into existing React applications without imposing any limitations on users. It can be attached to routes where it's needed without interfering with your routing logic. This makes it possible to use **refine** with enterprise-grade applications that have complex requirements such as nested routes and multi-tenancy.
 
-Thanks to its flexibility, **refine** can be seamlessly integrated into existing web applications without imposing any limitations on users. It can be attached to routes where needed without interfering with your routing logic. This makes it possible to use **refine** with enterprise-grade applications that have challenging requirements such as nested routes and multi-tenancy.
+<UIConditional is="headless">
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { HeadlessInferencer } from "@refinedev/inferencer";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            //highlight-start
-            resources={[
-                {
-                    name: "products",
-                    list: "/products",
-                    show: "/products/show/:id",
-                    create: "/products/create",
-                    edit: "/products/edit/:id",
-                },
-            ]}
-            //highlight-end
-        >
-            {/* ... */}
-        </Refine>
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                //highlight-start
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route path="products">
+                        <Route index element={<HeadlessInferencer  />} />
+                        <Route path="show/:id" element={<HeadlessInferencer />} />
+                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
+
+                    <Route path="*" element={<div>Error!</div>} />
+                </Routes>
+            </Refine>
+        <BrowserRouter />
     );
 };
 
 export default App;
 ```
+
+</UIConditional>
+
+<UIConditional is="antd">
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { Layout, ErrorComponent } from "@refinedev/antd";
+import { AntdInferencer } from "@refinedev/inferencer";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                //highlight-start
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route path="products">
+                            <Route index element={<AntdInferencer  />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        <BrowserRouter />
+    );
+};
+
+export default App;
+```
+
+</UIConditional>
+
+<UIConditional is="chakra-ui">
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { Layout, ErrorComponent } from "@refinedev/chakra-ui";
+import { ChakraUIInferencer } from "@refinedev/inferencer";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                //highlight-start
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route path="products">
+                            <Route index element={<ChakraUIInferencer  />} />
+                            <Route path="show/:id" element={<ChakraUIInferencer />} />
+                            <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                            <Route path="create" element={<ChakraUIInferencer />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        <BrowserRouter />
+    );
+};
+
+export default App;
+```
+
+</UIConditional>
+
+<UIConditional is="mantine">
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { Layout, ErrorComponent } from "@refinedev/mantine";
+import { MantineInferencer } from "@refinedev/inferencer";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                //highlight-start
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route path="products">
+                            <Route index element={<MantineInferencer  />} />
+                            <Route path="show/:id" element={<MantineInferencer />} />
+                            <Route path="edit/:id" element={<MantineInferencer />} />
+                            <Route path="create" element={<MantineInferencer />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        <BrowserRouter />
+    );
+};
+
+export default App;
+```
+
+</UIConditional>
+
+<UIConditional is="mui">
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-v6";
+import { Layout, ErrorComponent } from "@refinedev/mui";
+import { MuiInferencer } from "@refinedev/inferencer";
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                //highlight-start
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route path="products">
+                            <Route index element={<MuiInferencer  />} />
+                            <Route path="show/:id" element={<MuiInferencer />} />
+                            <Route path="edit/:id" element={<MuiInferencer />} />
+                            <Route path="create" element={<MuiInferencer />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        <BrowserRouter />
+    );
+};
+
+export default App;
+```
+
+</UIConditional>
+
+To have more information about router usage, refer to [React Router Documentation](https://reactrouter.com/en/main/components/routes).
 
 ## Defining Actions for a Resource
 
