@@ -206,6 +206,9 @@ export const RouteProvider = ({
         data: authData,
     } = useIsAuthenticated({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+        params: {
+            type: "routeProvider",
+        },
     });
 
     const isAuthenticated = useMemo(() => {
