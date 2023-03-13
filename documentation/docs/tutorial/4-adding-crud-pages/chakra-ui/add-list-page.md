@@ -49,7 +49,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     resources={[
                         {
                             name: "products",
@@ -60,16 +62,34 @@ const App = () => {
                         },
                     ]}
                 >
-                    <Layout>
-                        <Routes>
-                            <Route path="/products" element={<ChakraUIInferencer />} />
-                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
-                            {/* highlight-next-line */}
-                            <Route path="/products/create" element={<ChakraUIInferencer />} />
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -202,7 +222,9 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     resources={[
                         {
                             name: "products",
@@ -215,18 +237,27 @@ const App = () => {
                 >
                     <Routes>
                         <Route
-                            element={(
+                            element={
                                 <Layout>
-                                    <Outlet/>
+                                    <Outlet />
                                 </Layout>
-                            )}
+                            }
                         >
                             <Route path="products">
                                 {/* highlight-next-line */}
                                 <Route index element={<ProductList />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>

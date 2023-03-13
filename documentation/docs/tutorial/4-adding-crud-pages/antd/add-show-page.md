@@ -37,7 +37,9 @@ import {
     notificationProvider,
     ErrorComponent,
 } from "@refinedev/antd";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -61,26 +63,37 @@ const App: React.FC = () => {
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
-                                <Outlet/>
+                                <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         {/* highlight-start */}
                         <Route path="products">
                             <Route index element={<AntdInferencer />} />
-                            <Route path="show/:id" element={<AntdInferencer />} />
-                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
                             <Route path="create" element={<AntdInferencer />} />
                         </Route>
                         {/* highlight-end */}
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
@@ -144,12 +157,10 @@ Now that we have created the show page, we need to add it to the `App.tsx` file.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
-import routerBindings from "@refinedev/react-router-v6";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -173,19 +184,24 @@ const App: React.FC = () => {
                     {
                         name: "products",
                         list: "/products",
+                        //highlight-next-line
                         show: "/products/show/:id",
                         create: "/products/create",
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
-                                <Outlet/>
+                                <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         <Route path="products">
                             <Route index element={<ProductList />} />
@@ -198,6 +214,7 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );
