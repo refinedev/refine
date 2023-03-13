@@ -218,7 +218,7 @@ The support for full codemod provides an effortless upgrade experience for proje
 We extend our gratitude to our community for supporting us throughout this journey, and we hope that refine v4 will continue to be a valuable tool for developers worldwide. 
 
 
-If you appreciate refine and want to see it continue to grow, please don't forget to [give us a star on GitHub](https://github.com/refinedev/refine). Every star counts!
+If you appreciate refine and want to see it continue to grow, please don't forget to [give us a star on GitHub](https://github.com/refinedev/refine). Every star counts!⭐
 
 
 Also, don't forget to join our [community Discord](https://discord.gg/refine) for support and feedback on the latest release.
