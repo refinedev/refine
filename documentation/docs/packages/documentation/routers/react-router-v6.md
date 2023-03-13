@@ -657,7 +657,7 @@ export const App = () => {
                     </Route>
 +                   <Route
 +                       element={(
-+                           <Authenticated fallbac={<Outlet />}>
++                           <Authenticated fallback={<Outlet />}>
 +                               <NavigateToResource resource="posts" />
 +                           </Authenticated>
 +                       )}
