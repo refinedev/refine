@@ -212,7 +212,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-//highlight-next-line
+// highlight-next-line
 import { ProductList } from "pages/products/list";
 
 const App = () => {
@@ -228,6 +228,7 @@ const App = () => {
                     resources={[
                         {
                             name: "products",
+                            // highlight-next-line
                             list: "/products",
                             show: "/products/show/:id",
                             create: "/products/create",

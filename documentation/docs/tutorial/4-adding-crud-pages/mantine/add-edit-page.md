@@ -70,10 +70,22 @@ const App = () => {
                     >
                         <Layout>
                             <Routes>
-                                <Route path="/products" element={<MantineInferencer />} />
-                                <Route path="/products/show/:id" element={<MantineInferencer />} />
-                                <Route path="/products/edit/:id" element={<MantineInferencer />} />
-                                <Route path="/products/create" element={<MantineInferencer />} />
+                                <Route
+                                    path="/products"
+                                    element={<MantineInferencer />}
+                                />
+                                <Route
+                                    path="/products/show/:id"
+                                    element={<MantineInferencer />}
+                                />
+                                <Route
+                                    path="/products/edit/:id"
+                                    element={<MantineInferencer />}
+                                />
+                                <Route
+                                    path="/products/create"
+                                    element={<MantineInferencer />}
+                                />
                                 <Route path="*" element={<ErrorComponent />} />
                             </Routes>
                         </Layout>
@@ -161,7 +173,6 @@ import {
     ErrorComponent,
 } from "@refinedev/mantine";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
@@ -192,18 +203,27 @@ const App = () => {
                     >
                         <Routes>
                             <Route
-                                element={(
+                                element={
                                     <Layout>
-                                        <Outlet/>
+                                        <Outlet />
                                     </Layout>
-                                )}
+                                }
                             >
                                 <Route path="products">
                                     <Route index element={<ProductList />} />
-                                    <Route path="show/:id" element={<MantineInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
                                     {/* highlight-next-line */}
-                                    <Route path="edit/:id" element={<ProductEdit />} />
-                                    <Route path="create" element={<MantineInferencer />} />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<ProductEdit />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>

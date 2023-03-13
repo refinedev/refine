@@ -140,7 +140,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
 import { ProductShow } from "pages/products/show";
-//highlight-next-line
+// highlight-next-line
 import { ProductCreate } from "pages/products/create";
 
 const App = () => {
@@ -154,6 +154,7 @@ const App = () => {
                         name: "products",
                         list: "/products",
                         show: "/products/show/:id",
+                        // highlight-next-line
                         create: "/products/create",
                         edit: "/products/edit/:id",
                     },

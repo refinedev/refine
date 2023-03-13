@@ -201,16 +201,13 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
-                        {/* highlight-start */}
                         <Route path="products">
                             <Route index element={<ProductList />} />
                             <Route path="show/:id" element={<ProductShow />} />
-                            {/* highlight-start */}
+                            {/* highlight-next-line */}
                             <Route path="create" element={<ProductCreate />} />
-                            {/* highlight-end */}
                             <Route path="edit/:id" element={<ProductEdit />} />
                         </Route>
-                        {/* highlight-end */}
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>

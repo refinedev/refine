@@ -141,10 +141,11 @@ Now that we have created the show page, we need to add it to the `App.tsx` file.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
@@ -162,11 +163,16 @@ const App = () => {
                     {
                         name: "products",
                         list: "/products",
+                        // highlight-next-line
                         show: "/products/show/:id",
                         create: "/products/create",
                         edit: "/products/edit/:id",
                     },
                 ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
             >
                 <Routes>
                     <Route path="products">
@@ -177,6 +183,7 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                 </Routes>
+                <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>
     );

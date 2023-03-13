@@ -233,9 +233,8 @@ const App: React.FC = () => {
                         }
                     >
                         <Route path="products">
-                            {/* highlight-start */}
+                            {/* highlight-next-line */}
                             <Route index element={<ProductList />} />
-                            {/* highlight-end */}
                             <Route
                                 path="show/:id"
                                 element={<AntdInferencer />}

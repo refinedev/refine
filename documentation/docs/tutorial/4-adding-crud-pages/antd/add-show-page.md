@@ -184,7 +184,7 @@ const App: React.FC = () => {
                     {
                         name: "products",
                         list: "/products",
-                        //highlight-next-line
+                        // highlight-next-line
                         show: "/products/show/:id",
                         create: "/products/create",
                         edit: "/products/edit/:id",
@@ -205,9 +205,8 @@ const App: React.FC = () => {
                     >
                         <Route path="products">
                             <Route index element={<ProductList />} />
-                            {/* highlight-start */}
+                            {/* highlight-next-line */}
                             <Route path="show/:id" element={<ProductShow />} />
-                            {/* highlight-end */}
                             <Route path="edit/:id" element={<ProductEdit />} />
                             <Route path="create" element={<AntdInferencer />} />
                         </Route>

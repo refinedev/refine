@@ -198,6 +198,7 @@ const App = () => {
                             name: "products",
                             list: "/products",
                             show: "/products/show/:id",
+                            // highlight-next-line
                             create: "/products/create",
                             edit: "/products/edit/:id",
                         },

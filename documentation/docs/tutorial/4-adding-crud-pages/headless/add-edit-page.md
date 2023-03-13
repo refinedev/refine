@@ -144,7 +144,6 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
@@ -163,6 +162,7 @@ const App = () => {
                         list: "/products",
                         show: "/products/show/:id",
                         create: "/products/create",
+                        // highlight-next-line
                         edit: "/products/edit/:id",
                     },
                 ]}
@@ -183,6 +183,7 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                 </Routes>
+                {/* highlight-next-line */}
                 <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>

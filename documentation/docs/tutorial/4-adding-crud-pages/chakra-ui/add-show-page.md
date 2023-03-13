@@ -201,6 +201,7 @@ const App = () => {
                         {
                             name: "products",
                             list: "/products",
+                            // highlight-next-line
                             show: "/products/show/:id",
                             create: "/products/create",
                             edit: "/products/edit/:id",
@@ -235,34 +236,6 @@ const App = () => {
                                     element={<ChakraUIInferencer />}
                                 />
                             </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            {/* highlight-start */}
-                            <Route path="products">
-                                <Route index element={<AntdInferencer />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<AntdInferencer />}
-                                />
-                                <Route
-                                    path="create"
-                                    element={<AntdInferencer />}
-                                />
-                            </Route>
-                            {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>

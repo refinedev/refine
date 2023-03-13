@@ -171,7 +171,10 @@ Now that we have created the edit page, we need to add it to the `App.tsx` file.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    // highlight-next-line
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -204,9 +207,14 @@ const App = () => {
                             list: "/products",
                             show: "/products/show/:id",
                             create: "/products/create",
+                            // highlight-next-line
                             edit: "/products/edit/:id",
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
@@ -235,6 +243,8 @@ const App = () => {
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    {/* highlight-next-line */}
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>

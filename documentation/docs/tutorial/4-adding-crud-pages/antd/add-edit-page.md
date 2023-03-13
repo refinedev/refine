@@ -210,17 +210,15 @@ const App: React.FC = () => {
                                 path="show/:id"
                                 element={<AntdInferencer />}
                             />
-                            {/* highlight-start */}
+                            {/* highlight-next-line */}
                             <Route path="edit/:id" element={<ProductEdit />} />
-                            {/* highlight-end */}
                             <Route path="create" element={<AntdInferencer />} />
                         </Route>
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
-                {/* highlight-start */}
+                {/* highlight-next-line */}
                 <UnsavedChangesNotifier />
-                {/* highlight-end */}
             </Refine>
         </BrowserRouter>
     );

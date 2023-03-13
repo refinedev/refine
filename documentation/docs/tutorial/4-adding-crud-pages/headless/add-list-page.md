@@ -165,7 +165,6 @@ import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 //highlight-next-line
@@ -180,6 +179,7 @@ const App = () => {
                 resources={[
                     {
                         name: "products",
+                        // highlight-next-line
                         list: "/products",
                         show: "/products/show/:id",
                         create: "/products/create",
