@@ -1,10 +1,5 @@
 # @pankod/refine-antd
 
-### Patch Changes
-
--   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
-    -   @pankod/refine-ui-types@0.15.0
-
 ## 4.7.3
 
 ### Patch Changes

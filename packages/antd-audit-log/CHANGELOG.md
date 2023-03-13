@@ -1,11 +1,5 @@
 # @pankod/refine-antd-audit-log
 
-### Patch Changes
-
--   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
-    -   @pankod/refine-antd@4.8.0
-    -   @pankod/refine-core@3.102.0
-
 ## 3.29.1
 
 ### Patch Changes

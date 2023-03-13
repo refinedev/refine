@@ -1,10 +1,5 @@
 # @pankod/refine-mantine
 
-### Patch Changes
-
--   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
-    -   @pankod/refine-core@3.102.0
-
 ## 2.8.2
 
 ### Patch Changes
