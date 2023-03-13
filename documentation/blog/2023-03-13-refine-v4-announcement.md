@@ -36,7 +36,7 @@ Thanks to full codemod support, the entire upgrade process will be automatically
 refine has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
 
 
-:::success Thanks to codemod support
+:::success Thanks to codemod support 🎉
 With complete codemod support, updating package names will be effortless when migrating your refine project to v4.
 :::
 
