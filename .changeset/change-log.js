@@ -71,8 +71,11 @@ const changelogFunctions = {
       };
     })();
 
-    const users = usersFromSummary.length
-      ? usersFromSummary
+
+    const refineCoreTeam = ["aliemir", "alicanerdurmaz", "batuhanW", "salihozdemir", "yildirayunlu", "recepkutuk"]
+
+    const users = refineCoreTeam.length
+      ? refineCoreTeam
           .map(
             (userFromSummary) =>
               `[@${userFromSummary}](https://github.com/${userFromSummary})`
@@ -80,7 +83,10 @@ const changelogFunctions = {
           .join(", ")
       : links.user;
 
-    const prefix = [].join("");
+
+      const prefix = [
+        users === null ? "" : ` Thanks ${users}!`,
+      ].join("");
 
     return `\n\n-${prefix ? `${prefix} -` : ""} ${firstLine}\n${futureLines
       .map((l) => `  ${l}`)
