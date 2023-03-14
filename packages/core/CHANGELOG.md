@@ -165,6 +165,7 @@
     -   Hooks using routes, redirection etc. are now accepts `meta` property in their arguments. This can be used to provide parameters to the target routes. This change includes `useMenu` and `useBreadcrumb` which are creating paths to the resources for their purposes.
     -   `selectedKey` in `useMenu` hook's return type now can be `undefined` if the current route is not found in the menu items.
 
+
     ## `warnWhenUnsavedChanges` prop
 
     In earlier versions, **refine** was handling this feature in `beforeunload` event. This was causing unintended dependencies to the `window` and was not customizable. Now, **refine** is leaving this to the router libraries. Router packages `@refinedev/react-router-v6`, `@refinedev/nextjs-router` and `@refinedev/remix-router` are now exporting a component `UnsavedChangesNotifier` which can be placed under the `<Refine>` component and registers a listener to the necessary events to handle the `warnWhenUnsavedChanges` feature.
