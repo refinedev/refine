@@ -66,12 +66,14 @@ export const authProvider: AuthBindings = {
             user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
         }
 
+        const { pathname } = new URL(request.url);
+
         if (!user) {
             return {
                 authenticated: false,
                 error: new Error("Unauthorized"),
                 logout: true,
-                redirectTo: "/login",
+                redirectTo: `/login?to=${pathname}`,
             };
         }
 
