@@ -68,12 +68,15 @@ export const authProvider: AuthBindings = {
 
         const { pathname } = new URL(request.url);
 
+        const query =
+            pathname === "/" ? "" : `?to=${encodeURIComponent(pathname)}`;
+
         if (!user) {
             return {
                 authenticated: false,
                 error: new Error("Unauthorized"),
                 logout: true,
-                redirectTo: `/login?to=${encodeURIComponent(pathname)}`,
+                redirectTo: `/login${query}`,
             };
         }
 
