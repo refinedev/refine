@@ -75,7 +75,7 @@
     Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
 
     ```sh
-    npx @refinedev/codemod refine3-to-refine4
+    npx @refinedev/codemod@latest refine3-to-refine4
     ```
 
     And it's done. Now your project uses `refine@4.x.x`.
