@@ -1,5 +1,5 @@
 {
-  "version": "6.0.0",
+  "version": "6.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -21,7 +21,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.1.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",

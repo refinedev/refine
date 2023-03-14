@@ -1,5 +1,110 @@
 # @pankod/refine-chakra-ui
 
+## 2.1.0
+
+### Minor Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `meta` prop is added. To ensure backward compatibility, `metaData` prop will be used if `meta` prop is not provided.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated buttons with `resource` property. `resourceNameOrRouteName` is now deprecated but kept working until next major version.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    ## 🪄 Migrating your project automatically with refine-codemod ✨
+
+    [`@refinedev/codemod`](https://github.com/refinedev/refine/tree/master/packages/codemod) package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
+
+    Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+
+    ```sh
+    npx @refinedev/codemod refine3-to-refine4
+    ```
+
+    And it's done. Now your project uses `refine@4.x.x`.
+
+    ## 📝 Changelog
+
+    All **Chakra UI** components re-exported from `@refinedev/chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
+
+    If the packages are not installed, you can install them with your package manager:
+
+    > You don't have to install all of these packages below. Only install the packages you use.
+
+    ```bash
+    npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+    # or
+    pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+    # or
+    yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+    ```
+
+    After that, you can import them from related packages directly.
+
+    ```diff
+    - import {
+    -    ChakraProvider,
+    -    Input,
+    -    Select,
+    -    ShowButton,
+    -    usePagination,
+    - } from "@refinedev/chakra-ui";
+
+    + import { usePagination, ShowButton } from "@refinedev/chakra-ui";
+    + import { ChakraProvider, Input, Select } from "@chakra-ui/react";
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    -   `<ReadyPage>` isnow deprecated.
+    -   Created a `<WelcomePage>` component to welcome users.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated the components to match the changes in routing system of `@refinedev/core`.
+
+    ## `meta` property in components
+
+    This includes `meta` props in buttons and `Sider` component. `meta` property can be used to pass additional parameters to the navigation paths.
+
+    For a `posts` resource definition like this:
+
+    ```tsx
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/:authorId/posts/:id",
+            }
+        ]}
+    >
+    ```
+
+    You can pass `authorId` to the `ShowButton` component like this:
+
+    ```tsx
+    <ShowButton resource="posts" id="1" meta={{ authorId: 123 }}>
+    ```
+
+    This will navigate to `/123/posts/1` path.
+
+    ## Removed props
+
+    `ignoreAccessControlProvider` prop is removed from buttons.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Added legacy auth provider and new auth provider support to all components and hooks.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
 ## 1.8.0
 
 ### Minor Changes

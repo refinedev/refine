@@ -1,5 +1,21 @@
 # @pankod/refine-cloud
 
+## 9.1.0
+
+### Minor Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `AuthProvider` is renamed to `LegacyAuthProvider` with refine@4. Components and functions are updated to support `LegacyAuthProvider`.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
 ## 10.0.0
 
 ### Minor Changes
@@ -109,7 +125,7 @@
     **Usage**
 
     ```tsx
-    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+    import { useCloudMutation, useCloudQuery } from "@pankod/refine-cloud";
 
     const { data } = useCloudQuery({
         key: "postgres-list-user",
@@ -144,7 +160,7 @@
     **Usage**
 
     ```tsx
-    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+    import { useCloudMutation, useCloudQuery } from "@pankod/refine-cloud";
 
     const { data } = useCloudQuery({
         key: "postgres-list-user",
@@ -179,7 +195,7 @@
     **Usage**
 
     ```tsx
-    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+    import { useCloudMutation, useCloudQuery } from "@pankod/refine-cloud";
 
     const { data } = useCloudQuery({
         key: "postgres-list-user",
@@ -214,7 +230,7 @@
     **Usage**
 
     ```tsx
-    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+    import { useCloudMutation, useCloudQuery } from "@pankod/refine-cloud";
 
     const { data } = useCloudQuery({
         key: "postgres-list-user",
