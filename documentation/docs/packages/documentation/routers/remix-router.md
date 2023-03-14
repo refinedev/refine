@@ -298,75 +298,6 @@ export default function Index() {
 
 `@refinedev/remix-router` package also includes some additional components that can be useful in some cases.
 
-### `RefineRoutes`
-
-This component can be used to render the matching route in your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
-
-It will render the component for the matching route and pass it as a `JSX.Element` to the `children` function. You can use this to render your components in a single catch-all route. If there's no matching route `undefined` will be passed to the `children` function. In this case, you can render an error page or redirect the user to another page.
-
-:::tip
-This is not the recommended way to create pages since it may limit the use of the full potential of your router. It is recommended to create your pages manually.
-:::
-
-We'll define our resources in the `<Refine>` component:
-
-```tsx title=app/root.tsx
-return (
-    <Refine
-        resources={[
-            {
-                name: "posts",
-                list: "/posts",
-                show: "/posts/show/:id",
-            },
-            {
-                name: "categories",
-                list: "/categories",
-            },
-        ]}
-    >
-        {/* ... */}
-    </Refine>
-);
-```
-
-Then, we'll create a catch-all route to render the matching route in our resources:
-
-```tsx title=app/routes/$.tsx
-import { RefineRoutes } from "@refinedev/remix-router";
-
-import { ErrorPage } from "components/error";
-
-export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
-
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
-}
-```
-
-:::info
-When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
-
-Default paths are:
-
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
-    :::
-
-#### Properties
-
-`children` - A function that takes renders the matching route as a `JSX.Element`. If there's no matching route, `undefined` will be passed to the function.
-
 ### `NavigateToResource`
 
 A basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
@@ -966,6 +897,73 @@ export default function NotFound() {
     );
 }
 ```
+
+### `RefineRoutes`
+
+:::caution
+
+While this may work for the simple cases, it is not recommended to use this component. Defining your routes separately will give you more control over your routes and will allow you to use the full potential of your router.
+
+:::
+
+This component can be used to render the matching route in your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
+
+It will render the component for the matching route and pass it as a `JSX.Element` to the `children` function. You can use this to render your components in a single catch-all route. If there's no matching route `undefined` will be passed to the `children` function. In this case, you can render an error page or redirect the user to another page.
+
+We'll define our resources in the `<Refine>` component:
+
+```tsx title=app/root.tsx
+return (
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/posts/show/:id",
+            },
+            {
+                name: "categories",
+                list: "/categories",
+            },
+        ]}
+    >
+        {/* ... */}
+    </Refine>
+);
+```
+
+Then, we'll create a catch-all route to render the matching route in our resources:
+
+```tsx title=app/routes/$.tsx
+import { RefineRoutes } from "@refinedev/remix-router";
+
+import { ErrorPage } from "components/error";
+
+export default function CatchAll() {
+    return (
+        <RefineRoutes>
+            {(matchingRoute) => {
+                if (matchingRoute) {
+                    return { matchingRoute };
+                }
+
+                return <ErrorPage />;
+            }}
+        </RefineRoutes>
+    );
+}
+```
+
+:::info
+When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
+
+Default paths are:
+
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+:::
 
 ## Example
 
