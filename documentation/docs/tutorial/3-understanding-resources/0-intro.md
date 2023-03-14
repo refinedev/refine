@@ -75,12 +75,13 @@ Thanks to its flexibility, **refine** can be seamlessly integrated into existing
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { HeadlessInferencer } from "@refinedev/inferencer";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -105,10 +106,21 @@ const App: React.FC = () => {
                 }}
             >
                 <Routes>
+                    <Route
+                        index
+                        element={<NavigateToResource resource="products" />}
+                    />
+
                     <Route path="products">
-                        <Route index element={<HeadlessInferencer  />} />
-                        <Route path="show/:id" element={<HeadlessInferencer />} />
-                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
 
@@ -116,7 +128,7 @@ const App: React.FC = () => {
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>
-        <BrowserRouter />
+        </BrowserRouter>
     );
 };
 
