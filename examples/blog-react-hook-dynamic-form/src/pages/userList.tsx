@@ -1,13 +1,8 @@
 import React from "react";
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    Stack,
-    EditButton,
-    DeleteButton,
-} from "@pankod/refine-mui";
+import { useDataGrid, List, EditButton, DeleteButton } from "@refinedev/mui";
+
+import { Stack } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 interface IPost {
     firstName: string;

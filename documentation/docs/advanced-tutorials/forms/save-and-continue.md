@@ -1,6 +1,7 @@
 ---
 id: save-and-continue
 title: Save and Continue
+sidebar_label: Save and Continue 🆙
 ---
 
 **refine** provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
@@ -14,7 +15,7 @@ Now let's see how to handle these cases,
 <p>
 
 ```tsx title="src/posts/pages/list.tsx"
-import { useTable, useNavigation } from "@pankod/refine-core";
+import { useTable, useNavigation } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 
@@ -59,7 +60,7 @@ When we create our Create Page, we pass `redirect` false to the [`useForm`](/doc
 
 ```tsx title="src/pages/create.tsx"
 // highlight-next-line
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 
@@ -77,7 +78,7 @@ We will create the form and listen to the changes in this form with the help of 
 
 ```tsx title="src/pages/create.tsx"
 import React, { useState } from "react";
-import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
+import { useSelect, useForm, useBack } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 
@@ -94,7 +95,7 @@ export const PostCreate: React.FC = () => {
         redirect: false,
     });
 
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     const { options } = useSelect({
         resource: "categories",
@@ -212,7 +213,7 @@ We will use `handleSubmit` function to manage to submit event when clicking the 
 
 ```tsx title="src/pages/create.tsx"
 import React, { useState } from "react";
-import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
+import { useSelect, useForm, useNavigation } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 

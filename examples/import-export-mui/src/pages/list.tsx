@@ -1,19 +1,9 @@
-import {
-    useImport,
-    useExport,
-    useNotification,
-    useOne,
-} from "@pankod/refine-core";
+import { useImport, useExport, useNotification, useOne } from "@refinedev/core";
 
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    ImportButton,
-    List,
-    ExportButton,
-    Stack,
-} from "@pankod/refine-mui";
+import { useDataGrid, ImportButton, List, ExportButton } from "@refinedev/mui";
+
+import { Stack } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../interfaces";
 
@@ -67,7 +57,7 @@ export const ImportList: React.FC = () => {
 
     return (
         <List
-            cardHeaderProps={{
+            headerProps={{
                 action: (
                     <Stack direction="row">
                         <ImportButton

@@ -1,18 +1,18 @@
 import React from "react";
-import { Option, useSelect } from "@pankod/refine-core";
+import { Option, useSelect } from "@refinedev/core";
+import { useDataGrid, List } from "@refinedev/mui";
+
 import {
-    useDataGrid,
     DataGrid,
     GridColumns,
-    List,
     GridValueFormatterParams,
-} from "@pankod/refine-mui";
+} from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        initialCurrent: 2,
+        initialCurrent: 1,
         initialPageSize: 10,
         initialSorter: [
             {
@@ -35,7 +35,6 @@ export const PostsList: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
-        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(

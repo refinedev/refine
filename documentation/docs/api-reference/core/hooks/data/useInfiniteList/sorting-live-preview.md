@@ -10,7 +10,7 @@ setInitialRoutes(["/products"]);
 
 // visible-block-start
 import { useState } from "react";
-import { useInfiniteList, HttpError } from "@pankod/refine-core";
+import { useInfiniteList, HttpError } from "@refinedev/core";
 
 interface IProduct {
     id: number;
@@ -28,18 +28,16 @@ const ProductList: React.FC = () => {
         isError,
         hasNextPage,
         fetchNextPage,
-        isFetchingNextPage
+        isFetchingNextPage,
     } = useInfiniteList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
-        config: {
-            sort: [
-                {
-                    field: "name",
-                    order,
-                },
-            ],
-        },
+        sorters: [
+            {
+                field: "name",
+                order,
+            },
+        ],
         //highlight-end
     });
 
@@ -72,16 +70,14 @@ const ProductList: React.FC = () => {
                 ))}
             </ul>
 
-            {
-                hasNextPage && (
-                    <button
-                        onClick={() => fetchNextPage()}
-                        disabled={isFetchingNextPage}
-                    >
-                        {isFetchingNextPage ? "Loading more..." : "Load More" }
-                    </button>
-                )
-            }
+            {hasNextPage && (
+                <button
+                    onClick={() => fetchNextPage()}
+                    disabled={isFetchingNextPage}
+                >
+                    {isFetchingNextPage ? "Loading more..." : "Load More"}
+                </button>
+            )}
         </div>
     );
 };

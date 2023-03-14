@@ -1,4 +1,4 @@
-import { ConditionalFilter } from "@pankod/refine-core";
+import { ConditionalFilter } from "@refinedev/core";
 import dataProvider from "../../src/index";
 import "./index.mock";
 
@@ -22,7 +22,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "desc",

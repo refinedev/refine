@@ -1,13 +1,12 @@
 import React from "react";
 import { Space } from "antd";
 import {
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
     userFriendlyResourceName,
-    ResourceRouterParams,
     useRefineContext,
-} from "@pankod/refine-core";
+    useRouterType,
+    useResource,
+} from "@refinedev/core";
 
 import { Breadcrumb, CreateButton, PageHeader } from "@components";
 import { ListProps } from "../types";
@@ -31,28 +30,31 @@ export const List: React.FC<ListProps> = ({
     headerButtonProps,
     headerButtons,
 }) => {
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
     const translate = useTranslate();
-    const resourceWithRoute = useResourceWithRoute();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const routerType = useRouterType();
+
+    const { resource } = useResource(resourceFromProps);
 
     const isCreateButtonVisible =
-        canCreate ?? (resource.canCreate || createButtonProps);
+        canCreate ??
+        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
 
-    const { options } = useRefineContext();
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
+            ? globalBreadcrumb
             : breadcrumbFromProps;
 
     const defaultExtra = isCreateButtonVisible ? (
         <CreateButton
             size="middle"
-            resourceNameOrRouteName={resource.route}
+            resource={
+                routerType === "legacy"
+                    ? resource?.route
+                    : resource?.identifier ?? resource?.name
+            }
             {...createButtonProps}
         />
     ) : null;
@@ -64,9 +66,12 @@ export const List: React.FC<ListProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resource.name}.titles.list`,
+                        `${resource?.name}.titles.list`,
                         userFriendlyResourceName(
-                            resource.label ?? resource.name,
+                            resource?.meta?.label ??
+                                resource?.options?.label ??
+                                resource?.label ??
+                                resource?.name,
                             "plural",
                         ),
                     )

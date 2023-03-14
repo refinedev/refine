@@ -1,11 +1,8 @@
 import React from "react";
-import {
-    useTranslate,
-    useTable,
-    useUpdate,
-    HttpError,
-} from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { useTranslate, useTable, useUpdate, HttpError } from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
+import { CreateButton } from "@refinedev/mui";
+
 import {
     Grid,
     Paper,
@@ -17,8 +14,8 @@ import {
     Pagination,
     Modal,
     Fade,
-    CreateButton,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import { SearchOutlined, CloseOutlined } from "@mui/icons-material";
 
 import {

@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
-import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
+import { useGetIdentity } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+
+import { FieldValues } from "react-hook-form";
 
 import Form from "components/common/Form";
 
 const CreateProperty = () => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
     const {
         refineCore: { onFinish, formLoading },

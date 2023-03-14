@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useOne, LayoutWrapper } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 import { Order } from "@medusajs/medusa";
 
 import { IS_BROWSER } from "@lib/isBrowser";
@@ -41,9 +41,7 @@ const Details: React.FC = () => {
                     description="View your order"
                 />
 
-                <LayoutWrapper>
-                    <OrderDetailsTemplate order={data.data.order} />
-                </LayoutWrapper>
+                <OrderDetailsTemplate order={data.data.order} />
             </>
         );
     }

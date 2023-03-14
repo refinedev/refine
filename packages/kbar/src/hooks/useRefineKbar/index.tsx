@@ -1,7 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import {
-    ResourceRouterParams,
-    useRouterContext,
     useNavigation,
     useDelete,
     useTranslate,
@@ -9,7 +7,9 @@ import {
     IResourceItem,
     useCanWithoutCache,
     userFriendlyResourceName,
-} from "@pankod/refine-core";
+    useRouterType,
+    useGo,
+} from "@refinedev/core";
 import {
     useRegisterActions,
     createAction,
@@ -19,6 +19,7 @@ import {
 } from "kbar";
 
 import { capitalize } from "@definitions";
+import { useGetToPath } from "@refinedev/core";
 
 enum RefineKbarActionType {
     List = "list",
@@ -30,27 +31,29 @@ enum RefineKbarActionType {
 
 export const useRefineKbar = (): void => {
     const t = useTranslate();
-    const { resources } = useResource();
-    const { useParams } = useRouterContext();
+    const {
+        resource: resourceFromParams,
+        resources,
+        id: idFromParams,
+        action: actionFromParams,
+    } = useResource();
+    const routerType = useRouterType();
+    const getToPath = useGetToPath();
+    const go = useGo();
     const { mutate } = useDelete();
-    const kbarContext = useContext(KBarContext);
-
-    const { can } = useCanWithoutCache();
-
     const {
-        resource: resourceFromRoute,
-        action: actionFromRoute,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
-
-    const [actions, setActions] = useState<Action[]>([]);
-
-    const {
+        push,
         list: goToList,
         create: goToCreate,
         show: goToShow,
         edit: goToEdit,
     } = useNavigation();
+
+    const kbarContext = useContext(KBarContext);
+
+    const { can } = useCanWithoutCache();
+
+    const [actions, setActions] = useState<Action[]>([]);
 
     useEffect(() => {
         const preaparedActions = async () => {
@@ -64,7 +67,7 @@ export const useRefineKbar = (): void => {
         preaparedActions().then((actions) => {
             return setActions(actions.flatMap((action) => action));
         });
-    }, [resources, idFromRoute, resourceFromRoute, actionFromRoute]);
+    }, [resources, idFromParams, resourceFromParams, actionFromParams]);
 
     useEffect(() => {
         if (actions.length === 0) {
@@ -75,7 +78,9 @@ export const useRefineKbar = (): void => {
     const moveActionToFirst = (): IResourceItem[] => {
         const orderedResources = [...resources];
         const fromIndex = orderedResources?.findIndex(
-            (resource) => resource.name === resourceFromRoute,
+            (resource) =>
+                (resource.identifier ?? resource?.name) ===
+                (resourceFromParams?.identifier ?? resourceFromParams?.name),
         );
 
         if (fromIndex > 0) {
@@ -90,18 +95,31 @@ export const useRefineKbar = (): void => {
     const createActionWithResource = async (resource: IResourceItem) => {
         const {
             name,
-            label,
+            label: deprecatedLabel,
             list,
             create,
             canCreate,
             canEdit,
             canShow,
-            icon,
+            icon: deprecatedIcon,
             show,
-            canDelete,
+            canDelete: deprecatedCanDelete,
             edit,
             route,
         } = resource;
+
+        const label =
+            resource?.meta?.label ??
+            resource?.options?.label ??
+            deprecatedLabel;
+
+        const icon =
+            resource?.meta?.icon ?? resource?.options?.icon ?? deprecatedIcon;
+
+        const canDelete =
+            resource?.meta?.canDelete ??
+            resource?.options?.canDelete ??
+            deprecatedCanDelete;
 
         const section =
             label ??
@@ -113,13 +131,15 @@ export const useRefineKbar = (): void => {
 
         if (
             list &&
-            ((resourceFromRoute !== undefined && resourceFromRoute !== name) ||
-                (actionFromRoute !== undefined && resourceFromRoute === name))
+            ((resourceFromParams !== undefined &&
+                resourceFromParams?.name !== name) ||
+                (actionFromParams !== undefined &&
+                    resourceFromParams?.name === name))
         ) {
             const { can: canList } = (await can?.({
                 resource: name,
                 action: RefineKbarActionType.Show,
-                params: { id: idFromRoute, resource },
+                params: { id: idFromParams, resource },
             })) || { can: true };
             if (canList) {
                 tempActions.push(
@@ -131,17 +151,29 @@ export const useRefineKbar = (): void => {
                         section,
                         icon,
                         perform: () => {
-                            goToList(route!);
+                            const p = getToPath({
+                                resource,
+                                action: "list",
+                                legacy: routerType === "legacy",
+                            });
+
+                            if (p) {
+                                if (routerType === "legacy") {
+                                    push(p);
+                                } else {
+                                    go({ to: p });
+                                }
+                            }
                         },
                     }),
                 );
             }
         }
         if (
-            canCreate &&
+            (canCreate || !!create) &&
             create &&
-            (RefineKbarActionType.Create !== actionFromRoute ||
-                resourceFromRoute !== name)
+            (RefineKbarActionType.Create !== actionFromParams ||
+                resourceFromParams?.name !== name)
         ) {
             const { can: canAccessCreate } = (await can?.({
                 resource: name,
@@ -160,23 +192,35 @@ export const useRefineKbar = (): void => {
                         icon,
                         keywords: "new",
                         perform: () => {
-                            goToCreate(route!);
+                            const p = getToPath({
+                                resource,
+                                action: "create",
+                                legacy: routerType === "legacy",
+                            });
+
+                            if (p) {
+                                if (routerType === "legacy") {
+                                    push(p);
+                                } else {
+                                    go({ to: p });
+                                }
+                            }
                         },
                     }),
                 );
             }
         }
 
-        if (resourceFromRoute === name && idFromRoute) {
+        if (resourceFromParams?.name === name && idFromParams) {
             if (
-                canShow &&
+                (canShow || !!show) &&
                 show &&
-                RefineKbarActionType.Show !== actionFromRoute
+                RefineKbarActionType.Show !== actionFromParams
             ) {
                 const { can: canAccessShow } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
-                    params: { id: idFromRoute, resource },
+                    params: { id: idFromParams, resource },
                 })) || { can: true };
 
                 if (canAccessShow) {
@@ -189,21 +233,36 @@ export const useRefineKbar = (): void => {
                             section,
                             icon,
                             perform: () => {
-                                goToShow(route!, idFromRoute);
+                                const p = getToPath({
+                                    resource,
+                                    action: "show",
+                                    legacy: routerType === "legacy",
+                                    meta: {
+                                        id: idFromParams,
+                                    },
+                                });
+
+                                if (p) {
+                                    if (routerType === "legacy") {
+                                        push(p);
+                                    } else {
+                                        go({ to: p });
+                                    }
+                                }
                             },
                         }),
                     );
                 }
             }
             if (
-                canEdit &&
+                (canEdit || !!edit) &&
                 edit &&
-                RefineKbarActionType.Edit !== actionFromRoute
+                RefineKbarActionType.Edit !== actionFromParams
             ) {
                 const { can: canAccessEdit } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
-                    params: { id: idFromRoute, resource },
+                    params: { id: idFromParams, resource },
                 })) || { can: true };
                 if (canAccessEdit) {
                     tempActions.push(
@@ -215,7 +274,22 @@ export const useRefineKbar = (): void => {
                             section,
                             icon,
                             perform: () => {
-                                goToEdit(route!, idFromRoute);
+                                const p = getToPath({
+                                    resource,
+                                    action: "edit",
+                                    legacy: routerType === "legacy",
+                                    meta: {
+                                        id: idFromParams,
+                                    },
+                                });
+
+                                if (p) {
+                                    if (routerType === "legacy") {
+                                        push(p);
+                                    } else {
+                                        go({ to: p });
+                                    }
+                                }
                             },
                         }),
                     );
@@ -225,7 +299,7 @@ export const useRefineKbar = (): void => {
                 const { can: canAccessDelete } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
-                    params: { id: idFromRoute, resource },
+                    params: { id: idFromParams, resource },
                 })) || { can: true };
                 if (canAccessDelete) {
                     tempActions.push(
@@ -249,11 +323,23 @@ export const useRefineKbar = (): void => {
                                 mutate(
                                     {
                                         resource: resource.name,
-                                        id: idFromRoute,
+                                        id: idFromParams,
                                     },
                                     {
                                         onSuccess: () => {
-                                            goToList(route!);
+                                            const p = getToPath({
+                                                resource,
+                                                action: "list",
+                                                legacy: routerType === "legacy",
+                                            });
+
+                                            if (p) {
+                                                if (routerType === "legacy") {
+                                                    push(p);
+                                                } else {
+                                                    go({ to: p });
+                                                }
+                                            }
                                         },
                                     },
                                 );

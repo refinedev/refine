@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { Edit } from "@refinedev/chakra-ui";
+
 import {
     Box,
-    Edit,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -10,9 +11,10 @@ import {
     Input,
     Select,
     Text,
-} from "@pankod/refine-chakra-ui";
-import { useApiUrl, useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@chakra-ui/react";
+
+import { useApiUrl, useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import Upload from "rc-upload";
 import { IconFileUpload } from "@tabler/icons";
 

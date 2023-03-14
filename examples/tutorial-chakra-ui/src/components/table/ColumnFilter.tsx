@@ -7,9 +7,9 @@ import {
     MenuList,
     VStack,
     HStack,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
-import { Column } from "@pankod/refine-react-table";
+import { Column } from "@tanstack/react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
     column,

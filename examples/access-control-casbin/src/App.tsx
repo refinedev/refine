@@ -1,13 +1,13 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { newEnforcer } from "casbin";
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { model, adapter } from "accessControl";
 import { Header } from "components/header";
@@ -26,7 +26,7 @@ const App: React.FC = () => {
     const role = localStorage.getItem("role") ?? "admin";
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
@@ -64,33 +64,75 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                        canDelete: true,
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        meta: {
+                            canDelete: true,
+                        },
                     },
                     {
                         name: "users",
-                        list: UserList,
-                        create: UserCreate,
-                        edit: UserEdit,
-                        show: UserShow,
+                        list: "/users",
+                        show: "/users/show/:id",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
                     },
                     {
                         name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                        edit: CategoryEdit,
-                        show: CategoryShow,
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
                     },
                 ]}
-                Header={() => <Header role={role} />}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout Header={() => <Header role={role} />}>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+
+                        <Route path="/users">
+                            <Route index element={<UserList />} />
+                            <Route path="create" element={<UserCreate />} />
+                            <Route path="edit/:id" element={<UserEdit />} />
+                            <Route path="show/:id" element={<UserShow />} />
+                        </Route>
+
+                        <Route path="/categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

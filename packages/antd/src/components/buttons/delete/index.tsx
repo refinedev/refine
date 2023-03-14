@@ -7,8 +7,9 @@ import {
     useMutationMode,
     useCan,
     useResource,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    pickNotDeprecated,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { DeleteButtonProps } from "../types";
 
@@ -19,7 +20,7 @@ import { DeleteButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
-    resourceName: propResourceName,
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     onSuccess,
@@ -29,8 +30,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     errorNotification,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     metaData,
+    meta,
     dataProviderName,
     confirmTitle,
     confirmOkText,
@@ -38,16 +39,13 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
-    const { resourceName, id, resource } = useResource({
-        resourceNameOrRouteName: propResourceNameOrRouteName,
-        resourceName: propResourceName,
-        recordItemId,
-    });
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -56,9 +54,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { mutate, isLoading, variables } = useDelete();
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "delete",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -81,23 +79,26 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             }
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                mutate(
-                    {
-                        id: id || "",
-                        resource: resourceName,
-                        mutationMode,
-                        successNotification,
-                        errorNotification,
-                        metaData,
-                        dataProviderName,
-                        invalidates,
-                    },
-                    {
-                        onSuccess: (value) => {
-                            onSuccess && onSuccess(value);
+                if ((recordItemId ?? id) && resource?.name) {
+                    mutate(
+                        {
+                            id: recordItemId ?? id ?? "",
+                            resource: resource?.name,
+                            mutationMode,
+                            successNotification,
+                            errorNotification,
+                            meta: pickNotDeprecated(meta, metaData),
+                            metaData: pickNotDeprecated(meta, metaData),
+                            dataProviderName,
+                            invalidates,
                         },
-                    },
-                );
+                        {
+                            onSuccess: (value) => {
+                                onSuccess && onSuccess(value);
+                            },
+                        },
+                    );
+                }
             }}
             disabled={
                 typeof rest?.disabled !== "undefined"
@@ -107,7 +108,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         >
             <Button
                 danger
-                loading={id === variables?.id && isLoading}
+                loading={(recordItemId ?? id) === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
                 disabled={data?.can === false}
                 data-testid={RefineButtonTestIds.DeleteButton}

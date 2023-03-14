@@ -1,9 +1,11 @@
 import React from "react";
-import { useDataGrid, DataGrid, GridColumns, List } from "@pankod/refine-mui";
+import { useDataGrid, List } from "@refinedev/mui";
+
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICommit } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const [next, setNext] = React.useState<string | undefined>(undefined);
     const { dataGridProps, tableQueryResult } = useDataGrid<ICommit>({
         initialPageSize: 5,

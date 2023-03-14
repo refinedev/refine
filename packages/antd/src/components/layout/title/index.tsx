@@ -1,11 +1,20 @@
 import React from "react";
-import { useRouterContext, TitleProps } from "@pankod/refine-core";
+import {
+    TitleProps,
+    useRouterContext,
+    useRouterType,
+    useLink,
+} from "@refinedev/core";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     return (
-        <Link to="/">
+        <ActiveLink to="/">
             {collapsed ? (
                 <div
                     style={{
@@ -34,6 +43,6 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                     }}
                 />
             )}
-        </Link>
+        </ActiveLink>
     );
 };

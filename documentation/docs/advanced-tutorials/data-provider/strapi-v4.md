@@ -1,6 +1,7 @@
 ---
 id: strapi-v4
 title: Strapi-v4
+sidebar_label: Strapi-v4 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -15,9 +16,9 @@ A few of the Strapi-v4 API features are as follows:
 -   Publication State
 -   Locale
 
-`metaData` allows us to use the above features in hooks. Thus, we can fetch the data according to the parameters we want.
+`meta` allows us to use the above features in hooks. Thus, we can fetch the data according to the parameters we want.
 
-Hooks and components that support `metaData`:
+Hooks and components that support `meta`:
 
 | Supported data hooks                                                         | Supported other hooks                                                              | Supported components                                                                 |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -35,7 +36,7 @@ Hooks and components that support `metaData`:
 |                                                                              | [`useRadioGroup` &#8594](/docs/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                      |
 
 :::note
-There is no need to use `metaData` for sorting, pagination, and, filters. Sorting, pagination, and, filters will be handled automatically by the strapi-v4 dataProvider.
+There is no need to use `meta` for sorting, pagination, and, filters. Sorting, pagination, and, filters will be handled automatically by the strapi-v4 dataProvider.
 :::
 
 :::info
@@ -65,41 +66,36 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 ## Setup
 
 ```bash
-npm i @pankod/refine-strapi-v4
+npm i @refinedev/strapi-v4
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
 //highlight-next-line
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 const App: React.FC = () => {
     return (
         <Refine
-            authProvider={authProvider}
             //highlight-next-line
             dataProvider={DataProvider("API_URL")}
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
 
 ## API Parameters
 
-Let's examine how API parameters that come with Strapi-v4 are used with `metaData`. Then, let's see how it is used in the application.
+Let's examine how API parameters that come with Strapi-v4 are used with `meta`. Then, let's see how it is used in the application.
 
 ### Create Collections
 
@@ -135,13 +131,13 @@ values={[
 
 ### Fields Selection
 
-To select only some fields, we must specify these fields with `metaData``.
+To select only some fields, we must specify these fields with `meta``.
 
 [Refer to the Fields Selection documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#fields-selection)
 
 ```tsx title="Get only id and title of all posts"
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         fields: ["id", "title"],
     },
 });
@@ -149,37 +145,34 @@ const { tableProps } = useTable<IPost>({
 
 ```tsx title="Get all fields of all posts(id, title, category, content ...)"
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         fields: "*",
     },
 });
 ```
 
-When sending the request, we can specify which fields will come, so we send `fields` in `metaData` to hooks that we will fetch data from. In this way, you can perform the queries of only the fields you want.
+When sending the request, we can specify which fields will come, so we send `fields` in `meta` to hooks that we will fetch data from. In this way, you can perform the queries of only the fields you want.
 
 ```tsx title="PostList.tsx"
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-    Space,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
+        meta: {
             // highlight-start
             fields: ["id", "title"],
             // highlight-end
@@ -251,7 +244,7 @@ The `populate` parameter is used to define which fields will be populated.
 
 ```tsx title="Get all the posts and populate the selected relations"
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         populate: ["category", "cover"],
     },
 });
@@ -259,7 +252,7 @@ const { tableProps } = useTable<IPost>({
 
 ```tsx title="Get all posts and populate all their first-level relations"
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         populate: "*",
     },
 });
@@ -269,7 +262,7 @@ It should be noted that Strapi-V4 allows populating relations more than 1 level.
 
 ```tsx title="Get all posts and populate one second-level relation and first-level relation"
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         populate: {
             category: {
                 populate: ["cover"],
@@ -282,30 +275,27 @@ const { tableProps } = useTable<IPost>({
 });
 ```
 
-In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `metaData` `populate` parameter.
+In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `meta` `populate` parameter.
 
 ```tsx title="PostList.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-    Space,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
+        meta: {
             fields: ["id", "title"],
             // highlight-start
             populate: ["category"],
@@ -399,7 +389,7 @@ If you need to the population for the `/me` request you can use it like this in 
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 strapiAuthHelper.me("token", {
-    metaData: {
+    meta: {
         populate: ["role"],
     },
 });
@@ -419,7 +409,7 @@ The Draft & Publish feature should be enabled on Strapi.
 
 ```tsx
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         publicationState: "preview",
     },
 });
@@ -431,37 +421,38 @@ We can list the posts separately according to the `published` or `draft` informa
 // highlight-next-line
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
     DateField,
-    Space,
     EditButton,
     DeleteButton,
+} from "@refinedev/antd";
+import {
+    Table,
+    Select,
+    Space,
     // highlight-start
     Form,
     Radio,
     Tag,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     // highlight-start
     const [publicationState, setPublicationState] = useState("live");
     // highlight-end
 
     const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
+        meta: {
             fields: ["id", "title"],
             populate: ["category"],
             // highlight-start
@@ -589,7 +580,7 @@ To fetch content for a locale, make sure it has been already [added to Strapi in
 
 ```tsx
 const { tableProps } = useTable<IPost>({
-    metaData: {
+    meta: {
         locale: "de",
     },
 });
@@ -600,35 +591,29 @@ With the local parameter feature, we can fetch posts and categories created acco
 ```tsx
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-    Space,
     EditButton,
     DeleteButton,
-    Form,
-    Radio,
-    Tag,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table, Select, Space, Form, Radio, Tag } from "antd";
 
 import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     //highlight-start
     const [locale, setLocale] = useState("en");
     //highlight-end
     const [publicationState, setPublicationState] = useState("live");
 
     const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
+        meta: {
             populate: ["category", "cover"],
             //highlight-start
             locale,
@@ -642,7 +627,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
         //highlight-start
-        metaData: { locale },
+        meta: { locale },
         //highlight-end
     });
 
@@ -755,25 +740,25 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 </div>
 <br/>
 
-## `metaData` Usages
+## `meta` Usages
 
-When creating and editing posts you can use these API parameters in `metaData`:
+When creating and editing posts you can use these API parameters in `meta`:
 
 ```tsx
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-    metaData: { publicationState: "preview" },
+    meta: { publicationState: "preview" },
 });
 ```
 
 ```tsx title="EditList.tsx"
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-    metaData: { populate: ["category", "cover"] },
+    meta: { populate: ["category", "cover"] },
 });
 ```
 
 ```tsx title="CreateList.tsx"
 const { selectProps } = useSelect({
-    metaData: { locale: "en" },
+    meta: { locale: "en" },
 });
 ```
 

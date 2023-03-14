@@ -9,29 +9,32 @@ import {
     useUpdate,
     useExport,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useDataGrid,
-    DataGrid,
+    NumberField,
+    DateField,
+    useAutocomplete,
+    List,
+    ExportButton,
+} from "@refinedev/mui";
+
+import {
     Grid,
     Box,
     TextField,
     Button,
-    NumberField,
     Typography,
-    DateField,
-    GridColumns,
-    GridActionsCellItem,
     Stack,
-    useAutocomplete,
     Autocomplete,
     CardContent,
     Card,
     CardHeader,
-    List,
-    ExportButton,
-} from "@pankod/refine-mui";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+} from "@mui/material";
+
+import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
@@ -454,8 +457,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <List
-                    cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-                    cardHeaderProps={{
+                    wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                    headerProps={{
                         action: (
                             <ExportButton
                                 onClick={triggerExport}

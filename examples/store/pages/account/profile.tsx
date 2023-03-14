@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
 
 import { getSearchStaticProps } from "@lib/search-props";
 import { AccountLayout } from "@components/account";
@@ -7,11 +6,9 @@ import { ProfileTemplate } from "@components/profile";
 
 const ProfilePage: React.FC = () => {
     return (
-        <LayoutWrapper>
-            <AccountLayout>
-                <ProfileTemplate />
-            </AccountLayout>
-        </LayoutWrapper>
+        <AccountLayout>
+            <ProfileTemplate />
+        </AccountLayout>
     );
 };
 

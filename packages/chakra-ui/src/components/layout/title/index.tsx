@@ -1,12 +1,21 @@
 import React from "react";
-import { useRouterContext, TitleProps } from "@pankod/refine-core";
+import {
+    useRouterContext,
+    useRouterType,
+    useLink,
+    TitleProps,
+} from "@refinedev/core";
 import { Link as ChakraLink } from "@chakra-ui/react";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     return (
-        <ChakraLink as={Link} to="/">
+        <ChakraLink as={ActiveLink} to="/">
             {collapsed ? (
                 <img
                     src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-mini.svg"

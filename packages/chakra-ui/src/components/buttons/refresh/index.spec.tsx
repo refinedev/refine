@@ -1,4 +1,4 @@
-import { buttonRefreshTests } from "@pankod/refine-ui-tests";
+import { buttonRefreshTests } from "@refinedev/ui-tests";
 import { RefreshButton } from "./";
 
 describe("Refresh Button", () => {

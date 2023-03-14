@@ -8,6 +8,16 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynam
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
+
 ## Introduction
 
 Forms are one of the most adaptable elements in web development. They come in distinct structures for various use cases.
@@ -86,7 +96,7 @@ Superplate is a CLI tool for quickly bootstrapping a refine project. The tool pr
 As a first step, run the following command on your command line tool:
 
 ```
-npx superplate-cli -p refine-react dynamic-form
+npm create refine-app@latest dynamic-form -- -p refine-react -b v3
 ```
 
 The command will prompt you to choose your preferences for the project.
@@ -167,16 +177,16 @@ import PostEdit from "pages/PostEdit";
 Then, create a `resources` prop on the `<Refine>` component and add the pages imports as the `create`, `list`, and `edit` property's values, respectively:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import PostCreate from "pages/PostCreate";
 import PostList from "pages/PostList";
 import PostEdit from "pages/PostEdit";
@@ -221,7 +231,7 @@ Moving on, navigate to the `PostList.tsx` file and add the following code:
 
 ```tsx title="src/pages/PostList.tsx"
 import React from "react";
-import { List, Table, useTable, Space, EditButton } from "@pankod/refine-antd";
+import { List, Table, useTable, Space, EditButton } from "@refinedev/antd";
 
 interface IFormValue {
     name: string;
@@ -284,7 +294,7 @@ As you can see, the create button routes us to the `Create` page when clicked. R
 
 Ant design also provides a form component that ships with various functionalities such as data collection, styling, and data scope management out of the box. The component streamlines the process of quickly building a form in React.
 
-To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@pankod/refine-antd`:
+To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@refinedev/antd`:
 
 ```tsx title="src/pages/PostCreate.tsx"
 import {
@@ -295,7 +305,7 @@ import {
     Space,
     Icons,
     useForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 ```
 
 These are all the UI components and hooks we'll use for the entirety of the **PostCreate** page setup.
@@ -312,7 +322,7 @@ import {
     Space,
     Icons,
     useForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 interface IFormValue {
     name: string;
@@ -890,7 +900,7 @@ To do this, go back to the `<PostList>` file, import the `<EditButton>` componen
 
 ```tsx title="src/pages/PostList.tsx"
 import React from "react";
-import { List, Table, useTable, Space, EditButton } from "@pankod/refine-antd";
+import { List, Table, useTable, Space, EditButton } from "@refinedev/antd";
 
 interface IFormValue {
     name: string;
@@ -961,7 +971,7 @@ import {
     Icons,
     Button,
     Space,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 interface IFormValue {
     name: string;

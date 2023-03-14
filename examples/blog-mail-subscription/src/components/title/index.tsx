@@ -1,6 +1,6 @@
 import React from "react";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { TitleProps } from "@pankod/refine-core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { TitleProps } from "@refinedev/core";
 
 const { Link } = routerProvider;
 

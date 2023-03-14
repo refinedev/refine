@@ -3,19 +3,23 @@ import {
     useTitle,
     ITreeMenu,
     CanAccess,
-    useRouterContext,
     useLogout,
     useIsExistAuthentication,
     useMenu,
-} from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import {
+    UnorderedListOutlined,
+    LogoutOutlined,
+    AppstoreAddOutlined,
+} from "@ant-design/icons";
+import { Layout as AntdLayout, Menu, Grid } from "antd";
+import { Link } from "react-router-dom";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
@@ -34,7 +38,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -57,11 +61,9 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route || "/"}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -75,7 +77,7 @@ export const CustomSider: React.FC = () => {
         <Menu.Item
             key="logout"
             onClick={() => mutateLogout()}
-            icon={<Icons.LogoutOutlined />}
+            icon={<LogoutOutlined />}
         >
             Logout
         </Menu.Item>
@@ -100,7 +102,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key={"/"} icon={<AppstoreAddOutlined />}>
                     <StoreSelect />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}

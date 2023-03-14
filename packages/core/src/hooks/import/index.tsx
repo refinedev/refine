@@ -2,20 +2,13 @@ import { useEffect, useState } from "react";
 import { parse, ParseConfig } from "papaparse";
 import chunk from "lodash/chunk";
 
+import { useCreate, useCreateMany, useResource } from "@hooks";
+import { MapDataFn, BaseRecord, HttpError, MetaQuery } from "../../interfaces";
 import {
-    useCreate,
-    useCreateMany,
-    useResourceWithRoute,
-    useRouterContext,
-} from "@hooks";
-import {
-    MapDataFn,
-    BaseRecord,
-    HttpError,
-    ResourceRouterParams,
-    MetaDataQuery,
-} from "../../interfaces";
-import { importCSVMapper, sequentialPromises } from "@definitions";
+    importCSVMapper,
+    sequentialPromises,
+    pickNotDeprecated,
+} from "@definitions";
 import { UseCreateReturnType } from "../../hooks/data/useCreate";
 import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
 
@@ -49,8 +42,14 @@ export type ImportOptions<
     /**
      * Resource name for API data interactions.
      * @default Resource name that it reads from route
+     * @deprecated `resourceName` is deprecated. Use `resource` instead.
      */
     resourceName?: string;
+    /**
+     * Resource name for API data interactions.
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
     /**
      * A mapping function that runs for every record. Mapped data will be included in the file contents.
      */
@@ -71,7 +70,12 @@ export type ImportOptions<
     /**
      *  Metadata query for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     *  Metadata query for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      *  A callback function that returns a current state of uploading process.
      *
@@ -129,10 +133,12 @@ export const useImport = <
     TVariables = any,
 >({
     resourceName,
+    resource: resourceFromProps,
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
+    meta,
     metaData,
     onProgress,
     dataProviderName,
@@ -145,13 +151,7 @@ export const useImport = <
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const resourceWithRoute = useResourceWithRoute();
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const { name: resource } = resourceWithRoute(
-        resourceName ?? routeResourceName,
-    );
+    const { resource } = useResource(resourceFromProps ?? resourceName);
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
@@ -208,12 +208,16 @@ export const useImport = <
                             const valueFns = values.map((value) => {
                                 const fn = async () => {
                                     const response = await create.mutateAsync({
-                                        resource,
+                                        resource: resource?.name ?? "",
                                         values: value,
                                         successNotification: false,
                                         errorNotification: false,
                                         dataProviderName,
-                                        metaData,
+                                        meta: pickNotDeprecated(meta, metaData),
+                                        metaData: pickNotDeprecated(
+                                            meta,
+                                            metaData,
+                                        ),
                                     });
 
                                     return { response, value };
@@ -252,12 +256,19 @@ export const useImport = <
                                 const fn = async () => {
                                     const response =
                                         await createMany.mutateAsync({
-                                            resource,
+                                            resource: resource?.name ?? "",
                                             values: chunkedValues,
                                             successNotification: false,
                                             errorNotification: false,
                                             dataProviderName,
-                                            metaData,
+                                            meta: pickNotDeprecated(
+                                                meta,
+                                                metaData,
+                                            ),
+                                            metaData: pickNotDeprecated(
+                                                meta,
+                                                metaData,
+                                            ),
                                         });
 
                                     return {

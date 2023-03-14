@@ -3,18 +3,23 @@ import {
     IResourceComponentsProps,
     CrudFilters,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
-    Table,
-    Avatar,
     useTable,
     DateField,
     BooleanField,
+    ShowButton,
+} from "@refinedev/antd";
+
+import { SearchOutlined } from "@ant-design/icons";
+
+import {
+    Table,
+    Avatar,
     Card,
     Input,
-    Icons,
     Form,
     DatePicker,
     Button,
@@ -22,8 +27,7 @@ import {
     FormProps,
     Row,
     Col,
-    ShowButton,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
@@ -180,7 +184,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                     <Form.Item label={t("users.filter.search.label")} name="q">
                         <Input
                             placeholder={t("users.filter.search.placeholder")}
-                            prefix={<Icons.SearchOutlined />}
+                            prefix={<SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

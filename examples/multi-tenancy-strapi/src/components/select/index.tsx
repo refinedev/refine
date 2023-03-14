@@ -1,5 +1,7 @@
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
+
+import { Select } from "antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";

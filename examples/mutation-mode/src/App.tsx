@@ -1,15 +1,15 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    BackTop,
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { FloatButton } from "antd";
+import { DemoSidebar, useDemoSidebar } from "@refinedev/demo-sidebar";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -19,32 +19,60 @@ const App: React.FC = () => {
     const [refineProps, demoSidebarProps] = useDemoSidebar();
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}
-                OffLayoutArea={() => (
-                    <>
-                        <BackTop />
-                        <DemoSidebar {...demoSidebarProps} />
-                    </>
-                )}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
                 {...refineProps}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout
+                                OffLayoutArea={() => (
+                                    <div>
+                                        <FloatButton.BackTop />
+                                        <DemoSidebar {...demoSidebarProps} />
+                                    </div>
+                                )}
+                            >
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

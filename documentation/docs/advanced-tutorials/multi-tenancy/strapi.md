@@ -1,6 +1,7 @@
 ---
 id: strapi-v4
 title: Strapi-v4
+sidebar_label: Strapi-v4 🆙
 ---
 
 ## What is Multitenancy?
@@ -20,11 +21,11 @@ This guide has been prepared to assume you know the basics of **refine**. If you
 ## Setup
 
 ```bash
-npm i @pankod/refine-strapi-v4
+npm i @refinedev/strapi-v4
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -36,8 +37,8 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
-import { AuthHelper } from "@pankod/refine-strapi-v4";
+import { AuthBindings } from "@refinedev/core";
+import { AuthHelper } from "@refinedev/strapi-v4";
 import axios from "axios";
 
 export const axiosInstance = axios.create();
@@ -46,53 +47,87 @@ const API_URL = "YOUR_API_URL";
 const TOKEN_KEY = "strapi-jwt-token";
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ username, password }) => {
-        const { data, status } = await strapiAuthHelper.login(
-            username,
-            password,
-        );
-        if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, data.jwt);
+        try {
+            const { data, status } = await strapiAuthHelper.login(
+                username,
+                password,
+            );
+            if (status === 200) {
+                localStorage.setItem(TOKEN_KEY, data.jwt);
 
-            // set header axios instance
-            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
-            return Promise.resolve();
+                // set header axios instance
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.jwt}`;
+
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error: {
+                    name: error.response.data.error.name,
+                    message: error.response.data.error.message,
+                },
+            };
         }
-        return Promise.reject();
+
+        return {
+            success: false,
+            error: new Error("Invalid username or password"),
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`,
-            return Promise.resolve();
+            axiosInstance.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${token}`;
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            error: new Error("Invalid token"),
+            logout: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 username,
                 email,
-            });
+            };
         }
 
-        return Promise.reject();
+        return null;
     },
 };
 ```
@@ -106,7 +141,7 @@ If you need the population for the `/me` request, you can use it like this in yo
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 strapiAuthHelper.me("token", {
-    metaData: {
+    meta: {
         populate: ["role"],
     },
 });
@@ -117,17 +152,17 @@ strapiAuthHelper.me("token", {
 </details>
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
 import { authProvider, axiosInstance } from "./authProvider";
@@ -136,17 +171,18 @@ const API_URL = "YOUR_API_URL";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            //highlight-start
-            authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-            //highlight-end
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                //highlight-start
+                authProvider={authProvider}
+                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                //highlight-end
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -233,17 +269,19 @@ export const StoreProvider = (props: any) => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
 import { StoreProvider } from "context/store";
@@ -255,15 +293,16 @@ const App: React.FC = () => {
     return (
         //highlight-next-line
         <StoreProvider>
-            <Refine
-                authProvider={authProvider}
-                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-                routerProvider={routerProvider}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
-                catchAll={<ErrorComponent />}
-            />
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                >
+                    {/* ... */}
+                </Refine>
+            </BrowserRouter>
             //highlight-next-line
         </StoreProvider>
     );
@@ -276,7 +315,8 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
+import { Select } from "antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
@@ -327,63 +367,59 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
+import { useMenu, useLogout, CanAccess, TreeMenuItem } from "@refinedev/core";
+import { Layout, Menu, Grid } from "antd";
 import {
-    useTitle,
-    useMenu,
-    useLogout,
-    CanAccess,
-    ITreeMenu,
-    useRouterContext,
-} from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+    UnorderedListOutlined,
+    AppstoreAddOutlined,
+    LoginOutlined,
+} from "@ant-design/icons";
+
+import { Link } from "react-router-dom";
 
 import { StoreSelect } from "components/select";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: React.FC = ({ Title }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { mutate: logout } = useLogout();
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+        return tree.map((item: TreeMenuItem) => {
+            const { icon, label, route, key, name, children, meta } = item;
 
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        key={key}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
                     </SubMenu>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                meta?.parent !== undefined && children.length === 0
             );
             return (
                 <CanAccess
-                    key={route}
+                    key={key}
                     resource={name.toLowerCase()}
                     action="list"
                 >
                     <Menu.Item
-                        key={route}
+                        key={key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -396,7 +432,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -414,7 +450,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key={route} icon={<AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);
@@ -425,12 +461,12 @@ export const CustomSider: React.FC = () => {
                 <Menu.Item
                     key="logout"
                     onClick={() => logout()}
-                    icon={<Icons.LoginOutlined />}
+                    icon={<LoginOutlined />}
                 >
                     Logout
                 </Menu.Item>
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```
@@ -444,9 +480,9 @@ export const CustomSider: React.FC = () => {
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
+Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `filters.permanent` property within the **refine**'s `useSimpleList` hook.
 
-We separate the products of different stores by using the `permanentFilter` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
+We separate the products of different stores by using the `filters.permanent` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
 
 ```tsx
 //highlight-start
@@ -454,7 +490,9 @@ const [store] = useContext(StoreContext);
 //highlight-end
 const { listProps } = useSimpleList<IProduct>({
     //highlight-start
-    permanentFilter: [{ field: "stores][id]", operator: "eq", value: store }],
+    filters: {
+        permanent: [{ field: "stores][id]", operator: "eq", value: store }],
+    },
     //highlight-end
 });
 ```
@@ -465,29 +503,29 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title=src/pages/ProductList.tsx
 import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import {
     useSimpleList,
-    AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 
 import { ProductItem } from "components/product";
 import { StoreContext } from "context/store";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList: React.FC = () => {
     //highlight-start
     const [store] = useContext(StoreContext);
     const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [
-            { field: "stores][id]", operator: "eq", value: store },
-        ],
-        metaData: { populate: ["image"] },
+        filters: {
+            permanent: [{ field: "stores][id]", operator: "eq", value: store }],
+        },
+        meta: { populate: ["image"] },
     });
     //highlight-end
 
@@ -560,9 +598,9 @@ const [store, setStore] = useContext(StoreContext);
 
 ```tsx title="CreateProduct"
 import { useContext } from "react";
-import { useApiUrl } from "@pankod/refine-core";
+import { useApiUrl } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
 import {
-    Create,
     Drawer,
     DrawerProps,
     Form,
@@ -571,7 +609,7 @@ import {
     ButtonProps,
     Upload,
     Grid,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { StoreContext } from "context/store";
 
@@ -579,7 +617,7 @@ import {
     useStrapiUpload,
     mediaUploadMapper,
     getValueProps,
-} from "@pankod/refine-strapi-v4";
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 

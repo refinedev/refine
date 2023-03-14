@@ -31,7 +31,7 @@ npm install query-string
 For our own data provider, the first step is to create the following file.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 import { stringify } from "query-string";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -41,7 +41,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Error Handling
 
-When an error is returned from the API, **refine** must be extended from [HttpError](../../../../packages/core/src/interfaces/HttpError.ts) to handle it.
+When an error is returned from the API, **refine** must be extended from [HttpError](https://github.com/refinedev/refine/blob/next/packages/core/src/interfaces/HttpError.ts) to handle it.
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code.
 Interceptors are methods which are triggered before the main method.
 
@@ -50,7 +50,7 @@ In a `utility` file, create an `axiosInstance` and define an `interceptor` to ha
 ```ts title="src/data-provider.ts"
 // highlight-start
 import axios from "axios";
-import { DataProvider, HttpError } from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@refinedev/core";
 // highlight-end
 import { stringify } from "query-string";
 
@@ -86,7 +86,7 @@ Now we'll add the methods that the data provider needs to implement. We will imp
 ### getList
 
 `getList` method is used to get a list of resources with sorting, filtering and pagination features.
-It takes `resource`, `sort`, `pagination` and `filters` as parameters and returns `data` and `total`.
+It takes `resource`, `sorters`, `pagination` and `filters` as parameters and returns `data` and `total`.
 
 Let's assume the API we want to implement is as follows:
 
@@ -127,20 +127,20 @@ access-control-expose-headers: X-Total-Count
 
     ```ts title="src/data-provider.ts"
     export const dataProvider = (apiUrl: string): DataProvider => ({
-      // ...
-      getList: async ({ resource }) => {
-        const url = `${apiUrl}/${resource}`;
+        // ...
+        getList: async ({ resource }) => {
+            const url = `${apiUrl}/${resource}`;
 
-        const { data, headers } = await axiosInstance.get(url);
+            const { data, headers } = await axiosInstance.get(url);
 
-        const total = +headers["x-total-count"];
+            const total = +headers["x-total-count"];
 
-        return {
-          data,
-          total,
-        };
-      },
-      // ...
+            return {
+                data,
+                total,
+            };
+        },
+        // ...
     });
     ```
 
@@ -164,32 +164,34 @@ access-control-expose-headers: X-Total-Count
 
     ```ts title="src/data-provider.ts"
     export const dataProvider = (apiUrl: string): DataProvider => ({
-      // ...
-      getList: async ({ resource, pagination }) => {
-        const url = `${apiUrl}/${resource}`;
+        // ...
+        getList: async ({ resource, pagination }) => {
+            const url = `${apiUrl}/${resource}`;
 
-        // highlight-start
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+            // highlight-start
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const query: {
-          _start?: number;
-          _end?: number;
-        } = {
-          _start: (current - 1) * pageSize,
-          _end: current * pageSize,
-        };
+            const query: {
+                _start?: number;
+                _end?: number;
+            } = {
+                _start: (current - 1) * pageSize,
+                _end: current * pageSize,
+            };
 
-        const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
-        // highlight-end
+            const { data, headers } = await axiosInstance.get(
+                `${url}?${stringify(query)}`,
+            );
+            // highlight-end
 
-        const total = +headers["x-total-count"];
+            const total = +headers["x-total-count"];
 
-        return {
-          data,
-          total,
-        };
-      },
-      // ...
+            return {
+                data,
+                total,
+            };
+        },
+        // ...
     });
     ```
 
@@ -199,7 +201,7 @@ access-control-expose-headers: X-Total-Count
     [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
     ```
 
-    **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order` values.
+    **refine** uses the `sorters` parameter for sorting. This parameter includes `field` and `order` values.
     Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
 
     ```bash
@@ -216,7 +218,7 @@ access-control-expose-headers: X-Total-Count
     :::
 
     ```ts title="src/data-provider.ts"
-    getList: async ({ resource, pagination, sort }) => {
+    getList: async ({ resource, pagination, sorters }) => {
       const url = `${apiUrl}/${resource}`;
 
       const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -234,9 +236,9 @@ access-control-expose-headers: X-Total-Count
       };
 
       // highlight-start
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
+      if (sorters && sorters.length > 0) {
+        query._sort = sorters[0].field;
+        query._order = sorters[0].order;
       }
       // highlight-end
 
@@ -283,17 +285,17 @@ access-control-expose-headers: X-Total-Count
     ```ts
     // Map refine operators to API operators
     const mapOperator = (operator: CrudOperators): string => {
-      switch (operator) {
-        case "ne":
-        case "gte":
-        case "lte":
-          return `_${operator}`;
-        case "contains":
-          return "_like";
-        case "eq":
-        default:
-          return "";
-      }
+        switch (operator) {
+            case "ne":
+            case "gte":
+            case "lte":
+                return `_${operator}`;
+            case "contains":
+                return "_like";
+            case "eq":
+            default:
+                return "";
+        }
     };
     ```
 
@@ -314,7 +316,7 @@ access-control-expose-headers: X-Total-Count
     };
     // highlight-end
 
-    getList: async ({ resource, pagination, sort, filters }) => {
+    getList: async ({ resource, pagination, sorters, filters }) => {
       const url = `${apiUrl}/${resource}`;
 
       const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -329,9 +331,9 @@ access-control-expose-headers: X-Total-Count
         _end: current * pageSize,
       };
 
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
+      if (sorters && sorters.length > 0) {
+        query._sort = sorters[0].field;
+        query._order = sorters[0].order;
       }
 
       // highlight-next-line
@@ -398,38 +400,35 @@ access-control-expose-headers: X-Total-Count
 
     **Parameter Types:**
 
-    | Name           | Type                                                                |
-    | -------------- | ------------------------------------------------------------------- |
-    | resource       | `string`                                                            |
-    | hasPagination? | `boolean` _(defaults to `true`)_                                    |
-    | pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
-    | sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
-    | filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
+    | Name        | Type                                                                |
+    | ----------- | ------------------------------------------------------------------- |
+    | resource    | `string`                                                            |
+    | pagination? | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
+    | sorters?    | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
+    | filters?    | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
 
 <br/>
 
 **refine** will consume this `getList` method using the `useList` or `useInfiniteList` data hook.
 
 ```ts
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 
 const { data } = useList({
-  resource: "posts",
-  config: {
-    sort: [
-      {
-        field: "id",
-        order: "desc",
-      },
+    resource: "posts",
+    sorters: [
+        {
+            field: "id",
+            order: "desc",
+        },
     ],
     filters: [
-      {
-        field: "title",
-        operator: "contains",
-        value: "hello",
-      },
+        {
+            field: "title",
+            operator: "contains",
+            value: "hello",
+        },
     ],
-  },
 });
 ```
 
@@ -441,17 +440,17 @@ The `create` method creates a new record with the `resource` and `variables` par
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  create: async({ resource, variables }) => {
-    const url = `${apiUrl}/${resource}`;
+    // ...
+    create: async ({ resource, variables }) => {
+        const url = `${apiUrl}/${resource}`;
 
-    const { data } = await axiosInstance.post(url, variables);
+        const { data } = await axiosInstance.post(url, variables);
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -469,15 +468,15 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `create` method using the `useCreate` data hook.
 
 ```ts
-import { useCreate } from "@pankod/refine-core";
+import { useCreate } from "@refinedev/core";
 
 const { mutate } = useCreate();
 
 mutate({
-  resource: "posts",
-  values: {
-    title: "New Post",
-  },
+    resource: "posts",
+    values: {
+        title: "New Post",
+    },
 });
 ```
 
@@ -489,17 +488,17 @@ The `update` method updates the record with the `resource`, `id` and `variables`
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  update: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    update: async ({ resource, id, variables }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.patch(url, variables);
+        const { data } = await axiosInstance.patch(url, variables);
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -518,14 +517,14 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `update` method using the `useUpdate` data hook.
 
 ```ts
-import { useUpdate } from "@pankod/refine-core";
+import { useUpdate } from "@refinedev/core";
 
 const { mutate } = useUpdate();
 
 mutate({
-  resource: "posts",
-  id: 2,
-  values: { title: "New Post Title" },
+    resource: "posts",
+    id: 2,
+    values: { title: "New Post Title" },
 });
 ```
 
@@ -537,19 +536,19 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  deleteOne: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    deleteOne: async ({ resource, id, variables }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.delete(url, {
-      data: variables,
-    });
+        const { data } = await axiosInstance.delete(url, {
+            data: variables,
+        });
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -568,7 +567,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `deleteOne` method using the `useDelete` data hook.
 
 ```ts
-import { useDelete } from "@pankod/refine-core";
+import { useDelete } from "@refinedev/core";
 
 const { mutate } = useDelete();
 
@@ -583,18 +582,18 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  getOne: async ({ resource, id }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    getOne: async ({ resource, id }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.get(url);
+        const { data } = await axiosInstance.get(url);
 
-    return {
-      data,
-    };
-  },
-  // ...
-})
+        return {
+            data,
+        };
+    },
+    // ...
+});
 ```
 
 **Parameter Types:**
@@ -609,7 +608,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `getOne` method using the `useOne` data hook.
 
 ```ts
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
@@ -623,19 +622,19 @@ const { data } = useOne({ resource: "posts", id: 1 });
 The `getApiUrl` method returns the `apiUrl` value.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // highlight-next-line
-  getApiUrl: () => apiUrl,
-  // ...
+    // highlight-next-line
+    getApiUrl: () => apiUrl,
+    // ...
 });
 ```
 
 **refine** will consume this `getApiUrl` method using the `useApiUrl` data hook.
 
 ```ts
-import { useApiUrl } from "@pankod/refine-core";
+import { useApiUrl } from "@refinedev/core";
 
 const { data } = useApiUrl();
 ```
@@ -649,55 +648,63 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 
 ```ts title="dataProvider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  custom: async({ url, method, filters, sort, payload, query, headers }) => {
-  let requestUrl = `${url}?`;
+    // ...
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
+        let requestUrl = `${url}?`;
 
-  if (sort && sort.length > 0) {
-    const sortQuery = {
-      _sort: sort[0].field,
-      _order: sort[0].order,
-    };
-    requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-  }
+        if (sorters && sorters.length > 0) {
+            const sortQuery = {
+                _sort: sorters[0].field,
+                _order: sorters[0].order,
+            };
+            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+        }
 
-  if (filters) {
-    const filterQuery = generateFilters(filters);
-    requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-  }
+        if (filters) {
+            const filterQuery = generateFilters(filters);
+            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+        }
 
-  if (query) {
-    requestUrl = `${requestUrl}&${stringify(query)}`;
-  }
+        if (query) {
+            requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
 
-  if (headers) {
-    axiosInstance.defaults.headers = {
-      ...axiosInstance.defaults.headers,
-      ...headers,
-    };
-  }
+        if (headers) {
+            axiosInstance.defaults.headers = {
+                ...axiosInstance.defaults.headers,
+                ...headers,
+            };
+        }
 
-  let axiosResponse;
-  switch (method) {
-    case "put":
-    case "post":
-    case "patch":
-      axiosResponse = await axiosInstance[method](url, payload);
-      break;
-    case "delete":
-      axiosResponse = await axiosInstance.delete(url, {
-        data: payload,
-      });
-      break;
-    default:
-      axiosResponse = await axiosInstance.get(requestUrl);
-      break;
-  }
+        let axiosResponse;
+        switch (method) {
+            case "put":
+            case "post":
+            case "patch":
+                axiosResponse = await axiosInstance[method](url, payload);
+                break;
+            case "delete":
+                axiosResponse = await axiosInstance.delete(url, {
+                    data: payload,
+                });
+                break;
+            default:
+                axiosResponse = await axiosInstance.get(requestUrl);
+                break;
+        }
 
-  const { data } = axiosResponse;
+        const { data } = axiosResponse;
 
-  return Promise.resolve({ data });
-},
+        return Promise.resolve({ data });
+    },
     // ...
 });
 ```
@@ -708,7 +715,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | -------- | -------------------------------------------------------------------- |
 | url      | `string`                                                             |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`           |
-| sort?    | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
+| sorters? | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
 | filters? | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters); |
 | payload? | `{}`                                                                 |
 | query?   | `{}`                                                                 |
@@ -719,16 +726,16 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `custom` method using the `useCustom` data hook.
 
 ```ts
-import { useCustom, useApiUrl } from "@pankod/refine-core";
+import { useCustom, useApiUrl } from "@refinedev/core";
 
 const { data, isLoading } = useCustom({
-  url: `${apiURL}/posts-unique-check`,
-  method: "get",
-  config: {
-    query: {
-      title: "Foo bar",
+    url: `${apiURL}/posts-unique-check`,
+    method: "get",
+    config: {
+        query: {
+            title: "Foo bar",
+        },
     },
-  },
 });
 ```
 
@@ -748,17 +755,17 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  getMany: async ({ resource, ids }) => {
-    const { data } = await axiosInstance.get(
-      `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-    );
+    // ...
+    getMany: async ({ resource, ids }) => {
+        const { data } = await axiosInstance.get(
+            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
+        );
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -774,7 +781,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `getMany` method using the `useMany` data hook.
 
 ```ts
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
@@ -787,16 +794,16 @@ This method allows us to create multiple items in a resource. Implementation of 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  createMany: async ({ resource, variables }) => {
-    const url = `${apiUrl}/${resource}/bulk`;
-    const { data } = await axiosInstance.post(url, { values: variables });
+    // ...
+    createMany: async ({ resource, variables }) => {
+        const url = `${apiUrl}/${resource}/bulk`;
+        const { data } = await axiosInstance.post(url, { values: variables });
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -814,20 +821,20 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `createMany` method using the `useCreateMany` data hook.
 
 ```ts
-import { useCreateMany } from "@pankod/refine-core";
+import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany();
 
 mutate({
-  resource: "posts",
-  values: [
-    {
-      title: "New Post",
-    },
-    {
-      title: "Another New Post",
-    },
-  ],
+    resource: "posts",
+    values: [
+        {
+            title: "New Post",
+        },
+        {
+            title: "Another New Post",
+        },
+    ],
 });
 ```
 
@@ -839,16 +846,16 @@ This method allows us to delete multiple items in a resource. Implementation of 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  deleteMany: async ({ resource, ids }) => {
-    const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
-    const { data } = await axiosInstance.delete(url);
+    // ...
+    deleteMany: async ({ resource, ids }) => {
+        const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
+        const { data } = await axiosInstance.delete(url);
 
-    return {
-      data
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -867,13 +874,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
 
 ```ts
-import { useDeleteMany } from "@pankod/refine-core";
+import { useDeleteMany } from "@refinedev/core";
 
 const { mutate } = useDeleteMany();
 
 mutate({
-  resource: "posts",
-  ids: [2, 3],
+    resource: "posts",
+    ids: [2, 3],
 });
 ```
 
@@ -885,84 +892,84 @@ This method allows us to update multiple items in a resource. Implementation of 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  updateMany: async ({ resource, ids, variables }) => {
-    const url = `${apiUrl}/${resource}/bulk`;
-    const { data } = await axiosInstance.patch(url, { ids, variables });
+    // ...
+    updateMany: async ({ resource, ids, variables }) => {
+        const url = `${apiUrl}/${resource}/bulk`;
+        const { data } = await axiosInstance.patch(url, { ids, variables });
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
 **refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
 
 ```ts
-import { useUpdateMany } from "@pankod/refine-core";
+import { useUpdateMany } from "@refinedev/core";
 
 const { mutate } = useUpdateMany();
 
 mutate({
-  resource: "posts",
-  ids: [1, 2],
-  values: { status: "draft" },
+    resource: "posts",
+    ids: [1, 2],
+    values: { status: "draft" },
 });
 ```
 
 > [Refer to the useUpdateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
 
-## metaData Usage
+## meta Usage
 
-When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `metaData` field, which allows the sent parameter to be easily accessed by the data provider.
+When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `meta` field, which allows the sent parameter to be easily accessed by the data provider.
 
-Now let's send a custom header parameter to the [`getOne`](#getone) method using `metaData`.
+Now let's send a custom header parameter to the [`getOne`](#getone) method using `meta`.
 
 :::tip
-The `metaData` parameter can be used in all data, form, and table hooks.
+The `meta` parameter can be used in all data, form, and table hooks.
 :::
 
 ```ts title="post/edit.tsx"
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 
 useOne({
-  resource: "post",
-  id: "1",
-  metaData: {
-    headers: {
-      "x-custom-header": "hello world",
+    resource: "post",
+    id: "1",
+    meta: {
+        headers: {
+            "x-custom-header": "hello world",
+        },
     },
-  },
 });
 ```
 
-Now let's get the `metaData` parameter from the data provider.
+Now let's get the `meta` parameter from the data provider.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  getOne: async ({ resource, id, variables, metaData }) => {
-    // highlight-next-line
-    const { headers } = metaData;
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    getOne: async ({ resource, id, variables, meta }) => {
+        // highlight-next-line
+        const { headers } = meta;
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    // highlight-start
-    axiosInstance.defaults.headers = {
-      ...headers,
-    };
-    // highlight-end
+        // highlight-start
+        axiosInstance.defaults.headers = {
+            ...headers,
+        };
+        // highlight-end
 
-    const { data } = await axiosInstance.get(url, variables);
+        const { data } = await axiosInstance.get(url, variables);
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -975,7 +982,7 @@ I understood how to create a data provider.
 I learned how to handle errors.
 </ChecklistItem>
 <ChecklistItem id="data-provider-create-your-data-provider-3">
-I understood how to use the `metaData` parameter.
+I understood how to use the `meta` parameter.
 </ChecklistItem>
 
 </Checklist>

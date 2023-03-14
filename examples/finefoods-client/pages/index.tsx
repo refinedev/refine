@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 import { Promotional, CategoryCard, ProductCard } from "@components";
 import { ICategory, IProduct } from "@interfaces";
@@ -39,68 +38,66 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
     };
 
     return (
-        <LayoutWrapper>
-            <div className="container">
-                <Promotional />
-                <div className="rounded-lg bg-white p-4 md:p-8">
-                    <div className="flex flex-wrap justify-center md:justify-between">
-                        {categories.map((category) => (
-                            <CategoryCard
-                                key={category.id}
-                                id={category.id}
-                                title={category.title}
-                                backgroundImg={category.cover}
+        <div className="container">
+            <Promotional />
+            <div className="rounded-lg bg-white p-4 md:p-8">
+                <div className="flex flex-wrap justify-center md:justify-between">
+                    {categories.map((category) => (
+                        <CategoryCard
+                            key={category.id}
+                            id={category.id}
+                            title={category.title}
+                            backgroundImg={category.cover}
+                        />
+                    ))}
+                </div>
+                <br />
+                <h1 className="text-3xl font-extrabold uppercase text-gray-800">
+                    Deals of the day
+                </h1>
+                <br />
+                <div className="flex flex-wrap">
+                    {dealsOfDayProducts.map((product, index) => (
+                        <div
+                            key={product.id}
+                            className={
+                                index === 2
+                                    ? "w-full lg:w-1/3"
+                                    : "w-full md:w-1/2 lg:w-1/3"
+                            }
+                        >
+                            <ProductCard
+                                productImg={product.images[0].url}
+                                title={product.name}
+                                description={product.description}
+                                price={product.price}
+                                productId={product.id}
+                                {...getBadgeProps(index)}
                             />
-                        ))}
-                    </div>
-                    <br />
-                    <h1 className="text-3xl font-extrabold uppercase text-gray-800">
-                        Deals of the day
-                    </h1>
-                    <br />
-                    <div className="flex flex-wrap">
-                        {dealsOfDayProducts.map((product, index) => (
-                            <div
-                                key={product.id}
-                                className={
-                                    index === 2
-                                        ? "w-full lg:w-1/3"
-                                        : "w-full md:w-1/2 lg:w-1/3"
-                                }
-                            >
-                                <ProductCard
-                                    productImg={product.images[0].url}
-                                    title={product.name}
-                                    description={product.description}
-                                    price={product.price}
-                                    productId={product.id}
-                                    {...getBadgeProps(index)}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    <br />
-                    <h1 className="text-3xl font-extrabold uppercase text-gray-800">
-                        Fast & delicious
-                    </h1>
-                    <br />
-                    <div className="flex flex-wrap">
-                        {fastAndDeliciousProducts.map((product) => (
-                            <div key={product.id} className="w-full md:w-1/2">
-                                <ProductCard
-                                    productImg={product.images[0].url}
-                                    title={product.name}
-                                    description={product.description}
-                                    price={product.price}
-                                    badgeTitle="taste in less than 30 minutes"
-                                    productId={product.id}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
+                </div>
+                <br />
+                <h1 className="text-3xl font-extrabold uppercase text-gray-800">
+                    Fast & delicious
+                </h1>
+                <br />
+                <div className="flex flex-wrap">
+                    {fastAndDeliciousProducts.map((product) => (
+                        <div key={product.id} className="w-full md:w-1/2">
+                            <ProductCard
+                                productImg={product.images[0].url}
+                                title={product.name}
+                                description={product.description}
+                                price={product.price}
+                                badgeTitle="taste in less than 30 minutes"
+                                productId={product.id}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
-        </LayoutWrapper>
+        </div>
     );
 };
 

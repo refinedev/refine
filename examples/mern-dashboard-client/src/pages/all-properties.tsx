@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 import {
     Box,
     Stack,
@@ -7,8 +7,8 @@ import {
     TextField,
     Select,
     MenuItem,
-} from "@pankod/refine-mui";
-import { useNavigate } from "@pankod/refine-react-router-v6";
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 
 import { PropertyCard, CustomButton } from "components";

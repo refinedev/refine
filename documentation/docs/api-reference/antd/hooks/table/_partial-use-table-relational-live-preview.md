@@ -10,23 +10,25 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import {
-    IResourceComponentsProps,
     HttpError,
     useMany,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-start
     useSelect,
     FilterDropdown,
-    Select,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import {
+    Table,
+    // highlight-next-line
+    Select,
+} from "antd";
 
 // highlight-start
 interface ICategory {
@@ -47,7 +49,7 @@ interface IPost {
     // highlight-end
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps, filters } = useTable<IPost, HttpError>();
 
     // highlight-start

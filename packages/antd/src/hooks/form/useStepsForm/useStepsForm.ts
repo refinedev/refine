@@ -8,7 +8,7 @@ import {
     HttpError,
     UseFormProps as UseFormPropsCore,
     BaseRecord,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 

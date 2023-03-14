@@ -16,12 +16,10 @@ You can use the `show` and `close` props to control the `modal` visibility. You 
 Let's see an example:
 
 ```tsx title="src/pages/posts/list.tsx"
-import {
-    // highlight-start
-    useModal,
-    Modal,
-    Button
-} from "@pankod/refine-antd";
+// highlight-start
+import { useModal } from "@refinedev/antd";
+import { Modal, Button } from "antd";
+// highlight-end
 
 export const PostList: React.FC = () => {
     // highlight-next-line
@@ -48,7 +46,7 @@ Here, we show a button somewhere on the page and use `show` on it's onClick call
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useModal"  />
+<PropsTable module="@refinedev/antd/useModal"  />
 
 ### Return Value
 
@@ -57,6 +55,5 @@ Here, we show a button somewhere on the page and use `show` on it's onClick call
 | show       | Returns the visibility state of the Modal   | `() => void` |
 | close      | A function that can open the modal          | `() => void` |
 | modalProps | Specify a function that can close the modal | `() => void` |
-
 
 [modal]: https://ant.design/components/modal/#API

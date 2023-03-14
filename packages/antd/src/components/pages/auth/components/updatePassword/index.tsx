@@ -2,7 +2,8 @@ import React from "react";
 import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
-} from "@pankod/refine-core";
+    useActiveAuthProvider,
+} from "@refinedev/core";
 import {
     Row,
     Col,
@@ -16,7 +17,7 @@ import {
     CardProps,
     FormProps,
 } from "antd";
-import { useTranslate, useUpdatePassword } from "@pankod/refine-core";
+import { useTranslate, useUpdatePassword } from "@refinedev/core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
@@ -41,8 +42,11 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const [form] = Form.useForm<UpdatePasswordFormTypes>();
     const translate = useTranslate();
+    const authProvider = useActiveAuthProvider();
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<UpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>({
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+        });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

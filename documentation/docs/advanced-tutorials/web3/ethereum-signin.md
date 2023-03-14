@@ -21,7 +21,7 @@ npm install --save web3modal
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Configure Refine Authprovider
@@ -33,7 +33,7 @@ In this example, we will show the login with Metamask Wallet. If you want, you c
 :::
 
 ```tsx title="/src/authprovider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -49,20 +49,24 @@ const web3Modal = new Web3Modal({
 
 let provider: any | null = null;
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async () => {
         if (window.ethereum) {
             provider = await web3Modal.connect();
             const web3 = new Web3(provider);
             const accounts = await web3.eth.getAccounts();
             localStorage.setItem(TOKEN_KEY, accounts[0]);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } else {
-            return Promise.reject(
-                new Error(
+            return {
+                success: false,
+                error: new Error(
                     "Not set ethereum wallet or invalid. You need to install Metamask",
                 ),
-            );
+            };
         }
     },
     logout: async () => {
@@ -73,30 +77,42 @@ export const authProvider: AuthProvider = {
             provider = null;
             await web3Modal.clearCachedProvider();
         }
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            redirectTo: "/login",
+            logout: true,
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const address = localStorage.getItem(TOKEN_KEY);
         if (!address) {
-            return Promise.reject();
+            return null;
         }
 
         const balance = await getBalance(address);
 
-        return Promise.resolve({
+        return {
             address,
             balance,
-        });
+        };
     },
 };
 ```
@@ -124,14 +140,15 @@ export const getBalance = async (account: string): Promise<string> => {
 We need to override the refine login page. In this way, we will redirect it to the Metamask Wallet login page. We create a `login.tsx` file in the /pages folder.
 
 ```tsx title="/src/page/login.tsx"
-import { useLogin } from "@pankod/refine-core";
-import { AntdLayout, Button, Icon, Row, Col } from "@pankod/refine-antd";
+import { useLogin } from "@refinedev/core";
+import { Layout, Button, Row, Col } from "antd";
+import Icon from "@ant-design/icons";
 
 export const Login: React.FC = () => {
     const { mutate: login, isLoading } = useLogin();
 
     return (
-        <AntdLayout
+        <Layout
             style={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
@@ -177,7 +194,7 @@ export const Login: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```
@@ -198,7 +215,8 @@ After connecting with our account, we can now retrieve account information. We w
 
 ```tsx title="src/pages/dashboard"
 import React from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
 import {
     Row,
     Col,
@@ -207,10 +225,9 @@ import {
     Space,
     Button,
     Modal,
-    useModal,
     Form,
     Input,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Text } = Typography;
 
@@ -288,7 +305,8 @@ export const sendEthereum = async (
 
 ```tsx title"src/pages/dashboard.tsx"
 import React, { useState } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
 import {
     Row,
     Col,
@@ -297,11 +315,10 @@ import {
     Space,
     Button,
     Modal,
-    useModal,
     Form,
     Input,
     notification,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { sendEthereum } from "../utility";
 

@@ -13,8 +13,8 @@ It is useful when you have multiple data providers and you want to access one of
 Let's say we have two data providers:
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 const App = () => {
     return (
@@ -23,7 +23,9 @@ const App = () => {
                 default: dataProvider("API_URL"),
                 second: dataProvider("SECOND_API_URL"),
             }}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 
@@ -33,7 +35,7 @@ export default App;
 Now we can access the data providers with the `useDataProvider` hook:
 
 ```tsx
-import { useDataProvider } from "@pankod/refine-core";
+import { useDataProvider } from "@refinedev/core";
 
 const dataProvider = useDataProvider();
 

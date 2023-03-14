@@ -9,7 +9,15 @@ hide_table_of_contents: false
 ---
 
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 
 
@@ -62,7 +70,7 @@ There are two possible ways to set up a refine application: using [superplate](h
 Run the following command in your terminal to create a refine app with superplate:
 
 ```bash
-npx superplate-cli -p refine-react datagrid
+npm create refine-app@latest datagrid -- -p refine-react -b v3
 ```  
 In the command above, the `-p` flag specifies the project type which in our case, a refine-react project. `datagrid` is the name I chose as the app name for brevity. You can always choose any name you're comfortable with.  
 
@@ -143,7 +151,7 @@ Then, create a `Layout.tsx` file in the `components` folder and add the followin
 
 ```tsx title="src/components/Layout.tsx"
 import React from 'react';
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -175,7 +183,7 @@ For instance, if you have a page component where you want to render tabular data
 
 ```tsx title="src/pages/example.tsx"
 import React from'react'
-import { useDataGrid, DataGrid, GridColumns } from "@pankod/refine-mui"
+import { useDataGrid, DataGrid, GridColumns } from "@refinedev/mui"
 
 const Table: React.FC = () => {
     const { dataGridProps } = useDataGrid();
@@ -224,7 +232,7 @@ Add the following code to the `employees.tsx` file:
 
 ```tsx title="src/pages/employees.tsx"
 import React from 'react';
-import { useDataGrid, DataGrid, GridColumns, List } from '@pankod/refine-mui';
+import { useDataGrid, DataGrid, GridColumns, List } from '@refinedev/mui';
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps } = useDataGrid();
@@ -289,15 +297,15 @@ The `columns` variable defines the column fields for our data. We also wrapped t
 Next, edit `App.tsx` in the `src` folder to the following:
 
 ```tsx title="src/App.tsx" 
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
     LightTheme,
-} from '@pankod/refine-mui';
-import routerProvider from '@pankod/refine-react-router-v6';
-import dataProvider from '@pankod/refine-simple-rest';
+} from '@refinedev/mui';
+import routerProvider from '@refinedev/react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
 import Layout from './components/Layout';
 import EmployeeList from './pages/employees';
 
@@ -375,7 +383,7 @@ This is similar to using the `initialState` prop on the DataGrid component. We c
 
 ```tsx title="src/pages/employees.tsx"
 import React from 'react';
-import { useDataGrid, DataGrid, GridColumns, List } from '@pankod/refine-mui';
+import { useDataGrid, DataGrid, GridColumns, List } from '@refinedev/mui';
 
    ...
 
@@ -452,7 +460,9 @@ To sort the rows, click or hover on any column header, this displays an arrow in
 We can initialize a sorting order for each or all fields in the grid using the `intialSorter` property of the `useDataGrid` component. This lets us sort the rows on the initial page render.
 
 ```tsx title="src/pages/employees/employees.tsx"
-const { dataGridProps } = useDataGrid({initialSorter: [{ field: 'level', order: 'desc' }]});
+const { dataGridProps } = useDataGrid({
+    sorters: { initial: [{ field: "level", order: "desc" }] },
+});
 ```
 The above example will sort the rows using the *level* column on the initial render in descending order like so: 
 
@@ -485,7 +495,7 @@ import {
     Button,
     ButtonGroup,
      //highlight-end
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
  //highlight-start
 const ButtonsWrapper = styled.div`
@@ -619,7 +629,7 @@ or by using the filter button in the grid toolbar:
 You can import the GridToolbar component and use it like so:
 
 ```tsx title="src/pages/employees.tsx"
-import { GridToolbar } from "@pankod/refine-mui"
+import { GridToolbar } from "@refinedev/mui"
 
 <DataGrid
   {...dataGridProps} 
@@ -656,7 +666,7 @@ import {
     List,
     //highlight-next-line
     GridToolbar,
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
 //highlight-next-line
 const { dataGridProps} = useDataGrid();
@@ -717,7 +727,7 @@ import {
     FormControlLabel,
     Checkbox,
     //highlight-end
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps, setFilters } = useDataGrid();

@@ -3,14 +3,14 @@ import {
     CrudFilters,
     CrudSorting,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { compile, Formula } from "@qualifyze/airtable-formulator";
 
 import Airtable from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
 
-const generateSort = (sort?: CrudSorting) => {
-    return sort?.map((item) => ({
+const generateSort = (sorters?: CrudSorting) => {
+    return sorters?.map((item) => ({
         field: item.field,
         direction: item.order,
     }));
@@ -116,31 +116,34 @@ const AirtableDataProvider = (
         airtableClient || new Airtable({ apiKey: apiKey }).base(baseId);
 
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
-            sort,
-            filters,
-        }) => {
-            const { current = 1, pageSize = 10 } = pagination ?? {};
+        getList: async ({ resource, pagination, sorters, filters }) => {
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
-            const generetedSort = generateSort(sort) || [];
+            const generatedSort = generateSort(sorters) || [];
             const queryFilters = generateFilter(filters);
 
             const { all } = base(resource).select({
                 pageSize: 100,
-                sort: generetedSort,
+                sort: generatedSort,
                 ...(queryFilters ? { filterByFormula: queryFilters } : {}),
             });
 
             const data = await all();
+            const isServerPaginationEnabled = mode === "server";
 
             return {
                 data: data
                     .slice(
-                        hasPagination ? (current - 1) * pageSize : undefined,
-                        hasPagination ? current * pageSize : undefined,
+                        isServerPaginationEnabled
+                            ? (current - 1) * pageSize
+                            : undefined,
+                        isServerPaginationEnabled
+                            ? current * pageSize
+                            : undefined,
                     )
                     .map((p) => ({
                         id: p.id,

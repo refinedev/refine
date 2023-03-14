@@ -10,18 +10,23 @@ import {
     CrudFilters,
     BaseRecord,
     HttpError,
-    MetaDataQuery,
+    MetaQuery,
     SuccessErrorNotification,
 } from "../../interfaces";
 import {
     useTranslate,
-    useCheckError,
     useHandleNotification,
     useDataProvider,
+    useOnError,
 } from "@hooks";
+import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
 interface UseCustomConfig<TQuery, TPayload> {
+    /**
+     * @deprecated `sort` is deprecated, use `sorters` instead.
+     */
     sort?: CrudSorting;
+    sorters?: CrudSorting;
     filters?: CrudFilters;
     query?: TQuery;
     payload?: TPayload;
@@ -38,7 +43,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
      */
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
     /**
-     * The config of your request. You can send headers, payload, query, filters and sort using this field
+     * The config of your request. You can send headers, payload, query, filters and sorters using this field
      */
     config?: UseCustomConfig<TQuery, TPayload>;
     /**
@@ -46,9 +51,14 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
      */
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
     /**
-     * Metadata query for `dataProvider`
+     * meta data for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * meta data for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
@@ -80,6 +90,7 @@ export const useCustom = <
     queryOptions,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     dataProviderName,
 }: UseCustomProps<TData, TError, TQuery, TPayload>): QueryObserverResult<
@@ -89,7 +100,10 @@ export const useCustom = <
     const dataProvider = useDataProvider();
 
     const { custom } = dataProvider(dataProviderName);
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const translate = useTranslate();
     const handleNotification = useHandleNotification();
 
@@ -100,7 +114,7 @@ export const useCustom = <
                 "custom",
                 method,
                 url,
-                { ...config, ...metaData },
+                { ...config, ...(pickNotDeprecated(meta, metaData) || {}) },
             ],
             ({ queryKey, pageParam, signal }) =>
                 custom<TData>({
@@ -108,7 +122,7 @@ export const useCustom = <
                     method,
                     ...config,
                     metaData: {
-                        ...metaData,
+                        ...(pickNotDeprecated(meta, metaData) || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -125,7 +139,7 @@ export const useCustom = <
                         typeof successNotification === "function"
                             ? successNotification(data, {
                                   ...config,
-                                  ...metaData,
+                                  ...(pickNotDeprecated(meta, metaData) || {}),
                               })
                             : successNotification;
 
@@ -137,7 +151,10 @@ export const useCustom = <
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(err, { ...config, ...metaData })
+                            ? errorNotification(err, {
+                                  ...config,
+                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                              })
                             : errorNotification;
 
                     handleNotification(notificationConfig, {

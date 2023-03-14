@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router";
 
 import { Layout } from "@components";
 import { BasketContextProvider } from "@context";
@@ -17,8 +17,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[{ name: "users" }]}
             >
                 <Head>
                     <title>
@@ -31,7 +29,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     <link rel="icon" type="image/png" href="/favicon.ico" />
                 </Head>
                 <BasketContextProvider>
-                    <Component {...pageProps} />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
                 </BasketContextProvider>
             </Refine>
         </>

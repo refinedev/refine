@@ -1,18 +1,13 @@
 import React from "react";
-import { HttpError, useMany } from "@pankod/refine-core";
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    EditButton,
-} from "@pankod/refine-mui";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useMany } from "@refinedev/core";
+import { useDataGrid, List, EditButton } from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { CreatePostModal, EditPostModal } from "components";
 import { ICategory, IPost } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);

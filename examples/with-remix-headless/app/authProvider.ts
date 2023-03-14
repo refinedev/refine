@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
 
@@ -15,50 +15,74 @@ const mockUsers = [
 
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthProvider = {
-    login: () => {
+export const authProvider: AuthBindings = {
+    login: async ({ email }) => {
         // Suppose we actually send a request to the back end here.
-        const user = mockUsers[0];
+        const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+        };
     },
-    logout: () => {
+    logout: async () => {
         Cookies.remove(COOKIE_NAME);
 
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return {
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {};
     },
-    checkAuth: async (context) => {
+    check: async (request) => {
         let user = undefined;
-        if (context) {
-            const { request } = context;
-            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-            user = parsedCookie[COOKIE_NAME];
+        if (request) {
+            const hasCookie = request.headers.get("Cookie");
+            if (hasCookie) {
+                const parsedCookie = cookie.parse(
+                    request.headers.get("Cookie"),
+                );
+                user = parsedCookie[COOKIE_NAME];
+            }
         } else {
             const parsedCookie = Cookies.get(COOKIE_NAME);
             user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
         }
 
         if (!user) {
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
-        return Promise.resolve();
+
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
-        return Promise.resolve();
+        return null;
     },
-    getUserIdentity: async () => {
-        return Promise.resolve();
+    getIdentity: async () => {
+        return null;
     },
 };

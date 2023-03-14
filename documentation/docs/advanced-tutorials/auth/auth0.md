@@ -1,6 +1,7 @@
 ---
 id: auth0
 title: Auth0 Login
+sidebar_label: Auth0 Login 🆙
 ---
 
 [Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
@@ -49,12 +50,12 @@ root.render(
 Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-auth0) for detailed configuration.
 :::
 
-### Override login page
+### Override `/login` page
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
-import { AntdLayout, Button } from "@pankod/refine-antd";
+import { Layout, Button } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
@@ -62,7 +63,7 @@ export const Login: React.FC = () => {
     const { loginWithRedirect } = useAuth0();
 
     return (
-        <AntdLayout
+        <Layout
             style={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
@@ -84,7 +85,7 @@ export const Login: React.FC = () => {
                     </Button>
                 </div>
             </div>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```
@@ -106,18 +107,23 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 import { Login } from "pages/login";
 
@@ -133,30 +139,65 @@ const App = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthProvider = {
-        login: () => {
-            return Promise.resolve();
+    const authProvider: AuthBindings = {
+        login: async () => {
+            return {
+                success: true,
+            };
         },
-        logout: () => {
+        logout: async () => {
             logout({ returnTo: window.location.origin });
-            return Promise.resolve("/");
+            return {
+                success: true,
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () => {
-            if (isAuthenticated) {
-                return Promise.resolve();
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        check: async () => {
+            try {
+                const token = await getIdTokenClaims();
+                if (token) {
+                    axios.defaults.headers.common = {
+                        Authorization: `Bearer ${token.__raw}`,
+                    };
+                    return {
+                        authenticated: true,
+                    };
+                } else {
+                    return {
+                        authenticated: false,
+                        error: new Error("Token not found"),
+                        redirectTo: "/login",
+                        logout: true,
+                    };
+                }
+            } catch (error: any) {
+                return {
+                    authenticated: false,
+                    error: new Error(error),
+                    redirectTo: "/login",
+                    logout: true,
+                };
             }
 
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Token not found"),
+                redirectTo: "/login",
+                logout: true,
+            };
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             if (user) {
-                return Promise.resolve({
+                return {
                     ...user,
                     avatar: user.picture,
-                });
+                };
             }
+            return null;
         },
     };
 
@@ -169,21 +210,49 @@ const App = () => {
     });
 
     return (
-        <Refine
-            LoginPage={Login}
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL, axios)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                dataProvider={dataProvider(API_URL, axios)}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/posts"
+                            element={<div>dummy list page</div>}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

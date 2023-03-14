@@ -29,7 +29,7 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 ## How to use Inferencer
 
-The `@pankod/refine-inferencer` package provides the `<ChakraUIInferencer/>` component, which can be imported from `@pankod/refine-inferencer/chakra-ui`. It used to generate CRUD pages based on your API response with Chakra UI components.
+The `@refinedev/inferencer` package provides the `<ChakraUIInferencer/>` component, which can be imported from `@refinedev/inferencer/chakra-ui`. It used to generate CRUD pages based on your API response with Chakra UI components.
 
 The `<ChakraUIInferencer/>` component is used by passing to appropriate values in the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 
@@ -40,42 +40,77 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 :::
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
-import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                //highlight-start
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-                //highlight-end
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -112,39 +147,79 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products
 setInitialRoutes(["/products"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
-import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -161,39 +236,79 @@ You should see the create page for the `products` resource that was generated by
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/create
 setInitialRoutes(["/products/create"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
-import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -210,39 +325,77 @@ You should see the edit page for the `products` resource with the id `123` that 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/edit/123
 setInitialRoutes(["/products/edit/123"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
-import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -259,39 +412,79 @@ You should see the show page for the `products` resource with the id `123` that 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/show/123
 setInitialRoutes(["/products/show/123"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
-import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };

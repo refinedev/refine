@@ -1,7 +1,8 @@
 import React from "react";
-import type { RefineProps } from "@pankod/refine-core";
+import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineAntd from "@pankod/refine-antd";
+import * as RefineAntd from "@refinedev/antd";
+import * as AntdCore from "antd";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -16,7 +17,9 @@ const RefineAntdDemo: React.FC<
 
     return (
         <RefineCommonScope.RefineCore.Refine
-            routerProvider={RefineCommonScope.RefineReactRouterV6.default}
+            legacyRouterProvider={
+                RefineCommonScope.LegacyRefineReactRouterV6.default
+            }
             dataProvider={RefineCommonScope.RefineSimpleRest.default(
                 SIMPLE_REST_API_URL,
             )}
@@ -39,6 +42,7 @@ const AntdScope = {
     // ...RefineCommonScope,
     RefineAntdDemo,
     RefineAntd,
+    AntdCore,
     // RefineMuiDemo,
     // RefineMui,
     // RefineMantine,

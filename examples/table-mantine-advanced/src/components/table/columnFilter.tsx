@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-    TextInput,
-    Menu,
-    ActionIcon,
-    Stack,
-    Group,
-} from "@pankod/refine-mantine";
+import { TextInput, Menu, ActionIcon, Stack, Group } from "@mantine/core";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 
 import { ColumnButtonProps } from "../../interfaces";

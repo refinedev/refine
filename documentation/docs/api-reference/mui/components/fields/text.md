@@ -18,12 +18,11 @@ Let's see how to use it in a basic list page:
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
-    TextFieldComponent,
-} from "@pankod/refine-mui";
+    TextFieldComponent as TextField,
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -32,7 +31,7 @@ const columns: GridColumns = [
         headerName: "Title",
         renderCell: function render({ row }) {
             // highlight-start
-            return <TextFieldComponent value={row.title} />;
+            return <TextField value={row.title} />;
             // highlight-end
         },
         minWidth: 100,
@@ -72,7 +71,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/TextField" />
+<PropsTable module="@refinedev/mui/TextField" />
 
 :::tip External Props
 It also accepts all props of Material UI [Typography](https://mui.com/material-ui/react-typography/#main-content).

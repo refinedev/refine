@@ -5,7 +5,7 @@ import {
     HttpError,
     CrudOperators,
     CrudFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
@@ -60,14 +60,13 @@ const DataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProviderType> => {
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
-            filters,
-        }) => {
+        getList: async ({ resource, pagination, filters }) => {
             const url = `${apiUrl}/${resource}`;
-            const { current = 1, pageSize = 3 } = pagination ?? {};
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const queryFilters = generateFilter(filters);
 
@@ -79,7 +78,7 @@ const DataProvider = (
                 limit?: number;
                 offset?: number;
             } = {
-                ...(hasPagination
+                ...(mode === "server"
                     ? {
                           offset: (current - 1) * pageSize,
                           limit: pageSize,

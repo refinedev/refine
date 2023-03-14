@@ -41,8 +41,8 @@
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine-core.svg)](https://www.npmjs.com/package/@pankod/refine-core)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
+[![npm version](https://img.shields.io/npm/v/@refinedev/core.svg)](https://www.npmjs.com/package/@refinedev/core)
+[![npm](https://img.shields.io/npm/dm/@refinedev/core)](https://www.npmjs.com/package/@refinedev/core)
 [![](https://img.shields.io/github/commit-activity/m/refinedev/refine)](https://github.com/refinedev/refine/commits/next)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -165,7 +165,7 @@ Let's consume a public `fake REST API` and add two resources (*posts*, *categori
 ```tsx title="src/App.tsx"
 import React from 'react';
 
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -174,19 +174,15 @@ import {
     Layout,
     ThemeProvider,
     LightTheme,
-    ReadyPage,
     ErrorComponent,
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
-import dataProvider from '@pankod/refine-simple-rest';
-import routerProvider from '@pankod/refine-react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
+import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
 
-import {
-    MuiListInferencer,
-    MuiShowInferencer,
-    MuiCreateInferencer,
-    MuiEditInferencer,
-} from '@pankod/refine-inferencer/mui';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+
+import { MuiInferencer } from '@refinedev/inferencer/mui';
 
 function App() {
     return (
@@ -194,36 +190,43 @@ function App() {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
             <RefineSnackbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        'https://api.fake-rest.refine.dev'
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: 'samples',
-                            list: MuiListInferencer,
-                            show: MuiShowInferencer,
-                            create: MuiCreateInferencer,
-                            edit: MuiEditInferencer,
-                            canDelete: true,
-                        },
-                        {
-                            name: 'categories',
-                            list: MuiListInferencer,
-                            show: MuiShowInferencer,
-                        },
-                        {
-                            name: 'tags',
-                            list: MuiListInferencer,
-                            show: MuiShowInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        dataProvider={dataProvider(
+                            'https://api.fake-rest.refine.dev'
+                        )}
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: 'samples',
+                                list: "/samples",
+                                show: "/samples/show/:id",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                )}
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                <Route path="samples">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );

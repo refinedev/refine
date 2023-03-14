@@ -1,4 +1,4 @@
-import { FormInstance, FormProps, ModalProps } from "../components/antd";
+import { FormInstance, FormProps } from "antd";
 import { UseFormConfig, UseModalFormConfig } from "sunflower-antd";
 export interface UseStepsFormConfig
     extends Omit<UseFormConfig, "defaultFormValues"> {

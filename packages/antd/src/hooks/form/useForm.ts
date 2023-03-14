@@ -1,6 +1,7 @@
 import React from "react";
 import { FormInstance, FormProps, Form } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
+import { ButtonProps } from "antd";
 
 import {
     HttpError,
@@ -11,9 +12,8 @@ import {
     UseFormProps as UseFormPropsCore,
     CreateResponse,
     UpdateResponse,
-} from "@pankod/refine-core";
-
-import { ButtonProps } from "../../components/antd";
+    pickNotDeprecated,
+} from "@refinedev/core";
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
@@ -67,6 +67,7 @@ export const useForm = <
     redirect,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     liveParams,
@@ -100,7 +101,8 @@ export const useForm = <
         resource,
         successNotification,
         errorNotification,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode,
         liveParams,
         mutationMode,

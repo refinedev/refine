@@ -5,8 +5,10 @@ import {
     useTranslate,
     useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    useRouterType,
+    useLink,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { AddBoxOutlined } from "@mui/icons-material";
 
@@ -21,33 +23,36 @@ import { CloneButtonProps } from "../types";
  *
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, resource, id } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const { cloneUrl: generateCloneUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const translate = useTranslate();
 
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
+
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "create",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -63,7 +68,10 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             );
     };
 
-    const cloneUrl = generateCloneUrl(resource.route!, id!);
+    const cloneUrl =
+        resource && (recordItemId || id)
+            ? generateCloneUrl(resource, recordItemId! ?? id!, meta)
+            : "";
 
     const { sx, ...restProps } = rest;
 
@@ -72,7 +80,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     }
 
     return (
-        <Link
+        <ActiveLink
             to={cloneUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -101,6 +109,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     children ?? translate("buttons.clone", "Clone")
                 )}
             </Button>
-        </Link>
+        </ActiveLink>
     );
 };

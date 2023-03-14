@@ -1,15 +1,19 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    LoginPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
+    AuthPage,
+} from "@refinedev/antd";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi";
 
-import routerProvider from "@pankod/refine-react-router-v6";
+import "@refinedev/antd/dist/reset.css";
 
-import "@pankod/refine-antd/dist/reset.css";
-import { DataProvider } from "@pankod/refine-strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
 import { SubscriberList, CreateSubscriber } from "./pages/subscriber";
@@ -21,32 +25,94 @@ function App() {
     const { authProvider, axiosInstance } = strapiAuthProvider(API_URL);
     const dataProvider = DataProvider(API_URL, axiosInstance);
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider}
                 authProvider={authProvider}
-                Header={Header}
-                Layout={Layout}
-                OffLayoutArea={OffLayoutArea}
                 routerProvider={routerProvider}
                 resources={[
                     {
                         name: "subscribers",
-                        list: SubscriberList,
-                        create: CreateSubscriber,
+                        list: "/subscribers",
+                        create: "/subscribers/create",
                     },
                     {
                         name: "messages",
-                        list: MessageList,
-                        create: MailCreate,
+                        list: "/messages",
+                        create: "/messages/create",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                LoginPage={LoginPage}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout
+                                    Header={Header}
+                                    OffLayoutArea={OffLayoutArea}
+                                >
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="subscribers" />
+                            }
+                        />
+
+                        <Route path="subscribers">
+                            <Route index element={<SubscriberList />} />
+                            <Route
+                                path="create"
+                                element={<CreateSubscriber />}
+                            />
+                        </Route>
+
+                        <Route path="messages">
+                            <Route index element={<MessageList />} />
+                            <Route path="create" element={<MailCreate />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="subscribers" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout
+                                    Header={Header}
+                                    OffLayoutArea={OffLayoutArea}
+                                >
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 }
 

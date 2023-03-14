@@ -22,7 +22,7 @@ describe("Config", () => {
             const response: any = await client.config.resources("dev");
 
             expect(response[0]["name"]).toEqual("post");
-            expect(response[0]["options"]["auditLog"]["permissions"]).toEqual([
+            expect(response[0]["meta"]["auditLog"]["permissions"]).toEqual([
                 "list",
             ]);
         });

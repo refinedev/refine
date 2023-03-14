@@ -1,7 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { Create, Form, Select, useSelect, useForm } from "@pankod/refine-antd";
+import { Create, useSelect, useForm } from "@refinedev/antd";
+import { Form, Select } from "antd";
 
 interface ICategory {
     id: number;

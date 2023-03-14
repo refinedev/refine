@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "@pankod/refine-antd";
+import { Row, Col } from "antd";
 import { useDrop } from "react-dnd";
 import { cardType } from "./constants/enums";
 

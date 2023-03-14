@@ -1,7 +1,7 @@
 ---
 id: multi-level-menu
 title: Multi Level Menu
-sidebar_label: Multi Level Menu
+sidebar_label: Multi Level Menu 🆙
 ---
 
 This document is related to how to create a multi-level menu for **refine** applications.
@@ -26,22 +26,16 @@ To do this, it is necessary to create an object array with the following [resour
                 {
                     // highlight-start
                     name: "posts",
-                    parentName: "CMS",
+                    meta: { parent: "CMS" },
                     // highlight-end
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
+                    list: "/posts",
                 },
                 {
                     // highlight-start
                     name: "category",
-                    parentName: "CMS",
+                    meta: { parent: "CMS", canDelete: true },
                     // highlight-end
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    canDelete: true,
+                    list: "/categories",
                 },
             ]}
         />
@@ -49,55 +43,17 @@ To do this, it is necessary to create an object array with the following [resour
 
 :::tip
 
-The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
-A resource given as a group can only have a `name` and a `parentName`. They should not have other props such as list, edit, create, etc.
-
-:::
-
-:::caution
-
-Since your Next.js applications are routing file-based, you need to manage the nested routes yourself. If you use Nested resources only for grouping Menu items in `Sider` and you don't need nested routes, you can give `route` option as a single level routing when defining your `resource`.
-
-```tsx title="pages/_app.tsx"
-        <Refine
-           ...
-            resources={[
-                {
-                    name: "CMS",
-                },
-                {
-                    name: "posts",
-                    parentName: "CMS",
-                    // highlight-next-line
-                    options: { route: "posts" },
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-                {
-                    name: "category",
-                    parentName: "CMS",
-                    // highlight-next-line
-                    options: { route: "category" },
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    canDelete: true,
-                },
-            ]}
-        />
-```
+The `meta.parent` you give in the resource objects must be strictly equal to the resource name you want to group under.
 
 :::
 
 ### Headless
 
-If you want to create your multi-level menu without any UI framework integration, [`useMenu`](/api-reference/core/hooks/ui/useMenu.md) hook gives your resources. The `createTreeView` helper from refine core allows you to create a tree for your headless sider.
+If you want to create your multi-level menu without any UI framework integration, [`useMenu`](/api-reference/core/hooks/ui/useMenu.md) hook gives your resources.
 
 ```tsx title="src/components/layout/sider/index.tsx"
 //highlight-next-line
-import { useMenu } from "@pankod/refine-core";
+import { useMenu } from "@refinedev/core";
 
 export const Sider: React.FC = () => {
     //highlight-next-line
@@ -113,18 +69,20 @@ export const Sider: React.FC = () => {
 [
     {
         name: "CMS",
-        route: "CMS",
+        key: "CMS",
         ...
         children: [
             {
                 name: "posts",
-                route: "CMS/posts",
+                key: "CMS/posts",
+                route: "/posts",
                 ...
                 children: [],
             },
             {
                 name: "category",
-                route: "CMS/category",
+                key: "CMS/category",
+                route: "/category",
                 ...
                 children: [],
             },
@@ -137,7 +95,7 @@ export const Sider: React.FC = () => {
 
 ### Ant Design
 
-The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `parentName`.
+The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `meta.parent`.
 
 This gives you more control over the side menu and allows you to customize it to better suit your needs.
 

@@ -2,16 +2,20 @@ import { useCallback } from "react";
 import {
     BaseKey,
     BaseRecord,
+    FormWithSyncWithLocationParams,
     HttpError,
+    useGo,
     useModal,
+    useParsed,
     useResource,
     userFriendlyResourceName,
     useTranslate,
     useWarnAboutChange,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { FieldValues } from "react-hook-form";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import React from "react";
 
 export type UseModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -53,7 +57,7 @@ export type UseModalFormProps<
         autoSubmitClose?: boolean;
         autoResetForm?: boolean;
     };
-};
+} & FormWithSyncWithLocationParams;
 
 export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
@@ -63,6 +67,7 @@ export const useModalForm = <
 >({
     modalProps,
     refineCoreProps,
+    syncWithLocation,
     ...rest
 }: UseModalFormProps<
     TData,
@@ -70,10 +75,30 @@ export const useModalForm = <
     TVariables,
     TContext
 > = {}): UseModalFormReturnType<TData, TError, TVariables, TContext> => {
+    const initiallySynced = React.useRef(false);
+
     const translate = useTranslate();
 
     const { resource: resourceProp, action: actionProp } =
         refineCoreProps ?? {};
+
+    const { resource, action: actionFromParams } = useResource(resourceProp);
+
+    const parsed = useParsed();
+    const go = useGo();
+
+    const action = actionProp ?? actionFromParams ?? "";
+
+    const syncingId =
+        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+
+    const syncWithLocationKey =
+        typeof syncWithLocation === "object" && "key" in syncWithLocation
+            ? syncWithLocation.key
+            : resource && action && syncWithLocation
+            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
+            : undefined;
+
     const {
         defaultVisible = false,
         autoSubmitClose = true,
@@ -87,7 +112,7 @@ export const useModalForm = <
 
     const {
         reset,
-        refineCore: { onFinish, setId },
+        refineCore: { onFinish, id, setId },
         saveButtonProps,
         handleSubmit,
     } = useHookFormResult;
@@ -95,6 +120,56 @@ export const useModalForm = <
     const { visible, show, close } = useModal({
         defaultVisible,
     });
+
+    React.useEffect(() => {
+        if (initiallySynced.current === false && syncWithLocationKey) {
+            const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+            if (typeof openStatus === "boolean") {
+                if (openStatus) {
+                    show();
+                }
+            } else if (typeof openStatus === "string") {
+                if (openStatus === "true") {
+                    show();
+                }
+            }
+
+            if (syncingId) {
+                const idFromParams = parsed?.params?.[syncWithLocationKey]?.id;
+                if (idFromParams) {
+                    setId?.(idFromParams);
+                }
+            }
+
+            initiallySynced.current = true;
+        }
+    }, [syncWithLocationKey, parsed, syncingId, setId]);
+
+    React.useEffect(() => {
+        if (initiallySynced.current === true) {
+            if (visible && syncWithLocationKey) {
+                go({
+                    query: {
+                        [syncWithLocationKey]: {
+                            ...parsed?.params?.[syncWithLocationKey],
+                            open: true,
+                            ...(syncingId && id && { id }),
+                        },
+                    },
+                    options: { keepQuery: true },
+                    type: "replace",
+                });
+            } else if (syncWithLocationKey && !visible) {
+                go({
+                    query: {
+                        [syncWithLocationKey]: undefined,
+                    },
+                    options: { keepQuery: true },
+                    type: "replace",
+                });
+            }
+        }
+    }, [id, visible, show, syncWithLocationKey, syncingId]);
 
     const submit = async (values: TVariables) => {
         await onFinish(values);
@@ -107,10 +182,6 @@ export const useModalForm = <
             reset();
         }
     };
-
-    const { resourceName } = useResource({
-        resourceNameOrRouteName: resourceProp,
-    });
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const handleClose = useCallback(() => {
@@ -140,10 +211,15 @@ export const useModalForm = <
     }, []);
 
     const title = translate(
-        `${resourceName}.titles.${actionProp}`,
+        `${resource?.name}.titles.${actionProp}`,
         undefined,
         `${userFriendlyResourceName(
-            `${actionProp} ${resourceName}`,
+            `${actionProp} ${
+                resource?.meta?.label ??
+                resource?.options?.label ??
+                resource?.label ??
+                resource?.name
+            }`,
             "singular",
         )}`,
     );

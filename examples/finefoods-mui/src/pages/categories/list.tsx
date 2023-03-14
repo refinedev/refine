@@ -3,40 +3,38 @@ import {
     useTranslate,
     IResourceComponentsProps,
     HttpError,
-} from "@pankod/refine-core";
-import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useForm, useModalForm } from "@refinedev/react-hook-form";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     List,
     BooleanField,
+    EditButton,
+    SaveButton,
+    useDataGrid,
+    DateField,
+    NumberField,
+} from "@refinedev/mui";
+
+import { GridColumns, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+
+import {
     Checkbox,
     TableContainer,
     Table,
     Stack,
-    EditButton,
     TableBody,
     TableRow,
     Button,
-    SaveButton,
     TableCell,
     TextField,
     TableHead,
     IconButton,
     Typography,
     TablePagination,
-    useDataGrid,
     Avatar,
-    GridColumns,
-    DataGrid,
-    DateField,
-    NumberField,
-    GridActionsCellItem,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 
 import {
     Edit,
@@ -215,7 +213,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     }, []);
 
     return (
-        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <form onSubmit={handleSubmit(onFinish)}>
                 <TableContainer>
                     <Table size="small">
@@ -433,7 +431,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     return (
         <List
-            cardHeaderProps={{
+            headerProps={{
                 title: t("products.products"),
             }}
         >

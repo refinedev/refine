@@ -1,8 +1,8 @@
-import { ModalProps } from "../../../components/antd";
+import { ModalProps } from "antd";
 import {
     useModal as useCoreModal,
     useModalReturnType as useCoreModelReturnType,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type useModalReturnType = {
     modalProps: ModalProps;

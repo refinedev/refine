@@ -10,11 +10,11 @@ describe("useOne", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).getOne({
             resource: "posts",
             id: "72fab741-2352-49cb-8b31-06ae4be2f1d1",
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
@@ -27,11 +27,11 @@ describe("useOne", () => {
         );
     });
 
-    it("correct response with metaData and custom idType", async () => {
+    it("correct response with meta and custom idType", async () => {
         const { data } = await dataProvider(nhost, { idType: "Int" }).getOne({
             resource: "users",
             id: 1,
-            metaData: {
+            meta: {
                 fields: ["id", "name", "email"],
             },
         });
@@ -41,7 +41,7 @@ describe("useOne", () => {
         expect(data["email"]).toEqual("dev@refine.com");
     });
 
-    it("correct response with metaData and dynamic idType", async () => {
+    it("correct response with meta and dynamic idType", async () => {
         const idTypeMap: Record<string, "Int" | "uuid"> = {
             users: "Int",
             posts: "uuid",
@@ -52,7 +52,7 @@ describe("useOne", () => {
         const { data: userData } = await cDataProvider.getOne({
             resource: "users",
             id: 1,
-            metaData: {
+            meta: {
                 fields: ["id", "name", "email"],
             },
         });
@@ -64,7 +64,7 @@ describe("useOne", () => {
         const { data: postData } = await cDataProvider.getOne({
             resource: "posts",
             id: "72fab741-2352-49cb-8b31-06ae4be2f1d1",
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

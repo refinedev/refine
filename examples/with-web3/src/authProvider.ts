@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -15,20 +15,24 @@ const web3Modal = new Web3Modal({
 // eslint-disable-next-line
 let provider: any | null = null;
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async () => {
         if (window.ethereum) {
             provider = await web3Modal.connect();
             const web3 = new Web3(provider);
             const accounts = await web3.eth.getAccounts();
             localStorage.setItem(TOKEN_KEY, accounts[0]);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } else {
-            return Promise.reject(
-                new Error(
+            return {
+                success: false,
+                error: new Error(
                     "Not set ethereum wallet or invalid. You need to install Metamask",
                 ),
-            );
+            };
         }
     },
     logout: async () => {
@@ -39,29 +43,41 @@ export const authProvider: AuthProvider = {
             provider = null;
             await web3Modal.clearCachedProvider();
         }
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            redirectTo: "/login",
+            logout: true,
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const address = localStorage.getItem(TOKEN_KEY);
         if (!address) {
-            return Promise.reject();
+            return null;
         }
 
         const balance = await getBalance(address);
 
-        return Promise.resolve({
+        return {
             address,
             balance,
-        });
+        };
     },
 };

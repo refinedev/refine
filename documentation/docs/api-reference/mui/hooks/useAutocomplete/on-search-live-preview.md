@@ -1,11 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import {
-    Autocomplete,
-    useAutocomplete,
-    TextField,
-} from "@pankod/refine-mui";
+import { useAutocomplete } from "@refinedev/mui";
+import { Autocomplete, TextField } from "@mui/material";
 
 interface ICategory {
     id: number;
@@ -21,8 +18,8 @@ const PostCreate: React.FC = () => {
                 field: "title",
                 operator: "contains",
                 value,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 

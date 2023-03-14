@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import nookies from "nookies";
 
 const mockUsers = [
@@ -12,8 +12,8 @@ const mockUsers = [
     },
 ];
 
-export const authProvider: AuthProvider = {
-    login: ({ email }) => {
+export const authProvider: AuthBindings = {
+    login: async ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
@@ -22,40 +22,61 @@ export const authProvider: AuthProvider = {
                 maxAge: 30 * 24 * 60 * 60,
                 path: "/",
             });
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+        };
     },
-    logout: () => {
+    logout: async () => {
         nookies.destroy(null, "auth");
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return {
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {};
     },
-    checkAuth: (ctx) => {
+    check: async (ctx) => {
         const cookies = nookies.get(ctx);
-        return cookies["auth"] ? Promise.resolve() : Promise.reject();
+        return cookies["auth"]
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  error: new Error("Unauthorized"),
+                  logout: true,
+                  redirectTo: "/login",
+              };
     },
     getPermissions: () => {
         const auth = nookies.get()["auth"];
         if (auth) {
             const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.roles);
+            return parsedUser.roles;
         }
-        return Promise.reject();
+        return null;
     },
-    getUserIdentity: () => {
+    getIdentity: () => {
         const auth = nookies.get()["auth"];
         if (auth) {
             const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.username);
+            return parsedUser.username;
         }
-        return Promise.reject();
+        return null;
     },
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Spinner } from "@pankod/refine-chakra-ui";
+import { Box, Spinner } from "@chakra-ui/react";
 
 import { CreateInferencerConfig } from "@/types";
 

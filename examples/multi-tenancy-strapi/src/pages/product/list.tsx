@@ -1,14 +1,15 @@
 import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
 import {
     useSimpleList,
-    AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 

@@ -1,6 +1,11 @@
 import * as React from "react";
-import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
-import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
+import {
+    LoginPageProps,
+    LoginFormTypes,
+    useActiveAuthProvider,
+} from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import { FormProvider } from "react-hook-form";
 import {
     Button,
     BoxProps,
@@ -23,7 +28,9 @@ import {
     useLogin,
     useTranslate,
     useRouterContext,
-} from "@pankod/refine-core";
+    useRouterType,
+    useLink,
+} from "@refinedev/core";
 import { layoutStyles, titleStyles } from "../styles";
 
 import { FormPropsType } from "../../index";
@@ -53,9 +60,16 @@ export const LoginPage: React.FC<LoginProps> = ({
         formState: { errors },
     } = methods;
 
-    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -178,7 +192,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {forgotPasswordLink ?? (
                             <MuiLink
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/forgot-password"
                             >
@@ -211,7 +225,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             <MuiLink
                                 ml="8px"
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/register"
                                 fontWeight="bold"

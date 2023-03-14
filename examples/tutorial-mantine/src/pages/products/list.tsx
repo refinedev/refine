@@ -3,19 +3,18 @@ import {
     IResourceComponentsProps,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
-    ScrollArea,
     List,
-    Table,
-    Pagination,
-    Group,
     EditButton,
     ShowButton,
     DeleteButton,
     MarkdownField,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
+
+import { ScrollArea, Table, Pagination, Group } from "@mantine/core";
 
 import { ColumnSorter } from "../../components/table/ColumnSorter";
 import { ColumnFilter } from "../../components/table/ColumnFilter";

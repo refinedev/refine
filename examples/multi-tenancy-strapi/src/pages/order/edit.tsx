@@ -1,15 +1,9 @@
 import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
-import {
-    Form,
-    Input,
-    useForm,
-    useSelect,
-    Select,
-    InputNumber,
-    Edit,
-} from "@pankod/refine-antd";
+import { useForm, useSelect, Edit } from "@refinedev/antd";
+
+import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
 import { StoreContext } from "context/store";

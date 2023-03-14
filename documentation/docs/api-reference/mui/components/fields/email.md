@@ -4,7 +4,6 @@ title: Email
 swizzle: true
 ---
 
-
 This field is used to display email values. It uses the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component of [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) from Material UI.
 
 :::info-tip Swizzle
@@ -19,12 +18,11 @@ Let's see how we can use `<EmailField>` with the example in the user list.
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     EmailField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -35,9 +33,7 @@ const columns: GridColumns = [
         headerName: "Email Address",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <EmailField value={row.email} />
-            );
+            return <EmailField value={row.email} />;
             // highlight-end
         },
         minWidth: 100,
@@ -83,7 +79,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/EmailField"/>
+<PropsTable module="@refinedev/mui/EmailField"/>
 
 :::tip External Props
 It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).

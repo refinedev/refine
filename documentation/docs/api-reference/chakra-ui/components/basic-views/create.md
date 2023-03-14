@@ -14,17 +14,17 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
 const DummyListPage = () => (
-    <RefineChakra.VStack alignItems="flex-start">
-        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+    <ChakraUI.VStack alignItems="flex-start">
+        <ChakraUI.Text>This page is empty.</ChakraUI.Text>
         <CreateButton colorScheme="black" />
-    </RefineChakra.VStack>
+    </ChakraUI.VStack>
 );
 
 interface ICategory {
@@ -47,21 +47,20 @@ We'll show what `<Create>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
+import { Create } from "@refinedev/chakra-ui";
 import {
-    Create,
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
     Select,
-} from "@pankod/refine-chakra-ui";
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@chakra-ui/react";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreate: React.FC = () => {
     const {
@@ -131,8 +130,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -162,12 +160,12 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create, Heading } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
+import { Heading } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -181,8 +179,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -208,12 +205,11 @@ render(
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -227,8 +223,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -248,18 +243,17 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { Layout } from "@refinedev/chakra-ui";
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { Layout, Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -269,11 +263,12 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -290,7 +285,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -305,9 +299,8 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 const IconMoodSmile = (
     <svg
@@ -331,7 +324,7 @@ const IconMoodSmile = (
 );
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 /* highlight-next-line */
 import { IconMoodSmile } from "@tabler/icons";
 
@@ -347,8 +340,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -372,12 +364,11 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -391,8 +382,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -412,7 +402,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
@@ -422,12 +412,12 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
+import { Create, Breadcrumb } from "@refinedev/chakra-ui";
+import { Box } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -448,8 +438,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -469,18 +458,17 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Box>` can get.
+If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Box>` can get.
 
 [Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -501,8 +489,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -528,12 +515,11 @@ If you want to customize the header of the `<Create/>` component, you can use th
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -554,8 +540,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -581,12 +566,11 @@ If you want to customize the content of the `<Create/>` component, you can use t
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=320px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -607,8 +591,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -632,12 +615,12 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create, Button, Box } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
+import { Button, Box } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -666,8 +649,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -693,12 +675,12 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
+import { Button } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -720,8 +702,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -745,12 +726,12 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create, Button, HStack } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
+import { Button, HStack } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -779,8 +760,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -806,12 +786,11 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -834,8 +813,7 @@ const PostCreate: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -857,4 +835,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-chakra-ui/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
+<PropsTable module="@refinedev/chakra-ui/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>

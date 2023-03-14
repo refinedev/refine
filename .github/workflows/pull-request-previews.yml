@@ -1,4 +1,4 @@
-name: Pull Request Previews
+name: PR Previews
 
 on:
   pull_request:
@@ -18,6 +18,8 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+
+    name: Fine Foods Antd
 
     steps:
       - name: Workflow run cleanup action
@@ -53,6 +55,8 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+
+    name: Fine Foods MUI
 
     steps:
       - name: Workflow run cleanup action

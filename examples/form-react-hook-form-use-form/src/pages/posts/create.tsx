@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect, useApiUrl } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect, useApiUrl } from "@refinedev/core";
 
 import axios from "axios";
 

@@ -1,19 +1,23 @@
-import { useTranslate, BaseKey } from "@pankod/refine-core";
+import { useTranslate, BaseKey } from "@refinedev/core";
 
+import { NumberField } from "@refinedev/antd";
+
+import {
+    CloseCircleOutlined,
+    FormOutlined,
+    MoreOutlined,
+} from "@ant-design/icons";
 import {
     Avatar,
     Card,
     Divider,
     InputNumber,
-    Icons,
     Dropdown,
     Menu,
-    NumberField,
     Typography,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Text, Paragraph } = Typography;
-const { CloseCircleOutlined, FormOutlined } = Icons;
 
 import { IProduct } from "interfaces";
 
@@ -81,7 +85,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                     }
                     trigger={["click"]}
                 >
-                    <Icons.MoreOutlined
+                    <MoreOutlined
                         style={{
                             fontSize: 24,
                         }}

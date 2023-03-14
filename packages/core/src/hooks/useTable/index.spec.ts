@@ -1,10 +1,10 @@
 import { act } from "react-dom/test-utils";
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useTable } from ".";
-import { CrudFilters } from "src/interfaces";
+import { CrudFilters, CrudSorting } from "src/interfaces";
 
 const defaultPagination = {
     pageSize: 10,
@@ -18,12 +18,19 @@ const customPagination = {
     pageSize: 1,
 };
 
+const routerProvider = mockRouterBindings({
+    resource: {
+        name: "posts",
+    },
+});
+
 describe("useTable Hook", () => {
     it("default", async () => {
         const { result } = renderHook(() => useTable(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
+                routerProvider,
             }),
         });
 
@@ -48,13 +55,16 @@ describe("useTable Hook", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialCurrent: customPagination.defaultCurrent,
-                    initialPageSize: customPagination.defaultPageSize,
+                    pagination: {
+                        current: customPagination.defaultCurrent,
+                        pageSize: customPagination.defaultPageSize,
+                    },
                 }),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }],
+                    routerProvider,
                 }),
             },
         );
@@ -70,31 +80,6 @@ describe("useTable Hook", () => {
         expect(pageCount).toEqual(2);
     });
 
-    it("with disabled pagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useTable({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await waitFor(() => {
-            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
-        });
-
-        const { pageSize, current, pageCount } = result.current;
-
-        expect(pageSize).toBeUndefined();
-        expect(current).toBeUndefined();
-        expect(pageCount).toBeUndefined();
-    });
-
     it("with custom resource", async () => {
         const { result } = renderHook(
             () =>
@@ -108,6 +93,7 @@ describe("useTable Hook", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
+                    routerProvider,
                 }),
             },
         );
@@ -137,6 +123,7 @@ describe("useTable Hook", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
+                    routerProvider,
                 }),
             },
         );
@@ -165,6 +152,7 @@ describe("useTable Hook", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
+                    routerProvider,
                 }),
             },
         );
@@ -173,12 +161,269 @@ describe("useTable Hook", () => {
             expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
     });
+
+    it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialCurrent: 10,
+                    initialPageSize: 20,
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        expect(result.current.pageSize).toBe(10);
+        expect(result.current.current).toBe(1);
+    });
+
+    it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorter(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
+
+    it("when setSorters is called, it should update deprecated sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorters(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
+
+    it("`filters.initial` should be prioritized over initialFilter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter: [{ field: "id", operator: "eq", value: 1 }],
+                    filters: {
+                        initial: [
+                            { field: "id", operator: "contains", value: "foo" },
+                        ],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        expect(result.current.filters).toStrictEqual([
+            { field: "id", operator: "contains", value: "foo" },
+        ]);
+    });
+
+    it("`filters.permanent` should be prioritized over permanentFilter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter: [
+                        { field: "id", operator: "eq", value: 1 },
+                    ],
+                    filters: {
+                        permanent: [
+                            { field: "id", operator: "contains", value: "foo" },
+                        ],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        expect(result.current.filters).toStrictEqual([
+            { field: "id", operator: "contains", value: "foo" },
+        ]);
+    });
+
+    it("`filters.defaultBehavior` should be prioritized over defaultSetFilterBehavior", async () => {
+        const initialFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    defaultSetFilterBehavior: "merge",
+                    filters: {
+                        initial: initialFilters,
+                        defaultBehavior: "replace",
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilters);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters);
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("`sorters.initial` should be prioritized over initialSorter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialSorter: [{ field: "id", order: "asc" }],
+                    sorters: {
+                        initial: [{ field: "title", order: "desc" }],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        expect(result.current.sorters).toStrictEqual([
+            { field: "title", order: "desc" },
+        ]);
+    });
+
+    it("`sorters.permanent` should be prioritized over permanentSorter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentSorter: [{ field: "id", order: "asc" }],
+                    sorters: {
+                        permanent: [{ field: "title", order: "desc" }],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        expect(result.current.sorters).toStrictEqual([
+            { field: "title", order: "desc" },
+        ]);
+    });
+
+    it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialCurrent: 10,
+                    initialPageSize: 20,
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
+            },
+        );
+
+        expect(result.current.pageSize).toBe(10);
+        expect(result.current.current).toBe(1);
+    });
+
+    it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorter(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
+
+    it("when setSorters is called, it should update deprecated sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorters(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
 });
 
 describe("useTable Filters", () => {
     const wrapper = TestWrapper({
         dataProvider: MockJSONServer,
         resources: [{ name: "posts" }],
+        routerProvider,
     });
 
     it("should be empty initially", async () => {
@@ -234,7 +479,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -269,8 +516,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
-                    permanentFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -314,8 +563,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -351,7 +602,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -409,8 +662,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -474,8 +729,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -536,7 +793,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -591,7 +850,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -647,8 +908,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -716,7 +979,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -776,7 +1041,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -826,8 +1093,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
-                    defaultSetFilterBehavior: "replace",
+                    filters: {
+                        initial: initialFilter,
+                        defaultBehavior: "replace",
+                    },
                 }),
             {
                 wrapper,
@@ -875,7 +1144,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -923,7 +1194,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -988,8 +1261,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
-                    permanentFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,

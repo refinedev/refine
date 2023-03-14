@@ -11,12 +11,12 @@ import {
     useMutationMode,
     useCancelNotification,
     useTranslate,
-    useCheckError,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useLog,
     useInvalidate,
+    useOnError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -28,11 +28,16 @@ import {
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
-    MetaDataQuery,
     PreviousQuery,
     IQueryKeys,
+    MetaQuery,
 } from "../../interfaces";
-import { queryKeys, pickDataProvider } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    pickNotDeprecated,
+    useActiveAuthProvider,
+} from "@definitions/helpers";
 
 export type DeleteParams<TVariables> = {
     id: BaseKey;
@@ -40,7 +45,11 @@ export type DeleteParams<TVariables> = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
     values?: TVariables;
@@ -96,7 +105,10 @@ export const useDelete = <
     TError,
     TVariables
 > => {
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const dataProvider = useDataProvider();
 
     const { resources } = useResource();
@@ -126,6 +138,7 @@ export const useDelete = <
             undoableTimeout,
             resource,
             onCancel,
+            meta,
             metaData,
             dataProviderName,
             values,
@@ -142,7 +155,8 @@ export const useDelete = <
                 ).deleteOne<TData, TVariables>({
                     resource,
                     id,
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                     variables: values,
                 });
             }
@@ -160,7 +174,7 @@ export const useDelete = <
                             .deleteOne<TData, TVariables>({
                                 resource,
                                 id,
-                                metaData,
+                                meta: pickNotDeprecated(meta, metaData),
                                 variables: values,
                             })
                             .then((result) => resolve(result))
@@ -296,6 +310,7 @@ export const useDelete = <
                     resource,
                     successNotification,
                     dataProviderName,
+                    meta,
                     metaData,
                 },
                 context,
@@ -336,7 +351,7 @@ export const useDelete = <
                 });
 
                 const { fields, operation, variables, ...rest } =
-                    metaData || {};
+                    pickNotDeprecated(meta, metaData) || {};
 
                 log?.mutate({
                     action: "delete",

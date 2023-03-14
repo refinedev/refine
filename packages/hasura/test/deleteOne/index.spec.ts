@@ -3,11 +3,11 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("deleteOne", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).deleteOne({
             resource: "posts",
             id: "bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7",
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -16,13 +16,13 @@ describe("deleteOne", () => {
         expect(data.title).toEqual("asdfasdfsadf");
     });
 
-    it("correct response with metaData and Int idType", async () => {
+    it("correct response with meta and Int idType", async () => {
         const { data } = await dataProvider(client, {
             idType: "Int",
         }).deleteOne({
             resource: "users",
             id: 1,
-            metaData: {
+            meta: {
                 fields: ["id", "name"],
             },
         });

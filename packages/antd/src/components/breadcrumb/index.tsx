@@ -1,10 +1,14 @@
 import React from "react";
 import {
     useBreadcrumb,
+    useLink,
     useRefineContext,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+    useRouterType,
+    useResource,
+    matchResourceFromRoute,
+} from "@refinedev/core";
+import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
     Breadcrumb as AntdBreadcrumb,
@@ -18,10 +22,21 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    meta,
 }) => {
-    const { breadcrumbs } = useBreadcrumb();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const { breadcrumbs } = useBreadcrumb({
+        meta,
+    });
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
     const { hasDashboard } = useRefineContext();
+
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     if (breadcrumbs.length === 1) {
         return null;
@@ -29,11 +44,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
     return (
         <AntdBreadcrumb {...breadcrumbProps}>
-            {showHome && hasDashboard && (
+            {showHome && (hasDashboard || rootRouteResource.found) && (
                 <AntdBreadcrumb.Item>
-                    <Link to="/">
-                        <HomeOutlined />
-                    </Link>
+                    <ActiveLink to="/">
+                        {rootRouteResource?.resource?.meta?.icon ?? (
+                            <HomeOutlined />
+                        )}
+                    </ActiveLink>
                 </AntdBreadcrumb.Item>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
@@ -41,7 +58,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     <AntdBreadcrumb.Item key={label}>
                         {!hideIcons && icon}
                         {href ? (
-                            <Link to={href}>{label}</Link>
+                            <ActiveLink to={href}>{label}</ActiveLink>
                         ) : (
                             <span>{label}</span>
                         )}

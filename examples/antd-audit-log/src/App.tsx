@@ -1,13 +1,25 @@
-import { AuthProvider, Refine, GitHubBanner } from "@pankod/refine-core";
+import {
+    AuthBindings,
+    Authenticated,
+    GitHubBanner,
+    Refine,
+} from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     AuthPage,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/antd";
+import { DashboardOutlined } from "@ant-design/icons";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -18,48 +30,89 @@ import {
 } from "pages/categories";
 import { DashboardPage } from "pages/dashboard";
 import { ILoginDto } from "interfaces";
-
 import refineSDK from "utils/refine-sdk";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async (payload: ILoginDto) => {
         const { email, password, providerName } = payload;
 
-        await refineSDK.auth.login({
-            email,
-            password,
-            provider: providerName,
-        });
+        try {
+            await refineSDK.auth.login({
+                email,
+                password,
+                provider: providerName,
+            });
 
-        return Promise.resolve();
+            return {
+                success: true,
+            };
+        } catch (error) {
+            return {
+                success: false,
+                error: new Error("Invalid email or password"),
+            };
+        }
     },
-    logout: async () => refineSDK.auth.logout(),
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        // for social login
-        refineSDK.auth.getSessionFromUrl();
+    logout: async () => {
+        try {
+            await refineSDK.auth.logout();
 
-        return refineSDK.auth
-            .session()
-            .then(() => {
-                return Promise.resolve();
-            })
-            .catch(() => Promise.reject());
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
+        } catch (error: any) {
+            return {
+                success: false,
+                error: new Error(error),
+            };
+        }
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
-        return refineSDK.auth
-            .session()
-            .then((response) => Promise.resolve(response))
-            .catch(() => Promise.reject());
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
+        try {
+            await refineSDK.auth.getSessionFromUrl();
+            const user = await refineSDK.auth.session();
+
+            if (!user) {
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                    logout: true,
+                };
+            }
+
+            return {
+                authenticated: true,
+            };
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                redirectTo: "/login",
+                logout: true,
+                error,
+            };
+        }
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
+        try {
+            const response = await refineSDK.auth.session();
+            return response;
+        } catch (error) {
+            return null;
+        }
     },
 };
 
 const App: React.FC = () => {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
@@ -67,33 +120,36 @@ const App: React.FC = () => {
                 authProvider={authProvider}
                 resources={[
                     {
+                        name: "dashboard",
+                        list: "/",
+                        meta: {
+                            label: "Dashboard",
+                            icon: <DashboardOutlined />,
+                        },
+                    },
+                    {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                        canDelete: true,
-                        options: {
-                            auditLog: {
-                                permissions: ["create", "delete", "update"],
-                            },
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        meta: {
+                            canDelete: true,
+                            audit: ["create", "delete", "update"],
                         },
                     },
                     {
                         name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                        edit: CategoryEdit,
-                        show: CategoryShow,
-                        canDelete: true,
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                        meta: {
+                            canDelete: true,
+                        },
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                Header={() => null}
-                LoginPage={AuthPage}
-                DashboardPage={DashboardPage}
                 auditLogProvider={{
                     create: async ({ ...params }) => {
                         await refineSDK.log.create(params);
@@ -112,8 +168,68 @@ const App: React.FC = () => {
                         });
                     },
                 }}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<DashboardPage />} />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+
+                        <Route path="/categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

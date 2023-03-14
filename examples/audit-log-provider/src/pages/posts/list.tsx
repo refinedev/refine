@@ -1,4 +1,4 @@
-import { useTable, useNavigation, useModal } from "@pankod/refine-core";
+import { useTable, useNavigation, useModal } from "@refinedev/core";
 import { useState } from "react";
 
 import { Modal } from "../../components/modal";
@@ -20,7 +20,12 @@ export const PostList: React.FC = () => {
 
     return (
         <div>
-            <button onClick={() => create("posts")}>Create Post</button>
+            <button
+                style={{ marginBottom: "8px" }}
+                onClick={() => create("posts")}
+            >
+                Create Post
+            </button>
             <table>
                 <thead>
                     <tr>

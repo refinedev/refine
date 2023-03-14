@@ -11,7 +11,7 @@ export const provideCliHelpers = (
     isAbsolute?: boolean,
 ) => {
     Module.prototype.require = function (...args: Parameters<NodeRequire>) {
-        if ((args[0] as unknown as string) === "@pankod/refine-cli") {
+        if ((args[0] as unknown as string) === "@refinedev/cli") {
             return {
                 ...RefineCLI,
                 getFileContent: (filePath: string) => {

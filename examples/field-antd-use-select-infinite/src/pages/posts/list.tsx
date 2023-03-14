@@ -1,18 +1,16 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     FilterDropdown,
-    Select,
     useSelect,
-    SelectProps,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space, Select, SelectProps } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 import { useRef, useState } from "react";

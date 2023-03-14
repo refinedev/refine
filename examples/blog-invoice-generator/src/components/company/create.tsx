@@ -1,18 +1,11 @@
-import { useApiUrl } from "@pankod/refine-core";
-import {
-    Modal,
-    Form,
-    Input,
-    ModalProps,
-    FormProps,
-    Upload,
-} from "@pankod/refine-antd";
+import { useApiUrl } from "@refinedev/core";
+import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 
 import {
     useStrapiUpload,
     getValueProps,
     mediaUploadMapper,
-} from "@pankod/refine-strapi-v4";
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 

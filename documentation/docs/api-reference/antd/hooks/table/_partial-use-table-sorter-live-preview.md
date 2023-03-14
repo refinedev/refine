@@ -9,16 +9,16 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-next-line
     getDefaultSortOrder,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 interface IPost {
     id: number;
@@ -27,15 +27,17 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
     // highlight-end
 

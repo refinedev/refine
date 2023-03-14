@@ -7,20 +7,20 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { GitHubBanner, AuthPage, Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-remix-router";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/remix-router";
 
-import { PostCreate, PostEdit, PostList } from "./pages/posts";
 import { authProvider } from "./authProvider";
+import { API_URL } from "./constants";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
     title: "New Remix + Refine App",
     viewport: "width=device-width,initial-scale=1",
 });
-
-const API_URL = "https://api.fake-rest.refine.dev";
 
 export default function App() {
     return (
@@ -38,15 +38,18 @@ export default function App() {
                     resources={[
                         {
                             name: "posts",
-                            list: PostList,
-                            create: PostCreate,
-                            edit: PostEdit,
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
                         },
                     ]}
-                    LoginPage={AuthPage}
-                    options={{ syncWithLocation: true }}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Outlet />
+                    <UnsavedChangesNotifier />
                 </Refine>
                 <ScrollRestoration />
                 <Scripts />

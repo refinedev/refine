@@ -1,9 +1,9 @@
 import {
     ActionIcon,
     Group,
-    MantineHeader,
+    Header as MantineHeader,
     useMantineColorScheme,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons";
 
 export const Header: React.FC = () => {

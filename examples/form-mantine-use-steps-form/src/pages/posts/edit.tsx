@@ -1,16 +1,14 @@
+import { Edit, useStepsForm, SaveButton } from "@refinedev/mantine";
 import {
     Button,
     Code,
-    Edit,
     Group,
     Select,
     Stepper,
     TextInput,
-    useStepsForm,
-    SaveButton,
     Text,
     Space,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 import { RichTextEditor } from "@mantine/rte";
 import { DatePicker } from "@mantine/dates";
 import dayjs from "dayjs";

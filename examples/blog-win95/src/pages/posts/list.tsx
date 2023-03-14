@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
-import { useOne, useNavigation, useImport } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useOne, useNavigation, useImport } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import { IPost, ICategory, ICsvPost } from "interfaces";
 import {

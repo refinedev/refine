@@ -1,6 +1,7 @@
 ---
 id: graphql
 title: GraphQL
+sidebar_label: GraphQL 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -36,11 +37,11 @@ Hooks and components that support `MetaDataQuery`:
 ## Setup
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql
+npm i @refinedev/core @refinedev/antd @refinedev/strapi-graphql
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 :::info
@@ -49,33 +50,36 @@ We used [strapi-graphql](https://github.com/refinedev/refine/tree/master/package
 
 ## Usage
 
-To activate the data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
+To activate the data provider in `@refinedev/strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
 // highlight-next-line
-import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
+import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            // highlight-next-line
-            dataProvider={dataProvider(client)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                // highlight-next-line
+                dataProvider={dataProvider(client)}
+                notificationProvider={notificationProvider}
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -104,7 +108,7 @@ You can see the fields of the collections we created as below.
 
 ## List Page
 
-When sending the request, we must specify which fields will come, so we send `fields` in `metaData` to hooks that we will fetch data from.
+When sending the request, we must specify which fields will come, so we send `fields` in `meta` to hooks that we will fetch data from.
 
 <Tabs
 defaultValue="usage"
@@ -115,16 +119,18 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
         // highlight-start
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -139,7 +145,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
         // highlight-end
@@ -234,7 +240,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 ## Edit Page
 
-On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
+On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `meta` to determine which fields will come in this request.
 
 <Tabs
 defaultValue="usage"
@@ -245,14 +251,14 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
         IPost
     >({
         // highlight-start
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -270,7 +276,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: postData?.category.id,
         // highlight-start
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
         // highlight-end
@@ -328,7 +334,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 ```
 
 :::info
-The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
+The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
 :::
 
 </TabItem>
@@ -369,11 +375,11 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>({
         resource: "posts",
         // highlight-start
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",

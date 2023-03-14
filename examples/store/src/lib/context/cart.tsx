@@ -5,7 +5,7 @@ import {
     useDelete,
     useUpdate,
     useInvalidate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 
 import { useCart } from "@lib/hooks";

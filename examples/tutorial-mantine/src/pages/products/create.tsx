@@ -1,11 +1,6 @@
-import {
-    Create,
-    useForm,
-    useSelect,
-    TextInput,
-    Textarea,
-    Select,
-} from "@pankod/refine-mantine";
+import { Create, useForm, useSelect } from "@refinedev/mantine";
+
+import { TextInput, Textarea, Select } from "@mantine/core";
 
 export const ProductCreate = () => {
     const {

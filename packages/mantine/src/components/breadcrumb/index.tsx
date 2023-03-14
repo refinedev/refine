@@ -1,10 +1,14 @@
 import React from "react";
 import {
+    matchResourceFromRoute,
     useBreadcrumb,
+    useLink,
     useRefineContext,
+    useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+    useRouterType,
+} from "@refinedev/core";
+import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
     Text,
@@ -21,10 +25,20 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    meta,
 }) => {
-    const { breadcrumbs } = useBreadcrumb();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const { breadcrumbs } = useBreadcrumb({ meta });
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
     const { hasDashboard } = useRefineContext();
+
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     if (breadcrumbs.length === 1) {
         return null;
@@ -38,9 +52,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             }}
             {...breadcrumbProps}
         >
-            {showHome && hasDashboard && (
-                <Anchor component={Link} color="dimmed" to="/">
-                    <IconHome size={18} />
+            {showHome && (hasDashboard || rootRouteResource.found) && (
+                <Anchor component={ActiveLink as any} color="dimmed" to="/">
+                    {rootRouteResource?.resource?.meta?.icon ?? (
+                        <IconHome size={18} />
+                    )}
                 </Anchor>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
@@ -49,7 +65,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                         {!hideIcons && icon}
                         {href ? (
                             <Anchor
-                                component={Link}
+                                component={ActiveLink as any}
                                 color="dimmed"
                                 to={href}
                                 size="sm"

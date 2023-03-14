@@ -4,9 +4,9 @@ export type CanParams = {
     /**
      * Resource name for API data interactions
      */
-    resource: string;
+    resource?: string;
     /**
-     * Intenden action on resource
+     * Intended action on resource
      */
     action: string;
     /**

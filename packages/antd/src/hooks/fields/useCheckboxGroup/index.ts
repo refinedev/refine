@@ -8,7 +8,8 @@ import {
     UseSelectProps,
     useSelect,
     BaseKey,
-} from "@pankod/refine-core";
+    pickNotDeprecated,
+} from "@refinedev/core";
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {
@@ -41,6 +42,7 @@ export const useCheckboxGroup = <
 >({
     resource,
     sort,
+    sorters,
     filters,
     optionLabel,
     optionValue,
@@ -51,12 +53,14 @@ export const useCheckboxGroup = <
     defaultValue,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: UseCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
     const { queryResult, options } = useSelect({
         resource,
         sort,
+        sorters,
         filters,
         optionLabel,
         optionValue,
@@ -67,7 +71,8 @@ export const useCheckboxGroup = <
         defaultValue,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
     return {

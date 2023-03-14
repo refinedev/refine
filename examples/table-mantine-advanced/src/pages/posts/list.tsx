@@ -1,31 +1,31 @@
 import React, { useCallback } from "react";
-import { GetManyResponse, useDeleteMany, useMany } from "@pankod/refine-core";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import { GetManyResponse, useDeleteMany, useMany } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     useForm,
+    SaveButton,
+    useSelect,
+    DeleteButton,
+    List,
+    DateField,
+    EditButton,
+} from "@refinedev/mantine";
+
+import {
     Button,
     Table,
-    SaveButton,
     Group,
-    useSelect,
     Select,
     TextInput,
     ActionIcon,
     Checkbox,
-    DeleteButton,
-    List,
     ScrollArea,
     Pagination,
     Space,
     Box,
-    DateField,
-    EditButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
+
 import { RichTextEditor } from "@mantine/rte";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 

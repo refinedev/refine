@@ -1,4 +1,4 @@
-import { buttonShowTests } from "@pankod/refine-ui-tests";
+import { buttonShowTests } from "@refinedev/ui-tests";
 import { ShowButton } from "./";
 
 describe("Show Button", () => {

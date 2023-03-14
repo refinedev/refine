@@ -16,12 +16,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
     List,
     useTable,
     // highlight-next-line
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -73,12 +73,12 @@ render(
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
     return (
         <DeleteButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="123"
         />
@@ -94,12 +94,8 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
             },
         ]}
         DashboardPage={MyEditComponent}
@@ -113,19 +109,19 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />
+        <DeleteButton resource="categories" recordItemId="123" />
     );
 };
 
@@ -138,22 +134,14 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
             },
             {
                 name: "categories",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
             },
         ]}
         DashboardPage={MyDeleteComponent}
@@ -175,11 +163,11 @@ For example, let's `console.log` after deletion:
 
 ```tsx live url=http://localhost:3000 previewHeight=150px disableScroll
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -223,9 +211,7 @@ const App = () => {
     );
 };
 
-render(
-    <App />
-);
+render(<App />);
 ```
 
 ### `mutationMode`
@@ -235,7 +221,8 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 [Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
-import { List, Table, DeleteButton, useTable } from "@pankod/refine-antd";
+import { List, DeleteButton, useTable } from "@refinedev/antd";
+import { Table } from "antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -271,7 +258,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -303,7 +290,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
     return (
@@ -314,6 +301,54 @@ export const MyListComponent = () => {
 };
 ```
 
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live disableScroll previewHeight=150px disableScroll
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { DeleteButton } from "@refinedev/antd";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />
+    );
+};
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => {
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
+            },
+        ]}
+        DashboardPage={MyDeleteComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+
+:::note
+**`<DeleteButton>`** component reads the resource name from the route by default.
+:::
+
 ## How to override confirm texts?
 
 You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
@@ -322,7 +357,7 @@ You can change the text that appears when you confirm a transaction with `confir
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -356,7 +391,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/DeleteButton" />
+<PropsTable module="@refinedev/antd/DeleteButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

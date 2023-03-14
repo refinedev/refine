@@ -1,11 +1,11 @@
 ```tsx live url=http://localhost:3000/categories previewHeight=300px
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 const PostList = () => {
     const {
@@ -17,11 +17,9 @@ const PostList = () => {
         isFetchingNextPage,
     } = useInfiniteList({
         resource: "categories",
-        config: {
-            pagination: {
-                pageSize: 4
-            }
-        }
+        pagination: {
+            pageSize: 4,
+        },
     });
 
     if (isLoading) {
@@ -42,19 +40,17 @@ const PostList = () => {
                     </li>
                 ))}
             </ul>
-            {
-                hasNextPage && (
-                    <button
-                        onClick={() => fetchNextPage()}
-                        disabled={isFetchingNextPage}
-                    >
-                        {isFetchingNextPage ? "Loading more..." : "Load More" }
-                    </button>
-                )
-            }
+            {hasNextPage && (
+                <button
+                    onClick={() => fetchNextPage()}
+                    disabled={isFetchingNextPage}
+                >
+                    {isFetchingNextPage ? "Loading more..." : "Load More"}
+                </button>
+            )}
         </div>
     );
-}
+};
 // visible-block-end
 
 setRefineProps({

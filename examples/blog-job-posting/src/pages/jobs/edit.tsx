@@ -1,13 +1,7 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    useForm,
-    Checkbox,
-    useSelect,
-    Select,
-} from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+
+import { Form, Input, Checkbox, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

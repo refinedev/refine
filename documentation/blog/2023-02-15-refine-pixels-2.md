@@ -8,7 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-05-refine-pix
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code examples in this post have been updated to version 4.x.x.
+
+:::
 
 In this episode, we initialize our **Pixels** app using [**refine**](https://github.com/refinedev/refine) and get familiar with the boilerplate code to be created with the `create refine-app` CLI tool.
 
@@ -38,7 +46,7 @@ Let's go ahead and use the `create refine-app` CLI tool to interactively initial
 
 
 ```bash
-npm create refine-app@latest pixels
+npm create refine-app@latest pixels -- -b v3
 ```
 
 `create refine-app` presents us with a set of questions for choosing the libraries and frameworks we want to work with. We'll initialize a **refine** project with `craco` to manage our configurations. Other important things are to be able to customize our **Ant Design** theme and layout.  
@@ -64,14 +72,14 @@ This should create a rudimentary **refine** app that supports [**Ant Design**](h
 
 ```json title="package.json"
 "dependencies": {
-  "@pankod/refine-antd": "^4.7.0",
-  "@pankod/refine-core": "^3.18.0",
-  "@pankod/refine-react-router-v6": "^3.18.0",
-  "@pankod/refine-supabase": "^3.18.0",
+  "@refinedev/antd": "^4.7.0",
+  "@refinedev/core": "^3.18.0",
+  "@refinedev/react-router-v6": "^3.18.0",
+  "@refinedev/supabase": "^3.18.0",
 }
 ```
 
-We are going to use **Ant Design** components for our UI thanks to the `@pankod/refine-antd` module. `@pankod/refine-supabase` module allows us to use **refine**'s **Supabase** auth and data providers.
+We are going to use **Ant Design** components for our UI thanks to the `@refinedev/antd` module. `@refinedev/supabase` module allows us to use **refine**'s **Supabase** auth and data providers.
 
 We'll cover these **Supabase** related providers as we add features to our app in the upcoming episodes. However, let's try building the app for now, and check what we have in the browser after running the development server. In the terminal, run the following command:
 
@@ -108,17 +116,17 @@ If we look inside the `App.tsx` file, we can see a `<Refine />` component crowde
 
 ```tsx title="src/App.tsx"
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     AuthPage,
     notificationProvider,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
-import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6";
 import { supabaseClient } from "utility";
 import { Layout } from "components/layout";
 import authProvider from "./authProvider";
@@ -242,7 +250,7 @@ Each item in this object is a method that has to be defined by us or **refine**'
 
 **refine** supports [15+ backend](https://refine.dev/integrations/) `dataProvider` integrations as optional packages that come with distinct definitions of these methods that handle CRUD operations according to their underlying architectures. The full list can be found [here](https://refine.dev/docs/packages/list-of-packages/#data-provider-packages).
 
-Normally, for our own backend API, we have to define each method we need for sending `http` requests inside a `dataProvider` object as above. But since we are using the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package, `dataProvider={dataProvider(supabaseClient)}` makes the following object available to us:
+Normally, for our own backend API, we have to define each method we need for sending `http` requests inside a `dataProvider` object as above. But since we are using the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package, `dataProvider={dataProvider(supabaseClient)}` makes the following object available to us:
 
 
 
@@ -250,7 +258,7 @@ Normally, for our own backend API, we have to define each method we need for sen
 <summary>Show refine supabase data provider source code</summary>
 <p>
 
-```tsx title="@pankod/refine-supabase/src/index.ts"
+```tsx title="@refinedev/supabase/src/index.ts"
 const dataProvider = (
     supabaseClient: SupabaseClient,
 ): Required<DataProvider> => {
@@ -491,7 +499,7 @@ In order to get the **Supabase** `dataProvider` object to deliver, first a `supa
 If we look inside `src/utility/`, we have a `supabaseClient.ts` file containing the credentials of a client that provides us access to a **Supabase** backend:
 
 ```tsx title="src/utility/supabaseClient.ts"
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "https://ifbdnkfqbypnkmwcfdes.supabase.co";
 const SUPABASE_KEY =
@@ -536,7 +544,7 @@ Earlier on, the `authProvider` object was already created by `create refine-app`
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthProvider } from "@refinedev/core";
 import { supabaseClient } from "utility";
 
 export const authProvider: AuthProvider = {

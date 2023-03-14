@@ -2,7 +2,7 @@ import React from "react";
 import {
     RefineShowButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { Route, Routes } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Route, Routes } from "react-router-dom";
 export const buttonShowTests = function (
     ShowButton: React.ComponentType<RefineShowButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Show Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Show Button", () => {
         const show = jest.fn();
 
         beforeAll(() => {
@@ -101,7 +101,13 @@ export const buttonShowTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <ShowButton ignoreAccessControlProvider>Show</ShowButton>,
+                <ShowButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Show
+                </ShowButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -251,7 +257,7 @@ export const buttonShowTests = function (
                         resources: [
                             {
                                 name: "posts",
-                                options: { route: "custom-route-posts" },
+                                meta: { route: "custom-route-posts" },
                             },
                             { name: "posts" },
                         ],

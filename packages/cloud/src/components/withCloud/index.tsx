@@ -1,10 +1,10 @@
 import React, { FC, ComponentType, useEffect, useState } from "react";
 import {
-    AuthProvider,
+    LegacyAuthProvider,
     RefineProps,
     ResourceProps,
     AuditLogProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import merge from "lodash/merge";
 
 import { Cloud } from "../../components";
@@ -18,7 +18,7 @@ export function withCloud(
 ): FC<RefineProps> {
     const RefineComponent: FC<RefineProps> = ({ children, ...otherProps }) => {
         let auditLogProvider: AuditLogProvider | undefined;
-        let authProvider: AuthProvider | undefined;
+        let authProvider: LegacyAuthProvider | undefined;
         const [resources, setResources] = useState<ResourceProps[]>();
         const { sdk } = useSdk();
         const { generateCloudAuthProvider } = useAuthProviderWithCloudConfig();
@@ -68,7 +68,9 @@ export function withCloud(
             <Refine
                 {...otherProps}
                 resources={resources || otherProps.resources}
-                authProvider={authProvider || otherProps.authProvider}
+                legacyAuthProvider={
+                    authProvider || otherProps.legacyAuthProvider
+                }
                 auditLogProvider={
                     auditLogProvider || otherProps.auditLogProvider
                 }

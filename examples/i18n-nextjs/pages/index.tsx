@@ -1,14 +1,5 @@
-import { GetServerSideProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NavigateToResource } from "@refinedev/nextjs-router";
 
-export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    return {
-        props: {
-            ...(await serverSideTranslations(context.locale ?? "en", [
-                "common",
-            ])),
-        },
-    };
-};
+export default function Home() {
+    return <NavigateToResource resource="posts" />;
+}

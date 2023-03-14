@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Card, ModalProps, useModal } from "@pankod/refine-antd";
+import { useModal } from "@refinedev/antd";
+import { Card, ModalProps } from "antd";
 import {
     BaseKey,
     ILog,
     ILogData,
+    pickNotDeprecated,
     ResourceRouterParams,
     useLogList,
     useResourceWithRoute,
     useRouterContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
@@ -44,7 +46,7 @@ export const LogList: React.FC<LogListProps> = ({
     const logQueryResult = useLogList<ILogData>({
         resource: resourceName,
         meta: { id },
-        metaData: resource.options,
+        metaData: pickNotDeprecated(resource.meta, resource.options),
     });
 
     return (

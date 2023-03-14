@@ -1,5 +1,5 @@
-import { HttpError, useTable } from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useTable } from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { CreatePost, EditPost } from "components";
 import { IPost } from "interfaces";

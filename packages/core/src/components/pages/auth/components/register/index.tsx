@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { RegisterPageProps } from "../../../../../interfaces";
 
-import { useTranslate, useRouterContext, useRegister } from "@hooks";
+import {
+    useTranslate,
+    useRouterContext,
+    useLink,
+    useRouterType,
+    useRegister,
+} from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
+import { useActiveAuthProvider } from "@definitions/helpers";
 
 type RegisterProps = RegisterPageProps<
     DivPropsType,
@@ -19,19 +26,26 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
 }) => {
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const translate = useTranslate();
 
-    const { mutate: register, isLoading } = useRegister();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: register, isLoading } = useRegister({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
             if (typeof link === "string") {
-                return <Link to={link}>{text}</Link>;
+                return <ActiveLink to={link}>{text}</ActiveLink>;
             }
             return link;
         }
@@ -135,7 +149,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                     "Have an account?",
                                 )}{" "}
                                 {renderLink(
-                                    "login",
+                                    "/login",
                                     translate("pages.login.signin", "Sign in"),
                                 )}
                             </span>

@@ -9,6 +9,13 @@ hide_table_of_contents: false
 ---
 
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+:::
 
 
 We'll be building a demo app to manage hackathons with [refine](https://refine.dev/). We'll be able to create new hackathons, new project entries for a hackathon and criterias for a hackathon.
@@ -164,7 +171,7 @@ Then use these pages as the corresponding crud component for the `hackathon` res
 import { Refine } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 import {
   HackathonsList,
@@ -212,20 +219,18 @@ For example to get the hackathons that are active now we can use the `useList` h
 export const DashboardPage: React.FC = () => {
   const currentHackathons = useList<HackathonType>({
     resource: "hackathons",
-    config: {
-      filters: [
-        {
-          field: "start",
-          operator: "lte",
-          value: now,
-        },
-        {
-          field: "end",
-          operator: "gte",
-          value: now,
-        },
-      ],
-    },
+    filters: [
+      {
+        field: "start",
+        operator: "lte",
+        value: now,
+      },
+      {
+        field: "end",
+        operator: "gte",
+        value: now,
+      },
+    ],
   });
 }
 ```

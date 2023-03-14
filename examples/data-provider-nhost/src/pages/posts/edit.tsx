@@ -1,18 +1,16 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Edit,
-    Form,
-    Input,
     ListButton,
-    RcFile,
     RefreshButton,
-    Select,
-    Upload,
     useForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { RcFile } from "antd/lib/upload/interface";
+import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

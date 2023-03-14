@@ -8,7 +8,7 @@ import {
     GetListResponse,
     HttpError,
     UseSelectProps,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps;

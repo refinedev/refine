@@ -2,7 +2,7 @@ import React from "react";
 import {
     RefineDeleteButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import {
     act,
@@ -17,7 +17,7 @@ import { Route, Routes } from "react-router-dom";
 export const buttonDeleteTests = function (
     DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Delete Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "error").mockImplementation(jest.fn());
             jest.clearAllTimers();
@@ -114,7 +114,13 @@ export const buttonDeleteTests = function (
 
         it("should skip access control", async () => {
             const { container, getByTestId } = render(
-                <DeleteButton ignoreAccessControlProvider>Delete</DeleteButton>,
+                <DeleteButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Delete
+                </DeleteButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -151,7 +157,10 @@ export const buttonDeleteTests = function (
 
         it("should render Popconfirm successfuly", async () => {
             const { getByText, getAllByText, getByTestId } = render(
-                <DeleteButton />,
+                <DeleteButton
+                    resourceNameOrRouteName="posts"
+                    recordItemId="1"
+                />,
                 {
                     wrapper: TestWrapper({}),
                 },
@@ -169,7 +178,10 @@ export const buttonDeleteTests = function (
         it("should confirm Popconfirm successfuly", async () => {
             const deleteOneMock = jest.fn();
             const { getByText, getAllByText, getByTestId } = render(
-                <DeleteButton />,
+                <DeleteButton
+                    resourceNameOrRouteName="posts"
+                    recordItemId="1"
+                />,
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
@@ -200,7 +212,10 @@ export const buttonDeleteTests = function (
             const deleteOneMock = jest.fn();
 
             const { getByText, getAllByText, getByTestId } = render(
-                <DeleteButton recordItemId="record-id" />,
+                <DeleteButton
+                    recordItemId="record-id"
+                    resourceNameOrRouteName="posts"
+                />,
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
@@ -224,7 +239,9 @@ export const buttonDeleteTests = function (
                 fireEvent.click(deleteButtons[1]);
             });
 
-            expect(deleteOneMock).toBeCalledWith({ id: "record-id" });
+            expect(deleteOneMock).toBeCalledWith(
+                expect.objectContaining({ id: "record-id" }),
+            );
         });
 
         it("should confirm Popconfirm successfuly with onSuccess", async () => {

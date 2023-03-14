@@ -17,7 +17,8 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 
 ```tsx live url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
+import { Edit, useForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
 
 const PostEdit: React.FC = () => {
     // highlight-next-line
@@ -79,7 +80,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
-import { SaveButton } from "@pankod/refine-antd";
+import { SaveButton } from "@refinedev/antd";
 
 const MySaveComponent = () => {
     return (
@@ -108,7 +109,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/SaveButton" />
+<PropsTable module="@refinedev/antd/SaveButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

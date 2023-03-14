@@ -1,12 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import {
-    Autocomplete,
-    useAutocomplete,
-    TextField,
-    Button,
-} from "@pankod/refine-mui";
+import { useAutocomplete } from "@refinedev/mui";
+import { Autocomplete, Button, TextField } from "@mui/material";
 
 interface ICategory {
     id: number;
@@ -18,12 +14,12 @@ const PostCreate: React.FC = () => {
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
@@ -33,7 +29,8 @@ const PostCreate: React.FC = () => {
                 {...autocompleteProps}
                 getOptionLabel={(item) => item.title}
                 isOptionEqualToValue={(option, value) =>
-                    value === undefined || option.id.toString() === value.toString()
+                    value === undefined ||
+                    option.id.toString() === value.toString()
                 }
                 placeholder="Select a category"
                 renderInput={(params) => (
@@ -46,11 +43,13 @@ const PostCreate: React.FC = () => {
                     />
                 )}
             />
-            <Button 
-                onClick={() => setOrder(order === "asc" ? "desc" : "asc")} 
-                variant="contained" 
+            <Button
+                onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+                variant="contained"
                 size="small"
-            >Toggle Order</Button>
+            >
+                Toggle Order
+            </Button>
         </>
     );
 };

@@ -10,19 +10,25 @@ import {
     BaseRecord,
     HttpError,
     CrudSorting,
-    MetaDataQuery,
+    MetaQuery,
     SuccessErrorNotification,
     LiveModeProps,
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useOnError,
 } from "@hooks";
-import { queryKeys, pickDataProvider } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    pickNotDeprecated,
+    useActiveAuthProvider,
+    handlePaginationParams,
+} from "@definitions/helpers";
 
 export interface UseListConfig {
     pagination?: Pagination;
@@ -35,22 +41,45 @@ export type UseListProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      */
-    resource: string;
+    resource?: string;
     /**
      * Configuration for pagination, sorting and filtering
      * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
+     * @deprecated `config` property is deprecated. Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
      */
     config?: UseListConfig;
     /**
-     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options,
+     * Pagination properties
+     */
+    pagination?: Pagination;
+    /**
+     * Whether to use server-side pagination or not
+     * @deprecated `hasPagination` property is deprecated. Use `pagination.mode` instead.
+     */
+    hasPagination?: boolean;
+    /**
+     * Sorter parameters
+     */
+    sorters?: CrudSorting;
+    /**
+     * Filter parameters
+     */
+    filters?: CrudFilters;
+    /**
+     * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     /**
-     *  Metadata query for `dataProvider`
+     * Meta data query for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
     /**
-     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * Meta data query for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
      */
     dataProviderName?: string;
 } & SuccessErrorNotification &
@@ -73,9 +102,14 @@ export const useList = <
 >({
     resource,
     config,
+    filters,
+    hasPagination,
+    pagination,
+    sorters,
     queryOptions,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     onLiveEvent,
@@ -87,31 +121,67 @@ export const useList = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        metaData,
-    );
-    const { getList } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
-
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
+
+    const pickedDataProvider = pickDataProvider(
+        resource,
+        dataProviderName,
+        resources,
+    );
+    const preferredMeta = pickNotDeprecated(meta, metaData);
+    const prefferedFilters = pickNotDeprecated(filters, config?.filters);
+    const prefferedSorters = pickNotDeprecated(sorters, config?.sort);
+    const prefferedHasPagination = pickNotDeprecated(
+        hasPagination,
+        config?.hasPagination,
+    );
+    const prefferedPagination = handlePaginationParams({
+        pagination,
+        configPagination: config?.pagination,
+        hasPagination: prefferedHasPagination,
+    });
+    const isServerPagination = prefferedPagination.mode === "server";
+    const notificationValues = {
+        meta: preferredMeta,
+        metaData: preferredMeta,
+        filters: prefferedFilters,
+        hasPagination: isServerPagination,
+        pagination: prefferedPagination,
+        sorters: prefferedSorters,
+        config: {
+            ...config,
+            sort: prefferedSorters,
+        },
+    };
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
+    const queryKey = queryKeys(
+        resource,
+        pickedDataProvider,
+        preferredMeta,
+        preferredMeta,
+    );
+
+    const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
-            metaData,
-            pagination: config?.pagination,
-            hasPagination: config?.hasPagination,
-            sort: config?.sort,
-            filters: config?.filters,
+            meta: preferredMeta,
+            metaData: preferredMeta,
+            pagination: prefferedPagination,
+            hasPagination: isServerPagination,
+            sort: prefferedSorters,
+            sorters: prefferedSorters,
+            filters: prefferedFilters,
             subscriptionType: "useList",
             ...liveParams,
         },
@@ -122,15 +192,37 @@ export const useList = <
     });
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
-        queryKey.list(config),
+        queryKey.list({
+            filters: prefferedFilters,
+            hasPagination: isServerPagination,
+            ...(isServerPagination && {
+                pagination: prefferedPagination,
+            }),
+            ...(sorters && {
+                sorters,
+            }),
+            ...(config?.sort && {
+                sort: config?.sort,
+            }),
+        }),
         ({ queryKey, pageParam, signal }) => {
-            const { hasPagination, ...restConfig } = config || {};
             return getList<TData>({
-                resource,
-                ...restConfig,
-                hasPagination,
+                resource: resource!,
+                pagination: prefferedPagination,
+                hasPagination: isServerPagination,
+                filters: prefferedFilters,
+                sort: prefferedSorters,
+                sorters: prefferedSorters,
+                meta: {
+                    ...(preferredMeta || {}),
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
                 metaData: {
-                    ...metaData,
+                    ...(preferredMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -141,6 +233,32 @@ export const useList = <
         },
         {
             ...queryOptions,
+            enabled:
+                typeof queryOptions?.enabled !== "undefined"
+                    ? queryOptions?.enabled
+                    : !!resource,
+            select: (rawData) => {
+                let data = rawData;
+
+                const { current, mode, pageSize } = prefferedPagination;
+
+                if (mode === "client") {
+                    data = {
+                        ...data,
+                        data: data.data.slice(
+                            (current - 1) * pageSize,
+                            current * pageSize,
+                        ),
+                        total: data.total,
+                    };
+                }
+
+                if (queryOptions?.select) {
+                    return queryOptions?.select?.(data);
+                }
+
+                return data;
+            },
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
 
@@ -148,7 +266,7 @@ export const useList = <
                     typeof successNotification === "function"
                         ? successNotification(
                               data,
-                              { metaData, config },
+                              notificationValues,
                               resource,
                           )
                         : successNotification;
@@ -161,7 +279,7 @@ export const useList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, { metaData, config }, resource)
+                        ? errorNotification(err, notificationValues, resource)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {

@@ -16,16 +16,16 @@ Let's see how to use it in a basic list page:
 
 ```tsx live
 // visible-block-start
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 import {
     List,
     // highlight-next-line
     TextField,
-    Table,
     useTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = (props) => {
+const PostList: React.FC = (props) => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
@@ -53,7 +53,8 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         }
 
                         return (
-                            <TextField strong
+                            <TextField
+                                strong
                                 value={
                                     categoriesData?.data.find(
                                         (item) => item.id === value,
@@ -87,7 +88,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -102,9 +103,8 @@ Table columns already render their data as text by default. If the rendered data
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/TextField" />
+<PropsTable module="@refinedev/antd/TextField" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
 :::
-

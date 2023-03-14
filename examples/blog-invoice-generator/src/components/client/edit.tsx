@@ -1,5 +1,6 @@
+import { Edit, useSelect } from "@refinedev/antd";
+
 import {
-    Edit,
     Drawer,
     DrawerProps,
     Form,
@@ -8,8 +9,7 @@ import {
     ButtonProps,
     Grid,
     Select,
-    useSelect,
-} from "@pankod/refine-antd";
+} from "antd";
 
 type EditClientProps = {
     drawerProps: DrawerProps;

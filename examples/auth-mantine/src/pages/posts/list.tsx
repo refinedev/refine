@@ -1,19 +1,23 @@
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Select,
-    Table,
-    Pagination,
     ShowButton,
     EditButton,
     DeleteButton,
     DateField,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
+
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Select,
+    Table,
+    Pagination,
+} from "@mantine/core";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";

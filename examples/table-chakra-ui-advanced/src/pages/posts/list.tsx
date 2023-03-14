@@ -1,18 +1,21 @@
-import React, { useCallback } from "react";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import React, { Fragment, useCallback } from "react";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     GetManyResponse,
     useDeleteMany,
     useMany,
     useSelect,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     List,
+    EditButton,
+    DeleteButton,
+    DateField,
+    SaveButton,
+} from "@refinedev/chakra-ui";
+
+import {
     Table,
     Thead,
     Tbody,
@@ -21,19 +24,16 @@ import {
     Td,
     TableContainer,
     HStack,
-    Text,
-    EditButton,
-    DeleteButton,
     Select,
-    DateField,
     Checkbox,
     Button,
     IconButton,
     Input,
-    SaveButton,
     Textarea,
-} from "@pankod/refine-chakra-ui";
-import { useForm } from "@pankod/refine-react-hook-form";
+    Box,
+} from "@chakra-ui/react";
+
+import { useForm } from "@refinedev/react-hook-form";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -348,14 +348,14 @@ export const PostList: React.FC = () => {
                                         <Th key={header.id}>
                                             {!header.isPlaceholder && (
                                                 <HStack spacing="2">
-                                                    <Text>
+                                                    <Box>
                                                         {flexRender(
                                                             header.column
                                                                 .columnDef
                                                                 .header,
                                                             header.getContext(),
                                                         )}
-                                                    </Text>
+                                                    </Box>
                                                     <HStack spacing="2">
                                                         <ColumnSorter
                                                             column={
@@ -381,8 +381,8 @@ export const PostList: React.FC = () => {
                                     return renderEditRow(row);
                                 } else
                                     return (
-                                        <>
-                                            <Tr key={row.id}>
+                                        <Fragment key={row.id}>
+                                            <Tr>
                                                 {row
                                                     .getVisibleCells()
                                                     .map((cell) => {
@@ -417,7 +417,7 @@ export const PostList: React.FC = () => {
                                                     </Td>
                                                 </Tr>
                                             )}
-                                        </>
+                                        </Fragment>
                                     );
                             })}
                         </Tbody>

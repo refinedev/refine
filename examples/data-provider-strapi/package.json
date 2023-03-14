@@ -3,11 +3,11 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-antd": "^4.9.0",
-        "@pankod/refine-core": "^3.103.0",
-        "@pankod/refine-cli": "^1.19.0",
-        "@pankod/refine-react-router-v6": "^3.40.0",
-        "@pankod/refine-strapi": "^3.39.0",
+        "@refinedev/antd": "^5.0.0",
+        "@refinedev/core": "^4.0.0",
+        "@refinedev/cli": "^2.0.0",
+        "@refinedev/react-router-v6": "^4.0.0",
+        "@refinedev/strapi": "^4.0.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -21,7 +21,8 @@
         "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
-        "typescript": "^4.7.4"
+        "typescript": "^4.7.4",
+        "antd": "^5.0.5"
     },
     "scripts": {
         "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",

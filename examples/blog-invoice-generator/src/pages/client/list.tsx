@@ -1,12 +1,13 @@
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
 import {
     useSimpleList,
-    AntdList,
     List,
     useDrawerForm,
     CreateButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { List as AntdList } from "antd";
 
 import { IClient } from "interfaces";
 import { ClientItem, CreateClient, EditClient } from "components/client";

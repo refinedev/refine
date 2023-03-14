@@ -1,4 +1,4 @@
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 // "axios" package should be installed to customize the http client
 import axios from "axios";

@@ -1,10 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import {
-    RefineCrudEditProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { AccessControlProvider } from "@pankod/refine-core";
+import { RefineCrudEditProps, RefineButtonTestIds } from "@refinedev/ui-types";
+import { AccessControlProvider } from "@refinedev/core";
 
 import { act, ITestWrapperProps, render, TestWrapper } from "@test";
 
@@ -35,7 +32,7 @@ export const crudEditTests = function (
         RefineCrudEditProps<any, any, any, any, any, any, any, {}>
     >,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / CRUD Edit", () => {
+    describe("[@refinedev/ui-tests] Common Tests / CRUD Edit", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });

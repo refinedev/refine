@@ -8,14 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
+Just be aware that the source code example in this post have been updated to version 4.x.x.
 
-
-
-
-
+:::
 
 Do you want to develop a web application quickly? You are at the right place! I will develop a simple movie web application with **refine** on the frontend and **Supabase** on the backend, you should continue reading. I will try to explain it step by step in a very simple way.
 
@@ -50,7 +51,7 @@ _App.tsx_
 
 ```tsx
 import { Refine } from "@pankod/refine";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
@@ -251,7 +252,7 @@ You can use default user for login.
 import { Refine, Resource } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -269,7 +270,7 @@ function App() {
                 {
                     name: "movies",
                     list: AdminMovieList,
-                    options: {
+                    meta: {
                         route: "admin/movies",
                     },
                 },
@@ -301,12 +302,14 @@ import { IMovies } from "interfaces";
 
 export const AdminMovieList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IMovies>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     return (
@@ -386,7 +389,7 @@ export interface IMovies {
             name: "movies",
             list: AdminMovieList,
             create: AdminMovieCreate,
-            options: {
+            meta: {
                 route: "admin/movies",
             },
         },
@@ -745,7 +748,7 @@ Final version of our `<Resource>`.
             create: AdminMovieCreate,
             show: AdminMovieShow,
             edit: AdminMovieEdit,
-            options: {
+            meta: {
                 route: "admin/movies",
             },
         },
@@ -762,7 +765,7 @@ _App.tsx_
 import { Refine, Resource } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -806,7 +809,7 @@ function App() {
                     show: AdminMovieShow,
                     edit: AdminMovieEdit,
 
-                    options: {
+                    meta: {
                         route: "admin/movies",
                     },
                 },

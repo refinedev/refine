@@ -1,7 +1,11 @@
 import React from "react";
-import type { RefineProps } from "@pankod/refine-core";
+import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineMantine from "@pankod/refine-mantine";
+import * as RefineMantine from "@refinedev/mantine";
+import * as MantineCore from "@mantine/core";
+import * as MantineHooks from "@mantine/hooks";
+import * as MantineForm from "@mantine/form";
+import * as MantineNotifications from "@mantine/notifications";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -15,16 +19,18 @@ const RefineMantineDemo: React.FC<
     }
 
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
             <RefineCommonScope.RefineCore.Refine
-                routerProvider={RefineCommonScope.RefineReactRouterV6.default}
+                legacyRouterProvider={
+                    RefineCommonScope.LegacyRefineReactRouterV6.default
+                }
                 dataProvider={RefineCommonScope.RefineSimpleRest.default(
                     SIMPLE_REST_API_URL,
                 )}
@@ -40,7 +46,7 @@ const RefineMantineDemo: React.FC<
                 }}
                 {...rest}
             />
-        </RefineMantine.MantineProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -52,6 +58,10 @@ const MantineScope = {
     // RefineMui,
     RefineMantine,
     RefineMantineDemo,
+    MantineCore,
+    MantineHooks,
+    MantineForm,
+    MantineNotifications,
     // RefineChakra,
     // RefineChakraDemo,
     // // Other Packages

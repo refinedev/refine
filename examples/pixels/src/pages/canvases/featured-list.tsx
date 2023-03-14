@@ -1,4 +1,5 @@
-import { AntdList, Skeleton, useSimpleList } from "@pankod/refine-antd";
+import { useSimpleList } from "@refinedev/antd";
+import { List, Skeleton } from "antd";
 
 import { CanvasTile } from "components/canvas";
 import { SponsorsBanner } from "components/banners";
@@ -10,19 +11,23 @@ export const CanvasFeaturedList: React.FC = () => {
         pagination: {
             pageSize: 12,
         },
-        initialSorter: [
-            {
-                field: "created_at",
-                order: "desc",
-            },
-        ],
-        initialFilter: [
-            {
-                field: "is_featured",
-                operator: "eq",
-                value: true,
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "created_at",
+                    order: "desc",
+                },
+            ],
+        },
+        filters: {
+            initial: [
+                {
+                    field: "is_featured",
+                    operator: "eq",
+                    value: true,
+                },
+            ],
+        },
     });
 
     const { isLoading } = queryResult;
@@ -37,7 +42,7 @@ export const CanvasFeaturedList: React.FC = () => {
                         ))}
                     </div>
                 ) : (
-                    <AntdList
+                    <List
                         {...listProps}
                         className="canvas-list"
                         split={false}

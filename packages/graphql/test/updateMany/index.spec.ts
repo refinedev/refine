@@ -3,7 +3,7 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("updateMany", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).updateMany!({
             resource: "posts",
             ids: ["24", "25"],
@@ -13,7 +13,7 @@ describe("updateMany", () => {
                 category: "2",
             },
 
-            metaData: {
+            meta: {
                 fields: [
                     {
                         operation: "post",
@@ -40,7 +40,7 @@ describe("updateMany", () => {
         expect(data[1]["category"].id).toEqual("2");
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(client).updateMany!({
             resource: "posts",
             ids: ["24", "25"],

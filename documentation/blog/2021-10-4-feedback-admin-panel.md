@@ -8,8 +8,14 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 
+:::
 
 
 
@@ -60,7 +66,7 @@ Let's create our frontend project with refine's [setting up guide](https://refin
 There are two alternative methods to set up a refine application. We will quickly create our application with [superplate](https://pankod.github.io/superplate).
 
 ```bash
-npx superplate-cli refine-feedback-client
+npm create refine-app@latest refine-feedback-client -- -b v3
 ```
 
 Select the following options to complete the CLI wizard:
@@ -121,7 +127,7 @@ Now let's list the changes we will make:
 ```diff
 + import { Refine } from "@pankod/refine";
 import "@pankod/refine/dist/styles.min.css";
-import { DataProvider } from "@pankod/refine-strapi";
+import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
 import {
 - Title,
@@ -324,7 +330,9 @@ export const FeedbackList: React.FC = () => {
     HttpError,
     IFeedbackFilterVariables
   >({
-    initialSorter: [{ field: "created_at", order: "desc" }],
+    sorters: {
+      initial: [{ field: "created_at", order: "desc" }],
+    },
     onSearch: (params) => {
       const filters: CrudFilters = [];
       const { type } = params;

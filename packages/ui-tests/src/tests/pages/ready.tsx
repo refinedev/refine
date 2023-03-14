@@ -1,12 +1,12 @@
 import React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
+import { RefineReadyPageProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
 
 export const pageReadyTests = function (
     ReadyPage: React.ComponentType<RefineReadyPageProps>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Ready Page", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Ready Page", () => {
         it("should render successfully", async () => {
             const { container } = render(<ReadyPage />, {
                 wrapper: TestWrapper({}),

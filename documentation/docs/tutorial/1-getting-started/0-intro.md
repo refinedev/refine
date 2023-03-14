@@ -36,7 +36,7 @@ Now that you have selected the **Material UI** option as your UI preference, let
 
 </UIConditional>
 
-:::info Using Stackblitz?
+:::info Using CodeSandbox?
 Prefer to finish this tutorial in an online code editor? That's possible!
 
 <details>

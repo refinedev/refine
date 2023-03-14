@@ -1,9 +1,9 @@
 import { useContext } from "react";
 
-import { AuthContext } from "@contexts/auth";
+import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
 import { LiveContext } from "@contexts/live";
-import { RouterContext } from "@contexts/router";
+import { RouterContext } from "@contexts/legacy-router";
 import { DataContext } from "@contexts/data";
 import { TranslationContext } from "@contexts/translation";
 import { NotificationContext } from "@contexts/notification";
@@ -11,12 +11,13 @@ import { AccessControlContext } from "@contexts/accessControl";
 import { useResource } from "@hooks/resource";
 
 import { ITelemetryData } from "../../interfaces/telementry";
+import { useIsExistAuthentication } from "..";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";
 
 export const useTelemetryData = (): ITelemetryData => {
-    const authContext = useContext(AuthContext);
+    const auth = useIsExistAuthentication();
     const auditLogContext = useContext(AuditLogContext);
     const liveContext = useContext(LiveContext);
     const routerContext = useContext(RouterContext);
@@ -25,8 +26,6 @@ export const useTelemetryData = (): ITelemetryData => {
     const notificationContext = useContext(NotificationContext);
     const accessControlContext = useContext(AccessControlContext);
     const { resources } = useResource();
-
-    const auth = authContext.isProvided;
 
     const auditLog =
         !!auditLogContext.create ||

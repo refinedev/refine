@@ -1,19 +1,18 @@
 import {
-    MetaDataQuery,
+    MetaQuery,
     Pagination,
     CrudSorting,
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
 import { generateFilters, generateSorting } from "../../dataProvider";
 
 type GenereteUseListSubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta: MetaQuery;
     pagination?: Pagination;
-    hasPagination?: boolean;
-    sort?: CrudSorting;
+    sorters?: CrudSorting;
     filters?: CrudFilters;
 };
 
@@ -25,18 +24,21 @@ type GenereteUseListSubscriptionReturnValues = {
 
 export const genereteUseListSubscription = ({
     resource,
-    metaData,
+    meta,
     pagination,
-    hasPagination,
-    sort,
+    sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
-    const { current = 1, pageSize: limit = 10 } = pagination ?? {};
+    const {
+        current = 1,
+        pageSize: limit = 10,
+        mode = "server",
+    } = pagination ?? {};
 
-    const hasuraSorting = generateSorting(sort);
+    const hasuraSorting = generateSorting(sorters);
     const hasuraFilters = generateFilters(filters);
 
-    const operation = metaData.operation ?? resource;
+    const operation = meta.operation ?? resource;
 
     const hasuraSortingType = `[${operation}_order_by!]`;
     const hasuraFiltersType = `${operation}_bool_exp`;
@@ -44,9 +46,9 @@ export const genereteUseListSubscription = ({
     const { query, variables } = gql.subscription([
         {
             operation,
-            fields: metaData.fields,
+            fields: meta.fields,
             variables: {
-                ...(hasPagination
+                ...(mode === "server"
                     ? {
                           limit,
                           offset: (current - 1) * limit,

@@ -1,6 +1,7 @@
 ---
 id: azure-ad
 title: Azure AD Login
+sidebar_label: Azure AD Login 🆙
 ---
 
 # Azure Active Directory B2C (AAD B2C)
@@ -8,7 +9,6 @@ title: Azure AD Login
 [Azure Active Directory B2C](https://learn.microsoft.com/en-us/azure/active-directory-b2c/overview) provides business-to-customer identity as a service. Your customers use their preferred social, enterprise, or local account identities to get single sign-on access to your applications and APIs.
 
 The Microsoft Authentication Library (MSAL) enables developers to acquire security tokens from the Microsoft identity platform to authenticate users and access secured web APIs. It can be used to provide secure access to Microsoft Graph, other Microsoft APIs, third-party web APIs, or your own web API. MSAL supports many different application architectures and platforms including .NET, JavaScript, Java, Python, Android, and iOS.
-
 
 :::tip
 We use Azure AD B2C in our example but authentication with Azure AD should be very similar.
@@ -27,8 +27,8 @@ npm install @azure/msal-browser @azure/msal-react
 Detailed documentation for using msal with react can be found here: [docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/single-page-app-quickstart?pivots=devlang-react)
 
 ## Configure the MsalProvider component
-We've create config file in `src/config.ts` folder. This file contains the configuration for the msal library. You can find more information about the configuration options here: [docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-js-initializing-client-applications)
 
+We've create config file in `src/config.ts` folder. This file contains the configuration for the msal library. You can find more information about the configuration options here: [docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-js-initializing-client-applications)
 
 ```ts title="src/config.ts"
 import { Configuration, LogLevel } from "@azure/msal-browser";
@@ -126,33 +126,28 @@ root.render(
 );
 ```
 
+## Override `/login` page
 
-## Override login page
 First, we need to override the refine login page. In this way, we will redirect it to the Azure AD login page. We create a `login.tsx` file in the `/src` folder.
 
 ```tsx title="src/login.tsx"
 import React from "react";
-import { useLogin } from "@pankod/refine-core";
-import { AntdLayout, Button } from "@pankod/refine-antd";
+import { useLogin } from "@refinedev/core";
+import { Layout, Button } from "antd";
 
 const LoginPage = () => {
     const SignInButton = () => {
         const { mutate: login } = useLogin();
 
         return (
-            <Button
-                type="primary"
-                size="large"
-                block
-                onClick={() => login()}
-            >
+            <Button type="primary" size="large" block onClick={() => login()}>
                 Sign in
             </Button>
         );
     };
 
     return (
-        <AntdLayout
+        <Layout
             style={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
@@ -166,24 +161,30 @@ const LoginPage = () => {
                     <SignInButton />
                 </div>
             </div>
-        </AntdLayout>
+        </Layout>
     );
-
 };
 
 export default LoginPage;
 ```
+
 ## Auth Provider
+
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
 ```tsx title="src/App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import { Layout, ErrorComponent } from "@refinedev/antd";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
 import axios, { AxiosRequestConfig } from "axios";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import LoginPage from "./login";
 import { tokenRequest } from "./config";
@@ -229,51 +230,102 @@ const App: React.FC = () => {
         account,
     };
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async () => {
             instance.loginRedirect(); // Pick the strategy you prefer i.e. redirect or popup
-            return Promise.resolve(false);
+            return {
+                success: true,
+            };
         },
-        register: async () => Promise.resolve(),
-        resetPassword: async () => Promise.resolve(),
-        updatePassword: async () => Promise.resolve(),
-        logout: async () => Promise.resolve(),
-        checkAuth: async () => {
+        register: async () => ({
+            success: true,
+        }),
+        resetPassword: async () => ({
+            success: true,
+        }),
+        updatePassword: async () => ({
+            success: true,
+        }),
+        logout: async () => ({
+            success: true,
+        }),
+        check: async () => {
             try {
                 if (account) {
                     const token = await instance.acquireTokenSilent(request);
                     localStorage.setItem(TOKEN_KEY, token.accessToken);
-                    return Promise.resolve();
+                    return {
+                        authenticated: true,
+                    };
                 } else {
-                    return Promise.reject();
+                    return {
+                        authenticated: false,
+                        redirectTo: "/login",
+                    };
                 }
             } catch (e) {
-                return Promise.reject();
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                };
             }
         },
-        checkError: async () => Promise.resolve(),
-        getPermissions: async () => Promise.resolve(),
-        getUserIdentity: async (): Promise<AccountInfo> => {
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        getPermissions: async () => null,
+        getIdentity: async (): Promise<AccountInfo> => {
             if (account === null || account === undefined) {
-                return Promise.reject();
+                return null;
             }
-            return Promise.resolve(account);
+            return account;
         },
     };
 
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-            authProvider={authProvider}
-            LoginPage={LoginPage}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "posts",
-                }
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL, axiosInstance)}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/posts"
+                            element={<div>dummy list page</div>}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<LoginPage />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

@@ -23,7 +23,7 @@ const mockResources: IResourceItem[] = [
     },
     {
         name: "categories",
-        options: {
+        meta: {
             label: "asd",
             route: "bitti/son/sonson",
         },
@@ -42,7 +42,7 @@ const expectedMockResources: ITreeMenu[] = [
         children: [
             {
                 name: "categories",
-                options: {
+                meta: {
                     label: "asd",
                     route: "bitti/son/sonson",
                 },

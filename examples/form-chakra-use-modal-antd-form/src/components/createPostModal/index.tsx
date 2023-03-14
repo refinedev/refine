@@ -1,5 +1,6 @@
+import { Create } from "@refinedev/chakra-ui";
+
 import {
-    Create,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -11,9 +12,10 @@ import {
     FormLabel,
     FormErrorMessage,
     Select,
-} from "@pankod/refine-chakra-ui";
-import { useSelect } from "@pankod/refine-core";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+} from "@chakra-ui/react";
+
+import { useSelect } from "@refinedev/core";
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { ICategory } from "../../interfaces";
 

@@ -1,11 +1,14 @@
 import React from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { Avatar, Group, Header as MantineHeader, Title } from "@mantine/core";
 
 import { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
-    const { data: user } = useGetIdentity();
+    const authProvider = useActiveAuthProvider();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const shouldRenderHeader = user && (user.name || user.avatar);
 

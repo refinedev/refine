@@ -6,7 +6,7 @@ import {
     CrudSorting,
     CrudOperators,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { stringify, parse } from "qs";
 
 const axiosInstance = axios.create();
@@ -49,11 +49,11 @@ const mapOperator = (operator: CrudOperators) => {
     return operator;
 };
 
-const generateSort = (sort?: CrudSorting) => {
+const generateSort = (sorters?: CrudSorting) => {
     const _sort: string[] = [];
 
-    if (sort) {
-        sort.map((item) => {
+    if (sorters) {
+        sorters.map((item) => {
             if (item.order) {
                 _sort.push(`${item.field}:${item.order}`);
             }
@@ -166,28 +166,25 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<IDataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-        metaData,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
-        const publicationState = metaData?.publicationState;
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
+        const publicationState = meta?.publicationState;
 
-        const quertSorters = generateSort(sort);
+        const quertSorters = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(hasPagination
+            ...(mode === "server"
                 ? {
                       "pagination[page]": current,
                       "pagination[pageSize]": pageSize,
@@ -213,13 +210,13 @@ export const DataProvider = (
         };
     },
 
-    getMany: async ({ resource, ids, metaData }) => {
+    getMany: async ({ resource, ids, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
-        const publicationState = metaData?.publicationState;
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
+        const publicationState = meta?.publicationState;
 
         const queryFilters = generateFilter([
             {
@@ -312,10 +309,10 @@ export const DataProvider = (
         return { data: response };
     },
 
-    getOne: async ({ resource, id, metaData }) => {
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
+    getOne: async ({ resource, id, meta }) => {
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
 
         const query = {
             locale,
@@ -360,11 +357,19 @@ export const DataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const sortQuery = generateSort(sort);
+        if (sorters) {
+            const sortQuery = generateSort(sorters);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     sort: sortQuery.join(","),

@@ -9,20 +9,24 @@ First, we create a form by extracting `searchFormProps` from `useTable`. We will
 
 ```tsx title="pages/list.tsx"
 import {
+    // highlight-next-line
+    useTable,
+    List,
+} from "@refinedev/antd";
+import {
     // highlight-start
     Form,
     Table,
-    useTable,
     // highlight-end
     Row,
     Col,
-    Icons,
-    List,
     Button,
     DatePicker,
     Space,
     Input,
-} from "@pankod/refine-antd";
+} from "antd";
+// highlight-next-line
+import { SearchOutlined } from "@ant-design/icons";
 
 const { RangePicker } = DatePicker;
 
@@ -38,7 +42,7 @@ export const ListPage: React.FC = () => {
                     <Form.Item label="Search" name="q">
                         <Input
                             placeholder="ID, Title, Content, etc."
-                            prefix={<Icons.SearchOutlined />}
+                            prefix={<SearchOutlined />}
                         />
                     </Form.Item>
                     <Form.Item label="Created At" name="createdAt">
@@ -83,7 +87,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ```tsx title="pages/list.tsx"
 ...
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import { Dayjs } from "dayjs";
 
 const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdAt: [Dayjs, Dayjs] }>({

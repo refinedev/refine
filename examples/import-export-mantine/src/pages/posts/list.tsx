@@ -5,21 +5,25 @@ import {
     useImport,
     useMany,
     useNotification,
-} from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Table,
-    Pagination,
     DeleteButton,
     ImportButton,
     ExportButton,
-    Select,
     DateField,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
+
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Table,
+    Pagination,
+    Select,
+} from "@mantine/core";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";

@@ -1,8 +1,10 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { List, Table, useTable } from "@pankod/refine-antd";
+import { List, useTable } from "@refinedev/antd";
 
-export const UsersList: React.FC<IResourceComponentsProps> = () => {
+import { Table } from "antd";
+
+export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({
         hasPagination: false,
         syncWithLocation: true,

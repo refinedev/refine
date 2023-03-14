@@ -4,7 +4,6 @@ title: Boolean
 swizzle: true
 ---
 
-
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://ant.design/components/tooltip/#header) values from Ant Design.
 
 :::info-tip Swizzle
@@ -19,19 +18,19 @@ Let's see how we can use `<BooleanField>` with the example in the post list.
 // visible-block-start
 import {
     List,
-    Table,
     useTable,
     // highlight-start
     BooleanField,
-    Icons
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-    // highlight-next-line
-    const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
+    const TrueIcon = () => <span>✅</span>;
+
+    const FalseIcon = () => <span>❌</span>;
 
     return (
         <List>
@@ -45,8 +44,8 @@ const PostList: React.FC = () => {
                         // highlight-start
                         <BooleanField
                             value={value === "published"}
-                            trueIcon={<CheckCircleOutlined />}
-                            falseIcon={<CloseCircleOutlined />}
+                            trueIcon={<TrueIcon />}
+                            falseIcon={<FalseIcon />}
                             valueLabelTrue="published"
                             valueLabelFalse="unpublished"
                         />
@@ -71,7 +70,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -82,7 +81,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/BooleanField" 
+<PropsTable module="@refinedev/antd/BooleanField" 
 title-description="The text shown in the tooltip" 
 title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
 trueIcon-default="[`<CheckOutlined />`](https://ant.design/components/icon/)"

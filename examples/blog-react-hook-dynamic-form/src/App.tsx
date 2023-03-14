@@ -1,52 +1,90 @@
 import React from "react";
 
-import { GitHubBanner, Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     Layout,
-    ThemeProvider,
     LightTheme,
-    ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 
 import UserCreate from "pages/userCreate";
 import UserEdit from "pages/userEdit";
 import UserList from "pages/userList";
 
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import dataProvider from "@refinedev/simple-rest";
 
 function App() {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <GitHubBanner />
-                <Refine
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "users",
-                            list: UserList,
-                            create: UserCreate,
-                            edit: UserEdit,
-                        },
-                    ]}
+        <BrowserRouter>
+            <GitHubBanner />
+            <ThemeProvider theme={LightTheme}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
                 />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
+                <RefineSnackbarProvider>
+                    <Refine
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        resources={[
+                            {
+                                name: "users",
+                                list: "/users",
+                                create: "/users/create",
+                                edit: "/users/edit/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="users" />
+                                    }
+                                />
+                                <Route path="/users">
+                                    <Route index element={<UserList />} />
+                                    <Route
+                                        path="create"
+                                        element={<UserCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<UserEdit />}
+                                    />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 }
 

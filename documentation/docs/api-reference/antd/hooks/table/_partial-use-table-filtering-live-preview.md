@@ -9,19 +9,22 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-start
     FilterDropdown,
-    Radio,
-    Input,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import {
+    Table,
+    // highlight-start
+    Radio,
+    // highlight-end
+} from "antd";
 
 interface IPost {
     id: number;
@@ -30,7 +33,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost, HttpError>();
 
     return (

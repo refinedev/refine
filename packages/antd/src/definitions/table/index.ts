@@ -7,7 +7,7 @@ import {
     getDefaultSortOrder as getDefaultSortOrderCore,
     ConditionalFilter,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { SortOrder, SorterResult } from "antd/lib/table/interface";
 
 export const getDefaultSortOrder = (
@@ -24,7 +24,7 @@ export const getDefaultSortOrder = (
 };
 
 /**
- * @deprecated getDefaultFilter moved to `@pankod/refine-core`. Use from `@pankod/refine-core`
+ * @deprecated getDefaultFilter moved to `@refinedev/core`. Use from `@refinedev/core`
  */
 export const getDefaultFilter = (
     columnName: string,

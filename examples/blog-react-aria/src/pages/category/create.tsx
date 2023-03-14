@@ -1,5 +1,6 @@
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
-import { HttpError } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
+import { HttpError } from "@refinedev/core";
 import { useOverlayTriggerState } from "@react-stately/overlays";
 
 import Modal from "../../components/Modal";

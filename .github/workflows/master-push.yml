@@ -36,12 +36,12 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           npm ci
-          npm run bootstrap
-          npm run lerna run build -- --scope @pankod/refine-codemod
+          npm run bootstrap:all
+          npm run lerna run build:all
       - name: Lint
         run: npm run lint
       - name: Test
-        run: npm test
+        run: npm run test:all
       - name: Prepare Stable version changesets
         if: "!contains(github.event.head_commit.message, 'ci(changesets): version packages')"
         run: |
@@ -106,7 +106,7 @@ jobs:
       - name: Build packages
         run: |
           npm ci
-          npm run bootstrap
+          npm run bootstrap:all
           cd documentation
           npm ci
       - name: Release to GitHub Pages

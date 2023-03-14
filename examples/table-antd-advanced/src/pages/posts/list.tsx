@@ -3,23 +3,19 @@ import {
     IResourceComponentsProps,
     useMany,
     useDeleteMany,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
-    Table,
     TextField,
-    Form,
     EditButton,
-    Input,
-    Select,
-    Space,
-    Button,
     MarkdownField,
     SaveButton,
     useEditableTable,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Form, Input, Select, Space, Button } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

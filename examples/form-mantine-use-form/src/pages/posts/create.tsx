@@ -1,11 +1,5 @@
-import {
-    Create,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
-    Text,
-} from "@pankod/refine-mantine";
+import { Create, useForm, useSelect } from "@refinedev/mantine";
+import { Select, TextInput, Text } from "@mantine/core";
 import { RichTextEditor } from "@mantine/rte";
 
 export const PostCreate: React.FC = () => {

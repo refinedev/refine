@@ -1,88 +1,74 @@
 import { GetServerSideProps } from "next";
-import {
-    GetListResponse,
-    LayoutWrapper,
-    parseTableParamsFromQuery,
-} from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-    getDefaultSortOrder,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import { checkAuthentication } from "@pankod/refine-nextjs-router";
+import { GetListResponse } from "@refinedev/core";
+import { useTable, List, getDefaultSortOrder } from "@refinedev/antd";
+import { Table } from "antd";
+import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams } from "@refinedev/nextjs-router";
 
-import { IPost } from "src/interfaces";
+import { IUser } from "src/interfaces";
+import { authProvider } from "src/authProvider";
+import { API_URL } from "src/constants";
 
-import { API_URL } from "../../src/constants";
-
-export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
-    users,
+export const UserList: React.FC<{ initialData: GetListResponse<IUser> }> = ({
+    initialData,
 }) => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorters } = useTable<IUser>({
         resource: "users",
         queryOptions: {
-            initialData: users,
+            initialData,
         },
         syncWithLocation: true,
     });
 
     return (
-        <LayoutWrapper>
-            <List title="Users">
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column
-                        dataIndex="id"
-                        title="ID"
-                        sorter={{
-                            multiple: 1,
-                        }}
-                        defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    />
-                    <Table.Column
-                        dataIndex="firstName"
-                        title="Name"
-                        sorter={{ multiple: 2 }}
-                        defaultSortOrder={getDefaultSortOrder(
-                            "firstName",
-                            sorter,
-                        )}
-                    />
-                </Table>
-            </List>
-        </LayoutWrapper>
+        <List title="Users">
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="id"
+                    title="ID"
+                    sorter={{
+                        multiple: 1,
+                    }}
+                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
+                />
+                <Table.Column
+                    dataIndex="firstName"
+                    title="Name"
+                    sorter={{ multiple: 2 }}
+                    defaultSortOrder={getDefaultSortOrder("firstName", sorters)}
+                />
+            </Table>
+        </List>
     );
 };
 
 export default UserList;
 
-import { authProvider } from "../../src/authProvider";
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, ...props } = await checkAuthentication(
-        authProvider,
-        context,
-    );
+    const { authenticated, redirectTo } = await authProvider.check(context);
 
-    if (!isAuthenticated) {
-        return props;
+    if (!authenticated) {
+        return {
+            props: {},
+            redirect: {
+                destination: redirectTo,
+                permanent: false,
+            },
+        };
     }
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParamsFromQuery(context.query);
+    const { pagination, filters, sorters } = parseTableParams(
+        context.resolvedUrl?.split("?")[1] ?? "",
+    );
 
     const data = await dataProvider(API_URL).getList({
         resource: "users",
-        filters: parsedFilters,
-        pagination: {
-            current: parsedCurrent || 1,
-            pageSize: parsedPageSize || 10,
-        },
-        sort: parsedSorter,
+        filters,
+        pagination,
+        sorters,
     });
 
     return {
-        props: { users: data },
+        props: { initialData: data },
     };
 };

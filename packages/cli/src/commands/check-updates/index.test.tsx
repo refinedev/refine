@@ -12,12 +12,12 @@ test("Get outdated refine packages", async () => {
     }[] = [
         {
             input: {
-                "@pankod/refine-core": {
+                "@refinedev/core": {
                     current: "1.0.0",
                     wanted: "1.0.1",
                     latest: "2.0.0",
                 },
-                "@pankod/refine-cli": {
+                "@refinedev/cli": {
                     current: "1.1.1",
                     wanted: "1.1.1",
                     latest: "1.1.0",
@@ -45,7 +45,7 @@ test("Get outdated refine packages", async () => {
             },
             output: [
                 {
-                    name: "@pankod/refine-core",
+                    name: "@refinedev/core",
                     current: "1.0.0",
                     wanted: "1.0.1",
                     latest: "2.0.0",

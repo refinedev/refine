@@ -1,59 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { ResourceErrorRouterParams } from "@pankod/refine-core";
-import { RefineErrorPageProps } from "@pankod/refine-ui-types";
-import {
-    useNavigation,
-    useTranslate,
-    useResourceWithRoute,
-    useRouterContext,
-} from "@pankod/refine-core";
+import { useGo, useResource, useRouterType } from "@refinedev/core";
+import { RefineErrorPageProps } from "@refinedev/ui-types";
+import { useNavigation, useTranslate } from "@refinedev/core";
 import { Stack, Button, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const { push } = useNavigation();
+    const go = useGo();
+    const routerType = useRouterType();
+
+    const { resource, action } = useResource();
+
     const translate = useTranslate();
-    const actionTypes = ["edit", "create", "show"];
-
-    const { useParams } = useRouterContext();
-
-    const params = useParams<ResourceErrorRouterParams>();
-    const resource = useResourceWithRoute();
 
     useEffect(() => {
-        const action = params.action ?? "list";
-        const resourceName = params.resource;
-        setErrorMessage(
-            translate(
-                "pages.error.info",
-                {
-                    action,
-                    resource: resourceName,
-                },
-                `You may have forgotten to add the "${action}" component to "${resourceName}" resource.`,
-            ),
-        );
-        if (resourceName) {
-            const resourceFromRoute = resource(resourceName);
-            if (
-                action &&
-                actionTypes.includes(action) &&
-                !resourceFromRoute[action]
-            ) {
-                setErrorMessage(
-                    translate(
-                        "pages.error.info",
-                        {
-                            action,
-                            resource: resourceName,
-                        },
-                        `You may have forgotten to add the "${action}" component to "${resourceName}" resource.`,
-                    ),
-                );
-            }
+        if (resource && action) {
+            setErrorMessage(
+                translate(
+                    "pages.error.info",
+                    {
+                        action,
+                        resource: resource?.name,
+                    },
+                    `You may have forgotten to add the "${action}" component to "${resource?.name}" resource.`,
+                ),
+            );
         }
-    }, [params]);
+    }, [action, resource]);
 
     return (
         <Grid
@@ -83,7 +58,15 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                         </Tooltip>
                     )}
                 </Stack>
-                <Button onClick={() => push("/")}>
+                <Button
+                    onClick={() => {
+                        if (routerType === "legacy") {
+                            push("/");
+                        } else {
+                            go({ to: "/" });
+                        }
+                    }}
+                >
                     {translate("pages.error.backHome", "Back Home")}
                 </Button>
             </Grid>

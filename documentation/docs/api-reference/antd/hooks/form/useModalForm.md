@@ -1,12 +1,13 @@
 ---
 id: useModalForm
 title: useModalForm
+sidebar_label: useModalForm 🆙
 ---
 
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@pankod/refine-antd`][@pankod/refine-antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
+`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@refinedev/antd`][@refinedev/antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
 :::
 
 ## Basic Usage
@@ -31,22 +32,11 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    EditButton,
-    useTable,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
+import { Table, Form, Select, Input, Modal, Space } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-start
@@ -154,22 +144,11 @@ Let's learn how to add editing capabilities to records that will be opening form
 setInitialRoutes(["/posts"]);
 
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    EditButton,
-    useTable,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
+import { Table, Form, Select, Input, Modal, Space } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-start
@@ -305,22 +284,11 @@ Let's learn how to add cloning capabilities to records that will be opening form
 setInitialRoutes(["/posts"]);
 
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    CloneButton,
-    useTable,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { List, CloneButton, useTable, useModalForm } from "@refinedev/antd";
+import { Table, Form, Select, Input, Modal, Space } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-start
@@ -454,6 +422,20 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 :::tip
 All [`useForm`][antd-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
 :::
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const modalForm = useModalForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
+});
+```
 
 ### `defaultFormValues`
 
@@ -701,7 +683,7 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useModalForm"/>
+<PropsTable module="@refinedev/antd/useModalForm"/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
@@ -737,7 +719,7 @@ return (
 
    <CodeSandboxExample path="form-antd-use-modal-form" />
 
-[@pankod/refine-antd]: https://github.com/refinedev/refine/tree/master/packages/antd
+[@refinedev/antd]: https://github.com/refinedev/refine/tree/master/packages/antd
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [basekey]: /api-reference/core/interfaces.md#basekey

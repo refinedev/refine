@@ -11,9 +11,9 @@ In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/mantine/inde
 
 ## Sort and Filters
 
-The `@pankod/refine-react-table` package based on the [**Tanstack Table**](https://tanstack.com/table/v8) package. So, we can add sorting and filtering features to our table as suggested in the **Tanstack Table** documentation.
+The `@refinedev/react-table` package based on the [**Tanstack Table**](https://tanstack.com/table/v8) package. So, we can add sorting and filtering features to our table as suggested in the **Tanstack Table** documentation.
 
-[Refer to the **@pankod/refine-react-table** `useTable` documentation for more information &#8594](/docs/packages/documentation/react-table/)
+[Refer to the **@refinedev/react-table** `useTable` documentation for more information &#8594](/docs/packages/documentation/react-table/)
 
 **Tanstack Table** keeps the `sorting` and `filters` states in the `useTable` hook. When we change the these states, the `useTable` hook will automatically fetch the data and update the table with the new data.
 
@@ -21,16 +21,16 @@ The `@pankod/refine-react-table` package based on the [**Tanstack Table**](https
 Under the hood, `sorting` and `filters` states of **Tanstack Table** are converted to the `CrudSorting` and `CrudFilter` types of **refine**. So, when you change the **Tanstack Table**'s `sorting` or `filters` state, `useTable` hook will pass the converted params to the `getList` method of the `dataProvider`.
 :::
 
-Since `@pankod/refine-react-table` provides a headless solution, there are many ways to handle filtering and sorting. In this tutorial, we will show basic examples of how to add sorting and filtering to the table.
+Since `@refinedev/react-table` provides a headless solution, there are many ways to handle filtering and sorting. In this tutorial, we will show basic examples of how to add sorting and filtering to the table.
 
 ## Adding Sorting
 
 Let's create a `<ColumnSorter/>` component to use in our table header. This component will be responsible for changing the sorting state of the table.
 
 ```tsx title="src/components/table/ColumnSorter.tsx"
-import { ActionIcon } from "@pankod/refine-mantine";
+import { ActionIcon } from "@mantine/core";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
-import type { Column } from "@pankod/refine-react-table";
+import type { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
     column,
@@ -132,15 +132,9 @@ Let's create a `<ColumnFilter/>` component to use in our table header. This comp
 
 ```tsx title="src/components/table/ColumnFilter.tsx"
 import React, { useState } from "react";
-import {
-    TextInput,
-    Menu,
-    ActionIcon,
-    Stack,
-    Group,
-} from "@pankod/refine-mantine";
+import { TextInput, Menu, ActionIcon, Stack, Group } from "@mantine/core";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
-import type { Column } from "@pankod/refine-react-table";
+import type { Column } from "@tanstack/react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
     column,

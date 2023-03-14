@@ -8,8 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 
 
@@ -41,7 +48,7 @@ Steps we'll cover:
 We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **refine** application.
 
 ```
-npx superplate-cli -o refine-headless refine-navbar
+npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
 ```
 
 
@@ -106,11 +113,11 @@ Add these `resources` as a prop to the `<Refine />` component:
 
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import React from "react";
 import 'App.css'
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
 import { postList, categoryList, userList, eventList } from "pages";
 
@@ -224,7 +231,7 @@ Layout component is used for the customization of **refine** app's layout. Creat
 Create the following navbar using Tailwind CSS inside the `Layout` component. We can get all the `menuItems` from `<Refine />` using `useMenu()` hook.
 
 ```tsx title="src/components/Layout.tsx"
-import { useMenu, LayoutProps } from "@pankod/refine-core";
+import { useMenu, LayoutProps } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -328,7 +335,7 @@ We need to use `Link` component in the `Layout.tsx` will look like this:
 
 ```tsx title="src/components/Layout.tsx"
 //highlight-next-line
-import { useMenu, LayoutProps, useRouterContext } from "@pankod/refine-core";
+import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -446,7 +453,7 @@ Add following CSS classes to `App.css` file:
 
 
 ```tsx title="src/components/Layout.tsx"
-import { useMenu, LayoutProps } from "@pankod/refine-core";
+import { useMenu, LayoutProps } from "@refinedev/core";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Navbar, Nav } from 'react-bootstrap'
@@ -504,7 +511,7 @@ Add `<Link>` component inside `<Nav>` like this:
 
 ```tsx title="src/components/Layout.tsx"
 //highlight-next-line
-import { useMenu, LayoutProps, useRouterContext } from "@pankod/refine-core";
+import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css"

@@ -5,18 +5,19 @@ import {
 } from "@tanstack/react-query";
 
 import {
-    useCheckError,
     useDataProvider,
     useHandleNotification,
     useTranslate,
+    useOnError,
 } from "@hooks";
 import {
     CreateResponse,
     BaseRecord,
     HttpError,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
 } from "../../interfaces";
+import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
 interface UseCustomMutationConfig {
     headers?: {};
@@ -26,7 +27,15 @@ type useCustomMutationParams<TVariables> = {
     url: string;
     method: "post" | "put" | "patch" | "delete";
     values: TVariables;
-    metaData?: MetaDataQuery;
+    /**
+     * Meta data for `dataProvider`
+     */
+    meta?: MetaQuery;
+    /**
+     * Meta data for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     dataProviderName?: string;
     config?: UseCustomMutationConfig;
 } & SuccessErrorNotification;
@@ -82,7 +91,10 @@ export const useCustomMutation = <
     TError,
     TVariables
 > = {}): UseCustomMutationReturnType<TData, TError, TVariables> => {
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -97,6 +109,7 @@ export const useCustomMutation = <
             url,
             method,
             values,
+            meta,
             metaData,
             dataProviderName,
             config,
@@ -108,7 +121,8 @@ export const useCustomMutation = <
                     url,
                     method,
                     payload: values,
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                     headers: { ...config?.headers },
                 });
             }
@@ -121,6 +135,7 @@ export const useCustomMutation = <
                 {
                     successNotification: successNotificationFromProp,
                     config,
+                    meta,
                     metaData,
                 },
             ) => {
@@ -128,7 +143,7 @@ export const useCustomMutation = <
                     typeof successNotificationFromProp === "function"
                         ? successNotificationFromProp(data, {
                               ...config,
-                              ...metaData,
+                              ...(pickNotDeprecated(meta, metaData) || {}),
                           })
                         : successNotificationFromProp;
 
@@ -140,6 +155,7 @@ export const useCustomMutation = <
                     errorNotification: errorNotificationFromProp,
                     method,
                     config,
+                    meta,
                     metaData,
                 },
             ) => {
@@ -149,7 +165,7 @@ export const useCustomMutation = <
                     typeof errorNotificationFromProp === "function"
                         ? errorNotificationFromProp(err, {
                               ...config,
-                              ...metaData,
+                              ...(pickNotDeprecated(meta, metaData) || {}),
                           })
                         : errorNotificationFromProp;
 

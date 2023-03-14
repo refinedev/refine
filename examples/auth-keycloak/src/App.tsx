@@ -1,15 +1,21 @@
-import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import axios from "axios";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -24,70 +30,148 @@ const App: React.FC = () => {
         return <div>Loading...</div>;
     }
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async () => {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const { to } = Object.fromEntries(urlSearchParams.entries());
             await keycloak.login({
                 redirectUri: to ? `${window.location.origin}${to}` : undefined,
             });
-            return Promise.resolve(false);
+            return {
+                success: false,
+                error: new Error("Login failed"),
+            };
         },
         logout: async () => {
-            await keycloak.logout({
-                redirectUri: window.location.origin,
-            });
-            return Promise.resolve();
+            try {
+                await keycloak.logout({
+                    redirectUri: window.location.origin,
+                });
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: new Error("Logout failed"),
+                };
+            }
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        check: async () => {
             try {
                 const { token } = keycloak;
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token}`,
                     };
-                    return Promise.resolve();
+                    return {
+                        authenticated: true,
+                    };
                 } else {
-                    return Promise.reject();
+                    return {
+                        authenticated: false,
+                        logout: true,
+                        redirectTo: "/login",
+                        error: new Error("Token not found"),
+                    };
                 }
             } catch (error) {
-                return Promise.reject();
+                return {
+                    authenticated: false,
+                    logout: true,
+                    redirectTo: "/login",
+                    error: new Error("Token not found"),
+                };
             }
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             if (keycloak?.tokenParsed) {
-                return Promise.resolve({
+                return {
                     name: keycloak.tokenParsed.family_name,
-                });
+                };
             }
-            return Promise.reject();
+            return null;
         },
     };
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
-                LoginPage={Login}
                 authProvider={authProvider}
                 dataProvider={dataProvider(API_URL, axios)}
                 routerProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

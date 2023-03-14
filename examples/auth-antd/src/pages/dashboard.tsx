@@ -1,6 +1,6 @@
-import { useGetIdentity, usePermissions } from "@pankod/refine-core";
+import { useGetIdentity, usePermissions } from "@refinedev/core";
 
-import { Row, Col, Card, Avatar, Typography, Space } from "@pankod/refine-antd";
+import { Row, Col, Card, Avatar, Typography, Space } from "antd";
 
 const { Text } = Typography;
 
@@ -10,7 +10,7 @@ export const DashboardPage: React.FC = () => {
         name: string;
         avatar: string;
     }>();
-    const permissions = usePermissions();
+    const permissions = usePermissions<string[]>();
 
     return (
         <Row gutter={20}>
