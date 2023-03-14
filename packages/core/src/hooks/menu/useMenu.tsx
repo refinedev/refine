@@ -143,7 +143,7 @@ export const useMenu = (
         };
 
         return prepare(treeMenuItems);
-    }, [resources, routerType]);
+    }, [resources, routerType, prepareItem]);
 
     return {
         defaultOpenKeys,
