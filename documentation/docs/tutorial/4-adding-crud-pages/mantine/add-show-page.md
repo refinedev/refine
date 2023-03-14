@@ -265,7 +265,6 @@ const App = () => {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
-
                         <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>

@@ -191,7 +191,6 @@ const App = () => {
 
                     <Route path="*" element={<div>Error!</div>} />
                 </Routes>
-
                 <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>

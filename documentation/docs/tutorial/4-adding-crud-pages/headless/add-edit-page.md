@@ -203,7 +203,6 @@ const App = () => {
 
                     <Route path="*" element={<div>Error!</div>} />
                 </Routes>
-
                 {/* highlight-next-line */}
                 <UnsavedChangesNotifier />
             </Refine>

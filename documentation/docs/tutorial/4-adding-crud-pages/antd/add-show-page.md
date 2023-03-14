@@ -222,7 +222,6 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
-
                 <UnsavedChangesNotifier />
             </Refine>
         </BrowserRouter>

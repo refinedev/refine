@@ -231,7 +231,6 @@ const App: React.FC = () => {
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
-
                 {/* highlight-next-line */}
                 <UnsavedChangesNotifier />
             </Refine>
