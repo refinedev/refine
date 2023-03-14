@@ -80,18 +80,18 @@ const App = () => {
                         >
                             {/* highlight-start */}
                             <Route path="products">
-                                <Route index element={<AntdInferencer />} />
+                                <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
-                                    element={<AntdInferencer />}
+                                    element={<ChakraUIInferencer />}
                                 />
                                 <Route
                                     path="edit/:id"
-                                    element={<AntdInferencer />}
+                                    element={<ChakraUIInferencer />}
                                 />
                                 <Route
                                     path="create"
-                                    element={<AntdInferencer />}
+                                    element={<ChakraUIInferencer />}
                                 />
                             </Route>
                             {/* highlight-end */}
