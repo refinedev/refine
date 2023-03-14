@@ -140,14 +140,16 @@ export default App;
 <UIConditional is="antd">
 
 ```tsx title="src/App.tsx"
+import { ErrorComponent, Layout } from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Layout, ErrorComponent } from "@refinedev/antd";
-import { AntdInferencer } from "@refinedev/inferencer";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -179,10 +181,20 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="products" />}
+                        />
                         <Route path="products">
                             <Route index element={<AntdInferencer />} />
-                            <Route path="show/:id" element={<AntdInferencer />} />
-                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
                             <Route path="create" element={<AntdInferencer />} />
                         </Route>
 
@@ -191,7 +203,7 @@ const App: React.FC = () => {
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>
-        <BrowserRouter />
+        </BrowserRouter>
     );
 };
 
@@ -203,14 +215,15 @@ export default App;
 <UIConditional is="chakra-ui">
 
 ```tsx title="src/App.tsx"
+import { ErrorComponent, Layout } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Layout, ErrorComponent } from "@refinedev/chakra-ui";
-import { ChakraUIInferencer } from "@refinedev/inferencer";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -242,11 +255,24 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="products" />}
+                        />
                         <Route path="products">
                             <Route index element={<ChakraUIInferencer />} />
-                            <Route path="show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                            <Route path="create" element={<ChakraUIInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<ChakraUIInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<ChakraUIInferencer />}
+                            />
+                            <Route
+                                path="create"
+                                element={<ChakraUIInferencer />}
+                            />
                         </Route>
 
                         <Route path="*" element={<ErrorComponent />} />
@@ -254,7 +280,7 @@ const App: React.FC = () => {
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>
-        <BrowserRouter />
+        </BrowserRouter>
     );
 };
 
@@ -267,13 +293,14 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
+import { ErrorComponent, Layout } from "@refinedev/mantine";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Layout, ErrorComponent } from "@refinedev/mantine";
-import { MantineInferencer } from "@refinedev/inferencer";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -305,11 +332,24 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="products" />}
+                        />
                         <Route path="products">
                             <Route index element={<MantineInferencer />} />
-                            <Route path="show/:id" element={<MantineInferencer />} />
-                            <Route path="edit/:id" element={<MantineInferencer />} />
-                            <Route path="create" element={<MantineInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<MantineInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<MantineInferencer />}
+                            />
+                            <Route
+                                path="create"
+                                element={<MantineInferencer />}
+                            />
                         </Route>
 
                         <Route path="*" element={<ErrorComponent />} />
@@ -317,7 +357,7 @@ const App: React.FC = () => {
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>
-        <BrowserRouter />
+        </BrowserRouter>
     );
 };
 
@@ -330,13 +370,14 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
+import { ErrorComponent, Layout } from "@refinedev/mui";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { Layout, ErrorComponent } from "@refinedev/mui";
-import { MuiInferencer } from "@refinedev/inferencer";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -368,10 +409,20 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="products" />}
+                        />
                         <Route path="products">
                             <Route index element={<MuiInferencer />} />
-                            <Route path="show/:id" element={<MuiInferencer />} />
-                            <Route path="edit/:id" element={<MuiInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<MuiInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<MuiInferencer />}
+                            />
                             <Route path="create" element={<MuiInferencer />} />
                         </Route>
 
@@ -380,7 +431,7 @@ const App: React.FC = () => {
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>
-        <BrowserRouter />
+        </BrowserRouter>
     );
 };
 
