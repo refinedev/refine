@@ -9,18 +9,18 @@
  */
 // Based on https://github.com/vercel/next.js/blob/canary/packages/next-codemod/bin/cli.ts
 // and https://github.com/reactjs/react-codemod/blob/dd8671c9a470a2c342b221ec903c574cf31e9f57/bin/cli.js
-// @pankod/refine-codemod name-of-transform optional/path/to/src [...options]
+// @refinedev/codemod name-of-transform optional/path/to/src [...options]
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+import chalk from "chalk";
+import execa from "execa";
 import globby from "globby";
 import inquirer from "inquirer";
+import isGitClean from "is-git-clean";
 import meow from "meow";
 import path from "path";
-import execa from "execa";
-import chalk from "chalk";
-import isGitClean from "is-git-clean";
 import { checkAntdVersionIs3x } from "./helpers/check-antd-version-is-3x";
 
 export const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
@@ -56,7 +56,7 @@ export function checkGitStatus(force) {
         if (force) {
             console.log(`WARNING: ${errorMessage}. Forcibly continuing.`);
         } else {
-            console.log("Thank you for using @pankod/refine-codemod!");
+            console.log("Thank you for using @refinedev/codemod!");
             console.log(
                 chalk.yellow(
                     "\nBut before we continue, please stash or commit your git changes.",
@@ -155,7 +155,7 @@ export async function run(): Promise<void> {
         description: "Codemods for updating refine apps.",
         help: `
     Usage
-      $ npx @pankod/refine-codemod <transform> <path> <...options>
+      $ npx @refinedev/codemod <transform> <path> <...options>
         path         Files or directory to transform. Can be a glob like pages/**.js
     Options
       --force            Bypass Git safety checks and forcibly run codemods
