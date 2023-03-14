@@ -40,7 +40,7 @@ jobs:
         run: |
           npm ci
           npm run bootstrap:all
-          npm run lerna run build:all
+          npm run build:all
       #- name: Lint
       #  run: npm run lint
       - name: Test
