@@ -212,7 +212,6 @@ export const MyListComponent = () => {
     return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
-```
 
 ## API Reference
 
@@ -222,4 +221,4 @@ export const MyListComponent = () => {
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
-:::        
+:::

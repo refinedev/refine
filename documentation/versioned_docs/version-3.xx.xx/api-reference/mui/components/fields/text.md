@@ -23,7 +23,7 @@ import {
     GridColumns,
     List,
     // highlight-next-line
-    TextField,
+    TextFieldComponent,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
@@ -33,9 +33,7 @@ const columns: GridColumns = [
         headerName: "Title",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <TextField value={row.title} />
-            );
+            return <TextFieldComponent, value={row.title} />;
             // highlight-end
         },
         minWidth: 100,

@@ -4,7 +4,6 @@ title: File
 swizzle: true
 ---
 
-
 This field is used to display files and it uses the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component of [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) from Material UI.
 
 :::info-tip Swizzle
@@ -35,8 +34,12 @@ const columns: GridColumns = [
         renderCell: function render({ row }) {
             // highlight-start
             return (
-                <FileField src={row.image[0].url} />
-            );
+                 <FileField
+                     src={row.image[0].url}
+                     target="_blank"
+                     rel="noopener"
+                 />
+             );
             // highlight-end
         },
         minWidth: 100,

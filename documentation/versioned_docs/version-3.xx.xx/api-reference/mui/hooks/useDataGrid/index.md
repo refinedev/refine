@@ -284,7 +284,7 @@ method={{
 />
 
 ```tsx
-useTable({
+useDataGrid({
     resource: "categories",
 });
 ```
