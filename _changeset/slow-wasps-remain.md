@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": major
+"@refinedev/core": minor
 ---
 
 -   `useList` and `useInfiniteList`'s `config` prop is now deprecated. Use `sorters`, `filters`, `pagination` and `hasPagination` props instead.

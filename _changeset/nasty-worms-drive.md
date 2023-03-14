@@ -1,5 +1,5 @@
 ---
-"@refinedev/chakra-ui": major
+"@refinedev/chakra-ui": minor
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨

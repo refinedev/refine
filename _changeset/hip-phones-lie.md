@@ -1,5 +1,5 @@
 ---
-"@refinedev/mantine": major
+"@refinedev/mantine": minor
 ---
 
 Updated the components to match the changes in routing system of `@refinedev/core`.

@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": major
+"@refinedev/core": minor
 ---
 
 -   `AuthProvider` deprecated and renamed to `LegacyAuthProvider`.

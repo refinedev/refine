@@ -1,5 +1,5 @@
 ---
-"@refinedev/nextjs-router": major
+"@refinedev/nextjs-router": minor
 ---
 
 

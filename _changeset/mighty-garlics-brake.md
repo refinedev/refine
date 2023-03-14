@@ -1,5 +1,5 @@
 ---
-"@refinedev/inferencer": major
+"@refinedev/inferencer": minor
 ---
 
 Upgrade `@ant-design/icons` to `^5.0.1` for consistency.

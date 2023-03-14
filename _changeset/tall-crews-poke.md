@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": major
+"@refinedev/core": minor
 ---
 
 Updated `useSelect` hook to support `optionLabel` and `optionValue` type as `keyof TData` instead of `string`.

@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-table": major
+"@refinedev/react-table": minor
 ---
 
 All `@tanstack/react-table` imports re-exported from `@refinedev/react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.

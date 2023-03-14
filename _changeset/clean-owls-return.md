@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-hook-form": major
+"@refinedev/react-hook-form": minor
 ---
 
 All `react-hook-form` imports re-exported from `@refinedev/react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.

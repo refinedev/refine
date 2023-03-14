@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": major
+"@refinedev/antd": minor
 ---
 
 ## `useTable` hook

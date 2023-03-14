@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": major
+"@refinedev/core": minor
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨

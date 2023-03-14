@@ -1,5 +1,5 @@
 ---
-"@refinedev/mui": major
+"@refinedev/mui": minor
 ---
 
 All **Material UI** components re-exported from `@refinedev/mui` have been removed. You should import them from Material UI packages directly.

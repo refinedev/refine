@@ -1,9 +1,9 @@
 ---
-"@refinedev/antd": major
-"@refinedev/chakra-ui": major
-"@refinedev/core": major
-"@refinedev/mantine": major
-"@refinedev/mui": major
+"@refinedev/antd": minor
+"@refinedev/chakra-ui": minor
+"@refinedev/core": minor
+"@refinedev/mantine": minor
+"@refinedev/mui": minor
 ---
 
 -   `<ReadyPage>` isnow deprecated.

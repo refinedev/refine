@@ -1,5 +1,5 @@
 ---
-"@refinedev/chakra-ui": major
+"@refinedev/chakra-ui": minor
 ---
 
 Updated the components to match the changes in routing system of `@refinedev/core`.

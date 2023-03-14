@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": major
+"@refinedev/antd": minor
 ---
 
 All **Ant Design** components re-exported from `@refinedev/antd` have been removed. You should import them from `antd` package directly.

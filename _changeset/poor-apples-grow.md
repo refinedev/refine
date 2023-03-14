@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-router-v6": major
+"@refinedev/react-router-v6": minor
 ---
 
 We're releasing a new way to connect your router to **refine**. 

@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": major
+"@refinedev/antd": minor
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨

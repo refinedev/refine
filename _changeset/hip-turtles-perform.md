@@ -1,5 +1,5 @@
 ---
-"@refinedev/ui-types": major
+"@refinedev/ui-types": minor
 ---
 
 - `resourceNameOrRouteName` prop is deprecated in buttons.

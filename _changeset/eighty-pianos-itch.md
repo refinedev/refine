@@ -1,5 +1,5 @@
 ---
-"@refinedev/mui": major
+"@refinedev/mui": minor
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨

@@ -1,5 +1,5 @@
 ---
-"@refinedev/mui": major
+"@refinedev/mui": minor
 ---
 
 Updated the components to match the changes in routing system of `@refinedev/core`.

@@ -1,5 +1,5 @@
 ---
-"@refinedev/mantine": major
+"@refinedev/mantine": minor
 ---
 
 -   `useSelect`'s `sort` prop is now deprecated. Use `sorters` prop instead.

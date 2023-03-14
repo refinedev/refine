@@ -1,5 +1,5 @@
 ---
-"@refinedev/remix-router": major
+"@refinedev/remix-router": minor
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨

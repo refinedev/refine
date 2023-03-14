@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": major
+"@refinedev/antd": minor
 ---
 
 Updated the components to match the changes in routing system of `@refinedev/core`.

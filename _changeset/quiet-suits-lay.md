@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-hook-form": major
+"@refinedev/react-hook-form": minor
 ---
 
 Updated the components to match the changes in routing system of `@refinedev/core`.

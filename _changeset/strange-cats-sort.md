@@ -1,5 +1,5 @@
 ---
-"@refinedev/mantine": major
+"@refinedev/mantine": minor
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
