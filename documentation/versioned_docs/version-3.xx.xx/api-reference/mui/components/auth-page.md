@@ -837,13 +837,10 @@ const App = () => {
                 <AuthPage
                     // highlight-start
                     contentProps={{
-                        title: "Login",
-                        headStyle: {
-                            background: "cornflowerblue",
-                            color: "white",
-                        },
-                        bodyStyle: {
-                            background: "#673ab742",
+                        sx: {
+                             border: 5,
+                             borderColor: 'primary.main',
+                             borderRadius: 2,
                         },
                     }}
                     // highlight-end
@@ -935,7 +932,7 @@ const App = () => {
             LoginPage={() => (
                 <AuthPage
                     contentProps={{
-                        style: {
+                        sx: {
                             width: "400px",
                         },
                     }}
