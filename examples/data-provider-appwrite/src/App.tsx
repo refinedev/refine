@@ -161,7 +161,7 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
+                                <NavigateToResource resource="61c43ad33b857" />
                             </Authenticated>
                         }
                     >
