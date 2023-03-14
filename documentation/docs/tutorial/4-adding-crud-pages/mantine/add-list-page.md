@@ -59,6 +59,7 @@ const App = () => {
                         resources={[
                             {
                                 name: "products",
+                                // highlight-next-line
                                 list: "/products",
                                 show: "/products/show/:id",
                                 create: "/products/create",
@@ -82,29 +83,27 @@ const App = () => {
                                 />
 
                                 <Route path="/products">
+                                    {/* highlight-start */}
                                     <Route
                                         index
                                         element={<MantineInferencer />}
-                                    >
-                                        <Route
-                                            path="/products/show/:id"
-                                            element={<MantineInferencer />}
-                                        />
-                                        <Route
-                                            path="/products/edit/:id"
-                                            element={<MantineInferencer />}
-                                        />
-                                        <Route
-                                            path="/products/create"
-                                            element={<MantineInferencer />}
-                                        />
-                                    </Route>
-
+                                    />
+                                    {/* highlight-end */}
                                     <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
                                     />
                                 </Route>
+
+                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
                     </Refine>
@@ -247,6 +246,7 @@ const App = () => {
                         resources={[
                             {
                                 name: "products",
+                                // highlight-next-line
                                 list: "/products",
                                 show: "/products/show/:id",
                                 create: "/products/create",

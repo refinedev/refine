@@ -39,10 +39,13 @@ import {
     LightTheme,
     notificationProvider,
 } from "@refinedev/mantine";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
@@ -68,27 +71,44 @@ const App = () => {
                             },
                         ]}
                     >
-                        <Layout>
-                            <Routes>
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
                                 <Route
-                                    path="/products"
-                                    element={<MantineInferencer />}
+                                    index
+                                    element={
+                                        <NavigateToResource resource="products" />
+                                    }
                                 />
-                                <Route
-                                    path="/products/show/:id"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/products/edit/:id"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/products/create"
-                                    element={<MantineInferencer />}
-                                />
+
+                                <Route path="/products">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </NotificationsProvider>
@@ -170,7 +190,10 @@ import {
     notificationProvider,
     NotificationsProvider,
 } from "@refinedev/mantine";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -196,9 +219,16 @@ const App = () => {
                                 list: "/products",
                                 show: "/products/show/:id",
                                 create: "/products/create",
+                                // highlight-next-line
                                 edit: "/products/edit/:id",
                             },
                         ]}
+                        // highlight-start
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                        // highlight-end
                     >
                         <Routes>
                             <Route
@@ -214,17 +244,19 @@ const App = () => {
                                         <NavigateToResource resource="products" />
                                     }
                                 />
+
                                 <Route path="products">
                                     <Route index element={<ProductList />} />
                                     <Route
                                         path="show/:id"
                                         element={<MantineInferencer />}
                                     />
-                                    {/* highlight-next-line */}
+                                    {/* highlight-start */}
                                     <Route
                                         path="edit/:id"
                                         element={<ProductEdit />}
                                     />
+                                    {/* highlight-end */}
                                     <Route
                                         path="create"
                                         element={<MantineInferencer />}
@@ -234,6 +266,9 @@ const App = () => {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+
+                        {/* highlight-next-line */}
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </NotificationsProvider>
