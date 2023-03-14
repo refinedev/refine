@@ -147,7 +147,9 @@ const App = () => {
                         )}
                         notificationProvider={notificationProvider}
                     >
-                        <WelcomePage />
+                        <Routes>
+                            <Route index element={WelcomePage} />
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </NotificationsProvider>

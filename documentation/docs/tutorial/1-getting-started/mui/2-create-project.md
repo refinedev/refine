@@ -120,19 +120,17 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { Refine } from "@refinedev/core";
 import {
-    Layout,
-    WelcomePage,
-    ErrorComponent,
     LightTheme,
-    RefineSnackbarProvider,
     notificationProvider,
+    RefineSnackbarProvider,
+    WelcomePage,
 } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
-import { BrowserRouter } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -148,7 +146,9 @@ const App: React.FC = () => {
                         )}
                         notificationProvider={notificationProvider}
                     >
-                        <WelcomePage />
+                        <Routes>
+                            <Route index element={WelcomePage} />
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>

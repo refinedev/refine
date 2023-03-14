@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-headless tutorial
     ```
+
     > Only support yarn@1 version.
 
     </TabItem>
@@ -131,7 +132,9 @@ const App: React.FC = () => {
                 routerProvider={routerBindings}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             >
-            <WelcomePage />
+                <Routes>
+                    <Route index element={WelcomePage} />
+                </Routes>
             </Refine>
         </BrowserRouter>
     );
