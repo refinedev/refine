@@ -1,5 +1,12 @@
 # @pankod/refine-codemod
 
+## 4.0.1
+
+### Patch Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    fix: semver dependency
+
 ## 4.0.0
 
 ### Major Changes
