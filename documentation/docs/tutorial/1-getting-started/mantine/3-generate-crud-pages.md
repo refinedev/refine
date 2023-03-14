@@ -157,9 +157,7 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 setInitialRoutes(["/products"]);
 
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,

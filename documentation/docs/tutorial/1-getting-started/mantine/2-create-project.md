@@ -127,11 +127,11 @@ import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+    WelcomePage,
+} from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MantineProvider, Global } from "@mantine/core";
 
 const App = () => {
@@ -148,7 +148,7 @@ const App = () => {
                         notificationProvider={notificationProvider}
                     >
                         <Routes>
-                            <Route index element={WelcomePage} />
+                            <Route index element={<WelcomePage />} />
                         </Routes>
                     </Refine>
                 </BrowserRouter>

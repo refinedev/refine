@@ -129,7 +129,7 @@ import {
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
     return (
@@ -143,7 +143,7 @@ const App = () => {
                     )}
                 >
                     <Routes>
-                        <Route index element={WelcomePage} />
+                        <Route index element={<WelcomePage />} />
                     </Routes>
                 </Refine>
             </ChakraProvider>

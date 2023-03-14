@@ -159,6 +159,7 @@ setInitialRoutes(["/products"]);
 
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -190,8 +191,7 @@ const App = () => {
                     {/* highlight-start */}
                     <Route
                         index
-                        element={<NavigateToResource />}
-                        resource="products"
+                        element={<NavigateToResource resource="products" />}
                     />
                     <Route path="products">
                         <Route index element={<HeadlessInferencer />} />

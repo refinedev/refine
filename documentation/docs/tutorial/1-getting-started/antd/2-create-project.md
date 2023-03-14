@@ -137,7 +137,7 @@ const App: React.FC = () => {
                 notificationProvider={notificationProvider}
             >
                 <Routes>
-                    <Route index element={WelcomePage} />
+                    <Route index element={<WelcomePage />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
