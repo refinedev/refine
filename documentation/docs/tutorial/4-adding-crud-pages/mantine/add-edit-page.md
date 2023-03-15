@@ -179,19 +179,19 @@ Now that we have created the edit page, we need to add it to the `App.tsx` file.
 3. Replace the `MantineInferencer` component with the `ProductEdit` component.
 
 ```tsx title="src/App.tsx"
+import { Global, MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import {
     ErrorComponent,
-    Global,
     Layout,
     LightTheme,
-    MantineProvider,
     notificationProvider,
-    NotificationsProvider,
 } from "@refinedev/mantine";
 import routerBindings, {
     NavigateToResource,
+    // highlight-next-line
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
