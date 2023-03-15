@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.1.1
+
+### Patch Changes
+
+-   [#3874](https://github.com/refinedev/refine/pull/3874) [`5ed083a8050`](https://github.com/refinedev/refine/commit/5ed083a805082f2c24c3afe0eb285c8f8485e3df) Thanks [@aliemir](https://github.com/aliemir)! - Add fallback option for `label` from `meta` and `options`.
+
 ## 4.1.0
 
 ### Minor Changes
