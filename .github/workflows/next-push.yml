@@ -41,8 +41,8 @@ jobs:
           npm ci
           npm run bootstrap:all
           npm run build:all
-      #- name: Lint
-      #  run: npm run lint
+      - name: Lint
+        run: npm run lint
       - name: Test
         run: npm run test:all
       - name: Copy changesets for Stable version
