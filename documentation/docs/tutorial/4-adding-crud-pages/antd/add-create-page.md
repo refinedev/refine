@@ -163,6 +163,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { ProductEdit } from "pages/products/edit";
 import { ProductList } from "pages/products/list";
+import { ProductShow } from "pages/products.show";
 //highlight-next-line
 import { ProductCreate } from "pages/products/create";
 

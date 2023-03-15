@@ -193,6 +193,7 @@ import {
 } from "@refinedev/mantine";
 import routerBindings, {
     UnsavedChangesNotifier,
+    NavigateToResource,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
