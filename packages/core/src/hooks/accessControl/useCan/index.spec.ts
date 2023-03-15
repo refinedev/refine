@@ -81,4 +81,31 @@ describe("useCan Hook", () => {
         expect(result.current?.data?.can).toBeFalsy();
         expect(result.current?.data?.reason).toBe("Access Denied");
     });
+
+    it("can should sanitize resource icon ", async () => {
+        const mockFn = jest.fn();
+        renderHook(
+            () =>
+                useCan({
+                    action: "list",
+                    resource: "posts",
+                    params: { id: 1, resource: { icon: "test" } as any },
+                }),
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: mockFn,
+                    },
+                }),
+            },
+        );
+
+        expect(mockFn).toBeCalledWith({
+            action: "list",
+            params: {
+                id: 1,
+            },
+            resource: "posts",
+        });
+    });
 });
