@@ -35,7 +35,7 @@ Sveltekit helps you build web apps that are fiendishly complicated with all of t
 It uses Vite in combination with a Svelte plugin to deliver a lightning-fast and feature-rich development experience with Hot Module Replacement (HMR), in which changes to your code are instantly reflected in the browser.
 
 ## Prerequisites
-To get the best out of this tutorial, prior knowledge of Svelte is required, and ensure you have Node.JS version 16 or later installed. The code for this tutorial is available on [Github](https://github.com/refinedev/refine/tree/next/examples/blog/sveltekit-crud)
+To get the best out of this tutorial, prior knowledge of Svelte is required, and ensure you have Node.JS version 16 or later installed. The code for this tutorial is available on [Github](https://github.com/refinedev/refine/tree/master/examples/blog/sveltekit-crud)
  
 ## Create Sveltekit Application
 With the above requirements met, let's create a new **Sveltekit application** by running the following commands.

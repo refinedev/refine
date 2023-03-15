@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-custom-pages
 
 <br/>
 
-[![Open with-custom-pages example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-custom-pages?view=preview&theme=dark&codemirror=1)
+[![Open with-custom-pages example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/with-custom-pages?view=preview&theme=dark&codemirror=1)
         

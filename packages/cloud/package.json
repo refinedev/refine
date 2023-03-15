@@ -1,5 +1,5 @@
 {
-  "version": "9.0.0",
+  "version": "9.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,8 +30,8 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@refinedev/core": "^4.0.0",
-    "@refinedev/sdk": "^1.0.0",
+    "@refinedev/core": "^4.1.0",
+    "@refinedev/sdk": "^1.1.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/lodash": "^4.14.171",
     "@tanstack/react-query": "^4.10.1",

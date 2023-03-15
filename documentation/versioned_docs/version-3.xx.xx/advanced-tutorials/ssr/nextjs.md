@@ -486,7 +486,7 @@ Note that we're importing `NextRouteComponent` from `@pankod/refine-nextjs-route
 :::
 
 :::info
-You can find the `app/` directory example with **refine** in [examples/nextjs/appdir](https://github.com/refinedev/refine/tree/next/examples/remix/antd)
+You can find the `app/` directory example with **refine** in [examples/nextjs/appdir](https://github.com/refinedev/refine/tree/master/examples/remix/antd)
 :::
 
 ## Example

@@ -16,7 +16,7 @@ const CodeSandboxExample: React.FC<Props> = ({
     hideLocal,
     hideSandbox,
 }) => {
-    const CODESANDBOX_URL = `https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/${path}`;
+    const CODESANDBOX_URL = `https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/${path}`;
 
     const EDITOR_URL = `${CODESANDBOX_URL}?view=preview&theme=dark&runonclick=1&codemirror=1`;
 

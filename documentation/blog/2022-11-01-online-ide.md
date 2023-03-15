@@ -141,7 +141,7 @@ Instead of using the starter projects to create a new project on StackBlitz, you
 
 ### Deploy the example project to GitHub
 
-Host the **refine** example project we created on GitHub. You can also use one of the [tutorial examples](https://github.com/refinedev/refine/tree/next/examples/tutorial) if you don't want to deploy the example project.
+Host the **refine** example project we created on GitHub. You can also use one of the [tutorial examples](https://github.com/refinedev/refine/tree/master/examples/tutorial) if you don't want to deploy the example project.
 
 ### How to open a public GitHub repository in StackBlitz?
 

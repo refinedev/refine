@@ -181,7 +181,7 @@ As the refine team, we use many open-source projects and we are sensitive to bre
 `@refinedev/codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x.`
 
 ```
-npx @refinedev/codemod refine3-to-refine4
+npx @refinedev/codemod@latest refine3-to-refine4
 ````
 
 The process is complete, and your project now uses `refine@4.x.x.` 🚀

@@ -26,7 +26,7 @@ Another significant problem with password-based login is that keeping track of d
 
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
-You can see the example app we'll build in the article from [here](https://github.com/refinedev/refine/tree/next/examples/refine-supabase-auth)
+You can see the example app we'll build in the article from [here](https://github.com/refinedev/refine/tree/master/examples/refine-supabase-auth)
 
 Steps we'll cover:
 

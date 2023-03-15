@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example field-mui-use-autocomplete
 
 <br/>
 
-[![Open field-mui-use-autocomplete example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/field-mui-use-autocomplete?view=preview&theme=dark&codemirror=1)
+[![Open field-mui-use-autocomplete example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/field-mui-use-autocomplete?view=preview&theme=dark&codemirror=1)
         

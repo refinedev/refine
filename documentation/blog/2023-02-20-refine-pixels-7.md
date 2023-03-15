@@ -595,8 +595,8 @@ We implemented audit logging for `create` actions of the `pixels` resource in ou
 
 In this **refineWeek** series, built the following two apps with **refine**:
 
-[**Pixels**](https://github.com/refinedev/refine/tree/next/examples/pixels) - the client app that allows users to create a canvas and draw collaboratively on
-[**Pixels Admin**](https://github.com/refinedev/refine/tree/next/examples/pixels-admin) - the admin dashboard that helps managers manage users and canvases
+[**Pixels**](https://github.com/refinedev/refine/tree/master/examples/pixels) - the client app that allows users to create a canvas and draw collaboratively on
+[**Pixels Admin**](https://github.com/refinedev/refine/tree/master/examples/pixels-admin) - the admin dashboard that helps managers manage users and canvases
 
 While building these twp apps, we have covered core **refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
 

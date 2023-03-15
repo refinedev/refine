@@ -1,7 +1,7 @@
 {
   "name": "@refinedev/remix-router",
   "description": "refine Remix router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "private": false,
   "main": "dist/index.js",
@@ -44,7 +44,7 @@
   },
   "author": "refine",
   "devDependencies": {
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.1.0",
     "remix": "^1.6.7",
     "@remix-run/react": "^1.6.7",
     "@remix-run/node": "^1.6.7",
