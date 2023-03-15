@@ -1,7 +1,7 @@
 ---
 id: useForm
 title: useForm
-sidebar_label: useForm 🆙
+sidebar_label: useForm
 source: packages/mantine/src/hooks/form/useForm/index.ts
 ---
 

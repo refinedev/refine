@@ -1,7 +1,7 @@
 ---
 id: azure-ad
 title: Azure AD Login
-sidebar_label: Azure AD Login 🆙
+sidebar_label: Azure AD Login
 ---
 
 # Azure Active Directory B2C (AAD B2C)

@@ -1,7 +1,7 @@
 ---
 id: command-palette
 title: Command Palette
-sidebar_label: Command Palette 🆙
+sidebar_label: Command Palette
 ---
 
 

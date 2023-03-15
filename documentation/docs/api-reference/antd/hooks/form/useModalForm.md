@@ -1,7 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
-sidebar_label: useModalForm 🆙
+sidebar_label: useModalForm
 ---
 
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.

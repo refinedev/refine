@@ -1,7 +1,7 @@
 ---
 id: multi-level-menu
 title: Multi Level Menu
-sidebar_label: Multi Level Menu 🆙
+sidebar_label: Multi Level Menu
 ---
 
 This document is related to how to create a multi-level menu for **refine** applications.

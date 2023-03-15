@@ -1,7 +1,7 @@
 ---
 id: inferencer
 title: Inferencer
-sidebar_label: Inferencer 🆙
+sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` and `MantineInferencer` (which combines all in one place) components.

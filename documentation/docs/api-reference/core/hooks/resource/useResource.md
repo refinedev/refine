@@ -1,7 +1,7 @@
 ---
 id: useResource
 title: useResource
-sidebar_label: useResource 🆙
+sidebar_label: useResource
 ---
 
 `useResource` is used to get the resources array that you defined in `<Refine>`. It also returns `resource` object. You can pass a resource name or identifier to match a resource or it will return the resource object that matches the current route.

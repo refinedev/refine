@@ -1,7 +1,7 @@
 ---
 id: auth-provider
 title: Auth Provider
-sidebar_label: Auth Provider 🆙
+sidebar_label: Auth Provider
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";

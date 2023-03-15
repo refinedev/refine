@@ -2,7 +2,7 @@
 title: React Table
 slug: /packages/documentation/react-table
 source: /packages/react-table/src/useTable
-sidebar_label: React Table 🆙
+sidebar_label: React Table
 ---
 
 import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";

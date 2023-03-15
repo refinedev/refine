@@ -1,7 +1,7 @@
 ---
 id: cli
 title: CLI
-sidebar_label: CLI 🆙
+sidebar_label: CLI
 ---
 
 import Tabs from '@theme/Tabs';

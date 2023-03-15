@@ -1,7 +1,7 @@
 ---
 id: save-and-continue
 title: Save and Continue
-sidebar_label: Save and Continue 🆙
+sidebar_label: Save and Continue
 ---
 
 **refine** provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.

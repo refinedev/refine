@@ -1,7 +1,7 @@
 ---
 id: authenticated
 title: <Authenticated>
-sidebar_label: <Authenticated> 🆙
+sidebar_label: <Authenticated>
 ---
 
 `<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].
