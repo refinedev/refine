@@ -648,6 +648,7 @@ export default function MyListPage({ initialData }) {
 }
 ```
 
+
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
 
 ### Server Side Authentication with Cookies
