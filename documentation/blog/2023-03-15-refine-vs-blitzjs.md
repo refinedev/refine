@@ -28,7 +28,7 @@ The refine framework was created in 2021 and has witnessed rapid growth and attr
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x262.png"  alt="redwoodjs vs refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x262.png"  alt="react-admin" />
 </div>
 
 <br/>
@@ -44,7 +44,7 @@ Blitz is also an [open-source](https://github.com/blitz-js/blitz) project that a
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x262.png"  alt="redwoodjs vs refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x262.png"  alt="react-admin" />
 </div>
 
 <br/>
@@ -59,7 +59,7 @@ refine comes with the project starter tool, which allows users to set up a fully
 Run the command `npm create refine-app@latest crud-refine`. That will start the CLI wizard that will ask you to configure the project. For the purpose of this tutorial, pick the values as shown below:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x264.png"  alt="redwoodjs vs refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2FScreenshot%202023-03-15%20at%2016.51.01.png"  alt="react-admin" />
 </div>
 
 <br/>
@@ -80,7 +80,7 @@ That should automatically open up a new browser window. If it's not, navigate to
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092501_1482x833.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092501_1482x833.png"  alt="react-admin" />
 
 </div>
 
@@ -97,7 +97,7 @@ Next, run the command `blitz new crud-blitz`. This will start the terminal CLI w
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319716_906x107.png"  alt="redwoodjs vs refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319716_906x107.png"  alt="react-admin" />
 </div>
 
 <br/>
@@ -114,7 +114,7 @@ Finally, open your browser and navigate to [localhost:3000](http://localhost:300
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319885_1892x926.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319885_1892x926.png"  alt="react-admin" />
 
 </div>
 
@@ -132,22 +132,18 @@ refine file structure is as simple as it gets and they provide users with all th
 It comes with the `App.tsx` file with the following code:
 
 ```typescript
-import React from "react";
+import {  Refine } from "@refinedev/core";
+import { notificationProvider } from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
-import { Refine, AuthProvider } from "@pankod/refine-core";
-import {
-  notificationProvider,
-  Layout,
-  ReadyPage,
-  ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
-
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Login } from "pages/login";
+import routerBindings, {
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import axios from "axios";
+import { BrowserRouter } from "react-router-dom";
+
 
 function App() {
   const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
@@ -156,39 +152,58 @@ function App() {
     return <span>loading...</span>;
   }
 
-  const authProvider: AuthProvider = {
-    login: () => {
-      return Promise.resolve(false);
+  const authProvider: AuthBindings = {
+    login: async () => {
+      return {
+        success: true,
+      };
     },
-    logout: () => {
+    logout: async () => {
       logout({ returnTo: window.location.origin });
-      return Promise.resolve("/");
+      return {
+        success: true,
+      };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    check: async () => {
       try {
         const token = await getIdTokenClaims();
         if (token) {
           axios.defaults.headers.common = {
             Authorization: `Bearer ${token.__raw}`,
           };
-          return Promise.resolve();
+          return {
+            authenticated: true,
+          };
         } else {
-          return Promise.reject();
+          return {
+            authenticated: false,
+            error: new Error("Token not found"),
+            redirectTo: "/login",
+            logout: true,
+          };
         }
-      } catch (error) {
-        return Promise.reject();
+      } catch (error: any) {
+        return {
+          authenticated: false,
+          error: new Error(error),
+          redirectTo: "/login",
+          logout: true,
+        };
       }
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
       if (user) {
-        return Promise.resolve({
+        return {
           ...user,
           avatar: user.picture,
-        });
+        };
       }
-      return Promise.reject();
+      return null;
     },
   };
 
@@ -328,7 +343,7 @@ It is a simple REST API endpoint that contains sample data about users, posts, p
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677175406_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677175406_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -345,7 +360,7 @@ If we click on any of the routes in the user interface, we can see that each of 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677181479_1896x806.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677181479_1896x806.png"  alt="react-admin" />
 
 </div>
 
@@ -403,7 +418,7 @@ If the UI does not open automatically, navigate to [localhost:5555](http://local
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677324951_905x293.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677324951_905x293.png"  alt="react-admin" />
 
 </div>
 
@@ -425,7 +440,7 @@ Create a new web application.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677313884_762x678.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677313884_762x678.png"  alt="react-admin" />
 
 </div>
 
@@ -443,7 +458,7 @@ It will give you domain, client ID, and secret ID information.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677315028_1612x846.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677315028_1612x846.png"  alt="react-admin" />
 
 </div>
 
@@ -460,7 +475,7 @@ Scroll down and add [localhost:3000](http://localhost:3000) to the allowed URLs 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677316037_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677316037_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -506,7 +521,7 @@ Now open your browser and navigate to [localhost:3000](http://localhost:3000) an
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677316431_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677316431_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -528,7 +543,7 @@ The signup page should be available at [localhost:3000/auth/signup](http://local
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677324951_905x294.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677324951_905x294.png"  alt="react-admin" />
 
 </div>
 
@@ -545,7 +560,7 @@ The login page should be available at [localhost:3000/auth/login](http://localho
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677324973_905x371.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677324973_905x371.png"  alt="react-admin" />
 
 </div>
 
@@ -618,7 +633,7 @@ Now open your browser and navigate to [localhost:3000/products](http://localhost
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677175220_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677175220_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -657,7 +672,7 @@ Now open your browser and navigate to [localhost:3000/greet](http://localhost:30
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677343984_905x228.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677343984_905x228.png"  alt="react-admin" />
 
 </div>
 
@@ -686,7 +701,7 @@ You should be able to see all of the data coming from the `/posts` route, but th
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677183011_1900x924.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677183011_1900x924.png"  alt="react-admin" />
 
 </div>
 
@@ -713,7 +728,7 @@ This will display the landing of the crud page asking you to create the first ta
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677344355_905x146.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677344355_905x146.png"  alt="react-admin" />
 
 </div>
 
@@ -736,7 +751,7 @@ This will open up a form with empty fields, allowing you to enter the values and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677280697_1895x924.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677280697_1895x924.png"  alt="react-admin" />
 
 </div>
 
@@ -756,7 +771,7 @@ It will open up the record with all the values in read-only mode.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677280864_1898x923.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677280864_1898x923.png"  alt="react-admin" />
 
 </div>
 
@@ -777,7 +792,7 @@ This will open up the form with all the values editable.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677281365_1897x921.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677281365_1897x921.png"  alt="react-admin" />
 
 </div>
 
@@ -795,7 +810,7 @@ To delete the post, click on the bin icon next to the eye icon. It will also dis
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677281365_1897x921.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677281365_1897x921.png"  alt="react-admin" />
 
 </div>
 
@@ -813,7 +828,7 @@ To create a new task click on "Create Todo". It will open up an empty form, wher
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677344456_909x264.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677344456_909x264.png"  alt="react-admin" />
 
 </div>
 
@@ -830,7 +845,7 @@ To read the created record navigate to the tasks list and click on the specific 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677344456_909x265.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677344456_909x265.png"  alt="react-admin" />
 
 </div>
 
@@ -847,7 +862,7 @@ In order to edit the existing record open it and click on the "Edit" button. Tha
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677346371_906x354.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677346371_906x354.png"  alt="react-admin" />
 
 </div>
 
@@ -866,7 +881,7 @@ To delete the task open it and click on the "Delete" button.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677346469_908x313.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677346469_908x313.png"  alt="react-admin" />
 
 </div>
 
@@ -899,7 +914,7 @@ After the code is pushed switch back to the GitHub repository and you should see
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677316914_1872x857.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677316914_1872x857.png"  alt="react-admin" />
 
 </div>
 
@@ -921,7 +936,7 @@ Then create a new project by selecting the option Import from Git. Find your Git
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677317074_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677317074_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -939,7 +954,7 @@ Vercel will automatically configure everything for you, all you have to do is ma
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677317283_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677317283_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -956,7 +971,7 @@ Once that's done, click on Deploy and after the deployment process is done you w
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319480_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319480_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -1036,7 +1051,7 @@ Then switch back to GitHub and you will find everything synced up.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319480_1920x929.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319480_1920x929.png"  alt="react-admin" />
 
 </div>
 
@@ -1055,7 +1070,7 @@ Click on "New" and select the "Blueprint" option.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348415_1424x797.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348415_1424x797.png"  alt="react-admin" />
 
 </div>
 
@@ -1072,7 +1087,7 @@ Next, connect your Github account and find your project in the list.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348579_1185x763.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348579_1185x763.png"  alt="react-admin" />
 
 </div>
 
@@ -1087,7 +1102,7 @@ Next, give the Blueprint a name and click on "Apply", so Render sets everything 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348636_1323x614.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348636_1323x614.png"  alt="react-admin" />
 
 </div>
 
@@ -1104,7 +1119,7 @@ It will give you the live access link to your project once it's done.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677362154_1364x440.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677362154_1364x440.png"  alt="react-admin" />
 
 </div>
 
