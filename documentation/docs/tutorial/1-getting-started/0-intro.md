@@ -37,7 +37,7 @@ Now that you have selected the **Material UI** option as your UI preference, let
 </UIConditional>
 
 :::info Using CodeSandbox?
-Prefer to finish this tutorial in an online code editor? That's possible!
+Prefer to go through this tutorial in an online code editor? That's possible!
 
 <details>
 
@@ -77,55 +77,54 @@ Prefer to finish this tutorial in an online code editor? That's possible!
 
 2. Click “Sign in” on the top right to log in using your GitHub credentials.
 
-3. In the upper left of the StackBlitz editor window, click to “fork” the template (save to your own account dashboard).
+3. In the upper left of the StackBlitz editor window, click the "fork" button to fork the template (save to your own account dashboard).
 
 <UIConditional is="antd">
 
-4. Wait for the project to load, and you will see a live preview of the “refine-antd-boilerplate” starter.
+4. After the project loads, you will see a live preview of the “refine-antd-boilerplate” starter.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-4. Wait for the project to load, and you will see a live preview of the “refine-chakra-ui-boilerplate” starter.
+4. After the project loads, you will see a live preview of the “refine-chakra-ui-boilerplate” starter.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-4. Wait for the project to load, and you will see a live preview of the “refine-headless-boilerplate” starter.
+4. After the project loads, you will see a live preview of the “refine-headless-boilerplate” starter.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-4. Wait for the project to load, and you will see a live preview of the “refine-mantine-boilerplate” starter.
+4. After the project loads, you will see a live preview of the “refine-mantine-boilerplate” starter.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-4. Wait for the project to load, and you will see a live preview of the “refine-mui-boilerplate” starter.
+4. After the project loads, you will see a live preview of the “refine-mui-boilerplate” starter.
 
 </UIConditional>
 
 **Make Changes**
 <UIConditional is="antd">
 
-In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/antd/generate-crud-pages/) to make a change to this file.
+In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/antd/generate-crud-pages/)
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/) to make a change to this file.
+In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/)
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/headless/generate-crud-pages/) to make a change to this file.
-
+In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/headless/generate-crud-pages/)
 </UIConditional>
 
 <UIConditional is="mantine">
@@ -136,7 +135,7 @@ In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Ge
 
 <UIConditional is="mui">
 
-In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages/) to make a change to this file.
+In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages/)
 
 </UIConditional>
 
@@ -144,11 +143,11 @@ In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Ge
 
 1. Press the "Connect Repository" button at the top of your list of files, enter a new name for your repository, and click "Create repo & push".
 
-2. When you have changes to be committed back to GitHub, a “Commit” button will appear at the top left of your workspace. Clicking on this will allow you to enter a commit message, and update your repository.
+2. When you have changes to be commit to GitHub, a “Commit” button will appear at the top left of your workspace. Clicking on this will allow you to enter a commit message, and update your repository.
 
 **Deploy your App**
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/understanding-dataprovider/index/) to start building with **refine**!
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](../../tutorial/1-getting-started/5-deploy-project.md). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/understanding-dataprovider/index/) to start building with **refine**!
 
 </details>
 :::
@@ -160,10 +159,10 @@ In this unit, we will be covering the following steps:
 -   Setting up your development environment.
 -   Creating a new project.
 -   Generating CRUD pages for your data model.
--   Store your project in a git repository.
--   Deploy your project to the cloud.
+-   Storing your project in a git repository.
+-   Deploying your project to the cloud.
 
-As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuild and deploy your application on every commit. This allows anyone to access and view your website updates as you make them.
+As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuilds and deploys your application on every commit. This allows anyone to access and view your website updates as you make them.
 
 <Checklist>
 

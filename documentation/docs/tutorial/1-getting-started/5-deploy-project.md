@@ -1,6 +1,6 @@
 ---
 id: deploy-project
-title: 6. Deploy your app to the web
+title: 6. Deploying your app to the web
 tutorial:
     prev: tutorial/getting-started/store-your-repository
     next: tutorial/understanding-dataprovider/index
@@ -35,7 +35,7 @@ To view your new website, visit the URL provided in your site settings or type i
 <Checklist>
 
 <ChecklistItem id="deploy-your-project">
-I deployed my app to the Netfly.
+I have deployed my app to the Netfly.
 </ChecklistItem>
 
 </Checklist>

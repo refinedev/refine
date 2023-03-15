@@ -9,7 +9,7 @@ tutorial:
 
 import { SelectTutorialFramework } from '@site/src/components/select-tutorial-framework';
 
-**refine** is a headless framework by default. It means you can build your app without any UI frameworks. However, **refine** has built-in support for the most popular UI frameworks like **Material UI**, **Ant Design**, **Mantine**, and **Chakra UI**. You can speed up your app UI development with these powerful frameworks.
+**refine** is a headless framework by default, which means that you can build your app without any UI frameworks. Ig you want to use one, however, **refine** offers built-in support for the most popular UI frameworks such as **Material UI**, **Ant Design**, **Mantine** and **Chakra UI**. Using one of these frameworks can significantly speed up your app's UI development.
 
 Before you start, you can read the [API references](/docs/api-reference/) of the UI frameworks to get more information about them.
 
@@ -23,31 +23,30 @@ After this step, the tutorial will proceed according to your UI framework choice
 
 <UIConditional is="antd">
 
-The tutorial content will continue as if it were the **Ant Design** selection.
+The tutorial content from now on will be according to your UI selection, which is: **Ant Design**
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-The tutorial content will continue as if the **Chakra UI** option has been selected.
-
+The tutorial content from now on will be according to your UI selection, which is: **Chakra UI**
 </UIConditional>
 
 <UIConditional is="headless">
 
-The tutorial content will continue as if the **headless** option has been selected.
+The tutorial content from now on will be according to your UI selection, which is: **headless**
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-The tutorial content will continue as if the **Mantine** option has been selected.
+The tutorial content from now on will be according to your UI selection, which is: **Mantine**
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-The tutorial content will continue as if the **Material UI** option has been selected.
+The tutorial content from now on will be according to your UI selection, which is: **Material UI**
 
 </UIConditional>
 
