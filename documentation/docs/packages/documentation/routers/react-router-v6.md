@@ -177,7 +177,7 @@ We've also used the `<Outlet>` component inside the children of the `<Authentica
 
 ### Usage with Layouts
 
-When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<Layout>`](/docs/api-reference/core/components/layout/layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Layout>` component. This will allow us to define the common layout for our routes.
+When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<Layout>`](/docs/advanced-tutorials/custom-layout/#layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Layout>` component. This will allow us to define the common layout for our routes.
 
 In the below example, we'll wrap our resource routes with the `Layout` component from `@refinedev/antd` and render the routes inside the `<Outlet>` component.
 
