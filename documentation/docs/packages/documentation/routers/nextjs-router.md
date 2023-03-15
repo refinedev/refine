@@ -477,101 +477,6 @@ export default function IndexPage() {
 
 `@refinedev/nextjs-router` package also includes some additional components that can be useful in some cases.
 
-### `RefineRoutes`
-
-This component can be used to render the matching route in your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
-
-It will render the component for the matching route and pass it as a `JSX.Element` to the `children` function. You can use this to render your components in a single catch-all route. If there's no matching route `undefined` will be passed to the `children` function. In this case, you can render an error page or redirect the user to another page.
-
-:::tip
-This is not the recommended way to create pages since it may limit the use of the full potential of your router. It is recommended to create your pages manually.
-:::
-
-We'll define our resources in the `<Refine>` component:
-
-```tsx
-return (
-    <Refine
-        resources={[
-            {
-                name: "posts",
-                list: "/posts",
-                show: "/posts/show/:id",
-            },
-            {
-                name: "categories",
-                list: "/categories",
-            },
-        ]}
-    >
-        {/* ... */}
-    </Refine>
-);
-```
-
-Then, we'll create a catch-all route to render the matching route in our resources:
-
-#### In `pages/[[...refine]].tsx`
-
-```tsx title=pages/[[...refine]].tsx
-import { RefineRoutes } from "@refinedev/nextjs-router";
-
-import { ErrorPage } from "components/error";
-
-export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
-
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
-}
-```
-
-#### In `app/[[...refine]]/page.tsx`
-
-If you're using experimental `appDir` in your Next.js project, you can create a catch-all route in the `app` directory.
-
-```tsx title=app/[[...refine]]/page.tsx
-"use client";
-
-import { RefineRoutes } from "@refinedev/nextjs-router/app";
-
-export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
-
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
-}
-```
-
-:::info
-When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
-
-Default paths are:
-
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
-    :::
-
-#### Properties
-
-`children` - A function that takes renders the matching route as a `JSX.Element`. If there's no matching route, `undefined` will be passed to the function.
-
 ### `NavigateToResource`
 
 A basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
@@ -742,6 +647,7 @@ export default function MyListPage({ initialData }) {
     return <>{/* ... */}</>;
 }
 ```
+
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
 
@@ -988,15 +894,15 @@ In the earlier versions of **refine**, if `authProvider` was defined, we've redi
 
 If you want to use the Next.js's 404 page, you can create a `404.tsx` file in your `/pages` directory and it will be used as the 404 page. For more information, you can check the [Next.js documentation for custom 404 page](https://nextjs.org/docs/advanced-features/custom-error-page#404-page).
 
-#### Using an optional catch-all route
+#### Using a catch-all route
 
-If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the optional catch-all route. For more information, you can check the [Next.js documentation for optional catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
+If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the catch-all route. For more information, you can check the [Next.js documentation for catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
 
 You can use **refine**'s authentication hooks and the `authProvider` to check if the user is authenticated or not and redirect them to the login page. This check can be done on the client-side or server-side.
 
 **Client Side**
 
-```tsx title="pages/[[...slug]].tsx"
+```tsx title="pages/[...slug].tsx"
 import { Authenticated } from "@refinedev/core";
 
 export default function CatchAll() {
@@ -1011,7 +917,7 @@ export default function CatchAll() {
 
 **Server Side**
 
-```tsx title="pages/[[...slug]].tsx"
+```tsx title="pages/[...slug].tsx"
 import { authProvider } from "src/authProvider";
 
 export const getServerSideProps = async (context) => {
@@ -1036,6 +942,99 @@ export default function CatchAll() {
     return <div>This page is not found.</div>;
 }
 ```
+
+### `RefineRoutes` Component
+
+:::caution
+
+While this may work for the simple cases, it is not recommended to use this component. Defining your routes separately will give you more control over your routes and will allow you to use the full potential of your router.
+
+:::
+
+This component can be used to render the matching route in your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
+
+It will render the component for the matching route and pass it as a `JSX.Element` to the `children` function. You can use this to render your components in a single catch-all route. If there's no matching route `undefined` will be passed to the `children` function. In this case, you can render an error page or redirect the user to another page.
+
+We'll define our resources in the `<Refine>` component:
+
+```tsx
+return (
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/posts/show/:id",
+            },
+            {
+                name: "categories",
+                list: "/categories",
+            },
+        ]}
+    >
+        {/* ... */}
+    </Refine>
+);
+```
+
+Then, we'll create a catch-all route to render the matching route in our resources:
+
+#### In `pages/[[...refine]].tsx`
+
+```tsx title=pages/[[...refine]].tsx
+import { RefineRoutes } from "@refinedev/nextjs-router";
+
+import { ErrorPage } from "components/error";
+
+export default function CatchAll() {
+    return (
+        <RefineRoutes>
+            {(matchingRoute) => {
+                if (matchingRoute) {
+                    return { matchingRoute };
+                }
+
+                return <ErrorPage />;
+            }}
+        </RefineRoutes>
+    );
+}
+```
+
+#### In `app/[[...refine]]/page.tsx`
+
+If you're using experimental `appDir` in your Next.js project, you can create a catch-all route in the `app` directory.
+
+```tsx title=app/[[...refine]]/page.tsx
+"use client";
+
+import { RefineRoutes } from "@refinedev/nextjs-router/app";
+
+export default function CatchAll() {
+    return (
+        <RefineRoutes>
+            {(matchingRoute) => {
+                if (matchingRoute) {
+                    return { matchingRoute };
+                }
+
+                return <ErrorPage />;
+            }}
+        </RefineRoutes>
+    );
+}
+```
+
+:::info
+When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
+
+Default paths are:
+
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+:::
 
 ## Example (`/pages`)
 
