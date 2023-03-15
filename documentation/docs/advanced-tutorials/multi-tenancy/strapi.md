@@ -738,7 +738,7 @@ In this guide and our example app, we talked about how we can build Multitenancy
 ## Example
 
 :::note Demo Credentials
-Username: `refine-demo`
+Email: `demo@refine.dev`
 
 Password: `demodemo`
 :::

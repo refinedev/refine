@@ -38,9 +38,9 @@ jobs:
       run: |
         npm ci
         npm run bootstrap:all
-    #- name: lint
-    #  run: |
-    #    npm run lint
+    - name: lint
+      run: |
+        npm run lint
     - name: test
       run: |
         npm run test:all:coverage
