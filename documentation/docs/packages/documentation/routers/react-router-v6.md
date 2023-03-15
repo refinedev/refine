@@ -109,6 +109,9 @@ import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 // highlight-next-line
+import { authProvider } from "src/authProvider";
+
+// highlight-next-line
 import { AuthPage } from "@refinedev/antd";
 
 import { PostList, PostCreate } from "pages/posts";
@@ -120,6 +123,8 @@ const App = () => {
             <Refine
                 dataProvider={dataProvider}
                 routerProvider={routerProvider}
+                // highlight-next-line
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",
@@ -187,6 +192,8 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { authProvider } from "src/authProvider";
+
 // highlight-next-line
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -199,6 +206,7 @@ const App = () => {
             <Refine
                 dataProvider={dataProvider}
                 routerProvider={routerProvider}
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",
@@ -263,6 +271,8 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { authProvider } from "src/authProvider";
+
 // highlight-next-line
 import { AuthPage, Layout, ErrorComponent } from "@refinedev/antd";
 
@@ -275,6 +285,7 @@ const App = () => {
             <Refine
                 dataProvider={dataProvider}
                 routerProvider={routerProvider}
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",
@@ -340,6 +351,8 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { authProvider } from "src/authProvider";
+
 import { AuthPage, Layout, ErrorComponent } from "@refinedev/antd";
 
 import { PostList, PostCreate } from "pages/posts";
@@ -351,6 +364,7 @@ const App = () => {
             <Refine
                 dataProvider={dataProvider}
                 routerProvider={routerProvider}
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",
@@ -638,9 +652,10 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "src/authProvider";
 
-+ import { Layout } from "components/layout";
 import { LandingPage } from "pages/landing";
 + import { PostList, PostCreate } from "pages/posts";
+
++ import { Layout } from "components/layout";
 
 export const App = () => {
     return (
@@ -695,10 +710,11 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "src/authProvider";
 
-import { Layout } from "components/layout";
 import { LandingPage } from "pages/landing";
 import { PostList, PostCreate } from "pages/posts";
 + import { AuthPage } from "pages/auth";
+
+import { Layout } from "components/layout";
 
 export const App = () => {
     return (
@@ -763,11 +779,12 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "src/authProvider";
 
-import { Layout } from "components/layout";
 + import { ErrorComponent } from "components/error";
 import { LandingPage } from "pages/landing";
 import { PostList, PostCreate } from "pages/posts";
 import { AuthPage } from "pages/auth";
+
+import { Layout } from "components/layout";
 
 export const App = () => {
     return (
