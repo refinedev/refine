@@ -140,7 +140,7 @@ export function useTable<
     useEffect(() => {
         const crudFilters: LogicalFilter[] = [];
 
-        columnFilters?.forEach((filter) => {
+        columnFilters?.map((filter) => {
             const operator =
                 (
                     filter as ColumnFilter & {
@@ -167,7 +167,7 @@ export function useTable<
                 ),
         );
 
-        filteredArray?.forEach((filter) => {
+        filteredArray?.map((filter) => {
             crudFilters.push({
                 field: filter.field,
                 operator: filter.operator,
