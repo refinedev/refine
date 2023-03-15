@@ -248,17 +248,18 @@ const App: React.FC = () => {
                                         path="edit/:id"
                                         element={<ProductEdit />}
                                     />
-                                    {/* highlight-next-line */}
+                                    {/* highlight-start */}
                                     <Route
                                         path="create"
                                         element={<ProductCreate />}
                                     />
+                                    {/* highlight-end */}
                                 </Route>
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
-                        {/* highlight-next-line */}
+
                         <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>

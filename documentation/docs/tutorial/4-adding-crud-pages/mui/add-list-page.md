@@ -218,7 +218,7 @@ import {
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -256,6 +256,13 @@ const App: React.FC = () => {
                                     </Layout>
                                 }
                             >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="products" />
+                                    }
+                                />
+
                                 <Route path="products">
                                     {/* highlight-next-line */}
                                     <Route index element={<ProductList />} />
@@ -272,6 +279,7 @@ const App: React.FC = () => {
                                         element={<MuiInferencer />}
                                     />
                                 </Route>
+
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>

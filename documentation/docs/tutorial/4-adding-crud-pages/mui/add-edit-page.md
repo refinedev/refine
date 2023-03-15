@@ -194,6 +194,7 @@ import {
 } from "@refinedev/mui";
 import routerBindings, {
     NavigateToResource,
+    // highlight-next-line
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -226,10 +227,12 @@ const App: React.FC = () => {
                                 edit: "/products/edit/:id",
                             },
                         ]}
+                        // highlight-start
                         options={{
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,
                         }}
+                        // highlight-end
                     >
                         <Routes>
                             <Route
@@ -252,11 +255,12 @@ const App: React.FC = () => {
                                         path="show/:id"
                                         element={<MuiInferencer />}
                                     />
-                                    {/* highlight-next-line */}
+                                    {/* highlight-start */}
                                     <Route
                                         path="edit/:id"
                                         element={<ProductEdit />}
                                     />
+                                    {/* highlight-end */}
                                     <Route
                                         path="create"
                                         element={<MuiInferencer />}
@@ -266,6 +270,7 @@ const App: React.FC = () => {
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+
                         {/* highlight-next-line */}
                         <UnsavedChangesNotifier />
                     </Refine>

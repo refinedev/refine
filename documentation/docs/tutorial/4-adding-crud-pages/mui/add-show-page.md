@@ -244,11 +244,12 @@ const App: React.FC = () => {
 
                                 <Route path="products">
                                     <Route index element={<ProductList />} />
-                                    {/* highlight-next-line */}
+                                    {/* highlight-start */}
                                     <Route
                                         path="show/:id"
                                         element={<ProductShow />}
                                     />
+                                    {/* highlight-end */}
                                     <Route
                                         path="edit/:id"
                                         element={<ProductEdit />}
