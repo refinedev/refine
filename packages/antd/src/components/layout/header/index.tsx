@@ -1,6 +1,6 @@
+import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
+import { Avatar, Layout as AntdLayout, Space, Typography } from "antd";
 import React from "react";
-import { Layout as AntdLayout, Typography, Avatar, Space } from "antd";
-import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { RefineLayoutHeaderProps } from "../types";
 const { Text } = Typography;
 
@@ -22,15 +22,13 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
                 height: "64px",
             }}
         >
-            <Space>
-                {user.name && (
-                    <Text ellipsis strong>
+            <Space style={{ marginLeft: "8px" }}>
+                {user?.name && (
+                    <Text style={{ color: "white" }} strong>
                         {user.name}
                     </Text>
                 )}
-                {user.avatar && (
-                    <Avatar size="large" src={user?.avatar} alt={user?.name} />
-                )}
+                {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
             </Space>
         </AntdLayout.Header>
     ) : null;
