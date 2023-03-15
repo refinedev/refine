@@ -373,7 +373,7 @@ useLogin({
 
 :::
 
-The Auth Provider used to work based on a promise reject-resolve system. Now, all auth hooks are resolving promises. Therefore, if you have used auth hooks in your application, you need to update them according to the new system.
+**refine@3** auth provider used to work based on a promise reject-resolve system. with **refine@4**, all auth methods are resolving promises. Therefore, if you have used auth hooks in your application, you need to update them according to the new system.
 
 Let's create a wrapper component that renders children according to the authentication status:
 
