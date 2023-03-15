@@ -18,6 +18,8 @@ Ultimately, our goal is to make it simple for users to handle their unique situa
 
 With the new router provider, authentication checks are not handled by the routes. If your application utilizes `authProvider`, you will be responsible for performing those checks yourself. You can easily do so by employing the `useIsAuthenticated` hook or the `Authenticated` component. Example implementations are present in the documentation ([Check below](#using-the-new-router-providers) for more info on each router) and in the example apps.
 
+Similar to authentication flow, access control checks are also not handled by the routes internally. You will need to handle them yourself using the `useCan` hook or the `CanAccess` component.
+
 The creation and control of routes is entirely up to the user. You must manually create routes, and if desired, you can pass the routes to actions of your resources. Although we provide methods for generating routes from resources, these methods are optional and not recommended for optimal flexibility. However, they are available under each router if you choose to use them.
 
 ### Changes in the `<Refine>` Component
@@ -38,7 +40,9 @@ After the deprecation of the `DashboardPage` prop, you need to create your own i
 
 ### Behavioral Changes in Routing
 
-Since **refine** doesn't create routes internally anymore, you will need to create your routes manually. In the previous versions, this also made **refine** responsible for authentication checks and redirections. With the new router provider, **refine** no longer handles these checks and redirections. You will need to handle them yourself such as redirecting to the `/login` page or 404 pages. You can find more information and examples in the documentation for each router.
+Since **refine** doesn't create routes internally anymore, you will need to create your routes manually. In the previous versions, this also made **refine** responsible for authentication checks and redirections. With the new router provider, **refine** no longer handles these checks and redirections. You will need to handle them yourself such as redirecting to the `/login` page or 404 pages. This also means that the access control point in routes are now needed to be handled by the user. You can handle it using the `CanAccess` component or the `useCan` hook in your pages or as wrappers around your pages.
+
+You can find more information and examples in the documentation for each router.
 
 ## Using the New Router Providers
 
