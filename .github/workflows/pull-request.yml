@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Commitlint
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
@@ -14,7 +14,7 @@ jobs:
   #  runs-on: ubuntu-latest
   #  name: Lint
   #  steps:
-  #    - uses: actions/checkout@v1
+  #    - uses: actions/checkout@v3
   #    - name: lint
   #      run: |
   #        npm ci
@@ -27,9 +27,9 @@ jobs:
         node-version: [16.x]
     name: Bootstrap and Test
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Cache node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install & Bootstrap

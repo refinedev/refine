@@ -2,14 +2,14 @@ name: Compress Images
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 23 * * 0'
+    - cron: "00 23 * * 0"
 jobs:
   build:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Compress Images
         id: calibre
         uses: calibreapp/image-actions@main
