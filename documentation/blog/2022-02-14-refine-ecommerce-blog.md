@@ -8,12 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
+Just be aware that the source code example in this post have been updated to version 4.x.x.
 
-
-
+:::
 
 <div class="img-container">
     <div class="window">
@@ -29,7 +32,7 @@ In this article, we will create the e-commerce client of our [Strapi-Multitenanc
 
 It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
 
-We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/advanced-tutorials/ssr/nextjs/) in our E-commerce client example application.
+We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/packages/documentation/routers/nextjs) in our E-commerce client example application.
 
 <!--truncate-->
 
@@ -38,7 +41,7 @@ We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/)
 Let's start by creating our **refine** project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
 
 ```bash
-npx superplate-cli -p refine-nextjs refine-ecommerce-example
+npm create refine-app@latest refine-ecommerce-example -- -p refine-nextjs -b v3
 ```
 
 ```bash
@@ -56,7 +59,7 @@ superplate will quickly create our **refine** project according to the features 
 ```bash
 cd refine-ecommerce-example
 
-npm i @pankod/refine-strapi-v4 @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+npm i @refinedev/strapi-v4 @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ```
 
 Our **refine** project and installations are now ready! Let's start using it.
@@ -69,10 +72,10 @@ Our **refine** project and installations are now ready! Let's start using it.
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
 //highlight-next-line
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
@@ -98,9 +101,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 //highlight-next-line
 import { ChakraProvider } from "@chakra-ui/react";
@@ -137,7 +140,7 @@ We created our collections in the previous Strapi Multitenancy guide. Now we wil
 The Layout we've created now will only show the **refine** logo. In the following steps, we will edit our Layout.
 
 ```tsx title="components/Layout.tsx"
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 import { Box, Container, Flex, Image } from "@chakra-ui/react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -165,9 +168,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { ChakraProvider } from "@chakra-ui/react";
 //highlight-next-line
@@ -281,7 +284,7 @@ First, let's fetch our products with the nextjs `getServerSideProps` function.
 ```tsx title="pages/index.tsx"
 //highlight-next-line
 import { GetServerSideProps } from "next";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct } from "interfaces";
 
@@ -291,7 +294,7 @@ const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return {
@@ -308,8 +311,8 @@ Let's process the data we fetch above using **refine**'s `useTable` hook. Then l
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
 //highlight-next-line
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct } from "interfaces";
 import { SimpleGrid } from "@chakra-ui/react";
@@ -330,7 +333,7 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
         queryOptions: {
             initialData: products,
         },
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
     //highlight-end
 
@@ -361,7 +364,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return {
@@ -390,7 +393,7 @@ First, let's fetch our stores by using the **refine** `useMany` hook within the 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
@@ -413,8 +416,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct, IStore } from "interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
@@ -434,7 +437,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
         queryOptions: {
             initialData: products,
         },
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return (
@@ -506,7 +509,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
@@ -542,8 +545,8 @@ We list all products on our `All Products` page. Let's add pagination to this pa
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct, IStore } from "interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
@@ -565,7 +568,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                 initialData: products,
             },
             initialPageSize: 9,
-            metaData: { populate: ["image"] },
+            meta: { populate: ["image"] },
         });
     //highlight-end
 
@@ -656,7 +659,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 

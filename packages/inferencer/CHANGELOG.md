@@ -1,5 +1,49 @@
 # @pankod/refine-mantine
 
+## 3.1.0
+
+### Minor Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Inferecer uses the resource `meta` instead of `options` to pick which data provider to use. If `meta` is not defined, it will use `options` as fallback.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Upgrade `@ant-design/icons` to `^5.0.1` for consistency.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `AuthProvider` is renamed to `LegacyAuthProvider` with refine@4. Components and functions are updated to support `LegacyAuthProvider`.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
+## 2.10.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-core@3.103.0
+
+## 2.9.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-core@3.102.0
+
 ## 2.8.2
 
 ### Patch Changes
@@ -262,11 +306,7 @@
     Components for UI integrations are exported in sub directories. For example, to use the components for Ant Design integration, you can import them like this:
 
     ```tsx
-    import {
-        AntdListInferencer,
-        AntdShowInferencer,
-        AntdEditInferencer,
-    } from "@pankod/refine-inferencer/antd";
+
     ```
 
     After importing the component, you can directly use it in `<Refine/>` component's `resources` prop.
@@ -305,11 +345,7 @@
     Components for UI integrations are exported in sub directories. For example, to use the components for Ant Design integration, you can import them like this:
 
     ```tsx
-    import {
-        AntdListInferencer,
-        AntdShowInferencer,
-        AntdEditInferencer,
-    } from "@pankod/refine-inferencer/antd";
+
     ```
 
     After importing the component, you can directly use it in `<Refine/>` component's `resources` prop.

@@ -8,6 +8,16 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-cont
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
+
 ## Introduction
 Filtering systems are common for most modern web applications. They are especially useful if there are large amounts of data. They allow users to save time and easily access the information they are looking for.
 
@@ -84,7 +94,7 @@ When putting everything into the wireframe, we get the following schema:
 The recommended way to set up the refine project is to use [superplate](https://github.com/pankod/superplate), which will let us configure the refine boilerplate.
 
 
-Run `npx superplate-cli -p refine-react tutorial` and select your package manager, project name, user interface framework, router, data, auth provider, and internationalization library.
+Run `npm create refine-app@latest tutorial -- -p refine-react -b v3` and select your package manager, project name, user interface framework, router, data, auth provider, and internationalization library.
 
 
 <div class="img-container">
@@ -404,7 +414,7 @@ Open `Posts.tsx` and include the following code:
 
 ```typescript title="src/components/Posts.tsx"
 import { useState } from "react";
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import { Filter } from "./Filter";
 import { Search } from "./Search";
@@ -510,9 +520,9 @@ Now switch one level up to the `src` root and include the following code in the 
 
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { Posts } from "components/Posts";
 

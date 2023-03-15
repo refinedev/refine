@@ -9,18 +9,19 @@
  */
 // Based on https://github.com/vercel/next.js/blob/canary/packages/next-codemod/bin/cli.ts
 // and https://github.com/reactjs/react-codemod/blob/dd8671c9a470a2c342b221ec903c574cf31e9f57/bin/cli.js
-// @pankod/refine-codemod name-of-transform optional/path/to/src [...options]
+// @refinedev/codemod name-of-transform optional/path/to/src [...options]
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+import chalk from "chalk";
+import execa from "execa";
 import globby from "globby";
 import inquirer from "inquirer";
+import isGitClean from "is-git-clean";
 import meow from "meow";
 import path from "path";
-import execa from "execa";
-import chalk from "chalk";
-import isGitClean from "is-git-clean";
+import { checkAntdVersionIs3x } from "./helpers/check-antd-version-is-3x";
 
 export const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
 export const transformerDirectory = path.join(
@@ -32,6 +33,7 @@ export const transformerDirectory = path.join(
 const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
+    "refine3-to-refine4",
 ];
 
 export function checkGitStatus(force) {
@@ -54,7 +56,7 @@ export function checkGitStatus(force) {
         if (force) {
             console.log(`WARNING: ${errorMessage}. Forcibly continuing.`);
         } else {
-            console.log("Thank you for using @pankod/refine-codemod!");
+            console.log("Thank you for using @refinedev/codemod!");
             console.log(
                 chalk.yellow(
                     "\nBut before we continue, please stash or commit your git changes.",
@@ -93,6 +95,9 @@ export function runTransform({ files, flags, transformer }) {
     args.push("--ignore-pattern=**/node_modules/**");
     args.push("--ignore-pattern=**/build/**");
     args.push("--ignore-pattern=**/.next/**");
+    args.push("--ignore-pattern=**/dist/**");
+    args.push("--ignore-pattern=**/.cache/**");
+    args.push("--ignore-pattern=theme.d.ts");
 
     args.push("--extensions=tsx,ts,jsx,js");
     args.push("--parser=tsx");
@@ -119,12 +124,12 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
-        name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
-        value: "antd4-to-antd5",
+        name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
+        value: "refine3-to-refine4",
     },
     {
-        name: "use-data-grid-columns: Transform `useDataGrid` `columns` usage",
-        value: "use-data-grid-columns",
+        name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
+        value: "antd4-to-antd5",
     },
     {
         name: "refine2-to-refine3: Transform from refine 2.x.x to at least 3.0.0",
@@ -150,7 +155,7 @@ export async function run(): Promise<void> {
         description: "Codemods for updating refine apps.",
         help: `
     Usage
-      $ npx @pankod/refine-codemod <transform> <path> <...options>
+      $ npx @refinedev/codemod <transform> <path> <...options>
         path         Files or directory to transform. Can be a glob like pages/**.js
     Options
       --force            Bypass Git safety checks and forcibly run codemods
@@ -206,6 +211,31 @@ export async function run(): Promise<void> {
     const filesExpanded = expandFilePathsIfNeeded([filesBeforeExpansion]);
 
     const selectedTransformer = cli.input[0] || transformer;
+
+    if (selectedTransformer === "refine3-to-refine4") {
+        const isAntdVersion3x = await checkAntdVersionIs3x();
+
+        if (isAntdVersion3x) {
+            console.log();
+
+            console.log(
+                `Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4`,
+            );
+            console.log(
+                `You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.`,
+            );
+            console.log(
+                `Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.`,
+            );
+            console.log(
+                `To upgrade now, visit Migration Guide document > ${chalk.green(
+                    "https://refine.dev/docs/api-reference/antd/migration-guide/v4-to-v5/",
+                )}`,
+            );
+
+            process.exit(0);
+        }
+    }
 
     if (!filesExpanded.length) {
         console.log(

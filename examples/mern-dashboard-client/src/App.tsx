@@ -1,14 +1,17 @@
 import React from "react";
 
-import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    GitHubBanner,
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 import {
     AccountCircleOutlined,
     ChatBubbleOutline,
@@ -17,8 +20,8 @@ import {
     VillaOutlined,
 } from "@mui/icons-material";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import axios, { AxiosRequestConfig } from "axios";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
@@ -113,7 +116,7 @@ function App() {
             return Promise.reject();
         },
 
-        getPermissions: () => Promise.resolve(),
+        getPermissions: async () => null,
         getUserIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
@@ -124,10 +127,10 @@ function App() {
 
     return (
         <ColorModeContextProvider>
+            <GitHubBanner />
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider("http://localhost:8080/api/v1")}
                     notificationProvider={notificationProvider}
@@ -169,8 +172,8 @@ function App() {
                     Sider={Sider}
                     Layout={Layout}
                     Header={Header}
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
+                    legacyRouterProvider={routerProvider}
+                    legacyAuthProvider={authProvider}
                     LoginPage={Login}
                     DashboardPage={Home}
                 />

@@ -5,8 +5,9 @@ import {
     useMutationMode,
     useCan,
     useResource,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    pickNotDeprecated,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons";
 
@@ -20,6 +21,7 @@ import { DeleteButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     onSuccess,
@@ -29,7 +31,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     errorNotification,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
+    meta,
     metaData,
     dataProviderName,
     confirmTitle,
@@ -38,15 +40,13 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, id, resource } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const translate = useTranslate();
+
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -55,9 +55,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { mutate, isLoading, variables } = useDelete();
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "delete",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -66,23 +66,26 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const [opened, setOpened] = useState(false);
 
     const onConfirm = () => {
-        setOpened(false);
-        mutate(
-            {
-                id: id ?? "",
-                resource: resourceName,
-                mutationMode,
-                successNotification,
-                errorNotification,
-                metaData,
-                dataProviderName,
-            },
-            {
-                onSuccess: (value) => {
-                    onSuccess && onSuccess(value);
+        if ((recordItemId ?? id) && resource?.name) {
+            setOpened(false);
+            mutate(
+                {
+                    id: recordItemId ?? id ?? "",
+                    resource: resource?.name,
+                    mutationMode,
+                    successNotification,
+                    errorNotification,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
+                    dataProviderName,
                 },
-            },
-        );
+                {
+                    onSuccess: (value) => {
+                        onSuccess && onSuccess(value);
+                    },
+                },
+            );
+        }
     };
 
     const { variant, styles, ...commonProps } = rest;
@@ -109,7 +112,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         color="red"
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}
-                        loading={id === variables?.id && isLoading}
+                        loading={
+                            (recordItemId ?? id) === variables?.id && isLoading
+                        }
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...(variant
                             ? {
@@ -129,7 +134,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         variant="outline"
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}
-                        loading={id === variables?.id && isLoading}
+                        loading={
+                            (recordItemId ?? id) === variables?.id && isLoading
+                        }
                         leftIcon={<IconTrash size={18} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}

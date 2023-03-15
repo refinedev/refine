@@ -10,7 +10,7 @@ setInitialRoutes(["/products"]);
 
 // visible-block-start
 import { useState } from "react";
-import { useList, HttpError } from "@pankod/refine-core";
+import { useList, HttpError } from "@refinedev/core";
 
 interface IProduct {
     id: number;
@@ -27,11 +27,9 @@ const ProductList: React.FC = () => {
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
-        config: {
-            pagination: {
-                current,
-                pageSize,
-            },
+        pagination: {
+            current,
+            pageSize,
         },
         //highlight-end
     });

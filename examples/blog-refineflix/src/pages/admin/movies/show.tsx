@@ -2,16 +2,11 @@ import {
     useShow,
     IResourceComponentsProps,
     useNavigation,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import {
-    Show,
-    Typography,
-    Space,
-    ImageField,
-    RefreshButton,
-    EditButton,
-} from "@pankod/refine-antd";
+import { Show, ImageField, RefreshButton, EditButton } from "@refinedev/antd";
+
+import { Typography, Space } from "antd";
 
 import { IMovies } from "interfaces";
 

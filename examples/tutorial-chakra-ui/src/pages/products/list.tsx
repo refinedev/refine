@@ -3,10 +3,18 @@ import {
     IResourceComponentsProps,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
+    usePagination,
+    EditButton,
+    ShowButton,
+    MarkdownField,
+} from "@refinedev/chakra-ui";
+
+import {
     TableContainer,
     Table,
     Thead,
@@ -17,12 +25,9 @@ import {
     HStack,
     Button,
     IconButton,
-    usePagination,
     Box,
-    EditButton,
-    ShowButton,
-    MarkdownField,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
+
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 
 import { ColumnSorter } from "../../components/table/ColumnSorter";

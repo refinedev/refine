@@ -2,7 +2,9 @@ import React from "react";
 import {
     ForgotPasswordPageProps,
     ForgotPasswordFormTypes,
-} from "@pankod/refine-core";
+    useRouterType,
+    useLink,
+} from "@refinedev/core";
 import {
     Row,
     Col,
@@ -20,7 +22,7 @@ import {
     useTranslate,
     useRouterContext,
     useForgotPassword,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
@@ -46,7 +48,11 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
 }) => {
     const [form] = Form.useForm<ForgotPasswordFormTypes>();
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const { mutate: forgotPassword, isLoading } =
         useForgotPassword<ForgotPasswordFormTypes>();
@@ -114,14 +120,14 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                                 "pages.register.buttons.haveAccount",
                                 "Have an account? ",
                             )}{" "}
-                            <Link
+                            <ActiveLink
                                 style={{
                                     fontWeight: "bold",
                                 }}
                                 to="/login"
                             >
                                 {translate("pages.login.signin", "Sign in")}
-                            </Link>
+                            </ActiveLink>
                         </Text>
                     )}
                 </div>

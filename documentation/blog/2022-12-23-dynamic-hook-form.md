@@ -8,6 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-ho
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 ## Introduction
 
@@ -55,7 +64,7 @@ We'll use `create refine-app` to set up a refine project with Material UI. It’
 As a first step, navigate to a preferred folder on your computer and run the command below to initialise CLI installer:
 
 ```shell
-npm create refine-app@latest dynamic-form-example
+npm create refine-app@latest dynamic-form-example -- -b v3
 ```
 
 The installer will prompt you to select your preference for the project. Select the following options to proceed:
@@ -74,7 +83,7 @@ Next, `cd` into the newly created folder and run the following command to instal
 
 ```shell
 cd dynamic-form-example
-npm i @pankod/refine-react-hook-form
+npm i @refinedev/react-hook-form
 ```
 
 This package will let us access React hook form's perks in refine.
@@ -113,7 +122,7 @@ To begin with, create a `pages` folder inside the `src` folder and add a `userLi
 Next, import the `Create`, `List `, and `Edit` components from refine into their respective files and declare them in the body of the components.
 
 ```tsx title="src/pages/UserCreate"
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 function UserCreate() {
   return <Create></Create>;
@@ -141,7 +150,7 @@ Now, open the `App.jsx` file, import each file and add them to the `resources` p
 
 ```tsx title="src/App.tsx"
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
   notificationProvider,
   RefineSnackbarProvider,
@@ -152,14 +161,14 @@ import {
   LightTheme,
   ReadyPage,
   ErrorComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import UserCreate from "pages/userCreate";
 import UserEdit from "pages/userEdit";
 import UserList from "pages/userList";
 
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 function App() {
   return (
@@ -216,7 +225,7 @@ We’ll look at how to use these props later in this section. For now, return to
 
 ```tsx title="src/pages/UserList.tsx"
 import React from "react";
-import { useDataGrid, DataGrid, List } from "@pankod/refine-mui";
+import { useDataGrid, DataGrid, List } from "@refinedev/mui";
 ```
 
 `useDataGrid` is a refine hook that fetches data from the API and wraps them with various helper hooks required for MUI components, such as the `<DataGrid>` component to render data.
@@ -287,12 +296,12 @@ Next, we’ll compose the dynamic form for creating and posting records to the m
 As a first step, navigate to the `UserCreate` file and import the following components from refine and React hook form:
 
 ```tsx title="src/pages/UserCreate.tsx"
-import { Create, Box, TextField, Button } from "@pankod/refine-mui";
+import { Create, Box, TextField, Button } from "@refinedev/mui";
 import {
   useForm,
   Controller,
   useFieldArray,
-} from "@pankod/refine-react-hook-form";
+} from "@refinedev/react-hook-form";
 ```
 
 Next, destructure the `saveButtonProps` variable from the `useForm` hook and add it to the Create component:
@@ -506,7 +515,7 @@ In this section, we'll add a button component with an `onClick` event handler to
 To do this, add the `Button` component to the list of imported components at the top of the page like so:
 
 ```tsx
-import { Create, Box, TextField, Button } from "@pankod/refine-mui";
+import { Create, Box, TextField, Button } from "@refinedev/mui";
 ```
 
 Next, declare the button component with an event handler below the dynamic fields and call the `append()` method inside it:
@@ -872,12 +881,12 @@ To properly edit records inside the `<Edit>` page, we need an identical composit
 
 ```tsx title="src/pages/UserEdit.tsx"
 import React from "react";
-import { Edit, Box, TextField, Button } from "@pankod/refine-mui";
+import { Edit, Box, TextField, Button } from "@refinedev/mui";
 import {
   useForm,
   Controller,
   useFieldArray,
-} from "@pankod/refine-react-hook-form";
+} from "@refinedev/react-hook-form";
 
 interface IPost {
   firstName: string;
@@ -1024,7 +1033,7 @@ import {
   List,
   Stack,
   EditButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 ```
 
 The `EditButton` component uses refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.

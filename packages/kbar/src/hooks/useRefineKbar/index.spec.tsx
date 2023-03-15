@@ -1,5 +1,5 @@
 import React from "react";
-import { AccessControlProvider, IResourceItem } from "@pankod/refine-core";
+import { AccessControlProvider, IResourceItem } from "@refinedev/core";
 import { Route, Routes } from "react-router-dom";
 
 import { act, TestWrapper, renderHook } from "@test";

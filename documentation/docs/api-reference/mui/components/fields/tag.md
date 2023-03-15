@@ -18,12 +18,11 @@ Let's see how we can use it in a basic list page:
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     TagField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -33,9 +32,7 @@ const columns: GridColumns = [
         headerName: "Status",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <TagField value={row.status} />
-            );
+            return <TagField value={row.status} />;
             // highlight-end
         },
         minWidth: 100,
@@ -76,7 +73,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/TagField" value-description="Tag content" />
+<PropsTable module="@refinedev/mui/TagField" value-description="Tag content" />
 
 :::tip External Props
 It also accepts all props of Material UI [Chip](https://mui.com/material-ui/react-chip/#main-content).

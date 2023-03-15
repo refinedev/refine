@@ -1,12 +1,13 @@
 ---
 id: useModalForm
 title: useModalForm
+sidebar_label: useModalForm 🆙
 ---
 
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
@@ -30,24 +31,22 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
+import { List, useModalForm, SaveButton } from "@refinedev/mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    useModalForm,
     Modal,
     Select,
     TextInput,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -242,25 +241,27 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
+import {
+    List,
+    useModalForm,
+    EditButton,
+    SaveButton,
+} from "@refinedev/mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    useModalForm,
     Modal,
     Select,
     TextInput,
-    EditButton,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -514,25 +515,27 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { GetManyResponse, useMany } from "@refinedev/core";
+import {
+    List,
+    useModalForm,
+    CloneButton,
+    SaveButton,
+} from "@refinedev/mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    useModalForm,
     Modal,
     Select,
     TextInput,
-    CloneButton,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -847,6 +850,20 @@ const modalForm = useModalForm({
     modalProps: {
         autoResetForm: false,
     },
+});
+```
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const modalForm = useModalForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 

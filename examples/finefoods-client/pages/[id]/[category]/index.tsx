@@ -2,9 +2,11 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { GetListResponse, LayoutWrapper } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { GetListResponse } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { useTable } from "@refinedev/react-table";
+
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
     ProductListItem,
@@ -66,73 +68,69 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     });
 
     return (
-        <LayoutWrapper>
-            <div className="container mx-auto overflow-hidden rounded-xl bg-white">
-                <div
-                    className="flex h-48 items-center bg-cover bg-center bg-no-repeat pl-6"
-                    style={{
-                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${category.cover})`,
-                    }}
-                >
-                    <h1 className="text-5xl font-extrabold uppercase text-white">
-                        {category.title}
-                    </h1>
-                </div>
-                <table className="w-full">
-                    <tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <tr
-                                    key={row.id}
-                                    className="border-b border-gray-100"
-                                >
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <td key={cell.id} className="p-4">
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-
-                <div className="my-4 flex justify-end px-4">
-                    <button
-                        className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
-                        onClick={() => previousPage()}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        <ChevronLeftIcon className="text-primary h-5 w-5" />
-                    </button>
-                    {getPageOptions().map((page) => (
-                        <button
-                            key={page}
-                            className={`border px-4 py-2 text-sm font-medium hover:bg-gray-50 ${
-                                pagination?.pageIndex === page
-                                    ? "text-primary"
-                                    : ""
-                            }`}
-                            onClick={() => setPageIndex(page)}
-                        >
-                            {page + 1}
-                        </button>
-                    ))}
-                    <button
-                        className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
-                        onClick={() => nextPage()}
-                        disabled={!getCanNextPage()}
-                    >
-                        <ChevronRightIcon className="text-primary h-5 w-5" />
-                    </button>
-                </div>
+        <div className="container mx-auto overflow-hidden rounded-xl bg-white">
+            <div
+                className="flex h-48 items-center bg-cover bg-center bg-no-repeat pl-6"
+                style={{
+                    backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${category.cover})`,
+                }}
+            >
+                <h1 className="text-5xl font-extrabold uppercase text-white">
+                    {category.title}
+                </h1>
             </div>
-        </LayoutWrapper>
+            <table className="w-full">
+                <tbody>
+                    {getRowModel().rows.map((row) => {
+                        return (
+                            <tr
+                                key={row.id}
+                                className="border-b border-gray-100"
+                            >
+                                {row.getVisibleCells().map((cell) => {
+                                    return (
+                                        <td key={cell.id} className="p-4">
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            <div className="my-4 flex justify-end px-4">
+                <button
+                    className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
+                    onClick={() => previousPage()}
+                    disabled={!getCanPreviousPage()}
+                >
+                    <ChevronLeftIcon className="text-primary h-5 w-5" />
+                </button>
+                {getPageOptions().map((page) => (
+                    <button
+                        key={page}
+                        className={`border px-4 py-2 text-sm font-medium hover:bg-gray-50 ${
+                            pagination?.pageIndex === page ? "text-primary" : ""
+                        }`}
+                        onClick={() => setPageIndex(page)}
+                    >
+                        {page + 1}
+                    </button>
+                ))}
+                <button
+                    className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
+                    onClick={() => nextPage()}
+                    disabled={!getCanNextPage()}
+                >
+                    <ChevronRightIcon className="text-primary h-5 w-5" />
+                </button>
+            </div>
+        </div>
     );
 };
 

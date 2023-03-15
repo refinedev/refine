@@ -1,12 +1,12 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import { notificationProvider, Layout, Title } from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import { liveProvider } from "@pankod/refine-ably";
-import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/reset.css";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import { liveProvider } from "@refinedev/ably";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import "@refinedev/antd/dist/reset.css";
 
 import { ablyClient } from "utility";
-import { CustomSider } from "components";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
     CategoryList,
@@ -14,12 +14,13 @@ import {
     CategoryEdit,
     CategoryShow,
 } from "pages/categories";
+import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
@@ -28,27 +29,57 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                        canDelete: true,
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        meta: {
+                            canDelete: true,
+                        },
                     },
                     {
                         name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                        edit: CategoryEdit,
-                        show: CategoryShow,
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                        show: "/categories/show/:id",
                     },
                 ]}
                 options={{ liveMode: "auto" }}
-                Sider={CustomSider}
-                Title={Title}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-            />
-        </>
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout Sider={CustomSider}>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

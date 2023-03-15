@@ -8,16 +8,14 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 import {
     List,
     // highlight-next-line
     useSimpleList,
-    AntdList,
-    Typography,
-    Space,
     NumberField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { List as AntdList, Typography, Space } from "antd";
 
 const { Text } = Typography;
 
@@ -86,17 +84,14 @@ interface IPost {
 After creating the `<PostList>` component, add it to the resource with `list` prop:
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList } from "pages/posts";
@@ -105,22 +100,35 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            //highlight-end
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                notificationProvider={notificationProvider}
+                // highlight-start
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route index element={<NavigateToResource />} />
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route path="/posts" element={<PostList />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -146,7 +154,7 @@ import {
     ...
 // highlight-next-line
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const PostList: React.FC = () => {
 // highlight-start

@@ -8,6 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-p
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code examples in this post have been updated to version 4.x.x.
+
+:::
 
 In this post, we implement realtime broadcast and subscription of `pixels` updates in our **refine** based **Pixels** app. We do this with the [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) prop on `<Refine />` and [**Supabase**'s **Realtime servers**](https://supabase.com/docs/guides/realtime). Applying a PubSub feature allows us to receive instant updates in one part of our app for database changes triggered from another part or by a different client.
 
@@ -63,7 +72,7 @@ This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-re
 
 Now, it's time to move our attention back to the `<Refine />` component in our app.
 
-We already have the `liveProvider` prop passed in with the `liveProvider()` function from `@pankod/refine-supabase`:
+We already have the `liveProvider` prop passed in with the `liveProvider()` function from `@refinedev/supabase`:
 
 ```tsx title="App.tsx"
 <Refine
@@ -105,7 +114,7 @@ const liveProvider = {
 };
 ```
 
-In [`@pankod/refine-supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) `version 3.35.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
+In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) `version 3.35.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
 
 ```tsx title="Supabase data provider"
 const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
@@ -179,7 +188,7 @@ If we look inside our `<CanvasShow />` component that is rendered at `/canvases/
 
 ```tsx title="src/pages/components/canvas/item.tsx"
 import React from "react";
-import { Typography } from "@pankod/refine-antd";
+import { Typography } from "@refinedev/antd";
 
 import { Pixel, Canvas } from "types";
 import { DEFAULT_SCALE, PIXEL_SIZE } from "utility/constants";
@@ -351,6 +360,6 @@ The `subscribe()` method on **Supabase**'s `liveProvider` object allows us to su
 
 Broadcasting, in turn, is initiated by the `usePublish()` hook called from a supported mutation hook for our resource - the `useCreate()` hook in this case.
 
-We implemented real time collaboration very effortlessly due to the out-of-box solutions provided by **refine**'s `@pankod/refine-supabase` package.
+We implemented real time collaboration very effortlessly due to the out-of-box solutions provided by **refine**'s `@refinedev/supabase` package.
 
 With this now, we have enabled multiple users to draw on a canvas at the same time and receive updates instantly.

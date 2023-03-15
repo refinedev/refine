@@ -1,10 +1,10 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
+import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 
 import { API_URL } from "src/constants";
 import { IProduct, IStore } from "src/interfaces";
-import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { ProductCard, FilterButton } from "src/components";
 
 type ItemProps = {
@@ -28,7 +28,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
     );
 
     return (
-        <LayoutWrapper>
+        <>
             <Flex mt={6} gap={2}>
                 <FilterButton
                     setFilters={() =>
@@ -105,7 +105,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                     );
                 })}
             </Flex>
-        </LayoutWrapper>
+        </>
     );
 };
 

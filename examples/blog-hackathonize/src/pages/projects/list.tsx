@@ -1,14 +1,14 @@
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     ShowButton,
     EditButton,
     TextField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space } from "antd";
 
 import { HackathonerType, ProjectType, HackathonType } from "interfaces";
 

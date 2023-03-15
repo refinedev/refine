@@ -1,26 +1,29 @@
-import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
+import { useTranslate, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     BooleanField,
     useEditableTable,
-    Form,
     SaveButton,
+    NumberField,
+    DateField,
+    useDrawerForm,
+} from "@refinedev/antd";
+
+import { FormOutlined, MoreOutlined } from "@ant-design/icons";
+import {
+    Table,
+    Space,
+    Form,
     Button,
     Input,
     Checkbox,
     Dropdown,
-    Icons,
     Menu,
     Avatar,
-    NumberField,
-    DateField,
     Grid,
-    useDrawerForm,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components/product";
@@ -58,7 +61,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.FormOutlined
+                    <FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -162,7 +165,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     overlay={moreMenu(record)}
                                     trigger={["click"]}
                                 >
-                                    <Icons.MoreOutlined
+                                    <MoreOutlined
                                         onClick={(e) => e.stopPropagation()}
                                         style={{
                                             fontSize: 24,
@@ -218,7 +221,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.FormOutlined
+                    <FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -286,7 +289,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                             overlay={moreMenu(record)}
                             trigger={["click"]}
                         >
-                            <Icons.MoreOutlined
+                            <MoreOutlined
                                 onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,

@@ -1,20 +1,20 @@
 import { useState } from "react";
+import { Create, useAutocomplete } from "@refinedev/mui";
 import {
-    Create,
     Box,
     TextField,
     Autocomplete,
-    useAutocomplete,
     Input,
     Stack,
     Typography,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 import { ICategory, IPost } from "interfaces";
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 export const PostCreate: React.FC = () => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);

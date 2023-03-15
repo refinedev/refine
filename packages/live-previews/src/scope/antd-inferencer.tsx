@@ -1,4 +1,4 @@
-import * as RefineAntdInferencer from "@pankod/refine-inferencer/antd";
+import * as RefineAntdInferencer from "@refinedev/inferencer/antd";
 
 const AntdInferencerScope = {
     RefineAntdInferencer,

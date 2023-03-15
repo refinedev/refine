@@ -1,4 +1,4 @@
-import { RefineKbar } from "@pankod/refine-kbar";
+import { RefineKbar } from "@refinedev/kbar";
 
 export const OffLayoutArea: React.FC = () => {
     return <RefineKbar />;

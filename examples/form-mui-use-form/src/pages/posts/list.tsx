@@ -1,16 +1,12 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    EditButton,
-} from "@pankod/refine-mui";
+import { useMany } from "@refinedev/core";
+import { useDataGrid, List, EditButton } from "@refinedev/mui";
+
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);

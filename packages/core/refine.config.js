@@ -1,6 +1,6 @@
-const { getImports, appendAfterImports } = require("@pankod/refine-cli");
+const { getImports, appendAfterImports } = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "UI Framework",
     swizzle: {
@@ -8,24 +8,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "ErrorPage",
-                message: ` 
-                **\`Warning:\`**
-                If you want to change the default error page;
-                You should pass it with the **catchAll** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { ErrorPage } from "components/pages/error";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            catchAll={ErrorPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                message: `
+                **\`Info:\`**
+                If you want to see an example of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -37,24 +22,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "AuthPage",
-                message: ` 
-                **\`Warning:\`**
-                If you want to change the default auth pages;
-                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { AuthPage } from "components/pages/auth";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            LoginPage={AuthPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                message: `
+                **\`Info:\`**
+                If you want to see examples of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -114,9 +84,11 @@ module.exports = {
                     importItem.importPath === "../../../interfaces" ||
                     importItem.importPath === "../../interfaces" ||
                     importItem.importPath === "@hooks" ||
-                    importItem.importPath === "@hooks/translate"
+                    importItem.importPath === "@hooks/translate" ||
+                    importItem.importPath === "@definitions/index" ||
+                    importItem.importPath === "@definitions/helpers"
                 ) {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-core";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/core";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

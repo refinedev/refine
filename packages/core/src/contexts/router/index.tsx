@@ -1,43 +1,17 @@
-import React from "react";
+import React, { createContext, PropsWithChildren } from "react";
+import { RouterBindings } from "src/interfaces";
 
-import { IRouterContext } from "../../interfaces";
+const defaultBindings = {};
 
-export const defaultProvider: IRouterContext = {
-    useHistory: () => false,
-    useLocation: () => false,
-    useParams: () => ({} as any),
-    Prompt: () => null,
-    Link: () => null,
-};
+export const RouterBindingsContext =
+    createContext<RouterBindings>(defaultBindings);
 
-export const RouterContext =
-    React.createContext<IRouterContext>(defaultProvider);
-
-export const RouterContextProvider: React.FC<
-    IRouterContext & {
-        children?: React.ReactNode;
-    }
-> = ({
-    children,
-    useHistory,
-    useLocation,
-    useParams,
-    Prompt,
-    Link,
-    routes,
-}) => {
+export const RouterBindingsProvider: React.FC<
+    PropsWithChildren<{ router?: RouterBindings }>
+> = ({ children, router }) => {
     return (
-        <RouterContext.Provider
-            value={{
-                useHistory,
-                useLocation,
-                useParams,
-                Prompt,
-                Link,
-                routes,
-            }}
-        >
+        <RouterBindingsContext.Provider value={router ?? defaultBindings}>
             {children}
-        </RouterContext.Provider>
+        </RouterBindingsContext.Provider>
     );
 };

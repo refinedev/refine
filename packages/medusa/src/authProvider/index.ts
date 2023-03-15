@@ -1,7 +1,7 @@
-import { AuthProvider, HttpError } from "@pankod/refine-core";
+import { AuthBindings, HttpError } from "@refinedev/core";
 import axios from "axios";
 
-export const authProvider = (API_URL: string): AuthProvider => {
+export const authProvider = (API_URL: string): AuthBindings => {
     const axiosInstance = axios.create();
 
     axiosInstance.interceptors.response.use(
@@ -32,36 +32,47 @@ export const authProvider = (API_URL: string): AuthProvider => {
                 );
 
                 if (response) {
-                    return Promise.resolve(response.data.customer);
+                    return { succes: true, ...response.data.customer };
                 }
             } catch (error) {
-                return Promise.reject(error);
+                return {
+                    success: false,
+                    error,
+                };
             }
+        },
+        logout: async ({ redirectTo }: { redirectTo: string }) => {
+            try {
+                axiosInstance
+                    .delete("/auth")
+                    .then(() => localStorage.removeItem("user"));
 
-            return Promise.resolve("/");
+                return {
+                    success: true,
+                    redirectTo,
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                };
+            }
         },
-        logout: (props) => {
-            axiosInstance
-                .delete("/auth")
-                .then(() => localStorage.removeItem("user"));
-
-            return Promise.resolve(props?.redirectPath);
+        onError: async (error) => {
+            console.error(error);
+            return { error };
         },
-        checkError: () => {
-            return Promise.resolve();
-        },
-        checkAuth: async () => {
+        check: async () => {
             const { data: session } = await axiosInstance.get("/auth");
             if (session) {
-                return Promise.resolve();
+                return { authenticated: true };
             }
-            return Promise.reject();
+            return { authenticated: false };
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getIdentity: async () => {
             const { data: session } = await axiosInstance.get("/auth");
 
-            return Promise.resolve(session?.customer);
+            return { ...session.customer };
         },
+        getPermissions: () => Promise.resolve(),
     };
 };

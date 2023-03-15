@@ -1,10 +1,16 @@
 import React from "react";
-import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
+import {
+    RegisterPageProps,
+    RegisterFormTypes,
+    useActiveAuthProvider,
+} from "@refinedev/core";
 import {
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
     useRegister,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     Card,
@@ -43,7 +49,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const form = useForm({
         initialValues: {
@@ -64,7 +74,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     });
     const { onSubmit, getInputProps } = form;
 
-    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -143,7 +156,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                     "Have an account?",
                                 )}{" "}
                                 <Anchor
-                                    component={Link}
+                                    component={ActiveLink as any}
                                     to="/login"
                                     weight={700}
                                 >

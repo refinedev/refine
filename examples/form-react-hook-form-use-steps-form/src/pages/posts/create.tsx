@@ -1,5 +1,5 @@
-import { useSelect, HttpError } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { useSelect, HttpError } from "@refinedev/core";
+import { useStepsForm } from "@refinedev/react-hook-form";
 import { IPost } from "interfaces";
 
 const stepTitles = ["Title", "Status", "Category and content"];

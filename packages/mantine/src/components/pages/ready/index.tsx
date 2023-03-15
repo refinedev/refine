@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
+import { RefineReadyPageProps } from "@refinedev/ui-types";
 import {
     BackgroundImage,
     Code,
@@ -11,6 +11,9 @@ import {
     Anchor,
 } from "@mantine/core";
 
+/**
+ * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ */
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <BackgroundImage

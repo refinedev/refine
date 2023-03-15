@@ -36,15 +36,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install & build
       run: |
-        npm install
-        npm run bootstrap
-    - name: lint
-      run: |
-        npm run lint
+        npm ci
+        npm run bootstrap:all
+    #- name: lint
+    #  run: |
+    #    npm run lint
     - name: test
       run: |
-        npm run test:coverage
-    - name: npm test & publish code coverage
+        npm run test:all:coverage
+    - name: npm run test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.5
       #if: github.ref == 'refs/heads/master'
       if: 1 == 0

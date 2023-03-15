@@ -9,7 +9,7 @@ body {
 setInitialRoutes(["/products"]);
 // visible-block-start
 import { useState } from "react";
-import { useOne, HttpError } from "@pankod/refine-core";
+import { useOne, HttpError } from "@refinedev/core";
 
 interface IProduct {
     id: number;

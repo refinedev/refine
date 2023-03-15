@@ -1,6 +1,12 @@
 import React from "react";
 
-import { render, MockJSONServer, MockRouterProvider, TestWrapper } from "@test";
+import {
+    render,
+    MockJSONServer,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+    TestWrapper,
+} from "@test";
 
 import { Refine } from "./index";
 
@@ -30,19 +36,19 @@ const mockAuthProvider = {
 };
 
 describe("Refine Container", () => {
-    it("should render without resource", async () => {
+    it("should render without resource [legacy router provider]", async () => {
         const { getByText } = render(
             <Refine
-                authProvider={mockAuthProvider}
+                legacyAuthProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
-                routerProvider={MockRouterProvider}
+                legacyRouterProvider={mockLegacyRouterProvider()}
             />,
         );
 
         getByText("Welcome on board");
     });
 
-    it("should render correctly readyPage with ready prop", async () => {
+    it("should render correctly readyPage with ready prop [legacy router provider]", async () => {
         const readyPage = () => {
             return (
                 <div data-testid="readyContainer">
@@ -52,9 +58,9 @@ describe("Refine Container", () => {
         };
         const { getByTestId, getByText } = render(
             <Refine
-                authProvider={mockAuthProvider}
+                legacyAuthProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
-                routerProvider={MockRouterProvider}
+                legacyRouterProvider={mockLegacyRouterProvider()}
                 ReadyPage={readyPage}
             />,
         );
@@ -62,7 +68,7 @@ describe("Refine Container", () => {
         getByText("readyPage rendered with ready prop");
     });
 
-    it("should render resource prop list page", async () => {
+    it("should render resource prop list page [legacy router provider]", async () => {
         const PostList = () => {
             return (
                 <>
@@ -82,10 +88,25 @@ describe("Refine Container", () => {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
+                legacyRouterProvider: mockLegacyRouterProvider(),
             }),
         });
 
         expect(container).toBeDefined();
         getByText("Posts");
+    });
+
+    it("should render the children", async () => {
+        const { getByTestId } = render(
+            <Refine
+                legacyAuthProvider={mockAuthProvider}
+                dataProvider={MockJSONServer}
+                routerProvider={mockRouterBindings()}
+            >
+                <div data-testid="children">Children</div>
+            </Refine>,
+        );
+
+        expect(getByTestId("children")).toBeTruthy();
     });
 });

@@ -1,3 +1,5 @@
+<br/>
+
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"   style="width:250px;" align="center" />
@@ -13,248 +15,226 @@
     <a href="https://refine.dev/docs/">Documentation</a> | 
     <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
 </div>
-
 </div>
-<br/>
-
-<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building internal tools, rapidly. ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
 
 <br />
 
-<div align="center">
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
 
-[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/UuU3XCc3J5)
-![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)
+<br />
+<br />
+
+[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
 <a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+</div>
+
+<div align="center">
 
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine-mui.svg)](https://www.npmjs.com/package/@pankod/refine-mui)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-mui)](https://www.npmjs.com/package/@pankod/refine-antd)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
+[![npm version](https://img.shields.io/npm/v/@refinedev/core.svg)](https://www.npmjs.com/package/@refinedev/core)
+[![npm](https://img.shields.io/npm/dm/@refinedev/core)](https://www.npmjs.com/package/@refinedev/core)
+[![](https://img.shields.io/github/commit-activity/m/refinedev/refine)](https://github.com/refinedev/refine/commits/next)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 </div>
 
-<div align="center">
-  <sub>Created by <a href="https://refine.dev">refine</a></sub>
-</div>
-
-## About
-
-[**refine**](https://refine.dev/) offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
-
-## Documentation
-
-For more detailed information and usage, refer to the [refine documentation](https://refine.dev/docs/).
+<br/>
+<a href="https://refine.dev/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/18739364/200257042-3f2aa7f7-a07f-4824-8d2a-b25f26b6fd32.png">
+  <img alt="how-works-refine" src="https://user-images.githubusercontent.com/18739364/200257209-8fc0c8b1-2568-453e-873f-00513434deed.png">
+</picture>
+</a>
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a React-based framework for the rapid ✨ development of web applications.
+It eliminates repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
+**refine** is _headless by design_, thereby offering unlimited styling and customization options.
 
-## What is a "headless" Framework?
+## What do you mean by "headless" ?
 
-**refine** is a **headless** React framework, which means all out-of-the-box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from _UI components_ and _business logic_, so that they never keep you from customizing your _UI_ or coding your own flow.
 
--   Customization & Extensibility - UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
--   Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
+## Use cases
 
--   Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
+**refine** shines on _data-intensive⚡_ applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power _customer-facing_ applications like **storefronts**.
 
-###
+You can take a look at some live examples that can be built using **refine** from scratch:
 
-## Key features
+<a href="https://s.refine.dev/readme-admin-panel" target="_blank">
+ <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
+</a>
 
-🔥 **Headless** : Works with any UI framework
+ <a href="https://s.refine.dev/readme-medium-clone" target="_blank">
+<img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
+</a>
 
-⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
+ <a href="https://s.refine.dev/readme-ssr-storefront" target="_blank">
+<img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
+</a>
 
-📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
+<br/>
+<br/>
+
+[👉 Refer to most popular real use case examples](https://refine.dev/examples/)
+
+[👉 More **refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples/)
+
+## Key Features
+
+⚙️ Zero-config, **one-minute setup** with a **single CLI command**
 
 🔌 Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
 
-📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
+🌐 **SSR support** with **Next.js** or **Remix**
 
-🐜 **Enterprise UI** : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🔍 Auto-generated **CRUD** UIs from **your API data structure**
 
-📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
+⚛ Perfect **state management** & **mutations** with **React Query**
 
-## Motivation
+🔀 **Advanced routing** with any router library of your choice
 
-Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility.
+🔐 Providers for seamless **authentication** and **access control** flows
 
-After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
+⚡ Out-of-the-box support for **live / real-time applications**
 
-**refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+📄 Easy **audit logs** & **document versioning**
 
-As **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
+💬 Support for any **i18n** framework
 
-1. **API Networking**
-2. **State Management**
-3. **Authentication & Authorization**
+💪 Future-proof, **robust architecture**
 
-We believe, these are the most important components of a data-intensive frontend application and should be handled in a robust way by leveraging industry best practices.
+⌛️ Built-in CLI with time-saving features
 
-**refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
-
-## Architecture
-
-**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components.
-Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management.
-Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
-
-<br/>
-
-<div align="center">
-    <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
-</div>
-
-## Benchmark
-
-After releasing the first internal versions, we had the chance to migrate some of our _React_ projects to **refine**.
-In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
-
-**refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_ and _unit tests_. Below is a size comparison for an example project:
-
-<br/>
-
-<div align="center">
-    <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
-</div>
+✅ Full **test coverage**
 
 ## Quick Start
 
-Run the **create refine-app** CLI tool with the following command:
+The fastest way to get started with **refine** is by using the `create refine-app` project starter tool.
+Run the following command to create a new **refine** project configured with [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npm create refine-app@latest tutorial
+npm create refine-app@latest -- --preset refine-antd
 ```
 
-Follow the _CLI wizard_ to select options and start creating your project.
-
-After setup is complete, navigate to the project folder and start your project with:
+Once the setup is complete, navigate to the project folder and start your project with:
 
 ```
 npm run dev
 ```
 
-Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000).
+<br/>
 
-Replace the contents of `App.tsx` with the following code:
+Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
 
-```tsx title="App.tsx"
-import React from "react";
-import { Refine, useOne } from "@pankod/refine-core";
-import {
-    Layout,
-    ErrorComponent,
-    LightTheme,
-    ThemeProvider,
-    notificationProvider,
-    RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/welcome-on-board.png)</a>
+
+<br/>
+
+Let's consume a public `fake REST API` and add two resources (_posts_, _categories_) to our project. Replace the contents of `src/App.tsx` with the following code:
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { AntdInferencer } from "@refinedev/inferencer/antd";
+
+import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    resources={[{ name: "posts", list: PostList }]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: 'posts',
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        meta: { canDelete: true },
+                    },
+                    {
+                        name: 'categories',
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="posts">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
-};
-
-export const PostList: React.FC = () => {
-    const getOne = React.useCallback(useOne, []);
-    const columns = React.useMemo<GridColumns<IPost>>(
-        () => [
-            {
-                field: "id",
-                headerName: "ID",
-                type: "number",
-                width: 50,
-            },
-            { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-            {
-                field: "category.id",
-                headerName: "Category",
-                type: "number",
-                headerAlign: "left",
-                align: "left",
-                minWidth: 250,
-                flex: 0.5,
-                valueGetter: ({ row }) => {
-                    const { data } = getOne<ICategory>({
-                        resource: "categories",
-                        id: row.category.id,
-                    });
-                    return data?.data.title;
-                },
-            },
-            { field: "status", headerName: "Status", minWidth: 120, flex: 0.3 },
-            {
-                field: "actions",
-                headerName: "Actions",
-                renderCell: function render({ row }) {
-                    return <EditButton hideText recordItemId={row.id} />;
-                },
-                align: "center",
-                headerAlign: "center",
-                minWidth: 80,
-            },
-        ],
-        [getOne],
-    );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
-
-    return (
-        <List>
-            <DataGrid {...dataGridProps} autoHeight />
-        </List>
-    );
-};
+};   
 
 export default App;
 ```
 
-```tsx title="interfaces.d.ts"
-interface IPost {
-    title: string;
-    createdAt: string;
-    category: { id: number };
-}
+<br/>
 
-interface ICategory {
-    id: number;
-    title: string;
-}
-```
+🚀 Thanks to **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.
+
+Now, you should see the output as a table populated with `post` & `category` data:
+
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/readme-quick-start.png)
+
+<br/>
+
+You can get the auto-generated pages codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing with the Inferencer components.
+
+## Next Steps
+
+👉 Jump to [Tutorial](https://refine.dev/docs/tutorial/introduction/index/) to continue your work and turn the example into a full-blown CRUD application.
+
+👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
+
+👉 Read more on [Advanced Tutorials
+](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
+
+👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
+
+👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
 
 ## Roadmap
 
-You can find Refine's <a href="https://github.com/refinedev/refine/projects/1">Public Roadmap here!</a>
+You can find refine's <a href="https://github.com/refinedev/refine/projects/1">Public Roadmap here!</a>
 
 ## Stargazers
 
@@ -262,14 +242,16 @@ You can find Refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you have a bug to report, do not hesitate to file an issue.
+[👉 Refer to contribution docs for more information](https://refine.dev/docs/contributing/#ways-to-contribute)
 
-If you are willing to fix an issue or propose a feature; all PRs with clear explanations are welcome and encouraged.
+If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
+
+## Our ♥️ Contributors
+
+<a href="https://github.com/refinedev/refine/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=refinedev/refine" />
+</a>
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021-present refine
-
-## Special Thanks
-
-[React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.
+Licensed under the MIT License, Copyright © 2021-present Refinedev

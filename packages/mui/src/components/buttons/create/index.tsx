@@ -5,8 +5,10 @@ import {
     useCan,
     useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    useRouterType,
+    useLink,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { AddBoxOutlined } from "@mui/icons-material";
 
@@ -20,29 +22,33 @@ import { CreateButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/create-button} for more details.
  */
 export const CreateButton: React.FC<CreateButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resource, resourceName } = useResource({
-        resourceNameOrRouteName,
-    });
+    const translate = useTranslate();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
 
-    const { Link } = useRouterContext();
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
     const { createUrl: generateCreateUrl } = useNavigation();
 
-    const translate = useTranslate();
+    const { resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "create",
         queryOptions: {
             enabled: accessControlEnabled,
@@ -62,7 +68,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl = generateCreateUrl(resource.route!);
+    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
     const { sx, ...restProps } = rest;
 
@@ -71,7 +77,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     }
 
     return (
-        <Link
+        <ActiveLink
             to={createUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -101,6 +107,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     children ?? translate("buttons.create", "Create")
                 )}
             </Button>
-        </Link>
+        </ActiveLink>
     );
 };

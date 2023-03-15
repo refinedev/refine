@@ -35,7 +35,7 @@ export interface IResource {
     name: string;
     key: string;
     parentName?: string;
-    options?: any;
+    meta?: any;
     hasList: boolean;
     hasCreate: boolean;
     hasEdit: boolean;
@@ -57,7 +57,7 @@ export interface IDraftResource {
 
 export interface IResourceConfigItem {
     name: string;
-    options: {
+    meta: {
         auditLog: {
             permissions: string[];
         };

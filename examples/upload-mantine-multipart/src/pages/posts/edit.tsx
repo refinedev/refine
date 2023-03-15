@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { HttpError, useApiUrl } from "@pankod/refine-core";
-import {
-    Edit,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
-    Text,
-    Image,
-    SimpleGrid,
-} from "@pankod/refine-mantine";
+import { HttpError, useApiUrl } from "@refinedev/core";
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
+import { Select, TextInput, Text, Image, SimpleGrid } from "@mantine/core";
 import { RichTextEditor } from "@mantine/rte";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
 

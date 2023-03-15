@@ -38,7 +38,7 @@ export function install(
     /**
      * NPM-specific command-line flags.
      */
-    const npmFlags: string[] = [];
+    const npmFlags: string[] = ["--force"];
     /**
      * Yarn-specific command-line flags.
      */

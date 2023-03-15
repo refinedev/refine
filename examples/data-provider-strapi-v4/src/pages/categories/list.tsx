@@ -1,17 +1,15 @@
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     DateField,
     DeleteButton,
-    Form,
-    Radio,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space, Form, Radio } from "antd";
 
 import { ICategory } from "interfaces";
 

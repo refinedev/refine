@@ -1,8 +1,6 @@
 import React from "react";
-import { TitleProps } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-const { Link } = routerProvider;
+import { TitleProps } from "@refinedev/core";
+import { Link } from "react-router-dom";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => (
     <Link to="/">

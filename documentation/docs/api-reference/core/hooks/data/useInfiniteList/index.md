@@ -28,21 +28,19 @@ Here is a basic example of how to use the `useInfiniteList` hook.
 Dynamically changing the `pagination` properties will trigger a new request. Also, the `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
 
 ```ts
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 const postListQueryResult = useInfiniteList({
     resource: "posts",
-    config: {
-        pagination: { current: 3, pageSize: 8 },
-    },
+    pagination: { current: 3, pageSize: 8 },
 });
 ```
 
 ## Sorting
 
-The `useInfiniteList` hook supports the sorting feature. You can pass the `sort` property to enable sorting. To handle sorting, the `useInfiniteList` hook passes the `sort` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports the sorting feature. You can pass the `sorters` property to enable sorting. To handle sorting, the `useInfiniteList` hook passes the `sorters` property to the `getList` method from the `dataProvider`.
 
-Dynamically changing the `sort` property will trigger a new request.
+Dynamically changing the `sorters` property will trigger a new request.
 
 <SortingLivePreview />
 
@@ -84,7 +82,7 @@ useInfiniteList({
 });
 ```
 
-### `config.filters`
+### `filters`
 
 `filters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send filter query parameters to the API.
 
@@ -92,38 +90,34 @@ useInfiniteList({
 
 ```tsx
 useInfiniteList({
-    config: {
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+    filters: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
 });
 ```
 
-### `config.sort`
+### `sorters`
 
-`sort` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
+`sorters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useInfiniteList({
-    config: {
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+    sorters: [
+        {
+            field: "title",
+            order: "asc",
+        },
+    ],
 });
 ```
 
-### `config.pagination`
+### `pagination`
 
 `pagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send pagination query parameters to the API.
 
@@ -133,10 +127,8 @@ You can pass the `current` page number to the `pagination` property.
 
 ```tsx
 useInfiniteList({
-    config: {
-        pagination: {
-            current: 2,
-        },
+    pagination: {
+        current: 2,
     },
 });
 ```
@@ -147,22 +139,20 @@ You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
 useInfiniteList({
-    config: {
-        pagination: {
-            pageSize: 20,
-        },
+    pagination: {
+        pageSize: 20,
     },
 });
 ```
 
-### `config.hasPagination`
+#### `mode`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useInfiniteList({
-    config: {
-        hasPagination: false,
+    pagination: {
+        mode: "off",
     },
 });
 ```
@@ -181,19 +171,19 @@ useInfiniteList({
 });
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useInfiniteList({
     // highlight-start
-    metaData: {
+    meta: {
         headers: { "x-meta-data": "true" },
     },
     // highlight-end
@@ -204,14 +194,13 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
-        metaData,
+        meta,
     }) => {
         // highlight-next-line
-        const headers = metaData?.headers ?? {};
+        const headers = meta?.headers ?? {};
         const url = `${apiUrl}/${resource}`;
 
         //...
@@ -297,6 +286,26 @@ useInfiniteList({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+### ~~`config`~~
+
+:::caution Deprecated
+Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
+:::
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useInfiniteList({
+    hasPagination: false,
+});
+```
+
 ## Return Values
 
 Returns an object with TanStack Query's `useInfiniteQuery` return values.
@@ -358,7 +367,7 @@ getList: async ({ resource, pagination }) => {
 By default, `refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
 
 ```tsx
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 const {
     data,
@@ -390,31 +399,10 @@ When you override this method, you can access the `lastPage` and `allPages`.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useInfiniteList" 
+<PropsTable module="@refinedev/core/useInfiniteList" 
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />
-
-### Config Parameters
-
-```ts
-interface UseInfiniteListConfig {
-    hasPagination?: boolean;
-    pagination?: {
-        current?: number;
-        pageSize?: number;
-    };
-    sort?: Array<{
-        field: string;
-        order: "asc" | "desc";
-    }>;
-    filters?: Array<{
-        field: string;
-        operator: CrudOperators;
-        value: any;
-    }>;
-}
-```
 
 ### Type Parameters
 

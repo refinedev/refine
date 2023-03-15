@@ -4,11 +4,16 @@
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.8.3",
-    "@pankod/refine-core": "^3.101.2",
-    "@pankod/refine-mui": "^3.61.5",
-    "@pankod/refine-react-hook-form": "^3.33.2",
-    "@pankod/refine-react-router-v6": "^3.18.0",
-    "@pankod/refine-simple-rest": "^3.18.0",
+    "@refinedev/core": "^4.1.0",
+    "@refinedev/mui": "^4.1.0",
+    "@refinedev/react-hook-form": "^4.1.0",
+    "@refinedev/react-router-v6": "^4.1.0",
+    "@refinedev/simple-rest": "^4.1.0",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/lab": "^5.0.0-alpha.85",
+    "@mui/material": "^5.8.6",
+    "@mui/x-data-grid": "^5.12.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -17,7 +22,8 @@
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",
     "cross-env": "^7.0.3",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "react-hook-form": "^7.30.0"
   },
   "devDependencies": {
     "@types/node": "^12.20.11",
@@ -26,6 +32,7 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
+    "start": "react-scripts start",
     "dev": "react-scripts start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",

@@ -1,4 +1,6 @@
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
+import { SaveButton, useAutocomplete } from "@refinedev/mui";
+
 import {
     Autocomplete,
     Box,
@@ -7,14 +9,12 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    SaveButton,
     TextField,
-    useAutocomplete,
-} from "@pankod/refine-mui";
-import {
-    Controller,
-    UseModalFormReturnType,
-} from "@pankod/refine-react-hook-form";
+} from "@mui/material";
+
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 import { ICategory, IPost } from "interfaces";
 

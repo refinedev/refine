@@ -1,5 +1,5 @@
-import { useRouterContext } from "@pankod/refine-core";
-import { Box } from "@pankod/refine-mui";
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
@@ -8,8 +8,6 @@ type TitleProps = {
 };
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
-    const { Link } = useRouterContext();
-
     return (
         <Link to="/">
             <Box

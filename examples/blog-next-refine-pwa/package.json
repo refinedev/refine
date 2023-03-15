@@ -3,16 +3,16 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev",
+        "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev",
         "build": "next build && rm -rf .next/cache",
-        "start": "next start",
+        "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.101.2",
-        "@pankod/refine-cli": "^1.17.2",
-        "@pankod/refine-nextjs-router": "^4.3.0",
-        "@pankod/refine-simple-rest": "^3.37.4",
+        "@refinedev/core": "^4.1.0",
+        "@refinedev/cli": "^2.1.0",
+        "@refinedev/nextjs-router": "^5.1.0",
+        "@refinedev/simple-rest": "^4.1.0",
         "next": "^13.0.6",
         "cross-env": "^7.0.3",
         "next-compose-plugins": "^2.2.1",

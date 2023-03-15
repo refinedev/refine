@@ -66,6 +66,7 @@ describe("useMany Hook", () => {
                 callback: expect.any(Function),
                 params: {
                     ids: ["1", "2"],
+                    meta: undefined,
                     metaData: undefined,
                     resource: "posts",
                     subscriptionType: "useMany",

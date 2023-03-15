@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import {
-    Button,
-    ButtonProps,
-    Icons,
-    ModalProps,
-    useModal,
-} from "@pankod/refine-antd";
+import { useModal } from "@refinedev/antd";
+import { Button, ButtonProps, ModalProps } from "antd";
+import * as Icons from "@ant-design/icons";
 import {
     useRouterContext,
     useTranslate,
@@ -15,7 +11,7 @@ import {
     useLogList,
     ILog,
     ILogData,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";

@@ -4,7 +4,7 @@ import {
     useTable,
     useUpdate,
     useSelect,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { isEqual } from "lodash";
 import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";

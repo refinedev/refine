@@ -1,4 +1,4 @@
-import { BaseRecord, HttpError } from "@pankod/refine-core";
+import { BaseRecord, HttpError } from "@refinedev/core";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import { useSdk } from "../useSdk";

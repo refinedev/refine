@@ -1,6 +1,6 @@
 import React from "react";
-import { useList } from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { useList } from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
 import { Country, Region } from "@medusajs/medusa";
 
 import { Modal, Button, LoadingDots, Input, NativeSelect } from "@components";

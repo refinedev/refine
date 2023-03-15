@@ -5,7 +5,7 @@ import {
     IResourceComponentsProps,
     GetListResponse,
     useTable,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { ProductCard } from "@components/product";
 import { Grid, Marquee, Hero } from "@components/ui";

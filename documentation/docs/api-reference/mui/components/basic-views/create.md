@@ -11,14 +11,10 @@ We'll show what `<Create>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/create
 // visible-block-start
 import React from "react";
-import {
-    Create,
-    useAutocomplete,
-    TextField,
-    Autocomplete,
-    Box,
-} from "@pankod/refine-mui";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { Create, useAutocomplete } from "@refinedev/mui";
+import { Autocomplete, Box, TextField } from "@mui/material";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
 
 const SampleCreate = () => {
     const {
@@ -114,7 +110,14 @@ const SampleCreate = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples/create"]} resources={[ { name: "samples", create: SampleCreate, list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples/create"]}
+        resources={[
+            { name: "samples", create: SampleCreate, list: SampleList },
+        ]}
+    />,
+);
 ```
 
 :::info-tip Swizzle
@@ -129,7 +132,8 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Typography } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
+import { Typography } from "@mui/material";
 
 const CreatePage: React.FC = () => {
     return (
@@ -158,25 +162,24 @@ render(
                 create: CreatePage,
             },
         ]}
-    />
+    />,
 );
 ```
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
+import { Refine } from "@refinedev/core";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Create, Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Create } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -186,11 +189,12 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -207,9 +211,12 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 ### `saveButtonProps`
@@ -220,7 +227,7 @@ render(<Wrapper><App /></Wrapper>);
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -257,14 +264,15 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
-import { useNavigation } from "@pankod/refine-core";
+import { Create } from "@refinedev/mui";
+import { Button } from "@mui/material";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>
-}
+    return <Button onClick={() => goBack()}>BACK!</Button>;
+};
 
 const PostCreate: React.FC = () => {
     return (
@@ -303,7 +311,7 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -340,7 +348,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
@@ -350,7 +358,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Breadcrumb } from "@pankod/refine-mui";
+import { Create, Breadcrumb } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -401,7 +409,7 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -449,7 +457,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -497,7 +505,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -543,7 +551,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -592,7 +601,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -644,7 +654,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -693,7 +704,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -739,104 +751,26 @@ render(
 );
 ```
 
-### ~~`actionButtons`~~
-
-:::caution Deprecated
-Use `headerButtons` or `footerButtons` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows [`<SaveButton>`](/api-reference/mui/components/buttons/save.md) and [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md) based on your resource definition in the`resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
-
-```tsx title="src/pages/posts/create.tsx"
-// highlight-next-line
-import { Create, Button } from "@pankod/refine-mui";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            actionButtons={
-                <>
-                    <Button>Custom Button 1</Button>
-                    <Button>Custom Button 2</Button>
-                </>
-            }
-            // highlight-end
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-### ~~`cardProps`~~
-
-:::caution Deprecated
-Use `wrapperProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
-
-### ~~`cardHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
-
-```tsx
-// highlight-next-line
-import { Create, Typography } from "@pankod/refine-mui";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            cardHeaderProps={{
-                title: <Typography variant="h5">Custom Title</Typography>,
-            }}
-            // highlight-end
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-### ~~`cardContentProps`~~
-
-:::caution Deprecated
-Use `contentProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
-
-### ~~`cardActionsProps`~~
-
-:::caution Deprecated
-Use `headerButtonProps` and `footerButtonProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/) components so you can customize with the props of `cardActionsProps`.
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/Create" goBack-default="`<ArrowLeft />`"/>
+<PropsTable module="@refinedev/mui/Create" goBack-default="`<ArrowLeft />`"/>
 
 ```tsx live shared
 const SampleList = () => {
     const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-        resource: "categories",
-        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!dataGridProps?.rows,
-        },
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        RefineCore.useMany({
+            resource: "categories",
+            ids:
+                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
+                [],
+            queryOptions: {
+                enabled: !!dataGridProps?.rows,
+            },
+        });
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -883,18 +817,24 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <MuiXDataGrid.DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+            />
         </RefineMui.List>
     );
 };
 
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
-        </RefineMui.ThemeProvider>
-    )
-}
+        </MuiMaterial.ThemeProvider>
+    );
+};
 ```

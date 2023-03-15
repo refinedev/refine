@@ -1,60 +1,112 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password,
-        });
+        try {
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password,
+                });
 
-        if (error) {
-            return Promise.reject(error);
+            if (error) {
+                return {
+                    success: false,
+                    error: error || new Error("Invalid email or password"),
+                };
+            }
+
+            if (data?.user) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error: error || new Error("Invalid email or password"),
+            };
         }
 
-        if (data?.user) {
-            return Promise.resolve();
-        }
+        return {
+            success: false,
+        };
     },
     logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
+        try {
+            const { error } = await supabaseClient.auth.signOut();
 
-        if (error) {
-            return Promise.reject(error);
+            if (error) {
+                return {
+                    success: false,
+                    error: error || new Error("Invalid email or password"),
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error: error || new Error("Invalid email or password"),
+            };
         }
 
-        return Promise.resolve("/");
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const { data } = await supabaseClient.auth.getSession();
-        const { session } = data;
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
+        try {
+            const { data, error } = await supabaseClient.auth.getSession();
+            const { session } = data;
 
-        if (!session) {
-            return Promise.reject();
+            if (!session) {
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                    error: error || new Error("Session not found"),
+                };
+            }
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                redirectTo: "/login",
+                error: error || new Error("Session not found"),
+            };
         }
 
-        return Promise.resolve();
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
         const { data } = await supabaseClient.auth.getUser();
         const { user } = data;
 
         if (user) {
-            return Promise.resolve(user.role);
+            return user.role;
         }
+
+        return null;
     },
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
         const { user } = data;
 
         if (user) {
-            return Promise.resolve({
+            return {
                 ...user,
                 name: user.email,
-            });
+            };
         }
+
+        return null;
     },
 };
 

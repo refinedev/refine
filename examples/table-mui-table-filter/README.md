@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mui-table-filter
 
 <br/>
 
-[![Open table-mui-table-filter example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/table-mui-table-filter?view=preview&theme=dark&codemirror=1)
+[![Open table-mui-table-filter example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/table-mui-table-filter?view=preview&theme=dark&codemirror=1)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example blog-ecommerce
 
 <br/>
 
-[![Open blog-ecommerce example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/blog-ecommerce?view=preview&theme=dark&codemirror=1)
+[![Open blog-ecommerce example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/blog-ecommerce?view=preview&theme=dark&codemirror=1)
         

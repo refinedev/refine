@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardHeader, Grid } from "@pankod/refine-mui";
-import { useTranslate } from "@pankod/refine-core";
+import { Card, CardHeader, Grid } from "@mui/material";
+import { useTranslate } from "@refinedev/core";
 
 import {
     DailyOrders,

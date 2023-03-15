@@ -1,5 +1,5 @@
 import React from "react";
-import { ResourceRouterParams, useRouterContext } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 
 import { ShowInferencer } from "./show";
 import { ListInferencer } from "./list";
@@ -13,8 +13,7 @@ const MantineInferencer: React.FC<InferencerComponentProps> = ({
     id: idFromProps,
     ...props
 }) => {
-    const { useParams } = useRouterContext();
-    const { action, id } = useParams<ResourceRouterParams>();
+    const { action, id } = useResource();
 
     switch (actionFromProps ?? action) {
         case "show":

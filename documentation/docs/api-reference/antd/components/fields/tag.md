@@ -4,7 +4,6 @@ title: Tag
 swizzle: true
 ---
 
-
 This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
 :::info-tip Swizzle
@@ -17,15 +16,13 @@ Let's see how we can use it in a basic list page:
 
 ```tsx live
 // visible-block-start
-import { IResourceComponentsProps } from "@pankod/refine-core";
-
 import {
     List,
     // highlight-next-line
     TagField,
-    Table,
     useTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -33,7 +30,7 @@ const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="Sitle"  width="50%"/>
+                <Table.Column dataIndex="title" title="Sitle" width="50%" />
                 <Table.Column
                     dataIndex="status"
                     title="Status"
@@ -58,7 +55,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -69,7 +66,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/TagField" value-description="Tag content" />
+<PropsTable module="@refinedev/antd/TagField" value-description="Tag content" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Tag](https://ant.design/components/tag/#API).

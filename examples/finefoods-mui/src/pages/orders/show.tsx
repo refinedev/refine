@@ -5,7 +5,11 @@ import {
     useShow,
     useTranslate,
     useUpdate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
+import { List } from "@refinedev/mui";
+import { useTheme } from "@mui/material/styles";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
+
 import {
     Avatar,
     Box,
@@ -13,19 +17,16 @@ import {
     Card,
     CardContent,
     CardHeader,
-    DataGrid,
-    GridColumns,
     IconButton,
     Stack,
     Step,
     StepLabel,
     Stepper,
     Typography,
-    List,
     Paper,
     useMediaQuery,
-    useTheme,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import dayjs from "dayjs";
 
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
@@ -301,7 +302,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             </Paper>
 
             <List
-                cardHeaderProps={{
+                headerProps={{
                     title: t("orders.deliverables.deliverables"),
                 }}
             >

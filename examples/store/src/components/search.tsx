@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "clsx";
 import Link from "next/link";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { useRouter } from "next/router";
 import { ProductCollection } from "@medusajs/medusa";
 

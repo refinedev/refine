@@ -1,6 +1,7 @@
 ---
 id: command-palette
 title: Command Palette
+sidebar_label: Command Palette 🆙
 ---
 
 
@@ -9,21 +10,23 @@ title: Command Palette
 
 ## Installation
 
-Install the [@pankod/refine-kbar][refine-kbar] library.
+Install the [@refinedev/kbar][refine-kbar] library.
 
 ```bash
-npm i @pankod/refine-kbar
+npm i @refinedev/kbar
 ```
 ## Basic Usage
 
-First of all, you need to import the `@pankod/refine-kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
+First of all, you need to import the `@refinedev/kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
 
-After that, we should create the `<OffLayoutArea/>` component for the Refine component and use the `refine-kbar` command palette in `<OffLayoutArea>`. We have the `<RefineKbar>` component to provide the command palette to the `<Refine>` component.
+After that, we should mount the `RefineKbar` component inside the `<Refine>` component.
 
 ```tsx tile="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { RefineKbarProvider } from "@pankod/refine-kbar";
+import { RefineKbarProvider } from "@refinedev/kbar";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -32,38 +35,52 @@ import {
     CategoriesEdit,
 } from "pages/categories";
 
-// highlight-start
-export const OffLayoutArea: React.FC = () => {
-    return <RefineKbar />;
-};
-// highlight-end
-
 const App: React.FC = () => {
     return (
-        <RefineKbarProvider>
-            <Refine
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                        icon: <Icons.StarOutlined />,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: CategoriesList,
-                        create: CategoriesCreate,
-                        edit: CategoriesEdit,
-                        canDelete: true,
-                    },
-                ]}
-                //highlight-next-line
-                OffLayoutArea={OffLayoutArea}
-            />
-        </RefineKbarProvider>
+        <BrowserRouter>
+            <RefineKbarProvider>
+                <Refine
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                            meta: {
+                                icon: <Icons.StarOutlined />,
+                                canDelete: true,
+                            }
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                            edit: "/categories/edit/:id",
+                            meta: {
+                                canDelete: true,
+                            }
+                        },
+                    ]}
+                >
+                    {/* highlight-next-line */}
+                    <RefineKbar />
+                    <Routes>
+                        <Route path="categories">
+                            <Route index element={<CategoriesList />} />
+                            <Route path="create" element={<CategoriesCreate />} />
+                            <Route path="edit/:id" element={<CategoriesEdit />} />
+                        </Route>
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </RefineKbarProvider>
+        </BrowserRouter>
     );
 };
 ```
@@ -78,11 +95,6 @@ const App: React.FC = () => {
 </div>
 
 <br/>
-
-:::note
-_Why do we need to add `<OffLayoutArea>` to the `<Refine>` component?_<br/>
-Because we need to reach the `resources` property of the `<Refine>` component.
-:::
 
 ## Access Control
 
@@ -101,7 +113,7 @@ check the [`refine-finefoods`][refine-finefoods] example. Also you can find more
 You can use the `createAction` to create a new action and use the `useRegisterActions` to register the action to the command palette.
 
 ```tsx title="Custom action example"
-import { createAction, useRegisterActions } from "@pankod/refine-kbar";
+import { createAction, useRegisterActions } from "@refinedev/kbar";
 
 const customAction = createAction({
     name: "my custom action",

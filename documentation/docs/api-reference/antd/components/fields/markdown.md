@@ -4,7 +4,6 @@ title: Markdown
 swizzle: true
 ---
 
-
 This field lets you display markdown content. It supports [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
 :::info-tip Swizzle
@@ -16,13 +15,13 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live
-import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
-    Typography,
     // highlight-next-line
     MarkdownField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -44,8 +43,8 @@ const PostShow: React.FC = () => {
     );
 };
 
-interface IPost {   
-    id: number;    
+interface IPost {
+    id: number;
     title: string;
     content: string;
 }
@@ -62,7 +61,7 @@ render(
                         <p>List page here...</p>
                     </RefineAntd.List>
                 ),
-                show: PostShow
+                show: PostShow,
             },
         ]}
     />,
@@ -73,7 +72,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@refinedev/antd/MarkdownField" value-description="Markdown data to render"/>
 
 ## Example
 

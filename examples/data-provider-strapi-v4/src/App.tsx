@@ -1,19 +1,28 @@
-import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
 import {
     notificationProvider,
-    LoginPage,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider, AuthHelper } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
-
+    AuthPage,
+} from "@refinedev/antd";
+import { DataProvider, AuthHelper } from "@refinedev/strapi-v4";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import axios from "axios";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
-import { UsersList } from "pages/users";
+import { UserList } from "pages/users";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 import { TOKEN_KEY, API_URL } from "./constants";
@@ -22,10 +31,10 @@ const App: React.FC = () => {
     const axiosInstance = axios.create();
     const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
-    const authProvider: AuthProvider = {
-        login: async ({ username, password }) => {
+    const authProvider: AuthBindings = {
+        login: async ({ email, password }) => {
             const { data, status } = await strapiAuthHelper.login(
-                username,
+                email,
                 password,
             );
             if (status === 200) {
@@ -36,54 +45,68 @@ const App: React.FC = () => {
                     "Authorization"
                 ] = `Bearer ${data.jwt}`;
 
-                return Promise.resolve();
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
             }
-            return Promise.reject();
+            return {
+                success: false,
+                error: new Error("Invalid email or password"),
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem(TOKEN_KEY);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () => {
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        check: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
                 axiosInstance.defaults.headers.common[
                     "Authorization"
                 ] = `Bearer ${token}`;
-                return Promise.resolve();
+                return {
+                    authenticated: true,
+                };
             }
 
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Not authenticated"),
+                logout: true,
+                redirectTo: "/login",
+            };
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) {
-                return Promise.reject();
+                return null;
             }
 
-            const { data, status } = await strapiAuthHelper.me(token, {
-                metaData: {
-                    populate: ["role"],
-                },
-            });
-
+            const { data, status } = await strapiAuthHelper.me(token);
             if (status === 200) {
                 const { id, username, email } = data;
-                return Promise.resolve({
+                return {
                     id,
                     username,
                     email,
-                });
+                };
             }
 
-            return Promise.reject();
+            return null;
         },
     };
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 authProvider={authProvider}
@@ -92,27 +115,96 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
                     },
                     {
                         name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                        edit: CategoryEdit,
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
                     },
                     {
                         name: "users",
-                        list: UsersList,
+                        list: "/users",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                LoginPage={LoginPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+
+                        <Route path="/categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                        </Route>
+
+                        <Route path="/users" element={<UserList />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={
+                                <AuthPage
+                                    formProps={{
+                                        initialValues: {
+                                            email: "demo@refine.dev",
+                                            password: "demodemo",
+                                        },
+                                    }}
+                                />
+                            }
+                        />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

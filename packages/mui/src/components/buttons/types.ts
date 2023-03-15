@@ -1,4 +1,4 @@
-import { UseImportInputPropsType } from "@pankod/refine-core";
+import { UseImportInputPropsType } from "@refinedev/core";
 import { LoadingButtonProps } from "@mui/lab";
 import { ButtonProps, SvgIconProps } from "@mui/material";
 import {
@@ -12,7 +12,7 @@ import {
     RefineRefreshButtonProps,
     RefineSaveButtonProps,
     RefineShowButtonProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 export type CloneButtonProps = RefineCloneButtonProps<
     ButtonProps,

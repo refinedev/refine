@@ -1,7 +1,8 @@
 import React from "react";
-import { IResourceComponentsProps, useNavigation } from "@pankod/refine-core";
-import { Create, Form, Input } from "@pankod/refine-antd";
-import { useCloudMutation } from "@pankod/refine-cloud";
+import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
+import { Form, Input } from "antd";
+import { useCloudMutation } from "@refinedev/cloud";
 
 export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();

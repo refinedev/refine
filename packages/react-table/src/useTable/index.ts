@@ -7,8 +7,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
-    useTableNoPaginationReturnType as useTableNoPaginationReturnTypeCore,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useReactTable,
     TableOptions,
@@ -22,13 +21,6 @@ export type UseTableReturnType<
     TError extends HttpError = HttpError,
 > = Table<TData> & {
     refineCore: useTableReturnTypeCore<TData, TError>;
-};
-
-export type UseTableNoPaginationReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-> = Table<TData> & {
-    refineCore: useTableNoPaginationReturnTypeCore<TData, TError>;
 };
 
 export type UseTableProps<
@@ -46,38 +38,19 @@ export type UseTableProps<
 export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    props: UseTableProps<TData, TError> & {
-        refineCoreProps?: useTablePropsCore<TData, TError> & {
-            hasPagination?: true;
-        };
-    },
-): UseTableReturnType<TData, TError>;
-export function useTable<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
->(
-    props: UseTableProps<TData, TError> & {
-        refineCoreProps?: useTablePropsCore<TData, TError> & {
-            hasPagination: false;
-        };
-    },
-): UseTableNoPaginationReturnType<TData>;
-export function useTable<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
 >({
     refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
     initialState: reactTableInitialState = {},
     ...rest
-}: UseTableProps<TData, TError>):
-    | UseTableReturnType<TData, TError>
-    | UseTableNoPaginationReturnType<TData, TError> {
+}: UseTableProps<TData, TError>): UseTableReturnType<TData, TError> {
     const useTableResult = useTableCore<TData, TError>({
         ...refineCoreProps,
-        // @ts-expect-error currently boolean casting is not supported in overloaded types.
         hasPagination,
     });
+
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (refineCoreProps.pagination?.mode ?? hasPaginationString) !== "off";
 
     const {
         tableQueryResult: { data },
@@ -85,8 +58,8 @@ export function useTable<
         setCurrent,
         pageSize: pageSizeCore,
         setPageSize: setPageSizeCore,
-        sorter,
-        setSorter,
+        sorters,
+        setSorters,
         filters: filtersCore,
         setFilters,
         pageCount,
@@ -107,15 +80,11 @@ export function useTable<
         getCoreRowModel: getCoreRowModel(),
         data: data?.data ?? [],
         initialState: {
-            ...(hasPagination
-                ? {
-                      pagination: {
-                          pageIndex: (current ?? 1) - 1,
-                          pageSize: pageSizeCore,
-                      },
-                  }
-                : {}),
-            sorting: sorter.map((sorting) => ({
+            pagination: {
+                pageIndex: current - 1,
+                pageSize: pageSizeCore,
+            },
+            sorting: sorters.map((sorting) => ({
                 id: sorting.field,
                 desc: sorting.order === "desc",
             })),
@@ -130,7 +99,7 @@ export function useTable<
             ...reactTableInitialState,
         },
         pageCount,
-        manualPagination: hasPagination,
+        manualPagination: true,
         manualSorting: true,
         manualFiltering: true,
         ...rest,
@@ -142,30 +111,28 @@ export function useTable<
     const { pageIndex, pageSize } = pagination ?? {};
 
     useEffect(() => {
-        if (hasPagination && pageIndex !== undefined) {
+        if (pageIndex !== undefined) {
             setCurrent(pageIndex + 1);
         }
     }, [pageIndex]);
 
     useEffect(() => {
-        if (hasPagination && pageSize !== undefined) {
+        if (pageSize !== undefined) {
             setPageSizeCore(pageSize);
         }
     }, [pageSize]);
 
     useEffect(() => {
         if (sorting !== undefined) {
-            setSorter(
+            setSorters(
                 sorting?.map((sorting) => ({
                     field: sorting.id,
                     order: sorting.desc ? "desc" : "asc",
                 })),
             );
 
-            if (sorting.length > 0) {
-                if (hasPagination) {
-                    setCurrent(1);
-                }
+            if (sorting.length > 0 && isPaginationEnabled) {
+                setCurrent(1);
             }
         }
     }, [sorting]);
@@ -210,32 +177,13 @@ export function useTable<
 
         setFilters(crudFilters);
 
-        if (crudFilters.length > 0) {
-            if (hasPagination) {
-                setCurrent(1);
-            }
+        if (crudFilters.length > 0 && isPaginationEnabled) {
+            setCurrent(1);
         }
     }, [columnFilters]);
 
-    if (hasPagination) {
-        return {
-            ...reactTableResult,
-            refineCore: useTableResult,
-        };
-    }
-
     return {
         ...reactTableResult,
-        refineCore: {
-            ...(useTableResult as unknown as useTableNoPaginationReturnTypeCore<
-                TData,
-                TError
-            >),
-            current: undefined,
-            setCurrent: undefined,
-            pageSize: undefined,
-            setPageSize: undefined,
-            pageCount: undefined,
-        },
+        refineCore: useTableResult,
     };
 }

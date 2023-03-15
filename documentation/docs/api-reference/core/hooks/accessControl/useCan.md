@@ -9,7 +9,7 @@ siderbar_label: useCan
 ## Basic Usage
 
 ```tsx
-import { useCan } from "@pankod/refine-core";
+import { useCan } from "@refinedev/core";
 
 const { data } = useCan({
     resource: "resource-you-ask-for-access",
@@ -23,7 +23,7 @@ const { data } = useCan({
 As the number of points that checks for access control in your app increases the performance of your app may take a hit especially if its access control involves remote endpoints. Caching the access control checks helps a great deal. Since **refine** uses [TanStack Query][tanstack-query] it can be easily done configuring [`staleTime` and `cacheTime`][query-options] properties.
 
 ```ts
-import { useCan } from "@pankod/refine-core";
+import { useCan } from "@refinedev/core";
 
 // inside your component
 
@@ -118,7 +118,7 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useCan"  />
+<PropsTable module="@refinedev/core/useCan"  />
 
 ### Type Parameters
 

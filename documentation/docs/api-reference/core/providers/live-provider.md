@@ -1,6 +1,7 @@
 ---
 id: live-provider
 title: Live Provider
+sidebar_label: Live Provider 🆙
 ---
 
 ## Overview
@@ -24,7 +25,7 @@ const liveProvider = {
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 -   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
@@ -37,7 +38,7 @@ const liveProvider = {
 You must pass a live provider to the `liveProvider` prop of `<Refine>`.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import liveProvider from "./liveProvider";
 
@@ -48,14 +49,14 @@ const App: React.FC = () => {
 
 ## Creating a live provider
 
-We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
+We will build **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
 
 ### `subscribe`
 
 This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks. This way it can be aware of data changes.
 
 ```ts title="liveProvider.ts"
-import { LiveProvider, LiveEvent } from "@pankod/refine-core";
+import { LiveProvider, LiveEvent } from "@refinedev/core";
 import Ably from "ably/promises";
 import { Types } from "ably";
 
@@ -123,7 +124,7 @@ The values returned from the `subscribe` method are passed to the `unsubscribe` 
 **refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
 
 ```ts
-import { useSubscription } from "@pankod/refine-core";
+import { useSubscription } from "@refinedev/core";
 
 useSubscription({
     channel: "channel-name",
@@ -216,7 +217,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 **refine** will provide this publish method via the [`usePublish`](/api-reference/core/hooks/live/usePublish.md) hook.
 
 ```ts
-import { usePublish } from "@pankod/refine-core";
+import { usePublish } from "@refinedev/core";
 
 const publish = usePublish();
 ```

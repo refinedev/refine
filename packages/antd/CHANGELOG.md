@@ -1,5 +1,317 @@
 # @pankod/refine-antd
 
+## 5.1.0
+
+### Minor Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated the components to match the changes in routing system of `@refinedev/core`.
+
+    ## `meta` property in components
+
+    This includes `meta` props in buttons and `Sider` component. `meta` property can be used to pass additional parameters to the navigation paths.
+
+    For a `posts` resource definition like this:
+
+    ```tsx
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/:authorId/posts/:id",
+            }
+        ]}
+    >
+    ```
+
+    You can pass `authorId` to the `ShowButton` component like this:
+
+    ```tsx
+    <ShowButton resource="posts" id="1" meta={{ authorId: 123 }}>
+    ```
+
+    This will navigate to `/123/posts/1` path.
+
+    ## `syncWithLocation` support in `useDrawerForm` and `useModalForm` hooks
+
+    `useDrawerForm` and `useModalForm` hooks now support `syncWithLocation` prop. This prop can be used to sync the visibility state of them with the location via query params.
+
+    You can pass a boolean or an object with `key` and `syncId` properties.
+
+    -   `key` is used to define the query param key. Default value is inferred from the resource and the action. For example `posts-create` for `posts` resource and `create` action.
+
+    -   `syncId` is used to include the `id` property in the query param key. Default value is `false`. This is useful for `edit` and `clone` actions.
+
+    ## Removed props
+
+    `ignoreAccessControlProvider` prop is removed from buttons.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Updated buttons with `resource` property. `resourceNameOrRouteName` is now deprecated but kept working until next major version.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    All **Ant Design** components re-exported from `@refinedev/antd` have been removed. You should import them from `antd` package directly.
+
+    If the package is not installed, you should install it with your package manager:
+
+    ```bash
+    npm install antd
+    # or
+    pnpm add antd
+    # or
+    yarn add antd
+    ```
+
+    After that, you can import components from `antd` package directly like below:
+
+    ```diff
+    -import { useTable, SaveButton, Button, Form, Input, Select } from "@refinedev/antd";
+
+    +import { useTable, SaveButton } from "@refinedev/antd";
+    +import { Button, Form, Input, Select } from "antd";
+    ```
+
+    <br />
+
+    `Icons` are also removed from `@refinedev/antd`. So, you should import icons from `@ant-design/icons` package directly.
+
+    If the package is not installed, you should install it with your package manager:
+
+    ```bash
+    npm install @ant-design/icons
+    # or
+    pnpm add @ant-design/icons
+    # or
+    yarn add @ant-design/icons
+    ```
+
+    After that, you can import icons from `@ant-design/icons` package directly like below:
+
+    ```diff
+    -import { Icons } from "@refinedev/antd";
+    -const { EditOutlined } = Icons;
+
+    + import { EditOutlined } from "@ant-design/icons";
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Upgrade `@ant-design/icons` to `^5.0.1` for consistency.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    -   `useCheckboxGroup`'s `sort` prop is now deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useCheckboxGroup({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+    -   `useSelect`'s `sort` prop is now deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useSelect({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+    -   `useRadioGroup`'s `sort` prop is now deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useRadioGroup({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+    -   `useImport`'s `resourceName` prop is now deprecated. Use `resource` prop instead.
+
+    ```diff
+    useImport({
+    -    resourceName,
+    +    resource,
+    })
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    -   `<ReadyPage>` isnow deprecated.
+    -   Created a `<WelcomePage>` component to welcome users.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    Added legacy auth provider and new auth provider support to all components and hooks.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    ## 🪄 Migrating your project automatically with refine-codemod ✨
+
+    [`@refinedev/codemod`](https://github.com/refinedev/refine/tree/master/packages/codemod) package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
+
+    Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+
+    ```sh
+    npx @refinedev/codemod@latest refine3-to-refine4
+    ```
+
+    And it's done. Now your project uses `refine@4.x.x`.
+
+    ## 📝 Changelog
+
+    Deprecated `useMenu` removed from `@refinedev/antd` package. Use `useMenu` from `@refinedev/core` package instead.
+
+    ```diff
+    - import { useMenu } from "@refinedev/antd";
+    + import { useMenu } from "@refinedev/core";
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+
+    ## `useTable` hook
+
+    `useTable` return values and properties are updated.
+
+    -   `initialCurrent` and `initialPageSize` props are now deprecated. Use `pagination` prop instead.
+    -   To ensure backward compatibility, `initialCurrent` and `initialPageSize` props will work as before.
+
+        ```diff
+        useTable({
+        -    initialCurrent,
+        -    initialPageSize,
+        +    pagination: {
+        +        current,
+        +        pageSize,
+        +    },
+        })
+        ```
+
+    -   `hasPagination` prop is now deprecated. Use `pagination.mode` instead.
+    -   To ensure backward compatibility, `hasPagination` prop will work as before.
+
+        ```diff
+        useTable({
+        -    hasPagination,
+        +    pagination: {
+        +        mode: "off" | "server" | "client",
+        +    },
+        })
+        ```
+
+    -   `initialSorter` and `permanentSorter` props are now deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+    -   To ensure backward compatibility, `initialSorter` and `permanentSorter` props will work as before.
+
+        ```diff
+        useTable({
+        -    initialSorter,
+        -    permanentSorter,
+        +    sorters: {
+        +        initial,
+        +        permanent,
+        +    },
+        })
+        ```
+
+    -   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are now deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+    -   To ensure backward compatibility, `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props will work as before.
+
+        ```diff
+        useTable({
+        -    initialFilter,
+        -    permanentFilter,
+        -    defaultSetFilterBehavior,
+        +    filters: {
+        +        initial,
+        +        permanent,
+        +        defaultBehavior,
+        +    },
+        })
+        ```
+
+    -   `sorter` and `setSorter` return values are now deprecated. Use `sorters` and `setSorters` instead.
+    -   To ensure backward compatibility, `sorter` and `setSorter` return values will work as before.
+
+        ```diff
+        const {
+        -   sorter,
+        +   sorters,
+        -   setSorter,
+        +   setSorters,
+        } = useTable();
+        ```
+
+    ## `useSimpleList` hook
+
+    -   Now `useSimpleList` hook will not accept all of `<List>` component properties So, you can give their props to `<List>` component directly.
+
+        ```diff
+        import { useSimpleList } from "@refinedev/antd";
+        import { List } from "antd";
+
+        const { listProps } = useSimpleList({
+            resource: "orders",
+            pagination: {
+                pageSize: 6,
+        -       simple: true,
+            },
+        });
+
+        <List
+            {...listProps}
+        +   pagination={{
+        +     ...listProps.pagination,
+        +     simple: true,
+        +   }}
+            ... // other props
+        />
+        ```
+
+    -   `initialCurrent` and `initialPageSize` props are now deprecated. Use `pagination` prop instead.
+    -   To ensure backward compatibility, `initialCurrent` and `initialPageSize` props will work as before.
+
+    -   ```diff
+        useSimpleList({
+        -    initialCurrent,
+        -    initialPageSize,
+        +    pagination: {
+        +        current,
+        +        pageSize,
+        +    },
+        })
+        ```
+
+### Patch Changes
+
+## 4.9.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-ui-types@0.16.0
+
+## 4.8.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-ui-types@0.15.0
+
 ## 4.7.3
 
 ### Patch Changes

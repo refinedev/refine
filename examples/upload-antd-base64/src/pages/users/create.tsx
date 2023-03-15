@@ -3,16 +3,11 @@ import {
     IResourceComponentsProps,
     file2Base64,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import {
-    Create,
-    Form,
-    Input,
-    Upload,
-    useForm,
-    getValueFromEvent,
-} from "@pankod/refine-antd";
+import { Create, useForm, getValueFromEvent } from "@refinedev/antd";
+
+import { Form, Input, Upload } from "antd";
 
 import { IUser, IUserVariable } from "interfaces";
 

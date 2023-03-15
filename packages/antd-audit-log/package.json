@@ -1,63 +1,65 @@
 {
-    "name": "@pankod/refine-antd-audit-log",
-    "description": "refine audit log component for antd package. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-    "version": "3.29.1",
-    "license": "MIT",
-    "main": "dist/index.js",
-    "typings": "dist/index.d.ts",
-    "private": true,
-    "files": [
-        "dist",
-        "src"
+  "name": "@refinedev/antd-audit-log",
+  "description": "refine audit log component for antd package. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "version": "4.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "private": true,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "antd": "^5.0.3",
+    "@ant-design/icons": "^5.0.1"
+  },
+  "author": "refine",
+  "module": "dist/esm/index.js",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@types/json-stable-stringify": "^1.0.34",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/jest": "^29.2.4",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "ts-jest": "^29.0.3",
+    "tslib": "^2.3.1",
+    "tsup": "^5.11.13",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@refinedev/antd": "^5.1.0",
+    "@refinedev/core": "^4.1.0",
+    "dayjs": "^1.10.7",
+    "json-stable-stringify": "^1.0.1",
+    "react-diff-viewer": "^3.1.1",
+    "@tanstack/react-query": "^4.10.1"
+  },
+  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+  "publishConfig": {
+    "access": "public"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.tsx"
     ],
-    "engines": {
-        "node": ">=10"
-    },
-    "scripts": {
-        "start": "tsup --watch --format esm,cjs,iife --legacy-output",
-        "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-        "prepare": "npm run build"
-    },
-    "peerDependencies": {
-        "react": "^17.0.0 || ^18.0.0",
-        "react-dom": "^17.0.0 || ^18.0.0"
-    },
-    "author": "refine",
-    "module": "dist/esm/index.js",
-    "devDependencies": {
-        "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^13.1.1",
-        "@types/json-stable-stringify": "^1.0.34",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "@types/jest": "^29.2.4",
-        "jest": "^29.3.1",
-        "jest-environment-jsdom": "^29.3.1",
-        "ts-jest": "^29.0.3",
-        "tslib": "^2.3.1",
-        "tsup": "^5.11.13",
-        "typescript": "^4.7.4"
-    },
-    "dependencies": {
-        "@pankod/refine-antd": "^4.0.0",
-        "@pankod/refine-core": "^3.67.0",
-        "dayjs": "^1.10.7",
-        "json-stable-stringify": "^1.0.1",
-        "react-diff-viewer": "^3.1.1",
-        "@tanstack/react-query": "^4.10.1"
-    },
-    "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
-    "publishConfig": {
-        "access": "public"
-    },
-    "tsup": {
-        "entry": [
-            "src/index.tsx"
-        ],
-        "splitting": false,
-        "sourcemap": true,
-        "clean": false,
-        "platform": "browser",
-        "onSuccess": "tsc --project tsconfig.declarations.json"
-    }
+    "splitting": false,
+    "sourcemap": true,
+    "clean": false,
+    "platform": "browser",
+    "onSuccess": "tsc --project tsconfig.declarations.json"
+  }
 }

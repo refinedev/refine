@@ -1,13 +1,14 @@
 ---
 id: useForm
 title: useForm
+sidebar_label: useForm 🆙
 source: packages/react-hook-form/src/useForm/index.ts
 ---
 
 ```tsx live shared
 import React from "react";
-import { useTable, useNavigation } from "@pankod/refine-core";
-import { useForm as ReactHoomFormUseForm } from "@pankod/refine-react-hook-form";
+import { useTable, useNavigation } from "@refinedev/core";
+import { useForm as ReactHookFormUseForm } from "@refinedev/react-hook-form";
 
 interface IPost {
     id: number;
@@ -32,12 +33,14 @@ const Layout: React.FC = ({ children }) => {
 const PostList: React.FC = () => {
     const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
         useTable<IPost>({
-            initialSorter: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+            sorters: {
+                initial: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
+            },
         });
     const { edit, create, clone } = useNavigation();
 
@@ -124,7 +127,7 @@ const PostEdit: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = ReactHoomFormUseForm();
+    } = ReactHookFormUseForm();
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -161,7 +164,7 @@ const PostCreate: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = ReactHoomFormUseForm();
+    } = ReactHookFormUseForm();
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -193,16 +196,16 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-The [`@pankod/refine-react-hook-form`][refine-react-hook-form] adapter allows you to integrate the [React Hook Form][react-hook-form] library with refine, enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [refine's useForm][use-form-core] hook, and you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project."
+The [`@refinedev/react-hook-form`][refine-react-hook-form] adapter allows you to integrate the [React Hook Form][react-hook-form] library with refine, enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [refine's useForm][use-form-core] hook, and you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project."
 
 <GeneralConceptsLink />
 
 ## Installation
 
-Install the [`@pankod/refine-react-hook-form`][refine-react-hook-form] library.
+Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 
 ```bash
-npm i @pankod/refine-react-hook-form
+npm i @refinedev/react-hook-form
 ```
 
 ## Basic Usage
@@ -212,8 +215,8 @@ npm i @pankod/refine-react-hook-form
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx title="pages/posts/edit.tsx"
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -305,11 +308,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
-By default, it determines the `action` from route.
-
--   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
--   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
+By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -333,7 +332,7 @@ In the following example, we'll show how to use `useForm` with `action: "create"
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
     const {
@@ -402,7 +401,7 @@ In the following example, we'll show how to use `useForm` with `action: "edit"`.
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEditPage: React.FC = () => {
     const {
@@ -472,7 +471,7 @@ In the following example, we'll show how to use `useForm` with `action: "clone"`
 setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
     const {
@@ -720,19 +719,20 @@ useForm({
 }
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following three purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+-   To provide additional parameters to the redirection path after the form is submitted. If your route has additional parameters, you can use `meta` to provide them.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
     refineCoreProps: {
-        metaData: {
+        meta: {
             headers: { "x-meta-data": "true" },
         },
     },
@@ -741,8 +741,8 @@ useForm({
 const myDataProvider = {
     //...
     // highlight-start
-    create: async ({ resource, variables, metaData }) => {
-        const headers = metaData?.headers ?? {};
+    create: async ({ resource, variables, meta }) => {
+        const headers = meta?.headers ?? {};
         // highlight-end
         const url = `${apiUrl}/${resource}`;
 
@@ -941,8 +941,8 @@ It is useful when you want to `invalidate` other resources don't have relation w
 
 ```tsx
 import React from "react";
-import { useInvalidate } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useInvalidate } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -970,7 +970,8 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
+import { FieldValues } from "react-hook-form";
 
 export const UserCreate: React.FC = () => {
     const {
@@ -1005,7 +1006,7 @@ export const UserCreate: React.FC = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-react-hook-form/useForm" />
+<PropsTable module="@refinedev/react-hook-form/useForm" />
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
@@ -1018,7 +1019,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const { ... } = useForm({
     ...,
@@ -1039,7 +1040,7 @@ Returns all the properties returned by [React Hook Form][react-hook-form] of the
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const {
     refineCore: { queryResult, ... },

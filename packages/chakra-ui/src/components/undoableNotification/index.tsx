@@ -1,5 +1,5 @@
 import React from "react";
-import { OpenNotificationParams } from "@pankod/refine-core";
+import { OpenNotificationParams } from "@refinedev/core";
 import {
     Box,
     CircularProgress,

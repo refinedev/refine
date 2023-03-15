@@ -5,35 +5,43 @@ import {
     useCan,
     useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    useRouterType,
+    useLink,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus } from "@tabler/icons";
 
 import { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resource, resourceName } = useResource({
-        resourceNameOrRouteName,
-    });
+    const translate = useTranslate();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
 
-    const { Link } = useRouterContext();
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
     const { createUrl: generateCreateUrl } = useNavigation();
 
-    const translate = useTranslate();
+    const { resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "create",
         queryOptions: {
             enabled: accessControlEnabled,
@@ -53,14 +61,14 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl = generateCreateUrl(resource.route!);
+    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={createUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -93,6 +101,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     {children ?? translate("buttons.create", "Create")}
                 </Button>
             )}
-        </Link>
+        </ActiveLink>
     );
 };

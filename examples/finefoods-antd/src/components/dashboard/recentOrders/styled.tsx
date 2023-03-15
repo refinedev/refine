@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { NumberField, Table, Typography } from "@pankod/refine-antd";
+import { NumberField } from "@refinedev/antd";
+import { Table, Typography } from "antd";
 import { IOrder } from "interfaces";
 
 export const RecentOrdersColumn = styled(Table.Column<IOrder>)`

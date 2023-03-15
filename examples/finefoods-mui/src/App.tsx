@@ -1,16 +1,19 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import { KBarProvider } from "@pankod/refine-kbar";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { KBarProvider } from "@refinedev/kbar";
 import {
     ErrorComponent,
-    ReadyPage,
     notificationProvider,
     Layout,
-    GlobalStyles,
-    CssBaseline,
     RefineSnackbarProvider,
-} from "@pankod/refine-mui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/mui";
+import { GlobalStyles, CssBaseline } from "@mui/material";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
@@ -19,6 +22,7 @@ import {
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
+    Dashboard,
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
@@ -40,6 +44,8 @@ import { ColorModeContextProvider } from "contexts";
 import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
+const API_URL = "https://api.finefoods.refine.dev";
+
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
     const i18nProvider = {
@@ -49,127 +55,256 @@ const App: React.FC = () => {
     };
 
     return (
-        <KBarProvider>
-            <ColorModeContextProvider>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                />
-                <RefineSnackbarProvider>
-                    <GitHubBanner />
-                    <Refine
-                        routerProvider={{
-                            ...routerProvider,
-                            routes: [
-                                {
-                                    path: "/register",
-                                    element: (
-                                        <AuthPage
-                                            type="register"
-                                            formProps={{
-                                                defaultValues: {
-                                                    email: "demo@refine.dev",
-                                                    password: "demodemo",
-                                                },
-                                            }}
-                                        />
-                                    ),
-                                },
-                                {
-                                    path: "/forgot-password",
-                                    element: (
-                                        <AuthPage
-                                            type="forgotPassword"
-                                            formProps={{
-                                                defaultValues: {
-                                                    email: "demo@refine.dev",
-                                                },
-                                            }}
-                                        />
-                                    ),
-                                },
-                                {
-                                    path: "/update-password",
-                                    element: <AuthPage type="updatePassword" />,
-                                },
-                            ],
-                        }}
-                        dataProvider={dataProvider(
-                            "https://api.finefoods.refine.dev",
-                        )}
-                        authProvider={authProvider}
-                        i18nProvider={i18nProvider}
-                        DashboardPage={DashboardPage}
-                        Title={Title}
-                        ReadyPage={ReadyPage}
-                        Layout={Layout}
-                        Header={Header}
-                        LoginPage={() => (
-                            <AuthPage
-                                type="login"
-                                formProps={{
-                                    defaultValues: {
-                                        email: "demo@refine.dev",
-                                        password: "demodemo",
-                                    },
-                                }}
-                            />
-                        )}
-                        catchAll={<ErrorComponent />}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                        notificationProvider={notificationProvider}
-                        OffLayoutArea={OffLayoutArea}
-                        resources={[
-                            {
-                                name: "orders",
-                                list: OrderList,
-                                show: OrderShow,
-                                icon: <AddShoppingCartOutlined />,
-                            },
-                            {
-                                name: "users",
-                                list: UserList,
-                                show: UserShow,
-                                icon: <PeopleOutlineOutlined />,
-                            },
-                            {
-                                name: "products",
-                                list: ProductList,
-                                icon: <LocalPizzaOutlined />,
-                            },
-                            {
-                                name: "stores",
-                                list: StoreList,
-                                edit: StoreEdit,
-                                create: StoreCreate,
-                                icon: <StoreOutlined />,
-                            },
-                            {
-                                name: "categories",
-                                list: CategoryList,
-                                icon: <CategoryOutlined />,
-                            },
-                            {
-                                name: "couriers",
-                                list: CourierList,
-                                show: CourierShow,
-                                create: CourierCreate,
-                                edit: CourierEdit,
-                                icon: <BikeWhiteIcon />,
-                            },
-                            {
-                                name: "reviews",
-                                list: ReviewsList,
-                                icon: <StarBorderOutlined />,
-                            },
-                        ]}
+        <BrowserRouter>
+            <GitHubBanner />
+            <KBarProvider>
+                <ColorModeContextProvider>
+                    <CssBaseline />
+                    <GlobalStyles
+                        styles={{ html: { WebkitFontSmoothing: "auto" } }}
                     />
-                </RefineSnackbarProvider>
-            </ColorModeContextProvider>
-        </KBarProvider>
+                    <RefineSnackbarProvider>
+                        <Refine
+                            routerProvider={routerProvider}
+                            dataProvider={dataProvider(API_URL)}
+                            authProvider={authProvider}
+                            i18nProvider={i18nProvider}
+                            options={{
+                                syncWithLocation: true,
+                                warnWhenUnsavedChanges: true,
+                            }}
+                            notificationProvider={notificationProvider}
+                            resources={[
+                                {
+                                    name: "dashboard",
+                                    list: "/",
+                                    meta: {
+                                        label: "Dashboard",
+                                        icon: <Dashboard />,
+                                    },
+                                },
+                                {
+                                    name: "orders",
+                                    list: "/orders",
+                                    show: "/orders/show/:id",
+                                    meta: {
+                                        icon: <AddShoppingCartOutlined />,
+                                    },
+                                },
+                                {
+                                    name: "users",
+                                    list: "/users",
+                                    show: "/users/show/:id",
+                                    meta: {
+                                        icon: <PeopleOutlineOutlined />,
+                                    },
+                                },
+                                {
+                                    name: "products",
+                                    list: "/products",
+                                    meta: {
+                                        icon: <LocalPizzaOutlined />,
+                                    },
+                                },
+                                {
+                                    name: "stores",
+                                    list: "/stores",
+                                    create: "/stores/create",
+                                    edit: "/stores/edit/:id",
+                                    meta: {
+                                        icon: <StoreOutlined />,
+                                    },
+                                },
+                                {
+                                    name: "categories",
+                                    list: "/categories",
+                                    meta: {
+                                        icon: <CategoryOutlined />,
+                                    },
+                                },
+                                {
+                                    name: "couriers",
+                                    list: "/couriers",
+                                    create: "/couriers/create",
+                                    edit: "/couriers/edit/:id",
+                                    show: "/couriers/show/:id",
+                                    meta: {
+                                        icon: <BikeWhiteIcon />,
+                                    },
+                                },
+                                {
+                                    name: "reviews",
+                                    list: "/reviews",
+                                    meta: {
+                                        icon: <StarBorderOutlined />,
+                                    },
+                                },
+                            ]}
+                        >
+                            <Routes>
+                                <Route
+                                    element={
+                                        <Authenticated
+                                            fallback={
+                                                <CatchAllNavigate to="/login" />
+                                            }
+                                        >
+                                            <Layout
+                                                Header={Header}
+                                                Title={Title}
+                                                OffLayoutArea={OffLayoutArea}
+                                            >
+                                                <Outlet />
+                                            </Layout>
+                                        </Authenticated>
+                                    }
+                                >
+                                    <Route index element={<DashboardPage />} />
+
+                                    <Route path="/orders">
+                                        <Route index element={<OrderList />} />
+                                        <Route
+                                            path="show/:id"
+                                            element={<OrderShow />}
+                                        />
+                                    </Route>
+
+                                    <Route path="/users">
+                                        <Route index element={<UserList />} />
+                                        <Route
+                                            path="show/:id"
+                                            element={<UserShow />}
+                                        />
+                                    </Route>
+
+                                    <Route
+                                        path="/products"
+                                        element={<ProductList />}
+                                    />
+
+                                    <Route path="/stores">
+                                        <Route index element={<StoreList />} />
+                                        <Route
+                                            path="create"
+                                            element={<StoreCreate />}
+                                        />
+                                        <Route
+                                            path="edit/:id"
+                                            element={<StoreEdit />}
+                                        />
+                                    </Route>
+
+                                    <Route
+                                        path="/categories"
+                                        element={<CategoryList />}
+                                    />
+
+                                    <Route path="/couriers">
+                                        <Route
+                                            index
+                                            element={<CourierList />}
+                                        />
+                                        <Route
+                                            path="create"
+                                            element={<CourierCreate />}
+                                        />
+                                        <Route
+                                            path="edit/:id"
+                                            element={<CourierEdit />}
+                                        />
+                                        <Route
+                                            path="show/:id"
+                                            element={<CourierShow />}
+                                        />
+                                    </Route>
+
+                                    <Route
+                                        path="/reviews"
+                                        element={<ReviewsList />}
+                                    />
+                                </Route>
+
+                                <Route
+                                    element={
+                                        <Authenticated fallback={<Outlet />}>
+                                            <NavigateToResource resource="dashboard" />
+                                        </Authenticated>
+                                    }
+                                >
+                                    <Route
+                                        path="/login"
+                                        element={
+                                            <AuthPage
+                                                type="login"
+                                                formProps={{
+                                                    defaultValues: {
+                                                        email: "demo@refine.dev",
+                                                        password: "demodemo",
+                                                    },
+                                                }}
+                                            />
+                                        }
+                                    />
+                                    <Route
+                                        path="/register"
+                                        element={
+                                            <AuthPage
+                                                type="register"
+                                                formProps={{
+                                                    defaultValues: {
+                                                        email: "demo@refine.dev",
+                                                        password: "demodemo",
+                                                    },
+                                                }}
+                                            />
+                                        }
+                                    />
+                                    <Route
+                                        path="/forgot-password"
+                                        element={
+                                            <AuthPage
+                                                type="forgotPassword"
+                                                formProps={{
+                                                    defaultValues: {
+                                                        email: "demo@refine.dev",
+                                                    },
+                                                }}
+                                            />
+                                        }
+                                    />
+                                    <Route
+                                        path="/update-password"
+                                        element={
+                                            <AuthPage type="updatePassword" />
+                                        }
+                                    />
+                                </Route>
+
+                                <Route
+                                    element={
+                                        <Authenticated>
+                                            <Layout
+                                                Header={Header}
+                                                Title={Title}
+                                                OffLayoutArea={OffLayoutArea}
+                                            >
+                                                <Outlet />
+                                            </Layout>
+                                        </Authenticated>
+                                    }
+                                >
+                                    <Route
+                                        path="*"
+                                        element={<ErrorComponent />}
+                                    />
+                                </Route>
+                            </Routes>
+                            <UnsavedChangesNotifier />
+                        </Refine>
+                    </RefineSnackbarProvider>
+                </ColorModeContextProvider>
+            </KBarProvider>
+        </BrowserRouter>
     );
 };
 

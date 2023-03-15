@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: sharedRouterProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
@@ -17,9 +17,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -28,13 +28,17 @@ const Wrapper = ({ children }) => {
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 //highlight-next-line
-import { useExport } from "@pankod/refine-core";
+import { useExport } from "@refinedev/core";
 import {
     List,
+    //highlight-next-line
+    ExportButton,
+} from "@refinedev/chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -42,10 +46,9 @@ import {
     Th,
     Tbody,
     Td,
-    //highlight-next-line
-    ExportButton,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -175,10 +178,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ExportButton } from "@pankod/refine-chakra-ui";
+import { ExportButton } from "@refinedev/chakra-ui";
 
 const MyExportComponent = () => {
     return <ExportButton colorScheme="black" hideText />;
@@ -209,4 +212,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/ExportButton" />
+<PropsTable module="@refinedev/chakra-ui/ExportButton" />

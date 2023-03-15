@@ -10,12 +10,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React, { useMemo } from "react";
-import {
-    IResourceComponentsProps,
-    useMany,
-    useTable,
-    HttpError,
-} from "@pankod/refine-core";
+import { useMany, useTable, HttpError } from "@refinedev/core";
 
 interface IPost {
     id: number;
@@ -25,15 +20,17 @@ interface IPost {
     createdAt: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableQueryResult, sorter, setSorter } = useTable<IPost, HttpError>({
         // highlight-start
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
         // highlight-end
     });
 

@@ -1,16 +1,13 @@
-import React from "react";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
-
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import "@refinedev/antd/dist/reset.css";
 
 import { ProductList } from "pages/products/list";
 import { ProductCreate } from "pages/products/create";
@@ -19,26 +16,46 @@ import { ProductEdit } from "pages/products/edit";
 
 function App() {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
+                routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                routerProvider={routerProvider}
                 resources={[
                     {
                         name: "products",
-                        list: ProductList,
-                        show: ProductShow,
-                        create: ProductCreate,
-                        edit: ProductEdit,
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
                     },
                 ]}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Layout>
+                    <Routes>
+                        <Route
+                            index
+                            element={<NavigateToResource resource="products" />}
+                        />
+
+                        <Route path="/products">
+                            <Route index element={<ProductList />} />
+                            <Route path="show/:id" element={<ProductShow />} />
+                            <Route path="create" element={<ProductCreate />} />
+                            <Route path="edit/:id" element={<ProductEdit />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Layout>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 }
 

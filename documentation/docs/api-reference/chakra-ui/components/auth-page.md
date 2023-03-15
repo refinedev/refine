@@ -1,7 +1,7 @@
 ---
 id: chakra-auth-page
 title: <AuthPage>
-sidebar_label: <AuthPage>
+sidebar_label: <AuthPage> 🆙
 description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
 swizzle: true
 source: packages/chakra-ui/src/components/pages/auth/index.tsx
@@ -17,38 +17,62 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live hideCode shared
 const { default: dataProvider } = RefineSimpleRest;
-const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
-    RefineCore;
-const { Button } = RefineChakra;
+const { useLogout: useLogoutShared } = RefineCore;
+const { Button } = ChakraUI;
 
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: (params) => {
-        console.log("params", params);
+    login: async () => {
         window.__refineAuthStatus = true;
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => {
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
         window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkAuth: () =>
-        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+    check: async () => {
+        return {
+            authenticated: window.__refineAuthStatus ? true : false,
+            redirectTo: window.__refineAuthStatus ? undefined : "/login",
+        };
+    },
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => null,
 };
 
 setRefineProps({ Sider: () => null, dataProvider: dataProvider("api") });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
@@ -110,41 +134,63 @@ const GithubIcon = (
 
 `<AuthPage>` component can be used like this:
 
-```tsx live url=http://localhost:3000 previewHeight=460px
+```tsx live url=http://localhost:3000/login previewHeight=460px
 setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
-                    },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            authProvider={authProvider}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        {/* highlight-start */}
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                        {/* highlight-end */}
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -172,24 +218,56 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/login" element={<AuthPage />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -203,17 +281,25 @@ render(
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     login: async ({ email, password, remember, providerName }) => {
         // You can handle the login process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Login Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -227,33 +313,60 @@ The register page will be used to register new users. You can use the following 
 setInitialRoutes(["/register"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                        {/* highlight-next-line */}
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -267,17 +380,25 @@ render(
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     register: async ({ email, password, providerName }) => {
         // You can handle the register process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Register Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -291,33 +412,64 @@ The `forgotPassword` type is a page that allows users to reset their passwords. 
 setInitialRoutes(["/forgot-password"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        {/* highlight-next-line */}
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -331,17 +483,25 @@ render(
 After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     forgotPassword: async ({ email }) => {
         // You can handle the reset password process according to your needs.
 
         // If process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Forgot Password Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -355,33 +515,68 @@ The `updatePassword` type is the page used to update the password of the user.
 setInitialRoutes(["/update-password"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        {/* highlight-next-line */}
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -395,17 +590,25 @@ render(
 After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     updatePassword: async ({ password, confirmPassword }) => {
         // You can handle the update password process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Update Password Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -421,52 +624,25 @@ const authProvider: AuthProvider = {
 
 `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. Check out the [Interface](#interface) section for more information.
 
-```tsx live hideCode previewHeight=560px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    providers={[
-                        {
-                            name: "google",
-                            icon: GoogleIcon,
-                            label: "Sign in with Google",
-                        },
-                        {
-                            name: "github",
-                            icon: GithubIcon,
-                            label: "Sign in with GitHub",
-                        },
-                    ]}
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+        <AuthPage
+            providers={[
+                {
+                    name: "google",
+                    icon: GoogleIcon,
+                    label: "Sign in with Google",
+                },
+                {
+                    name: "github",
+                    icon: GithubIcon,
+                    label: "Sign in with GitHub",
+                },
+            ]}
         />
     );
 };
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `rememberMe`
@@ -477,50 +653,10 @@ render(
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import {
-    AuthPage,
-    Layout,
-    Form,
-    FormControlLabel,
-    Checkbox,
-} from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { useFormContext } from "@pankod/refine-react-hook-form";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const RememberMe = () => {
-    const { register } = useFormContext();
-
-    return <Checkbox {...register("rememberMe")}>Remember Me</Checkbox>;
+```tsx
+const MyLoginPage = () => {
+    return <AuthPage rememberMe={<Checkbox>Remember Me</Checkbox>} />;
 };
-
-const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-start
-            LoginPage={() => <AuthPage rememberMe={<RememberMe />} />}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `loginLink`
@@ -531,23 +667,11 @@ render(
 
 `loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/register
-setInitialRoutes(["/register"]);
-
-// visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout, Box } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
+```tsx
+const MyRegisterPage = () => {
     return (
         <AuthPage
-            {...props}
+            type="register"
             // highlight-start
             loginLink={
                 <Box mb="3" bg="gray.200">
@@ -558,35 +682,6 @@ const Auth = (props) => {
         />
     );
 };
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: <Auth type="register" />,
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `registerLink`
@@ -597,23 +692,11 @@ render(
 
 `registerLink` property defines the link to the registration page and also you can give a node to render. Default value is `"/register"`.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout, Box } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
+```tsx
+const MyLoginPage = () => {
     return (
         <AuthPage
-            {...props}
+            type="login"
             // highlight-start
             registerLink={
                 <Box mb="3" bg="gray.200">
@@ -624,31 +707,6 @@ const Auth = (props) => {
         />
     );
 };
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/register", element: <Auth type="register" /> },
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `forgotPasswordLink`
@@ -659,23 +717,11 @@ render(
 
 `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Default value is `"/forgot-password"`.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout, Box } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
+```tsx
+const MyLoginPage = () => {
     return (
         <AuthPage
-            {...props}
+            type="login"
             // highlight-start
             forgotPasswordLink={
                 <Box mb="3" bg="gray.200">
@@ -686,241 +732,111 @@ const Auth = (props) => {
         />
     );
 };
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: <Auth type="forgotPassword" />,
-                    },
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `wrapperProps`
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    wrapperProps={{
-                        bg: "tomato",
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+        <AuthPage
+            // highlight-start
+            wrapperProps={{
+                bg: "tomato",
+            }}
+            // highlight-end
         />
     );
 };
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `contentProps`
 
 `contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    contentProps={{
-                        bg: "tomato",
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+        <AuthPage
+            // highlight-start
+            contentProps={{
+                bg: "tomato",
+            }}
+            // highlight-end
         />
     );
 };
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `formProps`
 
 `formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onSubmit` function is changed.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    formProps={{
-                        defaultValues: {
-                            email: "test@mail.com",
-                        },
-                        onSubmit: (e: any) => {
-                            e.preventDefault();
-                            console.log("e", e.target.email.value);
+        <AuthPage
+            // highlight-start
+            formProps={{
+                defaultValues: {
+                    email: "test@mail.com",
+                },
+                onSubmit: (e: any) => {
+                    e.preventDefault();
+                    console.log("e", e.target.email.value);
 
-                            const email = e.target.email.value;
-                            const password = e.target.password.value;
+                    const email = e.target.email.value;
+                    const password = e.target.password.value;
 
-                            alert(
-                                JSON.stringify({
-                                    email,
-                                    password,
-                                }),
-                            );
-                        },
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+                    alert(
+                        JSON.stringify({
+                            email,
+                            password,
+                        }),
+                    );
+                },
+            }}
+            // highlight-end
         />
     );
 };
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `renderContent`
 
 `renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
 
-```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
-setInitialRoutes(["/login"]);
-
-// visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout, Box, Heading } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    contentProps={{
-                        style: {
-                            width: "400px",
-                        },
-                    }}
-                    renderContent={(content: React.ReactNode) => {
-                        return (
-                            <Box
-                                bg="white"
-                                borderRadius="md"
-                                px="5"
-                                display="flex"
-                                flexDirection="column"
-                                justifyContent="center"
-                                alignItems="center"
-                            >
-                                <Heading color="white">Extra Header</Heading>
-                                {content}
-                                <Heading color="white">Extra Footer</Heading>
-                            </Box>
-                        );
-                    }}
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+        <AuthPage
+            contentProps={{
+                style: {
+                    width: "400px",
+                },
+            }}
+            renderContent={(content: React.ReactNode) => {
+                return (
+                    <Box
+                        bg="white"
+                        borderRadius="md"
+                        px="5"
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Heading color="white">Extra Header</Heading>
+                        {content}
+                        <Heading color="white">Extra Footer</Heading>
+                    </Box>
+                );
+            }}
         />
     );
 };
-// visible-block-end
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ## API Reference
@@ -950,7 +866,7 @@ interface OAuthProvider {
 ```
 
 ```tsx
-import { UseFormProps } from "@pankod/refine-react-hook-form";
+import { UseFormProps } from "@refinedev/react-hook-form";
 
 interface FormPropsType extends UseFormProps {
     onSubmit?: (values: any) => void;
@@ -963,5 +879,5 @@ interface FormPropsType extends UseFormProps {
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
 [get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#checkauth-
+[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
 [logout]: /docs/api-reference/core/providers/auth-provider/#logout-

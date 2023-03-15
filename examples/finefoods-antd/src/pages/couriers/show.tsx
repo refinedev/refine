@@ -4,14 +4,22 @@ import {
     useShow,
     useNavigation,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
+
+import { List, useTable } from "@refinedev/antd";
 
 import {
-    List,
+    EnvironmentOutlined,
+    PhoneOutlined,
+    MailOutlined,
+    BankOutlined,
+    HomeOutlined,
+    CarOutlined,
+    StarOutlined,
+} from "@ant-design/icons";
+import {
     Table,
-    useTable,
     Card,
-    Icons,
     Button,
     Space,
     Row,
@@ -20,7 +28,7 @@ import {
     Typography,
     Rate,
     Avatar,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { ICourier, IOrder, IOrderFilterVariables } from "interfaces";
 
@@ -84,23 +92,22 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Typography.Text>
-                                <Icons.EnvironmentOutlined />{" "}
-                                {courier?.store.title}
+                                <EnvironmentOutlined /> {courier?.store.title}
                             </Typography.Text>
                             <Typography.Text>
-                                <Icons.PhoneOutlined /> {courier?.gsm}
+                                <PhoneOutlined /> {courier?.gsm}
                             </Typography.Text>
                             <Typography.Text>
-                                <Icons.MailOutlined /> {courier?.email}
+                                <MailOutlined /> {courier?.email}
                             </Typography.Text>
                             <Typography.Text>
-                                <Icons.BankOutlined /> {courier?.accountNumber}
+                                <BankOutlined /> {courier?.accountNumber}
                             </Typography.Text>
                             <Typography.Text>
-                                <Icons.HomeOutlined /> {courier?.address}
+                                <HomeOutlined /> {courier?.address}
                             </Typography.Text>
                             <Typography.Text>
-                                <Icons.CarOutlined /> {courier?.licensePlate}
+                                <CarOutlined /> {courier?.licensePlate}
                             </Typography.Text>
                         </Space>
                     </Space>
@@ -153,7 +160,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                                         {value}
                                     </Typography.Text>
                                     <Rate
-                                        character={<Icons.StarOutlined />}
+                                        character={<StarOutlined />}
                                         disabled
                                         value={value}
                                         style={{

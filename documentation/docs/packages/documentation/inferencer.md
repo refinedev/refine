@@ -3,9 +3,9 @@ id: inferencer
 title: Inferencer
 ---
 
-`@pankod/refine-inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
+`@refinedev/inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
 
-The package exports components for **List**, **Show**, **Create** and **Edit** views inside UI package scopes. For example, `@pankod/refine-inferencer/antd` exports components for `@pankod/refine-antd` package.
+The package exports components for **List**, **Show**, **Create** and **Edit** views inside UI package scopes. For example, `@refinedev/inferencer/antd` exports components for `@refinedev/antd` package.
 
 ## Installation
 
@@ -18,14 +18,14 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine-inferencer
+npm i @refinedev/inferencer
 ```
 
   </TabItem>
     <TabItem value="yarn">
 
 ```bash
-yarn add @pankod/refine-inferencer
+yarn add @refinedev/inferencer
 ```
 
   </TabItem>
@@ -40,18 +40,18 @@ yarn add @pankod/refine-inferencer
 - [Headless](/docs/api-reference/core/components/inferencer)
 
 :::info
-`@pankod/refine-inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
+`@refinedev/inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
 
 If you have any suggestions or feedback, please let us know in the [**GitHub Discussions**](https://github.com/refinedev/refine/discussions/3046)
 :::
 
 :::caution Warning
-`@pankod/refine-inferencer` components are meant to be used in development environments. They are not meant to be used in production environments.
+`@refinedev/inferencer` components are meant to be used in development environments. They are not meant to be used in production environments.
 :::
 
 ## How it works?
 
-Simply, `@pankod/refine-inferencer` generates views and codes based on the data structure of the resource by fetching it using the `dataProvider` of `<Refine/>` component.
+Simply, `@refinedev/inferencer` generates views and codes based on the data structure of the resource by fetching it using the `dataProvider` of `<Refine/>` component.
 
 ### How the data is obtained?
 
@@ -113,7 +113,7 @@ If your `dataProvider` and `resources` has a different way of work that makes it
 To render the components we use a [fork](https://github.com/aliemir/react-live) of [`react-live`](https://github.com/FormidableLabs/react-live) package with Typescript support.
 :::
 
-After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@pankod/refine-inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions. 
+After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@refinedev/inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions. 
 
 `renderer` function returns a `string` that includes the code for the component which is presented to user to copy and paste to their project. The same code is also used to render the component in the view.
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { LayoutProps } from "@pankod/refine-core";
-import { AntdLayout, Grid } from "@pankod/refine-antd";
+import { LayoutProps } from "@refinedev/core";
+import { Layout as AntdLayout, Grid } from "antd";
 import { Header } from "components";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {

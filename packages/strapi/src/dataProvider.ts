@@ -6,7 +6,7 @@ import {
     CrudSorting,
     BaseKey,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { stringify } from "query-string";
 
 const axiosInstance = axios.create();
@@ -26,11 +26,11 @@ axiosInstance.interceptors.response.use(
     },
 );
 
-const generateSort = (sort?: CrudSorting) => {
+const generateSort = (sorters?: CrudSorting) => {
     const _sort: string[] = [];
 
-    if (sort) {
-        sort.map((item) => {
+    if (sorters) {
+        sorters.map((item) => {
             if (item.order) {
                 _sort.push(`${item.field}:${item.order}`);
             }
@@ -82,25 +82,20 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<IDataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = {
-            current: 1,
-            pageSize: 10,
-        },
-        filters,
-        sort,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize: _limit = 10 } = pagination ?? {};
+        const {
+            current = 1,
+            pageSize: _limit = 10,
+            mode = "server",
+        } = pagination ?? {};
 
-        const _sort = generateSort(sort);
+        const _sort = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(hasPagination
+            ...(mode === "server"
                 ? {
                       _start: (current - 1) * _limit,
                       _limit,
@@ -206,11 +201,19 @@ export const DataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const sortQuery = generateSort(sort);
+        if (sorters) {
+            const sortQuery = generateSort(sorters);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     _sort: sortQuery.join(","),

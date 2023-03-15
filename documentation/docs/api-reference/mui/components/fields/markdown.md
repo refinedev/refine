@@ -4,7 +4,6 @@ title: Markdown
 swizzle: true
 ---
 
-
 This field lets you display markdown content. It supports [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
 :::info-tip Swizzle
@@ -19,12 +18,11 @@ Let's see how we can use `<MarkdownField>` in a show page.
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     MarkdownField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -34,9 +32,7 @@ const columns: GridColumns = [
         headerName: "Content",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <MarkdownField value={row?.content} />
-            );
+            return <MarkdownField value={row?.content} />;
             // highlight-end
         },
         minWidth: 100,
@@ -77,7 +73,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@refinedev/antd/MarkdownField" value-description="Markdown data to render"/>
 
 ## Example
 

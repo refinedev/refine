@@ -1,55 +1,137 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
-import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "users",
-                        list: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                ]}
-            />
-        </ChakraProvider>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                            create: "/samples/create",
+                            edit: "/samples/edit/:id",
+                            show: "/samples/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                            edit: "/categories/edit/:id",
+                            show: "/categories/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                            edit: "/users/edit/:id",
+                            show: "/users/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="samples" />
+                                }
+                            />
+
+                            <Route path="samples">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+
+                            <Route path="categories">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+
+                            <Route path="users">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 };
 

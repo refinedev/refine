@@ -66,4 +66,57 @@ describe("useCreateMany Hook", () => {
             });
         });
     });
+
+    describe("useLog", () => {
+        it("publish log on success", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    auditLogProvider: {
+                        create: createMock,
+                        get: jest.fn(),
+                        update: jest.fn(),
+                    },
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                values: [
+                    {
+                        title: "title1",
+                    },
+                    {
+                        title: "title2",
+                    },
+                ],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createMock).toBeCalled();
+            expect(createMock).toHaveBeenCalledWith({
+                action: "createMany",
+                author: {},
+                data: [
+                    {
+                        title: "title1",
+                    },
+                    {
+                        title: "title2",
+                    },
+                ],
+                meta: {
+                    dataProviderName: "default",
+                    ids: ["1", "2"],
+                },
+                resource: "posts",
+            });
+        });
+    });
 });

@@ -10,7 +10,16 @@ module.exports = {
         {
             type: "doc",
             id: "tutorial/introduction/index",
-            label: "Tutorial",
+            label: "Tutorial 🆙",
+        },
+        {
+            type: "category",
+            label: "Migration Guide 🚀",
+            items: [
+                "migration-guide/3x-to-4x",
+                "migration-guide/auth-provider",
+                "migration-guide/router-provider",
+            ],
         },
         {
             type: "category",
@@ -60,8 +69,8 @@ module.exports = {
                                     type: "category",
                                     label: "Authorization",
                                     items: [
-                                        "api-reference/core/hooks/auth/useAuthenticated",
-                                        "api-reference/core/hooks/auth/useCheckError",
+                                        "api-reference/core/hooks/auth/useIsAuthenticated",
+                                        "api-reference/core/hooks/auth/useOnError",
                                         "api-reference/core/hooks/auth/useGetIdentity",
                                         "api-reference/core/hooks/auth/useLogin",
                                         "api-reference/core/hooks/auth/useLogout",
@@ -145,6 +154,11 @@ module.exports = {
                                     type: "category",
                                     label: "Navigation",
                                     items: [
+                                        "api-reference/core/hooks/navigation/useGo",
+                                        "api-reference/core/hooks/navigation/useParsed",
+                                        "api-reference/core/hooks/navigation/useBack",
+                                        "api-reference/core/hooks/navigation/useLink",
+                                        "api-reference/core/hooks/navigation/useGetToPath",
                                         "api-reference/core/hooks/navigation/useNavigation",
                                     ],
                                 },
@@ -157,17 +171,9 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "Refine",
-                                    items: [
-                                        "api-reference/core/hooks/refine/useTitle",
-                                    ],
-                                },
-                                {
-                                    type: "category",
                                     label: "Resource",
                                     items: [
                                         "api-reference/core/hooks/resource/useResource",
-                                        "api-reference/core/hooks/resource/useResourceWithRoute",
                                     ],
                                 },
                                 {
@@ -209,7 +215,6 @@ module.exports = {
                             items: [
                                 "api-reference/core/components/auth-page",
                                 "api-reference/core/components/refine-config",
-                                "api-reference/core/components/layout-wrapper",
                                 "api-reference/core/components/inferencer",
                                 {
                                     type: "category",
@@ -353,15 +358,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/antd/customization/antd-custom-theme",
-                                "api-reference/antd/customization/antd-custom-layout",
-                                "api-reference/antd/customization/antd-custom-sider",
-                            ],
-                        },
+                        "api-reference/antd/theming",
                         "api-reference/antd/migration-guide/v4-to-v5",
                     ],
                 },
@@ -425,15 +422,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/chakra-ui/customization/theme",
-                                "api-reference/chakra-ui/customization/layout",
-                                "api-reference/chakra-ui/customization/sider",
-                            ],
-                        },
+                        "api-reference/chakra-ui/theming",
                     ],
                 },
 
@@ -513,15 +502,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/mantine/customization/theme",
-                                "api-reference/mantine/customization/layout",
-                                "api-reference/mantine/customization/sider",
-                            ],
-                        },
+                        "api-reference/mantine/theming",
                     ],
                 },
 
@@ -592,15 +573,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/mui/customization/mui-custom-theme",
-                                "api-reference/mui/customization/mui-custom-layout",
-                                "api-reference/mui/customization/mui-custom-sider",
-                            ],
-                        },
+                        "api-reference/mui/theming",
                     ],
                 },
             ],
@@ -625,6 +598,7 @@ module.exports = {
                     },
                     items: [
                         "packages/documentation/cli",
+                        "packages/documentation/inferencer",
                         "packages/documentation/command-palette",
                         "packages/documentation/react-table/index",
                         {
@@ -636,7 +610,21 @@ module.exports = {
                                 "packages/documentation/react-hook-form/useStepsForm",
                             ],
                         },
-                        "packages/documentation/inferencer",
+                        {
+                            type: "category",
+                            label: "Routers",
+                            link: {
+                                type: "generated-index",
+                                title: "Router Providers",
+                                description: `<strong>refine</strong> comes with built-in router packages for Next.js, Remix and React Router v6. You can use them to integrate your app with <strong>refine</strong>. You can find examples and documentation for each router about how to use them with layouts, authentication and resource handling.`,
+                                slug: "/packages/documentation/routers",
+                            },
+                            items: [
+                                "packages/documentation/routers/react-router-v6",
+                                "packages/documentation/routers/nextjs",
+                                "packages/documentation/routers/remix",
+                            ],
+                        },
                     ],
                 },
             ],
@@ -964,7 +952,6 @@ module.exports = {
                     ],
                 },
                 "advanced-tutorials/custom-layout",
-                "advanced-tutorials/custom-pages",
                 {
                     type: "category",
                     label: "Data Provider",
@@ -1014,14 +1001,6 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "SSR",
-                    items: [
-                        "advanced-tutorials/ssr/remix",
-                        "advanced-tutorials/ssr/nextjs",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Upload",
                     items: [
                         "advanced-tutorials/upload/base64-upload",
@@ -1051,10 +1030,6 @@ module.exports = {
         {
             type: "doc",
             id: "testing",
-        },
-        {
-            type: "doc",
-            id: "migration-guide",
         },
         {
             type: "doc",

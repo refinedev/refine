@@ -8,7 +8,13 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+:::
 
 
 
@@ -50,7 +56,7 @@ In this tutorial, we will learn how to include the features(i18n, Realtime, Acce
 Let's start by creating our refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
 
 ```bash
-npx superplate-cli -p refine-react refine-advanced-tutorial
+npm create refine-app@latest refine-advanced-tutorial -- -p refine-react -b v3
 ```
 
 ```bash
@@ -145,12 +151,12 @@ root.render(
 Let's define our i18n provider and give it a **refine**.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import { notificationProvider, Layout } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 //highlight-next-line
@@ -258,7 +264,7 @@ In this article, we have included the translation of only a small part as an exa
 Now, let's create a select component in the header and examine our posts according to the language we have chosen.
 
 ```tsx title="src/components/header.tsx"
-import { useGetLocale, useSetLocale } from "@pankod/refine-core";
+import { useGetLocale, useSetLocale } from "@refinedev/core";
 import {
     AntdLayout,
     Space,
@@ -266,7 +272,7 @@ import {
     Button,
     Icons,
     Dropdown,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 //highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -359,7 +365,7 @@ import {
     //highlight-next-line
     useTranslate,
     useMany,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     List,
     Table,
@@ -368,7 +374,7 @@ import {
     Space,
     EditButton,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -460,30 +466,30 @@ We will using [Ably](https://ably.com/) in this article to provide Realtime feat
 We need to install Ably live provider package from refine.
 
 ```bash
- npm install @pankod/refine-ably
+ npm install @refinedev/ably
 ```
 
 First, let's create ably-client and define our Ably API key.
 
 ```tsx title="src/utility/client.ts"
-import { Ably } from "@pankod/refine-ably";
+import { Ably } from "@refinedev/ably";
 
 export const ablyClient = new Ably.Realtime("YOUR_ABLY_API_KEY");
 ```
 
-Then pass liveProvider from @pankod/refine-ably to `<Refine>`.
+Then pass liveProvider from @refinedev/ably to `<Refine>`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import { notificationProvider, Layout } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 //highlight-start
-import { liveProvider } from "@pankod/refine-ably";
+import { liveProvider } from "@refinedev/ably";
 import { ablyClient } from "utility";
 //highlight-end
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Header } from "./components/header";
@@ -557,7 +563,7 @@ Let's create two Roles, Admin and Editor. Admin have full CRUD authority on the 
 Let's start by creating two buttons for the `Admin` and `Editor` roles in our created Header Component.
 
 ```tsx title="/src/componets/header.tsx"
-import { useGetLocale, useSetLocale } from "@pankod/refine-core";
+import { useGetLocale, useSetLocale } from "@refinedev/core";
 import {
     AntdLayout,
     Space,
@@ -566,7 +572,7 @@ import {
     Icons,
     Dropdown,
     Radio,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
@@ -717,7 +723,7 @@ import {
     useTranslate,
     //highligt-next-line
     useCan,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -733,7 +739,7 @@ import {
     Radio,
     TagField,
     NumberField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 

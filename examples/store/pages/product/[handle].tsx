@@ -1,11 +1,10 @@
 import {
     useList,
-    LayoutWrapper,
     IResourceComponentsProps,
     GetListResponse,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { GetServerSideProps } from "next";
-import { dataProvider } from "@pankod/refine-medusa";
+import { dataProvider } from "@refinedev/medusa";
 import { Product } from "@medusajs/medusa";
 
 import { ProductView } from "@components/product";
@@ -41,14 +40,14 @@ const ProductShow: React.FC<
     });
 
     return (
-        <LayoutWrapper>
+        <>
             {record ? (
                 <ProductView
                     product={record}
                     relatedProducts={relatedProducts?.data ?? []}
                 />
             ) : null}
-        </LayoutWrapper>
+        </>
     );
 };
 

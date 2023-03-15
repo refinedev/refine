@@ -8,7 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-19-refine-p
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code examples in this post have been updated to version 4.x.x.
+
+:::
 
 
 In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**refineWeek**](https://refine.dev/week-of-refine/) series.
@@ -178,7 +186,7 @@ Let's now work on the `can` method. We can see from the type definition that `re
 
 ```tsx title="src/providers/accessControlProvider.ts" 
 import { newEnforcer } from "casbin";
-import { CanParams, CanReturnType } from "@pankod/refine-core";
+import { CanParams, CanReturnType } from "@refinedev/core";
 import { adapter, model } from "../casbin/accessControl";
 import { supabaseClient } from "utility";
 
@@ -229,7 +237,7 @@ And if we refresh at `/canvases`, we can see that the `Delete` button on each ro
 
 This is because now our policy for `editor` has taken effect.
 
-The `Delete` button gets disabled because `@pankod/refine-antd`'s special buttons like the `<DeleteButton />` are enabled or disabled based on the result of access control enforcement. Our `editor` policies do not allow a `delete` action on `canvases` resource, so the `Delete` button is disabled.
+The `Delete` button gets disabled because `@refinedev/antd`'s special buttons like the `<DeleteButton />` are enabled or disabled based on the result of access control enforcement. Our `editor` policies do not allow a `delete` action on `canvases` resource, so the `Delete` button is disabled.
 
 Visit [this section](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/#buttons) of the [`accessControlProvider` API reference](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) for the complete list of buttons that check for and depend on user authorization state in **refine**.
 
@@ -240,7 +248,7 @@ So, let's look how to get the roles from our **Supabase** database next.
 
 ## User Permissions with Supabase in Refine
 
-In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@pankod/refine-supabase`. Right now, it looks like this:
+In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`. Right now, it looks like this:
 
 ```tsx title="src/providers/authProvider.ts"
 getPermissions: async () => {
@@ -371,9 +379,9 @@ But, wait! We haven't used the `useCan()` hook or the `<CanAccess />` component 
 
 ## Low Level Inspection
 
-If we dig into the `@pankod/refine-antd` package for the `<DeleteButton />` component, we can see that `useCan()` hook is used to decide the authorization status:
+If we dig into the `@refinedev/antd` package for the `<DeleteButton />` component, we can see that `useCan()` hook is used to decide the authorization status:
 
-```tsx title="node_modules/@pankod/refine-antd/src/components/buttons/delete/index.ts"
+```tsx title="node_modules/@refinedev/antd/src/components/buttons/delete/index.ts"
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
 	...
 }) => {

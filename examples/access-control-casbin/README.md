@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example access-control-casbin
 
 <br/>
 
-[![Open access-control-casbin example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-casbin?view=preview&theme=dark&codemirror=1)
+[![Open access-control-casbin example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin?view=preview&theme=dark&codemirror=1)
         

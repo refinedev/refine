@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example inferencer-antd
 
 <br/>
 
-[![Open inferencer-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/inferencer-antd?view=preview&theme=dark&codemirror=1)
+[![Open inferencer-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/inferencer-antd?view=preview&theme=dark&codemirror=1)
         

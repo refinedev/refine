@@ -10,58 +10,17 @@ import {
     RefineRefreshButtonProps,
     RefineSaveButtonProps,
     RefineShowButtonProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
-export type ShowButtonProps = RefineShowButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+export type ShowButtonProps = RefineShowButtonProps<ButtonProps>;
 
-export type CloneButtonProps = RefineCloneButtonProps<
-    ButtonProps,
-    {
-        /**
-         * Resource name for API data interactions
-         * @deprecated `resourceName` deprecated. Use `resourceNameOrRouteName` instead [Github Issue #1618](https://github.com/refinedev/refine/issues/1618)
-         */
-        resourceName?: string;
-    }
->;
+export type CloneButtonProps = RefineCloneButtonProps<ButtonProps>;
 
-export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+export type CreateButtonProps = RefineCreateButtonProps<ButtonProps>;
 
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+export type DeleteButtonProps = RefineDeleteButtonProps<ButtonProps>;
 
-export type EditButtonProps = RefineEditButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+export type EditButtonProps = RefineEditButtonProps<ButtonProps>;
 
 export type ExportButtonProps = RefineExportButtonProps<ButtonProps>;
 
@@ -78,24 +37,8 @@ export type ImportButtonProps = RefineImportButtonProps & {
     buttonProps: ButtonProps;
 };
 
-export type ListButtonProps = RefineListButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+export type ListButtonProps = RefineListButtonProps<ButtonProps>;
 
-export type RefreshButtonProps = RefineRefreshButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+export type RefreshButtonProps = RefineRefreshButtonProps<ButtonProps>;
 
 export type SaveButtonProps = RefineSaveButtonProps<ButtonProps>;

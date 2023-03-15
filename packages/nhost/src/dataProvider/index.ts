@@ -7,7 +7,7 @@ import {
     DataProvider,
     HttpError,
     CrudFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
 
@@ -17,8 +17,8 @@ export type GenerateSortingType = {
     (sorting?: CrudSorting): HasuraSortingType | undefined;
 };
 
-export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
-    if (!sorting) {
+export const generateSorting: GenerateSortingType = (sorters?: CrudSorting) => {
+    if (!sorters) {
         return undefined;
     }
 
@@ -27,7 +27,7 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
         "asc" | "desc" | HasuraSortingType
     > = {};
 
-    sorting.forEach((sortItem) => {
+    sorters.forEach((sortItem) => {
         set(sortingQueryResult, sortItem.field, sortItem.order);
     });
 
@@ -175,8 +175,8 @@ const dataProvider = (
         return idType ?? "uuid";
     };
     return {
-        getOne: async ({ resource, id, metaData }) => {
-            const operation = `${metaData?.operation ?? resource}_by_pk`;
+        getOne: async ({ resource, id, meta }) => {
+            const operation = `${meta?.operation ?? resource}_by_pk`;
 
             const { query, variables } = gql.query({
                 operation,
@@ -186,9 +186,9 @@ const dataProvider = (
                         type: getIdType(resource),
                         required: true,
                     },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
-                fields: metaData?.fields,
+                fields: meta?.fields,
             });
 
             const { data, error } = await client.graphql.request(
@@ -205,13 +205,13 @@ const dataProvider = (
             };
         },
 
-        getMany: async ({ resource, ids, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        getMany: async ({ resource, ids, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const { query, variables } = gql.query({
                 operation,
-                fields: metaData?.fields,
-                variables: metaData?.variables ?? {
+                fields: meta?.fields,
+                variables: meta?.variables ?? {
                     where: {
                         type: `${operation}_bool_exp`,
                         value: {
@@ -237,23 +237,17 @@ const dataProvider = (
             };
         },
 
-        getList: async ({
-            resource,
-            sort,
-            filters,
-            hasPagination = true,
-            pagination = {
-                current: 1,
-                pageSize: 10,
-            },
-            metaData,
-        }) => {
-            const { current = 1, pageSize: limit = 10 } = pagination ?? {};
+        getList: async ({ resource, sorters, filters, pagination, meta }) => {
+            const {
+                current = 1,
+                pageSize: limit = 10,
+                mode = "server",
+            } = pagination ?? {};
 
-            const hasuraSorting = generateSorting(sort);
+            const hasuraSorting = generateSorting(sorters);
             const hasuraFilters = generateFilters(filters);
 
-            const operation = metaData?.operation ?? resource;
+            const operation = meta?.operation ?? resource;
 
             const aggregateOperation = `${operation}_aggregate`;
 
@@ -263,9 +257,9 @@ const dataProvider = (
             const { query, variables } = gql.query([
                 {
                     operation,
-                    fields: metaData?.fields,
+                    fields: meta?.fields,
                     variables: {
-                        ...(hasPagination
+                        ...(mode === "server"
                             ? {
                                   limit,
                                   offset: (current - 1) * limit,
@@ -312,8 +306,8 @@ const dataProvider = (
             };
         },
 
-        create: async ({ resource, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        create: async ({ resource, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}_one`;
             const insertType = `${operation}_insert_input`;
@@ -327,7 +321,7 @@ const dataProvider = (
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ["id", ...Object.keys(variables)],
+                fields: meta?.fields ?? ["id", ...Object.keys(variables || {})],
             });
 
             const { data, error } = await client.graphql.request(
@@ -343,8 +337,8 @@ const dataProvider = (
             };
         },
 
-        createMany: async ({ resource, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        createMany: async ({ resource, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
             const insertType = `[${operation}_insert_input!]`;
@@ -360,7 +354,7 @@ const dataProvider = (
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
             });
@@ -379,8 +373,8 @@ const dataProvider = (
             };
         },
 
-        update: async ({ resource, id, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        update: async ({ resource, id, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
 
@@ -403,7 +397,7 @@ const dataProvider = (
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ["id"],
+                fields: meta?.fields ?? ["id"],
             });
 
             const { data, error } = await client.graphql.request(
@@ -419,8 +413,8 @@ const dataProvider = (
                 data: (data as any)?.[updateOperation],
             };
         },
-        updateMany: async ({ resource, ids, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        updateMany: async ({ resource, ids, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
 
@@ -447,7 +441,7 @@ const dataProvider = (
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
             });
@@ -466,8 +460,8 @@ const dataProvider = (
             };
         },
 
-        deleteOne: async ({ resource, id, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        deleteOne: async ({ resource, id, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
 
@@ -479,9 +473,9 @@ const dataProvider = (
                         type: getIdType(resource),
                         required: true,
                     },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
-                fields: metaData?.fields ?? ["id"],
+                fields: meta?.fields ?? ["id"],
             });
 
             const { data, error } = await client.graphql.request(
@@ -498,8 +492,8 @@ const dataProvider = (
             };
         },
 
-        deleteMany: async ({ resource, ids, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        deleteMany: async ({ resource, ids, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;
 
@@ -509,10 +503,10 @@ const dataProvider = (
                 operation: deleteOperation,
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
-                variables: metaData?.variables ?? {
+                variables: meta?.variables ?? {
                     where: {
                         type: whereType,
                         required: true,
@@ -544,7 +538,7 @@ const dataProvider = (
         },
 
         custom: () => {
-            throw Error("useCustom is not implemented in @pankod/refine-nhost");
+            throw Error("useCustom is not implemented in @refinedev/nhost");
         },
     };
 };

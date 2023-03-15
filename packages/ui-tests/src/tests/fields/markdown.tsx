@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldMarkdownProps } from "@pankod/refine-ui-types";
+import { RefineFieldMarkdownProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
@@ -8,7 +8,7 @@ export const fieldMarkdownTests = function (
         RefineFieldMarkdownProps<string | undefined>
     >,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Markdown Field", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Markdown Field", () => {
         it("renders markDown text with correct value", () => {
             const { getByText, container } = render(
                 <div data-testid="custom-field">

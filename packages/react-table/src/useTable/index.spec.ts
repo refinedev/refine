@@ -28,9 +28,14 @@ const columns: ColumnDef<Post>[] = [
 
 describe("useTable Hook", () => {
     it("It should work successfully with no properties", async () => {
-        const { result } = renderHook(() => useTable({ columns }), {
-            wrapper: TestWrapper({}),
-        });
+        const { result } = renderHook(
+            () => useTable({ columns, refineCoreProps: { resource: "posts" } }),
+            {
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
 
         await waitFor(
             () => {
@@ -61,12 +66,17 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialCurrent: 2,
-                        initialPageSize: 1,
+                        resource: "posts",
+                        pagination: {
+                            current: 2,
+                            pageSize: 1,
+                        },
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -94,22 +104,27 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialFilter: [
-                            {
-                                field: "title",
-                                operator: "contains",
-                                value: "Hello2",
-                            },
-                            {
-                                field: "active",
-                                operator: "eq",
-                                value: true,
-                            },
-                        ],
+                        resource: "posts",
+                        filters: {
+                            initial: [
+                                {
+                                    field: "title",
+                                    operator: "contains",
+                                    value: "Hello2",
+                                },
+                                {
+                                    field: "active",
+                                    operator: "eq",
+                                    value: true,
+                                },
+                            ],
+                        },
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -179,14 +194,18 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialSorter: [
-                            { field: "id", order: "asc" },
-                            { field: "title", order: "desc" },
-                        ],
+                        sorters: {
+                            initial: [
+                                { field: "id", order: "asc" },
+                                { field: "title", order: "desc" },
+                            ],
+                        },
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -240,24 +259,28 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialFilter: [
-                            {
-                                field: "title",
-                                operator: "contains",
-                                value: "Hello",
-                            },
-                        ],
-                        permanentFilter: [
-                            {
-                                field: "category.id",
-                                operator: "eq",
-                                value: 1,
-                            },
-                        ],
+                        filters: {
+                            initial: [
+                                {
+                                    field: "title",
+                                    operator: "contains",
+                                    value: "Hello",
+                                },
+                            ],
+                            permanent: [
+                                {
+                                    field: "category.id",
+                                    operator: "eq",
+                                    value: 1,
+                                },
+                            ],
+                        },
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -327,22 +350,26 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialSorter: [
-                            {
-                                field: "title",
-                                order: "asc",
-                            },
-                        ],
-                        permanentSorter: [
-                            {
-                                field: "category.id",
-                                order: "desc",
-                            },
-                        ],
+                        sorters: {
+                            initial: [
+                                {
+                                    field: "title",
+                                    order: "asc",
+                                },
+                            ],
+                            permanent: [
+                                {
+                                    field: "category.id",
+                                    order: "desc",
+                                },
+                            ],
+                        },
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 

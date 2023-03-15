@@ -3,19 +3,16 @@ import {
     IResourceComponentsProps,
     useDelete,
     useNavigation,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
+
+import { List, useTable } from "@refinedev/antd";
 
 import {
-    List,
-    Table,
-    Avatar,
-    useTable,
-    Dropdown,
-    Menu,
-    Icons,
-    Space,
-    Typography,
-} from "@pankod/refine-antd";
+    EditOutlined,
+    CloseCircleOutlined,
+    MoreOutlined,
+} from "@ant-design/icons";
+import { Table, Avatar, Dropdown, Menu, Space, Typography } from "antd";
 
 import { ICourier } from "interfaces";
 
@@ -48,7 +45,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.EditOutlined
+                    <EditOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -71,7 +68,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.CloseCircleOutlined
+                    <CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -138,7 +135,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                             overlay={moreMenu(record.id)}
                             trigger={["click"]}
                         >
-                            <Icons.MoreOutlined
+                            <MoreOutlined
                                 onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,

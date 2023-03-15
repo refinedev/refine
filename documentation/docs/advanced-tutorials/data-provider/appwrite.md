@@ -1,8 +1,8 @@
 ---
 id: appwrite
 title: Appwrite
+sidebar_label: Appwrite 🆙
 ---
-
 
 ## Introduction
 
@@ -21,11 +21,11 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 ## Setup
 
 ```bash
-npm install @pankod/refine-appwrite
+npm install @refinedev/appwrite
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -35,7 +35,7 @@ It is very simple to use and consists of two steps. First, define your Appwrite 
 ### Creating Appwrite Client
 
 ```tsx title="appwriteClient.ts"
-import { Appwrite, Account, Storage } from "@pankod/refine-appwrite";
+import { Appwrite, Account, Storage } from "@refinedev/appwrite";
 
 const APPWRITE_URL = "http://YOUR_COOL_APPWRITE_API/v1";
 //highlight-start
@@ -57,41 +57,82 @@ export { appwriteClient, account, storage };
 ### Creating Auth Provider
 
 ```tsx title="authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 import { account } from "./appwriteClient";
 
-export const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } catch (e) {
-            return Promise.reject();
+            const { type, message, code } = e as AppwriteException;
+            return {
+                success: false,
+                error: {
+                    message,
+                    name: `${code} - ${type}`,
+                },
+            };
         }
     },
     logout: async () => {
-        await account.deleteSession("current");
-
-        return "/";
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const session = await account.get();
-
-        if (session) {
-            return Promise.resolve();
+        try {
+            await account.deleteSession("current");
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
+        try {
+            const session = await account.get();
+
+            if (session) {
+                return {
+                    authenticated: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                error: error,
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {
+            authenticated: false,
+            error: new Error("Session not found"),
+            logout: true,
+            redirectTo: "/login",
+        };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
+
+        return null;
     },
 };
 ```
@@ -99,17 +140,19 @@ export const authProvider: AuthProvider = {
 ### Configure Refine Component
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 //highlight-start
-import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
+import { dataProvider, liveProvider } from "@refinedev/appwrite";
 //highlight-end
 
 //highlight-start
@@ -119,29 +162,30 @@ import authProvider from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            //highlight-start
-            dataProvider={dataProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            liveProvider={liveProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            options={{ liveMode: "auto" }}
-            authProvider={authProvider}
-            //highlight-end
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                //highlight-start
+                dataProvider={dataProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                liveProvider={liveProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                options={{ liveMode: "auto" }}
+                authProvider={authProvider}
+                //highlight-end
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
 
 :::tip Live/Realtime 🚀
-`@pankod/refine-appwrite` package supports Live/Realtime Provider natively 🚀
+`@refinedev/appwrite` package supports Live/Realtime Provider natively 🚀
 
 [Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/api-reference/core/providers/live-provider.md)
 :::
@@ -229,18 +273,18 @@ We indicate that the read and write permission is open to everyone by giving the
 ```tsx title="pages/login.tsx"
 import React from "react";
 
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout,
     Card,
     Typography,
     Form,
     Input,
     Button,
     Checkbox,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import "./styles.css";
 
@@ -264,7 +308,7 @@ export const Login: React.FC = () => {
     );
 
     return (
-        <AntdLayout className="layout">
+        <Layout className="layout">
             <Row
                 justify="center"
                 align="middle"
@@ -351,7 +395,7 @@ export const Login: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```
@@ -373,7 +417,7 @@ export const Login: React.FC = () => {
 Now we can login with the user we created by Appwrite. We can then list, create and edit posts.
 
 :::tip
-**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource options.
+**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource meta.
 
 ```tsx
 const App: React.FC = () => {
@@ -398,7 +442,7 @@ const App: React.FC = () => {
                     //highlight-start
                     name: "61bc3660648a6",
                     //highlight-end
-                    options: {
+                    meta: {
                         //highlight-start
                         label: "Post",
                         //highlight-end
@@ -423,28 +467,29 @@ Now that we've created our collections, we can create and list documents. Let's 
 <p>
 
 ```tsx
-import { useMany, IResourceComponentsProps } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostsList: React.FC<IResourceComponentsProps> = () => {
+export const PostsList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "$id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "$id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     const categoryIds =
@@ -534,24 +579,16 @@ We can now create posts and set categories from our **refine** UI.
 ```tsx
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    RcFile,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
-export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostsCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -661,12 +698,12 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 :::tip
 As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **refine** UI.
 
-If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in metaData.
+If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
 
 ```tsx
-import { Permission, Role } from "@pankod/refine-appwrite";
+import { Permission, Role } from "@refinedev/appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
-    metaData: {
+    meta: {
         writePermissions: [Permission.read(Role.any())],
         readPermissions: [Permission.read(Role.any())],
     },
@@ -686,24 +723,16 @@ You can edit the posts and categories we have created update your data.
 ```tsx
 import React from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    RcFile,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
-export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostsEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;

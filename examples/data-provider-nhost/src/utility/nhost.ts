@@ -1,5 +1,5 @@
 import { NhostClient } from "@nhost/nhost-js";
-import { graphqlWS } from "@pankod/refine-nhost";
+import { graphqlWS } from "@refinedev/nhost";
 
 const API_URL = "https://oxhhlmqsjahbyedrmvll.nhost.run";
 const WS_URL = "ws://oxhhlmqsjahbyedrmvll.nhost.run/v1/graphql";

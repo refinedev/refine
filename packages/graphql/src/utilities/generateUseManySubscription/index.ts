@@ -1,10 +1,10 @@
-import { MetaDataQuery, BaseKey } from "@pankod/refine-core";
+import { BaseKey, MetaQuery } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
 
 type GenerateUseManySubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta: MetaQuery;
     ids?: BaseKey[];
 };
 
@@ -16,7 +16,7 @@ type GenerateUseManySubscriptionReturnValues = {
 
 export const generateUseManySubscription = ({
     resource,
-    metaData,
+    meta,
     ids,
 }: GenerateUseManySubscriptionParams): GenerateUseManySubscriptionReturnValues => {
     if (!ids) {
@@ -27,7 +27,7 @@ export const generateUseManySubscription = ({
 
     const camelResource = camelCase(resource);
 
-    const operation = metaData.operation ?? camelResource;
+    const operation = meta.operation ?? camelResource;
 
     const { query, variables } = gql.query({
         operation,
@@ -37,7 +37,7 @@ export const generateUseManySubscription = ({
                 type: "JSON",
             },
         },
-        fields: metaData.fields,
+        fields: meta.fields,
     });
 
     return { query, variables, operation };

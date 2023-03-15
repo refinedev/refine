@@ -17,18 +17,36 @@ describe("useTelemetryData Hook", () => {
             expect(providers.auth).toBeFalsy();
         });
 
-        it("must be true", async () => {
+        it("legacyAuthProvider must be true", async () => {
             const { result } = renderHook(() => useTelemetryData(), {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }],
-                    authProvider: {
+                    legacyAuthProvider: {
                         login: () => Promise.resolve(),
                         logout: () => Promise.resolve(),
                         checkError: () => Promise.resolve(),
                         checkAuth: () => Promise.resolve(),
                         getPermissions: () => Promise.resolve(),
                         getUserIdentity: () => Promise.resolve(),
+                    },
+                }),
+            });
+
+            const { providers } = result.current;
+            expect(providers.auth).toBeTruthy();
+        });
+
+        it("authProvider must be true", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        logout: () => Promise.resolve({ success: false }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
                     },
                 }),
             });

@@ -20,11 +20,11 @@ If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the
 // visible-block-start
 import {
     List,
-    Table,
     // highlight-next-line
     NumberField,
-    useTable
-} from "@pankod/refine-antd";
+    useTable,
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -67,7 +67,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -78,7 +78,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/NumberField" value-description="Number value" />
+<PropsTable module="@refinedev/antd/NumberField" value-description="Number value" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).

@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 
 import { OrdersModal, Header, Footer } from "@components";
 import { useOrdesModalContext } from "@hooks";

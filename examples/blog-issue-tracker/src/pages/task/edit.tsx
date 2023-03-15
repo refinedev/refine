@@ -1,17 +1,12 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    useForm,
-    Form,
-    Input,
-    Select,
-    Edit,
-    useSelect,
-} from "@pankod/refine-antd";
+import { useForm, Edit, useSelect } from "@refinedev/antd";
+
+import { Form, Input, Select } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
-export const EditTask: React.FC<IResourceComponentsProps> = () => {
+export const TaskEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ITask>();
 
     const { selectProps: labelSelectProps } = useSelect<ITask>({

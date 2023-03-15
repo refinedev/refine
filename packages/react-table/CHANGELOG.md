@@ -1,5 +1,131 @@
 # @pankod/refine-react-table
 
+## 5.1.0
+
+### Minor Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    All `@tanstack/react-table` imports re-exported from `@refinedev/react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.
+
+    If the package is not installed, you can install it with your package manager:
+
+    ```bash
+    npm install @tanstack/react-table
+    # or
+    pnpm add @tanstack/react-table
+    # or
+    yarn add @tanstack/react-table
+    ```
+
+    After that, you can import them from `@tanstack/react-table` package directly.
+
+    ```diff
+    - import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
+
+    + import { useTable } from "@refinedev/react-table";
+    + import { ColumnDef, flexRender } from "@tanstack/react-table";
+    ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `useTable` return values and properties are updated.
+
+    -   `initialCurrent` and `initialPageSize` props are now deprecated. Use `pagination` prop instead.
+    -   To ensure backward compatibility, `initialCurrent` and `initialPageSize` props will work as before.
+
+        ```diff
+        useTable({
+        -    initialCurrent,
+        -    initialPageSize,
+        +    pagination: {
+        +        current,
+        +        pageSize,
+        +    },
+        })
+        ```
+
+    -   `hasPagination` prop is now deprecated. Use `pagination.mode` instead.
+    -   To ensure backward compatibility, `hasPagination` prop will work as before.
+
+        ```diff
+        useTable({
+            refineCoreProps: {
+        -      hasPagination,
+        +       pagination: {
+        +           mode: "off" | "server" | "client",
+        +       },
+            },
+        })
+        ```
+
+    -   `initialSorter` and `permanentSorter` props are now deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+    -   To ensure backward compatibility, `initialSorter` and `permanentSorter` props will work as before.
+
+        ```diff
+        useTable({
+            refineCoreProps: {
+        -      initialSorter,
+        -      permanentSorter,
+        +      sorters: {
+        +          initial,
+        +          permanent,
+        +      },
+            },
+        })
+        ```
+
+    -   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are now deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+    -   To ensure backward compatibility, `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props will work as before.
+
+        ```diff
+        useTable({
+            refineCoreProps: {
+        -      initialFilter,
+        -      permanentFilter,
+        -      defaultSetFilterBehavior,
+        +      filters: {
+        +          initial,
+        +          permanent,
+        +          defaultBehavior,
+        +      },
+            },
+        })
+        ```
+
+    -   `sorter` and `setSorter` return values are now deprecated. Use `sorters` and `setSorters` instead.
+    -   To ensure backward compatibility, `sorter` and `setSorter` return values will work as before.
+
+        ```diff
+        const {
+            refineCore: {
+        -        sorter,
+        -        setSorter,
+        +        sorters,
+        +        setSorters,
+            },
+        } = useTable();
+        ```
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
+## 4.11.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+## 4.10.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
 ## 4.9.1
 
 ### Patch Changes

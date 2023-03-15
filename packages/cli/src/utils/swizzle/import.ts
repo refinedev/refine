@@ -105,7 +105,7 @@ export const isImportHasBeforeContent = (
     return !!contentBeforeImport.trim();
 };
 
-const IMPORT_ORDER = ["react", "@pankod/refine-core", "@pankod/refine-"];
+const IMPORT_ORDER = ["react", "@refinedev/core", "@refinedev/"];
 
 export const reorderImports = (content: string): string => {
     let newContent = content;

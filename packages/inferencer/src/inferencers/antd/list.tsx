@@ -1,4 +1,5 @@
-import * as RefineAntd from "@pankod/refine-antd";
+import * as RefineAntd from "@refinedev/antd";
+import * as AntdPackage from "antd";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -38,12 +39,12 @@ export const renderer = ({
     const recordName = "tableProps?.dataSource";
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["IResourceComponentsProps", "@pankod/refine-core"],
-        ["BaseRecord", "@pankod/refine-core"],
-        ["useTable", "@pankod/refine-antd"],
-        ["List", "@pankod/refine-antd"],
-        ["Table", "@pankod/refine-antd"],
-        ["Space", "@pankod/refine-antd"],
+        ["IResourceComponentsProps", "@refinedev/core"],
+        ["BaseRecord", "@refinedev/core"],
+        ["useTable", "@refinedev/antd"],
+        ["List", "@refinedev/antd"],
+        ["Table", "antd"],
+        ["Space", "antd"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -54,7 +55,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useMany", "@pankod/refine-core"]);
+                imports.push(["useMany", "@refinedev/core"]);
 
                 let idsString = "";
 
@@ -119,7 +120,7 @@ export const renderer = ({
             // if not, then just show the value
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-antd"]);
+                imports.push(["TagField", "@refinedev/antd"]);
                 let val = "item";
 
                 if (field?.relationInfer) {
@@ -169,7 +170,7 @@ export const renderer = ({
 
     const imageFields = (field: InferField) => {
         if (field.type === "image") {
-            imports.push(["ImageField", "@pankod/refine-antd"]);
+            imports.push(["ImageField", "@refinedev/antd"]);
 
             const dataIndex =
                 Array.isArray(field.accessor) || field.multiple
@@ -202,8 +203,8 @@ export const renderer = ({
     const emailFields = (field: InferField) => {
         if (field.type === "email") {
             imports.push(
-                ["TagField", "@pankod/refine-antd"],
-                ["EmailField", "@pankod/refine-antd"],
+                ["TagField", "@refinedev/antd"],
+                ["EmailField", "@refinedev/antd"],
             );
             const dataIndex =
                 Array.isArray(field.accessor) || field.multiple
@@ -241,8 +242,8 @@ export const renderer = ({
     const urlFields = (field: InferField) => {
         if (field.type === "url") {
             imports.push(
-                ["UrlField", "@pankod/refine-antd"],
-                ["TagField", "@pankod/refine-antd"],
+                ["UrlField", "@refinedev/antd"],
+                ["TagField", "@refinedev/antd"],
             );
 
             const dataIndex =
@@ -275,7 +276,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field?.type === "boolean") {
-            imports.push(["BooleanField", "@pankod/refine-antd"]);
+            imports.push(["BooleanField", "@refinedev/antd"]);
 
             const dataIndex =
                 Array.isArray(field.accessor) || field.multiple
@@ -308,7 +309,7 @@ export const renderer = ({
 
     const dateFields = (field: InferField) => {
         if (field.type === "date") {
-            imports.push(["DateField", "@pankod/refine-antd"]);
+            imports.push(["DateField", "@refinedev/antd"]);
 
             const dataIndex =
                 Array.isArray(field.accessor) || field.multiple
@@ -345,7 +346,7 @@ export const renderer = ({
 
     const richtextFields = (field: InferField) => {
         if (field?.type === "richtext") {
-            imports.push(["MarkdownField", "@pankod/refine-antd"]);
+            imports.push(["MarkdownField", "@refinedev/antd"]);
 
             const dataIndex =
                 Array.isArray(field.accessor) || field.multiple
@@ -393,7 +394,7 @@ export const renderer = ({
             let render = "";
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-antd"]);
+                imports.push(["TagField", "@refinedev/antd"]);
 
                 const val = accessor(
                     "item",
@@ -421,13 +422,13 @@ export const renderer = ({
     const { canEdit, canShow, canDelete } = resource ?? {};
 
     if (canEdit) {
-        imports.push(["EditButton", "@pankod/refine-antd"]);
+        imports.push(["EditButton", "@refinedev/antd"]);
     }
     if (canShow) {
-        imports.push(["ShowButton", "@pankod/refine-antd"]);
+        imports.push(["ShowButton", "@refinedev/antd"]);
     }
     if (canDelete) {
-        imports.push(["DeleteButton", "@pankod/refine-antd"]);
+        imports.push(["DeleteButton", "@refinedev/antd"]);
     }
 
     const actionButtons =
@@ -531,7 +532,10 @@ export const renderer = ({
  */
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
-    additionalScope: [["@pankod/refine-antd", "RefineAntd", RefineAntd]],
+    additionalScope: [
+        ["@refinedev/antd", "RefineAntd", RefineAntd],
+        ["antd", "AntdPackage", AntdPackage],
+    ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,

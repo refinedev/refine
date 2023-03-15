@@ -22,5 +22,5 @@ For more detailed information and usage, refer to the [refine kbar command palet
 ## Install
 
 ```
-npm install @pankod/refine-kbar
+npm install @refinedev/kbar
 ```

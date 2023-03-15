@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 const axiosInstance = axios.create();
 

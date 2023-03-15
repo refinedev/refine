@@ -1,14 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Create,
-    DatePicker,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { DatePicker, Form, Input, Select } from "antd";
 import dayjs from "dayjs";
 
 import MDEditor from "@uiw/react-md-editor";

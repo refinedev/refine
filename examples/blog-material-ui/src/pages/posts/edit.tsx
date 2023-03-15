@@ -1,12 +1,9 @@
-import { HttpError } from "@pankod/refine-core";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
-import {
-    Edit,
-    Box,
-    TextField,
-    Autocomplete,
-    useAutocomplete,
-} from "@pankod/refine-mui";
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
+import { Edit, useAutocomplete } from "@refinedev/mui";
+
+import { Box, TextField, Autocomplete } from "@mui/material";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -21,10 +18,12 @@ export const PostEdit: React.FC = () => {
         refineCoreProps: { metaData: { populate: ["category"] } },
     });
 
+    const categoryId = queryResult?.data?.data?.category?.id;
+
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+        defaultValue: categoryId,
+        queryOptions: { enabled: !!categoryId },
     });
 
     return (

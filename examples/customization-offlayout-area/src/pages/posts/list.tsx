@@ -1,6 +1,8 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { List, Table, useTable } from "@pankod/refine-antd";
+import { List, useTable } from "@refinedev/antd";
+
+import { Table } from "antd";
 
 import { IPost } from "interfaces";
 

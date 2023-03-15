@@ -1,12 +1,16 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -14,13 +18,33 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        create: PostCreate,
-                        list: PostList,
-                        edit: PostEdit,
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
                     },
                 ]}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        index
+                        element={<NavigateToResource resource="posts" />}
+                    />
+
+                    <Route path="/posts">
+                        <Route index element={<PostList />} />
+                        <Route path="create" element={<PostCreate />} />
+                        <Route path="edit/:id" element={<PostEdit />} />
+                    </Route>
+
+                    <Route path="*" element={<ErrorComponent />} />
+                    <UnsavedChangesNotifier />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

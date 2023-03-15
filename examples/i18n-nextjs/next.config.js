@@ -1,17 +1,13 @@
-/**
- * @type {import('next').NextConfig}
- */
-
 const { i18n } = require("./next-i18next.config");
 
-const nextConfig = {
+module.exports = {
     i18n,
     experimental: {
         newNextLinkBehavior: true,
     },
     transpilePackages: [
-        "@pankod/refine-antd",
-        "@pankod/refine-inferencer",
+        "@refinedev/antd",
+        "@refinedev/inferencer",
         "antd",
         "@ant-design/pro-components",
         "@ant-design/pro-layout",
@@ -21,5 +17,3 @@ const nextConfig = {
         "rc-picker",
     ],
 };
-
-module.exports = nextConfig;

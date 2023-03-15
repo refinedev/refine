@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useTranslate, useUpdate } from "@pankod/refine-core";
+import { useTranslate, useUpdate } from "@refinedev/core";
 import {
     Action,
     createAction,
     Priority,
     useRegisterActions,
-} from "@pankod/refine-kbar";
-import { Icons } from "@pankod/refine-antd";
+} from "@refinedev/kbar";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 import { IOrder } from "interfaces";
 
@@ -45,7 +45,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
             preActions.push(
                 createAction({
                     name: t("buttons.accept"),
-                    icon: <Icons.CheckCircleOutlined />,
+                    icon: <CheckCircleOutlined />,
                     section: "actions",
                     perform: () => {
                         handleMutate({
@@ -61,7 +61,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
             preActions.push(
                 createAction({
                     name: t("buttons.reject"),
-                    icon: <Icons.CloseCircleOutlined />,
+                    icon: <CloseCircleOutlined />,
                     section: "actions",
                     perform: () => {
                         handleMutate({

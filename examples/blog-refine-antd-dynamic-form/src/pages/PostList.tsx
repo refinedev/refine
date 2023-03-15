@@ -1,12 +1,7 @@
 import React from "react";
-import {
-    List,
-    Table,
-    useTable,
-    Space,
-    EditButton,
-    DeleteButton,
-} from "@pankod/refine-antd";
+import { List, useTable, EditButton, DeleteButton } from "@refinedev/antd";
+
+import { Table, Space } from "antd";
 
 interface IFormValue {
     name: string;

@@ -1,10 +1,10 @@
-import { AuthProvider } from "@pankod/refine-core";
-import { IUser } from "@pankod/refine-sdk";
+import { LegacyAuthProvider } from "@refinedev/core";
+import { IUser } from "@refinedev/sdk";
 
 import { useSdk } from "../useSdk";
 
 type UseAuthProviderWithCloudConfigReturn = {
-    generateCloudAuthProvider: () => AuthProvider;
+    generateCloudAuthProvider: () => LegacyAuthProvider;
 };
 
 // TODO: Add hook docs
@@ -12,7 +12,7 @@ export const useAuthProviderWithCloudConfig =
     (): UseAuthProviderWithCloudConfigReturn => {
         const { sdk } = useSdk();
 
-        const generateCloudAuthProvider = (): AuthProvider => {
+        const generateCloudAuthProvider = (): LegacyAuthProvider => {
             return {
                 login: async ({ email, password }) => {
                     return sdk.auth

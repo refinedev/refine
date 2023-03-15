@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { Col, PageHeader as AntdPageHeader } from "@pankod/refine-antd";
+import { PageHeader as AntdPageHeader } from "@refinedev/antd";
+
+import { Col } from "antd";
 
 export const Courier = styled.div`
     display: flex;

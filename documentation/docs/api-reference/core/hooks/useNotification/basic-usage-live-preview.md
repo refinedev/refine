@@ -1,11 +1,11 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
 setInitialRoutes(["/"]);
 // visible-block-start
-import { useNotification } from "@pankod/refine-core";
-import { Button, Stack } from "@pankod/refine-mui";
+import { useNotification } from "@refinedev/core";
+import { Button, Stack } from "@mui/material";
 
 const ExamplePage: React.FC = () => {
-  const { open, close } = useNotification();
+    const { open, close } = useNotification();
 
     return (
         <Stack spacing={2} direction="row">
@@ -48,14 +48,14 @@ const ExamplePage: React.FC = () => {
                         message: "Progress",
                         undoableTimeout: 5,
                         cancelMutation: () => {
-                            alert("cancelMutation")
-                        }
+                            alert("cancelMutation");
+                        },
                     })
                 }
             >
                 Progress
             </Button>
-      </Stack>
+        </Stack>
     );
 };
 // visible-block-end

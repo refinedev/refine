@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -46,17 +46,12 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/mantine";
 
 // visible-block-start
-import {
-    Edit,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const {
@@ -80,9 +75,6 @@ const PostEdit: React.FC = () => {
                 id: (value) =>
                     value.length <= 0 ? "Category is required" : null,
             },
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
         },
     });
 
@@ -174,10 +166,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { SaveButton } from "@pankod/refine-mantine";
+import { SaveButton } from "@refinedev/mantine";
 
 const MySaveComponent = () => {
     return <SaveButton hideText />;
@@ -208,4 +200,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/SaveButton" />
+<PropsTable module="@refinedev/mantine/SaveButton" />

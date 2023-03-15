@@ -1,12 +1,12 @@
-import { useShow, useOne } from "@pankod/refine-core";
+import { useShow, useOne } from "@refinedev/core";
 import {
     Show,
-    Typography,
-    Stack,
     NumberField,
     TextFieldComponent as TextField,
     MarkdownField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
+
+import { Typography, Stack } from "@mui/material";
 
 export const ProductShow = () => {
     const { queryResult } = useShow();

@@ -1,4 +1,5 @@
-import * as RefineReactTable from "@pankod/refine-react-table";
+import * as RefineReactTable from "@refinedev/react-table";
+import * as TanstackReactTable from "@tanstack/react-table";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -47,11 +48,11 @@ export const renderer = ({
     const recordName = "tableData?.data";
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["IResourceComponentsProps", "@pankod/refine-core"],
-        ["useNavigation", "@pankod/refine-core"],
-        ["useTable", "@pankod/refine-react-table"],
-        ["ColumnDef", "@pankod/refine-react-table"],
-        ["flexRender", "@pankod/refine-react-table"],
+        ["IResourceComponentsProps", "@refinedev/core"],
+        ["useNavigation", "@refinedev/core"],
+        ["useTable", "@refinedev/react-table"],
+        ["ColumnDef", "@tanstack/react-table"],
+        ["flexRender", "@tanstack/react-table"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -62,8 +63,8 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["GetManyResponse", "@pankod/refine-core"]);
-                imports.push(["useMany", "@pankod/refine-core"]);
+                imports.push(["GetManyResponse", "@refinedev/core"]);
+                imports.push(["useMany", "@refinedev/core"]);
 
                 let idsString = "";
 
@@ -803,7 +804,8 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
+        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
+        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

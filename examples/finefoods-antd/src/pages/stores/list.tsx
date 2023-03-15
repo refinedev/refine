@@ -3,22 +3,18 @@ import {
     IResourceComponentsProps,
     useNavigation,
     useShow,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
-    Table,
     useTable,
     DateField,
-    Dropdown,
     BooleanField,
-    Menu,
-    Icons,
-    Avatar,
     useModal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
-const { FormOutlined } = Icons;
+import { FormOutlined, MoreOutlined } from "@ant-design/icons";
+import { Table, Dropdown, Menu, Avatar } from "antd";
 
 import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";
@@ -134,7 +130,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                                 overlay={moreMenu(record.id)}
                                 trigger={["click"]}
                             >
-                                <Icons.MoreOutlined
+                                <MoreOutlined
                                     style={{
                                         fontSize: 24,
                                     }}

@@ -5,27 +5,27 @@ title: useStepsForm
 
 ```tsx live shared
 import React from "react";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Column,
-} from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender, Column } from "@tanstack/react-table";
+
+import { GetManyResponse, useMany } from "@refinedev/core";
 import {
     Button as MantineButton,
-    Code as MantineCode,
     Edit as MantineEdit,
     Create as MantineCreate,
     List as MantineList,
-    Group as MantineGroup,
-    Select as MantineSelect,
-    Stepper as MantineStepper,
-    TextInput as MantineTextInput,
     useStepsForm as MantineUseStepsForm,
     useSelect as MantineUseSelect,
     DeleteButton as MantineDeleteButton,
     SaveButton as MantineSaveButton,
+    EditButton as MantineEditButton,
+} from "@refinedev/mantine";
+import {
+    Code as MantineCode,
+    Group as MantineGroup,
+    Select as MantineSelect,
+    Stepper as MantineStepper,
+    TextInput as MantineTextInput,
     Text as MantineText,
     Textarea as MantineTextarea,
     Space as MantineSpace,
@@ -33,8 +33,7 @@ import {
     ScrollArea as MantineScrollArea,
     Table as MantineTable,
     Box as MantineBox,
-    EditButton as MantineEditButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 interface ICategory {
     id: number;
@@ -471,7 +470,7 @@ const PostEdit: React.FC = () => {
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
-`useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
+`useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
 :::
 
 ## Basic Usage
@@ -494,21 +493,19 @@ setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import React from "react";
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
+import { Create, useStepsForm, SaveButton } from "@refinedev/mantine";
 import {
     Button,
     Code,
-    Create,
     Group,
     Select,
     Stepper,
     TextInput,
-    useStepsForm,
-    SaveButton,
     Text,
     Space,
     Textarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -654,21 +651,19 @@ setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React from "react";
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
+import { Edit, useStepsForm, SaveButton } from "@refinedev/mantine";
 import {
-    Edit,
     Button,
     Code,
     Group,
     Select,
     Stepper,
     TextInput,
-    useStepsForm,
-    SaveButton,
     Text,
     Space,
     Textarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -813,8 +808,8 @@ To show your form inputs step by step, first import and use `useStepsForm` hook 
 
 ```tsx
 import React from "react";
-import { HttpError } from "@pankod/refine-core";
-import { Create } from "@pankod/refine-mantine";
+import { HttpError } from "@refinedev/core";
+import { Create } from "@refinedev/mantine";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -861,8 +856,8 @@ Here, we're going to use a [`<Stepper/>`](https://mantine.dev/core/stepper/) com
 
 ```tsx
 import React from "react";
-import { HttpError } from "@pankod/refine-core";
-import { Create } from "@pankod/refine-mantine";
+import { HttpError } from "@refinedev/core";
+import { Create } from "@refinedev/mantine";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -1056,7 +1051,7 @@ It takes in one argument, step, which is a number representing the index of the 
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/useStepsForm" 
+<PropsTable module="@refinedev/mantine/useStepsForm" 
 refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)"
 refineCoreProps-description="Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)"
 stepsProps-description="Configuration object for the steps. `defaultStep`: Allows you to set the initial step. `isBackValidate`: Whether to validation the current step when going back."

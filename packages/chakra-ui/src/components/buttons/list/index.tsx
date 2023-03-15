@@ -6,8 +6,11 @@ import {
     userFriendlyResourceName,
     useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    useRouterType,
+    useLink,
+    pickNotDeprecated,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconList } from "@tabler/icons";
 
@@ -21,27 +24,33 @@ import { ListButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/list-button} for more details.
  **/
 export const ListButton: React.FC<ListButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resource, resourceName } = useResource({
-        resourceNameOrRouteName,
-    });
-
     const { listUrl: generateListUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const translate = useTranslate();
 
+    const { resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
+
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "list",
         queryOptions: {
             enabled: accessControlEnabled,
@@ -61,14 +70,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
-    const listUrl = generateListUrl(resource.route!);
+    const listUrl = resource ? generateListUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={listUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -82,9 +91,12 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 <IconButton
                     variant="outline"
                     aria-label={translate(
-                        `${resourceName}.titles.list`,
+                        `${resource?.name}.titles.list`,
                         userFriendlyResourceName(
-                            resource.label ?? resourceName,
+                            resource?.meta?.label ??
+                                resource?.label ??
+                                resource?.name ??
+                                resourceNameOrRouteName,
                             "plural",
                         ),
                     )}
@@ -106,14 +118,24 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 >
                     {children ??
                         translate(
-                            `${resourceName}.titles.list`,
+                            `${
+                                resource?.name ??
+                                resourceNameFromProps ??
+                                resourceNameOrRouteName
+                            }.titles.list`,
                             userFriendlyResourceName(
-                                resource.label ?? resourceName,
+                                resource?.meta?.label ??
+                                    resource?.label ??
+                                    resource?.name ??
+                                    pickNotDeprecated(
+                                        resourceNameFromProps,
+                                        resourceNameOrRouteName,
+                                    ),
                                 "plural",
                             ),
                         )}
                 </Button>
             )}
-        </Link>
+        </ActiveLink>
     );
 };

@@ -29,7 +29,7 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 ## How to use Inferencer
 
-The `@pankod/refine-inferencer` package provides the `<MantineInferencer/>` component, which can be imported from `@pankod/refine-inferencer/mantine`. It used to generate CRUD pages based on your API response with Mantine components.
+The `@refinedev/inferencer` package provides the `<MantineInferencer/>` component, which can be imported from `@refinedev/inferencer/mantine`. It used to generate CRUD pages based on your API response with Mantine components.
 
 The `<MantineInferencer/>` component is used by passing to appropriate values in the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 
@@ -40,48 +40,85 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 :::
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    //highlight-start
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                    //highlight-end
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+                                {/* highlight-end */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -119,45 +156,85 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products
 setInitialRoutes(["/products"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+} from "@refinedev/mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+                                {/* highlight-end */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -175,45 +252,85 @@ You should see the create page for the `products` resource that was generated by
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/create
 setInitialRoutes(["/products/create"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+} from "@refinedev/mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+                                {/* highlight-end */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -231,45 +348,85 @@ You should see the edit page for the `products` resource with the id `123` that 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/edit/123
 setInitialRoutes(["/products/edit/123"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+} from "@refinedev/mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+                                {/* highlight-end */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -287,45 +444,83 @@ You should see the show page for the `products` resource with the id `123` that 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/show/123
 setInitialRoutes(["/products/show/123"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+} from "@refinedev/mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+                                {/* highlight-end */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );

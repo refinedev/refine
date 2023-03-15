@@ -36,8 +36,8 @@
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine-core.svg)](https://www.npmjs.com/package/@pankod/refine-core)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
+[![npm version](https://img.shields.io/npm/v/@refinedev/core.svg)](https://www.npmjs.com/package/@refinedev/core)
+[![npm](https://img.shields.io/npm/dm/@refinedev/core)](https://www.npmjs.com/package/@refinedev/core)
 [![](https://img.shields.io/github/commit-activity/m/refinedev/refine)](https://github.com/refinedev/refine/commits/next)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -143,47 +143,66 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Let's consume a public `fake REST API` and add two resources (_posts_, _categories_) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import { AntdInferencer } from "@pankod/refine-inferencer/antd";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
+
+import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: 'posts',
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        meta: { canDelete: true },
+                    },
+                    {
+                        name: 'categories',
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="posts">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
-};
+};   
 
 export default App;
 ```

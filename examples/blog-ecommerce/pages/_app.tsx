@@ -1,11 +1,12 @@
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import routerProvider, {
+    UnsavedChangesNotifier,
+} from "@refinedev/nextjs-router";
 import { ChakraProvider } from "@chakra-ui/react";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { API_URL } from "src/constants";
 import { Layout } from "src/components";
@@ -30,15 +31,18 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider}
-                resources={[{ name: "products" }]}
-                Layout={Layout}
                 options={{
                     reactQuery: { devtoolConfig: { position: "bottom-left" } },
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
                 }}
             >
                 <ChakraProvider>
-                    <Component {...pageProps} />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
                 </ChakraProvider>
+                <UnsavedChangesNotifier />
             </Refine>
             <div
                 hidden

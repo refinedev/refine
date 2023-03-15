@@ -1,4 +1,4 @@
-import { buttonDeleteTests } from "@pankod/refine-ui-tests";
+import { buttonDeleteTests } from "@refinedev/ui-tests";
 import { DeleteButton } from "./";
 
 describe("Delete Button", () => {

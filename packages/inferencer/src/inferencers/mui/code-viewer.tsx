@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, Modal, IconButton } from "@pankod/refine-mui";
+import { Button, Box, Modal, IconButton } from "@mui/material";
 import {
     IconCode,
     IconMessageCircle,

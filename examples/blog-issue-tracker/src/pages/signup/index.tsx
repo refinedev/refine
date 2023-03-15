@@ -1,15 +1,15 @@
 import React from "react";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout as AntdLayout,
     Card,
     Typography,
     Form,
     Input,
     Button,
-} from "@pankod/refine-antd";
+} from "antd";
 import "./styles.css";
 import { supabaseClient } from "utility";
 

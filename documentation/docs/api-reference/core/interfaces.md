@@ -1,6 +1,7 @@
 ---
 id: interfaceReferences
 title: Interface References
+sidebar_label: Interface References 🆙
 ---
 
 ## CrudFilters
@@ -95,10 +96,11 @@ title: Interface References
 
 ## Pagination
 
-| Key      | Type     |
-| -------- | -------- |
-| current  | `number` |
-| pageSize | `number` |
+| Key      | Type                                |
+| -------- | ----------------------------------- |
+| current  | `number`                            |
+| pageSize | `number`                            |
+| mode     | `"client"` \| `"server"` \| `"off"` |
 
 ## BaseKey
 
@@ -242,29 +244,24 @@ ButtonProps
 | liveParams?  | `{ids?: BaseKey[]; [x: string]: any; }` |
 | onLiveEvent? | `(event: LiveEvent) => void`            |
 
-## OptionsProps
+## MetaProps
 
-| Key               | Type     |
-| ----------------- | -------- |
-| label?            | `string` |
-| route?            | `string` |
-| dataProviderName? | `string` |
-| [key: string]     | `any`    |
+| Key               | Type              |
+| ----------------- | ----------------- |
+| label?            | `string`          |
+| icon?             | `React.ReactNode` |
+| audit?            | `string[]`        |
+| parent?:          | `string`          |
+| dataProviderName? | `string`          |
+| [key: string]     | `any`             |
 
 ## ResourceItemProps
 
 | Key         | Type        |
 | ----------- | ----------- |
 | name        | `string`    |
-| label ?     | `string`    |
-| route?      | `string`    |
-| icon?       | `ReactNode` |
-| canCreate?  | `boolean`   |
-| canEdit?    | `boolean`   |
-| canShow?    | `boolean`   |
-| canDelete?  | `boolean`   |
-| options?    | `object`    |
-| parentName? | `string`    |
+| identifier? | `string`    |
+| meta?       | `MetaProps` |
 
 ## SyncWithLocationParams
 

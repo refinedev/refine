@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-mui tutorial
     ```
+
     > Only support yarn@1 version.
 
     </TabItem>
@@ -119,20 +120,19 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
-    ReadyPage,
+    WelcomePage,
     ErrorComponent,
     LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
     RefineSnackbarProvider,
     notificationProvider,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+import routerBindings from "@refinedev/react-router-v6";
+import { BrowserRouter } from "react-router-dom";
+import dataProvider from "@refinedev/simple-rest";
 
 const App: React.FC = () => {
     return (
@@ -140,16 +140,17 @@ const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                    >
+                        <WelcomePage />
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );

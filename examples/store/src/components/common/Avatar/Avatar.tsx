@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 import { Customer } from "@medusajs/medusa";
 
 export const Avatar: React.FC = () => {

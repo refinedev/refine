@@ -3,29 +3,26 @@ id: base64-upload
 title: Base64 Upload
 ---
 
-By encoding your files and images from your forms to Base64 you can change all files needed for the upload to Base64 format before the submit. This can be done via the `onFinish` property of the [`<Form>`](https://ant.design/components/form/#Form) component that comes with [Ant Design](https://ant.design/) 
+By encoding your files and images from your forms to Base64 you can change all files needed for the upload to Base64 format before the submit. This can be done via the `onFinish` property of the [`<Form>`](https://ant.design/components/form/#Form) component that comes with [Ant Design](https://ant.design/)
 
 # Example
 
-Now let's make a small example to see how its done. In this example, the file we are going to be uploading files in Base64 type  is going to be called `avatar`
+Now let's make a small example to see how its done. In this example, the file we are going to be uploading files in Base64 type is going to be called `avatar`
 
-```tsx  title="pages/users/create.tsx"
+```tsx title="pages/users/create.tsx"
 import {
     //highlight-start
     file2Base64,
     //highlight-end
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     Create,
-    Form,
-    Upload,
-    Input,
     useForm,
-// highlight-start
+    // highlight-next-line
     getValueFromEvent,
-// highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Form, Upload, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
     const { form, formProps, saveButtonProps } = useForm<IUser>();
@@ -35,7 +32,7 @@ export const UserCreate: React.FC = () => {
             <Form
                 {...formProps}
                 layout="vertical"
-// highlight-start
+                // highlight-start
                 onFinish={async (values) => {
                     const base64Files = [];
                     // @ts-ignore
@@ -62,7 +59,7 @@ export const UserCreate: React.FC = () => {
                         })
                     );
                 }}
-// highlight-end
+                // highlight-end
             >
                 <Form.Item
                     label="First Name"
@@ -79,7 +76,7 @@ export const UserCreate: React.FC = () => {
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
-// highlight-start
+                        // highlight-start
                         getValueFromEvent={getValueFromEvent}
                         noStyle
                         rules={[
@@ -91,7 +88,7 @@ export const UserCreate: React.FC = () => {
                         <Upload.Dragger
                             listType="picture"
                             multiple
-// highlight-start
+                            // highlight-start
                             beforeUpload={() => false}
                         >
                             <p className="ant-upload-text">
@@ -129,4 +126,3 @@ An edit form can be made by using the `<Edit>` component instead of `<Create>` w
 ## Example
 
 <CodeSandboxExample path="upload-antd-multipart" />
- 

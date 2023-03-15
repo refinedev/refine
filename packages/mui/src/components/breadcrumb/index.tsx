@@ -1,10 +1,14 @@
 import React from "react";
 import {
+    matchResourceFromRoute,
     useBreadcrumb,
+    useLink,
     useRefineContext,
+    useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+    useRouterType,
+} from "@refinedev/core";
+import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
     Breadcrumbs,
@@ -23,17 +27,27 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    meta,
 }) => {
-    const { breadcrumbs } = useBreadcrumb();
-    const { Link: RouterLink } = useRouterContext();
+    const { breadcrumbs } = useBreadcrumb({ meta });
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : NewLink;
+
     const { hasDashboard } = useRefineContext();
+
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
 
     if (breadcrumbs.length === 1) {
         return null;
     }
 
     const LinkRouter = (props: LinkProps & { to?: string }) => (
-        <Link {...props} component={RouterLink} />
+        <Link {...props} component={ActiveLink} />
     );
 
     return (
@@ -46,7 +60,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             }}
             {...breadcrumbProps}
         >
-            {showHome && hasDashboard && (
+            {showHome && (hasDashboard || rootRouteResource.found) && (
                 <LinkRouter
                     underline="hover"
                     sx={{
@@ -56,11 +70,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     color="inherit"
                     to="/"
                 >
-                    <HomeOutlined
-                        sx={{
-                            fontSize: "18px",
-                        }}
-                    />
+                    {rootRouteResource?.resource?.meta?.icon ?? (
+                        <HomeOutlined
+                            sx={{
+                                fontSize: "18px",
+                            }}
+                        />
+                    )}
                 </LinkRouter>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {

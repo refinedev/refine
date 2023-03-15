@@ -1,15 +1,20 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 
 import {
     notificationProvider,
     LoginPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
-import { DataProvider } from "@pankod/refine-strapi";
+import "@refinedev/antd/dist/reset.css";
+import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
 
@@ -23,26 +28,74 @@ function App() {
     const { authProvider, axiosInstance } = strapiAuthProvider(API_URL);
     const dataProvider = DataProvider(API_URL, axiosInstance);
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider}
                 authProvider={authProvider}
-                Header={Header}
-                Layout={Layout}
-                OffLayoutArea={OffLayoutArea}
                 routerProvider={routerProvider}
                 resources={[
                     {
                         name: "feedbacks",
-                        list: FeedbackList,
+                        list: "/feedbacks",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                LoginPage={LoginPage}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout
+                                    Header={Header}
+                                    OffLayoutArea={OffLayoutArea}
+                                >
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="feedbacks" />
+                            }
+                        />
+
+                        <Route path="/feedbacks" element={<FeedbackList />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="feedbacks" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<LoginPage />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 }
 

@@ -1,42 +1,76 @@
-import { AppwriteException } from "@pankod/refine-appwrite";
-import { AuthProvider } from "@pankod/refine-core";
+import { AppwriteException } from "@refinedev/appwrite";
+import { AuthBindings } from "@refinedev/core";
 
 import { account } from "utility";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } catch (e) {
             const { type, message, code } = e as AppwriteException;
-            return Promise.reject({
-                message,
-                name: `${code} - ${type}`,
-            });
+            return {
+                success: false,
+                error: {
+                    message,
+                    name: `${code} - ${type}`,
+                },
+            };
         }
     },
     logout: async () => {
-        await account.deleteSession("current");
+        try {
+            await account.deleteSession("current");
 
-        return "/";
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        } catch (error) {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const session = await account.getSession("current");
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
+        try {
+            const session = await account.getSession("current");
 
-        if (session) {
-            return Promise.resolve();
+            if (session) {
+                return {
+                    authenticated: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                redirectTo: "/login",
+                error,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
+
+        return null;
     },
 };

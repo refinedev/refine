@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example multi-tenancy-appwrite
 
 <br/>
 
-[![Open multi-tenancy-appwrite example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/multi-tenancy-appwrite?view=preview&theme=dark&codemirror=1)
+[![Open multi-tenancy-appwrite example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/multi-tenancy-appwrite?view=preview&theme=dark&codemirror=1)
         

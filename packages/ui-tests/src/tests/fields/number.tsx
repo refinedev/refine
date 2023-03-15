@@ -1,12 +1,12 @@
 import React, { ReactChild } from "react";
-import { RefineFieldNumberProps } from "@pankod/refine-ui-types";
+import { RefineFieldNumberProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
 export const fieldNumberTests = function (
     NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Number Field", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Number Field", () => {
         it("renders numbers with given formatting", () => {
             const testPrice = 12345.6789;
             const options = {

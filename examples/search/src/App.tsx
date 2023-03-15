@@ -1,13 +1,13 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { GitHubBanner, Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -23,33 +23,66 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}
-                Header={Header}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
                     },
                     {
                         name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                        edit: CategoryEdit,
-                        show: CategoryShow,
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    warnWhenUnsavedChanges: true,
+                    syncWithLocation: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout Header={Header}>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

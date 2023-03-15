@@ -13,7 +13,7 @@ source: packages/core/src/hooks/live/useSubscription/index.ts
 ## Usage
 
 ```tsx
-import { useSubscription } from "@pankod/refine-core";
+import { useSubscription } from "@refinedev/core";
 
 useSubscription({
     channel: "channel-name",
@@ -49,7 +49,7 @@ Type of events to subscribe. `"\*"` means all events.
 
 You can pass any additional parameters to the [`liveProvider`][live-provider]'s [`subscribe`][live-provider-subscribe] method.
 
-Hooks that use `useSubscription` internally, send the query's parameters(pagination, metaData, sort, filters, etc.) information along with this prop.
+Hooks that use `useSubscription` internally, send the query's parameters(pagination, meta, sort, filters, etc.) information along with this prop.
 
 [Refer to LiveProvider's "Supported Hooks Subscription" section for which hooks are using `useSubscription` internally &#8594][supported-hooks-subscription]
 
@@ -57,7 +57,7 @@ Hooks that use `useSubscription` internally, send the query's parameters(paginat
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useSubscription"  />
+<PropsTable module="@refinedev/core/useSubscription"  />
 
 [live-provider]: /docs/api-reference/core/providers/live-provider
 [live-provider-subscribe]: /docs/api-reference/core/providers/live-provider/#subscribe

@@ -8,13 +8,22 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-p
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code examples in this post have been updated to version 4.x.x.
+
+:::
 
 This post is the first part of an admin dashboard app built using [**refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**refineWeek**](https://refine.dev/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
 
 This is Day 5, and **refineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities within a week.
 
-- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/next/examples/pixels-admin)
-- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/next/examples/pixels)
+- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
+- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
 
 ### refineWeek series
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
@@ -42,7 +51,7 @@ As done previously in the client app, let's initialize our admin app with `creat
 
 
 ```bash
-npm create refine-app@latest pixels-admin
+npm create refine-app@latest pixels-admin -- -b v3
 ```
 
 We will use **Supabase** for our backend, and **Ant Design** for our UI. We want to be able to customize the **Ant Design** theme and layout. So, we have the below answers related to **Supabase** and **Ant Design**:
@@ -90,17 +99,17 @@ The `App.tsx` file should be familiar from [Day 2](https://refine.dev/blog/refin
 ```tsx title="src/App.tsx"
 import React from 'react';
 
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 import {
     AuthPage,
     notificationProvider,
     ReadyPage,
     ErrorComponent,
-} from '@pankod/refine-antd';
-import '@pankod/refine-antd/dist/reset.css';
+} from '@refinedev/antd';
+import '@refinedev/antd/dist/reset.css';
 
-import { dataProvider, liveProvider } from '@pankod/refine-supabase';
-import routerProvider from '@pankod/refine-react-router-v6';
+import { dataProvider, liveProvider } from '@refinedev/supabase';
+import routerProvider from '@refinedev/react-router-v6';
 import { supabaseClient } from 'utility';
 import { Title } from 'components/layout';
 import authProvider from './authProvider';
@@ -168,7 +177,7 @@ So, we need to get the access credentials for our server from the **Supabase** d
 We'll go ahead and update the `supabaseClient.ts` file:
 
 ```tsx title="src/utility/supabaseClient.ts"
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
@@ -208,7 +217,7 @@ import {
   Table,
   Avatar,
   Icons
-} from '@pankod/refine-antd';
+} from '@refinedev/antd';
 import { TUser } from 'types/user';
 
 const { UserOutlined } = Icons;
@@ -288,7 +297,7 @@ The components tree looks very plain, but there is plenty going on in there. Fir
 
 ### refine Ant Design `useTable()` Hook
 
-[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) is a **refine** **Ant Design** hook served to us from the `@pankod/refine-antd` package. As we can see above, it returns us a `tableProps` object:
+[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) is a **refine** **Ant Design** hook served to us from the `@refinedev/antd` package. As we can see above, it returns us a `tableProps` object:
 
 ```tsx
 const { tableProps } = useTable<TUser>();
@@ -320,7 +329,7 @@ For more on the usage of `<List />`, look into [the details here](https://refine
 
 ### refine Ant Design `<Table />` Component
 
-[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) hook's `tableProps` is specifically configured to match the props of **Ant Design**'s native `<Table />` component. **refine** makes `<Table />` available to us with the `@pankod/refine-antd` module.
+[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) hook's `tableProps` is specifically configured to match the props of **Ant Design**'s native `<Table />` component. **refine** makes `<Table />` available to us with the `@refinedev/antd` module.
 
 Besides passing in the `tableProps` object to `<Table />`, we are required to provide a unique `rowKey` prop to identify each row in the table:
 
@@ -388,19 +397,19 @@ Simply you change your `App.tsx` code like this:
 ```tsx title="App.tsx"
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     notificationProvider,
     ReadyPage,
     ErrorComponent,
     ConfigProvider,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Title } from "./components/layout";
-import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6";
 import { supabaseClient } from "utility";
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import authProvider from 'authProvider';
 import { UserList } from "pages";
@@ -504,7 +513,7 @@ The `name: "users"` property in our first resource is used to define the `/users
 
 ## Editable Table Using refine and Ant Design
 
-For our `<CanvasList />` view, we want to allow **editors** and **admins** to promote or delete a `canvas` item. This means, we need to be able to send `POST`, `PUT`/`PATCH` and `DELETE` requests. `@pankod/refine-antd`'s `useEditableTable()` hook makes life beautiful for us.
+For our `<CanvasList />` view, we want to allow **editors** and **admins** to promote or delete a `canvas` item. This means, we need to be able to send `POST`, `PUT`/`PATCH` and `DELETE` requests. `@refinedev/antd`'s `useEditableTable()` hook makes life beautiful for us.
 
 We have a `useEditableTable()` hook in action inside our `<CanvasList />` component:
 
@@ -514,7 +523,7 @@ We have a `useEditableTable()` hook in action inside our `<CanvasList />` compon
 
 ```tsx title="pages/canvases/list.tsx"
 import React from 'react';
-import { useUpdate } from '@pankod/refine-core';
+import { useUpdate } from '@refinedev/core';
 import {
     List,
     useEditableTable,
@@ -524,7 +533,7 @@ import {
     DeleteButton,
     Space,
     Tag,
-} from '@pankod/refine-antd';
+} from '@refinedev/antd';
 import { TCanvas } from 'types/canvas';
 
 type TCanvasPromoteResult = {
@@ -668,7 +677,7 @@ export const CanvasList = () => {
 
 ### refine Ant Design `useEditableTable()` Hook
 
-The `useEditableTable()` hook is the extension of `@pankod/refine-antd`'s `useTable()` hook. It returns a `formProps` object that we can pass to `<Form />` components in order to handle form actions, loading and displaying success and error messages.
+The `useEditableTable()` hook is the extension of `@refinedev/antd`'s `useTable()` hook. It returns a `formProps` object that we can pass to `<Form />` components in order to handle form actions, loading and displaying success and error messages.
 
 Like `useTable()`, the `useEditableTable()` hook also returns a `tableProps` object:
 
@@ -695,7 +704,7 @@ Thanks to the `formProps` being passed to `<Form />`, implementing `delete` acti
 <DeleteButton size="small" recordItemId={record.id} />
 ```
 
-`@pankod/refine-antd`'s `<DeleteButton />` leverages **Ant Design**'s `<Button />` and `<Popconfirm />` components. It invokes the `delete()` data provider method to send a `DELETE` request to the `resource` end point. The `resource.name` is inferred from the `formProps` passed to `<Form />` component.
+`@refinedev/antd`'s `<DeleteButton />` leverages **Ant Design**'s `<Button />` and `<Popconfirm />` components. It invokes the `delete()` data provider method to send a `DELETE` request to the `resource` end point. The `resource.name` is inferred from the `formProps` passed to `<Form />` component.
 
 For more details, visit the [`<DeleteButton />` docs.](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)
 
@@ -828,7 +837,7 @@ With these additions, `/canvases` looks like this:
 
 In this post, we initialized an admin dashboard app for our **Pixels** client app which we built in the previous episodes in the [refineWeek](https://refine.dev/week-of-refine/) series. We implemented list views for two `resources`: `users` and `canvases`.
 
-Inside the lists, we fetched data from these resources and rendered them inside tables. We implemented two types of tables using two distinct `@pankod/refine-antd` hooks: `useTable()` for regular tables and `useEditableTable()` that allows data in the table to be mutated.
+Inside the lists, we fetched data from these resources and rendered them inside tables. We implemented two types of tables using two distinct `@refinedev/antd` hooks: `useTable()` for regular tables and `useEditableTable()` that allows data in the table to be mutated.
 
 These hooks are supported by **refine** core's `useMany()` hook, which uses the `getMany()` data provider method to interact with external API.
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { useRouterContext, TitleProps } from "@pankod/refine-core";
-import { Button } from "@pankod/refine-mui";
+import { useRouterContext, TitleProps } from "@refinedev/core";
+import { Button } from "@mui/material";
 
 import { logo, yariga } from "assets";
 

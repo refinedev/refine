@@ -1,11 +1,8 @@
-import {
-    Edit,
-    Box,
-    useAutocomplete,
-    TextField,
-    Autocomplete,
-} from "@pankod/refine-mui";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { Edit, useAutocomplete } from "@refinedev/mui";
+import { Box, TextField, Autocomplete } from "@mui/material";
+import { useForm } from "@refinedev/react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 export const ProductEdit = () => {
     const {
@@ -101,7 +98,7 @@ export const ProductEdit = () => {
                     name="category"
                     rules={{ required: "This field is required" }}
                     // eslint-disable-next-line
-          defaultValue={null as any}
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...categoryAutocompleteProps}

@@ -1,16 +1,21 @@
-import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -24,64 +29,133 @@ const App: React.FC = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthProvider = {
-        login: () => {
-            return Promise.resolve(false);
+    const authProvider: AuthBindings = {
+        login: async () => {
+            return {
+                success: true,
+            };
         },
-        logout: () => {
+        logout: async () => {
             logout({ returnTo: window.location.origin });
-            return Promise.resolve("/");
+            return {
+                success: true,
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
+        check: async () => {
             try {
                 const token = await getIdTokenClaims();
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token.__raw}`,
                     };
-                    return Promise.resolve();
+                    return {
+                        authenticated: true,
+                    };
                 } else {
-                    return Promise.reject();
+                    return {
+                        authenticated: false,
+                        error: new Error("Token not found"),
+                        redirectTo: "/login",
+                        logout: true,
+                    };
                 }
-            } catch (error) {
-                return Promise.reject();
+            } catch (error: any) {
+                return {
+                    authenticated: false,
+                    error: new Error(error),
+                    redirectTo: "/login",
+                    logout: true,
+                };
             }
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             if (user) {
-                return Promise.resolve({
+                return {
                     ...user,
                     avatar: user.picture,
-                });
+                };
             }
-            return Promise.reject();
+            return null;
         },
     };
 
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
-                LoginPage={Login}
                 authProvider={authProvider}
                 dataProvider={dataProvider(API_URL, axios)}
                 routerProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

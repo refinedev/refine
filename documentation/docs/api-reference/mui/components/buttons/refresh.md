@@ -4,7 +4,6 @@ title: Refresh
 swizzle: true
 ---
 
-
 `<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
@@ -15,9 +14,10 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 // highlight-next-line
-import { Show, Typography, Stack, RefreshButton } from "@pankod/refine-mui";
+import { Show, RefreshButton } from "@refinedev/mui";
+import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
@@ -27,11 +27,11 @@ const PostShow: React.FC = () => {
     return (
         <Show
             isLoading={isLoading}
-            headerButtons={(
-                    // highlight-start
-                    <RefreshButton />
-                    // highlight-end
-            )}
+            headerButtons={
+                // highlight-start
+                <RefreshButton />
+                // highlight-end
+            }
         >
             <Typography fontWeight="bold">Id</Typography>
             <Typography>{record?.id}</Typography>
@@ -53,7 +53,11 @@ render(
         resources={[
             {
                 name: "posts",
-                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
+                list: () => (
+                    <RefineMui.List>
+                        <p>Rest of the page here...</p>
+                    </RefineMui.List>
+                ),
                 show: PostShow,
             },
         ]}
@@ -70,12 +74,12 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -102,21 +106,21 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
             recordItemId="1"
             // highlight-next-line
-            resourceNameOrRouteName="posts"
+            resource="posts"
         />
     );
 };
@@ -148,7 +152,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (
@@ -175,12 +179,53 @@ render(
 );
 ```
 
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+// visible-block-start
+import { RefreshButton } from "@refinedev/mui";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            recordItemId="1"
+            // highlight-next-line
+            resourceNameOrRouteName="posts"
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+        ]}
+        DashboardPage={MyRefreshComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/RefreshButton" />
+<PropsTable module="@refinedev/mui/RefreshButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
-:::         
+:::

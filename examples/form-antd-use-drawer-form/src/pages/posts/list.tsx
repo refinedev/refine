@@ -1,24 +1,19 @@
 import React, { useState } from "react";
-import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
     Create,
     Edit,
     Show,
-    Table,
-    Form,
-    Select,
-    Input,
-    Drawer,
-    Space,
-    Typography,
     EditButton,
     ShowButton,
     DeleteButton,
     useTable,
     useDrawerForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Form, Select, Input, Drawer, Space, Typography } from "antd";
 
 import { IPost } from "../../interfaces";
 
@@ -197,7 +192,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Show
                     isLoading={showIsLoading}
-                    headerButtons={<DeleteButton recordItemId={showId} />}
+                    headerButtons={
+                        <DeleteButton
+                            recordItemId={showId}
+                            onSuccess={() => setVisibleShowDrawer(false)}
+                        />
+                    }
                 >
                     <Title level={5}>Id</Title>
                     <Text>{record?.id}</Text>

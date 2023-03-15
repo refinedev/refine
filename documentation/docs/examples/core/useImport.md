@@ -1,7 +1,7 @@
 ---
 id: useImport
 title: useImport
-description: useImport example of @pankod/refine-core
+description: useImport example of @refinedev/core
 example-title: Refine's useImport hook
 example-tags: [headless,refine-hooks]
 ---

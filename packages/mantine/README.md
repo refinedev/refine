@@ -41,8 +41,8 @@
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine-core.svg)](https://www.npmjs.com/package/@pankod/refine-core)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
+[![npm version](https://img.shields.io/npm/v/@refinedev/core.svg)](https://www.npmjs.com/package/@refinedev/core)
+[![npm](https://img.shields.io/npm/dm/@refinedev/core)](https://www.npmjs.com/package/@refinedev/core)
 [![](https://img.shields.io/github/commit-activity/m/refinedev/refine)](https://github.com/refinedev/refine/commits/next)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -164,7 +164,7 @@ Let's consume a public `fake REST API` and add two resources (*posts*, *categori
 
 ```tsx title="src/App.tsx"
 import React from 'react';
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 import {
     NotificationsProvider,
     notificationProvider,
@@ -172,49 +172,58 @@ import {
     Global,
     Layout,
     LightTheme,
-    ReadyPage,
     ErrorComponent,
-} from '@pankod/refine-mantine';
+} from '@refinedev/mantine';
 
-import {
-    MantineListInferencer,
-    MantineShowInferencer,
-    MantineCreateInferencer,
-    MantineEditInferencer,
-} from '@pankod/refine-inferencer/mantine';
+import { MantineInferencer } from '@refinedev/inferencer/mantine';
 
-import dataProvider from '@pankod/refine-simple-rest';
-import routerProvider from '@pankod/refine-react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
+import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
+
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
 function App() {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: 'auto' } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    dataProvider={dataProvider(
-                        'https://api.fake-rest.refine.dev'
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: 'samples',
-                            list: MantineListInferencer,
-                            show: MantineShowInferencer,
-                            create: MantineCreateInferencer,
-                            edit: MantineEditInferencer,
-                        },
-                        {
-                            name: 'tags',
-                            list: MantineListInferencer,
-                            show: MantineShowInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        dataProvider={dataProvider(
+                            'https://api.fake-rest.refine.dev'
+                        )}
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: 'samples',
+                                list: "/samples",
+                                show: "/samples/show/:id",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                )}
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                <Route path="samples">
+                                    <Route index element={<MantineInferencer />} />
+                                    <Route path="show/:id" element={<MantineInferencer />} />
+                                    <Route path="create" element={<MantineInferencer />} />
+                                    <Route path="edit/:id" element={<MantineInferencer />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );

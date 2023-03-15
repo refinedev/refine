@@ -1,6 +1,7 @@
 ---
 id: supabase
 title: Supabase
+sidebar_label: Supabase 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -68,7 +69,7 @@ Then choose the following options:
 If you want to add Supabase data provider to existed **refine** app, you add it by running:
 
 ```
-npm i @pankod/refine-supabase
+npm i @refinedev/supabase
 ```
 
 :::
@@ -83,7 +84,7 @@ npm i @pankod/refine-supabase
 If you head over to `src/utilty` folder, you'll see a file called `supabaseClient.ts` created by CLI. This auto-generated file contains API credentials and a function that initializes the Supabase client.
 
 ```ts
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
 const SUPABASE_KEY =
@@ -112,21 +113,22 @@ You can also use environment variables to store your Supabase URL and key. This 
 Let's head over to `App.tsx` file where all magic happens. This is the entry point of our app. We'll be registering our Supabase data provider here.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 ...
  // highlight-start
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 // highlight-end
 
 function App() {
   return (
     <Refine
-      ...
       // highlight-next-line
       dataProvider={dataProvider(supabaseClient)}
-      ...
-    />
+      /* ... */
+    >
+        {/* ... */}
+    </Refine>
   );
 }
 
@@ -155,123 +157,228 @@ Since we preferred refine-supabase as the data provider during the CLI project i
 <p>
 
 ```ts title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password, providerName }) => {
         // sign in with oauth
-        if (providerName) {
-            const { data, error } = await supabaseClient.auth.signInWithOAuth({
-                provider: providerName,
+        try {
+            if (providerName) {
+                const { data, error } =
+                    await supabaseClient.auth.signInWithOAuth({
+                        provider: providerName,
+                    });
+
+                if (error) {
+                    return {
+                        success: false,
+                        error,
+                    };
+                }
+
+                if (data?.url) {
+                    return {
+                        success: true,
+                    };
+                }
+            }
+
+            // sign in with email and password
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password,
+                });
+
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data?.user) {
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
+        }
+
+        return {
+            success: false,
+            error: new Error("Login failed"),
+        };
+    },
+    register: async ({ email, password }) => {
+        try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password,
             });
 
             if (error) {
-                return Promise.reject(error);
+                return {
+                    success: false,
+                    error,
+                };
             }
 
-            if (data?.url) {
-                return Promise.resolve(false);
+            if (data) {
+                return {
+                    success: true,
+                };
             }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
         }
 
-        // sign in with email and password
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data?.user) {
-            return Promise.resolve();
-        }
-
-        // for third-party login
-        return Promise.resolve(false);
-    },
-    register: async ({ email, password }) => {
-        const { data, error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-        });
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data) {
-            return Promise.resolve();
-        }
+        return {
+            success: false,
+            error: new Error("Login failed"),
+        };
     },
     forgotPassword: async ({ email }) => {
-        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            {
-                redirectTo: `${window.location.origin}/update-password`,
-            },
-        );
+        try {
+            const { data, error } =
+                await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: `${window.location.origin}/update-password`,
+                });
 
-        if (error) {
-            return Promise.reject(error);
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            if (data) {
+                notification.open({
+                    type: "success",
+                    message: "Success",
+                    description:
+                        "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
+                });
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
         }
 
-        if (data) {
-            return Promise.resolve();
-        }
+        return {
+            success: false,
+            error: new Error("Forgot Password password failed"),
+        };
     },
     updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.updateUser({
-            password,
-        });
+        try {
+            const { data, error } = await supabaseClient.auth.updateUser({
+                password,
+            });
 
-        if (error) {
-            return Promise.reject(error);
-        }
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
 
-        if (data) {
-            return Promise.resolve("/");
+            if (data) {
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
         }
+        return {
+            success: false,
+            error: new Error("Update Password password failed"),
+        };
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
 
         if (error) {
-            return Promise.reject(error);
+            return {
+                success: false,
+                error,
+            };
         }
 
-        return Promise.resolve("/");
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const { data } = await supabaseClient.auth.getSession();
-        const { session } = data;
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
+        try {
+            const { data } = await supabaseClient.auth.getSession();
+            const { session } = data;
 
-        if (!session) {
-            return Promise.reject();
+            if (!session) {
+                return {
+                    authenticated: false,
+                    error: new Error("Not authenticated"),
+                    logout: true,
+                    redirectTo: "/login",
+                };
+            }
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                error: error || new Error("Not authenticated"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
         const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return Promise.resolve(user.data.user?.role);
+            return user.data.user?.role;
         }
+
+        return null;
     },
     getUserIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
 
         if (data?.user) {
-            return Promise.resolve({
+            return {
                 ...data.user,
                 name: data.user.email,
-            });
+            };
         }
+
+        return null;
     },
 };
 
@@ -290,7 +397,7 @@ Auth provider functions are also consumed by [refine authorization hooks](/docs/
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 ...
  // highlight-start
 import authProvider from './authProvider';
@@ -299,11 +406,12 @@ import authProvider from './authProvider';
 function App() {
   return (
     <Refine
-      ...
       // highlight-next-line
       authProvider={authProvider}
-      ...
-    />
+      /* ... */
+    >
+        {/* ... */}
+    </Refine>
   );
 }
 
@@ -345,32 +453,30 @@ Let's add a listing page to show data retrieved from Supabase API in the table. 
 <p>
 
 ```tsx title="src/pages/posts/list.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
-
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table, Space, Select } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
+        meta: {
             select: "*, categories(title)",
         },
     });
@@ -450,25 +556,17 @@ We'll need a page for creating a new record in Supabase API. Copy and paste foll
 
 ```tsx title="src/pages/posts/create.tsx"
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    RcFile,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -579,29 +677,23 @@ We'll need a page for editing a record in Supabase API. Copy and paste following
 
 ```tsx title="src/pages/posts/edit.tsx"
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    Alert,
-    Button,
     Edit,
-    Form,
-    Input,
     ListButton,
-    RcFile,
     RefreshButton,
-    Select,
-    Upload,
     useForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Alert, Button, Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit: React.FC = () => {
     const [isDeprecated, setIsDeprecated] = useState(false);
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         liveMode: "manual",
@@ -786,7 +878,7 @@ Also, the `normalizeFile` function needed to be added to the `src/utility/normal
 <p>
 
 ```tsx title="src/utility/normalize.ts"
-import { UploadFile } from "@pankod/refine-antd";
+import { UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
     url: string;
@@ -831,27 +923,38 @@ export * from "./list";
 One last thing we need to do is to add newly created CRUD pages to the `resources` property of `<Refine>` component.
 
 ```tsx title="src/App.tsx"
-import { dataProvider } from '@pankod/refine-supabase';
+import { dataProvider } from '@refinedev/supabase';
 import { supabaseClient } from 'utility';
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 //highlight-next-line
 import { PostList, PostCreate, PostEdit } from 'pages/posts';
 
 function App() {
     return (
-        <Refine
-            ...
-            dataProvider={dataProvider(supabaseClient)}
-            //highlight-start
-            resources={[
-                {
-                    name: 'posts',
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit
-                },
-            ]}
-            //highlight-end
-        />
+        <BrowserRouter>
+            <Refine
+                ...
+                dataProvider={dataProvider(supabaseClient)}
+                //highlight-start
+                resources={[
+                    {
+                        name: 'posts',
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route path="/posts" element={<PostList />} />
+                    <Route path="/posts/create" element={<PostCreate />} />
+                    <Route path="/posts/edit/:id" element={<PostEdit />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
 
@@ -892,47 +995,78 @@ Normally, refine shows a default login page when `authProvider` and `resources` 
 Let's check out the `LoginPage` property:
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
+import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
-import { AuthPage } from '@pankod/refine-antd';
-import routerProvider from "@pankod/refine-react-router-v6";
+import { AuthPage } from "@refinedev/antd";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 //highlight-end
-import authProvider from './authProvider';
-...
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import authProvider from "./authProvider";
+
+/* ... */
 
 function App() {
-  return (
-      <Refine
-          ...
-          //highlight-start
-           routerProvider={{
-              ...routerProvider,
-              routes: [
-                  {
-                      path: '/register',
-                      element: <AuthPage type="register" />,
-                  },
-                  {
-                      path: '/forgot-password',
-                      element: <AuthPage type="forgotPassword" />,
-                  },
-                  {
-                      path: '/update-password',
-                      element: <AuthPage type="updatePassword" />,
-                  },
-              ],
-          }}
-          //highlight-end
-          authProvider={authProvider}
-          //highlight-start
-          LoginPage={AuthPage}
-          //highlight-end
-      />
-  );
+    return (
+        <BrowserRouter>
+            <Refine
+                /* ... */
+                //highlight-next-line
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/posts"
+                            element={<div>dummy list page</div>}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        {/* highlight-start */}
+                        <Route path="/login" element={<AuthPage />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                        {/* highlight-end */}
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
 }
 ```
 
-The `AuthPage` component returns ready-to-use authentication pages for login, register, update, and forgot password actions. We passed it to the `LoginPage` property to override the default login page.
+The `AuthPage` component returns ready-to-use authentication pages for login, register, update, and forgot password actions.
 
 **This is where `authProvider` comes into play.**
 
@@ -994,38 +1128,29 @@ We'll show how to add Google Login option to the app.
 Social login feature can be activated by setting `provider` property of the `<AuthPage>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
 //highlight-start
-import { AuthPage } from '@pankod/refine-antd';
+import { AuthPage } from "@refinedev/antd";
 import { GoogleOutlined } from "@ant-design/icons";
-  //highlight-end
-...
+//highlight-end
 
-function App() {
+const MyLoginPage = () => {
     return (
-        <Refine
-            ...
-            //highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    type="login"
-                    providers={[
-                        {
-                            name: "google",
-                            label: "Sign in with Google",
-                            icon: (
-                                <GoogleOutlined
-                                    style={{ fontSize: 18, lineHeight: 0 }}
-                                />
-                            ),
-                        },
-                    ]}
-                />
-            )}
-            //highlight-end
+        <AuthPage
+            type="login"
+            providers={[
+                {
+                    name: "google",
+                    label: "Sign in with Google",
+                    icon: (
+                        <GoogleOutlined
+                            style={{ fontSize: 18, lineHeight: 0 }}
+                        />
+                    ),
+                },
+            ]}
         />
     );
-}
+};
 ```
 
 This will add a new Google login button to the login page. After the user successfully logs in, the app will redirect back to the app.
@@ -1079,30 +1204,32 @@ So far, we have implemented the followings:
 ## Supabase Real Time Support
 
 **refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
-Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
+Required Supabase Real Time setup is already done in the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
 
 [You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
 
 We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
+import { Refine } from "@refinedev/core";
 //highlight-start
-import { liveProvider } from "@pankod/refine-supabase";
-import { supabaseClient } from 'utility';
+import { liveProvider } from "@refinedev/supabase";
+import { supabaseClient } from "utility";
 //highlight-end
-...
+
+/* ... */
 
 function App() {
     return (
         <Refine
-            ...
             //highlight-start
-             liveProvider={liveProvider(supabaseClient)}
-             options={{ liveMode: "auto" }}
+            liveProvider={liveProvider(supabaseClient)}
+            options={{ liveMode: "auto" }}
             //highlight-end
-            ...
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 }
 ```
@@ -1114,7 +1241,7 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 :::
 
 :::caution
-With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@pankod/refine-supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
+With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
 :::
 
 <br/>
@@ -1132,24 +1259,24 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 :::tip
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 -   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-:::
+    :::
 
-## Using `metaData` to pass values to data provider
+## Using `meta` to pass values to data provider
 
-The [`metaData`](/docs/api-reference/general-concepts.md/#metadata) property is used to pass additional information that can be read by data provider methods.
+The [`meta`](/docs/api-reference/general-concepts.md/#meta) property is used to pass additional information that can be read by data provider methods.
 
-We'll show an example of getting relational data from different tables on Supabase API using `metaData` property.
+We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
 Take a look at the useTable hook in List page we created on the [previous sections](http://localhost:3000/docs/advanced-tutorials/data-provider/supabase/#adding-a-list-page).
 
 ### `select` - Handling one-to-many relationship
 
-We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
+We pass a `select` value in `meta` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
 
 In this way, we can get the `title` data from the `categories` table and display it on the List page.
 
@@ -1159,24 +1286,24 @@ For example, for `posts -> categories` relationship, we can get the `title` data
 const { tableProps, sorter } = useTable<IPost>({
     //highlight-start
     resource: "posts",
-    metaData: {
+    meta: {
         select: "*, categories(title)",
     },
     // highlight-end
 });
 ```
 
-`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using `metaData` property.
+`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using `meta` property.
 
 ### `select` - Handling many-to-many relationships
 
-For example, for `movies <-> categories_movies <-> categories` many-to-many relationship, we can get the `categories` data of a user using `metaData` property.
+For example, for `movies <-> categories_movies <-> categories` many-to-many relationship, we can get the `categories` data of a user using `meta` property.
 
 ```tsx title="src/pages/users/list.tsx"
 const { tableProps, sorter } = useTable<IUser>({
     //highlight-start
     resource: "movies",
-    metaData: {
+    meta: {
         select: "*, categories!inner(name)",
     },
     // highlight-end
@@ -1185,9 +1312,9 @@ const { tableProps, sorter } = useTable<IUser>({
 
 ### `id`
 
-`metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
+`meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `metaData` property and uses `getMany` method of data provider.
+refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({
@@ -1198,14 +1325,14 @@ useMany({
 
 By default, it searches for posts in the `id` column of the data table.
 
-With passing `id` parameter to the `metaData` property, we can change the column name to the `post_id` that will be searched for the ids.
+With passing `id` parameter to the `meta` property, we can change the column name to the `post_id` that will be searched for the ids.
 
 ```tsx
 useMany({
     resource: "posts",
     ids: [1, 2],
     //highlight-start
-    metaData: {
+    meta: {
         id: "post_id",
     },
     // highlight-end
@@ -1224,10 +1351,12 @@ It gets the posts where the `title` of the `categories` is "Beginning". Also the
 const { tableProps, sorter } = useTable({
     resource: "posts",
     //highlight-start
-    initialFilter: [
-        { field: "categories.title", operator: "eq", value: "Beginning" },
-    ],
-    metaData: {
+    filters: {
+        initial: [
+            { field: "categories.title", operator: "eq", value: "Beginning" },
+        ],
+    },
+    meta: {
         select: "*, categories!inner(title)",
     },
     //highlight-end

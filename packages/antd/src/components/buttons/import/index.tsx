@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Upload } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { useTranslate } from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { ImportButtonProps } from "../types";
 

@@ -1,17 +1,16 @@
 ---
 id: refine-config
 title: <Refine>
-sidebar_label: <Refine>
+sidebar_label: <Refine> 🆙
 ---
-
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
 [`dataProvider`](/api-reference/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostList } from "pages/posts";
 
@@ -24,7 +23,7 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
-                    list: PostList,
+                    list: "/posts",
                 },
             ]}
         />
@@ -52,7 +51,7 @@ A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP re
 To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for the default data provider and we can pass other data providers with any key to the `<Refine />` component.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import defaultDataProvider from "./dataProvider";
 import exampleDataProvider from "./dataProvider";
@@ -74,13 +73,21 @@ const App: React.FC = () => {
 
 ## `routerProvider`
 
-<div className="required">Required</div>
-<br/>
-<br/>
+**refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **refine**. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
 
-**refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want.
+-   React Router via `@refinedev/react-router-v6`
+-   Next.js via `@refinedev/nextjs-router`
+-   Remix via `@refinedev/remix-router`
+
+It's also possible to create a custom router bindings for your routing needs.
 
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
+
+:::info Legacy Router
+
+In prior versions from v4 of **refine**, `routerProvider` had a different interface and it was required. This is no longer the case and `routerProvider` is optional. If you want to keep using the legacy router provider, you can use the `legacyRouterProvider` prop instead.
+
+:::
 
 ## `resources`
 
@@ -88,12 +95,13 @@ const App: React.FC = () => {
 
 Here's an app that consumes the https://api.fake-rest.refine.dev/posts endpoint as a resource to list multiple items, edit or create an item and show a single item.
 
-Page components that are for interacting with the CRUD API operations are passed as a resource element to `resources`.
+Routes for the action pages that are for interacting with the CRUD API operations are passed as a resource element to `resources`.
+
 <br />
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-json-server";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/json-server";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -107,10 +115,10 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
+                    list: "/posts", // Means that the list action of this resource will be available at /posts in your app
+                    create: "/posts/create", // Means that the create action of this resource will be available at /posts/create in your app
+                    edit: "/posts/edit/:id", // Means that the edit action of this resource will be available at /posts/edit/:id in your app
+                    show: "/posts/show/:id", // Means that the show action of this resource will be available at /posts/show/:id in your app
                 },
             ]}
             // highlight-end
@@ -121,38 +129,8 @@ const App: React.FC = () => {
 export default App;
 ```
 
-<br />
-
-These components will receive some properties.
-
-```tsx title="PostList.tsx"
-type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
-    label?: string;
-    route?: string;
-    dataProviderName?: string;
-    hide?: boolean;
-}
-
-interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canDelete?: boolean;
-    canShow?: boolean;
-    name?: string;
-    initialData?: TCrudData;
-    options?: OptionsProps<TOptionsPropsExtends>;
-}
-
-const PostList: React.FC<IResourceComponentsProps> = (props) => {
-    ...
-}
-```
-
-The values of `canCreate`, `canEdit`, and `canShow` are determined by whether the associated component is passed as an element to `resources` or not.  
-`name` and `canDelete` are the values passed to the `resources`.
-
 :::tip
-This props can be get by using the [useResource](/api-reference/core/hooks/resource/useResource.md) hook.
+You can use [useResource](/api-reference/core/hooks/resource/useResource.md) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
 :::
 
 ### `name`
@@ -168,65 +146,79 @@ https://api.fake-rest.refine.dev/posts
 https://api.fake-rest.refine.dev/posts/1
 ```
 
-<br />
+### `identifier`
 
-`name` also determines the routes of the pages of a resource:
-
--   List page -> `/posts`
--   Create page -> `/posts/create`
--   Edit page -> `/posts/edit/:id`
--   Show page -> `/posts/show/:id`
--   Clone page -> `/posts/clone/:id`
-
-<br />
+You can pass this value to a resource and it will be used as the main matching key for the resource. This is useful when you have multiple resources with the same `name`.
 
 ### `list`
 
-The component passed to the `list` prop will be rendered on the `/posts` route.
+The list path of the resource. The value assigned to the `list` will be treated as the `list` action path for the resource and the navigation operations will be performed on this path.
+
+You can also pass a component to this property. In this case the default value for the path will be used, which is the `/${name}`.
+
+There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
+
+:::info
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+:::
+
+:::caution Legacy Router
+When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+:::
 
 ### `create`
 
-The component passed to `create` will be rendered on the `/posts/create` route by default.
+The create path of the resource. The value assigned to the `create` will be treated as the `create` action path for the resource and the navigation operations will be performed on this path.
 
-> It will also be rendered on `/posts/clone/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
-> For example [`useForm` uses this parameter to create a clone form](/api-reference/antd/hooks/form/useForm.md#clone-mode)
+You can also pass a component to this property. In this case the default value for the path will be used, which is the `/${name}/create`.
 
-> `clone` from `useNavigation` can be used to navigate to a clone page.
+There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
+
+:::info
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+:::
+
+:::caution Legacy Router
+When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+:::
 
 ### `edit`
 
-The component passed to `edit` will be rendered on the `/posts/edit/:id` route.
+The edit path of the resource. The value assigned to the `edit` will be treated as the `edit` action path for the resource and the navigation operations will be performed on this path.
+
+You can also pass a component to this property. In this case the default value for the path will be used, which is the `/${name}/edit/:id`.
+
+There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
+
+:::info
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
+:::
+
+:::caution Legacy Router
+When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+:::
 
 ### `show`
 
-The component passed to `show` will be rendered on the `/posts/show/:id` route.
+The show path of the resource. The value assigned to the `show` will be treated as the `show` action path for the resource and the navigation operations will be performed on this path.
 
-### `canDelete`
+You can also pass a component to this property. In this case the default value for the path will be used, which is the `/${name}/show/:id`.
 
-This value will be passed to all CRUD pages defined as the `resources` element.
+There's also a third option, which is to pass an object with the `component` and `path` properties. This allows you to customize the path of the list action.
 
-:::tip
-**refine**'s <[Edit](/api-reference/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
+:::info
+Passing a component or an object to the action will only take effect if the [`RefineRoutes`](#) component is used in the app to render the routes.
 :::
 
-### `icon`
+:::caution Legacy Router
+When using the legacy router provider, only the component values will be used. Custom paths are not supported.
+:::
 
-An icon element can be passed as properties for the icon in the menu.
+:::tip Nested Routes and Parameters
+Additional parameters can also be used in the paths for the actions of the resources. Paths like `/:authorId/posts/:id/details` are also valid and supported. When these actions are used in the navigation helpers, the existing parameters from the URL and the `meta` property of these functions will be used to determine the additional parameters when composing the path.
+:::
 
-```tsx
-<Refine
-    ...
-    resources={[
-        {
-            ...
-            // highlight-next-line
-            icon: <CustomIcon />
-        },
-    ]}
-/>
-```
-
-### `options`
+### `meta`
 
 Menu item name and route on clicking can be customized.
 
@@ -237,7 +229,7 @@ Menu item name and route on clicking can be customized.
         {
             ...
             // highlight-next-line
-            options: { label: "custom", route: "/custom" }
+            meta: { label: "custom", route: "/custom" }
         },
     ]}
 />
@@ -247,9 +239,58 @@ Menu item name and route on clicking can be customized.
 
 Name to show in the menu. The plural form of the resource name is shown by default.
 
-#### `route`
+#### `icon`
 
-Custom route name
+An icon element can be passed as properties for the icon in the menu.
+
+```tsx
+<Refine
+    ...
+    resources={[
+        {
+            ...
+            meta: {
+                // highlight-next-line
+                icon: <CustomIcon />
+            }
+        },
+    ]}
+/>
+```
+
+#### `canDelete`
+
+This value will be passed to all CRUD pages defined as the `resources` element.
+
+:::tip
+**refine**'s <[Edit](/api-reference/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
+:::
+
+#### `parent`
+
+You can set this value if you want to nest your resource into another resource. Usually this value represents the name of the parent resource but you can also pass a custom string. In this case, it will still be interpreted as a parent resource.
+
+:::tip
+This value is used by the `useMenu` and `useBreadcrumb` hooks.
+:::
+
+```tsx
+<Refine
+    /* ... */
+    resources={[
+        {
+            name: "parent",
+        },
+        {
+            name: "child",
+            meta: {
+                // highlight-next-line
+                parent: "parent",
+            },
+        },
+    ]}
+/>
+```
 
 #### `dataProviderName`
 
@@ -259,25 +300,19 @@ Default data provider name to use for the resource. If not specified, the defaul
 
 Can be used to hide a `resource` in `Sider`. This resource is also filtered in the `useMenu` hook.
 
+#### ~~`route`~~
+
+:::caution Deprecated
+
+This property is deprecated and only works with the legacy routers. When using the new routing system, please define the paths by the actions of the resource.
+
+:::
+
+Custom route name for the resource.
+
 :::tip
-You can also pass any type of property into the options object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md) and [useResourceWithRoute](/api-reference/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
 
-```tsx
-type DataType = {
-    id: number;
-    title: string;
-};
-
-//highlight-start
-type OptionType = {
-    yourCustomOption: string;
-};
-//highlight-end
-
-const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (props) => {
-    ...
-}
-```
+You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md)
 
 :::
 
@@ -336,11 +371,11 @@ The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/com
 [Refer to the Breadcrumb docs for further information. &#8594](/docs/api-reference/antd/components/breadcrumb/)
 
 ```tsx title="App.tsx"
-import { Breadcrumb } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 OR
-import { Breadcrumb } from "@pankod/refine-mantine";
+import { Breadcrumb } from "@refinedev/mantine";
 OR
-import { Breadcrumb } from "@pankod/refine-mui";
+import { Breadcrumb } from "@refinedev/mui";
 OR
 import { Breadcrumb } from "my-custom-breadcrumb";
 
@@ -368,6 +403,7 @@ const App: React.FC = () => {
 ```
 
 To disable the breadcrumb
+
 ```tsx title="App.tsx"
 const App: React.FC = () => {
     return (
@@ -429,6 +465,12 @@ const App: React.FC = () => {
 
 List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
 
+:::info
+
+Form hooks like `useDrawerForm` and `useModalForm` also have a `syncWithLocation` property but the value of this option has no effect on these hooks. You'll still need to set the `syncWithLocation` property in hooks to `true` to activate this feature.
+
+:::
+
 When `syncWithLocation` is active, the URL on the listing page shows query parameters like those shown below:
 
 ```
@@ -443,6 +485,10 @@ The default value is `false`.
 
 When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
 To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
+
+:::info
+This feature also requires `UnsavedChangesNotifier` component to be mounted. You can import this component from your router package.
+:::
 
 <br />
 
@@ -598,7 +644,13 @@ Callback to handle all live events.
 
 [Refer to live provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#refine)
 
-## `catchAll`
+## ~~`catchAll`~~
+
+:::caution Deprecated
+
+`LoginPage` only works with the legacy routing system. It will be removed in the next major release. Please create a catch all route to handle this when using the new routing system.
+
+:::
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
 
@@ -619,7 +671,13 @@ const App: React.FC = () => {
 
 <br />
 
-## `LoginPage`
+## ~~`LoginPage`~~
+
+:::caution Deprecated
+
+`LoginPage` only works with the legacy routing system. It will be removed in the next major release. Please create a route for the login page when using the new routing system.
+
+:::
 
 **refine** has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
 
@@ -640,7 +698,13 @@ const App: React.FC = () => (
 
 <br />
 
-## `DashboardPage`
+## ~~`DashboardPage`~~
+
+:::caution Deprecated
+
+`DashboardPage` only works with the legacy routing system. It will be removed in the next major release. Please create a route for the root page when using the new routing system.
+
+:::
 
 A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on the root route.
 
@@ -661,7 +725,13 @@ const App: React.FC = () => (
 
 <br />
 
-## `ReadyPage`
+## ~~`ReadyPage`~~
+
+:::caution Deprecated
+
+`ReadyPage` only works with the legacy routing system. Now you can start using **refine** without any resources defined.
+
+:::
 
 **refine** shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
 
@@ -682,7 +752,13 @@ const App: React.FC = () => (
 
 <br />
 
-## `Sider`
+## ~~`Sider`~~
+
+:::caution Deprecated
+
+`Sider` only works with the legacy routing system and the `Layout` prop. Please pass the `Sider` property to the `Layout` component when using the new routing system.
+
+:::
 
 The default sidebar can be customized by using refine hooks and passing custom components to the `Sider` property.
 
@@ -692,7 +768,13 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 <br />
 
-## `Footer`
+## ~~`Footer`~~
+
+:::caution Deprecated
+
+`Footer` only works with the legacy routing system and the `Layout` prop. Please pass the `Footer` property to the `Layout` component when using the new routing system.
+
+:::
 
 The default app footer can be customized by passing the `Footer` property.
 
@@ -711,7 +793,13 @@ const App: React.FC = () => (
 
 <br />
 
-## `Header`
+## ~~`Header`~~
+
+:::caution Deprecated
+
+`Header` only works with the legacy routing system and the `Layout` prop. Please pass the `Header` property to the `Layout` component when using the new routing system.
+
+:::
 
 The default app header can be customized by passing the `Header` property.
 
@@ -730,7 +818,13 @@ const App: React.FC = () => (
 
 <br />
 
-## `Layout`
+## ~~`Layout`~~
+
+:::caution Deprecated
+
+`Layout` only works with the legacy routing system and will be removed in the next major release. You can continue using the `Layout` component by wrapping it to the components you want to render.
+
+:::
 
 The default layout can be customized by passing the `Layout` property.
 
@@ -789,14 +883,20 @@ const App: React.FC = () => (
 
 <br />
 
-## `OffLayoutArea`
+## ~~`OffLayoutArea`~~
+
+:::caution Deprecated
+
+`OffLayoutArea` only works with the legacy routing system and the `Layout` prop. Please pass the `OffLayoutArea` property to the `Layout` component when using the new routing system.
+
+:::
 
 The component wanted to be placed out of the app layout structure can be set by passing to the `OffLayoutArea` prop.
 
 ```tsx title="App.tsx"
 // highlight-next-line
-import { Refine } from "@pankod/refine-core";
-import { BackTop } from "@pankod/refine-antd";
+import { Refine } from "@refinedev/core";
+import { BackTop } from "@refinedev/antd";
 
 const App: React.FC = () => (
     <Refine
@@ -809,7 +909,13 @@ const App: React.FC = () => (
 
 <br />
 
-## `Title`
+## ~~`Title`~~
+
+:::caution Deprecated
+
+`Title` only works with the legacy routing system and the `Layout` prop. Please pass the `Title` property to the `Layout` component when using the new routing system.
+
+:::
 
 The app title can be set by passing the `Title` property.
 
@@ -833,6 +939,6 @@ const App: React.FC = () => (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/Refine"/>
+<PropsTable module="@refinedev/core/Refine"/>
 
 [routerprovider]: /api-reference/core/providers/router-provider.md

@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: sharedRouterProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
@@ -17,9 +17,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
@@ -28,26 +28,25 @@ const ClonePage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        <ChakraUI.VStack alignItems="flex-start">
+            <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+            </ChakraUI.Text>
+            <ChakraUI.Code>{JSON.stringify(params)}</ChakraUI.Code>
 
-            <RefineChakra.Button
+            <ChakraUI.Button
                 size="sm"
                 onClick={() => list("posts")}
                 colorScheme="green"
             >
                 Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
+            </ChakraUI.Button>
+        </ChakraUI.VStack>
     );
 };
 ```
 
 `<CloneButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
-It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -57,11 +56,16 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import {
     List,
+    // highlight-next-line
+    CloneButton,
+} from "@refinedev/chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -69,10 +73,9 @@ import {
     Th,
     Tbody,
     Td,
-    // highlight-next-line
-    CloneButton,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -168,6 +171,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            legacyRouterProvider={routerProvider}
             notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
@@ -194,10 +198,10 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-chakra-ui";
+import { CloneButton } from "@refinedev/chakra-ui";
 
 const MyCloneComponent = () => {
     return <CloneButton colorScheme="black" recordItemId="123" />;
@@ -206,7 +210,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -225,29 +229,29 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/123`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 :::note
 **`<CloneButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-chakra-ui";
+import { CloneButton } from "@refinedev/chakra-ui";
 
 const MyCloneComponent = () => {
     return (
         <CloneButton
             colorScheme="black"
-            resourceNameOrRouteName="categories"
+            resource="categories"
             recordItemId="2"
         />
     );
@@ -256,7 +260,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -278,7 +282,21 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <CloneButton meta={{ authorId: "10" }} />
+    );
+};
+```
 
 ### `hideText`
 
@@ -287,10 +305,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-chakra-ui";
+import { CloneButton } from "@refinedev/chakra-ui";
 
 const MyCloneComponent = () => {
     return <CloneButton colorScheme="black" hideText />;
@@ -299,7 +317,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -323,7 +341,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { CloneButton } from "@pankod/refine-chakra-ui";
+import { CloneButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
     return (
@@ -334,8 +352,59 @@ export const MyListComponent = () => {
 };
 ```
 
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { CloneButton } from "@refinedev/chakra-ui";
+
+const MyCloneComponent = () => {
+    return (
+        <CloneButton
+            colorScheme="black"
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            resources={[
+                {
+                    name: "posts",
+                    list: MyCloneComponent,
+                },
+                {
+                    name: "categories",
+                    create: ClonePage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/CloneButton" />
+<PropsTable module="@refinedev/chakra-ui/CloneButton" />

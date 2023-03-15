@@ -54,15 +54,15 @@ A data provider must have the following properties:
 
 ```tsx
 const dataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, metaData }) => Promise,
-    deleteMany: ({ resource, ids, metaData }) => Promise,
-    getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    create: ({ resource, variables, meta }) => Promise,
+    createMany: ({ resource, variables, meta }) => Promise,
+    deleteOne: ({ resource, id, meta }) => Promise,
+    deleteMany: ({ resource, ids, meta }) => Promise,
+    getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
+    getMany: ({ resource, ids, meta }) => Promise,
+    getOne: ({ resource, id, meta }) => Promise,
+    update: ({ resource, id, variables, meta }) => Promise,
+    updateMany: ({ resource, ids, variables, meta }) => Promise,
 };
 ```
 
@@ -73,7 +73,7 @@ Refer to the [`useTable`](https://refine.dev/docs/ui-frameworks/antd/hooks/table
 For example, let's look at what happens when `useTable` is called.
 
 ```tsx
-import { List, Table, TextField, useTable } from "@pankod/refine-antd";
+import { List, Table, TextField, useTable } from "@refinedev/antd";
 
 interface IPost {
     id: string;
@@ -85,19 +85,23 @@ interface IPost {
 export const PostList: React.FC = () => {
     const { tableProps } = useTable({
         resource: "posts",
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-        initialFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "title",
+                    order: "asc",
+                },
+            ],
+        },
+        filters: {
+            initial: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+        },
     });
 
     return (
@@ -121,7 +125,7 @@ getList({
         page: 1,
         perPage: 10,
     },
-    sort: [
+    sorters: [
         {
             field: "title",
             order: "asc",
@@ -137,7 +141,7 @@ getList({
 });
 ```
 
-With `metaData` you can pass any parameters that you need to the data provider. You can handle it in the data provider.
+With `meta` you can pass any parameters that you need to the data provider. You can handle it in the data provider.
 
 All hooks that use data provider methods such as `useTable` work with [React Query](https://react-query.tanstack.com). So you can use all the features of React Query.
 
@@ -180,9 +184,9 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 The main building blocks of a Refine app are `resources`. A resource is an entity in the API's endpoint (e.g., https://api.fake-rest.refine.dev/posts). It connects data from the API with page components, allowing pages to access data from the API.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine-antd/dist/reset.css";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/json-server";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -294,8 +298,8 @@ Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/ac
 
 ### Out-of-the-box access control providers
 
--   Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-casbin)
--   Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-cerbos)
+-   Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin)
+-   Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-cerbos)
 
 ## Internationalization
 
@@ -335,7 +339,7 @@ If you send an event after the relevant operations on the server, Refine will in
 
 ### Out-of-the-box access control providers
 
--   Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably)
+-   Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably)
 -   Supabase - [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   Appwrite - [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 

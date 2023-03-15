@@ -1,10 +1,9 @@
 import {
     GetListResponse,
     IResourceComponentsProps,
-    LayoutWrapper,
     useTable,
-} from "@pankod/refine-core";
-import { dataProvider } from "@pankod/refine-medusa";
+} from "@refinedev/core";
+import { dataProvider } from "@refinedev/medusa";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { Product, StoreCartsRes } from "@medusajs/medusa";
@@ -44,11 +43,7 @@ const SearchPage: React.FC<
         hasPagination: false,
     });
 
-    return (
-        <LayoutWrapper>
-            <Search products={tableQueryResult?.data?.data} />
-        </LayoutWrapper>
-    );
+    return <Search products={tableQueryResult?.data?.data} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

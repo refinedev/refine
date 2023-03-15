@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-theme-mui
 
 <br/>
 
-[![Open customization-theme-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-mui?view=preview&theme=dark&codemirror=1)
+[![Open customization-theme-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/customization-theme-mui?view=preview&theme=dark&codemirror=1)
         

@@ -1,7 +1,9 @@
 import React from "react";
 import { render, TestWrapper } from "@test";
+import { Header } from "./index";
+import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
 
-const mockAuthProvider = {
+const mockLegacyAuthProvider: LegacyAuthProvider = {
     login: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
@@ -11,13 +13,43 @@ const mockAuthProvider = {
         Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
 };
 
-import { Header } from "./index";
+const mockAuthProvider: AuthBindings = {
+    login: () =>
+        Promise.resolve({
+            success: true,
+        }),
+    logout: () =>
+        Promise.resolve({
+            success: true,
+        }),
+    onError: () => Promise.resolve({}),
+    check: () =>
+        Promise.resolve({
+            authenticated: true,
+        }),
+    getIdentity: () =>
+        Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
+};
 
 describe("Header", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
         const { findByText, getByText } = render(<Header />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
+            }),
+        });
+
+        await findByText("John Doe");
+        getByText("JD");
+    });
+});
+
+// NOTE: Will be removed in the refine v5
+describe("Header with legacyAuthProvider", () => {
+    it("should render successfull user name and avatar fallback in header", async () => {
+        const { findByText, getByText } = render(<Header />, {
+            wrapper: TestWrapper({
+                legacyAuthProvider: mockLegacyAuthProvider,
             }),
         });
 

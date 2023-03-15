@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-react-toastify
 
 <br/>
 
-[![Open with-react-toastify example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-react-toastify?view=preview&theme=dark&codemirror=1)
+[![Open with-react-toastify example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/with-react-toastify?view=preview&theme=dark&codemirror=1)
         

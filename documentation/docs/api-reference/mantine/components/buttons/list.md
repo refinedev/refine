@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -44,21 +44,20 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
-    Title,
-    Text,
     MarkdownField,
     //highlight-next-line
     ListButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
+import { Title, Text } from "@mantine/core";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -116,18 +115,135 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
+
+Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine, useRouterContext, useNavigation } from "@refinedev/core";
+import { Button, Code, Space, Text } from "@mantine/core";
+
+// visible-block-start
+import { ListButton } from "@refinedev/mantine";
+
+const MyListComponent = () => {
+    return <ListButton resource="categories" />;
+};
+// visible-block-end
+
+const ListPage = () => {
+    const { list } = useNavigation();
+    const params = useRouterContext().useParams();
+
+    return (
+        <div>
+            <Text italic color="dimmed" size="sm">
+                URL Parameters:
+            </Text>
+            <Code>{JSON.stringify(params)}</Code>
+            <Space h="md" />
+            <Button size="xs" variant="outline" onClick={() => list("posts")}>
+                Go back
+            </Button>
+        </div>
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyListComponent,
+                },
+                {
+                    name: "categories",
+                    list: ListPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { ListButton } from "@refinedev/mantine";
+
+const MyListComponent = () => {
+    return <ListButton hideText />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyListComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `accessControl`
+
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { ListButton } from "@refinedev/mantine";
+
+export const MyListComponent = () => {
+    return (
+        <ListButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
+};
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine, useRouterContext, useNavigation } from "@refinedev/core";
+import { Button, Code, Space, Text } from "@mantine/core";
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mantine";
+import { ListButton } from "@refinedev/mantine";
 
 const MyListComponent = () => {
     return <ListButton resourceNameOrRouteName="categories" />;
@@ -178,57 +294,8 @@ render(
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@pankod/refine-core";
-
-// visible-block-start
-import { ListButton } from "@pankod/refine-mantine";
-
-const MyListComponent = () => {
-    return <ListButton hideText />;
-};
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-            ]}
-        />
-    );
-};
-
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
-```
-
-### `accessControl`
-
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx
-import { ListButton } from "@pankod/refine-mantine";
-
-export const MyListComponent = () => {
-    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
-};
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/ListButton" />
+<PropsTable module="@refinedev/mantine/ListButton" />

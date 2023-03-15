@@ -58,6 +58,7 @@ const bootstrap = () => {
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];
+
         if (["run"].includes(command)) return;
 
         telemetryHook();

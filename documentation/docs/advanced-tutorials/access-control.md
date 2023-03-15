@@ -1,7 +1,7 @@
 ---
 id: access-control
 title: Access Control
-sidebar_label: Access Control
+sidebar_label: Access Control 🆙
 ---
 
 ## Introduction
@@ -25,7 +25,7 @@ npm install casbin
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package.
 :::
 
 ## Setup
@@ -37,17 +37,14 @@ The app will have three resources: **posts**, **users**, and **categories** with
 `App.tsx` will look like this before we begin implementing access control:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
@@ -62,38 +59,61 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    create: UserCreate,
-                    edit: UserEdit,
-                    show: UserShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        { meta: canDelete: true },
+                    },
+                    {
+                        name: "users",
+                        list: "/users",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
+                        show: "/users/show/:id",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route element={<Layout><Outlet /></Layout>}>
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+                        <Route path="users">
+                            <Route index element={<UserList />} />
+                            <Route path="create" element={<UserCreate />} />
+                            <Route path="show/:id" element={<UserShow />} />
+                            <Route path="edit/:id" element={<UserEdit />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                        </Route>
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -149,24 +169,27 @@ import { model, adapter } from "./accessControl";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            // ...
-            // highlight-start
-            accessControlProvider={{
-                can: async ({ resource, action }) => {
-                    const enforcer = await newEnforcer(model, adapter);
-                    const can = await enforcer.enforce(
-                        "editor",
-                        resource,
-                        action,
-                    );
+        <BrowserRouter>
+            <Refine
+                // highlight-start
+                accessControlProvider={{
+                    can: async ({ resource, action }) => {
+                        const enforcer = await newEnforcer(model, adapter);
+                        const can = await enforcer.enforce(
+                            "editor",
+                            resource,
+                            action,
+                        );
 
-                    return Promise.resolve({ can });
-                },
-            }}
-            // highlight-end
-            // ...
-        />
+                        return Promise.resolve({ can });
+                    },
+                }}
+                // highlight-end
+                /* ... */
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -219,8 +242,30 @@ const App: React.FC = () => {
     const [role, setRole] = useState("admin");
 
     return (
+        <BrowserRouter>
+            <Refine
+                // highlight-start
+                accessControlProvider={{
+                    can: async ({ resource, action }) => {
+                        const enforcer = await newEnforcer(model, adapter);
+                        // highlight-next-line
+                        const can = await enforcer.enforce(role, resource, action);
+
+                        return Promise.resolve({
+                            can,
+                        });
+                    },
+                }}
+                // highlight-end
+                /* ... */
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
+    );
+
+    return (
         <Refine
-            // ...
             accessControlProvider={{
                 can: async ({ resource, action }) => {
                     const enforcer = await newEnforcer(model, adapter);
@@ -232,10 +277,13 @@ const App: React.FC = () => {
                     });
                 },
             }}
-            // highlight-next-line
-            Header={() => <Header role={role} setRole={setRole} />}
-            // ...
-        />
+            /* ... */
+        >
+            {/* highlight-start */}
+            <Header role={role} setRole={setRole} />
+            {/* highlight-end */}
+            {/* ... */}
+        </Refine>
     );
 };
 
@@ -246,7 +294,7 @@ export default App;
 <summary>Header Component</summary>
 
 ```tsx title="src/components/header.tsx"
-import { AntdLayout, Radio } from "@pankod/refine-antd";
+import { Layout, Radio } from "antd";
 
 interface HeaderProps {
     role: string;
@@ -255,7 +303,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
     return (
-        <AntdLayout.Header
+        <Layout.Header
             style={{
                 display: "flex",
                 justifyContent: "center",
@@ -271,7 +319,7 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
                 <Radio.Button value="admin">Admin</Radio.Button>
                 <Radio.Button value="editor">Editor</Radio.Button>
             </Radio.Group>
-        </AntdLayout.Header>
+        </Layout.Header>
     );
 };
 ```
@@ -333,14 +381,14 @@ p, editor, posts/5, delete
 We must handle id based access controls in the `can` method. **id** parameter will be accessible in `params`.
 
 ```tsx title="src/App.tsx"
-// ...
+/* ... */
 
 const App: React.FC = () => {
-    // ...
+    /* ... */
 
     return (
         <Refine
-            // ...
+            /* ... */
             accessControlProvider={{
                 // highlight-start
                 can: async ({ resource, action, params }) => {
@@ -363,8 +411,9 @@ const App: React.FC = () => {
                     return Promise.resolve({ can });
                 },
             }}
-            // ...
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 
@@ -424,14 +473,14 @@ p, editor, categories, list
 Then we must handle the **field** action in the `can` method:
 
 ```tsx title="src/App.tsx"
-// ...
+/* ... */
 
 const App: React.FC = () => {
-    // ...
+    /* ... */
 
     return (
         <Refine
-            // ...
+            /* ... */
             accessControlProvider={{
                 can: async ({ resource, action, params }) => {
                     const enforcer = await newEnforcer(model, adapter);
@@ -463,8 +512,9 @@ const App: React.FC = () => {
                     return Promise.resolve({ can });
                 },
             }}
-            // ...
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 
@@ -477,7 +527,7 @@ Then it can be used with [`useCan`](/api-reference/core/hooks/accessControl/useC
 import {
     // ...
     useCan,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const PostList: React.FC = () => {
     // ...

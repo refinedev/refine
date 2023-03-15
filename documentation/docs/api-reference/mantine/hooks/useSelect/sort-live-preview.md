@@ -1,7 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { Select, useSelect, Button } from "@pankod/refine-mantine";
+import { useSelect } from "@refinedev/mantine";
+import { Select, Button } from "@mantine/core";
 
 interface ICategory {
     id: number;
@@ -14,18 +15,20 @@ const ProductCreate: React.FC = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
     return (
         <>
-            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
+            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+                Toggle Order
+            </Button>
             <Select
                 label="Category"
                 placeholder="Select a category"

@@ -2,7 +2,7 @@ import type {
     RefineLayoutSiderProps,
     RefineLayoutHeaderProps,
     RefineLayoutLayoutProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 export type {
     RefineLayoutSiderProps,

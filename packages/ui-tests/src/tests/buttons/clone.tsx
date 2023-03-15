@@ -3,14 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import {
     RefineCloneButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 
 export const buttonCloneTests = function (
     CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Clone Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Clone Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });
@@ -102,7 +102,13 @@ export const buttonCloneTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <CloneButton ignoreAccessControlProvider>Clone</CloneButton>,
+                <CloneButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Clone
+                </CloneButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -254,7 +260,7 @@ export const buttonCloneTests = function (
                         resources: [
                             {
                                 name: "posts",
-                                options: { route: "custom-route-posts" },
+                                meta: { route: "custom-route-posts" },
                             },
                             { name: "posts" },
                         ],

@@ -32,9 +32,9 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 ## How to use Inferencer
 
-The `@pankod/refine-inferencer` package provides the `<HeadlessInferencer/>` component, which can be imported from `@pankod/refine-inferencer/headless`. It used to generate CRUD pages based on your API response.
+The `@refinedev/inferencer` package provides the `<HeadlessInferencer/>` component, which can be imported from `@refinedev/inferencer/headless`. It used to generate CRUD pages based on your API response.
 
-Before we start using Inferencer, we need to add `@pankod/refine-react-hook-form` and `@pankod/refine-react-table` packages to our project. Since these packages are used by Inferencer to generate forms and tables, they need to be installed in our project.
+Before we start using Inferencer, we need to add `@refinedev/react-hook-form` and `@refinedev/react-table` packages to our project. Since these packages are used by Inferencer to generate forms and tables, they need to be installed in our project.
 
 <Tabs
 defaultValue="npm"
@@ -43,7 +43,7 @@ values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine-react-table @pankod/refine-react-hook-form
+npm i @refinedev/react-table @refinedev/react-hook-form
 ```
 
 </TabItem>
@@ -51,7 +51,7 @@ npm i @pankod/refine-react-table @pankod/refine-react-hook-form
 <TabItem value="pnpm">
 
 ```bash
-pnpm i @pankod/refine-react-table @pankod/refine-react-hook-form
+pnpm i @refinedev/react-table @refinedev/react-hook-form
 ```
 
 </TabItem>
@@ -59,7 +59,7 @@ pnpm i @pankod/refine-react-table @pankod/refine-react-hook-form
 <TabItem value="yarn">
 
 ```bash
-yarn add @pankod/refine-react-table @pankod/refine-react-hook-form
+yarn add @refinedev/react-table @refinedev/react-hook-form
 ```
 
 </TabItem>
@@ -75,29 +75,54 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 :::
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            //highlight-start
-            resources={[
-                {
-                    name: "products",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-            //highlight-end
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route path="products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 export default App;
@@ -132,28 +157,57 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products
 setInitialRoutes(["/products"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+//highlight-next-line
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route path="products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
+
 render(<App />);
 ```
 
@@ -166,26 +220,53 @@ You should see the create page for the `products` resource that was generated by
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/create
 setInitialRoutes(["/products/create"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { Refine } from "@refinedev/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route path="products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 render(<App />);
@@ -200,26 +281,53 @@ You should see the edit page for the `products` resource with the id `123` that 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/edit/123
 setInitialRoutes(["/products/edit/123"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { Refine } from "@refinedev/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route path="products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 render(<App />);
@@ -234,26 +342,53 @@ You should see the show page for the `products` resource with the id `123` that 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/products/show/123
 setInitialRoutes(["/products/show/123"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { Refine } from "@refinedev/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "products",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route path="products">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 render(<App />);

@@ -1,21 +1,16 @@
 import React from "react";
-import {
-    IResourceComponentsProps,
-    BaseRecord,
-    useMany,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps, BaseRecord, useMany } from "@refinedev/core";
 import {
     useTable,
     List,
-    Table,
-    Space,
     EditButton,
     ShowButton,
     MarkdownField,
     FilterDropdown,
     useSelect,
-    Select,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+import { Table, Space, Select } from "antd";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({

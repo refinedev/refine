@@ -1,12 +1,13 @@
-import { GitHubBanner, Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/reset.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import "@refinedev/antd/dist/reset.css";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
@@ -21,46 +22,88 @@ import { Login } from "./pages/login";
 
 function App() {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(supabaseClient)}
                 authProvider={authProvider}
-                LoginPage={Login}
-                routerProvider={{
-                    ...routerProvider,
-
-                    routes: [
-                        {
-                            exact: true,
-                            component: MoviesList,
-                            path: "/movies",
-                        },
-                        {
-                            exact: true,
-                            component: MovieShow,
-                            path: "/:resource(movies)/:action(show)/:id",
-                        },
-                    ],
-                }}
+                routerProvider={routerProvider}
                 resources={[
                     {
                         name: "movies",
-                        list: AdminMovieList,
-                        create: AdminMovieCreate,
-                        show: AdminMovieShow,
-                        edit: AdminMovieEdit,
-
-                        options: {
-                            route: "admin/movies",
-                        },
+                        list: "/admin/movies",
+                        create: "/admin/movies/create",
+                        show: "/admin/movies/show/:id",
+                        edit: "/admin/movies/edit/:id",
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="movies" />}
+                        />
+
+                        <Route path="admin">
+                            <Route path="movies">
+                                <Route index element={<AdminMovieList />} />
+                                <Route
+                                    path="create"
+                                    element={<AdminMovieCreate />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<AdminMovieShow />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AdminMovieEdit />}
+                                />
+                            </Route>
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 }
 

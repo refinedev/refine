@@ -8,8 +8,11 @@ import {
     userFriendlyResourceName,
     useResource,
     useRouterContext,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    useRouterType,
+    useLink,
+    pickNotDeprecated,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { ListButtonProps } from "../types";
 
@@ -21,29 +24,32 @@ import { ListButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/list-button} for more details.
  */
 export const ListButton: React.FC<ListButtonProps> = ({
-    resourceName: propResourceName,
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { listUrl: generateListUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
     const translate = useTranslate();
 
-    const { resourceName, resource } = useResource({
-        resourceName: propResourceName,
-        resourceNameOrRouteName: propResourceNameOrRouteName,
-    });
+    const { resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "list",
         queryOptions: {
             enabled: accessControlEnabled,
@@ -63,14 +69,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
-    const listUrl = generateListUrl(propResourceName ?? resource.route!);
+    const listUrl = resource ? generateListUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={listUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -94,13 +100,23 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 {!hideText &&
                     (children ??
                         translate(
-                            `${resourceName}.titles.list`,
+                            `${
+                                resource?.name ??
+                                resourceNameFromProps ??
+                                propResourceNameOrRouteName
+                            }.titles.list`,
                             userFriendlyResourceName(
-                                resource.label ?? resourceName,
+                                resource?.meta?.label ??
+                                    resource?.label ??
+                                    resource?.name ??
+                                    pickNotDeprecated(
+                                        resourceNameFromProps,
+                                        propResourceNameOrRouteName,
+                                    ),
                                 "plural",
                             ),
                         ))}
             </Button>
-        </Link>
+        </ActiveLink>
     );
 };

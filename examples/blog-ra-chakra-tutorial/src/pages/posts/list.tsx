@@ -1,8 +1,17 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
+    usePagination,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+    DateField,
+} from "@refinedev/chakra-ui";
+
+import {
     TableContainer,
     Table,
     Thead,
@@ -13,13 +22,9 @@ import {
     HStack,
     Button,
     IconButton,
-    usePagination,
     Box,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    DateField,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
+
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 import { IPost } from "interfaces";
 import { ColumnSorter } from "components/ColumnSorter";
@@ -106,6 +111,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     } = useTable({
         columns,
+
         refineCoreProps: {
             metaData: {
                 populate: ["category"],

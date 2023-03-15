@@ -23,14 +23,8 @@ interface IPost {
 }
 
 // visible-block-start
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select } from "antd";
 
 const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -129,7 +123,7 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -170,7 +164,7 @@ render(
 const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -203,21 +197,20 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Create } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import { Refine } from "@refinedev/core";
 
-const CustomPage: React.FC = () => {
+// visible-block-start
+import { Create } from "@refinedev/antd";
+
+const MyComponent: React.FC = () => {
     return (
         /* highlight-next-line */
         <Create resource="posts">
@@ -225,16 +218,17 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
+        <RefineAntdDemo
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
                     {
-                        element: <CustomPage />,
+                        element: <MyComponent />,
                         path: "/custom",
                     },
                 ],
@@ -245,7 +239,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(<App />);
 ```
@@ -256,14 +249,16 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
+import { Button } from "antd";
 
 // visible-block-start
-import { Create, Icons } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
+    const BackButton = () => <Button>←</Button>;
     return (
         /* highlight-next-line */
-        <Create goBack={<Icons.SmileOutlined />}>
+        <Create goBack={<BackButton />}>
             <p>Rest of your page here</p>
         </Create>
     );
@@ -297,7 +292,7 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -330,7 +325,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
@@ -342,7 +337,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Breadcrumb } from "@pankod/refine-antd";
+import { Create, Breadcrumb } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -387,13 +382,13 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -442,7 +437,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -492,7 +487,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -539,7 +534,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -588,7 +584,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -636,7 +633,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -685,7 +683,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -732,6 +731,6 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
+<PropsTable module="@refinedev/antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
 
 [breadcrumb-component]: /api-reference/antd/components/breadcrumb.md

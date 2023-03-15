@@ -1,6 +1,6 @@
 import cn from "clsx";
 import { useRouter } from "next/router";
-import { useLogout } from "@pankod/refine-core";
+import { useLogout } from "@refinedev/core";
 
 import {
     DropdownContent,
@@ -34,7 +34,7 @@ export const CustomerMenuContent: React.FC = () => {
     router.beforePopState;
     const { pathname } = useRouter();
 
-    const { mutate: logout } = useLogout<{ redirectPath: string }>();
+    const { mutate: logout } = useLogout<{ redirectTo: string }>();
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {
         _.preventDefault();
@@ -87,7 +87,7 @@ export const CustomerMenuContent: React.FC = () => {
                         className={cn(s.link, "border-accent-2 mt-4 border-t")}
                         onClick={() =>
                             logout({
-                                redirectPath: "/",
+                                redirectTo: "/",
                             })
                         }
                     >

@@ -1,4 +1,4 @@
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import React, { ReactElement } from "react";
 import { Canvas } from "types/canvas";
 import { Pixel } from "types/pixel";
@@ -15,24 +15,24 @@ export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
     const { data } = useList<Pixel>({
         resource: "pixels",
         liveMode: "auto",
-        config: {
-            filters: [
-                {
-                    field: "canvas_id",
-                    operator: "eq",
-                    value: id,
-                },
-            ],
-            sort: [
-                {
-                    field: "created_at",
-                    order: "desc",
-                },
-            ],
-            hasPagination: false,
-        },
-        metaData: {
+        meta: {
             select: "*, users(id, full_name, avatar_url)",
+        },
+        filters: [
+            {
+                field: "canvas_id",
+                operator: "eq",
+                value: id,
+            },
+        ],
+        sorters: [
+            {
+                field: "created_at",
+                order: "desc",
+            },
+        ],
+        pagination: {
+            mode: "off",
         },
     });
 

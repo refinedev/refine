@@ -1,18 +1,12 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    DatePicker,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+
+import { Form, Input, Select, DatePicker } from "antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
-export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
+export const InvoiceCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IInvoice>();
 
     const { selectProps: companySelectProps } = useSelect<ICompany>({

@@ -12,14 +12,9 @@ We will show what `<List>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts
 // visible-block-start
 import React from "react";
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    DataGrid,
-    DateField,
-    useDataGrid,
-    GridColumns,
-} from "@pankod/refine-mui";
+import { useMany } from "@refinedev/core";
+import { List, useDataGrid, DateField } from "@refinedev/mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const SampleList = () => {
     const { dataGridProps } = useDataGrid();
@@ -70,7 +65,7 @@ const SampleList = () => {
                 renderCell: function render({ value }) {
                     return <DateField value={value} />;
                 },
-            }
+            },
         ],
         [categoryData?.data],
     );
@@ -83,7 +78,12 @@ const SampleList = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[ { name: "samples", list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples"]}
+        resources={[{ name: "samples", list: SampleList }]}
+    />,
+);
 ```
 
 :::info-tip Swizzle
@@ -98,7 +98,8 @@ It allows adding title inside the `<List>` component. if you don't pass title pr
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts/create
 // visible-block-start
-import { List, Typography } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
+import { Typography } from "@mui/material";
 
 const ListPage: React.FC = () => {
     return (
@@ -121,25 +122,24 @@ render(
                 list: ListPage,
             },
         ]}
-    />
+    />,
 );
 ```
 
 ### `resource`
 
-The `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
+import { Refine } from "@refinedev/core";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { List, Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { List } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -149,11 +149,12 @@ const CustomPage: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -170,9 +171,12 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 ### `canCreate` and `createButtonProps`
@@ -187,17 +191,47 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const authProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve("admin"),
-    getUserIdentity: () => Promise.resolve(),
+    login: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    check: async () => ({
+        authenticated: true,
+    }),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
 };
 
 // visible-block-start
-import { List } from "@pankod/refine-mui";
-import { usePermissions } from "@pankod/refine-core";
+import { List } from "@refinedev/mui";
+import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -234,7 +268,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
@@ -244,7 +278,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     return (
@@ -283,7 +317,7 @@ render(
                     <p>This page is empty.</p>
                     <RefineMui.ListButton resource="posts" />
                 </div>
-            )
+            );
         }}
     />,
 );
@@ -297,7 +331,7 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -324,7 +358,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -339,7 +373,7 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -366,7 +400,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -381,7 +415,7 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -408,7 +442,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -421,7 +455,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
+import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -449,7 +484,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -464,7 +499,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
+import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -497,61 +533,18 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
 );
 ```
 
-### ~~`cardProps`~~
-
-:::caution Deprecated
-Use `wrapperProps` instead.
-:::
-
-`<List>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
-
-### ~~`cardHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps` instead.
-:::
-
-`<List>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
-
-```tsx title="src/pages/posts/create.tsx"
-// highlight-next-line
-import { List, Typography } from "@pankod/refine-mui";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            cardHeaderProps={{
-                title: <Typography variant="h5">Custom Title</Typography>,
-            }}
-            // highlight-end
-        >
-            ...
-        </List>
-    );
-};
-```
-
-### ~~`cardContentProps`~~
-
-:::caution Deprecated
-Use `contentProps` instead.
-:::
-
-`<List>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/List" 
+<PropsTable module="@refinedev/mui/List" 
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
@@ -562,15 +555,15 @@ createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-refere
 />
 
 ```tsx live shared
-
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
-        </RefineMui.ThemeProvider>
-    )
-}
-
+        </MuiMaterial.ThemeProvider>
+    );
+};
 ```

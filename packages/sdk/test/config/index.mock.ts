@@ -37,7 +37,7 @@ nock("http://awesome.localhost:3001", { encodedQueryParams: true })
     .query({ applicationClientId: "client-id", resourceName: "dev" })
     .reply(
         200,
-        [{ name: "post", options: { auditLog: { permissions: ["list"] } } }],
+        [{ name: "post", meta: { auditLog: { permissions: ["list"] } } }],
         [
             "X-Powered-By",
             "Express",

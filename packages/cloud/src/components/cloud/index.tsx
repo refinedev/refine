@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useResource } from "@pankod/refine-core";
-import { IResource } from "@pankod/refine-sdk";
+import { useResource } from "@refinedev/core";
+import { IResource } from "@refinedev/sdk";
 
 import { useSdk } from "../../hooks";
 

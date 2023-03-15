@@ -1,64 +1,107 @@
-import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
 import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import {
     AppwriteException,
     dataProvider,
     liveProvider,
-} from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/appwrite";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { Login } from "pages/login";
+import "@refinedev/antd/dist/reset.css";
+
 import { appwriteClient, account } from "utility";
 
-import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
+import { PostCreate, PostList, PostEdit, PostShow } from "pages/posts";
+import { Login } from "pages/login";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } catch (e) {
             const { type, message, code } = e as AppwriteException;
-            return Promise.reject({
-                message,
-                name: `${code} - ${type}`,
-            });
+            return {
+                success: false,
+                error: {
+                    message,
+                    name: `${code} - ${type}`,
+                },
+            };
         }
     },
     logout: async () => {
-        await account.deleteSession("current");
-
-        return "/";
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        console.log("checkAuth");
-        const session = await account.get();
-
-        if (session) {
-            return Promise.resolve();
+        try {
+            await account.deleteSession("current");
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
+    check: async () => {
+        try {
+            const session = await account.get();
+
+            if (session) {
+                return {
+                    authenticated: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                error: error,
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {
+            authenticated: false,
+            error: new Error("Session not found"),
+            logout: true,
+            redirectTo: "/login",
+        };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
+
+        return null;
     },
 };
 
 const App: React.FC = () => {
     return (
-        <>
+        <BrowserRouter>
             <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(appwriteClient, {
@@ -67,27 +110,79 @@ const App: React.FC = () => {
                 liveProvider={liveProvider(appwriteClient, {
                     databaseId: "default",
                 })}
-                options={{ liveMode: "auto" }}
                 authProvider={authProvider}
                 routerProvider={routerProvider}
-                LoginPage={Login}
                 resources={[
                     {
                         name: "61c43ad33b857",
-                        create: PostsCreate,
-                        list: PostsList,
-                        edit: PostsEdit,
-                        show: PostsShow,
-                        options: {
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        meta: {
                             label: "Post",
                         },
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-            />
-        </>
+                options={{
+                    liveMode: "auto",
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="61c43ad33b857" />
+                            }
+                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="61c43ad33b857" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
     );
 };
 

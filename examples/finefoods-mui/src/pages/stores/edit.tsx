@@ -2,10 +2,12 @@ import {
     HttpError,
     IResourceComponentsProps,
     useTranslate,
-} from "@pankod/refine-core";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+} from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import { Controller } from "react-hook-form";
+import { Edit } from "@refinedev/mui";
+
 import {
-    Edit,
     FormControl,
     FormControlLabel,
     Avatar,
@@ -18,7 +20,8 @@ import {
     Typography,
     FormHelperText,
     TextFieldProps,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import InputMask from "react-input-mask";
 
 import { IStore } from "interfaces";
@@ -159,7 +162,6 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                                         >
                                             {/* @ts-expect-error False alarm */}
                                             {(props: TextFieldProps) => (
-                                                // @ts-expect-error Incompatible types
                                                 <TextField
                                                     {...props}
                                                     size="small"

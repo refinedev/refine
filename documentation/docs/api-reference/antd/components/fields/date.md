@@ -4,7 +4,6 @@ title: Date
 swizzle: true
 ---
 
-
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
 :::info-tip Swizzle
@@ -19,12 +18,12 @@ Let's see how we can use `<DateField>` with the example in the post list.
 // visible-block-start
 import {
     List,
-    Table,
     useTable,
     // highlight-start
     DateField,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -61,7 +60,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -72,7 +71,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/DateField" format-default="`L`"/>
+<PropsTable module="@refinedev/antd/DateField" format-default="`L`"/>
 
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).

@@ -4,7 +4,6 @@ title: Url
 swizzle: true
 ---
 
-
 This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](https://ant.design/components/typography/) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
 :::info-tip Swizzle
@@ -18,11 +17,11 @@ Let's see how we can use `<UrlField>` with an example:
 ```tsx live
 import {
     List,
-    Table,
     useTable,
     // highlight-next-line
-    UrlField 
-} from "@pankod/refine-antd";
+    UrlField,
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -65,7 +64,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -76,7 +75,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/UrlField" value-description="URL for link to reference to"/>
+<PropsTable module="@refinedev/antd/UrlField" value-description="URL for link to reference to"/>
 
 :::tip External Props
 It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).

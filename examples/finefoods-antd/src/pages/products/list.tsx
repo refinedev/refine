@@ -4,23 +4,14 @@ import {
     CrudFilters,
     HttpError,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import {
-    useSimpleList,
-    Row,
-    AntdList,
-    Col,
-    CreateButton,
-    Form,
-    Input,
-    Icons,
-    Typography,
-    useDrawerForm,
-} from "@pankod/refine-antd";
+import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
+
+import { SearchOutlined } from "@ant-design/icons";
+import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
 
 const { Text } = Typography;
-const { SearchOutlined } = Icons;
 
 import {
     ProductItem,
@@ -39,7 +30,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         { name: string; categories: string[] }
     >({
-        pagination: { pageSize: 12, defaultCurrent: 1 },
+        pagination: { pageSize: 12, current: 1 },
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 

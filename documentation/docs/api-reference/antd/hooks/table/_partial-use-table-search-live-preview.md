@@ -9,19 +9,23 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-start
-    Form,
     SaveButton,
+    // highlight-end
+} from "@refinedev/antd";
+import {
+    Table,
+    // highlight-start
+    Form,
     Input,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
 
 interface IPost {
     id: number;
@@ -34,7 +38,7 @@ interface ISearch {
     title: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps, searchFormProps } = useTable<IPost, HttpError, ISearch>(
         {
             // highlight-start

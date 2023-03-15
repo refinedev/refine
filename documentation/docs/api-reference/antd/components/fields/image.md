@@ -4,7 +4,6 @@ title: Image
 swizzle: true
 ---
 
-
 This field is used to display images and uses [`<Image>`](https://ant.design/components/image/#header) from Ant Design.
 
 :::info-tip Swizzle
@@ -17,13 +16,13 @@ Let's see how we can use `<ImageField>` with the example in the edit page.
 
 ```tsx live
 // visible-block-start
-import { 
+import {
     List,
-    Table,
     useTable,
     // highlight-next-line
     ImageField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -69,7 +68,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -80,7 +79,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/ImageField" value-description="Image path"/>
+<PropsTable module="@refinedev/antd/ImageField" value-description="Image path"/>
 
 :::tip External Props
 It also accepts all props of Ant Design [Image](https://ant.design/components/image/#API).

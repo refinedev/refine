@@ -1,0 +1,102 @@
+import * as React from "react";
+import { Stack, Grid, Typography, Button, Link } from "@mui/material";
+
+/**
+ * It is a page that welcomes you after the configuration is completed.
+ */
+export const WelcomePage: React.FC = () => {
+    return (
+        <>
+            <Grid
+                container
+                sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                    backgroundImage:
+                        "url('https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png')",
+                    backgroundSize: "cover",
+                }}
+                p={3}
+            >
+                <Grid
+                    display="flex"
+                    flexDirection="column"
+                    flex={1}
+                    alignItems="center"
+                    color={(theme) => theme.palette.primary.contrastText}
+                >
+                    <Typography display="flex" justifyContent="center">
+                        <img
+                            style={{ marginBottom: "48px" }}
+                            src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
+                            alt="Refine Logo"
+                        />
+                    </Typography>
+                    <Typography
+                        variant="h2"
+                        fontWeight="bold"
+                        display="flex"
+                        justifyContent="center"
+                    >
+                        Welcome on board
+                    </Typography>
+                    <Typography variant="h5" mt={2}>
+                        Your configuration is completed.
+                    </Typography>
+                    <Grid
+                        item
+                        sm={12}
+                        mt={12}
+                        display="flex"
+                        justifyContent="center"
+                    >
+                        <Stack
+                            spacing={2}
+                            direction={{ xs: "column", sm: "row" }}
+                        >
+                            <Link
+                                href="https://refine.dev"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Button variant="outlined" fullWidth>
+                                    Documentation
+                                </Button>
+                            </Link>
+                            <Link
+                                href="https://refine.dev/examples"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Button variant="outlined" fullWidth>
+                                    Examples
+                                </Button>
+                            </Link>
+                            <Link
+                                href="https://discord.gg/refine"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Button variant="outlined" fullWidth>
+                                    Community
+                                </Button>
+                            </Link>
+                        </Stack>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </>
+    );
+};
