@@ -88,7 +88,7 @@ function App() {
                                     <AuthPage
                                         type="login"
                                         formProps={{
-                                            initialValues: {
+                                            defaultValues: {
                                                 email: "demo@refine.dev",
                                                 password: "demodemo",
                                             },
