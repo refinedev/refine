@@ -1,6 +1,6 @@
 ---
 id: audit-log-provider
-title: Audit Log Provider 🆙
+title: Audit Log Provider
 ---
 
 import Tabs from '@theme/Tabs';

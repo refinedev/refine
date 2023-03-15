@@ -1,7 +1,7 @@
 ---
 id: useDrawerForm
 title: useDrawerForm
-sidebar_label: useDrawerForm 🆙
+sidebar_label: useDrawerForm
 ---
 
 [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.

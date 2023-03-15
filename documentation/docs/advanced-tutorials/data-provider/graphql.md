@@ -1,7 +1,7 @@
 ---
 id: graphql
 title: GraphQL
-sidebar_label: GraphQL 🆙
+sidebar_label: GraphQL
 ---
 
 import Tabs from '@theme/Tabs';

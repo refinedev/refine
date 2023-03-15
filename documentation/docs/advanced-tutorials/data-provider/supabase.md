@@ -1,7 +1,7 @@
 ---
 id: supabase
 title: Supabase
-sidebar_label: Supabase 🆙
+sidebar_label: Supabase
 ---
 
 import Tabs from '@theme/Tabs';

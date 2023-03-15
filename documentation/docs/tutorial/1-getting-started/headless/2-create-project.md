@@ -119,7 +119,7 @@ setInitialRoutes(["/"]);
 import { Refine, WelcomePage } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -128,7 +128,9 @@ const App: React.FC = () => {
                 routerProvider={routerBindings}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             >
-                <WelcomePage />
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                </Routes>
             </Refine>
         </BrowserRouter>
     );

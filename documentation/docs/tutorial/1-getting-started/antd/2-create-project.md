@@ -116,16 +116,11 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
+import { notificationProvider, WelcomePage } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    WelcomePage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -137,7 +132,9 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 notificationProvider={notificationProvider}
             >
-                <WelcomePage />
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                </Routes>
             </Refine>
         </BrowserRouter>
     );

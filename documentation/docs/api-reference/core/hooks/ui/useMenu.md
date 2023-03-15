@@ -1,7 +1,7 @@
 ---
 id: useMenu
 title: useMenu
-sidebar_label: useMenu 🆙
+sidebar_label: useMenu
 source: packages/core/src/hooks/menu/useMenu.tsx
 ---
 

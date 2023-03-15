@@ -144,7 +144,7 @@ export const renderer = ({
                         field.multiple
                             ? "defaultValue={[] as any}"
                             : "defaultValue={null as any}"
-                    } 
+                    }
                     render={({ field }) => (
                         <Autocomplete
                             {...${variableName}}
@@ -305,7 +305,7 @@ export const renderer = ({
             imports.push(
                 ["Checkbox", "@mui/material"],
                 ["FormControlLabel", "@mui/material"],
-                ["Controller", "@refinedev/react-hook-form"],
+                ["Controller", "react-hook-form"],
             );
 
             if (field.multiple) {
@@ -374,10 +374,10 @@ export const renderer = ({
             const basicRender = basicInputFields(field);
 
             return `
-                {/* 
+                {/*
                     DatePicker component is not included in "@refinedev/mui" package.
                     To use a <DatePicker> component, you can follow the official documentation for Material UI.
-                    
+
                     Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
                 */}
                 ${basicRender}
@@ -409,7 +409,7 @@ export const renderer = ({
 
     return jsx`
     ${printImports(imports)}
-    
+
     export const ${COMPONENT_NAME} = () => {
         const {
             saveButtonProps,
@@ -420,7 +420,7 @@ export const renderer = ({
         } = useForm(
             ${
                 isCustomPage
-                    ? `{ 
+                    ? `{
                 refineCoreProps: {
                     resource: "${resource.name}",
                     id: ${id},
@@ -430,9 +430,9 @@ export const renderer = ({
                     : ""
             }
         );
-    
+
         const ${recordName} = queryResult?.data?.data;
-    
+
         ${relationHooksCode}
 
         return (

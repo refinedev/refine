@@ -1,7 +1,7 @@
 ---
 id: useBreadcrumb
 title: useBreadcrumb
-sidebar_label: useBreadcrumb 🆙
+sidebar_label: useBreadcrumb
 source: packages/core/src/hooks/breadcrumb
 ---
 

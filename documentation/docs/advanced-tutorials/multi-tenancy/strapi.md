@@ -1,7 +1,7 @@
 ---
 id: strapi-v4
 title: Strapi-v4
-sidebar_label: Strapi-v4 🆙
+sidebar_label: Strapi-v4
 ---
 
 ## What is Multitenancy?

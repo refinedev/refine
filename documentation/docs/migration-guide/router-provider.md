@@ -1,7 +1,7 @@
 ---
 id: router-provider
 title: Migrating Router Provider from 3.x.x to 4.x.x
-sidebar_label: Migrating Router Provider 🆙
+sidebar_label: Migrating Router Provider
 ---
 
 ## Motivation behind the changes
@@ -16,7 +16,9 @@ Ultimately, our goal is to make it simple for users to handle their unique situa
 
 ## Important Notes
 
-With the new router provider, authentication checks are not handled by the routes. If your application utilizes `authProvider`, you will be responsible for performing those checks yourself. You can easily do so by employing the `useIsAuthenticated` hook or the `Authenticated` component. Example implementations are present in the documentation ([Check below](#using-the-new-router-providers) for more info on each router) and in the example apps. 
+With the new router provider, authentication checks are not handled by the routes. If your application utilizes `authProvider`, you will be responsible for performing those checks yourself. You can easily do so by employing the `useIsAuthenticated` hook or the `Authenticated` component. Example implementations are present in the documentation ([Check below](#using-the-new-router-providers) for more info on each router) and in the example apps.
+
+Similar to authentication flow, access control checks are also not handled by the routes internally. You will need to handle them yourself using the `useCan` hook or the `CanAccess` component.
 
 The creation and control of routes is entirely up to the user. You must manually create routes, and if desired, you can pass the routes to actions of your resources. Although we provide methods for generating routes from resources, these methods are optional and not recommended for optimal flexibility. However, they are available under each router if you choose to use them.
 
@@ -38,7 +40,9 @@ After the deprecation of the `DashboardPage` prop, you need to create your own i
 
 ### Behavioral Changes in Routing
 
-Since **refine** doesn't create routes internally anymore, you will need to create your routes manually. In the previous versions, this also made **refine** responsible for authentication checks and redirections. With the new router provider, **refine** no longer handles these checks and redirections. You will need to handle them yourself such as redirecting to the `/login` page or 404 pages. You can find more information and examples in the documentation for each router.
+Since **refine** doesn't create routes internally anymore, you will need to create your routes manually. In the previous versions, this also made **refine** responsible for authentication checks and redirections. With the new router provider, **refine** no longer handles these checks and redirections. You will need to handle them yourself such as redirecting to the `/login` page or 404 pages. This also means that the access control point in routes are now needed to be handled by the user. You can handle it using the `CanAccess` component or the `useCan` hook in your pages or as wrappers around your pages.
+
+You can find more information and examples in the documentation for each router.
 
 ## Using the New Router Providers
 
@@ -47,6 +51,38 @@ We've created documents for each router we provide bindings for. You can check t
 ### React Router v6
 
 If you are using `react-router-dom` and `@refinedev/react-router-v6`, you will need to generate your routes using `Routes`, `Route`, `Outlet` and similar components, and then wrap the `<Refine>` component with your chosen router (e.g. `<BrowserRouter>`). Afterwards, you may pass the routerProvider to the `<Refine>` component from `@refinedev/react-router-v6`, and specify the paths for your resource actions in the `resources` array. Our documentation provides detailed instructions on how to create routes, associate them with your resources, and includes examples for reference.
+
+:::caution Known Issues
+
+Refine used to use `react-router-dom@6.3.0`, but now it uses `react-router-dom@latest`.
+
+After version `react-router-dom@6.5.0`, support for partial segments has been dropped. Therefore, your custom routes may not work as expected. If you have such a usage, you need to update.
+
+```diff
+  <Refine
+-    routerProvider={{
+-       ...routerProvider,
+-        routes: [
+-            {
+-                element: <ProfilePage />,
+-                path: "profile/@:username/:page",
+            },
+        ],
+    }}
++    routerProvider={routerProvider}
+  >
++  <Route path="profile/:username/:page" element={<ProfilePage />} />
+  </Refine>
+```
+
+```diff
+- <Link to="profile/@:username/:page" />
++ <Link to="profile/:username/:page" />
+```
+
+[Refer to the `react-router-dom@6.5.0` changelog for more information ->](https://github.com/remix-run/react-router/releases/tag/react-router%406.5.0)
+
+:::
 
 [Check out the documentation for `@refinedev/react-router-v6`](/docs/packages/documentation/routers/react-router-v6)
 [Check out the documentation for `react-router-dom`](https://reactrouter.com)

@@ -116,18 +116,16 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
+import { ChakraProvider } from "@chakra-ui/react";
+import {
+    notificationProvider,
+    refineTheme,
+    WelcomePage,
+} from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    WelcomePage,
-    notificationProvider,
-} from "@refinedev/chakra-ui";
-import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
     return (
@@ -140,7 +138,9 @@ const App = () => {
                         "https://api.fake-rest.refine.dev",
                     )}
                 >
-                    <WelcomePage />
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+                    </Routes>
                 </Refine>
             </ChakraProvider>
         </BrowserRouter>

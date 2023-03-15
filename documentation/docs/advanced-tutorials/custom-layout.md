@@ -1,7 +1,7 @@
 ---
 id: custom-layout
 title: Custom Layout
-sidebar_label: Custom Layout 🆙
+sidebar_label: Custom Layout
 ---
 
 **refine** supports any layout you want with no restrictions and also provides default layouts with its UI packages. You are free to use them or create your own with the help of **refine**'s hooks and components. You can also use the [`swizzle`][cli] command to customize the default layouts and adapt them to your needs.
