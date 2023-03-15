@@ -12,7 +12,7 @@ import {
     NumberField,
 } from "@refinedev/antd";
 
-import { Table, Space, Select, Radio } from "antd";
+import { Table, Space, Select, Radio, Typography } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -78,14 +78,20 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     <Table.Column
                         dataIndex="hit"
                         title="Hit"
-                        render={(value: number) => (
-                            <NumberField
-                                value={value}
-                                options={{
-                                    notation: "compact",
-                                }}
-                            />
-                        )}
+                        render={(value: number) => {
+                            if (!value) {
+                                return <Typography.Text>-</Typography.Text>;
+                            }
+
+                            return (
+                                <NumberField
+                                    value={value}
+                                    options={{
+                                        notation: "compact",
+                                    }}
+                                />
+                            );
+                        }}
                     />
                 )}
                 <Table.Column
