@@ -51,7 +51,7 @@ The easiest way to create a new project is using the **refine CLI**. This tool w
 
 3. The `-o refine-mantine` flag in the command above tells the CLI to install the project with the `refine-mantine` preset. This preset selects some of the options for you in accordance with this tutorial. Outside of this tutorial, you can skip this flag and select your own options.
 
-4. The CLI will then ask if you agree to share your selection anonymously with the **refine** team. This is for measuring community preferences. You can learn more about it here: [Telemetry](../../../further-readings/telemetry.md).
+4. The CLI will then ask if you agree to share your selection anonymously with the **refine** team. This is for measuring community preferences. You can learn more about it here: [Telemetry](docs/further-readings/telemetry/).
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 
@@ -109,7 +109,7 @@ Your project files contain all the code you need to run your app. To see a previ
 
 1. Click on the <a href="http://localhost:3000" rel="noopener noreferrer nofollow">localhost:3000</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
 
-2. You will be redirected to the welcome page as we have not added any pages yet. We will take care of that in the [Next section](../mantine/3-generate-crud-pages.md)
+2. You will be redirected to the welcome page as we have not added any pages yet. We will take care of that in the [Next section](/docs/tutorial/getting-started/antd/generate-crud-pages)
 
 Here's what you should see:
 

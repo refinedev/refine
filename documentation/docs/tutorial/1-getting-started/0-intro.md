@@ -147,7 +147,7 @@ In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this pa
 
 **Deploy your App**
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](../../tutorial/1-getting-started/5-deploy-project.md). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/understanding-dataprovider/index/) to start building with **refine**!
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/understanding-dataprovider/index/) to start building with **refine**!
 
 </details>
 :::

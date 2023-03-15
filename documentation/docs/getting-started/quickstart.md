@@ -3,11 +3,11 @@ id: quickstart
 title: Quick Start Guide
 ---
 
-**refine** works on any environment that can run **React** (incl. _CRA, Next.js, Remix, Vite_ etc.)
+**refine** works on any environment that can run **React** (incl. *CRA, Next.js, Remix, Vite* etc.)
 
 Although you could take the time to manually set up your environment and install the **refine** packages afterwards, the optimal way to get started with **refine** is using the project starter tool.
 
-`create refine-app` provides built-in templates for _CRA_, _Next.js_ and _Remix_ environments, so you can bootstrap a **refine** project in just a couple of minutes. It also offers a wide range of options that you can easily configure for your _UI framework_, _i18n_, _router_, _Auth._ and _data provider_ preferences.
+`create refine-app` provides built-in templates for *CRA*, *Next.js* and *Remix* environments, so you can bootstrap a **refine** project in just a couple of minutes. It also offers a wide range of options that you can easily configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* preferences.
 
 To get started, please run the following command. The **CLI wizard** will assist you for the rest of the setup process:
 
@@ -86,15 +86,15 @@ You can now view your **refine** application at [http://localhost:3000](http://l
 <br />
 
 :::tip
-If you say `Yes` to the `Do you want to add example pages?` option during the CLI wizard, refine will add example CRUD pages and the `resources` prop to your app. You can navigate to the example pages to try out the CRUD operation features
+If you say `Yes` to the `Do you want to add example pages?` option during the **CLI wizard**, refine will add example CRUD pages and the `resources` prop to your app. You can navigate to the example pages to try out the CRUD operation features
 
 We always recommend adding examples pages to your project to get a better understanding of how **refine** works.
 :::
 
 ## Next Steps
 
-👉 Jump to [Tutorials](../tutorial/0-introduction/0-intro.md) and continue your work to turn your example project into a full-blown CRUD application! 🚀
+👉 Jump to [Tutorials](https://refine.dev/docs/) and continue your work to turn your example project into a full-blown CRUD application! 🚀
 
 👉 Read more on [Advanced Tutorials](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
-👉 See [real-life examples](https://refine.dev/examples/) built using refine
+👉 See [real-life examples](https://refine.dev/examples/) built using **refine**

@@ -10,7 +10,7 @@ In this tutorial, we will use GitHub to store and manage our repository, and to 
 
 :::info
 
-If you are already proficient in git, and have your own preferred workflow, you can create a new GitHub repository for your project using your method of choice. Once you have done so, you can move on to the next page: ["Deploy your app to the Web"](../1-getting-started/5-deploy-project.md).
+If you are already proficient in git, and have your own preferred workflow, you can create a new GitHub repository for your project using your method of choice. Once you have done so, you can move on to the next page: ["Deploy your app to the Web"](/docs/tutorial/getting-started/deploy-project).
 :::
 
 ## Create a repository on GitHub
