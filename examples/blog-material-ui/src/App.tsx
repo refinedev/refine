@@ -101,6 +101,7 @@ function App() {
                                     path="/login"
                                     element={
                                         <AuthPage
+                                            type="login"
                                             formProps={{
                                                 defaultValues: {
                                                     email: "demo@refine.dev",
