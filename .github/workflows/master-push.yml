@@ -55,7 +55,7 @@ jobs:
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - name: update master branch
@@ -69,7 +69,7 @@ jobs:
           git commit -am "chore: remove deployed changesets ci skip"
           git push origin master
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: update next branch
         if: ${{ steps.changesets.outputs.published == 'true' }}
         run: |
@@ -82,7 +82,7 @@ jobs:
           git commit -am "chore: remove deployed changesets ci skip"
           git push origin next
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   documentation-gh:
     runs-on: ubuntu-latest
     steps:
