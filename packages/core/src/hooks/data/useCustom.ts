@@ -4,22 +4,22 @@ import {
     UseQueryOptions,
 } from "@tanstack/react-query";
 
+import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
-    CustomResponse,
-    CrudSorting,
-    CrudFilters,
+    useDataProvider,
+    useHandleNotification,
+    useOnError,
+    useTranslate,
+} from "@hooks";
+import {
     BaseRecord,
+    CrudFilters,
+    CrudSorting,
+    CustomResponse,
     HttpError,
     MetaQuery,
     SuccessErrorNotification,
 } from "../../interfaces";
-import {
-    useTranslate,
-    useHandleNotification,
-    useDataProvider,
-    useOnError,
-} from "@hooks";
-import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
 interface UseCustomConfig<TQuery, TPayload> {
     /**
@@ -108,15 +108,15 @@ export const useCustom = <
     const handleNotification = useHandleNotification();
 
     if (custom) {
-        const queryResponse = useQuery<CustomResponse<TData>, TError>(
-            [
+        const queryResponse = useQuery<CustomResponse<TData>, TError>({
+            queryKey: [
                 dataProviderName,
                 "custom",
                 method,
                 url,
                 { ...config, ...(pickNotDeprecated(meta, metaData) || {}) },
             ],
-            ({ queryKey, pageParam, signal }) =>
+            queryFn: ({ queryKey, pageParam, signal }) =>
                 custom<TData>({
                     url,
                     method,
@@ -130,46 +130,44 @@ export const useCustom = <
                         },
                     },
                 }),
-            {
-                ...queryOptions,
-                onSuccess: (data) => {
-                    queryOptions?.onSuccess?.(data);
+            ...queryOptions,
+            onSuccess: (data) => {
+                queryOptions?.onSuccess?.(data);
 
-                    const notificationConfig =
-                        typeof successNotification === "function"
-                            ? successNotification(data, {
-                                  ...config,
-                                  ...(pickNotDeprecated(meta, metaData) || {}),
-                              })
-                            : successNotification;
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(data, {
+                              ...config,
+                              ...(pickNotDeprecated(meta, metaData) || {}),
+                          })
+                        : successNotification;
 
-                    handleNotification(notificationConfig);
-                },
-                onError: (err: TError) => {
-                    checkError(err);
-                    queryOptions?.onError?.(err);
-
-                    const notificationConfig =
-                        typeof errorNotification === "function"
-                            ? errorNotification(err, {
-                                  ...config,
-                                  ...(pickNotDeprecated(meta, metaData) || {}),
-                              })
-                            : errorNotification;
-
-                    handleNotification(notificationConfig, {
-                        key: `${method}-notification`,
-                        message: translate(
-                            "notifications.error",
-                            { statusCode: err.statusCode },
-                            `Error (status code: ${err.statusCode})`,
-                        ),
-                        description: err.message,
-                        type: "error",
-                    });
-                },
+                handleNotification(notificationConfig);
             },
-        );
+            onError: (err: TError) => {
+                checkError(err);
+                queryOptions?.onError?.(err);
+
+                const notificationConfig =
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, {
+                              ...config,
+                              ...(pickNotDeprecated(meta, metaData) || {}),
+                          })
+                        : errorNotification;
+
+                handleNotification(notificationConfig, {
+                    key: `${method}-notification`,
+                    message: translate(
+                        "notifications.error",
+                        { statusCode: err.statusCode },
+                        `Error (status code: ${err.statusCode})`,
+                    ),
+                    description: err.message,
+                    type: "error",
+                });
+            },
+        });
         return queryResponse;
     } else {
         throw Error("Not implemented custom on data provider.");
