@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 5.1.1
+
+### Patch Changes
+
+-   [#3885](https://github.com/refinedev/refine/pull/3885) [`5495ab7028e`](https://github.com/refinedev/refine/commit/5495ab7028e9cbd576948f2b347e6d00ddc87728) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: header text color
+
 ## 5.1.0
 
 ### Minor Changes
