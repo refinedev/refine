@@ -175,7 +175,7 @@ The refine application should be up and running after you run the command. To ac
 On installation, since we selected the strapi-v4 data provider, refine adds a fake strapi API url to the data provider of the refine application
 
 ```
-https://api.strapi-v4.refine.dev
+https://automatic-sweltering-dog.strapiapp.com
 ```
 
 In this React admin tutorial, we will be using refine's `fake strapi-v4 API url` for demo purposes. If you have a strapi-v4 API url you wish to integrate into the application, you can always replace the fake strapi API with that.

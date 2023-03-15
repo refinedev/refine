@@ -33,6 +33,8 @@ We'll walk through the process of listing, creating and deleting posts in a refi
 
 Steps we'll cover includes:
  
+- [Introduction](#introduction)
+- [Prerequisities](#prerequisities)
 - [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
 - [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
@@ -45,6 +47,7 @@ Steps we'll cover includes:
   - [Deleting a record](#deleting-a-record)
 - [Implementing mutation mode](#implementing-mutation-mode)
 - [Sharing the current page with filters](#sharing-the-current-page-with-filters)
+- [Conclusion](#conclusion)
 
 
 
@@ -112,7 +115,7 @@ The required Strapi data provider setups are added automatically by the CLI wiza
 To consume refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
 
 ```tsx title="src/constants.ts"
-export const API_URL = "https://api.strapi-v4.refine.dev";
+export const API_URL = "https://automatic-sweltering-dog.strapiapp.com";
 ```
 
 
