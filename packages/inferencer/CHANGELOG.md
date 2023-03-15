@@ -1,5 +1,14 @@
 # @pankod/refine-mantine
 
+## 3.1.2
+
+### Patch Changes
+
+-   [#3871](https://github.com/refinedev/refine/pull/3871) [`2a0cb4ed5a0`](https://github.com/refinedev/refine/commit/2a0cb4ed5a0f065a5dccba50fc7abecfa1167682) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: wrong import for controller
+
+-   Updated dependencies [[`5ed083a8050`](https://github.com/refinedev/refine/commit/5ed083a805082f2c24c3afe0eb285c8f8485e3df)]:
+    -   @refinedev/core@4.1.2
+
 ## 3.1.1
 
 ### Patch Changes

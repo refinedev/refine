@@ -10,9 +10,9 @@
     "dependencies": {
         "@refinedev/chakra-ui": "^2.1.0",
         "@tabler/icons": "^1.1.0",
-        "@refinedev/core": "^4.1.1",
+        "@refinedev/core": "^4.1.2",
         "@refinedev/cli": "^2.1.0",
-        "@refinedev/inferencer": "^3.1.1",
+        "@refinedev/inferencer": "^3.1.2",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",
         "@refinedev/react-table": "^5.1.0",

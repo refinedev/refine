@@ -1,5 +1,11 @@
 # create-refine-app
 
+## 1.5.6
+
+### Patch Changes
+
+-   [#3865](https://github.com/refinedev/refine/pull/3865) [`366510485e6`](https://github.com/refinedev/refine/commit/366510485e62d70c7f3638471f5ad32f3da0062e) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: 'project' parameter has been added.
+
 ## 1.5.5
 
 ### Patch Changes
