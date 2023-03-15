@@ -43,6 +43,7 @@ const bootstrap = () => {
             "specify a download type (zip | git) of source",
             "zip",
         )
+        .option("-p, --project <project-name>", "specify a project type to use")
         .allowUnknownOption(true)
         .allowExcessArguments(true)
         .action((_, command: Command) => {
