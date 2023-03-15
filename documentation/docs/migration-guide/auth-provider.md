@@ -359,6 +359,78 @@ const authProvider: AuthProvider = {
 type IdentityResponse = unknown;
 ```
 
+## Auth hooks
+
+:::caution
+
+If you have used `codemod`, `v3LegacyAuthProviderCompatible: true` prop to the auth hooks for backward compatibility. If you have updated to the new auth provider, you need to manually remove this prop.
+
+```diff
+useLogin({
+-       v3LegacyAuthProviderCompatible: true,
+})
+```
+
+:::
+
+The Auth Provider used to work based on a promise reject-resolve system. Now, all auth hooks are resolving promises. Therefore, if you have used auth hooks in your application, you need to update them according to the new system.
+
+Let's create a wrapper component that renders children according to the authentication status:
+
+Auth Provider v3:
+
+```ts
+import { useAuthenticated } from "@pankod/refine-core";
+
+export const Authenticated: React.FC = ({ children }) => {
+    const { isSuccess, isLoading, isError } = useAuthenticated();
+
+    if (isLoading) {
+        return <div>loading...</div>;
+    }
+
+    if (isError) {
+        return null;
+    }
+
+    if (isSuccess) {
+        return <>{children}</>;
+    }
+
+    return null;
+};
+```
+
+Auth Provider v4:
+
+```ts
+import { useIsAuthenticated } from "@refinedev/core";
+
+export const Authenticated: React.FC = ({ children }) => {
+    const { isLoading, data } = useIsAuthenticated();
+
+    if (isLoading) {
+        return <div>loading...</div>;
+    }
+
+    if (data.error) {
+        return null;
+    }
+
+    if (data.authenticated) {
+        return <>{children}</>;
+    }
+
+    return null;
+};
+```
+
+All hooks are similar and you need to update your auth hooks according to the new system.
+
+[Please refer to the hooks documentation for more information.](/api-reference/core/providers/auth-provider/#hooks-and-components)
+
+## Backward compatibility
+
 :::note
 
 **refine** still supports the `authProvider@v3` for backward compatibility. We changed name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
@@ -393,5 +465,3 @@ const login = useLogin({
     v3LegacyAuthProviderCompatible: true,
 });
 ```
-
-:::
