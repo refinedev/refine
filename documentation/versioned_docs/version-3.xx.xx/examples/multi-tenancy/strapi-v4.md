@@ -9,7 +9,7 @@ In this example, we've shown how to build a Multi-Tenant app using the [Strapi-v
 [Refer to the **refine** Strapi-v4 Multi-Tenancy guide for more information. →](/docs/advanced-tutorials/multi-tenancy/appwrite/)
 
 :::note Demo Credentials
-Username: `refine-demo`
+Email: `demo@refine.dev`
 
 Password: `demodemo`
 :::

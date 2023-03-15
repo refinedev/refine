@@ -39,6 +39,9 @@ npm create refine-app@latest -- --example multi-tenancy-strapi
 
 ## Try it out on CodeSandbox
 
+
+Email: `demo@refine.dev` - Password: `demodemo`
+
 <br/>
 
 [![Open multi-tenancy-strapi example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/multi-tenancy-strapi?view=preview&theme=dark&codemirror=1)

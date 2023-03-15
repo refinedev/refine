@@ -1,26 +1,26 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
     AuthPage,
+    ErrorComponent,
+    Layout,
+    notificationProvider,
 } from "@refinedev/antd";
-import { DataProvider } from "@refinedev/strapi-v4";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi-v4";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { StoreProvider } from "context/store";
 import { CustomSider } from "components/sider";
+import { StoreProvider } from "context/store";
+import { OrderCreate, OrderEdit, OrderList } from "pages/order";
 import { ProductList } from "pages/product";
-import { OrderList, OrderCreate, OrderEdit } from "pages/order";
-import { API_URL } from "./constants";
 import { authProvider, axiosInstance } from "./authProvider";
+import { API_URL } from "./constants";
 
 const App: React.FC = () => {
     return (
@@ -94,7 +94,17 @@ const App: React.FC = () => {
                         >
                             <Route
                                 path="/login"
-                                element={<AuthPage type="login" />}
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        formProps={{
+                                            initialValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
+                                }
                             />
                         </Route>
 
