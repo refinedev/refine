@@ -56,7 +56,7 @@ export const EXAMPLES: Examples = [
             text: "VIEW DEMO",
             link: "https://refine.dev/docs/examples/real-world-refine-example",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/real-world-example",
+        source: "https://github.com/refinedev/real-world-example",
     },
     {
         title: "WIN95 STYLE ADMIN PANEL",
@@ -67,7 +67,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/awesome-react-windows95-ui-with-refine",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog/win95",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog-win95",
     },
     {
         title: "INVOICE GENERATOR APP",
@@ -78,7 +78,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/refine-invoice-generator/",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog/invoiceGenerator",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog-invoice-generator",
     },
     {
         title: "REFEEDBACK!",
@@ -89,7 +89,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog/refeedback",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog-refeedback",
     },
     {
         title: "E-MAIL SUBSCRIPTION PANEL",
@@ -100,7 +100,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/e-mail-subscription-panel-with-refine",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog/mailSubscription",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog-mail-subscription",
     },
     {
         title: "INTERNAL ISSUE TRACKER",
@@ -111,7 +111,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog/issueTracker",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker",
     },
     {
         title: "NEXT.JS E-COMMERCE APP",
@@ -122,7 +122,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog/ecommerce",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog-ecommerce",
     },
     {
         title: "MULTI-TENANCY EXAMPLE",
