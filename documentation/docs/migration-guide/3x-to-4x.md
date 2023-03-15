@@ -480,6 +480,29 @@ This hook is designed to work with the legacy router provider but updated and ke
 
 Still, if you want to use the `useNavigation` hook and its returned functions, they now accept `meta` property for parametrized paths in new routing system.
 
+### `useRouterContext` hook
+
+This hook was used internally but you might have used it if you had a custom `<Sider>` component in your layout. According to the changes in the `routerProvider` prop of `<Refine>`, this hook will only work with the legacy router provider. If you're using the new `routerProvider`, you can replace the usage of this hook with the appropriate replacements, which are [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) and [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/) hooks.
+
+```diff
++ import { useRouterContext } from "@pankod/refine-core";
+- import { useLink } from "@refinedev/core";
+
+const MyComponent = () => {
+-   const { Link } = useRouterContext();
++   const Link = useLink();
+}
+```
+
+### Custom `<Sider>` components
+
+If you've swizzled the `<Sider>` component from your UI package and customized it, you might need to update them accordingly if you're using the new `routerProvider` prop of `<Refine>`.
+
+These changes include;
+
+- Using of the new routing hooks and the removing of the [`useRouterContext`](#useroutercontext-hook) hook.
+- Updating the usage of return values of [`useMenu`](#usemenu-hook) hook if you have a custom usage of it.
+
 ### `metaData` to `meta`
 
 `metaData` is deprecated in all hooks and components. Use `meta` instead.
