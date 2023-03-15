@@ -1,7 +1,7 @@
 ---
 id: router-provider
 title: Router Provider
-sidebar_label: Router Provider 🆙
+sidebar_label: Router Provider
 ---
 
 import Tabs from '@theme/Tabs';

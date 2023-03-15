@@ -1,7 +1,7 @@
 ---
 id: breadcrumb
 title: Breadcrumb
-sidebar_label: Breadcrumb 🆙
+sidebar_label: Breadcrumb
 swizzle: true
 ---
 

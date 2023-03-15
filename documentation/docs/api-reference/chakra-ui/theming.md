@@ -1,7 +1,7 @@
 ---
 id: theming
 title: Theme
-sidebar_label: Theme 🆙
+sidebar_label: Theme
 ---
 
 ```tsx live shared

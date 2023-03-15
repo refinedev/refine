@@ -1,7 +1,7 @@
 ---
 id: theming
 title: Theme
-sidebar_label: Theme 🆙
+sidebar_label: Theme
 ---
 
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. There are two types of Themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46). [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) tend to have dark text on a light background, while [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46) have light text on a dark background. Theme provides a way to your app's design to meet them.

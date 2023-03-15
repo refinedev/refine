@@ -1,7 +1,7 @@
 ---
 id: useStepsForm
 title: useStepsForm
-sidebar_label: useStepsForm 🆙
+sidebar_label: useStepsForm
 ---
 
 ```css live shared

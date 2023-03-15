@@ -1,7 +1,7 @@
 ---
 id: i18n-provider
 title: i18n Provider
-sidebar_label: i18n Provider 🆙
+sidebar_label: i18n Provider
 ---
 
 import Tabs from '@theme/Tabs';

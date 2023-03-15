@@ -1,7 +1,7 @@
 ---
 id: theming
 title: Theme
-sidebar_label: Theme 🆙
+sidebar_label: Theme
 ---
 
 Ant Design allows you to customize design tokens to satisfy UI diversity from business or brand requirements, including primary color, border radius, border color, etc.
