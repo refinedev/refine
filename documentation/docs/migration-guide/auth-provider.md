@@ -363,7 +363,7 @@ type IdentityResponse = unknown;
 
 :::caution
 
-If you have used `codemod`, `v3LegacyAuthProviderCompatible: true` prop to the auth hooks for backward compatibility. If you have updated to the new auth provider, you need to manually remove this prop.
+If you have used `codemod`, `v3LegacyAuthProviderCompatible: true` prop added to the auth hooks for backward compatibility. If you have updated to the new auth provider, you need to manually remove this prop.
 
 ```diff
 useLogin({
