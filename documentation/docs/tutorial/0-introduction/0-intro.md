@@ -26,7 +26,7 @@ If you would rather start exploring **refine** with some examples before diving 
 
 :::note Thank you Astro Community! ❤️
 
-While preparing the refine's tutorial, we were inspired (quite) by the [Astro](https://astro.build/) tutorial. We thank Astro for your contributions to the open-source community 🎉
+While preparing the refine's tutorial, we were _quite_ inspired by the [Astro](https://astro.build/) tutorial. We thank Astro for your contributions to the open-source community 🎉
 
 :::
 
