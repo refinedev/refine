@@ -145,36 +145,36 @@ In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this pa
 
 2. When you have changes to be commit to GitHub, a “Commit” button will appear at the top left of your workspace. Clicking on this will allow you to enter a commit message, and update your repository.
 
-**Deploy your App**
+**What's next?**
 <UIConditional is="antd">
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/antd/generate-crud-pages) to start building with **refine**!
-
+Now you can navigate to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/antd/generate-crud-pages) to start building with **refine**!
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages) to start building with **refine**!
+Now you can navigate to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages) to start building with **refine**!
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/headless/generate-crud-pages) to start building with **refine**!
+Now you can navigate to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/headless/generate-crud-pages) to start building with **refine**!
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mantine/generate-crud-pages) to start building with **refine**!
+Now you can navigate to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mantine/generate-crud-pages) to start building with **refine**!
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages) to start building with **refine**!
+Now you can navigate to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages) to start building with **refine**!
 
 </UIConditional>
+
 </details>
 :::
 
