@@ -229,14 +229,6 @@ export function Authenticated({
         }
     }
 
-    // console.log("<Authenticated>", {
-    //     isFetching,
-    //     isRefetching,
-    //     isAuthenticated,
-    //     state,
-    //     isSuccess,
-    //     content: state.current,
-    // });
 
     /**
      * If there's no `authProvider` set, we don't need to check whether user is logged in or not.
