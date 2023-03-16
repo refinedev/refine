@@ -131,7 +131,6 @@ export function Authenticated({
          *
          * This is done to avoid re-rendering the wrappers with the same content.
          */
-        // console.log("children changed");
 
         refetch();
     }, [children, fallbackContent]);
