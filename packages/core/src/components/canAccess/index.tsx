@@ -16,7 +16,24 @@ import {
 } from "../../interfaces";
 import { pickResource } from "@definitions/helpers/pick-resource";
 
-export type CanAccessProps =
+type CanAccessBaseProps = {
+    /**
+     * Parameters associated with the resource
+     * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
+     */
+    params?: {
+        resource?: IResourceItem & { children?: ITreeMenu[] };
+        id?: BaseKey;
+        [key: string]: any;
+    };
+    /**
+     * Content to show if access control returns `false`
+     */
+    fallback?: React.ReactNode;
+    children: React.ReactNode;
+};
+
+export type CanAccessProps = (
     | {
           /**
            * Resource name for API data interactions
@@ -25,21 +42,7 @@ export type CanAccessProps =
           /**
            * Intended action on resource
            */
-          action?: string;
-          /**
-           * Parameters associated with the resource
-           * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
-           */
-          params?: {
-              resource?: IResourceItem & { children?: ITreeMenu[] };
-              id?: BaseKey;
-              [key: string]: any;
-          };
-          /**
-           * Content to show if access control returns `false`
-           */
-          fallback?: React.ReactNode;
-          children: React.ReactNode;
+          action: string;
       }
     | {
           /**
@@ -54,17 +57,23 @@ export type CanAccessProps =
            * Parameters associated with the resource
            * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
            */
-          params?: {
-              resource?: IResourceItem & { children?: ITreeMenu[] };
-              id?: BaseKey;
-              [key: string]: any;
-          };
+      }
+    | {
           /**
-           * Content to show if access control returns `false`
+           * Resource name for API data interactions
            */
-          fallback?: React.ReactNode;
-          children: React.ReactNode;
-      };
+          resource?: string;
+          /**
+           * Intended action on resource
+           */
+          action?: string;
+          /**
+           * Parameters associated with the resource
+           * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
+           */
+      }
+) &
+    CanAccessBaseProps;
 
 export const CanAccess: React.FC<CanAccessProps> = ({
     resource: resourceFromProp,
