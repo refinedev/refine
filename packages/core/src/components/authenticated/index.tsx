@@ -98,105 +98,156 @@ export function Authenticated({
     loading: loadingContent,
 }: AuthenticatedProps | LegacyAuthenticatedProps): JSX.Element | null {
     const activeAuthProvider = useActiveAuthProvider();
-
-    const isLegacy = Boolean(activeAuthProvider?.isLegacy);
-
-    const isAuthenticatedProps = useIsAuthenticated({
-        v3LegacyAuthProviderCompatible: Boolean(activeAuthProvider?.isLegacy),
-    });
-
     const routerType = useRouterType();
+
+    const hasAuthProvider = Boolean(activeAuthProvider?.isProvided);
+    const isLegacyAuth = Boolean(activeAuthProvider?.isLegacy);
+    const isLegacyRouter = routerType === "legacy";
+
     const parsed = useParsed();
     const go = useGo();
     const deferredGo = useDeferredGo();
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
-    const { pathname, search } = useLocation();
+    const legacyLocation = useLocation();
 
-    const loading = isAuthenticatedProps.isLoading;
+    const {
+        isLoading,
+        isFetching,
+        // isRefetching,
+        isSuccess,
+        data: {
+            authenticated: isAuthenticatedStatus,
+            redirectTo: authenticatedRedirect,
+        } = {},
+        refetch,
+    } = useIsAuthenticated({
+        v3LegacyAuthProviderCompatible: isLegacyAuth,
+    });
 
-    const isAuthenticated = activeAuthProvider?.isProvided
-        ? isLegacy
-            ? isAuthenticatedProps.isSuccess
-            : isAuthenticatedProps.data?.authenticated
-        : true;
+    React.useEffect(() => {
+        /**
+         * Refetch the authentication status if the content is changed (e.g. redirected or updated)
+         *
+         * This is done to avoid re-rendering the wrappers with the same content.
+         */
+        // console.log("children changed");
 
-    const appliedRedirect = isLegacy
-        ? typeof redirectOnFail === "string"
-            ? redirectOnFail
-            : "/login"
-        : typeof redirectOnFail === "string"
-        ? redirectOnFail
-        : (isAuthenticatedProps.data?.redirectTo as string | undefined);
+        refetch();
+    }, [children, fallbackContent]);
 
-    if (loading) {
-        return loadingContent ? <>{loadingContent}</> : null;
+    const state = React.useRef<{
+        status: "initial" | "pending" | "settled";
+        content: React.ReactNode;
+    }>({
+        status: isLoading ? "initial" : "pending",
+        content: loadingContent ?? null,
+    });
+
+    /**
+     * Update state when fetching the authentication response.
+     */
+    if (isFetching) {
+        state.current.status = "pending";
+    } else if (!isFetching) {
+        state.current.status = "settled";
     }
 
-    if (isAuthenticated) {
-        return <>{children ?? null}</>;
-    } else {
-        if (typeof fallbackContent === "undefined") {
-            if (routerType === "legacy") {
-                const suffix = appendCurrentPathToQuery
-                    ? pathname
-                        ? `?to=${encodeURIComponent(
-                              `${pathname}${search ?? ""}`,
-                          )}`
-                        : ""
-                    : "";
+    /**
+     * Authentication status
+     */
+    const isAuthenticated = hasAuthProvider
+        ? isLegacyAuth
+            ? isSuccess
+            : isAuthenticatedStatus
+        : true;
 
-                /**
-                 * Legacy provider handles `/login` path rendering.
-                 * So, we need to check if pathname is `/login` or not.
-                 * To avoid infinite loop.
-                 */
-                const cleanPathname = pathname?.split(/[?#]/)[0];
-                if (
-                    !cleanPathname?.includes("/login") &&
-                    cleanPathname !== redirectOnFail
-                ) {
-                    replace(
-                        `/${(appliedRedirect ?? "/login").replace(
-                            /^\//,
-                            "",
-                        )}${suffix}`,
-                    );
-                }
-            } else {
-                const cleanPathname = parsed.pathname?.split(/[?#]/)[0];
+    if (state.current.status === "settled") {
+        /**
+         * If the state is settled, and query is resolved.
+         */
+        if (isAuthenticated) {
+            /**
+             * If user is authenticated, show the children.
+             */
+            state.current.content = <>{children ?? null}</>;
+        } else if (typeof fallbackContent !== "undefined") {
+            /**
+             * If user is not authenticated, and `fallback` is present, show the fallback content.
+             */
+            state.current.content = <>{fallbackContent}</>;
+        } else {
+            /**
+             * If there's no `fallback` content, redirect will be applied.
+             */
 
-                /** If the route is same, do not redirect */
-                if (cleanPathname === appliedRedirect) return null;
+            /**
+             * Current pathname to append to the redirect url.
+             */
+            const pathname = `${
+                isLegacyRouter ? legacyLocation?.pathname : parsed.pathname
+            }`.replace(/(\?.*|#.*)$/, "");
 
-                /** If `to` is already present, do not append the new one. */
-                const suffix = parsed.params?.to
-                    ? parsed.params?.to
-                    : go({
-                          to: parsed.pathname || "/",
-                          options: { keepQuery: true },
-                          type: "path",
-                      });
+            /**
+             * Redirect url to use, if `redirectOnFail` is set to a string,
+             * it will be used instead of `redirectTo` property of the `check` function's response.
+             */
+            const appliedRedirect = isLegacyAuth
+                ? typeof redirectOnFail === "string"
+                    ? redirectOnFail
+                    : "/login"
+                : typeof redirectOnFail === "string"
+                ? redirectOnFail
+                : (authenticatedRedirect as string | undefined);
 
-                if (appliedRedirect) {
+            /**
+             * Redirect if `appliedRedirect` is set.
+             */
+            if (appliedRedirect) {
+                if (isLegacyRouter) {
+                    const toQuery = appendCurrentPathToQuery
+                        ? `?to=${encodeURIComponent(pathname)}`
+                        : "";
+                    replace(`${appliedRedirect}${toQuery}`);
+                } else {
                     deferredGo({
-                        // needs to be adjusted by the return value of `checkAuth`
-                        to: `/${appliedRedirect.replace(/^\//, "")}`,
-                        query:
-                            suffix &&
-                            typeof suffix === "string" &&
-                            suffix.length > 1
-                                ? {
-                                      to: suffix,
-                                  }
-                                : {},
+                        to: appliedRedirect,
+                        query: appendCurrentPathToQuery
+                            ? {
+                                  to: parsed.params?.to
+                                      ? parsed.params.to
+                                      : go({
+                                            to: pathname,
+                                            options: { keepQuery: true },
+                                            type: "path",
+                                        }),
+                              }
+                            : undefined,
+                        type: "replace",
                     });
                 }
             }
-
-            return null;
         }
-
-        return <>{fallbackContent}</>;
     }
+
+    // console.log("<Authenticated>", {
+    //     isFetching,
+    //     isRefetching,
+    //     isAuthenticated,
+    //     state,
+    //     isSuccess,
+    //     content: state.current,
+    // });
+
+    /**
+     * If there's no `authProvider` set, we don't need to check whether user is logged in or not.
+     */
+    if (!hasAuthProvider) {
+        return <>{children ?? null}</>;
+    }
+
+    /**
+     * Returning the content based on the state, `fallback` or `children`.
+     */
+    return <>{state.current.content}</>;
 }
