@@ -1,7 +1,7 @@
-import React from "react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useReward } from "react-rewards";
 import { useLocation } from "@docusaurus/router";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import React from "react";
+import { useReward } from "react-rewards";
 
 const LoveIcon = (props) => (
     <svg
@@ -167,9 +167,12 @@ export default function FooterLayout({
                         <iframe
                             src="https://github.com/sponsors/refinedev/button"
                             title="Sponsor refinedev"
-                            height="35"
-                            width="116"
-                            style={{ border: 0 }}
+                            height="32"
+                            width="114"
+                            style={{
+                                border: 0,
+                                borderRadius: "6px",
+                            }}
                         ></iframe>
                     </a>
                 </div>

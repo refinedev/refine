@@ -26,8 +26,8 @@
     "lint:staged": "lint-staged",
     "test": "lerna run test --stream --scope @refinedev/core",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
-    "test:coverage": "npm run test --stream -- -- -- --coverage",
-    "test:all:coverage": "npm run test:all --stream -- -- -- --coverage"
+    "test:coverage": "npm run test --stream -- -- --coverage",
+    "test:all:coverage": "npm run test:all --stream -- -- --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

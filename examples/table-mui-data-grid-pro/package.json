@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@mui/x-data-grid-pro": "^5.11.1",
-        "@refinedev/core": "^4.1.0",
+        "@refinedev/core": "^4.1.4",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/mui": "^4.1.0",
         "@refinedev/react-hook-form": "^4.1.0",
