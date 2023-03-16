@@ -44,7 +44,7 @@ Blitz is also an [open-source](https://github.com/blitz-js/blitz) project that a
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x262.png"  alt="react-admin" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x263.png"  alt="react-admin" />
 </div>
 
 <br/>
@@ -810,7 +810,7 @@ To delete the post, click on the bin icon next to the eye icon. It will also dis
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677281365_1897x921.png"  alt="react-admin" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677313540_1897x923.png"  alt="react-admin" />
 
 </div>
 
@@ -1051,7 +1051,7 @@ Then switch back to GitHub and you will find everything synced up.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677319480_1920x929.png"  alt="react-admin" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677348358_1876x865.png"  alt="react-admin" />
 
 </div>
 
