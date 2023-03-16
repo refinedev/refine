@@ -131,7 +131,6 @@ export function Authenticated({
          *
          * This is done to avoid re-rendering the wrappers with the same content.
          */
-        // console.log("children changed");
 
         refetch();
     }, [children, fallbackContent]);
@@ -230,14 +229,6 @@ export function Authenticated({
         }
     }
 
-    // console.log("<Authenticated>", {
-    //     isFetching,
-    //     isRefetching,
-    //     isAuthenticated,
-    //     state,
-    //     isSuccess,
-    //     content: state.current,
-    // });
 
     /**
      * If there's no `authProvider` set, we don't need to check whether user is logged in or not.
