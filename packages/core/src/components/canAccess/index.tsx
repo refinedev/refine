@@ -18,6 +18,14 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 
 type CanAccessBaseProps = {
     /**
+     * Resource name for API data interactions
+     */
+    resource?: string;
+    /**
+     * Intended action on resource
+     */
+    action: string;
+    /**
      * Parameters associated with the resource
      * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
      */
@@ -33,47 +41,16 @@ type CanAccessBaseProps = {
     children: React.ReactNode;
 };
 
-export type CanAccessProps = (
-    | {
-          /**
-           * Resource name for API data interactions
-           */
-          resource?: string;
-          /**
-           * Intended action on resource
-           */
-          action: string;
-      }
-    | {
-          /**
-           * Resource name for API data interactions
-           */
-          resource: string;
-          /**
-           * Intended action on resource
-           */
-          action: string;
-          /**
-           * Parameters associated with the resource
-           * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
-           */
-      }
-    | {
-          /**
-           * Resource name for API data interactions
-           */
-          resource?: string;
-          /**
-           * Intended action on resource
-           */
-          action?: string;
-          /**
-           * Parameters associated with the resource
-           * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
-           */
-      }
-) &
-    CanAccessBaseProps;
+type CanAccessWithoutParamsProps = {
+    [key in Exclude<
+        keyof CanAccessBaseProps,
+        "fallback" | "children"
+    >]?: undefined;
+} & {
+    [key in "fallback" | "children"]?: CanAccessBaseProps[key];
+};
+
+export type CanAccessProps = CanAccessBaseProps | CanAccessWithoutParamsProps;
 
 export const CanAccess: React.FC<CanAccessProps> = ({
     resource: resourceFromProp,
