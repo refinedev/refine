@@ -166,16 +166,8 @@ describe("CanAccess Component", () => {
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
-                            can: ({ resource, action }) => {
-                                if (
-                                    action === "access" &&
-                                    resource === "posts"
-                                ) {
-                                    return Promise.resolve({
-                                        can: false,
-                                    });
-                                }
-                                return Promise.resolve({ can: false });
+                            can: async () => {
+                                return { can: false };
                             },
                         },
                     }),
