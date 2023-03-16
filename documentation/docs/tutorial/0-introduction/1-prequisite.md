@@ -21,7 +21,7 @@ A clickable task checklist is waiting for you at the end of each page to measure
 </details>
 
 <details>
-<summary>What if i need help or want to learn more about <strong>refine</strong>, or give feedback to developers behind it?</summary>
+<summary>What if i need help or want to learn more about <strong>refine</strong>, or want to give feedback to developers behind it?</summary>
 
 -   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
