@@ -12,7 +12,7 @@
         "@refinedev/antd": "^5.1.2",
         "@refinedev/core": "^4.1.6",
         "@refinedev/cli": "^2.1.0",
-        "@refinedev/nextjs-router": "^5.1.1",
+        "@refinedev/nextjs-router": "^5.1.2",
         "@refinedev/simple-rest": "^4.1.0",
         "next": "^13.0.6",
         "cross-env": "^7.0.3",

@@ -11,7 +11,7 @@
     "dependencies": {
         "@refinedev/core": "^4.1.6",
         "@refinedev/cli": "^2.1.0",
-        "@refinedev/nextjs-router": "^5.1.1",
+        "@refinedev/nextjs-router": "^5.1.2",
         "@refinedev/react-table": "^5.1.0",
         "@tanstack/react-table": "^8.2.6",
         "@refinedev/simple-rest": "^4.1.0",

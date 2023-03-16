@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 5.1.2
+
+### Patch Changes
+
+-   [#3893](https://github.com/refinedev/refine/pull/3893) [`d8c0a2f1cd1`](https://github.com/refinedev/refine/commit/d8c0a2f1cd16831552cdaebd0907f297192d64ef) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the export of `RefineRoutes` at `/app` path. (Thanks to [@thomas-advantitge](https://github.com/thomas-advantitge) for the [#3863](https://github.com/refinedev/refine/pull/3863))
+
 ## 5.1.1
 
 ### Patch Changes
