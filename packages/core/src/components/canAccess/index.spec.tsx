@@ -125,7 +125,7 @@ describe("CanAccess Component", () => {
             const useCanSpy = jest.spyOn(UseCanHook, "useCan");
 
             const { container, queryByText, findByText } = render(
-                <CanAccess resource="posts" fallback={<p>Access Denied</p>}>
+                <CanAccess fallback={<p>Access Denied</p>}>
                     <p>Accessible</p>
                 </CanAccess>,
                 {
@@ -147,6 +147,7 @@ describe("CanAccess Component", () => {
                 params: {
                     id: undefined,
                     resource: {
+                        list: "/posts",
                         name: "posts",
                     },
                 },
