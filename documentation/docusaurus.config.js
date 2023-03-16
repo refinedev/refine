@@ -155,11 +155,6 @@ const siteConfig = {
             items: [
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: "https://s.refine.dev/hackathon",
-                    label: "Hackathon",
-                    position: "left",
-                },
-                {
                     type: "docsVersionDropdown",
                     position: "right",
                     dropdownActiveClassDisabled: true,

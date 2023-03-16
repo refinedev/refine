@@ -6,7 +6,6 @@ authors: david_omotayo
 tags: [nextjs, react, pwa, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/featured.png
-is_featured: true
 hide_table_of_contents: false
 ---
 
@@ -42,7 +41,9 @@ In this article, we'll look at what refine is and demonstrate how to use it to b
 <!--truncate-->
 
 Steps we'll cover:
-  - [What is refine?](#what-is-refine)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [What is refine?](#what-is-refine)
 - [What is a PWA?](#what-is-a-pwa)
 - [Project Setup](#project-setup)
 - [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
@@ -52,10 +53,12 @@ Steps we'll cover:
 - [Adding Resources](#adding-resources)
 - [Using Next.js SSR](#using-nextjs-ssr)
 - [Creating product cards](#creating-product-cards)
-- [Creating product list](#creating-productlist)
+- [Creating ProductList](#creating-productlist)
   - [Using the useTable hook](#using-the-usetable-hook)
 - [Generating PWA manifest](#generating-pwa-manifest)
 - [Configuring PWA](#configuring-pwa)
+- [Conclusion](#conclusion)
+- [Project source code](#project-source-code)
 
 ## Prerequisites
 refine templates are shipped with Typescript by default. This is because Typescript is the recommended language for writing refine applications. 

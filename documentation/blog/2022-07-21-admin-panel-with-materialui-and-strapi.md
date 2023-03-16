@@ -6,7 +6,6 @@ authors: necati
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
-is_featured: true
 hide_table_of_contents: false
 ---
 
@@ -33,6 +32,8 @@ We'll walk through the process of listing, creating and deleting posts in a refi
 
 Steps we'll cover includes:
  
+- [Introduction](#introduction)
+- [Prerequisities](#prerequisities)
 - [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
 - [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
@@ -45,6 +46,7 @@ Steps we'll cover includes:
   - [Deleting a record](#deleting-a-record)
 - [Implementing mutation mode](#implementing-mutation-mode)
 - [Sharing the current page with filters](#sharing-the-current-page-with-filters)
+- [Conclusion](#conclusion)
 
 
 
