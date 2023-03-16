@@ -146,9 +146,35 @@ In the files panel, click on `src/app.tsx` to open it. Afterwards, go to this pa
 2. When you have changes to be commit to GitHub, a “Commit” button will appear at the top left of your workspace. Clicking on this will allow you to enter a commit message, and update your repository.
 
 **Deploy your App**
+<UIConditional is="antd">
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/understanding-dataprovider/index/) to start building with **refine**!
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/antd/generate-crud-pages) to start building with **refine**!
 
+</UIConditional>
+
+<UIConditional is="chakra-ui">
+
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages) to start building with **refine**!
+
+</UIConditional>
+
+<UIConditional is="headless">
+
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/headless/generate-crud-pages) to start building with **refine**!
+
+</UIConditional>
+
+<UIConditional is="mantine">
+
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mantine/generate-crud-pages) to start building with **refine**!
+
+</UIConditional>
+
+<UIConditional is="mui">
+
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/deploy-project/). Otherwise, skip to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages) to start building with **refine**!
+
+</UIConditional>
 </details>
 :::
 
@@ -162,7 +188,7 @@ In this unit, we will be covering the following steps:
 -   Storing your project in a git repository.
 -   Deploying your project to the cloud.
 
-As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuilds and deploys your application on every commit. This allows anyone to access and view your website updates as you make them.
+As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuilds and deploys your application on every commit. This allows anyone to access and view the latest version of your app.
 
 <Checklist>
 

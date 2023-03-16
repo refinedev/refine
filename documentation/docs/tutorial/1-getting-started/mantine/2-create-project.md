@@ -41,7 +41,7 @@ The easiest way to create a new project is using the **refine CLI**. This tool w
     yarn create refine-app -- -o refine-mantine tutorial
     ```
 
-    > Only support yarn@1 version.
+    > Only supports yarn@1 version.
 
     </TabItem>
 
