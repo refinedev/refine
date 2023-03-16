@@ -11,180 +11,172 @@ import * as UseParsedHook from "../../hooks/router/use-parsed";
 import * as PickResource from "../../definitions/helpers/pick-resource";
 
 describe("CanAccess Component", () => {
-    describe("when props are passed", () => {
-        it("should render children", async () => {
-            const { container, findByText } = render(
-                <CanAccess action="access" resource="posts">
-                    Accessible
-                </CanAccess>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: ({ resource, action }) => {
-                                if (
-                                    action === "access" &&
-                                    resource === "posts"
-                                ) {
-                                    return Promise.resolve({
-                                        can: true,
-                                    });
-                                }
-                                return Promise.resolve({ can: false });
-                            },
+    it("should render children", async () => {
+        const { container, findByText } = render(
+            <CanAccess action="access" resource="posts">
+                Accessible
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: ({ resource, action }) => {
+                            if (action === "access" && resource === "posts") {
+                                return Promise.resolve({
+                                    can: true,
+                                });
+                            }
+                            return Promise.resolve({ can: false });
                         },
-                    }),
-                },
-            );
-
-            expect(container).toBeTruthy();
-            await findByText("Accessible");
-        });
-
-        it("should not render children", async () => {
-            const { container, queryByText } = render(
-                <CanAccess action="access" resource="posts">
-                    Accessible
-                </CanAccess>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: async () => ({
-                                can: false,
-                            }),
-                        },
-                    }),
-                },
-            );
-
-            await act(async () => {
-                expect(container).toBeTruthy();
-                expect(queryByText("Accessible")).not.toBeInTheDocument();
-            });
-        });
-
-        it("should successfully pass the own attirbute to its children", async () => {
-            const { container, findByText } = render(
-                <CanAccess action="access" resource="posts" data-id="refine">
-                    <p>Accessible</p>
-                </CanAccess>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: async () => ({
-                                can: true,
-                            }),
-                        },
-                    }),
-                },
-            );
-
-            expect(container).toBeTruthy();
-
-            const el = await findByText("Accessible");
-
-            expect(el.closest("p")?.getAttribute("data-id"));
-        });
-
-        it("should fallback successfully render when not accessible", async () => {
-            const { container, queryByText, findByText } = render(
-                <CanAccess
-                    action="access"
-                    resource="posts"
-                    fallback={<p>Access Denied</p>}
-                >
-                    <p>Accessible</p>
-                </CanAccess>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: async () => ({ can: false }),
-                        },
-                    }),
-                },
-            );
-
-            expect(container).toBeTruthy();
-
-            expect(queryByText("Accessible")).not.toBeInTheDocument();
-            await findByText("Access Denied");
-        });
-
-        it("should work", async () => {
-            const useParsedSpy = jest.spyOn(UseParsedHook, "useParsed");
-
-            useParsedSpy.mockImplementation(() => ({
-                action: "list",
-                id: undefined,
-                resource: { name: "posts", list: "/posts" },
-            }));
-
-            const pickResourceSpy = jest.spyOn(PickResource, "pickResource");
-
-            pickResourceSpy.mockImplementation(() => ({
-                name: "posts",
-            }));
-
-            const useCanSpy = jest.spyOn(UseCanHook, "useCan");
-
-            const { container, queryByText, findByText } = render(
-                <CanAccess resource="posts" fallback={<p>Access Denied</p>}>
-                    <p>Accessible</p>
-                </CanAccess>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: async () => {
-                                return { can: false };
-                            },
-                        },
-                    }),
-                },
-            );
-
-            expect(container).toBeTruthy();
-
-            expect(useCanSpy).toHaveBeenCalledWith({
-                resource: "posts",
-                action: "list",
-                params: {
-                    id: undefined,
-                    resource: {
-                        name: "posts",
                     },
-                },
-            });
+                }),
+            },
+        );
 
+        expect(container).toBeTruthy();
+        await findByText("Accessible");
+    });
+
+    it("should not render children", async () => {
+        const { container, queryByText } = render(
+            <CanAccess action="access" resource="posts">
+                Accessible
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: async () => ({
+                            can: false,
+                        }),
+                    },
+                }),
+            },
+        );
+
+        await act(async () => {
+            expect(container).toBeTruthy();
             expect(queryByText("Accessible")).not.toBeInTheDocument();
-
-            await findByText("Access Denied");
         });
+    });
 
-        test("when fallback is empty", async () => {
-            const { container } = render(
-                <CanAccess action="access" resource="posts">
-                    Accessible
-                </CanAccess>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: ({ resource, action }) => {
-                                if (
-                                    action === "access" &&
-                                    resource === "posts"
-                                ) {
-                                    return Promise.resolve({
-                                        can: false,
-                                    });
-                                }
-                                return Promise.resolve({ can: false });
-                            },
+    it("should successfully pass the own attirbute to its children", async () => {
+        const { container, findByText } = render(
+            <CanAccess action="access" resource="posts" data-id="refine">
+                <p>Accessible</p>
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: async () => ({
+                            can: true,
+                        }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        const el = await findByText("Accessible");
+
+        expect(el.closest("p")?.getAttribute("data-id"));
+    });
+
+    it("should fallback successfully render when not accessible", async () => {
+        const { container, queryByText, findByText } = render(
+            <CanAccess
+                action="access"
+                resource="posts"
+                fallback={<p>Access Denied</p>}
+            >
+                <p>Accessible</p>
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: async () => ({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        expect(queryByText("Accessible")).not.toBeInTheDocument();
+        await findByText("Access Denied");
+    });
+
+    it("should work", async () => {
+        const useParsedSpy = jest.spyOn(UseParsedHook, "useParsed");
+
+        useParsedSpy.mockImplementation(() => ({
+            action: "list",
+            id: undefined,
+            resource: { name: "posts", list: "/posts" },
+        }));
+
+        const pickResourceSpy = jest.spyOn(PickResource, "pickResource");
+
+        pickResourceSpy.mockImplementation(() => ({
+            name: "posts",
+        }));
+
+        const useCanSpy = jest.spyOn(UseCanHook, "useCan");
+
+        const { container, queryByText, findByText } = render(
+            <CanAccess resource="posts" fallback={<p>Access Denied</p>}>
+                <p>Accessible</p>
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: async () => {
+                            return { can: false };
                         },
-                    }),
-                },
-            );
+                    },
+                }),
+            },
+        );
 
-            expect(container.nodeValue).toStrictEqual(null);
+        expect(container).toBeTruthy();
+
+        expect(useCanSpy).toHaveBeenCalledWith({
+            resource: "posts",
+            action: "list",
+            params: {
+                id: undefined,
+                resource: {
+                    name: "posts",
+                },
+            },
         });
+
+        expect(queryByText("Accessible")).not.toBeInTheDocument();
+
+        await findByText("Access Denied");
+    });
+
+    test("when fallback is empty", async () => {
+        const { container } = render(
+            <CanAccess action="access" resource="posts">
+                Accessible
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: ({ resource, action }) => {
+                            if (action === "access" && resource === "posts") {
+                                return Promise.resolve({
+                                    can: false,
+                                });
+                            }
+                            return Promise.resolve({ can: false });
+                        },
+                    },
+                }),
+            },
+        );
+
+        expect(container.nodeValue).toStrictEqual(null);
     });
 
     describe("When props not passed", () => {
