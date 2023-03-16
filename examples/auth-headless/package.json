@@ -8,7 +8,7 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@refinedev/core": "^4.1.5",
+        "@refinedev/core": "^4.1.6",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/react-hook-form": "^4.1.0",
         "@refinedev/react-table": "^5.1.0",
