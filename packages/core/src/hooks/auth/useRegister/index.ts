@@ -13,7 +13,7 @@ import {
     TLoginData,
     TRegisterData,
 } from "../../../interfaces";
-import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
+import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
 export type UseRegisterLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -106,7 +106,7 @@ export function useRegister<TVariables = {}>({
         TVariables,
         unknown
     >(["useRegister"], registerFromContext, {
-        onSuccess: ({ success, redirectTo, error }) => {
+        onSuccess: async ({ success, redirectTo, error }) => {
             if (success) {
                 close?.("register-error");
             }
@@ -114,6 +114,8 @@ export function useRegister<TVariables = {}>({
             if (error || !success) {
                 open?.(buildNotification(error));
             }
+
+            await invalidateAuthStore();
 
             if (redirectTo) {
                 if (routerType === "legacy") {
@@ -126,8 +128,6 @@ export function useRegister<TVariables = {}>({
                     replace("/");
                 }
             }
-
-            invalidateAuthStore();
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -144,7 +144,9 @@ export function useRegister<TVariables = {}>({
         ["useRegister", "v3LegacyAuthProviderCompatible"],
         legacyRegisterFromContext,
         {
-            onSuccess: (redirectPathFromAuth) => {
+            onSuccess: async (redirectPathFromAuth) => {
+                await invalidateAuthStore();
+
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {
                         if (routerType === "legacy") {
@@ -161,8 +163,6 @@ export function useRegister<TVariables = {}>({
                     }
                     close?.("register-error");
                 }
-
-                invalidateAuthStore();
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));
