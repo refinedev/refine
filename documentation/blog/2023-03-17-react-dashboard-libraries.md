@@ -1,7 +1,7 @@
 ---
 title: Best React Admin Dashboard Libraries 2023
 description: We have curated a compilation of the 5 best React admin dashboard libraries that encompass all the essential features needed to create modern and feature-rich dashboards with minimal effort.
-slug: react admin dasboard-dashboard
+slug: react-admin-dashboard
 authors: david_omotayo
 tags: [refine, blitz]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fsocial.png
