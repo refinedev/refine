@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUpdate } from "@refinedev/core";
+import { CanAccess, useUpdate } from "@refinedev/core";
 import {
     List,
     useEditableTable,
