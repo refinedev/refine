@@ -5,7 +5,7 @@
     "dependencies": {
         "@ant-design/charts": "^1.2.0",
         "@refinedev/antd": "^5.1.2",
-        "@refinedev/core": "^4.1.6",
+        "@refinedev/core": "^4.2.0",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/supabase": "^5.1.0",
