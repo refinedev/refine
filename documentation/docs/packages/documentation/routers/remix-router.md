@@ -358,7 +358,9 @@ On the client-side [`Authenticated`](/docs/api-reference/core/components/auth/au
 On the server-side `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
 :::info
-Using a server side approach is recommended but you can use any approach you want.
+
+For page level access control, server-side approach is recommended.
+
 :::
 
 ### Server Side Authentication with `createCookieSessionStorage`
