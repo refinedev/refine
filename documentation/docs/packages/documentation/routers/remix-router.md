@@ -450,6 +450,7 @@ type LoginForm = {
 
 // normally you want this to be env variable
 const sessionSecret = "SUPER_SECRET_SESSION"; //process.env.SESSION_SECRET;
+
 if (!sessionSecret) {
     throw new Error("SESSION_SECRET must be set");
 }

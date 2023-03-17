@@ -37,20 +37,16 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <CanAccess action="edit">
-                                <EditButton
-                                    size="small"
-                                    hideText
-                                    recordItemId={record.id}
-                                />
-                            </CanAccess>
-                            <CanAccess action="delete">
-                                <DeleteButton
-                                    size="small"
-                                    hideText
-                                    recordItemId={record.id}
-                                />
-                            </CanAccess>
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                size="small"
+                                hideText
+                                recordItemId={record.id}
+                            />
                         </Space>
                     )}
                 />

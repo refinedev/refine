@@ -182,12 +182,10 @@ export const CanvasList = () => {
                                         View Changes
                                     </Button>
                                 </>
-                                <CanAccess resource="canvases" action="delete">
-                                    <DeleteButton
-                                        size="small"
-                                        recordItemId={record.id}
-                                    />
-                                </CanAccess>
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
                             </Space>
                         )}
                     />

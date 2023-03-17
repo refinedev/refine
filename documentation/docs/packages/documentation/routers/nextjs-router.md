@@ -736,7 +736,10 @@ export const accessControlProvider = {
 ```
 
 :::tip
+
 You can also access resource object directly.
+
+:::
 
 ```tsx
 export const accessControlProvider = {

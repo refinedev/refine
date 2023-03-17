@@ -113,13 +113,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <CanAccess action="edit">
-                                <EditButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </CanAccess>
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
                             <ShowButton
                                 hideText
                                 size="small"
