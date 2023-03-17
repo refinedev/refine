@@ -24,7 +24,7 @@ Overall, using Inferencer will greatly speed up development time and reduce the 
 
 #### Learn Inferencer
 
-You can Learn more about [how Inferencer works](/docs/packages/documentation/inferencer) and [how to use it with Material UI](/docs/api-reference/chakra/components/inferencer/) in our documents.
+You can Learn more about [how Inferencer works](/docs/packages/documentation/inferencer) and [how to use it with Material UI](/docs/api-reference/chakra-ui/components/inferencer/) in our documents.
 
 ## How to use Inferencer
 
