@@ -1,4 +1,9 @@
-import { IResourceComponentsProps, useMany, useCan } from "@refinedev/core";
+import {
+    IResourceComponentsProps,
+    useMany,
+    useCan,
+    CanAccess,
+} from "@refinedev/core";
 
 import {
     List,
@@ -108,11 +113,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="actions"
                     render={(_, record) => (
                         <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
+                            <CanAccess action="edit">
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </CanAccess>
                             <ShowButton
                                 hideText
                                 size="small"

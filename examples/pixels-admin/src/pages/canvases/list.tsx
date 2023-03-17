@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUpdate } from "@refinedev/core";
+import { CanAccess, useUpdate } from "@refinedev/core";
 import {
     List,
     useEditableTable,
@@ -182,10 +182,12 @@ export const CanvasList = () => {
                                         View Changes
                                     </Button>
                                 </>
-                                <DeleteButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
+                                <CanAccess resource="canvases" action="delete">
+                                    <DeleteButton
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </CanAccess>
                             </Space>
                         )}
                     />

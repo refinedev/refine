@@ -1,4 +1,4 @@
-import { IResourceComponentsProps } from "@refinedev/core";
+import { CanAccess, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -36,16 +36,20 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
+                            <CanAccess action="edit">
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </CanAccess>
+                            <CanAccess action="delete">
+                                <DeleteButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </CanAccess>
                         </Space>
                     )}
                 />

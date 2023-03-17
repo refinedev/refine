@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { CanAccess, GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -56,9 +56,9 @@ const App: React.FC = () => {
                                 ),
                             });
                         }
-                        return Promise.resolve({
+                        return {
                             can: await enforcer.enforce(role, resource, action),
-                        });
+                        };
                     },
                 }}
                 resources={[
@@ -97,7 +97,9 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <Layout Header={() => <Header role={role} />}>
-                                <Outlet />
+                                <CanAccess>
+                                    <Outlet />
+                                </CanAccess>
                             </Layout>
                         }
                     >
