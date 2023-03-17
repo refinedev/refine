@@ -40,9 +40,21 @@ After the deprecation of the `DashboardPage` prop, you need to create your own i
 
 ### Behavioral Changes in Routing
 
-Since **refine** doesn't create routes internally anymore, you will need to create your routes manually. In the previous versions, this also made **refine** responsible for authentication checks and redirections. With the new router provider, **refine** no longer handles these checks and redirections. You will need to handle them yourself such as redirecting to the `/login` page or 404 pages. This also means that the access control point in routes are now needed to be handled by the user. You can handle it using the `CanAccess` component or the `useCan` hook in your pages or as wrappers around your pages.
+Since **refine** doesn't create routes internally anymore, you are free to create your routes according to your framework without any limitation.
 
-You can find more information and examples in the documentation for each router.
+This means, tasks like `authentication` and `authorization` are also de-coupled from **refine**.
+
+However, for convenience we still provide a set of helpers for you to handle these tasks easily.
+
+#### Authentication and Access Control
+
+This also means that the authentication and access control redirections are handled according to your framework.
+
+However **refine** still provides some helpers for user's convenience.
+
+For **authentication**, you can use [`Authenticated`](/docs/api-reference/core/components/auth/authenticated) component as wrapper or use `useIsAuthenticated` hook inside your components.
+
+For **authorization**, you can use [`CanAccess`](/docs/api-reference/core/components/accessControl/canAccess) components as wrapper or use `useCan` hook in your components.
 
 ## Using the New Router Providers
 
