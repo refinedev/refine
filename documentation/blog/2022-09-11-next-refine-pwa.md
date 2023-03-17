@@ -41,9 +41,6 @@ In this article, we'll look at what refine is and demonstrate how to use it to b
 <!--truncate-->
 
 Steps we'll cover:
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [What is refine?](#what-is-refine)
 - [What is a PWA?](#what-is-a-pwa)
 - [Project Setup](#project-setup)
 - [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
