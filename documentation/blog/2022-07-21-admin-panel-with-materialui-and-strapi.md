@@ -32,8 +32,6 @@ We'll walk through the process of listing, creating and deleting posts in a refi
 
 Steps we'll cover includes:
  
-- [Introduction](#introduction)
-- [Prerequisities](#prerequisities)
 - [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
 - [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
