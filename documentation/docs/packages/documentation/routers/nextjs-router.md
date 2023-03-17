@@ -555,7 +555,7 @@ On the client-side, you can wrap your pages with [`Authenticated`](/docs/api-ref
 On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
 :::info
-Using the server-side approach is recommended.
+For page level authentication, server-side approach is recommended.
 :::
 
 ### Server Side
@@ -706,11 +706,11 @@ In Next.js you can achieve access control in multiple ways;
 
 On the client-side you can wrap your pages with `CanAccess` component from `@refinedev/core` to protect your pages from unauthorized access.
 
-And on the server-side you can use your `accessControlProvider`'s `can` function inside server side functions (getServerSideProps) to redirect unauthorized users to other pages..
+And on the server-side you can use your `accessControlProvider`'s `can` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages..
 
 :::info
 
-Using the server-side approach is recommended.
+For page level access control, server-side approach is recommended.
 
 :::
 
@@ -730,17 +730,30 @@ export const accessControlProvider = {
             };
         }
 
-        // or you can access directly *resource object
-        // const resourceName = params?.resource?.name;
-        // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
-        // if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
-        //     return {
-        //         can: false,
-        //         reason: "Unauthorized",
-        //     };
-        // }
-
         return { can: true };
+    },
+};
+```
+
+:::tip
+You can also access resource object directly.
+
+```tsx
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        const resourceName = params?.resource?.name;
+        const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+        if (
+            resourceName === "posts" &&
+            anyUsefulMeta === true &&
+            action === "edit"
+        ) {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
     },
 };
 ```
@@ -767,11 +780,25 @@ export const getServerSideProps = async (context) => {
         },
     };
 };
+
+export default function PostList() {
+    /* ... */
+}
 ```
 
 ### Client Side
 
 For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+```tsx
+import { CanAccess } from "@refinedev/core";
+
+export const MyPage = () => (
+    <CanAccess>
+        <div>{/* ... */}</div>
+    </CanAccess>
+);
+```
 
 ## FAQ
 

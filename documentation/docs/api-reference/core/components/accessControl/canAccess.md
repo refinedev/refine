@@ -18,7 +18,7 @@ Passes the given properties to the `can` method from your [access control provid
 
 ## Basic Usage
 
-By default, `CanAccess` component will infer current resource and action based on your route automatically.
+By default, `CanAccess` component will infer the current `resource` and the `action` based on your route automatically. `id` will also be inferred if the current route includes one.
 
 So if you are at `/posts` route, `CanAccess` will check authorization for `posts` resource and `list` action.
 
@@ -43,19 +43,16 @@ In this case, you can explicitly pass props to `CanAccess` component for authori
 ```tsx
 import { CanAccess } from "@refinedev/core";
 
-const MyComponent = () => (
-    <Show>
-        <Title>Id</Title>
-        <Text>{record?.id}</Text>
-        <Title level={5}>Title</Title>
-        <Text>{record?.title}</Text>
-        // highlight-start
-        <CanAccess resource="categories" action="show">
-            <Title level={5}>Category</Title>
-        </CanAccess>
-        // highlight-end
-    </Show>
-);
+export const MyComponent = () => {
+    return (
+        <Buttons>
+            <CreateButton>Create</CreateButton>
+            <CanAccess resource="posts" action="delete">
+                <DeleteButton>Delete</DeleteButton>
+            </CanAccess>
+        </Buttons>
+    );
+};
 ```
 
 ## Properties

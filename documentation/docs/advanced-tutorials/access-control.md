@@ -181,7 +181,7 @@ const App: React.FC = () => {
                             action,
                         );
 
-                        return Promise.resolve({ can });
+                        return { can };
                     },
                 }}
                 // highlight-end

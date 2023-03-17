@@ -72,7 +72,7 @@ However, for convenience we still provide a set of helpers for you to handle the
 
 #### Authentication and Access Control
 
-This also means that the authentication and access control redirections are handled according to your framework.
+This also means that the authentication and access control flows should be handled according to your framework.
 
 However **refine** still provides some helpers for user's convenience.
 

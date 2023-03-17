@@ -795,36 +795,42 @@ export const accessControlProvider = {
             };
         }
 
-        // or you can access directly *resource object
-        // const resourceName = params?.resource?.name;
-        // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
-        // if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
-        //     return {
-        //         can: false,
-        //         reason: "Unauthorized",
-        //     };
-        // }
-
         return { can: true };
     },
 };
 ```
 
+:::tip
+You can also access resource object directly.
+
+```tsx
+const resourceName = params?.resource?.name;
+const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        if (
+            resourceName === "posts" &&
+            anyUsefulMeta === true &&
+            action === "edit"
+        ) {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+    },
+};
+```
+
+:::
+
 Then, let's create our posts route.
 
 ```tsx title="app/routes/_protected.posts._index.tsx"
-import {
-    useTable,
-    List,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-} from "@refinedev/antd";
-import { Table, Space } from "antd";
 import { useLoaderData } from "@remix-run/react";
 import { json, LoaderArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
-import { parseTableParams } from "@refinedev/remix-router";
 
 import { IPost } from "../interfaces";
 import { API_URL } from "~/constants";
@@ -833,21 +839,7 @@ import { accessControlProvider } from "../accessControlProvider";
 const PostList: React.FC = () => {
     const { initialData } = useLoaderData<typeof loader>();
 
-    const { tableProps } = useTable<IPost>({
-        queryOptions: {
-            initialData,
-        },
-    });
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="status" title="Status" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
+    return <>{/* ... */}</>;
 };
 
 export default PostList;
@@ -864,9 +856,6 @@ export async function loader({ request }: LoaderArgs) {
 
     const data = await dataProvider(API_URL).getList<IPost>({
         resource: "posts",
-        filters,
-        pagination,
-        sorters,
     });
 
     return json({ initialData: data });
@@ -878,6 +867,16 @@ Tadaa! that's all! 🎉
 ### Client Side
 
 For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+```tsx
+import { CanAccess } from "@refinedev/core";
+
+export const MyPage = () => (
+    <CanAccess>
+        <div>{/* ... */}</div>
+    </CanAccess>
+);
+```
 
 ## FAQ
 
