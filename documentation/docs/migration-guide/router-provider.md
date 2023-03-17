@@ -66,7 +66,7 @@ If you have customized the use of `useMenu` hook, you might need to check the us
 
 Since **refine** doesn't create routes internally anymore, you are free to create your routes according to your framework without any limitation.
 
-This means, tasks like `authentication` and `authorization` are also de-coupled from **refine**.
+This means, tasks like `authentication` and `access control` are also de-coupled from **refine**.
 
 However, for convenience we still provide a set of helpers for you to handle these tasks easily.
 
@@ -78,7 +78,7 @@ However **refine** still provides some helpers for user's convenience.
 
 For **authentication**, you can use [`Authenticated`](/docs/api-reference/core/components/auth/authenticated) component as wrapper or use `useIsAuthenticated` hook inside your components.
 
-For **authorization**, you can use [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component as wrapper or use `useCan` hook in your components.
+For **access control**, you can use [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component as wrapper or use `useCan` hook in your components.
 
 ## Using the New Router Providers
 

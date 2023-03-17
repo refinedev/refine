@@ -270,7 +270,7 @@ Notice that we've wrapped the `<Outlet>` with `<Layout>` component. This way, we
 If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/accessControl-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
 
 :::info
-`CanAccess` component will infer resource name and action based on the current route and handle the authorization from your Access Control Provider for you.
+`CanAccess` component will infer resource name and action based on the current route and handle the **access control** from your Access Control Provider for you.
 :::
 
 ```tsx title=App.tsx
