@@ -45,6 +45,7 @@ Additionally, refine provides an array of helper hooks, components, and data pro
 - First-class Typescript support
 - Backend-agnostic
 - Authentication
+- Access Control (Authorization)
 - Easy learning curve
 - Internationalization ( I18n )
 - Accessibility
