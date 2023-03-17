@@ -60,7 +60,7 @@ const CustomSider = () => {
 }
 ```
 
-If you have customized the use of `useMenu` hook, you might need to check the usage of it to make sure it's working as expected. Even though the `useMenu` hook is not changed in its return values, the way it generates the menu item keys is changed. 
+If you have customized the use of `useMenu` hook, you might need to check the usage of it to make sure it's working as expected. Even though the `useMenu` hook is not changed in its return values, the way it generates the menu item keys is changed.
 
 ### Behavioral Changes in Routing
 
@@ -78,7 +78,7 @@ However **refine** still provides some helpers for user's convenience.
 
 For **authentication**, you can use [`Authenticated`](/docs/api-reference/core/components/auth/authenticated) component as wrapper or use `useIsAuthenticated` hook inside your components.
 
-For **authorization**, you can use [`CanAccess`](/docs/api-reference/core/components/accessControl/canAccess) components as wrapper or use `useCan` hook in your components.
+For **authorization**, you can use [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component as wrapper or use `useCan` hook in your components.
 
 ## Using the New Router Providers
 

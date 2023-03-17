@@ -881,8 +881,6 @@ For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/
 
 ## FAQ
 
-#
-
 ### Can I use nested routes?
 
 Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
