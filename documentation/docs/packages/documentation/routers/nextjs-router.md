@@ -552,11 +552,29 @@ This function can be used to parse the query parameters of a table page. It can 
 
 In Next.js you can achieve authentication control in multiple ways;
 
-You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthorized access.
+You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthenticated access.
 
-Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages.
+Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login..
 
-Using a server side approach is recommended but you can use any approach you want. Check out the [Server Side Authentication with Cookies](#server-side-authentication-with-cookies) section for an example.
+Using the server-side approach is recommended but you can use any approach you want. Check out the [Server Side Authentication with Cookies](#server-side-authentication-with-cookies) section for an example.
+
+### How to handle Authorization?
+
+#### Client Side
+
+Similar to Authentication, it's possible to do `authorization` both on the server side and client side.
+
+For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/canAccess) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+#### Server Side
+
+On the server side, you can use your `accessControlProvider`'s `can` inside `getServerSideProps` to redirect unauthorized users to other pages.
+
+:::info
+
+Using the server-side approach is recommended but you are not limited from using on the client-side as well. Check out [Server Side Authorization](#server-side-authorization) section for the example.
+
+:::
 
 ### Can I use nested routes?
 
@@ -647,7 +665,6 @@ export default function MyListPage({ initialData }) {
     return <>{/* ... */}</>;
 }
 ```
-
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
 
@@ -792,6 +809,59 @@ export const getServerSideProps = async (context) => {
 ```
 
 This needs to be done for all the routes that we want to protect.
+
+### Server side authorization
+
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+
+```tsx title="app/acccessControlProvider.ts"
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        if (resource === "posts" && action === "edit") {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+
+        // or you can access directly *resource object
+        // const resourceName = params?.resource?.name;
+        // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+        // if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
+        //     return {
+        //         can: false,
+        //         reason: "Unauthorized",
+        //     };
+        // }
+
+        return { can: true };
+    },
+};
+```
+
+Then, let's create our posts page.
+
+```tsx title="pages/posts/index.tsx"
+import { accessControlProvider } from "src/accessControlProvider";
+
+export const getServerSideProps = async (context) => {
+    const { can } = await accessControlProvider.can({
+        resource: "posts",
+        action: "list",
+    });
+
+    if (!can) {
+        context.res.statusCode = 403;
+        context.res.end();
+    }
+
+    return {
+        props: {
+            can,
+        },
+    };
+};
+```
 
 ### How to use multiple layouts?
 
@@ -1034,7 +1104,7 @@ Default paths are:
 -   `create`: `/resources/create`
 -   `edit`: `/resources/edit/:id`
 -   `show`: `/resources/show/:id`
-:::
+    :::
 
 ## Example (`/pages`)
 
