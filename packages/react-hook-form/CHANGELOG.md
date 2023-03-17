@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 4.1.1
+
+### Patch Changes
+
+-   [#3909](https://github.com/refinedev/refine/pull/3909) [`631512e91ec`](https://github.com/refinedev/refine/commit/631512e91ecf79f12d735de6b11e4822f01cc6f5) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed a bug that the form values were not filled when the user next to steps.
+
 ## 4.1.0
 
 ### Minor Changes

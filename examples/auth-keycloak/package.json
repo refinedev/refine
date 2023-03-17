@@ -6,7 +6,7 @@
         "keycloak-js": "^20.0.3",
         "@react-keycloak/web": "^3.4.0",
         "@refinedev/antd": "^5.1.2",
-        "@refinedev/core": "^4.1.6",
+        "@refinedev/core": "^4.2.0",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",
