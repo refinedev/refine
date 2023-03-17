@@ -66,6 +66,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         formProps: editFormProps,
         saveButtonProps: editSaveButtonProps,
         show: editShow,
+        id: editId,
     } = useDrawerForm<IProduct>({
         action: "edit",
         resource: "products",
@@ -161,6 +162,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 drawerProps={editDrawerProps}
                 formProps={editFormProps}
                 saveButtonProps={editSaveButtonProps}
+                editId={editId}
             />
         </div>
     );
