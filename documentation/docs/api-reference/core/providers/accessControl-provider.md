@@ -62,12 +62,12 @@ const App: React.FC = () => {
                 //     });
                 // }
 
-                return Promise.resolve({ can: true });
+                return { can: true };
             },
         }}
     >
         {/* your app */}
-    </Refine>
+    </Refine>;
 };
 ```
 

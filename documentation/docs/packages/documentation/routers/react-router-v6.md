@@ -31,7 +31,7 @@ If you are using the legacy router provider, it can be imported from `@refinedev
 
 ## Usage
 
-`@refinedev/react-router-v6` is not restricting you to use the router in a specific way and it is up to you to decide how you want to use it. 
+`@refinedev/react-router-v6` is not restricting you to use the router in a specific way and it is up to you to decide how you want to use it.
 
 You can define your routes the way you want, then pass the `routerProvider` prop to the `Refine` component and use the `resources` prop to define the resources and their action paths. From basic to advanced use cases and enterprise applications, you will have full control over your routes. In our examples, we've used this approach to demonstrate the flexibility of the router provider and the route handling process.
 
@@ -71,7 +71,7 @@ const App = () => {
                         list: "/categories",
                         show: "/categories/show/:id",
                         // highlight-end
-                    }
+                    },
                 ]}
             >
                 <Routes>
@@ -88,8 +88,8 @@ const App = () => {
                 </Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 ### Usage with Authentication
@@ -135,29 +135,32 @@ const App = () => {
                         name: "categories",
                         list: "/categories",
                         show: "/categories/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
                         // highlight-start
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource resource="posts" />
                             </Authenticated>
-                        )}
+                        }
                         // highlight-end
                     >
                         {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage type="login" />} />
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
                     </Route>
                     <Route
                         // highlight-start
-                        element={(
+                        element={
                             <Authenticated redirectOnFail="/login">
                                 <Outlet />
                             </Authenticated>
-                        )}
+                        }
                         // highlight-end
                     >
                         <Route path="posts">
@@ -172,8 +175,8 @@ const App = () => {
                 </Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 Notice that we've used the `fallback` property to render the `<Outlet>` component inside the wrapper `Route` of the `/login` page. This allows us to render the login page when the user is not authenticated and redirect the user to the `/posts` page when the user is authenticated.
@@ -217,21 +220,24 @@ const App = () => {
                         name: "categories",
                         list: "/categories",
                         show: "/categories/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource resource="posts" />
                             </Authenticated>
-                        )}
+                        }
                     >
-                        <Route path="/login" element={<AuthPage type="login" />} />
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated redirectOnFail="/login">
                                 {/* highlight-start */}
                                 <Layout>
@@ -239,7 +245,7 @@ const App = () => {
                                 </Layout>
                                 {/* highlight-end */}
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route path="posts">
                             <Route index element={<PostList />} />
@@ -253,11 +259,144 @@ const App = () => {
                 </Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 Notice that we've wrapped the `<Outlet>` with `<Layout>` component. This way, we don't need to define the layout for each route and wrap the each route inside it with the `<Layout>` component.
+
+### Usage with Access Control providers
+
+If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/accessControl-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
+
+:::info
+`CanAccess` component will infer resource name and action based on the current route and handle the authorization from your Access Control Provider for you.
+:::
+
+```tsx title=App.tsx
+// highlight-next-line
+import { Refine, Authenticated, CanAccess } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "src/authProvider";
+
+import { AuthPage, Layout } from "@refinedev/antd";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated redirectOnFail="/login">
+                                <Layout>
+                                    {/* highlight-start */}
+                                    <CanAccess
+                                        fallback={<div>Unauthorized!</div>}
+                                    >
+                                        <Outlet />
+                                    </CanAccess>
+                                    {/* highlight-end */}
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
+
+:::tip
+
+If you don't want to wrap your whole application with `CanAccess`, it's also possible to wrap certain routes individually.
+
+```tsx title=App.tsx
+<Routes>
+    <Route
+        element={
+            <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+            </Authenticated>
+        }
+    >
+        <Route path="/login" element={<AuthPage type="login" />} />
+    </Route>
+    <Route
+        element={
+            <Authenticated redirectOnFail="/login">
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </Authenticated>
+        }
+    >
+        <Route path="posts">
+            <Route index element={<PostList />} />
+            <Route
+                path="create"
+                element={
+                    // highlight-start
+                    <CanAccess fallback={<div>Unauthorized!</div>}>
+                        <PostCreate />
+                    </CanAccess>
+                    // highlight-end
+                }
+            />
+        </Route>
+        <Route path="categories">
+            <Route index element={<CategoryList />} />
+            <Route path="show/:id" element={<CategoryShow />} />
+        </Route>
+    </Route>
+</Routes>
+```
+
+:::
 
 ### Usage with an Error Page
 
@@ -296,27 +435,30 @@ const App = () => {
                         name: "categories",
                         list: "/categories",
                         show: "/categories/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource resource="posts" />
                             </Authenticated>
-                        )}
+                        }
                     >
-                        <Route path="/login" element={<AuthPage type="login" />} />
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated redirectOnFail="/login">
                                 <Layout>
                                     <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route path="posts">
                             <Route index element={<PostList />} />
@@ -332,8 +474,8 @@ const App = () => {
                 </Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 ### Usage with a Root Route
@@ -375,30 +517,36 @@ const App = () => {
                         name: "categories",
                         list: "/categories",
                         show: "/categories/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource resource="posts" />
                             </Authenticated>
-                        )}
+                        }
                     >
-                        <Route path="/login" element={<AuthPage type="login" />} />
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
                     </Route>
                     <Route
-                        element={(
+                        element={
                             <Authenticated redirectOnFail="/login">
                                 <Layout>
                                     <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
                         {/* highlight-next-line */}
-                        <Route index element={<NavigateToResource resource="posts" />} />
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
                         <Route path="posts">
                             <Route index element={<PostList />} />
                             <Route path="create" element={<PostCreate />} />
@@ -412,8 +560,8 @@ const App = () => {
                 </Routes>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 :::note Additional Parameters and Nesting
@@ -526,7 +674,10 @@ const App = () => {
                     <Route path="/login" element={<AuthPage type="login" />} />
                     {/* ... */}
                     {/* highlight-next-line */}
-                    <Route path="*" element={<CatchAllNavigate to="/login" />} />
+                    <Route
+                        path="*"
+                        element={<CatchAllNavigate to="/login" />}
+                    />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -596,8 +747,8 @@ export const App = () => {
                 {/* ... */}
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
 
 **Defining routes**
@@ -1054,13 +1205,13 @@ const App = () => {
 }
 ```
 
-We've defined our resource actions using components to let the `RefineRoutes` render them. We can also define the path for each action. If we don't define the path, the `RefineRoutes` will use the default paths for the actions. 
+We've defined our resource actions using components to let the `RefineRoutes` render them. We can also define the path for each action. If we don't define the path, the `RefineRoutes` will use the default paths for the actions.
 
 [Refer to "Understanding the Resources" section of our tutorial for detailed information. &#8594][resources]
 
 💡 We also defined the `show` action's path as `/categories/:id/details` which will override the default path.
 
-The `index` route is defined with the `NavigateToResource` component which will redirect the user to the list page of the first defined resource. 
+The `index` route is defined with the `NavigateToResource` component which will redirect the user to the list page of the first defined resource.
 
 We also added a catch-all route which will render the `ErrorComponent` for the routes that are not defined.
 
@@ -1078,3 +1229,7 @@ Default paths are:
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [resources]: /docs/tutorial/understanding-resources/index/
+
+```
+
+```
