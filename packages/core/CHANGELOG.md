@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.3.0
+
+### Minor Changes
+
+-   [#3892](https://github.com/refinedev/refine/pull/3892) [`41a4525454c`](https://github.com/refinedev/refine/commit/41a4525454cfa145c02aada1e01217260852b06e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: make CanAccess component props optional. Now CanAccess component infers resource and action automagically.
+
 ## 4.2.0
 
 ### Minor Changes
