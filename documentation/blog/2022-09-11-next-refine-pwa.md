@@ -54,8 +54,6 @@ Steps we'll cover:
   - [Using the useTable hook](#using-the-usetable-hook)
 - [Generating PWA manifest](#generating-pwa-manifest)
 - [Configuring PWA](#configuring-pwa)
-- [Conclusion](#conclusion)
-- [Project source code](#project-source-code)
 
 ## Prerequisites
 refine templates are shipped with Typescript by default. This is because Typescript is the recommended language for writing refine applications. 
