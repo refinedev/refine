@@ -4,11 +4,11 @@ export const lightPalette: PaletteOptions = {
     mode: "light",
     primary: {
         main: "#67be23",
-        contrastText: "#fff",
+        contrastText: "#000",
     },
     secondary: {
         main: "#2A132E",
-        contrastText: "#fff",
+        contrastText: "#000",
     },
     background: {
         default: "#f0f0f0",
@@ -16,19 +16,19 @@ export const lightPalette: PaletteOptions = {
     },
     success: {
         main: "#67be23",
-        contrastText: "#fff",
+        contrastText: "#000",
     },
     error: {
         main: "#fa541c",
-        contrastText: "#fff",
+        contrastText: "#000",
     },
     warning: {
         main: "#fa8c16",
-        contrastText: "#fff",
+        contrastText: "#000",
     },
     info: {
         main: "#0b82f0",
-        contrastText: "#fff",
+        contrastText: "#000",
     },
     divider: "rgba(0,0,0,0)",
     text: {
