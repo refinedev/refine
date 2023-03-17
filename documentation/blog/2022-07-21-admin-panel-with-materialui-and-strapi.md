@@ -6,7 +6,6 @@ authors: necati
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
-is_featured: true
 hide_table_of_contents: false
 ---
 

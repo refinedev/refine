@@ -6,7 +6,6 @@ authors: abdullah_numan
 tags: [javascript, currying ]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-28-js-currying-functions/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-28-js-currying-functions/featured.png
-is_featured: true
 hide_table_of_contents: false
 ---
 
