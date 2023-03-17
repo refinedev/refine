@@ -173,7 +173,7 @@ export const PostEdit: React.FC = () => {
         <Edit
             isLoading={formLoading}
             saveButtonProps={saveButtonProps}
-            headerButtons={
+            footerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button
