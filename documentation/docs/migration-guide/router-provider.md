@@ -38,6 +38,30 @@ After the deprecation of the `DashboardPage` prop, you need to create your own i
 
 `LoginPage` prop was used to handle the login page. You can now create your own login page with the appropriate way for your router. To see examples, [check out the documentation](#using-the-new-router-providers) for each router.
 
+### Changes in Custom `<Sider>` Components
+
+If you've swizzled the `<Sider>` component from your UI package and customized it, you might need to update them accordingly if you're using the new `routerProvider` prop of `<Refine>`.
+
+#### Updating `useRouterContext` Usage
+
+With the new `routerProvider` prop, the v3 compatible router providers are now provided through `legacyRouterProvider` prop. If you're using the `legacyRouterProvider`, `useRouterContext` will continue working as before. If you're using the new `routerProvider`, `useRouterContext` hook is deprecated and won't work with the new router providers. You can easily replace the usage of `useRouterContext` with the new router hooks such as `useLink`, `useGo`, `useBack` and `useParsed.`
+
+In the `<Sider>` components, we've used the `Link` component from `useRouterContext`. You can easily replace the usage of `Link` with the `useLink` hook. If you wan't you can always switch to the `Link` implementations from your router. (e.g. `react-router-dom`'s `Link` component or `next/link` component)
+
+```diff
+- import { useRouterContext } from "@refinedev/core";
++ import { useLink } from "@refinedev/core";
+
+const CustomSider = () => {
+-   const { Link } = useRouterContext();
++   const Link = useLink();
+
+    /* ... */
+}
+```
+
+If you have customized the use of `useMenu` hook, you might need to check the usage of it to make sure it's working as expected. Even though the `useMenu` hook is not changed in its return values, the way it generates the menu item keys is changed. 
+
 ### Behavioral Changes in Routing
 
 Since **refine** doesn't create routes internally anymore, you will need to create your routes manually. In the previous versions, this also made **refine** responsible for authentication checks and redirections. With the new router provider, **refine** no longer handles these checks and redirections. You will need to handle them yourself such as redirecting to the `/login` page or 404 pages. This also means that the access control point in routes are now needed to be handled by the user. You can handle it using the `CanAccess` component or the `useCan` hook in your pages or as wrappers around your pages.
