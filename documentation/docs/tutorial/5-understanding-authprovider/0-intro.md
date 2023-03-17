@@ -11,7 +11,7 @@ import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples
 
 ## What is auth provider?
 
-Auth provider is an object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
+Auth provider is an object which contains methods to handle authentication and access control in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
 
 Auth provider's methods expect to return a Promise. So, you can use async methods to create auth provider. Therefore, to create auth provider from scratch, you can use any third-party authentication service like Auth0, Okta, etc. or your own custom methods. We'll see how to create auth provider in the next sections.
 

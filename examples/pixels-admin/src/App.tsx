@@ -1,4 +1,9 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import {
+    Authenticated,
+    CanAccess,
+    GitHubBanner,
+    Refine,
+} from "@refinedev/core";
 import { ErrorComponent, Layout, notificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
@@ -66,7 +71,9 @@ function App() {
                             element={
                                 <Authenticated>
                                     <Layout Title={Title}>
-                                        <Outlet />
+                                        <CanAccess>
+                                            <Outlet />
+                                        </CanAccess>
                                     </Layout>
                                 </Authenticated>
                             }
