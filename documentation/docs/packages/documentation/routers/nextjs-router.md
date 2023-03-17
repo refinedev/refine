@@ -546,7 +546,7 @@ This feature is not working in experimental `appDir` mode in Next.js due to limi
 
 This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
 
-## How to handle Authentication?
+## Authentication
 
 In Next.js you can achieve authentication control in multiple ways;
 
@@ -700,7 +700,7 @@ export const getServerSideProps = async (context) => {
 
 This needs to be done for all the routes that we want to protect.
 
-## How to handle Access Control?
+## Access Control
 
 In Next.js you can achieve access control in multiple ways;
 

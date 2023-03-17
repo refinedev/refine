@@ -35,14 +35,14 @@ We'll use the `routerProvider` from `@refinedev/remix-router` to set up the rout
 
 We'll create four pages for our resources:
 
-- `app/routes/posts._index.tsx` - List page for posts
-- `app/routes/posts.show.$id.tsx` - Detail page for posts
-- `app/routes/categories._index.tsx` - List page for categories
-- `app/routes/categories.show.$id.tsx` - Detail page for categories
+-   `app/routes/posts._index.tsx` - List page for posts
+-   `app/routes/posts.show.$id.tsx` - Detail page for posts
+-   `app/routes/categories._index.tsx` - List page for categories
+-   `app/routes/categories.show.$id.tsx` - Detail page for categories
 
 And we'll create one page for the index route and use it to redirect to the `posts` resource:
 
-- `app/routes/_index.tsx` - Index page
+-   `app/routes/_index.tsx` - Index page
 
 :::note
 
@@ -52,9 +52,9 @@ Currently, to enable that you need to add the following line to your `remix.conf
 
 ```node title=remix.config.js
 module.exports = {
-  future: {
-    v2_routeConvention: true,
-  },
+    future: {
+        v2_routeConvention: true,
+    },
 };
 ```
 
@@ -349,110 +349,17 @@ export default function App(): JSX.Element {
 
 This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
 
-## FAQ
-
-### How to handle Authentication?
+## Authentication
 
 In Remix you can achieve authentication control in multiple ways;
 
-You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthorized access.
+On the client-side [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` can be used to protect your pages from unauthenticated access.
 
-Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
+On the server-side `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
+:::info
 Using a server side approach is recommended but you can use any approach you want.
-
-There are two ways to do Server Side Authentication with Remix. You can choose one of the two methods according to your use case.
-
-1. You can store the user session as encrypted using `createCookieSessionStorage`. When you choose this method, all authentication information will remain on the server side. Check out the [Server Side Authentication with `createCookieSessionStorage`](#server-side-authentication-with-createcookiesessionstorage) section for more information.
-2. Self service cookies! You manage authentication cookies yourself. The plus of this method is that the Authentication information can also be used on the Client Side (recommended). Check out the [Server Side Authentication with Self service Cookie](#server-side-authentication-with-self-service-cookie) section for more information.
-
-### Can I use nested routes?
-
-Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
-
-You can use `:param` syntax to define parameters in your routes.
-
-### How to make SSR work?
-
-You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can use `loader` function and pass the data to your page as a prop.
-
-All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
-
-```tsx
-import { useList } from "@refinedev/core";
-import { useLoaderData } from "@remix-run/react";
-
-import { dataProvider } from "src/providers";
-
-type IPost = {
-    id: number;
-    title: string;
-    description: string;
-};
-
-export async function loader() {
-    const { data } = await dataProvider.getList<IPost>("posts", {
-        pagination: {
-            page: 1,
-            perPage: 10,
-        },
-    });
-
-    return json(data);
-}
-
-export default function Posts() {
-    const initialPosts = useLoaderData<typeof loader>();
-
-    const {
-        tableQueryResult: { data },
-    } = useTable<IPost>({
-        queryOptions: {
-            initialData: initialPosts,
-        },
-    });
-
-    return <>{/* ... */}</>;
-}
-```
-
-### How to persist `syncWithLocation` in SSR?
-
-If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
-
-```tsx
-import { json, LoaderFunction } from "@remix-run/node";
-// highligt-next-line
-import { parseTableParams } from "@refinedev/remix-router";
-import dataProvider from "@refinedev/simple-rest";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const loader: LoaderFunction = async ({ params, request }) => {
-    const { resource } = params;
-    const url = new URL(request.url);
-
-    // highligt-next-line
-    const tableParams = parseTableParams(url.search);
-
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: resource as string,
-            ...tableParams, // this includes `filters`, `sorters` and `pagination`
-        });
-
-        return json({ initialData: data });
-    } catch (error) {
-        return json({});
-    }
-};
-
-export default function MyListRoute() {
-    return <>{/* ... */}</>;
-}
-```
-
-`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+:::
 
 ### Server Side Authentication with `createCookieSessionStorage`
 
@@ -868,6 +775,202 @@ export const loader: LoaderFunction = async ({ params, request, context }) => {
 
 This needs to be done for all the routes that we want to protect.
 
+## Access Control
+
+There are two ways to do Server Side Authentication with Remix. You can choose one of the two methods according to your use case.
+
+### Server Side
+
+On the server-side `accessControlProvider`'s `can` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
+
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+
+```tsx title="app/acccessControlProvider.ts"
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        if (resource === "posts" && action === "edit") {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+
+        // or you can access directly *resource object
+        // const resourceName = params?.resource?.name;
+        // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+        // if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
+        //     return {
+        //         can: false,
+        //         reason: "Unauthorized",
+        //     };
+        // }
+
+        return { can: true };
+    },
+};
+```
+
+Then, let's create our posts route.
+
+```tsx title="app/routes/_protected.posts._index.tsx"
+import {
+    useTable,
+    List,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+} from "@refinedev/antd";
+import { Table, Space } from "antd";
+import { useLoaderData } from "@remix-run/react";
+import { json, LoaderArgs } from "@remix-run/node";
+import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams } from "@refinedev/remix-router";
+
+import { IPost } from "../interfaces";
+import { API_URL } from "~/constants";
+import { accessControlProvider } from "../accessControlProvider";
+
+const PostList: React.FC = () => {
+    const { initialData } = useLoaderData<typeof loader>();
+
+    const { tableProps } = useTable<IPost>({
+        queryOptions: {
+            initialData,
+        },
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="status" title="Status" />
+                <Table.Column dataIndex="title" title="Title" />
+            </Table>
+        </List>
+    );
+};
+
+export default PostList;
+
+export async function loader({ request }: LoaderArgs) {
+    const can = accessControlProvider.can({
+        resource: "posts",
+        action: "list",
+    });
+
+    if (!can) {
+        return json({}, { status: 403 });
+    }
+
+    const data = await dataProvider(API_URL).getList<IPost>({
+        resource: "posts",
+        filters,
+        pagination,
+        sorters,
+    });
+
+    return json({ initialData: data });
+}
+```
+
+Tadaa! that's all! 🎉
+
+### Client Side
+
+For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+## FAQ
+
+#
+
+### Can I use nested routes?
+
+Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
+
+You can use `:param` syntax to define parameters in your routes.
+
+### How to make SSR work?
+
+You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can use `loader` function and pass the data to your page as a prop.
+
+All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
+
+```tsx
+import { useList } from "@refinedev/core";
+import { useLoaderData } from "@remix-run/react";
+
+import { dataProvider } from "src/providers";
+
+type IPost = {
+    id: number;
+    title: string;
+    description: string;
+};
+
+export async function loader() {
+    const { data } = await dataProvider.getList<IPost>("posts", {
+        pagination: {
+            page: 1,
+            perPage: 10,
+        },
+    });
+
+    return json(data);
+}
+
+export default function Posts() {
+    const initialPosts = useLoaderData<typeof loader>();
+
+    const {
+        tableQueryResult: { data },
+    } = useTable<IPost>({
+        queryOptions: {
+            initialData: initialPosts,
+        },
+    });
+
+    return <>{/* ... */}</>;
+}
+```
+
+### How to persist `syncWithLocation` in SSR?
+
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+```tsx
+import { json, LoaderFunction } from "@remix-run/node";
+// highligt-next-line
+import { parseTableParams } from "@refinedev/remix-router";
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const loader: LoaderFunction = async ({ params, request }) => {
+    const { resource } = params;
+    const url = new URL(request.url);
+
+    // highligt-next-line
+    const tableParams = parseTableParams(url.search);
+
+    try {
+        const data = await dataProvider(API_URL).getList({
+            resource: resource as string,
+            ...tableParams, // this includes `filters`, `sorters` and `pagination`
+        });
+
+        return json({ initialData: data });
+    } catch (error) {
+        return json({});
+    }
+};
+
+export default function MyListRoute() {
+    return <>{/* ... */}</>;
+}
+```
+
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+
 ### Handling 404s
 
 In the earlier versions of **refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
@@ -963,7 +1066,7 @@ Default paths are:
 -   `create`: `/resources/create`
 -   `edit`: `/resources/edit/:id`
 -   `show`: `/resources/show/:id`
-:::
+    :::
 
 ## Example
 
