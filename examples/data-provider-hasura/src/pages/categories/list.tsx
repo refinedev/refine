@@ -4,12 +4,11 @@ import {
     List,
     useTable,
     EditButton,
-    DeleteButton,
     DateField,
     getDefaultSortOrder,
 } from "@refinedev/antd";
 
-import { Table, Space } from "antd";
+import { Table } from "antd";
 
 import { ICategory } from "interfaces";
 
@@ -42,18 +41,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                size="small"
-                                hideText
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                size="small"
-                                hideText
-                                recordItemId={record.id}
-                            />
-                        </Space>
+                        <EditButton
+                            size="small"
+                            hideText
+                            recordItemId={record.id}
+                        />
                     )}
                 />
             </Table>
