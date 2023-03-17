@@ -44,7 +44,6 @@ Steps we'll cover includes:
   - [Deleting a record](#deleting-a-record)
 - [Implementing mutation mode](#implementing-mutation-mode)
 - [Sharing the current page with filters](#sharing-the-current-page-with-filters)
-- [Conclusion](#conclusion)
 
 
 
