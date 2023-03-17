@@ -1,5 +1,21 @@
 # @pankod/refine-core
 
+## 4.1.6
+
+### Patch Changes
+
+-   [#3890](https://github.com/refinedev/refine/pull/3890) [`db12d60095f`](https://github.com/refinedev/refine/commit/db12d60095fbc200afca511d090f7b327cfc7a65) Thanks [@aliemir](https://github.com/aliemir)! - - Fixed layout flickering on authenticated routes.
+    -   Fixed repeated navigations issue on routes with `<Authenticated>` component.
+    -   Fixed conflicting navigation paths with `authProvider` methods and `<Authenticated>` component.
+
+## 4.1.5
+
+### Patch Changes
+
+-   [#3890](https://github.com/refinedev/refine/pull/3890) [`db12d60095f`](https://github.com/refinedev/refine/commit/db12d60095fbc200afca511d090f7b327cfc7a65) Thanks [@aliemir](https://github.com/aliemir)! - - Fixed layout flickering on authenticated routes.
+    -   Fixed repeated navigations issue on routes with `<Authenticated>` component.
+    -   Fixed conflicting navigation paths with `authProvider` methods and `<Authenticated>` component.
+
 ## 4.1.4
 
 ### Patch Changes

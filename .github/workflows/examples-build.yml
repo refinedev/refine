@@ -14,6 +14,7 @@ on:
 
 jobs:
   chunks:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
     runs-on: ubuntu-latest
 
     strategy:

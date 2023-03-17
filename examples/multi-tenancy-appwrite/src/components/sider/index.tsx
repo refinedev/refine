@@ -94,6 +94,7 @@ export const CustomSider: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
             <Menu
+                theme="dark"
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={() => {

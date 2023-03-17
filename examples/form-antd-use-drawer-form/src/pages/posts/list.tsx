@@ -93,7 +93,18 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 </Table>
             </List>
             <Drawer {...createDrawerProps}>
-                <Create saveButtonProps={createSaveButtonProps}>
+                <Create
+                    saveButtonProps={createSaveButtonProps}
+                    goBack={false}
+                    contentProps={{
+                        style: {
+                            boxShadow: "none",
+                        },
+                        bodyStyle: {
+                            padding: 0,
+                        },
+                    }}
+                >
                     <Form {...createFormProps} layout="vertical">
                         <Form.Item
                             label="Title"
@@ -143,6 +154,14 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         disabled: formLoading,
                     }}
                     deleteButtonProps={deleteButtonProps}
+                    contentProps={{
+                        style: {
+                            boxShadow: "none",
+                        },
+                        bodyStyle: {
+                            padding: 0,
+                        },
+                    }}
                 >
                     <Form {...editFormProps} layout="vertical">
                         <Form.Item

@@ -1,6 +1,6 @@
 ---
 id: deploy-project
-title: 6. Deploy your app to the web
+title: 6. Deploying your app to the web
 tutorial:
     prev: tutorial/getting-started/store-your-repository
     next: tutorial/understanding-dataprovider/index
@@ -23,8 +23,7 @@ Netlify will use your GitHub repository to build and deploy your site every time
 Congratulations! You now have an **refine** website hosted on Netlify.
 
 :::tip
-
-To support for client-side routing, you can check out the Create React App documentation on [deployment](https://create-react-app.dev/docs/deployment/#netlify).
+For more information on client-side routing, check out the create Create React App documentation on [deployment](https://create-react-app.dev/docs/deployment/#netlify).
 
 :::
 
@@ -35,7 +34,7 @@ To view your new website, visit the URL provided in your site settings or type i
 <Checklist>
 
 <ChecklistItem id="deploy-your-project">
-I deployed my app to the Netfly.
+I have deployed my app to the Netfly.
 </ChecklistItem>
 
 </Checklist>
