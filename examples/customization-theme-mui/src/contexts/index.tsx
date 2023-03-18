@@ -35,9 +35,9 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 
     const setColorMode = () => {
         if (mode === "light") {
-            setMode("dark");
-        } else {
             setMode("light");
+        } else {
+            setMode("dark");
         }
     };
 
