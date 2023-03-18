@@ -229,7 +229,6 @@ export function Authenticated({
         }
     }
 
-
     /**
      * If there's no `authProvider` set, we don't need to check whether user is logged in or not.
      */
