@@ -2,13 +2,13 @@ import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     ErrorComponent,
-    BLUE_THEME,
-    PURPLE_THEME,
-    MAGENTA_THEME,
-    RED_THEME,
-    ORANGE_THEME,
-    YELLOW_THEME,
-    GREEN_THEME,
+    BlueTheme,
+    PurpleTheme,
+    MagentaTheme,
+    RedTheme,
+    OrangeTheme,
+    YellowTheme,
+    GreenTheme,
     ThemedLayout,
     AuthPage,
 } from "@refinedev/antd";
@@ -36,15 +36,15 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
-    const [config, setConfig] = useState({
-        token: MAGENTA_THEME.token,
+    const [customTheme, setCustomTheme] = useState({
+        token: MagentaTheme.token,
         algorithm: theme.darkAlgorithm,
     });
 
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ConfigProvider theme={config}>
+            <ConfigProvider theme={customTheme}>
                 <Refine
                     authProvider={authProvider}
                     routerProvider={routerProvider}
@@ -138,7 +138,7 @@ const App: React.FC = () => {
                                                 icon: (
                                                     <GoogleOutlined
                                                         style={{
-                                                            fontSize: 24,
+                                                            fontSize: 14,
                                                             lineHeight: 0,
                                                         }}
                                                     />
@@ -150,7 +150,7 @@ const App: React.FC = () => {
                                                 icon: (
                                                     <GithubOutlined
                                                         style={{
-                                                            fontSize: 24,
+                                                            fontSize: 14,
                                                             lineHeight: 0,
                                                         }}
                                                     />
@@ -172,7 +172,7 @@ const App: React.FC = () => {
                                                 icon: (
                                                     <GoogleOutlined
                                                         style={{
-                                                            fontSize: 24,
+                                                            fontSize: 14,
                                                             lineHeight: 0,
                                                         }}
                                                     />
@@ -184,7 +184,7 @@ const App: React.FC = () => {
                                                 icon: (
                                                     <GithubOutlined
                                                         style={{
-                                                            fontSize: 24,
+                                                            fontSize: 14,
                                                             lineHeight: 0,
                                                         }}
                                                     />
@@ -224,7 +224,7 @@ const App: React.FC = () => {
                             position: "absolute",
                             bottom: 0,
                             left: "50%",
-                            right: "50%",
+                            transform: "translateX(-50%)",
                         }}
                     >
                         <Button
@@ -246,19 +246,19 @@ const App: React.FC = () => {
                             }}
                         >
                             {[
-                                BLUE_THEME,
-                                PURPLE_THEME,
-                                MAGENTA_THEME,
-                                RED_THEME,
-                                ORANGE_THEME,
-                                YELLOW_THEME,
-                                GREEN_THEME,
+                                BlueTheme,
+                                PurpleTheme,
+                                MagentaTheme,
+                                RedTheme,
+                                OrangeTheme,
+                                YellowTheme,
+                                GreenTheme,
                             ].map((theme) => {
                                 return (
                                     <Button
                                         key={theme.token?.colorPrimary}
                                         onClick={() => {
-                                            setConfig((prevState) => ({
+                                            setCustomTheme((prevState) => ({
                                                 ...prevState,
                                                 token: theme.token,
                                             }));
@@ -282,7 +282,7 @@ const App: React.FC = () => {
                         >
                             <Button
                                 onClick={() => {
-                                    setConfig((prevState) => ({
+                                    setCustomTheme((prevState) => ({
                                         ...prevState,
                                         algorithm: theme.darkAlgorithm,
                                     }));
@@ -293,7 +293,7 @@ const App: React.FC = () => {
                             </Button>
                             <Button
                                 onClick={() => {
-                                    setConfig((prevState) => ({
+                                    setCustomTheme((prevState) => ({
                                         ...prevState,
                                         algorithm: theme.defaultAlgorithm,
                                     }));
