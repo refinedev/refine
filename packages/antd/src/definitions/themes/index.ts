@@ -1,43 +1,50 @@
 import { ThemeConfig } from "antd";
 
-export const BlueTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#1677FF",
-    },
-};
+type ThemeNames =
+    | "Blue"
+    | "Purple"
+    | "Magenta"
+    | "Red"
+    | "Orange"
+    | "Yellow"
+    | "Green";
 
-export const PurpleTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#722ED1",
-    },
-};
+type RefineThemes = Record<ThemeNames, ThemeConfig>;
 
-export const MagentaTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#EB2F96",
+export const RefineThemes: RefineThemes = {
+    Blue: {
+        token: {
+            colorPrimary: "#1677FF",
+        },
     },
-};
-
-export const RedTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#F5222D",
+    Purple: {
+        token: {
+            colorPrimary: "#722ED1",
+        },
     },
-};
-
-export const OrangeTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#FA541C",
+    Magenta: {
+        token: {
+            colorPrimary: "#EB2F96",
+        },
     },
-};
-
-export const YellowTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#FAAD14",
+    Red: {
+        token: {
+            colorPrimary: "#F5222D",
+        },
     },
-};
-
-export const GreenTheme: ThemeConfig = {
-    token: {
-        colorPrimary: "#52C41A",
+    Orange: {
+        token: {
+            colorPrimary: "#FA541C",
+        },
+    },
+    Yellow: {
+        token: {
+            colorPrimary: "#FAAD14",
+        },
+    },
+    Green: {
+        token: {
+            colorPrimary: "#52C41A",
+        },
     },
 };
