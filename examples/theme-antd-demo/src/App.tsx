@@ -2,13 +2,7 @@ import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     ErrorComponent,
-    BlueTheme,
-    PurpleTheme,
-    MagentaTheme,
-    RedTheme,
-    OrangeTheme,
-    YellowTheme,
-    GreenTheme,
+    RefineThemes,
     ThemedLayout,
     AuthPage,
 } from "@refinedev/antd";
@@ -37,7 +31,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
     const [customTheme, setCustomTheme] = useState({
-        token: MagentaTheme.token,
+        token: RefineThemes.Magenta.token,
         algorithm: theme.darkAlgorithm,
     });
 
@@ -245,15 +239,12 @@ const App: React.FC = () => {
                                 flexWrap: "wrap",
                             }}
                         >
-                            {[
-                                BlueTheme,
-                                PurpleTheme,
-                                MagentaTheme,
-                                RedTheme,
-                                OrangeTheme,
-                                YellowTheme,
-                                GreenTheme,
-                            ].map((theme) => {
+                            {Object.keys(RefineThemes).map((name) => {
+                                const theme =
+                                    RefineThemes[
+                                        name as keyof typeof RefineThemes
+                                    ];
+
                                 return (
                                     <Button
                                         key={theme.token?.colorPrimary}
