@@ -14,7 +14,6 @@ on:
 
 jobs:
   chunks:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
     runs-on: ubuntu-latest
 
     strategy:
@@ -49,6 +48,7 @@ jobs:
       - name: Split Into Chunks
         id: chunkstep
         run: CHUNKS=8 node ./.github/workflows/build-example-chunks.js
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
 
   build-chunk-1:
     runs-on: ubuntu-latest
