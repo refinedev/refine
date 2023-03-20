@@ -1,10 +1,6 @@
 import { CSSProperties } from "react";
 
-export const layoutStyles: CSSProperties = {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-};
+export const layoutStyles: CSSProperties = {};
 
 export const containerStyles: CSSProperties = {
     maxWidth: "400px",

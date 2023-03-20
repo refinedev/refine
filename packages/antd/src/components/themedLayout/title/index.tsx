@@ -14,6 +14,7 @@ const defaultIcon = (
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        data-testid="refine-logo"
     >
         <path
             d="M12 9C13.6569 9 15 7.65685 15 6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6C9 7.65685 10.3431 9 12 9Z"
@@ -41,15 +42,16 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     return (
-        <ActiveLink to="/">
+        <ActiveLink
+            to="/"
+            style={{
+                display: "inline-block",
+            }}
+        >
             <Space
                 style={{
-                    padding: collapsed ? "0" : "0 16px",
                     display: "flex",
-                    justifyContent: collapsed ? "center" : "flex-start",
                     alignItems: "center",
-                    height: "64px",
-                    backgroundColor: token.colorBgElevated,
                 }}
             >
                 <div
@@ -67,6 +69,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
                         style={{
                             fontSize: "14px",
                             marginBottom: 0,
+                            fontWeight: 700,
                         }}
                     >
                         {text}

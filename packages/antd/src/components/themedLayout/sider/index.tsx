@@ -26,7 +26,7 @@ import {
 
 import { drawerButtonStyles } from "./styles";
 import { RefineThemedLayoutSiderProps } from "../types";
-import { ThemedTitle } from "../title";
+import { ThemedTitle } from "@components";
 
 const { SubMenu } = Menu;
 const { useToken } = theme;
@@ -202,9 +202,26 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 >
                     <Layout>
                         <Layout.Sider
-                            style={{ height: "100vh", overflow: "hidden" }}
+                            style={{
+                                height: "100vh",
+                                overflow: "hidden",
+                                backgroundColor: token.colorBgContainer,
+                                borderRight: `1px solid ${token.colorBgElevated}`,
+                            }}
                         >
-                            <RenderToTitle collapsed={false} />
+                            <div
+                                style={{
+                                    width: "200px",
+                                    padding: "0 16px",
+                                    display: "flex",
+                                    justifyContent: "flex-start",
+                                    alignItems: "center",
+                                    height: "64px",
+                                    backgroundColor: token.colorBgElevated,
+                                }}
+                            >
+                                <RenderToTitle collapsed={false} />
+                            </div>
                             {renderMenu()}
                         </Layout.Sider>
                     </Layout>
@@ -260,7 +277,19 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 </Button>
             }
         >
-            <RenderToTitle collapsed={collapsed} />
+            <div
+                style={{
+                    width: collapsed ? "80px" : "200px",
+                    padding: collapsed ? "0" : "0 16px",
+                    display: "flex",
+                    justifyContent: collapsed ? "center" : "flex-start",
+                    alignItems: "center",
+                    height: "64px",
+                    backgroundColor: token.colorBgElevated,
+                }}
+            >
+                <RenderToTitle collapsed={collapsed} />
+            </div>
             {renderMenu()}
         </Layout.Sider>
     );

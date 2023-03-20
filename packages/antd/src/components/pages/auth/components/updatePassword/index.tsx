@@ -27,7 +27,7 @@ import {
     headStyles,
     bodyStyles,
 } from "../styles";
-import { AuthPageTitle } from "../pageTitle";
+import { ThemedTitle } from "@components";
 
 const { Title } = Typography;
 const { useToken } = theme;
@@ -48,7 +48,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
-    titleProps,
+    title,
 }) => {
     const { token } = useToken();
     const [form] = Form.useForm<UpdatePasswordFormTypes>();
@@ -58,6 +58,19 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         useUpdatePassword<UpdatePasswordFormTypes>({
             v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         });
+
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
 
     const CardTitle = (
         <Title
@@ -165,21 +178,23 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     );
 
     return (
-        <Layout
-            {...(wrapperProps ?? {})}
-            style={{ ...layoutStyles, ...wrapperProps?.style }}
-        >
-            <Row justify="center" align="middle">
-                <AuthPageTitle
-                    {...titleProps}
-                    wrapperStyle={{
-                        marginBottom: "32px",
-                    }}
-                />
-            </Row>
-            <Row justify="center" align="middle">
+        <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
+            <Row
+                justify="center"
+                align="middle"
+                style={{
+                    height: "100vh",
+                }}
+            >
                 <Col xs={22}>
-                    {renderContent ? renderContent(CardContent) : CardContent}
+                    {renderContent ? (
+                        renderContent(CardContent, PageTitle)
+                    ) : (
+                        <>
+                            {PageTitle}
+                            {CardContent}
+                        </>
+                    )}
                 </Col>
             </Row>
         </Layout>
