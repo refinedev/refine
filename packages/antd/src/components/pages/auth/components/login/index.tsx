@@ -259,7 +259,10 @@ export const LoginPage: React.FC<LoginProps> = ({
     );
 
     return (
-        <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
+        <Layout
+            {...(wrapperProps ?? {})}
+            style={{ ...layoutStyles, ...wrapperProps?.style }}
+        >
             <Row justify="center" align="middle">
                 <AuthPageTitle
                     {...titleProps}

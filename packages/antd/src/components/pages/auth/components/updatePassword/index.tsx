@@ -165,7 +165,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     );
 
     return (
-        <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
+        <Layout
+            {...(wrapperProps ?? {})}
+            style={{ ...layoutStyles, ...wrapperProps?.style }}
+        >
             <Row justify="center" align="middle">
                 <AuthPageTitle
                     {...titleProps}
