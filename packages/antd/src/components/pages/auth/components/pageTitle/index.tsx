@@ -47,8 +47,6 @@ export const AuthPageTitle: FC<AuthPageTitleProps> = ({
     const iconToRender = icon === null ? null : icon || defaultIcon;
     const textToRender = text === null ? null : text || defaultText;
 
-    console.log({ text, textToRender });
-
     return (
         <div
             style={{
