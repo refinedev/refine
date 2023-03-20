@@ -208,6 +208,9 @@ export const useModalForm = <
         sunflowerUseModal.show();
     }, []);
 
+    const { visible: _visible, ...otherModalProps } = modalProps;
+    const newModalProps = { open: _visible, ...otherModalProps };
+
     return {
         ...useFormProps,
         ...sunflowerUseModal,
@@ -222,7 +225,7 @@ export const useModalForm = <
             onFinish: formProps.onFinish,
         },
         modalProps: {
-            ...modalProps,
+            ...newModalProps,
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
             title: translate(
