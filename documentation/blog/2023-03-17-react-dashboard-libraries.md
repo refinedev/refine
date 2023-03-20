@@ -19,11 +19,13 @@ This leads us to the next challenge: selecting the appropriate React admin dashb
 In this article, we've curated a compilation of the 5 best React admin dashboard libraries that encompass all the essential features needed to create modern and feature-rich dashboards with minimal effort.
 
 ## refine
-At the top of the list is refine, a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries. 
+At the top of the list is [refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries. 
 
 
 <div className="centered-image"  >
+<a href="https://github.com/refinedev/refine" >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Frefine.png"  alt="react admin dasboard 1" />
+   </a>
 </div>
 
 <br/>
@@ -132,7 +134,7 @@ npx tailwindcss init -p
 ```
 
 ### Stats
-Github stars: 6.6k
+Github stars: 7.3K
 License: MIT
 Links: [Demo](https://demo.tremor.so/) | [Documentation](https://www.tremor.so/docs/getting-started/installation) | [GitHub](https://github.com/tremorlabs/tremor)
 
@@ -142,7 +144,7 @@ Material Dashboard React is an open-source admin dashboard template built using 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Ftremor.png"  alt="react admin dasboard 4 " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fmaterial-dashboard-react.png"  alt="react admin dasboard 4 " />
 </div>
 
 <br/>
@@ -189,7 +191,7 @@ Volt’s structural design simplifies the visualization of data acquired from ba
 - Mapbox integration
 - W3C validated pages
 
-## Quick start
+### Quick start
 
 ```
 //clone the repo
@@ -200,7 +202,7 @@ Or
 npm run start
 ```
 
-### Stats
+### Stats
 - Github stars: 728
 - License: MIT
 - Links: [Demo](https://demo.themesberg.com/volt-react-dashboard/#/dashboard/overview) | [Documentation](https://demo.themesberg.com/volt-react-dashboard/#/) | [GitHub](https://github.com/themesberg/volt-react-dashboard)
