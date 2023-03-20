@@ -11,7 +11,9 @@ on:
 jobs:
   store-deploy:
     runs-on: ubuntu-latest
-
+    concurrency:
+      group: ${{ github.ref }}-store-deploy
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]

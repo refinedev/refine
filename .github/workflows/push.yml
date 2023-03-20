@@ -10,7 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    concurrency:
+      group: ${{ github.ref }}-push-build
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]

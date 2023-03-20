@@ -15,7 +15,9 @@ on:
 jobs:
   chunks:
     runs-on: ubuntu-latest
-
+    concurrency:
+      group: ${{ github.ref }}-build-examples
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]

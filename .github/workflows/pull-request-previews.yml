@@ -15,6 +15,9 @@ on:
 jobs:
   antd-fine-foods:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-pr-antd-fine-foods
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]
@@ -52,6 +55,9 @@ jobs:
         timeout-minutes: 10
   mui-fine-foods:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-pr-mui-fine-foods
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]
