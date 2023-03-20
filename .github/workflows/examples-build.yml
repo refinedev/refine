@@ -62,6 +62,7 @@ jobs:
     needs: chunks
 
     steps:
+      - run: echo ${{ needs.chunks.outputs.CHUNK_1 }} 
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
