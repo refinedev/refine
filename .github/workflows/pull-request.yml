@@ -4,6 +4,9 @@ on: [pull_request]
 jobs:
   commit-lint:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-commit-lint
+      cancel-in-progress: true
     name: Commitlint
     steps:
       - uses: actions/checkout@v3
@@ -22,6 +25,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-pr-build
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]
@@ -47,6 +53,7 @@ jobs:
         run: |
           npm ci
           npm run bootstrap:all
+          npm run build:all
       - name: Test
         run: |
           npm run test:all --skip-nx-cache

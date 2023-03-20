@@ -12,6 +12,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-next-release
+      cancel-in-progress: true
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     permissions: write-all
     strategy:
@@ -62,6 +65,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
   documentation-live-preview:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-next-documentation-live-preview
+      cancel-in-progress: true
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
@@ -114,6 +120,9 @@ jobs:
           domain: "next.live-previews.refine.dev"
   documentation:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-next-documentation
+      cancel-in-progress: true
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
