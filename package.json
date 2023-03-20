@@ -14,7 +14,7 @@
     "build": "lerna run build --include-dependencies --scope @refinedev/core",
     "build:all": "lerna run build --ignore @pankod/refine-react-router --scope @refinedev/* --scope create-refine-app",
     "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --include-dependencies",
-    "bootstrap:all": "lerna bootstrap --hoist --strict --ignore-scripts @pankod/refine-react-router --scope @refinedev/* --scope create-refine-app",
+    "bootstrap:all": "lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-react-router --scope @refinedev/* --scope create-refine-app",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "coffee": "npm run nuke && npm i && npm run bootstrap:all && npm run build:all",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
