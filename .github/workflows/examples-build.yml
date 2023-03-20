@@ -52,7 +52,7 @@ jobs:
 
   build-chunk-1:
     runs-on: ubuntu-latest
-    if: ${{ needs.chunks.outputs.CHUNK_1 }} != null
+    if: ${{ needs.chunks.outputs.CHUNK_1 }} != '[]'
     strategy:
       matrix:
         node-version: [16.x]
@@ -62,7 +62,7 @@ jobs:
     needs: chunks
 
     steps:
-      - run: echo ${{ needs.chunks.outputs.CHUNK_1 }} 
+      - run: echo "${{ needs.chunks.outputs.CHUNK_1 }}"
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
