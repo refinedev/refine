@@ -85,6 +85,7 @@ jobs:
 
   build-chunk-2:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_2 != '' }}"
 
     strategy:
       matrix:
@@ -117,6 +118,7 @@ jobs:
 
   build-chunk-3:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_3 != '' }}"
 
     strategy:
       matrix:
@@ -149,6 +151,7 @@ jobs:
 
   build-chunk-4:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_4 != '' }}"
 
     strategy:
       matrix:
@@ -181,6 +184,7 @@ jobs:
 
   build-chunk-5:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_5 != '' }}"
 
     strategy:
       matrix:
@@ -213,6 +217,7 @@ jobs:
 
   build-chunk-6:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_6 != '' }}"
 
     strategy:
       matrix:
@@ -245,6 +250,7 @@ jobs:
 
   build-chunk-7:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_7 != '' }}"
 
     strategy:
       matrix:
@@ -277,6 +283,7 @@ jobs:
 
   build-chunk-8:
     runs-on: ubuntu-latest
+    if: "${{ needs.chunks.outputs.CHUNK_8 != '' }}"
 
     strategy:
       matrix:
