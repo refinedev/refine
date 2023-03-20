@@ -19,12 +19,21 @@ import {
     CardProps,
     FormProps,
     Divider,
+    theme,
 } from "antd";
 import { useTranslate, useRouterContext, useRegister } from "@refinedev/core";
 
-import { layoutStyles, containerStyles, titleStyles } from "../styles";
+import {
+    layoutStyles,
+    containerStyles,
+    titleStyles,
+    headStyles,
+    bodyStyles,
+} from "../styles";
+import { AuthPageTitle } from "../pageTitle";
 
 const { Text, Title } = Typography;
+const { useToken } = theme;
 
 type RegisterProps = RegisterPageProps<LayoutProps, CardProps, FormProps>;
 
@@ -40,7 +49,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     contentProps,
     renderContent,
     formProps,
+    titleProps,
 }) => {
+    const { token } = useToken();
     const [form] = Form.useForm<RegisterFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -55,7 +66,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     });
 
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Title
+            level={3}
+            style={{
+                color: token.colorPrimaryTextHover,
+                ...titleStyles,
+            }}
+        >
             {translate("pages.register.title", "Sign up for your account")}
         </Title>
     );
@@ -68,7 +85,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         return (
                             <Button
                                 key={provider.name}
-                                type="ghost"
+                                type="default"
                                 block
                                 icon={provider.icon}
                                 style={{
@@ -88,7 +105,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             </Button>
                         );
                     })}
-                    <Divider>{translate("pages.login.divider", "or")}</Divider>
+                    <Divider>
+                        <Text
+                            style={{
+                                color: token.colorTextLabel,
+                            }}
+                        >
+                            {translate("pages.login.divider", "or")}
+                        </Text>
+                    </Divider>
                 </>
             );
         }
@@ -98,8 +123,12 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const CardContent = (
         <Card
             title={CardTitle}
-            headStyle={{ borderBottom: 0 }}
-            style={containerStyles}
+            headStyle={headStyles}
+            bodyStyle={bodyStyles}
+            style={{
+                ...containerStyles,
+                backgroundColor: token.colorBgElevated,
+            }}
             {...(contentProps ?? {})}
         >
             {renderProviders()}
@@ -139,7 +168,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         "Password",
                     )}
                     rules={[{ required: true }]}
-                    style={{ marginBottom: "12px" }}
                 >
                     <Input
                         type="password"
@@ -151,7 +179,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
-                        marginBottom: "12px",
+                        marginBottom: "24px",
                     }}
                 >
                     {loginLink ?? (
@@ -168,6 +196,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             <ActiveLink
                                 style={{
                                     fontWeight: "bold",
+                                    color: token.colorPrimaryTextHover,
                                 }}
                                 to="/login"
                             >
@@ -177,7 +206,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     )}
                 </div>
 
-                <Form.Item>
+                <Form.Item
+                    style={{
+                        marginBottom: 0,
+                    }}
+                >
                     <Button
                         type="primary"
                         size="large"
@@ -194,13 +227,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     return (
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
-                }}
-            >
+            <Row justify="center" align="middle">
+                <AuthPageTitle
+                    {...titleProps}
+                    wrapperStyle={{
+                        marginBottom: "32px",
+                    }}
+                />
+            </Row>
+            <Row justify="center" align="middle">
                 <Col xs={22}>
                     {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>

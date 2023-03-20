@@ -20,12 +20,21 @@ import {
     LayoutProps,
     Divider,
     FormProps,
+    theme,
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@refinedev/core";
 
-import { layoutStyles, containerStyles, titleStyles } from "../styles";
+import {
+    bodyStyles,
+    containerStyles,
+    headStyles,
+    layoutStyles,
+    titleStyles,
+} from "../styles";
+import { AuthPageTitle } from "../pageTitle";
 
 const { Text, Title } = Typography;
+const { useToken } = theme;
 
 type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
 
@@ -43,7 +52,9 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    titleProps,
 }) => {
+    const { token } = useToken();
     const [form] = Form.useForm<LoginFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -58,7 +69,13 @@ export const LoginPage: React.FC<LoginProps> = ({
     });
 
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Title
+            level={3}
+            style={{
+                color: token.colorPrimaryTextHover,
+                ...titleStyles,
+            }}
+        >
             {translate("pages.login.title", "Sign in to your account")}
         </Title>
     );
@@ -91,7 +108,15 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Button>
                         );
                     })}
-                    <Divider>{translate("pages.login.divider", "or")}</Divider>
+                    <Divider>
+                        <Text
+                            style={{
+                                color: token.colorTextLabel,
+                            }}
+                        >
+                            {translate("pages.login.divider", "or")}
+                        </Text>
+                    </Divider>
                 </>
             );
         }
@@ -99,137 +124,151 @@ export const LoginPage: React.FC<LoginProps> = ({
     };
 
     const CardContent = (
-        <Card
-            title={CardTitle}
-            headStyle={{ borderBottom: 0 }}
-            style={containerStyles}
-            {...(contentProps ?? {})}
-        >
-            {renderProviders()}
-            <Form<LoginFormTypes>
-                layout="vertical"
-                form={form}
-                onFinish={(values) => login(values)}
-                requiredMark={false}
-                initialValues={{
-                    remember: false,
+        <>
+            <Card
+                title={CardTitle}
+                headStyle={headStyles}
+                bodyStyle={bodyStyles}
+                style={{
+                    ...containerStyles,
+                    backgroundColor: token.colorBgElevated,
                 }}
-                {...formProps}
+                {...(contentProps ?? {})}
             >
-                <Form.Item
-                    name="email"
-                    label={translate("pages.login.fields.email", "Email")}
-                    rules={[
-                        { required: true },
-                        {
-                            type: "email",
-                            message: translate(
-                                "pages.login.errors.validEmail",
-                                "Invalid email address",
-                            ),
-                        },
-                    ]}
-                >
-                    <Input
-                        size="large"
-                        placeholder={translate(
-                            "pages.login.fields.email",
-                            "Email",
-                        )}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    label={translate("pages.login.fields.password", "Password")}
-                    rules={[{ required: true }]}
-                    style={{ marginBottom: "12px" }}
-                >
-                    <Input
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        size="large"
-                    />
-                </Form.Item>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginBottom: "12px",
+                {renderProviders()}
+                <Form<LoginFormTypes>
+                    layout="vertical"
+                    form={form}
+                    onFinish={(values) => login(values)}
+                    requiredMark={false}
+                    initialValues={{
+                        remember: false,
                     }}
+                    {...formProps}
                 >
-                    {rememberMe ?? (
-                        <Form.Item
-                            name="remember"
-                            valuePropName="checked"
-                            noStyle
-                        >
-                            <Checkbox
+                    <Form.Item
+                        name="email"
+                        label={translate("pages.login.fields.email", "Email")}
+                        rules={[
+                            { required: true },
+                            {
+                                type: "email",
+                                message: translate(
+                                    "pages.login.errors.validEmail",
+                                    "Invalid email address",
+                                ),
+                            },
+                        ]}
+                    >
+                        <Input
+                            size="large"
+                            placeholder={translate(
+                                "pages.login.fields.email",
+                                "Email",
+                            )}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        label={translate(
+                            "pages.login.fields.password",
+                            "Password",
+                        )}
+                        rules={[{ required: true }]}
+                    >
+                        <Input
+                            type="password"
+                            placeholder="●●●●●●●●"
+                            size="large"
+                        />
+                    </Form.Item>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            marginBottom: "24px",
+                        }}
+                    >
+                        {rememberMe ?? (
+                            <Form.Item
+                                name="remember"
+                                valuePropName="checked"
+                                noStyle
+                            >
+                                <Checkbox
+                                    style={{
+                                        fontSize: "12px",
+                                    }}
+                                >
+                                    {translate(
+                                        "pages.login.buttons.rememberMe",
+                                        "Remember me",
+                                    )}
+                                </Checkbox>
+                            </Form.Item>
+                        )}
+                        {forgotPasswordLink ?? (
+                            <ActiveLink
                                 style={{
+                                    color: token.colorPrimaryTextHover,
                                     fontSize: "12px",
+                                    marginLeft: "auto",
                                 }}
+                                to="/forgot-password"
                             >
                                 {translate(
-                                    "pages.login.buttons.rememberMe",
-                                    "Remember me",
+                                    "pages.login.buttons.forgotPassword",
+                                    "Forgot password?",
                                 )}
-                            </Checkbox>
-                        </Form.Item>
-                    )}
-                    {forgotPasswordLink ?? (
-                        <ActiveLink
-                            style={{
-                                fontSize: "12px",
-                                marginLeft: "auto",
-                            }}
-                            to="/forgot-password"
+                            </ActiveLink>
+                        )}
+                    </div>
+                    <Form.Item>
+                        <Button
+                            type="primary"
+                            size="large"
+                            htmlType="submit"
+                            loading={isLoading}
+                            block
                         >
+                            {translate("pages.login.signin", "Sign in")}
+                        </Button>
+                    </Form.Item>
+                </Form>
+                <div style={{ marginTop: 8 }}>
+                    {registerLink ?? (
+                        <Text style={{ fontSize: 12 }}>
                             {translate(
-                                "pages.login.buttons.forgotPassword",
-                                "Forgot password?",
-                            )}
-                        </ActiveLink>
+                                "pages.login.buttons.noAccount",
+                                "Don’t have an account?",
+                            )}{" "}
+                            <ActiveLink
+                                to="/register"
+                                style={{
+                                    fontWeight: "bold",
+                                    color: token.colorPrimaryTextHover,
+                                }}
+                            >
+                                {translate("pages.login.signup", "Sign up")}
+                            </ActiveLink>
+                        </Text>
                     )}
                 </div>
-                <Form.Item>
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
-                    >
-                        {translate("pages.login.signin", "Sign in")}
-                    </Button>
-                </Form.Item>
-            </Form>
-            <div style={{ marginTop: 8 }}>
-                {registerLink ?? (
-                    <Text style={{ fontSize: 12 }}>
-                        {translate(
-                            "pages.login.buttons.noAccount",
-                            "Don’t have an account?",
-                        )}{" "}
-                        <ActiveLink
-                            to="/register"
-                            style={{ fontWeight: "bold" }}
-                        >
-                            {translate("pages.login.signup", "Sign up")}
-                        </ActiveLink>
-                    </Text>
-                )}
-            </div>
-        </Card>
+            </Card>
+        </>
     );
 
     return (
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
-                }}
-            >
+            <Row justify="center" align="middle">
+                <AuthPageTitle
+                    {...titleProps}
+                    wrapperStyle={{
+                        marginBottom: "32px",
+                    }}
+                />
+            </Row>
+            <Row justify="center" align="middle">
                 <Col xs={22}>
                     {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>

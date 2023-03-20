@@ -126,6 +126,11 @@ export type AuthPageProps<
      * @optional
      */
     formProps?: TFormProps;
+    /**
+     * @description Can be used to pass additional properties for the `Title`
+     * @optional
+     *  */
+    titleProps?: { icon?: React.ReactNode; text?: React.ReactNode };
 };
 
 /**
@@ -144,6 +149,7 @@ export type LoginPageProps<
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
+    titleProps?: { icon?: React.ReactNode; text?: React.ReactNode };
 }>;
 
 /**
@@ -160,6 +166,7 @@ export type RegisterPageProps<
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
+    titleProps?: { icon?: React.ReactNode; text?: React.ReactNode };
 }>;
 
 /**
@@ -175,6 +182,7 @@ export type ForgotPasswordPageProps<
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
+    titleProps?: { icon?: React.ReactNode; text?: React.ReactNode };
 }>;
 
 /**
@@ -189,4 +197,5 @@ export type UpdatePasswordPageProps<
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
+    titleProps?: { icon?: React.ReactNode; text?: React.ReactNode };
 }>;

@@ -16,12 +16,21 @@ import {
     LayoutProps,
     CardProps,
     FormProps,
+    theme,
 } from "antd";
 import { useTranslate, useUpdatePassword } from "@refinedev/core";
 
-import { layoutStyles, containerStyles, titleStyles } from "../styles";
+import {
+    layoutStyles,
+    containerStyles,
+    titleStyles,
+    headStyles,
+    bodyStyles,
+} from "../styles";
+import { AuthPageTitle } from "../pageTitle";
 
 const { Title } = Typography;
+const { useToken } = theme;
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
     LayoutProps,
@@ -39,7 +48,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    titleProps,
 }) => {
+    const { token } = useToken();
     const [form] = Form.useForm<UpdatePasswordFormTypes>();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -49,7 +60,13 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         });
 
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Title
+            level={3}
+            style={{
+                color: token.colorPrimaryTextHover,
+                ...titleStyles,
+            }}
+        >
             {translate("pages.updatePassword.title", "Set New Password")}
         </Title>
     );
@@ -57,8 +74,12 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     const CardContent = (
         <Card
             title={CardTitle}
-            headStyle={{ borderBottom: 0 }}
-            style={containerStyles}
+            headStyle={headStyles}
+            bodyStyle={bodyStyles}
+            style={{
+                ...containerStyles,
+                backgroundColor: token.colorBgElevated,
+            }}
             {...(contentProps ?? {})}
         >
             <Form<UpdatePasswordFormTypes>
@@ -114,7 +135,6 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                             },
                         }),
                     ]}
-                    style={{ marginBottom: "12px" }}
                 >
                     <Input
                         type="password"
@@ -122,7 +142,11 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         size="large"
                     />
                 </Form.Item>
-                <Form.Item>
+                <Form.Item
+                    style={{
+                        marginBottom: 0,
+                    }}
+                >
                     <Button
                         type="primary"
                         size="large"
@@ -142,13 +166,15 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
     return (
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
-                }}
-            >
+            <Row justify="center" align="middle">
+                <AuthPageTitle
+                    {...titleProps}
+                    wrapperStyle={{
+                        marginBottom: "32px",
+                    }}
+                />
+            </Row>
+            <Row justify="center" align="middle">
                 <Col xs={22}>
                     {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>

@@ -8,3 +8,6 @@
 
 -   `<EditButton>` in `<Show>` type changed to `primary`.
 -   `CreateButton` type changed to `primary`.
+
+-   `AuthPage` component uses colors from the theme.
+-   `<AuthPageTitle>` added to `AuthPage`
