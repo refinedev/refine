@@ -13,7 +13,6 @@ import {
     CanAccess,
     ITreeMenu,
     pickNotDeprecated,
-    TitleProps,
 } from "@refinedev/core";
 import { Layout, Menu, Drawer, Button, Grid } from "antd";
 import {
@@ -22,15 +21,15 @@ import {
     UnorderedListOutlined,
     BarsOutlined,
 } from "@ant-design/icons";
-import { SiderRenderProps } from "@refinedev/ui-types/dist/types";
+import { RefineLayoutSiderProps } from "@refinedev/ui-types";
 
 const { useBreakpoint } = Grid;
 const { SubMenu } = Menu;
 
 type Props = {
-    meta?: Record<string, any>;
-    Title?: React.FC<TitleProps>;
-    render?: (props: SiderRenderProps) => React.ReactNode;
+    meta?: RefineLayoutSiderProps["meta"];
+    Title?: RefineLayoutSiderProps["Title"];
+    render?: RefineLayoutSiderProps["render"];
 };
 
 export const useSider = ({ Title: TitleFromProps, render, meta }: Props) => {
