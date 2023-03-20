@@ -822,17 +822,57 @@ const MyLoginPage = () => {
 };
 ```
 
-### `renderContent`
+### `title`
 
-`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
+By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
+
+-   Default text is: Refine Project
+-   Default icon is: Refine Logo
 
 ```tsx
+import { AuthPage } from "@refinedev/antd";
+
+const MyLoginPage = () => {
+    return <AuthPage type="login" title={<h1>My Title</h1>} />;
+};
+```
+
+Or you can customize the title with `ThemedTitle` component.
+
+```tsx
+import { AuthPage, ThemedTitle } from "@refinedev/antd";
+
+const MyLoginPage = () => {
+    return (
+        <AuthPage
+            type="login"
+            title={
+                <ThemedTitle
+                    title="My Title"
+                    icon={<img src="https://refine.dev/img/logo.png" />}
+                />
+            }
+        />
+    );
+};
+```
+
+### `renderContent`
+
+`renderContent` uses to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
+
+```tsx
+import { AuthPage } from "@refinedev/antd";
+
 const MyLoginPage = () => {
     return (
         <AuthPage
             type="login"
             // highlight-start
-            renderContent={(content: React.ReactNode) => {
+            renderContent={(
+                content: React.ReactNode,
+                title: React.ReactNode,
+            ) => {
                 return (
                     <div
                         style={{
@@ -842,12 +882,56 @@ const MyLoginPage = () => {
                             alignItems: "center",
                         }}
                     >
+                        {title}
                         <h1 style={{ color: "white" }}>Extra Header</h1>
                         {content}
                         <h1 style={{ color: "white" }}>Extra Footer</h1>
                     </div>
                 );
             }}
+            // highlight-end
+        />
+    );
+};
+```
+
+## FAQ
+
+### How can I remove the default title and logo ?
+
+You can use `renderContent` property to remove the default title and logo.
+
+```tsx
+import { AuthPage } from "@refinedev/antd";
+
+const MyLoginPage = () => {
+    return (
+        <AuthPage
+            type="login"
+            // highlight-start
+            renderContent={(
+                content: React.ReactNode,
+                title: React.ReactNode, // not return
+            ) => {
+                return content;
+            }}
+            // highlight-end
+        />
+    );
+};
+```
+
+Or you can give `false` to `title` property to remove the default title.
+
+```tsx
+import { AuthPage } from "@refinedev/antd";
+
+const MyLoginPage = () => {
+    return (
+        <AuthPage
+            type="login"
+            // highlight-start
+            title={false}
             // highlight-end
         />
     );
