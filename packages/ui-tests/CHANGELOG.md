@@ -1,5 +1,11 @@
 # @pankod/refine-ui-tests
 
+## 1.1.1
+
+### Patch Changes
+
+-   [#3919](https://github.com/refinedev/refine/pull/3919) [`dd90bf43d50`](https://github.com/refinedev/refine/commit/dd90bf43d50ffe4e78a5caa5c0831d2ba8610e0d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - New test added to crud components: - "should not render `title` when is false"
+
 ## 1.1.0
 
 ### Minor Changes
