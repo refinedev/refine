@@ -49,6 +49,10 @@ export type {
     RefineLayoutLayoutProps,
     RefineLayoutSiderProps,
     RefineLayoutTitleProps,
+    RefineThemedLayoutSiderProps,
+    RefineThemedLayoutHeaderProps,
+    RefineThemedLayoutProps,
+    RefineLayoutThemedTitleProps,
 } from "./types";
 
 export { RefineButtonTestIds } from "./ids";
