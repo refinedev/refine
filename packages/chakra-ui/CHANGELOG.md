@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 2.1.1
+
+### Patch Changes
+
+-   [#3919](https://github.com/refinedev/refine/pull/3919) [`dd90bf43d50`](https://github.com/refinedev/refine/commit/dd90bf43d50ffe4e78a5caa5c0831d2ba8610e0d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: When `title` prop is `false` in crud components, the default `title` was rendered. It should not render anything.
+
 ## 2.1.0
 
 ### Minor Changes
