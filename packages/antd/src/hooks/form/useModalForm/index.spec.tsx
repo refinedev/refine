@@ -46,6 +46,8 @@ describe("useModalForm Hook", () => {
             },
         );
 
+        expect(result.current.modalProps.open).toBe(true);
+
         await act(async () => {
             result.current.modalProps.onCancel?.({} as any);
         });
@@ -64,6 +66,8 @@ describe("useModalForm Hook", () => {
                 wrapper: TestWrapper({}),
             },
         );
+
+        expect(result.current.modalProps.open).toBe(false);
 
         await act(async () => {
             result.current.show();
