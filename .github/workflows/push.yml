@@ -38,6 +38,7 @@ jobs:
         run: |
           npm ci
           npm run bootstrap:all
+          npm run build:all
       #- name: lint
       #  run: |
       #    npm run lint
