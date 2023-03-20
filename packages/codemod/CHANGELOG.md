@@ -1,5 +1,11 @@
 # @pankod/refine-codemod
 
+## 4.1.2
+
+### Patch Changes
+
+-   [#3929](https://github.com/refinedev/refine/pull/3929) [`c682cfe5cf8`](https://github.com/refinedev/refine/commit/c682cfe5cf8f056d8773e2f23481d0d6d5488c4b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: LoadingButton is still imported from @refinedev/mui
+
 ## 4.1.1
 
 ### Patch Changes
