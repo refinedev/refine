@@ -24,6 +24,7 @@ export const EditPostModal: React.FC<UseModalFormReturnType> = ({
     modal: { visible, close },
     register,
     formState: { errors },
+    refineCore: { id },
 }) => {
     const { options } = useSelect<ICategory>({
         resource: "categories",
@@ -41,7 +42,7 @@ export const EditPostModal: React.FC<UseModalFormReturnType> = ({
 
                 <ModalBody>
                     <Edit
-                        headerButtons={false}
+                        recordItemId={id}
                         title={false}
                         goBack={null}
                         saveButtonProps={saveButtonProps}

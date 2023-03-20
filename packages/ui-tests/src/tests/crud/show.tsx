@@ -74,6 +74,13 @@ export const crudShowTests = function (
             getByText("Show Post");
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = renderShow(<Show title={false} />);
+
+            const text = queryByText("Show Post");
+            expect(text).not.toBeInTheDocument();
+        });
+
         it("should render optional title with title prop", async () => {
             const { getByText } = renderShow(<Show title="Test Title" />);
 

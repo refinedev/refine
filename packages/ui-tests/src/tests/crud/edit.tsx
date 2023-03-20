@@ -81,6 +81,13 @@ export const crudEditTests = function (
             getByText("Edit Post");
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = renderEdit(<Edit title={false} />);
+
+            const text = queryByText("Edit Post");
+            expect(text).not.toBeInTheDocument();
+        });
+
         it("should render custom title successfuly", async () => {
             const { getByText } = renderEdit(<Edit title="Custom Title" />);
 
