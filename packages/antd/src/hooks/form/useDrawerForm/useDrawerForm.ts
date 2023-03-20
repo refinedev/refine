@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { UseFormConfig } from "sunflower-antd";
 import { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
 import {
-    useMutationMode,
     useTranslate,
     useWarnAboutChange,
     UseFormProps as UseFormPropsCore,
@@ -14,11 +13,11 @@ import {
     useResource,
     useParsed,
     useGo,
+    useModal,
 } from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { DeleteButtonProps } from "../../../components";
-import React from "react";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create" | "clone";
@@ -32,7 +31,11 @@ export type UseDrawerFormProps<
     UseFormProps<TData, TError, TVariables> &
     UseDrawerFormConfig &
     LiveModeProps &
-    FormWithSyncWithLocationParams;
+    FormWithSyncWithLocationParams & {
+        defaultVisible?: boolean;
+        autoSubmitClose?: boolean;
+        autoResetForm?: boolean;
+    };
 
 export type UseDrawerFormReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -67,8 +70,10 @@ export const useDrawerForm = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >({
-    mutationMode: mutationModeProp,
     syncWithLocation,
+    defaultVisible = false,
+    autoSubmitClose = true,
+    autoResetForm = true,
     ...rest
 }: UseDrawerFormProps<TData, TError, TVariables>): UseDrawerFormReturnType<
     TData,
@@ -77,13 +82,15 @@ export const useDrawerForm = <
 > => {
     const initiallySynced = React.useRef(false);
 
-    const useFormProps = useForm<TData, TError, TVariables>({
-        ...rest,
-        mutationMode: mutationModeProp,
+    const { visible, show, close } = useModal({
+        defaultVisible,
     });
 
-    const { form, formProps, formLoading, mutationResult, id, setId } =
-        useFormProps;
+    const useFormProps = useForm<TData, TError, TVariables>({
+        ...rest,
+    });
+
+    const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
 
@@ -102,15 +109,15 @@ export const useDrawerForm = <
             ? `drawer-${resource?.identifier ?? resource?.name}-${action}`
             : undefined;
 
-    const [open, setOpen] = useState(false);
-
     React.useEffect(() => {
         if (initiallySynced.current === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
-                setOpen(openStatus);
+                show();
             } else if (typeof openStatus === "string") {
-                setOpen(openStatus === "true");
+                if (openStatus === "true") {
+                    show();
+                }
             }
 
             if (syncingId) {
@@ -126,7 +133,7 @@ export const useDrawerForm = <
 
     React.useEffect(() => {
         if (initiallySynced.current === true) {
-            if (open && syncWithLocationKey) {
+            if (visible && syncWithLocationKey) {
                 go({
                     query: {
                         [syncWithLocationKey]: {
@@ -138,7 +145,7 @@ export const useDrawerForm = <
                     options: { keepQuery: true },
                     type: "replace",
                 });
-            } else if (syncWithLocationKey && !open) {
+            } else if (syncWithLocationKey && !visible) {
                 go({
                     query: {
                         [syncWithLocationKey]: undefined,
@@ -148,38 +155,27 @@ export const useDrawerForm = <
                 });
             }
         }
-    }, [id, open, syncWithLocationKey, syncingId]);
+    }, [id, visible, show, syncWithLocationKey, syncingId]);
 
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const { mutationMode: mutationModeContext } = useMutationMode();
-    const mutationMode = mutationModeProp ?? mutationModeContext;
+    const submit = async () => {
+        await onFinish(form.getFieldsValue());
 
-    const {
-        isLoading: isLoadingMutation,
-        isSuccess: isSuccessMutation,
-        reset: resetMutation,
-    } = mutationResult ?? {};
-
-    useEffect(() => {
-        if (open && mutationMode === "pessimistic") {
-            if (isSuccessMutation && !isLoadingMutation) {
-                setOpen(false);
-                resetMutation?.();
-            }
+        if (autoSubmitClose) {
+            close();
         }
-    }, [isSuccessMutation, isLoadingMutation]);
+
+        if (autoResetForm) {
+            form.resetFields();
+        }
+    };
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: () => {
-            form?.submit();
-            if (!(mutationMode === "pessimistic")) {
-                setOpen(false);
-            }
-        },
+        onClick: submit,
         loading: formLoading,
     };
 
@@ -187,7 +183,7 @@ export const useDrawerForm = <
         recordItemId: id,
         onSuccess: () => {
             setId?.(undefined);
-            setOpen(false);
+            close();
         },
     };
 
@@ -207,14 +203,14 @@ export const useDrawerForm = <
             }
         }
 
-        setOpen(false);
+        close();
         setId?.(undefined);
     }, [warnWhen]);
 
     const handleShow = useCallback((id?: BaseKey) => {
         setId?.(id);
 
-        setOpen(true);
+        show();
     }, []);
 
     return {
@@ -231,7 +227,7 @@ export const useDrawerForm = <
         drawerProps: {
             width: "500px",
             onClose: handleClose,
-            open,
+            open: visible,
             forceRender: true,
         },
         saveButtonProps,
