@@ -2,7 +2,7 @@
 "@refinedev/core": minor
 ---
 
--   `title` prop added to `AuthPage`'s `renderContent` prop.
+-   `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
 
 ```ts
 <AuthPage
