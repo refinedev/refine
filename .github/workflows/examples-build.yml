@@ -52,7 +52,7 @@ jobs:
 
   build-chunk-1:
     runs-on: ubuntu-latest
-    if: ${{ needs.chunks.outputs.CHUNK_1 }} == '{}'
+    if: ${{ needs.chunks.outputs.CHUNK_1 }} != '{}'
     strategy:
       matrix:
         node-version: [16.x]
