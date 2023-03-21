@@ -113,7 +113,7 @@ export const useDrawerForm = <
         if (initiallySynced.current === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
-                show();
+                openStatus ? show() : close();
             } else if (typeof openStatus === "string") {
                 if (openStatus === "true") {
                     show();
