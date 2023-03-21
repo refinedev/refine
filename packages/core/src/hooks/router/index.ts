@@ -5,4 +5,3 @@ export { useParsed } from "./use-parsed";
 export { useGetToPath } from "./use-get-to-path";
 export { useToPath } from "./use-to-path";
 export { useLink } from "./use-link";
-export { usePrompt } from "./use-prompt";

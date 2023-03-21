@@ -5,8 +5,6 @@ import {
     RouterBindings,
     matchResourceFromRoute,
     ResourceContext,
-    useTranslate,
-    PromptConfig,
 } from "@refinedev/core";
 import { useCallback, useContext } from "react";
 import { parse, stringify } from "qs";
@@ -134,29 +132,4 @@ export const routerBindings: RouterBindings = {
     >(function RefineLink(props, ref) {
         return <Link {...props} ref={ref} />;
     }),
-    prompt: () => {
-        const translate = useTranslate();
-
-        const fn = useCallback(
-            ({
-                message = "Are you sure you want to leave? You have unsaved changes.",
-                onConfirm,
-                onCancel,
-                translationKey = "warnWhenUnsavedChanges",
-            }: PromptConfig) => {
-                const confirm = window.confirm(
-                    translate(translationKey, message),
-                );
-                if (confirm) {
-                    onConfirm?.();
-                } else {
-                    onCancel?.();
-                }
-                return confirm;
-            },
-            [translate],
-        );
-
-        return fn;
-    },
 };

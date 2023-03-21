@@ -21,6 +21,4 @@ export {
     BackFunction,
     GoFunction,
     ParseFunction,
-    PromptConfig,
-    PromptFunction,
 } from "./router";
