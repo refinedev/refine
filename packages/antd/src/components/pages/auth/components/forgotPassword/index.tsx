@@ -38,7 +38,13 @@ type ResetPassworProps = ForgotPasswordPageProps<
     LayoutProps,
     CardProps,
     FormProps
->;
+> & {
+    renderContent?: (
+        content: React.ReactNode,
+        title: React.ReactNode,
+    ) => React.ReactNode;
+    title?: React.ReactNode;
+};
 
 const { Text, Title } = Typography;
 const { useToken } = theme;

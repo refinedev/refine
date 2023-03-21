@@ -558,6 +558,102 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "Themed Layout",
+                message: `
+                **\`Warning:\`**
+                If you want to change the default layout;
+                You should pass layout related components to the **<ThemedLayout/>** component's props.
+
+                \`\`\`
+                // title: App.tsx
+                import { ThemedLayout } from "components/themedLayout";
+                import { ThemedHeader } from "components/themedLayout/header";
+                import { ThemedSider } from "components/themedLayout/sider";
+                import { ThemedTitle } from "components/themedLayout/title";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            /* ... */
+                        >
+                            <ThemedLayout Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle} />
+                                /* ... */
+                            </ThemedLayout>
+                        </Refine>
+                    );
+                }
+                \`\`\`
+                `,
+                files: [
+                    {
+                        src: "./src/components/themedLayout/sider/index.tsx",
+                        dest: "./components/themedLayout/sider.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @components import replacement
+                                if (importItem.importPath === "@components") {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+
+                                // add content of ./styles.ts and remove import
+                                if (importItem.importPath === "./styles") {
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        "",
+                                    );
+
+                                    let appending = "";
+
+                                    try {
+                                        const stylesContent = getFileContent(
+                                            join(
+                                                dirname(
+                                                    "./src/components/themedLayout/sider/index.tsx",
+                                                ),
+                                                "/styles.ts",
+                                            ),
+                                            "utf-8",
+                                        ).replace("export const", "const");
+
+                                        appending = stylesContent;
+                                    } catch (err) {
+                                        // console.log(err);
+                                    }
+
+                                    newContent = appendAfterImports(
+                                        newContent,
+                                        appending,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/themedLayout/header/index.tsx",
+                        dest: "./components/themedLayout/header.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayout/title/index.tsx",
+                        dest: "./components/themedLayout/title.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayout/index.tsx",
+                        dest: "./components/themedLayout/index.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;

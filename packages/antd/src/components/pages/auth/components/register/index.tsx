@@ -35,7 +35,13 @@ import { ThemedTitle } from "@components";
 const { Text, Title } = Typography;
 const { useToken } = theme;
 
-type RegisterProps = RegisterPageProps<LayoutProps, CardProps, FormProps>;
+type RegisterProps = RegisterPageProps<LayoutProps, CardProps, FormProps> & {
+    renderContent?: (
+        content: React.ReactNode,
+        title: React.ReactNode,
+    ) => React.ReactNode;
+    title?: React.ReactNode;
+};
 
 /**
  * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.

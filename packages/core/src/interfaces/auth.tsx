@@ -120,20 +120,12 @@ export type AuthPageProps<
      * @description This method gives you the ability to render a custom content node.
      * @optional
      */
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     /**
      * @description Can be used to pass additional properties for the `Form`
      * @optional
      */
     formProps?: TFormProps;
-    /**
-     * @description Can be used to pass  `Title`
-     * @optional
-     *  */
-    title?: React.ReactNode;
 };
 
 /**
@@ -149,13 +141,9 @@ export type LoginPageProps<
     forgotPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
     wrapperProps?: TWrapperProps;
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
-    title?: React.ReactNode;
 }>;
 
 /**
@@ -169,13 +157,9 @@ export type RegisterPageProps<
     providers?: OAuthProvider[];
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
-    title?: React.ReactNode;
 }>;
 
 /**
@@ -188,13 +172,9 @@ export type ForgotPasswordPageProps<
 > = PropsWithChildren<{
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
-    title?: React.ReactNode;
 }>;
 
 /**
@@ -206,11 +186,7 @@ export type UpdatePasswordPageProps<
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     wrapperProps?: TWrapperProps;
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
     formProps?: TFormProps;
-    title?: React.ReactNode;
 }>;
