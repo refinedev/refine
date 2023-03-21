@@ -2,4 +2,4 @@
 "@refinedev/antd": patch
 ---
 
-Added `autoSubmitClose`, `autoResetForm`, and `defaultVisible` props of `useDrawerForm` hook to work properly.
+Added missing `autoSubmitClose`, `autoResetForm`, and `defaultVisible` props to `useDrawerForm` hook.
