@@ -15,7 +15,7 @@ Data providers works like an adapter system infrastructure. So they can communic
 
 As shown below, we will begin by creating a file and adding additional methods as we proceed.
 
-Using `axios` as our HTTP client will allow us to make efficient and reliable HTTP requests to our server. Interceptors provide several benefits, such as centralized error handling, the ability to modify request or response data, and show global loading indicators.  
+Using `axios` as our HTTP client will allow us to make efficient and reliable HTTP requests to our server. Interceptors provide several benefits, such as centralized error handling, the ability to modify request or response data, and show global loading indicators.
 To get started, install the `axios` to our project.
 
 ```bash
@@ -703,7 +703,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
         const { data } = axiosResponse;
 
-        return Promise.resolve({ data });
+        return { data };
     },
     // ...
 });

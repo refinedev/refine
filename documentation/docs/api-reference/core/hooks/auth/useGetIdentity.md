@@ -24,11 +24,12 @@ import type { AuthBindings } from "@refinedev/core";
 const authProvider: AuthBindings = {
     // ---
     // highlight-start
-    getIdentity: () =>
-        Promise.resolve({
+    getIdentity: async () => {
+        return {
             id: 1,
             fullName: "Jane Doe",
-        }),
+        };
+    },
     // highlight-end
     // ---
 };
