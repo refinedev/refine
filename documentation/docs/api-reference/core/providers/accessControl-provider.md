@@ -47,10 +47,10 @@ const App: React.FC = () => {
             accessControlProvider={{
                 can: async ({ resource, action, params }) => {
                     if (resource === "posts" && action === "edit") {
-                        return Promise.resolve({
+                        return {
                             can: false,
                             reason: "Unauthorized",
-                        });
+                        };
                     }
 
                     return { can: true };
@@ -62,6 +62,22 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::caution
+
+Providing `accessControlProvider` to `<Refine>` component **won't enforce** access control alone. Depends on your router, you need to wrap protected routes with `<CanAccess>` component.
+
+See the documentation for how to handle with different routers:
+
+[React Router Access Control](/docs/packages/documentation/routers/react-router-v6#usage-with-access-control-providers)
+
+[NextJS Router Access Control](/docs/packages/documentation/routers/nextjs#access-control)
+
+[Remix Router Access Control](/docs/packages/documentation/routers/remix#access-control)
+
+:::
+
+---
 
 :::tip
 You can also access resource object directly.
