@@ -18,6 +18,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const routerType = useRouterType();
     const Link = useLink();
@@ -176,7 +177,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     return (
         <div {...wrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </div>
     );
 };

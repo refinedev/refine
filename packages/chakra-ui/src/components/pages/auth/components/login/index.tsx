@@ -47,6 +47,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -210,7 +211,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     return (
         <FormProvider {...methods}>
             <Box {...allWrapperProps}>
-                {renderContent ? renderContent(content) : content}
+                {renderContent ? renderContent(content, title) : content}
             </Box>
         </FormProvider>
     );

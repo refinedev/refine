@@ -42,6 +42,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const {
@@ -165,7 +166,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         height: "100vh",
                     }}
                 >
-                    {renderContent ? renderContent(Content) : Content}
+                    {renderContent ? renderContent(Content, title) : Content}
                 </Container>
             </Box>
         </>

@@ -34,6 +34,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const translate = useTranslate();
@@ -120,7 +121,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <Box {...allWrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </Box>
     );
 };

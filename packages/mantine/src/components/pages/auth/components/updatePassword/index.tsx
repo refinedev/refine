@@ -35,6 +35,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
@@ -118,7 +119,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
 
     return (
         <Box style={layoutStyles} {...(wrapperProps ?? {})}>
-            {renderContent ? renderContent(CardContent) : CardContent}
+            {renderContent ? renderContent(CardContent, title) : CardContent}
         </Box>
     );
 };

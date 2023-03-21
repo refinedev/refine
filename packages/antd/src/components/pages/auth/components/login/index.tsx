@@ -36,14 +36,7 @@ import { ThemedTitle } from "@components";
 const { Text, Title } = Typography;
 const { useToken } = theme;
 
-type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps> & {
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
-    title?: React.ReactNode;
-};
-
+type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
  *

@@ -30,7 +30,7 @@ export type AuthProps = AuthPageProps<
 
 /**
  * **refine** has a default auth page form which is served on `/login` route when the `authProvider` configuration is provided.
- *
+ * @param title is not implemented yet.
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#authpage} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {

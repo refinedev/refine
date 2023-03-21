@@ -20,6 +20,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const translate = useTranslate();
 
@@ -98,7 +99,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
     return (
         <div {...wrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </div>
     );
 };

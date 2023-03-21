@@ -49,6 +49,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
@@ -260,7 +261,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                             alignItems: "center",
                         }}
                     >
-                        {renderContent ? renderContent(Content) : Content}
+                        {renderContent
+                            ? renderContent(Content, title)
+                            : Content}
                     </Box>
                 </Container>
             </Box>

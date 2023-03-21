@@ -36,13 +36,7 @@ type UpdatePasswordProps = UpdatePasswordPageProps<
     LayoutProps,
     CardProps,
     FormProps
-> & {
-    renderContent?: (
-        content: React.ReactNode,
-        title: React.ReactNode,
-    ) => React.ReactNode;
-    title?: React.ReactNode;
-};
+>;
 
 /**
  * **refine** has update password page form which is served on `/update-password` route when the `authProvider` configuration is provided.
