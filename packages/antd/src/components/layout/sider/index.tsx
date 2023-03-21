@@ -20,7 +20,6 @@ import {
     useRouterType,
     useActiveAuthProvider,
     pickNotDeprecated,
-    usePrompt,
     useWarnAboutChange,
 } from "@refinedev/core";
 
@@ -41,7 +40,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     const isExistAuthentication = useIsExistAuthentication();
     const routerType = useRouterType();
     const NewLink = useLink();
-    const prompt = usePrompt();
     const { setWarnWhen } = useWarnAboutChange();
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
@@ -129,14 +127,17 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         <Menu.Item
             key="logout"
             onClick={() => {
-                prompt({
-                    onConfirm: () => {
-                        mutateLogout();
-                    },
-                    onCancel: () => {
-                        setWarnWhen(false);
-                    },
-                });
+                const confirm = window.confirm(
+                    translate(
+                        "warnWhenUnsavedChanges",
+                        "Are you sure you want to leave? You have unsaved changes.",
+                    ),
+                );
+
+                if (confirm) {
+                    setWarnWhen(false);
+                    mutateLogout();
+                }
             }}
             icon={<LogoutOutlined />}
         >
