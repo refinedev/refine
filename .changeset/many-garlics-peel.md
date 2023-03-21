@@ -28,9 +28,13 @@ const App = () => {
 
 -   default title with icon added to `AuthPage`. It uses `ThemedTitle` component from `@refinedev/antd`. You can remove it by setting `title` prop to `false`.
 
+```tsx
+<AuthPage title={false} />
+```
+
 -   `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
 
-```ts
+```tsx
 <AuthPage
     renderContent={(content: React.ReactNode, title: React.ReactNode) => {
         return (
