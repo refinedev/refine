@@ -346,7 +346,7 @@ const authProvider: AuthProvider = {
         if (user) {
             const { email, roles } = JSON.parse(user);
 
-            return Promise.resolve({ email, roles });
+            return { email, roles };
         }
 
 -        return Promise.reject();
