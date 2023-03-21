@@ -5,7 +5,7 @@ import { ThemedTitle } from ".";
 describe("Themed Title", () => {
     test("should render default text", () => {
         const { getByText } = render(<ThemedTitle collapsed={false} />);
-        expect(getByText("Refine Project")).toBeInTheDocument();
+        expect(getByText("refine Project")).toBeInTheDocument();
     });
 
     test("should render custom text", () => {
@@ -32,6 +32,6 @@ describe("Themed Title", () => {
 
     test("should not render text when collapsed true", () => {
         const { queryByText } = render(<ThemedTitle collapsed={true} />);
-        expect(queryByText("Refine Project")).not.toBeInTheDocument();
+        expect(queryByText("refine Project")).not.toBeInTheDocument();
     });
 });
