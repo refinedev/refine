@@ -25,7 +25,7 @@ npm install axios@0.26
 Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.
 
 ```bash
-npm install query-string
+npm install query-string@7
 ```
 
 For our own data provider, the first step is to create the following file.

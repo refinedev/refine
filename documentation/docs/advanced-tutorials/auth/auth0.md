@@ -1,7 +1,7 @@
 ---
 id: auth0
 title: Auth0 Login
-sidebar_label: Auth0 Login 🆙
+sidebar_label: Auth0 Login
 ---
 
 [Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.

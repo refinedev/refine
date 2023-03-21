@@ -1,4 +1,9 @@
-import { IResourceComponentsProps, useMany, useCan } from "@refinedev/core";
+import {
+    IResourceComponentsProps,
+    useMany,
+    useCan,
+    CanAccess,
+} from "@refinedev/core";
 
 import {
     List,

@@ -1,6 +1,6 @@
 ---
 id: store-your-repository
-title: 5. Store your repository online
+title: 5. Storing your repository online
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/generate-crud-pages
     next: tutorial/getting-started/deploy-project
@@ -10,7 +10,7 @@ In this tutorial, we will use GitHub to store and manage our repository, and to 
 
 :::info
 
-If you are already proficient in git and have your own preferred workflow, you can create a new GitHub repository for your project using your method of choice. Once you have done so, you can move on to the next page: ["Deploy your app to the Web"](/docs/tutorial/getting-started/deploy-project).
+If you are already proficient in git, and have your own preferred workflow, you can create a new GitHub repository for your project using your method of choice. Once you have done so, you can move on to the next page: ["Deploy your app to the Web"](/docs/tutorial/getting-started/deploy-project).
 :::
 
 ## Create a repository on GitHub
@@ -27,7 +27,7 @@ To create a repository on GitHub, follow these steps:
 
 5. Click "Create repository".
 
-For more detailed instructions and options, you can refer to the [GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo).
+Refer to the [GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) if you want to learn more and see more detailed instructions and options.
 
 ## Commit your local code to GitHub
 
@@ -37,13 +37,15 @@ To commit your code to GitHub, you will need to use git commands in the terminal
 
 1. Navigate to your project directory in the terminal.
 
-2. Connect your local repository to the remote repository on GitHub by running the command `git remote add origin <url>`, where `<url>` is the URL of your GitHub repository.
+2. Initialize git by running the command `git init -b main`
 
-3. Add your changes to the staging area by running the command `git add .`.
+3. Connect your local repository to the remote repository on GitHub by running the command `git remote add origin <url>`, where `<url>` is the URL of your GitHub repository.
 
-4. Commit your changes by running the command `git commit -m "Initial commit"`.
+4. Add your changes to the staging area by running the command `git add .`.
 
-5. Push your changes to GitHub by running the command `git push -u origin master`.
+5. Commit your changes by running the command `git commit -m "Initial commit"`.
+
+6. Push your changes to GitHub by running the command `git push -u origin master`.
 
 For more detailed instructions and options, you can refer to the [GitHub documentation](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git).
 
@@ -54,10 +56,10 @@ To confirm that your project has been successfully stored on GitHub, go to [GitH
 <Checklist>
 
 <ChecklistItem id="store-your-repo">
-I created a repository on GitHub.
+I have created a repository on GitHub.
 </ChecklistItem>
 <ChecklistItem id="store-your-repo-2">
-I uploaded my project to GitHub.
+I have uploaded my project to GitHub.
 </ChecklistItem>
 
 </Checklist>

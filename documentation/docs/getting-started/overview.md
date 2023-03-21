@@ -4,26 +4,25 @@ title: Overview
 slug: /
 ---
 
-
-
 ## What is refine?
-**refine** is a React-based framework for the rapid ✨ development of web applications. 
-It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-**refine** is *headless by design* offering unlimited styling and customization options. 
+**refine** is a React-based framework that enables rapid development of web applications. It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts of a project like **authentication**, **access control**, **routing**, **networking**, **state management** and **i18n**.
 
-
+**refine** is *headless by design*, offering unlimited styling and customization options.
 
 ## What do you mean by "headless" ?
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI* *components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
+
+refine also ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+
+All in all, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_.
 
 ## Use cases
-**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+
+**refine** shines when it comes to *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="Refine diagram" />
-
 
 ## Key Features
 
@@ -33,7 +32,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
-🔍 Auto-generated **CRUD** UIs from **your API data structure**
+🔍 Auto-generation of **CRUD** UIs based on **your API data structure**
 
 ⚛ Perfect **state management** & **mutations** with **React Query**
 
@@ -53,23 +52,21 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ✅ Full **test coverage**
 
-
 ## Community
 
 **refine** has a very friendly community and we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
--   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback.
--   [Contributing](/docs/contributing/) – learn how to contribute refine project.
--   [Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) – join the program and become a blog writer for refine.
+-   [Join the Discord community!](https://discord.gg/refine) It is the easiest way to get help and ask questions to the developers and other users. It is also the fastest as all questions are usually answered in around 30 minutes.
+-   [Join the GitHub Discussions](https://github.com/refinedev/refine/discussions) to ask anything about the refine project or give feedback; we would love to hear your thoughts!
+-   [Learn how to contribute to the refine!](/docs/contributing/)
+-   [Join our Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) and become a blog writer for **refine**.
 
 ## Roadmap
 
-You can find Refine's [Public Roadmap here!](https://github.com/refinedev/refine/projects/1)
+You can find Refine's Public Roadmap [here!](https://github.com/refinedev/refine/projects/1)
 
 ## Next Steps
 
-👉 Continue with [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **refine** project.
+👉 Continue with the [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **refine** project.
 
-👉 Or jump directly to [Tutorial](/docs/tutorial/introduction/index/) to learn refine by building a full-blown CRUD application.
-
+👉 Jump directly to the [Tutorial](/docs/tutorial/introduction/index/) to learn refine by building a full-blown CRUD application.

@@ -13,8 +13,8 @@
     "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "build": "lerna run build --include-dependencies --scope @refinedev/core",
     "build:all": "lerna run build --ignore @pankod/refine-react-router --scope @refinedev/* --scope create-refine-app",
-    "bootstrap": "lerna bootstrap --hoist --strict --include-dependencies",
-    "bootstrap:all": "lerna bootstrap --hoist --strict --ignore @pankod/refine-react-router --scope @refinedev/* --scope create-refine-app",
+    "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --include-dependencies",
+    "bootstrap:all": "lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-react-router --scope @refinedev/* --scope create-refine-app",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "coffee": "npm run nuke && npm i && npm run bootstrap:all && npm run build:all",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
@@ -26,8 +26,8 @@
     "lint:staged": "lint-staged",
     "test": "lerna run test --stream --scope @refinedev/core",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
-    "test:coverage": "npm run test --stream -- -- -- --coverage",
-    "test:all:coverage": "npm run test:all --stream -- -- -- --coverage"
+    "test:coverage": "npm run test --stream -- -- --coverage",
+    "test:all:coverage": "npm run test:all --stream -- -- --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

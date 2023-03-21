@@ -51,6 +51,25 @@ export const crudListTests = function (
             getByText("New Title");
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = renderList(
+                <List title={false} />,
+                undefined,
+                {
+                    resources: [
+                        {
+                            name: "posts",
+                            meta: { route: "posts" },
+                        },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                },
+            );
+
+            const text = queryByText("Posts");
+            expect(text).not.toBeInTheDocument();
+        });
+
         it("should render with label instead of resource name successfully", async () => {
             const { getByText } = renderList(<List />, undefined, {
                 resources: [

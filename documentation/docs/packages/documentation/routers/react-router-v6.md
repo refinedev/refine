@@ -31,25 +31,24 @@ If you are using the legacy router provider, it can be imported from `@refinedev
 
 ## Usage
 
-`@refinedev/react-router-v6` is not restricting you to use the router in a specific way and it is up to you to decide how you want to use it. 
+`@refinedev/react-router-v6` is not restricting you to use the router in a specific way and it is up to you to decide how you want to use it.
 
-You can define your routes manually and provide the action paths to the `resources` array of `<Refine>`. From basic to advanced use cases and enterprise applications, you will have full control over your routes. In our examples, we've used this approach to demonstrate the flexibility of the router provider and the route handling process.
+You can define your routes the way you want, then pass the `routerProvider` prop to the `Refine` component and use the `resources` prop to define the resources and their action paths. From basic to advanced use cases and enterprise applications, you will have full control over your routes. In our examples, we've used this approach to demonstrate the flexibility of the router provider and the route handling process.
 
-In the below example, we're defining the routes for both the resources and the custom routes manually and only applying the `Layout` for the `posts` resource routes.
+### Basic Usage
+
+We'll pass the `routerProvider` prop to the `Refine` component to instruct **refine** on how to communicate with the router. We'll also define our resources and their action paths, this will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 // highlight-start
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // highlight-end
 
 import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
-
-import { Layout } from "components/Layout";
-import { ErrorComponent } from "components/Error";
 
 const App = () => {
     return (
@@ -58,6 +57,74 @@ const App = () => {
                 dataProvider={dataProvider}
                 // highlight-next-line
                 routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        // highlight-start
+                        list: "/posts",
+                        create: "/posts/create",
+                        // highlight-end
+                    },
+                    {
+                        name: "categories",
+                        // highlight-start
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                        // highlight-end
+                    },
+                ]}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route path="posts">
+                        <Route index element={<PostList />} />
+                        <Route path="create" element={<PostCreate />} />
+                    </Route>
+                    <Route path="categories">
+                        <Route index element={<CategoryList />} />
+                        <Route path="show/:id" element={<CategoryShow />} />
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
+
+### Usage with Authentication
+
+When handling authenticated routes, we can use [`<Authenticated>`](/docs/api-reference/core/components/auth/authenticated) to check if the user is authenticated or not. Internally, it uses the `useIsAuthenticated` hook and handles the redirection or showing the appropriate elements based on the authentication status by the `children` and `fallback` props.
+
+Additionally, we'll use the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Authenticated>` component. This will allow us to create protected routes and render the routes only when the user is authenticated.
+
+We will also need to create a `/login` route to handle the redirection when the user is not authenticated. We can use the `AuthPage` components from refine's UI packages with `type="login"` prop to render the login page.
+
+```tsx title=App.tsx
+// highlight-next-line
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+// highlight-next-line
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+// highlight-next-line
+import { authProvider } from "src/authProvider";
+
+// highlight-next-line
+import { AuthPage } from "@refinedev/antd";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                // highlight-next-line
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",
@@ -68,34 +135,433 @@ const App = () => {
                         name: "categories",
                         list: "/categories",
                         show: "/categories/show/:id",
-                    }
+                    },
                 ]}
             >
                 <Routes>
-                    <Route index element={<NavigateToResource resource="posts" />} />
-                    {/* highlight-start */}
                     <Route
-                        path="posts"
-                        element={(
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        )}
+                        // highlight-start
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                        // highlight-end
                     >
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
+                        {/* highlight-next-line */}
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
                     </Route>
-                    <Route path="categories">
-                        <Route index element={<CategoryList />} />
-                        <Route path="show/:id" element={<CategoryShow />} />
+                    <Route
+                        // highlight-start
+                        element={
+                            <Authenticated redirectOnFail="/login">
+                                <Outlet />
+                            </Authenticated>
+                        }
+                        // highlight-end
+                    >
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
                     </Route>
-                    {/* highlight-end */}
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
+            </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
+```
 
+Notice that we've used the `fallback` property to render the `<Outlet>` component inside the wrapper `Route` of the `/login` page. This allows us to render the login page when the user is not authenticated and redirect the user to the `/posts` page when the user is authenticated.
+
+We've also used the `<Outlet>` component inside the children of the `<Authenticated>` component in the wrapper `Route` of the resource routes. This will allow us to render the resource routes only when the user is authenticated and redirect the user to the `/login` page when the user is not authenticated.
+
+### Usage with Layouts
+
+When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<Layout>`](/docs/advanced-tutorials/custom-layout/#layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Layout>` component. This will allow us to define the common layout for our routes.
+
+In the below example, we'll wrap our resource routes with the `Layout` component from `@refinedev/antd` and render the routes inside the `<Outlet>` component.
+
+```tsx title=App.tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "src/authProvider";
+
+// highlight-next-line
+import { AuthPage, Layout } from "@refinedev/antd";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated redirectOnFail="/login">
+                                {/* highlight-start */}
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                                {/* highlight-end */}
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
+
+Notice that we've wrapped the `<Outlet>` with `<Layout>` component. This way, we don't need to define the layout for each route and wrap the each route inside it with the `<Layout>` component.
+
+### Usage with Access Control providers
+
+If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/accessControl-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
+
+:::info
+`CanAccess` component will infer resource name and action based on the current route and handle the **access control** from your Access Control Provider for you.
+:::
+
+```tsx title=App.tsx
+// highlight-next-line
+import { Refine, Authenticated, CanAccess } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "src/authProvider";
+
+import { AuthPage, Layout } from "@refinedev/antd";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated redirectOnFail="/login">
+                                <Layout>
+                                    {/* highlight-start */}
+                                    <CanAccess
+                                        fallback={<div>Unauthorized!</div>}
+                                    >
+                                        <Outlet />
+                                    </CanAccess>
+                                    {/* highlight-end */}
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
+
+:::tip
+
+If you don't want to wrap your whole application with `CanAccess`, it's also possible to wrap certain routes individually.
+
+```tsx title=App.tsx
+<Routes>
+    <Route
+        element={
+            <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+            </Authenticated>
+        }
+    >
+        <Route path="/login" element={<AuthPage type="login" />} />
+    </Route>
+    <Route
+        element={
+            <Authenticated redirectOnFail="/login">
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </Authenticated>
+        }
+    >
+        <Route path="posts">
+            <Route index element={<PostList />} />
+            <Route
+                path="create"
+                element={
+                    // highlight-start
+                    <CanAccess fallback={<div>Unauthorized!</div>}>
+                        <PostCreate />
+                    </CanAccess>
+                    // highlight-end
+                }
+            />
+        </Route>
+        <Route path="categories">
+            <Route index element={<CategoryList />} />
+            <Route path="show/:id" element={<CategoryShow />} />
+        </Route>
+    </Route>
+</Routes>
+```
+
+:::
+
+### Usage with an Error Page
+
+You may also want to render an error page when the user tries to access a route that doesn't exist. To do this, we'll define a `*` route that will render the error page when there's no other route that matches the current path.
+
+We'll place this inside the authenticated routes so that the unauthorized users will be redirected to the login page when they try to access a route that doesn't exist.
+
+```tsx title=App.tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "src/authProvider";
+
+// highlight-next-line
+import { AuthPage, Layout, ErrorComponent } from "@refinedev/antd";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated redirectOnFail="/login">
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                        {/* highlight-next-line */}
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+```
+
+### Usage with a Root Route
+
+You may notice that we didn't define an index route for our application yet. We can defina a root route that will redirect the user to the `posts` resource when they visit the root of our application.
+
+We can achieve this by using the [`<NavigateToResource>`](#navigatetoresource) component. This component will redirect the user to the `list` page of the given resource.
+
+We also want this route to be rendered only when the user is authenticated. We can achieve this by placing our `Route` inside the authenticated routes.
+
+```tsx title=App.tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+// highlight-next-line
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "src/authProvider";
+
+import { AuthPage, Layout, ErrorComponent } from "@refinedev/antd";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                    </Route>
+                    <Route
+                        element={
+                            <Authenticated redirectOnFail="/login">
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        {/* highlight-next-line */}
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
 ```
 
 :::note Additional Parameters and Nesting
@@ -106,143 +572,9 @@ Your action definitions in the resources can contain additional parameters and n
 
 :::
 
-### Basic Usage with `<RefineRoutes>`
-
-We also provide a simple way to use `react-router-dom` with the **refine**'s resources through the [`RefineRoutes`](#refineroutes) component. Manually defining the routes may be more flexible and suited for your project but the [`RefineRoutes`](#refineroutes) will also work for basic use cases and it will save you some time to get started. We don't recommend using the basic approach if you want to have more control over your routes.
-
-We'll use [`RefineRoutes`](#refineroutes) to render our resource components and we'll also add an error page for the routes that are not defined which will be a custom route. You're free to add additional routes inside the `RefineRoutes` component's children function. 
-
-```tsx title=App.tsx
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-// highlight-start
-import routerProvider, { RefineRoutes } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// highlight-end
-
-import { PostList, PostCreate } from "pages/posts";
-import { CategoryList, CategoryShow } from "pages/categories";
-
-import { Layout } from "components/Layout";
-import { ErrorComponent } from "components/Error";
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                // highlight-next-line
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        // highlight-start
-                        list: PostList,
-                        create: PostCreate,
-                        // highlight-end
-                    },
-                    {
-                        name: "categories",
-                        // highlight-start
-                        list: CategoryList,
-                        show: {
-                            component: CategoryShow,
-                            path: "/categories/:id/details", // Notice that we can also define the path here
-                        },
-                        // highlight-end
-                    }
-                ]}
-            >
-                <Layout>
-                    {/* highlight-start */}
-                    <RefineRoutes>
-                        {(routes) => (
-                            <Routes>
-                                <Route index element={<NavigateToResource />} />
-                                {routes}
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        )}
-                    </RefineRoutes>
-                    {/* highlight-end */}
-                </Layout>
-        </BrowserRouter>
-    )
-}
-```
-
-We've defined our resource actions using components to let the `RefineRoutes` render them. We can also define the path for each action. If we don't define the path, the `RefineRoutes` will use the default paths for the actions. 
-
-[Refer to "Understanding the Resources" section of our tutorial for detailed information. &#8594][resources]
-
-💡 We also defined the `show` action's path as `/categories/:id/details` which will override the default path.
-
-The `index` route is defined with the `NavigateToResource` component which will redirect the user to the list page of the first defined resource. 
-
-We also added a catch-all route which will render the `ErrorComponent` for the routes that are not defined.
-
 ## Additional Components
 
 `@refinedev/react-router-v6` package also includes some additional components that can be useful in some cases.
-
-### `RefineRoutes`
-
-This component can be used to create routes for your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
-
-It will create the routes and pass it as a `JSX.Element[]` to the `children` function. You can use this to wrap your routes with other components like `Authenticated` or `Layout`.
-
-:::tip
-This is not the recommended way to create routes since it may limit the use of the full potential of your router. It is recommended to create your routes manually.
-:::
-
-```tsx
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                    },
-                    {
-                        name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                    },
-                ]}
-            >
-                {/* highlight-start */}
-                <RefineRoutes>
-                    {(routes) => (
-                        <Layout>
-                            <Routes>{routes}</Routes>
-                        </Layout>
-                    )}
-                </RefineRoutes>
-                {/* highlight-end */}
-            </Refine>
-        </BrowserRouter>
-    );
-};
-```
-
-:::info
-When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
-
-Default paths are:
-
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
-
-:::
-
-#### Properties
-
-`children` (optional) - A function that takes the routes as a parameter and renders them. If not provided, the routes will be wrapped to `<Routes>` component and rendered. This is not recommended because it will limit the flexibility of the routes and wrappers.
 
 ### `NavigateToResource`
 
@@ -297,9 +629,9 @@ const App = () => {
                     warnWhenUnsavedChanges: true,
                 }}
             >
+                {/* ... */}
                 {/* highlight-next-line */}
                 <UnsavedChangesNotifier />
-                {/* ... */}
             </Refine>
         </BrowserRouter>
     );
@@ -314,45 +646,39 @@ const App = () => {
 
 ### `CatchAllNavigate`
 
-It will redirect to the given path and keep the current location in `to` query parameter to redirect back when needed.
-
-This component can be useful when you wrap your whole `Routes` component with an `Authenticated` component. In this case, to avoid constantly redirecting to the login page, you can use this component in a catch-all route to redirect to the desired page (e.g. `/login`) and keep the current location in `to` query parameter to redirect back to it after the user logs in.
-
-The same behavior can also be achieved by default with the `Authenticated` component, but in cases like the one described above, it is not possible to use it because it would redirect to the login page every time the user navigates to a different page while being unauthenticated. (e.g. users won't be able to navigate to the `/register` page if they are not logged in)
+It will redirect to the given path and keep the current location in `to` query parameter to redirect back when needed. In some cases you may not want to use the `<Authenticated>` component's `redirectOnFail` prop to redirect and have a catch-all route to redirect to the desired page. This is useful when handling the 404 pages with authentication.
 
 ```tsx
-/**
- * Current location: /posts/show/1
- * and the authentication fails
- */
+import { Refine } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import { AuthPage } from "@refinedev/antd";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import authProvider from "src/authProvider";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Refine
-            /* ... */
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
             >
-                <Authenticated
-                    fallback={
-                        <Routes>
-                            <Route
-                                path="/login"
-                                element={<AuthPage type="login" />}
-                            />
-                            {/* highlight-next-line */}
-                            <Route
-                                path="*"
-                                element={<CatchAllNavigate to="/login" />}
-                            />
-                            {/* This component will catch all the routes and redirect to `/login` by adding them to `to` query */}
-                            {/* The result will be `/login?to=/posts/show/1` */}
-                        </Routes>
-                    }
-                >
-                    <Routes>
-                        <Route path="/posts/show/:id" element={<PostList />} />
-                    </Routes>
-                </Authenticated>
+                <Routes>
+                    <Route path="/login" element={<AuthPage type="login" />} />
+                    {/* ... */}
+                    {/* highlight-next-line */}
+                    <Route
+                        path="*"
+                        element={<CatchAllNavigate to="/login" />}
+                    />
+                </Routes>
             </Refine>
         </BrowserRouter>
     );
@@ -364,100 +690,6 @@ const App = () => {
 `to` (required) - The path to redirect to.
 
 ## FAQ
-
-### How to use `Authenticated` for authentication?
-
-**refine** provides an [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component to wrap your components with authentication. You can use this component to wrap your routes and protect them from unauthorized access. You can use it to render your pages with wrapping them or partially apply `Authenticated` for sections in your page or wrap your whole `Routes` component with it, this completely depends on your use case and you can use it in any way you want to fit your needs.
-
-Check out the [How to use `Authenticated` component with `RefineRoutes`?](#how-to-use-authenticated-component-with-refineroutes) and [How to handle optional authentication, redirects and layouts with authentication?](#how-to-handle-optional-authentication-redirects-and-layouts-with-authentication) sections for example usages.
-
-### How to use `Authenticated` component with `RefineRoutes`?
-
-You can pass your **refine** routes to the `children` of `Authenticated` component by wrapping them with `Routes` component. Then, you can use `fallback` property to render authentication routes. We'll only apply the `Layout` to the authenticated routes and leave the authentication routes as they are.
-
-```tsx title=App.tsx
-// highlight-next-line
-import { Refine, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-// highlight-start
-import routerProvider, {
-    RefineRoutes,
-    NavigateToResource,
-    CatchAllNavigate,
-} from "@refinedev/react-router-v6";
-// highlight-end
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { PostList, PostCreate } from "pages/posts";
-import { CategoryList, CategoryShow } from "pages/categories";
-
-import { Layout } from "components/Layout";
-import { ErrorComponent } from "components/Error";
-
-import { AuthPage } from "pages/auth";
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                // highlight-next-line
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                    },
-                    {
-                        name: "categories",
-                        list: CategoryList,
-                        show: CategoryShow,
-                    },
-                ]}
-            >
-                <RefineRoutes>
-                    {(routes) => (
-                        <Authenticated
-                            fallback={
-                                <Routes>
-                                    <Route
-                                        path="/login"
-                                        element={<AuthPage type="login" />}
-                                    />
-                                    <Route
-                                        path="*"
-                                        element={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    />
-                                </Routes>
-                            }
-                        >
-                            <Layout>
-                                <Routes>
-                                    <Route
-                                        index
-                                        element={
-                                            <NavigateToResource resource="posts" />
-                                        }
-                                    />
-                                    {/* highlight-next-line */}
-                                    {routes}
-                                    <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
-                                    />
-                                </Routes>
-                            </Layout>
-                        </Authenticated>
-                    )}
-                </RefineRoutes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-```
 
 ### How to handle optional authentication, redirects and layouts with authentication?
 
@@ -483,6 +715,8 @@ export const authProvider: AuthBindings = {
 ```
 
 In our `App.tsx`, while defining the routes, we'll leverage the `Outlet` component from `react-router-dom` and `Authenticated` component from `@refinedev/core`.
+
+**Initialization of `<Refine>` component**
 
 Let's start with initializing our `<Refine>` component with inside `<BrowserRouter>` component. We'll pass our `dataProvider` `routerProvider` and `authProvider` to the `<Refine>` component. We'll also pass our `resources` and define our action paths for each resource in `<Refine>` component.
 
@@ -513,9 +747,11 @@ export const App = () => {
                 {/* ... */}
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 ```
+
+**Defining routes**
 
 Then, let's start adding our routes. We'll start with the `LandingPage` component at the `/` path. This will be visible for both authenticated and unauthenticated users. We need to wrap our `Route` elements with a `Routes` component.
 
@@ -554,7 +790,9 @@ export const App = () => {
 }
 ```
 
-Now, let's our resource actions. They will be wrapped with the `Layout` component and only visible for authenticated users. We'll use the `Authenticated` component to handle authentication and redirects. We'll also use the `Outlet` component to properly wrap and handle the authenticated routes.
+**Defining authenticated routes**
+
+Now, let's create our resource actions. They will be wrapped with the `Layout` component and only visible for authenticated users. We'll use the `Authenticated` component to handle authentication and redirects. We'll also use the `Outlet` component to properly wrap and handle the authenticated routes.
 
 ```diff title=App.tsx
 + import { Refine, Authenticated } from "@refinedev/core";
@@ -565,9 +803,10 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "src/authProvider";
 
-+ import { Layout } from "components/layout";
 import { LandingPage } from "pages/landing";
 + import { PostList, PostCreate } from "pages/posts";
+
++ import { Layout } from "components/layout";
 
 export const App = () => {
     return (
@@ -609,6 +848,8 @@ export const App = () => {
 
 Now, when we navigate to the `/posts` page we should either see the `PostList` component or be redirected to the `/login` page. If we're already authenticated, we should see the `PostList` component.
 
+**Defining auth pages**
+
 We can now add our `/login` and `/register` pages. We'll use the `AuthPage` component for both pages. We'll also navigate to the `/posts` page if the user is already authenticated.
 
 ```diff title=App.tsx
@@ -620,10 +861,11 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "src/authProvider";
 
-import { Layout } from "components/layout";
 import { LandingPage } from "pages/landing";
 import { PostList, PostCreate } from "pages/posts";
 + import { AuthPage } from "pages/auth";
+
+import { Layout } from "components/layout";
 
 export const App = () => {
     return (
@@ -675,6 +917,8 @@ export const App = () => {
 
 Now, when we navigate to the `/login` or `/register` pages, we should either see the `AuthPage` component or be redirected to the `/posts` page. If we're already authenticated, we should be redirected to the `/posts` page.
 
+**Defining error page**
+
 Finally, we'll add our `ErrorComponent` component to show when user navigates to a non-existing page.
 
 ```diff title=App.tsx
@@ -686,11 +930,12 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "src/authProvider";
 
-import { Layout } from "components/layout";
 + import { ErrorComponent } from "components/error";
 import { LandingPage } from "pages/landing";
 import { PostList, PostCreate } from "pages/posts";
 import { AuthPage } from "pages/auth";
+
+import { Layout } from "components/layout";
 
 export const App = () => {
     return (
@@ -740,6 +985,10 @@ export const App = () => {
     );
 };
 ```
+
+**Result**
+
+We've now added our `AuthPage` and `ErrorComponent` components to our app. We've also used the `Authenticated` component to our routes to redirect the users to the `/login` page if they're not authenticated. The index page is available for all users because we didn't wrap it with the `Authenticated` component.
 
 ### Handling 404s
 
@@ -879,5 +1128,108 @@ We can also omit the `fallback` property and let the default redirect flow handl
 
 This means we will look for the `redirectTo` property in the `authProvider`'s `check` method. If it's defined, `<Authenticated>` component will redirect the user to the `redirectTo` route.
 
+### `RefineRoutes` Component
+
+:::caution
+
+This component is available but not recommended to use. While this works for the simple cases, we encourage you to define your routes using the `Route` components to have more control and flexibility over them.
+
+:::
+
+This component can be used to create routes for your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
+
+It will create the routes and pass it as a `JSX.Element[]` to the `children` function. You can use this to wrap your routes with other components like `Authenticated` or `Layout`.
+
+```tsx title=App.tsx
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+// highlight-start
+import routerProvider, { RefineRoutes } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// highlight-end
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+import { Layout } from "components/Layout";
+import { ErrorComponent } from "components/Error";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                // highlight-next-line
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        // highlight-start
+                        list: PostList,
+                        create: PostCreate,
+                        // highlight-end
+                    },
+                    {
+                        name: "categories",
+                        // highlight-start
+                        list: CategoryList,
+                        show: {
+                            component: CategoryShow,
+                            path: "/categories/:id/details", // Notice that we can also define the path here
+                        },
+                        // highlight-end
+                    }
+                ]}
+            >
+                {/* highlight-start */}
+                <RefineRoutes>
+                    {(routes) => (
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                )}
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                {routes}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    )}
+                </RefineRoutes>
+                {/* highlight-end */}
+        </BrowserRouter>
+    )
+}
+```
+
+We've defined our resource actions using components to let the `RefineRoutes` render them. We can also define the path for each action. If we don't define the path, the `RefineRoutes` will use the default paths for the actions.
+
+[Refer to "Understanding the Resources" section of our tutorial for detailed information. &#8594][resources]
+
+💡 We also defined the `show` action's path as `/categories/:id/details` which will override the default path.
+
+The `index` route is defined with the `NavigateToResource` component which will redirect the user to the list page of the first defined resource.
+
+We also added a catch-all route which will render the `ErrorComponent` for the routes that are not defined.
+
+:::info
+When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
+
+Default paths are:
+
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+
+:::
+
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [resources]: /docs/tutorial/understanding-resources/index/
+
+```
+
+```

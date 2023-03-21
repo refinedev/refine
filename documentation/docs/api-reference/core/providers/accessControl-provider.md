@@ -41,33 +41,48 @@ A basic example looks like:
 
 ```tsx
 const App: React.FC = () => {
-    <Refine
-        // other providers and props
-        accessControlProvider={{
-            can: async ({ resource, action, params }) => {
-                if (resource === "posts" && action === "edit") {
-                    return Promise.resolve({
-                        can: false,
-                        reason: "Unauthorized",
-                    });
-                }
+    return (
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
 
-                // or you can access directly *resource object
-                // const resourceName = params?.resource?.name;
-                // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
-                // if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
-                //     return Promise.resolve({
-                //         can: false,
-                //         reason: "Unauthorized",
-                //     });
-                // }
+                    return { can: true };
+                },
+            }}
+        >
+            {/* your app */}
+        </Refine>
+    );
+};
+```
 
-                return Promise.resolve({ can: true });
-            },
-        }}
-    >
-        {/* your app */}
-    </Refine>
+:::tip
+You can also access resource object directly.
+
+```tsx
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        const resourceName = params?.resource?.name;
+        const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+        if (
+            resourceName === "posts" &&
+            anyUsefulMeta === true &&
+            action === "edit"
+        ) {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+    },
 };
 ```
 

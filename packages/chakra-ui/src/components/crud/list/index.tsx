@@ -63,6 +63,8 @@ export const List: React.FC<ListProps> = (props) => {
         : defaultHeaderButtons;
 
     const renderTitle = () => {
+        if (title === false) return null;
+
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (

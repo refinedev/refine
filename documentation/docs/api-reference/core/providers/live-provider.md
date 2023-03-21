@@ -1,7 +1,7 @@
 ---
 id: live-provider
 title: Live Provider
-sidebar_label: Live Provider 🆙
+sidebar_label: Live Provider
 ---
 
 ## Overview

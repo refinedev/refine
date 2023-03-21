@@ -8,7 +8,7 @@ import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OpenNotificationParams, TLogoutData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
-import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
+import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
 type Variables = {
     redirectPath?: string | false;
@@ -112,7 +112,7 @@ export function useLogout<TVariables = {}>({
         (TVariables & Variables) | void,
         unknown
     >(["useLogout"], logoutFromContext, {
-        onSuccess: (data, variables) => {
+        onSuccess: async (data, variables) => {
             const { success, error, redirectTo } = data;
             const { redirectPath } = variables ?? {};
 
@@ -126,6 +126,8 @@ export function useLogout<TVariables = {}>({
                 open?.(buildNotification(error));
             }
 
+            await invalidateAuthStore();
+
             if (redirect !== false) {
                 if (routerType === "legacy") {
                     push(redirect ?? "/login");
@@ -135,8 +137,6 @@ export function useLogout<TVariables = {}>({
                     }
                 }
             }
-
-            invalidateAuthStore();
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -153,8 +153,10 @@ export function useLogout<TVariables = {}>({
         ["useLogout", "v3LegacyAuthProviderCompatible"],
         legacyLogoutFromContext,
         {
-            onSuccess: (data, variables) => {
+            onSuccess: async (data, variables) => {
                 const redirectPath = variables?.redirectPath ?? data;
+
+                await invalidateAuthStore();
 
                 if (redirectPath === false) {
                     return;
@@ -174,8 +176,6 @@ export function useLogout<TVariables = {}>({
                 } else {
                     go({ to: "/login" });
                 }
-
-                invalidateAuthStore();
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));

@@ -6,6 +6,8 @@ authors: joseph_mawa
 tags: [refine, strapi, mantine, crud]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fsocial.png
 hide_table_of_contents: false
+is_featured: true
+featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Ffeatured.png
 ---
 
 :::caution
@@ -36,7 +38,7 @@ All the above integrations are opt-in. In this article, we will build a simple R
 
 While creating a project using the refine command line tool, select Strapi as your back-end service. The refine command line tool will bootstrap a refine application with all the requisite packages and functionalities.
 
-You don't need a Strapi instance to learn how to use Strapi with refine. The refine ecosystem has a [fake Strapi API](https://api.strapi-v4.refine.dev) that you can use when learning to integrate Strapi in a refine project.
+You don't need a Strapi instance to learn how to use Strapi with refine. The refine ecosystem has a [fake Strapi API](https://automatic-sweltering-dog.strapiapp.com) that you can use when learning to integrate Strapi in a refine project.
 
 The refine command line tool will install the `@refinedev/strapi-v4` data provider when you choose it as your back-end service during project creation. You can then import and use it in your application like so:
 
@@ -170,7 +172,7 @@ Similarly, we will use basic layout and UI components such as `List`, `Create`, 
 
 ## How to build a React admin panel with refine, Mantine and Strapi
 
-In this section, we will build a React admin panel with CRUD functionality using refine, Mantine and Strapi. We will utilize a fake [Strapi version 4 API](https://api.strapi-v4.refine.dev/api). Follow the steps below if you have created a refine project by following the steps under the "Creating a refine application" section above.
+In this section, we will build a React admin panel with CRUD functionality using refine, Mantine and Strapi. We will utilize a fake [Strapi version 4 API](https://automatic-sweltering-dog.strapiapp.com/api). Follow the steps below if you have created a refine project by following the steps under the "Creating a refine application" section above.
 
 ### How to list records
 

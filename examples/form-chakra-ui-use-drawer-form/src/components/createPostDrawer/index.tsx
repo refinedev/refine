@@ -41,7 +41,6 @@ export const CreatePostDrawer: React.FC<UseModalFormReturnType> = ({
 
                 <DrawerBody>
                     <Create
-                        headerButtons={false}
                         title={false}
                         goBack={null}
                         saveButtonProps={saveButtonProps}

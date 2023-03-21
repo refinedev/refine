@@ -1,7 +1,7 @@
 ---
 id: interfaceReferences
 title: Interface References
-sidebar_label: Interface References 🆙
+sidebar_label: Interface References
 ---
 
 ## CrudFilters

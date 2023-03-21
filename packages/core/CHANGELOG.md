@@ -1,5 +1,61 @@
 # @pankod/refine-core
 
+## 4.3.0
+
+### Minor Changes
+
+-   [#3892](https://github.com/refinedev/refine/pull/3892) [`41a4525454c`](https://github.com/refinedev/refine/commit/41a4525454cfa145c02aada1e01217260852b06e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: make CanAccess component props optional. Now CanAccess component infers resource and action automagically.
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#3892](https://github.com/refinedev/refine/pull/3892) [`41a4525454c`](https://github.com/refinedev/refine/commit/41a4525454cfa145c02aada1e01217260852b06e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: make CanAccess component props optional. Now CanAccess component infers resource and action automagically.
+
+## 4.1.6
+
+### Patch Changes
+
+-   [#3890](https://github.com/refinedev/refine/pull/3890) [`db12d60095f`](https://github.com/refinedev/refine/commit/db12d60095fbc200afca511d090f7b327cfc7a65) Thanks [@aliemir](https://github.com/aliemir)! - - Fixed layout flickering on authenticated routes.
+    -   Fixed repeated navigations issue on routes with `<Authenticated>` component.
+    -   Fixed conflicting navigation paths with `authProvider` methods and `<Authenticated>` component.
+
+## 4.1.5
+
+### Patch Changes
+
+-   [#3890](https://github.com/refinedev/refine/pull/3890) [`db12d60095f`](https://github.com/refinedev/refine/commit/db12d60095fbc200afca511d090f7b327cfc7a65) Thanks [@aliemir](https://github.com/aliemir)! - - Fixed layout flickering on authenticated routes.
+    -   Fixed repeated navigations issue on routes with `<Authenticated>` component.
+    -   Fixed conflicting navigation paths with `authProvider` methods and `<Authenticated>` component.
+
+## 4.1.4
+
+### Patch Changes
+
+-   [#3884](https://github.com/refinedev/refine/pull/3884) [`c507c10c351`](https://github.com/refinedev/refine/commit/c507c10c351447f8af0ae212a88642bf3d63e8ca) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: resource's icon parameter sanitized on useCan hook
+
+-   [#3883](https://github.com/refinedev/refine/pull/3883) [`64b8292c5e8`](https://github.com/refinedev/refine/commit/64b8292c5e81decfb6b849d9a8f69b9d8c9698f8) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: add custom query key support for useCustom hook
+
+## 4.1.3
+
+### Patch Changes
+
+-   [#3884](https://github.com/refinedev/refine/pull/3884) [`c507c10c351`](https://github.com/refinedev/refine/commit/c507c10c351447f8af0ae212a88642bf3d63e8ca) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: resource's icon parameter sanitized on useCan hook
+
+-   [#3883](https://github.com/refinedev/refine/pull/3883) [`64b8292c5e8`](https://github.com/refinedev/refine/commit/64b8292c5e81decfb6b849d9a8f69b9d8c9698f8) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: add custom query key support for useCustom hook
+
+## 4.1.2
+
+### Patch Changes
+
+-   [#3874](https://github.com/refinedev/refine/pull/3874) [`5ed083a8050`](https://github.com/refinedev/refine/commit/5ed083a805082f2c24c3afe0eb285c8f8485e3df) Thanks [@aliemir](https://github.com/aliemir)! - Add fallback option for `label` from `meta` and `options`.
+
+## 4.1.1
+
+### Patch Changes
+
+-   [#3874](https://github.com/refinedev/refine/pull/3874) [`5ed083a8050`](https://github.com/refinedev/refine/commit/5ed083a805082f2c24c3afe0eb285c8f8485e3df) Thanks [@aliemir](https://github.com/aliemir)! - Add fallback option for `label` from `meta` and `options`.
+
 ## 4.1.0
 
 ### Minor Changes

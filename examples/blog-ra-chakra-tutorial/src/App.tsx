@@ -84,7 +84,17 @@ function App() {
                         >
                             <Route
                                 path="/login"
-                                element={<AuthPage type="login" />}
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        formProps={{
+                                            defaultValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
+                                }
                             />
                         </Route>
 

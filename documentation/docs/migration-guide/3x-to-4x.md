@@ -1,7 +1,7 @@
 ---
 id: 3x-to-4x
 title: Migrating from 3.x.x to 4.x.x
-sidebar_label: 3.x.x to 4.x.x 🆙
+sidebar_label: 3.x.x to 4.x.x
 ---
 
 import Tabs from '@theme/Tabs';
@@ -479,6 +479,20 @@ This won't be necessary if there's already a `authorId` parameter present in the
 This hook is designed to work with the legacy router provider but updated and kept working with both router provider versions. Although, its recommended to use the new routing hooks when necessary or use the ones available from your router library. **refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
 
 Still, if you want to use the `useNavigation` hook and its returned functions, they now accept `meta` property for parametrized paths in new routing system.
+
+### `useRouterContext` hook
+
+This hook was used internally but you might have used it if you had a custom `<Sider>` component in your layout. According to the changes in the `routerProvider` prop of `<Refine>`, this hook will only work with the legacy router provider. If you're using the new `routerProvider`, you can replace the usage of this hook with the appropriate replacements, which are [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) and [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/) hooks.
+
+```diff
++ import { useRouterContext } from "@pankod/refine-core";
+- import { useLink } from "@refinedev/core";
+
+const MyComponent = () => {
+-   const { Link } = useRouterContext();
++   const Link = useLink();
+}
+```
 
 ### `metaData` to `meta`
 

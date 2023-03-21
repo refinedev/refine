@@ -1,7 +1,7 @@
 ---
 id: notification-provider
 title: Notification Provider
-sidebar_label: Notification Provider 🆙
+sidebar_label: Notification Provider
 ---
 
 **refine** let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.

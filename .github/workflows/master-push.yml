@@ -8,7 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
+    concurrency:
+      group: ${{ github.ref }}-stable-release
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]
@@ -22,7 +24,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
@@ -85,9 +87,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
   documentation-gh:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-stable-documentation
+      cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "16.x"
       - name: Add key to allow access to repository

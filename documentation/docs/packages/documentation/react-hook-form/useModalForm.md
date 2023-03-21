@@ -1,7 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
-sidebar_label: useModalForm 🆙
+sidebar_label: useModalForm
 ---
 
 ```tsx live shared

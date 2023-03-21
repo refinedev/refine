@@ -477,101 +477,6 @@ export default function IndexPage() {
 
 `@refinedev/nextjs-router` package also includes some additional components that can be useful in some cases.
 
-### `RefineRoutes`
-
-This component can be used to render the matching route in your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
-
-It will render the component for the matching route and pass it as a `JSX.Element` to the `children` function. You can use this to render your components in a single catch-all route. If there's no matching route `undefined` will be passed to the `children` function. In this case, you can render an error page or redirect the user to another page.
-
-:::tip
-This is not the recommended way to create pages since it may limit the use of the full potential of your router. It is recommended to create your pages manually.
-:::
-
-We'll define our resources in the `<Refine>` component:
-
-```tsx
-return (
-    <Refine
-        resources={[
-            {
-                name: "posts",
-                list: "/posts",
-                show: "/posts/show/:id",
-            },
-            {
-                name: "categories",
-                list: "/categories",
-            },
-        ]}
-    >
-        {/* ... */}
-    </Refine>
-);
-```
-
-Then, we'll create a catch-all route to render the matching route in our resources:
-
-#### In `pages/[[...refine]].tsx`
-
-```tsx title=pages/[[...refine]].tsx
-import { RefineRoutes } from "@refinedev/nextjs-router";
-
-import { ErrorPage } from "components/error";
-
-export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
-
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
-}
-```
-
-#### In `app/[[...refine]]/page.tsx`
-
-If you're using experimental `appDir` in your Next.js project, you can create a catch-all route in the `app` directory.
-
-```tsx title=app/[[...refine]]/page.tsx
-"use client";
-
-import { RefineRoutes } from "@refinedev/nextjs-router/app";
-
-export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
-
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
-}
-```
-
-:::info
-When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
-
-Default paths are:
-
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
-    :::
-
-#### Properties
-
-`children` - A function that takes renders the matching route as a `JSX.Element`. If there's no matching route, `undefined` will be passed to the function.
-
 ### `NavigateToResource`
 
 A basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
@@ -641,111 +546,19 @@ This feature is not working in experimental `appDir` mode in Next.js due to limi
 
 This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
 
-## FAQ
-
-### How to handle Authentication?
+## Authentication
 
 In Next.js you can achieve authentication control in multiple ways;
 
-You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthorized access.
+On the client-side, you can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthenticated access.
 
-Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages.
+On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
-Using a server side approach is recommended but you can use any approach you want. Check out the [Server Side Authentication with Cookies](#server-side-authentication-with-cookies) section for an example.
+:::info
+For page level authentication, server-side approach is recommended.
+:::
 
-### Can I use nested routes?
-
-Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
-
-You can use `:param` syntax to define parameters in your routes.
-
-### How to make SSR work?
-
-You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop.
-
-All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
-
-```tsx
-import { useList } from "@refinedev/core";
-
-import { dataProvider } from "src/providers";
-
-type IPost = {
-    id: number;
-    title: string;
-    description: string;
-};
-
-export const getServerSideProps = async () => {
-    const { data } = await dataProvider.getList<IPost>("posts", {
-        pagination: {
-            page: 1,
-            perPage: 10,
-        },
-    });
-
-    return {
-        props: {
-            posts: data,
-        },
-    };
-};
-
-export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
-    const {
-        tableQueryResult: { data },
-    } = useTable<IPost>({
-        queryOptions: {
-            initialData: posts,
-        },
-    });
-
-    return <>{/* ... */}</>;
-}
-```
-
-### How to persist `syncWithLocation` in SSR?
-
-If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
-
-```tsx
-// highligt-next-line
-import { parseTableParams } from "@refinedev/nextjs-router";
-import dataProvider from "@refinedev/simple-rest";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const getServerSideProps = ({ params, resolvedUrl }) => {
-    const { resource } = params;
-
-    // highligt-next-line
-    const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
-
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: resource as string,
-            ...tableParams, // this includes `filters`, `sorters` and `pagination`
-        });
-
-        return {
-            props: {
-                initialData: data,
-            },
-        };
-    } catch (error) {
-        return {
-            props: {},
-        };
-    }
-};
-export default function MyListPage({ initialData }) {
-    return <>{/* ... */}</>;
-}
-```
-
-`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
-
-### Server Side Authentication with Cookies
+### Server Side
 
 First, let's install the `nookies` packages in our project.
 
@@ -887,6 +700,205 @@ export const getServerSideProps = async (context) => {
 
 This needs to be done for all the routes that we want to protect.
 
+## Access Control
+
+In Next.js you can achieve access control in multiple ways;
+
+On the client-side you can wrap your pages with `CanAccess` component from `@refinedev/core` to protect your pages from unauthorized access.
+
+And on the server-side you can use your `accessControlProvider`'s `can` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages..
+
+:::info
+
+For page level access control, server-side approach is recommended.
+
+:::
+
+### Server Side
+
+On the server side, you can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
+
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+
+```tsx title="app/acccessControlProvider.ts"
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        if (resource === "posts" && action === "edit") {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+
+        return { can: true };
+    },
+};
+```
+
+:::tip
+
+You can also access resource object directly.
+
+:::
+
+```tsx
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        const resourceName = params?.resource?.name;
+        const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+        if (
+            resourceName === "posts" &&
+            anyUsefulMeta === true &&
+            action === "edit"
+        ) {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+    },
+};
+```
+
+Then, let's create our posts page.
+
+```tsx title="pages/posts/index.tsx"
+import { accessControlProvider } from "src/accessControlProvider";
+
+export const getServerSideProps = async (context) => {
+    const { can } = await accessControlProvider.can({
+        resource: "posts",
+        action: "list",
+    });
+
+    if (!can) {
+        context.res.statusCode = 403;
+        context.res.end();
+    }
+
+    return {
+        props: {
+            can,
+        },
+    };
+};
+
+export default function PostList() {
+    /* ... */
+}
+```
+
+### Client Side
+
+For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+```tsx
+import { CanAccess } from "@refinedev/core";
+
+export const MyPage = () => (
+    <CanAccess>
+        <div>{/* ... */}</div>
+    </CanAccess>
+);
+```
+
+## FAQ
+
+### Can I use nested routes?
+
+Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
+
+You can use `:param` syntax to define parameters in your routes.
+
+### How to make SSR work?
+
+You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop.
+
+All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
+
+```tsx
+import { useList } from "@refinedev/core";
+
+import { dataProvider } from "src/providers";
+
+type IPost = {
+    id: number;
+    title: string;
+    description: string;
+};
+
+export const getServerSideProps = async () => {
+    const { data } = await dataProvider.getList<IPost>("posts", {
+        pagination: {
+            page: 1,
+            perPage: 10,
+        },
+    });
+
+    return {
+        props: {
+            posts: data,
+        },
+    };
+};
+
+export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
+    const {
+        tableQueryResult: { data },
+    } = useTable<IPost>({
+        queryOptions: {
+            initialData: posts,
+        },
+    });
+
+    return <>{/* ... */}</>;
+}
+```
+
+### How to persist `syncWithLocation` in SSR?
+
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+```tsx
+// highligt-next-line
+import { parseTableParams } from "@refinedev/nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const getServerSideProps = ({ params, resolvedUrl }) => {
+    const { resource } = params;
+
+    // highligt-next-line
+    const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
+
+    try {
+        const data = await dataProvider(API_URL).getList({
+            resource: resource as string,
+            ...tableParams, // this includes `filters`, `sorters` and `pagination`
+        });
+
+        return {
+            props: {
+                initialData: data,
+            },
+        };
+    } catch (error) {
+        return {
+            props: {},
+        };
+    }
+};
+export default function MyListPage({ initialData }) {
+    return <>{/* ... */}</>;
+}
+```
+
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+
+### Server Side Authentication with Cookies
+
 ### How to use multiple layouts?
 
 When using `/pages` directory for your routes, you'll probably have a point where you need to use multiple layouts. For example, you may want to use a different layout for the login page. To achieve this, you can either use your `Layout` wrappers in your pages or you can add extra properties to your page components to render the page with the specified layout.
@@ -988,15 +1000,15 @@ In the earlier versions of **refine**, if `authProvider` was defined, we've redi
 
 If you want to use the Next.js's 404 page, you can create a `404.tsx` file in your `/pages` directory and it will be used as the 404 page. For more information, you can check the [Next.js documentation for custom 404 page](https://nextjs.org/docs/advanced-features/custom-error-page#404-page).
 
-#### Using an optional catch-all route
+#### Using a catch-all route
 
-If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the optional catch-all route. For more information, you can check the [Next.js documentation for optional catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
+If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the catch-all route. For more information, you can check the [Next.js documentation for catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
 
 You can use **refine**'s authentication hooks and the `authProvider` to check if the user is authenticated or not and redirect them to the login page. This check can be done on the client-side or server-side.
 
 **Client Side**
 
-```tsx title="pages/[[...slug]].tsx"
+```tsx title="pages/[...slug].tsx"
 import { Authenticated } from "@refinedev/core";
 
 export default function CatchAll() {
@@ -1011,7 +1023,7 @@ export default function CatchAll() {
 
 **Server Side**
 
-```tsx title="pages/[[...slug]].tsx"
+```tsx title="pages/[...slug].tsx"
 import { authProvider } from "src/authProvider";
 
 export const getServerSideProps = async (context) => {
@@ -1036,6 +1048,99 @@ export default function CatchAll() {
     return <div>This page is not found.</div>;
 }
 ```
+
+### `RefineRoutes` Component
+
+:::caution
+
+While this may work for the simple cases, it is not recommended to use this component. Defining your routes separately will give you more control over your routes and will allow you to use the full potential of your router.
+
+:::
+
+This component can be used to render the matching route in your resources by using the `resources` prop. It will only take effect if the action properties in the resource definitions are assigned to components or objects with `component` property.
+
+It will render the component for the matching route and pass it as a `JSX.Element` to the `children` function. You can use this to render your components in a single catch-all route. If there's no matching route `undefined` will be passed to the `children` function. In this case, you can render an error page or redirect the user to another page.
+
+We'll define our resources in the `<Refine>` component:
+
+```tsx
+return (
+    <Refine
+        resources={[
+            {
+                name: "posts",
+                list: "/posts",
+                show: "/posts/show/:id",
+            },
+            {
+                name: "categories",
+                list: "/categories",
+            },
+        ]}
+    >
+        {/* ... */}
+    </Refine>
+);
+```
+
+Then, we'll create a catch-all route to render the matching route in our resources:
+
+#### In `pages/[[...refine]].tsx`
+
+```tsx title=pages/[[...refine]].tsx
+import { RefineRoutes } from "@refinedev/nextjs-router";
+
+import { ErrorPage } from "components/error";
+
+export default function CatchAll() {
+    return (
+        <RefineRoutes>
+            {(matchingRoute) => {
+                if (matchingRoute) {
+                    return { matchingRoute };
+                }
+
+                return <ErrorPage />;
+            }}
+        </RefineRoutes>
+    );
+}
+```
+
+#### In `app/[[...refine]]/page.tsx`
+
+If you're using experimental `appDir` in your Next.js project, you can create a catch-all route in the `app` directory.
+
+```tsx title=app/[[...refine]]/page.tsx
+"use client";
+
+import { RefineRoutes } from "@refinedev/nextjs-router/app";
+
+export default function CatchAll() {
+    return (
+        <RefineRoutes>
+            {(matchingRoute) => {
+                if (matchingRoute) {
+                    return { matchingRoute };
+                }
+
+                return <ErrorPage />;
+            }}
+        </RefineRoutes>
+    );
+}
+```
+
+:::info
+When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
+
+Default paths are:
+
+-   `list`: `/resources`
+-   `create`: `/resources/create`
+-   `edit`: `/resources/edit/:id`
+-   `show`: `/resources/show/:id`
+    :::
 
 ## Example (`/pages`)
 

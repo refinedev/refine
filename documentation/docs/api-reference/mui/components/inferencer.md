@@ -1,7 +1,7 @@
 ---
 id: inferencer
 title: Inferencer
-sidebar_label: Inferencer 🆙
+sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` and `MuiInferencer` (which combines all in one place) components.

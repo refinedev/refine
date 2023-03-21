@@ -6,7 +6,6 @@ authors: necati
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
-is_featured: true
 hide_table_of_contents: false
 ---
 
@@ -112,7 +111,7 @@ The required Strapi data provider setups are added automatically by the CLI wiza
 To consume refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
 
 ```tsx title="src/constants.ts"
-export const API_URL = "https://api.strapi-v4.refine.dev";
+export const API_URL = "https://automatic-sweltering-dog.strapiapp.com";
 ```
 
 

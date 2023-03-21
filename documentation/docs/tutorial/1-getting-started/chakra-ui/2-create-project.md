@@ -1,6 +1,6 @@
 ---
 id: create-project
-title: 3. Create your refine project
+title: 3. Creating your refine project
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/prepare-env
     next: tutorial/getting-started/{preferredUI}/generate-crud-pages
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 ## Launch the refine CLI setup
 
-The easiest way to create a new project is to use the **refine CLI**. This tool will help you get started quickly by generating a new project with a basic configuration and a folder structure that follows best practices.
+The easiest way to create a new project is using the **refine CLI**. This tool will help you get started quickly by generating a new project with a basic configuration and a folder structure that follows best practices.
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
@@ -41,7 +41,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     yarn create refine-app -- -o refine-chakra-ui tutorial
     ```
 
-    > Only support yarn@1 version.
+    > Only supports yarn@1 version.
 
     </TabItem>
 
@@ -49,17 +49,15 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
 
 2. Confirm `y` to installation of `create-refine-app`
 
-3. The `-o refine-chakra-ui` flag in the command above tells the CLI to install the project with the `refine-chakra-ui` preset. This preset selects some options for you in accordance with this tutorial.
+3. The `-o refine-chakra-ui` flag in the command above tells the CLI to install the project with the `refine-chakra-ui` preset. This preset selects some of the options for you in accordance with this tutorial. Outside of this tutorial, you can skip this flag and select your own options.
 
-    > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
-
-4. The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
+4. The CLI will then ask if you agree to share your selection anonymously with the **refine** team. This is for measuring community preferences. You can learn more about it here: [Telemetry](docs/further-readings/telemetry/.)
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 
 ### Open your project in VS Code
 
-1. Open Visual Studio Code and select the directory that was generated during your setup process.
+1. Open VS Code and select the directory that was generated during your setup process.
 
 2. Make sure the terminal is open and ready to run commands. You can open it by pressing `Ctrl + J`(Windows) or `Cmd ⌘ + J`(macOS).
 
@@ -67,7 +65,7 @@ For the rest of this tutorial, you can use the terminal within VS Code instead o
 
 ### Running the dev server
 
-To preview your project as a web page while you work on it, the project must be running in development (dev) mode.
+Previewing your project while you work on it is important. To open it as a webpage, the project must be running in development(dev) mode.
 
 <h4>Start the dev server</h4>
 
@@ -107,31 +105,27 @@ You should see confirmation in the terminal that the **refine** app is running i
 
 ### Viewing a preview of your app
 
-Your project files contain all the code you need to run your website. To see a preview of your website in the browser:
+Your project files contain all the code you need to run your app. To see a preview of your app in the browser:
 
 1. Click on the <a href="http://localhost:3000" rel="noopener noreferrer nofollow">localhost:3000</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
 
-2. You will be redirected to the welcome page as we have not added any pages yet.
-
-    ([Next section](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages) will guide you through adding pages to your app.)
+2. You will be redirected to the welcome page as we have not added any pages yet. We will take care of that in the [Next section](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages)
 
 Here's what you should see:
 
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
+import { ChakraProvider } from "@chakra-ui/react";
+import {
+    notificationProvider,
+    refineTheme,
+    WelcomePage,
+} from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    WelcomePage,
-    notificationProvider,
-} from "@refinedev/chakra-ui";
-import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
     return (
@@ -140,9 +134,13 @@ const App = () => {
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                 >
-                    <WelcomePage />
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+                    </Routes>
                 </Refine>
             </ChakraProvider>
         </BrowserRouter>
@@ -158,7 +156,7 @@ render(<App />);
 I understood how to create a new project.
 </ChecklistItem>
 <ChecklistItem id="getting-started-chakra-2">
-I run the dev server and previewed my app.
+I have run the dev server and previewed my app.
 </ChecklistItem>
 
 </Checklist>

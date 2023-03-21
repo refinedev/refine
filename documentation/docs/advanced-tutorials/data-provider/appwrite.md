@@ -1,7 +1,7 @@
 ---
 id: appwrite
 title: Appwrite
-sidebar_label: Appwrite 🆙
+sidebar_label: Appwrite
 ---
 
 ## Introduction

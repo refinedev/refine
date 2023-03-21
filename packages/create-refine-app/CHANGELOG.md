@@ -1,5 +1,29 @@
 # create-refine-app
 
+## 1.5.8
+
+### Patch Changes
+
+-   [`e8f02cbff9e`](https://github.com/refinedev/refine/commit/e8f02cbff9e14cd3193ce373e2474eed83cc3b58) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: bump superplate@1.14.0
+
+## 1.5.7
+
+### Patch Changes
+
+-   [`e8f02cbff9e`](https://github.com/refinedev/refine/commit/e8f02cbff9e14cd3193ce373e2474eed83cc3b58) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: bump superplate@1.14.0
+
+## 1.5.6
+
+### Patch Changes
+
+-   [#3865](https://github.com/refinedev/refine/pull/3865) [`366510485e6`](https://github.com/refinedev/refine/commit/366510485e62d70c7f3638471f5ad32f3da0062e) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: 'project' parameter has been added.
+
+## 1.5.5
+
+### Patch Changes
+
+-   [#3865](https://github.com/refinedev/refine/pull/3865) [`366510485e6`](https://github.com/refinedev/refine/commit/366510485e62d70c7f3638471f5ad32f3da0062e) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: 'project' parameter has been added.
+
 ## 1.7.0
 
 ### Minor Changes

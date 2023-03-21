@@ -17,7 +17,7 @@ export const legacyResourceTransform = (resources: ResourceProps[]) => {
     resources?.forEach((resource) => {
         _resources.push({
             ...resource,
-            label: resource.options?.label,
+            label: resource.meta?.label ?? resource.options?.label,
             route: routeGenerator(resource, resources),
             canCreate: !!resource.create,
             canEdit: !!resource.edit,

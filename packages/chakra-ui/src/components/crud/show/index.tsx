@@ -170,6 +170,8 @@ export const Show: React.FC<ShowProps> = (props) => {
         : null;
 
     const renderTitle = () => {
+        if (title === false) return null;
+
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (

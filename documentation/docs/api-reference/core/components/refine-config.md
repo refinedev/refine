@@ -1,7 +1,7 @@
 ---
 id: refine-config
 title: <Refine>
-sidebar_label: <Refine> 🆙
+sidebar_label: <Refine>
 ---
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.

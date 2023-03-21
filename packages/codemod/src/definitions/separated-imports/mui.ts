@@ -573,6 +573,7 @@ export const exported: { [key: string]: string } = {
     ListItemTextProps: "@mui/material",
     ListSubheader: "@mui/material",
     ListSubheaderProps: "@mui/material",
+    LoadingButton: "@mui/lab",
     Menu: "@mui/material",
     MenuProps: "@mui/material",
     MenuItem: "@mui/material",

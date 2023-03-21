@@ -252,11 +252,12 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                                     </Authenticated>
                                 }
                             >
-                                {/* highlight-next-line */}
+                                {/* highlight-start */}
                                 <Route
                                     path="/login"
                                     element={<AuthPage type="login" />}
                                 />
+                                {/* highlight-end */}
                             </Route>
                             <Route
                                 element={
@@ -379,11 +380,12 @@ Register page is used to register new users. It provides a basic form to enter e
                                     path="/login"
                                     element={<AuthPage type="login" />}
                                 />
-                                {/* highlight-next-line */}
+                                {/* highlight-start */}
                                 <Route
                                     path="/register"
                                     element={<AuthPage type="register" />}
                                 />
+                                {/* highlight-end */}
                             </Route>
                             <Route
                                 element={
@@ -508,11 +510,12 @@ Forgot password page is used to send a reset password link to the user's email. 
                                     path="/register"
                                     element={<AuthPage type="register" />}
                                 />
-                                {/* highlight-next-line */}
+                                {/* highlight-start */}
                                 <Route
                                     path="/forgot-password"
                                     element={<AuthPage type="forgotPassword" />}
                                 />
+                                {/* highlight-end */}
                             </Route>
                             <Route
                                 element={
@@ -644,11 +647,12 @@ Update password page is used to update the user's password. It provides a basic 
                                     path="/forgot-password"
                                     element={<AuthPage type="forgotPassword" />}
                                 />
-                                {/* highlight-next-line */}
+                                {/* highlight-start */}
                                 <Route
                                     path="/update-password"
                                     element={<AuthPage type="updatePassword" />}
                                 />
+                                {/* highlight-end */}
                             </Route>
                             <Route
                                 element={

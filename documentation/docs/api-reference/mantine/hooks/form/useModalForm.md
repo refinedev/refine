@@ -1,7 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
-sidebar_label: useModalForm 🆙
+sidebar_label: useModalForm
 ---
 
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.

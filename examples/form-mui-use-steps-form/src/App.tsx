@@ -75,8 +75,8 @@ const App: React.FC = () => {
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
-                            <UnsavedChangesNotifier />
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

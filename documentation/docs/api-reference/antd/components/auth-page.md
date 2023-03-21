@@ -1,7 +1,7 @@
 ---
 id: antd-auth-page
 title: <AuthPage>
-sidebar_label: <AuthPage> 🆙
+sidebar_label: <AuthPage>
 description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx

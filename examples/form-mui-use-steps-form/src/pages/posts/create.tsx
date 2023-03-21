@@ -164,7 +164,7 @@ export const PostCreate: React.FC = () => {
         <Create
             isLoading={formLoading}
             saveButtonProps={saveButtonProps}
-            headerButtons={
+            footerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

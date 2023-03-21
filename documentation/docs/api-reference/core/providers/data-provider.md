@@ -1,7 +1,7 @@
 ---
 id: data-provider
 title: Data Provider
-sidebar_label: Data Provider 🆙
+sidebar_label: Data Provider
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";

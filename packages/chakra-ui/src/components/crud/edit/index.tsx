@@ -177,6 +177,8 @@ export const Edit: React.FC<EditProps> = (props) => {
         : defaultFooterButtons;
 
     const renderTitle = () => {
+        if (title === false) return null;
+
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (

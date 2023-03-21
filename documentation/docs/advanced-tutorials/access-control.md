@@ -1,7 +1,7 @@
 ---
 id: access-control
 title: Access Control
-sidebar_label: Access Control 🆙
+sidebar_label: Access Control
 ---
 
 ## Introduction
@@ -181,7 +181,7 @@ const App: React.FC = () => {
                             action,
                         );
 
-                        return Promise.resolve({ can });
+                        return { can };
                     },
                 }}
                 // highlight-end
@@ -249,7 +249,11 @@ const App: React.FC = () => {
                     can: async ({ resource, action }) => {
                         const enforcer = await newEnforcer(model, adapter);
                         // highlight-next-line
-                        const can = await enforcer.enforce(role, resource, action);
+                        const can = await enforcer.enforce(
+                            role,
+                            resource,
+                            action,
+                        );
 
                         return Promise.resolve({
                             can,
@@ -564,7 +568,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-[`<CanAccess />`](/api-reference/core/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
+[`<CanAccess />`](/docs/api-reference/core/components/accessControl/can-access) can be used too to check access control in custom places in your app.
 :::
 
 <br/>
