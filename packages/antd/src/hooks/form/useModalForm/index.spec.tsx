@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, TestWrapper } from "@test";
+import { act, MockJSONServer, TestWrapper } from "@test";
 
 import { useModalForm } from "./";
 
@@ -181,5 +181,43 @@ describe("useModalForm Hook", () => {
         expect(result.current.formProps.form?.getFieldsValue()).toStrictEqual(
             {},
         );
+    });
+
+    it("when mutationMode is 'pessimistic', the form should be closed when the mutation is successful", async () => {
+        jest.useFakeTimers();
+        const updateMock = jest.fn(
+            () => new Promise((resolve) => setTimeout(resolve, 1000)),
+        );
+
+        const { result } = renderHook(
+            () =>
+                useModalForm({
+                    action: "edit",
+                    resource: "posts",
+                    id: 1,
+                    mutationMode: "pessimistic",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer,
+                        update: updateMock,
+                    },
+                }),
+            },
+        );
+
+        await act(async () => {
+            result.current.show();
+            result.current.modalProps.onOk?.({} as any);
+            jest.runAllTimers();
+        });
+
+        expect(result.current.modalProps.open).toBe(true);
+
+        await waitFor(() => expect(result.current.modalProps.open).toBe(false));
+
+        expect(updateMock).toBeCalledTimes(1);
+        expect(result.current.modalProps.open).toBe(false);
     });
 });
