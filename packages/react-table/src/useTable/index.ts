@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
     BaseRecord,
     CrudOperators,
@@ -42,6 +42,8 @@ export function useTable<
     initialState: reactTableInitialState = {},
     ...rest
 }: UseTableProps<TData, TError>): UseTableReturnType<TData, TError> {
+    const firstRender = useFirstRender();
+
     const useTableResult = useTableCore<TData, TError>({
         ...refineCoreProps,
         hasPagination,
@@ -126,7 +128,7 @@ export function useTable<
                 })),
             );
 
-            if (sorting.length > 0 && isPaginationEnabled) {
+            if (sorting.length > 0 && isPaginationEnabled && !firstRender) {
                 setCurrent(1);
             }
         }
@@ -166,7 +168,7 @@ export function useTable<
 
         setFilters(crudFilters);
 
-        if (crudFilters.length > 0 && isPaginationEnabled) {
+        if (crudFilters.length > 0 && isPaginationEnabled && !firstRender) {
             setCurrent(1);
         }
     }, [columnFilters]);
@@ -175,4 +177,14 @@ export function useTable<
         ...reactTableResult,
         refineCore: useTableResult,
     };
+}
+
+function useFirstRender() {
+    const firstRender = useRef(true);
+
+    useEffect(() => {
+        firstRender.current = false;
+    }, []);
+
+    return firstRender.current;
 }
