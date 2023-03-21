@@ -1,5 +1,18 @@
 # @pankod/refine-mantine
 
+## 2.3.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/ui-types@1.3.0
+
 ## 2.2.0
 
 ### Minor Changes
