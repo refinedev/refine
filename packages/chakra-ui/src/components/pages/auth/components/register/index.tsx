@@ -42,6 +42,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -174,7 +175,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <Box {...allWrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </Box>
     );
 };

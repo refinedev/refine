@@ -26,6 +26,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -116,7 +117,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
 
     return (
         <div {...wrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </div>
     );
 };

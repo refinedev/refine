@@ -50,6 +50,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     providers,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const {
@@ -225,7 +226,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     height: "100vh",
                 }}
             >
-                {renderContent ? renderContent(Content) : Content}
+                {renderContent ? renderContent(Content, title) : Content}
             </Container>
         </Box>
     );

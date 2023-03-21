@@ -46,6 +46,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const {
@@ -164,7 +165,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         height: "100vh",
                     }}
                 >
-                    {renderContent ? renderContent(Content) : Content}
+                    {renderContent ? renderContent(Content, title) : Content}
                 </Container>
             </Box>
         </>
