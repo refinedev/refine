@@ -57,11 +57,20 @@ export type ParseResponse = {
     pathname?: string;
 };
 
+export type PromptConfig = {
+    message?: string;
+    onConfirm?: () => void;
+    onCancel?: () => void;
+    translationKey?: string;
+};
+
 export type GoFunction = (config: GoConfig) => void | string;
 
 export type BackFunction = () => void;
 
 export type ParseFunction = () => ParseResponse;
+
+export type PromptFunction = (config: PromptConfig) => void;
 
 export type RouterBindings = {
     go?: () => GoFunction;
@@ -70,4 +79,5 @@ export type RouterBindings = {
     Link?: React.ComponentType<
         React.PropsWithChildren<{ to: string; [prop: string]: any }>
     >;
+    prompt?: () => PromptFunction;
 };
