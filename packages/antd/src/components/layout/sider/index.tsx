@@ -20,6 +20,8 @@ import {
     useRouterType,
     useActiveAuthProvider,
     pickNotDeprecated,
+    usePrompt,
+    useWarnAboutChange,
 } from "@refinedev/core";
 
 import { Title as DefaultTitle } from "@components";
@@ -39,6 +41,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     const isExistAuthentication = useIsExistAuthentication();
     const routerType = useRouterType();
     const NewLink = useLink();
+    const prompt = usePrompt();
+    const { setWarnWhen } = useWarnAboutChange();
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const TitleFromContext = useTitle();
@@ -124,7 +128,16 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     const logout = isExistAuthentication && (
         <Menu.Item
             key="logout"
-            onClick={() => mutateLogout()}
+            onClick={() => {
+                prompt({
+                    onConfirm: () => {
+                        mutateLogout();
+                    },
+                    onCancel: () => {
+                        setWarnWhen(false);
+                    },
+                });
+            }}
             icon={<LogoutOutlined />}
         >
             {translate("buttons.logout", "Logout")}
