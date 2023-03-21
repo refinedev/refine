@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "@cerbos/http": "^0.6.0",
-        "@refinedev/antd": "^5.1.2",
-        "@refinedev/core": "^4.3.0",
+        "@refinedev/antd": "^5.2.0",
+        "@refinedev/core": "^4.4.0",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",
