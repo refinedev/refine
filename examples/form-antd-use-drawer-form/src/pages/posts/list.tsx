@@ -205,7 +205,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 </Edit>
             </Drawer>
             <Drawer
-                visible={visibleShowDrawer}
+                open={visibleShowDrawer}
                 onClose={() => setVisibleShowDrawer(false)}
                 width="500"
             >
