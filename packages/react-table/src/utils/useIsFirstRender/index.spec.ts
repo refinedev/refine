@@ -1,16 +1,16 @@
 import { renderHook } from "@testing-library/react";
 
-import { useFirstRender } from ".";
+import { useIsFirstRender } from ".";
 
 describe("useFirstRender hook", () => {
     it("should return true on first render", () => {
-        const { result } = renderHook(() => useFirstRender());
+        const { result } = renderHook(() => useIsFirstRender());
 
         expect(result.current).toBe(true);
     });
 
     it("should return false on second render", () => {
-        const { result, rerender } = renderHook(() => useFirstRender());
+        const { result, rerender } = renderHook(() => useIsFirstRender());
 
         rerender();
 
@@ -18,7 +18,7 @@ describe("useFirstRender hook", () => {
     });
 
     it("should return false on multiple renders", () => {
-        const { result, rerender } = renderHook(() => useFirstRender());
+        const { result, rerender } = renderHook(() => useIsFirstRender());
 
         rerender();
         rerender();

@@ -15,7 +15,7 @@ import {
     getCoreRowModel,
 } from "@tanstack/react-table";
 
-import { useFirstRender } from "src/utils";
+import { useIsFirstRender } from "src/utils";
 
 export type UseTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -44,7 +44,7 @@ export function useTable<
     initialState: reactTableInitialState = {},
     ...rest
 }: UseTableProps<TData, TError>): UseTableReturnType<TData, TError> {
-    const firstRender = useFirstRender();
+    const isFirstRender = useIsFirstRender();
 
     const useTableResult = useTableCore<TData, TError>({
         ...refineCoreProps,
@@ -130,7 +130,7 @@ export function useTable<
                 })),
             );
 
-            if (sorting.length > 0 && isPaginationEnabled && !firstRender) {
+            if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
                 setCurrent(1);
             }
         }
@@ -170,7 +170,7 @@ export function useTable<
 
         setFilters(crudFilters);
 
-        if (crudFilters.length > 0 && isPaginationEnabled && !firstRender) {
+        if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
             setCurrent(1);
         }
     }, [columnFilters]);
