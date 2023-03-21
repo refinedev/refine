@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, TestWrapper } from "@test";
+import { act, MockJSONServer, TestWrapper } from "@test";
 
 import { useDrawerForm } from "./";
 
@@ -164,38 +164,43 @@ describe("useDrawerForm Hook", () => {
         );
     });
 
-    fit("autoResetForm is false, 'reset' should not be called when the form is submitted", async () => {
+    it("when mutationMode is 'pessimistic', the form should be closed when the mutation is successful", async () => {
+        jest.useFakeTimers();
+        const updateMock = jest.fn(
+            () => new Promise((resolve) => setTimeout(resolve, 1000)),
+        );
+
         const { result } = renderHook(
             () =>
                 useDrawerForm({
                     action: "edit",
                     resource: "posts",
-                    autoResetForm: false,
+                    id: 1,
+                    mutationMode: "pessimistic",
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        ...MockJSONServer,
+                        update: updateMock,
+                    },
+                }),
             },
         );
 
         await act(async () => {
             result.current.show();
-            result.current.formProps.form?.setFieldsValue({
-                test: "test",
-                foo: "bar",
-            });
             result.current.saveButtonProps.onClick?.({} as any);
+            jest.runAllTimers();
         });
 
-        expect(result.current.formProps.form?.getFieldsValue()).toStrictEqual({
-            test: "test",
-            foo: "bar",
-        });
+        expect(result.current.drawerProps.open).toBe(true);
 
-        await waitFor(() => result.current.queryResult?.isSuccess);
+        await waitFor(() =>
+            expect(result.current.drawerProps.open).toBe(false),
+        );
 
-        expect(result.current.formProps.form?.getFieldsValue()).toStrictEqual({
-            test: "test",
-            foo: "bar",
-        });
+        expect(updateMock).toBeCalledTimes(1);
+        expect(result.current.drawerProps.open).toBe(false);
     });
 });
