@@ -4,7 +4,7 @@ import { render, TestWrapper } from "@test";
 import { ForgotPasswordPageProps } from "@refinedev/core";
 
 export const pageForgotPasswordTests = function (
-    ForgotPasswordPage: FC<ForgotPasswordPageProps>,
+    ForgotPasswordPage: FC<ForgotPasswordPageProps<any, any, any>>,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / Forgot Password Page", () => {
         it("should render card title", async () => {

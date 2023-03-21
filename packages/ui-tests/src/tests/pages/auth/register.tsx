@@ -4,7 +4,7 @@ import { render, TestWrapper } from "@test";
 import { RegisterPageProps } from "@refinedev/core";
 
 export const pageRegisterTests = function (
-    RegisterPage: FC<RegisterPageProps>,
+    RegisterPage: FC<RegisterPageProps<any, any, any>>,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / Register Page", () => {
         it("should render card title", async () => {
