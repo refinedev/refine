@@ -1,8 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { render, TestWrapper } from "@test";
+import { RegisterPageProps } from "@refinedev/core";
 
-export const pageRegisterTests = function (RegisterPage: any): void {
+export const pageRegisterTests = function (
+    RegisterPage: FC<RegisterPageProps>,
+): void {
     describe("[@refinedev/ui-tests] Common Tests / Register Page", () => {
         it("should render card title", async () => {
             const { getByText } = render(<RegisterPage />, {

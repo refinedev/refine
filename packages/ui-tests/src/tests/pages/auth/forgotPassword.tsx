@@ -1,9 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { render, TestWrapper } from "@test";
+import { ForgotPasswordPageProps } from "@refinedev/core";
 
 export const pageForgotPasswordTests = function (
-    ForgotPasswordPage: any,
+    ForgotPasswordPage: FC<ForgotPasswordPageProps>,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / Forgot Password Page", () => {
         it("should render card title", async () => {

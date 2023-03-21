@@ -1,9 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { render, TestWrapper } from "@test";
+import { UpdatePasswordPageProps } from "@refinedev/core";
 
 export const pageUpdatePasswordTests = function (
-    UpdatePasswordPage: any,
+    UpdatePasswordPage: FC<UpdatePasswordPageProps>,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / Update Password Page", () => {
         it("should render card title", async () => {
