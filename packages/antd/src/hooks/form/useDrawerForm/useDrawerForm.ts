@@ -155,7 +155,7 @@ export const useDrawerForm = <
                 });
             }
         }
-    }, [id, visible, show, syncWithLocationKey, syncingId]);
+    }, [id, visible, show, close, syncWithLocationKey, syncingId]);
 
     const translate = useTranslate();
 
