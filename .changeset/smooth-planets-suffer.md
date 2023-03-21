@@ -2,5 +2,5 @@
 "@refinedev/core": patch
 ---
 
-Now, when the form is submitted successfully, the `setId` function is not called.
+In forms that use `useForm`, the `onFinish` will reset the current `id` to `undefined` when the mutation is successful. Now, the `id` will not be set to `undefined`.
 
