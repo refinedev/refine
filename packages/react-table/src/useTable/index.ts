@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import {
     BaseRecord,
     CrudOperators,
@@ -14,6 +14,8 @@ import {
     Table,
     getCoreRowModel,
 } from "@tanstack/react-table";
+
+import { useFirstRender } from "src/utils";
 
 export type UseTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -177,14 +179,4 @@ export function useTable<
         ...reactTableResult,
         refineCore: useTableResult,
     };
-}
-
-function useFirstRender() {
-    const firstRender = useRef(true);
-
-    useEffect(() => {
-        firstRender.current = false;
-    }, []);
-
-    return firstRender.current;
 }
