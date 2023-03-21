@@ -15,7 +15,7 @@ import {
     getCoreRowModel,
 } from "@tanstack/react-table";
 
-import { useIsFirstRender } from "src/utils";
+import { useIsFirstRender } from "../utils";
 
 export type UseTableReturnType<
     TData extends BaseRecord = BaseRecord,
