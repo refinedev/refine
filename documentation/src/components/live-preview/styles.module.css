@@ -38,6 +38,11 @@
   background-color: var(--ifm-pre-background);
 }
 
+
+[data-theme="dark"] .playgroundPreview {
+  background-color: #fff;
+}
+
 .playgroundEditorWrapper {
   border: 3px solid var(--browser-window-bezel-color);
   background-color: var(--browser-window-bezel-color);
