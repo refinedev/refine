@@ -8,12 +8,12 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@refinedev/mantine": "^2.3.0",
-        "@refinedev/core": "^4.5.0",
+        "@refinedev/mantine": "^2.3.1",
+        "@refinedev/core": "^4.5.1",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",
-        "@refinedev/react-table": "^5.1.0",
+        "@refinedev/react-table": "^5.1.1",
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons": "^1.1.0",
         "@emotion/react": "^11.8.2",
