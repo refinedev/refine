@@ -28,11 +28,6 @@ export const refineCustomColors = {
         header: "#1F1F1F",
         sider: "#141414",
         siderBorder: "rgba(255, 255, 255, 0.08)",
-        text: {
-            primary: "#ffffff",
-            primaryLight: "rgba(255, 255, 255, 0.85)",
-            primaryDark: "rgba(255, 255, 255, 0.65)",
-        },
         border: {
             authPageProviderButton: "rgba(255, 255, 255, 0.12)",
         },

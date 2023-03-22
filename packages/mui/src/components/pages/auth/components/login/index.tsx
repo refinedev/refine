@@ -20,7 +20,6 @@ import {
     Typography,
     Divider,
     Link as MuiLink,
-    useTheme,
 } from "@mui/material";
 import {
     BaseRecord,
@@ -54,8 +53,6 @@ export const LoginPage: React.FC<LoginProps> = ({
     formProps,
     title,
 }) => {
-    const theme = useTheme();
-
     const { onSubmit, ...useFormProps } = formProps || {};
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
         ...useFormProps,
@@ -76,8 +73,6 @@ export const LoginPage: React.FC<LoginProps> = ({
     const { Link: LegacyLink } = useRouterContext();
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-    const isDark = theme.palette.mode === "dark";
 
     const PageTitle =
         title === false ? null : (
@@ -105,12 +100,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                                     variant="outlined"
                                     fullWidth
                                     sx={{
-                                        borderColor: isDark
-                                            ? "#ffffff1f"
-                                            : "#D9D9D9",
-                                        color: isDark
-                                            ? "#ffffffd8"
-                                            : "#000000d8",
+                                        color: "text.secondary",
+                                        borderColor: "text.secondary",
                                         textTransform: "none",
                                     }}
                                     onClick={() =>

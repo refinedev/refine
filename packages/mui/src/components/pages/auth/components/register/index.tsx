@@ -19,7 +19,6 @@ import {
     Divider,
     Link as MuiLink,
     Stack,
-    useTheme,
 } from "@mui/material";
 
 import {
@@ -55,8 +54,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     formProps,
     title,
 }) => {
-    const theme = useTheme();
-
     const { onSubmit, ...useFormProps } = formProps || {};
     const {
         register,
@@ -77,8 +74,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const { Link: LegacyLink } = useRouterContext();
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-    const isDark = theme.palette.mode === "dark";
 
     const PageTitle =
         title === false ? null : (
@@ -103,16 +98,12 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             return (
                                 <Button
                                     key={provider.name}
-                                    className="auth-page-provider-button"
+                                    color="secondary"
                                     fullWidth
                                     variant="outlined"
                                     sx={{
-                                        borderColor: isDark
-                                            ? "#ffffff1f"
-                                            : "#D9D9D9",
-                                        color: isDark
-                                            ? "#ffffffd8"
-                                            : "#000000d8",
+                                        color: "text.secondary",
+                                        borderColor: "text.secondary",
                                         textTransform: "none",
                                     }}
                                     onClick={() =>

@@ -43,11 +43,10 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
             <Stack
                 direction="row"
                 spacing={1}
-                color="primary"
                 justifyContent="center"
                 alignItems="center"
             >
-                <SvgIcon height="24px" width="24px">
+                <SvgIcon height="24px" width="24px" color="primary">
                     {icon}
                 </SvgIcon>
 
@@ -56,6 +55,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
                         className="refine-title"
                         variant="h6"
                         fontWeight={700}
+                        color="text.primary"
                         fontSize="inherit"
                     >
                         {text}

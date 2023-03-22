@@ -84,15 +84,6 @@ const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
         ...acc,
         [key]: createTheme({
             components: {
-                MuiTypography: {
-                    styleOverrides: {
-                        root: {
-                            ".refine-title": {
-                                color: customColors.text.primaryLight,
-                            },
-                        },
-                    },
-                },
                 MuiToolbar: {
                     styleOverrides: {
                         root: {
@@ -100,32 +91,12 @@ const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
                         },
                     },
                 },
-                MuiDrawer: {
+                MuiListItemButton: {
                     styleOverrides: {
-                        paper: {
-                            backgroundColor: customColors.sider,
-
-                            ".refine-sider": {
-                                borderRight: `1px solid ${customColors.siderBorder}`,
-                                backgroundColor: customColors.sider,
-                            },
-
-                            ".refine-sider-item": {
-                                color: customColors.text.primaryLight,
-                            },
-
-                            ".refine-sider-item.Mui-selected": {
+                        root: {
+                            "&.Mui-selected": {
                                 color: primaryColors.light,
                                 backgroundColor: primaryColors["100"],
-                            },
-
-                            ".refine-sider-title": {
-                                backgroundColor: customColors.header,
-                            },
-
-                            ".refine-sider-toggle": {
-                                backgroundColor: customColors.header,
-                                borderRight: `1px solid ${customColors.siderBorder}`,
                             },
                         },
                     },

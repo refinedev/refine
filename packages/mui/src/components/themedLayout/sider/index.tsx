@@ -133,7 +133,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                 arrow
                             >
                                 <ListItemButton
-                                    className="refine-sider-item"
                                     onClick={() => {
                                         if (collapsed) {
                                             setCollapsed(false);
@@ -204,7 +203,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         arrow
                     >
                         <ListItemButton
-                            className="refine-sider-item"
                             component={ActiveLink}
                             to={route}
                             selected={isSelected}
@@ -249,7 +247,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 arrow
             >
                 <ListItemButton
-                    className="refine-sider-item"
                     component={ActiveLink}
                     to="/"
                     selected={selectedKey === "/"}
@@ -291,7 +288,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         >
             <ListItemButton
                 key="logout"
-                className="refine-sider-item"
                 onClick={() => mutateLogout()}
                 sx={{
                     justifyContent: "center",
@@ -341,10 +337,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         <List
             disablePadding
             sx={{
-                pt: "16px",
                 flexGrow: 1,
-                color: "secondary.contrastText",
-                borderRight: 0,
             }}
         >
             {renderSider()}
@@ -387,12 +380,12 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     }}
                 >
                     <Box
-                        className="refine-sider-title"
                         sx={{
                             height: 64,
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
+                            fontSize: "14px",
                         }}
                     >
                         <RenderToTitle collapsed={false} />
@@ -401,13 +394,11 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 </Drawer>
                 <Drawer
                     variant="permanent"
-                    className="refine-sider"
                     sx={{
                         display: { xs: "none", md: "block" },
                         "& .MuiDrawer-paper": {
                             width: drawerWidth,
                             overflow: "hidden",
-                            borderRight: 0,
                             transition:
                                 "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
                         },
@@ -415,20 +406,17 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     open
                 >
                     <Box
-                        className="refine-sider-title"
                         sx={{
                             height: 64,
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: collapsed ? "center" : "flex-start",
-                            paddingLeft: collapsed ? 0 : "16px",
+                            justifyContent: "center",
                             fontSize: "14px",
                         }}
                     >
                         <RenderToTitle collapsed={collapsed} />
                     </Box>
                     <Box
-                        className="refine-sider"
                         sx={{
                             flexGrow: 1,
                             overflowX: "hidden",
@@ -438,7 +426,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         {drawer}
                     </Box>
                     <Button
-                        className="refine-sider-toggle"
                         sx={{
                             color: "primary",
                             textAlign: "center",

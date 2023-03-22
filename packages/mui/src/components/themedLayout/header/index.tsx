@@ -13,14 +13,7 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
     const shouldRenderHeader = user && (user.name || user.avatar);
 
     return shouldRenderHeader ? (
-        <AppBar
-            color="transparent"
-            position="sticky"
-            elevation={1}
-            sx={{
-                boxShadow: "none",
-            }}
-        >
+        <AppBar position="sticky" elevation={1}>
             <Toolbar>
                 <Stack
                     direction="row"
