@@ -1,5 +1,11 @@
 # @pankod/refine-react-table
 
+## 5.1.2
+
+### Patch Changes
+
+-   [#3941](https://github.com/refinedev/refine/pull/3941) [`d202e6ac17c`](https://github.com/refinedev/refine/commit/d202e6ac17c329c921b5a9cd2bd8b3b0ff3986a3) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where `current` was 1 when `filters` and `sorters` were in the URL when `syncWithLocation` was enabled.
+
 ## 5.1.1
 
 ### Patch Changes

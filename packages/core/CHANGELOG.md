@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.5.2
+
+### Patch Changes
+
+-   [#3911](https://github.com/refinedev/refine/pull/3911) [`5f9c70ebf2f`](https://github.com/refinedev/refine/commit/5f9c70ebf2faeea21eef97286ae7391bb77abfa9) Thanks [@salihozdemir](https://github.com/salihozdemir)! - In forms that use `useForm`, the `onFinish` was resetting the current `id` to `undefined` when the mutation is successful. Now, the `id` will not be set to `undefined`.
+
 ## 4.5.1
 
 ### Patch Changes
