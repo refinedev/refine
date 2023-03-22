@@ -16,7 +16,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 :::
 
 ```tsx live hideCode shared
-const { default: dataProvider } = RefineSimpleRest;
+const { default: sharedDataProvider } = RefineSimpleRest;
 const { useLogout: useLogoutShared } = RefineCore;
 const { Button } = ChakraUI;
 
@@ -66,7 +66,7 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-setRefineProps({ Sider: () => null, dataProvider: dataProvider("api") });
+setRefineProps({ Sider: () => null, dataProvider: sharedDataProvider("api") });
 
 const Wrapper = ({ children }) => {
     return (
@@ -134,7 +134,7 @@ const GithubIcon = (
 
 `<AuthPage>` component can be used like this:
 
-```tsx live url=http://localhost:3000/login previewHeight=460px
+```tsx live url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -214,7 +214,7 @@ render(
 
 `login` will be used as the default type of the `<AuthPage>` component. The login page will be used to log in to the system.
 
-```tsx live hideCode url=http://localhost:3000/login previewHeight=460px
+```tsx live hideCode url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
 
 // visible-block-start
@@ -309,7 +309,7 @@ const authProvider: AuthBindings = {
 
 The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
 
-```tsx live hideCode url=http://localhost:3000/register previewHeight=460px
+```tsx live hideCode url=http://localhost:3000/register previewHeight=600px
 setInitialRoutes(["/register"]);
 
 // visible-block-start
