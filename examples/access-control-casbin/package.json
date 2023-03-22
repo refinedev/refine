@@ -13,8 +13,8 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@refinedev/antd": "^5.3.1",
-        "@refinedev/core": "^4.5.1",
+        "@refinedev/antd": "^5.3.2",
+        "@refinedev/core": "^4.5.2",
         "@refinedev/cli": "^2.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",

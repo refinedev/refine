@@ -1,5 +1,20 @@
 # @pankod/refine-antd
 
+## 5.3.2
+
+### Patch Changes
+
+-   [#3931](https://github.com/refinedev/refine/pull/3931) [`d92c8e82868`](https://github.com/refinedev/refine/commit/d92c8e82868519ea7fd37678b74c1d6207a73bcd) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing `autoSubmitClose`, `autoResetForm`, and `defaultVisible` props to `useDrawerForm` hook.
+
+-   [#3911](https://github.com/refinedev/refine/pull/3911) [`5f9c70ebf2f`](https://github.com/refinedev/refine/commit/5f9c70ebf2faeea21eef97286ae7391bb77abfa9) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed `autoSubmitClose` and `autoResetForm` props of `useModalForm` hook to work properly.
+
+-   [#3931](https://github.com/refinedev/refine/pull/3931) [`d92c8e82868`](https://github.com/refinedev/refine/commit/d92c8e82868519ea7fd37678b74c1d6207a73bcd) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added `autoSubmitClose`, `autoResetForm`, and `defaultVisible` props to `useDrawerForm` hook.
+
+-   [#3948](https://github.com/refinedev/refine/pull/3948) [`b4950503334`](https://github.com/refinedev/refine/commit/b495050333464224f34851c9c57ffab457a3f120) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the delete button or logs out, when the form is dirty.
+
+    -   The `<DeleteButton>` already has a confirmation dialog, so the alert was removed.
+    -   The `<Sider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
 ## 5.3.1
 
 ### Patch Changes
