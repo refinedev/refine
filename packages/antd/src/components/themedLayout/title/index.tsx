@@ -67,7 +67,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
                 {!collapsed && (
                     <Typography.Title
                         style={{
-                            fontSize: "14px",
+                            fontSize: "inherit",
                             marginBottom: 0,
                             fontWeight: 700,
                         }}
