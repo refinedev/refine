@@ -200,7 +200,7 @@ const App = () => {
                         element={<NavigateToResource resource="blog_posts" />}
                     />
 
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         {/* highlight-next-line */}
                         <Route index element={<BlogPostList />} />
                         <Route

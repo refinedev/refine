@@ -104,7 +104,7 @@ const App = () => {
                                 </Authenticated>
                             }
                         >
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
@@ -241,7 +241,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                                     </Authenticated>
                                 }
                             >
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
                             </Route>
@@ -365,7 +365,7 @@ Register page is used to register new users. It provides a basic form to enter e
                                     </Authenticated>
                                 }
                             >
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
                             </Route>
@@ -491,7 +491,7 @@ Forgot password page is used to send a reset password link to the user's email. 
                                     </Authenticated>
                                 }
                             >
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
                             </Route>
@@ -624,7 +624,7 @@ Update password page is used to update the user's password. It provides a basic 
                                     </Authenticated>
                                 }
                             >
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
                             </Route>

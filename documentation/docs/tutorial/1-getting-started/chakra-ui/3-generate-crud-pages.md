@@ -88,7 +88,7 @@ const App = () => {
                             }
                         >
                             {/* highlight-start */}
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
@@ -197,7 +197,7 @@ const App = () => {
                             }
                         >
                             {/* highlight-start */}
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
@@ -286,7 +286,7 @@ const App = () => {
                             }
                         >
                             {/* highlight-start */}
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
@@ -373,7 +373,7 @@ const App = () => {
                             }
                         >
                             {/* highlight-start */}
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
@@ -462,7 +462,7 @@ const App = () => {
                             }
                         >
                             {/* highlight-start */}
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"

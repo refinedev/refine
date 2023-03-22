@@ -190,7 +190,7 @@ const App = () => {
                         element={<NavigateToResource resource="blog_posts" />}
                     />
 
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         <Route index element={<BlogPostList />} />
                         <Route
                             path="show/:id"

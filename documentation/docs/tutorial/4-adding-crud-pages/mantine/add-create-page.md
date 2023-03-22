@@ -91,7 +91,7 @@ const App = () => {
                                     }
                                 />
 
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route
                                         index
                                         element={<MantineInferencer />}
@@ -241,7 +241,7 @@ const App = () => {
                                     }
                                 />
 
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                     <Route
                                         path="show/:id"

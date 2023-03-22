@@ -105,7 +105,7 @@ const App = () => {
             >
                 <Routes>
                     {/* highlight-start */}
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         <Route index element={<HeadlessInferencer />} />
                         <Route
                             path="show/:id"
@@ -192,7 +192,7 @@ const App = () => {
                         index
                         element={<NavigateToResource resource="blog_posts" />}
                     />
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         <Route index element={<HeadlessInferencer />} />
                         <Route
                             path="show/:id"
@@ -254,7 +254,7 @@ const App = () => {
             >
                 <Routes>
                     {/* highlight-start */}
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         <Route index element={<HeadlessInferencer />} />
                         <Route
                             path="show/:id"
@@ -315,7 +315,7 @@ const App = () => {
             >
                 <Routes>
                     {/* highlight-start */}
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         <Route index element={<HeadlessInferencer />} />
                         <Route
                             path="show/:id"
@@ -376,7 +376,7 @@ const App = () => {
             >
                 <Routes>
                     {/* highlight-start */}
-                    <Route path="blog_posts">
+                    <Route path="blog-posts">
                         <Route index element={<HeadlessInferencer />} />
                         <Route
                             path="show/:id"

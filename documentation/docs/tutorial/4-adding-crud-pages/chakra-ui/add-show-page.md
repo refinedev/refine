@@ -87,7 +87,7 @@ const App = () => {
                             />
 
                             {/* highlight-start */}
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
                                 <Route
                                     path="show/:id"
@@ -237,7 +237,7 @@ const App = () => {
                                     <NavigateToResource resource="blog_posts" />
                                 }
                             />
-                            <Route path="blog_posts">
+                            <Route path="blog-posts">
                                 <Route index element={<BlogPostList />} />
                                 {/* highlight-start */}
                                 <Route

@@ -92,7 +92,7 @@ const App: React.FC = () => {
                                 }
                             >
                                 {/* highlight-start */}
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
                                         path="show/:id"
@@ -206,7 +206,7 @@ const App: React.FC = () => {
                                 }
                             >
                                 {/* highlight-start */}
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
                                         path="show/:id"
@@ -300,7 +300,7 @@ const App: React.FC = () => {
                                 }
                             >
                                 {/* highlight-start */}
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
                                         path="show/:id"
@@ -394,7 +394,7 @@ const App: React.FC = () => {
                                 }
                             >
                                 {/* highlight-start */}
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
                                         path="show/:id"
@@ -488,7 +488,7 @@ const App: React.FC = () => {
                                 }
                             >
                                 {/* highlight-start */}
-                                <Route path="blog_posts">
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
                                         path="show/:id"
