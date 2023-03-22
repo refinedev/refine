@@ -6,6 +6,7 @@ import {
     useCan,
     useResource,
     pickNotDeprecated,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
@@ -76,6 +77,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
     const handleCloseOnConfirm = () => {
         if ((recordItemId ?? id) && resource?.name) {
+            setWarnWhen(false);
             setOpen(false);
             mutate(
                 {
@@ -99,6 +101,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     const { sx, ...restProps } = rest;
+
+    const { setWarnWhen } = useWarnAboutChange();
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;

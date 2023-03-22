@@ -35,6 +35,7 @@ import {
     useRefineContext,
     useActiveAuthProvider,
     pickNotDeprecated,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { RefineLayoutSiderProps } from "../types";
 
@@ -60,6 +61,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
     const { hasDashboard } = useRefineContext();
     const translate = useTranslate();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const isExistAuthentication = useIsExistAuthentication();
@@ -302,6 +304,24 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         </CanAccess>
     ) : null;
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Tooltip
             title={t("buttons.logout", "Logout")}
@@ -311,7 +331,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         >
             <ListItemButton
                 key="logout"
-                onClick={() => mutateLogout()}
+                onClick={handleLogout}
                 sx={{ justifyContent: "center" }}
             >
                 <ListItemIcon
