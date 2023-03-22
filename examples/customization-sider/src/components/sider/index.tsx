@@ -7,6 +7,7 @@ import {
     useTranslate,
     useLogout,
     useMenu,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { Sider } from "@refinedev/antd";
@@ -21,6 +22,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: typeof Sider = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { mutate: mutateLogout } = useLogout();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
@@ -85,10 +87,28 @@ export const CustomSider: typeof Sider = ({ render }) => {
         });
     };
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Menu.Item
             key="logout"
-            onClick={() => mutateLogout()}
+            onClick={handleLogout}
             icon={<LogoutOutlined />}
         >
             {translate("buttons.logout", "Logout")}

@@ -5,6 +5,7 @@ import {
     ITreeMenu,
     CanAccess,
     useMenu,
+    useWarnAboutChange,
 } from "@refinedev/core";
 
 import {
@@ -20,6 +21,7 @@ import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const { SubMenu } = Menu;
@@ -72,6 +74,21 @@ export const CustomSider: React.FC = () => {
         });
     };
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                "Are you sure you want to leave? You have unsaved changes.",
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                logout();
+            }
+        } else {
+            logout();
+        }
+    };
+
     return (
         <AntdLayout.Sider
             collapsible
@@ -93,7 +110,7 @@ export const CustomSider: React.FC = () => {
                 {renderTreeView(menuItems, selectedKey)}
                 <Menu.Item
                     key="logout"
-                    onClick={() => logout()}
+                    onClick={handleLogout}
                     icon={<LogoutOutlined />}
                 >
                     Logout

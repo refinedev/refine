@@ -3,7 +3,7 @@ title: Best React Admin Dashboard Libraries 2023
 description: We have curated a compilation of the 5 best React admin dashboard libraries that encompass all the essential features needed to create modern and feature-rich dashboards with minimal effort.
 slug: react-admin-dashboard
 authors: david_omotayo
-tags: [refine, blitz]
+tags: [refine, listing]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fsocial.png
 hide_table_of_contents: false
 ---
@@ -24,7 +24,7 @@ At the top of the list is [refine](https://github.com/refinedev/refine), a compr
 
 <div className="centered-image"  >
 <a href="https://github.com/refinedev/refine" >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Frefine.png"  alt="react admin dasboard 1" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Frefine.png"  alt="react admin dashboard 1" />
    </a>
 </div>
 
@@ -68,7 +68,7 @@ npm create refine-app#latest my-project
 Ant design pro is an open-source UI library for building production-ready enterprise-level web applications and React admin dashboards.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fantdesing.png"  alt="react admin dasboard 2" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fantdesing.png"  alt="react admin dashboard 2" />
 </div>
 
 <br/>
@@ -104,7 +104,7 @@ pro create my-app
 Tremor is an open-source library for quickly building insightful React admin dashboards. It provides modular components that can be combined to build highly customized dashboards or analytic interfaces.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Ftremor.png"  alt="react admin dasboard 3" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Ftremor.png"  alt="react admin dashboard 3" />
 </div>
 
 <br/>
@@ -144,7 +144,7 @@ Material Dashboard React is an open-source admin dashboard template built using 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fmaterial-dashboard-react.png"  alt="react admin dasboard 4 " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fmaterial-dashboard-react.png"  alt="react admin dashboard 4 " />
 </div>
 
 <br/>

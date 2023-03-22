@@ -134,7 +134,7 @@ refine includes many router providers to use in your projects like:
 -   React Router
 -   React Location
 -   Next.js Router
-    :::
+:::
 
 [To take a look at how other router providers are defined and working](https://refine.dev/docs/api-references/providers/router-provider/)
 
@@ -444,7 +444,7 @@ There are plugins for:
 -   Hapi
 -   Koa.js
 -   Nest.js
-    :::note
+:::note
 
 Install the AdminBro along with the express plugin
 
