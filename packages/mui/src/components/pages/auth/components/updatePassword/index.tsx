@@ -26,6 +26,7 @@ import {
 
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
+import { ThemedTitle } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
     BoxProps,
@@ -59,17 +60,33 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         useUpdatePassword<UpdatePasswordFormTypes>({
             v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         });
+
     const translate = useTranslate();
+
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
 
     const Content = (
         <Card {...(contentProps ?? {})}>
-            <CardContent sx={{ paddingX: "32px" }}>
+            <CardContent sx={{ p: "32px", "&:last-child": { pb: "32px" } }}>
                 <Typography
                     component="h1"
                     variant="h5"
                     align="center"
                     style={titleStyles}
-                    color="primary"
+                    color="primary.dark"
+                    fontWeight={700}
                 >
                     {translate(
                         "pages.updatePassword.title",
@@ -85,7 +102,6 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
                         return update(data);
                     })}
-                    gap="16px"
                 >
                     <TextField
                         {...register("password", {
@@ -104,6 +120,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         type="password"
                         placeholder="●●●●●●●●"
                         autoComplete="current-password"
+                        sx={{
+                            m: 0,
+                        }}
                     />
 
                     <TextField
@@ -132,6 +151,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         type="password"
                         placeholder="●●●●●●●●"
                         autoComplete="current-confirm-password"
+                        sx={{
+                            mb: 0,
+                        }}
                     />
 
                     <Button
@@ -139,7 +161,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         fullWidth
                         variant="contained"
                         sx={{
-                            mt: "8px",
+                            mt: "24px",
                         }}
                         disabled={isLoading}
                     >
@@ -166,7 +188,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         height: "100vh",
                     }}
                 >
-                    {renderContent ? renderContent(Content, title) : Content}
+                    {renderContent ? (
+                        renderContent(Content, PageTitle)
+                    ) : (
+                        <>
+                            {PageTitle}
+                            {Content}
+                        </>
+                    )}
                 </Container>
             </Box>
         </>
