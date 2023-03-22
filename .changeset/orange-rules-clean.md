@@ -68,8 +68,5 @@ const MyAuthPage = () => {
 
 -   `<ThemedLayout>`, `<ThemedSider>`, `<ThemedTitle>`, `<ThemedHeader>` created to use theme colors.
 
--   `<EditButton>` in `<Show>` type changed to `primary`.
--   `<CreateButton>` type changed to `primary`.
-
 -   `<AuthPage>` component uses colors from the theme.
 -   `<ThemedTitle>` added to `AuthPage`
