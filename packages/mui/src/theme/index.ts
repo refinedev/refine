@@ -72,7 +72,7 @@ const DarkTheme = createTheme({
     },
 });
 
-const RefineTheme = Object.keys(RefinePalettes).reduce((acc, key) => {
+const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
     const paletteName = key as keyof typeof RefinePalettes;
     const mode = RefinePalettes[paletteName].mode === "dark" ? "dark" : "light";
 
@@ -138,4 +138,4 @@ const RefineTheme = Object.keys(RefinePalettes).reduce((acc, key) => {
     };
 }, {}) as Record<keyof typeof RefinePalettes, Theme>;
 
-export { LightTheme, DarkTheme, RefineTheme };
+export { LightTheme, DarkTheme, RefineThemes };
