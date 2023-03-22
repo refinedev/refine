@@ -58,4 +58,4 @@ const App = () => {
 -   `<CreateButton>` type changed to `primary`.
 
 -   `<AuthPage>` component uses colors from the theme.
--   `<AuthPageTitle>` added to `AuthPage`
+-   `<ThemedTitle>` added to `AuthPage`
