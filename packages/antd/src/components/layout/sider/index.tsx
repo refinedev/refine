@@ -40,7 +40,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     const isExistAuthentication = useIsExistAuthentication();
     const routerType = useRouterType();
     const NewLink = useLink();
-    const { setWarnWhen } = useWarnAboutChange();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const TitleFromContext = useTitle();
@@ -123,22 +123,28 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         });
     };
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                translate(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Menu.Item
             key="logout"
-            onClick={() => {
-                const confirm = window.confirm(
-                    translate(
-                        "warnWhenUnsavedChanges",
-                        "Are you sure you want to leave? You have unsaved changes.",
-                    ),
-                );
-
-                if (confirm) {
-                    setWarnWhen(false);
-                    mutateLogout();
-                }
-            }}
+            onClick={handleLogout}
             icon={<LogoutOutlined />}
         >
             {translate("buttons.logout", "Logout")}
