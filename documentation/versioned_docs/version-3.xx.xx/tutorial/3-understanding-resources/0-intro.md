@@ -85,11 +85,11 @@ In the above example, we have added a `resource` with name `blog_posts`. This re
 
 When we define `create`, clone page will be generated automatically. We can access these pages by visiting the following routes:
 
--   `/blog_posts` - Blog Post List Page
--   `/blog_posts/show/:id` - Blog Post Detail Page
--   `/blog_posts/create` - Blog Post Create Page
--   `/blog_posts/clone/:id` - Blog Post Clone Page
--   `/blog_posts/edit/:id` - Blog Post Edit Page
+-   `/blog-posts` - Blog Post List Page
+-   `/blog-posts/show/:id` - Blog Post Detail Page
+-   `/blog-posts/create` - Blog Post Create Page
+-   `/blog-posts/clone/:id` - Blog Post Clone Page
+-   `/blog-posts/edit/:id` - Blog Post Edit Page
 
 :::tip
 

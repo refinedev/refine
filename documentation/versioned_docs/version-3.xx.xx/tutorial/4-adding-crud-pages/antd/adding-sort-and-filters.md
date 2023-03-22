@@ -13,7 +13,7 @@ In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/antd/index) 
 
 We will use `<Table.Column/>`'s `sorter` prop to add sorting to the table.
 
-1. Open `src/pages/blog_posts/list.tsx` file.
+1. Open `src/pages/blog-posts/list.tsx` file.
 
 2. Add `sorter` prop to the `<Table.Column/>` component of the `id` column.
 
@@ -63,7 +63,7 @@ In this tutorial, we will add filters capabilities to the `category` column. To 
 
 [Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
-1. Open `src/pages/blog_posts/list.tsx` file and import the following components and hooks like below.
+1. Open `src/pages/blog-posts/list.tsx` file and import the following components and hooks like below.
 
     ```tsx
     import { FilterDropdown, Select, useSelect } from "@pankod/refine-antd";

@@ -73,10 +73,10 @@ const App = () => {
                 resources={[
                     {
                         name: "blog_posts",
-                        list: "/blog_posts",
-                        show: "/blog_posts/show/:id",
-                        edit: "/blog_posts/edit/:id",
-                        create: "/blog_posts/create",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        edit: "/blog-posts/edit/:id",
+                        create: "/blog-posts/create",
                     },
                 ]}
             >
@@ -167,7 +167,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { authProvider } from "./authProvider";
 
@@ -185,7 +185,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                     resources={[
                         {
                             name: "blog_posts",
-                            list: "/blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -263,7 +263,7 @@ Register page is used to register new users. It provides a basic form to enter e
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -281,7 +281,7 @@ Register page is used to register new users. It provides a basic form to enter e
                     resources={[
                         {
                             name: "blog_posts",
-                            list: "/blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -363,7 +363,7 @@ Forgot password page is used to send a reset password link to the user's email. 
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -381,7 +381,7 @@ Forgot password page is used to send a reset password link to the user's email. 
                     resources={[
                         {
                             name: "blog_posts",
-                            list: "/blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -468,7 +468,7 @@ Update password page is used to update the user's password. It provides a basic 
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -486,7 +486,7 @@ Update password page is used to update the user's password. It provides a basic 
                     resources={[
                         {
                             name: "blog_posts",
-                            list: "/blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >

@@ -143,10 +143,10 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
-    import { BlogPostList } from "pages/blog_posts/list";
-    import { BlogPostEdit } from "pages/blog_posts/edit";
-    import { BlogPostShow } from "pages/blog_posts/show";
-    import { BlogPostCreate } from "pages/blog_posts/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -259,10 +259,10 @@ Register page is used to register new users. It provides a basic form to enter e
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
-    import { BlogPostList } from "pages/blog_posts/list";
-    import { BlogPostEdit } from "pages/blog_posts/edit";
-    import { BlogPostShow } from "pages/blog_posts/show";
-    import { BlogPostCreate } from "pages/blog_posts/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -360,10 +360,10 @@ Forgot password page is used to send a reset password link to the user's email. 
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
-    import { BlogPostList } from "pages/blog_posts/list";
-    import { BlogPostEdit } from "pages/blog_posts/edit";
-    import { BlogPostShow } from "pages/blog_posts/show";
-    import { BlogPostCreate } from "pages/blog_posts/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -466,10 +466,10 @@ Update password page is used to update the user's password. It provides a basic 
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
-    import { BlogPostList } from "pages/blog_posts/list";
-    import { BlogPostEdit } from "pages/blog_posts/edit";
-    import { BlogPostShow } from "pages/blog_posts/show";
-    import { BlogPostCreate } from "pages/blog_posts/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 

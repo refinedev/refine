@@ -19,7 +19,7 @@ Let's start by adding the delete feature to the list page. To do this, we will u
 
 To add a delete feature to the blog posts table, you can follow the steps below:
 
-1. Open the `src/pages/blog_posts/list.tsx` file on your editor.
+1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
 2. Import the `<DeleteButton/>` component from `@refinedev/mantine`:
 
@@ -78,10 +78,10 @@ import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { BlogPostList } from "pages/blog_posts/list";
-import { BlogPostEdit } from "pages/blog_posts/edit";
-import { BlogPostShow } from "pages/blog_posts/show";
-import { BlogPostCreate } from "pages/blog_posts/create";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostShow } from "pages/blog-posts/show";
+import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App = () => {
     return (
@@ -98,10 +98,10 @@ const App = () => {
                         resources={[
                             {
                                 name: "blog_posts",
-                                list: "/blog_posts",
-                                show: "/blog_posts/show/:id",
-                                create: "/blog_posts/create",
-                                edit: "/blog_posts/edit/:id",
+                                list: "/blog-posts",
+                                show: "/blog-posts/show/:id",
+                                create: "/blog-posts/create",
+                                edit: "/blog-posts/edit/:id",
                                 // highlight-start
                                 meta: {
                                     canDelete: true,

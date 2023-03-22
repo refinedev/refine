@@ -27,11 +27,11 @@ Since `@refinedev/react-table` provides a headless solution, there are many ways
 
 Let's add sorting to the table. We will add a clickable column header to the table. When the user clicks on the column header, the table will be sorted by the column.
 
-1. Open the `src/pages/blog_posts/list.tsx` file on your editor.
+1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
 2. Replace the `<thead/>` element with the following code:
 
-    ```tsx title="src/pages/blog_posts/list.tsx"
+    ```tsx title="src/pages/blog-posts/list.tsx"
     <thead>
         {getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -82,7 +82,7 @@ You can disable sorting for a specific column by setting the `enableSorting` pro
 
 Let's add filters to the table. We will add a basic text input to the table header. When the user types in the input, the table will be filtered by the input value of the column.
 
-1. Open the `src/pages/blog_posts/list.tsx` file on your editor.
+1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
 2. Change the filter operator for columns to "contains" by changing the `meta` property of the column definition like below:
 

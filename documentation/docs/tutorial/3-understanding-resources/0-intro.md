@@ -93,10 +93,10 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "blog_posts",
-                        list: "/blog_posts",
-                        show: "/blog_posts/show/:id",
-                        create: "/blog_posts/create",
-                        edit: "/blog_posts/edit/:id",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -161,10 +161,10 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "blog_posts",
-                        list: "/blog_posts",
-                        show: "/blog_posts/show/:id",
-                        create: "/blog_posts/create",
-                        edit: "/blog_posts/edit/:id",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -237,10 +237,10 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "blog_posts",
-                        list: "/blog_posts",
-                        show: "/blog_posts/show/:id",
-                        create: "/blog_posts/create",
-                        edit: "/blog_posts/edit/:id",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -316,10 +316,10 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "blog_posts",
-                        list: "/blog_posts",
-                        show: "/blog_posts/show/:id",
-                        create: "/blog_posts/create",
-                        edit: "/blog_posts/edit/:id",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -395,10 +395,10 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "blog_posts",
-                        list: "/blog_posts",
-                        show: "/blog_posts/show/:id",
-                        create: "/blog_posts/create",
-                        edit: "/blog_posts/edit/:id",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -459,7 +459,7 @@ The simplest way to define the actions is to provide the path of the page. For e
 ```tsx
 {
     name: "blog_posts",
-    list: "/blog_posts",
+    list: "/blog-posts",
 }
 ```
 
@@ -468,7 +468,7 @@ Paths can include parameters with a convention similar `:paramName`. For example
 ```tsx
 {
     name: "blog_posts",
-    show: "/blog_posts/show/:id",
+    show: "/blog-posts/show/:id",
 }
 ```
 
@@ -477,11 +477,11 @@ Additional parameters can also be defined in the path. For example, if we want t
 ```tsx
 {
     name: "blog_posts",
-    edit: "/blog_posts/edit/:id/:version",
+    edit: "/blog-posts/edit/:id/:version",
 }
 ```
 
-These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `blog_posts` resource as `/:userId/blog_posts/create` and the user is currently on the `/:userId/blog_posts` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/blog_posts/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
+These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `blog_posts` resource as `/:userId/blog-posts/create` and the user is currently on the `/:userId/blog-posts` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/blog-posts/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
 
 :::tip
 
