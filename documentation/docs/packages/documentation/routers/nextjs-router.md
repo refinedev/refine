@@ -1140,7 +1140,7 @@ Default paths are:
 -   `create`: `/resources/create`
 -   `edit`: `/resources/edit/:id`
 -   `show`: `/resources/show/:id`
-    :::
+:::
 
 ## Example (`/pages`)
 
