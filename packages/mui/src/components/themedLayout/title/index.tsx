@@ -3,7 +3,7 @@ import { useRouterContext, useLink, useRouterType } from "@refinedev/core";
 import { Link as MuiLink, Stack, SvgIcon, Typography } from "@mui/material";
 import { RefineLayoutThemedTitleProps } from "../types";
 
-const defaultText = "Refine Project";
+const defaultText = "refine Project";
 
 const defaultIcon = (
     <svg
@@ -52,7 +52,6 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
 
                 {!collapsed && (
                     <Typography
-                        className="refine-title"
                         variant="h6"
                         fontWeight={700}
                         color="text.primary"

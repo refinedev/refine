@@ -13,24 +13,9 @@ const commonDarkPalette = {
 export const refineCustomColors = {
     light: {
         header: "#ffffff",
-        sider: "#F7F8F9",
-        siderBorder: "rgba(0, 0, 0, 0.06)",
-        text: {
-            primary: "#000000",
-            primaryLight: "rgba(0, 0, 0, 0.85);",
-            primaryDark: "rgba(0, 0, 0, 0.65)",
-        },
-        border: {
-            authPageProviderButton: "#D9D9D9",
-        },
     },
     dark: {
         header: "#1F1F1F",
-        sider: "#141414",
-        siderBorder: "rgba(255, 255, 255, 0.08)",
-        border: {
-            authPageProviderButton: "rgba(255, 255, 255, 0.12)",
-        },
     },
 } as const;
 

@@ -338,6 +338,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
             disablePadding
             sx={{
                 flexGrow: 1,
+                paddingTop: "16px",
             }}
         >
             {renderSider()}
@@ -367,6 +368,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
             >
                 <Drawer
                     variant="temporary"
+                    elevation={2}
                     open={opened}
                     onClose={() => setOpened(false)}
                     ModalProps={{
@@ -386,6 +388,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             alignItems: "center",
                             justifyContent: "center",
                             fontSize: "14px",
+                            bgcolor: ({ components }: any) =>
+                                components?.MuiToolbar?.styleOverrides?.root
+                                    ?.backgroundColor,
                         }}
                     >
                         <RenderToTitle collapsed={false} />
@@ -397,6 +402,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     sx={{
                         display: { xs: "none", md: "block" },
                         "& .MuiDrawer-paper": {
+                            border: 0,
                             width: drawerWidth,
                             overflow: "hidden",
                             transition:
@@ -410,8 +416,12 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             height: 64,
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: "center",
+                            justifyContent: collapsed ? "center" : "flex-start",
+                            paddingLeft: collapsed ? 0 : "16px",
                             fontSize: "14px",
+                            bgcolor: ({ components }: any) =>
+                                components?.MuiToolbar?.styleOverrides?.root
+                                    ?.backgroundColor,
                         }}
                     >
                         <RenderToTitle collapsed={collapsed} />
@@ -430,6 +440,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             color: "primary",
                             textAlign: "center",
                             borderRadius: 0,
+                            bgcolor: ({ components }: any) =>
+                                components?.MuiToolbar?.styleOverrides?.root
+                                    ?.backgroundColor,
                         }}
                         fullWidth
                         size="large"
@@ -447,10 +460,19 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         borderRadius: "0 6px 6px 0",
                         zIndex: 1199,
                         width: "36px",
+                        bgcolor: "primary.dark",
                     }}
                 >
                     <IconButton onClick={() => setOpened((prev) => !prev)}>
-                        <MenuRounded />
+                        <MenuRounded
+                            sx={{
+                                color: (theme) => {
+                                    return theme.palette.getContrastText(
+                                        theme.palette.primary.dark,
+                                    );
+                                },
+                            }}
+                        />
                     </IconButton>
                 </Box>
             </Box>

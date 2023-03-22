@@ -84,6 +84,12 @@ const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
         ...acc,
         [key]: createTheme({
             components: {
+                MuiAppBar: {
+                    defaultProps: {
+                        elevation: 0,
+                    },
+                },
+
                 MuiToolbar: {
                     styleOverrides: {
                         root: {
