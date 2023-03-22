@@ -12,6 +12,7 @@ import {
     useRouterType,
     useTitle,
     useTranslate,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import {
     ActionIcon,
@@ -61,6 +62,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     const t = useTranslate();
     const { hasDashboard } = useRefineContext();
     const authProvider = useActiveAuthProvider();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
@@ -175,6 +177,24 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         </CanAccess>
     ) : null;
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                t(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
             <NavLink
@@ -183,7 +203,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                     collapsed && !opened ? null : t("buttons.logout", "Logout")
                 }
                 icon={<IconLogout size={18} />}
-                onClick={() => mutateLogout()}
+                onClick={handleLogout}
                 styles={commonNavLinkStyles}
             />
         </Tooltip>

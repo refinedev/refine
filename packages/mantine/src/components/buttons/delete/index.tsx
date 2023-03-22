@@ -6,6 +6,7 @@ import {
     useCan,
     useResource,
     pickNotDeprecated,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
@@ -67,6 +68,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
     const onConfirm = () => {
         if ((recordItemId ?? id) && resource?.name) {
+            setWarnWhen(false);
             setOpened(false);
             mutate(
                 {
@@ -89,6 +91,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     const { variant, styles, ...commonProps } = rest;
+
+    const { setWarnWhen } = useWarnAboutChange();
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;

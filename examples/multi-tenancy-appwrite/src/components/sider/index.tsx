@@ -6,6 +6,7 @@ import {
     useLogout,
     useIsExistAuthentication,
     useMenu,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import {
     UnorderedListOutlined,
@@ -24,6 +25,7 @@ export const CustomSider: React.FC = () => {
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { mutate: mutateLogout } = useLogout();
     const isExistAuthentication = useIsExistAuthentication();
 
@@ -73,10 +75,25 @@ export const CustomSider: React.FC = () => {
         });
     };
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                "Are you sure you want to leave? You have unsaved changes.",
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Menu.Item
             key="logout"
-            onClick={() => mutateLogout()}
+            onClick={handleLogout}
             icon={<LogoutOutlined />}
         >
             Logout
