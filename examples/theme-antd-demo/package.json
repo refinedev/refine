@@ -22,7 +22,7 @@
     "@types/react-dom": "^18.0.0"
   },
   "scripts": {
-    "start": "PORT=3010 FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "eject": "react-scripts eject",
     "refine": "refine"
