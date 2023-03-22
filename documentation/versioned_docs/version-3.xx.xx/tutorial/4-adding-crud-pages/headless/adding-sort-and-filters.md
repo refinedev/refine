@@ -7,7 +7,7 @@ tutorial:
     next: false
 ---
 
-In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/headless/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
+In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/headless/index) section, we have displayed blog posts data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
 
 ## Sort and Filters
 
@@ -27,11 +27,11 @@ Since `@pankod/refine-react-table` provides a headless solution, there are many 
 
 Let's add sorting to the table. We will add a clickable column header to the table. When the user clicks on the column header, the table will be sorted by the column.
 
-1. Open the `src/pages/products/list.tsx` file on your editor.
+1. Open the `src/pages/blog_posts/list.tsx` file on your editor.
 
 2. Replace the `<thead/>` element with the following code:
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog_posts/list.tsx"
     <thead>
         {getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -82,7 +82,7 @@ You can disable sorting for a specific column by setting the `enableSorting` pro
 
 Let's add filters to the table. We will add a basic text input to the table header. When the user types in the input, the table will be filtered by the input value of the column.
 
-1. Open the `src/pages/products/list.tsx` file on your editor.
+1. Open the `src/pages/blog_posts/list.tsx` file on your editor.
 
 2. Change the filter operator for columns to "contains" by changing the `meta` property of the column definition like below:
 
@@ -142,14 +142,14 @@ Let's add filters to the table. We will add a basic text input to the table head
                 >
                     <button
                         onClick={() => {
-                            show("products", getValue() as string);
+                            show("blog_posts", getValue() as string);
                         }}
                     >
                         Show
                     </button>
                     <button
                         onClick={() => {
-                            edit("products", getValue() as string);
+                            edit("blog_posts", getValue() as string);
                         }}
                     >
                         Edit

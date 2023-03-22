@@ -81,7 +81,7 @@ const App = () => {
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
-                        name: "products",
+                        name: "blog_posts",
                         list: ChakraUIInferencer,
                         show: ChakraUIInferencer,
                         create: ChakraUIInferencer,
@@ -132,10 +132,10 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     } from "@pankod/refine-chakra-ui";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostEdit } from "pages/blog_posts/edit";
+    import { BlogPostShow } from "pages/blog_posts/show";
+    import { BlogPostCreate } from "pages/blog_posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -158,11 +158,11 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
+                            name: "blog_posts",
+                            list: BlogPostList,
+                            edit: BlogPostEdit,
+                            show: BlogPostShow,
+                            create: BlogPostCreate,
                         },
                     ]}
                 />
@@ -239,10 +239,10 @@ Register page is used to register new users. It provides a basic form to enter e
     } from "@pankod/refine-chakra-ui";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostEdit } from "pages/blog_posts/edit";
+    import { BlogPostShow } from "pages/blog_posts/show";
+    import { BlogPostCreate } from "pages/blog_posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -271,11 +271,11 @@ Register page is used to register new users. It provides a basic form to enter e
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
+                            name: "blog_posts",
+                            list: BlogPostList,
+                            edit: BlogPostEdit,
+                            show: BlogPostShow,
+                            create: BlogPostCreate,
                         },
                     ]}
                 />
@@ -331,10 +331,10 @@ Forgot password page is used to send a reset password link to the user's email. 
     } from "@pankod/refine-chakra-ui";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostEdit } from "pages/blog_posts/edit";
+    import { BlogPostShow } from "pages/blog_posts/show";
+    import { BlogPostCreate } from "pages/blog_posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -367,11 +367,11 @@ Forgot password page is used to send a reset password link to the user's email. 
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
+                            name: "blog_posts",
+                            list: BlogPostList,
+                            edit: BlogPostEdit,
+                            show: BlogPostShow,
+                            create: BlogPostCreate,
                         },
                     ]}
                 />
@@ -428,10 +428,10 @@ Update password page is used to update the user's password. It provides a basic 
     } from "@pankod/refine-chakra-ui";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog_posts/list";
+    import { BlogPostEdit } from "pages/blog_posts/edit";
+    import { BlogPostShow } from "pages/blog_posts/show";
+    import { BlogPostCreate } from "pages/blog_posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -468,11 +468,11 @@ Update password page is used to update the user's password. It provides a basic 
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
+                            name: "blog_posts",
+                            list: BlogPostList,
+                            edit: BlogPostEdit,
+                            show: BlogPostShow,
+                            create: BlogPostCreate,
                         },
                     ]}
                 />

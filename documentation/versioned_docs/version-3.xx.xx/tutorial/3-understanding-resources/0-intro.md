@@ -49,7 +49,7 @@ In order to initialize the app, the `dataProvider` and `routerProvider` props mu
 
 [Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
-In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
+In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a blog post in an online store, or any other piece of data that can be managed by the CRUD app.
 
 To add a `resource` to our app, we need use `resources` prop of `<Refine/>` component. This prop accepts an array of objects. Each object represents a resource.
 
@@ -66,11 +66,11 @@ const App: React.FC = () => {
             //highlight-start
             resources={[
                 {
-                    name: "products",
-                    list: () => <div>Products List Page</div>,
-                    show: <div>Product Detail Page</div>,
-                    create: <div>Product Create Page</div>,
-                    edit: <div>Product Edit Page</div>,
+                    name: "blog_posts",
+                    list: () => <div>Blog Posts List Page</div>,
+                    show: <div>Blog Post Detail Page</div>,
+                    create: <div>Blog Post Create Page</div>,
+                    edit: <div>Blog Post Edit Page</div>,
                 },
             ]}
             //highlight-end
@@ -81,15 +81,15 @@ const App: React.FC = () => {
 export default App;
 ```
 
-In the above example, we have added a `resource` with name `products`. This resource will have 5 pages that assigned to `list`, `show`, `create`, and `edit` properties. **refine** link the pages with routes for us.  
+In the above example, we have added a `resource` with name `blog_posts`. This resource will have 5 pages that assigned to `list`, `show`, `create`, and `edit` properties. **refine** link the pages with routes for us.
 
 When we define `create`, clone page will be generated automatically. We can access these pages by visiting the following routes:
 
--   `/products` - Product List Page
--   `/products/show/:id` - Product Detail Page
--   `/products/create` - Product Create Page
--   `/products/clone/:id` - Product Clone Page
--   `/products/edit/:id` - Product Edit Page
+-   `/blog_posts` - Blog Post List Page
+-   `/blog_posts/show/:id` - Blog Post Detail Page
+-   `/blog_posts/create` - Blog Post Create Page
+-   `/blog_posts/clone/:id` - Blog Post Clone Page
+-   `/blog_posts/edit/:id` - Blog Post Edit Page
 
 :::tip
 

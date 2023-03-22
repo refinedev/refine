@@ -53,7 +53,7 @@ These props enable the configuration of various aspects of the application, such
 
 ## What is resource?
 
-In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
+In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a blog post in an online store, or any other piece of data that can be managed by the CRUD app.
 
 To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions and additional metadata such as label, icon, audit log settings, and sider menu nesting etc.
 
@@ -92,11 +92,11 @@ const App: React.FC = () => {
                 //highlight-start
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog_posts",
+                        show: "/blog_posts/show/:id",
+                        create: "/blog_posts/create",
+                        edit: "/blog_posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -108,10 +108,10 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         index
-                        element={<NavigateToResource resource="products" />}
+                        element={<NavigateToResource resource="blog_posts" />}
                     />
 
-                    <Route path="products">
+                    <Route path="blog_posts">
                         <Route index element={<HeadlessInferencer />} />
                         <Route
                             path="show/:id"
@@ -160,11 +160,11 @@ const App: React.FC = () => {
                 //highlight-start
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog_posts",
+                        show: "/blog_posts/show/:id",
+                        create: "/blog_posts/create",
+                        edit: "/blog_posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -183,9 +183,11 @@ const App: React.FC = () => {
                     >
                         <Route
                             index
-                            element={<NavigateToResource resource="products" />}
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
                         />
-                        <Route path="products">
+                        <Route path="blog_posts">
                             <Route index element={<AntdInferencer />} />
                             <Route
                                 path="show/:id"
@@ -234,11 +236,11 @@ const App: React.FC = () => {
                 //highlight-start
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog_posts",
+                        show: "/blog_posts/show/:id",
+                        create: "/blog_posts/create",
+                        edit: "/blog_posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -257,9 +259,11 @@ const App: React.FC = () => {
                     >
                         <Route
                             index
-                            element={<NavigateToResource resource="products" />}
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
                         />
-                        <Route path="products">
+                        <Route path="blog_posts">
                             <Route index element={<ChakraUIInferencer />} />
                             <Route
                                 path="show/:id"
@@ -311,11 +315,11 @@ const App: React.FC = () => {
                 //highlight-start
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog_posts",
+                        show: "/blog_posts/show/:id",
+                        create: "/blog_posts/create",
+                        edit: "/blog_posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -334,9 +338,11 @@ const App: React.FC = () => {
                     >
                         <Route
                             index
-                            element={<NavigateToResource resource="products" />}
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
                         />
-                        <Route path="products">
+                        <Route path="blog_posts">
                             <Route index element={<MantineInferencer />} />
                             <Route
                                 path="show/:id"
@@ -388,11 +394,11 @@ const App: React.FC = () => {
                 //highlight-start
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog_posts",
+                        show: "/blog_posts/show/:id",
+                        create: "/blog_posts/create",
+                        edit: "/blog_posts/edit/:id",
                     },
                 ]}
                 //highlight-end
@@ -411,9 +417,11 @@ const App: React.FC = () => {
                     >
                         <Route
                             index
-                            element={<NavigateToResource resource="products" />}
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
                         />
-                        <Route path="products">
+                        <Route path="blog_posts">
                             <Route index element={<MuiInferencer />} />
                             <Route
                                 path="show/:id"
@@ -446,34 +454,34 @@ To have more information about router usage, refer to [React Router Documentatio
 
 A resource can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone`. These actions except `delete`, are defined in the properties of the resource object.
 
-The simplest way to define the actions is to provide the path of the page. For example, if we want to define the `list` action of the `products` resource, we can do it as follows:
+The simplest way to define the actions is to provide the path of the page. For example, if we want to define the `list` action of the `blog_posts` resource, we can do it as follows:
 
 ```tsx
 {
-    name: "products",
-    list: "/products",
+    name: "blog_posts",
+    list: "/blog_posts",
 }
 ```
 
-Paths can include parameters with a convention similar `:paramName`. For example, if we want to define the `show` action of the `products` resource, we can do it as follows:
+Paths can include parameters with a convention similar `:paramName`. For example, if we want to define the `show` action of the `blog_posts` resource, we can do it as follows:
 
 ```tsx
 {
-    name: "products",
-    show: "/products/show/:id",
+    name: "blog_posts",
+    show: "/blog_posts/show/:id",
 }
 ```
 
-Additional parameters can also be defined in the path. For example, if we want to define the `edit` action of the `products` resource, we can do it as follows:
+Additional parameters can also be defined in the path. For example, if we want to define the `edit` action of the `blog_posts` resource, we can do it as follows:
 
 ```tsx
 {
-    name: "products",
-    edit: "/products/edit/:id/:version",
+    name: "blog_posts",
+    edit: "/blog_posts/edit/:id/:version",
 }
 ```
 
-These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `products` resource as `/:userId/products/create` and the user is currently on the `/:userId/products` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/products/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
+These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `blog_posts` resource as `/:userId/blog_posts/create` and the user is currently on the `/:userId/blog_posts` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/blog_posts/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
 
 :::tip
 

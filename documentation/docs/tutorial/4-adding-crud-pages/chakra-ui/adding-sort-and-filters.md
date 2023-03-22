@@ -7,7 +7,7 @@ tutorial:
     next: false
 ---
 
-In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/chakra-ui/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
+In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/chakra-ui/index) section, we have displayed blog posts data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
 
 ## Sort and Filters
 
@@ -73,13 +73,13 @@ Now, we can use `<ColumnSorter/>` in our table header.
 
 1. Import the `<ColumnSorter/>` component.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog_posts/list.tsx"
     import { ColumnSorter } from "../../components/table/ColumnSorter";
     ```
 
 2. Add the `<ColumnSorter/>` component to the `<Th/>` as a child like below.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog_posts/list.tsx"
     <Thead>
         {getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
@@ -101,7 +101,7 @@ Now, we can use `<ColumnSorter/>` in our table header.
 
 3. Disable sorting for the `actions` column by setting the `enableSorting` property of the column to `false` in the column definition like below:
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog_posts/list.tsx"
     {
         id: "actions",
         accessorKey: "id",
@@ -250,13 +250,13 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
 1. Import the `<ColumnFilter/>` component.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog_posts/list.tsx"
     import { ColumnFilter } from "../../components/table/ColumnFilter";
     ```
 
 2. Add the `<ColumnFilter/>` component to the `<Th/>` as a child like below.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog_posts/list.tsx"
     <Thead>
         {getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
