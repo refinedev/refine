@@ -1,11 +1,11 @@
-import { Refine, Authenticated } from "@refinedev/core";
+import { Refine, Authenticated, GitHubBanner } from "@refinedev/core";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import {
     ErrorComponent,
     notificationProvider,
     RefineSnackbarProvider,
     AuthPage,
-    RefineTheme,
+    RefineThemes,
     ThemedLayout,
 } from "@refinedev/mui";
 import {
@@ -37,12 +37,13 @@ import { useState } from "react";
 import { Stack } from "@mui/system";
 
 const App: React.FC = () => {
-    const [customTheme, setCustomTheme] = useState(RefineTheme.MagentaDark);
+    const [customTheme, setCustomTheme] = useState(RefineThemes.MagentaDark);
     const [themeSettingsModalIsOpen, setThemeSettingsModalIsOpen] =
         useState(false);
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={customTheme}>
                 <CssBaseline />
                 <GlobalStyles
@@ -254,10 +255,10 @@ const App: React.FC = () => {
                         <Card>
                             <CardContent>
                                 <Stack gap={2} direction="row" flexWrap="wrap">
-                                    {Object.keys(RefineTheme).map((name) => {
+                                    {Object.keys(RefineThemes).map((name) => {
                                         const theme =
-                                            RefineTheme[
-                                                name as keyof typeof RefineTheme
+                                            RefineThemes[
+                                                name as keyof typeof RefineThemes
                                             ];
 
                                         return (
