@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ExtendedNextPage } from "./_app";
 
 const Login: ExtendedNextPage = () => {
+    const router = useRouter();
+    const { to } = router.query;
+
     return (
         <div
             style={{
@@ -11,7 +15,7 @@ const Login: ExtendedNextPage = () => {
                 alignItems: "center",
             }}
         >
-            <Link href="/api/auth/login">Login</Link>
+            <Link href={`/api/auth/login?returnTo=${to}`}>Login</Link>
         </div>
     );
 };
