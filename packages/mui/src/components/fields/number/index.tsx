@@ -22,7 +22,7 @@ export const NumberField: React.FC<NumberFieldProps> = ({
     options,
     ...rest
 }) => {
-    const number = parseFloat(value.toString());
+    const number = Number(value);
 
     return (
         <Typography variant="body2" {...rest}>
