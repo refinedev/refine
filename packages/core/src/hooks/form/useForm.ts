@@ -137,7 +137,7 @@ type ActionFormProps<
         TError,
         TVariables
     >["mutationOptions"];
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<TData, TError, TVariables> &
     ActionParams &
     LiveModeProps;
 
