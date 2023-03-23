@@ -50,8 +50,10 @@ const App = (props: React.PropsWithChildren) => {
             };
         },
         onError: async (error) => {
-            console.log("error", error);
-            return {};
+            console.error(error);
+            return {
+                error,
+            };
         },
         check: async () => {
             // check withPageAuthRequired from @auth0/nextjs-auth0
