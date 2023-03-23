@@ -97,6 +97,15 @@ const RefineThemes = Object.keys(RefinePalettes).reduce((acc, key) => {
                         },
                     },
                 },
+
+                MuiDrawer: {
+                    styleOverrides: {
+                        paper: {
+                            backgroundColor: customColors.sider,
+                        },
+                    },
+                },
+
                 MuiListItemButton: {
                     styleOverrides: {
                         root: {

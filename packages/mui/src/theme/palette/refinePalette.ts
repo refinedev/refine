@@ -13,9 +13,11 @@ const commonDarkPalette = {
 export const refineCustomColors = {
     light: {
         header: "#ffffff",
+        sider: "#F7F8F9",
     },
     dark: {
         header: "#1F1F1F",
+        sider: "#141414",
     },
 } as const;
 
