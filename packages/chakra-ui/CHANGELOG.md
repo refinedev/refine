@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 2.3.3
+
+### Patch Changes
+
+-   [#3956](https://github.com/refinedev/refine/pull/3956) [`c54714ed9ab`](https://github.com/refinedev/refine/commit/c54714ed9abd289edef9a6bef4e85b234a6b6e55) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the `<NumberField />` component would throw an error if the `value` prop was set to `undefined`.
+
 ## 2.3.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @pankod/refine-antd
 
+## 5.3.3
+
+### Patch Changes
+
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: <ThemedTitle> font size was "14px". Updated to "20px" on `<AuthPage>`, "14px" on `<ThemedSider>`.
+
+-   [#3956](https://github.com/refinedev/refine/pull/3956) [`c54714ed9ab`](https://github.com/refinedev/refine/commit/c54714ed9abd289edef9a6bef4e85b234a6b6e55) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the `<NumberField />` component would throw an error if the `value` prop was set to `undefined`.
+
 ## 5.3.2
 
 ### Patch Changes
