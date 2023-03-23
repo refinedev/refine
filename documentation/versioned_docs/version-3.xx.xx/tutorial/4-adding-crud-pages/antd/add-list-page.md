@@ -115,7 +115,7 @@ This hook allows us to fetch data for multiple records in a single request by pr
 
 In this tutorial, each blog post record has a `category` field as below:
 
-```ts title="https://api.fake-rest.refine.dev/blog-posts"
+```ts title="https://api.fake-rest.refine.dev/blog_posts"
 {
   ...
   "category": {
