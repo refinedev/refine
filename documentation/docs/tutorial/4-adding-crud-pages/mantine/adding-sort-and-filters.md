@@ -273,9 +273,9 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
     ```tsx
     {
-         id: "name",
-        accessorKey: "name",
-        header: "Name",
+        id: "title",
+        accessorKey: "title",
+        header: "Title",
         //highlight-start
         meta: {
             filterOperator: "contains",
@@ -283,19 +283,9 @@ Now, we can use `<ColumnFilter/>` in our table header.
         //highlight-end
     },
     {
-        id: "material",
-        accessorKey: "material",
-        header: "Material",
-        //highlight-start
-        meta: {
-            filterOperator: "contains",
-        },
-        //highlight-end
-    },
-    {
-        id: "description",
-        accessorKey: "description",
-        header: "Description",
+        id: "content",
+        accessorKey: "content",
+        header: "Content",
         //highlight-start
         meta: {
             filterOperator: "contains",
