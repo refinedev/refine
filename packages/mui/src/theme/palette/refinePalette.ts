@@ -56,7 +56,7 @@ export const RefinePalettes = {
         primary: {
             main: "#1677FF",
             light: "#8DC5F8",
-            dark: "#0958D9",
+            dark: "#3C89E8",
             "100": "#111A2C",
         },
     },
@@ -76,7 +76,7 @@ export const RefinePalettes = {
         primary: {
             main: "#722ED1",
             light: "#AB7AE0",
-            dark: "#531DAB",
+            dark: "#854ECA",
             "100": "#1A1325",
         },
     },
