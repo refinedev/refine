@@ -71,6 +71,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     display: "flex",
                     justifyContent: "center",
                     marginBottom: "32px",
+                    fontSize: "20px",
                 }}
             >
                 {title ?? <ThemedTitle collapsed={false} />}

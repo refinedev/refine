@@ -1,9 +1,7 @@
 import React from "react";
-import { useRouterContext, useRouterType, useLink } from "@refinedev/core";
-import { Typography, theme, Space } from "antd";
+import { useRouterContext, useLink, useRouterType } from "@refinedev/core";
+import { Link as MuiLink, Stack, SvgIcon, Typography } from "@mui/material";
 import { RefineLayoutThemedTitleProps } from "../types";
-
-const { useToken } = theme;
 
 const defaultText = "refine Project";
 
@@ -34,7 +32,6 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     icon = defaultIcon,
     text = defaultText,
 }) => {
-    const { token } = useToken();
     const routerType = useRouterType();
     const Link = useLink();
     const { Link: LegacyLink } = useRouterContext();
@@ -42,40 +39,28 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     return (
-        <ActiveLink
-            to="/"
-            style={{
-                display: "inline-block",
-            }}
-        >
-            <Space
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
+        <MuiLink to="/" component={ActiveLink} underline="none">
+            <Stack
+                direction="row"
+                spacing={1}
+                justifyContent="center"
+                alignItems="center"
             >
-                <div
-                    style={{
-                        height: "24px",
-                        width: "24px",
-                        color: token.colorPrimary,
-                    }}
-                >
+                <SvgIcon height="24px" width="24px" color="primary">
                     {icon}
-                </div>
+                </SvgIcon>
 
                 {!collapsed && (
-                    <Typography.Title
-                        style={{
-                            fontSize: "inherit",
-                            marginBottom: 0,
-                            fontWeight: 700,
-                        }}
+                    <Typography
+                        variant="h6"
+                        fontWeight={700}
+                        color="text.primary"
+                        fontSize="inherit"
                     >
                         {text}
-                    </Typography.Title>
+                    </Typography>
                 )}
-            </Space>
-        </ActiveLink>
+            </Stack>
+        </MuiLink>
     );
 };

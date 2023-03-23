@@ -286,6 +286,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     alignItems: "center",
                     height: "64px",
                     backgroundColor: token.colorBgElevated,
+                    fontSize: "14px",
                 }}
             >
                 <RenderToTitle collapsed={collapsed} />

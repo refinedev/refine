@@ -74,6 +74,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     display: "flex",
                     justifyContent: "center",
                     marginBottom: "32px",
+                    fontSize: "20px",
                 }}
             >
                 {title ?? <ThemedTitle collapsed={false} />}

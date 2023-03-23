@@ -16,7 +16,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 :::
 
 ```tsx live shared
-const { default: dataProvider } = RefineSimpleRest;
+const { default: sharedDataProvider } = RefineSimpleRest;
 const { useLogout: useLogoutShared } = RefineCore;
 const { SharedTypography, Button } = MuiMaterial;
 
@@ -66,7 +66,7 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-setRefineProps({ Sider: () => null, dataProvider: dataProvider("api") });
+setRefineProps({ Sider: () => null, dataProvider: sharedDataProvider("api") });
 
 const DashboardPage = () => {
     const { mutate } = useLogoutShared();
@@ -149,7 +149,7 @@ const Wrapper = ({ children }) => {
 
 `<AuthPage>` component can be used like this:
 
-```tsx live url=http://localhost:3000 previewHeight=460px
+```tsx live url=http://localhost:3000 previewHeight=600px
 setInitialRoutes(["/login"]);
 
 // visible-block-start
@@ -228,7 +228,7 @@ render(
 
 `login` will be used as the default type of the `<AuthPage>` component. The login page will be used to log in to the system.
 
-```tsx hideCode live url=http://localhost:3000/login previewHeight=460px
+```tsx hideCode live url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
 
 // visible-block-start
@@ -323,7 +323,7 @@ const authProvider: AuthBindings = {
 
 The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
 
-```tsx hideCode live url=http://localhost:3000/register previewHeight=460px
+```tsx hideCode live url=http://localhost:3000/register previewHeight=600px
 setInitialRoutes(["/register"]);
 
 // visible-block-start
@@ -846,11 +846,46 @@ const MyLoginPage = () => {
 };
 ```
 
-### `renderContent`
+### `title`
 
-`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
+By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
+
+-   Default text is: Refine Project
+-   Default icon is: Refine Logo
 
 ```tsx
+import { AuthPage } from "@refinedev/mui";
+const MyLoginPage = () => {
+    return <AuthPage type="login" title={<h1>My Title</h1>} />;
+};
+```
+
+Or you can customize the title with `ThemedTitle` component.
+
+```tsx
+import { AuthPage, ThemedTitle } from "@refinedev/antd";
+const MyLoginPage = () => {
+    return (
+        <AuthPage
+            type="login"
+            title={
+                <ThemedTitle
+                    title="My Title"
+                    icon={<img src="https://refine.dev/img/logo.png" />}
+                />
+            }
+        />
+    );
+};
+```
+
+### `renderContent`
+
+`renderContent` uses to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
+
+```tsx
+import { AuthPage } from "@refinedev/mui";
+
 const MyLoginPage = () => {
     return (
         <AuthPage
@@ -859,7 +894,10 @@ const MyLoginPage = () => {
                     width: "400px",
                 },
             }}
-            renderContent={(content: React.ReactNode) => {
+            renderContent={(
+                content: React.ReactNode,
+                title: React.ReactNode,
+            ) => {
                 return (
                     <div
                         style={{
@@ -869,6 +907,7 @@ const MyLoginPage = () => {
                             alignItems: "center",
                         }}
                     >
+                        {title}
                         <h1 style={{ color: "white" }}>Extra Header</h1>
                         {content}
                         <h1 style={{ color: "white" }}>Extra Footer</h1>

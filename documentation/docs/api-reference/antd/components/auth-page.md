@@ -127,7 +127,7 @@ const GithubIcon = (
 
 `<AuthPage>` component can be used like this:
 
-```tsx live url=http://localhost:3000/login previewHeight=460px
+```tsx live url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -203,7 +203,7 @@ render(<App />);
 
 `login` will be used as the default type of the `<AuthPage>` component. The login page will be used to log in to the system.
 
-```tsx live hideCode url=http://localhost:3000/login previewHeight=460px
+```tsx live hideCode url=http://localhost:3000/login previewHeight=600px
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -295,7 +295,7 @@ const authProvider: AuthBindings = {
 
 The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
 
-```tsx live hideCode url=http://localhost:3000/register previewHeight=460px
+```tsx live hideCode url=http://localhost:3000/register previewHeight=600px
 setInitialRoutes(["/register"]);
 setRefineProps({ Sider: () => null });
 
