@@ -13,9 +13,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
         return {
             props: {},
             redirect: {
-                destination: `/login?to=${encodeURIComponent(
-                    "/blog-BlogPosts",
-                )}`,
+                destination: `/login?to=${encodeURIComponent("/blog-posts")}`,
             },
         };
     }
