@@ -17,9 +17,9 @@ Let's start by adding the delete feature to the list page. To do this, we will u
 
 [Refer to the `<DeleteButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/delete-button/)
 
-To add a delete feature to the products table, you can follow the steps below:
+To add a delete feature to the blog_posts table, you can follow the steps below:
 
-1. Open the `src/pages/products/list.tsx` file on your editor.
+1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
 2. Import the `<DeleteButton/>` component from `@refinedev/antd`:
 
@@ -63,10 +63,10 @@ import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter } from "react-router-dom";
 
-import { ProductList } from "pages/products/list";
-import { ProductEdit } from "pages/products/edit";
-import { productshow } from "pages/products/show";
-import { ProductCreate } from "pages/products/create";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostshow } from "pages/blog-posts/show";
+import { BlogPostCreate } from "pages/blog-posts/create";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -79,7 +79,7 @@ const App: React.FC = () => {
                 notificationProvider={notificationProvider}
                 resources={[
                     {
-                        name: "products",
+                        name: "blog_posts",
                         // highlight-start
                         meta: {
                             canDelete: true,

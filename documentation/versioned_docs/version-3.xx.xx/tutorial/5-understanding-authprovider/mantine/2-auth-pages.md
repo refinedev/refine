@@ -87,7 +87,7 @@ const App = () => {
                     Layout={Layout}
                     resources={[
                         {
-                            name: "products",
+                            name: "blog_posts",
                             list: MantineInferencer,
                             show: MantineInferencer,
                             create: MantineInferencer,
@@ -140,10 +140,10 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         AuthPage,
     } from "@pankod/refine-mantine";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -173,11 +173,11 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                         Layout={Layout}
                         resources={[
                             {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
+                                name: "blog_posts",
+                                list: BlogPostList,
+                                edit: BlogPostEdit,
+                                show: BlogPostShow,
+                                create: BlogPostCreate,
                             },
                         ]}
                     />
@@ -256,10 +256,10 @@ Register page is used to register new users. It provides a basic form to enter e
         AuthPage,
     } from "@pankod/refine-mantine";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -295,11 +295,11 @@ Register page is used to register new users. It provides a basic form to enter e
                         Layout={Layout}
                         resources={[
                             {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
+                                name: "blog_posts",
+                                list: BlogPostList,
+                                edit: BlogPostEdit,
+                                show: BlogPostShow,
+                                create: BlogPostCreate,
                             },
                         ]}
                     />
@@ -357,10 +357,10 @@ Forgot password page is used to send a reset password link to the user's email. 
         AuthPage,
     } from "@pankod/refine-mantine";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -400,11 +400,11 @@ Forgot password page is used to send a reset password link to the user's email. 
                         Layout={Layout}
                         resources={[
                             {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
+                                name: "blog_posts",
+                                list: BlogPostList,
+                                edit: BlogPostEdit,
+                                show: BlogPostShow,
+                                create: BlogPostCreate,
                             },
                         ]}
                     />
@@ -463,10 +463,10 @@ Update password page is used to update the user's password. It provides a basic 
         AuthPage,
     } from "@pankod/refine-mantine";
 
-    import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+    import { BlogPostList } from "pages/blog-posts/list";
+    import { BlogPostEdit } from "pages/blog-posts/edit";
+    import { BlogPostShow } from "pages/blog-posts/show";
+    import { BlogPostCreate } from "pages/blog-posts/create";
 
     import { authProvider } from "./authProvider";
 
@@ -510,11 +510,11 @@ Update password page is used to update the user's password. It provides a basic 
                         Layout={Layout}
                         resources={[
                             {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
+                                name: "blog_posts",
+                                list: BlogPostList,
+                                edit: BlogPostEdit,
+                                show: BlogPostShow,
+                                create: BlogPostCreate,
                             },
                         ]}
                     />

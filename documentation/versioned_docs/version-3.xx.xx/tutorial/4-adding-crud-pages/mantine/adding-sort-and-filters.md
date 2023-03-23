@@ -7,7 +7,7 @@ tutorial:
     next: false
 ---
 
-In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
+In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed blog posts data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
 
 ## Sort and Filters
 
@@ -69,13 +69,13 @@ Now, we can use `<ColumnSorter/>` in our table header.
 
 1. Import the `<ColumnSorter/>` component.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog-posts/list.tsx"
     import { ColumnSorter } from "../../components/table/ColumnSorter";
     ```
 
 2. Add the `<ColumnSorter/>` component to the `<th/>` as a child like below.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog-posts/list.tsx"
     <thead>
         {getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -97,7 +97,7 @@ Now, we can use `<ColumnSorter/>` in our table header.
 
 3. Disable sorting for the `actions` column by setting the `enableSorting` property of the column to `false` in the column definition like below:
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog-posts/list.tsx"
     {
         id: "actions",
         accessorKey: "id",
@@ -248,13 +248,13 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
 1. Import the `<ColumnFilter/>` component.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog-posts/list.tsx"
     import { ColumnFilter } from "../../components/table/ColumnFilter";
     ```
 
 2. Add the `<ColumnFilter/>` component to the `<th/>` as a child like below.
 
-    ```tsx title="src/pages/products/list.tsx"
+    ```tsx title="src/pages/blog-posts/list.tsx"
     <thead>
         {getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -279,9 +279,9 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
     ```tsx
     {
-         id: "name",
-        accessorKey: "name",
-        header: "Name",
+        id: "title",
+        accessorKey: "title",
+        header: "Title",
         //highlight-start
         meta: {
             filterOperator: "contains",
@@ -289,19 +289,9 @@ Now, we can use `<ColumnFilter/>` in our table header.
         //highlight-end
     },
     {
-        id: "material",
-        accessorKey: "material",
-        header: "Material",
-        //highlight-start
-        meta: {
-            filterOperator: "contains",
-        },
-        //highlight-end
-    },
-    {
-        id: "description",
-        accessorKey: "description",
-        header: "Description",
+        id: "content",
+        accessorKey: "content",
+        header: "Content",
         //highlight-start
         meta: {
             filterOperator: "contains",
