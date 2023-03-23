@@ -48,6 +48,7 @@ import {
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -87,6 +88,12 @@ const App = () => {
                                 </Layout>
                             }
                         >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
+                            />
                             {/* highlight-start */}
                             <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />

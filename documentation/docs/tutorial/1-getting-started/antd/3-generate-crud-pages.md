@@ -42,6 +42,7 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 import { Refine } from "@refinedev/core";
 import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -80,6 +81,12 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
                         {/* highlight-start */}
                         <Route path="blog-posts">
                             <Route index element={<AntdInferencer />} />

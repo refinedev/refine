@@ -41,6 +41,7 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -92,6 +93,12 @@ const App = () => {
                                     </Layout>
                                 }
                             >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="blog_posts" />
+                                    }
+                                />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route
