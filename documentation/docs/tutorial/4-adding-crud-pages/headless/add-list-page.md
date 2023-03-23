@@ -102,7 +102,7 @@ We will go through the list page hooks one by one.
 
 ### Handling Relationships
 
-Each blog post includes the `category` field which has `id` property. This is a foreign key that points to the `categories` resource which is different than "blog_post" resource.
+Each blog post includes the `category` field which has `id` property. This is a foreign key that points to the `categories` resource which is different than "blog_posts" resource.
 
 There is a `title` field In the `categories` resource. To display the category `title` in the table, we can use the `useMany` hook provided by **refine**.
 
