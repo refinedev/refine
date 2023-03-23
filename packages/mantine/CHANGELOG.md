@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 2.3.2
+
+### Patch Changes
+
+-   [#3954](https://github.com/refinedev/refine/pull/3954) [`7dc9686f83b`](https://github.com/refinedev/refine/commit/7dc9686f83bc142a621ca4f347c3cf0ea4320e62) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the form dirty state was not reset after setting initial values. This caused the form to be dirty even though changes were not made. For this reason, the `<UnSavedChangesNotifier>` always warned when user tried to leave page.
+
 ## 2.3.1
 
 ### Patch Changes
