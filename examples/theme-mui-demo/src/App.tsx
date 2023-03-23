@@ -1,4 +1,5 @@
-import { Refine, Authenticated, GitHubBanner } from "@refinedev/core";
+import { useState } from "react";
+import { Refine, Authenticated, GitHubBanner, useModal } from "@refinedev/core";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import {
     ErrorComponent,
@@ -17,6 +18,7 @@ import {
     DialogTitle,
     Fab,
     GlobalStyles,
+    Stack,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
@@ -33,13 +35,10 @@ import { PostList, PostCreate, PostEdit } from "pages/posts";
 import DashboardPage from "pages/dashboard";
 import { authProvider } from "authProvider";
 import { RememeberMe } from "components/remember-me";
-import { useState } from "react";
-import { Stack } from "@mui/system";
 
 const App: React.FC = () => {
     const [customTheme, setCustomTheme] = useState(RefineThemes.MagentaDark);
-    const [themeSettingsModalIsOpen, setThemeSettingsModalIsOpen] =
-        useState(false);
+    const { show, close, visible } = useModal();
 
     return (
         <BrowserRouter>
@@ -236,7 +235,7 @@ const App: React.FC = () => {
                     </Refine>
 
                     <Fab
-                        onClick={() => setThemeSettingsModalIsOpen(true)}
+                        onClick={show}
                         variant="extended"
                         sx={{
                             position: "fixed",
@@ -247,10 +246,7 @@ const App: React.FC = () => {
                     >
                         Open Theme Settings
                     </Fab>
-                    <Dialog
-                        open={themeSettingsModalIsOpen}
-                        onClose={() => setThemeSettingsModalIsOpen(false)}
-                    >
+                    <Dialog open={visible} onClose={close}>
                         <DialogTitle>Theme Settings</DialogTitle>
                         <Card>
                             <CardContent>
