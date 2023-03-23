@@ -1,6 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
-import { UserProvider, useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/router";
+import { useUser, UserProvider } from "@auth0/nextjs-auth0/client";
 
 import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
 import { Layout, notificationProvider } from "@refinedev/antd";
@@ -23,6 +24,81 @@ type ExtendedAppProps = AppProps & {
     Component: ExtendedNextPage;
 };
 
+const App = (props: React.PropsWithChildren) => {
+    const { user, error, isLoading } = useUser();
+    const { replace } = useRouter();
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        console.error(error);
+        return <div>Error...</div>;
+    }
+
+    const authProvider: AuthBindings = {
+        login: async () => {
+            return {
+                success: true,
+            };
+        },
+        logout: async () => {
+            replace("/api/auth/logout");
+            return {
+                success: true,
+            };
+        },
+        onError: async (error) => {
+            console.log("error", error);
+            return {};
+        },
+        check: async () => {
+            // check withPageAuthRequired from @auth0/nextjs-auth0
+            return {
+                authenticated: true,
+            };
+        },
+        getPermissions: async () => {
+            return null;
+        },
+        getIdentity: async () => {
+            return {
+                avatar: user?.picture,
+                ...user,
+            };
+        },
+    };
+
+    return (
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
+                        show: "/blog-posts/show/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+                notificationProvider={notificationProvider}
+            >
+                {props.children}
+                <UnsavedChangesNotifier />
+            </Refine>
+        </>
+    );
+};
+
 function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
     const renderComponent = () => {
         if (Component.noLayout) {
@@ -36,93 +112,9 @@ function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
         );
     };
 
-    // const authProvider: AuthBindings = {
-    //     login: async () => {
-    //         return {
-    //             success: true,
-    //         };
-    //     },
-    //     logout: async () => {
-    //         // logout({ returnTo: window.location.origin });
-    //         return {
-    //             success: true,
-    //         };
-    //     },
-    //     onError: async (error) => {
-    //         console.error(error);
-    //         return { error };
-    //     },
-    //     check: async () => {
-    //         const token = await checkSession();
-
-    //         return {
-    //             authenticated: true,
-    //         };
-
-    //         // try {
-    //         //     const token = await checkSession();
-    //         //     if (token) {
-    //         //         axios.defaults.headers.common = {
-    //         //             Authorization: `Bearer ${token.__raw}`,
-    //         //         };
-    //         //         return {
-    //         //             authenticated: true,
-    //         //         };
-    //         //     } else {
-    //         //         return {
-    //         //             authenticated: false,
-    //         //             error: new Error("Token not found"),
-    //         //             redirectTo: "/login",
-    //         //             logout: true,
-    //         //         };
-    //         //     }
-    //         // } catch (error: any) {
-    //         //     return {
-    //         //         authenticated: false,
-    //         //         error: new Error(error),
-    //         //         redirectTo: "/login",
-    //         //         logout: true,
-    //         //     };
-    //         // }
-    //     },
-    //     getPermissions: async () => null,
-    //     getIdentity: async () => {
-    //         if (user) {
-    //             return {
-    //                 ...user,
-    //                 avatar: user.picture,
-    //             };
-    //         }
-    //         return null;
-    //     },
-    // };
-
     return (
         <UserProvider>
-            <GitHubBanner />
-            <Refine
-                routerProvider={routerProvider}
-                // authProvider={authProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    { name: "users", list: "/users" },
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-                notificationProvider={notificationProvider}
-            >
-                {renderComponent()}
-                <UnsavedChangesNotifier />
-            </Refine>
+            <App>{renderComponent()}</App>
         </UserProvider>
     );
 }

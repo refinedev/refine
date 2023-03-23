@@ -1,8 +1,19 @@
-import { AuthPage } from "@refinedev/antd";
+import Link from "next/link";
 import { ExtendedNextPage } from "./_app";
 
 const Login: ExtendedNextPage = () => {
-    return <a href="/api/auth/login">Login</a>;
+    return (
+        <div
+            style={{
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <Link href="/api/auth/login">Login</Link>
+        </div>
+    );
 };
 
 Login.noLayout = true;

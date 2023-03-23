@@ -1,10 +1,10 @@
-import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { ErrorComponent } from "@refinedev/antd";
 import { GetServerSideProps } from "next";
+import { AntdCreateInferencer } from "@refinedev/inferencer/antd";
+import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-export default function CatchAll() {
-    return <ErrorComponent />;
-}
+const BlogPostCreate: React.FC<{}> = () => {
+    return <AntdCreateInferencer />;
+};
 
 export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     const authRequiredProps = withPageAuthRequired();
@@ -13,7 +13,9 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
         return {
             props: {},
             redirect: {
-                destination: `/login?to=${encodeURIComponent("/blog-posts")}`,
+                destination: `/login?to=${encodeURIComponent(
+                    "/blog-BlogPosts",
+                )}`,
             },
         };
     }
@@ -24,3 +26,5 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
         },
     };
 };
+
+export default BlogPostCreate;
