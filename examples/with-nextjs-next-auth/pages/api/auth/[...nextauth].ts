@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Auth0Provider from "next-auth/providers/auth0";
 import KeycloakProvider from "next-auth/providers/keycloak";
@@ -7,25 +6,22 @@ import KeycloakProvider from "next-auth/providers/keycloak";
 export const authOptions = {
     // Configure one or more authentication providers
     providers: [
-        GithubProvider({
-            clientId: `${process.env.GITHUB_CLIENT_ID}`,
-            clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-        }),
+        // !!! Should be stored in .env file.
         GoogleProvider({
-            clientId: `${process.env.GOOGLE_CLIENT_ID}`,
-            clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
+            clientId: `1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com`,
+            clientSecret: `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`,
         }),
         Auth0Provider({
-            clientId: `${process.env.AUTH0_CLIENT_ID}`,
-            clientSecret: `${process.env.AUTH0_CLIENT_SECRET}`,
-            issuer: `${process.env.AUTH0_DOMAIN}`,
+            clientId: `Be5vsLunFvpzPf4xfXtaMxrZUVBjjNPO`,
+            clientSecret: `08F9X84FvzpsimV16CQvlQuwJOlqk-GqQgEdcq_3xzrn1K3UHnTCcRgMCwBW7api`,
+            issuer: `https://dev-qg1ftdys736bk5i3.us.auth0.com`,
         }),
         KeycloakProvider({
-            clientId: `${process.env.KEYCLOAK_CLIENT_ID}`,
-            clientSecret: `${process.env.KEYCLOAK_CLIENT_SECRET}`,
-            issuer: `${process.env.KEYCLOAK_DOMAIN}`,
+            clientId: `refine-demo`,
+            clientSecret: `refine`,
+            issuer: `https://lemur-0.cloud-iam.com/auth/realms/refine`,
         }),
     ],
-    secret: `${process.env.AUTH_SECRET}}`,
+    secret: `UItTuD1HcGXIj8ZfHUswhYdNd40Lc325R8VlxQPUoR0=`,
 };
 export default NextAuth(authOptions);
