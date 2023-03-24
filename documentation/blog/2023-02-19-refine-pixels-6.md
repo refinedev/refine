@@ -3,7 +3,7 @@ title: Implementing Role Based Access Control
 description: We'll implement Role Based Access Control (RBAC)
 slug: refine-pixels-6
 authors: abdullah_numan
-tags: [refine-week, refine, supabase, antdesign]
+tags: [refine-week, refine, supabase, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-19-refine-pixels-6%2Fsocial.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,7 @@ title: Audit Log With refine
 description: We'll apply refine's built-in audit logging functionality
 slug: refine-pixels-7
 authors: abdullah_numan
-tags: [refine-week, refine, supabase, antdesign]
+tags: [refine-week, refine, supabase, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Fsocial.png
 hide_table_of_contents: false
 ---
