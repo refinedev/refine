@@ -1068,7 +1068,7 @@ const styles = StyleSheet.create({
 
 -   `Username`: demo
 -   `Password`: demodemo
-    :::
+:::
 
 :::note
 PDF download may not work in codeSandbox mode. With [**this**](https://n59710.csb.app/invoices) link, you can open the example in the browser and try it.

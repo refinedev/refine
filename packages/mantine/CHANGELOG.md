@@ -1,5 +1,67 @@
 # @pankod/refine-mantine
 
+## 2.3.5
+
+### Patch Changes
+
+-   [#3956](https://github.com/refinedev/refine/pull/3956) [`c54714ed9ab`](https://github.com/refinedev/refine/commit/c54714ed9abd289edef9a6bef4e85b234a6b6e55) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the `<NumberField />` component would throw an error if the `value` prop was set to `undefined`.
+
+## 2.3.4
+
+### Patch Changes
+
+-   [#3956](https://github.com/refinedev/refine/pull/3956) [`c54714ed9ab`](https://github.com/refinedev/refine/commit/c54714ed9abd289edef9a6bef4e85b234a6b6e55) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the `<NumberField />` component would throw an error if the `value` prop was set to `undefined`.
+
+## 2.3.3
+
+### Patch Changes
+
+-   [#3954](https://github.com/refinedev/refine/pull/3954) [`7dc9686f83b`](https://github.com/refinedev/refine/commit/7dc9686f83bc142a621ca4f347c3cf0ea4320e62) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the form dirty state was not reset after setting initial values. This caused the form to be dirty even though changes were not made. For this reason, the `<UnSavedChangesNotifier>` always warned when user tried to leave page.
+
+## 2.3.2
+
+### Patch Changes
+
+-   [#3948](https://github.com/refinedev/refine/pull/3948) [`b4950503334`](https://github.com/refinedev/refine/commit/b495050333464224f34851c9c57ffab457a3f120) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the delete button or logs out, when the form is dirty.
+
+    -   The `<DeleteButton>` already has a confirmation dialog, so the alert was removed.
+    -   The `<Sider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
+## 2.3.1
+
+### Patch Changes
+
+-   [#3948](https://github.com/refinedev/refine/pull/3948) [`b4950503334`](https://github.com/refinedev/refine/commit/b495050333464224f34851c9c57ffab457a3f120) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the delete button or logs out, when the form is dirty.
+
+    -   The `<DeleteButton>` already has a confirmation dialog, so the alert was removed.
+    -   The `<Sider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
+## 2.3.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/ui-types@1.3.0
+
+## 2.2.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/ui-types@1.2.0
+
 ## 2.1.0
 
 ### Minor Changes

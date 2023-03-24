@@ -87,12 +87,9 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: RefineWeekIcon,
             },
         ],
-        imageLink: "https://s.refine.dev/hackathon",
-        // imageLink: "/examples",
-        // imageURL:
-        //     "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",
+        imageLink: "/examples",
         imageURL:
-            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hackathon_square.png",
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",
     },
     {
         label: "Company",
@@ -112,7 +109,7 @@ export const POPOVERMENUS: NavMenu[] = [
             {
                 label: "Meet refine",
                 description: "Call us for any questions",
-                link: "https://calendly.com/d/cmk-5gb-b2p/meet-refine",
+                link: "https://refinedev.typeform.com/to/Z9wS06kE",
                 icon: RefineIcon,
             },
         ],

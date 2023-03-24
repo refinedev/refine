@@ -77,10 +77,11 @@ From now on, depending on the packages you plan to work on, (they are located un
 
 You can either bootstrap all packages or only the packages you plan to work on.
 
-To bootstrap all packages (all packages under `/examples` and under `/packages` whose names start with `@refinedev/*`), you should run:
+To bootstrap & build all packages (all packages under `/examples` and under `/packages` whose names start with `@refinedev/*`), you should run:
 
 ```bash
 npm run bootstrap:all
+npm run build:all
 ```
 
 To bootstrap the specific packages/examples only:

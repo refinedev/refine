@@ -32,5 +32,19 @@ export const fieldNumberTests = function (
             // node 14 uses non-breaking space resulting in imcompatibility
             getByText(formattedTestPrice);
         });
+
+        it("should render NaN when value is undefined", () => {
+            const { getByText } = render(<NumberField value={undefined} />);
+
+            getByText("NaN");
+        });
+
+        it("should render NaN when value is string", () => {
+            const { getByText } = render(
+                <NumberField value={"not a number"} />,
+            );
+
+            getByText("NaN");
+        });
     });
 };

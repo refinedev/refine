@@ -1,5 +1,61 @@
 # @pankod/refine-core
 
+## 4.5.2
+
+### Patch Changes
+
+-   [#3911](https://github.com/refinedev/refine/pull/3911) [`5f9c70ebf2f`](https://github.com/refinedev/refine/commit/5f9c70ebf2faeea21eef97286ae7391bb77abfa9) Thanks [@salihozdemir](https://github.com/salihozdemir)! - In forms that use `useForm`, the `onFinish` was resetting the current `id` to `undefined` when the mutation is successful. Now, the `id` will not be set to `undefined`.
+
+## 4.5.1
+
+### Patch Changes
+
+-   [#3911](https://github.com/refinedev/refine/pull/3911) [`5f9c70ebf2f`](https://github.com/refinedev/refine/commit/5f9c70ebf2faeea21eef97286ae7391bb77abfa9) Thanks [@salihozdemir](https://github.com/salihozdemir)! - In forms that use `useForm`, the `onFinish` was resetting the current `id` to `undefined` when the mutation is successful. Now, the `id` will not be set to `undefined`.
+
+## 4.5.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+## 4.4.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+## 4.3.0
+
+### Minor Changes
+
+-   [#3892](https://github.com/refinedev/refine/pull/3892) [`41a4525454c`](https://github.com/refinedev/refine/commit/41a4525454cfa145c02aada1e01217260852b06e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: make CanAccess component props optional. Now CanAccess component infers resource and action automagically.
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#3892](https://github.com/refinedev/refine/pull/3892) [`41a4525454c`](https://github.com/refinedev/refine/commit/41a4525454cfa145c02aada1e01217260852b06e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: make CanAccess component props optional. Now CanAccess component infers resource and action automagically.
+
+## 4.1.6
+
+### Patch Changes
+
+-   [#3890](https://github.com/refinedev/refine/pull/3890) [`db12d60095f`](https://github.com/refinedev/refine/commit/db12d60095fbc200afca511d090f7b327cfc7a65) Thanks [@aliemir](https://github.com/aliemir)! - - Fixed layout flickering on authenticated routes.
+    -   Fixed repeated navigations issue on routes with `<Authenticated>` component.
+    -   Fixed conflicting navigation paths with `authProvider` methods and `<Authenticated>` component.
+
+## 4.1.5
+
+### Patch Changes
+
+-   [#3890](https://github.com/refinedev/refine/pull/3890) [`db12d60095f`](https://github.com/refinedev/refine/commit/db12d60095fbc200afca511d090f7b327cfc7a65) Thanks [@aliemir](https://github.com/aliemir)! - - Fixed layout flickering on authenticated routes.
+    -   Fixed repeated navigations issue on routes with `<Authenticated>` component.
+    -   Fixed conflicting navigation paths with `authProvider` methods and `<Authenticated>` component.
+
 ## 4.1.4
 
 ### Patch Changes

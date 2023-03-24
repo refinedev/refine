@@ -546,112 +546,19 @@ This feature is not working in experimental `appDir` mode in Next.js due to limi
 
 This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
 
-## FAQ
-
-### How to handle Authentication?
+## Authentication
 
 In Next.js you can achieve authentication control in multiple ways;
 
-You can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthorized access.
+On the client-side, you can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthenticated access.
 
-Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages.
+On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
-Using a server side approach is recommended but you can use any approach you want. Check out the [Server Side Authentication with Cookies](#server-side-authentication-with-cookies) section for an example.
+:::info
+For page level authentication, server-side approach is recommended.
+:::
 
-### Can I use nested routes?
-
-Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
-
-You can use `:param` syntax to define parameters in your routes.
-
-### How to make SSR work?
-
-You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop.
-
-All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
-
-```tsx
-import { useList } from "@refinedev/core";
-
-import { dataProvider } from "src/providers";
-
-type IPost = {
-    id: number;
-    title: string;
-    description: string;
-};
-
-export const getServerSideProps = async () => {
-    const { data } = await dataProvider.getList<IPost>("posts", {
-        pagination: {
-            page: 1,
-            perPage: 10,
-        },
-    });
-
-    return {
-        props: {
-            posts: data,
-        },
-    };
-};
-
-export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
-    const {
-        tableQueryResult: { data },
-    } = useTable<IPost>({
-        queryOptions: {
-            initialData: posts,
-        },
-    });
-
-    return <>{/* ... */}</>;
-}
-```
-
-### How to persist `syncWithLocation` in SSR?
-
-If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
-
-```tsx
-// highligt-next-line
-import { parseTableParams } from "@refinedev/nextjs-router";
-import dataProvider from "@refinedev/simple-rest";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const getServerSideProps = ({ params, resolvedUrl }) => {
-    const { resource } = params;
-
-    // highligt-next-line
-    const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
-
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: resource as string,
-            ...tableParams, // this includes `filters`, `sorters` and `pagination`
-        });
-
-        return {
-            props: {
-                initialData: data,
-            },
-        };
-    } catch (error) {
-        return {
-            props: {},
-        };
-    }
-};
-export default function MyListPage({ initialData }) {
-    return <>{/* ... */}</>;
-}
-```
-
-
-`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
-
-### Server Side Authentication with Cookies
+### Server Side
 
 First, let's install the `nookies` packages in our project.
 
@@ -792,6 +699,205 @@ export const getServerSideProps = async (context) => {
 ```
 
 This needs to be done for all the routes that we want to protect.
+
+## Access Control
+
+In Next.js you can achieve access control in multiple ways;
+
+On the client-side you can wrap your pages with `CanAccess` component from `@refinedev/core` to protect your pages from unauthorized access.
+
+And on the server-side you can use your `accessControlProvider`'s `can` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages..
+
+:::info
+
+For page level access control, server-side approach is recommended.
+
+:::
+
+### Server Side
+
+On the server side, you can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
+
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+
+```tsx title="app/acccessControlProvider.ts"
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        if (resource === "posts" && action === "edit") {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+
+        return { can: true };
+    },
+};
+```
+
+:::tip
+
+You can also access resource object directly.
+
+:::
+
+```tsx
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        const resourceName = params?.resource?.name;
+        const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+        if (
+            resourceName === "posts" &&
+            anyUsefulMeta === true &&
+            action === "edit"
+        ) {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+    },
+};
+```
+
+Then, let's create our posts page.
+
+```tsx title="pages/posts/index.tsx"
+import { accessControlProvider } from "src/accessControlProvider";
+
+export const getServerSideProps = async (context) => {
+    const { can } = await accessControlProvider.can({
+        resource: "posts",
+        action: "list",
+    });
+
+    if (!can) {
+        context.res.statusCode = 403;
+        context.res.end();
+    }
+
+    return {
+        props: {
+            can,
+        },
+    };
+};
+
+export default function PostList() {
+    /* ... */
+}
+```
+
+### Client Side
+
+For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+```tsx
+import { CanAccess } from "@refinedev/core";
+
+export const MyPage = () => (
+    <CanAccess>
+        <div>{/* ... */}</div>
+    </CanAccess>
+);
+```
+
+## FAQ
+
+### Can I use nested routes?
+
+Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
+
+You can use `:param` syntax to define parameters in your routes.
+
+### How to make SSR work?
+
+You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop.
+
+All you need to do is to pass the data as the `initialData` to your data hooks using the `queryOptions` prop.
+
+```tsx
+import { useList } from "@refinedev/core";
+
+import { dataProvider } from "src/providers";
+
+type IPost = {
+    id: number;
+    title: string;
+    description: string;
+};
+
+export const getServerSideProps = async () => {
+    const { data } = await dataProvider.getList<IPost>("posts", {
+        pagination: {
+            page: 1,
+            perPage: 10,
+        },
+    });
+
+    return {
+        props: {
+            posts: data,
+        },
+    };
+};
+
+export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
+    const {
+        tableQueryResult: { data },
+    } = useTable<IPost>({
+        queryOptions: {
+            initialData: posts,
+        },
+    });
+
+    return <>{/* ... */}</>;
+}
+```
+
+### How to persist `syncWithLocation` in SSR?
+
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+```tsx
+// highligt-next-line
+import { parseTableParams } from "@refinedev/nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const getServerSideProps = ({ params, resolvedUrl }) => {
+    const { resource } = params;
+
+    // highligt-next-line
+    const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
+
+    try {
+        const data = await dataProvider(API_URL).getList({
+            resource: resource as string,
+            ...tableParams, // this includes `filters`, `sorters` and `pagination`
+        });
+
+        return {
+            props: {
+                initialData: data,
+            },
+        };
+    } catch (error) {
+        return {
+            props: {},
+        };
+    }
+};
+export default function MyListPage({ initialData }) {
+    return <>{/* ... */}</>;
+}
+```
+
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+
+### Server Side Authentication with Cookies
 
 ### How to use multiple layouts?
 

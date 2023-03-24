@@ -101,6 +101,7 @@ export const useForm = <
         setValues,
         onSubmit: onMantineSubmit,
         isDirty,
+        resetDirty,
     } = useMantineFormResult;
 
     useEffect(() => {
@@ -114,8 +115,8 @@ export const useForm = <
                     }
                 },
             );
-
             setValues(fields);
+            resetDirty(fields);
         }
     }, [queryResult?.data]);
 

@@ -21,7 +21,6 @@ import {
     Divider,
     Link as MuiLink,
 } from "@mui/material";
-
 import {
     BaseRecord,
     HttpError,
@@ -34,6 +33,9 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 
 import { FormPropsType } from "../../index";
+import { ThemedTitle } from "@components";
+import { Stack } from "@mui/system";
+
 type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 
 /**
@@ -49,6 +51,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    title,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
@@ -71,30 +74,52 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const renderProviders = () => {
         if (providers && providers.length > 0) {
             return (
                 <>
-                    {providers.map((provider: any) => {
-                        return (
-                            <Button
-                                key={provider.name}
-                                fullWidth
-                                variant="outlined"
-                                sx={{
-                                    my: "8px",
-                                    textTransform: "none",
-                                }}
-                                onClick={() =>
-                                    login({ providerName: provider.name })
-                                }
-                                startIcon={provider.icon}
-                            >
-                                {provider.label}
-                            </Button>
-                        );
-                    })}
-                    <Divider style={{ fontSize: 12 }}>
+                    <Stack spacing={1}>
+                        {providers.map((provider: any) => {
+                            return (
+                                <Button
+                                    key={provider.name}
+                                    variant="outlined"
+                                    fullWidth
+                                    sx={{
+                                        color: "text.secondary",
+                                        borderColor: "text.secondary",
+                                        textTransform: "none",
+                                    }}
+                                    onClick={() =>
+                                        login({ providerName: provider.name })
+                                    }
+                                    startIcon={provider.icon}
+                                >
+                                    {provider.label}
+                                </Button>
+                            );
+                        })}
+                    </Stack>
+                    <Divider
+                        sx={{
+                            fontSize: "12px",
+                            marginY: "16px",
+                        }}
+                    >
                         {translate("pages.login.divider", "or")}
                     </Divider>
                 </>
@@ -105,13 +130,14 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const Content = (
         <Card {...(contentProps ?? {})}>
-            <CardContent sx={{ paddingX: "32px" }}>
+            <CardContent sx={{ p: "32px", "&:last-child": { pb: "32px" } }}>
                 <Typography
                     component="h1"
                     variant="h5"
                     align="center"
                     style={titleStyles}
-                    color="primary"
+                    color="primary.dark"
+                    fontWeight={700}
                 >
                     {translate("pages.login.title", "Sign in to your account")}
                 </Typography>
@@ -124,7 +150,6 @@ export const LoginPage: React.FC<LoginProps> = ({
 
                         return login(data);
                     })}
-                    gap="16px"
                 >
                     {renderProviders()}
                     <TextField
@@ -139,6 +164,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                         name="email"
                         type="email"
                         autoComplete="email"
+                        sx={{
+                            mt: 0,
+                        }}
                     />
                     <TextField
                         {...register("password", {
@@ -157,11 +185,15 @@ export const LoginPage: React.FC<LoginProps> = ({
                         type="password"
                         placeholder="●●●●●●●●"
                         autoComplete="current-password"
+                        sx={{
+                            mb: 0,
+                        }}
                     />
 
                     <Box
                         component="div"
                         sx={{
+                            mt: "24px",
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "center",
@@ -192,6 +224,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {forgotPasswordLink ?? (
                             <MuiLink
                                 variant="body2"
+                                color="primary.light"
+                                fontSize="12px"
                                 component={ActiveLink}
                                 underline="none"
                                 to="/forgot-password"
@@ -207,24 +241,28 @@ export const LoginPage: React.FC<LoginProps> = ({
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{
-                            mt: "8px",
-                        }}
                         disabled={isLoading}
+                        sx={{ mt: "24px" }}
                     >
                         {translate("pages.login.signin", "Sign in")}
                     </Button>
                     {registerLink ?? (
-                        <Box style={{ marginTop: 8 }}>
-                            <Typography variant="body2" component="span">
+                        <Box sx={{ mt: "24px" }}>
+                            <Typography
+                                variant="body2"
+                                component="span"
+                                fontSize="12px"
+                            >
                                 {translate(
                                     "pages.login.buttons.noAccount",
                                     "Don’t have an account?",
                                 )}
                             </Typography>
                             <MuiLink
-                                ml="8px"
+                                ml="4px"
+                                fontSize="12px"
                                 variant="body2"
+                                color="primary.light"
                                 component={ActiveLink}
                                 underline="none"
                                 to="/register"
@@ -260,7 +298,14 @@ export const LoginPage: React.FC<LoginProps> = ({
                             alignItems: "center",
                         }}
                     >
-                        {renderContent ? renderContent(Content) : Content}
+                        {renderContent ? (
+                            renderContent(Content, PageTitle)
+                        ) : (
+                            <>
+                                {PageTitle}
+                                {Content}
+                            </>
+                        )}
                     </Box>
                 </Container>
             </Box>

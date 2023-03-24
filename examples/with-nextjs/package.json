@@ -3,16 +3,16 @@
     "version": "3.25.0",
     "private": true,
     "scripts": {
-        "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=3001 next dev",
+        "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev",
         "build": "next build && rm -rf .next/cache",
         "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@refinedev/antd": "^5.1.2",
-        "@refinedev/core": "^4.1.4",
+        "@refinedev/antd": "^5.3.4",
+        "@refinedev/core": "^4.5.2",
         "@refinedev/cli": "^2.1.0",
-        "@refinedev/nextjs-router": "^5.1.0",
+        "@refinedev/nextjs-router": "^5.1.2",
         "@refinedev/simple-rest": "^4.1.0",
         "cross-env": "^7.0.3",
         "next": "^13.0.6",

@@ -355,7 +355,7 @@ const routerProvider = {
 -   React Router
 -   React Location
 -   Next.js Router
-    :::
+:::
 
 [To take a look at how other router providers are defined and working](https://refine.dev/docs/api-reference/core/providers/router-provider/)
 

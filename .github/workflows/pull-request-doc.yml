@@ -11,6 +11,9 @@ on:
 jobs:
   documentation:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-pr-doc
+      cancel-in-progress: true
     strategy:
       matrix:
         node-version: [16.x]

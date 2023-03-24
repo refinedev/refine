@@ -17,9 +17,9 @@ Let's start by adding the delete feature to the list page. To do this, we will u
 
 [Refer to the `<DeleteButton/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/buttons/delete-button/)
 
-To add a delete feature to the products table, you can follow the steps below:
+To add a delete feature to the blog posts table, you can follow the steps below:
 
-1. Open the `src/pages/products/list.tsx` file on your editor.
+1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
 2. Import the `<DeleteButton/>` component from `@refinedev/chakra-ui`:
 
@@ -81,10 +81,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ProductList } from "pages/products/list";
-import { ProductEdit } from "pages/products/edit";
-import { ProductShow } from "pages/products/show";
-import { ProductCreate } from "pages/products/create";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostShow } from "pages/blog-posts/show";
+import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App = () => {
     return (
@@ -98,7 +98,7 @@ const App = () => {
                     notificationProvider={notificationProvider}
                     resources={[
                         {
-                            name: "products",
+                            name: "blog_posts",
                             // highlight-start
                             meta: {
                                 canDelete: true,

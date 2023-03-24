@@ -18,6 +18,7 @@ export type AuthProps = AuthPageProps<BoxProps, CardProps, FormPropsType>;
 
 /**
  * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
+ * @param title is not implemented yet.
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {

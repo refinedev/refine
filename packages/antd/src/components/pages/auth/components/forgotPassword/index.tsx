@@ -17,6 +17,7 @@ import {
     LayoutProps,
     CardProps,
     FormProps,
+    theme,
 } from "antd";
 import {
     useTranslate,
@@ -24,7 +25,14 @@ import {
     useForgotPassword,
 } from "@refinedev/core";
 
-import { layoutStyles, containerStyles, titleStyles } from "../styles";
+import {
+    layoutStyles,
+    containerStyles,
+    titleStyles,
+    headStyles,
+    bodyStyles,
+} from "../styles";
+import { ThemedTitle } from "@components";
 
 type ResetPassworProps = ForgotPasswordPageProps<
     LayoutProps,
@@ -33,6 +41,7 @@ type ResetPassworProps = ForgotPasswordPageProps<
 >;
 
 const { Text, Title } = Typography;
+const { useToken } = theme;
 
 /**
  * **refine** has forgot password page form which is served on `/forgot-password` route when the `authProvider` configuration is provided.
@@ -45,7 +54,9 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title,
 }) => {
+    const { token } = useToken();
     const [form] = Form.useForm<ForgotPasswordFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -57,16 +68,40 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     const { mutate: forgotPassword, isLoading } =
         useForgotPassword<ForgotPasswordFormTypes>();
 
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Title
+            level={3}
+            style={{
+                color: token.colorPrimaryTextHover,
+                ...titleStyles,
+            }}
+        >
             {translate("pages.forgotPassword.title", "Forgot your password?")}
         </Title>
     );
     const CardContent = (
         <Card
             title={CardTitle}
-            headStyle={{ borderBottom: 0 }}
-            style={containerStyles}
+            headStyle={headStyles}
+            bodyStyle={bodyStyles}
+            style={{
+                ...containerStyles,
+                backgroundColor: token.colorBgElevated,
+            }}
             {...(contentProps ?? {})}
         >
             <Form<ForgotPasswordFormTypes>
@@ -106,7 +141,6 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
-                        marginBottom: "12px",
                     }}
                 >
                     {loginLink ?? (
@@ -123,6 +157,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                             <ActiveLink
                                 style={{
                                     fontWeight: "bold",
+                                    color: token.colorPrimaryTextHover,
                                 }}
                                 to="/login"
                             >
@@ -131,7 +166,12 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                         </Text>
                     )}
                 </div>
-                <Form.Item>
+                <Form.Item
+                    style={{
+                        marginTop: "24px",
+                        marginBottom: 0,
+                    }}
+                >
                     <Button
                         type="primary"
                         size="large"
@@ -159,7 +199,14 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                 }}
             >
                 <Col xs={22}>
-                    {renderContent ? renderContent(CardContent) : CardContent}
+                    {renderContent ? (
+                        renderContent(CardContent, PageTitle)
+                    ) : (
+                        <>
+                            {PageTitle}
+                            {CardContent}
+                        </>
+                    )}
                 </Col>
             </Row>
         </Layout>

@@ -88,11 +88,11 @@ const App: React.FC = () => {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "products",
-                                list: "/products",
-                                show: "/products/show/:id",
-                                edit: "/products/edit/:id",
-                                create: "/products/create",
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                show: "/blog-posts/show/:id",
+                                edit: "/blog-posts/edit/:id",
+                                create: "/blog-posts/create",
                             },
                         ]}
                     >
@@ -110,7 +110,7 @@ const App: React.FC = () => {
                                     </Authenticated>
                                 }
                             >
-                                <Route path="products">
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
                                         path="show/:id"
@@ -210,7 +210,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -234,8 +234,8 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                             notificationProvider={notificationProvider}
                             resources={[
                                 {
-                                    name: "products",
-                                    list: "/products",
+                                    name: "blog_posts",
+                                    list: "/blog-posts",
                                 },
                             ]}
                         >
@@ -253,10 +253,10 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                                         </Authenticated>
                                     }
                                 >
-                                    <Route path="products">
+                                    <Route path="blog-posts">
                                         <Route
                                             index
-                                            element={<ProductList />}
+                                            element={<BlogPostList />}
                                         />
                                     </Route>
                                 </Route>
@@ -348,7 +348,7 @@ Register page is used to register new users. It provides a basic form to enter e
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { authProvider } from "./authProvider";
 
@@ -370,8 +370,8 @@ Register page is used to register new users. It provides a basic form to enter e
                             notificationProvider={notificationProvider}
                             resources={[
                                 {
-                                    name: "products",
-                                    list: "/products",
+                                    name: "blog_posts",
+                                    list: "/blog-posts",
                                 },
                             ]}
                         >
@@ -389,10 +389,10 @@ Register page is used to register new users. It provides a basic form to enter e
                                         </Authenticated>
                                     }
                                 >
-                                    <Route path="products">
+                                    <Route path="blog-posts">
                                         <Route
                                             index
-                                            element={<ProductList />}
+                                            element={<BlogPostList />}
                                         />
                                     </Route>
                                 </Route>
@@ -488,7 +488,7 @@ Forgot password page is used to send a reset password link to the user's email. 
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { authProvider } from "./authProvider";
 
@@ -510,8 +510,8 @@ Forgot password page is used to send a reset password link to the user's email. 
                             notificationProvider={notificationProvider}
                             resources={[
                                 {
-                                    name: "products",
-                                    list: "/products",
+                                    name: "blog_posts",
+                                    list: "/blog-posts",
                                 },
                             ]}
                         >
@@ -529,10 +529,10 @@ Forgot password page is used to send a reset password link to the user's email. 
                                         </Authenticated>
                                     }
                                 >
-                                    <Route path="products">
+                                    <Route path="blog-posts">
                                         <Route
                                             index
-                                            element={<ProductList />}
+                                            element={<BlogPostList />}
                                         />
                                     </Route>
                                 </Route>
@@ -635,7 +635,7 @@ Update password page is used to update the user's password. It provides a basic 
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { authProvider } from "./authProvider";
 
@@ -657,8 +657,8 @@ Update password page is used to update the user's password. It provides a basic 
                             notificationProvider={notificationProvider}
                             resources={[
                                 {
-                                    name: "products",
-                                    list: "/products",
+                                    name: "blog_posts",
+                                    list: "/blog-posts",
                                 },
                             ]}
                         >
@@ -676,10 +676,10 @@ Update password page is used to update the user's password. It provides a basic 
                                         </Authenticated>
                                     }
                                 >
-                                    <Route path="products">
+                                    <Route path="blog-posts">
                                         <Route
                                             index
-                                            element={<ProductList />}
+                                            element={<BlogPostList />}
                                         />
                                     </Route>
                                 </Route>

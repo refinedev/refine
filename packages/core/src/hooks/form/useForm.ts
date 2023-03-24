@@ -442,8 +442,6 @@ export const useForm = <
         };
 
         const onSuccess = () => {
-            // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
-            setId(defaultId);
             handleSubmitWithRedirect({
                 redirect: designatedRedirectAction,
                 resource,

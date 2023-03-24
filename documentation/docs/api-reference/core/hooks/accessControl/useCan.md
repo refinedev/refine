@@ -92,13 +92,13 @@ For example if you want to check if the user can create a post return value will
     accessControlProvider={{
         can: async ({ resource, action }) => {
             if (resource === "post" && action === "create") {
-                return Promise.resolve({
+                return {
                     can: false,
                     reason: "Unauthorized",
-                });
+                };
             }
 
-            return Promise.resolve({ can: true });
+            return { can: true };
         },
     }}
 

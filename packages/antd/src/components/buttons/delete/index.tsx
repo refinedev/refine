@@ -8,6 +8,7 @@ import {
     useCan,
     useResource,
     pickNotDeprecated,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 
@@ -62,6 +63,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
     });
 
+    const { setWarnWhen } = useWarnAboutChange();
+
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
@@ -80,6 +83,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
                 if ((recordItemId ?? id) && resource?.name) {
+                    setWarnWhen(false);
                     mutate(
                         {
                             id: recordItemId ?? id ?? "",

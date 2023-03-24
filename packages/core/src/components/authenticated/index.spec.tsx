@@ -233,4 +233,260 @@ describe("Authenticated", () => {
             expect(queryByText("loading"));
         });
     });
+
+    it("should redirect to `/my-path` if not authenticated (authProvider's check)", async () => {
+        const mockGo = jest.fn();
+
+        const { queryByText } = render(
+            <Authenticated>Custom Authenticated</Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: async () => {
+                            return {
+                                authenticated: false,
+                                redirectTo: "/my-path",
+                            };
+                        },
+                    },
+                    routerProvider: {
+                        go: () => mockGo,
+                    },
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            expect(queryByText("Custom Authenticated")).toBeNull();
+        });
+
+        await waitFor(() =>
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({ to: "/my-path", type: "replace" }),
+            ),
+        );
+    });
+
+    it("should redirect to `/my-path` if not authenticated (`redirectOnFail` prop)", async () => {
+        const mockGo = jest.fn();
+
+        const { queryByText } = render(
+            <Authenticated redirectOnFail="/my-path">
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: async () => {
+                            return {
+                                authenticated: false,
+                                redirectTo: "/other-path",
+                            };
+                        },
+                    },
+                    routerProvider: {
+                        go: () => mockGo,
+                    },
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            expect(queryByText("Custom Authenticated")).toBeNull();
+        });
+
+        await waitFor(() =>
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({ to: "/my-path", type: "replace" }),
+            ),
+        );
+    });
+
+    it("should redirect to `/my-path` if not authenticated (navigate in fallback)", async () => {
+        const mockGo = jest.fn();
+
+        const NavigateComp = ({ to }: { to: string }) => {
+            React.useEffect(() => {
+                mockGo({ to, type: "replace" });
+            }, [to]);
+
+            return null;
+        };
+
+        const { queryByText } = render(
+            <Authenticated fallback={<NavigateComp to="/my-path" />}>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: async () => {
+                            return {
+                                authenticated: false,
+                                redirectTo: "/other-path",
+                            };
+                        },
+                    },
+                    routerProvider: {
+                        go: () => mockGo,
+                    },
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            expect(queryByText("Custom Authenticated")).toBeNull();
+        });
+
+        await waitFor(() =>
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({ to: "/my-path", type: "replace" }),
+            ),
+        );
+    });
+
+    it("should redirect to `/my-path?to=/dashboard?current=1&pageSize=2` if not authenticated (`redirectOnFail` with append query)", async () => {
+        const mockGo = jest.fn();
+
+        const currentQuery = {
+            current: 1,
+            pageSize: 2,
+        };
+
+        const currentPathname = "dashboard";
+
+        const { queryByText } = render(
+            <Authenticated redirectOnFail="/my-path" appendCurrentPathToQuery>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: async () => {
+                            return {
+                                authenticated: false,
+                                redirectTo: "/other-path",
+                            };
+                        },
+                    },
+                    routerProvider: {
+                        go: () => {
+                            return (config) => {
+                                if (config.type === "path") {
+                                    const params = new URLSearchParams(
+                                        currentQuery as any,
+                                    );
+                                    return `/${config.to}?${params.toString()}`;
+                                } else {
+                                    return mockGo(config);
+                                }
+                            };
+                        },
+                        parse: () => {
+                            return () => ({
+                                pathname: currentPathname,
+                                params: currentQuery,
+                            });
+                        },
+                    },
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            expect(queryByText("Custom Authenticated")).toBeNull();
+        });
+
+        await waitFor(() =>
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/my-path",
+                    query: {
+                        to: "/dashboard?current=1&pageSize=2",
+                    },
+                    type: "replace",
+                }),
+            ),
+        );
+    });
+
+    it("should redirect to `/my-path?to=/dashboard?current=1&pageSize=2` if not authenticated (authProvider's check with append query)", async () => {
+        const mockGo = jest.fn();
+
+        const currentQuery = {
+            current: 1,
+            pageSize: 2,
+        };
+
+        const currentPathname = "dashboard";
+
+        const { queryByText } = render(
+            <Authenticated appendCurrentPathToQuery>
+                Custom Authenticated
+            </Authenticated>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: async () => {
+                            return {
+                                authenticated: false,
+                                redirectTo: "/my-path",
+                            };
+                        },
+                    },
+                    routerProvider: {
+                        go: () => {
+                            return (config) => {
+                                if (config.type === "path") {
+                                    const params = new URLSearchParams(
+                                        currentQuery as any,
+                                    );
+                                    return `/${config.to}?${params.toString()}`;
+                                } else {
+                                    return mockGo(config);
+                                }
+                            };
+                        },
+                        parse: () => {
+                            return () => ({
+                                pathname: currentPathname,
+                                params: currentQuery,
+                            });
+                        },
+                    },
+                    resources: [{ name: "posts", route: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            expect(queryByText("Custom Authenticated")).toBeNull();
+        });
+
+        await waitFor(() =>
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/my-path",
+                    query: {
+                        to: "/dashboard?current=1&pageSize=2",
+                    },
+                    type: "replace",
+                }),
+            ),
+        );
+    });
 });

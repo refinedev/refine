@@ -1,5 +1,203 @@
 # @pankod/refine-mui
 
+## 4.5.0
+
+### Minor Changes
+
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { RefineThemes } from "@refinedev/mui";
+    import { ThemeProvider } from "@mui/material/styles";
+    import dataProvider from "@refinedev/simple-rest";
+
+    const App = () => {
+        // ---
+
+        return (
+          <ThemeProvider theme={RefineThemes.MagentaDark}>
+                <Refine dataProvider={dataProvider("YOUR_API_URL")}>
+                    {/** your app here */}
+                </Refine>
+            </ConfigProvider>
+        );
+    };
+    ```
+
+    -   default title with icon added to `AuthPage`. It uses `<ThemedTitle>` component from `@refinedev/mui`. You can remove it by setting `title` prop to `false`.
+
+    ```tsx
+    import { AuthPage } from "@refinedev/mui";
+
+    const MyAuthPage = () => {
+        return <AuthPage title={false} />;
+    };
+    ```
+
+    -   `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+
+    ```tsx
+    import { AuthPage } from "@refinedev/mui";
+
+    const MyAuthPage = () => {
+        return (
+            <AuthPage
+                renderContent={(
+                    content: React.ReactNode,
+                    title: React.ReactNode,
+                ) => {
+                    return (
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            {title}
+                            <h1 style={{ color: "white" }}>Extra Header</h1>
+                            {content}
+                            <h1 style={{ color: "white" }}>Extra Footer</h1>
+                        </div>
+                    );
+                }}
+            />
+        );
+    };
+    ```
+
+    -   `<ThemedLayout>`, `<ThemedSider>`, `<ThemedTitle>`, `<ThemedHeader>` created to use theme colors.
+
+    -   `<AuthPage>` component uses colors from the theme.
+    -   `<ThemedTitle>` added to `AuthPage`
+
+### Patch Changes
+
+-   [#3956](https://github.com/refinedev/refine/pull/3956) [`c54714ed9ab`](https://github.com/refinedev/refine/commit/c54714ed9abd289edef9a6bef4e85b234a6b6e55) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the `<NumberField />` component would throw an error if the `value` prop was set to `undefined`.
+
+## 4.4.0
+
+### Minor Changes
+
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { RefineThemes } from "@refinedev/mui";
+    import { ThemeProvider } from "@mui/material/styles";
+    import dataProvider from "@refinedev/simple-rest";
+
+    const App = () => {
+        // ---
+
+        return (
+          <ThemeProvider theme={RefineThemes.MagentaDark}>
+                <Refine dataProvider={dataProvider("YOUR_API_URL")}>
+                    {/** your app here */}
+                </Refine>
+            </ConfigProvider>
+        );
+    };
+    ```
+
+    -   default title with icon added to `AuthPage`. It uses `<ThemedTitle>` component from `@refinedev/mui`. You can remove it by setting `title` prop to `false`.
+
+    ```tsx
+    import { AuthPage } from "@refinedev/mui";
+
+    const MyAuthPage = () => {
+        return <AuthPage title={false} />;
+    };
+    ```
+
+    -   `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+
+    ```tsx
+    import { AuthPage } from "@refinedev/mui";
+
+    const MyAuthPage = () => {
+        return (
+            <AuthPage
+                renderContent={(
+                    content: React.ReactNode,
+                    title: React.ReactNode,
+                ) => {
+                    return (
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            {title}
+                            <h1 style={{ color: "white" }}>Extra Header</h1>
+                            {content}
+                            <h1 style={{ color: "white" }}>Extra Footer</h1>
+                        </div>
+                    );
+                }}
+            />
+        );
+    };
+    ```
+
+    -   `<ThemedLayout>`, `<ThemedSider>`, `<ThemedTitle>`, `<ThemedHeader>` created to use theme colors.
+
+    -   `<AuthPage>` component uses colors from the theme.
+    -   `<ThemedTitle>` added to `AuthPage`
+
+### Patch Changes
+
+-   [#3956](https://github.com/refinedev/refine/pull/3956) [`c54714ed9ab`](https://github.com/refinedev/refine/commit/c54714ed9abd289edef9a6bef4e85b234a6b6e55) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed an issue where the `<NumberField />` component would throw an error if the `value` prop was set to `undefined`.
+
+## 4.3.2
+
+### Patch Changes
+
+-   [#3948](https://github.com/refinedev/refine/pull/3948) [`b4950503334`](https://github.com/refinedev/refine/commit/b495050333464224f34851c9c57ffab457a3f120) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the delete button or logs out, when the form is dirty.
+
+    -   The `<DeleteButton>` already has a confirmation dialog, so the alert was removed.
+    -   The `<Sider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
+## 4.3.1
+
+### Patch Changes
+
+-   [#3948](https://github.com/refinedev/refine/pull/3948) [`b4950503334`](https://github.com/refinedev/refine/commit/b495050333464224f34851c9c57ffab457a3f120) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the delete button or logs out, when the form is dirty.
+
+    -   The `<DeleteButton>` already has a confirmation dialog, so the alert was removed.
+    -   The `<Sider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
+## 4.3.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/ui-types@1.3.0
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+    -   `title` prop added to `AuthPage` to render a custom title.
+        -   ⚠️ These features have not been implemented yet. Only types were added. It will be implemented in the next release.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/ui-types@1.2.0
+
 ## 4.1.0
 
 ### Minor Changes

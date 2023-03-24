@@ -18,7 +18,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OpenNotificationParams, TLoginData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 import React from "react";
-import { useInvalidateAuthStore } from "../useInvaliteAuthStore";
+import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
 export type UseLoginLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -129,7 +129,7 @@ export function useLogin<TVariables = {}>({
         TVariables,
         unknown
     >(["useLogin"], loginFromContext, {
-        onSuccess: ({ success, redirectTo, error }) => {
+        onSuccess: async ({ success, redirectTo, error }) => {
             if (success) {
                 close?.("login-error");
             }
@@ -137,6 +137,8 @@ export function useLogin<TVariables = {}>({
             if (error || !success) {
                 open?.(buildNotification(error));
             }
+
+            await invalidateAuthStore();
 
             if (to && success) {
                 if (routerType === "legacy") {
@@ -155,10 +157,6 @@ export function useLogin<TVariables = {}>({
                     replace("/");
                 }
             }
-
-            setTimeout(() => {
-                invalidateAuthStore();
-            });
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -172,7 +170,9 @@ export function useLogin<TVariables = {}>({
         TVariables,
         unknown
     >(["useLogin", "v3LegacyAuthProviderCompatible"], legacyLoginFromContext, {
-        onSuccess: (redirectPathFromAuth) => {
+        onSuccess: async (redirectPathFromAuth) => {
+            await invalidateAuthStore();
+
             if (to) {
                 replace(to as string);
             }
@@ -194,10 +194,6 @@ export function useLogin<TVariables = {}>({
             }
 
             close?.("login-error");
-
-            setTimeout(() => {
-                invalidateAuthStore();
-            });
         },
         onError: (error: any) => {
             open?.(buildNotification(error));

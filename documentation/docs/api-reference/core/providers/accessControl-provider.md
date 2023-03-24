@@ -41,33 +41,64 @@ A basic example looks like:
 
 ```tsx
 const App: React.FC = () => {
-    <Refine
-        // other providers and props
-        accessControlProvider={{
-            can: async ({ resource, action, params }) => {
-                if (resource === "posts" && action === "edit") {
-                    return Promise.resolve({
-                        can: false,
-                        reason: "Unauthorized",
-                    });
-                }
+    return (
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return {
+                            can: false,
+                            reason: "Unauthorized",
+                        };
+                    }
 
-                // or you can access directly *resource object
-                // const resourceName = params?.resource?.name;
-                // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
-                // if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
-                //     return Promise.resolve({
-                //         can: false,
-                //         reason: "Unauthorized",
-                //     });
-                // }
+                    return { can: true };
+                },
+            }}
+        >
+            {/* your app */}
+        </Refine>
+    );
+};
+```
 
-                return Promise.resolve({ can: true });
-            },
-        }}
-    >
-        {/* your app */}
-    </Refine>
+:::caution
+
+Providing `accessControlProvider` to `<Refine>` component **won't enforce** access control alone. Depends on your router, you need to wrap protected routes with `<CanAccess>` component.
+
+See the documentation for how to handle with different routers:
+
+[React Router Access Control](/docs/packages/documentation/routers/react-router-v6#usage-with-access-control-providers)
+
+[NextJS Router Access Control](/docs/packages/documentation/routers/nextjs#access-control)
+
+[Remix Router Access Control](/docs/packages/documentation/routers/remix#access-control)
+
+:::
+
+---
+
+:::tip
+You can also access resource object directly.
+
+```tsx
+export const accessControlProvider = {
+    can: async ({ resource, action, params }) => {
+        const resourceName = params?.resource?.name;
+        const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+        if (
+            resourceName === "posts" &&
+            anyUsefulMeta === true &&
+            action === "edit"
+        ) {
+            return {
+                can: false,
+                reason: "Unauthorized",
+            };
+        }
+    },
 };
 ```
 

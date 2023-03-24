@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { FormInstance, FormProps, ModalProps } from "antd";
 import {
     useModalForm as useModalFormSF,
@@ -6,7 +6,6 @@ import {
 } from "sunflower-antd";
 
 import {
-    useMutationMode,
     useTranslate,
     useWarnAboutChange,
     HttpError,
@@ -21,7 +20,6 @@ import {
     useGo,
 } from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import React from "react";
 
 export type useModalFormFromSFReturnType<TData, TVariables> = {
     open: boolean;
@@ -80,7 +78,6 @@ export const useModalForm = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >({
-    mutationMode: mutationModeProp,
     syncWithLocation,
     ...rest
 }: UseModalFormProps<TData, TError, TVariables>): UseModalFormReturnType<
@@ -92,11 +89,9 @@ export const useModalForm = <
 
     const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
-        mutationMode: mutationModeProp,
     });
 
-    const { form, formProps, id, setId, formLoading, mutationResult } =
-        useFormProps;
+    const { form, formProps, id, setId, formLoading, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
 
@@ -122,13 +117,12 @@ export const useModalForm = <
     const sunflowerUseModal = useModalFormSF<TData, TVariables>({
         ...rest,
         form: form,
+        submit: onFinish as any,
     });
 
     const {
         visible,
-        close,
         show,
-        form: modalForm,
         formProps: modalFormProps,
         modalProps,
     } = sunflowerUseModal;
@@ -183,41 +177,8 @@ export const useModalForm = <
         }
     }, [id, visible, show, syncWithLocationKey, syncingId]);
 
-    const { mutationMode: mutationModeContext } = useMutationMode();
-    const mutationMode = mutationModeProp ?? mutationModeContext;
-
-    const {
-        isLoading: isLoadingMutation,
-        isSuccess: isSuccessMutation,
-        reset: resetMutation,
-    } = mutationResult ?? {};
-
-    useEffect(() => {
-        if (visible && mutationMode === "pessimistic") {
-            if (isSuccessMutation && !isLoadingMutation) {
-                close();
-                resetMutation?.();
-                // Prevents resetting form values before closing modal in UI
-                setTimeout(() => {
-                    form.resetFields();
-                });
-            }
-        }
-    }, [isSuccessMutation, isLoadingMutation]);
-
     const saveButtonPropsSF = {
         disabled: formLoading,
-        onClick: () => {
-            modalForm.submit();
-
-            if (!(mutationMode === "pessimistic")) {
-                close();
-                // Prevents resetting form values before closing modal in UI
-                setTimeout(() => {
-                    form.resetFields();
-                });
-            }
-        },
         loading: formLoading,
     };
 
@@ -247,6 +208,9 @@ export const useModalForm = <
         sunflowerUseModal.show();
     }, []);
 
+    const { visible: _visible, ...otherModalProps } = modalProps;
+    const newModalProps = { open: _visible, ...otherModalProps };
+
     return {
         ...useFormProps,
         ...sunflowerUseModal,
@@ -261,7 +225,7 @@ export const useModalForm = <
             onFinish: formProps.onFinish,
         },
         modalProps: {
-            ...modalProps,
+            ...newModalProps,
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
             title: translate(

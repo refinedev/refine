@@ -72,11 +72,11 @@ const App = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        edit: "/products/edit/:id",
-                        create: "/products/create",
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        edit: "/blog-posts/edit/:id",
+                        create: "/blog-posts/create",
                     },
                 ]}
             >
@@ -90,7 +90,7 @@ const App = () => {
                             </Authenticated>
                         }
                     >
-                        <Route path="products">
+                        <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
                                 path="show/:id"
@@ -167,7 +167,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { authProvider } from "./authProvider";
 
@@ -184,8 +184,8 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                     )}
                     resources={[
                         {
-                            name: "products",
-                            list: "/products",
+                            name: "blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -199,8 +199,8 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                                 </Authenticated>
                             }
                         >
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
                         <Route
@@ -263,7 +263,7 @@ Register page is used to register new users. It provides a basic form to enter e
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -280,8 +280,8 @@ Register page is used to register new users. It provides a basic form to enter e
                     )}
                     resources={[
                         {
-                            name: "products",
-                            list: "/products",
+                            name: "blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -295,8 +295,8 @@ Register page is used to register new users. It provides a basic form to enter e
                                 </Authenticated>
                             }
                         >
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
                         <Route
@@ -363,7 +363,7 @@ Forgot password page is used to send a reset password link to the user's email. 
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -380,8 +380,8 @@ Forgot password page is used to send a reset password link to the user's email. 
                     )}
                     resources={[
                         {
-                            name: "products",
-                            list: "/products",
+                            name: "blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -395,8 +395,8 @@ Forgot password page is used to send a reset password link to the user's email. 
                                 </Authenticated>
                             }
                         >
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
                         <Route
@@ -468,7 +468,7 @@ Update password page is used to update the user's password. It provides a basic 
         CatchAllNavigate,
     } from "@refinedev/react-router-v6";
 
-    import { ProductList } from "pages/products/list";
+    import { BlogPostList } from "pages/blog-posts/list";
 
     import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -485,8 +485,8 @@ Update password page is used to update the user's password. It provides a basic 
                     )}
                     resources={[
                         {
-                            name: "products",
-                            list: "/products",
+                            name: "blog_posts",
+                            list: "/blog-posts",
                         },
                     ]}
                 >
@@ -500,8 +500,8 @@ Update password page is used to update the user's password. It provides a basic 
                                 </Authenticated>
                             }
                         >
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
                         <Route

@@ -3,6 +3,7 @@ import { useTranslate, useApiUrl } from "@refinedev/core";
 import { Create, getValueFromEvent, useSelect } from "@refinedev/antd";
 
 import {
+    Drawer,
     DrawerProps,
     Form,
     FormProps,
@@ -21,7 +22,6 @@ import {
 const { Text } = Typography;
 
 import { ICategory } from "interfaces";
-import { Drawer } from "./styled";
 
 type CreateProductProps = {
     drawerProps: DrawerProps;
@@ -46,10 +46,21 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
         <Drawer
             {...drawerProps}
             width={breakpoint.sm ? "500px" : "100%"}
-            bodyStyle={{ padding: 0 }}
             zIndex={1001}
         >
-            <Create resource="products" saveButtonProps={saveButtonProps}>
+            <Create
+                resource="products"
+                saveButtonProps={saveButtonProps}
+                goBack={false}
+                contentProps={{
+                    style: {
+                        boxShadow: "none",
+                    },
+                    bodyStyle: {
+                        padding: 0,
+                    },
+                }}
+            >
                 <Form
                     {...formProps}
                     layout="vertical"

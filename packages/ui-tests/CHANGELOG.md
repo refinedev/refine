@@ -1,5 +1,41 @@
 # @pankod/refine-ui-tests
 
+## 1.3.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Add tests for the `login`, `register`, `forgotPassword`, and, `updatePassword` pages.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb), [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/core@4.5.0
+    -   @refinedev/ui-types@1.3.0
+
+## 1.2.0
+
+### Minor Changes
+
+-   [#3912](https://github.com/refinedev/refine/pull/3912) [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Add tests for the `login`, `register`, `forgotPassword`, and, `updatePassword` pages.
+
+### Patch Changes
+
+-   Updated dependencies [[`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb), [`0ffe70308b2`](https://github.com/refinedev/refine/commit/0ffe70308b24d2d70695399fb0a1b7b76bcf2ccb)]:
+    -   @refinedev/core@4.4.0
+    -   @refinedev/ui-types@1.2.0
+
+## 1.1.2
+
+### Patch Changes
+
+-   [#3919](https://github.com/refinedev/refine/pull/3919) [`dd90bf43d50`](https://github.com/refinedev/refine/commit/dd90bf43d50ffe4e78a5caa5c0831d2ba8610e0d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - New test added to crud components: - "should not render `title` when is false"
+
+## 1.1.1
+
+### Patch Changes
+
+-   [#3919](https://github.com/refinedev/refine/pull/3919) [`dd90bf43d50`](https://github.com/refinedev/refine/commit/dd90bf43d50ffe4e78a5caa5c0831d2ba8610e0d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - New test added to crud components: - "should not render `title` when is false"
+
 ## 1.1.0
 
 ### Minor Changes

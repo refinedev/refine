@@ -24,7 +24,7 @@ export const NumberField: React.FC<NumberFieldProps> = ({
     options,
     ...rest
 }) => {
-    const number = parseFloat(value.toString());
+    const number = Number(value);
 
     return (
         <Text {...rest}>

@@ -38,6 +38,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
@@ -128,7 +129,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <Box {...allWrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </Box>
     );
 };

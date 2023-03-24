@@ -494,15 +494,6 @@ const MyComponent = () => {
 }
 ```
 
-### Custom `<Sider>` components
-
-If you've swizzled the `<Sider>` component from your UI package and customized it, you might need to update them accordingly if you're using the new `routerProvider` prop of `<Refine>`.
-
-These changes include;
-
-- Using of the new routing hooks and the removing of the [`useRouterContext`](#useroutercontext-hook) hook.
-- Updating the usage of return values of [`useMenu`](#usemenu-hook) hook if you have a custom usage of it.
-
 ### `metaData` to `meta`
 
 `metaData` is deprecated in all hooks and components. Use `meta` instead.

@@ -20,15 +20,23 @@ import {
     LayoutProps,
     Divider,
     FormProps,
+    theme,
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@refinedev/core";
 
-import { layoutStyles, containerStyles, titleStyles } from "../styles";
+import {
+    bodyStyles,
+    containerStyles,
+    headStyles,
+    layoutStyles,
+    titleStyles,
+} from "../styles";
+import { ThemedTitle } from "@components";
 
 const { Text, Title } = Typography;
+const { useToken } = theme;
 
 type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
-
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
  *
@@ -43,7 +51,9 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    title,
 }) => {
+    const { token } = useToken();
     const [form] = Form.useForm<LoginFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -57,8 +67,28 @@ export const LoginPage: React.FC<LoginProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Title
+            level={3}
+            style={{
+                color: token.colorPrimaryTextHover,
+                ...titleStyles,
+            }}
+        >
             {translate("pages.login.title", "Sign in to your account")}
         </Title>
     );
@@ -91,7 +121,15 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Button>
                         );
                     })}
-                    <Divider>{translate("pages.login.divider", "or")}</Divider>
+                    <Divider>
+                        <Text
+                            style={{
+                                color: token.colorTextLabel,
+                            }}
+                        >
+                            {translate("pages.login.divider", "or")}
+                        </Text>
+                    </Divider>
                 </>
             );
         }
@@ -101,8 +139,12 @@ export const LoginPage: React.FC<LoginProps> = ({
     const CardContent = (
         <Card
             title={CardTitle}
-            headStyle={{ borderBottom: 0 }}
-            style={containerStyles}
+            headStyle={headStyles}
+            bodyStyle={bodyStyles}
+            style={{
+                ...containerStyles,
+                backgroundColor: token.colorBgElevated,
+            }}
             {...(contentProps ?? {})}
         >
             {renderProviders()}
@@ -142,7 +184,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                     name="password"
                     label={translate("pages.login.fields.password", "Password")}
                     rules={[{ required: true }]}
-                    style={{ marginBottom: "12px" }}
                 >
                     <Input
                         type="password"
@@ -154,7 +195,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
-                        marginBottom: "12px",
+                        marginBottom: "24px",
                     }}
                 >
                     {rememberMe ?? (
@@ -178,6 +219,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     {forgotPasswordLink ?? (
                         <ActiveLink
                             style={{
+                                color: token.colorPrimaryTextHover,
                                 fontSize: "12px",
                                 marginLeft: "auto",
                             }}
@@ -211,7 +253,10 @@ export const LoginPage: React.FC<LoginProps> = ({
                         )}{" "}
                         <ActiveLink
                             to="/register"
-                            style={{ fontWeight: "bold" }}
+                            style={{
+                                fontWeight: "bold",
+                                color: token.colorPrimaryTextHover,
+                            }}
                         >
                             {translate("pages.login.signup", "Sign up")}
                         </ActiveLink>
@@ -231,7 +276,14 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
             >
                 <Col xs={22}>
-                    {renderContent ? renderContent(CardContent) : CardContent}
+                    {renderContent ? (
+                        renderContent(CardContent, PageTitle)
+                    ) : (
+                        <>
+                            {PageTitle}
+                            {CardContent}
+                        </>
+                    )}
                 </Col>
             </Row>
         </Layout>

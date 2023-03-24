@@ -66,6 +66,13 @@ export const crudCreateTests = function (
             getByText("Create Post");
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = renderCreate(<Create title={false} />);
+
+            const text = queryByText("Create Post");
+            expect(text).not.toBeInTheDocument();
+        });
+
         it("should render with label instead of resource name successfully", async () => {
             const { getByText } = renderCreate(<Create />, {
                 resources: [

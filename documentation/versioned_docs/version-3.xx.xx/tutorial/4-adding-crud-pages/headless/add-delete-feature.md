@@ -13,9 +13,9 @@ Let's start by adding the delete feature to the list page by adding a delete but
 
 [Refer to the `useDelete` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useDelete/)
 
-To add a delete feature to the products table, you can follow the steps below:
+To add a delete feature to the blog posts table, you can follow the steps below:
 
-1. Open the `src/pages/products/list.tsx` file on your editor.
+1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
 2. Import the `useOne` hook from `@pankod/refine-core`:
 
@@ -23,15 +23,15 @@ To add a delete feature to the products table, you can follow the steps below:
     import { useOne } from "@pankod/refine-core";
     ```
 
-3. Call the `useDelete` hook in the `ProductList` component:
+3. Call the `useDelete` hook in the `BlogPostList` component:
 
     ```tsx
-    const ProductList: React.FC = () => {
-        const { mutate: deleteProduct } = useDelete();
+    const BlogPostList: React.FC = () => {
+        const { mutate: deleteBlog Post } = useDelete();
     };
     ```
 
-    `deleteProduct` mutation takes `id`, `resource` etc. You can check the parameters of the mutation function in the [documentation](/docs/api-reference/core/hooks/data/useDelete/#properties).
+    `deleteBlogPost` mutation takes `id`, `resource` etc. You can check the parameters of the mutation function in the [documentation](/docs/api-reference/core/hooks/data/useDelete/#properties).
 
 4. Add the `<button/>` component to the `actions` column of the table as shown below:
 
@@ -52,14 +52,14 @@ To add a delete feature to the products table, you can follow the steps below:
                         >
                             <button
                                 onClick={() => {
-                                    show("products", getValue() as string);
+                                    show("blog_posts", getValue() as string);
                                 }}
                             >
                                 Show
                             </button>
                             <button
                                 onClick={() => {
-                                    edit("products", getValue() as string);
+                                    edit("blog_posts", getValue() as string);
                                 }}
                             >
                                 Edit
@@ -67,8 +67,8 @@ To add a delete feature to the products table, you can follow the steps below:
                             //highlight-start
                             <button
                                 onClick={() => {
-                                    deleteProduct({
-                                        resource: "products",
+                                    deleteBlogPost({
+                                        resource: "blog_posts",
                                         id: "1",
                                     });
                                 }}

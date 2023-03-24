@@ -25,6 +25,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     contentProps,
     renderContent,
     formProps,
+    title = undefined,
 }) => {
     const routerType = useRouterType();
     const Link = useLink();
@@ -162,7 +163,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     return (
         <div {...wrapperProps}>
-            {renderContent ? renderContent(content) : content}
+            {renderContent ? renderContent(content, title) : content}
         </div>
     );
 };
