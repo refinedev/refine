@@ -40,6 +40,12 @@ export const getProjectType = (): ProjectTypes => {
     if (dependencies.includes("vite") || devDependencies.includes("vite")) {
         return ProjectTypes.VITE;
     }
+
+    if (dependencies.includes("parcel") || devDependencies.includes("parcel")) {
+        return ProjectTypes.PARCEL;
+    }
+
+    return ProjectTypes.UNKNOWN;
 };
 
 export const getUIFramework = (): UIFrameworks | undefined => {

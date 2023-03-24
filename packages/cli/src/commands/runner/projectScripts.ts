@@ -39,4 +39,18 @@ export const projectScripts = {
         build: ["build"],
         getBin: () => `${binPath}/craco`,
     },
+    [ProjectTypes.PARCEL]: {
+        dev: ["start"],
+        start: ["start"],
+        build: ["build"],
+        getBin: () => `${binPath}/parcel`,
+    },
+    [ProjectTypes.UNKNOWN]: {
+        dev: [],
+        start: [],
+        build: [],
+        getBin: () => {
+            return "unknown";
+        },
+    },
 };

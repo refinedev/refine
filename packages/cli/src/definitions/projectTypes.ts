@@ -4,4 +4,6 @@ export enum ProjectTypes {
     NEXTJS = "nextjs",
     VITE = "vite",
     CRACO = "craco",
+    PARCEL = "parcel",
+    UNKNOWN = "unknown",
 }
