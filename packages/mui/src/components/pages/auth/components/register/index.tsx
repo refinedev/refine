@@ -85,7 +85,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? (
+                    <ThemedTitle
+                        collapsed={false}
+                        wrapperStyles={{
+                            gap: "8px",
+                        }}
+                    />
+                )}
             </div>
         );
 
@@ -102,8 +109,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                     fullWidth
                                     variant="outlined"
                                     sx={{
-                                        color: "text.secondary",
-                                        borderColor: "text.secondary",
+                                        color: "primary.light",
+                                        borderColor: "primary.light",
                                         textTransform: "none",
                                     }}
                                     onClick={() =>
@@ -135,7 +142,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
-                    color="primary.dark"
+                    color="primary"
                     fontWeight={700}
                 >
                     {translate(
@@ -202,7 +209,17 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             mb: 0,
                         }}
                     />
-
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        disabled={isLoading}
+                        sx={{
+                            mt: "24px",
+                        }}
+                    >
+                        {translate("pages.register.signup", "Sign up")}
+                    </Button>
                     {loginLink ?? (
                         <Box
                             display="flex"
@@ -210,6 +227,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             alignItems="center"
                             sx={{
                                 mt: "24px",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
                             }}
                         >
                             <Typography
@@ -225,7 +245,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             <MuiLink
                                 ml="4px"
                                 variant="body2"
-                                color="primary.light"
+                                color="primary"
                                 component={ActiveLink}
                                 underline="none"
                                 to="/login"
@@ -236,17 +256,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             </MuiLink>
                         </Box>
                     )}
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        disabled={isLoading}
-                        sx={{
-                            mt: "24px",
-                        }}
-                    >
-                        {translate("pages.register.signup", "Sign up")}
-                    </Button>
                 </Box>
             </CardContent>
         </Card>

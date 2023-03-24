@@ -1,20 +1,48 @@
 import React from "react";
 import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
-import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
+import {
+    AppBar,
+    Stack,
+    Toolbar,
+    Typography,
+    Avatar,
+    IconButton,
+} from "@mui/material";
+import { Menu } from "@mui/icons-material";
 
 import { RefineThemedLayoutHeaderProps } from "../types";
 
-export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
+export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = ({
+    isSiderOpen,
+    onToggleSiderClick,
+    toggleSiderIcon: toggleSiderIconFromProps,
+}) => {
     const authProvider = useActiveAuthProvider();
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
-    const shouldRenderHeader = user && (user.name || user.avatar);
+    const hasSidebarToggle = Boolean(onToggleSiderClick);
 
-    return shouldRenderHeader ? (
+    return (
         <AppBar position="sticky">
             <Toolbar>
+                {hasSidebarToggle && (
+                    <IconButton
+                        aria-label="open drawer"
+                        onClick={() => onToggleSiderClick?.()}
+                        edge="start"
+                        sx={{
+                            mr: 2,
+                            display: { xs: "none", md: "flex" },
+                            ...(isSiderOpen && { display: "none" }),
+                        }}
+                    >
+                        {toggleSiderIconFromProps?.(Boolean(isSiderOpen)) ?? (
+                            <Menu />
+                        )}
+                    </IconButton>
+                )}
                 <Stack
                     direction="row"
                     width="100%"
@@ -35,5 +63,5 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
                 </Stack>
             </Toolbar>
         </AppBar>
-    ) : null;
+    );
 };

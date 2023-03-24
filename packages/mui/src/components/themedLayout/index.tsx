@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 
 import { ThemedSider as DefaultSider } from "./sider";
@@ -13,12 +13,18 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     OffLayoutArea,
     children,
 }) => {
+    const [isSiderOpen, setIsSiderOpen] = useState(true);
+
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
         <Box display="flex" flexDirection="row">
-            <SiderToRender Title={Title} />
+            <SiderToRender
+                Title={Title}
+                isSiderOpen={isSiderOpen}
+                onToggleSiderClick={(isOpen) => setIsSiderOpen(Boolean(isOpen))}
+            />
             <Box
                 sx={{
                     display: "flex",
@@ -27,7 +33,10 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
                     minHeight: "100vh",
                 }}
             >
-                <HeaderToRender />
+                <HeaderToRender
+                    isSiderOpen={isSiderOpen}
+                    onToggleSiderClick={() => setIsSiderOpen((prev) => !prev)}
+                />
                 <Box
                     component="main"
                     sx={{
