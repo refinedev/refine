@@ -5,15 +5,7 @@ slug: top-react-component-libraries-and-frameworks-every-developer-should-know
 authors: salih
 tags:
     [
-        refine,
-        react,
-        ant design,
-        antd,
-        material ui,
-        mui,
-        storybook,
-        chackra ui,
-        mantine,
+        comparison
     ]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/social.jpg
 hide_table_of_contents: false

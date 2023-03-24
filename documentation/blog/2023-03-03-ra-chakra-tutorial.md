@@ -3,7 +3,7 @@ title: React Admin Panel Tutorial with Chakra UI and Strapi
 description: We'll build a React admin tutorial app with refine
 slug: react-admin-tutorial
 authors: peter_osah
-tags: [refine, react, strapi, crud, chakra-ui]
+tags: [refine, react, strapi, tutorial, chakra-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-03-ra-chakra-tutorial%2FGroup%20818%20(1).png
 hide_table_of_contents: false
 ---

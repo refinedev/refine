@@ -3,7 +3,7 @@ title: How to create a CRUD app with SvelteKit
 description: We'll build a CRUD Blog app using SvelteKit and Svelte MUI
 slug: sveltekit-crud-app-with-svelte-mui
 authors: ekekenta_clinton
-tags: [svelte, sveltekit, crud-app]
+tags: [svelte, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/social.png
 hide_table_of_contents: false
 ---

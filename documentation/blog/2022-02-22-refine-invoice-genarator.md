@@ -6,11 +6,8 @@ authors: melih
 tags:
     [
         refine,
-        invoice-generator,
+        tutorial,
         react,
-        admin-panel,
-        business-tool,
-        internal-tool,
         strapi,
     ]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png

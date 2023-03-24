@@ -3,7 +3,7 @@ title: Understanding the React useRef Hook
 description: We will explain the differences between useRef and React ref
 slug: react-useref-hook-and-ref
 authors: joel_adewole
-tags: [react, react-ref, useRef]
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/social.png
 hide_table_of_contents: false
 ---

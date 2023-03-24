@@ -3,7 +3,7 @@ title: refine swag store is now open!
 description: The refine swag store is now open for those who enjoy this open source project.
 slug: refine-swag-store
 authors: eren_erkalkan
-tags: [store, refine]
+tags: [community]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/social.png
 hide_table_of_contents: false
 ---

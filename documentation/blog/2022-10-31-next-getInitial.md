@@ -3,7 +3,7 @@ title: What is Next.js getInitialProps and getServerSideProps?
 description: We will deep dive into Next.js getInitialProps and getServerSideProps.
 slug: next-js-getinitialprops-and-getserversideprops
 authors: michael
-tags: [nextjs, getInitialProps, getServerSideProps]
+tags: [nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,7 @@ title: Next.js E-commerce App with Strapi and Chakra UI
 description: Learn the power of Refine for e-commerce with this quick & easy example. This step-by-step Refine SPA tutorial will get you started in no time.
 slug: handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui
 authors: melih
-tags: [refine, e-commerce, strapi, chakra-ui, next.js]
+tags: [refine, strapi, chakra-ui, nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,7 @@ title: Neumorphism with CSS - A new design trend
 description: Overview and examples for Neumorphic CSS implementations.
 slug: neumorphic-css
 authors: joel_adewole
-tags: [neumorphism, css, UI, neumorphic, design]
+tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/social.png
 hide_table_of_contents: false
 ---

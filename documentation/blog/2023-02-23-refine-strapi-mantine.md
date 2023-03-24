@@ -3,7 +3,7 @@ title: How to Build a React Admin Panel with Mantine and Strapi
 description: We'll be building a simple React Admin Panel with refine and Mantine using Strapi as a backend service.
 slug: react-admin-panel
 authors: joseph_mawa
-tags: [refine, strapi, mantine, crud]
+tags: [refine, strapi, mantine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fsocial.png
 hide_table_of_contents: false
 is_featured: true

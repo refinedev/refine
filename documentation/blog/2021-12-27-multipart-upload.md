@@ -3,7 +3,7 @@ title: How to Multipart File Upload Using FormData with HTML
 description: In this guide, I'm going to show you how to multipart files upload with using HTML and JavaScript
 slug: how-to-multipart-upload
 authors: melih
-tags: [JavaScript, multipart/form-data, multipart-upload, file-upload]
+tags: [javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

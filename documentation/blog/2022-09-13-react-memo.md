@@ -3,7 +3,7 @@ title: React memo guide with examples
 description: Improve the app performance with React.memo()
 slug: react-memo-guide
 authors: abdullah_numan
-tags: [react, memoization, react-memo, performance]
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/social.png
 hide_table_of_contents: false
 ---

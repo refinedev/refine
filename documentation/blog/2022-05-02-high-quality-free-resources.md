@@ -3,7 +3,7 @@ title: 10 High-Quality Free Resources That Will Make Every Web Developer's Life 
 description: We will examine the resources that will make our job easier when making a website.
 slug: 10-high-quality-free-resources
 authors: aydin
-tags: [refine, react, admin, framework, webdev, beginners, codenewbie, json, ant-design, antd, material-ui, mui, tailwind, tailwindcss, auth0, mui, cerbos, authorization, permissions, squoosh, compress, images]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/social.jpg
 hide_table_of_contents: false
 ---

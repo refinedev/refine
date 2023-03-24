@@ -3,7 +3,7 @@ title: Best Open-Source Headless CMS to Try for Your Next Application
 description: A headless CMS system, which can be developed quickly, contains many features you need, and helps you to produce products very quickly compared to traditional systems.
 slug: open-source-headless-cms
 authors: yildiray
-tags: [cms, headless, open-source, strapi, appwrite, directus, keystone, netlify, refine]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-source-headless-cms/social.jpg
 hide_table_of_contents: false
 ---

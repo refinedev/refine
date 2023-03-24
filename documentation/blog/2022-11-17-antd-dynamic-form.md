@@ -3,7 +3,7 @@ title: How to Create Dynamic Forms in React CRUD app with Ant Design
 description: Easy way to creating dynamic forms in React CRUD apps with Ant Design
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
-tags: [react, refine, form-validation, dynamic-form, ant-design]
+tags: [react, refine, tutorial, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.png
 hide_table_of_contents: false
 ---

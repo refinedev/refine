@@ -3,7 +3,7 @@ title: Comparing the best headless CMS solutions
 description: We compared best headless CMS solutions -  Strapi, Hasura, and Hygraph. We'll highlight their pros and cons.
 slug: best-headless-cms
 authors: joseph_mawa
-tags: [comparison, strapi, headless-cms]
+tags: [comparison, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fsocial.png
 hide_table_of_contents: false
 ---
