@@ -52,6 +52,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
                 style={{
                     display: "flex",
                     alignItems: "center",
+                    fontSize: "inherit",
                 }}
             >
                 <div
