@@ -29,7 +29,7 @@ const SectionReady = () => {
                 </p>
 
                 <a
-                    href="https://calendly.com/d/cmk-5gb-b2p/meet-refine"
+                    href="https://refinedev.typeform.com/to/Z9wS06kE"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="shadow-startTiles appearance-none flex items-center justify-center mt-6 no-underline font-bold font-montserrat text-sm h-8 w-44 text-[#1890FF] text-center bg-white rounded-[4px] cursor-pointer border border-solid border-[#EDEDEF]"

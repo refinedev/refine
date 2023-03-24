@@ -109,7 +109,7 @@ export const POPOVERMENUS: NavMenu[] = [
             {
                 label: "Meet refine",
                 description: "Call us for any questions",
-                link: "https://calendly.com/d/cmk-5gb-b2p/meet-refine",
+                link: "https://refinedev.typeform.com/to/Z9wS06kE",
                 icon: RefineIcon,
             },
         ],
