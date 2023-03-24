@@ -31,6 +31,8 @@ export const getFilesPathByProject = (projectType?: ProjectTypes) => {
         case ProjectTypes.REACT_SCRIPT:
         case ProjectTypes.VITE:
         case ProjectTypes.CRACO:
+        case ProjectTypes.PARCEL:
+        case ProjectTypes.UNKNOWN:
         default:
             return "./src";
     }

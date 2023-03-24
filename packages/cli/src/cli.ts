@@ -10,27 +10,17 @@ import update from "@commands/update";
 import swizzle from "@commands/swizzle";
 import { dev, build, start, run } from "@commands/runner";
 import "@utils/env";
-import { getPackageJson } from "@utils/package";
 import { telemetryHook } from "@telemetryindex";
 
+// It reads and updates from package.json during build. ref: tsup.config.ts
+const REFINE_CLI_VERSION = "1.0.0";
+
 const bootstrap = () => {
-    let packageJson;
-
-    // check package json if exists
-    try {
-        packageJson = getPackageJson();
-    } catch (e) {
-        console.error(
-            "The `package.json` file required to run could not be found.",
-        );
-        process.exit(1);
-    }
-
     const program = new Command();
 
     program
         .version(
-            packageJson.version,
+            `@refinedev/cli@${REFINE_CLI_VERSION}`,
             "-v, --version",
             "Output the current version.",
         )
