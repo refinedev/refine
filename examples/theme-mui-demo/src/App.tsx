@@ -42,6 +42,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={customTheme}>
                 <CssBaseline />
                 <GlobalStyles
