@@ -1,6 +1,19 @@
+import { ProjectTypes } from "@definitions/projectTypes";
 import execa from "execa";
 
 export const runScript = async (binPath: string, args: string[]) => {
+    if (binPath === "unknown") {
+        const supportedProjectTypes = Object.values(ProjectTypes)
+            .filter((v) => v !== "unknown")
+            .join(", ");
+
+        console.error(
+            `We couldn't find executable for your project. Supported executables are ${supportedProjectTypes}.\nPlease use your own script directly. If you think this is an issue, please report it at: https://github.com/refinedev/refine/issues`,
+        );
+
+        return;
+    }
+
     const execution = execa(binPath, args, {
         stdio: "pipe",
         windowsHide: false,

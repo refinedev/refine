@@ -4,35 +4,48 @@ import { getDependencies, getDevDependencies } from "@utils/package";
 export const getProjectType = (): ProjectTypes => {
     // read dependencies from package.json
     const dependencies = getDependencies();
+    const devDependencies = getDevDependencies();
 
     // check for craco
     // craco and react-scripts installs together. We need to check for craco first
-    if (dependencies.includes("@craco/craco")) {
+    if (
+        dependencies.includes("@craco/craco") ||
+        devDependencies.includes("@craco/craco")
+    ) {
         return ProjectTypes.CRACO;
     }
 
     // check for react-scripts
-    if (dependencies.includes("react-scripts")) {
+    if (
+        dependencies.includes("react-scripts") ||
+        devDependencies.includes("react-scripts")
+    ) {
         return ProjectTypes.REACT_SCRIPT;
     }
 
     // check for next
-    if (dependencies.includes("next")) {
+    if (dependencies.includes("next") || devDependencies.includes("next")) {
         return ProjectTypes.NEXTJS;
     }
 
     // check for remix
-    if (dependencies.includes("@remix-run/react")) {
+    if (
+        dependencies.includes("@remix-run/react") ||
+        devDependencies.includes("@remix-run/react")
+    ) {
         return ProjectTypes.REMIX;
     }
 
     // check for vite
-    const devDependencies = getDevDependencies();
-    if (devDependencies.includes("vite")) {
+    if (dependencies.includes("vite") || devDependencies.includes("vite")) {
         return ProjectTypes.VITE;
     }
 
-    throw new Error("Project type not found");
+    if (dependencies.includes("parcel") || devDependencies.includes("parcel")) {
+        return ProjectTypes.PARCEL;
+    }
+
+    return ProjectTypes.UNKNOWN;
 };
 
 export const getUIFramework = (): UIFrameworks | undefined => {
