@@ -5,14 +5,7 @@ slug: best-internal-tool-react-frameworks
 authors: melih
 tags:
     [
-        refine,
-        react,
-        admin-panel,
-        business-tool,
-        internal-tool,
-        B2B,
-        B2C,
-        open-source,
+        comparison
     ]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false

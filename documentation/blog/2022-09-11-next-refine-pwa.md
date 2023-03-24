@@ -3,7 +3,7 @@ title: Build a Progressive Web App (PWA) with Next.js
 description: We will walk you through the entire process of building a PWA using Next.JS and refine framework, from start to finish!
 slug: next-js-pwa
 authors: david_omotayo
-tags: [nextjs, react, pwa, refine]
+tags: [nextjs, tutorial, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/featured.png
 hide_table_of_contents: false

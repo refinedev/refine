@@ -3,7 +3,7 @@ title: How to use Next.js API Routes?
 description: We will deep dive into Next.js API Routes with Dynamic Routes.
 slug: next-js-api-routes
 authors: michael
-tags: [nextjs, nextjs-api-routes]
+tags: [nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/social.png
 hide_table_of_contents: false
 ---

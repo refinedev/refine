@@ -3,7 +3,7 @@ title: How to use Material UI Select in React
 description: We'll discover the Material UI (MUI) select component with examples
 slug: material-ui-select-component
 authors: doro_onome
-tags: [material-ui, react, mui, mui-select,]
+tags: [material-ui, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social.png
 hide_table_of_contents: false
 ---

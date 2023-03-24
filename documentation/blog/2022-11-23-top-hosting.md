@@ -3,7 +3,7 @@ title: 5 Best Free Platforms for Hosting Hobby Web Projects
 description: A list of the best free platforms for hosting hobby web projects. You can host your static websites, React apps, and more for free.
 slug: 5-top-free-react-hosting-platforms
 authors: joseph_mawa
-tags: [deployment, react, hosting]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hosting/social.png
 hide_table_of_contents: false
 ---

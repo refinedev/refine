@@ -3,7 +3,7 @@ title: Build Access Control Mechanism using Permify
 description: In this article, I will explain how to build an Access Control n Refine using Permify; an authorization API that helps you to create any kind of authorization system easily with its panel.
 slug: build-access-control-permify
 authors: ege
-tags: [rbac, permissions, open-source, react, access, authorization, keystone, role, refine, abac]
+tags: [access-control]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/social.jpg
 hide_table_of_contents: false
 ---

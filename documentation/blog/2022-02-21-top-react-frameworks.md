@@ -3,7 +3,7 @@ title: Top React JS Frameworks Every Developer Should Know
 description: We will compare the features of refine and react-admin
 slug: best-react-frameworks
 authors: aydin
-tags: [refine, react, framework, webdev,create-react-app, ant-design, material-ui, react-bootstrap]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

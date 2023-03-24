@@ -3,7 +3,7 @@ title: Top React Admin Templates 2023
 description: We have compiled a list of the top 5 React admin templates that are currently available on the market.
 slug: react-admin-template
 authors: chidume_nnamdi
-tags: [refine, listing]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-22-react-admin-templates%2Fsocial.png
 hide_table_of_contents: false
 ---

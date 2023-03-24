@@ -3,24 +3,11 @@ title: NextAuth - Google And GitHub Authentications for Nextjs
 description: How to implement Google and GitHub authentications using NextAuth.js in Next.js?
 slug: nextauth-google-github-authentication-nextjs
 authors: ekekenta_clinton
-tags: [nextjs, nextauth, github-authentication, google-authentication, oauth]
+tags: [nextjs, access-control]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social.png
 social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social.png
 hide_table_of_contents: false
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -3,7 +3,7 @@ title: How to use Conditional Rendering in React
 description: We'll implement Conditional Rendering in React and the various ways to use it in your React applications.
 slug: react-conditional-rendering
 authors: deborah_emeni
-tags: [react, react-conditional-rendering]
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/social.png
 hide_table_of_contents: false
 ---

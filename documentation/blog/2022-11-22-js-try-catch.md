@@ -3,7 +3,7 @@ title: Error Handling With try, catch and finally Blocks in JavaScript
 description: We'll see how to handle errors in JavaScript using the try/catch/finally blocks.
 slug: javascript-try-catch-finally
 authors: abdullah_numan
-tags: [javascript, error-handling]
+tags: [javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-22-js-try-catch/social.png
 hide_table_of_contents: false
 ---

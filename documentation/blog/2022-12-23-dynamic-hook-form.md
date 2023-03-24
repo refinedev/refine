@@ -3,7 +3,7 @@ title: Dynamic Forms with React Hook Form
 description: How to build dynamic forms with React hook form in React CRUD apps.
 slug: dynamic-forms-in-react-hook-form
 authors: david_omotayo
-tags: [react, refine, form-validation, dynamic-form, material-ui, react-hook-form]
+tags: [react, refine, material-ui, react-hook-form, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/social.png
 hide_table_of_contents: false
 ---

@@ -1,9 +1,9 @@
 ---
-title: Migrating a React-Admin Application to Refine
+title: Migrating a React-Admin Application to refine
 description: Recently, our team decided to migrate a B2B admin panel of one of our customers from React-Admin to refine to battle test our new framework and improve our productivity.
 slug: migrating-a-react-admin-application-to-refine
 authors: umut
-tags: [refine, react-admin, adminpanel, crud]
+tags: [refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -29,7 +29,7 @@ It is, also, one step forward towards the dream of <strong>making it headless</s
 
 To learn more about refine, see: https://refine.dev/docs/
 
-|                                                                                                  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/sider.png" alt="sider" />                                                                                                   |
+|                                                 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/sider.png" alt="sider" />                                                  |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _Our panel has 7 resources (all listable), which 4 of them must have create and edit pages, 6 of them must be exportable to `.csv` files and some of those resources have images, all images must be uploaded in `base64` format._ |
 
