@@ -9,15 +9,15 @@ const Login: ExtendedNextPage = () => {
             providers={[
                 {
                     name: "google",
-                    label: "Google",
+                    label: "with Google",
                 },
                 {
                     name: "auth0",
-                    label: "Auth0",
+                    label: "with Auth0",
                 },
                 {
                     name: "keycloak",
-                    label: "Keycloak",
+                    label: "with Keycloak",
                 },
             ]}
             formProps={{

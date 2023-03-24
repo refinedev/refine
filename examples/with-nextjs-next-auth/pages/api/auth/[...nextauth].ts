@@ -21,6 +21,14 @@ export const authOptions = {
             clientId: `refine-demo`,
             clientSecret: `refine`,
             issuer: `https://lemur-0.cloud-iam.com/auth/realms/refine`,
+            profile(profile) {
+                return {
+                    id: profile.sub,
+                    name: profile.name ?? profile.preferred_username,
+                    email: profile.email,
+                    image: `https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg`,
+                };
+            },
         }),
         CredentialsProvider({
             name: "Credentials",
