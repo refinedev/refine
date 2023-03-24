@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 5.3.6
+
+### Patch Changes
+
+-   [#3967](https://github.com/refinedev/refine/pull/3967) [`67603562695`](https://github.com/refinedev/refine/commit/67603562695707e9d0bf16908d480fddf6fce7f1) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: `<ThemedTitle>` font size was overridden by parent because `<Space>` has the default font size.
+
 ## 5.3.5
 
 ### Patch Changes
