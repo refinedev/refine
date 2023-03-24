@@ -77,7 +77,7 @@ It is used to show options by filtering them. `filters` will be passed to the `g
 
 ```tsx
 useAutocomplete({
-    filter: [
+    filters: [
         {
             field: "isActive",
             operator: "eq",

@@ -3,7 +3,7 @@ title: Announcing the Release of refine v4!
 description: This release includes several new features that are designed to enhance the developer experience.
 slug: refine-v4-announcement
 authors: necati
-tags: [refine-v4, refine] 
+tags: [community, refine] 
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-13-refine-v4-announcement%2Frefinev4.png
 hide_table_of_contents: false
 is_featured: true

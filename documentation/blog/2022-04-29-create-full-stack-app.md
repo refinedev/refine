@@ -3,7 +3,7 @@ title: How to Create Full Stack React/Next.JS Web App in Few Hour
 description: In this article, we will learn how we can create a full-featured customizable Web / B2B application with **refine** in just a few hours.
 slug: create-full-stack-app-with-refine
 authors: melih
-tags: [refine, react, next.js, full-stack, web-app, b2b, admin-panel]
+tags: [refine, react, nextjs, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/social.jpg
 hide_table_of_contents: false
 ---

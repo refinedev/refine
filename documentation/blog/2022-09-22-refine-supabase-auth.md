@@ -3,7 +3,7 @@ title: OTP Authentication with Supabase and Twilio in React
 description: We'll implement OTP(SMS) authorization using Twilio and Supabase in React app.
 slug: supabase-twilio-otp-authentication-in-react
 authors: vijit_ail
-tags: [react, supabase, refine, authentication, otp, login]
+tags: [react, supabase, refine, access-control, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---

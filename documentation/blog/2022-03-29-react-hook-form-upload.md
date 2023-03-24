@@ -3,7 +3,7 @@ title: How to Multipart File Upload Using FormData with React Hook Form
 description: In this guide, I'm going to show you how to multipart files upload with using React Hook Form
 slug: how-to-multipart-file-upload-with-react-hook-form
 authors: melih
-tags: [refine, react, react-hook-form, multipart-upload, form-data, file-upload]
+tags: [refine, react, react-hook-form, javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/social.jpg
 hide_table_of_contents: false
 ---

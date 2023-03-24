@@ -3,7 +3,7 @@ title: A Detailed Guide on TypeScript Pick Type
 description: We'll deep dive into the TypeScript Pick utility type with examples and use cases.
 slug: typescript-pick-utility-type
 authors: abdullah_numan
-tags: [typescript, typescript-pick, typescript-utility-types]
+tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/social.png
 hide_table_of_contents: false
 ---

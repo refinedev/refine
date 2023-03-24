@@ -3,7 +3,7 @@ title: refine Hackaton Winners
 description: The winners of the refine Open Source Hackathon are announced!
 slug: refine-hackathon-winners
 authors: necati
-tags: [hackathon, refine]
+tags: [community]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
 social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png
 hide_table_of_contents: false

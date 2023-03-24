@@ -3,7 +3,7 @@ title: CSS Grid vs Flexbox - A brief guide
 description: In this brief guide, we compare some concept of the two most popular CSS layout methods - Grid and Flexbox.
 slug: css-grid-vs-flexbox
 authors: muhammed_arslan
-tags: [css, html, grid, flexbox, comparison]
+tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/social.png
 hide_table_of_contents: false
 ---

@@ -4,7 +4,7 @@ description: With the refine being headless, we may use any UI we choose for our
 slug: awesome-react-windows95-ui-with-refine
 authors: melih
 tags:
-    [refine, react, admin-panel, Windows95, React95, Supabase, B2B, open-source]
+    [refine, react, supabase, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---

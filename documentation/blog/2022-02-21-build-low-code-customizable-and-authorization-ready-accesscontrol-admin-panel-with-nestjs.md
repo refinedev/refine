@@ -3,7 +3,7 @@ title: Build low-code, customizable and authorization ready (accesscontrol) admi
 description: Build authorization ready admin panel with NestJS.
 slug: how-to-access-control-with-nestjs
 authors: yildiray
-tags: [nestjs, authorization, accesscontrol, refine]
+tags: [nestjs, access-control, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

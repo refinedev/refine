@@ -3,7 +3,7 @@ title: refine vs Blitz.js
 description: We will take a closer look at how to set both up, what are their internal builds, how they handle the data sources, how to implement the CRUD functionality, add authentication, and how to deploy them to production.
 slug: react-admin-frameworks-refine-vs-blitz-js
 authors: madars_biss
-tags: [refine, blitz]
+tags: [refine, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2FGroup%20821%20(1).png
 hide_table_of_contents: false
 ---

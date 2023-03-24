@@ -1,9 +1,9 @@
 ---
 title: Implementing Dark Mode In Ant Design Using gulp
-description: In this article, we’ll learn how to efficiently implement dark mode in a Refine/Ant Design app, using gulp library and leveraging some React features like hooks
+description: In this article, we’ll learn how to efficiently implement dark mode in a refine/Ant Design app, using gulp library and leveraging some React features like hooks
 slug: how-to-add-darkmode-in-ant-design
 authors: vmalep
-tags: [refine, darkmode, theme, ant-design]
+tags: [refine, react, css, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

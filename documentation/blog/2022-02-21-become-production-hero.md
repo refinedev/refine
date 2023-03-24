@@ -1,9 +1,9 @@
 ---
-title: How to Become A Production Hero as Developer with Refine in 2022
+title: How to Become A Production Hero as Developer with refine in 2022
 description: Focus on your production, Everything you need is in Refine.
 slug: how-to-become-a-production-hero-refine-2022
 authors: ozkalai
-tags: [refine, react, javascript, opensource]
+tags: [refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

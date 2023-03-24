@@ -3,7 +3,7 @@ title: How to use Material UI Tooltip
 description: We'll discover the Material UI (MUI) Tooltip component with examples
 slug: material-ui-tooltip-component
 authors: doro_onome
-tags: [material-ui, react, mui, mui-tooltip,]
+tags: [material-ui, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/social.png
 hide_table_of_contents: false
 ---

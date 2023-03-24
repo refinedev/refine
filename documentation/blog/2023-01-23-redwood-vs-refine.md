@@ -3,7 +3,7 @@ title: refine vs RedwoodJS
 description: We will compare two open source React frameworks, that can be used to build CRUD applications
 slug: refine-vs-redwood-js
 authors: madars_biss
-tags: [refine, redwoodjs]
+tags: [refine, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/social.png
 hide_table_of_contents: false
 is_featured: true
