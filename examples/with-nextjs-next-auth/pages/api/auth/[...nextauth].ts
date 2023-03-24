@@ -1,7 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, { Awaitable, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Auth0Provider from "next-auth/providers/auth0";
 import KeycloakProvider from "next-auth/providers/keycloak";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
     // Configure one or more authentication providers
@@ -20,6 +21,24 @@ export const authOptions = {
             clientId: `refine-demo`,
             clientSecret: `refine`,
             issuer: `https://lemur-0.cloud-iam.com/auth/realms/refine`,
+        }),
+        CredentialsProvider({
+            name: "Credentials",
+            credentials: {},
+            async authorize(credentials, req) {
+                // TODO: Request your API to check credentials
+                console.log(
+                    "credentials",
+                    JSON.stringify(credentials, null, 2),
+                );
+                const user: Awaitable<User> = {
+                    id: "1",
+                    name: "John Doe",
+                    email: "demo@refine.dev",
+                    image: "https://i.pravatar.cc/300",
+                };
+                return user;
+            },
         }),
     ],
     secret: `UItTuD1HcGXIj8ZfHUswhYdNd40Lc325R8VlxQPUoR0=`,

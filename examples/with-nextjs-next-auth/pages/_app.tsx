@@ -1,6 +1,6 @@
 import React from "react";
 import { AppProps } from "next/app";
-import { SessionProvider, useSession, signOut } from "next-auth/react";
+import { SessionProvider, useSession, signOut, signIn } from "next-auth/react";
 
 import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
 import { Layout, notificationProvider } from "@refinedev/antd";
@@ -14,6 +14,7 @@ import "@styles/global.css";
 
 import { API_URL } from "src/constants";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 
 export type ExtendedNextPage = NextPage & {
     noLayout?: boolean;
@@ -25,13 +26,33 @@ type ExtendedAppProps = AppProps & {
 
 const App = (props: React.PropsWithChildren) => {
     const { data, status } = useSession();
+    const router = useRouter();
+    const { to } = router.query;
 
     if (status === "loading") {
         return <span>loading...</span>;
     }
 
     const authProvider: AuthBindings = {
-        login: async () => {
+        login: async ({ providerName, email, password }) => {
+            if (providerName) {
+                signIn(providerName, {
+                    callbackUrl: to ? to.toString() : "/",
+                    redirect: true,
+                });
+
+                return {
+                    success: true,
+                };
+            }
+
+            signIn("credentials", {
+                email,
+                password,
+                callbackUrl: to ? to.toString() : "/",
+                redirect: true,
+            });
+
             return {
                 success: true,
             };

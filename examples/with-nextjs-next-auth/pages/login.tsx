@@ -1,32 +1,32 @@
-import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
+import { AuthPage } from "@refinedev/antd";
 
 import { ExtendedNextPage } from "./_app";
 
 const Login: ExtendedNextPage = () => {
-    const router = useRouter();
-    const { to } = router.query;
-
     return (
-        <div
-            style={{
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+        <AuthPage
+            type="login"
+            providers={[
+                {
+                    name: "google",
+                    label: "Google",
+                },
+                {
+                    name: "auth0",
+                    label: "Auth0",
+                },
+                {
+                    name: "keycloak",
+                    label: "Keycloak",
+                },
+            ]}
+            formProps={{
+                initialValues: {
+                    email: "demo@refine.dev",
+                    password: "demodemo",
+                },
             }}
-        >
-            <button
-                onClick={() =>
-                    signIn(undefined, {
-                        callbackUrl: to ? to.toString() : "/",
-                        redirect: true,
-                    })
-                }
-            >
-                Login
-            </button>
-        </div>
+        />
     );
 };
 
