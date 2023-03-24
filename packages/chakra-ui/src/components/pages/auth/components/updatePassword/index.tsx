@@ -17,11 +17,13 @@ import {
     FormLabel,
     Heading,
     Input,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
+import { ThemedTitle } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
     BoxProps,
@@ -34,7 +36,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
-    title = undefined,
+    title,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const translate = useTranslate();
@@ -51,11 +53,32 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         ...useFormProps,
     });
 
+    const importantTextColor = useColorModeValue("brand.500", "brand.200");
+
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const allContentProps = { ...cardProps, ...contentProps };
     const content = (
         <Box bg="chakra-body-bg" {...allContentProps}>
-            <Heading mb="8" textAlign="center" size="lg">
-                {translate("pages.updatePassword.title", "Update Password")}
+            <Heading
+                mb="8"
+                textAlign="center"
+                fontSize="2xl"
+                color={importantTextColor}
+            >
+                {translate("pages.updatePassword.title", "Set New Password")}
             </Heading>
             <form
                 onSubmit={handleSubmit((data) => {
@@ -67,14 +90,16 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 })}
             >
                 <FormControl mb="3" isInvalid={!!errors?.password}>
-                    <FormLabel>
+                    <FormLabel htmlFor="password">
                         {translate(
                             "pages.updatePassword.fields.password",
                             "New Password",
                         )}
                     </FormLabel>
                     <Input
+                        id="password"
                         type="password"
+                        placeholder="Password"
                         {...register("password", {
                             required: true,
                         })}
@@ -85,14 +110,16 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 </FormControl>
 
                 <FormControl mb="3" isInvalid={!!errors?.confirmPassword}>
-                    <FormLabel>
+                    <FormLabel htmlFor="confirmPassword">
                         {translate(
                             "pages.updatePassword.fields.confirmPassword",
                             "Confirm New Password",
                         )}
                     </FormLabel>
                     <Input
+                        id="confirmPassword"
                         type="password"
+                        placeholder="Confirm Password"
                         {...register("confirmPassword", {
                             required: true,
                             validate: (val: any) => {
@@ -111,7 +138,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button mb="3" type="submit" width="full" colorScheme="green">
+                <Button mt="6" type="submit" width="full" colorScheme="brand">
                     {translate("pages.updatePassword.buttons.submit", "Update")}
                 </Button>
             </form>
@@ -121,7 +148,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <Box {...allWrapperProps}>
-            {renderContent ? renderContent(content, title) : content}
+            {renderContent ? (
+                renderContent(content, PageTitle)
+            ) : (
+                <>
+                    {PageTitle}
+                    {content}
+                </>
+            )}
         </Box>
     );
 };

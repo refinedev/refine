@@ -20,11 +20,13 @@ import {
     Heading,
     Input,
     Link as ChakraLink,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
+import { ThemedTitle } from "@components";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
     BoxProps,
@@ -38,7 +40,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     contentProps,
     renderContent,
     formProps,
-    title = undefined,
+    title,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
@@ -57,10 +59,31 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
         ...useFormProps,
     });
 
+    const importantTextColor = useColorModeValue("brand.500", "brand.200");
+
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const allContentProps = { ...cardProps, ...contentProps };
     const content = (
         <Box bg="chakra-body-bg" {...allContentProps}>
-            <Heading mb="8" textAlign="center" size="lg">
+            <Heading
+                mb="8"
+                textAlign="center"
+                fontSize="2xl"
+                color={importantTextColor}
+            >
                 {translate(
                     "pages.forgotPassword.title",
                     "Forgot your password?",
@@ -77,14 +100,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                 })}
             >
                 <FormControl mb="3" isInvalid={!!errors?.email}>
-                    <FormLabel>
+                    <FormLabel htmlFor="email">
                         {translate(
                             "pages.forgotPassword.fields.email",
                             "Email",
                         )}
                     </FormLabel>
                     <Input
-                        id="title"
+                        id="email"
                         type="text"
                         {...register("email", {
                             required: true,
@@ -103,20 +126,25 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                 </FormControl>
 
                 {loginLink ?? (
-                    <Box mb="3" display="flex" justifyContent="flex-end">
+                    <Box my="6" display="flex" justifyContent="flex-end">
                         <span>
                             {translate(
                                 "pages.register.buttons.haveAccount",
                                 "Have an account?",
                             )}
                         </span>
-                        <ChakraLink color="green" ml="1" as={Link} to="/login">
+                        <ChakraLink
+                            color={importantTextColor}
+                            ml="1"
+                            as={Link}
+                            to="/login"
+                        >
                             {translate("pages.login.signin", "Sign in")}
                         </ChakraLink>
                     </Box>
                 )}
 
-                <Button mb="3" type="submit" width="full" colorScheme="green">
+                <Button mb="3" type="submit" width="full" colorScheme="brand">
                     {translate(
                         "pages.forgotPassword.buttons.submit",
                         "Send reset instructions",
@@ -129,7 +157,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <Box {...allWrapperProps}>
-            {renderContent ? renderContent(content, title) : content}
+            {renderContent ? (
+                renderContent(content, PageTitle)
+            ) : (
+                <>
+                    {PageTitle}
+                    {content}
+                </>
+            )}
         </Box>
     );
 };

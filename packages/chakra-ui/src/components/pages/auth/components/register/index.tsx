@@ -23,11 +23,13 @@ import {
     Input,
     VStack,
     Link as ChakraLink,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
+import { ThemedTitle } from "@components";
 
 type RegisterProps = RegisterPageProps<
     BoxProps,
@@ -42,7 +44,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     contentProps,
     renderContent,
     formProps,
-    title = undefined,
+    title,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -71,7 +73,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         {providers.map((provider) => (
                             <Button
                                 key={provider.name}
-                                colorScheme="green"
+                                variant="outline"
+                                fontSize="sm"
                                 width="full"
                                 leftIcon={<>{provider?.icon}</>}
                                 onClick={() =>
@@ -93,10 +96,37 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         return null;
     };
 
+    const importantTextColor = useColorModeValue("brand.500", "brand.200");
+
+    const PageTitle =
+        title === false ? null : (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "32px",
+                    fontSize: "20px",
+                }}
+            >
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box bg="chakra-body-bg" {...allContentProps}>
-            <Heading mb="8" textAlign="center" size="lg">
+        <Box
+            bg="chakra-body-bg"
+            {...allContentProps}
+            borderWidth="1px"
+            borderColor={useColorModeValue("gray.200", "gray.700")}
+            backgroundColor={useColorModeValue("white", "gray.800")}
+        >
+            <Heading
+                mb="8"
+                textAlign="center"
+                fontSize="2xl"
+                color={importantTextColor}
+            >
                 {translate("pages.register.title", "Sign up for your account")}
             </Heading>
             {renderProviders()}
@@ -109,13 +139,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     return mutate(data);
                 })}
             >
-                <FormControl mb="3" isInvalid={!!errors?.email}>
-                    <FormLabel>
+                <FormControl mt="6" isInvalid={!!errors?.email}>
+                    <FormLabel htmlFor="email">
                         {translate("pages.register.fields.email", "Email")}
                     </FormLabel>
                     <Input
-                        id="title"
+                        id="email"
                         type="text"
+                        placeholder="Email"
                         {...register("email", {
                             required: true,
                             pattern: {
@@ -132,16 +163,17 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl mb="3" isInvalid={!!errors?.password}>
-                    <FormLabel>
+                <FormControl mt="6" isInvalid={!!errors?.password}>
+                    <FormLabel htmlFor="password">
                         {translate(
                             "pages.register.fields.password",
                             "Password",
                         )}
                     </FormLabel>
                     <Input
-                        id="title"
+                        id="password"
                         type="password"
+                        placeholder="Password"
                         {...register("password", {
                             required: true,
                         })}
@@ -151,23 +183,34 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     </FormErrorMessage>
                 </FormControl>
 
+                <Button mt="6" type="submit" width="full" colorScheme="brand">
+                    {translate("pages.register.buttons.submit", "Sign up")}
+                </Button>
+
                 {loginLink ?? (
-                    <Box display="flex" justifyContent="flex-end" mb="3">
+                    <Box
+                        display="flex"
+                        justifyContent="flex-end"
+                        mt="6"
+                        fontSize="12px"
+                    >
                         <span>
                             {translate(
                                 "pages.login.buttons.haveAccount",
                                 "Have an account?",
                             )}
                         </span>
-                        <ChakraLink color="green" ml="1" as={Link} to="/login">
+                        <ChakraLink
+                            color={importantTextColor}
+                            ml="1"
+                            fontWeight="bold"
+                            as={Link}
+                            to="/login"
+                        >
                             {translate("pages.login.signin", "Sign in")}
                         </ChakraLink>
                     </Box>
                 )}
-
-                <Button mb="3" type="submit" width="full" colorScheme="green">
-                    {translate("pages.register.buttons.submit", "Sign up")}
-                </Button>
             </form>
         </Box>
     );
@@ -175,7 +218,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <Box {...allWrapperProps}>
-            {renderContent ? renderContent(content, title) : content}
+            {renderContent ? (
+                renderContent(content, PageTitle)
+            ) : (
+                <>
+                    {PageTitle}
+                    {content}
+                </>
+            )}
         </Box>
     );
 };
