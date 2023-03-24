@@ -50,7 +50,7 @@ const refineCustomColors = {
 } as const;
 
 const refineCustomThemes = {
-    Blue: { ...baseTheme.colors.blue },
+    Blue: baseTheme.colors.blue,
     Purple: baseTheme.colors.purple,
     Magenta: baseTheme.colors.pink,
     Red: baseTheme.colors.red,
@@ -62,7 +62,6 @@ const refineCustomThemes = {
 export interface RefineTheme extends Omit<Theme, "colors"> {
     colors: Theme["colors"] & {
         brand: {
-            alpha100: string;
             50: string;
             100: string;
             200: string;
