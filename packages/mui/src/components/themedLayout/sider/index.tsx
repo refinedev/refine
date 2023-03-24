@@ -158,7 +158,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                         sx={{
                                             justifyContent: "center",
                                             minWidth: "24px",
-                                            marginRight: "32px",
+                                            transition: "margin-right 0.3s",
+                                            marginRight: isSiderOpen
+                                                ? "32px"
+                                                : "0px",
                                             color: "currentColor",
                                         }}
                                     >
@@ -171,20 +174,19 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                             fontSize: "14px",
                                         }}
                                     />
-                                    {isSiderOpen &&
-                                        (isOpen ? (
-                                            <ExpandLess
-                                                sx={{
-                                                    color: "text.icon",
-                                                }}
-                                            />
-                                        ) : (
-                                            <ExpandMore
-                                                sx={{
-                                                    color: "text.icon",
-                                                }}
-                                            />
-                                        ))}
+                                    {isOpen ? (
+                                        <ExpandLess
+                                            sx={{
+                                                color: "text.icon",
+                                            }}
+                                        />
+                                    ) : (
+                                        <ExpandMore
+                                            sx={{
+                                                color: "text.icon",
+                                            }}
+                                        />
+                                    )}
                                 </ListItemButton>
                             </Tooltip>
                             {isSiderOpen && (
@@ -235,7 +237,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             <ListItemIcon
                                 sx={{
                                     justifyContent: "center",
-                                    marginRight: "32px",
+                                    transition: "margin-right 0.3s",
+                                    marginRight: isSiderOpen ? "32px" : "0px",
                                     minWidth: "24px",
                                     color: "currentColor",
                                 }}
@@ -281,7 +284,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         sx={{
                             justifyContent: "center",
                             minWidth: "24px",
-                            marginRight: "32px",
+                            transition: "margin-right 0.3s",
+                            marginRight: isSiderOpen ? "32px" : "0px",
                             fontSize: "14px",
                         }}
                     >
@@ -335,7 +339,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     sx={{
                         justifyContent: "center",
                         minWidth: "24px",
-                        marginRight: "32px",
+                        transition: "margin-right 0.3s",
+                        marginRight: isSiderOpen ? "32px" : "0px",
                         marginLeft: "2px",
                     }}
                 >
