@@ -3,7 +3,7 @@ title: Creating an Admin Dashboard with refine
 description: We'll be building a admin backend app for the Pixels client app.
 slug: refine-pixels-5
 authors: abdullah_numan
-tags: [refine-week, refine, supabase, ant-design]
+tags: [refine-week, refine, supabase]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fsocial.png
 hide_table_of_contents: false
 ---
