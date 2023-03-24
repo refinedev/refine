@@ -34,6 +34,7 @@ import {
     useRefineContext,
     useActiveAuthProvider,
     pickNotDeprecated,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { RefineThemedLayoutSiderProps } from "../types";
 
@@ -68,6 +69,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     const isExistAuthentication = useIsExistAuthentication();
     const TitleFromContext = useTitle();
     const authProvider = useActiveAuthProvider();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
@@ -296,6 +298,24 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         </CanAccess>
     ) : null;
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                t(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Tooltip
             title={t("buttons.logout", "Logout")}
@@ -305,7 +325,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         >
             <ListItemButton
                 key="logout"
-                onClick={() => mutateLogout()}
+                onClick={() => handleLogout()}
                 sx={{
                     justifyContent: "center",
                     marginTop: "8px",
