@@ -43,6 +43,7 @@
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
+        "@mui/icons-material": "^5.8.3",
         "@chakra-ui/react": "^2.5.1",
         "react-hook-form": "^7.30.0",
         "base64url": "^3.0.1",

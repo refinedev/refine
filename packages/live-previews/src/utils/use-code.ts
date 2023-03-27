@@ -24,7 +24,14 @@ export const useCode = (): UseCodeReturn => {
     const code = React.useMemo(() => {
         if (!isReady) return "";
         if (!compressed) return "";
-        return decompressFromEncodedURIComponent(compressed as string);
+        const decompressed = decompressFromEncodedURIComponent(
+            compressed as string,
+        );
+        const fixed = decompressed?.replace(/React\$1/g, "React");
+
+        console.log("fixed", fixed);
+
+        return fixed;
     }, [compressed, isReady]);
 
     const css = React.useMemo(() => {

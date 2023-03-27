@@ -11,6 +11,8 @@ export const checkPackage = (code = "") => {
         code.includes("@emotion/react") ||
         code.includes("@emotion/styled") ||
         code.includes("@mui/lab") ||
+        code.includes("@mui/material/styles") ||
+        code.includes("@mui/icons-material") ||
         code.includes("@mui/material") ||
         code.includes("@mui/x-data-grid") ||
         code.includes(`from "react-hook-form"`);

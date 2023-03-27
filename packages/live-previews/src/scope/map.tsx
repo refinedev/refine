@@ -35,6 +35,8 @@ export const packageMap: Record<string, string> = {
     "@emotion/styled": "EmotionStyled",
     "@mui/lab": "MuiLab",
     "@mui/material": "MuiMaterial",
+    "@mui/material/styles": "MuiMaterialStyles",
+    "@mui/icons-material": "MuiIconsMaterial",
     "@mui/x-data-grid": "MuiXDataGrid",
     "@chakra-ui/react": "ChakraUI",
     "react-hook-form": "ReactHookForm",
