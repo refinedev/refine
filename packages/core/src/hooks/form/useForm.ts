@@ -246,11 +246,18 @@ export const useForm = <
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
+    /**
+     * In some cases, `id` from the router params is not available at the first render.
+     *
+     * (e.g. when using `Next.js` and client-side-rendering, `router` is not ready to use at the first render)
+     *
+     * We're watching for `defaultId` changes and setting `id` state if it's not equal to `defaultId`.
+     */
     React.useEffect(() => {
         if (defaultId !== id) {
-            setId(idFromProps);
+            setId(defaultId);
         }
-    }, [idFromProps]);
+    }, [defaultId]);
 
     /** `resourceName` fallback value depends on the router type */
     const resourceName =
