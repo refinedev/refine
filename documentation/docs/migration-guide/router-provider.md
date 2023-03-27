@@ -44,7 +44,7 @@ If you have swizzled the `<Sider>` component from your UI package and customized
 
 With the new `routerProvider` prop, the v3 compatible router providers are now provided through the `legacyRouterProvider` prop. If you're using the `legacyRouterProvider`, `useRouterContext` will continue working as before. However, if you're using the new `routerProvider`, `useRouterContext` hook will be deprecated and useless for you but can easily be replaced with the router hooks that are `useLink`, `useGo`, `useBack` and `useParsed.`
 
-In the `<Sider>` components, we have used the `Link` component from `useRouterContext`. You can easily replace the usage of `Link` with the `useLink` hook. If you want you can always switch to the `Link` implementations from your router. (e.g. `react-router-dom`'s `Link` component or the `next/link` component)
+In the `<Sider>` components, we have used the `Link` component from `useRouterContext`. You can easily replace the usage of `Link` with the `useLink` hook or just switch to the `Link` implementations from your router. (e.g. `react-router-dom`'s `Link` component or the `next/link` component)
 
 ```diff
 - import { useRouterContext } from "@refinedev/core";
