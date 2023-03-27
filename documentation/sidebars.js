@@ -10,7 +10,7 @@ module.exports = {
         {
             type: "doc",
             id: "tutorial/introduction/index",
-            label: "Tutorial 🆙",
+            label: "Tutorial",
         },
         {
             type: "category",
