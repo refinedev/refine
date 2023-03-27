@@ -254,9 +254,7 @@ export const useForm = <
      * We're watching for `defaultId` changes and setting `id` state if it's not equal to `defaultId`.
      */
     React.useEffect(() => {
-        if (defaultId !== id) {
-            setId(defaultId);
-        }
+        setId(defaultId);
     }, [defaultId]);
 
     /** `resourceName` fallback value depends on the router type */
