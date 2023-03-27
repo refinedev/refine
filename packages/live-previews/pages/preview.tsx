@@ -55,6 +55,46 @@ const Preview: NextPage = () => {
                 ? (await import("../src/scope/headless-inferencer")).default
                 : {};
 
+            const kbarScope = usedPackages.has("kbar")
+                ? (await import("../src/scope/kbar")).default
+                : {};
+
+            const airtableScope = usedPackages.has("airtable")
+                ? (await import("../src/scope/airtable")).default
+                : {};
+
+            const appwriteScope = usedPackages.has("appwrite")
+                ? (await import("../src/scope/appwrite")).default
+                : {};
+
+            const hasuraScope = usedPackages.has("hasura")
+                ? (await import("../src/scope/hasura")).default
+                : {};
+
+            const nestjsxScope = usedPackages.has("nestjsx-crud")
+                ? (await import("../src/scope/nestjsx")).default
+                : {};
+
+            const strapiV4Scope = usedPackages.has("strapi-v4")
+                ? (await import("../src/scope/strapi-v4")).default
+                : {};
+
+            const supabaseScope = usedPackages.has("supabase")
+                ? (await import("../src/scope/supabase")).default
+                : {};
+
+            const axiosScope = usedPackages.has("axios")
+                ? (await import("../src/scope/axios")).default
+                : {};
+
+            const auth0Scope = usedPackages.has("auth0")
+                ? (await import("../src/scope/auth0")).default
+                : {};
+
+            const keycloakScope = usedPackages.has("keycloak")
+                ? (await import("../src/scope/keycloak")).default
+                : {};
+
             setScope({
                 ...RefineCommonScope,
                 ...antdScope,
@@ -66,6 +106,16 @@ const Preview: NextPage = () => {
                 ...mantineInferencerScope,
                 ...chakraInferencerScope,
                 ...headlessInferencerScope,
+                ...kbarScope,
+                ...airtableScope,
+                ...appwriteScope,
+                ...hasuraScope,
+                ...nestjsxScope,
+                ...strapiV4Scope,
+                ...supabaseScope,
+                ...axiosScope,
+                ...auth0Scope,
+                ...keycloakScope,
             });
             setScopeSettled(true);
         }
