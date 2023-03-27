@@ -3,7 +3,7 @@ import { Box, Heading, Button, Link, Image } from "@chakra-ui/react";
 
 /**
  * It is a page that welcomes you after the configuration is completed.
- * @deprecated `WelcomePage` is deprecated and will be removed in the next major release.
+ * @deprecated `WelcomePage` is deprecated. Use `WelcomePage` from `@refinedev/core` instead.
  */
 export const WelcomePage: React.FC = () => {
     return (
