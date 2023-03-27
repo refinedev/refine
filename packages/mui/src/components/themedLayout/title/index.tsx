@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouterContext, useLink, useRouterType } from "@refinedev/core";
-import { Link as MuiLink, Stack, SvgIcon, Typography } from "@mui/material";
+import { Link as MuiLink, SvgIcon, Typography } from "@mui/material";
 import { RefineLayoutThemedTitleProps } from "../types";
 
 const defaultText = "refine Project";
@@ -29,6 +29,7 @@ const defaultIcon = (
 
 export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     collapsed,
+    wrapperStyles,
     icon = defaultIcon,
     text = defaultText,
 }) => {
@@ -39,28 +40,31 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     return (
-        <MuiLink to="/" component={ActiveLink} underline="none">
-            <Stack
-                direction="row"
-                spacing={1}
-                justifyContent="center"
-                alignItems="center"
-            >
-                <SvgIcon height="24px" width="24px" color="primary">
-                    {icon}
-                </SvgIcon>
-
-                {!collapsed && (
-                    <Typography
-                        variant="h6"
-                        fontWeight={700}
-                        color="text.primary"
-                        fontSize="inherit"
-                    >
-                        {text}
-                    </Typography>
-                )}
-            </Stack>
+        <MuiLink
+            to="/"
+            component={ActiveLink}
+            underline="none"
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                ...wrapperStyles,
+            }}
+        >
+            <SvgIcon height="24px" width="24px" color="primary">
+                {icon}
+            </SvgIcon>
+            {!collapsed && (
+                <Typography
+                    variant="h6"
+                    fontWeight={700}
+                    color="text.primary"
+                    fontSize="inherit"
+                    textOverflow="ellipsis"
+                    overflow="hidden"
+                >
+                    {text}
+                </Typography>
+            )}
         </MuiLink>
     );
 };

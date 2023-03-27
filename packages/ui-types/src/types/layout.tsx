@@ -47,4 +47,5 @@ export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
     icon?: React.ReactNode;
     text?: React.ReactNode;
+    wrapperStyles?: React.CSSProperties;
 };

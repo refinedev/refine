@@ -5,7 +5,6 @@ export const layoutStyles: CSSProperties = {};
 export const titleStyles: CSSProperties = {
     textAlign: "center",
     fontSize: "24px",
-    letterSpacing: "-0.04em",
     marginBottom: "24px",
     overflowWrap: "break-word",
     hyphens: "manual",
