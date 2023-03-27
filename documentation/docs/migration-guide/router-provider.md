@@ -26,7 +26,7 @@ The creation and control of routes is entirely up to the user. You must manually
 
 Since route handling is now detached from the `<Refine>` component, props it accepts will change. Layout related props such as `Layout`, `Sider`, `Title`, `Header`, `Footer,` and `OffLayoutArea` are deprecated and won't have any effect when using the new router providers. However, the UI components exported from the package are still well-supported and can be used inside your app while creating your routes and pages.
 
-Similarly, the `DashboardPage`, `catchAll` and `LoginPage` components are also deprecated. You can now create your own routes and pages to replace them without any limitations.
+Similarly, the `DashboardPage`, `catchAll` and `LoginPage` components are also deprecated and won't have any affect when using the new router providers. You need to create your own routes and pages to replace them.
 
 :::info Legacy Behavior (Dashboard Page)
 
