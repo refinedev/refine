@@ -13,7 +13,7 @@ export const PostEdit: React.FC = () => {
     });
 
     const [formValues, setFormValues] = useState({
-        title: result?.title,
+        title: result?.title ?? "",
         content: result?.content,
         status: result?.status,
         category: {
@@ -23,7 +23,7 @@ export const PostEdit: React.FC = () => {
 
     useEffect(() => {
         setFormValues({
-            title: result?.title,
+            title: result?.title ?? "",
             content: result?.content,
             status: result?.status,
             category: {
