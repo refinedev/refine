@@ -850,8 +850,8 @@ const MyLoginPage = () => {
 
 By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
 
--   Default text is: Refine Project
--   Default icon is: Refine Logo
+-   Default text is: refine Project
+-   Default icon is: refine Logo
 
 ```tsx
 import { AuthPage } from "@refinedev/mui";
