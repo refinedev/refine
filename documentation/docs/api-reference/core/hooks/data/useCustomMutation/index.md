@@ -154,7 +154,7 @@ After data is fetched successfully, `useCustomMutation` can call `open` function
 const { mutate } = useCustomMutation();
 
 mutate({
-    successNotification: (data, values, resource) => {
+    successNotification: (data, values) => {
         return {
             message: `${data.title} Successfully fetched.`,
             description: "Success with no errors",
@@ -174,7 +174,7 @@ After data fetching is failed, `useCustomMutation` will call `open` function fro
 const { mutate } = useCustomMutation();
 
 mutate({
-    errorNotification: (data, values, resource) => {
+    errorNotification: (data, values) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
             description: "Error",
