@@ -273,11 +273,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-<<<<<<< HEAD
-Now, we can see the show page in the browser at <a href="http://localhost:3000/products/show/123" rel="noopener noreferrer nofollow">localhost:3000/products/show/123</a>
-=======
 Now, we can see the show page in the browser at <a href="http://localhost:3000/blog-posts/show/123" rel="noopener noreferrer nofollow">localhost:3000/blog-posts/show/123</a>
->>>>>>> next
 
 <br/>
 <br/>
