@@ -9,8 +9,6 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 
-const { Step } = Steps;
-
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
         useStepsForm<IPost>();
@@ -113,10 +111,10 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 </>
             }
         >
-            <Steps {...stepsProps}>
-                <Step title="About Post" />
-                <Step title="Content" />
-            </Steps>
+            <Steps
+                {...stepsProps}
+                items={[{ title: "About Post" }, { title: "Content" }]}
+            />
 
             <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
                 {formList[current]}
