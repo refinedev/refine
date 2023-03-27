@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 5.1.3
+
+### Patch Changes
+
+-   [#3987](https://github.com/refinedev/refine/pull/3987) [`d7d68e3ff68`](https://github.com/refinedev/refine/commit/d7d68e3ff686dece9f58e53e02076f0ecbd91010) Thanks [@aliemir](https://github.com/aliemir)! - Add `isReady` check to `parse` method for `/pages` to wait until the correct values are returned from the `router`.
+
 ## 5.1.2
 
 ### Patch Changes

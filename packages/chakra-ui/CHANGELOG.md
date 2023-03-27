@@ -1,5 +1,105 @@
 # @pankod/refine-chakra-ui
 
+## 2.4.0
+
+### Minor Changes
+
+-   [#3971](https://github.com/refinedev/refine/pull/3971) [`2798f715361`](https://github.com/refinedev/refine/commit/2798f715361c5fd407d09429d94b05b602b50397) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the chakra-UI components.
+
+    ```tsx
+    import { RefineThemes } from "@refinedev/chakra-ui";
+    import { Refine } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    const App = () => {
+        // ---
+        return (
+            <ChakraProvider theme={RefineThemes.Magenta}>
+                <Refine dataProvider={dataProvider("YOUR_API_URL")}>
+                    {/** your app here */}
+                </Refine>
+            </ChakraProvider>
+        );
+    };
+    ```
+
+    -   default title with icon added to `AuthPage`. It uses `ThemedTitle` component from `@refinedev/chakra-ui`. You can remove it by setting `title` prop to `false`.
+
+    ```tsx
+    import { AuthPage, ThemedTitle } from "@refinedev/chakra-ui";
+
+    const MyLoginPage = () => {
+        return (
+            <AuthPage
+                type="login"
+                title={
+                    <ThemedTitle
+                        title="My Title"
+                        icon={<img src="https://refine.dev/img/logo.png" />}
+                    />
+                }
+            />
+        );
+    };
+    ```
+
+    -   `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+
+    ```tsx
+    import { Box, Heading } from "@chakra-ui/react";
+    import { AuthPage } from "@refinedev/chakra-ui";
+
+    const MyLoginPage = () => {
+        return (
+            <AuthPage
+                contentProps={{
+                    style: {
+                        width: "400px",
+                    },
+                }}
+                renderContent={(
+                    content: React.ReactNode,
+                    title: React.ReactNode,
+                ) => {
+                    return (
+                        <Box
+                            bg="white"
+                            borderRadius="md"
+                            px="5"
+                            display="flex"
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <Heading color="white">Extra Header</Heading>
+                            {content}
+                            <Heading color="white">Extra Footer</Heading>
+                        </Box>
+                    );
+                }}
+            />
+        );
+    };
+    ```
+
+    -   `<ThemedLayout>`, `<ThemedSider>`, `<ThemedTitle>`, `<ThemedHeader>` created to use theme colors.
+
+    -   `<EditButton>` in `<Show>` color changed to `brand`.
+    -   `<CreateButton>` color changed to `brand`.
+
+    -   `<AuthPage>` component uses colors from the theme.
+    -   `<AuthPageTitle>` added to `AuthPage`
+
+### Patch Changes
+
+-   [#3975](https://github.com/refinedev/refine/pull/3975) [`b1e6e32f9a1`](https://github.com/refinedev/refine/commit/b1e6e32f9a19e8f26f95d41c942f90e96ed68372) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the logs out.
+
+        -   The `<ThemedSider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
+    -   `<RefineThemes>` colors updated to match the new theme colors.
+
+-   Updated dependencies [[`2798f715361`](https://github.com/refinedev/refine/commit/2798f715361c5fd407d09429d94b05b602b50397)]:
+    -   @refinedev/ui-types@1.4.0
+
 ## 2.3.4
 
 ### Patch Changes
