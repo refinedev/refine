@@ -55,6 +55,10 @@ const Preview: NextPage = () => {
                 ? (await import("../src/scope/headless-inferencer")).default
                 : {};
 
+            const tablerScope = usedPackages.has("tabler-icons")
+                ? (await import("../src/scope/tabler-icons")).default
+                : {};
+
             const kbarScope = usedPackages.has("kbar")
                 ? (await import("../src/scope/kbar")).default
                 : {};
@@ -116,6 +120,7 @@ const Preview: NextPage = () => {
                 ...axiosScope,
                 ...auth0Scope,
                 ...keycloakScope,
+                ...tablerScope,
             });
             setScopeSettled(true);
         }
