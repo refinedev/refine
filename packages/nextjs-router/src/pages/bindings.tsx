@@ -91,7 +91,7 @@ export const routerBindings: RouterBindings = {
         return back;
     },
     parse: () => {
-        const { query, asPath: pathname } = useRouter();
+        const { query, asPath: pathname, isReady } = useRouter();
         const { resources } = useContext(ResourceContext);
 
         const cleanPathname = pathname.split("?")[0].split("#")[0];
@@ -101,7 +101,7 @@ export const routerBindings: RouterBindings = {
         }, [cleanPathname, resources]);
 
         const inferredParams =
-            matchedRoute && cleanPathname
+            matchedRoute && cleanPathname && isReady
                 ? paramsFromCurrentPath(cleanPathname, matchedRoute)
                 : {};
 
