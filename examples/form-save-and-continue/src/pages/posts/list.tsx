@@ -18,9 +18,11 @@ export const PostList: React.FC = () => {
             <button onClick={() => create("posts")}>Create Post</button>
             <table>
                 <thead>
-                    <td>ID</td>
-                    <td>Title</td>
-                    <td>Actions</td>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {tableQueryResult.data?.data.map((post) => (

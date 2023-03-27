@@ -42,29 +42,39 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         return null;
     }
 
-    return (
-        <AntdBreadcrumb {...breadcrumbProps}>
-            {showHome && (hasDashboard || rootRouteResource.found) && (
-                <AntdBreadcrumb.Item>
-                    <ActiveLink to="/">
-                        {rootRouteResource?.resource?.meta?.icon ?? (
-                            <HomeOutlined />
-                        )}
-                    </ActiveLink>
-                </AntdBreadcrumb.Item>
-            )}
-            {breadcrumbs.map(({ label, icon, href }) => {
-                return (
-                    <AntdBreadcrumb.Item key={label}>
-                        {!hideIcons && icon}
-                        {href ? (
-                            <ActiveLink to={href}>{label}</ActiveLink>
-                        ) : (
-                            <span>{label}</span>
-                        )}
-                    </AntdBreadcrumb.Item>
-                );
-            })}
-        </AntdBreadcrumb>
-    );
+    const breadCrumbItems = breadcrumbs.map(({ label, icon, href }) => ({
+        key: `breadcrumb-item-${label}`,
+        title: (
+            <>
+                {!hideIcons && icon}
+                {href ? (
+                    <ActiveLink to={href}>{label}</ActiveLink>
+                ) : (
+                    <span>{label}</span>
+                )}
+            </>
+        ),
+    }));
+
+    const getBreadcrumbItems = () => {
+        if (showHome && (hasDashboard || rootRouteResource.found)) {
+            return [
+                {
+                    key: "breadcrumb-item-home",
+                    title: (
+                        <ActiveLink to="/">
+                            {rootRouteResource?.resource?.meta?.icon ?? (
+                                <HomeOutlined />
+                            )}
+                        </ActiveLink>
+                    ),
+                },
+                ...breadCrumbItems,
+            ];
+        }
+
+        return breadCrumbItems;
+    };
+
+    return <AntdBreadcrumb items={getBreadcrumbItems()} {...breadcrumbProps} />;
 };

@@ -8,8 +8,8 @@ import {
     ListItemText,
     Collapse,
     Tooltip,
-    Button,
     IconButton,
+    Paper,
 } from "@mui/material";
 import {
     ListOutlined,
@@ -17,7 +17,6 @@ import {
     ExpandLess,
     ExpandMore,
     ChevronLeft,
-    ChevronRight,
     MenuRounded,
     Dashboard,
 } from "@mui/icons-material";
@@ -35,22 +34,27 @@ import {
     useRefineContext,
     useActiveAuthProvider,
     pickNotDeprecated,
+    useWarnAboutChange,
 } from "@refinedev/core";
 import { RefineThemedLayoutSiderProps } from "../types";
 
 import { ThemedTitle as DefaultTitle } from "@components";
+import { useTheme } from "@emotion/react";
 
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
+    isSiderOpen,
+    onToggleSiderClick,
 }) => {
-    const [collapsed, setCollapsed] = useState(false);
+    const theme = useTheme();
+    console.log("theme", theme);
     const [opened, setOpened] = useState(false);
 
     const drawerWidth = () => {
-        if (collapsed) return 64;
-        return 200;
+        if (isSiderOpen) return 240;
+        return 56;
     };
 
     const t = useTranslate();
@@ -65,6 +69,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     const isExistAuthentication = useIsExistAuthentication();
     const TitleFromContext = useTitle();
     const authProvider = useActiveAuthProvider();
+    const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
@@ -129,13 +134,13 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             <Tooltip
                                 title={label ?? name}
                                 placement="right"
-                                disableHoverListener={!collapsed}
+                                disableHoverListener={isSiderOpen}
                                 arrow
                             >
                                 <ListItemButton
                                     onClick={() => {
-                                        if (collapsed) {
-                                            setCollapsed(false);
+                                        if (!isSiderOpen) {
+                                            onToggleSiderClick?.(true);
                                             if (!isOpen) {
                                                 handleClick(item.key || "");
                                             }
@@ -152,7 +157,11 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                     <ListItemIcon
                                         sx={{
                                             justifyContent: "center",
-                                            minWidth: 36,
+                                            minWidth: "24px",
+                                            transition: "margin-right 0.3s",
+                                            marginRight: isSiderOpen
+                                                ? "32px"
+                                                : "0px",
                                             color: "currentColor",
                                         }}
                                     >
@@ -165,15 +174,22 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                             fontSize: "14px",
                                         }}
                                     />
-                                    {!collapsed &&
-                                        (isOpen ? (
-                                            <ExpandLess color="primary" />
-                                        ) : (
-                                            <ExpandMore color="primary" />
-                                        ))}
+                                    {isOpen ? (
+                                        <ExpandLess
+                                            sx={{
+                                                color: "text.icon",
+                                            }}
+                                        />
+                                    ) : (
+                                        <ExpandMore
+                                            sx={{
+                                                color: "text.icon",
+                                            }}
+                                        />
+                                    )}
                                 </ListItemButton>
                             </Tooltip>
-                            {!collapsed && (
+                            {isSiderOpen && (
                                 <Collapse
                                     in={open[item.key || ""]}
                                     timeout="auto"
@@ -199,7 +215,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     <Tooltip
                         title={label ?? name}
                         placement="right"
-                        disableHoverListener={!collapsed}
+                        disableHoverListener={isSiderOpen}
                         arrow
                     >
                         <ListItemButton
@@ -213,12 +229,17 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                 pl: isNested ? 4 : 2,
                                 py: isNested ? 1.25 : 1,
                                 justifyContent: "center",
+                                color: isSelected
+                                    ? "primary.main"
+                                    : "text.primary",
                             }}
                         >
                             <ListItemIcon
                                 sx={{
                                     justifyContent: "center",
-                                    minWidth: 36,
+                                    transition: "margin-right 0.3s",
+                                    marginRight: isSiderOpen ? "32px" : "0px",
+                                    minWidth: "24px",
                                     color: "currentColor",
                                 }}
                             >
@@ -243,7 +264,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
             <Tooltip
                 title={translate("dashboard.title", "Dashboard")}
                 placement="right"
-                disableHoverListener={!collapsed}
+                disableHoverListener={isSiderOpen}
                 arrow
             >
                 <ListItemButton
@@ -262,7 +283,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     <ListItemIcon
                         sx={{
                             justifyContent: "center",
-                            minWidth: 36,
+                            minWidth: "24px",
+                            transition: "margin-right 0.3s",
+                            marginRight: isSiderOpen ? "32px" : "0px",
                             fontSize: "14px",
                         }}
                     >
@@ -279,16 +302,34 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         </CanAccess>
     ) : null;
 
+    const handleLogout = () => {
+        if (warnWhen) {
+            const confirm = window.confirm(
+                t(
+                    "warnWhenUnsavedChanges",
+                    "Are you sure you want to leave? You have unsaved changes.",
+                ),
+            );
+
+            if (confirm) {
+                setWarnWhen(false);
+                mutateLogout();
+            }
+        } else {
+            mutateLogout();
+        }
+    };
+
     const logout = isExistAuthentication && (
         <Tooltip
             title={t("buttons.logout", "Logout")}
             placement="right"
-            disableHoverListener={!collapsed}
+            disableHoverListener={isSiderOpen}
             arrow
         >
             <ListItemButton
                 key="logout"
-                onClick={() => mutateLogout()}
+                onClick={() => handleLogout()}
                 sx={{
                     justifyContent: "center",
                     marginTop: "8px",
@@ -297,7 +338,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 <ListItemIcon
                     sx={{
                         justifyContent: "center",
-                        minWidth: 36,
+                        minWidth: "24px",
+                        transition: "margin-right 0.3s",
+                        marginRight: isSiderOpen ? "32px" : "0px",
+                        marginLeft: "2px",
                     }}
                 >
                     <Logout />
@@ -321,7 +365,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 dashboard,
                 logout,
                 items,
-                collapsed,
+                collapsed: !isSiderOpen,
             });
         }
         return (
@@ -388,12 +432,14 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             alignItems: "center",
                             justifyContent: "center",
                             fontSize: "14px",
-                            bgcolor: ({ components }: any) =>
-                                components?.MuiToolbar?.styleOverrides?.root
-                                    ?.backgroundColor,
                         }}
                     >
-                        <RenderToTitle collapsed={false} />
+                        <RenderToTitle
+                            collapsed={false}
+                            wrapperStyles={{
+                                gap: "8px",
+                            }}
+                        />
                     </Box>
                     {drawer}
                 </Drawer>
@@ -402,7 +448,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     sx={{
                         display: { xs: "none", md: "block" },
                         "& .MuiDrawer-paper": {
-                            border: 0,
                             width: drawerWidth,
                             overflow: "hidden",
                             transition:
@@ -411,21 +456,40 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     }}
                     open
                 >
-                    <Box
+                    <Paper
+                        elevation={0}
                         sx={{
+                            fontSize: "14px",
+                            width: "100%",
                             height: 64,
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: collapsed ? "center" : "flex-start",
-                            paddingLeft: collapsed ? 0 : "16px",
-                            fontSize: "14px",
-                            bgcolor: ({ components }: any) =>
-                                components?.MuiToolbar?.styleOverrides?.root
-                                    ?.backgroundColor,
+                            justifyContent: !isSiderOpen
+                                ? "center"
+                                : "space-between",
+                            paddingLeft: !isSiderOpen ? 0 : "16px",
+                            paddingRight: !isSiderOpen ? 0 : "8px",
+                            variant: "outlined",
+                            borderRadius: 0,
+                            borderBottom: (theme) =>
+                                `1px solid ${theme.palette.action.focus}`,
                         }}
                     >
-                        <RenderToTitle collapsed={collapsed} />
-                    </Box>
+                        <RenderToTitle
+                            collapsed={!isSiderOpen}
+                            wrapperStyles={{
+                                gap: "32px",
+                            }}
+                        />
+                        {isSiderOpen && (
+                            <IconButton
+                                size="small"
+                                onClick={() => onToggleSiderClick?.(false)}
+                            >
+                                {<ChevronLeft />}
+                            </IconButton>
+                        )}
+                    </Paper>
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -435,46 +499,23 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     >
                         {drawer}
                     </Box>
-                    <Button
-                        sx={{
-                            color: "primary",
-                            textAlign: "center",
-                            borderRadius: 0,
-                            bgcolor: ({ components }: any) =>
-                                components?.MuiToolbar?.styleOverrides?.root
-                                    ?.backgroundColor,
-                        }}
-                        fullWidth
-                        size="large"
-                        onClick={() => setCollapsed((prev) => !prev)}
-                    >
-                        {collapsed ? <ChevronRight /> : <ChevronLeft />}
-                    </Button>
                 </Drawer>
-                <Box
+                <IconButton
                     sx={{
-                        display: { xs: "block", md: "none" },
+                        display: { xs: "flex", md: "none" },
+                        justifyContent: "center",
+                        alignItems: "center",
                         position: "fixed",
-                        top: "64px",
-                        left: "0px",
-                        borderRadius: "0 6px 6px 0",
+                        top: "12px",
+                        left: "16px",
                         zIndex: 1199,
+                        height: "36px",
                         width: "36px",
-                        bgcolor: "primary.dark",
                     }}
+                    onClick={() => setOpened((prev) => !prev)}
                 >
-                    <IconButton onClick={() => setOpened((prev) => !prev)}>
-                        <MenuRounded
-                            sx={{
-                                color: (theme) => {
-                                    return theme.palette.getContrastText(
-                                        theme.palette.primary.dark,
-                                    );
-                                },
-                            }}
-                        />
-                    </IconButton>
-                </Box>
+                    <MenuRounded />
+                </IconButton>
             </Box>
         </>
     );

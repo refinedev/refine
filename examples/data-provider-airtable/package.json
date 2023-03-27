@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "@refinedev/airtable": "^4.1.0",
-        "@refinedev/antd": "^5.3.6",
-        "@refinedev/core": "^4.5.2",
+        "@refinedev/antd": "^5.3.7",
+        "@refinedev/core": "^4.5.3",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/react-router-v6": "^4.1.0",
         "@types/node": "^12.20.11",

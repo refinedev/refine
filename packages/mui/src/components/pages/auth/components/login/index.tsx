@@ -84,7 +84,14 @@ export const LoginPage: React.FC<LoginProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? (
+                    <ThemedTitle
+                        collapsed={false}
+                        wrapperStyles={{
+                            gap: "8px",
+                        }}
+                    />
+                )}
             </div>
         );
 
@@ -100,8 +107,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                                     variant="outlined"
                                     fullWidth
                                     sx={{
-                                        color: "text.secondary",
-                                        borderColor: "text.secondary",
+                                        color: "primary.light",
+                                        borderColor: "primary.light",
                                         textTransform: "none",
                                     }}
                                     onClick={() =>
@@ -136,7 +143,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
-                    color="primary.dark"
+                    color="primary"
                     fontWeight={700}
                 >
                     {translate("pages.login.title", "Sign in to your account")}
@@ -224,7 +231,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {forgotPasswordLink ?? (
                             <MuiLink
                                 variant="body2"
-                                color="primary.light"
+                                color="primary"
                                 fontSize="12px"
                                 component={ActiveLink}
                                 underline="none"
@@ -247,8 +254,16 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {translate("pages.login.signin", "Sign in")}
                     </Button>
                     {registerLink ?? (
-                        <Box sx={{ mt: "24px" }}>
+                        <Box
+                            sx={{
+                                mt: "24px",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
                             <Typography
+                                textAlign="center"
                                 variant="body2"
                                 component="span"
                                 fontSize="12px"
@@ -262,7 +277,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 ml="4px"
                                 fontSize="12px"
                                 variant="body2"
-                                color="primary.light"
+                                color="primary"
                                 component={ActiveLink}
                                 underline="none"
                                 to="/register"
