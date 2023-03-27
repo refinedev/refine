@@ -56,7 +56,7 @@ Furthermore, the auth hooks no longer have default redirection paths, which had 
 
 Promises must now be resolved in all cases when using the `login` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-`UseLogin` no longer has default redirection, so you need to add the `redirectTo` property to the `login` method’s return object.
+`useLogin` no longer has default redirection, so you need to add the `redirectTo` property to the `login` method's return object.
 
 ```diff
 const authProvider = {
@@ -94,7 +94,7 @@ type AuthActionResponse = {
 
 Promises must now be resolved in all cases when using the `logout` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-`UseLogout` no longer has default redirection, so you need to add the `redirectTo` property to the `logout` method’s return object.
+`useLogout` no longer has default redirection, so you need to add the `redirectTo` property to the `logout` method's return object.
 
 ```diff
 const authProvider = {
@@ -122,7 +122,7 @@ type AuthActionResponse = {
 
 Promises must now be resolved in all cases when using the `register` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-`UseRegister` no longer has default redirection, so you need to add the `redirectTo` property to the `register` method’s return object.
+`useRegister` no longer has default redirection, so you need to add the `redirectTo` property to the `register` method's return object.
 
 ```diff
 const authProvider = {
@@ -155,7 +155,7 @@ const authProvider = {
 
 Promises must now be resolved in all cases when using the `forgotPassword` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-`UseForgotPassword` no longer has default redirection, so you need to add the `redirectTo` property to the `forgotPassword` method’s return object.
+`useForgotPassword` no longer has default redirection, so you need to add the `redirectTo` property to the `forgotPassword` method's return object.
 
 ```diff
 const authProvider = {
@@ -195,7 +195,7 @@ type AuthActionResponse = {
 
 Promises must now be resolved in all cases when using the `updatePassword` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-`UseUpdatePassword` no longer has default redirection, so you need to add the `redirectTo` property to the `updatePassword` method’s return object.
+`useUpdatePassword` no longer has default redirection, so you need to add the `redirectTo` property to the `updatePassword` method's return object.
 
 ```diff
 const authProvider = {
@@ -235,7 +235,7 @@ type AuthActionResponse = {
 
 The `checkAuth` method of the `authProvider` was changed to `check`. It now requires promises to be resolved in all cases, with a return type of `CheckResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-The `<Authenticated>` component no longer has default redirection, so you need to add the `redirectTo` property to the `check` method’s return object. The component doesn't call the `logout` method by default either, and you need to add the `logout: true` property to the `check` method's return object.
+The `<Authenticated>` component no longer has default redirection, so you need to add the `redirectTo` property to the `check` method's return object. The component doesn't call the `logout` method by default either, and you need to add the `logout: true` property to the `check` method's return object.
 
 ```diff
 const authProvider = {
@@ -274,7 +274,7 @@ type CheckResponse = {
 
 The `checkError` method of the `authProvider` was changed to `onError`. It now requires promises to be resolved in all cases, with a return type of `OnErrorResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
-The `useOnError` component no longer has default redirection, so you need to add the `redirectTo` property to the `onError` method’s return object. The component doesn't call the `logout` method by default either, so you need to add the `logout: true` property to the `onError` method's return object.
+The `useOnError` component no longer has default redirection, so you need to add the `redirectTo` property to the `onError` method's return object. The component doesn't call the `logout` method by default either, so you need to add the `logout: true` property to the `onError` method's return object.
 
 ```diff
 const authProvider = {
@@ -330,7 +330,7 @@ type PermissionResponse = unknown;
 
 ### `getIdentity`
 
-`authProvider`'s `getUserIdentity` method renamed to `getIdentity`, which requires promises to be resolved in all cases, with a return type of `IdentityResponse`
+`authProvider`'s `getUserIdentity` method was renamed to `getIdentity`, which requires promises to be resolved in all cases, with a return type of `IdentityResponse`
 
 ```diff
 const authProvider: AuthProvider = {
@@ -358,7 +358,7 @@ type IdentityResponse = unknown;
 
 :::caution
 
-`v3LegacyAuthProviderCompatible: true` prop was added to the auth hooks for backward compatibility if you used `codemod` for migration, which needs to be removed manually if you want to upgrade to the new auth provider.
+The `v3LegacyAuthProviderCompatible: true` prop was added to the auth hooks for backward compatibility if you used `codemod` for migration, and needs to be removed manually if you want to upgrade to the new auth provider.
 
 ```diff
 useLogin({

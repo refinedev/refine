@@ -34,7 +34,7 @@ Since the `DashboardPage` prop is now deprecated, you need to create your own in
 
 :::
 
-You can now create your own error and login pages the appropriate way for your router to replace the `catchAll` and `LoginPage` props that were used for the creation of their respective pages. You can find how its done [further down](#using-the-new-router-providers) the documentation.
+You can now create your own error and login pages the appropriate way for your router to replace the `catchAll` and `LoginPage` props that were used for the creation of their respective pages. You can find how its done [further down](#using-the-new-router-providers) in the documentation.
 
 ### Changes in Custom `<Sider>` Components
 
@@ -66,7 +66,7 @@ If you have customized the use of `useMenu` hook, you might need to check the us
 
 Since **refine** doesn't create routes internally anymore, you are free to create your routes according to your framework without any limitations.
 
-This means that tasks like `authentication` and `access control` are also de-coupled from **refine** and should be handled according to your framework. However, we still provide a set of helpers to make handling these tasks easier:
+This means that tasks such as `authentication` and `access control` are decoupled from **refine** and should be handled in accordance with your framework. However, we do provide a set of helpers for you to use in your components to make these tasks easier to handle:
 
 -   The [`Authenticated`](/docs/api-reference/core/components/auth/authenticated) component as a wrapper or the `useIsAuthenticated` hook for authentication
 -   The [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component as a wrapper or the `useCan` hook for access control
@@ -81,7 +81,7 @@ If you are using `react-router-dom` and `@refinedev/react-router-v6`, you will n
 
 :::caution Known Issues
 
-Refine previously utilized react-router-dom@6.3.0, but it has now been updated to react-router-dom@latest. Since partial segment support was removed in version 6.5.0, your custom routes may not function as intended. If you are still using partial segments in your routes, you will need to update your files like this:
+Refine previously utilized `react-router-dom@6.3.0`, but it has now been updated to `react-router-dom@latest`. Since partial segment support was removed in version `6.5.0`, your custom routes may not function as intended. If you are still using partial segments in your routes, you will need to update your files like this:
 
 ```diff
   <Refine

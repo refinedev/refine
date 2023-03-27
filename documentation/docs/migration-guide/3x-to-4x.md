@@ -40,7 +40,7 @@ And that’s it! You have successfully migrated your project to `refine@4.x.x`.
 
 ## Migrating your project manually
 
-**refine** v4 will be released under the new `@refinedev` `npm` organization, so you must install the packages with the new organization name.
+**refine v4** will be released under the new `@refinedev` `npm` organization, so you must install the packages with the new organization name.
 
 ```bash
 npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
@@ -60,7 +60,7 @@ You must make this change for all packages that start with `@pankod`.
 
 ### `routerProvider`
 
-**refine v4** includes a new interface for the `routerProvider` prop. It’s now smaller and more flexible, as it leaves the control of the routes to the user and only constructs the communication and bindings of the router and **refine**.
+**refine v4** includes a new interface for the `routerProvider` prop. It is now smaller and more flexible, as it leaves the control of the routes to the user and only constructs the communication and bindings of the router and **refine**.
 
 `routerProvider` is now optional because **refine** can now be used without a router. However, it is still recommended to use a router provider to enable useful features such as inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs and more.
 
@@ -80,9 +80,11 @@ const App = () => {
 };
 ```
 
-🚨 While this is still working, we do not recommend using it. If you want to take advantage of new features like nested routes with parameters, custom action routes, and greater control over your routes, we recommend using the new `routerProvider` interface.
+:::caution
+While this will allow you to use the old router provider, we do not recommend it. You should use the new `routerProvider` interface to take advantage of new features like nested routes with parameters, custom action routes, and more control over your routes overall.
 
 [Please refer to the Router Provider Migration Guide for more information and guidance. →](/docs/migration-guide/router-provider/)
+:::
 
 ### `resources`
 
@@ -110,7 +112,7 @@ This is only a resource definition, which must be handled within your router str
 
 In the above example, you can see how the new enterprise-grade routing structure allows for effortless handling of multi-tenant structures. The detail page of a product can have a nested structure and additional parameters, which can be passed along with the `meta` properties in hooks and components. When constructing the navigation path, existing parameters in the URL will also be used.
 
-The existing method for passing components to the actions is still supported, and it uses default paths when an action has a component value. However, the new `routerProvider` does not automatically create routes for it. To achieve automatic route creation, you can use the `RefineRoutes` components from the router packages. For more information on changes to routing in resources, please refer to the [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
+The existing method for passing components to the actions is still supported, and it uses default paths when an action has a component value. However, the new `routerProvider` does not automatically create routes for it. However, you can use the `RefineRoutes` components from the router packages to create routes automatically. For more information on changes to routing in resources, please refer to the [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
 
 We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name.
 
@@ -402,7 +404,7 @@ useExport({
 
 ### `useSelect` hook
 
--   Pagination is disabled by default. If you want to enable pagination, you should set the `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
 
     ```diff
     useSelect({
@@ -437,7 +439,7 @@ useCustom({
 
 ### `useResource` hook
 
-Instead of an object with a single property as a parameter, users can now provide a single string parameter as the resource name or identifier when using the `useResource` hook. If the `legacyRouterProvider` is in use, the hook will also check for the route.
+Instead of an object with a single property as a parameter, users can now provide a single string parameter as the resource name or identifier when using the `useResource` hook. If the `legacyRouterProvider` is in use, the hook will also check for the `route` prop.
 
 ```diff
 -   useResource({
@@ -776,7 +778,7 @@ After that, you can import icons from the `@ant-design/icons` package directly l
 
 ### `useSelect` hook
 
--   Pagination is disabled by default. If you want to enable pagination, you should set the `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
 
     ```diff
     useSelect({
@@ -823,9 +825,9 @@ useImport({
 })
 ```
 
-### `useMenu` hook is removed
+### `useMenu` hook
 
-The `useMenu` hook is removed. It will be exported from the `@refinedev/core` package.
+The `useMenu` hook has been removed. It will be exported from the `@refinedev/core` package.
 
 ```diff
 -import { useMenu } from "@pankod/refine-antd";
@@ -834,7 +836,7 @@ The `useMenu` hook is removed. It will be exported from the `@refinedev/core` pa
 
 ### `useDrawerForm` and `useModalForm` hooks
 
-These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass true or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true`, it will also add the `id` of the form to the query params. This is useful when working in `clone` and `edit` modes.
+It is now possible to sync these hooks' visibility state with location by using the syncWithLocation prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true`, it will also add the `id` of the form to the query params. This is useful when working in `clone` and `edit` modes.
 
 ```tsx
 useDrawerForm({
@@ -860,7 +862,7 @@ The `ignoreAccessControlProvider` prop has been deprecated and removed from all 
 />
 ```
 
-The `resourceNameOrRouteName` prop is now deprecated in favor of the `resource` prop. You can pass the name or identifier of the resource while using it. For legacy router users, the `route` can also be used.
+The `resourceNameOrRouteName` prop is now deprecated in favor of the `resource` prop. You can pass the name or identifier of the resource while using it. For legacy router users, the `route` prop can also be used.
 
 ```diff
 <CreateButton
@@ -1002,7 +1004,7 @@ After that, you can import them from related packages directly.
 
 ### `useAutocomplete` hook
 
--   Pagination is disabled by default. If you want to enable pagination, you should set the `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
 
     ```diff
     useAutocomplete({
@@ -1044,7 +1046,7 @@ The `ignoreAccessControlProvider` prop has been deprecated and removed from all 
 />
 ```
 
-The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. `route` is also accepted for legacy router users.
+The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. The `route` prop is also accepted for legacy router users.
 
 ```diff
 <CreateButton
@@ -1057,7 +1059,7 @@ The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource
 
 The following basic view component props has been removed:
 
--   The `cardProps` prop is removed from all basic views components. Use `wrapperProps` prop instead.
+-   The `cardProps` prop has been removed from all basic views components. Use the `wrapperProps` prop instead.
 
     ```diff
       <List
@@ -1066,7 +1068,7 @@ The following basic view component props has been removed:
       />
     ```
 
--   `cardHeaderProps` prop is removed from all basic views components. Use `headerProps` prop instead.
+-   The`cardHeaderProps` prop has been removed from all basic views components. Use the `headerProps` prop instead.
 
     ```diff
       <Create
@@ -1075,7 +1077,7 @@ The following basic view component props has been removed:
       />
     ```
 
--   `cardContentProps` prop is removed from all basic views components. Use `contentProps` prop instead.
+-   The `cardContentProps` prop has been removed from all basic views components. Use the `contentProps` prop instead.
 
     ```diff
       <Edit
@@ -1084,7 +1086,7 @@ The following basic view component props has been removed:
       />
     ```
 
--   `actionButtons` prop is removed from `<Create>`, `<Edit>`, and `<Show` components. Use `footerButtons` prop instead.
+-   The `actionButtons` prop has been removed from `<Create>`, `<Edit>`, and `<Show` components. Use the`footerButtons` prop instead.
 
     ```diff
       <Show
@@ -1093,7 +1095,7 @@ The following basic view component props has been removed:
       />
     ```
 
--   `cardActionsProps` prop is removed from `<Create>`, `<Edit>`, and `<Show` components. Use `footerButtonProps` prop instead.
+-   The `cardActionsProps` prop has been removed from `<Create>`, `<Edit>`, and `<Show` components. Use the `footerButtonProps` prop instead.
 
     ```diff
       <List
@@ -1165,7 +1167,7 @@ After that, you can import them from related packages directly.
 
 ### `useSelect` hook
 
--   Pagination is disabled by default. If you want to enable pagination, you should set the `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
 
     ```diff
     useSelect({
@@ -1176,7 +1178,7 @@ After that, you can import them from related packages directly.
     })
     ```
 
--   The `sort` prop is deprecated. Use `sorters` prop instead.
+-   The `sort` prop is deprecated. Use the `sorters` prop instead.
 
     ```diff
     useSelect({
@@ -1198,7 +1200,7 @@ The `ignoreAccessControlProvider` prop has been deprecated and removed from all 
 />
 ```
 
-The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. `route` is also accepted for legacy router users.
+The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. The `route` prop is also accepted for legacy router users.
 
 ```diff
 <CreateButton
@@ -1279,7 +1281,7 @@ The `ignoreAccessControlProvider` prop has been deprecated and removed from all 
 />
 ```
 
-The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. `route` is also accepted for legacy router users.
+The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. The `route` prop is also accepted for legacy router users.
 
 ```diff
 <CreateButton
