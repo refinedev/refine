@@ -139,15 +139,15 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
 import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -218,16 +218,16 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, Layout } from "@refinedev/chakra-ui";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 
@@ -313,16 +313,16 @@ The register page will be used to register new users. You can use the following 
 setInitialRoutes(["/register"]);
 
 // visible-block-start
-import { Refine, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, Layout } from "@refinedev/chakra-ui";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 
@@ -408,20 +408,20 @@ const authProvider: AuthBindings = {
 
 The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
-```tsx live hideCode url=http://localhost:3000/forgot-password
+```tsx live hideCode url=http://localhost:3000/forgot-password previewHeight=600px
 setInitialRoutes(["/forgot-password"]);
 
 // visible-block-start
-import { Refine, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, Layout } from "@refinedev/chakra-ui";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 
@@ -511,20 +511,20 @@ const authProvider: AuthBindings = {
 
 The `updatePassword` type is the page used to update the password of the user.
 
-```tsx live hideCode url=http://localhost:3000/update-password
+```tsx live hideCode url=http://localhost:3000/update-password previewHeight=600px
 setInitialRoutes(["/update-password"]);
 
 // visible-block-start
-import { Refine, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, Layout } from "@refinedev/chakra-ui";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 
@@ -844,8 +844,8 @@ const MyLoginPage = () => {
 `renderContent` uses to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
 
 ```tsx
-import { AuthPage } from "@refinedev/chakra-ui";
 import { Box, Heading } from "@chakra-ui/react";
+import { AuthPage } from "@refinedev/chakra-ui";
 
 const MyLoginPage = () => {
     return (

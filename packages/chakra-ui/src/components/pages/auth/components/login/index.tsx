@@ -122,10 +122,10 @@ export const LoginPage: React.FC<LoginProps> = ({
     const content = (
         <Box
             bg="chakra-body-bg"
-            {...allContentProps}
             borderWidth="1px"
             borderColor={useColorModeValue("gray.200", "gray.700")}
             backgroundColor={useColorModeValue("white", "gray.800")}
+            {...allContentProps}
         >
             <Heading
                 mb="8"
