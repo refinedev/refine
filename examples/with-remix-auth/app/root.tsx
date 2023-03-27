@@ -32,7 +32,7 @@ export default function App(): JSX.Element {
     const authProvider: AuthBindings = {
         login: async ({ providerName, email, password }) => {
             if (providerName) {
-                window.location.href = `/${providerName}?to=${to}`;
+                window.location.href = `/auth/${providerName}?to=${to}`;
                 return {
                     success: true,
                 };
@@ -45,7 +45,7 @@ export default function App(): JSX.Element {
             };
         },
         logout: async () => {
-            window.location.href = "/auth0/logout";
+            window.location.href = "/auth/logout";
             return {
                 success: true,
             };
