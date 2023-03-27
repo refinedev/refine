@@ -404,7 +404,7 @@ useExport({
 
 ### `useSelect` hook
 
--   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useSelect({
@@ -778,7 +778,7 @@ After that, you can import icons from the `@ant-design/icons` package directly l
 
 ### `useSelect` hook
 
--   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useSelect({
@@ -1004,7 +1004,7 @@ After that, you can import them from related packages directly.
 
 ### `useAutocomplete` hook
 
--   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useAutocomplete({
@@ -1167,7 +1167,7 @@ After that, you can import them from related packages directly.
 
 ### `useSelect` hook
 
--   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useSelect({
