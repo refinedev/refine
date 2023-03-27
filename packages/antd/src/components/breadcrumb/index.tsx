@@ -76,5 +76,5 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         return breadCrumbItems;
     };
 
-    return <AntdBreadcrumb {...breadcrumbProps} items={getBreadcrumbItems()} />;
+    return <AntdBreadcrumb items={getBreadcrumbItems()} {...breadcrumbProps} />;
 };
