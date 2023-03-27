@@ -29,8 +29,6 @@ export const useCode = (): UseCodeReturn => {
         );
         const fixed = decompressed?.replace(/React\$1/g, "React");
 
-        console.log("fixed", fixed);
-
         return fixed;
     }, [compressed, isReady]);
 
