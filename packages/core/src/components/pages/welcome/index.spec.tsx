@@ -29,7 +29,7 @@ describe("WelcomePage", () => {
         );
         expect(getByText("Community").closest("a")).toHaveAttribute(
             "href",
-            "https://discord.com/invite/refine",
+            "https://discord.gg/refine",
         );
     });
 });

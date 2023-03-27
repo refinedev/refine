@@ -75,7 +75,7 @@ const INFO_BOXES = [
         title: "Community",
         description:
             "Join our Discord community and keep up with the latest news.",
-        link: "https://discord.com/invite/refine",
+        link: "https://discord.gg/refine",
         icon: (
             <svg
                 width="16"
