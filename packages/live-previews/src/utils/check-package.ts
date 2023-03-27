@@ -42,6 +42,58 @@ export const checkPackage = (code = "") => {
         code.includes("@refinedev/inferencer/headless") ||
         code.includes("RefineHeadlessInferencer");
 
+    const hasKbar = code.includes("@refinedev/kbar");
+    const hasAirtable = code.includes("@refinedev/airtable");
+    const hasAppwrite = code.includes("@refinedev/appwrite");
+    const hasHasura = code.includes("@refinedev/hasura");
+    const hasNestjsxCrud = code.includes("@refinedev/nestjsx-crud");
+    const hasStrapiV4 = code.includes("@refinedev/strapi-v4");
+    const hasSupabase = code.includes("@refinedev/supabase");
+    const hasAxios = code.includes("@refinedev/axios");
+    const hasAuth0 = code.includes("@auth0/auth0-react");
+    const hasKeycloak =
+        code.includes("@react-keycloak/web") || code.includes("keycloak-js");
+
+    if (hasKbar) {
+        set.add("kbar");
+    }
+
+    if (hasAirtable) {
+        set.add("airtable");
+    }
+
+    if (hasAppwrite) {
+        set.add("appwrite");
+    }
+
+    if (hasHasura) {
+        set.add("hasura");
+    }
+
+    if (hasNestjsxCrud) {
+        set.add("nestjsx-crud");
+    }
+
+    if (hasStrapiV4) {
+        set.add("strapi-v4");
+    }
+
+    if (hasSupabase) {
+        set.add("supabase");
+    }
+
+    if (hasAxios) {
+        set.add("axios");
+    }
+
+    if (hasAuth0) {
+        set.add("auth0");
+    }
+
+    if (hasKeycloak) {
+        set.add("keycloak");
+    }
+
     if (hasAntd) {
         set.add("antd");
     }
