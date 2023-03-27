@@ -13,7 +13,7 @@
         "@remix-run/react": "^1.6.7",
         "@remix-run/serve": "^1.6.7",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/simple-rest": "^4.1.0",
         "@refinedev/remix-router": "^2.1.0",
         "@refinedev/react-hook-form": "^4.1.2",

@@ -11,7 +11,7 @@
     "dependencies": {
         "@refinedev/antd": "^5.3.6",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/nextjs-router": "^5.1.2",
         "@refinedev/simple-rest": "^4.1.0",
         "next": "^13.0.6",

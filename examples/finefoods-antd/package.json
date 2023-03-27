@@ -10,7 +10,7 @@
         "@googlemaps/react-wrapper": "^1.1.35",
         "@refinedev/antd": "^5.3.6",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/kbar": "1.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",

@@ -5,7 +5,7 @@
     "dependencies": {
         "@refinedev/antd": "^5.3.6",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/strapi-v4": "^4.1.0",
         "@react-pdf/renderer": "^3.0.1",

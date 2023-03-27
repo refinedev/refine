@@ -6,7 +6,7 @@
         "@googlemaps/react-wrapper": "^1.1.35",
         "@types/google.maps": "^3.50.4",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/mui": "^4.5.0",
         "@refinedev/kbar": "1.1.0",
         "@refinedev/react-hook-form": "^4.1.2",

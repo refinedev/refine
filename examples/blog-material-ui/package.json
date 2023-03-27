@@ -12,7 +12,7 @@
         "react-scripts": "^5.0.0",
         "web-vitals": "^1.1.1",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/mui": "^4.5.0",
         "@refinedev/react-hook-form": "^4.1.2",
         "@mui/icons-material": "^5.8.3",

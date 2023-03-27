@@ -1,5 +1,25 @@
 # @pankod/refine-cli
 
+## 2.1.2
+
+### Patch Changes
+
+-   [#3976](https://github.com/refinedev/refine/pull/3976) [`7e793ee9dc3`](https://github.com/refinedev/refine/commit/7e793ee9dc343751e6e9ee8aeaf00260afdf1c50) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added parcel support
+
+    fixed: refine --version doesn't return refine cli's version.
+    fixed: add error message if user tries to run script with unsupported package.
+    fixed: added "unknown" project type as fallback.
+
+## 2.1.1
+
+### Patch Changes
+
+-   [#3976](https://github.com/refinedev/refine/pull/3976) [`7e793ee9dc3`](https://github.com/refinedev/refine/commit/7e793ee9dc343751e6e9ee8aeaf00260afdf1c50) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added parcel support
+
+    fixed: refine --version doesn't return refine cli's version.
+    fixed: add error message if user tries to run script with unsupported package.
+    fixed: added "unknown" project type as fallback.
+
 ## 2.1.0
 
 ### Minor Changes

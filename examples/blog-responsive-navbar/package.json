@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",
         "bootstrap": "^5.2.1",

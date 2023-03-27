@@ -7,7 +7,7 @@
         "@nhost/react-auth": "^2.0.7",
         "@refinedev/antd": "^5.3.6",
         "@refinedev/core": "^4.5.2",
-        "@refinedev/cli": "^2.1.0",
+        "@refinedev/cli": "^2.1.2",
         "@refinedev/nhost": "^4.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
         "@types/node": "^12.20.11",
