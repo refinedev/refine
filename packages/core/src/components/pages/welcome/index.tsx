@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useMediaQuery } from "@definitions/helpers";
+import { CSSRules } from "./styles";
 
 const INFO_BOXES = [
     {
@@ -93,6 +94,7 @@ const INFO_BOXES = [
 
 const ArrowIcon = (
     <svg
+        className="arrow-icon"
         width="12"
         height="8"
         fill="none"
@@ -112,6 +114,14 @@ const ArrowIcon = (
 export const WelcomePage: React.FC = () => {
     const isTablet = useMediaQuery("(max-width: 1010px)");
     const isMobile = useMediaQuery("(max-width: 650px)");
+
+    useEffect(() => {
+        const styleTag = document.createElement("style");
+        document.head.appendChild(styleTag);
+        CSSRules.forEach((rule) =>
+            styleTag.sheet?.insertRule(rule, styleTag.sheet.cssRules.length),
+        );
+    }, []);
 
     const getGridTemplateColumns = () => {
         if (isMobile) {
@@ -227,6 +237,7 @@ export const WelcomePage: React.FC = () => {
                             }}
                         >
                             <a
+                                className="link"
                                 style={{
                                     display: "flex",
                                     alignItems: "center",
@@ -253,6 +264,7 @@ export const WelcomePage: React.FC = () => {
                             style={{
                                 fontSize: "12px",
                                 opacity: 0.5,
+                                lineHeight: "16px",
                             }}
                         >
                             {description}
