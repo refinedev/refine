@@ -10,7 +10,7 @@ Our motivation behind the changes to `routerProvider` and route handling was to 
 
 By simplifying the `routerProvider` to just an interaction and connection point between **refine** and the router, we eliminated the need for a specific way of defining routes and a `routerProvider` altogether. This means that **refine** will meet enterprise-grade requirements. While router bindings are optional, we recommend passing them to **refine** for optimal usage.
 
-By making these changes, our users can integrate **refine** into their existing projects without needing to modify their current routes or application structure.
+By making these changes, we made it so that people can integrate refine into their existing projects without needing to modify their current routes or applications
 
 Ultimately, our goal is to make it simple for users to handle their unique situations without enforcing a particular methodology. With the updated router provider, you can continue using routers like before while benefiting from the features that **refine** offers.
 
