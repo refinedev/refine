@@ -23,3 +23,4 @@ export { getActionRoutesFromResource } from "./router";
 export { composeRoute } from "./router/compose-route";
 export { useActiveAuthProvider } from "./useActiveAuthProvider";
 export { handlePaginationParams } from "./handlePaginationParams";
+export { useMediaQuery } from "./useMediaQuery";

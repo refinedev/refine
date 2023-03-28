@@ -65,16 +65,12 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 <!-- -->
 
-<!-- -->
-
 [react-admin]: https://marmelab.com/react-admin/
 [react-enterprise]: https://marmelab.com/ra-enterprise/
 [stars-react-admin]: https://img.shields.io/github/stars/marmelab/react-admin?label=%F0%9F%8C%9F
 [gh-react-admin]: https://github.com/marmelab/react-admin
 [bpl-react-admin]: https://bundlephobia.com/result?p=react-admin
 [bp-react-admin]: https://badgen.net/bundlephobia/minzip/react-admin?label=💾
-
-<!-- -->
 
 <!-- -->
 
@@ -86,12 +82,8 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 <!-- -->
 
-<!-- -->
-
 [retool]: https://retool.com/
 [retool-pricing]: https://retool.com/pricing/
-
-<!-- -->
 
 <!-- -->
 
@@ -100,5 +92,3 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 [gh-redwood]: https://github.com/redwoodjs/redwood
 [bpl-redwood]: https://bundlephobia.com/result?p=@redwoodjs/core
 [bp-redwood]: https://badgen.net/bundlephobia/minzip/@redwoodjs/core?label=💾
-
-<!-- -->
