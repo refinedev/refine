@@ -1,165 +1,114 @@
-const commonLightPalette = {
-    background: {
-        default: "#F0F2F5",
-    },
-};
-
-const commonDarkPalette = {
-    background: {
-        default: "#000",
-    },
-};
-
-export const refineCustomColors = {
-    light: {
-        header: "#ffffff",
-        sider: "#F7F8F9",
-    },
-    dark: {
-        header: "#1F1F1F",
-        sider: "#141414",
-    },
-} as const;
-
 export const RefinePalettes = {
-    Magenta: {
-        ...commonLightPalette,
-        mode: "light",
-        primary: {
-            main: "#EB2F96",
-            light: "#EB2F96",
-            dark: "#C41D7F",
-            "100": "#FFF0F6",
-        },
-    },
-    MagentaDark: {
-        ...commonDarkPalette,
-        mode: "dark",
-        primary: {
-            main: "#CB2B83",
-            light: "#F37FB7",
-            dark: "#E0529C",
-            "100": "#291321",
-        },
-    },
     Blue: {
-        ...commonLightPalette,
         mode: "light",
         primary: {
-            main: "#1677FF",
-            light: "#003EB3",
-            dark: "#0958D9",
-            "100": "#E6F4FF",
+            main: "#1976D2",
+            light: "#4791db",
+            dark: "#115293",
         },
     },
     BlueDark: {
-        ...commonDarkPalette,
         mode: "dark",
         primary: {
-            main: "#1677FF",
-            light: "#8DC5F8",
-            dark: "#3C89E8",
-            "100": "#111A2C",
+            main: "#67b7f7",
+            light: "#85c5f8",
+            dark: "#4880ac",
         },
     },
     Purple: {
-        ...commonLightPalette,
         mode: "light",
         primary: {
-            main: "#722ED1",
-            light: "#391085",
-            dark: "#531DAB",
-            "100": "#F9F0FF",
+            main: "#7B1FA2",
+            light: "#954bb4",
+            dark: "#561571",
         },
     },
     PurpleDark: {
-        ...commonDarkPalette,
         mode: "dark",
         primary: {
-            main: "#722ED1",
-            light: "#AB7AE0",
-            dark: "#854ECA",
-            "100": "#1A1325",
+            main: "#AB47BC",
+            light: "#bb6bc9",
+            dark: "#773183",
+        },
+    },
+    Magenta: {
+        mode: "light",
+        primary: {
+            main: "#C2185B",
+            light: "#ce467b",
+            dark: "#87103f",
+        },
+    },
+    MagentaDark: {
+        mode: "dark",
+        primary: {
+            main: "#EC407A",
+            light: "#ef6694",
+            dark: "#a52c55",
         },
     },
     Red: {
-        ...commonLightPalette,
         mode: "light",
         primary: {
-            main: "#D32029",
-            light: "#F5222D",
-            dark: "#CF1322",
-            "100": "#FFF1F0",
+            main: "#D32F2F",
+            light: "#db5858",
+            dark: "#932020",
         },
     },
     RedDark: {
-        ...commonDarkPalette,
         mode: "dark",
         primary: {
-            main: "#D32029",
-            light: "#F37370",
-            dark: "#E84749",
-            "100": "#2A1215",
+            main: "#EF5350",
+            light: "#f27573",
+            dark: "#a73a38",
         },
     },
     Orange: {
-        ...commonLightPalette,
         mode: "light",
         primary: {
-            main: "#FA541C",
-            light: "#FA541C",
-            dark: "#D4380D",
-            "100": "#FFF2E8",
+            main: "#F57C00",
+            light: "#f79633",
+            dark: "#ab5600",
         },
     },
     OrangeDark: {
-        ...commonDarkPalette,
         mode: "dark",
         primary: {
-            main: "#D84A1B",
-            light: "#F3956A",
-            dark: "#E87040",
-            "100": "#2B1611",
+            main: "#FFA726",
+            light: "#ffb851",
+            dark: "#b2741a",
         },
     },
     Yellow: {
-        ...commonLightPalette,
         mode: "light",
         primary: {
-            main: "#FAAD14",
-            light: "#D48806",
-            dark: "#D48806",
-            "100": "#FFFBE6",
+            main: "#FFA000",
+            light: "#ffb333",
+            dark: "#b27000",
         },
     },
     YellowDark: {
-        ...commonDarkPalette,
         mode: "dark",
         primary: {
-            main: "#ffeb3b",
-            light: "#F3CC62",
-            dark: "#E8B339",
-            "100": "#2B2111",
+            main: "#FFCA28",
+            light: "#ffd453",
+            dark: "#E87040",
         },
     },
     Green: {
-        ...commonLightPalette,
         mode: "light",
         primary: {
-            main: "#52C41A",
-            light: "#389E0D",
-            dark: "#389E0D",
-            "100": "#F6FFED",
+            main: "#689F38",
+            light: "#86b25f",
+            dark: "#486f27",
         },
     },
     GreenDark: {
-        ...commonDarkPalette,
         mode: "dark",
         primary: {
-            main: "#49AA19",
-            light: "#8FD460",
-            dark: "#6ABE39",
-            "100": "#162312",
+            main: "#9CCC65",
+            light: "#afd683",
+            dark: "#6d8e46",
         },
     },
 } as const;

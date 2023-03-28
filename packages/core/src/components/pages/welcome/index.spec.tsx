@@ -8,16 +8,20 @@ describe("WelcomePage", () => {
     it("should render page successfuly", async () => {
         const { getByText } = render(<WelcomePage />);
 
-        getByText("Welcome on board");
+        getByText("Welcome Aboard!");
         getByText("Your configuration is completed.");
     });
 
-    it("should render 3 buttons", async () => {
+    it("should render 4 buttons", async () => {
         const { getByText } = render(<WelcomePage />);
 
         expect(getByText("Documentation").closest("a")).toHaveAttribute(
             "href",
-            "https://refine.dev",
+            "https://refine.dev/",
+        );
+        expect(getByText("Tutorial").closest("a")).toHaveAttribute(
+            "href",
+            "https://refine.dev/docs/tutorial/introduction/index/",
         );
         expect(getByText("Examples").closest("a")).toHaveAttribute(
             "href",

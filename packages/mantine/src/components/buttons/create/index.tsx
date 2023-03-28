@@ -90,12 +90,13 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 <ActionIcon
                     title={disabledTitle()}
                     disabled={data?.can === false}
+                    color="primary"
                     {...(variant
                         ? {
                               variant:
                                   mapButtonVariantToActionIconVariant(variant),
                           }
-                        : { variant: "default" })}
+                        : { variant: "filled" })}
                     data-testid={RefineButtonTestIds.CreateButton}
                     {...commonProps}
                 >
@@ -107,7 +108,8 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
-                    variant="default"
+                    color="primary"
+                    variant="filled"
                     {...rest}
                 >
                     {children ?? translate("buttons.create", "Create")}

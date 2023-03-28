@@ -223,7 +223,7 @@ After data is fetched successfully, `useCustom` can call `open` function from `N
 
 ```tsx
 useCustom({
-    successNotification: (data, values, resource) => {
+    successNotification: (data, values) => {
         return {
             message: `${data.title} Successfully fetched.`,
             description: "Success with no errors",
@@ -241,7 +241,7 @@ After data fetching is failed, `useCustom` will call `open` function from `Notif
 
 ```tsx
 useCustom({
-    errorNotification: (data, values, resource) => {
+    errorNotification: (data, values) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
             description: "Error",

@@ -73,7 +73,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? (
+                    <ThemedTitle
+                        collapsed={false}
+                        wrapperStyles={{
+                            gap: "8px",
+                        }}
+                    />
+                )}
             </div>
         );
 
@@ -85,7 +92,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
-                    color="primary.dark"
+                    color="primary"
                     fontWeight={700}
                 >
                     {translate(

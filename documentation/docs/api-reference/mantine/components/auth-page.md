@@ -71,7 +71,7 @@ setRefineProps({ Sider: () => null, dataProvider: sharedDataProvider("api") });
 const Wrapper = ({ children }) => {
     return (
         <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
+            theme={RefineMantine.RefineThemes.Blue}
             withNormalizeCSS
             withGlobalStyles
         >
@@ -414,7 +414,7 @@ const authProvider: AuthBindings = {
 
 The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
-```tsx live hideCode url=http://localhost:3000/forgot-password
+```tsx live hideCode url=http://localhost:3000/forgot-password previewHeight=600px
 setInitialRoutes(["/forgot-password"]);
 
 // visible-block-start
@@ -517,7 +517,7 @@ const authProvider: AuthBindings = {
 
 The `updatePassword` type is the page used to update the password of the user.
 
-```tsx live hideCode url=http://localhost:3000/update-password
+```tsx live hideCode url=http://localhost:3000/update-password previewHeight=600px
 setInitialRoutes(["/update-password"]);
 
 // visible-block-start
@@ -831,16 +831,57 @@ const MyLoginPage = () => {
 };
 ```
 
-### `renderContent`
+### `title`
 
-`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
+By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
+
+-   Default text is: refine Project
+-   Default icon is: refine Logo
 
 ```tsx
+import { AuthPage } from "@refinedev/mantine";
+
+const MyLoginPage = () => {
+    return <AuthPage type="login" title={<h1>My Title</h1>} />;
+};
+```
+
+Or you can customize the title with `ThemedTitle` component.
+
+```tsx
+import { AuthPage, ThemedTitle } from "@refinedev/mantine";
+
+const MyLoginPage = () => {
+    return (
+        <AuthPage
+            type="login"
+            title={
+                <ThemedTitle
+                    title="My Title"
+                    icon={<img src="https://refine.dev/img/logo.png" />}
+                />
+            }
+        />
+    );
+};
+```
+
+### `renderContent`
+
+`renderContent` uses to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
+
+```tsx
+import React from "react";
+import { AuthPage } from "@refinedev/mantine";
+
 const MyLoginPage = () => {
     return (
         <AuthPage
             // highlight-start
-            renderContent={(content: React.ReactNode) => {
+            renderContent={(
+                content: React.ReactNode,
+                title: React.ReactNode,
+            ) => {
                 return (
                     <div
                         style={{
@@ -850,6 +891,7 @@ const MyLoginPage = () => {
                             alignItems: "center",
                         }}
                     >
+                        {title}
                         <h1 style={{ color: "white" }}>Extra Header</h1>
                         {content}
                         <h1 style={{ color: "white" }}>Extra Footer</h1>

@@ -12,7 +12,7 @@ describe("WelcomePage", () => {
     it("should render 3 texts", async () => {
         const { getByText } = render(<WelcomePage />);
 
-        getByText("Welcome on board");
+        getByText("Welcome Aboard!");
         getByText("Your configuration is completed.");
     });
 
@@ -23,7 +23,7 @@ describe("WelcomePage", () => {
 
         expect(getByText("Documentation").closest("a")).toHaveAttribute(
             "href",
-            "https://refine.dev",
+            "https://refine.dev/",
         );
         expect(getByText("Examples").closest("a")).toHaveAttribute(
             "href",

@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 4.5.4
+
+### Patch Changes
+
+-   [#3987](https://github.com/refinedev/refine/pull/3987) [`d7d68e3ff68`](https://github.com/refinedev/refine/commit/d7d68e3ff686dece9f58e53e02076f0ecbd91010) Thanks [@aliemir](https://github.com/aliemir)! - Watch for `id` changes in `useForm` hook.
+
+## 4.5.3
+
+### Patch Changes
+
+-   [#3987](https://github.com/refinedev/refine/pull/3987) [`d7d68e3ff68`](https://github.com/refinedev/refine/commit/d7d68e3ff686dece9f58e53e02076f0ecbd91010) Thanks [@aliemir](https://github.com/aliemir)! - Watch for `id` changes in `useForm` hook.
+
 ## 4.5.2
 
 ### Patch Changes

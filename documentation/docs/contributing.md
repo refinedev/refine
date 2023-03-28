@@ -75,27 +75,26 @@ From now on, depending on the packages you plan to work on, (they are located un
 
 ### Starting the packages you work in watch mode
 
-You can either bootstrap all packages or only the packages you plan to work on.
+Before running a package in development mode in the refine project, you need to first bootstrap and build all the packages.
 
-To bootstrap & build all packages (all packages under `/examples` and under `/packages` whose names start with `@refinedev/*`), you should run:
-
+#### Bootstrap & build all packages
 ```bash
 npm run bootstrap:all
 npm run build:all
 ```
 
-To bootstrap the specific packages/examples only:
-
+Then, you can bootstrap the example you want to work on with the command below:
 ```bash
 npm run bootstrap -- --scope refine-use-select-example
 ```
+> You can add the packages you want to bootstrap with the [`scope`][lerna filter] filter.
 
-[Refer to **lerna** docs to learn more about `scope` flag. &#8594][lerna filter]
+At this point, all/required packages are bootstrapped. You can add the packages you want to run in development mode with the [`scope`][lerna filter] filter. This way, the `watch` mode will start working for the packages you specified.
 
-At this point, all/required packages are bootstrapped. Now you can start the packages you plan to work on in development mode. If you don't want to start all packages in development mode, you should filter them:
+
+In the command example below, we are running the core and antd packages in `development mode` along with the example.
 
 ```bash
-npm run build -- --scope @refinedev/core --scope @refinedev/antd --scope refine-use-select-example
 npm run start -- --scope @refinedev/core --scope @refinedev/antd --scope refine-use-select-example
 ```
 
@@ -530,7 +529,7 @@ Make sure you use `setInitialRoutes` function before rendering the `<Refine/>` c
 
 [lerna]: https://github.com/lerna/lerna
 [lerna bootstrap]: https://lerna.js.org/#command-bootstrap
-[lerna filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob
+[lerna filter]: https://lerna.js.org/docs/api-reference/commands#--scope-glob
 [package.json]: https://github.com/refinedev/refine/blob/master/package.json
 [docusaurus]: https://docusaurus.io/
 [issues]: https://github.com/refinedev/refine/issues

@@ -80,6 +80,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         >
             {hideText ? (
                 <IconButton
+                    colorScheme="brand"
                     variant="outline"
                     aria-label={translate("buttons.create", "Create")}
                     title={disabledTitle()}
@@ -91,7 +92,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 </IconButton>
             ) : (
                 <Button
-                    variant="outline"
+                    colorScheme="brand"
                     isDisabled={data?.can === false}
                     leftIcon={<IconSquarePlus size={20} />}
                     title={disabledTitle()}

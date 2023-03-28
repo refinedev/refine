@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import {
     ListButton,
     ShowButton,
@@ -15,7 +15,10 @@ import {
 
 const DashboardPage = () => {
     return (
-        <Stack>
+        <Stack spacing={2}>
+            <Button variant="contained">Default contained MUI Button</Button>
+            <Button variant="outlined">Default outlined MUI Button</Button>
+            <Button variant="text">Default text MUI Button</Button>
             <CreateButton />
             <ShowButton />
             <EditButton />

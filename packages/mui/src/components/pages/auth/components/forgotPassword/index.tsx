@@ -76,7 +76,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? (
+                    <ThemedTitle
+                        collapsed={false}
+                        wrapperStyles={{
+                            gap: "8px",
+                        }}
+                    />
+                )}
             </div>
         );
 
@@ -88,7 +95,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
-                    color="primary.dark"
+                    color="primary"
                     fontWeight={700}
                 >
                     {translate(

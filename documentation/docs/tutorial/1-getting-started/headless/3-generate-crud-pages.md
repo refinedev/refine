@@ -27,11 +27,11 @@ Overall, using Inferencer will greatly speed up development time and reduce the 
 
 #### Learn Inferencer
 
-You can Learn more about [how Inferencer works](/docs/packages/documentation/inferencer) and [how to use it with Material UI](/docs/api-reference/core/components/inferencer/) in our documents.
+You can Learn more about [how Inferencer works](/docs/packages/documentation/inferencer) and [how to use it with Headless Mode](/docs/api-reference/core/components/inferencer/) in our documents.
 
 ## How to use Inferencer
 
-The `@refinedev/inferencer` package provides the `<HeadlessInferencer/>` component, which can be imported from `@refinedev/inferencer/headless`. It used to generate CRUD pages based on your API response.
+The `@refinedev/inferencer` package provides the `<HeadlessInferencer/>` component, which can be imported from `@refinedev/inferencer/headless`. It is used to generate CRUD pages based on your API response.
 
 Before we start using Inferencer, we need to add the `@refinedev/react-hook-form` and `@refinedev/react-table` packages to our project. Since these packages are used by Inferencer to generate forms and tables, they need to be installed in our project.
 

@@ -112,6 +112,7 @@ jobs:
         run: |
           npm ci
           npm run bootstrap:all
+          npm run build:all
           cd documentation
           npm ci
       - name: Release to GitHub Pages

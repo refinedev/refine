@@ -108,9 +108,7 @@ export const useShow = <
     const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
 
     React.useEffect(() => {
-        if (defaultId !== showId) {
-            setShowId(defaultId);
-        }
+        setShowId(defaultId);
     }, [defaultId]);
 
     /** `resourceName` fallback value depends on the router type */

@@ -1,5 +1,43 @@
 # @pankod/refine-ui-types
 
+## 1.5.0
+
+### Minor Changes
+
+-   [#3971](https://github.com/refinedev/refine/pull/3971) [`2798f715361`](https://github.com/refinedev/refine/commit/2798f715361c5fd407d09429d94b05b602b50397) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - New props added to `RefineThemedLayoutHeaderProps`:
+
+        -   `isSiderOpen` prop is added to check the visibility of the sider from `<ThemedHeader>`.
+        -   `onToggleSiderClick` prop is added to control the visibility of the sider from `<ThemedHeader>`.
+        -   `toggleSiderIcon` prop is added to change the icon of the toggle sider button.
+
+    -   New props added to `RefineThemedLayoutSiderProps`:
+        -   `isSiderOpen` prop is added to check the visibility of the sider from a parent component.
+        -   `onToggleSiderClick` prop is added to control the visibility of the sider from a parent component.
+
+### Patch Changes
+
+-   Updated dependencies [[`d7d68e3ff68`](https://github.com/refinedev/refine/commit/d7d68e3ff686dece9f58e53e02076f0ecbd91010)]:
+    -   @refinedev/core@4.5.4
+
+## 1.4.0
+
+### Minor Changes
+
+-   [#3971](https://github.com/refinedev/refine/pull/3971) [`2798f715361`](https://github.com/refinedev/refine/commit/2798f715361c5fd407d09429d94b05b602b50397) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - New props added to `RefineThemedLayoutHeaderProps`:
+
+        -   `isSiderOpen` prop is added to check the visibility of the sider from `<ThemedHeader>`.
+        -   `onToggleSiderClick` prop is added to control the visibility of the sider from `<ThemedHeader>`.
+        -   `toggleSiderIcon` prop is added to change the icon of the toggle sider button.
+
+    -   New props added to `RefineThemedLayoutSiderProps`:
+        -   `isSiderOpen` prop is added to check the visibility of the sider from a parent component.
+        -   `onToggleSiderClick` prop is added to control the visibility of the sider from a parent component.
+
+### Patch Changes
+
+-   Updated dependencies [[`d7d68e3ff68`](https://github.com/refinedev/refine/commit/d7d68e3ff686dece9f58e53e02076f0ecbd91010)]:
+    -   @refinedev/core@4.5.3
+
 ## 1.3.0
 
 ### Minor Changes
