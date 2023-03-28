@@ -828,7 +828,7 @@ module.exports = {
                     items: [
                         "examples/remix/remix-antd",
                         "examples/remix/remix-headless",
-                        "examples/remix/oauth",
+                        "examples/remix/remix-auth",
                     ],
                 },
                 {
