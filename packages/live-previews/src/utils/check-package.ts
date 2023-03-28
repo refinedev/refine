@@ -53,7 +53,7 @@ export const checkPackage = (code = "") => {
     const hasNestjsxCrud = code.includes("@refinedev/nestjsx-crud");
     const hasStrapiV4 = code.includes("@refinedev/strapi-v4");
     const hasSupabase = code.includes("@refinedev/supabase");
-    const hasAxios = code.includes("@refinedev/axios");
+    const hasAxios = code.includes("axios");
     const hasAuth0 = code.includes("@auth0/auth0-react");
     const hasKeycloak =
         code.includes("@react-keycloak/web") || code.includes("keycloak-js");
