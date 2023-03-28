@@ -157,7 +157,7 @@ export const WelcomePage: React.FC = () => {
         <div
             style={{
                 backgroundImage:
-                    "url(https://images2.imgbox.com/cd/6b/gjMLMoBL_o.png)",
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/welcome-page.webp)",
                 backgroundPosition: "center top",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -170,7 +170,7 @@ export const WelcomePage: React.FC = () => {
             <div style={{ height: "89px" }}></div>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <img
-                    src="https://images2.imgbox.com/1c/b8/UKLkYsVh_o.png"
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/welcome-logo.webp"
                     width="198"
                     height="54"
                 />
