@@ -207,7 +207,7 @@ export const WelcomePage: React.FC = () => {
                     <Card key={`welcome-page-${card.title}`} card={card} />
                 ))}
             </div>
-            {isMobile && <div style={{ height: "64px" }}></div>}
+            <div style={{ height: "64px" }}></div>
         </div>
     );
 };
