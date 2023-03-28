@@ -7,10 +7,6 @@ sidebar_label: useResource
 `useResource` is used to get the resources array that you defined in `<Refine>`. It also returns `resource` object. You can pass a resource name or identifier to match a resource or it will return the resource object that matches the current route.
 
 :::tip
-
-:::
-
-:::tip
 If you pass a resource name or identifier to `useResource`, it will return the resource object that matches the name or identifier. If there is no match, a temporary `resource` will be created with the provided name or identifier.
 :::
 
