@@ -251,6 +251,38 @@ useCustom({
 });
 ```
 
+## FAQ
+
+### How to invalidate the custom query?
+
+To invalidate a query, you can use the `invalidateQueries` method from the `useQueryClient` hook provided by the `@tanstack/react-query` library.
+
+```tsx
+import { useQueryClient } from "@tanstack/react-query";
+
+const queryClient = useQueryClient();
+
+queryClient.invalidateQueries(["custom-key"]);
+```
+
+Note that you'll need to know the query key to invalidate the query. If you don't know the query key, you can use the `queryOptions` property of the `useCustom` hook.
+
+```tsx
+import { useCustom } from "@refinedev/core";
+
+useCustom({
+    queryOptions: {
+        queryKey: ["custom-key"],
+    },
+});
+```
+
+:::tip
+
+By default, the query key is generated based on the properties passed to `useCustom` hook, you can see it in the `@tanstack/react-query` devtools panel.
+
+:::
+
 ## API
 
 ### Properties
