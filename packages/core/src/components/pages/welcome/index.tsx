@@ -1,9 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 
 import { useMediaQuery } from "@definitions/helpers";
-import { CSSRules } from "./styles";
 
-const INFO_BOXES = [
+type CardInfo = {
+    title: string;
+    description: string;
+    link: string;
+    icon: React.ReactNode;
+};
+
+const CARDS: CardInfo[] = [
     {
         title: "Documentation",
         description:
@@ -92,36 +98,12 @@ const INFO_BOXES = [
     },
 ];
 
-const ArrowIcon = (
-    <svg
-        className="arrow-icon"
-        width="12"
-        height="8"
-        fill="none"
-        opacity="0.5"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <path
-            d="M7.293.293a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a1 1 0 0 1-1.414-1.414L8.586 5H1a1 1 0 0 1 0-2h7.586L7.293 1.707a1 1 0 0 1 0-1.414Z"
-            fill="#fff"
-        />
-    </svg>
-);
-
 /**
  * It is a page that welcomes you after the configuration is completed.
  */
 export const WelcomePage: React.FC = () => {
     const isTablet = useMediaQuery("(max-width: 1010px)");
     const isMobile = useMediaQuery("(max-width: 650px)");
-
-    useEffect(() => {
-        const styleTag = document.createElement("style");
-        document.head.appendChild(styleTag);
-        CSSRules.forEach((rule) =>
-            styleTag.sheet?.insertRule(rule, styleTag.sheet.cssRules.length),
-        );
-    }, []);
 
     const getGridTemplateColumns = () => {
         if (isMobile) {
@@ -221,58 +203,91 @@ export const WelcomePage: React.FC = () => {
                     margin: "auto",
                 }}
             >
-                {INFO_BOXES.map(({ title, description, icon, link }) => (
-                    <div
-                        key={title}
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "16px",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            <a
-                                className="link"
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    color: "#fff",
-                                    textDecoration: "none",
-                                }}
-                                href={link}
-                            >
-                                {icon}
-                                <span
-                                    style={{
-                                        fontSize: "16px",
-                                        fontWeight: 700,
-                                        marginLeft: "13px",
-                                        marginRight: "14px",
-                                    }}
-                                >
-                                    {title}
-                                </span>
-                                {ArrowIcon}
-                            </a>
-                        </div>
-                        <span
-                            style={{
-                                fontSize: "12px",
-                                opacity: 0.5,
-                                lineHeight: "16px",
-                            }}
-                        >
-                            {description}
-                        </span>
-                    </div>
+                {CARDS.map((card) => (
+                    <Card key={`welcome-page-${card.title}`} card={card} />
                 ))}
             </div>
             {isMobile && <div style={{ height: "64px" }}></div>}
+        </div>
+    );
+};
+
+type CardProps = {
+    card: CardInfo;
+};
+
+const Card: React.FC<CardProps> = ({ card }) => {
+    const { title, description, icon, link } = card;
+
+    const [isHover, setIsHover] = useState(false);
+
+    return (
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+            }}
+        >
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                }}
+            >
+                <a
+                    onPointerEnter={() => setIsHover(true)}
+                    onPointerLeave={() => setIsHover(false)}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        color: "#fff",
+                        textDecoration: "none",
+                    }}
+                    href={link}
+                >
+                    {icon}
+                    <span
+                        style={{
+                            fontSize: "16px",
+                            fontWeight: 700,
+                            marginLeft: "13px",
+                            marginRight: "14px",
+                        }}
+                    >
+                        {title}
+                    </span>
+                    <svg
+                        style={{
+                            transition:
+                                "transform 0.5s ease-in-out, opacity 0.2s ease-in-out",
+                            ...(isHover && {
+                                transform: "translateX(4px)",
+                                opacity: 1,
+                            }),
+                        }}
+                        width="12"
+                        height="8"
+                        fill="none"
+                        opacity="0.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M7.293.293a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a1 1 0 0 1-1.414-1.414L8.586 5H1a1 1 0 0 1 0-2h7.586L7.293 1.707a1 1 0 0 1 0-1.414Z"
+                            fill="#fff"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <span
+                style={{
+                    fontSize: "12px",
+                    opacity: 0.5,
+                    lineHeight: "16px",
+                }}
+            >
+                {description}
+            </span>
         </div>
     );
 };
