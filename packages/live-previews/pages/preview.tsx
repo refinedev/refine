@@ -55,6 +55,10 @@ const Preview: NextPage = () => {
                 ? (await import("../src/scope/headless-inferencer")).default
                 : {};
 
+            const i18Scope = usedPackages.has("i18n")
+                ? (await import("../src/scope/i18n")).default
+                : {};
+
             const tablerScope = usedPackages.has("tabler-icons")
                 ? (await import("../src/scope/tabler-icons")).default
                 : {};
@@ -121,6 +125,7 @@ const Preview: NextPage = () => {
                 ...auth0Scope,
                 ...keycloakScope,
                 ...tablerScope,
+                ...i18Scope,
             });
             setScopeSettled(true);
         }

@@ -42,4 +42,8 @@ export const packageMap: Record<string, string> = {
     "@chakra-ui/react": "ChakraUI",
     "react-hook-form": "ReactHookForm",
     "@tanstack/react-table": "TanstackReactTable",
+    "react-i18next": "ReactI18Next",
+    i18next: "I18Next",
+    "i18next-browser-languagedetector": "I18NextBrowserLanguageDetector",
+    "i18next-xhr-backend": "I18NextXhrBackend",
 };

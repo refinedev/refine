@@ -44,8 +44,8 @@ export const checkPackage = (code = "") => {
         code.includes("@refinedev/inferencer/headless") ||
         code.includes("RefineHeadlessInferencer");
 
+    const hasI18n = code.includes("react-i18next") || code.includes("i18next");
     const hasTablerIcons = code.includes("@tabler/icons");
-
     const hasKbar = code.includes("@refinedev/kbar");
     const hasAirtable = code.includes("@refinedev/airtable");
     const hasAppwrite = code.includes("@refinedev/appwrite");
@@ -57,6 +57,10 @@ export const checkPackage = (code = "") => {
     const hasAuth0 = code.includes("@auth0/auth0-react");
     const hasKeycloak =
         code.includes("@react-keycloak/web") || code.includes("keycloak-js");
+
+    if (hasI18n) {
+        set.add("i18n");
+    }
 
     if (hasTablerIcons) {
         set.add("tabler-icons");
