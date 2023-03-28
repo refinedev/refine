@@ -61,7 +61,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const renderMenuItems = (items: ITreeMenu[]) => {
         return (
             <>
-                {menuItems.map(({ name, label, icon, route }) => {
+                {menuItems.map(({ key, name, label, icon, route }) => {
                     const isSelected = key === selectedKey;
                     return (
                         <li key={name}>
@@ -239,7 +239,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const renderMenuItems = (items: ITreeMenu[]) => {
         return (
             <>
-                {items.map(({ name, label, icon, route, children, list }) => {
+                {items.map(({ key, name, label, icon, route, children, list }) => {
                     if (!list) {
                         return (
                             <li key={label}>
