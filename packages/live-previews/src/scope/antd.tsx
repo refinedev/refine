@@ -3,7 +3,16 @@ import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import * as RefineAntd from "@refinedev/antd";
 import * as AntdCore from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import {
+    UnorderedListOutlined,
+    GoogleOutlined,
+    AppstoreAddOutlined,
+    LoginOutlined,
+    SearchOutlined,
+    default as Icon,
+    DownOutlined,
+    EditOutlined,
+} from "@ant-design/icons";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -45,7 +54,14 @@ const AntdScope = {
     RefineAntd,
     AntdCore,
     AntDesignIcons: {
+        UnorderedListOutlined,
+        GoogleOutlined,
+        AppstoreAddOutlined,
+        LoginOutlined,
+        SearchOutlined,
+        default: Icon,
         DownOutlined,
+        EditOutlined,
     },
     // RefineMuiDemo,
     // RefineMui,
