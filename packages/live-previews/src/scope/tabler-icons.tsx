@@ -1,9 +1,10 @@
-import { IconSun, IconMoonStars } from "@tabler/icons";
+import { IconSun, IconMoonStars, IconLanguage } from "@tabler/icons";
 
 const TablerScope = {
     TablerIcons: {
         IconSun,
         IconMoonStars,
+        IconLanguage,
     },
 };
 
