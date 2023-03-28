@@ -178,7 +178,7 @@ export const WelcomePage: React.FC = () => {
                         margin: "0px",
                     }}
                 >
-                    Welcome onboard!
+                    Welcome Aboard!
                 </h1>
                 <h4
                     style={{

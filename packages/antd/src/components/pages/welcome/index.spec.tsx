@@ -12,7 +12,7 @@ describe("WelcomePage", () => {
     it("should render 3 texts", async () => {
         const { getByText } = render(<WelcomePage />);
 
-        getByText("Welcome onboard!");
+        getByText("Welcome Aboard!");
         getByText("Your configuration is completed.");
     });
 

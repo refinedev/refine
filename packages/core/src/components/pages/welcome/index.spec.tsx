@@ -8,7 +8,7 @@ describe("WelcomePage", () => {
     it("should render page successfuly", async () => {
         const { getByText } = render(<WelcomePage />);
 
-        getByText("Welcome onboard!");
+        getByText("Welcome Aboard!");
         getByText("Your configuration is completed.");
     });
 
