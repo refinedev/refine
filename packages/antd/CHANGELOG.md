@@ -1,5 +1,15 @@
 # @pankod/refine-antd
 
+## 5.3.9
+
+### Patch Changes
+
+-   [#3997](https://github.com/refinedev/refine/pull/3997) [`f027d8a53b8`](https://github.com/refinedev/refine/commit/f027d8a53b8475f63f3557733c81b9ef040ed0ec) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed the unsaved changes dialog is popping up unexpectedly when the user clicks the logs out.
+
+        -   The `<ThemedSider>`'s `onClick` handler was changed to use the `window.confirm` API to manage the confirmation dialog.
+
+-   [#3974](https://github.com/refinedev/refine/pull/3974) [`4dcc20d6a60`](https://github.com/refinedev/refine/commit/4dcc20d6a6097bb81a094e4bcb630504b2a055d2) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Deprecated the `WelcomePage` component. It'll be used from `@refinedev/core` instead.
+
 ## 5.3.8
 
 ### Patch Changes

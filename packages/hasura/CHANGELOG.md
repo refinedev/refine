@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 5.1.1
+
+### Patch Changes
+
+-   [#4001](https://github.com/refinedev/refine/pull/4001) [`e9807e60510`](https://github.com/refinedev/refine/commit/e9807e60510aa689cdb5f36ce878c1398c420721) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: add missing possible id types to hasura data provider
+
 ## 5.1.0
 
 ### Minor Changes

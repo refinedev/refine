@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 2.5.1
+
+### Patch Changes
+
+-   [#3974](https://github.com/refinedev/refine/pull/3974) [`4dcc20d6a60`](https://github.com/refinedev/refine/commit/4dcc20d6a6097bb81a094e4bcb630504b2a055d2) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Deprecated the `WelcomePage` component. It'll be used from `@refinedev/core` instead.
+
 ## 2.5.0
 
 ### Minor Changes
