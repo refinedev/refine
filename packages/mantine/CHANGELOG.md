@@ -1,5 +1,99 @@
 # @pankod/refine-mantine
 
+## 2.5.0
+
+### Minor Changes
+
+-   [#3996](https://github.com/refinedev/refine/pull/3996) [`327be2be623`](https://github.com/refinedev/refine/commit/327be2be623ab9a62a32974315c3d2453baf4a07) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Mantine components.
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { RefineThemes } from "@refinedev/mantine";
+    import dataProvider from "@refinedev/simple-rest";
+
+    const App = () => {
+        // ---
+        return (
+            <MantineProvider theme={RefineThemes.Magenta}>
+                <Refine dataProvider={dataProvider("YOUR_API_URL")}>
+                    {/** your app here */}
+                </Refine>
+            </MantineProvider>
+        );
+    };
+    ```
+
+    -   default title with icon added to `AuthPage`. It uses `<ThemedTitle>` component from `@refinedev/mantine`. You can remove it by setting `title` prop to `false`.
+
+    ```tsx
+    import { AuthPage, ThemedTitle } from "@refinedev/mantine";
+    const MyLoginPage = () => {
+        return (
+            <AuthPage
+                type="login"
+                title={
+                    <ThemedTitle
+                        title="My Title"
+                        icon={<img src="https://refine.dev/img/logo.png" />}
+                    />
+                }
+            />
+        );
+    };
+    ```
+
+    -   `title` prop added to `AuthPage`'s `renderContent` prop to use in the custom content.
+
+    ```tsx
+    import { Box, Text } from "@mantine/core";
+    import { AuthPage } from "@refinedev/mantine";
+
+    const MyLoginPage = () => {
+        return (
+            <AuthPage
+                contentProps={{
+                    style: {
+                        width: "400px",
+                    },
+                }}
+                renderContent={(
+                    content: React.ReactNode,
+                    title: React.ReactNode,
+                ) => {
+                    return (
+                        <Box
+                            bg="white"
+                            borderRadius="md"
+                            px="5"
+                            display="flex"
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            {title}
+                            <Text>Extra Header</Text>
+                            {content}
+                            <Text>Extra Footer</Text>
+                        </Box>
+                    );
+                }}
+            />
+        );
+    };
+    ```
+
+    -   `<ThemedLayout>`, `<ThemedSider>`, `<ThemedTitle>`, `<ThemedHeader>` created to use theme colors.
+
+    -   `<EditButton>` in `<Show>` color changed to `brand`.
+    -   `<CreateButton>` color changed to `brand`.
+
+    -   `<AuthPage>` component uses colors from the theme.
+    -   `<ThemedTitle>` added to `AuthPage`
+
+### Patch Changes
+
+-   [#3974](https://github.com/refinedev/refine/pull/3974) [`4dcc20d6a60`](https://github.com/refinedev/refine/commit/4dcc20d6a6097bb81a094e4bcb630504b2a055d2) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Deprecated the `WelcomePage` component. It'll be used from `@refinedev/core` instead.
+
 ## 2.4.0
 
 ### Minor Changes
