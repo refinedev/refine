@@ -303,7 +303,3 @@ By default, the query key is generated based on the properties passed to `useCus
 | Description                             | Type                                                                                                                |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-
-```
-
-```
