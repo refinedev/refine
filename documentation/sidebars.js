@@ -813,7 +813,7 @@ module.exports = {
                         "examples/next-js/nextjs",
                         "examples/next-js/nextjs-appdir",
                         "examples/next-js/auth",
-                        "examples/next-js/next-auth.js",
+                        "examples/next-js/NextAuth.js",
                     ],
                 },
                 {
