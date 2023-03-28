@@ -17,8 +17,14 @@ export const loader = async ({ request }: LoaderArgs) => {
     const session = await authenticator.isAuthenticated(request);
     const pathname = new URL(request.url).pathname;
 
+    let to = ``;
+    // ignore only `/` routes
+    if (pathname !== "/") {
+        to = `?to=${pathname}`;
+    }
+
     if (!session) {
-        return redirect(`/login?to=${pathname}`);
+        return redirect(`/login${to}`);
     }
 
     return {};
