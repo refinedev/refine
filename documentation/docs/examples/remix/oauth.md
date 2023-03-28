@@ -1,6 +1,6 @@
 ---
 id: oauth
-title: OAuth (google,auth0,keycloak)
+title: Authentication with remix-auth
 example-tags: [remix, oauth, google, auth0, keycloak]
 ---
 
