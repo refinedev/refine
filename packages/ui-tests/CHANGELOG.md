@@ -1,5 +1,14 @@
 # @pankod/refine-ui-tests
 
+## 1.3.2
+
+### Patch Changes
+
+-   [#3996](https://github.com/refinedev/refine/pull/3996) [`327be2be623`](https://github.com/refinedev/refine/commit/327be2be623ab9a62a32974315c3d2453baf4a07) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed typo in `src/tests/layout/header.tsx`'s test description
+
+-   Updated dependencies [[`4dcc20d6a60`](https://github.com/refinedev/refine/commit/4dcc20d6a6097bb81a094e4bcb630504b2a055d2)]:
+    -   @refinedev/core@4.5.6
+
 ## 1.3.1
 
 ### Patch Changes
