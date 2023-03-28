@@ -35,13 +35,6 @@ The mini-quiz at the bottom of each page is a quick way to test your understandi
 
 </details> -->
 
-<details>
-<summary>Where can I leave feedback about this tutorial?</summary>
-
-You can reach us on [Discord](https://discord.gg/refine).
-
-</details>
-
 <Checklist>
 
 <ChecklistItem id="prequisite-looks-great">

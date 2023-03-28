@@ -468,11 +468,11 @@ This won't be necessary if there's already an `authorId` parameter present in th
 
 This hook was designed to work with the legacy router provider, but it has been updated to work with both router provider versions. Although it's recommended to use the new routing hooks when necessary or the ones available from your router library, **refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
 
-If you still want to use the useNavigation hook and its returned functions, they now accept the `meta` property for parameterized paths in the new routing system.
+If you still want to use the `useNavigation` hook and its returned functions in the new routing system, their paths that accept props now accept the `meta` prop.
 
 ### `useRouterContext` hook
 
-This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) and [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/).
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) or [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";

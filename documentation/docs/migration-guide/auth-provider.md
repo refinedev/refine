@@ -358,7 +358,7 @@ type IdentityResponse = unknown;
 
 :::caution
 
-The `v3LegacyAuthProviderCompatible: true` prop was added to the auth hooks for backward compatibility if you used `codemod` for migration, and needs to be removed manually if you want to upgrade to the new auth provider.
+If you used `codemod` for migration, the `v3LegacyAuthProviderCompatible: true` prop was added to the auth hooks for backward compatibility. You need to remove this prop if you want to upgrade to the new auth provider.
 
 ```diff
 useLogin({
@@ -370,7 +370,7 @@ useLogin({
 
 Unlike the previous version, **refine@4** requires all auth methods to resolve promises. Therefore, if you used auth hooks in your applications before, they need to be updated accordingly.
 
-Let's create a wrapper component that renders children according to the authentication status:
+To better show the differences between the usage of auth hooks between the two versions, let's create two wrapper components that render children according to the authentication status:
 
 Auth Provider v3:
 
