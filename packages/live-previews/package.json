@@ -1,6 +1,6 @@
 {
     "name": "@refinedev/live-previews",
-    "version": "0.1.3",
+    "version": "0.2.0",
     "private": true,
     "scripts": {
         "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
