@@ -35,9 +35,17 @@ export type RefineLayoutTitleProps = TitleProps;
 export type RefineLayoutLayoutProps = LayoutProps;
 
 export type RefineThemedLayoutProps = RefineLayoutLayoutProps;
-export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps;
-export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps;
+export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
+    isSiderOpen?: boolean;
+    onToggleSiderClick?: (isOpen?: boolean) => void;
+};
+export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
+    isSiderOpen?: boolean;
+    onToggleSiderClick?: (isOpen?: boolean) => void;
+    toggleSiderIcon?: (open: boolean) => React.ReactNode;
+};
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
     icon?: React.ReactNode;
     text?: React.ReactNode;
+    wrapperStyles?: React.CSSProperties;
 };
