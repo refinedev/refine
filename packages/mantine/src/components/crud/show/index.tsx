@@ -106,6 +106,8 @@ export const Show: React.FC<ShowProps> = (props) => {
             {isEditButtonVisible && (
                 <EditButton
                     {...(isLoading ? { disabled: true } : {})}
+                    color="primary"
+                    variant="filled"
                     resource={
                         routerType === "legacy"
                             ? resource?.route
