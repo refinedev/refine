@@ -28,7 +28,7 @@ You can Learn more about [how Inferencer works](/docs/packages/documentation/inf
 
 ## How to use Inferencer
 
-The `@refinedev/inferencer` package provides the `<MuiInferencer/>` component, which can be imported from `@refinedev/inferencer/mui`. It used to generate CRUD pages based on your API response with Material UI components.
+The `@refinedev/inferencer` package provides the `<MuiInferencer/>` component, which can be imported from `@refinedev/inferencer/mui`. It is used to generate CRUD pages based on your API response with Material UI components.
 
 The `<MuiInferencer/>` component is used for passing appropriate values to the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 
