@@ -10,7 +10,7 @@ Our motivation behind the changes to `routerProvider` and route handling was to 
 
 By simplifying the `routerProvider` to just an interaction and connection point between **refine** and the router, we eliminated the need for a specific way of defining routes and a `routerProvider` altogether. This means that **refine** will meet enterprise-grade requirements. While router bindings are optional, we recommend passing them to **refine** for optimal usage.
 
-By making these changes, our users can integrate **refine** into their existing projects without needing to modify their current routes or application structure.
+By making these changes, we made it so that people can integrate refine into their existing projects without needing to modify their current routes or applications
 
 Ultimately, our goal is to make it simple for users to handle their unique situations without enforcing a particular methodology. With the updated router provider, you can continue using routers like before while benefiting from the features that **refine** offers.
 
@@ -26,7 +26,7 @@ The creation and control of routes is entirely up to the user. You must manually
 
 Since route handling is now detached from the `<Refine>` component, props it accepts will change. Layout related props such as `Layout`, `Sider`, `Title`, `Header`, `Footer,` and `OffLayoutArea` are deprecated and won't have any effect when using the new router providers. However, the UI components exported from the package are still well-supported and can be used inside your app while creating your routes and pages.
 
-Similarly, the `DashboardPage`, `catchAll` and `LoginPage` components are also deprecated. You can now create your own routes and pages to replace them without any limitations.
+Similarly, the `DashboardPage`, `catchAll` and `LoginPage` components are also deprecated and won't have any affect when using the new router providers. You need to create your own routes and pages to replace them.
 
 :::info Legacy Behavior (Dashboard Page)
 
@@ -44,7 +44,7 @@ If you have swizzled the `<Sider>` component from your UI package and customized
 
 With the new `routerProvider` prop, the v3 compatible router providers are now provided through the `legacyRouterProvider` prop. If you're using the `legacyRouterProvider`, `useRouterContext` will continue working as before. However, if you're using the new `routerProvider`, `useRouterContext` hook will be deprecated and useless for you but can easily be replaced with the router hooks that are `useLink`, `useGo`, `useBack` and `useParsed.`
 
-In the `<Sider>` components, we have used the `Link` component from `useRouterContext`. You can easily replace the usage of `Link` with the `useLink` hook. If you want you can always switch to the `Link` implementations from your router. (e.g. `react-router-dom`'s `Link` component or the `next/link` component)
+In the `<Sider>` components, we have used the `Link` component from `useRouterContext`. You can easily replace the usage of `Link` with the `useLink` hook or just switch to the `Link` implementations from your router. (e.g. `react-router-dom`'s `Link` component or the `next/link` component)
 
 ```diff
 - import { useRouterContext } from "@refinedev/core";
@@ -116,4 +116,6 @@ and [`react-router-dom`](https://reactrouter.com)
 
 If you are using Remix or Next.js, you will first need to create your routes using the file system-based routing method as you would normally do. Afterwards, you can pass the `routerProvider` from `@refinedev/remix-router` or `@refinedev/nextjs-router` to the `<Refine>` component, and specify the paths for your resource actions in the `resources` array. Our documentation provides step-by-step instructions on how to create routes and associate them with your resources, complete with examples for your reference.
 
-Check out the [`@refinedev/remix-router`](/docs/packages/documentation/routers/remix), [`Remix`](https://remix.run/docs/en/main) documentations for Remix and [`@refinedev/nextjs-router`](/docs/packages/documentation/routers/nextjs), [`Next.js`](https://nextjs.org/docs/getting-started) documentations for Next.js.
+Check out their respective documentations:
+- [`@refinedev/remix-router`](/docs/packages/documentation/routers/remix) and [`Remix`](https://remix.run/docs/en/main) documentations for Remix
+- [`@refinedev/nextjs-router`](/docs/packages/documentation/routers/nextjs) and [`Next.js`](https://nextjs.org/docs/getting-started) documentations for Next.js.
