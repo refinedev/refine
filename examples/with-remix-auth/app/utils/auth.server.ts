@@ -2,6 +2,7 @@ import { Authenticator } from "remix-auth";
 import { Auth0Strategy } from "remix-auth-auth0";
 import { GoogleStrategy } from "remix-auth-google";
 import { KeycloakStrategy } from "remix-auth-keycloak";
+import { FormStrategy } from "remix-auth-form";
 
 import { sessionStorage } from "~/services/session.server";
 
@@ -65,6 +66,17 @@ const keycloakStrategy = new KeycloakStrategy(
     },
 );
 
+const formStrategy = new FormStrategy(async ({ form }) => {
+    console.log("--| FormData", form.get("email"), form.get("password"));
+    // TODO: Check credentials on your api
+    return Promise.resolve({
+        id: 1,
+        name: "John Doe",
+        avatar: `https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg`,
+    });
+});
+
 authenticator.use(auth0Strategy);
 authenticator.use(googleStrategy);
 authenticator.use(keycloakStrategy);
+authenticator.use(formStrategy, "user-pass");

@@ -30,7 +30,7 @@ export default function App(): JSX.Element {
     const { profile, to } = useLoaderData<typeof loader>();
 
     const authProvider: AuthBindings = {
-        login: async ({ providerName, email, password }) => {
+        login: async ({ providerName }) => {
             if (providerName) {
                 window.location.href = `/auth/${providerName}?to=${to}`;
                 return {
@@ -38,10 +38,9 @@ export default function App(): JSX.Element {
                 };
             }
 
-            // TODO: Add support for email/password login
-
             return {
                 success: true,
+                redirectTo: "/",
             };
         },
         logout: async () => {
