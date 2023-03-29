@@ -1383,4 +1383,3 @@ I understood how to create a auth provider.
 </ChecklistItem>
 
 </Checklist>
-```
