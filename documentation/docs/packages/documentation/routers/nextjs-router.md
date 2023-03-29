@@ -897,8 +897,6 @@ export default function MyListPage({ initialData }) {
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
 
-### Server Side Authentication with Cookies
-
 ### How to use multiple layouts?
 
 When using `/pages` directory for your routes, you'll probably have a point where you need to use multiple layouts. For example, you may want to use a different layout for the login page. To achieve this, you can either use your `Layout` wrappers in your pages or you can add extra properties to your page components to render the page with the specified layout.
@@ -1140,7 +1138,7 @@ Default paths are:
 -   `create`: `/resources/create`
 -   `edit`: `/resources/edit/:id`
 -   `show`: `/resources/show/:id`
-:::
+    :::
 
 ## Example (`/pages`)
 
