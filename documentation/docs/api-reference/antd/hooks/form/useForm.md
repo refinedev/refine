@@ -453,6 +453,12 @@ useForm({
 });
 ```
 
+:::caution
+
+If you're using a resource other than the one shown in the URL, you'll have to manually provide the `id` prop to `useForm`.
+
+:::
+
 ### `id`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.

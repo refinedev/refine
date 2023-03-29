@@ -544,9 +544,15 @@ It will be passed to the [`dataProvider`][data-provider]'s method as a params. T
 useForm({
     refineCoreProps: {
         resource: "categories",
-    }
+    },
 });
 ```
+
+:::caution
+
+If you're using a resource other than the one shown in the URL, you'll have to manually provide the `id` prop to `useForm`.
+
+:::
 
 ### `id`
 
