@@ -14,7 +14,22 @@ import * as ReactHookForm from "react-hook-form";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 
-import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
+import {
+    LightModeOutlined,
+    DarkModeOutlined,
+    ArrowRight,
+    Camera,
+    ListOutlined,
+    Logout,
+    ExpandLess,
+    ExpandMore,
+    ChevronLeft,
+    ChevronRight,
+    MenuRounded,
+    Dashboard,
+    Check,
+    Close,
+} from "@mui/icons-material";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -68,8 +83,20 @@ const MuiScope = {
     MuiMaterialStyles,
     ReactHookForm,
     MuiIconsMaterial: {
+        Close,
+        Check,
         LightModeOutlined,
         DarkModeOutlined,
+        ArrowRight,
+        Camera,
+        ListOutlined,
+        Logout,
+        ExpandLess,
+        ExpandMore,
+        ChevronLeft,
+        ChevronRight,
+        MenuRounded,
+        Dashboard,
     },
     // RefineMantine,
     // RefineMantineDemo,

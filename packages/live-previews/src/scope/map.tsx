@@ -27,6 +27,7 @@ export const packageMap: Record<string, string> = {
     "@react-keycloak/web": "ReactKeycloakWebScope",
     "react-router-dom": "ReactRouterDom",
     antd: "AntdCore",
+    "@ant-design/icons": "AntDesignIcons",
     "@mantine/core": "MantineCore",
     "@mantine/hooks": "MantineHooks",
     "@mantine/form": "MantineForm",

@@ -21,43 +21,6 @@ const Wrapper = ({ children }) => {
         </ChakraUI.ChakraProvider>
     );
 };
-
-const IconX = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-x"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <line x1={18} y1={6} x2={6} y2={18}></line>
-        <line x1={6} y1={6} x2={18} y2={18}></line>
-    </svg>
-);
-
-const IconCheck = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-check"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M5 12l5 5l10 -10"></path>
-    </svg>
-);
 ```
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://chakra-ui.com/docs/components/tooltip/usage) values from Chakra UI.
@@ -93,6 +56,7 @@ import {
 } from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { IconX, IconCheck } from "@tabler/icons";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -116,8 +80,8 @@ const PostList: React.FC = () => {
                         // highlight-start
                         <BooleanField
                             value={getValue() === "published"}
-                            trueIcon={IconCheck}
-                            falseIcon={IconX}
+                            trueIcon={<IconCheck />}
+                            falseIcon={<IconX />}
                             valueLabelTrue="published"
                             valueLabelFalse="unpublished"
                         />

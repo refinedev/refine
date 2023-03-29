@@ -15,41 +15,6 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
-const IconX = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-x"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <line x1={18} y1={6} x2={6} y2={18}></line>
-        <line x1={6} y1={6} x2={18} y2={18}></line>
-    </svg>
-);
-const IconCheck = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-check"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M5 12l5 5l10 -10"></path>
-    </svg>
-);
 // visible-block-start
 import {
     useDataGrid,
@@ -58,6 +23,7 @@ import {
     BooleanField,
 } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { Close, Check } from "@mui/icons-material"
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -70,8 +36,8 @@ const columns: GridColumns = [
             return (
                 <BooleanField
                     value={row.status === "published"}
-                    trueIcon={<IconX />}
-                    falseIcon={<IconCheck />}
+                    trueIcon={<Check />}
+                    falseIcon={<Close />}
                     valueLabelTrue="published"
                     valueLabelFalse="unpublished"
                 />

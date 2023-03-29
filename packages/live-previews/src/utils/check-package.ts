@@ -4,7 +4,8 @@ export const checkPackage = (code = "") => {
     const hasAntd =
         code.includes("@refinedev/antd") ||
         code.includes("RefineAntd") ||
-        code.includes(`from "antd"`);
+        code.includes(`from "antd"`) ||
+        code.includes("@ant-design/icons");
     const hasMui =
         code.includes("@refinedev/mui") ||
         code.includes("RefineMui") ||
