@@ -1,4 +1,6 @@
 export const packageMap: Record<string, string> = {
+    "react-dom/client": "ReactDomClient",
+    "./reportWebVitals": "ReportWebVitals",
     "@refinedev/core": "RefineCore",
     "@refinedev/react-router-v6/legacy": "LegacyRefineReactRouterV6",
     "@refinedev/react-router-v6": "RefineReactRouterV6",
