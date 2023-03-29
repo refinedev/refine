@@ -107,8 +107,7 @@ import { useLogin } from "@refinedev/core";
 
 const { mutate } = useLogin();
 
-mutate({ email: "john@mail.com", password: "123456"})
-
+mutate({ email: "john@mail.com", password: "123456" });
 ```
 
 The `login` method will get the mutation's parameters as arguments.
@@ -1320,6 +1319,60 @@ const App = () => {
 };
 ```
 
+## Implementing Refresh Token Mechanism
+
+Previously, we stored the token in the `localStorage` and added it to the `Authorization` header of API calls. However, tokens typically have a limited lifespan and expire after a certain amount of time. When the token expires, the user will be redirected to the login page. To avoid this, we'll implement a refresh token mechanism using the `axios-auth-refresh` package.
+
+[Refer to the `axios-auth-refresh` repository for more information &#8594](https://github.com/Flyrell/axios-auth-refresh)
+
+```tsx title="App.tsx"
+/* ... */
+import { Refine, AuthBindings } from "@refinedev/core";
+import axios from "axios";
+//highlight-next-line
+import createAuthRefreshInterceptor from "axios-auth-refresh";
+
+//highlight-next-line
+const axiosInstance = axios.create();
+
+// Function that will be called to refresh authorization
+//highlight-start
+const refreshAuthLogic = (failedRequest) =>
+    axiosInstance
+        .post(`${API_URL}/auth/token/refresh`)
+        .then((tokenRefreshResponse) => {
+            localStorage.setItem("token", tokenRefreshResponse.data.token);
+
+            failedRequest.response.config.headers["Authorization"] =
+                "Bearer " + tokenRefreshResponse.data.token;
+
+            return Promise.resolve();
+        });
+//highlight-end
+
+// Instantiate the interceptor
+//highlight-next-line
+createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
+
+const App = () => {
+    const authProvider: AuthBindings = {
+        /* ... */
+    };
+
+    return (
+        <Refine
+            authProvider={authProvider}
+            //highlight-next-line
+            dataProvider={dataProvider(API_URL, axiosInstance)}
+        >
+            /* ... */
+        </Refine>
+    );
+};
+```
+
+In this example, we used the `axios-auth-refresh` package to refresh the token. You can use any other package or your own implementation.
+
 <br />
 <br />
 
@@ -1330,3 +1383,4 @@ I understood how to create a auth provider.
 </ChecklistItem>
 
 </Checklist>
+```
