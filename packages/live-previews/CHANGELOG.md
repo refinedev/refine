@@ -1,5 +1,11 @@
 # @pankod/refine-live-previews
 
+## 0.4.0
+
+### Minor Changes
+
+-   [#3994](https://github.com/refinedev/refine/pull/3994) [`f9c6cfc370a`](https://github.com/refinedev/refine/commit/f9c6cfc370a55aed80eff5271991aaf95fe90c2d) Thanks [@aliemir](https://github.com/aliemir)! - feat(live-previews): add missing packages
+
 ## 0.3.0
 
 ### Minor Changes
