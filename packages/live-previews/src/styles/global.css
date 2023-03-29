@@ -57,15 +57,6 @@ html, body, #__next {
     animation-fill-mode: forwards;
 }
 
-.refine-loading__spinner {
-    animation: 1s linear 0s infinite normal forwards running loading-spin;
-}
-
-.refine-loading__spinner-inner {
-    animation: 1s linear 0s infinite normal forwards running loading-drop;
-    animation-direction: alternate;
-}
-
 .refine-loading__progress {
     width: 200px;
     height: 6px;
@@ -159,4 +150,10 @@ html, body, #__next {
 
 section.ant-layout > main.ant-layout-content > div {
     padding: 16px 12px !important;
+}
+
+.refine-loading__gif {
+    width: 64px;
+    height: 64px;
+    border-radius: 64px;
 }

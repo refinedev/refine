@@ -1,8 +1,4 @@
 import React from "react";
-import {
-    RefineSmallIconInner,
-    RefineSmallIconOuter,
-} from "./refine-small-icon";
 
 export const Loading: React.FC<{ loading?: boolean }> = ({ loading }) => {
     return (
@@ -16,16 +12,7 @@ export const Loading: React.FC<{ loading?: boolean }> = ({ loading }) => {
                 animationDuration: `200ms`,
             }}
         >
-            <div
-                className="refine-loading__spinner"
-                style={{ height: "50px", position: "relative" }}
-            >
-                <RefineSmallIconOuter />
-                <RefineSmallIconInner
-                    className="refine-loading__spinner-inner"
-                    style={{ position: "absolute", left: 0, top: 0 }}
-                />
-            </div>
+            <img src="/loader.gif" className="refine-loading__gif" />
         </div>
     );
 };
