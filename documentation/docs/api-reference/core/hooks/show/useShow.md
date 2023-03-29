@@ -47,6 +47,12 @@ useShow({
 });
 ```
 
+:::caution
+
+If you're using a resource other than the one shown in the URL, you'll have to manually provide the `id` prop to `useForm`.
+
+:::
+
 ### `id`
 
 > Default: It reads the `id` value from the current URL.
