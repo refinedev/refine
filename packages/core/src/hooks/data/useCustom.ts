@@ -18,6 +18,7 @@ import {
     CustomResponse,
     HttpError,
     MetaQuery,
+    Prettify,
     SuccessErrorNotification,
 } from "../../interfaces";
 
@@ -63,7 +64,11 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
     dataProviderName?: string;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<
+    TData,
+    TError,
+    Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
+>;
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -136,7 +141,7 @@ export const useCustom = <
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, {
+                        ? successNotification(data.data, {
                               ...config,
                               ...(pickNotDeprecated(meta, metaData) || {}),
                           })

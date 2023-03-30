@@ -4,9 +4,7 @@ import { ListProps, FormProps, Form, Grid } from "antd";
 import {
     BaseRecord,
     CrudFilters,
-    SuccessErrorNotification,
     HttpError,
-    LiveModeProps,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType,
@@ -21,8 +19,7 @@ export type useSimpleListProps<TData, TError, TSearchVariables> =
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
-    } & SuccessErrorNotification &
-        LiveModeProps;
+    };
 
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,

@@ -13,6 +13,7 @@ import {
     MetaQuery,
     SuccessErrorNotification,
     LiveModeProps,
+    Prettify,
 } from "../../interfaces";
 import {
     useResource,
@@ -37,11 +38,7 @@ export interface UseListConfig {
     filters?: CrudFilters;
 }
 
-export type UseListProps<TData, TError> = {
-    /**
-     * Resource name for API data interactions
-     */
-    resource?: string;
+export type BaseListProps = {
     /**
      * Configuration for pagination, sorting and filtering
      * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
@@ -66,10 +63,6 @@ export type UseListProps<TData, TError> = {
      */
     filters?: CrudFilters;
     /**
-     * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
-     */
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    /**
      * Meta data query for `dataProvider`
      */
     meta?: MetaQuery;
@@ -82,7 +75,24 @@ export type UseListProps<TData, TError> = {
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
      */
     dataProviderName?: string;
-} & SuccessErrorNotification &
+};
+
+export type UseListProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
+    resource?: string;
+
+    /**
+     * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
+    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+} & BaseListProps &
+    SuccessErrorNotification<
+        GetListResponse<TData>,
+        TError,
+        Prettify<BaseListProps>
+    > &
     LiveModeProps;
 
 /**

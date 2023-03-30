@@ -29,7 +29,7 @@ import {
     useOnError,
 } from "@hooks";
 
-type useCreateParams<TVariables> = {
+type useCreateParams<TData, TError, TVariables> = {
     /**
      * Resource name for API data interactions
      */
@@ -55,7 +55,7 @@ type useCreateParams<TVariables> = {
      * You can use it to manage the invalidations that will occur at the end of the mutation.
      */
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<CreateResponse<TData>, TError, TVariables>;
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -64,7 +64,7 @@ export type UseCreateReturnType<
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
-    useCreateParams<TVariables>,
+    useCreateParams<TData, TError, TVariables>,
     unknown
 >;
 
@@ -77,7 +77,7 @@ export type UseCreateProps<
         UseMutationOptions<
             CreateResponse<TData>,
             TError,
-            useCreateParams<TVariables>,
+            useCreateParams<TData, TError, TVariables>,
             unknown
         >,
         "mutationFn" | "onError" | "onSuccess"
@@ -125,7 +125,7 @@ export const useCreate = <
     const mutation = useMutation<
         CreateResponse<TData>,
         TError,
-        useCreateParams<TVariables>,
+        useCreateParams<TData, TError, TVariables>,
         unknown
     >(
         ({
@@ -134,7 +134,7 @@ export const useCreate = <
             meta,
             metaData,
             dataProviderName,
-        }: useCreateParams<TVariables>) => {
+        }: useCreateParams<TData, TError, TVariables>) => {
             return dataProvider(
                 pickDataProvider(resource, dataProviderName, resources),
             ).create<TData, TVariables>({

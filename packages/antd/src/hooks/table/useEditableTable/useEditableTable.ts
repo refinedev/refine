@@ -29,7 +29,10 @@ type useEditableTableProps<
     TError extends HttpError = HttpError,
     TVariables = {},
     TSearchVariables = unknown,
-> = useTableProps<TData, TError, TSearchVariables> &
+> = Omit<
+    useTableProps<TData, TError, TSearchVariables>,
+    "successNotification" | "errorNotification"
+> &
     UseFormProps<TData, TError, TVariables>;
 
 /**
@@ -53,7 +56,11 @@ export const useEditableTable = <
         TSearchVariables
     > = {},
 ): useEditableTableReturnType<TData, TError, TVariables, TSearchVariables> => {
-    const table = useTable<TData, TError, TSearchVariables>({ ...props });
+    const table = useTable<TData, TError, TSearchVariables>({
+        ...props,
+        successNotification: undefined,
+        errorNotification: undefined,
+    });
     const edit = useForm<TData, TError, TVariables>({
         ...props,
         action: "edit",

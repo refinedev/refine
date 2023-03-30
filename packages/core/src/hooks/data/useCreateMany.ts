@@ -28,14 +28,14 @@ import {
     pickNotDeprecated,
 } from "@definitions";
 
-type useCreateManyParams<TVariables> = {
+type useCreateManyParams<TData, TError, TVariables> = {
     resource: string;
     values: TVariables[];
     meta?: MetaQuery;
     metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<CreateManyResponse<TData>, TError, TVariables[]>;
 
 export type UseCreateManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -44,7 +44,7 @@ export type UseCreateManyReturnType<
 > = UseMutationResult<
     CreateManyResponse<TData>,
     TError,
-    useCreateManyParams<TVariables>,
+    useCreateManyParams<TData, TError, TVariables>,
     unknown
 >;
 
@@ -57,7 +57,7 @@ export type UseCreateManyProps<
         UseMutationOptions<
             CreateManyResponse<TData>,
             TError,
-            useCreateManyParams<TVariables>
+            useCreateManyParams<TData, TError, TVariables>
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
@@ -98,7 +98,7 @@ export const useCreateMany = <
     const mutation = useMutation<
         CreateManyResponse<TData>,
         TError,
-        useCreateManyParams<TVariables>
+        useCreateManyParams<TData, TError, TVariables>
     >(
         ({
             resource,
@@ -106,7 +106,7 @@ export const useCreateMany = <
             meta,
             metaData,
             dataProviderName,
-        }: useCreateManyParams<TVariables>) => {
+        }: useCreateManyParams<TData, TError, TVariables>) => {
             const selectedDataProvider = dataProvider(
                 pickDataProvider(resource, dataProviderName, resources),
             );

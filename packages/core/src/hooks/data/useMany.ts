@@ -57,7 +57,7 @@ export type UseManyProps<TData, TError> = {
      * @default "default"
      */
     dataProviderName?: string;
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<GetManyResponse<TData>, TError, BaseKey[]> &
     LiveModeProps;
 
 /**
