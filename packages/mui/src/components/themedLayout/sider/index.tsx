@@ -49,7 +49,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     onToggleSiderClick,
 }) => {
     const theme = useTheme();
-    console.log("theme", theme);
     const [opened, setOpened] = useState(false);
 
     const drawerWidth = () => {
