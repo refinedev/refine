@@ -57,16 +57,6 @@ type ActionFormProps<
     TVariables = {},
 > = {
     /**
-     * Resource name for API data interactions
-     * @default Resource name that it reads from route
-     */
-    resource?: string;
-    /**
-     * Record id for fetching
-     * @default Id that it reads from the URL
-     */
-    id?: BaseKey;
-    /**
      * Page to redirect after a succesfull mutation
      * @type `"show" | "edit" | "list" | "create" | false`
      * @default `"list"`
@@ -137,15 +127,49 @@ type ActionFormProps<
         TError,
         TVariables
     >["mutationOptions"];
-} & SuccessErrorNotification &
+};
+
+type BaseUseFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = ActionFormProps<TData, TError, TVariables> &
     ActionParams &
-    LiveModeProps;
+    LiveModeProps &
+    SuccessErrorNotification;
+
+type FormPropsWithResource = {
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource: string;
+    /**
+     * Record id for fetching
+     * @default Id that it reads from the URL
+     */
+    id: BaseKey;
+};
+
+type FormPropsWithoutResource = {
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource?: never;
+    /**
+     * Record id for fetching
+     * @default Id that it reads from the URL
+     */
+    id?: never;
+};
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = ActionFormProps<TData, TError, TVariables> & ActionParams & LiveModeProps;
+> = BaseUseFormProps<TData, TError, TVariables> &
+    (FormPropsWithoutResource | FormPropsWithResource);
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
