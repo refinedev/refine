@@ -1,5 +1,13 @@
 # @pankod/refine-antd
 
+## 5.3.11
+
+### Patch Changes
+
+-   [#4024](https://github.com/refinedev/refine/pull/4024) [`dc6d2311eb7`](https://github.com/refinedev/refine/commit/dc6d2311eb76a458f828fb15fe26fae1c75bc95a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Added: `wrapperStyles` prop to `<ThemedTitle>` component to allow for custom styles to be passed in.
+
+    -   Added: `textDecoration: none` to `<ThemedTitle>` component.
+
 ## 5.3.10
 
 ### Patch Changes
