@@ -59,6 +59,17 @@ export const checkPackage = (code = "") => {
     const hasKeycloak =
         code.includes("@react-keycloak/web") || code.includes("keycloak-js");
 
+    const hasReactDom = code.includes("react-dom/client");
+    const hasWebVitals = code.includes("./reportWebVitals");
+
+    if (hasReactDom) {
+        set.add("react-dom");
+    }
+
+    if (hasWebVitals) {
+        set.add("web-vitals");
+    }
+
     if (hasI18n) {
         set.add("i18n");
     }
