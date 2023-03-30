@@ -31,6 +31,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     collapsed,
     icon = defaultIcon,
     text = defaultText,
+    wrapperStyles,
 }) => {
     const routerType = useRouterType();
     const Link = useLink();
@@ -39,12 +40,23 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     return (
-        <ChakraLink as={ActiveLink} to="/" fontSize="inherit">
+        <ChakraLink
+            as={ActiveLink}
+            to="/"
+            fontSize="inherit"
+            textDecoration="none"
+            _hover={{
+                textDecoration: "none",
+            }}
+        >
             <HStack
                 spacing="8px"
                 justifyContent="center"
                 alignItems="center"
                 fontSize="inherit"
+                style={{
+                    ...wrapperStyles,
+                }}
             >
                 <Icon height="24px" width="24px" color="brand.500">
                     {icon}
