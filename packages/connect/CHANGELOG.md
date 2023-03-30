@@ -1,0 +1,423 @@
+# @pankod/refine-connect
+
+## 9.1.0
+
+### Minor Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `AuthProvider` is renamed to `LegacyAuthProvider` with refine@4. Components and functions are updated to support `LegacyAuthProvider`.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
+## 10.0.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-sdk@0.10.0
+
+## 9.0.0
+
+### Major Changes
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    `AuthProvider` is renamed to `LegacyAuthProvider` with refine@4. Components and functions are updated to support `LegacyAuthProvider`.
+
+-   Thanks [@aliemir](https://github.com/aliemir), [@alicanerdurmaz](https://github.com/alicanerdurmaz), [@batuhanW](https://github.com/batuhanW), [@salihozdemir](https://github.com/salihozdemir), [@yildirayunlu](https://github.com/yildirayunlu), [@recepkutuk](https://github.com/recepkutuk)!
+    **Moving to the `@refinedev` scope 🎉🎉**
+
+    Moved to the `@refinedev` scope and updated our packages to use the new scope. From now on, all packages will be published under the `@refinedev` scope with their new names.
+
+    Now, we're also removing the `refine` prefix from all packages. So, the `@pankod/refine-core` package is now `@refinedev/core`, `@pankod/refine-antd` is now `@refinedev/antd`, and so on.
+
+### Patch Changes
+
+## 9.0.0
+
+### Minor Changes
+
+-   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
+
+### Patch Changes
+
+-   Updated dependencies [[`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb)]:
+    -   @pankod/refine-sdk@0.9.0
+
+## 8.0.0
+
+### Patch Changes
+
+-   Updated dependencies [[`15d3fd535a2`](https://github.com/refinedev/refine/commit/15d3fd535a2f2ec18e984ee20c9064e35ce3f8b8)]:
+    -   @pankod/refine-sdk@0.8.0
+
+## 7.0.0
+
+### Patch Changes
+
+-   Updated dependencies [[`15d3fd535a2`](https://github.com/refinedev/refine/commit/15d3fd535a2f2ec18e984ee20c9064e35ce3f8b8)]:
+    -   @pankod/refine-sdk@0.7.0
+
+## 6.0.0
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-sdk@0.6.0
+
+## 5.0.0
+
+### Patch Changes
+
+-   Updated dependencies [[`e0dce4dda7`](https://github.com/refinedev/refine/commit/e0dce4dda7ec2a2fa5a8619cb2747e68865b76ec)]:
+    -   @pankod/refine-sdk@0.5.0
+
+## 4.0.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+## 4.0.1
+
+### Patch Changes
+
+-   [#2501](https://github.com/refinedev/refine/pull/2501) [`4095a578d4`](https://github.com/refinedev/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed version of react-router to `6.3.0`
+
+## 4.0.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-sdk@0.4.0
+
+## 3.0.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/refinedev/refine/pull/2440) [`0150dcd070`](https://github.com/refinedev/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies [[`0150dcd070`](https://github.com/refinedev/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af)]:
+    -   @pankod/refine-sdk@0.3.0
+
+## 2.4.0
+
+### Minor Changes
+
+-   Added `useConnectQuery` and `useConnectMutation` for refine connect queries.
+
+    **Usage**
+
+    ```tsx
+    import {
+        useConnectMutation,
+        useConnectQuery,
+    } from "@pankod/refine-connect";
+
+    const { data } = useConnectQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useConnectMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.3.0
+
+### Minor Changes
+
+-   Added `useConnectQuery` and `useConnectMutation` for refine connect queries.
+
+    **Usage**
+
+    ```tsx
+    import {
+        useConnectMutation,
+        useConnectQuery,
+    } from "@pankod/refine-connect";
+
+    const { data } = useConnectQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useConnectMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.2.0
+
+### Minor Changes
+
+-   Added `useConnectQuery` and `useConnectMutation` for refine connect queries.
+
+    **Usage**
+
+    ```tsx
+    import {
+        useConnectMutation,
+        useConnectQuery,
+    } from "@pankod/refine-connect";
+
+    const { data } = useConnectQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useConnectMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.1.0
+
+### Minor Changes
+
+-   [#2328](https://github.com/refinedev/refine/pull/2328) [`a44cb8cea6`](https://github.com/refinedev/refine/commit/a44cb8cea6ff6baf8481ea47688c5707095808ab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added `useConnectQuery` and `useConnectMutation` for refine connect queries.
+
+    **Usage**
+
+    ```tsx
+    import {
+        useConnectMutation,
+        useConnectQuery,
+    } from "@pankod/refine-connect";
+
+    const { data } = useConnectQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useConnectMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#2366](https://github.com/refinedev/refine/pull/2366) [`de87f13dad`](https://github.com/refinedev/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.0.4
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
+## 2.0.3
+
+### Patch Changes
+
+-   [#2350](https://github.com/refinedev/refine/pull/2350) [`f8e5d99598`](https://github.com/refinedev/refine/commit/f8e5d99598265af434f25fde104fafc9b7cac792) Thanks [@ozkalai](https://github.com/ozkalai)! - `lodash` moved to dependencies.
+
+## 2.0.2
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+## 2.0.1
+
+### Patch Changes
+
+-   [#2260](https://github.com/refinedev/refine/pull/2260) [`a97ec592df`](https://github.com/refinedev/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
+## 2.0.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-sdk@0.2.0
+
+## 1.0.0
+
+### Minor Changes
+
+-   [#1718](https://github.com/refinedev/refine/pull/1718) [`b38620d842`](https://github.com/refinedev/refine/commit/b38620d84237e13212811daada7b49ee654c70eb) Thanks [@omeraplak](https://github.com/omeraplak)! - Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies [[`b38620d842`](https://github.com/refinedev/refine/commit/b38620d84237e13212811daada7b49ee654c70eb)]:
+    -   @pankod/refine-sdk@0.1.0
+
+## 0.4.0
+
+### Minor Changes
+
+-   All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
+## 0.3.0
+
+### Minor Changes
+
+-   [#2217](https://github.com/refinedev/refine/pull/2217) [`b4aae00f77`](https://github.com/refinedev/refine/commit/b4aae00f77a2476d847994db21298ae25e4cf6e5) Thanks [@omeraplak](https://github.com/omeraplak)! - All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
+## 0.2.0
+
+### Minor Changes
+
+-   Add HOC `withConnect` function. This function, your application will communicate with the refine connect. Check out the `examples/connect` folder for more.
+
+    ```
+    import { Refine } from "@pankod/refine-core";
+    import { withConnect } from "@pankod/refine-connect";
+
+    const RefineWithConnect = withConnect(Refine, {
+        baseUrl: process.env.REACT_APP_REFINE_BASE_URL as string,
+        clientId: process.env.REACT_APP_REFINE_CLIENT_ID as string,
+    });
+
+    const App: React.FC = () => {
+        return (
+            <RefineWithConnect
+                LoginPage={LoginPage}
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        );
+    };
+
+    export default App;
+    ```
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.34.0
+
+## 0.1.0
+
+### Minor Changes
+
+-   [#1922](https://github.com/refinedev/refine/pull/1922) [`12f08ae6a3`](https://github.com/refinedev/refine/commit/12f08ae6a3755487cd0e4f498b7fc3c2a9488c58) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Add HOC `withConnect` function. This function, your application will communicate with the refine connect. Check out the `examples/connect` folder for more.
+
+    ```
+    import { Refine } from "@pankod/refine-core";
+    import { withConnect } from "@pankod/refine-connect";
+
+    const RefineWithConnect = withConnect(Refine, {
+        baseUrl: process.env.REACT_APP_REFINE_BASE_URL as string,
+        clientId: process.env.REACT_APP_REFINE_CLIENT_ID as string,
+    });
+
+    const App: React.FC = () => {
+        return (
+            <RefineWithConnect
+                LoginPage={LoginPage}
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        );
+    };
+
+    export default App;
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`d96ba1e9c8`](https://github.com/refinedev/refine/commit/d96ba1e9c88724ee0b0d828bc4589befcb7a783d), [`b257d87fef`](https://github.com/refinedev/refine/commit/b257d87fef4e8572e4c463894e9d79af96d78184), [`12f08ae6a3`](https://github.com/refinedev/refine/commit/12f08ae6a3755487cd0e4f498b7fc3c2a9488c58)]:
+    -   @pankod/refine-core@3.33.0
