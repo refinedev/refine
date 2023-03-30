@@ -1,5 +1,5 @@
 ---
-"@refinedev/graphql": patch
+"@refinedev/graphql": major
 ---
 
 Upgraded `graphql-request` dependency `4.x` to `5.x`.

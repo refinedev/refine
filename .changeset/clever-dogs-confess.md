@@ -1,5 +1,5 @@
 ---
-"@refinedev/strapi-graphql": patch
+"@refinedev/strapi-graphql": major
 ---
 
 Upgraded `graphql-request` dependency `4.x` to `5.x`.
