@@ -33,6 +33,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     collapsed,
     icon = defaultIcon,
     text = defaultText,
+    wrapperStyles,
 }) => {
     const { token } = useToken();
     const routerType = useRouterType();
@@ -46,6 +47,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
             to="/"
             style={{
                 display: "inline-block",
+                textDecoration: "none",
             }}
         >
             <Space
@@ -53,6 +55,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
                     display: "flex",
                     alignItems: "center",
                     fontSize: "inherit",
+                    ...wrapperStyles,
                 }}
             >
                 <div
