@@ -6,6 +6,7 @@ import {
     CrudSorting,
     DataProvider,
     CrudFilter,
+    BaseRecord,
 } from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
@@ -187,7 +188,7 @@ const dataProvider = (
                 fields: meta?.fields,
             });
 
-            const response = await client.request(query, variables);
+            const response = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: response[operation],
@@ -212,7 +213,7 @@ const dataProvider = (
                 },
             });
 
-            const result = await client.request(query, variables);
+            const result = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: result[operation],
@@ -273,7 +274,7 @@ const dataProvider = (
                 },
             ]);
 
-            const result = await client.request(query, variables);
+            const result = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: result[operation],
@@ -299,7 +300,10 @@ const dataProvider = (
                 fields: meta?.fields ?? ["id", ...Object.keys(variables || {})],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const response = await client.request<BaseRecord>(
+                query,
+                gqlVariables,
+            );
 
             return {
                 data: response[insertOperation],
@@ -328,7 +332,10 @@ const dataProvider = (
                 ],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const response = await client.request<BaseRecord>(
+                query,
+                gqlVariables,
+            );
 
             return {
                 data: response[insertOperation]["returning"],
@@ -362,7 +369,10 @@ const dataProvider = (
                 fields: meta?.fields ?? ["id"],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const response = await client.request<BaseRecord>(
+                query,
+                gqlVariables,
+            );
 
             return {
                 data: response[updateOperation],
@@ -401,7 +411,10 @@ const dataProvider = (
                 ],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const response = await client.request<BaseRecord>(
+                query,
+                gqlVariables,
+            );
 
             return {
                 data: response[updateOperation]["returning"],
@@ -426,7 +439,7 @@ const dataProvider = (
                 fields: meta?.fields ?? ["id"],
             });
 
-            const response = await client.request(query, variables);
+            const response = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: response[deleteOperation],
@@ -460,7 +473,7 @@ const dataProvider = (
                 },
             });
 
-            const result = await client.request(query, variables);
+            const result = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: result[deleteOperation]["returning"],
@@ -489,10 +502,11 @@ const dataProvider = (
                             variables: meta.variables,
                         });
 
-                        const response = await gqlClient.request(
+                        const response = await gqlClient.request<BaseRecord>(
                             query,
                             variables,
                         );
+                        response.data;
 
                         return {
                             data: response[meta.operation],
@@ -504,7 +518,7 @@ const dataProvider = (
                             variables: meta.variables,
                         });
 
-                        const response = await gqlClient.request(
+                        const response = await gqlClient.request<BaseRecord>(
                             query,
                             variables,
                         );

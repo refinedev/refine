@@ -37,13 +37,13 @@
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
-    "graphql-request": "^4.3.0",
+    "graphql-request": "^5.2.0",
     "pluralize": "^8.0.0",
     "graphql-ws": "^5.9.1"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.0.0",
-    "graphql-request": "^4.3.0",
+    "graphql-request": "^5.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql-ws": "^5.9.1"
   },
