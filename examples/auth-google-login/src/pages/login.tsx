@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLogin } from "@refinedev/core";
-import { Layout as AntdLayout } from "antd";
+import { Layout, Space, Typography } from "antd";
+import { ThemedTitle } from "@refinedev/antd";
 
 const clientId =
     "1041339102270-jlljcjl19jo1hkgf695em3ibr7q2m734.apps.googleusercontent.com";
@@ -44,20 +45,25 @@ export const Login: React.FC = () => {
     };
 
     return (
-        <AntdLayout
+        <Layout
             style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <div style={{ marginBottom: "28px" }}>
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <GoogleButton />
-                </div>
-            </div>
-        </AntdLayout>
+            <Space direction="vertical" align="center" size="large">
+                <ThemedTitle
+                    collapsed={false}
+                    wrapperStyles={{
+                        fontSize: "22px",
+                    }}
+                />
+                <GoogleButton />
+                <Typography.Text type="secondary">
+                    Powered by Google
+                </Typography.Text>
+            </Space>
+        </Layout>
     );
 };
