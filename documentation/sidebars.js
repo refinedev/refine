@@ -827,6 +827,7 @@ module.exports = {
                     label: "Remix",
                     items: [
                         "examples/remix/remix-antd",
+                        "examples/remix/remix-mui",
                         "examples/remix/remix-headless",
                         "examples/remix/remix-auth",
                     ],

@@ -13,6 +13,7 @@ import {
     TableOptions,
     Table,
     getCoreRowModel,
+    ColumnFilter,
 } from "@tanstack/react-table";
 
 import { useIsFirstRender } from "../utils";
@@ -69,7 +70,7 @@ export function useTable<
     } = useTableResult;
 
     const logicalFilters: LogicalFilter[] = [];
-    filtersCore.map((filter) => {
+    filtersCore.forEach((filter) => {
         if (
             filter.operator !== "or" &&
             filter.operator !== "and" &&
@@ -93,6 +94,10 @@ export function useTable<
             })),
             columnFilters: logicalFilters.map((filter) => ({
                 id: filter.field,
+                operator: filter.operator as Exclude<
+                    CrudOperators,
+                    "or" | "and"
+                >,
                 value: filter.value,
             })),
             ...reactTableInitialState,
@@ -140,8 +145,14 @@ export function useTable<
         const crudFilters: LogicalFilter[] = [];
 
         columnFilters?.map((filter) => {
-            const operator = (columns.find((c) => c.id === filter.id) as any)
-                ?.meta?.filterOperator as Exclude<CrudOperators, "or" | "and">;
+            const operator =
+                (
+                    filter as ColumnFilter & {
+                        operator?: Exclude<CrudOperators, "or" | "and">;
+                    }
+                ).operator ??
+                ((columns.find((c) => c.id === filter.id) as any)?.meta
+                    ?.filterOperator as Exclude<CrudOperators, "or" | "and">);
 
             crudFilters.push({
                 field: filter.id,

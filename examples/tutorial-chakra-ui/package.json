@@ -16,7 +16,7 @@
         "@refinedev/simple-rest": "^4.1.0",
         "@refinedev/chakra-ui": "^2.5.2",
         "@refinedev/react-hook-form": "^4.1.2",
-        "@refinedev/react-table": "^5.1.2",
+        "@refinedev/react-table": "^5.1.4",
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons": "^1.1.0",
         "@refinedev/react-router-v6": "^4.1.0",
