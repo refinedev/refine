@@ -10,38 +10,37 @@ import CodeBlock from '@theme/CodeBlock';
 
 ### Motivation behind the release
 
-After a year since the release of v3, we have addressed the most requested and questioned areas by the community. **refine v4** features better developer experience, and new functionalities to simplify the work of developers. 
+After a year since the release of v3, we have addressed the most requested and questioned areas by the community. **refine v4** features better developer experience, and new functionalities to simplify the work of developers.
 
-It has also been designed to make refine accessible on all platforms that support React, and to ensure that it can be seamlessly integrated into new and existing projects.
-This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. 
+In **refine v4**, our goal was to make **refine** available and accessible on every platform where you can use React and make it easy to use in both new and existing projects. This meant making **refine** more flexible and a better fit for a wider range of use cases. To achieve this, we needed a more robust, easy-to-integrate and consistent API throughout the project that would boost the DX without limiting our users' options.
 
-We have introduced abstractions and techniques that make it easier for developers to manage concerns such as data management, routing, authorization, layouts, and more, without limiting the functionality of other tools and libraries they may prefer to use. These changes in our API enable you to use **refine** v4 in every use case and gradually integrate it into your existing projects.
+Our goal was to make things easier for developers by providing abstractions and techniques to manage some concerns like data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. These changes were made to our API to allow you to use **refine** in every use case and easily adopt it for your existing projects.
+
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
-[`@refinedev/codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
+The [`@refinedev/codemod`][refine-codemod] package handles the breaking changes for your project and automatically migrates it from `3.x.x` to `4.x.x`.
 
-Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+Simply `cd` into the root folder of your project (where the `package.json` is located) and run this command:
 
 ```sh
 npx @refinedev/codemod@latest refine3-to-refine4
 ```
 
-And it's done. Now your project uses `refine@4.x.x`.
+And that’s it! You have successfully migrated your project to `refine@4.x.x`.
 
 :::caution Known Issues in refine-codemod
 
--   [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
+-   [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod, causing it to fail for files that contain them. If you encounter this issue, you have to manually migrate the affected files.
 
--   [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
+-   [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod, causing it to fail for files that contain them. If you encounter this issue, you have to manually migrate the affected files.
 
--   While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
+-   While making changes, the codemod fails to format return statements with React fragments (`<>...</>`). If you encounter this issue, you have to manually format the file after the codemod is complete.
 
 :::
 
 ## Migrating your project manually
 
-refine v4 will be released under `@refinedev` npm organization.
-So you must install the packages with the new organization name.
+**refine v4** will be released under the new `@refinedev` `npm` organization, so you must install the packages with the new organization name.
 
 ```bash
 npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
@@ -53,22 +52,19 @@ npm i @refinedev/core @refinedev/antd @refinedev/..
 You must make this change for all packages that start with `@pankod`.
 :::
 
-
-
 ## New NPM organization
 
-
-refine has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
+**refine** has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
 
 ## **`@pankod/refine-core` changes**
 
 ### `routerProvider`
 
-refine v4 includes a new interface for the `routerProvider` prop. It is now smaller and more flexible by leaving the control of the routes to the user and only constructing the communication and the bindings the router and **refine**.
+**refine v4** includes a new interface for the `routerProvider` prop. It is now smaller and more flexible, as it leaves the control of the routes to the user and only constructs the communication and bindings of the router and **refine**.
 
-`routerProvider` is now optional and you can use **refine** without a router. Passing one enables such features as, inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs, etc.
+`routerProvider` is now optional because **refine** can now be used without a router. However, it is still recommended to use a router provider to enable useful features such as inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs and more.
 
-We still support the `routerProvider@v3` for backward compatibility. We changed name to `legacyRouterProvider` and it will be removed in the next major version. If you want to continue using the `routerProvider@v3` you can use it as `legacyRouterProvider` in your project.
+In order to maintain backward compatibility, **refine** still supports the `routerProvider@v3`. However, this provider has been renamed to `legacyRouterProvider` and will be removed in the next major version. If you wish to continue using `routerProvider@v3`, you can still do so by using it as `legacyRouterProvider` in your project.
 
 ```diff
 - import routerProvider from "@pankod/refine-react-router-v6";
@@ -84,17 +80,19 @@ const App = () => {
 };
 ```
 
-🚨 While this is still working, if you want to move to the new `routerProvider` and enable features like nested routes with parameters, custom action routes and more control over your routes, you can use the new `routerProvider` interface.
+:::caution
+While this will allow you to use the old router provider, we do not recommend it. You should use the new `routerProvider` interface to take advantage of new features like nested routes with parameters, custom action routes, and more control over your routes overall.
 
 [Please refer to the Router Provider Migration Guide for more information and guidance. →](/docs/migration-guide/router-provider/)
+:::
 
 ### `resources`
 
-With the new `routerProvider` interface, we also made changes to the `resources` prop, which is now working more like the interaction and connection point between your API and the app rather than a necessity for the router to work. Your router can work without resources, in the same way your resources can work without a router.
+With the new `routerProvider` interface, we also made changes to the `resources` prop, which now works more like an interaction and connection point between your API and the app rather than a necessity for the router to work. Your router can work without `resources`, in the same way your `resources` can work without a router.
 
-Now, you can define your actions (`list`, `create`, `edit`, `show`, `clone`) as paths rather than components. This will allow you to define custom routes for actions and also use the full potential of your router without being restricted to the routes created automatically.
+You can now define actions (`list`, `create`, `edit`, `show`, `clone`) as paths rather than components. This will allow you to define custom routes for individual actions and use your router’s full potential without being restricted to the automatically created routes.
 
-Defining custom routes enables nested routes and parameters for your resources, such as;
+Defining custom routes enables nested routes and parameters for your resources, such as:
 
 ```tsx
 resources={[
@@ -109,20 +107,16 @@ resources={[
 ```
 
 :::info
-This is only a resource definition, which must be handled within the preferred router structure.
+This is only a resource definition, which must be handled within your router structure.
 :::
 
-As you can see, the new enterprise-grade routing structure allows for effortless handling of multi-tenant structures.
+In the above example, you can see how the new enterprise-grade routing structure allows for effortless handling of multi-tenant structures. The detail page of a product can have a nested structure and additional parameters, which can be passed along with the `meta` properties in hooks and components. When constructing the navigation path, existing parameters in the URL will also be used.
 
-In the above example, you can see that the detail page of a product can have a nested structure and also supports additional parameters. These parameters can be passed along with the `meta` properties in such hooks and components. Existing parameters in the URL will also be used when constructing the navigation path.
-
-
-
-The existing method for passing components to the actions are still supported and uses the default paths when an action has a component value but the new `routerProvider` doesn't create routes for it automatically. To achieve this, you can use the `RefineRoutes` components from the router packages. To learn more about changes about routing in resources, please check [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
+The existing method for passing components to the actions is still supported, and it uses default paths when an action has a component value. However, the new `routerProvider` does not automatically create routes for it. However, you can use the `RefineRoutes` components from the router packages to create routes automatically. For more information on changes to routing in resources, please refer to the [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
 
 We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name.
 
-The `route` property is now deprecated. The new routing system lets users define custom routes per action.
+The `route` property is now deprecated, replaced with the new routing system that lets users define custom routes per action.
 
 ```diff
 resources={[
@@ -157,9 +151,7 @@ resources={[
 
 ### `authProvider`
 
-[Please refer to the Auth Provider Migration Guide for more information. →](/docs/migration-guide/auth-provider/)
-
-**refine** still supports the `authProvider@v3` for backward compatibility. We changed name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
+**refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
 ```diff
 - import { AuthProvider } from "@refinedev/core";
@@ -181,7 +173,7 @@ const App = () => {
 
 ```
 
-Also you need to add `v3LegacyAuthProviderCompatible: true` to your auth hooks to continue using the `authProvider@v3` in your project.
+Additionally, you need to add `v3LegacyAuthProviderCompatible: true` to your auth hooks in order to continue using `authProvider@v3` in your project.
 
 ```ts
 import { useLogin } from "@refinedev/core";
@@ -192,9 +184,11 @@ const login = useLogin({
 });
 ```
 
+[Please refer to the Auth Provider Migration Guide for more information. →](/docs/migration-guide/auth-provider/)
+
 ### Import changes
 
-All `@tanstack/react-query` imports re-exported from `@refinedev/core` have been removed. You should import them from `@tanstack/react-query` package directly.
+All `@tanstack/react-query` imports re-exported from `@refinedev/core` have been removed. You need to import them from the `@tanstack/react-query` package directly.
 
 If the package is not installed, you can install it with your package manager:
 
@@ -238,7 +232,7 @@ After that, you can import them from `@tanstack/react-query` package directly in
 
 ### Update `getList` parameters of `dataProvider`
 
-`getList` parameters of `dataProvider` have been updated.
+The following updates have been made to the `getList` parameters of the `dataProvider`:
 
 -   `hasPagination` is deprecated. Use `pagination.mode` instead.
 -   `sort` is deprecated. Use `sorters` instead.
@@ -264,12 +258,12 @@ After that, you can import them from `@tanstack/react-query` package directly in
 ```
 
 :::note
-`getList` parameters will still have `hasPagination`, `sort`, and `metaData` props. But they are deprecated. You can use them with v4. But we recommend you to use `pagination.mode`, `sorters`, and `meta` props instead.
+Although the `getList` parameters still have the `hasPagination`, `sort`, and `metaData` props in v4, they are now deprecated. We recommend using the `pagination.mode`, `sorters`, and `meta` props instead.
 :::
 
 ### Update `custom` parameters of `dataProvider`
 
-`custom` parameters of `dataProvider` has been updated. `sort` is deprecated. Use `sorters` instead.
+The `custom` parameters of the `dataProvider` have been updated, and as a result, `sort` is now deprecated. It is still useable with 4v, but we recommend using `sorters` instead.
 
 ```diff
  export const dataProvider = {
@@ -283,13 +277,9 @@ After that, you can import them from `@tanstack/react-query` package directly in
  };
 ```
 
-:::note
-`custom` parameters will still have `sort` prop. But it is deprecated. You can use it with v4. But we recommend you to use `sorters` prop instead.
-:::
-
 ### `useList` and `useInfiniteList` hooks
 
-`config` prop are deprecated. Use `sorters`, `filters`, and `pagination` props instead.
+The `config` prop is now deprecated. Use `sorters`, `filters`, and `pagination` props instead.
 
 ```diff
 useList({
@@ -323,9 +313,9 @@ useInfiniteList({
 
 ### `useTable` hook
 
-`useTable` return values and properties are updated.
+`useTable` return values and properties has been updated.
 
--   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+-   The `initialCurrent` and `initialPageSize` props are deprecated. Use the `pagination` prop instead.
 
     ```diff
     useTable({
@@ -338,7 +328,7 @@ useInfiniteList({
     })
     ```
 
--   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+-   The `hasPagination` prop is deprecated. Use `pagination.mode` instead.
 
     ```diff
     useTable({
@@ -349,7 +339,7 @@ useInfiniteList({
     })
     ```
 
--   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+-   The `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
 
     ```diff
     useTable({
@@ -362,7 +352,7 @@ useInfiniteList({
     })
     ```
 
--   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   The `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
 
     ```diff
     useTable({
@@ -390,7 +380,7 @@ useInfiniteList({
 
 ### `useImport` hook
 
-`resourceName` prop is deprecated. Use `resource` prop instead.
+The `resourceName` prop is deprecated. Use the `resource` prop instead.
 
 ```diff
 useImport({
@@ -401,7 +391,7 @@ useImport({
 
 ### `useExport` hook
 
-`resourceName` and `sorter` props are deprecated. Use `resource` and `sorters` props instead.
+The `resourceName` and `sorter` props are deprecated. Use the `resource` and `sorters` props instead.
 
 ```diff
 useExport({
@@ -414,7 +404,7 @@ useExport({
 
 ### `useSelect` hook
 
--   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useSelect({
@@ -425,7 +415,7 @@ useExport({
     })
     ```
 
--   `sort` prop is deprecated. Use `sorters` prop instead.
+-   The `sort` prop is deprecated. Use the `sorters` prop instead.
 
     ```diff
     useSelect({
@@ -436,7 +426,7 @@ useExport({
 
 ### `useCustom` hook
 
-`config.sort` prop is deprecated. Use `config.sorters` prop instead.
+-   The `config.sort` prop is deprecated. Use the `config.sorters` prop instead.
 
 ```diff
 useCustom({
@@ -449,7 +439,7 @@ useCustom({
 
 ### `useResource` hook
 
-`useResource` hook now accepts a single string parameter as the resource name or the identifier (Also checked for `route` when `legacyRouterProvider` is in use). Instead of having an object with single property as a parameter, this leads users for a simpler usage.
+Instead of an object with a single property as a parameter, users can now provide a single string parameter as the resource name or identifier when using the `useResource` hook. If the `legacyRouterProvider` is in use, the hook will also check for the `route` prop.
 
 ```diff
 -   useResource({
@@ -460,29 +450,29 @@ useCustom({
 
 ### `useResourceWithRoute` hook
 
-This hook is now deprecated and obsolete when using the new `routerProvider` property. Please use `useResource` instead.
+This hook is now deprecated and obsolete when using the new `routerProvider` property. Use `useResource` instead.
 
 ### `useMenu` hook
 
-Instead of returning an empty `selectedKey` value, now `useMenu` will return `undefined` if there's no matching key with the current route as the `selectedKey`.
+Instead of returning an empty `selectedKey` value, the `useMenu` hook now returns `undefined` if there is no matching key with the current route as the `selectedKey`.
 
-Also this hook now accepts `meta` property, an object of parameters to use when additional parameters are present in the resource `list` paths. Such as, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu, you can do;
+In addition to this change, the `useMenu` hook now accepts a meta property, which is an object of parameters to use when additional parameters are present in the resource `list` paths. For example, if you have a resource with a `list` path defined as `/author/:authorId/posts` and want to show this resource in your menu, you can just do:
 
 ```tsx
 const { menuItems } = useMenu({ meta: { authorId: 123 } });
 ```
 
-This won't be necessary if there's already a `authorId` parameter present in the current URL. **refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu` and these items will not be returned.
+This won't be necessary if there's already an `authorId` parameter present in the current URL. **refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu`, and these items will not be returned.
 
 ### `useNavigation` hook
 
-This hook is designed to work with the legacy router provider but updated and kept working with both router provider versions. Although, its recommended to use the new routing hooks when necessary or use the ones available from your router library. **refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
+This hook was designed to work with the legacy router provider, but it has been updated to work with both router provider versions. Although it's recommended to use the new routing hooks when necessary or the ones available from your router library, **refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
 
-Still, if you want to use the `useNavigation` hook and its returned functions, they now accept `meta` property for parametrized paths in new routing system.
+If you still want to use the `useNavigation` hook and its returned functions in the new routing system, their paths that accept props now accept the `meta` prop.
 
 ### `useRouterContext` hook
 
-This hook was used internally but you might have used it if you had a custom `<Sider>` component in your layout. According to the changes in the `routerProvider` prop of `<Refine>`, this hook will only work with the legacy router provider. If you're using the new `routerProvider`, you can replace the usage of this hook with the appropriate replacements, which are [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) and [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/) hooks.
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) or [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";
@@ -512,7 +502,7 @@ useList({
 
 ### Resource `options`'s to `meta`
 
-`options` prop of resource is deprecated. Use `meta` prop instead.
+The `options` prop of resource is deprecated. Use the `meta` prop instead.
 
 ```diff
 <Refine
@@ -528,7 +518,7 @@ useList({
 
 ### `<ReadyPage>` component is deprecated
 
-`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+The `<ReadyPage>` component is deprecated and will be removed in the next major version. Use a custom page of your own instead.
 
 ## **`@pankod/refine-antd` changes**
 
@@ -536,15 +526,15 @@ useList({
 
 Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
 
-[To upgrade now, visit Migration Guide document >](/docs/api-reference/antd/migration-guide/v4-to-v5/)
+[To upgrade now, visit the Migration Guide document >](/docs/api-reference/antd/migration-guide/v4-to-v5/)
 
 :::
 
 ### Import changes
 
-All **Ant Design** components re-exported from `@pankod/refine-antd` have been removed. You should import them from `antd` package directly.
+All **Ant Design** components re-exported from `@pankod/refine-antd` have been removed. You need import them from the `antd` package directly.
 
-If the package is not installed, you should install it with your package manager:
+If the package is not installed, you can install it with your package manager:
 
 <Tabs
 defaultValue="npm"
@@ -576,7 +566,7 @@ yarn add antd
 
 </Tabs>
 
-After that, you can import components from `antd` package directly like below:
+After that, you can import components from the `antd` package directly like below:
 
 ```diff
 -import { useTable, SaveButton, Button, Form, Input, Select } from "@pankod/refine-antd";
@@ -587,9 +577,9 @@ After that, you can import components from `antd` package directly like below:
 
 <br />
 
-`Icons` are also removed from `@pankod/refine-antd`. So, you should import icons from `@ant-design/icons` package directly.
+`Icons` have also been removed from `@pankod/refine-antd`. So you need to import icons from the `@ant-design/icons` package directly.
 
-If the package is not installed, you should install it with your package manager:
+If the package is not installed, you can install it with your package manager:
 
 <Tabs
 defaultValue="npm"
@@ -621,7 +611,7 @@ yarn add @ant-design/icons
 
 </Tabs>
 
-After that, you can import icons from `@ant-design/icons` package directly like below:
+After that, you can import icons from the `@ant-design/icons` package directly like this:
 
 ```diff
 -import { Icons } from "@pankod/refine-antd";
@@ -632,9 +622,9 @@ After that, you can import icons from `@ant-design/icons` package directly like 
 
 ### `useTable` hook
 
-`useTable` return values and properties are updated.
+`useTable` return values and properties have been updated.
 
--   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+-   The `initialCurrent` and `initialPageSize` props are deprecated. Use the `pagination` prop instead.
 
     ```diff
     useTable({
@@ -647,7 +637,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+-   The `hasPagination` prop is deprecated. Use `pagination.mode` instead.
 
     ```diff
     useTable({
@@ -658,7 +648,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+-   The `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
 
     ```diff
     useTable({
@@ -671,7 +661,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   The `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
 
     ```diff
     useTable({
@@ -699,7 +689,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
 
 ### `useSimpleList` hook
 
--   Now `useSimpleList` hook will not accept all of `<List>` component properties So, you can give their props to `<List>` component directly.
+-   The useSimpleList hook no longer accepts all properties of the `<List>` component. Instead, you can now pass the props directly to the `<List>` component
 
     ```diff
     import { useSimpleList } from "@refinedev/antd";
@@ -723,7 +713,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     />
     ```
 
--   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+-   The `initialCurrent` and `initialPageSize` props are deprecated. Use the `pagination` prop instead.
 
     ```diff
     useSimpleList({
@@ -736,7 +726,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+-   The `hasPagination` prop is deprecated. Use `pagination.mode` instead.
 
     ```diff
     useSimpleList({
@@ -747,7 +737,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+-   The `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
 
     ```diff
     useSimpleList({
@@ -760,7 +750,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   The `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
 
     ```diff
     useSimpleList({
@@ -788,7 +778,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
 
 ### `useSelect` hook
 
--   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useSelect({
@@ -799,7 +789,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
     })
     ```
 
--   `sort` prop is deprecated. Use `sorters` prop instead.
+-   The `sort` prop is deprecated. Use the `sorters` prop instead.
 
     ```diff
     useSelect({
@@ -810,7 +800,7 @@ After that, you can import icons from `@ant-design/icons` package directly like 
 
 ### `useCheckboxGroup` and `useRadioGroup` hooks
 
-`sort` prop is deprecated. Use `sorters` prop instead.
+The `sort` prop is deprecated. Use the `sorters` prop instead.
 
 ```diff
 useCheckboxGroup({
@@ -826,7 +816,7 @@ useRadioGroup({
 
 ### `useImport` hook
 
-`resourceName` prop is deprecated. Use `resource` prop instead.
+The `resourceName` prop is deprecated. Use the `resource` prop instead.
 
 ```diff
 useImport({
@@ -835,9 +825,9 @@ useImport({
 })
 ```
 
-### `useMenu` hook is removed
+### `useMenu` hook
 
-`useMenu` hook is removed. It will be exported from `@refinedev/core` package.
+The `useMenu` hook has been removed. It will be exported from the `@refinedev/core` package.
 
 ```diff
 -import { useMenu } from "@pankod/refine-antd";
@@ -846,7 +836,7 @@ useImport({
 
 ### `useDrawerForm` and `useModalForm` hooks
 
-It is now possible to sync these hooks' visibility state with location by using the `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
+It is now possible to sync these hooks' visibility state with location by using the syncWithLocation prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true`, it will also add the `id` of the form to the query params. This is useful when working in `clone` and `edit` modes.
 
 ```tsx
 useDrawerForm({
@@ -861,7 +851,7 @@ If `key` is not provided, `${resource.name}-${action}` will be used by default.
 
 ### Buttons
 
-Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/antd` package. Use `accessControl.enabled` prop instead.
+The `ignoreAccessControlProvider` prop has been deprecated and removed from all buttons exported from the `@refinedev/antd` package. Use the `accessControl.enabled` prop instead.
 
 ```diff
 <CreateButton
@@ -872,7 +862,7 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
-`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+The `resourceNameOrRouteName` prop is now deprecated in favor of the `resource` prop. You can pass the name or identifier of the resource while using it. For legacy router users, the `route` prop can also be used.
 
 ```diff
 <CreateButton
@@ -883,17 +873,17 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### `<ReadyPage>` component is deprecated
 
-`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+The `<ReadyPage>` component is deprecated and will be removed in the next major version. Use a custom page of your own instead.
 
 ## **`@pankod/refine-mui` changes**
 
 ### Import changes
 
-All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You should import them from Material UI packages directly.
+All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You need to import them from Material UI packages directly.
 
 If the packages are not installed, you can install them with your package manager:
 
-> You don't have to install all of packages. You can install only the packages that you use.
+> There is no need to install all of the packages, only install the packages that you plan to use.
 
 <Tabs
 defaultValue="npm"
@@ -947,9 +937,9 @@ After that, you can import them from related packages directly.
 
 ### `useDataGrid` hook
 
-`useDataGrid` return values and properties are updated.
+`useDataGrid` return values and properties have been updated.
 
--   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+-   The `initialCurrent` and `initialPageSize` props are deprecated. Use the `pagination` prop instead.
 
     ```diff
     useDataGrid({
@@ -962,7 +952,7 @@ After that, you can import them from related packages directly.
     })
     ```
 
--   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+-   The `hasPagination` prop is deprecated. Use `pagination.mode` instead.
 
     ```diff
     useDataGrid({
@@ -973,7 +963,7 @@ After that, you can import them from related packages directly.
     })
     ```
 
--   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+-   The `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
 
     ```diff
     useDataGrid({
@@ -986,7 +976,7 @@ After that, you can import them from related packages directly.
     })
     ```
 
--   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   The `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
 
     ```diff
     useDataGrid({
@@ -1014,7 +1004,7 @@ After that, you can import them from related packages directly.
 
 ### `useAutocomplete` hook
 
--   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useAutocomplete({
@@ -1025,7 +1015,7 @@ After that, you can import them from related packages directly.
     })
     ```
 
--   `sort` prop is deprecated. Use `sorters` prop instead.
+-   The `sort` prop is deprecated. Use the `sorters` prop instead.
 
     ```diff
     useAutocomplete({
@@ -1036,7 +1026,7 @@ After that, you can import them from related packages directly.
 
 ### `useMenu` hook is removed
 
-`useMenu` hook is removed. It will be exported from `@refinedev/core` package.
+The useMenu hook has been removed and now needs to be exported from the @refinedev/core package.
 
 ```diff
 -import { useMenu } from "@pankod/refine-mui";
@@ -1045,7 +1035,7 @@ After that, you can import them from related packages directly.
 
 ### Buttons
 
-Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
+The `ignoreAccessControlProvider` prop has been deprecated and removed from all buttons exported from the `@refinedev/antd` package. Use the `accessControl.enabled` prop instead.
 
 ```diff
 <CreateButton
@@ -1056,7 +1046,7 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
-`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. The `route` prop is also accepted for legacy router users.
 
 ```diff
 <CreateButton
@@ -1067,9 +1057,9 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### Basic Views
 
-Following basic view component props are removed:
+The following basic view component props has been removed:
 
--   `cardProps` prop is removed from all basic views components. Use `wrapperProps` prop instead.
+-   The `cardProps` prop has been removed from all basic views components. Use the `wrapperProps` prop instead.
 
     ```diff
       <List
@@ -1078,7 +1068,7 @@ Following basic view component props are removed:
       />
     ```
 
--   `cardHeaderProps` prop is removed from all basic views components. Use `headerProps` prop instead.
+-   The`cardHeaderProps` prop has been removed from all basic views components. Use the `headerProps` prop instead.
 
     ```diff
       <Create
@@ -1087,7 +1077,7 @@ Following basic view component props are removed:
       />
     ```
 
--   `cardContentProps` prop is removed from all basic views components. Use `contentProps` prop instead.
+-   The `cardContentProps` prop has been removed from all basic views components. Use the `contentProps` prop instead.
 
     ```diff
       <Edit
@@ -1096,7 +1086,7 @@ Following basic view component props are removed:
       />
     ```
 
--   `actionButtons` prop is removed from `<Create>`, `<Edit>`, and `<Show` components. Use `footerButtons` prop instead.
+-   The `actionButtons` prop has been removed from `<Create>`, `<Edit>`, and `<Show` components. Use the`footerButtons` prop instead.
 
     ```diff
       <Show
@@ -1105,7 +1095,7 @@ Following basic view component props are removed:
       />
     ```
 
--   `cardActionsProps` prop is removed from `<Create>`, `<Edit>`, and `<Show` components. Use `footerButtonProps` prop instead.
+-   The `cardActionsProps` prop has been removed from `<Create>`, `<Edit>`, and `<Show` components. Use the `footerButtonProps` prop instead.
 
     ```diff
       <List
@@ -1116,7 +1106,7 @@ Following basic view component props are removed:
 
 ### `<ReadyPage>` component is deprecated
 
-`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+The `<ReadyPage>` component is deprecated and will be removed in the next major version. Use a custom page of your own instead.
 
 ## **`@pankod/refine-mantine` changes**
 
@@ -1126,7 +1116,7 @@ All **Mantine** components re-exported from `@pankod/refine-mantine` have been r
 
 If the packages are not installed, you can install them with your package manager:
 
-> You don't have to install all of packages. You can install only the packages that you use.
+> There is no need to install all of the packages, only install the packages that you plan to use.
 
 <Tabs
 defaultValue="npm"
@@ -1177,7 +1167,7 @@ After that, you can import them from related packages directly.
 
 ### `useSelect` hook
 
--   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+-   Pagination is disabled by default. If you want to enable it, set the `pagination.mode` prop to `"server"`.
 
     ```diff
     useSelect({
@@ -1188,7 +1178,7 @@ After that, you can import them from related packages directly.
     })
     ```
 
--   `sort` prop is deprecated. Use `sorters` prop instead.
+-   The `sort` prop is deprecated. Use the `sorters` prop instead.
 
     ```diff
     useSelect({
@@ -1199,7 +1189,7 @@ After that, you can import them from related packages directly.
 
 ### Buttons
 
-Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
+The `ignoreAccessControlProvider` prop has been deprecated and removed from all buttons exported from the `@refinedev/antd` package. Use the `accessControl.enabled` prop instead.
 
 ```diff
 <CreateButton
@@ -1210,7 +1200,7 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
-`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. The `route` prop is also accepted for legacy router users.
 
 ```diff
 <CreateButton
@@ -1221,7 +1211,7 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### `<ReadyPage>` component is deprecated
 
-`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+The `<ReadyPage>` component is deprecated and will be removed in the next major version. Use a custom page of your own instead.
 
 ## **`@pankod/refine-chakra-ui` changes**
 
@@ -1231,7 +1221,7 @@ All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have be
 
 If the packages are not installed, you can install them with your package manager:
 
-> You don't have to install all of packages. You can install only the packages that you use.
+> There is no need to install all of the packages, only install the packages that you plan to use.
 
 <Tabs
 defaultValue="npm"
@@ -1280,7 +1270,7 @@ After that, you can import them from related packages directly.
 
 ### Buttons
 
-Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
+The `ignoreAccessControlProvider` prop has been deprecated and removed from all buttons exported from the `@refinedev/antd` package. Use the `accessControl.enabled` prop instead.
 
 ```diff
 <CreateButton
@@ -1291,7 +1281,7 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
-`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+The `resourceNameOrRouteName` prop has been deprecated in favor of the `resource` prop. You can pass the resource name or identifier to it instead. The `route` prop is also accepted for legacy router users.
 
 ```diff
 <CreateButton
@@ -1302,7 +1292,7 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### `<ReadyPage>` component is deprecated
 
-`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+The `<ReadyPage>` component is deprecated and will be removed in the next major version. Use a custom page of your own instead.
 
 ## **`@pankod/refine-react-table` changes**
 
@@ -1355,7 +1345,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
 `useTable` return values and properties are updated.
 
--   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+-   The `initialCurrent` and `initialPageSize` props are deprecated. Use the `pagination` prop instead.
 
     ```diff
     useTable({
@@ -1370,7 +1360,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
     })
     ```
 
--   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+-   The `hasPagination` prop is deprecated. Use `pagination.mode` instead.
 
     ```diff
     useTable({
@@ -1383,7 +1373,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
     })
     ```
 
--   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+-   The `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
 
     ```diff
     useTable({
@@ -1398,7 +1388,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
     })
     ```
 
--   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   The `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
 
     ```diff
     useTable({
@@ -1432,7 +1422,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
 ### Import changes
 
-All `react-hook-form` imports re-exported from `@pankod/refine-react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
+All `react-hook-form` imports re-exported from `@pankod/refine-react-hook-form` have been removed. You need to import them from the `react-hook-form` package directly.
 
 If the package is not installed, you can install it with your package manager:
 
