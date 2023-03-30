@@ -40,7 +40,7 @@ export const layoutHeaderTests = function (
             expect(getByRole("img")).toHaveAttribute("src", "localhost:3000");
         });
 
-        it("should render successfull user name and avatar in header with legacy authProvider", async () => {
+        it("should render successfull user name and avatar in header with authProvider", async () => {
             const { findByText, getByRole } = render(<HeaderElement />, {
                 wrapper: TestWrapper({
                     authProvider: mockAuthProvider,

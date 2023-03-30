@@ -8,9 +8,9 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@refinedev/chakra-ui": "^2.5.0",
+        "@refinedev/chakra-ui": "^2.5.2",
         "@tabler/icons": "^1.1.0",
-        "@refinedev/core": "^4.5.4",
+        "@refinedev/core": "^4.5.6",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/inferencer": "^3.1.2",
         "@refinedev/react-router-v6": "^4.1.0",

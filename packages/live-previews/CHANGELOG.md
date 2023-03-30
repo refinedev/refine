@@ -4,6 +4,18 @@
 
 ### Minor Changes
 
+-   [#3994](https://github.com/refinedev/refine/pull/3994) [`f9c6cfc370a`](https://github.com/refinedev/refine/commit/f9c6cfc370a55aed80eff5271991aaf95fe90c2d) Thanks [@aliemir](https://github.com/aliemir)! - feat(live-previews): add missing packages
+
+## 0.2.0
+
+### Minor Changes
+
+-   [#3994](https://github.com/refinedev/refine/pull/3994) [`f9c6cfc370a`](https://github.com/refinedev/refine/commit/f9c6cfc370a55aed80eff5271991aaf95fe90c2d) Thanks [@aliemir](https://github.com/aliemir)! - feat(live-previews): add missing packages
+
+## 0.3.0
+
+### Minor Changes
+
 -   [#3822](https://github.com/refinedev/refine/pull/3822) [`0baa99ba787`](https://github.com/refinedev/refine/commit/0baa99ba7874394d9d28d0a7b29c082c604258fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - - refine v4 release announcement added to "postinstall". - refine v4 is released 🎉 The new version is 100% backward compatible. You can upgrade to v4 with a single command! See the migration guide here: https://refine.dev/docs/migration-guide/3x-to-4x
 
 ### Patch Changes

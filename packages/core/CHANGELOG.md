@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 4.5.6
+
+### Patch Changes
+
+-   [#3974](https://github.com/refinedev/refine/pull/3974) [`4dcc20d6a60`](https://github.com/refinedev/refine/commit/4dcc20d6a6097bb81a094e4bcb630504b2a055d2) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the design of the `WelcomePage` component.
+
+## 4.5.5
+
+### Patch Changes
+
+-   [#3974](https://github.com/refinedev/refine/pull/3974) [`4dcc20d6a60`](https://github.com/refinedev/refine/commit/4dcc20d6a6097bb81a094e4bcb630504b2a055d2) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the design of the `WelcomePage` component.
+
 ## 4.5.4
 
 ### Patch Changes

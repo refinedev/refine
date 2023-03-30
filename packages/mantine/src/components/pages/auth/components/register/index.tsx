@@ -26,10 +26,17 @@ import {
     Group,
     Stack,
     Divider,
+    useMantineTheme,
 } from "@mantine/core";
 
+import { ThemedTitle } from "@components";
 import { FormContext } from "@contexts/form-context";
-import { layoutStyles, cardStyles, titleStyles } from "../styles";
+import {
+    layoutStyles,
+    cardStyles,
+    titleStyles,
+    pageTitleStyles,
+} from "../styles";
 import { FormPropsType } from "../..";
 
 type RegisterProps = RegisterPageProps<BoxProps, CardProps, FormPropsType>;
@@ -45,8 +52,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
     providers,
-    title = undefined,
+    title,
 }) => {
+    const theme = useMantineTheme();
     const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
@@ -80,6 +88,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
+    const PageTitle =
+        title === false ? null : (
+            <div style={pageTitleStyles}>
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const renderProviders = () => {
         if (providers && providers.length > 0) {
             return (
@@ -89,6 +104,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             return (
                                 <Button
                                     key={provider.name}
+                                    variant="default"
                                     fullWidth
                                     leftIcon={provider.icon}
                                     onClick={() =>
@@ -115,9 +131,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
-            <Title style={titleStyles}>
+            <Title
+                style={titleStyles}
+                color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
+            >
                 {translate("pages.register.title", "Sign up for your account")}
             </Title>
+            <Space h="sm" />
             <Space h="lg" />
             {renderProviders()}
             <FormProvider form={form}>
@@ -149,8 +169,18 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         placeholder="●●●●●●●●"
                         {...getInputProps("password")}
                     />
+                    <Button
+                        mt="md"
+                        fullWidth
+                        size="md"
+                        type="submit"
+                        loading={isLoading}
+                    >
+                        {translate("pages.register.buttons.submit", "Sign up")}
+                    </Button>
+
                     {loginLink ?? (
-                        <Group mt="md" position={loginLink ? "left" : "right"}>
+                        <Group mt="md" position="center">
                             <Text size="xs">
                                 {translate(
                                     "pages.register.buttons.haveAccount",
@@ -169,15 +199,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             </Text>
                         </Group>
                     )}
-                    <Button
-                        mt="lg"
-                        fullWidth
-                        size="md"
-                        type="submit"
-                        loading={isLoading}
-                    >
-                        {translate("pages.register.buttons.submit", "Sign up")}
-                    </Button>
                 </form>
             </FormProvider>
         </Card>
@@ -185,7 +206,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     return (
         <Box style={layoutStyles} {...(wrapperProps ?? {})}>
-            {renderContent ? renderContent(CardContent, title) : CardContent}
+            {renderContent ? (
+                renderContent(CardContent, PageTitle)
+            ) : (
+                <>
+                    {PageTitle}
+                    {CardContent}
+                </>
+            )}
         </Box>
     );
 };

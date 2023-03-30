@@ -813,6 +813,7 @@ module.exports = {
                         "examples/next-js/nextjs",
                         "examples/next-js/nextjs-appdir",
                         "examples/next-js/auth",
+                        "examples/next-js/NextAuth.js",
                     ],
                 },
                 {
@@ -821,14 +822,16 @@ module.exports = {
                     items: ["examples/notification-provider/react-toastify"],
                 },
                 "examples/persistQuery",
-                /*                 {
+                {
                     type: "category",
                     label: "Remix",
                     items: [
                         "examples/remix/remix-antd",
+                        "examples/remix/remix-mui",
                         "examples/remix/remix-headless",
+                        "examples/remix/remix-auth",
                     ],
-                }, */
+                },
                 {
                     type: "category",
                     label: "Router Provider",

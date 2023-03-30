@@ -151,8 +151,10 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return nestedQuery;
 };
 
+type IDType = "uuid" | "Int" | "String" | "Numeric";
+
 export type HasuraDataProviderOptions = {
-    idType?: "uuid" | "Int" | ((resource: string) => "uuid" | "Int");
+    idType?: IDType | ((resource: string) => IDType);
 };
 
 const dataProvider = (
@@ -160,6 +162,7 @@ const dataProvider = (
     options?: HasuraDataProviderOptions,
 ): Required<DataProvider> => {
     const { idType } = options ?? {};
+
     const getIdType = (resource: string) => {
         if (typeof idType === "function") {
             return idType(resource);

@@ -14,11 +14,18 @@ import {
     Button,
     BoxProps,
     CardProps,
+    useMantineTheme,
 } from "@mantine/core";
 
 import { FormContext } from "@contexts/form-context";
-import { layoutStyles, cardStyles, titleStyles } from "../styles";
+import {
+    layoutStyles,
+    cardStyles,
+    titleStyles,
+    pageTitleStyles,
+} from "../styles";
 import { FormPropsType } from "../..";
+import { ThemedTitle } from "@components";
 
 type UpdatePassworProps = UpdatePasswordPageProps<
     BoxProps,
@@ -35,8 +42,9 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     wrapperProps,
     renderContent,
     formProps,
-    title = undefined,
+    title,
 }) => {
+    const theme = useMantineTheme();
     const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
@@ -66,9 +74,19 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         });
 
+    const PageTitle =
+        title === false ? null : (
+            <div style={pageTitleStyles}>
+                {title ?? <ThemedTitle collapsed={false} />}
+            </div>
+        );
+
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
-            <Title style={titleStyles}>
+            <Title
+                style={titleStyles}
+                color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
+            >
                 {translate("pages.updatePassword.title", "Set New Password")}
             </Title>
             <Space h="lg" />
@@ -119,7 +137,14 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
 
     return (
         <Box style={layoutStyles} {...(wrapperProps ?? {})}>
-            {renderContent ? renderContent(CardContent, title) : CardContent}
+            {renderContent ? (
+                renderContent(CardContent, PageTitle)
+            ) : (
+                <>
+                    {PageTitle}
+                    {CardContent}
+                </>
+            )}
         </Box>
     );
 };

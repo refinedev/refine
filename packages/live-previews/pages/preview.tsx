@@ -23,49 +23,120 @@ const Preview: NextPage = () => {
         if (code && hasQuery && isReady && !scopeSettled) {
             const usedPackages = checkPackage(code);
 
-            const antdScope = usedPackages.has("antd")
-                ? (await import("../src/scope/antd")).default
-                : {};
-            const muiScope = usedPackages.has("mui")
-                ? (await import("../src/scope/mui")).default
-                : {};
-            const mantineScope = usedPackages.has("mantine")
-                ? (await import("../src/scope/mantine")).default
-                : {};
-            const chakraScope = usedPackages.has("chakra")
-                ? (await import("../src/scope/chakra")).default
-                : {};
-            const antdInferencerScope = usedPackages.has("antd-inferencer")
-                ? (await import("../src/scope/antd-inferencer")).default
-                : {};
-            const muiInferencerScope = usedPackages.has("mui-inferencer")
-                ? (await import("../src/scope/mui-inferencer")).default
-                : {};
-            const mantineInferencerScope = usedPackages.has(
-                "mantine-inferencer",
-            )
-                ? (await import("../src/scope/mantine-inferencer")).default
-                : {};
-            const chakraInferencerScope = usedPackages.has("chakra-inferencer")
-                ? (await import("../src/scope/chakra-inferencer")).default
-                : {};
-            const headlessInferencerScope = usedPackages.has(
-                "headless-inferencer",
-            )
-                ? (await import("../src/scope/headless-inferencer")).default
-                : {};
+            const callbacks: (() => Promise<{}>)[] = [
+                async () =>
+                    usedPackages.has("antd")
+                        ? (await import("../src/scope/antd")).default
+                        : {},
+                async () =>
+                    usedPackages.has("mui")
+                        ? (await import("../src/scope/mui")).default
+                        : {},
+                async () =>
+                    usedPackages.has("mantine")
+                        ? (await import("../src/scope/mantine")).default
+                        : {},
+                async () =>
+                    usedPackages.has("chakra")
+                        ? (await import("../src/scope/chakra")).default
+                        : {},
+                async () =>
+                    usedPackages.has("antd-inferencer")
+                        ? (await import("../src/scope/antd-inferencer")).default
+                        : {},
+                async () =>
+                    usedPackages.has("mui-inferencer")
+                        ? (await import("../src/scope/mui-inferencer")).default
+                        : {},
+                async () =>
+                    usedPackages.has("mantine-inferencer")
+                        ? (await import("../src/scope/mantine-inferencer"))
+                              .default
+                        : {},
+                async () =>
+                    usedPackages.has("chakra-inferencer")
+                        ? (await import("../src/scope/chakra-inferencer"))
+                              .default
+                        : {},
+                async () =>
+                    usedPackages.has("headless-inferencer")
+                        ? (await import("../src/scope/headless-inferencer"))
+                              .default
+                        : {},
+                async () =>
+                    usedPackages.has("react-dom")
+                        ? (await import("../src/scope/react-dom")).default
+                        : {},
+                async () =>
+                    usedPackages.has("web-vitals")
+                        ? (await import("../src/scope/web-vitals")).default
+                        : {},
+                async () =>
+                    usedPackages.has("i18n")
+                        ? (await import("../src/scope/i18n")).default
+                        : {},
+                async () =>
+                    usedPackages.has("tabler-icons")
+                        ? (await import("../src/scope/tabler-icons")).default
+                        : {},
+                async () =>
+                    usedPackages.has("kbar")
+                        ? (await import("../src/scope/kbar")).default
+                        : {},
+                async () =>
+                    usedPackages.has("airtable")
+                        ? (await import("../src/scope/airtable")).default
+                        : {},
+                async () =>
+                    usedPackages.has("appwrite")
+                        ? (await import("../src/scope/appwrite")).default
+                        : {},
+                async () =>
+                    usedPackages.has("hasura")
+                        ? (await import("../src/scope/hasura")).default
+                        : {},
+                async () =>
+                    usedPackages.has("nestjsx-crud")
+                        ? (await import("../src/scope/nestjsx")).default
+                        : {},
+                async () =>
+                    usedPackages.has("strapi-v4")
+                        ? (await import("../src/scope/strapi-v4")).default
+                        : {},
+                async () =>
+                    usedPackages.has("supabase")
+                        ? (await import("../src/scope/supabase")).default
+                        : {},
+                async () =>
+                    usedPackages.has("axios")
+                        ? (await import("../src/scope/axios")).default
+                        : {},
+                async () =>
+                    usedPackages.has("auth0")
+                        ? (await import("../src/scope/auth0")).default
+                        : {},
+                async () =>
+                    usedPackages.has("keycloak")
+                        ? (await import("../src/scope/keycloak")).default
+                        : {},
+            ];
+
+            let scopesToUse: Record<string, any> = {};
+
+            const resolvedScopes = await Promise.all(
+                callbacks.map((cb) => cb()),
+            );
+
+            resolvedScopes.forEach((scope) => {
+                scopesToUse = {
+                    ...scopesToUse,
+                    ...scope,
+                };
+            });
 
             setScope({
                 ...RefineCommonScope,
-                ...antdScope,
-                ...muiScope,
-                ...mantineScope,
-                ...chakraScope,
-                ...antdInferencerScope,
-                ...muiInferencerScope,
-                ...mantineInferencerScope,
-                ...chakraInferencerScope,
-                ...headlessInferencerScope,
+                ...scopesToUse,
             });
             setScopeSettled(true);
         }

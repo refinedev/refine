@@ -2,6 +2,7 @@ import React from "react";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import * as RefineMui from "@refinedev/mui";
+import * as MuiMaterialStyles from "@mui/material/styles";
 
 import * as EmotionReact from "@emotion/react";
 import * as EmotionStyled from "@emotion/styled";
@@ -12,6 +13,23 @@ import * as ReactHookForm from "react-hook-form";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
+
+import {
+    LightModeOutlined,
+    DarkModeOutlined,
+    ArrowRight,
+    Camera,
+    ListOutlined,
+    Logout,
+    ExpandLess,
+    ExpandMore,
+    ChevronLeft,
+    ChevronRight,
+    MenuRounded,
+    Dashboard,
+    Check,
+    Close,
+} from "@mui/icons-material";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -62,7 +80,24 @@ const MuiScope = {
     MuiLab,
     MuiMaterial,
     MuiXDataGrid,
+    MuiMaterialStyles,
     ReactHookForm,
+    MuiIconsMaterial: {
+        Close,
+        Check,
+        LightModeOutlined,
+        DarkModeOutlined,
+        ArrowRight,
+        Camera,
+        ListOutlined,
+        Logout,
+        ExpandLess,
+        ExpandMore,
+        ChevronLeft,
+        ChevronRight,
+        MenuRounded,
+        Dashboard,
+    },
     // RefineMantine,
     // RefineMantineDemo,
     // RefineChakra,

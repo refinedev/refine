@@ -1,4 +1,5 @@
 import { packageMap } from "@/src/scope/map";
+import { isDevelopmentModeByCookie } from "./development-cookie";
 import { prettySpaces } from "./pretty-spaces";
 
 const packageRegex =
@@ -41,8 +42,19 @@ export const replaceImports = (content: string): string => {
         }
     }
 
-    return prettySpaces(`
+    const pretty = prettySpaces(`
     ${Array.from(imports).join("\n")}
     ${content.replace(packageRegex, "").replace(sideEffectRegex, "")}
     `);
+
+    if (isDevelopmentModeByCookie()) {
+        console.log("== Incoming Code ==");
+        console.log(content);
+        console.log("== ==");
+        console.log("== Transformed Code ==");
+        console.log(pretty);
+        console.log("== ==");
+    }
+
+    return pretty;
 };
