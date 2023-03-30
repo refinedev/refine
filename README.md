@@ -251,7 +251,7 @@ export default App;
 
 Now, you should see the output as a table populated with `blog_posts` & `category` data:
 
-![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Freadme-quick-start-3.png)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Freadme-quick-start-2.png)
 
 <br/>
 
