@@ -85,7 +85,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria 
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria 
 
   build-chunk-2:
     runs-on: ubuntu-latest
@@ -120,7 +120,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-3:
     runs-on: ubuntu-latest
@@ -155,7 +155,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-4:
     runs-on: ubuntu-latest
@@ -190,7 +190,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-5:
     runs-on: ubuntu-latest
@@ -225,7 +225,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-6:
     runs-on: ubuntu-latest
@@ -260,7 +260,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-7:
     runs-on: ubuntu-latest
@@ -295,7 +295,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-8:
     runs-on: ubuntu-latest
@@ -330,4 +330,4 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --nx-bail=true --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
