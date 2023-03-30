@@ -3,6 +3,7 @@ import {
     CrudSorting,
     DataProvider,
     LogicalFilter,
+    BaseRecord,
 } from "@refinedev/core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
@@ -93,7 +94,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 fields: meta?.fields,
             });
 
-            const response = await client.request(query, variables);
+            const response = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: response[operation],
@@ -117,7 +118,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 fields: meta?.fields,
             });
 
-            const response = await client.request(query, variables);
+            const response = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: response[operation],
@@ -146,7 +147,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                     },
                 ],
             });
-            const response = await client.request(query, gqlVariables);
+            const response = await client.request<BaseRecord>(
+                query,
+                gqlVariables,
+            );
 
             return {
                 data: response[operation][singularResource],
@@ -177,7 +181,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             },
                         ],
                     });
-                    const result = await client.request(query, gqlVariables);
+                    const result = await client.request<BaseRecord>(
+                        query,
+                        gqlVariables,
+                    );
 
                     return result[operation][singularResource];
                 }),
@@ -209,7 +216,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                     },
                 ],
             });
-            const response = await client.request(query, gqlVariables);
+            const response = await client.request<BaseRecord>(
+                query,
+                gqlVariables,
+            );
 
             return {
                 data: response[operation][singularResource],
@@ -240,7 +250,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             },
                         ],
                     });
-                    const result = await client.request(query, gqlVariables);
+                    const result = await client.request<BaseRecord>(
+                        query,
+                        gqlVariables,
+                    );
 
                     return result[operation][singularResource];
                 }),
@@ -264,7 +277,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 fields: meta?.fields,
             });
 
-            const response = await client.request(query, variables);
+            const response = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: response[operation],
@@ -294,7 +307,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 ],
             });
 
-            const response = await client.request(query, variables);
+            const response = await client.request<BaseRecord>(query, variables);
 
             return {
                 data: response[operation][singularResource],
@@ -325,7 +338,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             },
                         ],
                     });
-                    const result = await client.request(query, gqlVariables);
+                    const result = await client.request<BaseRecord>(
+                        query,
+                        gqlVariables,
+                    );
 
                     return result[operation][singularResource];
                 }),
@@ -355,7 +371,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             variables: meta.variables,
                         });
 
-                        const response = await gqlClient.request(
+                        const response = await gqlClient.request<BaseRecord>(
                             query,
                             variables,
                         );
@@ -370,7 +386,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                             variables: meta.variables,
                         });
 
-                        const response = await gqlClient.request(
+                        const response = await gqlClient.request<BaseRecord>(
                             query,
                             variables,
                         );
