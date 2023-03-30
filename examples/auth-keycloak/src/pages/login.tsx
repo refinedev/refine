@@ -1,31 +1,37 @@
-import { Layout as AntdLayout, Button } from "antd";
+import { Layout, Button, Space, Typography } from "antd";
 import { useLogin } from "@refinedev/core";
+import { ThemedTitle } from "@refinedev/antd";
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin();
 
     return (
-        <AntdLayout
+        <Layout
             style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <div style={{ marginBottom: "28px" }}>
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <Button
-                        type="primary"
-                        size="large"
-                        block
-                        onClick={() => login({})}
-                    >
-                        Sign in
-                    </Button>
-                </div>
-            </div>
-        </AntdLayout>
+            <Space direction="vertical" align="center" size="large">
+                <ThemedTitle
+                    collapsed={false}
+                    wrapperStyles={{
+                        fontSize: "22px",
+                    }}
+                />
+                <Button
+                    type="primary"
+                    size="middle"
+                    onClick={() => login({})}
+                    style={{ width: "240px" }}
+                >
+                    Sign in
+                </Button>
+                <Typography.Text type="secondary">
+                    Powered by Keycloak
+                </Typography.Text>
+            </Space>
+        </Layout>
     );
 };
