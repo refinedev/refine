@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 4.5.7
+
+### Patch Changes
+
+-   [#4033](https://github.com/refinedev/refine/pull/4033) [`08955914473`](https://github.com/refinedev/refine/commit/08955914473737b08772c919d8108e053d546341) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: Sider toggle button color - The color of the toggle button in the `<ThemedSider>` and `<ThemedHeader>` does not meet the contrast ratio. This is now fixed.
+
 ## 4.5.6
 
 ### Patch Changes
