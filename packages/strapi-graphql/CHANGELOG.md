@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-graphql
 
+## 6.0.1
+
+### Patch Changes
+
+-   [#4030](https://github.com/refinedev/refine/pull/4030) [`1b019280252`](https://github.com/refinedev/refine/commit/1b019280252140c251bf464426b0b072acd310fe) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Upgraded `graphql-request` dependency `4.x` to [`5.x`](https://github.com/jasonkuhrt/graphql-request/releases/tag/5.0.0).
+
 ## 6.0.0
 
 ### Major Changes
