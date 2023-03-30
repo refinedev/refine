@@ -1,5 +1,17 @@
 # @pankod/refine-mui
 
+## 4.5.6
+
+### Patch Changes
+
+-   [#4024](https://github.com/refinedev/refine/pull/4024) [`dc6d2311eb7`](https://github.com/refinedev/refine/commit/dc6d2311eb76a458f828fb15fe26fae1c75bc95a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Added: default `gap: 8px` to `<ThemedTitle>` component.
+
+## 4.5.5
+
+### Patch Changes
+
+-   [#4024](https://github.com/refinedev/refine/pull/4024) [`dc6d2311eb7`](https://github.com/refinedev/refine/commit/dc6d2311eb76a458f828fb15fe26fae1c75bc95a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Added: default `gap: 8px` to `<ThemedTitle>` component.
+
 ## 4.5.4
 
 ### Patch Changes
