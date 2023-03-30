@@ -49,7 +49,20 @@ useShow({
 
 :::caution
 
-If you're using a resource other than the one shown in the URL, you'll have to manually provide the `id` prop to `useForm`.
+If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useShow` hook.
+
+Example:
+
+```tsx
+import { useShow, useParsed } from "@refinedev/core";
+
+const { id } = useParsed();
+
+useShow({
+    resource: "custom-resource",
+    id,
+});
+```
 
 :::
 

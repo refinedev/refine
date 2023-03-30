@@ -550,7 +550,23 @@ useForm({
 
 :::caution
 
-If you're using a resource other than the one shown in the URL, you'll have to manually provide the `id` prop to `useForm`.
+If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
+
+Example:
+
+```tsx
+import { useForm } from "@refinedev/react-hook-form";
+import { useParsed } from "@refinedev/core";
+
+const { id } = useParsed();
+
+useForm({
+    refineCoreProps: {
+        resource: "custom-resource",
+        id,
+    },
+});
+```
 
 :::
 
