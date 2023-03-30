@@ -168,7 +168,7 @@ After data is fetched successfully, `useDelete` can call `open` function from `N
 const { mutate } = useDelete();
 
 mutate({
-    successNotification: (data, values, resource) => {
+    successNotification: (data, id, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
             description: "Success with no errors",
@@ -188,7 +188,7 @@ After data fetching is failed, `useDelete` will call `open` function from `Notif
 const { mutate } = useDelete();
 
 mutate({
-    errorNotification: (data, values, resource) => {
+    errorNotification: (data, id, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
             description: "Error",
