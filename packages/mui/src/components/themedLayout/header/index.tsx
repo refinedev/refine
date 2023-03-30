@@ -29,6 +29,7 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = ({
             <Toolbar>
                 {hasSidebarToggle && (
                     <IconButton
+                        color="inherit"
                         aria-label="open drawer"
                         onClick={() => onToggleSiderClick?.()}
                         edge="start"
