@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import warnOnce from "warn-once";
 
 import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
 
@@ -156,6 +157,13 @@ export const useShow = <
             }
         }
     }
+
+    warnOnce(
+        Boolean(resourceFromProp) && !Boolean(id),
+        `[useShow]: resource: "${resourceName}", id: ${id} \n\n` +
+            `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
+            `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
+    );
 
     const queryResult = useOne<TData>({
         resource: resource?.name,
