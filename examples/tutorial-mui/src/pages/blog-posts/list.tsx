@@ -6,11 +6,12 @@ import {
     DeleteButton,
     List,
     MarkdownField,
+    DateField,
 } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { useMany } from "@refinedev/core";
 
-export const ProductList = () => {
+export const BlogPostList = () => {
     const { dataGridProps } = useDataGrid();
 
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
@@ -31,18 +32,13 @@ export const ProductList = () => {
                 filterable: false,
             },
             {
-                field: "name",
-                headerName: "Name",
+                field: "title",
+                headerName: "Title",
                 minWidth: 200,
             },
             {
-                field: "material",
-                headerName: "Material",
-                minWidth: 200,
-            },
-            {
-                field: "description",
-                headerName: "Description",
+                field: "content",
+                headerName: "Content",
                 minWidth: 250,
                 renderCell: function render({ value }) {
                     return (
@@ -53,15 +49,8 @@ export const ProductList = () => {
                 },
             },
             {
-                field: "price",
-                headerName: "Price",
-                minWidth: 200,
-                filterable: false,
-            },
-            {
                 field: "category",
                 headerName: "Category",
-                filterable: false,
                 valueGetter: ({ row }) => {
                     const value = row?.category?.id;
 
@@ -78,21 +67,35 @@ export const ProductList = () => {
                 },
             },
             {
+                field: "status",
+                headerName: "Status",
+                minWidth: 200,
+            },
+            {
+                field: "createdAt",
+                headerName: "Created At",
+                minWidth: 250,
+                renderCell: function render({ value }) {
+                    return <DateField value={value} />;
+                },
+            },
+            {
                 field: "actions",
                 headerName: "Actions",
-                sortable: false,
-                filterable: false,
                 renderCell: function render({ row }) {
                     return (
                         <>
                             <EditButton hideText recordItemId={row.id} />
                             <ShowButton hideText recordItemId={row.id} />
+                            <DeleteButton hideText recordItemId={row.id} />
                         </>
                     );
                 },
                 align: "center",
                 headerAlign: "center",
                 minWidth: 80,
+                filterable: false,
+                sortable: false,
             },
         ],
         [categoryData?.data],
