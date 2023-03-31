@@ -21,18 +21,22 @@ import {
     Col,
     AutoComplete,
     Layout as AntdLayout,
+    Button,
+    theme,
 } from "antd";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
-
+const { useToken } = theme;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier, IIdentity } from "interfaces";
 import { HeaderTitle } from "./styled";
+import { useConfigProvider } from "context";
+import { IconMoon, IconSun } from "components/icons";
 
 interface IOptionGroup {
     value: string;
@@ -45,6 +49,8 @@ interface IOptions {
 }
 
 export const Header: React.FC = () => {
+    const { token } = useToken();
+    const { mode, setMode } = useConfigProvider();
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
@@ -189,8 +195,8 @@ export const Header: React.FC = () => {
     return (
         <AntdHeader
             style={{
+                backgroundColor: token.colorBgElevated,
                 padding: "0 24px",
-                background: "white",
             }}
         >
             <Row
@@ -221,6 +227,18 @@ export const Header: React.FC = () => {
                 </Col>
                 <Col>
                     <Space size="middle" align="center">
+                        <Button
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                            type="default"
+                            icon={mode === "light" ? <IconMoon /> : <IconSun />}
+                            onClick={() => {
+                                setMode(mode === "light" ? "dark" : "light");
+                            }}
+                        />
                         <Dropdown overlay={menu}>
                             <a
                                 style={{ color: "inherit" }}

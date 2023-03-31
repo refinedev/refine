@@ -5,7 +5,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
-    LightTheme,
+    RefineThemes,
     notificationProvider,
     RefineSnackbarProvider,
     WelcomePage,
@@ -19,7 +19,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}

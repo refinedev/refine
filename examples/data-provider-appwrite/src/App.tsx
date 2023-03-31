@@ -4,7 +4,12 @@ import {
     AuthBindings,
     Authenticated,
 } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import {
     AppwriteException,
     dataProvider,
@@ -17,6 +22,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient, account } from "utility";
@@ -103,85 +109,87 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider(appwriteClient, {
-                    databaseId: "default",
-                })}
-                liveProvider={liveProvider(appwriteClient, {
-                    databaseId: "default",
-                })}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "61c43ad33b857",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                        meta: {
-                            label: "Post",
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(appwriteClient, {
+                        databaseId: "default",
+                    })}
+                    liveProvider={liveProvider(appwriteClient, {
+                        databaseId: "default",
+                    })}
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "61c43ad33b857",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                            meta: {
+                                label: "Post",
+                            },
                         },
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    liveMode: "auto",
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        liveMode: "auto",
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="61c43ad33b857" />
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
                             }
-                        />
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="61c43ad33b857" />
+                                }
+                            />
 
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
                         </Route>
-                    </Route>
 
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="61c43ad33b857" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<Login />} />
-                    </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="61c43ad33b857" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<Login />} />
+                        </Route>
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

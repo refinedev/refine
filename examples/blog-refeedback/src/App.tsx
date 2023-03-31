@@ -4,6 +4,7 @@ import {
     notificationProvider,
     LoginPage,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 
 import routerProvider, {
@@ -13,6 +14,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
@@ -30,71 +32,76 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "feedbacks",
-                        list: "/feedbacks",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout
-                                    Header={Header}
-                                    OffLayoutArea={OffLayoutArea}
-                                >
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider}
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "feedbacks",
+                            list: "/feedbacks",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="feedbacks" />
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Layout
+                                        Header={Header}
+                                        OffLayoutArea={OffLayoutArea}
+                                    >
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
                             }
-                        />
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="feedbacks" />
+                                }
+                            />
 
-                        <Route path="/feedbacks" element={<FeedbackList />} />
-                    </Route>
+                            <Route
+                                path="/feedbacks"
+                                element={<FeedbackList />}
+                            />
+                        </Route>
 
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="feedbacks" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<LoginPage />} />
-                    </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="feedbacks" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<LoginPage />} />
+                        </Route>
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }

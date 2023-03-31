@@ -1,9 +1,9 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     notificationProvider,
-    LightTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <MantineProvider
-                theme={LightTheme}
+                theme={RefineThemes.Blue}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -50,9 +50,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

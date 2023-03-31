@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -20,8 +20,7 @@ import { PostList, PostCreate, PostEdit } from "pages/posts";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
@@ -49,9 +48,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

@@ -1,17 +1,24 @@
 import { Logo } from "./styled";
-import { BikeWhiteIcon } from "components";
+import { BikeWhiteIcon, FineFoodsIcon } from "components";
+import { theme } from "antd";
+
+const { useToken } = theme;
 
 type TitleProps = {
     collapsed: boolean;
 };
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
+    const { token } = useToken();
+
     return (
         <Logo>
             {collapsed ? (
-                <BikeWhiteIcon style={{ color: "white", fontSize: "32px" }} />
+                <BikeWhiteIcon
+                    style={{ fontSize: "32px", color: token.colorTextBase }}
+                />
             ) : (
-                <img src="/images/fine-foods.svg" alt="Finefood" />
+                <FineFoodsIcon style={{ color: token.colorTextBase }} />
             )}
         </Logo>
     );

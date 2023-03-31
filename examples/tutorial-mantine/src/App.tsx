@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -24,7 +24,7 @@ function App() {
         <BrowserRouter>
             <GitHubBanner />
             <MantineProvider
-                theme={LightTheme}
+                theme={RefineThemes.Blue}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -50,7 +50,7 @@ function App() {
                             warnWhenUnsavedChanges: true,
                         }}
                     >
-                        <Layout>
+                        <ThemedLayout>
                             <Routes>
                                 <Route
                                     index
@@ -77,7 +77,7 @@ function App() {
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Routes>
-                        </Layout>
+                        </ThemedLayout>
                         <UnsavedChangesNotifier />
                     </Refine>
                 </NotificationsProvider>

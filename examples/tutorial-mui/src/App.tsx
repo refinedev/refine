@@ -2,8 +2,8 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     ErrorComponent,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
@@ -24,7 +24,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
@@ -50,7 +50,7 @@ function App() {
                             warnWhenUnsavedChanges: true,
                         }}
                     >
-                        <Layout>
+                        <ThemedLayout>
                             <Routes>
                                 <Route
                                     index
@@ -77,7 +77,7 @@ function App() {
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Routes>
-                        </Layout>
+                        </ThemedLayout>
                         <UnsavedChangesNotifier />
                     </Refine>
                 </RefineSnackbarProvider>

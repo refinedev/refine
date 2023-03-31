@@ -1,9 +1,10 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     AuthPage,
+    RefineThemes,
 } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import routerProvider, {
@@ -18,6 +19,7 @@ import {
     Navigate,
 } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
@@ -34,99 +36,106 @@ function App() {
         <BrowserRouter>
             <GitHubBanner />
             <StoreProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    liveProvider={liveProvider(appwriteClient)}
-                    dataProvider={dataProvider(appwriteClient)}
-                    authProvider={authProvider}
-                    options={{
-                        liveMode: "auto",
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    resources={[
-                        {
-                            name: "61cb01b17ef57",
-                            list: "/products",
-                            show: "/products/show/:id",
-                            meta: {
-                                label: "Products",
+                <ConfigProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        routerProvider={routerProvider}
+                        liveProvider={liveProvider(appwriteClient)}
+                        dataProvider={dataProvider(appwriteClient)}
+                        authProvider={authProvider}
+                        options={{
+                            liveMode: "auto",
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                        resources={[
+                            {
+                                name: "61cb01b17ef57",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                meta: {
+                                    label: "Products",
+                                },
                             },
-                        },
-                        {
-                            name: "61cb019fdbd11",
-                            list: "/orders",
-                            create: "/orders/create",
-                            edit: "/orders/edit/:id",
-                            meta: {
-                                label: "Orders",
+                            {
+                                name: "61cb019fdbd11",
+                                list: "/orders",
+                                create: "/orders/create",
+                                edit: "/orders/edit/:id",
+                                meta: {
+                                    label: "Orders",
+                                },
                             },
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout Sider={CustomSider}>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<Navigate to="products" />} />
-
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                            </Route>
-
-                            <Route path="orders">
-                                <Route index element={<OrderList />} />
-                                <Route
-                                    path="create"
-                                    element={<OrderCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<OrderEdit />}
-                                />
-                            </Route>
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <Navigate to="products" />
-                                </Authenticated>
-                            }
-                        >
+                        ]}
+                        notificationProvider={notificationProvider}
+                    >
+                        <Routes>
                             <Route
-                                path="/login"
-                                element={<AuthPage type="login" />}
-                            />
-                        </Route>
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayout Sider={CustomSider}>
+                                            <Outlet />
+                                        </ThemedLayout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={<Navigate to="products" />}
+                                />
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout Sider={CustomSider}>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<ProductShow />}
+                                    />
+                                </Route>
+
+                                <Route path="orders">
+                                    <Route index element={<OrderList />} />
+                                    <Route
+                                        path="create"
+                                        element={<OrderCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<OrderEdit />}
+                                    />
+                                </Route>
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Navigate to="products" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={<AuthPage type="login" />}
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayout Sider={CustomSider}>
+                                            <Outlet />
+                                        </ThemedLayout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </ConfigProvider>
             </StoreProvider>
         </BrowserRouter>
     );
