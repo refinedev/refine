@@ -4,11 +4,11 @@ import {
     NumberField,
     TextField,
     MarkdownField,
+    DateField,
 } from "@refinedev/mantine";
-
 import { Title } from "@mantine/core";
 
-export const ProductShow = () => {
+export const BlogPostShow = () => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
 
@@ -29,21 +29,13 @@ export const ProductShow = () => {
             </Title>
             <NumberField value={record?.id ?? ""} />
             <Title my="xs" order={5}>
-                Name
+                Title
             </Title>
-            <TextField value={record?.name} />
-            <Title my="xs" order={5}>
-                Material
-            </Title>
-            <TextField value={record?.material} />
+            <TextField value={record?.title} />
             <Title mt="xs" order={5}>
-                Description
+                Content
             </Title>
-            <MarkdownField value={record?.description} />
-            <Title my="xs" order={5}>
-                Price
-            </Title>
-            <TextField value={record?.price} />
+            <MarkdownField value={record?.content} />
             <Title my="xs" order={5}>
                 Category
             </Title>
@@ -52,6 +44,14 @@ export const ProductShow = () => {
             ) : (
                 <>{categoryData?.data?.title}</>
             )}
+            <Title my="xs" order={5}>
+                Status
+            </Title>
+            <TextField value={record?.status} />
+            <Title my="xs" order={5}>
+                Created At
+            </Title>
+            <DateField value={record?.createdAt} />
         </Show>
     );
 };

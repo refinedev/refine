@@ -10,7 +10,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
 
-export const ProductEdit = () => {
+export const BlogPostEdit = () => {
     const {
         refineCore: { formLoading, queryResult },
         saveButtonProps,
@@ -19,11 +19,11 @@ export const ProductEdit = () => {
         formState: { errors },
     } = useForm();
 
-    const productsData = queryResult?.data?.data;
+    const blogPostsData = queryResult?.data?.data;
 
     const { options: categoryOptions } = useSelect({
         resource: "categories",
-        defaultValue: productsData?.category?.id,
+        defaultValue: blogPostsData?.category?.id,
     });
 
     React.useEffect(() => {
@@ -39,57 +39,34 @@ export const ProductEdit = () => {
                     type="number"
                     {...register("id", {
                         required: "This field is required",
+                        valueAsNumber: true,
                     })}
                 />
                 <FormErrorMessage>
                     {(errors as any)?.id?.message as string}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.name}>
-                <FormLabel>Name</FormLabel>
+            <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
+                <FormLabel>Title</FormLabel>
                 <Input
                     type="text"
-                    {...register("name", {
+                    {...register("title", {
                         required: "This field is required",
                     })}
                 />
                 <FormErrorMessage>
-                    {(errors as any)?.name?.message as string}
+                    {(errors as any)?.title?.message as string}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.material}>
-                <FormLabel>Material</FormLabel>
+            <FormControl mb="3" isInvalid={!!(errors as any)?.content}>
+                <FormLabel>Content</FormLabel>
                 <Input
-                    type="text"
-                    {...register("material", {
+                    {...register("content", {
                         required: "This field is required",
                     })}
                 />
                 <FormErrorMessage>
-                    {(errors as any)?.material?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.description}>
-                <FormLabel>Description</FormLabel>
-                <Input
-                    {...register("description", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.description?.message as string}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!(errors as any)?.price}>
-                <FormLabel>Price</FormLabel>
-                <Input
-                    type="text"
-                    {...register("price", {
-                        required: "This field is required",
-                    })}
-                />
-                <FormErrorMessage>
-                    {(errors as any)?.price?.message as string}
+                    {(errors as any)?.content?.message as string}
                 </FormErrorMessage>
             </FormControl>
             <FormControl mb="3" isInvalid={!!errors?.category}>
@@ -108,6 +85,36 @@ export const ProductEdit = () => {
                 </Select>
                 <FormErrorMessage>
                     {(errors as any)?.category?.id?.message as string}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!(errors as any)?.status}>
+                <FormLabel>Status</FormLabel>
+                <Input
+                    type="text"
+                    {...register("status", {
+                        required: "This field is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {(errors as any)?.status?.message as string}
+                </FormErrorMessage>
+            </FormControl>
+            {/* 
+                    DatePicker component is not included in "@refinedev/chakra-ui" package.
+                    To use a <DatePicker> component, you can examine the following links:
+                    
+                    - https://github.com/aboveyunhai/chakra-dayzed-datepicker
+                    - https://github.com/wojtekmaj/react-date-picker
+                */}
+            <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
+                <FormLabel>Created At</FormLabel>
+                <Input
+                    {...register("createdAt", {
+                        required: "This field is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {(errors as any)?.createdAt?.message as string}
                 </FormErrorMessage>
             </FormControl>
         </Edit>

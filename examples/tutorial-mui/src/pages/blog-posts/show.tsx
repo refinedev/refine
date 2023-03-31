@@ -4,11 +4,11 @@ import {
     NumberField,
     TextFieldComponent as TextField,
     MarkdownField,
+    DateField,
 } from "@refinedev/mui";
-
 import { Typography, Stack } from "@mui/material";
 
-export const ProductShow = () => {
+export const BlogPostShow = () => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
 
@@ -30,21 +30,13 @@ export const ProductShow = () => {
                 </Typography>
                 <NumberField value={record?.id ?? ""} />
                 <Typography variant="body1" fontWeight="bold">
-                    Name
+                    Title
                 </Typography>
-                <TextField value={record?.name} />
+                <TextField value={record?.title} />
                 <Typography variant="body1" fontWeight="bold">
-                    Material
+                    Content
                 </Typography>
-                <TextField value={record?.material} />
-                <Typography variant="body1" fontWeight="bold">
-                    Description
-                </Typography>
-                <MarkdownField value={record?.description} />
-                <Typography variant="body1" fontWeight="bold">
-                    Price
-                </Typography>
-                <TextField value={record?.price} />
+                <MarkdownField value={record?.content} />
                 <Typography variant="body1" fontWeight="bold">
                     Category
                 </Typography>
@@ -54,6 +46,14 @@ export const ProductShow = () => {
                 ) : (
                     <>{categoryData?.data?.title}</>
                 )}
+                <Typography variant="body1" fontWeight="bold">
+                    Status
+                </Typography>
+                <TextField value={record?.status} />
+                <Typography variant="body1" fontWeight="bold">
+                    Created At
+                </Typography>
+                <DateField value={record?.createdAt} />
             </Stack>
         </Show>
     );

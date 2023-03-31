@@ -1,17 +1,17 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, DatePicker } from "antd";
+import dayjs from "dayjs";
 
-import { Form, Input, Select } from "antd";
-
-export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm();
 
-    const productsData = queryResult?.data?.data;
+    const blogPostsData = queryResult?.data?.data;
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
-        defaultValue: productsData?.category?.id,
+        defaultValue: blogPostsData?.category?.id,
     });
 
     return (
@@ -29,8 +29,8 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label="Name"
-                    name={["name"]}
+                    label="Title"
+                    name={["title"]}
                     rules={[
                         {
                             required: true,
@@ -40,19 +40,8 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Material"
-                    name={["material"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Description"
-                    name="description"
+                    label="Content"
+                    name="content"
                     rules={[
                         {
                             required: true,
@@ -60,17 +49,6 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Input.TextArea rows={5} />
-                </Form.Item>
-                <Form.Item
-                    label="Price"
-                    name={["price"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
                 </Form.Item>
                 <Form.Item
                     label="Category"
@@ -82,6 +60,31 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name={["status"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Created At"
+                    name={["createdAt"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    getValueProps={(value) => ({
+                        value: value ? dayjs(value) : undefined,
+                    })}
+                >
+                    <DatePicker />
                 </Form.Item>
             </Form>
         </Edit>
