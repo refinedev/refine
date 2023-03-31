@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigation, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-export const ProductCreate = () => {
+export const BlogPostCreate = () => {
     const { list } = useNavigation();
 
     const {
@@ -20,14 +20,14 @@ export const ProductCreate = () => {
     return (
         <div style={{ padding: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h1>Product Create</h1>
+                <h1>Blog Post Create</h1>
                 <div>
                     <button
                         onClick={() => {
-                            list("products");
+                            list("blog_posts");
                         }}
                     >
-                        Products List
+                        Blog Posts List
                     </button>
                 </div>
             </div>
@@ -40,53 +40,29 @@ export const ProductCreate = () => {
                     }}
                 >
                     <label>
-                        <span style={{ marginRight: "8px" }}>Name</span>
+                        <span style={{ marginRight: "8px" }}>Title</span>
                         <input
                             type="text"
-                            {...register("name", {
+                            {...register("title", {
                                 required: "This field is required",
                             })}
                         />
                         <span style={{ color: "red" }}>
-                            {(errors as any)?.name?.message as string}
+                            {(errors as any)?.title?.message as string}
                         </span>
                     </label>
                     <label>
-                        <span style={{ marginRight: "8px" }}>Material</span>
-                        <input
-                            type="text"
-                            {...register("material", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.material?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Description</span>
+                        <span style={{ marginRight: "8px" }}>Content</span>
                         <textarea
                             rows={5}
                             cols={33}
                             style={{ verticalAlign: "top" }}
-                            {...register("description", {
+                            {...register("content", {
                                 required: "This field is required",
                             })}
                         />
                         <span style={{ color: "red" }}>
-                            {(errors as any)?.description?.message as string}
-                        </span>
-                    </label>
-                    <label>
-                        <span style={{ marginRight: "8px" }}>Price</span>
-                        <input
-                            type="text"
-                            {...register("price", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <span style={{ color: "red" }}>
-                            {(errors as any)?.price?.message as string}
+                            {(errors as any)?.content?.message as string}
                         </span>
                     </label>
                     <label>
@@ -105,6 +81,29 @@ export const ProductCreate = () => {
                         </select>
                         <span style={{ color: "red" }}>
                             {(errors as any)?.category?.id?.message as string}
+                        </span>
+                    </label>
+                    <label>
+                        <span style={{ marginRight: "8px" }}>Status</span>
+                        <input
+                            type="text"
+                            {...register("status", {
+                                required: "This field is required",
+                            })}
+                        />
+                        <span style={{ color: "red" }}>
+                            {(errors as any)?.status?.message as string}
+                        </span>
+                    </label>
+                    <label>
+                        <span style={{ marginRight: "8px" }}>Created At</span>
+                        <input
+                            {...register("createdAt", {
+                                required: "This field is required",
+                            })}
+                        />
+                        <span style={{ color: "red" }}>
+                            {(errors as any)?.createdAt?.message as string}
                         </span>
                     </label>
                     <div>
