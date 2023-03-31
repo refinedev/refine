@@ -1,10 +1,10 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, DatePicker } from "antd";
+import dayjs from "dayjs";
 
-import { Form, Input, Select } from "antd";
-
-export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm();
 
     const { selectProps: categorySelectProps } = useSelect({
@@ -15,8 +15,8 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label="Name"
-                    name={["name"]}
+                    label="Title"
+                    name={["title"]}
                     rules={[
                         {
                             required: true,
@@ -26,19 +26,8 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Material"
-                    name={["material"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Description"
-                    name="description"
+                    label="Content"
+                    name="content"
                     rules={[
                         {
                             required: true,
@@ -46,17 +35,6 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Input.TextArea rows={5} />
-                </Form.Item>
-                <Form.Item
-                    label="Price"
-                    name={["price"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
                 </Form.Item>
                 <Form.Item
                     label="Category"
@@ -68,6 +46,31 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name={["status"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Created At"
+                    name={["createdAt"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    getValueProps={(value) => ({
+                        value: value ? dayjs(value) : undefined,
+                    })}
+                >
+                    <DatePicker />
                 </Form.Item>
             </Form>
         </Create>

@@ -9,10 +9,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { ProductList } from "pages/products/list";
-import { ProductCreate } from "pages/products/create";
-import { ProductShow } from "pages/products/show";
-import { ProductEdit } from "pages/products/edit";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostCreate } from "pages/blog-posts/create";
+import { BlogPostShow } from "pages/blog-posts/show";
+import { BlogPostEdit } from "pages/blog-posts/edit";
 
 function App() {
     return (
@@ -24,11 +24,14 @@ function App() {
                 notificationProvider={notificationProvider}
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
+                        meta: {
+                            canDelete: true,
+                        },
                     },
                 ]}
                 options={{
@@ -40,14 +43,16 @@ function App() {
                     <Routes>
                         <Route
                             index
-                            element={<NavigateToResource resource="products" />}
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
                         />
 
-                        <Route path="/products">
-                            <Route index element={<ProductList />} />
-                            <Route path="show/:id" element={<ProductShow />} />
-                            <Route path="create" element={<ProductCreate />} />
-                            <Route path="edit/:id" element={<ProductEdit />} />
+                        <Route path="/blog-posts">
+                            <Route index element={<BlogPostList />} />
+                            <Route path="show/:id" element={<BlogPostShow />} />
+                            <Route path="create" element={<BlogPostCreate />} />
+                            <Route path="edit/:id" element={<BlogPostEdit />} />
                         </Route>
 
                         <Route path="*" element={<ErrorComponent />} />
