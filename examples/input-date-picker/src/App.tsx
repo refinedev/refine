@@ -23,7 +23,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ConfigProvider themes={RefineThemes.Blue}>
+            <ConfigProvider theme={RefineThemes.Blue}>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}

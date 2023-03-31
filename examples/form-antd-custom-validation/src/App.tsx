@@ -3,6 +3,7 @@ import {
     notificationProvider,
     ThemedLayout,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {

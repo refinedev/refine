@@ -2,7 +2,11 @@ import React from "react";
 import { AppProps } from "next/app";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { ThemedLayout, notificationProvider } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
