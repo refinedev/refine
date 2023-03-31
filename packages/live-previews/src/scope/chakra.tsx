@@ -1,4 +1,7 @@
 import React from "react";
+import { useRouter } from "next/router";
+import qs from "qs";
+import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import * as RefineChakra from "@refinedev/chakra-ui";
@@ -41,6 +44,69 @@ const RefineChakraDemo: React.FC<
     );
 };
 
+const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
+    collapsed,
+    wrapperStyles,
+    text: textFromProps,
+    icon: iconFromProps,
+}) => {
+    const [svgContent, setSvgContent] = React.useState<string | undefined>(
+        undefined,
+    );
+    const [title, setTitle] = React.useState<string | undefined>(undefined);
+
+    const { query, isReady } = useRouter();
+
+    React.useEffect(() => {
+        const { text, icon } = query;
+
+        const ICON_BASE_PATH = "https://refine.new/assets/icons/";
+
+        if (isReady && icon) {
+            try {
+                fetch(`${ICON_BASE_PATH}${icon}`)
+                    .then((res) => res.text())
+                    .then((text) => setSvgContent(text));
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        if (isReady && text) {
+            setTitle(text as string);
+        }
+    }, [isReady, query]);
+
+    return (
+        <RefineChakra.ThemedTitle
+            collapsed={collapsed}
+            wrapperStyles={wrapperStyles}
+            text={title || textFromProps}
+            icon={svgContent ? parseHtml(svgContent) : iconFromProps}
+        />
+    );
+};
+
+const RefineThemes: typeof RefineChakra.RefineThemes = new Proxy(
+    RefineChakra.RefineThemes,
+    {
+        get: (target, prop) => {
+            qs;
+            const parsed = qs.parse(window.location.search.substring(1) ?? "");
+
+            const themeParam = parsed.theme as string | undefined;
+
+            if (themeParam && themeParam in target) {
+                return target[
+                    themeParam as keyof typeof RefineChakra.RefineThemes
+                ];
+            }
+
+            return target[prop as keyof typeof RefineChakra.RefineThemes];
+        },
+    },
+);
+
 const AntdScope = {
     // ...RefineCommonScope,
     // RefineAntdDemo,
@@ -49,7 +115,11 @@ const AntdScope = {
     // RefineMui,
     // RefineMantine,
     // RefineMantineDemo,
-    RefineChakra,
+    RefineChakra: {
+        ...RefineChakra,
+        RefineThemes,
+        ThemedTitle,
+    },
     RefineChakraDemo,
     ChakraUI,
     ReactHookForm,
