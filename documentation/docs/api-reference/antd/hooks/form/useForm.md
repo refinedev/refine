@@ -453,6 +453,36 @@ useForm({
 });
 ```
 
+:::caution
+
+If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
+
+```tsx
+import { useForm } from "@refinedev/antd";
+import { useParsed } from "@refinedev/core";
+
+const { id } = useParsed();
+
+useForm({
+    resource: "custom-resource",
+    id,
+});
+```
+
+Or you can use the `setId` function to set the `id` value.
+
+```tsx
+import { useForm } from "@refinedev/antd";
+
+const { setId } = useForm({
+    resource: "custom-resource",
+});
+
+setId("123");
+```
+
+:::
+
 ### `id`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
