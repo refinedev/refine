@@ -547,8 +547,6 @@ useForm({
 
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
-Example:
-
 ```tsx
 import { useForm } from "@refinedev/mantine";
 import { useParsed } from "@refinedev/core";
@@ -561,6 +559,22 @@ useForm({
         id,
     },
 });
+```
+
+Or you can use the `setId` function to set the `id` value.
+
+```tsx
+import { useForm } from "@refinedev/mantine";
+
+const {
+    refineCore: { setId },
+} = useForm({
+    refineCoreProps: {
+        resource: "custom-resource",
+    },
+});
+
+setId("123");
 ```
 
 :::

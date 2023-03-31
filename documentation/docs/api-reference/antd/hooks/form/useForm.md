@@ -457,8 +457,6 @@ useForm({
 
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
-Example:
-
 ```tsx
 import { useForm } from "@refinedev/antd";
 import { useParsed } from "@refinedev/core";
@@ -469,6 +467,18 @@ useForm({
     resource: "custom-resource",
     id,
 });
+```
+
+Or you can use the `setId` function to set the `id` value.
+
+```tsx
+import { useForm } from "@refinedev/antd";
+
+const { setId } = useForm({
+    resource: "custom-resource",
+});
+
+setId("123");
 ```
 
 :::
