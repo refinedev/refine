@@ -1,5 +1,13 @@
 # @pankod/refine-live-previews
 
+## 0.3.1
+
+### Patch Changes
+
+-   Updated dependencies [[`1b019280252`](https://github.com/refinedev/refine/commit/1b019280252140c251bf464426b0b072acd310fe), [`08955914473`](https://github.com/refinedev/refine/commit/08955914473737b08772c919d8108e053d546341)]:
+    -   @refinedev/hasura@6.0.0
+    -   @refinedev/mui@4.5.7
+
 ## 0.3.0
 
 ### Minor Changes

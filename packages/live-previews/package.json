@@ -1,6 +1,6 @@
 {
     "name": "@refinedev/live-previews",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "private": true,
     "scripts": {
         "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
@@ -16,7 +16,7 @@
         "@refinedev/core": "^4.0.0",
         "@refinedev/react-router-v6": "^4.0.0",
         "@refinedev/simple-rest": "^4.0.0",
-        "@refinedev/mui": "^4.0.0",
+        "@refinedev/mui": "^4.5.7",
         "@refinedev/react-hook-form": "^4.0.0",
         "@refinedev/react-table": "^5.0.0",
         "@tanstack/react-table": "^8.2.6",
@@ -26,7 +26,7 @@
         "@refinedev/kbar": "^1.1.0",
         "@refinedev/airtable": "^4.1.0",
         "@refinedev/appwrite": "^6.1.0",
-        "@refinedev/hasura": "^5.1.0",
+        "@refinedev/hasura": "^6.0.0",
         "@refinedev/nestjsx-crud": "^4.1.0",
         "@refinedev/strapi-v4": "^4.1.0",
         "@refinedev/supabase": "^5.1.0",
