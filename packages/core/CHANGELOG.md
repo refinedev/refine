@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.5.7
+
+### Patch Changes
+
+-   [#4014](https://github.com/refinedev/refine/pull/4014) [`3db450fade0`](https://github.com/refinedev/refine/commit/3db450fade0300c3da0e1853bf686778a70603f6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add console warning for `useForm` and `useShow` hooks when custom resource is provided and `id` prop is not passed.
+
 ## 4.5.6
 
 ### Patch Changes

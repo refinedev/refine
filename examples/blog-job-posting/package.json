@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@refinedev/antd": "^5.3.12",
-        "@refinedev/core": "^4.5.6",
+        "@refinedev/core": "^4.5.7",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/nestjsx-crud": "^4.1.0",
