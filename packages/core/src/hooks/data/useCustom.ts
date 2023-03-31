@@ -65,7 +65,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    TData,
+    CustomResponse<TData>,
     TError,
     Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
 >;
@@ -141,7 +141,7 @@ export const useCustom = <
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data.data, {
+                        ? successNotification(data, {
                               ...config,
                               ...(pickNotDeprecated(meta, metaData) || {}),
                           })
