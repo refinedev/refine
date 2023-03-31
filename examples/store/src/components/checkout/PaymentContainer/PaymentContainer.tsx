@@ -33,7 +33,7 @@ export const PaymentContainer: React.FC<PaymentContainerProps> = ({
                 },
             )}
         >
-            <div className={"py-4 px-8"}>
+            <div className={"px-8 py-4"}>
                 <button
                     className="grid grid-cols-[12px_1fr] gap-x-4"
                     onClick={setSelected}
@@ -70,7 +70,7 @@ const PaymentElement = ({
     switch (paymentSession.provider_id) {
         case "stripe":
             return (
-                <div className="text-primary pt-8 pr-7">
+                <div className="text-primary pr-7 pt-8">
                     <PaymentStripe />
                 </div>
             );
