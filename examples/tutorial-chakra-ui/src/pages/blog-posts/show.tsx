@@ -5,11 +5,11 @@ import {
     TagField,
     TextField,
     MarkdownField,
+    DateField,
 } from "@refinedev/chakra-ui";
-
 import { Heading, HStack } from "@chakra-ui/react";
 
-export const ProductShow = () => {
+export const BlogPostShow = () => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
 
@@ -30,21 +30,13 @@ export const ProductShow = () => {
             </Heading>
             <NumberField value={record?.id ?? ""} />
             <Heading as="h5" size="sm" mt={4}>
-                Name
+                Title
             </Heading>
-            <TextField value={record?.name} />
+            <TextField value={record?.title} />
             <Heading as="h5" size="sm" mt={4}>
-                Material
+                Content
             </Heading>
-            <TextField value={record?.material} />
-            <Heading as="h5" size="sm" mt={4}>
-                Description
-            </Heading>
-            <MarkdownField value={record?.description} />
-            <Heading as="h5" size="sm" mt={4}>
-                Price
-            </Heading>
-            <TextField value={record?.price} />
+            <MarkdownField value={record?.content} />
             <Heading as="h5" size="sm" mt={4}>
                 Category
             </Heading>
@@ -53,6 +45,14 @@ export const ProductShow = () => {
             ) : (
                 <>{categoryData?.data?.title}</>
             )}
+            <Heading as="h5" size="sm" mt={4}>
+                Status
+            </Heading>
+            <TextField value={record?.status} />
+            <Heading as="h5" size="sm" mt={4}>
+                Created At
+            </Heading>
+            <DateField value={record?.createdAt} />
         </Show>
     );
 };
