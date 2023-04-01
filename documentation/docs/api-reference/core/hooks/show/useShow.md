@@ -47,6 +47,35 @@ useShow({
 });
 ```
 
+:::caution
+
+If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useShow` hook.
+
+```tsx
+import { useShow, useParsed } from "@refinedev/core";
+
+const { id } = useParsed();
+
+useShow({
+    resource: "custom-resource",
+    id,
+});
+```
+
+Or you can use the `setId` function to set the `id` value.
+
+```tsx
+import { useShow } from "@refinedev/core";
+
+const { setShowId } = useShow({
+    resource: "custom-resource",
+});
+
+setShowId("123");
+```
+
+:::
+
 ### `id`
 
 > Default: It reads the `id` value from the current URL.

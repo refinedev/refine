@@ -6,19 +6,16 @@ import {
     EditButton,
     ShowButton,
     MarkdownField,
+    DateField,
+    DeleteButton,
     FilterDropdown,
     useSelect,
 } from "@refinedev/antd";
-
 import { Table, Space, Select } from "antd";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({
         syncWithLocation: true,
-    });
-
-    const { selectProps: categorySelectProps } = useSelect({
-        resource: "categories",
     });
 
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
@@ -29,24 +26,26 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const { selectProps: categorySelectProps } = useSelect({
+        resource: "categories",
+    });
+
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="Id" sorter />
                 <Table.Column
-                    dataIndex="name"
-                    title="Name"
+                    dataIndex="title"
+                    title="Title"
                     sorter={{ multiple: 1 }}
                 />
-                <Table.Column dataIndex="material" title="Material" />
                 <Table.Column
-                    dataIndex="description"
-                    title="Description"
+                    dataIndex="content"
+                    title="Content"
                     render={(value: any) => (
                         <MarkdownField value={value.slice(0, 80) + "..."} />
                     )}
                 />
-                <Table.Column dataIndex="price" title="Price" />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="Category"
@@ -70,6 +69,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                 />
+                <Table.Column dataIndex="status" title="Status" />
+                <Table.Column
+                    dataIndex={["createdAt"]}
+                    title="Created At"
+                    render={(value: any) => <DateField value={value} />}
+                />
                 <Table.Column
                     title="Actions"
                     dataIndex="actions"
@@ -81,6 +86,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}

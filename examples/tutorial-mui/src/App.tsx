@@ -15,10 +15,10 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { ProductList } from "pages/products/list";
-import { ProductEdit } from "pages/products/edit";
-import { ProductCreate } from "pages/products/create";
-import { ProductShow } from "pages/products/show";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostCreate } from "pages/blog-posts/create";
+import { BlogPostShow } from "pages/blog-posts/show";
 
 function App() {
     return (
@@ -38,11 +38,14 @@ function App() {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "products",
-                                list: "/products",
-                                show: "/products/show/:id",
-                                create: "/products/create",
-                                edit: "/products/edit/:id",
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                show: "/blog-posts/show/:id",
+                                create: "/blog-posts/create",
+                                edit: "/blog-posts/edit/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
                         ]}
                         options={{
@@ -55,23 +58,23 @@ function App() {
                                 <Route
                                     index
                                     element={
-                                        <NavigateToResource resource="products" />
+                                        <NavigateToResource resource="blog_posts" />
                                     }
                                 />
 
-                                <Route path="/products">
-                                    <Route index element={<ProductList />} />
+                                <Route path="/blog-posts">
+                                    <Route index element={<BlogPostList />} />
                                     <Route
-                                        path="/products/show/:id"
-                                        element={<ProductShow />}
+                                        path="/blog-posts/show/:id"
+                                        element={<BlogPostShow />}
                                     />
                                     <Route
-                                        path="/products/create"
-                                        element={<ProductCreate />}
+                                        path="/blog-posts/create"
+                                        element={<BlogPostCreate />}
                                     />
                                     <Route
-                                        path="/products/edit/:id"
-                                        element={<ProductEdit />}
+                                        path="/blog-posts/edit/:id"
+                                        element={<BlogPostEdit />}
                                     />
                                 </Route>
 

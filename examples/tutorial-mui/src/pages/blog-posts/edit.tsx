@@ -1,10 +1,9 @@
 import { Edit, useAutocomplete } from "@refinedev/mui";
 import { Box, TextField, Autocomplete } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
-
 import { Controller } from "react-hook-form";
 
-export const ProductEdit = () => {
+export const BlogPostEdit = () => {
     const {
         saveButtonProps,
         refineCore: { queryResult },
@@ -13,11 +12,11 @@ export const ProductEdit = () => {
         formState: { errors },
     } = useForm();
 
-    const productsData = queryResult?.data?.data;
+    const blogPostsData = queryResult?.data?.data;
 
     const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
         resource: "categories",
-        defaultValue: productsData?.category?.id,
+        defaultValue: blogPostsData?.category?.id,
     });
 
     return (
@@ -30,6 +29,7 @@ export const ProductEdit = () => {
                 <TextField
                     {...register("id", {
                         required: "This field is required",
+                        valueAsNumber: true,
                     })}
                     error={!!(errors as any)?.id}
                     helperText={(errors as any)?.id?.message}
@@ -42,56 +42,30 @@ export const ProductEdit = () => {
                     disabled
                 />
                 <TextField
-                    {...register("name", {
+                    {...register("title", {
                         required: "This field is required",
                     })}
-                    error={!!(errors as any)?.name}
-                    helperText={(errors as any)?.name?.message}
+                    error={!!(errors as any)?.title}
+                    helperText={(errors as any)?.title?.message}
                     margin="normal"
                     fullWidth
                     InputLabelProps={{ shrink: true }}
                     type="text"
-                    label="Name"
-                    name="name"
+                    label="Title"
+                    name="title"
                 />
                 <TextField
-                    {...register("material", {
+                    {...register("content", {
                         required: "This field is required",
                     })}
-                    error={!!(errors as any)?.material}
-                    helperText={(errors as any)?.material?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Material"
-                    name="material"
-                />
-                <TextField
-                    {...register("description", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.description}
-                    helperText={(errors as any)?.description?.message}
+                    error={!!(errors as any)?.content}
+                    helperText={(errors as any)?.content?.message}
                     margin="normal"
                     fullWidth
                     InputLabelProps={{ shrink: true }}
                     multiline
-                    label="Description"
-                    name="description"
-                />
-                <TextField
-                    {...register("price", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.price}
-                    helperText={(errors as any)?.price?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Price"
-                    name="price"
+                    label="Content"
+                    name="content"
                 />
                 <Controller
                     control={control}
@@ -134,6 +108,37 @@ export const ProductEdit = () => {
                             )}
                         />
                     )}
+                />
+                <TextField
+                    {...register("status", {
+                        required: "This field is required",
+                    })}
+                    error={!!(errors as any)?.status}
+                    helperText={(errors as any)?.status?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    type="text"
+                    label="Status"
+                    name="status"
+                />
+                {/*
+                    DatePicker component is not included in "@refinedev/mui" package.
+                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
+
+                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
+                */}
+                <TextField
+                    {...register("createdAt", {
+                        required: "This field is required",
+                    })}
+                    error={!!(errors as any)?.createdAt}
+                    helperText={(errors as any)?.createdAt?.message}
+                    margin="normal"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    label="Created At"
+                    name="createdAt"
                 />
             </Box>
         </Edit>

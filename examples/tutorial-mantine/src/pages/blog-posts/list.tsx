@@ -6,20 +6,19 @@ import {
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { ScrollArea, Table, Pagination, Group } from "@mantine/core";
 import {
     List,
     EditButton,
     ShowButton,
     DeleteButton,
     MarkdownField,
+    DateField,
 } from "@refinedev/mantine";
+import { ColumnSorter } from "components/table/ColumnSorter";
+import { ColumnFilter } from "components/table/ColumnFilter";
 
-import { ScrollArea, Table, Pagination, Group } from "@mantine/core";
-
-import { ColumnSorter } from "../../components/table/ColumnSorter";
-import { ColumnFilter } from "../../components/table/ColumnFilter";
-
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
@@ -29,25 +28,17 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 enableColumnFilter: false,
             },
             {
-                id: "name",
-                accessorKey: "name",
-                header: "Name",
+                id: "title",
+                accessorKey: "title",
+                header: "Title",
                 meta: {
                     filterOperator: "contains",
                 },
             },
             {
-                id: "material",
-                accessorKey: "material",
-                header: "Material",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "description",
-                accessorKey: "description",
-                header: "Description",
+                id: "content",
+                accessorKey: "content",
+                header: "Content",
                 meta: {
                     filterOperator: "contains",
                 },
@@ -60,17 +51,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
             {
-                id: "price",
-                accessorKey: "price",
-                header: "Price",
-                enableColumnFilter: false,
-            },
-            {
                 id: "category",
                 header: "Category",
                 accessorKey: "category.id",
-                enableSorting: false,
-                enableColumnFilter: false,
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
                         categoryData: GetManyResponse;
@@ -84,11 +67,25 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
             {
+                id: "status",
+                accessorKey: "status",
+                header: "Status",
+            },
+            {
+                id: "createdAt",
+                accessorKey: "createdAt",
+                header: "Created At",
+                enableColumnFilter: false,
+                cell: function render({ getValue }) {
+                    return <DateField value={getValue<any>()} />;
+                },
+            },
+            {
                 id: "actions",
                 accessorKey: "id",
                 header: "Actions",
-                enableSorting: false,
                 enableColumnFilter: false,
+                enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
                         <Group spacing="xs" noWrap>
@@ -97,6 +94,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={getValue() as string}
                             />
                             <EditButton
+                                hideText
+                                recordItemId={getValue() as string}
+                            />
+                            <DeleteButton
                                 hideText
                                 recordItemId={getValue() as string}
                             />

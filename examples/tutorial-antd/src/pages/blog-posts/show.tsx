@@ -6,13 +6,13 @@ import {
     TagField,
     TextField,
     MarkdownField,
+    DateField,
 } from "@refinedev/antd";
-
 import { Typography } from "antd";
 
 const { Title } = Typography;
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
 
@@ -30,20 +30,20 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
         <Show isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>Name</Title>
-            <TextField value={record?.name} />
-            <Title level={5}>Material</Title>
-            <TextField value={record?.material} />
-            <Title level={5}>Description</Title>
-            <MarkdownField value={record?.description} />
-            <Title level={5}>Price</Title>
-            <TextField value={record?.price} />
+            <Title level={5}>Title</Title>
+            <TextField value={record?.title} />
+            <Title level={5}>Content</Title>
+            <MarkdownField value={record?.content} />
             <Title level={5}>Category</Title>
             {categoryIsLoading ? (
                 <>Loading...</>
             ) : (
                 <>{categoryData?.data?.title}</>
             )}
+            <Title level={5}>Status</Title>
+            <TextField value={record?.status} />
+            <Title level={5}>Created At</Title>
+            <DateField value={record?.createdAt} />
         </Show>
     );
 };

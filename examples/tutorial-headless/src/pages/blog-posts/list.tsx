@@ -4,47 +4,36 @@ import {
     useNavigation,
     GetManyResponse,
     useMany,
+    useDelete,
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+    const { mutate: deleteBlogPost } = useDelete();
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
                 id: "id",
                 accessorKey: "id",
                 header: "Id",
+                enableColumnFilter: false,
             },
             {
-                id: "name",
-                accessorKey: "name",
-                header: "Name",
+                id: "title",
+                accessorKey: "title",
+                header: "Title",
                 meta: {
                     filterOperator: "contains",
                 },
             },
             {
-                id: "material",
-                accessorKey: "material",
-                header: "Material",
+                id: "content",
+                accessorKey: "content",
+                header: "Content",
                 meta: {
                     filterOperator: "contains",
                 },
-            },
-            {
-                id: "description",
-                accessorKey: "description",
-                header: "Description",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "price",
-                accessorKey: "price",
-                header: "Price",
             },
             {
                 id: "category",
@@ -67,9 +56,25 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
             {
+                id: "status",
+                accessorKey: "status",
+                header: "Status",
+            },
+            {
+                id: "createdAt",
+                accessorKey: "createdAt",
+                header: "Created At",
+                cell: function render({ getValue }) {
+                    return new Date(getValue<any>()).toLocaleString(undefined, {
+                        timeZone: "UTC",
+                    });
+                },
+            },
+            {
                 id: "actions",
                 accessorKey: "id",
                 header: "Actions",
+                enableSorting: false,
                 enableColumnFilter: false,
                 cell: function render({ getValue }) {
                     return (
@@ -83,17 +88,27 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                         >
                             <button
                                 onClick={() => {
-                                    show("products", getValue() as string);
+                                    show("blog_posts", getValue() as string);
                                 }}
                             >
                                 Show
                             </button>
                             <button
                                 onClick={() => {
-                                    edit("products", getValue() as string);
+                                    edit("blog_posts", getValue() as string);
                                 }}
                             >
                                 Edit
+                            </button>
+                            <button
+                                onClick={() => {
+                                    deleteBlogPost({
+                                        resource: "blog_posts",
+                                        id: getValue() as string,
+                                    });
+                                }}
+                            >
+                                Delete
                             </button>
                         </div>
                     );
@@ -150,8 +165,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     justifyContent: "space-between",
                 }}
             >
-                <h1>Products</h1>
-                <button onClick={() => create("products")}>Create</button>
+                <h1>Blog Posts</h1>
+                <button onClick={() => create("blog_posts")}>Create</button>
             </div>
             <div style={{ maxWidth: "100%", overflowY: "scroll" }}>
                 <table>
