@@ -109,7 +109,10 @@ const RefineThemes: typeof RefineAntd.RefineThemes = new Proxy(
                 ];
             }
 
-            return target[prop as keyof typeof RefineAntd.RefineThemes];
+            return (
+                target[prop as keyof typeof RefineAntd.RefineThemes] ??
+                target.Blue
+            );
         },
     },
 );

@@ -132,7 +132,10 @@ const RefineThemes: typeof RefineMui.RefineThemes = new Proxy(
                 ];
             }
 
-            return target[prop as keyof typeof RefineMui.RefineThemes];
+            return (
+                target[prop as keyof typeof RefineMui.RefineThemes] ??
+                target.Blue
+            );
         },
     },
 );

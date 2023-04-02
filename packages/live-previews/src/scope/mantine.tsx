@@ -111,7 +111,10 @@ const RefineThemes: typeof RefineMantine.RefineThemes = new Proxy(
                 ];
             }
 
-            return target[prop as keyof typeof RefineMantine.RefineThemes];
+            return (
+                target[prop as keyof typeof RefineMantine.RefineThemes] ??
+                target.Blue
+            );
         },
     },
 );

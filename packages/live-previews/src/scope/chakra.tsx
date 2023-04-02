@@ -102,7 +102,10 @@ const RefineThemes: typeof RefineChakra.RefineThemes = new Proxy(
                 ];
             }
 
-            return target[prop as keyof typeof RefineChakra.RefineThemes];
+            return (
+                target[prop as keyof typeof RefineChakra.RefineThemes] ??
+                target.Blue
+            );
         },
     },
 );
