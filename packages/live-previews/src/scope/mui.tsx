@@ -29,6 +29,7 @@ import {
     ChevronLeft,
     ChevronRight,
     MenuRounded,
+    Menu,
     Dashboard,
     Check,
     Close,
@@ -169,6 +170,7 @@ const MuiScope = {
         ChevronLeft,
         ChevronRight,
         MenuRounded,
+        Menu,
         Dashboard,
     },
 };
