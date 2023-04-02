@@ -50,9 +50,11 @@ const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
     icon: iconFromProps,
 }) => {
     const [svgContent, setSvgContent] = React.useState<string | undefined>(
-        undefined,
+        window.__refineIconSVGContent || undefined,
     );
-    const [title, setTitle] = React.useState<string | undefined>(undefined);
+    const [title, setTitle] = React.useState<string | undefined>(
+        window.__refineTitleContent || undefined,
+    );
 
     React.useEffect(() => {
         if (typeof window !== "undefined") {
@@ -60,6 +62,11 @@ const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
                 if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
                     if (event.data.payload?.title) {
                         setTitle(event.data.payload?.title);
+
+                        if (typeof window !== "undefined") {
+                            window.__refineTitleContent =
+                                event.data.payload?.title;
+                        }
                     }
 
                     if (event.data.payload?.icon) {
@@ -67,17 +74,21 @@ const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
                             axios
                                 .get(`/assets/icons/${event.data.payload.icon}`)
                                 .then((res) => {
-                                    setSvgContent(
-                                        res.data
-                                            .replace(
-                                                /fill\=\"white\"/g,
-                                                `fill="currentColor"`,
-                                            )
-                                            .replace(
-                                                /stroke\=\"white\"/g,
-                                                `stroke="currentColor"`,
-                                            ),
-                                    );
+                                    const content = res.data
+                                        .replace(
+                                            /fill\=\"white\"/g,
+                                            `fill="currentColor"`,
+                                        )
+                                        .replace(
+                                            /stroke\=\"white\"/g,
+                                            `stroke="currentColor"`,
+                                        );
+
+                                    setSvgContent(content);
+
+                                    if (typeof window !== "undefined") {
+                                        window.__refineIconSVGContent = content;
+                                    }
                                 });
                         } catch (error) {
                             console.error(error);
