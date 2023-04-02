@@ -16,6 +16,9 @@ import {
     IconDashboard,
     IconLogout,
     IconMenu2,
+    IconMoon,
+    IconLayoutSidebarLeftCollapse,
+    IconLayoutSidebarLeftExpand,
 } from "@tabler/icons";
 
 const TablerScope = {
@@ -37,6 +40,9 @@ const TablerScope = {
         IconDashboard,
         IconLogout,
         IconMenu2,
+        IconMoon,
+        IconLayoutSidebarLeftCollapse,
+        IconLayoutSidebarLeftExpand,
     },
 };
 
