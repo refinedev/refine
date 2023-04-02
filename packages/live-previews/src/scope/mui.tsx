@@ -1,6 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
-import qs from "qs";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
@@ -14,7 +12,6 @@ import * as MuiMaterial from "@mui/material";
 import * as MuiXDataGrid from "@mui/x-data-grid";
 import * as ReactHookForm from "react-hook-form";
 
-import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 
 import {
@@ -34,6 +31,7 @@ import {
     Check,
     Close,
 } from "@mui/icons-material";
+import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -86,27 +84,47 @@ const ThemedTitle: typeof RefineMui.ThemedTitle = ({
     );
     const [title, setTitle] = React.useState<string | undefined>(undefined);
 
-    const { query, isReady } = useRouter();
-
     React.useEffect(() => {
-        const { text, icon } = query;
+        if (typeof window !== "undefined") {
+            const messageListener = (event: MessageEvent) => {
+                if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+                    if (event.data.payload?.title) {
+                        setTitle(event.data.payload?.title);
+                    }
 
-        const ICON_BASE_PATH = "https://refine.new/assets/icons/";
+                    if (event.data.payload?.icon) {
+                        try {
+                            axios
+                                .get(`/assets/icons/${event.data.payload.icon}`)
+                                .then((res) => {
+                                    setSvgContent(
+                                        res.data
+                                            .replace(
+                                                /fill\=\"white\"/g,
+                                                `fill="currentColor"`,
+                                            )
+                                            .replace(
+                                                /stroke\=\"white\"/g,
+                                                `stroke="currentColor"`,
+                                            ),
+                                    );
+                                });
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }
+                }
+            };
 
-        if (isReady && icon) {
-            try {
-                fetch(`${ICON_BASE_PATH}${icon}`)
-                    .then((res) => res.text())
-                    .then((text) => setSvgContent(text));
-            } catch (error) {
-                console.error(error);
-            }
+            window.addEventListener("message", messageListener);
+
+            return () => {
+                window.removeEventListener("message", messageListener);
+            };
         }
 
-        if (isReady && text) {
-            setTitle(text as string);
-        }
-    }, [isReady, query]);
+        return () => undefined;
+    }, []);
 
     return (
         <RefineMui.ThemedTitle
@@ -118,35 +136,69 @@ const ThemedTitle: typeof RefineMui.ThemedTitle = ({
     );
 };
 
-const RefineThemes: typeof RefineMui.RefineThemes = new Proxy(
-    RefineMui.RefineThemes,
-    {
-        get: (target, prop) => {
-            qs;
-            const parsed = qs.parse(window.location.search.substring(1) ?? "");
+const ThemeProvider = ({
+    children,
+    theme,
+}: {
+    children?: React.ReactNode;
+    theme?: { palette?: { mode?: "light" | "dark" } };
+}) => {
+    const [themeFromWindow, setThemeFromWindow] = React.useState<
+        undefined | string
+    >(undefined);
 
-            const themeParam = parsed.theme as string | undefined;
+    React.useEffect(() => {
+        if (typeof window !== "undefined") {
+            const messageListener = (event: MessageEvent) => {
+                if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+                    if (event.data.payload?.theme) {
+                        setThemeFromWindow(event.data.payload.theme);
+                    }
+                }
+            };
 
-            if (themeParam && themeParam in target) {
-                return target[
-                    themeParam as keyof typeof RefineMui.RefineThemes
+            window.addEventListener("message", messageListener);
+
+            return () => {
+                window.removeEventListener("message", messageListener);
+            };
+        }
+
+        return () => undefined;
+    }, []);
+
+    const isLightPalette = theme?.palette?.mode === "light";
+
+    const RefineThemeFromWindow = React.useMemo(() => {
+        if (themeFromWindow && themeFromWindow in RefineMui.RefineThemes) {
+            if (isLightPalette) {
+                return RefineMui.RefineThemes[
+                    themeFromWindow as keyof typeof RefineMui.RefineThemes
+                ];
+            } else {
+                return RefineMui.RefineThemes[
+                    `${themeFromWindow}Dark` as keyof typeof RefineMui.RefineThemes
                 ];
             }
+        }
 
-            return (
-                target[prop as keyof typeof RefineMui.RefineThemes] ??
-                target.Blue
-            );
-        },
-    },
-);
+        return undefined;
+    }, [themeFromWindow, isLightPalette]);
+
+    return (
+        <MuiMaterialStyles.ThemeProvider
+            theme={(RefineThemeFromWindow as any) ?? theme}
+        >
+            {children}
+        </MuiMaterialStyles.ThemeProvider>
+    );
+};
 
 const MuiScope = {
     // ...RefineCommonScope,
     RefineMuiDemo,
     RefineMui: {
         ...RefineMui,
-        RefineThemes,
         ThemedTitle,
     },
     EmotionReact,
@@ -154,7 +206,10 @@ const MuiScope = {
     MuiLab,
     MuiMaterial,
     MuiXDataGrid,
-    MuiMaterialStyles,
+    MuiMaterialStyles: {
+        ...MuiMaterialStyles,
+        ThemeProvider,
+    },
     ReactHookForm,
     MuiIconsMaterial: {
         Close,

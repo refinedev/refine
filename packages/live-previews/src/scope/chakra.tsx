@@ -1,12 +1,11 @@
 import React from "react";
-import { useRouter } from "next/router";
-import qs from "qs";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import * as RefineChakra from "@refinedev/chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
 import * as ReactHookForm from "react-hook-form";
+import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -55,27 +54,47 @@ const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
     );
     const [title, setTitle] = React.useState<string | undefined>(undefined);
 
-    const { query, isReady } = useRouter();
-
     React.useEffect(() => {
-        const { text, icon } = query;
+        if (typeof window !== "undefined") {
+            const messageListener = (event: MessageEvent) => {
+                if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+                    if (event.data.payload?.title) {
+                        setTitle(event.data.payload?.title);
+                    }
 
-        const ICON_BASE_PATH = "https://refine.new/assets/icons/";
+                    if (event.data.payload?.icon) {
+                        try {
+                            axios
+                                .get(`/assets/icons/${event.data.payload.icon}`)
+                                .then((res) => {
+                                    setSvgContent(
+                                        res.data
+                                            .replace(
+                                                /fill\=\"white\"/g,
+                                                `fill="currentColor"`,
+                                            )
+                                            .replace(
+                                                /stroke\=\"white\"/g,
+                                                `stroke="currentColor"`,
+                                            ),
+                                    );
+                                });
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }
+                }
+            };
 
-        if (isReady && icon) {
-            try {
-                fetch(`${ICON_BASE_PATH}${icon}`)
-                    .then((res) => res.text())
-                    .then((text) => setSvgContent(text));
-            } catch (error) {
-                console.error(error);
-            }
+            window.addEventListener("message", messageListener);
+
+            return () => {
+                window.removeEventListener("message", messageListener);
+            };
         }
 
-        if (isReady && text) {
-            setTitle(text as string);
-        }
-    }, [isReady, query]);
+        return () => undefined;
+    }, []);
 
     return (
         <RefineChakra.ThemedTitle
@@ -87,28 +106,51 @@ const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
     );
 };
 
-const RefineThemes: typeof RefineChakra.RefineThemes = new Proxy(
-    RefineChakra.RefineThemes,
-    {
-        get: (target, prop) => {
-            qs;
-            const parsed = qs.parse(window.location.search.substring(1) ?? "");
+const ChakraProvider = ({
+    children,
+    theme,
+}: {
+    children?: React.ReactNode;
+    theme: any;
+}) => {
+    const [themeFromWindow, setThemeFromWindow] = React.useState<
+        undefined | string
+    >(undefined);
 
-            const themeParam = parsed.theme as string | undefined;
+    React.useEffect(() => {
+        if (typeof window !== "undefined") {
+            const messageListener = (event: MessageEvent) => {
+                if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+                    if (event.data.payload.theme) {
+                        setThemeFromWindow(event.data.payload.theme);
+                    }
+                }
+            };
 
-            if (themeParam && themeParam in target) {
-                return target[
-                    themeParam as keyof typeof RefineChakra.RefineThemes
-                ];
+            window.addEventListener("message", messageListener);
+
+            return () => {
+                window.removeEventListener("message", messageListener);
+            };
+        }
+
+        return () => undefined;
+    }, []);
+
+    return (
+        <ChakraUI.ChakraProvider
+            theme={
+                themeFromWindow && themeFromWindow in RefineChakra.RefineThemes
+                    ? RefineChakra.RefineThemes[
+                          themeFromWindow as keyof typeof RefineChakra.RefineThemes
+                      ]
+                    : theme
             }
-
-            return (
-                target[prop as keyof typeof RefineChakra.RefineThemes] ??
-                target.Blue
-            );
-        },
-    },
-);
+        >
+            {children}
+        </ChakraUI.ChakraProvider>
+    );
+};
 
 const AntdScope = {
     // ...RefineCommonScope,
@@ -120,11 +162,13 @@ const AntdScope = {
     // RefineMantineDemo,
     RefineChakra: {
         ...RefineChakra,
-        RefineThemes,
         ThemedTitle,
     },
     RefineChakraDemo,
-    ChakraUI,
+    ChakraUI: {
+        ...ChakraUI,
+        ChakraProvider,
+    },
     ReactHookForm,
     // // Other Packages
     // RefineReactHookForm,

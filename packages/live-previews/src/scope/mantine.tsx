@@ -1,6 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
-import qs from "qs";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
@@ -9,6 +7,7 @@ import * as MantineCore from "@mantine/core";
 import * as MantineHooks from "@mantine/hooks";
 import * as MantineForm from "@mantine/form";
 import * as MantineNotifications from "@mantine/notifications";
+import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -64,27 +63,47 @@ const ThemedTitle: typeof RefineMantine.ThemedTitle = ({
     );
     const [title, setTitle] = React.useState<string | undefined>(undefined);
 
-    const { query, isReady } = useRouter();
-
     React.useEffect(() => {
-        const { text, icon } = query;
+        if (typeof window !== "undefined") {
+            const messageListener = (event: MessageEvent) => {
+                if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+                    if (event.data.payload?.title) {
+                        setTitle(event.data.payload?.title);
+                    }
 
-        const ICON_BASE_PATH = "https://refine.new/assets/icons/";
+                    if (event.data.payload?.icon) {
+                        try {
+                            axios
+                                .get(`/assets/icons/${event.data.payload.icon}`)
+                                .then((res) => {
+                                    setSvgContent(
+                                        res.data
+                                            .replace(
+                                                /fill\=\"white\"/g,
+                                                `fill="currentColor"`,
+                                            )
+                                            .replace(
+                                                /stroke\=\"white\"/g,
+                                                `stroke="currentColor"`,
+                                            ),
+                                    );
+                                });
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }
+                }
+            };
 
-        if (isReady && icon) {
-            try {
-                fetch(`${ICON_BASE_PATH}${icon}`)
-                    .then((res) => res.text())
-                    .then((text) => setSvgContent(text));
-            } catch (error) {
-                console.error(error);
-            }
+            window.addEventListener("message", messageListener);
+
+            return () => {
+                window.removeEventListener("message", messageListener);
+            };
         }
 
-        if (isReady && text) {
-            setTitle(text as string);
-        }
-    }, [isReady, query]);
+        return () => undefined;
+    }, []);
 
     return (
         <RefineMantine.ThemedTitle
@@ -96,37 +115,66 @@ const ThemedTitle: typeof RefineMantine.ThemedTitle = ({
     );
 };
 
-const RefineThemes: typeof RefineMantine.RefineThemes = new Proxy(
-    RefineMantine.RefineThemes,
-    {
-        get: (target, prop) => {
-            qs;
-            const parsed = qs.parse(window.location.search.substring(1) ?? "");
+const MantineProvider = ({
+    children,
+    theme,
+    ...restProps
+}: {
+    children?: React.ReactNode;
+    theme?: { colorScheme?: string };
+}) => {
+    const [themeFromWindow, setThemeFromWindow] = React.useState<
+        undefined | string
+    >(undefined);
 
-            const themeParam = parsed.theme as string | undefined;
+    React.useEffect(() => {
+        if (typeof window !== "undefined") {
+            const messageListener = (event: MessageEvent) => {
+                if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+                    if (event.data.payload.theme) {
+                        setThemeFromWindow(event.data.payload.theme);
+                    }
+                }
+            };
 
-            if (themeParam && themeParam in target) {
-                return target[
-                    themeParam as keyof typeof RefineMantine.RefineThemes
-                ];
-            }
+            window.addEventListener("message", messageListener);
 
-            return (
-                target[prop as keyof typeof RefineMantine.RefineThemes] ??
-                target.Blue
-            );
-        },
-    },
-);
+            return () => {
+                window.removeEventListener("message", messageListener);
+            };
+        }
+
+        return () => undefined;
+    }, []);
+
+    return (
+        <MantineCore.MantineProvider
+            {...restProps}
+            theme={{
+                ...(themeFromWindow &&
+                themeFromWindow in RefineMantine.RefineThemes
+                    ? RefineMantine.RefineThemes[
+                          themeFromWindow as keyof typeof RefineMantine.RefineThemes
+                      ]
+                    : theme),
+                colorScheme: theme?.colorScheme as any,
+            }}
+        >
+            {children}
+        </MantineCore.MantineProvider>
+    );
+};
 
 const MantineScope = {
     RefineMantine: {
         ...RefineMantine,
-        RefineThemes,
         ThemedTitle,
     },
     RefineMantineDemo,
-    MantineCore,
+    MantineCore: {
+        ...MantineCore,
+        MantineProvider,
+    },
     MantineHooks,
     MantineForm,
     MantineNotifications,
