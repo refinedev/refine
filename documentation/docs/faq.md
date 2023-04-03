@@ -314,7 +314,7 @@ This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mod
 
 [react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode
 
-## How can I add an extra navigation link to the sider?
+## How can I add an item to the Sider component?
 
 There are three ways to add an extra navigation link to the sider.
 
@@ -327,11 +327,11 @@ import { Refine } from "@refinedev/core";
     ...
     resources={[
         {
-            name: "resource",
-            list: "/custom-link",
+            name: "dashboard",
+            list: "/",
             meta: {
-                label: "Navigation Link",
-                icon: <span>👋</span>,
+                label: "Dashboard",
+                icon: "🏠",
             },
         },
     ]}
