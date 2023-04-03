@@ -313,3 +313,155 @@ This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mod
 > Refer to [TanStack Query issue](https://github.com/TanStack/query/issues/3633) for more information. &#8594
 
 [react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode
+
+## How can I add an extra navigation link to the sidebar?
+
+For internal links, easiest way is to create a dummy resource and add it to the `resources` prop of the `<Refine>` component. This will add a navigation link to the sidebar.
+
+```tsx
+import { Refine } from "@refinedev/core";
+
+<Refine
+    ...
+    resources={[
+        {
+            name: "dummy-resource",
+            list: "/internal-link",
+            meta: {
+                label: "Navigation Link",
+                icon: <span>👋</span>,
+            },
+        },
+    ]}
+/>;
+```
+
+For external links, you can use the `render` prop of the `<Sider>` component. This will allow you to render any custom component.
+
+<Tabs
+defaultValue="antd"
+values={[
+{label: 'Antd Design', value: 'antd'},
+{label: 'Material UI', value: 'mui'},
+{label: 'Mantine', value: 'mantine'},
+{label: 'Chakra UI', value: 'chakra-ui'},
+]}>
+<TabItem value="antd">
+
+```tsx
+import { Layout, Sider } from "@refinedev/antd";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+<TabItem value="mui">
+
+```tsx
+import { Layout, Sider } from "@refinedev/mui";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+<TabItem value="mantine">
+
+```tsx
+import { Layout, Sider } from "@refinedev/mantine";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+<TabItem value="chakra-ui">
+
+```tsx
+import { Layout, Sider } from "@refinedev/chakra-ui";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+</Tabs>
+
+<br/>
+
+:::tip Bonus!
+
+You can use **swizzle** command to copy the default `Sider` component to your project. This will allow you to customize the sidebar as you want.
+
+[Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)
+
+:::
