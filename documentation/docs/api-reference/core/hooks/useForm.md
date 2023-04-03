@@ -12,7 +12,7 @@ import {
     useList,
     HttpError,
     useShow,
-    useNavigation
+    useNavigation,
 } from "@refinedev/core";
 
 import { Layout } from "components";
@@ -479,7 +479,9 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
-                dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+                dataProvider={RefineSimpleRest.default(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 routerProvider={routerProvider}
                 resources={[
                     {
@@ -493,14 +495,17 @@ const App = () => {
                 <Layout>
                     <Routes>
                         <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/create" element={<PostCreatePage />} />
+                        <Route
+                            path="/posts/create"
+                            element={<PostCreatePage />}
+                        />
                         <Route path="/posts/edit/:id" element={<PostEdit />} />
                     </Routes>
                 </Layout>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 
 render(<App />);
 ```
@@ -598,7 +603,9 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
-                dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+                dataProvider={RefineSimpleRest.default(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 routerProvider={routerProvider}
                 resources={[
                     {
@@ -613,13 +620,16 @@ const App = () => {
                     <Routes>
                         <Route path="/posts" element={<PostList />} />
                         <Route path="/posts/create" element={<PostCreate />} />
-                        <Route path="/posts/edit/:id" element={<PostEditPage />} />
+                        <Route
+                            path="/posts/edit/:id"
+                            element={<PostEditPage />}
+                        />
                     </Routes>
                 </Layout>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 
 render(<App />);
 ```
@@ -719,7 +729,9 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
-                dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+                dataProvider={RefineSimpleRest.default(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 routerProvider={routerProvider}
                 resources={[
                     {
@@ -734,14 +746,17 @@ const App = () => {
                 <Layout>
                     <Routes>
                         <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/clone/:id" element={<PostCreatePage />} />
+                        <Route
+                            path="/posts/clone/:id"
+                            element={<PostCreatePage />}
+                        />
                         <Route path="/posts/edit/:id" element={<PostEdit />} />
                     </Routes>
                 </Layout>
             </Refine>
         </BrowserRouter>
-    )
-}
+    );
+};
 
 render(<App />);
 ```

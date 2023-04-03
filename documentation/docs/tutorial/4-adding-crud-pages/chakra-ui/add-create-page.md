@@ -33,9 +33,9 @@ setInitialRoutes(["/blog-posts/create"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -49,7 +49,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -74,9 +74,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route
@@ -174,9 +174,9 @@ Now that we have created the create page, we need to add it to the `App.tsx` fil
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
@@ -195,7 +195,7 @@ import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -221,9 +221,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route

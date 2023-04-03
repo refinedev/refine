@@ -5,13 +5,7 @@ sidebar_label: Theme
 ---
 
 ```tsx live shared
-import {
-    List,
-    Create,
-    Edit,
-    EditButton,
-    useForm,
-} from "@refinedev/mantine";
+import { List, Create, Edit, EditButton, useForm } from "@refinedev/mantine";
 import { Table, Pagination, TextInput } from "@mantine/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
@@ -208,15 +202,23 @@ const App = () => {
                         ]}
                     >
                         <Routes>
-                            <Route element={(
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            )}>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
                                 <Route path="posts">
                                     <Route index element={<PostList />} />
-                                    <Route path="create" element={<PostCreate />} />
-                                    <Route path="edit/:id" element={<PostEdit />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
@@ -303,15 +305,23 @@ const App = () => {
                         ]}
                     >
                         <Routes>
-                            <Route element={(
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            )}>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
                                 <Route path="posts">
                                     <Route index element={<PostList />} />
-                                    <Route path="create" element={<PostCreate />} />
-                                    <Route path="edit/:id" element={<PostEdit />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
@@ -435,20 +445,31 @@ const App = () => {
                             ]}
                         >
                             <Routes>
-                                <Route element={(
-                                    <Layout
-                                        // highlight-next-line
-                                        Header={Header}
-                                    >
-                                        <Outlet />
-                                    </Layout>
-                                )}>
+                                <Route
+                                    element={
+                                        <Layout
+                                            // highlight-next-line
+                                            Header={Header}
+                                        >
+                                            <Outlet />
+                                        </Layout>
+                                    }
+                                >
                                     <Route path="posts">
                                         <Route index element={<PostList />} />
-                                        <Route path="create" element={<PostCreate />} />
-                                        <Route path="edit/:id" element={<PostEdit />} />
+                                        <Route
+                                            path="create"
+                                            element={<PostCreate />}
+                                        />
+                                        <Route
+                                            path="edit/:id"
+                                            element={<PostEdit />}
+                                        />
                                     </Route>
-                                    <Route path="*" element={<ErrorComponent />} />
+                                    <Route
+                                        path="*"
+                                        element={<ErrorComponent />}
+                                    />
                                 </Route>
                             </Routes>
                         </Refine>

@@ -19,7 +19,9 @@ You can override or extend the default themes. You can also create your own them
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Layout, ConfigProvider } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -43,11 +45,9 @@ const App: React.FC = () => {
         >
             {/* highlight-end */}
             <Refine
-                /* ... */
+            /* ... */
             >
-                <Layout>
-                    {/* ... */}
-                </Layout>
+                <ThemedLayout>{/* ... */}</ThemedLayout>
             </Refine>
             // highlight-next-line
         </ConfigProvider>
@@ -91,13 +91,13 @@ const Header: FC<HeaderProps> = (props) => {
         </Space>
     );
 };
-
 ```
 
 Then, we can use the `theme` property of the `ConfigProvider` component to switch between light and dark themes.
 
 ```tsx
 import { Refine } from "@refinedev/core";
+import { ThemedLayout } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
 
 import { Header } from "./Header";
@@ -118,11 +118,9 @@ const App: React.FC = () => {
             // highlight-end
         >
             <Refine
-                /* ... */
+            /* ... */
             >
-                <Layout Header={Header}>
-                    {/* ... */}
-                </Layout>
+                <ThemedLayout Header={Header}>{/* ... */}</ThemedLayout>
             </Refine>
         </ConfigProvider>
     );

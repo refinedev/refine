@@ -997,7 +997,7 @@ Let's check out the `LoginPage` property:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
-import { AuthPage } from "@refinedev/antd";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/antd";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
@@ -1006,6 +1006,8 @@ import routerProvider, {
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
+
 import authProvider from "./authProvider";
 
 /* ... */
@@ -1013,54 +1015,56 @@ import authProvider from "./authProvider";
 function App() {
     return (
         <BrowserRouter>
-            <Refine
-                /* ... */
-                //highlight-next-line
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    /* ... */
+                    //highlight-next-line
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/posts"
-                            element={<div>dummy list page</div>}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route path="/login" element={<AuthPage />} />
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/posts"
+                                element={<div>dummy list page</div>}
+                            />
+                        </Route>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="/login" element={<AuthPage />} />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }
@@ -1264,7 +1268,7 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-:::
+    :::
 
 ## Using `meta` to pass values to data provider
 

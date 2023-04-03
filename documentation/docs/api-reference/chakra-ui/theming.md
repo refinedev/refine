@@ -173,10 +173,10 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
     // highlight-next-line
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
@@ -191,7 +191,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 const App = () => {
     // highlight-start
     const customTheme = extendTheme({
-        ...refineTheme,
+        ...RefineThemes.Blue,
         colors: {
             sider: {
                 background: "#4A5568",
@@ -207,7 +207,9 @@ const App = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider()}
                     resources={[
                         {
@@ -219,11 +221,13 @@ const App = () => {
                     ]}
                 >
                     <Routes>
-                        <Route element={(
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        )}>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
                             <Route path="posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
@@ -267,10 +271,10 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
     // highlight-next-line
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
@@ -319,7 +323,7 @@ const Header = () => {
 const App = () => {
     // highlight-start
     const customTheme = extendTheme({
-        ...refineTheme,
+        ...RefineThemes.Blue,
         config: {
             initialColorMode: "dark",
             useSystemColorMode: false,
@@ -333,7 +337,9 @@ const App = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider()}
                     resources={[
                         {
@@ -345,12 +351,14 @@ const App = () => {
                     ]}
                 >
                     <Routes>
-                        <Route element={(
-                            // highlight-next-line
-                            <Layout Header={Header}>
-                                <Outlet />
-                            </Layout>
-                        )}>
+                        <Route
+                            element={
+                                // highlight-next-line
+                                <ThemedLayout Header={Header}>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
                             <Route path="posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />

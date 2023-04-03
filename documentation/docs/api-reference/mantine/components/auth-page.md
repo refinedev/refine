@@ -69,18 +69,7 @@ const authProvider = {
 setRefineProps({ Sider: () => null, dataProvider: sharedDataProvider("api") });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            {children}
-        </MantineCore.MantineProvider>
-    );
+    return children;
 };
 
 const DashboardPage = () => {
@@ -147,11 +136,13 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { AuthPage, Layout } from "@refinedev/mantine";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -161,41 +152,49 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
             >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-start */}
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                    </Routes>
+                </Refine>
+            </MantineProvider>
         </BrowserRouter>
     );
 };
@@ -231,7 +230,8 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -242,37 +242,45 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
             >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/login" element={<AuthPage />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </MantineProvider>
         </BrowserRouter>
     );
 };
@@ -326,7 +334,8 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -337,41 +346,49 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
             >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                        {/* highlight-next-line */}
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </MantineProvider>
         </BrowserRouter>
     );
 };
@@ -425,7 +442,8 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -436,45 +454,53 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
             >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        {/* highlight-next-line */}
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
                         <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </MantineProvider>
         </BrowserRouter>
     );
 };
@@ -528,7 +554,8 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -539,49 +566,57 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
             >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
                         <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </MantineProvider>
         </BrowserRouter>
     );
 };

@@ -47,8 +47,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -59,7 +59,11 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -88,9 +92,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route
@@ -169,8 +173,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -181,7 +185,11 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -210,9 +218,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
@@ -265,8 +273,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -277,7 +285,11 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -306,9 +318,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
@@ -361,8 +373,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -373,7 +385,11 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -402,9 +418,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
@@ -457,8 +473,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -469,7 +485,11 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -496,9 +516,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
