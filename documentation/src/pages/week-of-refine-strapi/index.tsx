@@ -15,47 +15,34 @@ import { Tweet } from "react-twitter-widgets";
 
 const timeline = [
     {
-        date: "14th February 2023",
+        date: "10th April 2023",
         title: "Pilot & refine architecture",
-        description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">Supabase</strong> the app we built during the article series`,
-        link: "https://refine.dev/blog/refine-pixels-1/",
+        description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">Strapi</strong> the app we built during the article series.`,
+        link: "https://refine.dev/blog/refine-invoicer-1/",
     },
     {
-        date: "15th February 2023",
-        title: "Setting Up the Client App",
-        description: `We start with setting up the Pixels client app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Supabase</strong> as a dataprovider`,
-        link: "https://refine.dev/blog/refine-pixels-2/",
+        date: "11th April 2023",
+        title: "Setting Up the Invoicer App",
+        description: `We start with setting up the Invoicer app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Strapi</strong> as a dataprovider`,
+        link: "https://refine.dev/blog/refine-invoicer-2/",
     },
     {
-        date: "16th February 2023",
-        title: "Adding CRUD Actions & Authentication",
-        description: `We start implementing CRUD functionalities like creating, showing a canvas, drawing pixels and user authentication using <strong className="font-bold">Supabase</strong>`,
-        link: "https://refine.dev/blog/refine-pixels-3/",
+        date: "12th April 2023",
+        title: "Adding CRUD Actions & Views",
+        description: `We leverage the Strapi dataProvider methods to implement CRUD operations for companies, clients and contacts resources. and user authentication using <strong className="font-bold">Strapi</strong>.`,
+        link: "https://refine.dev/blog/refine-invoicer-3/",
     },
     {
-        date: "17th February 2023",
-        title: "Adding Realtime Collaboration",
-        description: `Adding <strong className="font-bold">Supabase</strong> as live provider to the project in order that multiple users drawing on the same canvas can see each other's paintings in real-time.`,
-        link: "https://refine.dev/blog/refine-pixels-4/",
+        date: "13th April 2023",
+        title: "Creating Mission and Invoices Pages",
+        description: `We'll implement CRUD actions for companies, clients and contacts for our PDF Invoice Generator app.`,
+        link: "https://refine.dev/blog/refine-invoicer-4/",
     },
     {
-        date: "18th February 2023",
-        title: "Initialize and Build Pixels Admin App",
-        description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a refine app`,
-        link: "https://refine.dev/blog/refine-pixels-5/",
-    },
-    {
-        date: "19th February 2023",
-        title: "Add Role Based Authorization",
-        description:
-            "We'll implement Role Based Access Control (RBAC) on our Pixels Admin app.",
-        link: "https://refine.dev/blog/refine-pixels-6/",
-    },
-    {
-        date: "20th February 2022",
-        title: "Implementing Audit Logs",
-        description: `We'll record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
-        link: "https://refine.dev/blog/refine-pixels-7/",
+        date: "14th April 2023",
+        title: "Adding PDF Renderer",
+        description: `We come past the refine features and add a pdf renderer to display our invoices in a pdf screen.`,
+        link: "https://refine.dev/blog/refine-invoicer-5/",
     },
 ];
 
@@ -92,6 +79,8 @@ const additionalSources = [
 
 const tweetUrl = "https://twitter.com/intent/tweet?text=%23refineweek";
 const tweetIDs = [
+    "1635625661778763776",
+    "1640741763408076803",
     "1625488050863353856",
     "1615260152822628352",
     "1621513516036526080",
@@ -139,17 +128,17 @@ const RefineWeek = () => {
                                     className="block h-[48px] w-[48px]"
                                 />
                                 <img
-                                    src="/week-of-refine/refine-week-ft-supabase.png"
+                                    src="/week-of-refine/refine-week-ft-strapi.png"
                                     alt="Refine week ft. supabase logo"
-                                    className="block h-[46px] w-[160px]"
+                                    className="block h-[46px]"
                                 />
                             </div>
                             <h2 className="font-montserrat mt-8 mb-0 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
                                 Stay tuned all week and learn the basics of
-                                creating a CRUD app via{" "}
+                                creating a CRUD PDF Invoce Generator app via{" "}
                                 <strong className="font-bold">refine</strong> &{" "}
-                                <strong className="font-bold">supabase</strong>{" "}
-                                on a fun project in a week.
+                                <strong className="font-bold">Strapi</strong> in
+                                a week.
                             </h2>
                             <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                                 <GradientButton onClick={goToTimeline}>
@@ -175,8 +164,8 @@ const RefineWeek = () => {
                         </div>
                         <div className="min-h-[318px] flex-1 lg:translate-x-[80px]">
                             <img
-                                src="/week-of-refine/refine-week-pixel-logo.png"
-                                alt="Refine Pixel app logo"
+                                src="/week-of-refine/refine-week-invoicer-logo.png"
+                                alt="Refine invoicer app logo"
                                 className="block"
                             />
                         </div>
