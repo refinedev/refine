@@ -103,7 +103,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Invalid credentials"),
+            error: {
+                message: "Invalid credentials",
+                name: "Invalid credentials",
+            },
         };
     },
     // ---

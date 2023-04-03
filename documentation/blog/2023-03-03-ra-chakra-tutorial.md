@@ -207,7 +207,10 @@ export const authProvider: AuthProvider = {
         }
         return {
             success: false,
-            error: new Error("Invalid email or password"),
+            error: {
+                message: "Login Error",
+                name: "Invalid email or password",
+            }
         };
     },
     ...
