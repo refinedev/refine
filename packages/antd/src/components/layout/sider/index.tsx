@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Layout, Menu, Grid, ConfigProvider, Drawer, Button } from "antd";
+import {
+    Layout,
+    Menu,
+    Grid,
+    ConfigProvider,
+    Drawer,
+    Button,
+    MenuProps,
+} from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
@@ -27,8 +35,6 @@ import { Title as DefaultTitle } from "@components";
 
 import { drawerButtonStyles } from "./styles";
 import { RefineLayoutSiderProps } from "../types";
-
-const { SubMenu } = Menu;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({
     Title: TitleFromProps,
@@ -58,46 +64,28 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
 
     const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const {
-                icon,
-                label,
-                route,
-                key,
-                name,
-                children,
-                parentName,
-                meta,
-                options,
-            } = item;
+    const createMenuItem = (item: ITreeMenu) => {
+        const {
+            icon,
+            label,
+            route,
+            key,
+            name,
+            children,
+            parentName,
+            meta,
+            options,
+        } = item;
 
-            if (children.length > 0) {
-                return (
-                    <CanAccess
-                        key={item.key}
-                        resource={name.toLowerCase()}
-                        action="list"
-                        params={{
-                            resource: item,
-                        }}
-                    >
-                        <SubMenu
-                            key={item.key}
-                            icon={icon ?? <UnorderedListOutlined />}
-                            title={label}
-                        >
-                            {renderTreeView(children, selectedKey)}
-                        </SubMenu>
-                    </CanAccess>
-                );
-            }
-            const isSelected = key === selectedKey;
-            const isRoute = !(
-                pickNotDeprecated(meta?.parent, options?.parent, parentName) !==
-                    undefined && children.length === 0
-            );
-            return (
+        const isSelected = key === selectedKey;
+        const isRoute = !(
+            pickNotDeprecated(meta?.parent, options?.parent, parentName) !==
+                undefined && children.length === 0
+        );
+
+        return {
+            key: key ?? name,
+            label: (
                 <CanAccess
                     key={item.key}
                     resource={name.toLowerCase()}
@@ -106,21 +94,79 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                         resource: item,
                     }}
                 >
-                    <Menu.Item
-                        key={item.key}
-                        style={{
-                            fontWeight: isSelected ? "bold" : "normal",
-                        }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-                    >
-                        <Link to={route ?? ""}>{label}</Link>
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
+                    <Link to={route ?? ""}>
+                        <span style={{ color: "white" }}>{label}</span>
+                    </Link>
+                    {!collapsed && isSelected && (
+                        <div className="ant-menu-tree-arrow" />
+                    )}
                 </CanAccess>
-            );
+            ),
+            style: {
+                fontWeight: isSelected ? "bold" : "normal",
+            },
+            icon: icon ?? (isRoute && <UnorderedListOutlined />),
+        };
+    };
+
+    const createMenuItems = (items: ITreeMenu[]): MenuProps["items"] => {
+        let menuItems = items.map((item: ITreeMenu) => {
+            const { children } = item;
+
+            if (children.length > 0) {
+                const childrenItems = createMenuItems(children);
+
+                return {
+                    ...createMenuItem(item),
+                    children: childrenItems,
+                };
+            }
+
+            return createMenuItem(item);
         });
+
+        if (hasDashboard) {
+            menuItems = [
+                {
+                    key: "dashboard",
+                    label: (
+                        <>
+                            <Link to="/">
+                                {translate("dashboard.title", "Dashboard")}
+                            </Link>
+                            {!collapsed && selectedKey === "/" && (
+                                <div className="ant-menu-tree-arrow" />
+                            )}
+                        </>
+                    ),
+                    style: {
+                        fontWeight: selectedKey === "/" ? "bold" : "normal",
+                    },
+                    icon: <DashboardOutlined />,
+                },
+                ...menuItems,
+            ];
+        }
+
+        if (isExistAuthentication) {
+            menuItems = [
+                ...menuItems,
+                {
+                    key: "logout",
+                    label: (
+                        <div onClick={handleLogout}>
+                            {translate("buttons.logout", "Logout")}
+                        </div>
+                    ),
+                    icon: <LogoutOutlined />,
+                    style: {
+                        fontWeight: "normal",
+                    },
+                },
+            ];
+        }
+
+        return menuItems;
     };
 
     const handleLogout = () => {
@@ -141,69 +187,21 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         }
     };
 
-    const logout = isExistAuthentication && (
-        <Menu.Item
-            key="logout"
-            onClick={handleLogout}
-            icon={<LogoutOutlined />}
-        >
-            {translate("buttons.logout", "Logout")}
-        </Menu.Item>
-    );
-
-    const dashboard = hasDashboard ? (
-        <Menu.Item
-            key="dashboard"
-            style={{
-                fontWeight: selectedKey === "/" ? "bold" : "normal",
-            }}
-            icon={<DashboardOutlined />}
-        >
-            <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
-            {!collapsed && selectedKey === "/" && (
-                <div className="ant-menu-tree-arrow" />
-            )}
-        </Menu.Item>
-    ) : null;
-
-    const items = renderTreeView(menuItems, selectedKey);
-
-    const renderSider = () => {
-        if (render) {
-            return render({
-                dashboard,
-                items,
-                logout,
-                collapsed,
-            });
-        }
-        return (
-            <>
-                {dashboard}
-                {items}
-                {logout}
-            </>
-        );
-    };
-
     const renderMenu = () => {
         return (
-            <>
-                <Menu
-                    theme="dark"
-                    selectedKeys={selectedKey ? [selectedKey] : []}
-                    defaultOpenKeys={defaultOpenKeys}
-                    mode="inline"
-                    onClick={() => {
-                        setDrawerOpen(false);
-                        if (!breakpoint.lg) {
-                            setCollapsed(true);
-                        }
-                    }}
-                >
-                    {renderSider()}
-                </Menu>
-            </>
+            <Menu
+                theme="dark"
+                selectedKeys={selectedKey ? [selectedKey] : []}
+                defaultOpenKeys={defaultOpenKeys}
+                mode="inline"
+                onClick={() => {
+                    setDrawerOpen(false);
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+                }}
+                items={createMenuItems(menuItems)}
+            />
         );
     };
 
