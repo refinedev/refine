@@ -8,6 +8,7 @@ sidebar_label: React Table
 import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";
 import PaginationLivePreview from "./\_partial-pagination-live-preview.md";
 import SortingLivePreview from "./\_partial-sorting-live-preview.md";
+import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalLivePreview from "./\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
@@ -89,7 +90,7 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. `filterOperator` must be a [`CrudOperators`](/api-reference/core/interfaces.md#crudoperators) type.
+By default, filter operators are set to "eq" for all fields. You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. Just be aware that the `filterOperator` must be a [`CrudOperators`](/api-reference/core/interfaces.md#crudoperators) type.
 
 <FilteringLivePreview/>
 
