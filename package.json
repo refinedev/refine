@@ -40,6 +40,7 @@
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@lerna/filter-options": "^6.2.0",
+    "@netlify/plugin-nextjs": "^4.33.0",
     "@nrwl/nx-cloud": "^15.0.2",
     "@types/jest": "^29.2.4",
     "@types/react": "^18.0.0",
