@@ -83,7 +83,10 @@ const authProvider: AuthBindings = {
 
         return {
             authenticated: false,
-            error: new Error("Not authenticated"),
+            error: {
+                message: "Check failed",
+                name: "Not authenticated",
+            },
             logout: true,
             redirectTo: "/login",
         };

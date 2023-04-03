@@ -81,7 +81,10 @@ const authProvider: AuthBindings = {
         if (!jwt) {
             return {
                 authenticated: false,
-                error: new Error("Not authenticated"),
+                error: {
+                    message: "Check failed",
+                    name: "Token not found",
+                },
                 redirectTo: "/login",
             };
         }

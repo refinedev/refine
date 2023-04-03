@@ -83,7 +83,10 @@ const App: React.FC = () => {
                         authenticated: false,
                         logout: true,
                         redirectTo: "/login",
-                        error: new Error("Token not found"),
+                        error: {
+                            message: "Check failed",
+                            name: "Token not found",
+                        },
                     };
                 }
             } catch (error) {
@@ -91,7 +94,10 @@ const App: React.FC = () => {
                     authenticated: false,
                     logout: true,
                     redirectTo: "/login",
-                    error: new Error("Token not found"),
+                    error: {
+                        message: "Check failed",
+                        name: "Token not found",
+                    },
                 };
             }
         },

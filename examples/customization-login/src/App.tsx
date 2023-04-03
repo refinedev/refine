@@ -38,7 +38,10 @@ const App: React.FC = () => {
 
             return {
                 success: false,
-                error: new Error("Invalid username"),
+                error: {
+                    message: "Login failed",
+                    name: "Invalid username",
+                },
             };
         },
         logout: async () => {

@@ -52,7 +52,10 @@ export const authProvider: AuthBindings = {
 
             return {
                 success: false,
-                error: new Error("User not authorized."),
+                error: {
+                    message: "Login failed",
+                    name: "Invalid email or password",
+                },
             };
         } catch (error: any) {
             return {
@@ -85,7 +88,10 @@ export const authProvider: AuthBindings = {
 
             return {
                 success: false,
-                error: new Error("Register failed"),
+                error: {
+                    message: "Forgot password failed",
+                    name: "Invalid email",
+                },
             };
         } catch (error: any) {
             return {
@@ -116,7 +122,10 @@ export const authProvider: AuthBindings = {
 
             return {
                 success: false,
-                error: new Error("Forgot Password password failed"),
+                error: {
+                    message: "Forgot password failed",
+                    name: "Invalid email",
+                },
             };
         } catch (error: any) {
             return {
@@ -147,7 +156,10 @@ export const authProvider: AuthBindings = {
 
             return {
                 success: false,
-                error: new Error("Update Password password failed"),
+                error: {
+                    message: "Update password failed",
+                    name: "Invalid password",
+                },
             };
         } catch (error: any) {
             return {
@@ -180,7 +192,10 @@ export const authProvider: AuthBindings = {
             if (!session) {
                 return {
                     authenticated: false,
-                    error: new Error("Not authenticated"),
+                    error: {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
                     logout: true,
                     redirectTo: "/login",
                 };
@@ -188,7 +203,10 @@ export const authProvider: AuthBindings = {
         } catch (error: any) {
             return {
                 authenticated: false,
-                error: error || new Error("Not authenticated"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Session not found",
+                },
                 logout: true,
                 redirectTo: "/login",
             };

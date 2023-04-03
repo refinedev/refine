@@ -27,7 +27,10 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Invalid email or password"),
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
         };
     },
     register: async (params) => {
@@ -40,7 +43,10 @@ export const authProvider: AuthBindings = {
         }
         return {
             success: false,
-            error: new Error("Invalid email or password"),
+            error: {
+                messsage: "Register failed",
+                name: "Invalid email or password",
+            },
         };
     },
     updatePassword: async (params) => {
@@ -52,7 +58,10 @@ export const authProvider: AuthBindings = {
         }
         return {
             success: false,
-            error: new Error("Invalid password"),
+            error: {
+                message: "Update password failed",
+                name: "Invalid password",
+            },
         };
     },
     forgotPassword: async (params) => {
@@ -64,7 +73,10 @@ export const authProvider: AuthBindings = {
         }
         return {
             success: false,
-            error: new Error("Invalid email"),
+            error: {
+                message: "Forgot password failed",
+                name: "Invalid email",
+            },
         };
     },
     logout: async () => {
@@ -85,7 +97,10 @@ export const authProvider: AuthBindings = {
               }
             : {
                   authenticated: false,
-                  error: new Error("Not authenticated"),
+                  error: {
+                      message: "Check failed",
+                      name: "Not authenticated",
+                  },
                   logout: true,
                   redirectTo: "/login",
               },

@@ -54,7 +54,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Invalid email or password"),
+                error: {
+                    message: "Login failed",
+                    name: "Invalid email or password",
+                },
             };
         },
         logout: async () => {
@@ -81,7 +84,10 @@ const App: React.FC = () => {
 
             return {
                 authenticated: false,
-                error: new Error("Not authenticated"),
+                error: {
+                    message: "Authentication failed",
+                    name: "Token not found",
+                },
                 logout: true,
                 redirectTo: "/login",
             };
