@@ -162,7 +162,7 @@ The theme object is where you define your application's color palette, type scal
 
 ## Theme customization
 
-`<ChakraProvider/>` component can be used to change theme and other global settings. It is not required if you decide to use the default theme. You can also use `refineTheme` provided by **refine**.
+`<ChakraProvider/>` component can be used to change the theme and other global settings. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
 
 ```tsx live url=http://localhost:3000 previewHeight=450px
 setInitialRoutes(["/posts"]);

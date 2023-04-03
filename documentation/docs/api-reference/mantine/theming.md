@@ -150,13 +150,13 @@ interface IPost {
 }
 ```
 
-Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. There are two types of themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts). `LightTheme` tend to have dark text on a light background, while `DarkTheme` have light text on a dark background. Theme provides a way to your app's design to meet them.
+Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. Theme provides a way to your app's design to meet them.
 
 [Refer to the Mantine documentation for more information about theme object. &#8594](https://mantine.dev/theming/theme-object/)
 
 ## Theme customization
 
-`<MantineProvider/>` component can be used to change theme. It is not required if you decide to use the default theme. You can also use `LightTheme` and `DarkTheme` provided by **refine**.
+`<MantineProvider/>` component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -166,11 +166,11 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    Layout,
+    ThemedLayout,
     notificationProvider,
     ErrorComponent,
     // highlight-next-line
-    DarkTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -181,8 +181,12 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App = () => {
     return (
-        // highlight-next-line
-        <MantineProvider theme={DarkTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            // highlight-next-line
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -204,9 +208,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route path="posts">
@@ -247,11 +251,11 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    Layout,
+    ThemedLayout,
     notificationProvider,
     ErrorComponent,
     // highlight-next-line
-    LightTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -265,9 +269,9 @@ const App = () => {
         <MantineProvider
             // highlight-start
             theme={{
-                ...LightTheme,
+                ...RefineThemes.Blue,
                 colors: {
-                    primary: [
+                    brand: [
                         "#ECF9F8",
                         "#C9EEEC",
                         "#A6E2E1",
@@ -280,6 +284,11 @@ const App = () => {
                         "#0C2726",
                     ],
                 },
+                globalStyles: (theme: MantineTheme) => ({
+                    body: {
+                        backgroundColor: "#84D7D5",
+                    },
+                }),
             }}
             // highlight-end
             withNormalizeCSS
@@ -294,7 +303,7 @@ const App = () => {
                             "https://api.fake-rest.refine.dev",
                         )}
                         notificationProvider={notificationProvider}
-                        Layout={Layout}
+                        ThemedLayout={ThemedLayout}
                         resources={[
                             {
                                 name: "posts",
@@ -307,9 +316,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route path="posts">
@@ -350,11 +359,10 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     notificationProvider,
-    LightTheme,
-    DarkTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 // highlight-start
 import { NotificationsProvider } from "@mantine/notifications";
@@ -422,7 +430,10 @@ const App = () => {
         >
             <MantineProvider
                 // highlight-next-line
-                theme={colorScheme === "dark" ? DarkTheme : LightTheme}
+                theme={{
+                    ...RefineThemes.Blue,
+                    colorScheme: colorScheme,
+                }}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -447,12 +458,12 @@ const App = () => {
                             <Routes>
                                 <Route
                                     element={
-                                        <Layout
+                                        <ThemedLayout
                                             // highlight-next-line
                                             Header={Header}
                                         >
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     }
                                 >
                                     <Route path="posts">
@@ -487,6 +498,6 @@ render(<App />);
 
 :::tip
 
-If you want to customize the default layout elements provided with `@refinedev/mantine` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/mantine` package, check out the [Custom ThemedLayout](/docs/advanced-tutorials/custom-layout) tutorial.
 
 :::

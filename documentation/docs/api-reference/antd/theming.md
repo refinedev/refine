@@ -11,7 +11,7 @@ Design Tokens are the smallest element that affects the theme. By modifying the 
 
 ## Theme customization
 
-[`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component can be used to change theme. It is not required if you decide to use the default theme.
+[`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
 
 ### Overriding the themes
 
