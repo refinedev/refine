@@ -16,7 +16,7 @@ import {
     Divider,
 } from "antd";
 
-import { useAuthConfig } from "@refinedev/cloud";
+import { useAuthConfig } from "@refinedev/connect";
 
 const { Text, Title } = Typography;
 

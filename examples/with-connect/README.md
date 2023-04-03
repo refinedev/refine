@@ -1,4 +1,3 @@
-
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
@@ -23,7 +22,6 @@
 <br />
 <br />
 
-
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
@@ -34,12 +32,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example with-cloud
+npm create refine-app@latest -- --example with-connect
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open with-cloud example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/with-cloud?view=preview&theme=dark&codemirror=1)
-        
+[![Open with-connect example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/with-connect?view=preview&theme=dark&codemirror=1)

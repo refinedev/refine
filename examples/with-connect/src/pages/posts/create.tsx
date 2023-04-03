@@ -7,7 +7,7 @@ import { useForm, useSelect } from "@refinedev/antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { useSdk } from "@refinedev/cloud";
+import { useSdk } from "@refinedev/connect";
 
 import { normalizeFile } from "utility/normalize";
 import { IPost, ICategory } from "interfaces";

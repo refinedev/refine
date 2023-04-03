@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { IResourceComponentsProps, useResource } from "@refinedev/core";
 import { Show } from "@refinedev/antd";
 import { Typography } from "antd";
-import { useCloudMutation } from "@refinedev/cloud";
+import { useConnectMutation } from "@refinedev/connect";
 
 import { IProduct } from "interfaces";
 
@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     const { id } = useResource();
-    const { mutate, isLoading, data } = useCloudMutation<IProduct[]>();
+    const { mutate, isLoading, data } = useConnectMutation<IProduct[]>();
 
     useEffect(() => {
         mutate({

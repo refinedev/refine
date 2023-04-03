@@ -4,12 +4,12 @@ import { List, EditButton, ShowButton, FilterDropdown } from "@refinedev/antd";
 import { Table, Space, Input } from "antd";
 import { useTable } from "@refinedev/antd";
 
-import { useCloudMutation } from "@refinedev/cloud";
+import { useConnectMutation } from "@refinedev/connect";
 
 import { IProduct } from "interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const { mutate, data, isLoading } = useCloudMutation<IProduct[]>();
+    const { mutate, data, isLoading } = useConnectMutation<IProduct[]>();
 
     useEffect(() => {
         mutate({

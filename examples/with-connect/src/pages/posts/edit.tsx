@@ -6,7 +6,7 @@ import { Form, Input, Select, Row, Col, Upload } from "antd";
 import { useForm, useSelect } from "@refinedev/antd";
 import { LogList } from "@refinedev/antd-audit-log";
 
-import { useSdk } from "@refinedev/cloud";
+import { useSdk } from "@refinedev/connect";
 import MDEditor from "@uiw/react-md-editor";
 
 import { normalizeFile } from "utility/normalize";

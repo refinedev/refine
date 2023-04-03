@@ -1,47 +1,24 @@
-import React, { useEffect } from "react";
-import {
-    IResourceComponentsProps,
-    useNavigation,
-    useResource,
-} from "@refinedev/core";
-import { Edit } from "@refinedev/antd";
-
+import React from "react";
+import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import { useConnectMutation } from "@refinedev/connect";
 
-import { IProduct } from "interfaces";
-import { useCloudMutation } from "@refinedev/cloud";
-
-export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
+export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
-    const { id } = useResource();
-    const { mutate } = useCloudMutation<IProduct[]>();
-    const { mutate: updateMutate } = useCloudMutation<IProduct[]>();
     const [form] = Form.useForm();
-
-    useEffect(() => {
-        mutate(
-            {
-                key: "postgresql-product",
-                customParams: {
-                    id,
-                },
-            },
-            {
-                onSuccess: (data) => form.setFieldsValue(data[0]),
-            },
-        );
-    }, []);
+    const { mutate, isLoading } = useConnectMutation();
 
     // eslint-disable-next-line
     const onFinish = (values: any) => {
         const { name, price } = values;
-        updateMutate(
+        mutate(
             {
-                key: "postgresql-update-product",
+                key: "postgresql-create-product",
+                config: {},
                 customParams: {
                     name,
                     price,
-                    id,
                 },
             },
             {
@@ -51,9 +28,12 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
     };
 
     return (
-        <Edit
+        <Create
             saveButtonProps={{
-                onClick: () => form.submit(),
+                disabled: isLoading,
+                onClick: () => {
+                    form.submit();
+                },
             }}
         >
             <Form form={form} onFinish={onFinish} layout="vertical">
@@ -80,6 +60,6 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
             </Form>
-        </Edit>
+        </Create>
     );
 };

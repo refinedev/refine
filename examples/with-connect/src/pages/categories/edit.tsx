@@ -9,13 +9,13 @@ import { Edit } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 import { IProduct } from "interfaces";
-import { useCloudMutation } from "@refinedev/cloud";
+import { useConnectMutation } from "@refinedev/connect";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
     const { id } = useResource();
-    const { mutate } = useCloudMutation<IProduct[]>();
-    const { mutate: updateMutate } = useCloudMutation<IProduct[]>();
+    const { mutate } = useConnectMutation<IProduct[]>();
+    const { mutate: updateMutate } = useConnectMutation<IProduct[]>();
     const [form] = Form.useForm();
 
     useEffect(() => {

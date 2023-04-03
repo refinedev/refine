@@ -2,27 +2,26 @@ import React from "react";
 import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
 import { Create } from "@refinedev/antd";
 import { Form, Input } from "antd";
-import { useCloudMutation } from "@refinedev/cloud";
+import { useConnectMutation } from "@refinedev/connect";
 
-export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
     const [form] = Form.useForm();
-    const { mutate, isLoading } = useCloudMutation();
+    const { mutate, isLoading } = useConnectMutation();
 
     // eslint-disable-next-line
     const onFinish = (values: any) => {
-        const { name, price } = values;
+        const { title } = values;
         mutate(
             {
-                key: "postgresql-create-product",
+                key: "default-restapi-create-category",
                 config: {},
                 customParams: {
-                    name,
-                    price,
+                    title,
                 },
             },
             {
-                onSuccess: () => list("products"),
+                onSuccess: () => list("categories"),
             },
         );
     };
@@ -38,19 +37,8 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
         >
             <Form form={form} onFinish={onFinish} layout="vertical">
                 <Form.Item
-                    label="Name"
-                    name="name"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Price"
-                    name="price"
+                    label="Title"
+                    name="title"
                     rules={[
                         {
                             required: true,
