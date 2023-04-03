@@ -345,7 +345,7 @@ The second way is to use the `render` property of the `<Sider>` component. The `
 <Tabs
 defaultValue="antd"
 values={[
-{label: 'Antd Design', value: 'antd'},
+{label: 'Ant Design', value: 'antd'},
 {label: 'Material UI', value: 'mui'},
 {label: 'Mantine', value: 'mantine'},
 {label: 'Chakra UI', value: 'chakra-ui'},
