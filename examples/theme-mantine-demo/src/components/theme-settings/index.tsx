@@ -1,7 +1,6 @@
 import {
     Box,
     Button,
-    Center,
     Group,
     MantineThemeOverride,
     Modal,
@@ -10,6 +9,8 @@ import {
 import { useModal } from "@refinedev/core";
 import { RefineThemes } from "@refinedev/mantine";
 import { FC } from "react";
+
+type ThemeName = keyof typeof RefineThemes;
 
 const refineThemeNameToMantineColors = (name: keyof typeof RefineThemes) => {
     if (name === "Purple") return "violet";
@@ -25,14 +26,14 @@ const ThemeSettings: FC<Props> = ({ onThemeClick }) => {
     const { visible, show, close } = useModal();
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
-    const dark = colorScheme === "dark";
+    const isDark = colorScheme === "dark";
 
     return (
         <>
             <Box
                 sx={{
                     position: "fixed",
-                    bottom: 0,
+                    bottom: "16px",
                     left: "50%",
                     transform: "translateX(-50%)",
                     zIndex: 100,
@@ -41,9 +42,9 @@ const ThemeSettings: FC<Props> = ({ onThemeClick }) => {
                 <Button onClick={show}>Open Theme settings</Button>
             </Box>
             <Modal onClose={close} opened={visible} title="Theme Settings">
-                <Group position="left">
+                <Group position="left" spacing="sm">
                     {Object.keys(RefineThemes).map((key) => {
-                        const themeName = key as keyof typeof RefineThemes;
+                        const themeName = key as ThemeName;
                         const theme = { ...RefineThemes[themeName] };
 
                         return (
@@ -63,11 +64,13 @@ const ThemeSettings: FC<Props> = ({ onThemeClick }) => {
                         );
                     })}
                 </Group>
-                <Center mt="lg">
-                    <Button color="gray" onClick={() => toggleColorScheme()}>
-                        {dark ? "Light" : "Dark"} theme
-                    </Button>
-                </Center>
+                <Button
+                    mt="lg"
+                    variant="default"
+                    onClick={() => toggleColorScheme()}
+                >
+                    Set Mode to {isDark ? "Light ☀️" : "Dark  🌑"}
+                </Button>
             </Modal>
         </>
     );

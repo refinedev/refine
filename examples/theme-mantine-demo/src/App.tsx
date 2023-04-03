@@ -21,7 +21,7 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { IconBrandGoogle, IconBrandGithub, IconDashboard } from "@tabler/icons";
+import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 import { authProvider } from "./authProvider";
@@ -53,6 +53,9 @@ const App: React.FC = () => {
                     <Global
                         styles={{ body: { WebkitFontSmoothing: "auto" } }}
                     />
+                    <ThemeSettings
+                        onThemeClick={(theme) => setCustomTheme(theme)}
+                    />
                     <NotificationsProvider position="top-right">
                         <Refine
                             routerProvider={routerProvider}
@@ -63,48 +66,11 @@ const App: React.FC = () => {
                             notificationProvider={notificationProvider}
                             resources={[
                                 {
-                                    name: "dashboard",
-                                    list: "/",
-                                    meta: {
-                                        label: "Dashboard",
-                                        icon: <IconDashboard size={20} />,
-                                    },
-                                },
-                                {
-                                    name: "Multi Level",
-                                    meta: {
-                                        label: "Multi Level",
-                                    },
-                                },
-                                {
                                     name: "posts",
                                     list: "/posts",
                                     show: "/posts/show/:id",
                                     create: "/posts/create",
                                     edit: "/posts/edit/:id",
-                                },
-                                {
-                                    name: "posts",
-                                    list: "/posts",
-                                    show: "/posts/show/:id",
-                                    create: "/posts/create",
-                                    edit: "/posts/edit/:id",
-                                },
-                                {
-                                    name: "Demo 1",
-                                    list: "/demo1",
-                                    meta: {
-                                        label: "Demo 1",
-                                        parent: "Multi Level",
-                                    },
-                                },
-                                {
-                                    name: "Demo 2",
-                                    list: "/demo2",
-                                    meta: {
-                                        label: "Demo 2",
-                                        parent: "Multi Level",
-                                    },
                                 },
                             ]}
                             options={{
@@ -231,9 +197,6 @@ const App: React.FC = () => {
                             </Routes>
                             <UnsavedChangesNotifier />
                         </Refine>
-                        <ThemeSettings
-                            onThemeClick={(theme) => setCustomTheme(theme)}
-                        />
                     </NotificationsProvider>
                 </MantineProvider>
             </ColorSchemeProvider>
