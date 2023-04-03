@@ -681,6 +681,7 @@ module.exports = {
                     type: "category",
                     label: "Customization",
                     items: [
+                        "examples/customization/customTheme",
                         "examples/customization/customFooter",
                         "examples/customization/customLogin",
                         "examples/customization/customSider",
@@ -893,7 +894,6 @@ module.exports = {
                         },
                     ],
                 },
-                "examples/customTheme",
                 {
                     type: "category",
                     label: "UI",
