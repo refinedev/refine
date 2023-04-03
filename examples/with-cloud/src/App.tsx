@@ -1,5 +1,10 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import { withCloud } from "@refinedev/cloud";
 import routerProvider, {
@@ -9,6 +14,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -44,101 +50,123 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <RefineWithCloud
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                    },
-                    {
-                        name: "products",
-                        list: "/products",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
-                        show: "/products/show/:id",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        create: "/categories/create",
-                        edit: "/categories/edit/:id",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <RefineWithCloud
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                        },
+                        {
+                            name: "products",
+                            list: "/products",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                            show: "/products/show/:id",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                            edit: "/categories/edit/:id",
+                            show: "/categories/show/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
 
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                                <Route
+                                    path="create"
+                                    element={<ProductCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ProductEdit />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ProductShow />}
+                                />
+                            </Route>
+
+                            <Route path="categories">
+                                <Route index element={<CategoryList />} />
+                                <Route
+                                    path="create"
+                                    element={<CategoryCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<CategoryEdit />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<CategoryShow />}
+                                />
+                            </Route>
                         </Route>
 
-                        <Route path="products">
-                            <Route index element={<ProductList />} />
-                            <Route path="create" element={<ProductCreate />} />
-                            <Route path="edit/:id" element={<ProductEdit />} />
-                            <Route path="show/:id" element={<ProductShow />} />
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="posts" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<Login />} />
                         </Route>
 
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                            <Route path="edit/:id" element={<CategoryEdit />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<Login />} />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </RefineWithCloud>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </RefineWithCloud>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
-    Layout,
-    refineTheme,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
@@ -20,7 +20,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => (
     <BrowserRouter>
         <GitHubBanner />
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
@@ -39,9 +39,9 @@ const App: React.FC = () => (
                 <Routes>
                     <Route
                         element={
-                            <Layout>
+                            <ThemedLayout>
                                 <Outlet />
-                            </Layout>
+                            </ThemedLayout>
                         }
                     >
                         <Route

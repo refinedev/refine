@@ -6,6 +6,10 @@ description: useForgotPassword data hook from refine is a modified version of re
 source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 
+:::caution
+This hook can only be used if `authProvider` is provided.
+:::
+
 `useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
@@ -69,7 +73,7 @@ const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 
 :::
 
-### Redirection after forgotPassword
+## Redirection after forgotPassword
 
 A custom URL can be given to mutate the function from the `useForgotPassword` hook if you want to redirect yourself to a certain URL.
 
@@ -98,6 +102,33 @@ const authProvider: AuthBindings = {
 };
 ```
 
+## Error handling
+
+Since the methods of `authProvider` always return a resolved promise, you can handle errors by using the `success` value in the response.
+
+```tsx
+import { useForgotPassword } from "@refinedev/core";
+
+const { mutate: forgotPassword } = useForgotPassword();
+
+forgotPassword(
+    {
+        email: "refine@example.com",
+    },
+    {
+        onSuccess: (data) => {
+            if (!data.success) {
+                // handle error
+            }
+
+            // handle success
+        },
+    },
+);
+```
+
 :::caution
-This hook can only be used if `authProvider` is provided.
+
+The `onError` callback of the `useForgotPassword` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+
 :::

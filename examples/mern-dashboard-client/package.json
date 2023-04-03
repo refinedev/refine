@@ -5,7 +5,7 @@
   "dependencies": {
     "@mui/icons-material": "^5.8.3",
     "@refinedev/cli": "^2.1.2",
-    "@refinedev/core": "^4.5.6",
+    "@refinedev/core": "^4.5.8",
     "@refinedev/inferencer": "^3.1.4",
     "@refinedev/mui": "^4.5.8",
     "@refinedev/react-hook-form": "^4.1.2",

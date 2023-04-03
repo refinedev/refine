@@ -1,5 +1,10 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -18,7 +23,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ConfigProvider direction={"rtl"}>
+            <ConfigProvider direction={"rtl"} theme={RefineThemes.Blue}>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}
@@ -40,9 +45,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route

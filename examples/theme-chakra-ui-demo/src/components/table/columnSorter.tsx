@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconSelector } from "@tabler/icons";
+import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
 
 import { ColumnButtonProps } from "../../interfaces";
 
@@ -22,11 +22,9 @@ export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
             variant={sorted ? "light" : "transparent"}
             color={sorted ? "primary" : "gray"}
         >
-            {sorted ? (
-                <IconChevronDown size={18} />
-            ) : (
-                <IconSelector size={18} />
-            )}
+            {!sorted && <IconSelector size={18} />}
+            {sorted === "asc" && <IconChevronDown size={18} />}
+            {sorted === "desc" && <IconChevronUp size={18} />}
         </IconButton>
     );
 };

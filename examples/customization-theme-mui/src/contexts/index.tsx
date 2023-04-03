@@ -5,7 +5,7 @@ import React, {
     useState,
 } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { DarkTheme, LightTheme } from "@refinedev/mui";
+import { RefineThemes } from "@refinedev/mui";
 
 type ColorModeContextType = {
     mode: string;
@@ -48,7 +48,11 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
                 mode,
             }}
         >
-            <ThemeProvider theme={mode === "light" ? LightTheme : DarkTheme}>
+            <ThemeProvider
+                theme={
+                    mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark
+                }
+            >
                 {children}
             </ThemeProvider>
         </ColorModeContext.Provider>

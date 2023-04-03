@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { BikeWhiteIcon } from "components/icons/bike-white";
+import { BikeWhiteIcon, FineFoodsIcon } from "components/icons";
 
 type TitleProps = {
     collapsed: boolean;
@@ -16,13 +16,10 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    color: "text.primary",
                 }}
             >
-                {collapsed ? (
-                    <BikeWhiteIcon sx={{ color: "common.white" }} />
-                ) : (
-                    <img src="/images/fine-foods.svg" alt="Finefood" />
-                )}
+                {collapsed ? <BikeWhiteIcon /> : <FineFoodsIcon />}
             </Box>
         </Link>
     );

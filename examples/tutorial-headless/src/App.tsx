@@ -6,10 +6,10 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { ProductList } from "pages/products/list";
-import { ProductEdit } from "pages/products/edit";
-import { ProductShow } from "pages/products/show";
-import { ProductCreate } from "pages/products/create";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostShow } from "pages/blog-posts/show";
+import { BlogPostCreate } from "pages/blog-posts/create";
 
 function App() {
     return (
@@ -20,11 +20,14 @@ function App() {
                 routerProvider={routerProvider}
                 resources={[
                     {
-                        name: "products",
-                        list: "/products",
-                        show: "/products/show/:id",
-                        create: "/products/create",
-                        edit: "/products/edit/:id",
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
+                        meta: {
+                            canDelete: true,
+                        },
                     },
                 ]}
                 options={{
@@ -35,14 +38,14 @@ function App() {
                 <Routes>
                     <Route
                         index
-                        element={<NavigateToResource resource="products" />}
+                        element={<NavigateToResource resource="blog_posts" />}
                     />
 
-                    <Route path="/products">
-                        <Route index element={<ProductList />} />
-                        <Route path="show/:id" element={<ProductShow />} />
-                        <Route path="create" element={<ProductCreate />} />
-                        <Route path="edit/:id" element={<ProductEdit />} />
+                    <Route path="/blog-posts">
+                        <Route index element={<BlogPostList />} />
+                        <Route path="show/:id" element={<BlogPostShow />} />
+                        <Route path="create" element={<BlogPostCreate />} />
+                        <Route path="edit/:id" element={<BlogPostEdit />} />
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />

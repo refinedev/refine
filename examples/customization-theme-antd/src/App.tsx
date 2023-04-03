@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -25,6 +30,7 @@ const App: React.FC = () => {
             <GitHubBanner />
             <ConfigProvider
                 theme={{
+                    ...RefineThemes.Blue,
                     algorithm:
                         currentTheme === "light"
                             ? theme.defaultAlgorithm
@@ -63,7 +69,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout
+                                <ThemedLayout
                                     Header={() => (
                                         <Header
                                             theme={currentTheme}
@@ -72,7 +78,7 @@ const App: React.FC = () => {
                                     )}
                                 >
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route
