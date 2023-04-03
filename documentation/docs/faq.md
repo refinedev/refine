@@ -314,9 +314,11 @@ This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mod
 
 [react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode
 
-## How can I add an extra navigation link to the sidebar?
+## How can I add an extra navigation link to the sider?
 
-For internal links, easiest way is to create a dummy resource and add it to the `resources` prop of the `<Refine>` component. This will add a navigation link to the sidebar.
+There are three ways to add an extra navigation link to the sider.
+
+The first and simplest way is to use the `resources` property on the `<Refine>` component. The `<Sider>` component shows the resources whose `list` property is set. So, you can have an extra navigation link by adding a resource with the `list` attribute.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -325,8 +327,8 @@ import { Refine } from "@refinedev/core";
     ...
     resources={[
         {
-            name: "dummy-resource",
-            list: "/internal-link",
+            name: "resource",
+            list: "/custom-link",
             meta: {
                 label: "Navigation Link",
                 icon: <span>👋</span>,
@@ -336,7 +338,9 @@ import { Refine } from "@refinedev/core";
 />;
 ```
 
-For external links, you can use the `render` prop of the `<Sider>` component. This will allow you to render any custom component.
+<br/>
+
+The second way is to use the `render` property of the `<Sider>` component. The `render` property is a function that receives an object with the `items` and `logout` properties. The `items` property is the list of navigation items and the `logout` property is the logout button.
 
 <Tabs
 defaultValue="antd"
@@ -458,10 +462,8 @@ const CustomLayout = () => {
 
 <br/>
 
-:::tip Bonus!
+The third way is to use the `swizzle` command.
 
-You can use **swizzle** command to copy the default `Sider` component to your project. This will allow you to customize the sidebar as you want.
+You can use the command to copy the default `Sider` component to your project. This will allow you to customize the sider as you want.
 
 [Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)
-
-:::
