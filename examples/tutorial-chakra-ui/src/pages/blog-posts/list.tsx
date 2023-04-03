@@ -12,8 +12,9 @@ import {
     EditButton,
     ShowButton,
     MarkdownField,
+    DateField,
+    DeleteButton,
 } from "@refinedev/chakra-ui";
-
 import {
     TableContainer,
     Table,
@@ -26,14 +27,13 @@ import {
     Button,
     IconButton,
     Box,
+    Text,
 } from "@chakra-ui/react";
-
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { ColumnSorter } from "components/table/ColumnSorter";
+import { ColumnFilter } from "components/table/ColumnFilter";
 
-import { ColumnSorter } from "../../components/table/ColumnSorter";
-import { ColumnFilter } from "../../components/table/ColumnFilter";
-
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
@@ -43,19 +43,17 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 enableColumnFilter: false,
             },
             {
-                id: "name",
-                accessorKey: "name",
-                header: "Name",
+                id: "title",
+                accessorKey: "title",
+                header: "Title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
-                id: "material",
-                accessorKey: "material",
-                header: "Material",
-            },
-            {
-                id: "description",
-                accessorKey: "description",
-                header: "Description",
+                id: "content",
+                accessorKey: "content",
+                header: "Content",
                 meta: {
                     filterOperator: "contains",
                 },
@@ -68,17 +66,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
             {
-                id: "price",
-                accessorKey: "price",
-                header: "Price",
-                enableColumnFilter: false,
-            },
-            {
                 id: "category",
                 header: "Category",
                 accessorKey: "category.id",
-                enableSorting: false,
-                enableColumnFilter: false,
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
                         categoryData: GetManyResponse;
@@ -89,6 +79,20 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     );
 
                     return category?.title ?? "Loading...";
+                },
+            },
+            {
+                id: "status",
+                accessorKey: "status",
+                header: "Status",
+            },
+            {
+                id: "createdAt",
+                accessorKey: "createdAt",
+                header: "Created At",
+                enableColumnFilter: false,
+                cell: function render({ getValue }) {
+                    return <DateField value={getValue<any>()} />;
                 },
             },
             {
@@ -105,6 +109,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={getValue() as string}
                             />
                             <EditButton
+                                hideText
+                                recordItemId={getValue() as string}
+                            />
+                            <DeleteButton
                                 hideText
                                 recordItemId={getValue() as string}
                             />
@@ -155,13 +163,22 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             <Tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
                                     <Th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                        <ColumnSorter column={header.column} />
-                                        <ColumnFilter column={header.column} />
+                                        <HStack>
+                                            <Text>
+                                                {!header.isPlaceholder &&
+                                                    flexRender(
+                                                        header.column.columnDef
+                                                            .header,
+                                                        header.getContext(),
+                                                    )}
+                                            </Text>
+                                            <ColumnSorter
+                                                column={header.column}
+                                            />
+                                            <ColumnFilter
+                                                column={header.column}
+                                            />
+                                        </HStack>
                                     </Th>
                                 ))}
                             </Tr>

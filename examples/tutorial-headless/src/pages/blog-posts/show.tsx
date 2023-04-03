@@ -1,7 +1,7 @@
 import React from "react";
 import { useShow, useResource, useNavigation, useOne } from "@refinedev/core";
 
-export const ProductShow = () => {
+export const BlogPostShow = () => {
     const { edit, list } = useNavigation();
     const { id } = useResource();
     const { queryResult } = useShow();
@@ -26,12 +26,12 @@ export const ProductShow = () => {
                     justifyContent: "space-between",
                 }}
             >
-                <h1>Product</h1>
+                <h1>Blog Post</h1>
                 <div style={{ display: "flex", gap: "8px" }}>
-                    <button onClick={() => list("products")}>
-                        Products List
+                    <button onClick={() => list("blog_posts")}>
+                        Blog Posts List
                     </button>
-                    <button onClick={() => edit("products", id ?? "")}>
+                    <button onClick={() => edit("blog_posts", id ?? "")}>
                         Edit
                     </button>
                 </div>
@@ -42,20 +42,12 @@ export const ProductShow = () => {
                     <div>{record?.id ?? ""}</div>
                 </div>
                 <div style={{ marginTop: "6px" }}>
-                    <h5>Name</h5>
-                    <div>{record?.name}</div>
+                    <h5>Title</h5>
+                    <div>{record?.title}</div>
                 </div>
                 <div style={{ marginTop: "6px" }}>
-                    <h5>Material</h5>
-                    <div>{record?.material}</div>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Description</h5>
-                    <p>{record?.description}</p>
-                </div>
-                <div style={{ marginTop: "6px" }}>
-                    <h5>Price</h5>
-                    <div>{record?.price}</div>
+                    <h5>Content</h5>
+                    <p>{record?.content}</p>
                 </div>
                 <div style={{ marginTop: "6px" }}>
                     <h5>Category</h5>
@@ -65,6 +57,18 @@ export const ProductShow = () => {
                         ) : (
                             <>{categoryData?.data?.title}</>
                         )}
+                    </div>
+                </div>
+                <div style={{ marginTop: "6px" }}>
+                    <h5>Status</h5>
+                    <div>{record?.status}</div>
+                </div>
+                <div style={{ marginTop: "6px" }}>
+                    <h5>Created At</h5>
+                    <div>
+                        {new Date(record?.createdAt).toLocaleString(undefined, {
+                            timeZone: "UTC",
+                        })}
                     </div>
                 </div>
             </div>

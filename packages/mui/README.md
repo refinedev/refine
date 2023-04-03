@@ -156,81 +156,96 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 
 
-<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_welcome.png)</a>
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fwelcome.png)</a>
 
 <br/>
 
-Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
+Let's consume a public `fake REST API` and add two resources (blog_posts, categories) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import React from 'react';
-
 import { Refine } from '@refinedev/core';
 import {
-    notificationProvider,
-    RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
-    Layout,
-    ThemeProvider,
-    LightTheme,
     ErrorComponent,
+    RefineSnackbarProvider,
+    notificationProvider,
+    ThemedLayout,
+    RefineThemes,
 } from '@refinedev/mui';
-
+import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from '@refinedev/react-router-v6';
 import dataProvider from '@refinedev/simple-rest';
-import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
-
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-
 import { MuiInferencer } from '@refinedev/inferencer/mui';
 
-function App() {
+const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
             <RefineSnackbarProvider>
                 <BrowserRouter>
                     <Refine
+                        routerProvider={routerBindings}
                         dataProvider={dataProvider(
                             'https://api.fake-rest.refine.dev'
                         )}
                         notificationProvider={notificationProvider}
-                        routerProvider={routerProvider}
                         resources={[
                             {
-                                name: 'samples',
-                                list: "/samples",
-                                show: "/samples/show/:id",
-                                create: "/samples/create",
-                                edit: "/samples/edit/:id",
+                                name: 'blog_posts',
+                                list: '/blog-posts',
+                                show: '/blog-posts/show/:id',
+                                create: '/blog-posts/create',
+                                edit: '/blog-posts/edit/:id',
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
-                                    <Layout>
+                                element={
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
-                                )}
+                                    </ThemedLayout>
+                                }
                             >
-                                <Route index element={<NavigateToResource />} />
-                                <Route path="samples">
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="blog_posts" />
+                                    }
+                                />
+                                <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
-                                    <Route path="show/:id" element={<MuiInferencer />} />
-                                    <Route path="create" element={<MuiInferencer />} />
-                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );
-}
+};
 
 export default App;
 ```
@@ -243,9 +258,9 @@ export default App;
 
 
 
-Now, you should see the output as a table populated with `post` & `category` data:
+Now, you should see the output as a table populated with `blog_posts` & `category` data:
 
-![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_first_page.png?raw=true)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fmui_welcome_new.png)
 
 <br/>
 

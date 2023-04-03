@@ -156,65 +156,78 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 
 
-<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/welcome-on-board.png)</a>
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fwelcome.png)</a>
 
 <br/>
 
-Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
+Let's consume a public `fake REST API` and add two resources (*blog_posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
+import { Refine } from '@refinedev/core';
+import {
+    notificationProvider,
+    ErrorComponent,
+    ThemedLayout,
+} from '@refinedev/antd';
+import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
-import { AntdInferencer } from "@refinedev/inferencer/antd";
+import { AntdInferencer } from '@refinedev/inferencer/antd';
 
-import "@refinedev/antd/dist/reset.css";
+import '@refinedev/antd/dist/reset.css';
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
             <Refine
                 routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
                 notificationProvider={notificationProvider}
                 resources={[
                     {
-                        name: 'posts',
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
+                        name: 'blog_posts',
+                        list: '/blog-posts',
+                        show: '/blog-posts/show/:id',
+                        create: '/blog-posts/create',
+                        edit: '/blog-posts/edit/:id',
                         meta: { canDelete: true },
                     },
                     {
                         name: 'categories',
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    }
+                        list: '/categories',
+                        show: '/categories/show/:id',
+                    },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
-                            <Layout>
+                        element={
+                            <ThemedLayout>
                                 <Outlet />
-                            </Layout>
-                        )}
+                            </ThemedLayout>
+                        }
                     >
                         <Route index element={<NavigateToResource />} />
-                        <Route path="posts">
+                        <Route path="blog-posts">
                             <Route index element={<AntdInferencer />} />
-                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
                             <Route path="create" element={<AntdInferencer />} />
-                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
                         </Route>
                         <Route path="categories">
                             <Route index element={<AntdInferencer />} />
-                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
                         </Route>
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
@@ -222,7 +235,7 @@ const App: React.FC = () => {
             </Refine>
         </BrowserRouter>
     );
-};   
+};
 
 export default App;
 ```
@@ -231,13 +244,14 @@ export default App;
 
 
 
+
 🚀  Thanks to **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.  
 
 
 
-Now, you should see the output as a table populated with `post` & `category` data:
+Now, you should see the output as a table populated with `blog_post` & `category` data:
 
-![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/readme-quick-start.png)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Freadme-quick-start-2.png)
 
 <br/>
 
