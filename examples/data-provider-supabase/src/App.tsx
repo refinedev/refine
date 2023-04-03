@@ -6,9 +6,10 @@ import {
 } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     AuthPage,
+    RefineThemes,
 } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerProvider, {
@@ -16,7 +17,7 @@ import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { notification } from "antd";
+import { ConfigProvider, notification } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -250,120 +251,124 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider(supabaseClient)}
-                liveProvider={liveProvider(supabaseClient)}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                /**
-                 * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
-                 * Therefore, enabling global live mode will cause unexpected behaviors.
-                 * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
-                 */
-                options={{
-                    liveMode: "off",
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(supabaseClient)}
+                    liveProvider={liveProvider(supabaseClient)}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    /**
+                     * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
+                     * Therefore, enabling global live mode will cause unexpected behaviors.
+                     * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
+                     */
+                    options={{
+                        liveMode: "off",
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
                             element={
-                                <AuthPage
-                                    type="login"
-                                    providers={[
-                                        {
-                                            name: "google",
-                                            label: "Sign in with Google",
-                                            icon: (
-                                                <GoogleOutlined
-                                                    style={{
-                                                        fontSize: 18,
-                                                        lineHeight: 0,
-                                                    }}
-                                                />
-                                            ),
-                                        },
-                                    ]}
-                                    formProps={{
-                                        initialValues: {
-                                            email: "info@refine.dev",
-                                            password: "refine-supabase",
-                                        },
-                                    }}
-                                />
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
                             }
-                        />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="posts" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        providers={[
+                                            {
+                                                name: "google",
+                                                label: "Sign in with Google",
+                                                icon: (
+                                                    <GoogleOutlined
+                                                        style={{
+                                                            fontSize: 18,
+                                                            lineHeight: 0,
+                                                        }}
+                                                    />
+                                                ),
+                                            },
+                                        ]}
+                                        formProps={{
+                                            initialValues: {
+                                                email: "info@refine.dev",
+                                                password: "refine-supabase",
+                                            },
+                                        }}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

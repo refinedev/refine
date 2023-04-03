@@ -6,6 +6,10 @@ description: useUpdatePassword data hook from refine is a modified version of re
 source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
 ---
 
+:::caution
+This hook can only be used if `authProvider` is provided.
+:::
+
 `useUpdatePassword` calls `updatePassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
@@ -88,12 +92,12 @@ const authProvider: AuthBindings = {
 
 :::
 
-### Redirection after updatePassword
+## Redirection after updatePassword
 
 A custom URL can be given to mutate the function from the `useUpdatePassword` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useForgotPassword } from "@refinedev/core";
+import { useUpdatePassword } from "@refinedev/core";
 
 const { mutate: updatePassword } = useUpdatePassword();
 
@@ -117,10 +121,37 @@ const authProvider: AuthBindings = {
 };
 ```
 
-:::tip
+:::info
 If the promise returned from `updatePassword` is resolved with nothing, app won't be redirected to any route by default.
 :::
 
+## Error handling
+
+Since the methods of `authProvider` always return a resolved promise, you can handle errors by using the `success` value in the response.
+
+```tsx
+import { useUpdatePassword } from "@refinedev/core";
+
+const { mutate: updatePassword } = useUpdatePassword();
+
+updatePassword(
+    {
+        newPassword: "refine",
+    },
+    {
+        onSuccess: (data) => {
+            if (!data.success) {
+                // handle error
+            }
+
+            // handle success
+        },
+    },
+);
+```
+
 :::caution
-This hook can only be used if `authProvider` is provided.
+
+The `onError` callback of the `useUpdatePassword` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+
 :::

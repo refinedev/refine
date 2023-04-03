@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    refineTheme,
+    RefineThemes,
     WelcomePage,
     ErrorComponent,
 } from "@refinedev/chakra-ui";
@@ -16,7 +16,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
+            <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(

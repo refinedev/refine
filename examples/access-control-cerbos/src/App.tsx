@@ -1,11 +1,17 @@
 import { CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ConfigProvider } from "antd";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
@@ -38,106 +44,121 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                accessControlProvider={{
-                    can: async ({ action, params, resource }) => {
-                        const result = await cerbos.checkResource({
-                            principal: {
-                                id: "demoUser", // Fake a user ID
-                                roles: [role],
-                                policyVersion: "default",
-                                // this is where user attributes can be passed
-                                attributes: {},
-                            },
-                            resource: {
-                                kind: resource ?? "",
-                                policyVersion: "default",
-                                id: params?.id + "" || "new",
-                                attributes: params,
-                            },
-                            // the list of actions on the resource to check authorization for
-                            actions: [action],
-                        });
-                        return Promise.resolve({
-                            can: result.isAllowed(action) || false,
-                        });
-                    },
-                }}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        meta: {
-                            canDelete: true,
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    accessControlProvider={{
+                        can: async ({ action, params, resource }) => {
+                            const result = await cerbos.checkResource({
+                                principal: {
+                                    id: "demoUser", // Fake a user ID
+                                    roles: [role],
+                                    policyVersion: "default",
+                                    // this is where user attributes can be passed
+                                    attributes: {},
+                                },
+                                resource: {
+                                    kind: resource ?? "",
+                                    policyVersion: "default",
+                                    id: params?.id + "" || "new",
+                                    attributes: params,
+                                },
+                                // the list of actions on the resource to check authorization for
+                                actions: [action],
+                            });
+                            return Promise.resolve({
+                                can: result.isAllowed(action) || false,
+                            });
                         },
-                    },
-                    {
-                        name: "users",
-                        list: "/users",
-                        show: "/users/show/:id",
-                        create: "/users/create",
-                        edit: "/users/edit/:id",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                        create: "/categories/create",
-                        edit: "/categories/edit/:id",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout Header={() => <Header role={role} />}>
-                                <CanAccess>
-                                    <Outlet />
-                                </CanAccess>
-                            </Layout>
-                        }
-                    >
+                    }}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            meta: {
+                                canDelete: true,
+                            },
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            show: "/users/show/:id",
+                            create: "/users/create",
+                            edit: "/users/edit/:id",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            show: "/categories/show/:id",
+                            create: "/categories/create",
+                            edit: "/categories/edit/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
+                            element={
+                                <ThemedLayout
+                                    Header={() => <Header role={role} />}
+                                >
+                                    <CanAccess>
+                                        <Outlet />
+                                    </CanAccess>
+                                </ThemedLayout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
 
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="/users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                                <Route path="edit/:id" element={<UserEdit />} />
+                                <Route path="show/:id" element={<UserShow />} />
+                            </Route>
+
+                            <Route path="/categories">
+                                <Route index element={<CategoryList />} />
+                                <Route
+                                    path="create"
+                                    element={<CategoryCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<CategoryEdit />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<CategoryShow />}
+                                />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-
-                        <Route path="/users">
-                            <Route index element={<UserList />} />
-                            <Route path="create" element={<UserCreate />} />
-                            <Route path="edit/:id" element={<UserEdit />} />
-                            <Route path="show/:id" element={<UserShow />} />
-                        </Route>
-
-                        <Route path="/categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                            <Route path="edit/:id" element={<CategoryEdit />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

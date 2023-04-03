@@ -5,9 +5,9 @@ import {
     Authenticated,
 } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     notificationProvider,
     RefineSnackbarProvider,
     AuthPage,
@@ -158,7 +158,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
@@ -192,9 +192,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -308,9 +308,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >

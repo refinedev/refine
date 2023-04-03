@@ -1,14 +1,16 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Layout } from "@refinedev/mui";
+import { ThemedLayout } from "@refinedev/mui";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 
 export default {
-    title: "Components / Layout",
-    component: Layout,
+    title: "Components / ThemedLayout",
+    component: ThemedLayout,
     decorators: [(Story) => RefineWithoutLayout(Story)],
-} as ComponentMeta<typeof Layout>;
+} as ComponentMeta<typeof ThemedLayout>;
 
-export const LayoutBasicView: ComponentStory<typeof Layout> = () => {
-    return <Layout>Content of Layout Basic comes here 🎉</Layout>;
+export const LayoutBasicView: ComponentStory<typeof ThemedLayout> = () => {
+    return (
+        <ThemedLayout>Content of ThemedLayout Basic comes here 🎉</ThemedLayout>
+    );
 };

@@ -4,8 +4,8 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     ErrorComponent,
 } from "@refinedev/mui";
 
@@ -27,7 +27,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
@@ -55,9 +55,9 @@ function App() {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

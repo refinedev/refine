@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
 import { Authenticated } from "@refinedev/core";
 
 export default function ProtectedLayout({
@@ -10,7 +10,7 @@ export default function ProtectedLayout({
 }) {
     return (
         <Authenticated redirectOnFail="/login">
-            <Layout>{children}</Layout>
+            <ThemedLayout>{children}</ThemedLayout>
         </Authenticated>
     );
 }

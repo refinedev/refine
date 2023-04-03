@@ -2,9 +2,9 @@ import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 
 import {
     notificationProvider,
-    refineTheme,
+    RefineThemes,
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     AuthPage,
 } from "@refinedev/chakra-ui";
 
@@ -24,7 +24,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
+            <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
                     authProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
@@ -54,9 +54,9 @@ function App() {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -101,9 +101,9 @@ function App() {
                         <Route
                             element={
                                 <Authenticated>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >

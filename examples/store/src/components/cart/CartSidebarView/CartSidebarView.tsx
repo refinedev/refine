@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { formatAmount } from "medusa-react";
 
@@ -70,7 +69,7 @@ export const CartSidebarView: React.FC = () => {
                         </ul>
                     </div>
 
-                    <div className="bg-accent-0 sticky bottom-0 right-0 left-0 z-20 w-full flex-shrink-0 border-t px-6 py-6 text-sm sm:px-6">
+                    <div className="bg-accent-0 sticky bottom-0 left-0 right-0 z-20 w-full flex-shrink-0 border-t px-6 py-6 text-sm sm:px-6">
                         <Button
                             Component="a"
                             width="100%"

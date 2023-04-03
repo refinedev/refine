@@ -3,13 +3,18 @@ import type { AppProps } from "next/app";
 import type { NextPage } from "next";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { Layout, notificationProvider } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
 
+import { ConfigProvider } from "antd";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
@@ -30,41 +35,43 @@ function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
         }
 
         return (
-            <Layout>
+            <ThemedLayout>
                 <Component {...pageProps} />
-            </Layout>
+            </ThemedLayout>
         );
     };
 
     return (
         <>
             <GitHubBanner />
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    { name: "users", list: "/users" },
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                        meta: {
-                            canDelete: true,
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        { name: "users", list: "/users" },
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
                         },
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-                notificationProvider={notificationProvider}
-            >
-                {renderComponent()}
-                <UnsavedChangesNotifier />
-            </Refine>
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                    notificationProvider={notificationProvider}
+                >
+                    {renderComponent()}
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </>
     );
 }

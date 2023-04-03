@@ -69,7 +69,7 @@ To add a delete feature to the blog posts table, you can follow the steps below:
                                 onClick={() => {
                                     deleteBlogPost({
                                         resource: "blog_posts",
-                                        id: "1",
+                                        id: getValue() as string,
                                     });
                                 }}
                             >

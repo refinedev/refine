@@ -1,6 +1,11 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import { FloatButton } from "antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
+import { ConfigProvider, FloatButton } from "antd";
 import { DemoSidebar, useDemoSidebar } from "@refinedev/demo-sidebar";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -21,57 +26,63 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-                {...refineProps}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout
-                                OffLayoutArea={() => (
-                                    <div>
-                                        <FloatButton.BackTop />
-                                        <DemoSidebar {...demoSidebarProps} />
-                                    </div>
-                                )}
-                            >
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(API_URL)}
+                    routerProvider={routerProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                    {...refineProps}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
                         <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
+                            element={
+                                <ThemedLayout
+                                    OffLayoutArea={() => (
+                                        <div>
+                                            <FloatButton.BackTop />
+                                            <DemoSidebar
+                                                {...demoSidebarProps}
+                                            />
+                                        </div>
+                                    )}
+                                >
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
 
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

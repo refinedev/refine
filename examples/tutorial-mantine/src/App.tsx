@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -14,17 +14,17 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { ProductList } from "pages/products/list";
-import { ProductCreate } from "pages/products/create";
-import { ProductEdit } from "pages/products/edit";
-import { ProductShow } from "pages/products/show";
+import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostCreate } from "pages/blog-posts/create";
+import { BlogPostEdit } from "pages/blog-posts/edit";
+import { BlogPostShow } from "pages/blog-posts/show";
 
 function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
             <MantineProvider
-                theme={LightTheme}
+                theme={RefineThemes.Blue}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -38,11 +38,14 @@ function App() {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "products",
-                                list: "/products",
-                                show: "/products/show/:id",
-                                create: "/products/create",
-                                edit: "/products/edit/:id",
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                show: "/blog-posts/show/:id",
+                                create: "/blog-posts/create",
+                                edit: "/blog-posts/edit/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
                         ]}
                         options={{
@@ -50,34 +53,34 @@ function App() {
                             warnWhenUnsavedChanges: true,
                         }}
                     >
-                        <Layout>
+                        <ThemedLayout>
                             <Routes>
                                 <Route
                                     index
                                     element={
-                                        <NavigateToResource resource="products" />
+                                        <NavigateToResource resource="blog_posts" />
                                     }
                                 />
 
-                                <Route path="/products">
-                                    <Route index element={<ProductList />} />
+                                <Route path="/blog-posts">
+                                    <Route index element={<BlogPostList />} />
                                     <Route
                                         path="show/:id"
-                                        element={<ProductShow />}
+                                        element={<BlogPostShow />}
                                     />
                                     <Route
                                         path="create"
-                                        element={<ProductCreate />}
+                                        element={<BlogPostCreate />}
                                     />
                                     <Route
                                         path="edit/:id"
-                                        element={<ProductEdit />}
+                                        element={<BlogPostEdit />}
                                     />
                                 </Route>
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Routes>
-                        </Layout>
+                        </ThemedLayout>
                         <UnsavedChangesNotifier />
                     </Refine>
                 </NotificationsProvider>
