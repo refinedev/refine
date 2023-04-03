@@ -6,6 +6,10 @@ description: useLogout data hook from refine is a modified version of react-quer
 source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
 
+:::caution
+This hook can only be used if the `authProvider` is provided.
+:::
+
 `useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
@@ -41,6 +45,16 @@ export const LogoutButton = () => {
 };
 ```
 
+:::tip
+`mutate` acquired from the `useLogout` can accept any kind of object for values since the `logout` method from the `authProvider` doesn't have a restriction on its parameters.
+A type parameter for the values can be provided to `useLogout`.
+
+```tsx
+const { mutate: logout } = useLogout<{ redirectPath: string }>();
+```
+
+:::
+
 ## Redirection after logout
 
 A custom URL can be given to mutate the function from the `useLogin` hook if you want to redirect yourself to a certain URL.
@@ -70,14 +84,33 @@ const authProvider: AuthBindings = {
 };
 ```
 
-:::caution
-This hook can only be used if `authProvider` is provided.
-:::
+## Error handling
 
-:::tip
-`mutate` acquired from the `useLogout` can accept any kind of object for values since the `logout` method from the `authProvider` doesn't have a restriction on its parameters.
-:::
+Since the methods of `authProvider` always return a resolved promise, you can handle errors by using the `success` value in the response.
+
+```tsx
+import { useLogout } from "@refinedev/core";
+
+const { mutate: logout } = useLogout();
+
+logout(
+    {
+        redirectPath: "/custom-url",
+    },
+    {
+        onSuccess: (data) => {
+            if (!data.success) {
+                // handle error
+            }
+
+            // handle success
+        },
+    },
+);
+```
 
 :::caution
-This hook can only be used if the `authProvider` is provided.
+
+The `onError` callback of the `useLogout` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+
 :::

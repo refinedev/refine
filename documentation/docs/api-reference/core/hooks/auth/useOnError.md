@@ -6,6 +6,10 @@ description: useOnError data hook from refine is a modified version of react-que
 source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---
 
+:::caution
+This hook can only be used if the `authProvider` is provided.
+:::
+
 `useOnError` calls the `onError` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
@@ -74,7 +78,3 @@ const authProvider: AuthBindings = {
     // ---
 };
 ```
-
-:::caution
-This hook can only be used if the `authProvider` is provided.
-:::

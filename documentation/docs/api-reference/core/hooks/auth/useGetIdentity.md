@@ -6,6 +6,10 @@ description: useGetIdentity data hook from refine is a modified version of react
 source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---
 
+:::caution
+This hook can only be used if the `authProvider` is provided.
+:::
+
 `useGetIdentity` calls the `getIdentity` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`. Data that is resolved from the `getIdentity` will be returned as the `data` in the query result.
@@ -53,7 +57,3 @@ export const User: React.FC = () => {
     return <span>{identity?.fullName}</span>;
 };
 ```
-
-:::caution
-This hook can only be used if the `authProvider` is provided.
-:::
