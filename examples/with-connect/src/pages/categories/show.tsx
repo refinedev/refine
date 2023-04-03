@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { IResourceComponentsProps, useResource } from "@refinedev/core";
 import { Show } from "@refinedev/antd";
 import { Typography } from "antd";
-import { useCloudMutation } from "@refinedev/cloud";
+import { useConnectMutation } from "@refinedev/connect";
 
 import { ICategory } from "interfaces";
 
@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     const { id } = useResource();
-    const { mutate, isLoading, data } = useCloudMutation<ICategory>();
+    const { mutate, isLoading, data } = useConnectMutation<ICategory>();
 
     useEffect(() => {
         mutate({

@@ -4,12 +4,12 @@ import { List, EditButton, ShowButton } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import { useTable } from "@refinedev/antd";
 
-import { useCloudMutation } from "@refinedev/cloud";
+import { useConnectMutation } from "@refinedev/connect";
 
 import { ICategory } from "interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-    const { mutate, data, isLoading } = useCloudMutation<ICategory[]>();
+    const { mutate, data, isLoading } = useConnectMutation<ICategory[]>();
 
     useEffect(() => {
         mutate({

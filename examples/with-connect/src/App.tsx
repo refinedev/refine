@@ -6,7 +6,7 @@ import {
     RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import { withCloud } from "@refinedev/cloud";
+import { withConnect } from "@refinedev/connect";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
@@ -36,11 +36,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 // temporary set for refine-cluod-dev-tools
 window.localStorage.setItem(
-    "refine-cloud-token",
-    process.env.REACT_APP_REFINE_CLOUD_TOKEN as string,
+    "refine-connect-token",
+    process.env.REACT_APP_REFINE_CONNECT_TOKEN as string,
 );
 
-const RefineWithCloud = withCloud(Refine, {
+const RefineWithConnect = withConnect(Refine, {
     baseUrl: process.env.REACT_APP_REFINE_BASE_URL as string,
     clientId: process.env.REACT_APP_REFINE_CLIENT_ID as string,
     resourcesName: "development",
@@ -51,7 +51,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
-                <RefineWithCloud
+                <RefineWithConnect
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
                     resources={[
@@ -165,7 +165,7 @@ const App: React.FC = () => {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
-                </RefineWithCloud>
+                </RefineWithConnect>
             </ConfigProvider>
         </BrowserRouter>
     );
