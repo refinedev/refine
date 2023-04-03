@@ -5,8 +5,8 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 import {
     notificationProvider,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     ErrorComponent,
     AuthPage,
 } from "@refinedev/mantine";
@@ -32,7 +32,7 @@ function App() {
         <BrowserRouter>
             <GitHubBanner />
             <MantineProvider
-                theme={LightTheme}
+                theme={RefineThemes.Blue}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -80,9 +80,9 @@ function App() {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -151,9 +151,9 @@ function App() {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >

@@ -1,11 +1,17 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -24,85 +30,89 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider(supabaseClient)}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "movies",
-                        list: "/admin/movies",
-                        create: "/admin/movies/create",
-                        show: "/admin/movies/show/:id",
-                        edit: "/admin/movies/edit/:id",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(supabaseClient)}
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "movies",
+                            list: "/admin/movies",
+                            create: "/admin/movies/create",
+                            show: "/admin/movies/show/:id",
+                            edit: "/admin/movies/edit/:id",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
-                            element={<NavigateToResource resource="movies" />}
-                        />
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="movies" />
+                                }
+                            />
 
-                        <Route path="admin">
-                            <Route path="movies">
-                                <Route index element={<AdminMovieList />} />
-                                <Route
-                                    path="create"
-                                    element={<AdminMovieCreate />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<AdminMovieShow />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<AdminMovieEdit />}
-                                />
+                            <Route path="admin">
+                                <Route path="movies">
+                                    <Route index element={<AdminMovieList />} />
+                                    <Route
+                                        path="create"
+                                        element={<AdminMovieCreate />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<AdminMovieShow />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<AdminMovieEdit />}
+                                    />
+                                </Route>
                             </Route>
                         </Route>
-                    </Route>
 
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<Login />} />
-                    </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="posts" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<Login />} />
+                        </Route>
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }

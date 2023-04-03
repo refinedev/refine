@@ -143,7 +143,7 @@ export const PostList: React.FC = () => {
                                 <th
                                     key={idx}
                                     colSpan={header.colSpan}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
                                     {flexRender(
                                         header.column.columnDef.header,
@@ -165,7 +165,7 @@ export const PostList: React.FC = () => {
                                     return (
                                         <td
                                             key={idx}
-                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                                            className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900"
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,

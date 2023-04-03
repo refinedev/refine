@@ -3,7 +3,7 @@ import { KBarProvider } from "@refinedev/kbar";
 import {
     ErrorComponent,
     notificationProvider,
-    Layout,
+    ThemedLayout,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
 import { GlobalStyles, CssBaseline } from "@mui/material";
@@ -149,13 +149,13 @@ const App: React.FC = () => {
                                                 <CatchAllNavigate to="/login" />
                                             }
                                         >
-                                            <Layout
+                                            <ThemedLayout
                                                 Header={Header}
                                                 Title={Title}
                                                 OffLayoutArea={OffLayoutArea}
                                             >
                                                 <Outlet />
-                                            </Layout>
+                                            </ThemedLayout>
                                         </Authenticated>
                                     }
                                 >
@@ -283,13 +283,13 @@ const App: React.FC = () => {
                                 <Route
                                     element={
                                         <Authenticated>
-                                            <Layout
+                                            <ThemedLayout
                                                 Header={Header}
                                                 Title={Title}
                                                 OffLayoutArea={OffLayoutArea}
                                             >
                                                 <Outlet />
-                                            </Layout>
+                                            </ThemedLayout>
                                         </Authenticated>
                                     }
                                 >

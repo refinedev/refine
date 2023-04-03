@@ -6,10 +6,10 @@ import {
 } from "@refinedev/core";
 import {
     AuthPage,
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     notificationProvider,
-    LightTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -127,7 +127,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <MantineProvider
-                theme={LightTheme}
+                theme={RefineThemes.Blue}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -162,9 +162,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -252,9 +252,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >

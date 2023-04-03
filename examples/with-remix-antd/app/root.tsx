@@ -8,12 +8,13 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/antd";
+import { notificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/remix-router";
 
+import { ConfigProvider } from "antd";
 import resetStyle from "@refinedev/antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";
@@ -34,28 +35,31 @@ export default function App(): JSX.Element {
             </head>
             <body>
                 <GitHubBanner />
-                <Refine
-                    dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Outlet />
-                    <UnsavedChangesNotifier />
-                </Refine>
+                <ConfigProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
+                            },
+                        ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                    >
+                        <Outlet />
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </ConfigProvider>
+
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />

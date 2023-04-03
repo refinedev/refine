@@ -3,6 +3,7 @@ import {
     notificationProvider,
     ErrorComponent,
     AuthPage,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
@@ -12,6 +13,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DataProvider } from "@refinedev/strapi";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import strapiAuthProvider from "authProvider";
@@ -27,91 +29,93 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "subscribers",
-                        list: "/subscribers",
-                        create: "/subscribers/create",
-                    },
-                    {
-                        name: "messages",
-                        list: "/messages",
-                        create: "/messages/create",
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout
-                                    Header={Header}
-                                    OffLayoutArea={OffLayoutArea}
-                                >
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider}
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "subscribers",
+                            list: "/subscribers",
+                            create: "/subscribers/create",
+                        },
+                        {
+                            name: "messages",
+                            list: "/messages",
+                            create: "/messages/create",
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="subscribers" />
-                            }
-                        />
-
-                        <Route path="subscribers">
-                            <Route index element={<SubscriberList />} />
-                            <Route
-                                path="create"
-                                element={<CreateSubscriber />}
-                            />
-                        </Route>
-
-                        <Route path="messages">
-                            <Route index element={<MessageList />} />
-                            <Route path="create" element={<MailCreate />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="subscribers" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout
-                                    Header={Header}
-                                    OffLayoutArea={OffLayoutArea}
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                                    <Layout
+                                        Header={Header}
+                                        OffLayoutArea={OffLayoutArea}
+                                    >
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="subscribers" />
+                                }
+                            />
+
+                            <Route path="subscribers">
+                                <Route index element={<SubscriberList />} />
+                                <Route
+                                    path="create"
+                                    element={<CreateSubscriber />}
+                                />
+                            </Route>
+
+                            <Route path="messages">
+                                <Route index element={<MessageList />} />
+                                <Route path="create" element={<MailCreate />} />
+                            </Route>
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="subscribers" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <Layout
+                                        Header={Header}
+                                        OffLayoutArea={OffLayoutArea}
+                                    >
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }

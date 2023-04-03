@@ -1,7 +1,11 @@
 import React from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+} from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
@@ -37,6 +41,7 @@ import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
+import { ConfigProvider } from "context";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -55,214 +60,227 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider}
-                    authProvider={authProvider}
-                    i18nProvider={i18nProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                            meta: {
-                                label: "Dashboard",
-                                icon: <DashboardOutlined />,
+            <ConfigProvider>
+                <RefineKbarProvider>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider}
+                        authProvider={authProvider}
+                        i18nProvider={i18nProvider}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "dashboard",
+                                list: "/",
+                                meta: {
+                                    label: "Dashboard",
+                                    icon: <DashboardOutlined />,
+                                },
                             },
-                        },
-                        {
-                            name: "orders",
-                            list: "/orders",
-                            show: "/orders/show/:id",
-                            meta: {
-                                icon: <ShoppingOutlined />,
+                            {
+                                name: "orders",
+                                list: "/orders",
+                                show: "/orders/show/:id",
+                                meta: {
+                                    icon: <ShoppingOutlined />,
+                                },
                             },
-                        },
-                        {
-                            name: "users",
-                            list: "/users",
-                            show: "/users/show/:id",
-                            meta: {
-                                icon: <UsergroupAddOutlined />,
+                            {
+                                name: "users",
+                                list: "/users",
+                                show: "/users/show/:id",
+                                meta: {
+                                    icon: <UsergroupAddOutlined />,
+                                },
                             },
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            meta: {
-                                icon: <PizzaIcon />,
+                            {
+                                name: "products",
+                                list: "/products",
+                                meta: {
+                                    icon: <PizzaIcon />,
+                                },
                             },
-                        },
-                        {
-                            name: "stores",
-                            list: "/stores",
-                            create: "/stores/create",
-                            edit: "/stores/edit/:id",
-                            meta: {
-                                icon: <ShopOutlined />,
+                            {
+                                name: "stores",
+                                list: "/stores",
+                                create: "/stores/create",
+                                edit: "/stores/edit/:id",
+                                meta: {
+                                    icon: <ShopOutlined />,
+                                },
                             },
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                        },
-                        {
-                            name: "couriers",
-                            list: "/couriers",
-                            create: "/couriers/create",
-                            edit: "/couriers/edit/:id",
-                            show: "/couriers/show/:id",
-                            meta: {
-                                icon: <BikeWhiteIcon />,
+                            {
+                                name: "categories",
+                                list: "/categories",
                             },
-                        },
-                        {
-                            name: "reviews",
-                            list: "/reviews",
-                            meta: {
-                                icon: <StarOutlined />,
+                            {
+                                name: "couriers",
+                                list: "/couriers",
+                                create: "/couriers/create",
+                                edit: "/couriers/edit/:id",
+                                show: "/couriers/show/:id",
+                                meta: {
+                                    icon: <BikeWhiteIcon />,
+                                },
                             },
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout
-                                        Header={Header}
-                                        Title={Title}
-                                        OffLayoutArea={OffLayoutArea}
-                                    >
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<DashboardPage />} />
-
-                            <Route path="/orders">
-                                <Route index element={<OrderList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<OrderShow />}
-                                />
-                            </Route>
-
-                            <Route path="/users">
-                                <Route index element={<UserList />} />
-                                <Route path="show/:id" element={<UserShow />} />
-                            </Route>
-
-                            <Route path="/products" element={<ProductList />} />
-
-                            <Route path="/stores">
-                                <Route index element={<StoreList />} />
-                                <Route
-                                    path="create"
-                                    element={<StoreCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<StoreEdit />}
-                                />
-                            </Route>
-
+                            {
+                                name: "reviews",
+                                list: "/reviews",
+                                meta: {
+                                    icon: <StarOutlined />,
+                                },
+                            },
+                        ]}
+                    >
+                        <Routes>
                             <Route
-                                path="/categories"
-                                element={<CategoryList />}
-                            />
-
-                            <Route path="/couriers">
-                                <Route index element={<CourierList />} />
-                                <Route
-                                    path="create"
-                                    element={<CourierCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CourierEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<CourierShow />}
-                                />
-                            </Route>
-
-                            <Route path="/reviews" element={<ReviewsList />} />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="dashboard" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
                                 element={
-                                    <AuthPage
-                                        type="login"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={
-                                    <AuthPage
-                                        type="register"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <Layout
-                                        Header={Header}
-                                        Title={Title}
-                                        OffLayoutArea={OffLayoutArea}
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
                                     >
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </RefineKbarProvider>
+                                        <ThemedLayout
+                                            Header={Header}
+                                            Title={Title}
+                                            OffLayoutArea={OffLayoutArea}
+                                        >
+                                            <Outlet />
+                                        </ThemedLayout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route index element={<DashboardPage />} />
+
+                                <Route path="/orders">
+                                    <Route index element={<OrderList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<OrderShow />}
+                                    />
+                                </Route>
+
+                                <Route path="/users">
+                                    <Route index element={<UserList />} />
+                                    <Route
+                                        path="show/:id"
+                                        element={<UserShow />}
+                                    />
+                                </Route>
+
+                                <Route
+                                    path="/products"
+                                    element={<ProductList />}
+                                />
+
+                                <Route path="/stores">
+                                    <Route index element={<StoreList />} />
+                                    <Route
+                                        path="create"
+                                        element={<StoreCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<StoreEdit />}
+                                    />
+                                </Route>
+
+                                <Route
+                                    path="/categories"
+                                    element={<CategoryList />}
+                                />
+
+                                <Route path="/couriers">
+                                    <Route index element={<CourierList />} />
+                                    <Route
+                                        path="create"
+                                        element={<CourierCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<CourierEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<CourierShow />}
+                                    />
+                                </Route>
+
+                                <Route
+                                    path="/reviews"
+                                    element={<ReviewsList />}
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="dashboard" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            formProps={{
+                                                initialValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/register"
+                                    element={
+                                        <AuthPage
+                                            type="register"
+                                            formProps={{
+                                                initialValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/forgot-password"
+                                    element={<AuthPage type="forgotPassword" />}
+                                />
+                                <Route
+                                    path="/update-password"
+                                    element={<AuthPage type="updatePassword" />}
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated>
+                                        <ThemedLayout
+                                            Header={Header}
+                                            Title={Title}
+                                            OffLayoutArea={OffLayoutArea}
+                                        >
+                                            <Outlet />
+                                        </ThemedLayout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                        <UnsavedChangesNotifier />
+                    </Refine>
+                </RefineKbarProvider>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

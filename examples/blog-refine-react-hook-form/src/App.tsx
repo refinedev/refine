@@ -3,7 +3,7 @@ import {
     notificationProvider,
     RefineSnackbarProvider,
     Layout,
-    LightTheme,
+    RefineThemes,
     ErrorComponent,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
@@ -20,7 +20,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
