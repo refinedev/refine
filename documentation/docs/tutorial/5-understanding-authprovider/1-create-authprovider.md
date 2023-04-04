@@ -87,7 +87,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Invalid email or password"),
+            error: {
+                message: "Login Error",
+                name: "Invalid email or password",
+            },
         };
     },
     // ---
@@ -263,7 +266,10 @@ const authProvider: AuthBindings = {
             authenticated: false,
             logout: true,
             redirectTo: "/login",
-            error: new Error("User is not authenticated"),
+            error: {
+                message: "Check failed",
+                name: "Unauthorized",
+            },
         };
     },
     // ---

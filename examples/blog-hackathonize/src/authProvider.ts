@@ -70,14 +70,20 @@ const authProvider: AuthBindings = {
             if (!session) {
                 return {
                     authenticated: false,
-                    error: error || new Error("Session not found"),
+                    error: error || {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
                     redirectTo: "/login",
                 };
             }
         } catch (error: any) {
             return {
                 authenticated: false,
-                error: error || new Error("Session not found"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Session not found",
+                },
                 redirectTo: "/login",
             };
         }

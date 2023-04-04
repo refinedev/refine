@@ -14,7 +14,10 @@ const authProvider: AuthBindings = {
             if (error) {
                 return {
                     success: false,
-                    error: error || new Error("Invalid email or password"),
+                    error: error || {
+                        message: "Login failed",
+                        name: "Invalid email or password",
+                    },
                 };
             }
 
@@ -27,7 +30,10 @@ const authProvider: AuthBindings = {
         } catch (error: any) {
             return {
                 success: false,
-                error: error || new Error("Invalid email or password"),
+                error: error || {
+                    message: "Login failed",
+                    name: "Invalid email or password",
+                },
             };
         }
 
@@ -42,13 +48,13 @@ const authProvider: AuthBindings = {
             if (error) {
                 return {
                     success: false,
-                    error: error || new Error("Invalid email or password"),
+                    error: error || new Error("Logout failed"),
                 };
             }
         } catch (error: any) {
             return {
                 success: false,
-                error: error || new Error("Invalid email or password"),
+                error: error || new Error("Logout failed"),
             };
         }
 
@@ -70,14 +76,20 @@ const authProvider: AuthBindings = {
                 return {
                     authenticated: false,
                     redirectTo: "/login",
-                    error: error || new Error("Session not found"),
+                    error: error || {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
                 };
             }
         } catch (error: any) {
             return {
                 authenticated: false,
                 redirectTo: "/login",
-                error: error || new Error("Session not found"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Session not found",
+                },
             };
         }
 

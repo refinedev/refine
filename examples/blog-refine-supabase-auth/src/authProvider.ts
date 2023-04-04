@@ -13,7 +13,10 @@ const authProvider: AuthBindings = {
         if (error) {
             return {
                 success: false,
-                error: error || new Error("Invalid OTP"),
+                error: error || {
+                    message: "Login failed",
+                    name: "Invalid OTP",
+                },
             };
         }
 
@@ -26,7 +29,7 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Invalid OTP"),
+            error: { message: "Login failed", name: "Invalid OTP" },
         };
     },
     logout: async () => {
@@ -35,7 +38,10 @@ const authProvider: AuthBindings = {
         if (error) {
             return {
                 success: false,
-                error: error || new Error("Invalid OTP"),
+                error: error || {
+                    message: "Logout failed",
+                    name: "Invalid OTP",
+                },
             };
         }
 
@@ -55,7 +61,10 @@ const authProvider: AuthBindings = {
         if (!session) {
             return {
                 authenticated: false,
-                error: error || new Error("Session not found"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Session not found",
+                },
                 redirectTo: "/login",
             };
         }

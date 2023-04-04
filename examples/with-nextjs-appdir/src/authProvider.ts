@@ -58,7 +58,10 @@ export const authProvider: AuthBindings = {
             } else {
                 return {
                     authenticated: false,
-                    error: new Error("Unauthorized"),
+                    error: {
+                        message: "Check failed",
+                        name: "Unauthorized",
+                    },
                     logout: true,
                     redirectTo: "/login",
                 };
@@ -72,7 +75,10 @@ export const authProvider: AuthBindings = {
             } else {
                 return {
                     authenticated: false,
-                    error: new Error("Unauthorized"),
+                    error: {
+                        message: "Check failed",
+                        name: "Unauthorized",
+                    },
                     logout: true,
                     redirectTo: "/login",
                 };

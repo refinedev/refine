@@ -646,7 +646,10 @@ export const authProvider: AuthBindings = {
         if (!user) {
             return {
                 authenticated: false,
-                error: new Error("Unauthorized"),
+                error: {
+                    message: "Check failed",
+                    name: "Unauthorized",
+                },
                 logout: true,
                 redirectTo: "/login",
             };

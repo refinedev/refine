@@ -213,7 +213,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Login failed"),
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
         };
     },
     register: async ({ email, password }) => {
@@ -244,7 +247,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Login failed"),
+            error: {
+                message: "Register failed",
+                name: "Invalid email or password",
+            },
         };
     },
     forgotPassword: async ({ email }) => {
@@ -281,7 +287,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Forgot Password password failed"),
+            error: {
+                message: "Forgot password failed",
+                name: "Invalid email",
+            },
         };
     },
     updatePassword: async ({ password }) => {
@@ -311,7 +320,10 @@ const authProvider: AuthBindings = {
         }
         return {
             success: false,
-            error: new Error("Update Password password failed"),
+            error: {
+                message: "Update password failed",
+                name: "Invalid password",
+            },
         };
     },
     logout: async () => {
@@ -341,7 +353,10 @@ const authProvider: AuthBindings = {
             if (!session) {
                 return {
                     authenticated: false,
-                    error: new Error("Not authenticated"),
+                    error: {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
                     logout: true,
                     redirectTo: "/login",
                 };
@@ -349,7 +364,10 @@ const authProvider: AuthBindings = {
         } catch (error: any) {
             return {
                 authenticated: false,
-                error: error || new Error("Not authenticated"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Session not found",
+                },
                 logout: true,
                 redirectTo: "/login",
             };
