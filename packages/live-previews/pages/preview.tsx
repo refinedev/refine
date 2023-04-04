@@ -121,6 +121,12 @@ const Preview: NextPage = () => {
                         : {},
             ];
 
+            if (code.includes("React.createElement(GoogleButton,")) {
+                callbacks.push(
+                    async () => (await import("../src/scope/google")).default,
+                );
+            }
+
             let scopesToUse: Record<string, any> = {};
 
             const resolvedScopes = await Promise.all(
