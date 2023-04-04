@@ -17,7 +17,7 @@ import {
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import {
     AuthActionResponse,
-    HttpError,
+    RefineError,
     OpenNotificationParams,
     TUpdatePasswordData,
     UpdatePasswordFormTypes,
@@ -30,7 +30,7 @@ export type UseUpdatePasswordLegacyProps<
     mutationOptions?: Omit<
         UseMutationOptions<
             TUpdatePasswordData,
-            Error | HttpError,
+            Error | RefineError,
             TVariables,
             unknown
         >,
@@ -44,7 +44,7 @@ export type UseUpdatePasswordProps<TVariables extends UpdatePasswordFormTypes> =
         mutationOptions?: Omit<
             UseMutationOptions<
                 AuthActionResponse,
-                Error | HttpError,
+                Error | RefineError,
                 TVariables,
                 unknown
             >,
@@ -59,7 +59,7 @@ export type UseUpdatePasswordCombinedProps<
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TUpdatePasswordData,
-            Error | HttpError,
+            Error | RefineError,
             TVariables,
             unknown
         >,
@@ -71,7 +71,7 @@ export type UseUpdatePasswordLegacyReturnType<
     TVariables extends UpdatePasswordFormTypes,
 > = UseMutationResult<
     TUpdatePasswordData,
-    Error | HttpError,
+    Error | RefineError,
     TVariables,
     unknown
 >;
@@ -80,7 +80,7 @@ export type UseUpdatePasswordReturnType<
     TVariables extends UpdatePasswordFormTypes,
 > = UseMutationResult<
     AuthActionResponse,
-    Error | HttpError,
+    Error | RefineError,
     TVariables,
     unknown
 >;
@@ -89,7 +89,7 @@ export type UseUpdatePasswordCombinedReturnType<
     TVariables extends UpdatePasswordFormTypes,
 > = UseMutationResult<
     AuthActionResponse | TUpdatePasswordData,
-    Error | HttpError,
+    Error | RefineError,
     TVariables,
     unknown
 >;
@@ -190,7 +190,7 @@ export function useUpdatePassword<
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TUpdatePasswordData,
-        Error | HttpError,
+        Error | RefineError,
         TVariables,
         unknown
     >(
@@ -227,7 +227,7 @@ export function useUpdatePassword<
 }
 
 const buildNotification = (
-    error?: Error | HttpError,
+    error?: Error | RefineError,
 ): OpenNotificationParams => {
     return {
         message: error?.name || "Update Password Error",

@@ -31,25 +31,25 @@
  * Same goes for `onError` function, it should always resolve.
  */
 
-import { HttpError } from "../HttpError";
+import { RefineError } from "../errors";
 
 export type CheckResponse = {
     authenticated: boolean;
     redirectTo?: string;
     logout?: boolean;
-    error?: HttpError | Error;
+    error?: RefineError | Error;
 };
 
 export type OnErrorResponse = {
     redirectTo?: string;
     logout?: boolean;
-    error?: HttpError | Error;
+    error?: RefineError | Error;
 };
 
 export type AuthActionResponse = {
     success: boolean;
     redirectTo?: string;
-    error?: HttpError | Error;
+    error?: RefineError | Error;
     [key: string]: unknown;
 };
 

@@ -9,7 +9,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
 import {
     AuthActionResponse,
-    HttpError,
+    RefineError,
     OpenNotificationParams,
     TLoginData,
     TRegisterData,
@@ -21,7 +21,7 @@ export type UseRegisterLegacyProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             TRegisterData,
-            Error | HttpError,
+            Error | RefineError,
             TVariables,
             unknown
         >,
@@ -34,7 +34,7 @@ export type UseRegisterProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse,
-            Error | HttpError,
+            Error | RefineError,
             TVariables,
             unknown
         >,
@@ -47,7 +47,7 @@ export type UseRegisterCombinedProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TRegisterData,
-            Error | HttpError,
+            Error | RefineError,
             TVariables,
             unknown
         >,
@@ -57,21 +57,21 @@ export type UseRegisterCombinedProps<TVariables> = {
 
 export type UseRegisterLegacyReturnType<TVariables> = UseMutationResult<
     TRegisterData,
-    Error | HttpError,
+    Error | RefineError,
     TVariables,
     unknown
 >;
 
 export type UseRegisterReturnType<TVariables> = UseMutationResult<
     AuthActionResponse,
-    Error | HttpError,
+    Error | RefineError,
     TVariables,
     unknown
 >;
 
 export type UseRegisterCombinedReturnType<TVariables> = UseMutationResult<
     AuthActionResponse | TLoginData,
-    Error | HttpError,
+    Error | RefineError,
     TVariables,
     unknown
 >;
@@ -113,7 +113,7 @@ export function useRegister<TVariables = {}>({
 
     const mutation = useMutation<
         AuthActionResponse,
-        Error | HttpError,
+        Error | RefineError,
         TVariables,
         unknown
     >(["useRegister"], registerFromContext, {
@@ -148,7 +148,7 @@ export function useRegister<TVariables = {}>({
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TRegisterData,
-        Error | HttpError,
+        Error | RefineError,
         TVariables,
         unknown
     >(
@@ -188,7 +188,7 @@ export function useRegister<TVariables = {}>({
 }
 
 const buildNotification = (
-    error?: Error | HttpError,
+    error?: Error | RefineError,
 ): OpenNotificationParams => {
     return {
         message: error?.name || "Register Error",
