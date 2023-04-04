@@ -154,6 +154,33 @@ Mantine theme is an object where your application's colors, fonts, spacing, bord
 
 [Refer to the Mantine documentation for more information about theme object. &#8594](https://mantine.dev/theming/theme-object/)
 
+## Refine Themes
+
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts#L186) has predefined themes for you. You can use them by importing them from `@refinedev/mantine` package. It is not required if you decide to use the default Mantine theme.
+
+```ts
+const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
+```
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayout, RefineThemes } from "@refinedev/mantine";
+
+import { MantineProvider } from "@mantine/core";
+
+const App: React.FC = () => {
+    return (
+        <MantineProvider theme={RefineThemes.Blue}>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayout>{/* ... */}</ThemedLayout>
+            </Refine>
+        </MantineProvider>
+    );
+};
+```
+
 ## Theme customization
 
 `<MantineProvider/>` component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.

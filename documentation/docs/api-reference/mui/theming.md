@@ -8,6 +8,38 @@ Theme specifies the color of the components, the darkness of the surfaces, level
 
 [Refer to the Material UI documentation for more information about Material UI Theming. &#8594](https://mui.com/material-ui/customization/theming/)
 
+## Refine Themes
+
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can use them by importing them from `@refinedev/mui` package. It is not required if you decide to use the default MUI theme.
+
+```ts
+// light themes
+const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
+
+// dark themes
+const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } =
+    RefineThemes;
+```
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayout, RefineThemes } from "@refinedev/mui";
+
+import { ThemeProvider } from "@mui/material/styles";
+
+const App: React.FC = () => {
+    return (
+        <ThemeProvider theme={RefineThemes.Blue}>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayout>{/* ... */}</ThemedLayout>
+            </Refine>
+        </ThemeProvider>
+    );
+};
+```
+
 ## Theme Provider
 
 The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-provider) component is a simple wrapper around React's Context API that allows you to inject a Theme object into your application. By default, Material-UI components come with a default Theme. In addition, you can also use the ThemeProvider component to inject a custom theme that you have created yourself. This is a feature that allows for great flexibility in how you design your application.

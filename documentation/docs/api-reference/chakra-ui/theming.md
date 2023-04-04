@@ -160,6 +160,43 @@ The theme object is where you define your application's color palette, type scal
 
 [Refer to the Chakra UI documentation for more information about theme. &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
 
+## Refine Themes
+
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/theme/index.ts#L92) has predefined themes for you. You can use them by importing them from `@refinedev/chakra-ui` package. It is not required if you decide to use the default chakra-ui theme.
+
+```ts
+const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
+```
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
+
+const App: React.FC = () => {
+    return (
+        <ChakraProvider theme={RefineThemes.Blue}>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayout>{/* ... */}</ThemedLayout>
+            </Refine>
+        </ChakraProvider>
+    );
+};
+```
+
+:::caution
+
+If you want to use `<ThemedLayout>` you have to wrap your application with `<ChakraProvider>` component and should give `theme` prop to it.
+
+You can use `RefineThemes` provided by **refine** or you can create your own theme object.
+
+[Refer to the Chakra UI documentation for more information about theme. &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
+
+:::
+
 ## Theme customization
 
 `<ChakraProvider/>` component can be used to change the theme and other global settings. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.

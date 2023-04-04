@@ -9,6 +9,33 @@ Design Tokens are the smallest element that affects the theme. By modifying the 
 
 [Refer to the Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
 
+## Refine Themes
+
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/antd/src/definitions/themes/index.ts) has predefined themes for you. You can use them by importing them from `@refinedev/antd` package. It is not required if you decide to use the default antd theme.
+
+```ts
+const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
+```
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
+
+const App: React.FC = () => {
+    return (
+        <ConfigProvider theme={RefineThemes.Blue}>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayout>{/* ... */}</ThemedLayout>
+            </Refine>
+        </ConfigProvider>
+    );
+};
+```
+
 ## Theme customization
 
 [`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
