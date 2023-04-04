@@ -4,7 +4,7 @@ description: We will be building a Complete React CRUD application using refine 
 slug: building-react-admin-dashboard
 authors: peter_osah
 tags: [refine, react, tutorial]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
 ---
 
@@ -2364,3 +2364,10 @@ In this Article, We covered how to create a React Admin Dashboard with Refine. W
 
 
 This article demonstrates the versatility of using refine to create applications like a React Admin Dashboard. refine is an excellent tool for accelerating development by abstracting many time-consuming tasks, allowing the developer to devote more time to the application's core business logic. To access the documentation, go to [here](https://refine.dev/docs/getting-started/overview/).
+
+
+## Live CodeSandbox Example
+
+<CodeSandboxExample path="blog-finefoods-admin-dashboard" />
+
+---
