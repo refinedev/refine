@@ -16,6 +16,8 @@ React is a well-known front-end framework used to create interactive user interf
  
  In this tutorial, we will be building a React admin dashboard application using refine and highlighting the features of refine that may convince you to use refine to build your next frontend React admin application.
 
+[You can find the live example demo here](https://example.admin.refine.dev/)
+
 
 ## Why use refine?
 refine as a framework of React is headless in design. this implies that you can build an app with refine with so much customization or you can integrate component libraries like Ant Design, Material UI, Chakra UI, and Mantime into your application with less difficulty.  
@@ -2365,9 +2367,3 @@ In this Article, We covered how to create a React Admin Dashboard with Refine. W
 
 This article demonstrates the versatility of using refine to create applications like a React Admin Dashboard. refine is an excellent tool for accelerating development by abstracting many time-consuming tasks, allowing the developer to devote more time to the application's core business logic. To access the documentation, go to [here](https://refine.dev/docs/getting-started/overview/).
 
-
-## Live CodeSandbox Example
-
-<CodeSandboxExample path="blog-finefoods-admin-dashboard" />
-
----
