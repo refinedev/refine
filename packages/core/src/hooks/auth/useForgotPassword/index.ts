@@ -9,6 +9,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
 import {
     AuthActionResponse,
+    HttpError,
     OpenNotificationParams,
     TForgotPasswordData,
 } from "../../../interfaces";
@@ -16,7 +17,12 @@ import {
 export type UseForgotPasswordLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
-        UseMutationOptions<TForgotPasswordData, Error, TVariables, unknown>,
+        UseMutationOptions<
+            TForgotPasswordData,
+            Error | HttpError,
+            TVariables,
+            unknown
+        >,
         "mutationFn" | "onError" | "onSuccess"
     >;
 };
@@ -24,7 +30,12 @@ export type UseForgotPasswordLegacyProps<TVariables> = {
 export type UseForgotPasswordProps<TVariables> = {
     v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
-        UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
+        UseMutationOptions<
+            AuthActionResponse,
+            Error | HttpError,
+            TVariables,
+            unknown
+        >,
         "mutationFn"
     >;
 };
@@ -34,7 +45,7 @@ export type UseForgotPasswordCombinedProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TForgotPasswordData,
-            Error,
+            Error | HttpError,
             TVariables,
             unknown
         >,
@@ -44,21 +55,21 @@ export type UseForgotPasswordCombinedProps<TVariables> = {
 
 export type UseForgotPasswordLegacyReturnType<TVariables> = UseMutationResult<
     TForgotPasswordData,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
 
 export type UseForgotPasswordReturnType<TVariables> = UseMutationResult<
     AuthActionResponse,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
 
 export type UseForgotPasswordCombinedReturnType<TVariables> = UseMutationResult<
     AuthActionResponse | TForgotPasswordData,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
@@ -104,7 +115,7 @@ export function useForgotPassword<TVariables = {}>({
 
     const mutation = useMutation<
         AuthActionResponse,
-        Error,
+        Error | HttpError,
         TVariables,
         unknown
     >(["useForgotPassword"], forgotPasswordFromContext, {
@@ -133,7 +144,7 @@ export function useForgotPassword<TVariables = {}>({
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TForgotPasswordData,
-        Error,
+        Error | HttpError,
         TVariables,
         unknown
     >(
@@ -164,7 +175,9 @@ export function useForgotPassword<TVariables = {}>({
         : mutation;
 }
 
-const buildNotification = (error?: Error): OpenNotificationParams => {
+const buildNotification = (
+    error?: Error | HttpError,
+): OpenNotificationParams => {
     return {
         message: error?.name || "Forgot Password Error",
         description: error?.message || "Error while resetting password",

@@ -9,6 +9,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
 import {
     AuthActionResponse,
+    HttpError,
     OpenNotificationParams,
     TLoginData,
     TRegisterData,
@@ -18,7 +19,12 @@ import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 export type UseRegisterLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
-        UseMutationOptions<TRegisterData, Error, TVariables, unknown>,
+        UseMutationOptions<
+            TRegisterData,
+            Error | HttpError,
+            TVariables,
+            unknown
+        >,
         "mutationFn" | "onError" | "onSuccess"
     >;
 };
@@ -26,7 +32,12 @@ export type UseRegisterLegacyProps<TVariables> = {
 export type UseRegisterProps<TVariables> = {
     v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
-        UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
+        UseMutationOptions<
+            AuthActionResponse,
+            Error | HttpError,
+            TVariables,
+            unknown
+        >,
         "mutationFn"
     >;
 };
@@ -36,7 +47,7 @@ export type UseRegisterCombinedProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TRegisterData,
-            Error,
+            Error | HttpError,
             TVariables,
             unknown
         >,
@@ -46,21 +57,21 @@ export type UseRegisterCombinedProps<TVariables> = {
 
 export type UseRegisterLegacyReturnType<TVariables> = UseMutationResult<
     TRegisterData,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
 
 export type UseRegisterReturnType<TVariables> = UseMutationResult<
     AuthActionResponse,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
 
 export type UseRegisterCombinedReturnType<TVariables> = UseMutationResult<
     AuthActionResponse | TLoginData,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
@@ -102,7 +113,7 @@ export function useRegister<TVariables = {}>({
 
     const mutation = useMutation<
         AuthActionResponse,
-        Error,
+        Error | HttpError,
         TVariables,
         unknown
     >(["useRegister"], registerFromContext, {
@@ -137,7 +148,7 @@ export function useRegister<TVariables = {}>({
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TRegisterData,
-        Error,
+        Error | HttpError,
         TVariables,
         unknown
     >(
@@ -176,7 +187,9 @@ export function useRegister<TVariables = {}>({
         : mutation;
 }
 
-const buildNotification = (error?: Error): OpenNotificationParams => {
+const buildNotification = (
+    error?: Error | HttpError,
+): OpenNotificationParams => {
     return {
         message: error?.name || "Register Error",
         description: error?.message || "Error while registering",

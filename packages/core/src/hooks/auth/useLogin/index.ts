@@ -1,3 +1,4 @@
+import React from "react";
 import {
     useMutation,
     UseMutationOptions,
@@ -15,15 +16,18 @@ import {
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
-import { OpenNotificationParams, TLoginData } from "../../../interfaces";
+import {
+    HttpError,
+    OpenNotificationParams,
+    TLoginData,
+} from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
-import React from "react";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
 export type UseLoginLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
-        UseMutationOptions<TLoginData, Error, TVariables, unknown>,
+        UseMutationOptions<TLoginData, Error | HttpError, TVariables, unknown>,
         "mutationFn" | "onError" | "onSuccess"
     >;
 };
@@ -31,7 +35,12 @@ export type UseLoginLegacyProps<TVariables> = {
 export type UseLoginProps<TVariables> = {
     v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
-        UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
+        UseMutationOptions<
+            AuthActionResponse,
+            Error | HttpError,
+            TVariables,
+            unknown
+        >,
         "mutationFn"
     >;
 };
@@ -41,7 +50,7 @@ export type UseLoginCombinedProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TLoginData,
-            Error,
+            Error | HttpError,
             TVariables,
             unknown
         >,
@@ -51,21 +60,21 @@ export type UseLoginCombinedProps<TVariables> = {
 
 export type UseLoginLegacyReturnType<TVariables> = UseMutationResult<
     TLoginData,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
 
 export type UseLoginReturnType<TVariables> = UseMutationResult<
     AuthActionResponse,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
 
 export type UseLoginCombinedReturnType<TVariables> = UseMutationResult<
     AuthActionResponse | TLoginData,
-    Error,
+    Error | HttpError,
     TVariables,
     unknown
 >;
@@ -125,7 +134,7 @@ export function useLogin<TVariables = {}>({
 
     const mutation = useMutation<
         AuthActionResponse,
-        Error,
+        Error | HttpError,
         TVariables,
         unknown
     >(["useLogin"], loginFromContext, {
@@ -166,7 +175,7 @@ export function useLogin<TVariables = {}>({
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TLoginData,
-        Error,
+        Error | HttpError,
         TVariables,
         unknown
     >(["useLogin", "v3LegacyAuthProviderCompatible"], legacyLoginFromContext, {
@@ -206,7 +215,9 @@ export function useLogin<TVariables = {}>({
         : mutation;
 }
 
-const buildNotification = (error?: Error): OpenNotificationParams => {
+const buildNotification = (
+    error?: Error | HttpError,
+): OpenNotificationParams => {
     return {
         message: error?.name || "Login Error",
         description: error?.message || "Invalid credentials",

@@ -6,7 +6,11 @@ import {
 
 import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { OpenNotificationParams, TLogoutData } from "../../../interfaces";
+import {
+    HttpError,
+    OpenNotificationParams,
+    TLogoutData,
+} from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
@@ -19,7 +23,7 @@ export type UseLogoutLegacyProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             TLogoutData,
-            Error,
+            Error | HttpError,
             (TVariables & Variables) | void,
             unknown
         >,
@@ -32,7 +36,7 @@ export type UseLogoutProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse,
-            Error,
+            Error | HttpError,
             (TVariables & Variables) | void,
             unknown
         >,
@@ -45,7 +49,7 @@ export type UseLogoutCombinedProps<TVariables> = {
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TLogoutData,
-            Error,
+            Error | HttpError,
             (TVariables & Variables) | void,
             unknown
         >,
@@ -55,21 +59,21 @@ export type UseLogoutCombinedProps<TVariables> = {
 
 export type UseLogoutLegacyReturnType<TVariables> = UseMutationResult<
     TLogoutData,
-    Error,
+    Error | HttpError,
     (TVariables & Variables) | void,
     unknown
 >;
 
 export type UseLogoutReturnType<TVariables> = UseMutationResult<
     AuthActionResponse,
-    Error,
+    Error | HttpError,
     (TVariables & Variables) | void,
     unknown
 >;
 
 export type UseLogoutCombinedReturnType<TVariables> = UseMutationResult<
     AuthActionResponse | TLogoutData,
-    Error,
+    Error | HttpError,
     (TVariables & Variables) | void,
     unknown
 >;
@@ -108,7 +112,7 @@ export function useLogout<TVariables = {}>({
 
     const mutation = useMutation<
         AuthActionResponse,
-        Error,
+        Error | HttpError,
         (TVariables & Variables) | void,
         unknown
     >(["useLogout"], logoutFromContext, {
@@ -146,7 +150,7 @@ export function useLogout<TVariables = {}>({
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TLogoutData,
-        Error,
+        Error | HttpError,
         (TVariables & Variables) | void,
         unknown
     >(
@@ -189,7 +193,9 @@ export function useLogout<TVariables = {}>({
         : mutation;
 }
 
-const buildNotification = (error?: Error): OpenNotificationParams => {
+const buildNotification = (
+    error?: Error | HttpError,
+): OpenNotificationParams => {
     return {
         key: "useLogout-error",
         type: "error",
