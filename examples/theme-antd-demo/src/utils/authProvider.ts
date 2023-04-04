@@ -44,7 +44,7 @@ export const authProvider: AuthBindings = {
         return {
             success: false,
             error: {
-                messsage: "Register failed",
+                message: "Register failed",
                 name: "Invalid email or password",
             },
         };
