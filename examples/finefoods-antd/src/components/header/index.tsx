@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
 import {
-    Menu,
     Dropdown,
     Input,
     Avatar,
@@ -23,6 +22,7 @@ import {
     Layout as AntdLayout,
     Button,
     theme,
+    MenuProps,
 } from "antd";
 
 import { useTranslation } from "react-i18next";
@@ -171,26 +171,18 @@ export const Header: React.FC = () => {
         refetchStores();
     }, [value]);
 
-    const menu = (
-        <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
-            {[...(i18n.languages ?? [])].sort().map((lang: string) => (
-                <Menu.Item
-                    key={lang}
-                    onClick={() => changeLanguage(lang)}
-                    icon={
-                        <span style={{ marginRight: 8 }}>
-                            <Avatar
-                                size={16}
-                                src={`/images/flags/${lang}.svg`}
-                            />
-                        </span>
-                    }
-                >
-                    {lang === "en" ? "English" : "German"}
-                </Menu.Item>
-            ))}
-        </Menu>
-    );
+    const menuItems: MenuProps["items"] = [...(i18n.languages || [])]
+        .sort()
+        .map((lang: string) => ({
+            key: lang,
+            onClick: () => changeLanguage(lang),
+            icon: (
+                <span style={{ marginRight: 8 }}>
+                    <Avatar size={16} src={`/images/flags/${lang}.svg`} />
+                </span>
+            ),
+            label: lang === "en" ? "English" : "German",
+        }));
 
     return (
         <AntdHeader
@@ -239,7 +231,14 @@ export const Header: React.FC = () => {
                                 setMode(mode === "light" ? "dark" : "light");
                             }}
                         />
-                        <Dropdown overlay={menu}>
+                        <Dropdown
+                            menu={{
+                                items: menuItems,
+                                selectedKeys: currentLocale
+                                    ? [currentLocale]
+                                    : [],
+                            }}
+                        >
                             <a
                                 style={{ color: "inherit" }}
                                 onClick={(e) => e.preventDefault()}
