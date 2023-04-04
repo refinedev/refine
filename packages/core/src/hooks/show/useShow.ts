@@ -14,6 +14,7 @@ import {
     BaseKey,
     HttpError,
     IResourceItem,
+    Prettify,
 } from "../../interfaces";
 import { useRouterType } from "@contexts/router-picker";
 import { useParsed } from "@hooks/router/use-parsed";
@@ -44,7 +45,7 @@ export type useShowProps<
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
@@ -60,7 +61,11 @@ export type useShowProps<
      */
     dataProviderName?: string;
 } & LiveModeProps &
-    SuccessErrorNotification;
+    SuccessErrorNotification<
+        GetOneResponse<TData>,
+        TError,
+        Prettify<{ id?: BaseKey } & MetaQuery>
+    >;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -165,7 +170,7 @@ export const useShow = <
             `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
     );
 
-    const queryResult = useOne<TData>({
+    const queryResult = useOne<TData, TError>({
         resource: resource?.name,
         id: showId ?? "",
         queryOptions: {

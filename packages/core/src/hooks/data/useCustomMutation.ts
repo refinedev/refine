@@ -16,6 +16,7 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaQuery,
+    Prettify,
 } from "../../interfaces";
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
@@ -23,7 +24,7 @@ interface UseCustomMutationConfig {
     headers?: {};
 }
 
-type useCustomMutationParams<TVariables> = {
+type useCustomMutationParams<TData, TError, TVariables> = {
     url: string;
     method: "post" | "put" | "patch" | "delete";
     values: TVariables;
@@ -38,7 +39,11 @@ type useCustomMutationParams<TVariables> = {
     metaData?: MetaQuery;
     dataProviderName?: string;
     config?: UseCustomMutationConfig;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<
+    CreateResponse<TData>,
+    TError,
+    Prettify<UseCustomMutationConfig & MetaQuery>
+>;
 
 export type UseCustomMutationReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -47,7 +52,7 @@ export type UseCustomMutationReturnType<
 > = UseMutationResult<
     CreateResponse<TData>,
     TError,
-    useCustomMutationParams<TVariables>,
+    useCustomMutationParams<TData, TError, TVariables>,
     unknown
 >;
 
@@ -60,7 +65,7 @@ export type UseCustomMutationProps<
         UseMutationOptions<
             CreateResponse<TData>,
             TError,
-            useCustomMutationParams<TVariables>,
+            useCustomMutationParams<TData, TError, TVariables>,
             unknown
         >,
         "mutationFn" | "onError" | "onSuccess"
@@ -102,7 +107,7 @@ export const useCustomMutation = <
     const mutation = useMutation<
         CreateResponse<TData>,
         TError,
-        useCustomMutationParams<TVariables>,
+        useCustomMutationParams<TData, TError, TVariables>,
         unknown
     >(
         ({
@@ -113,7 +118,7 @@ export const useCustomMutation = <
             metaData,
             dataProviderName,
             config,
-        }: useCustomMutationParams<TVariables>) => {
+        }: useCustomMutationParams<TData, TError, TVariables>) => {
             const { custom } = dataProvider(dataProviderName);
 
             if (custom) {

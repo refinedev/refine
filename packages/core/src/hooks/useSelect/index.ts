@@ -23,6 +23,7 @@ import {
 import { pickNotDeprecated } from "@definitions/helpers";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource/index";
+import { BaseListProps } from "../data/useList";
 
 export type UseSelectProps<TData, TError> = {
     /**
@@ -115,7 +116,11 @@ export type UseSelectProps<TData, TError> = {
      * @default `undefined`
      */
     fetchSize?: number;
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<
+    GetListResponse<TData>,
+    TError,
+    Prettify<BaseListProps>
+> &
     LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
