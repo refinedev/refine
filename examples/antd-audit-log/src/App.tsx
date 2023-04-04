@@ -6,9 +6,10 @@ import {
 } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     AuthPage,
+    RefineThemes,
 } from "@refinedev/antd";
 import { DashboardOutlined } from "@ant-design/icons";
 import dataProvider from "@refinedev/simple-rest";
@@ -31,6 +32,7 @@ import {
 import { DashboardPage } from "pages/dashboard";
 import { ILoginDto } from "interfaces";
 import refineSDK from "utils/refine-sdk";
+import { ConfigProvider } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -114,121 +116,132 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "dashboard",
-                        list: "/",
-                        meta: {
-                            label: "Dashboard",
-                            icon: <DashboardOutlined />,
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    authProvider={authProvider}
+                    resources={[
+                        {
+                            name: "dashboard",
+                            list: "/",
+                            meta: {
+                                label: "Dashboard",
+                                icon: <DashboardOutlined />,
+                            },
                         },
-                    },
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        meta: {
-                            canDelete: true,
-                            audit: ["create", "delete", "update"],
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            meta: {
+                                canDelete: true,
+                                audit: ["create", "delete", "update"],
+                            },
                         },
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                        create: "/categories/create",
-                        edit: "/categories/edit/:id",
-                        meta: {
-                            canDelete: true,
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            show: "/categories/show/:id",
+                            create: "/categories/create",
+                            edit: "/categories/edit/:id",
+                            meta: {
+                                canDelete: true,
+                            },
                         },
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                auditLogProvider={{
-                    create: async ({ ...params }) => {
-                        await refineSDK.log.create(params);
-                    },
-                    get: async ({ resource, action, meta, author }) => {
-                        return await refineSDK.log.get({
-                            resource,
-                            action,
-                            meta,
-                            author,
-                        });
-                    },
-                    update: async ({ id, name }) => {
-                        return await refineSDK.log.update(id, {
-                            name,
-                        });
-                    },
-                }}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-
-                        <Route path="/posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
-
-                        <Route path="/categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                            <Route path="edit/:id" element={<CategoryEdit />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
+                    ]}
+                    notificationProvider={notificationProvider}
+                    auditLogProvider={{
+                        create: async ({ ...params }) => {
+                            await refineSDK.log.create(params);
+                        },
+                        get: async ({ resource, action, meta, author }) => {
+                            return await refineSDK.log.get({
+                                resource,
+                                action,
+                                meta,
+                                author,
+                            });
+                        },
+                        update: async ({ id, name }) => {
+                            return await refineSDK.log.update(id, {
+                                name,
+                            });
+                        },
+                    }}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Route>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="/categories">
+                                <Route index element={<CategoryList />} />
+                                <Route
+                                    path="create"
+                                    element={<CategoryCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<CategoryEdit />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<CategoryShow />}
+                                />
+                            </Route>
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="posts" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

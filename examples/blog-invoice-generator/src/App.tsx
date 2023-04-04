@@ -1,9 +1,10 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     AuthPage,
+    RefineThemes,
 } from "@refinedev/antd";
 import {
     FileAddOutlined,
@@ -29,6 +30,7 @@ import { InvoiceList, InvoiceCreate, InvoiceEdit } from "pages/invoice";
 import { MissionList } from "pages/mission";
 
 import { API_URL } from "../src/constants";
+import { ConfigProvider } from "antd";
 
 function App() {
     const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
@@ -36,130 +38,141 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                routerProvider={routerProvider}
-                notificationProvider={notificationProvider}
-                dataProvider={dataProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "companies",
-                        list: "/companies",
-                        meta: {
-                            label: "Company",
-                            icon: <InfoCircleOutlined />,
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                    dataProvider={dataProvider}
+                    authProvider={authProvider}
+                    resources={[
+                        {
+                            name: "companies",
+                            list: "/companies",
+                            meta: {
+                                label: "Company",
+                                icon: <InfoCircleOutlined />,
+                            },
                         },
-                    },
-                    {
-                        name: "clients",
-                        list: "/clients",
-                        meta: {
-                            icon: <TeamOutlined />,
+                        {
+                            name: "clients",
+                            list: "/clients",
+                            meta: {
+                                icon: <TeamOutlined />,
+                            },
                         },
-                    },
-                    {
-                        name: "contacts",
-                        list: "/contacts",
-                        edit: "/contacts/edit/:id",
-                        meta: {
-                            icon: <UserAddOutlined />,
+                        {
+                            name: "contacts",
+                            list: "/contacts",
+                            edit: "/contacts/edit/:id",
+                            meta: {
+                                icon: <UserAddOutlined />,
+                            },
                         },
-                    },
-                    {
-                        name: "missions",
-                        list: "/missions",
-                        meta: {
-                            icon: <SlidersOutlined />,
+                        {
+                            name: "missions",
+                            list: "/missions",
+                            meta: {
+                                icon: <SlidersOutlined />,
+                            },
                         },
-                    },
-                    {
-                        name: "invoices",
-                        list: "/invoices",
-                        create: "/invoices/create",
-                        edit: "/invoices/edit/:id",
-                        meta: {
-                            icon: <FileAddOutlined />,
+                        {
+                            name: "invoices",
+                            list: "/invoices",
+                            create: "/invoices/create",
+                            edit: "/invoices/edit/:id",
+                            meta: {
+                                icon: <FileAddOutlined />,
+                            },
                         },
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="companies" />
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
                             }
-                        />
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="companies" />
+                                }
+                            />
 
-                        <Route path="companies" element={<CompanyList />} />
+                            <Route path="companies" element={<CompanyList />} />
 
-                        <Route path="clients" element={<ClientList />} />
+                            <Route path="clients" element={<ClientList />} />
 
-                        <Route path="contacts">
-                            <Route index element={<ContactsList />} />
-                            <Route path="edit/:id" element={<ContactEdit />} />
-                        </Route>
-
-                        <Route path="missions" element={<MissionList />} />
-
-                        <Route path="invoices">
-                            <Route index element={<InvoiceList />} />
-                            <Route path="edit/:id" element={<InvoiceEdit />} />
-                            <Route path="create" element={<InvoiceCreate />} />
-                        </Route>
-                    </Route>
-
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="companies" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={
-                                <AuthPage
-                                    formProps={{
-                                        initialValues: {
-                                            email: "demo@refine.dev",
-                                            password: "demodemo",
-                                        },
-                                    }}
+                            <Route path="contacts">
+                                <Route index element={<ContactsList />} />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ContactEdit />}
                                 />
-                            }
-                        />
-                    </Route>
+                            </Route>
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="missions" element={<MissionList />} />
+
+                            <Route path="invoices">
+                                <Route index element={<InvoiceList />} />
+                                <Route
+                                    path="edit/:id"
+                                    element={<InvoiceEdit />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<InvoiceCreate />}
+                                />
+                            </Route>
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="companies" />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthPage
+                                        formProps={{
+                                            initialValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
+                                }
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }

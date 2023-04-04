@@ -4,7 +4,11 @@ import {
     GitHubBanner,
     Refine,
 } from "@refinedev/core";
-import { ErrorComponent, Layout, notificationProvider } from "@refinedev/antd";
+import {
+    ErrorComponent,
+    ThemedLayout,
+    notificationProvider,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -70,11 +74,11 @@ function App() {
                         <Route
                             element={
                                 <Authenticated>
-                                    <Layout Title={Title}>
+                                    <ThemedLayout Title={Title}>
                                         <CanAccess>
                                             <Outlet />
                                         </CanAccess>
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -111,9 +115,9 @@ function App() {
                         <Route
                             element={
                                 <Authenticated>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >

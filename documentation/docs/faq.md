@@ -313,3 +313,157 @@ This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mod
 > Refer to [TanStack Query issue](https://github.com/TanStack/query/issues/3633) for more information. &#8594
 
 [react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode
+
+## How can I add an item to the Sider component?
+
+There are three ways to add an extra navigation link to the sider.
+
+The first and simplest way is to use the `resources` property on the `<Refine>` component. The `<Sider>` component shows the resources whose `list` property is set. So, you can have an extra navigation link by adding a resource with the `list` attribute.
+
+```tsx
+import { Refine } from "@refinedev/core";
+
+<Refine
+    ...
+    resources={[
+        {
+            name: "dashboard",
+            list: "/",
+            meta: {
+                label: "Dashboard",
+                icon: "🏠",
+            },
+        },
+    ]}
+/>;
+```
+
+<br/>
+
+The second way is to use the `render` property of the `<Sider>` component. The `render` property is a function that receives an object with the `items` and `logout` properties. The `items` property is the list of navigation items and the `logout` property is the logout button.
+
+<Tabs
+defaultValue="antd"
+values={[
+{label: 'Ant Design', value: 'antd'},
+{label: 'Material UI', value: 'mui'},
+{label: 'Mantine', value: 'mantine'},
+{label: 'Chakra UI', value: 'chakra-ui'},
+]}>
+<TabItem value="antd">
+
+```tsx
+import { Layout, Sider } from "@refinedev/antd";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+<TabItem value="mui">
+
+```tsx
+import { Layout, Sider } from "@refinedev/mui";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+<TabItem value="mantine">
+
+```tsx
+import { Layout, Sider } from "@refinedev/mantine";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+<TabItem value="chakra-ui">
+
+```tsx
+import { Layout, Sider } from "@refinedev/chakra-ui";
+
+const CustomSider = () => {
+    return (
+        <Sider
+            render={({ items, logout }) => {
+                return (
+                    <>
+                        <a href="https://refine.dev/">👋 Navigation Link</a>
+                        {items}
+                        {logout}
+                    </>
+                );
+            }}
+        />
+    );
+};
+
+const CustomLayout = () => {
+    return <Layout Sider={CustomSider}>...</Layout>;
+};
+```
+
+</TabItem>
+</Tabs>
+
+<br/>
+
+The third way is to use the `swizzle` command.
+
+You can use the command to copy the default `Sider` component to your project. This will allow you to customize the sider as you want.
+
+[Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)

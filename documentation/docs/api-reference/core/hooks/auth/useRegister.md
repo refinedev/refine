@@ -6,6 +6,10 @@ description: useRegister data hook from refine is a modified version of react-qu
 source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
 
+:::caution
+This hook can only be used if `authProvider` is provided.
+:::
+
 `useRegister` calls `register` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
@@ -65,35 +69,6 @@ A type parameter for the values can be provided to `useRegister`.
 
 ```tsx
 const { mutate: register } = useRegister<{ email: string; password: string }>();
-```
-
-### Redirection after register
-
-A custom URL can be given to mutate the function from the `useRegister` hook if you want to redirect yourself to a certain URL.
-
-```tsx
-import { useRegister } from "@refinedev/core";
-
-const { mutate: register } = useRegister();
-
-register({ redirectPath: "/custom-url" });
-```
-
-Then, you can handle this URL in your `register` method of the `authProvider`.
-
-```tsx
-import type { AuthBindings } from "@refinedev/core";
-
-const authProvider: AuthBindings = {
-    // ---
-    register: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
-};
 ```
 
 :::
@@ -163,6 +138,34 @@ const authProvider: AuthBindings = {
 };
 ```
 
+## Error handling
+
+Since the methods of `authProvider` always return a resolved promise, you can handle errors by using the `success` value in the response.
+
+```tsx
+import { useRegister } from "@refinedev/core";
+
+const { mutate: register } = useRegister();
+
+register(
+    {
+        email: "refine@example.com",
+        password: "refine",
+    },
+    {
+        onSuccess: (data) => {
+            if (!data.success) {
+                // handle error
+            }
+
+            // handle success
+        },
+    },
+);
+```
+
 :::caution
-This hook can only be used if `authProvider` is provided.
+
+The `onError` callback of the `useRegister` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+
 :::

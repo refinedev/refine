@@ -1,5 +1,10 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    notificationProvider,
+    ThemedLayout,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
@@ -7,6 +12,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
@@ -19,49 +25,53 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={{
-                    default: dataProvider(API_URL),
-                    categories: dataProvider(CATEGORIES_API_URL),
-                    fineFoods: dataProvider(FINE_FOODS_API_URL),
-                }}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                    {
-                        name: "categories",
-                        meta: {
-                            dataProviderName: "categories",
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={{
+                        default: dataProvider(API_URL),
+                        categories: dataProvider(CATEGORIES_API_URL),
+                        fineFoods: dataProvider(FINE_FOODS_API_URL),
+                    }}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
                         },
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+                        {
+                            name: "categories",
+                            meta: {
+                                dataProviderName: "categories",
+                            },
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            <Route path="/posts" element={<PostList />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

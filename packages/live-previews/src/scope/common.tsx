@@ -16,6 +16,8 @@ declare global {
     interface Window {
         routerSettings?: { initialEntries?: string[] };
         refineProps?: Partial<React.ComponentProps<typeof RefineCore.Refine>>;
+        __refineIconSVGContent?: string;
+        __refineTitleContent?: string;
     }
 }
 

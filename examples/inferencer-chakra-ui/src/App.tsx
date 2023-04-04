@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
-    Layout,
-    refineTheme,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -18,7 +18,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
+            <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
                     notificationProvider={notificationProvider()}
                     routerProvider={routerProvider}
@@ -65,9 +65,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route

@@ -6,9 +6,9 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import {
     notificationProvider,
-    refineTheme,
+    RefineThemes,
     ErrorComponent,
-    Layout,
+    ThemedLayout,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -22,7 +22,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ChakraProvider theme={refineTheme}>
+            <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(
@@ -46,7 +46,7 @@ function App() {
                         warnWhenUnsavedChanges: true,
                     }}
                 >
-                    <Layout>
+                    <ThemedLayout>
                         <Routes>
                             <Route
                                 index
@@ -73,7 +73,7 @@ function App() {
 
                             <Route path="*" element={<ErrorComponent />} />
                         </Routes>
-                    </Layout>
+                    </ThemedLayout>
                     <UnsavedChangesNotifier />
                 </Refine>
             </ChakraProvider>

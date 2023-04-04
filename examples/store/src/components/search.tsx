@@ -33,7 +33,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
 
     return (
         <Container>
-            <div className="mt-3 mb-20 grid grid-cols-1 gap-4 lg:grid-cols-12">
+            <div className="mb-20 mt-3 grid grid-cols-1 gap-4 lg:grid-cols-12">
                 <div className="order-1 col-span-8 lg:order-none lg:col-span-2">
                     <div className="relative inline-block w-full">
                         <div className="lg:hidden">
@@ -69,7 +69,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                             onClick={() => setFiltersVisible(false)}
                         >
                             <div
-                                className={`absolute left-0 z-10 mt-2 mb-10 w-full origin-top-left rounded-md shadow-lg lg:relative lg:block lg:shadow-none ${
+                                className={`absolute left-0 z-10 mb-10 mt-2 w-full origin-top-left rounded-md shadow-lg lg:relative lg:block lg:shadow-none ${
                                     filtersVisible !== true ? "hidden" : ""
                                 }`}
                             >
@@ -92,7 +92,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                                 <Link
                                                     href="/search"
                                                     className={
-                                                        "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
+                                                        "block px-4 py-2 lg:mx-4 lg:my-2 lg:inline-block lg:p-0"
                                                     }
                                                 >
                                                     All Categories
@@ -119,7 +119,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                                             },
                                                         }}
                                                         className={
-                                                            "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
+                                                            "block px-4 py-2 lg:mx-4 lg:my-2 lg:inline-block lg:p-0"
                                                         }
                                                     >
                                                         {cat.title}

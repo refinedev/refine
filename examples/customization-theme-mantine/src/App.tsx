@@ -1,10 +1,9 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     notificationProvider,
-    LightTheme,
-    DarkTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 import { useLocalStorage } from "@mantine/hooks";
 import { ColorSchemeProvider } from "@mantine/styles";
@@ -38,7 +37,10 @@ const App: React.FC = () => {
                 toggleColorScheme={toggleColorScheme}
             >
                 <MantineProvider
-                    theme={colorScheme === "dark" ? DarkTheme : LightTheme}
+                    theme={{
+                        ...RefineThemes.Blue,
+                        colorScheme,
+                    }}
                     withNormalizeCSS
                     withGlobalStyles
                 >
@@ -69,9 +71,9 @@ const App: React.FC = () => {
                             <Routes>
                                 <Route
                                     element={
-                                        <Layout Header={Header}>
+                                        <ThemedLayout Header={Header}>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     }
                                 >
                                     <Route

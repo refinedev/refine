@@ -1,5 +1,5 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, LightTheme } from "@refinedev/mui";
+import { ErrorComponent, RefineThemes } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerProvider, {
@@ -16,7 +16,7 @@ function App() {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
