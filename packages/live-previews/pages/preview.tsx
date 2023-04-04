@@ -176,7 +176,7 @@ const Preview: NextPage = () => {
                 };
                 element.setAttribute(
                     "href",
-                    "https://unpkg.com/antd/dist/reset.css",
+                    "https://refine.ams3.cdn.digitaloceanspaces.com/antd%2Fdist%2Freset.css",
                 );
                 document.head.appendChild(element);
             }
