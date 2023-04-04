@@ -10,6 +10,7 @@ import {
 } from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
+import camelCase from "camelcase";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -154,15 +155,18 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
 type IDType = "uuid" | "Int" | "String" | "Numeric";
 
+type NamingConvention = "hasura-default" | "graphql-default";
+
 export type HasuraDataProviderOptions = {
     idType?: IDType | ((resource: string) => IDType);
+    namingConvention?: NamingConvention;
 };
 
 const dataProvider = (
     client: GraphQLClient,
     options?: HasuraDataProviderOptions,
 ): Required<DataProvider> => {
-    const { idType } = options ?? {};
+    const { idType, namingConvention = "hasura-default" } = options ?? {};
 
     const getIdType = (resource: string) => {
         if (typeof idType === "function") {
@@ -174,9 +178,13 @@ const dataProvider = (
     return {
         getOne: async ({ resource, id, meta }) => {
             const operation = `${meta?.operation ?? resource}_by_pk`;
+            const camelizedOperation = camelCase(operation);
 
             const { query, variables } = gql.query({
-                operation,
+                operation:
+                    namingConvention === "graphql-default"
+                        ? camelizedOperation
+                        : operation,
                 variables: {
                     id: {
                         value: id,
