@@ -901,6 +901,16 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Themes",
+                    items: [
+                        "examples/themes/refine-themes-antd",
+                        "examples/themes/refine-themes-chakra-ui",
+                        "examples/themes/refine-themes-mantine",
+                        "examples/themes/refine-themes-mui",
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Upload",
                     items: [
                         {
