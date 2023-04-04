@@ -44,6 +44,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
         <ActiveLink to="/" style={{ all: "unset" }}>
             <Center
                 style={{
+                    cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: collapsed ? "center" : "flex-start",
