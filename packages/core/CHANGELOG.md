@@ -1,5 +1,15 @@
 # @pankod/refine-core
 
+## 4.7.0
+
+### Minor Changes
+
+-   [#4040](https://github.com/refinedev/refine/pull/4040) [`8a1100cf9ed`](https://github.com/refinedev/refine/commit/8a1100cf9ed46228c5f169a013c223d46dc675af) Thanks [@aliemir](https://github.com/aliemir)! - Add a generic type to `useParse` and `useParsed` for type-safe additional params.
+
+### Patch Changes
+
+-   [#4089](https://github.com/refinedev/refine/pull/4089) [`65f2a9fa223`](https://github.com/refinedev/refine/commit/65f2a9fa223b0ec66b2c756b10116a1295a595ec) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Update Github banner to Product Hunt banner for temporary.
+
 ## 4.6.0
 
 ### Minor Changes
