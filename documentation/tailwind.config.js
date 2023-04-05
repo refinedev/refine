@@ -13,6 +13,7 @@ module.exports = {
             },
             fontFamily: {
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
+                inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
             boxShadow: {
                 githubFloatingCta: "4px 8px 16px rgba(42, 42, 66, 0.25)",
