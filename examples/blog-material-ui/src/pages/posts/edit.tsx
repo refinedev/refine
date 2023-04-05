@@ -70,8 +70,7 @@ export const PostEdit: React.FC = () => {
                                       )?.title ?? "";
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option.id.toString() === value.toString()
+                                value === undefined || option.id === value.id
                             }
                             renderInput={(params) => (
                                 <TextField
