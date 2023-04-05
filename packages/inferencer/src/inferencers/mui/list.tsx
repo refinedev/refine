@@ -392,7 +392,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field?.type) {
-            imports.push(["Checkbox", "@refinedev/mui"]);
+            imports.push(["Checkbox", "@mui/material"]);
 
             const fieldProperty = `field: "${field.key}"`;
 
