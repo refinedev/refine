@@ -1,5 +1,13 @@
 # @pankod/refine-mantine
 
+## 2.5.2
+
+### Patch Changes
+
+-   [#4076](https://github.com/refinedev/refine/pull/4076) [`0c787747f38`](https://github.com/refinedev/refine/commit/0c787747f38a8e65dec32f4c6ec337ef99ea9e01) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - The `wrapperStyles` properties of `<ThemedSider>`'s `<ThemedTitle>` have been moved to the parent component. As a result, it is now possible to pass a custom `<Title>` component to `<ThemedLayout>` that will be styled correctly.
+
+-   [#4083](https://github.com/refinedev/refine/pull/4083) [`7dbb4b0d400`](https://github.com/refinedev/refine/commit/7dbb4b0d400aaf864e74e4126d19a19739142e03) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `ThemedTitle` cursor is now a pointer when hovering over the logo.
+
 ## 2.5.1
 
 ### Patch Changes

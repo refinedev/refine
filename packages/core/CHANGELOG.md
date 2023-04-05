@@ -1,5 +1,34 @@
 # @pankod/refine-core
 
+## 4.5.10
+
+### Patch Changes
+
+-   [#4035](https://github.com/refinedev/refine/pull/4035) [`e0c75450f97`](https://github.com/refinedev/refine/commit/e0c75450f970878fea0ace7db63548c7ba1a1688) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add types for notification methods arguments based on given generic types.
+
+-   [#4071](https://github.com/refinedev/refine/pull/4071) [`98cd4b0f203`](https://github.com/refinedev/refine/commit/98cd4b0f203460d5c59f0153663b5296ac57612b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Update `authBindings` error type to provide changeable error messages on notifcations.
+
+    Example for `login` method:
+
+    ```ts
+    import { AuthBindings } from "@refinedev/core";
+
+    const authProvider: AuthBindings = {
+        login: async ({ email, password }) => {
+            ...
+            return {
+                success: false,
+                error: {
+                    message: "Login Failed!",
+                    name:
+                        "The email or password that you've entered doesn't match any account.",
+                },
+            };
+        },
+        ...
+    };
+    ```
+
 ## 4.5.9
 
 ### Patch Changes
