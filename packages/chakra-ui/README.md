@@ -156,72 +156,91 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 
 
-<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/chakra_welcome.png)</a>
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fchakra_welcome_new.png)</a>
 
 <br/>
 
-Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
+Let's consume a public `fake REST API` and add two resources (*blog_posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import React from 'react';
-import { Refine } from '@refinedev/core';
+import { ChakraProvider } from '@chakra-ui/react';
 import {
-    notificationProvider,
-    ChakraProvider,
-    refineTheme,
     ErrorComponent,
-    Layout,
+    notificationProvider,
+    refineTheme,
+    ThemedLayout,
 } from '@refinedev/chakra-ui';
-
+import { Refine } from '@refinedev/core';
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from '@refinedev/react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import { ChakraUIInferencer } from '@refinedev/inferencer/chakra-ui';
 
-import dataProvider from '@refinedev/simple-rest';
-
-import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
-
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-
-function App() {
+const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
             <BrowserRouter>
                 <Refine
-                    dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
                     notificationProvider={notificationProvider()}
-                    routerProvider={routerProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        'https://api.fake-rest.refine.dev'
+                    )}
                     resources={[
                         {
-                            name: 'samples',
-                            list: "/samples",
-                            show: "/samples/show/:id",
-                            create: "/samples/create",
-                            edit: "/samples/edit/:id",
+                            name: 'blog_posts',
+                            list: '/blog-posts',
+                            show: '/blog-posts/show/:id',
+                            create: '/blog-posts/create',
+                            edit: '/blog-posts/edit/:id',
                         },
                     ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
                 >
                     <Routes>
                         <Route
-                            element={(
-                                <Layout>
+                            element={
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
-                            )}
+                                </ThemedLayout>
+                            }
                         >
-                            <Route index element={<NavigateToResource />} />
-                            <Route path="samples">
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
+                            />
+                            <Route path="blog-posts">
                                 <Route index element={<ChakraUIInferencer />} />
-                                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="create" element={<ChakraUIInferencer />} />
-                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
                             </Route>
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
+                    <UnsavedChangesNotifier />
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
     );
-}
+};
 
 export default App;
 ```
@@ -234,9 +253,9 @@ export default App;
 
 
 
-Now, you should see the output as a table populated with `post` & `category` data:
+Now, you should see the output as a table populated with `blog_posts` & `category` data:
 
-![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/chakra_first_page.png)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fchakra-quick-start.png)
 
 <br/>
 

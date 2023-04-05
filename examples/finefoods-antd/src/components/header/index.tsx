@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
 import {
-    Menu,
     Dropdown,
     Input,
     Avatar,
@@ -21,18 +20,23 @@ import {
     Col,
     AutoComplete,
     Layout as AntdLayout,
+    Button,
+    theme,
+    MenuProps,
 } from "antd";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
-
+const { useToken } = theme;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier, IIdentity } from "interfaces";
 import { HeaderTitle } from "./styled";
+import { useConfigProvider } from "context";
+import { IconMoon, IconSun } from "components/icons";
 
 interface IOptionGroup {
     value: string;
@@ -45,6 +49,8 @@ interface IOptions {
 }
 
 export const Header: React.FC = () => {
+    const { token } = useToken();
+    const { mode, setMode } = useConfigProvider();
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
@@ -165,32 +171,24 @@ export const Header: React.FC = () => {
         refetchStores();
     }, [value]);
 
-    const menu = (
-        <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
-            {[...(i18n.languages ?? [])].sort().map((lang: string) => (
-                <Menu.Item
-                    key={lang}
-                    onClick={() => changeLanguage(lang)}
-                    icon={
-                        <span style={{ marginRight: 8 }}>
-                            <Avatar
-                                size={16}
-                                src={`/images/flags/${lang}.svg`}
-                            />
-                        </span>
-                    }
-                >
-                    {lang === "en" ? "English" : "German"}
-                </Menu.Item>
-            ))}
-        </Menu>
-    );
+    const menuItems: MenuProps["items"] = [...(i18n.languages || [])]
+        .sort()
+        .map((lang: string) => ({
+            key: lang,
+            onClick: () => changeLanguage(lang),
+            icon: (
+                <span style={{ marginRight: 8 }}>
+                    <Avatar size={16} src={`/images/flags/${lang}.svg`} />
+                </span>
+            ),
+            label: lang === "en" ? "English" : "German",
+        }));
 
     return (
         <AntdHeader
             style={{
+                backgroundColor: token.colorBgElevated,
                 padding: "0 24px",
-                background: "white",
             }}
         >
             <Row
@@ -221,7 +219,26 @@ export const Header: React.FC = () => {
                 </Col>
                 <Col>
                     <Space size="middle" align="center">
-                        <Dropdown overlay={menu}>
+                        <Button
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                            type="default"
+                            icon={mode === "light" ? <IconMoon /> : <IconSun />}
+                            onClick={() => {
+                                setMode(mode === "light" ? "dark" : "light");
+                            }}
+                        />
+                        <Dropdown
+                            menu={{
+                                items: menuItems,
+                                selectedKeys: currentLocale
+                                    ? [currentLocale]
+                                    : [],
+                            }}
+                        >
                             <a
                                 style={{ color: "inherit" }}
                                 onClick={(e) => e.preventDefault()}

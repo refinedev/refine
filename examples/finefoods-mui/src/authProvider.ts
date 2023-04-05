@@ -19,7 +19,10 @@ export const authProvider: AuthBindings = {
         } catch (error) {
             return {
                 success: false,
-                error: new Error("Invalid email or password"),
+                error: {
+                    message: "Register failed",
+                    name: "Invalid email or password",
+                },
             };
         }
     },
@@ -54,7 +57,10 @@ export const authProvider: AuthBindings = {
 
         return {
             authenticated: false,
-            error: new Error("Invalid token"),
+            error: {
+                message: "Check failed",
+                name: "Token not found",
+            },
             logout: true,
             redirectTo: "/login",
         };

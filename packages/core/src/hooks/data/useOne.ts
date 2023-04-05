@@ -12,6 +12,7 @@ import {
     LiveModeProps,
     SuccessErrorNotification,
     MetaQuery,
+    Prettify,
 } from "../../interfaces";
 import {
     useResource,
@@ -56,7 +57,11 @@ export type UseOneProps<TData, TError> = {
      * @default `"default"``
      */
     dataProviderName?: string;
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<
+    GetOneResponse<TData>,
+    TError,
+    Prettify<{ id?: BaseKey } & MetaQuery>
+> &
     LiveModeProps;
 
 /**

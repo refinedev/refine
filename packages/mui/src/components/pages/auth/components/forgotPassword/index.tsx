@@ -1,35 +1,35 @@
-import * as React from "react";
 import {
-    ForgotPasswordPageProps,
-    ForgotPasswordFormTypes,
-} from "@refinedev/core";
-import { useForm } from "@refinedev/react-hook-form";
-import {
-    Button,
-    TextField,
     Box,
-    Typography,
-    Container,
+    BoxProps,
+    Button,
     Card,
     CardContent,
-    BoxProps,
     CardContentProps,
+    Container,
     Link as MuiLink,
+    TextField,
+    Typography,
 } from "@mui/material";
+import {
+    ForgotPasswordFormTypes,
+    ForgotPasswordPageProps,
+} from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import * as React from "react";
 
 import {
     BaseRecord,
     HttpError,
-    useTranslate,
+    useForgotPassword,
+    useLink,
     useRouterContext,
     useRouterType,
-    useLink,
-    useForgotPassword,
+    useTranslate,
 } from "@refinedev/core";
 
-import { layoutStyles, titleStyles } from "../styles";
-import { FormPropsType } from "../../index";
 import { ThemedTitle } from "@components";
+import { FormPropsType } from "../../index";
+import { layoutStyles, titleStyles } from "../styles";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
     BoxProps,
@@ -155,7 +155,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                                 variant="body2"
                                 component={ActiveLink}
                                 underline="none"
-                                to="/register"
+                                to="/login"
                                 fontWeight="bold"
                                 fontSize="12px"
                                 color="primary.light"

@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 3.1.4
+
+### Patch Changes
+
+-   [#4025](https://github.com/refinedev/refine/pull/4025) [`a82937e9296`](https://github.com/refinedev/refine/commit/a82937e92961f380c85e62d7edf327c8f2a9e18d) Thanks [@aliemir](https://github.com/aliemir)! - Fix wrong resource data usage and key conflicts on route change.
+
+## 3.1.3
+
+### Patch Changes
+
+-   [#4025](https://github.com/refinedev/refine/pull/4025) [`a82937e9296`](https://github.com/refinedev/refine/commit/a82937e92961f380c85e62d7edf327c8f2a9e18d) Thanks [@aliemir](https://github.com/aliemir)! - Fix wrong resource data usage and key conflicts on route change.
+
 ## 3.1.2
 
 ### Patch Changes

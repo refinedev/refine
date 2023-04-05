@@ -1,5 +1,41 @@
 # @pankod/refine-mui
 
+## 4.5.10
+
+### Patch Changes
+
+-   [`222f3baacc6`](https://github.com/refinedev/refine/commit/222f3baacc69f4bbe15e39427f47a07a75685f29) Thanks [@omeraplak](https://github.com/omeraplak)! - fixed 'Sign in' link on the ForgotPassword page
+
+## 4.5.9
+
+### Patch Changes
+
+-   [`222f3baacc6`](https://github.com/refinedev/refine/commit/222f3baacc69f4bbe15e39427f47a07a75685f29) Thanks [@omeraplak](https://github.com/omeraplak)! - fixed 'Sign in' link on the ForgotPassword page
+
+## 4.5.8
+
+### Patch Changes
+
+-   [#4033](https://github.com/refinedev/refine/pull/4033) [`08955914473`](https://github.com/refinedev/refine/commit/08955914473737b08772c919d8108e053d546341) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: Sider toggle button color - The color of the toggle button in the `<ThemedSider>` and `<ThemedHeader>` does not meet the contrast ratio. This is now fixed.
+
+## 4.5.7
+
+### Patch Changes
+
+-   [#4033](https://github.com/refinedev/refine/pull/4033) [`08955914473`](https://github.com/refinedev/refine/commit/08955914473737b08772c919d8108e053d546341) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: Sider toggle button color - The color of the toggle button in the `<ThemedSider>` and `<ThemedHeader>` does not meet the contrast ratio. This is now fixed.
+
+## 4.5.6
+
+### Patch Changes
+
+-   [#4024](https://github.com/refinedev/refine/pull/4024) [`dc6d2311eb7`](https://github.com/refinedev/refine/commit/dc6d2311eb76a458f828fb15fe26fae1c75bc95a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Added: default `gap: 8px` to `<ThemedTitle>` component.
+
+## 4.5.5
+
+### Patch Changes
+
+-   [#4024](https://github.com/refinedev/refine/pull/4024) [`dc6d2311eb7`](https://github.com/refinedev/refine/commit/dc6d2311eb76a458f828fb15fe26fae1c75bc95a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Added: default `gap: 8px` to `<ThemedTitle>` component.
+
 ## 4.5.4
 
 ### Patch Changes

@@ -156,78 +156,98 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 
 
-<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mantine_welcome.png)</a>
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fwelcome.png))</a>
 
 <br/>
 
-Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
+Let's consume a public `fake REST API` and add two resources (*blog_posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import React from 'react';
 import { Refine } from '@refinedev/core';
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from '@refinedev/react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
 import {
-    NotificationsProvider,
     notificationProvider,
-    MantineProvider,
-    Global,
-    Layout,
     LightTheme,
     ErrorComponent,
+    ThemedLayout,
 } from '@refinedev/mantine';
-
+import { NotificationsProvider } from '@mantine/notifications';
+import { MantineProvider, Global } from '@mantine/core';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import { MantineInferencer } from '@refinedev/inferencer/mantine';
 
-import dataProvider from '@refinedev/simple-rest';
-import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
-
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-
-function App() {
+const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: 'auto' } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
                     <Refine
+                        routerProvider={routerBindings}
                         dataProvider={dataProvider(
                             'https://api.fake-rest.refine.dev'
                         )}
                         notificationProvider={notificationProvider}
-                        routerProvider={routerProvider}
                         resources={[
                             {
-                                name: 'samples',
-                                list: "/samples",
-                                show: "/samples/show/:id",
-                                create: "/samples/create",
-                                edit: "/samples/edit/:id",
+                                name: 'blog_posts',
+                                list: '/blog-posts',
+                                show: '/blog-posts/show/:id',
+                                create: '/blog-posts/create',
+                                edit: '/blog-posts/edit/:id',
                             },
                         ]}
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                     >
                         <Routes>
                             <Route
-                                element={(
-                                    <Layout>
+                                element={
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
-                                )}
+                                    </ThemedLayout>
+                                }
                             >
-                                <Route index element={<NavigateToResource />} />
-                                <Route path="samples">
-                                    <Route index element={<MantineInferencer />} />
-                                    <Route path="show/:id" element={<MantineInferencer />} />
-                                    <Route path="create" element={<MantineInferencer />} />
-                                    <Route path="edit/:id" element={<MantineInferencer />} />
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="blog_posts" />
+                                    }
+                                />
+                                <Route path="blog-posts">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
                     </Refine>
                 </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
-}
+};
 
 export default App;
 ```
@@ -240,9 +260,9 @@ export default App;
 
 
 
-Now, you should see the output as a table populated with `post` & `category` data:
+Now, you should see the output as a table populated with `blog_post` & `category` data:
 
-![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mantine_first_page.png?raw=true)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website%2Fstatic%2Fimg%2Fmantine-quick-start.png)
 
 <br/>
 

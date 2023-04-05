@@ -16,7 +16,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
-import Layout from "./pages/layout";
+import ThemedLayout from "./pages/layout";
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
@@ -47,7 +47,10 @@ const App: React.FC = () => {
 
             return {
                 success: false,
-                error: new Error("Email is wrong"),
+                error: {
+                    message: "Login failed",
+                    name: "Invalid email or password",
+                },
             };
         },
         register: async ({ email, password }) => {
@@ -59,7 +62,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Email or password is wrong"),
+                error: {
+                    message: "Register failed",
+                    name: "Invalid email or password",
+                },
             };
         },
         updatePassword: async ({ password }) => {
@@ -72,7 +78,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("password is wrong"),
+                error: {
+                    message: "Update password failed",
+                    name: "Invalid password",
+                },
             };
         },
         forgotPassword: async ({ email }) => {
@@ -85,7 +94,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Email is wrong"),
+                error: {
+                    message: "Forgot password failed",
+                    name: "Invalid email",
+                },
             };
         },
         logout: async () => {
@@ -105,7 +117,10 @@ const App: React.FC = () => {
                 : {
                       authenticated: false,
                       redirectTo: "/login",
-                      error: new Error("Not authenticated"),
+                      error: {
+                          message: "Check failed",
+                          name: "Not authenticated",
+                      },
                   };
         },
         getPermissions: async () => ["admin"],
@@ -145,9 +160,9 @@ const App: React.FC = () => {
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >
@@ -192,9 +207,9 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <Authenticated>
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >

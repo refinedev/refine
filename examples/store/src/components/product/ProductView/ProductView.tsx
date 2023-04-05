@@ -81,7 +81,7 @@ export const ProductView: FC<ProductViewProps> = ({
                     />
                 </div>
                 <hr className="border-accent-2 mt-7" />
-                <section className="mb-10 py-12 px-6">
+                <section className="mb-10 px-6 py-12">
                     <Text variant="sectionHeading">Related Products</Text>
                     <div className={s.relatedProductsGrid}>
                         {relatedProducts

@@ -27,10 +27,10 @@ const ProductCards: React.FC<Props> = ({
             <div className="px-4">
                 <p className="mb-1 text-lg font-semibold text-black">{title}</p>
                 <div className="flex justify-between">
-                    <p className="mt-2 mb-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
+                    <p className="mb-2 mt-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
                         ${price}
                     </p>
-                    <button className="mt-2 mb-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
+                    <button className="mb-2 mt-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
                         Add to cart
                     </button>
                 </div>

@@ -1,5 +1,17 @@
 # @pankod/refine-react-table
 
+## 5.1.4
+
+### Patch Changes
+
+-   [#3827](https://github.com/refinedev/refine/pull/3827) [`c3e1a1b1c91`](https://github.com/refinedev/refine/commit/c3e1a1b1c916a55ea9246a559d2b5cb95e89f3a0) Thanks [@thiagotognoli](https://github.com/thiagotognoli)! - Added `operator` field to `columnFilter` state. This allows you to specify the filter operator without using column definition.
+
+## 5.1.3
+
+### Patch Changes
+
+-   [#3827](https://github.com/refinedev/refine/pull/3827) [`c3e1a1b1c91`](https://github.com/refinedev/refine/commit/c3e1a1b1c916a55ea9246a559d2b5cb95e89f3a0) Thanks [@thiagotognoli](https://github.com/thiagotognoli)! - Added `operator` field to `columnFilter` state. This allows you to specify the filter operator without using column definition.
+
 ## 5.1.2
 
 ### Patch Changes

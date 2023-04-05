@@ -39,7 +39,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions/helpers";
 
-export type DeleteParams<TVariables> = {
+export type DeleteParams<TData, TError, TVariables> = {
     id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
@@ -53,7 +53,7 @@ export type DeleteParams<TVariables> = {
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
     values?: TVariables;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<DeleteOneResponse<TData>, TError, BaseKey>;
 
 export type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -62,7 +62,7 @@ export type UseDeleteReturnType<
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    DeleteParams<TVariables>,
+    DeleteParams<TData, TError, TVariables>,
     DeleteContext<TData>
 >;
 
@@ -75,7 +75,7 @@ export type UseDeleteProps<
         UseMutationOptions<
             DeleteOneResponse<TData>,
             TError,
-            DeleteParams<TVariables>,
+            DeleteParams<TData, TError, TVariables>,
             DeleteContext<TData>
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
@@ -129,7 +129,7 @@ export const useDelete = <
     const mutation = useMutation<
         DeleteOneResponse<TData>,
         TError,
-        DeleteParams<TVariables>,
+        DeleteParams<TData, TError, TVariables>,
         DeleteContext<TData>
     >(
         ({

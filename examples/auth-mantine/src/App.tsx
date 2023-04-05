@@ -6,10 +6,10 @@ import {
 } from "@refinedev/core";
 import {
     AuthPage,
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     notificationProvider,
-    LightTheme,
+    RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -53,7 +53,10 @@ const App: React.FC = () => {
 
             return {
                 success: false,
-                error: new Error("Invalid email or password"),
+                error: {
+                    message: "Login failed",
+                    name: "Invalid email or password",
+                },
             };
         },
         register: async (params) => {
@@ -66,7 +69,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Invalid email or password"),
+                error: {
+                    message: "Register failed",
+                    name: "Invalid email or password",
+                },
             };
         },
         updatePassword: async (params) => {
@@ -78,7 +84,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Invalid password"),
+                error: {
+                    message: "Update password failed",
+                    name: "Invalid password",
+                },
             };
         },
         forgotPassword: async (params) => {
@@ -90,7 +99,10 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Invalid email"),
+                error: {
+                    message: "Forgot password failed",
+                    name: "Invalid email",
+                },
             };
         },
         logout: async () => {
@@ -111,7 +123,10 @@ const App: React.FC = () => {
                   }
                 : {
                       authenticated: false,
-                      error: new Error("Not authenticated"),
+                      error: {
+                          message: "Check failed",
+                          name: "Not authenticated",
+                      },
                       logout: true,
                       redirectTo: "/login",
                   },
@@ -127,7 +142,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <MantineProvider
-                theme={LightTheme}
+                theme={RefineThemes.Blue}
                 withNormalizeCSS
                 withGlobalStyles
             >
@@ -162,9 +177,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -252,9 +267,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >

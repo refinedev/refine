@@ -29,7 +29,21 @@ export const useCode = (): UseCodeReturn => {
         );
         const fixed = decompressed?.replace(/React\$1/g, "React");
 
-        return fixed;
+        const shouldChangeEntrypoint =
+            fixed.match(/render\(<App \/>\);?/) &&
+            fixed.match(/createRoot\(container\);?/);
+
+        let content = fixed;
+
+        if (shouldChangeEntrypoint) {
+            content = fixed.replace(/render\(<App \/>\);?/, "");
+            content = content.replace(
+                /createRoot\(container\);?/,
+                "{ render };",
+            );
+        }
+
+        return content;
     }, [compressed, isReady]);
 
     const css = React.useMemo(() => {

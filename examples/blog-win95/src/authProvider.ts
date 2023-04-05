@@ -14,7 +14,10 @@ const authProvider: AuthBindings = {
             if (error) {
                 return {
                     success: false,
-                    error: error || new Error("Invalid email or password"),
+                    error: error || {
+                        message: "Login failed",
+                        name: "Invalid email or password",
+                    },
                 };
             }
 
@@ -33,7 +36,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Invalid email or password"),
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
         };
     },
     logout: async () => {
@@ -44,13 +50,13 @@ const authProvider: AuthBindings = {
                 return {
                     success: false,
                     redirectTo: "/login",
-                    error: error || new Error("Invalid email or password"),
+                    error: error || new Error("Logout failed"),
                 };
             }
         } catch (error: any) {
             return {
                 success: false,
-                error: error || new Error("Invalid email or password"),
+                error: error || new Error("Logout failed"),
                 redirectTo: "/login",
             };
         }
@@ -72,7 +78,10 @@ const authProvider: AuthBindings = {
             if (!session) {
                 return {
                     authenticated: false,
-                    error: error || new Error("Session not found"),
+                    error: error || {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
                     redirectTo: "/",
                 };
             }

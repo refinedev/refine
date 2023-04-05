@@ -164,7 +164,7 @@ After data is fetched successfully, `useDeleteMany` can call `open` function fro
 const { mutate } = useDeleteMany();
 
 mutate({
-    successNotification: (data, values, resource) => {
+    successNotification: (data, ids, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
             description: "Success with no errors",
@@ -184,7 +184,7 @@ After data fetching is failed, `useDeleteMany` will call `open` function from `N
 const { mutate } = useDeleteMany();
 
 mutate({
-    errorNotification: (data, values, resource) => {
+    errorNotification: (data, ids, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
             description: "Error",

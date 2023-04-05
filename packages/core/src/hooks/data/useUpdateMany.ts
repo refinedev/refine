@@ -40,7 +40,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions/helpers";
 
-type UpdateManyParams<TVariables> = {
+type UpdateManyParams<TData, TError, TVariables> = {
     ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
@@ -58,7 +58,11 @@ type UpdateManyParams<TVariables> = {
     metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<
+    UpdateManyResponse<TData>,
+    TError,
+    { ids: BaseKey[]; values: TVariables }
+>;
 
 type UseUpdateManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -67,7 +71,7 @@ type UseUpdateManyReturnType<
 > = UseMutationResult<
     UpdateManyResponse<TData>,
     TError,
-    UpdateManyParams<TVariables>,
+    UpdateManyParams<TData, TError, TVariables>,
     UpdateContext<TData>
 >;
 
@@ -80,7 +84,7 @@ export type UseUpdateManyProps<
         UseMutationOptions<
             UpdateManyResponse<TData>,
             TError,
-            UpdateManyParams<TVariables>,
+            UpdateManyParams<TData, TError, TVariables>,
             UpdateContext<TData>
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
@@ -132,7 +136,7 @@ export const useUpdateMany = <
     const mutation = useMutation<
         UpdateManyResponse<TData>,
         TError,
-        UpdateManyParams<TVariables>,
+        UpdateManyParams<TData, TError, TVariables>,
         UpdateContext<TData>
     >(
         ({
@@ -145,7 +149,7 @@ export const useUpdateMany = <
             meta,
             metaData,
             dataProviderName,
-        }: UpdateManyParams<TVariables>) => {
+        }: UpdateManyParams<TData, TError, TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 

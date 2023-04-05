@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import warnOnce from "warn-once";
 
 import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
 
@@ -13,6 +14,7 @@ import {
     BaseKey,
     HttpError,
     IResourceItem,
+    Prettify,
 } from "../../interfaces";
 import { useRouterType } from "@contexts/router-picker";
 import { useParsed } from "@hooks/router/use-parsed";
@@ -43,7 +45,7 @@ export type useShowProps<
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
@@ -59,7 +61,11 @@ export type useShowProps<
      */
     dataProviderName?: string;
 } & LiveModeProps &
-    SuccessErrorNotification;
+    SuccessErrorNotification<
+        GetOneResponse<TData>,
+        TError,
+        Prettify<{ id?: BaseKey } & MetaQuery>
+    >;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -157,7 +163,14 @@ export const useShow = <
         }
     }
 
-    const queryResult = useOne<TData>({
+    warnOnce(
+        Boolean(resourceFromProp) && !Boolean(id),
+        `[useShow]: resource: "${resourceName}", id: ${id} \n\n` +
+            `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
+            `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
+    );
+
+    const queryResult = useOne<TData, TError>({
         resource: resource?.name,
         id: showId ?? "",
         queryOptions: {

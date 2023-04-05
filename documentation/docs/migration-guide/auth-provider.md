@@ -75,7 +75,10 @@ const authProvider = {
 -       return Promise.reject();
 +       return {
 +           success: false,
-+           error: new Error("Invalid email or password"),
++           error: {
++               message: "Login Error",
++               name: "Invalid email or password",
++           }
 +       };
     },
 }
@@ -255,7 +258,10 @@ const authProvider = {
 +           authenticated: false,
 +           redirectTo: "/login",
 +           logout: true,
-+           error: new Error("User not found"),
++           error: {
++               message: "Check failed",
++               name: "User not found",
++           }
 +       };
     },
 };

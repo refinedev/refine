@@ -4,7 +4,7 @@ title: 6. Adding Sort and Filters
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
-    next: false
+    next: tutorial/understanding-authprovider/index
 ---
 
 In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed blog posts data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
@@ -29,7 +29,7 @@ Let's create a `<ColumnSorter/>` component to use in our table header. This comp
 
 ```tsx title="src/components/table/ColumnSorter.tsx"
 import { ActionIcon } from "@mantine/core";
-import { IconChevronDown, IconSelector } from "@tabler/icons";
+import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
 import type { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
@@ -43,11 +43,9 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
 
     return (
         <ActionIcon size="xs" onClick={column.getToggleSortingHandler()}>
-            {sorted ? (
-                <IconChevronDown size={18} />
-            ) : (
-                <IconSelector size={18} />
-            )}
+            {!sorted && <IconSelector size={18} />}
+            {sorted === "asc" && <IconChevronDown size={18} />}
+            {sorted === "desc" && <IconChevronUp size={18} />}
         </ActionIcon>
     );
 };

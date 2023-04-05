@@ -2,6 +2,7 @@ import {
     useInfiniteQuery,
     UseInfiniteQueryOptions,
     InfiniteQueryObserverResult,
+    InfiniteData,
 } from "@tanstack/react-query";
 import {
     CrudFilters,
@@ -13,6 +14,7 @@ import {
     SuccessErrorNotification,
     LiveModeProps,
     GetListResponse,
+    Prettify,
 } from "../../interfaces";
 import {
     useResource,
@@ -39,11 +41,16 @@ export interface UseInfiniteListConfig {
     filters?: CrudFilters;
 }
 
-export type UseInfiniteListProps<TData, TError> = {
+type BaseInfiniteListProps = {
     /**
-     * Resource name for API data interactions
+     *  Metadata query for `dataProvider`
      */
-    resource: string;
+    meta?: MetaQuery;
+    /**
+     *  Metadata query for `dataProvider`
+     *  @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * Configuration for pagination, sorting and filtering
      * @type [`useInfiniteListConfig`](/docs/api-reference/core/hooks/data/useInfiniteList/#config-parameters)
@@ -68,23 +75,26 @@ export type UseInfiniteListProps<TData, TError> = {
      */
     filters?: CrudFilters;
     /**
-     * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options
-     */
-    queryOptions?: UseInfiniteQueryOptions<GetListResponse<TData>, TError>;
-    /**
-     *  Metadata query for `dataProvider`
-     */
-    meta?: MetaQuery;
-    /**
-     *  Metadata query for `dataProvider`
-     *  @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-     */
-    metaData?: MetaQuery;
-    /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
      */
     dataProviderName?: string;
-} & SuccessErrorNotification &
+};
+
+export type UseInfiniteListProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
+    resource: string;
+    /**
+     * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options
+     */
+    queryOptions?: UseInfiniteQueryOptions<GetListResponse<TData>, TError>;
+} & BaseInfiniteListProps &
+    SuccessErrorNotification<
+        InfiniteData<GetListResponse<TData>>,
+        TError,
+        Prettify<BaseInfiniteListProps>
+    > &
     LiveModeProps;
 
 /**

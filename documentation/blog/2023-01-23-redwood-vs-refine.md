@@ -900,7 +900,10 @@ const App: React.FC = () => {
                     return {
                         authenticated: false,
                         redirectTo: "/login",
-                        error: new Error("Token not found"),
+                        error: {
+                            message: "Check failed",
+                            name: "Token not found",
+                        },
                     };
                 }
             } catch (error) {

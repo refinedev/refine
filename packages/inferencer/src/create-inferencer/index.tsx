@@ -187,11 +187,17 @@ export const createInferencer: CreateInferencer = ({
         fieldTransformer,
         id,
     }) => {
+        const { resource: resourceItem } = useResource(resource ?? name);
+
+        const key = `${
+            resourceItem?.identifier ?? resourceItem?.name
+        }-${type}-${id}`;
+
         return (
             <Inferencer
                 fieldTransformer={fieldTransformer}
                 resourceName={resource ?? name}
-                key={resource ?? name}
+                key={key}
                 id={id}
             />
         );

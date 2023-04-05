@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
     RefineSnackbarProvider,
     notificationProvider,
@@ -49,9 +49,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout Header={Header}>
+                                    <ThemedLayout Header={Header}>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

@@ -45,10 +45,12 @@ To add a delete feature to the blog posts table, you can follow the steps below:
                         hideText
                         recordItemId={getValue() as string}
                     />
+                    // highlight-start
                     <DeleteButton
                         hideText
                         recordItemId={getValue() as string}
                     />
+                    // highlight-end
                 </Group>
             );
         },

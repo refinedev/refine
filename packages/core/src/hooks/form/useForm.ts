@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import warnOnce from "warn-once";
 
 import {
     useResourceWithRoute,
@@ -137,7 +138,11 @@ type ActionFormProps<
         TError,
         TVariables
     >["mutationOptions"];
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<
+    UpdateResponse<TData> | CreateResponse<TData>,
+    TError,
+    { id: BaseKey; values: TVariables } | TVariables
+> &
     ActionParams &
     LiveModeProps;
 
@@ -324,6 +329,15 @@ export const useForm = <
     const isEdit = action === "edit";
     const isClone = action === "clone";
 
+    warnOnce(
+        (isClone || isEdit) &&
+            Boolean(resourceFromProps) &&
+            !Boolean(idFromProps),
+        `[useForm]: action: "${action}", resource: "${resourceName}", id: ${id} \n\n` +
+            `If you don't use the \`setId\` method to set the \`id\`, you should pass the \`id\` prop to \`useForm\`. Otherwise, \`useForm\` will not be able to infer the \`id\` from the current URL. \n\n` +
+            `See https://refine.dev/docs/api-reference/core/hooks/useForm/#resource`,
+    );
+
     /**
      * Designated `redirect` route
      */
@@ -432,7 +446,7 @@ export const useForm = <
 
         if (!resource) return;
 
-        const variables: UpdateParams<TVariables> = {
+        const variables: UpdateParams<TData, TError, TVariables> = {
             id: id ?? "",
             values,
             resource: resource.name,

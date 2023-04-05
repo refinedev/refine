@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
                         </div>
                     </div>
                 </div>
-                <div className="text-accent-6 flex flex-col items-center justify-between  pt-6 pb-10 text-sm md:flex-row">
+                <div className="text-accent-6 flex flex-col items-center justify-between  pb-10 pt-6 text-sm md:flex-row">
                     <div>
                         <span>
                             &copy; 2022 refine, Inc. All rights reserved.

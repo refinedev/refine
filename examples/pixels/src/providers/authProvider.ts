@@ -54,7 +54,10 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Login failed"),
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
         };
     },
     register: async ({ email, password }) => {
@@ -85,7 +88,10 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Register failed"),
+            error: {
+                message: "Register failed",
+                name: "Invalid email or password",
+            },
         };
     },
     forgotPassword: async ({ email }) => {
@@ -116,7 +122,10 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Forgot Password password failed"),
+            error: {
+                message: "Forgot password failed",
+                name: "Invalid email",
+            },
         };
     },
     updatePassword: async ({ password }) => {
@@ -147,7 +156,10 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Update Password password failed"),
+            error: {
+                message: "Update password failed",
+                name: "Invalid password",
+            },
         };
     },
     logout: async () => {
@@ -174,7 +186,10 @@ export const authProvider: AuthBindings = {
             if (!session) {
                 return {
                     authenticated: false,
-                    error: new Error("Not authenticated"),
+                    error: {
+                        message: "Check failed",
+                        name: "Session not found",
+                    },
                     logout: true,
                 };
             }

@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     notificationProvider,
     SnackbarProvider,
 } from "@refinedev/mui";
@@ -22,7 +22,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <ThemeProvider theme={LightTheme}>
+            <ThemeProvider theme={RefineThemes.Blue}>
                 <SnackbarProvider>
                     <Refine
                         routerProvider={routerProvider}
@@ -44,9 +44,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

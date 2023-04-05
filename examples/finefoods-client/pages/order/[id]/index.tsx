@@ -49,7 +49,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
 
     return (
         <div ref={el} className="container overflow-hidden rounded-xl bg-white">
-            <div className="flex flex-wrap items-center justify-center  gap-4 bg-green-600 py-4 px-8 text-white sm:justify-start">
+            <div className="flex flex-wrap items-center justify-center  gap-4 bg-green-600 px-8 py-4 text-white sm:justify-start">
                 <OrderIcon />
                 <h1 className="main-title text-center text-3xl font-bold uppercase md:text-5xl">
                     Order received

@@ -181,7 +181,10 @@ function App() {
         } else {
           return {
             authenticated: false,
-            error: new Error("Token not found"),
+            error: {
+                message: "Check failed",
+                name: "Token not found",
+            },
             redirectTo: "/login",
             logout: true,
           };

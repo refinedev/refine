@@ -40,7 +40,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions";
 
-export type DeleteManyParams<TVariables> = {
+export type DeleteManyParams<TData, TError, TVariables> = {
     ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
@@ -54,7 +54,7 @@ export type DeleteManyParams<TVariables> = {
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
     values?: TVariables;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<DeleteManyResponse<TData>, TError, BaseKey[]>;
 
 export type UseDeleteManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -63,7 +63,7 @@ export type UseDeleteManyReturnType<
 > = UseMutationResult<
     DeleteManyResponse<TData>,
     TError,
-    DeleteManyParams<TVariables>,
+    DeleteManyParams<TData, TError, TVariables>,
     unknown
 >;
 
@@ -76,7 +76,7 @@ export type UseDeleteManyProps<
         UseMutationOptions<
             DeleteManyResponse<TData>,
             TError,
-            DeleteManyParams<TVariables>,
+            DeleteManyParams<TData, TError, TVariables>,
             DeleteContext<TData>
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
@@ -130,7 +130,7 @@ export const useDeleteMany = <
     const mutation = useMutation<
         DeleteManyResponse<TData>,
         TError,
-        DeleteManyParams<TVariables>,
+        DeleteManyParams<TData, TError, TVariables>,
         DeleteContext<TData>
     >(
         ({
@@ -143,7 +143,7 @@ export const useDeleteMany = <
             metaData,
             dataProviderName,
             values,
-        }: DeleteManyParams<TVariables>) => {
+        }: DeleteManyParams<TData, TError, TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 

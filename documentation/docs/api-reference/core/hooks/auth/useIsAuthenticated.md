@@ -6,7 +6,11 @@ description: useIsAuthenticated data hook from refine is a modified version of r
 source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
 
-`useIsAuthenticated` calls the `check` method from the[`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+:::caution
+This hook can only be used if the `authProvider` is provided.
+:::
+
+`useIsAuthenticated` calls the `check` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.  
 Data that is resolved from the `useIsAuthenticated` will be returned as the `data` in the query result with the following type:
@@ -22,7 +26,7 @@ type CheckResponse = {
 
 -   `authenticated`: A boolean value indicating whether the user is authenticated or not.
 -   `redirectTo`: A string value indicating the URL to redirect to if authentication is required.
--   `logout`: A boolean value indicating whether the user should be logged out.
+-   `logout`: A boolean value indicating whether the logout method should be called.
 -   `error`: An Error object representing any errors that may have occurred during the check.
 
 ## Usage
@@ -46,7 +50,10 @@ const authProvider: AuthBindings = {
               }
             : {
                   authenticated: false,
-                  error: new Error("Not authenticated"),
+                  error: {
+                    message: "Check failed",
+                    name: "Not authenticated",
+                  },
                   logout: true,
                   redirectTo: "/login",
               },
@@ -107,8 +114,6 @@ Now, only authenticated users can see the price field.
 // highlight-next-line
 import { Authenticated } from "components/authenticated";
 
-const { Title, Text } = Typography;
-
 export const PostShow: React.FC = () => (
     <div>
         // highlight-start
@@ -119,7 +124,3 @@ export const PostShow: React.FC = () => (
     </div>
 );
 ```
-
-:::caution
-This hook can only be used if the `authProvider` is provided.
-:::

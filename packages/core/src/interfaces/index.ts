@@ -26,7 +26,7 @@ export * from "./notification";
 export * from "./mutationMode";
 
 // mutationMode
-export * from "./HttpError";
+export * from "./errors";
 
 // custom components
 export * from "./customComponents";

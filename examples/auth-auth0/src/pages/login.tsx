@@ -1,31 +1,37 @@
-import { Layout as AntdLayout, Button } from "antd";
+import { Layout, Button, Space, Typography } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ThemedTitle } from "@refinedev/antd";
 
 export const Login: React.FC = () => {
     const { loginWithRedirect } = useAuth0();
 
     return (
-        <AntdLayout
+        <Layout
             style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <div style={{ marginBottom: "28px" }}>
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <Button
-                        type="primary"
-                        size="large"
-                        block
-                        onClick={() => loginWithRedirect()}
-                    >
-                        Sign in
-                    </Button>
-                </div>
-            </div>
-        </AntdLayout>
+            <Space direction="vertical" align="center" size="large">
+                <ThemedTitle
+                    collapsed={false}
+                    wrapperStyles={{
+                        fontSize: "22px",
+                    }}
+                />
+                <Button
+                    type="primary"
+                    size="middle"
+                    onClick={() => loginWithRedirect()}
+                    style={{ width: "240px" }}
+                >
+                    Sign in
+                </Button>
+                <Typography.Text type="secondary">
+                    Powered by Auth0
+                </Typography.Text>
+            </Space>
+        </Layout>
     );
 };

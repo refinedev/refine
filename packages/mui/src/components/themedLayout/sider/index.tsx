@@ -49,7 +49,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     onToggleSiderClick,
 }) => {
     const theme = useTheme();
-    console.log("theme", theme);
     const [opened, setOpened] = useState(false);
 
     const drawerWidth = () => {
@@ -501,16 +500,26 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     </Box>
                 </Drawer>
                 <IconButton
-                    sx={{
-                        display: { xs: "flex", md: "none" },
-                        justifyContent: "center",
-                        alignItems: "center",
-                        position: "fixed",
-                        top: "12px",
-                        left: "16px",
-                        zIndex: 1199,
-                        height: "36px",
-                        width: "36px",
+                    sx={(theme) => {
+                        const { palette } = theme;
+                        const { mode, getContrastText, primary, background } =
+                            palette;
+
+                        return {
+                            color:
+                                mode === "light"
+                                    ? getContrastText(primary.main)
+                                    : getContrastText(background.paper),
+                            display: { xs: "flex", md: "none" },
+                            justifyContent: "center",
+                            alignItems: "center",
+                            position: "fixed",
+                            top: "12px",
+                            left: "16px",
+                            zIndex: 1199,
+                            height: "36px",
+                            width: "36px",
+                        };
                     }}
                     onClick={() => setOpened((prev) => !prev)}
                 >

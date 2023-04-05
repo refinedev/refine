@@ -1,5 +1,95 @@
 # @pankod/refine-core
 
+## 4.7.0
+
+### Minor Changes
+
+-   [#4040](https://github.com/refinedev/refine/pull/4040) [`8a1100cf9ed`](https://github.com/refinedev/refine/commit/8a1100cf9ed46228c5f169a013c223d46dc675af) Thanks [@aliemir](https://github.com/aliemir)! - Add a generic type to `useParse` and `useParsed` for type-safe additional params.
+
+### Patch Changes
+
+-   [#4089](https://github.com/refinedev/refine/pull/4089) [`65f2a9fa223`](https://github.com/refinedev/refine/commit/65f2a9fa223b0ec66b2c756b10116a1295a595ec) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Update Github banner to Product Hunt banner for temporary.
+
+## 4.6.0
+
+### Minor Changes
+
+-   [#4040](https://github.com/refinedev/refine/pull/4040) [`8a1100cf9ed`](https://github.com/refinedev/refine/commit/8a1100cf9ed46228c5f169a013c223d46dc675af) Thanks [@aliemir](https://github.com/aliemir)! - Add a generic type to `useParse` and `useParsed` for type-safe additional params.
+
+### Patch Changes
+
+-   [#4089](https://github.com/refinedev/refine/pull/4089) [`65f2a9fa223`](https://github.com/refinedev/refine/commit/65f2a9fa223b0ec66b2c756b10116a1295a595ec) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Update Github banner to Product Hunt banner for temporary.
+
+## 4.5.10
+
+### Patch Changes
+
+-   [#4035](https://github.com/refinedev/refine/pull/4035) [`e0c75450f97`](https://github.com/refinedev/refine/commit/e0c75450f970878fea0ace7db63548c7ba1a1688) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add types for notification methods arguments based on given generic types.
+
+-   [#4071](https://github.com/refinedev/refine/pull/4071) [`98cd4b0f203`](https://github.com/refinedev/refine/commit/98cd4b0f203460d5c59f0153663b5296ac57612b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Update `authBindings` error type to provide changeable error messages on notifcations.
+
+    Example for `login` method:
+
+    ```ts
+    import { AuthBindings } from "@refinedev/core";
+
+    const authProvider: AuthBindings = {
+        login: async ({ email, password }) => {
+            ...
+            return {
+                success: false,
+                error: {
+                    message: "Login Failed!",
+                    name:
+                        "The email or password that you've entered doesn't match any account.",
+                },
+            };
+        },
+        ...
+    };
+    ```
+
+## 4.5.9
+
+### Patch Changes
+
+-   [#4035](https://github.com/refinedev/refine/pull/4035) [`e0c75450f97`](https://github.com/refinedev/refine/commit/e0c75450f970878fea0ace7db63548c7ba1a1688) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add types for notification methods arguments based on given generic types.
+
+-   [#4071](https://github.com/refinedev/refine/pull/4071) [`98cd4b0f203`](https://github.com/refinedev/refine/commit/98cd4b0f203460d5c59f0153663b5296ac57612b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Update `authBindings` error type to provide changeable error messages on notifcations.
+
+    Example for `login` method:
+
+    ```ts
+    import { AuthBindings } from "@refinedev/core";
+
+    const authProvider: AuthBindings = {
+        login: async ({ email, password }) => {
+            ...
+            return {
+                success: false,
+                error: {
+                    message: "Login Failed!",
+                    name:
+                        "The email or password that you've entered doesn't match any account.",
+                },
+            };
+        },
+        ...
+    };
+    ```
+
+## 4.5.8
+
+### Patch Changes
+
+-   [#4014](https://github.com/refinedev/refine/pull/4014) [`3db450fade0`](https://github.com/refinedev/refine/commit/3db450fade0300c3da0e1853bf686778a70603f6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add console warning for `useForm` and `useShow` hooks when custom resource is provided and `id` prop is not passed.
+
+## 4.5.7
+
+### Patch Changes
+
+-   [#4014](https://github.com/refinedev/refine/pull/4014) [`3db450fade0`](https://github.com/refinedev/refine/commit/3db450fade0300c3da0e1853bf686778a70603f6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add console warning for `useForm` and `useShow` hooks when custom resource is provided and `id` prop is not passed.
+
 ## 4.5.6
 
 ### Patch Changes

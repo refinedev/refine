@@ -135,7 +135,7 @@ After data is fetched successfully, `useMany` can call `open` function from `Not
 
 ```tsx
 useMany({
-    successNotification: (data, values, resource) => {
+    successNotification: (data, ids, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
             description: "Success with no errors",
@@ -153,7 +153,7 @@ After data fetching is failed, `useMany` will call the `open` function from `Not
 
 ```tsx
 useMany({
-    errorNotification: (data, values, resource) => {
+    errorNotification: (data, ids, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
             description: "Error",

@@ -235,6 +235,10 @@ const App = () => {
 
 [Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#setting-authorization-credentials)
 
+### How can I implement refresh token mechanism?
+
+[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#implementing-refresh-token-mechanism)
+
 ## API Reference
 
 ### Properties
