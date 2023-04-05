@@ -307,8 +307,7 @@ export const EditProduct: React.FC<
                                                     value,
                                                 ) =>
                                                     value === undefined ||
-                                                    option.id.toString() ===
-                                                        value.toString()
+                                                    option.id === value.id
                                                 }
                                                 renderInput={(params) => (
                                                     <TextField
