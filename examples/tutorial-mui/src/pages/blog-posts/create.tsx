@@ -72,7 +72,9 @@ export const BlogPostCreate = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option.id === value.id
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
