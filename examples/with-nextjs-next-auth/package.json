@@ -14,7 +14,7 @@
         "@refinedev/cli": "^2.1.0",
         "@refinedev/nextjs-router": "^5.1.4",
         "@refinedev/simple-rest": "^4.1.0",
-        "@refinedev/inferencer": "^3.1.5",
+        "@refinedev/inferencer": "^3.1.6",
         "cross-env": "^7.0.3",
         "next": "^13.0.6",
         "next-auth": "^4.20.1",
