@@ -42,7 +42,8 @@ const PostCreate: React.FC = () => {
                             getOptionLabel={({ title }) => title}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option.id.toString() === value.toString()
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             placeholder="Select a category"
                             renderInput={(params) => (
