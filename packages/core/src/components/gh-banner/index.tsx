@@ -26,7 +26,7 @@ export const GitHubBanner = () => {
         >
             <a
                 className="gh-link"
-                href="https://s.refine.dev/github-support"
+                href="https://www.producthunt.com/posts/refine-new"
                 target="_blank"
                 rel="noreferrer"
             >
@@ -65,8 +65,8 @@ export const GitHubBanner = () => {
                             textShadow: "0px 0px 4px rgba(255, 255, 255, 0.5)",
                         }}
                     >
-                        Refine grants your wishes! Please give us a ⭐️ on
-                        GitHub to keep the magic going.
+                        Our new refine tool has just been launched on Product
+                        Hunt 😻 We would greatly appreciate your support!
                     </span>
                 </div>
             </a>
