@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Head from "@docusaurus/Head";
 
 const ProductHuntIcon = (props) => (
     <svg
@@ -114,9 +113,6 @@ export default function NavbarLayout({ children }) {
 
     return (
         <>
-            <Head>
-                <body className="has-announcement" />
-            </Head>
             <motion.nav
                 className={`navbar navbar--rest p-0 flex flex-col fixed w-full h-24 z-[2] ease-out transition-transform duration-200 shadow-none ${
                     mobileSidebar.shown
@@ -131,7 +127,6 @@ export default function NavbarLayout({ children }) {
                 <div className="sticky top-0 flex w-full h-16 py-2 px-3 lg:px-9">
                     {children}
                 </div>
-                {/* <NavbarBackdrop onClick={mobileSidebar.toggle} /> */}
                 <NavbarMobileSidebar />
             </motion.nav>
             <motion.nav
