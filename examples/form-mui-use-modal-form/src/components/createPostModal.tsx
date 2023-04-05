@@ -102,7 +102,7 @@ export const CreatePostModal: React.FC<
                                 }}
                                 isOptionEqualToValue={(option, value) =>
                                     value === undefined ||
-                                    option.id.toString() === value.toString()
+                                    option.id === value.id
                                 }
                                 renderInput={(params) => (
                                     <TextField
