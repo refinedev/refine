@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 4.5.10
+
+### Patch Changes
+
+-   [`222f3baacc6`](https://github.com/refinedev/refine/commit/222f3baacc69f4bbe15e39427f47a07a75685f29) Thanks [@omeraplak](https://github.com/omeraplak)! - fixed 'Sign in' link on the ForgotPassword page
+
 ## 4.5.9
 
 ### Patch Changes
