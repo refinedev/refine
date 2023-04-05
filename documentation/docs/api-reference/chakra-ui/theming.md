@@ -160,7 +160,7 @@ The theme object is where you define your application's color palette, type scal
 
 [Refer to the Chakra UI documentation for more information about theme. &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
 
-## Refine Themes
+## Predefined Themes
 
 [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/theme/index.ts#L92) has predefined themes for you. You can use them by importing them from `@refinedev/chakra-ui` package. It is not required if you decide to use the default chakra-ui theme.
 
@@ -186,6 +186,12 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::info
+
+[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-chakra-ui/)
+
+:::
 
 :::caution
 

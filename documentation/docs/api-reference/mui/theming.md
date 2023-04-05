@@ -8,7 +8,7 @@ Theme specifies the color of the components, the darkness of the surfaces, level
 
 [Refer to the Material UI documentation for more information about Material UI Theming. &#8594](https://mui.com/material-ui/customization/theming/)
 
-## Refine Themes
+## Predefined Themes
 
 [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can use them by importing them from `@refinedev/mui` package. It is not required if you decide to use the default MUI theme.
 
@@ -39,6 +39,12 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::info
+
+[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-mui/)
+
+:::
 
 ## Theme Provider
 

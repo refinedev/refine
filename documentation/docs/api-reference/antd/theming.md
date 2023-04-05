@@ -9,7 +9,7 @@ Design Tokens are the smallest element that affects the theme. By modifying the 
 
 [Refer to the Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
 
-## Refine Themes
+## Predefined Themes
 
 [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/antd/src/definitions/themes/index.ts) has predefined themes for you. You can use them by importing them from `@refinedev/antd` package. It is not required if you decide to use the default antd theme.
 
@@ -35,6 +35,12 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::info
+
+[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-antd/)
+
+:::
 
 ## Theme customization
 

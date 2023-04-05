@@ -154,7 +154,7 @@ Mantine theme is an object where your application's colors, fonts, spacing, bord
 
 [Refer to the Mantine documentation for more information about theme object. &#8594](https://mantine.dev/theming/theme-object/)
 
-## Refine Themes
+## Predefined Themes
 
 [`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts#L186) has predefined themes for you. You can use them by importing them from `@refinedev/mantine` package. It is not required if you decide to use the default Mantine theme.
 
@@ -180,6 +180,12 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::info
+
+[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-mantine/)
+
+:::
 
 ## Theme customization
 
