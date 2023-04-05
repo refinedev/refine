@@ -1,8 +1,12 @@
 import { RouterBindingsContext } from "@contexts/router";
 import React, { useContext } from "react";
-import { ParseFunction } from "src/interfaces";
+import { ParseFunction, ParseResponse } from "src/interfaces";
 
-export const useParse = () => {
+type UseParseType = () => <
+    TParams extends Record<string, any> = Record<string, any>,
+>() => ParseResponse<TParams>;
+
+export const useParse: UseParseType = () => {
     const bindings = useContext(RouterBindingsContext);
 
     const useParse = React.useMemo(
@@ -17,5 +21,5 @@ export const useParse = () => {
 
     const parse = useParse();
 
-    return parse;
+    return parse as ReturnType<UseParseType>;
 };

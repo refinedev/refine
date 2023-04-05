@@ -41,16 +41,19 @@ export type GoConfig = {
     type?: "push" | "replace" | "path";
 };
 
-export type ParsedParams = {
+export type ParsedParams<
+    TParams extends Record<string, any> = Record<string, any>,
+> = {
     filters?: CrudFilters;
     sorters?: CrudSorting;
     current?: number;
     pageSize?: number;
-    [key: string & { _ignore?: boolean }]: any;
-};
+} & TParams;
 
-export type ParseResponse = {
-    params?: ParsedParams;
+export type ParseResponse<
+    TParams extends Record<string, any> = Record<string, any>,
+> = {
+    params?: ParsedParams<TParams>;
     resource?: IResourceItem;
     id?: BaseKey;
     action?: Action;
@@ -61,7 +64,9 @@ export type GoFunction = (config: GoConfig) => void | string;
 
 export type BackFunction = () => void;
 
-export type ParseFunction = () => ParseResponse;
+export type ParseFunction<
+    TParams extends Record<string, any> = Record<string, any>,
+> = () => ParseResponse<TParams>;
 
 export type RouterBindings = {
     go?: () => GoFunction;
