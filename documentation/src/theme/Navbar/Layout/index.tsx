@@ -78,7 +78,7 @@ const LaunchToday = () => {
 
     return (
         <div className="bg-[#2E2E38] text-[12px] leading-[16px] py-2 px-2 h-8 flex items-center justify-center font-normal text-white gap-4">
-            <span className="text-[16px]">🚨‍️</span>
+            <span className="text-[16px] hidden sm:block">🚨‍️</span>
             <span>It’s the launch day on Product Hunt</span>
             <ProductHuntIcon />
             <span>
@@ -91,7 +91,7 @@ const LaunchToday = () => {
                     Join us here!
                 </a>
             </span>
-            <span className="text-[16px]">🚨‍️</span>
+            <span className="text-[16px] hidden sm:block">🚨‍️</span>
         </div>
     );
 };
