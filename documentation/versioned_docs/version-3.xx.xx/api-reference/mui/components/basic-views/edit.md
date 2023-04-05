@@ -4,6 +4,7 @@ title: Edit
 swizzle: true
 ---
 
+
 `<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md).
 
 We will show what `<Edit>` does using properties with examples.
@@ -94,8 +95,7 @@ const SampleEdit = () => {
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
+                                option?.id?.toString() === value?.id?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -119,12 +119,7 @@ const SampleEdit = () => {
 };
 // visible-block-end
 
-render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/edit/123"]}
-        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-    />,
-);
+render(<RefineMuiDemo initialRoutes={["/samples/edit/123"]} resources={[ { name: "samples", edit: SampleEdit, list: SampleList } ]} />)
 ```
 
 :::info-tip Swizzle
@@ -168,7 +163,7 @@ render(
                 edit: EditPage,
             },
         ]}
-    />,
+    />
 );
 ```
 
@@ -219,11 +214,7 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `saveButtonProps`
@@ -330,9 +321,7 @@ render(
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId="123">
-                            Edit Item 123
-                        </RefineMui.EditButton>
+                        <RefineMui.EditButton recordItemId="123">Edit Item 123</RefineMui.EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -387,11 +376,7 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 :::note
@@ -495,8 +480,7 @@ const SampleEdit = () => {
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
+                                option?.id?.toString() === value?.id?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -520,12 +504,7 @@ const SampleEdit = () => {
 };
 // visible-block-end
 
-render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/edit/123"]}
-        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-    />,
-);
+render(<RefineMuiDemo initialRoutes={["/samples/edit/123"]} resources={[ { name: "samples", edit: SampleEdit, list: SampleList } ]} />)
 ```
 
 ### `dataProviderName`
@@ -572,8 +551,8 @@ import { useNavigation } from "@pankod/refine-core";
 const BackButton = () => {
     const { goBack } = useNavigation();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>;
-};
+    return <Button onClick={() => goBack()}>BACK!</Button>
+}
 
 const PostEdit: React.FC = () => {
     return (
@@ -1152,16 +1131,13 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
     const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        RefineCore.useMany({
-            resource: "categories",
-            ids:
-                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
-                [],
-            queryOptions: {
-                enabled: !!dataGridProps?.rows,
-            },
-        });
+    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
+        resource: "categories",
+        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+        queryOptions: {
+            enabled: !!dataGridProps?.rows,
+        },
+    });
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -1208,10 +1184,7 @@ const SampleList = () => {
                 renderCell: function render({ row }) {
                     return (
                         <>
-                            <RefineMui.EditButton
-                                hideText
-                                recordItemId={row.id}
-                            />
+                            <RefineMui.EditButton hideText recordItemId={row.id} />
                         </>
                     );
                 },
@@ -1225,24 +1198,18 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid
-                {...dataGridProps}
-                columns={columns}
-                autoHeight
-            />
+            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
         </RefineMui.List>
     );
 };
 
-const Wrapper = ({ children }) => {
+const Wrapper = ({children}) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
+            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             {children}
         </RefineMui.ThemeProvider>
-    );
-};
+    )
+}
 ```

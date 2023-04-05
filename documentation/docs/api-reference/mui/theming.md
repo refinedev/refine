@@ -34,26 +34,22 @@ const App: React.FC = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     resources={[
                         {
                             name: "posts",
                             list: "/posts",
                             create: "/posts/create",
                             edit: "/posts/edit/:id",
-                        },
+                        }
                     ]}
                 >
                     <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
                             <Route path="posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
@@ -101,37 +97,27 @@ const App: React.FC = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     resources={[
                         {
                             name: "samples",
                             list: "/samples",
                             create: "/samples/create",
                             edit: "/samples/edit/:id",
-                        },
+                        }
                     ]}
                 >
                     <Routes>
                         <Route index element={<NavigateToResource />} />
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
                             <Route path="samples">
                                 <Route index element={<SampleList />} />
-                                <Route
-                                    path="create"
-                                    element={<SampleCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<SampleEdit />}
-                                />
+                                <Route path="create" element={<SampleCreate />} />
+                                <Route path="edit/:id" element={<SampleEdit />} />
                             </Route>
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
@@ -149,7 +135,7 @@ In our example, we will be using LightTheme.
 
 The design will change to match the `LightTheme`, so you can enjoy these amazing interfaces without any hassle!
 
-```tsx live
+````tsx live
 setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
@@ -176,9 +162,7 @@ const App: React.FC = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     resources={[
                         {
                             name: "samples",
@@ -186,31 +170,20 @@ const App: React.FC = () => {
                             create: "/samples/create",
                             edit: "/samples/edit/:id",
                             show: "/samples/show/:id",
-                        },
+                        }
                     ]}
                 >
                     <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
                             <Route path="samples">
                                 <Route index element={<SampleList />} />
-                                <Route
-                                    path="create"
-                                    element={<SampleCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<SampleEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<SampleShow />}
-                                />
+                                <Route path="create" element={<SampleCreate />} />
+                                <Route path="edit/:id" element={<SampleEdit />} />
+                                <Route path="show/:id" element={<SampleShow />} />
                             </Route>
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
@@ -223,7 +196,7 @@ const App: React.FC = () => {
 // visible-block-end
 
 render(<App />);
-```
+````
 
 ## Overriding Variables
 
@@ -296,24 +269,20 @@ const App: React.FC = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     resources={[
                         {
                             name: "samples",
                             list: "/samples",
-                        },
+                        }
                     ]}
                 >
                     <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
                             <Route path="samples">
                                 <Route index element={<SampleList />} />
                             </Route>
@@ -440,24 +409,20 @@ const App: React.FC = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     resources={[
                         {
                             name: "samples",
                             list: "/samples",
-                        },
+                        }
                     ]}
                 >
                     <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
                             <Route path="samples">
                                 <Route index element={<SampleList />} />
                             </Route>
@@ -527,12 +492,7 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 const App: React.FC = () => {
     // highlight-next-line
@@ -546,40 +506,27 @@ const App: React.FC = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     resources={[
                         {
                             name: "samples",
                             list: "/samples",
                             create: "/samples/create",
                             edit: "/samples/edit/:id",
-                        },
+                        }
                     ]}
                 >
                     <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
                             <Route path="samples">
                                 <Route index element={<SampleList />} />
-                                <Route
-                                    path="create"
-                                    element={<SampleCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<SampleEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<SampleShow />}
-                                />
+                                <Route path="create" element={<SampleCreate />} />
+                                <Route path="edit/:id" element={<SampleEdit />} />
+                                <Route path="show/:id" element={<SampleShow />} />
                             </Route>
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
@@ -730,41 +677,28 @@ const App: React.FC = () => {
                     <Refine
                         notificationProvider={notificationProvider}
                         routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                         resources={[
                             {
                                 name: "samples",
                                 list: "/samples",
                                 create: "/samples/create",
                                 edit: "/samples/edit/:id",
-                            },
+                            }
                         ]}
                     >
                         <Routes>
-                            <Route
-                                element={
-                                    // highlight-next-line
-                                    <Layout Header={Header}>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
+                            <Route element={(
+                                // highlight-next-line
+                                <Layout Header={Header}>
+                                    <Outlet />
+                                </Layout>
+                            )}>
                                 <Route path="samples">
                                     <Route index element={<SampleList />} />
-                                    <Route
-                                        path="create"
-                                        element={<SampleCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<SampleEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<SampleShow />}
-                                    />
+                                    <Route path="create" element={<SampleCreate />} />
+                                    <Route path="edit/:id" element={<SampleEdit />} />
+                                    <Route path="show/:id" element={<SampleShow />} />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
@@ -851,40 +785,27 @@ const App: React.FC = () => {
                     <Refine
                         notificationProvider={notificationProvider}
                         routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                         resources={[
                             {
                                 name: "samples",
                                 list: "/samples",
                                 create: "/samples/create",
                                 edit: "/samples/edit/:id",
-                            },
+                            }
                         ]}
                     >
                         <Routes>
-                            <Route
-                                element={
-                                    <Layout Header={Header}>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
+                            <Route element={(
+                                <Layout Header={Header}>
+                                    <Outlet />
+                                </Layout>
+                            )}>
                                 <Route path="samples">
                                     <Route index element={<SampleList />} />
-                                    <Route
-                                        path="create"
-                                        element={<SampleCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<SampleEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<SampleShow />}
-                                    />
+                                    <Route path="create" element={<SampleCreate />} />
+                                    <Route path="edit/:id" element={<SampleEdit />} />
+                                    <Route path="show/:id" element={<SampleShow />} />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
@@ -925,12 +846,7 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 const App: React.FC = () => {
     return (
@@ -942,9 +858,7 @@ const App: React.FC = () => {
                 <BrowserRouter>
                     <Refine
                         routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                         notificationProvider={notificationProvider}
                         resources={[
                             {
@@ -952,27 +866,19 @@ const App: React.FC = () => {
                                 list: "/samples",
                                 create: "/samples/create",
                                 edit: "/samples/edit/:id",
-                            },
+                            }
                         ]}
                     >
                         <Routes>
-                            <Route
-                                element={
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                }
-                            >
+                            <Route element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}>
                                 <Route path="samples">
                                     <Route index element={<SampleList />} />
-                                    <Route
-                                        path="create"
-                                        element={<SampleCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<SampleEdit />}
-                                    />
+                                    <Route path="create" element={<SampleCreate />} />
+                                    <Route path="edit/:id" element={<SampleEdit />} />
                                 </Route>
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
@@ -1293,8 +1199,7 @@ const SampleEdit = () => {
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
+                                option?.id?.toString() === value?.id?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -1387,8 +1292,7 @@ const SampleCreate = () => {
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
+                                option.id.toString() === value?.id?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField

@@ -1,7 +1,11 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { Autocomplete, useAutocomplete, TextField } from "@pankod/refine-mui";
+import {
+    Autocomplete,
+    useAutocomplete,
+    TextField,
+} from "@pankod/refine-mui";
 
 interface ICategory {
     id: number;
@@ -17,8 +21,8 @@ const PostCreate: React.FC = () => {
                 field: "title",
                 operator: "contains",
                 value,
-            },
-        ],
+            }
+        ]
         // highlight-end
     });
 
@@ -27,8 +31,7 @@ const PostCreate: React.FC = () => {
             {...autocompleteProps}
             getOptionLabel={(item) => item.title}
             isOptionEqualToValue={(option, value) =>
-                value === undefined ||
-                option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined || option.id.toString() === value.toString()
             }
             placeholder="Select a category"
             renderInput={(params) => (

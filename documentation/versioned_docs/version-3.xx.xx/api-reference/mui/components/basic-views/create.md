@@ -90,8 +90,7 @@ const SampleCreate = () => {
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
+                                option.id.toString() === value?.id?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -115,14 +114,7 @@ const SampleCreate = () => {
 };
 // visible-block-end
 
-render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/create"]}
-        resources={[
-            { name: "samples", create: SampleCreate, list: SampleList },
-        ]}
-    />,
-);
+render(<RefineMuiDemo initialRoutes={["/samples/create"]} resources={[ { name: "samples", create: SampleCreate, list: SampleList } ]} />)
 ```
 
 :::info-tip Swizzle
@@ -166,7 +158,7 @@ render(
                 create: CreatePage,
             },
         ]}
-    />,
+    />
 );
 ```
 
@@ -217,11 +209,7 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `saveButtonProps`
@@ -275,8 +263,8 @@ import { useNavigation } from "@pankod/refine-core";
 const BackButton = () => {
     const { goBack } = useNavigation();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>;
-};
+    return <Button onClick={() => goBack()}>BACK!</Button>
+}
 
 const PostCreate: React.FC = () => {
     return (
@@ -842,16 +830,13 @@ Use `headerButtonProps` and `footerButtonProps` instead.
 const SampleList = () => {
     const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        RefineCore.useMany({
-            resource: "categories",
-            ids:
-                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
-                [],
-            queryOptions: {
-                enabled: !!dataGridProps?.rows,
-            },
-        });
+    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
+        resource: "categories",
+        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+        queryOptions: {
+            enabled: !!dataGridProps?.rows,
+        },
+    });
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -898,24 +883,18 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid
-                {...dataGridProps}
-                columns={columns}
-                autoHeight
-            />
+            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
         </RefineMui.List>
     );
 };
 
-const Wrapper = ({ children }) => {
+const Wrapper = ({children}) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
+            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             {children}
         </RefineMui.ThemeProvider>
-    );
-};
+    )
+}
 ```
