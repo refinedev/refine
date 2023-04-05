@@ -1,5 +1,12 @@
 # @pankod/refine-antd
 
+## 5.3.14
+
+### Patch Changes
+
+-   [#4035](https://github.com/refinedev/refine/pull/4035) [`e0c75450f97`](https://github.com/refinedev/refine/commit/e0c75450f970878fea0ace7db63548c7ba1a1688) Thanks [@salihozdemir](https://github.com/salihozdemir)! - - Re-extending the `SuccessErrorNotification` and `LiveProps` types removed
+    -   `useEditableTable`'s `successNotification` and `errorNotification` props now work according to the mutation result instead of the query result
+
 ## 5.3.13
 
 ### Patch Changes
