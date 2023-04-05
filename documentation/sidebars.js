@@ -304,6 +304,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/antd/components/antd-auth-page",
+                                "api-reference/antd/components/antd-themed-layout",
                                 "api-reference/antd/components/inferencer",
                                 {
                                     type: "category",
