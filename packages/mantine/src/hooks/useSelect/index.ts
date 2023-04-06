@@ -19,11 +19,12 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
 export const useSelect = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >(
-    props: UseSelectProps<TData, TError>,
-): UseSelectReturnType<TData> => {
+    props: UseSelectProps<TData, TError, TSelectData>,
+): UseSelectReturnType<TSelectData> => {
     const { queryResult, defaultValueQueryResult, onSearch, options } =
-        useSelectCore(props);
+        useSelectCore<TData, TError, TSelectData>(props);
 
     return {
         selectProps: {
