@@ -21,33 +21,40 @@ import { useIsFirstRender } from "../utils";
 export type UseTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-> = Table<TData> & {
-    refineCore: useTableReturnTypeCore<TData, TError>;
+    TSelectData extends BaseRecord = TData,
+> = Table<TSelectData> & {
+    refineCore: useTableReturnTypeCore<TData, TError, TSelectData>;
 };
 
 export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 > = {
     /**
      * Configuration object for the core of the [useTable](/docs/api-reference/core/hooks/useTable/)
      * @type [`useTablePropsCore<TData, TError>`](/docs/api-reference/core/hooks/useTable/#properties)
      */
-    refineCoreProps?: useTablePropsCore<TData, TError>;
-} & Pick<TableOptions<TData>, "columns"> &
-    Partial<Omit<TableOptions<TData>, "columns">>;
+    refineCoreProps?: useTablePropsCore<TData, TError, TSelectData>;
+} & Pick<TableOptions<TSelectData>, "columns"> &
+    Partial<Omit<TableOptions<TSelectData>, "columns">>;
 
 export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
     initialState: reactTableInitialState = {},
     ...rest
-}: UseTableProps<TData, TError>): UseTableReturnType<TData, TError> {
+}: UseTableProps<TData, TError, TSelectData>): UseTableReturnType<
+    TData,
+    TError,
+    TSelectData
+> {
     const isFirstRender = useIsFirstRender();
 
-    const useTableResult = useTableCore<TData, TError>({
+    const useTableResult = useTableCore<TData, TError, TSelectData>({
         ...refineCoreProps,
         hasPagination,
     });
@@ -80,7 +87,7 @@ export function useTable<
         }
     });
 
-    const reactTableResult = useReactTable<TData>({
+    const reactTableResult = useReactTable<TSelectData>({
         getCoreRowModel: getCoreRowModel(),
         data: data?.data ?? [],
         initialState: {
