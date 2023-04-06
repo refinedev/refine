@@ -42,7 +42,7 @@ import { BaseListProps } from "../data/useList";
 
 type SetFilterBehavior = "merge" | "replace";
 
-export type useTableProps<TData, TError> = {
+export type useTableProps<TData, TError, TSelectData> = {
     /**
      * Resource name for API data interactions
      * @default Resource name that it reads from route
@@ -139,7 +139,11 @@ export type useTableProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetListResponse<TData>,
+        TError,
+        GetListResponse<TSelectData>
+    >;
     /**
      * Metadata query for dataProvider
      */
@@ -154,7 +158,7 @@ export type useTableProps<TData, TError> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    GetListResponse<TData>,
+    GetListResponse<TSelectData>,
     TError,
     Prettify<BaseListProps>
 > &
@@ -175,8 +179,9 @@ type SyncWithLocationParams = {
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 > = {
-    tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+    tableQueryResult: QueryObserverResult<GetListResponse<TSelectData>, TError>;
     /**
      * @deprecated `sorter` is deprecated. Use `sorters` instead.
      */
@@ -212,6 +217,7 @@ const defaultPermanentSorter: CrudSorting = [];
 export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     initialCurrent,
     initialPageSize,
@@ -235,7 +241,11 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
-}: useTableProps<TData, TError> = {}): useTableReturnType<TData, TError> {
+}: useTableProps<TData, TError, TSelectData> = {}): useTableReturnType<
+    TData,
+    TError,
+    TSelectData
+> {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
@@ -475,7 +485,7 @@ export function useTable<
         }
     }, [syncWithLocation, current, pageSize, sorters, filters]);
 
-    const queryResult = useList<TData, TError>({
+    const queryResult = useList<TData, TError, TSelectData>({
         resource: resourceInUse,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },

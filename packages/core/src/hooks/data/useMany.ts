@@ -29,7 +29,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions/helpers";
 
-export type UseManyProps<TData, TError> = {
+export type UseManyProps<TData, TError, TSelectData> = {
     /**
      * Resource name for API data interactions
      */
@@ -42,7 +42,11 @@ export type UseManyProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetManyResponse<TData>,
+        TError,
+        GetManyResponse<TSelectData>
+    >;
     /**
      * Metadata query for `dataProvider`,
      */
@@ -57,7 +61,7 @@ export type UseManyProps<TData, TError> = {
      * @default "default"
      */
     dataProviderName?: string;
-} & SuccessErrorNotification<GetManyResponse<TData>, TError, BaseKey[]> &
+} & SuccessErrorNotification<GetManyResponse<TSelectData>, TError, BaseKey[]> &
     LiveModeProps;
 
 /**
@@ -74,6 +78,7 @@ export type UseManyProps<TData, TError> = {
 export const useMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     ids,
@@ -86,8 +91,8 @@ export const useMany = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseManyProps<TData, TError>): QueryObserverResult<
-    GetManyResponse<TData>
+}: UseManyProps<TData, TError, TSelectData>): QueryObserverResult<
+    GetManyResponse<TSelectData>
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
@@ -128,7 +133,11 @@ export const useMany = <
         onLiveEvent,
     });
 
-    const queryResponse = useQuery<GetManyResponse<TData>, TError>(
+    const queryResponse = useQuery<
+        GetManyResponse<TData>,
+        TError,
+        GetManyResponse<TSelectData>
+    >(
         queryKey.many(ids),
         ({ queryKey, pageParam, signal }) => {
             if (getMany) {

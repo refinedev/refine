@@ -29,7 +29,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions";
 
-export type UseOneProps<TData, TError> = {
+export type UseOneProps<TData, TError, TSelectData> = {
     /**
      * Resource name for API data interactions
      */
@@ -42,7 +42,11 @@ export type UseOneProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetOneResponse<TData>,
+        TError,
+        GetOneResponse<TSelectData>
+    >;
     /**
      * Metadata query for `dataProvider`,
      */
@@ -58,7 +62,7 @@ export type UseOneProps<TData, TError> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    GetOneResponse<TData>,
+    GetOneResponse<TSelectData>,
     TError,
     Prettify<{ id?: BaseKey } & MetaQuery>
 > &
@@ -78,6 +82,7 @@ export type UseOneProps<TData, TError> = {
 export const useOne = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     id,
@@ -90,7 +95,9 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
+}: UseOneProps<TData, TError, TSelectData>): QueryObserverResult<
+    GetOneResponse<TSelectData>
+> => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const queryKey = queryKeys(
@@ -130,7 +137,11 @@ export const useOne = <
         onLiveEvent,
     });
 
-    const queryResponse = useQuery<GetOneResponse<TData>, TError>(
+    const queryResponse = useQuery<
+        GetOneResponse<TData>,
+        TError,
+        GetOneResponse<TSelectData>
+    >(
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
             getOne<TData>({

@@ -80,7 +80,7 @@ type BaseInfiniteListProps = {
     dataProviderName?: string;
 };
 
-export type UseInfiniteListProps<TData, TError> = {
+export type UseInfiniteListProps<TData, TError, TSelectData> = {
     /**
      * Resource name for API data interactions
      */
@@ -88,10 +88,14 @@ export type UseInfiniteListProps<TData, TError> = {
     /**
      * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options
      */
-    queryOptions?: UseInfiniteQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseInfiniteQueryOptions<
+        GetListResponse<TData>,
+        TError,
+        GetListResponse<TSelectData>
+    >;
 } & BaseInfiniteListProps &
     SuccessErrorNotification<
-        InfiniteData<GetListResponse<TData>>,
+        InfiniteData<GetListResponse<TSelectData>>,
         TError,
         Prettify<BaseInfiniteListProps>
     > &
@@ -111,6 +115,7 @@ export type UseInfiniteListProps<TData, TError> = {
 export const useInfiniteList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     config,
@@ -127,10 +132,11 @@ export const useInfiniteList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseInfiniteListProps<TData, TError>): InfiniteQueryObserverResult<
-    GetListResponse<TData>,
-    TError
-> => {
+}: UseInfiniteListProps<
+    TData,
+    TError,
+    TSelectData
+>): InfiniteQueryObserverResult<GetListResponse<TSelectData>, TError> => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -203,7 +209,11 @@ export const useInfiniteList = <
         onLiveEvent,
     });
 
-    const queryResponse = useInfiniteQuery<GetListResponse<TData>, TError>(
+    const queryResponse = useInfiniteQuery<
+        GetListResponse<TData>,
+        TError,
+        GetListResponse<TSelectData>
+    >(
         queryKey.list({
             filters: prefferedFilters,
             hasPagination: isServerPagination,

@@ -34,7 +34,7 @@ interface UseCustomConfig<TQuery, TPayload> {
     headers?: {};
 }
 
-export type UseCustomProps<TData, TError, TQuery, TPayload> = {
+export type UseCustomProps<TData, TError, TQuery, TPayload, TSelectData> = {
     /**
      * request's URL
      */
@@ -50,7 +50,11 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
      */
-    queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        CustomResponse<TData>,
+        TError,
+        CustomResponse<TSelectData>
+    >;
     /**
      * meta data for `dataProvider`
      */
@@ -65,7 +69,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    CustomResponse<TData>,
+    CustomResponse<TSelectData>,
     TError,
     Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
 >;
@@ -88,6 +92,7 @@ export const useCustom = <
     TError extends HttpError = HttpError,
     TQuery = unknown,
     TPayload = unknown,
+    TSelectData extends BaseRecord = TData,
 >({
     url,
     method,
@@ -98,10 +103,13 @@ export const useCustom = <
     meta,
     metaData,
     dataProviderName,
-}: UseCustomProps<TData, TError, TQuery, TPayload>): QueryObserverResult<
-    CustomResponse<TData>,
-    TError
-> => {
+}: UseCustomProps<
+    TData,
+    TError,
+    TQuery,
+    TPayload,
+    TSelectData
+>): QueryObserverResult<CustomResponse<TSelectData>, TError> => {
     const dataProvider = useDataProvider();
 
     const { custom } = dataProvider(dataProviderName);
@@ -113,7 +121,11 @@ export const useCustom = <
     const handleNotification = useHandleNotification();
 
     if (custom) {
-        const queryResponse = useQuery<CustomResponse<TData>, TError>({
+        const queryResponse = useQuery<
+            CustomResponse<TData>,
+            TError,
+            CustomResponse<TSelectData>
+        >({
             queryKey: [
                 dataProviderName,
                 "custom",

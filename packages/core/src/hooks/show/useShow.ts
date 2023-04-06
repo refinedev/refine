@@ -31,6 +31,7 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
 export type useShowProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 > = {
     /**
      * Resource name for API data interactions
@@ -45,7 +46,11 @@ export type useShowProps<
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetOneResponse<TData>,
+        TError,
+        GetOneResponse<TSelectData>
+    >;
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
@@ -62,7 +67,7 @@ export type useShowProps<
     dataProviderName?: string;
 } & LiveModeProps &
     SuccessErrorNotification<
-        GetOneResponse<TData>,
+        GetOneResponse<TSelectData>,
         TError,
         Prettify<{ id?: BaseKey } & MetaQuery>
     >;
@@ -77,6 +82,7 @@ export type useShowProps<
 export const useShow = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource: resourceFromProp,
     id,
@@ -88,7 +94,11 @@ export const useShow = <
     onLiveEvent,
     dataProviderName,
     queryOptions,
-}: useShowProps<TData, TError> = {}): useShowReturnType<TData> => {
+}: useShowProps<
+    TData,
+    TError,
+    TSelectData
+> = {}): useShowReturnType<TSelectData> => {
     const routerType = useRouterType();
     const { resources } = useResource();
     const { useParams } = useRouterContext();
@@ -170,7 +180,7 @@ export const useShow = <
             `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
     );
 
-    const queryResult = useOne<TData, TError>({
+    const queryResult = useOne<TData, TError, TSelectData>({
         resource: resource?.name,
         id: showId ?? "",
         queryOptions: {

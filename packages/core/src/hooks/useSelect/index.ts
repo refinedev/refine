@@ -25,7 +25,7 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource/index";
 import { BaseListProps } from "../data/useList";
 
-export type UseSelectProps<TData, TError> = {
+export type UseSelectProps<TData, TError, TSelectData> = {
     /**
      * Resource name for API data interactions
      */
@@ -65,7 +65,11 @@ export type UseSelectProps<TData, TError> = {
     /**
      * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetListResponse<TData>,
+        TError,
+        GetListResponse<TSelectData>
+    >;
     /**
      * Pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
      * @type {  current?: number; pageSize?: number;}
@@ -117,7 +121,7 @@ export type UseSelectProps<TData, TError> = {
      */
     fetchSize?: number;
 } & SuccessErrorNotification<
-    GetListResponse<TData>,
+    GetListResponse<TSelectData>,
     TError,
     Prettify<BaseListProps>
 > &
@@ -133,9 +137,10 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
 export const useSelect = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >(
-    props: UseSelectProps<TData, TError>,
-): UseSelectReturnType<TData> => {
+    props: UseSelectProps<TData, TError, TSelectData>,
+): UseSelectReturnType<TSelectData> => {
     const [search, setSearch] = useState<CrudFilters>([]);
     const [options, setOptions] = useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
@@ -179,7 +184,7 @@ export const useSelect = <
         : [defaultValue];
 
     const defaultValueQueryOnSuccess = useCallback(
-        (data: GetManyResponse<TData>) => {
+        (data: GetManyResponse<TSelectData>) => {
             setSelectedOptions(
                 data.data.map((item) => ({
                     label: get(item, optionLabel) as string,
@@ -193,7 +198,7 @@ export const useSelect = <
     const defaultValueQueryOptions =
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
-    const defaultValueQueryResult = useMany<TData, TError>({
+    const defaultValueQueryResult = useMany<TData, TError, TSelectData>({
         resource,
         ids: defaultValues,
         queryOptions: {
@@ -213,7 +218,7 @@ export const useSelect = <
     });
 
     const defaultQueryOnSuccess = useCallback(
-        (data: GetListResponse<TData>) => {
+        (data: GetListResponse<TSelectData>) => {
             {
                 setOptions(
                     data.data.map((item) => ({
@@ -226,7 +231,7 @@ export const useSelect = <
         [optionLabel, optionValue],
     );
 
-    const queryResult = useList<TData, TError>({
+    const queryResult = useList<TData, TError, TSelectData>({
         resource,
         sorters: pickNotDeprecated(sorters, sort),
         filters: filters.concat(search),

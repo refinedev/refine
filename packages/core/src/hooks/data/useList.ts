@@ -77,7 +77,7 @@ export type BaseListProps = {
     dataProviderName?: string;
 };
 
-export type UseListProps<TData, TError> = {
+export type UseListProps<TData, TError, TSelectData> = {
     /**
      * Resource name for API data interactions
      */
@@ -86,10 +86,14 @@ export type UseListProps<TData, TError> = {
     /**
      * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetListResponse<TData>,
+        TError,
+        GetListResponse<TSelectData>
+    >;
 } & BaseListProps &
     SuccessErrorNotification<
-        GetListResponse<TData>,
+        GetListResponse<TSelectData>,
         TError,
         Prettify<BaseListProps>
     > &
@@ -109,6 +113,7 @@ export type UseListProps<TData, TError> = {
 export const useList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     config,
@@ -125,8 +130,8 @@ export const useList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseListProps<TData, TError>): QueryObserverResult<
-    GetListResponse<TData>,
+}: UseListProps<TData, TError, TSelectData>): QueryObserverResult<
+    GetListResponse<TSelectData>,
     TError
 > => {
     const { resources } = useResource();
@@ -201,7 +206,11 @@ export const useList = <
         onLiveEvent,
     });
 
-    const queryResponse = useQuery<GetListResponse<TData>, TError>(
+    const queryResponse = useQuery<
+        GetListResponse<TData>,
+        TError,
+        GetListResponse<TSelectData>
+    >(
         queryKey.list({
             filters: prefferedFilters,
             hasPagination: isServerPagination,
@@ -267,7 +276,7 @@ export const useList = <
                     return queryOptions?.select?.(data);
                 }
 
-                return data;
+                return data as unknown as GetListResponse<TSelectData>;
             },
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
