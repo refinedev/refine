@@ -54,6 +54,7 @@ jobs:
       - name: Wait for Netlify Deploy (Live Previews)
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment
+        continue-on-error: true
         with:
           site_id: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
           max_timeout: 1200
