@@ -8,7 +8,8 @@ export type UseStepsFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-> = UseFormReturnType<TData, TError, TVariables, TTransformed> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnType<TData, TError, TVariables, TTransformed, TSelectData> & {
     steps: {
         currentStep: number;
         gotoStep: (step: number) => void;
@@ -20,7 +21,8 @@ export type UseStepsFormProps<
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-> = UseFormProps<TData, TError, TVariables, TTransformed> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormProps<TData, TError, TVariables, TTransformed, TSelectData> & {
     /**
      * @description Configuration object for the steps.
      * `defaultStep`: Allows you to set the initial step.
@@ -43,6 +45,7 @@ export const useStepsForm = <
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
+    TSelectData extends BaseRecord = TData,
 >({
     stepsProps,
     ...rest
@@ -50,12 +53,25 @@ export const useStepsForm = <
     TData,
     TError,
     TVariables,
-    TTransformed
-> = {}): UseStepsFormReturnType<TData, TError, TVariables, TTransformed> => {
+    TTransformed,
+    TSelectData
+> = {}): UseStepsFormReturnType<
+    TData,
+    TError,
+    TVariables,
+    TTransformed,
+    TSelectData
+> => {
     const { defaultStep = 0, isBackValidate = false } = stepsProps ?? {};
     const [current, setCurrent] = useState(defaultStep);
 
-    const useMantineFormResult = useForm({
+    const useMantineFormResult = useForm<
+        TData,
+        TError,
+        TVariables,
+        TTransformed,
+        TSelectData
+    >({
         ...rest,
     });
 

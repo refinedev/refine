@@ -5,8 +5,6 @@ import {
     UseFormReturn,
     FieldValues,
     UseFormHandleSubmit,
-    SubmitHandler,
-    SubmitErrorHandler,
 } from "react-hook-form";
 import {
     BaseRecord,
@@ -22,8 +20,9 @@ export type UseFormReturnType<
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
+    TSelectData extends BaseRecord = TData,
 > = UseFormReturn<TVariables, TContext> & {
-    refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
+    refineCore: UseFormReturnTypeCore<TData, TError, TVariables, TSelectData>;
     saveButtonProps: {
         disabled: boolean;
         onClick: (e: React.BaseSyntheticEvent) => void;
@@ -35,12 +34,13 @@ export type UseFormProps<
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
+    TSelectData extends BaseRecord = TData,
 > = {
     /**
      * Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)
      * @type [`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)
      */
-    refineCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
+    refineCoreProps?: UseFormCoreProps<TData, TError, TVariables, TSelectData>;
     /**
      * When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
      * @default `false*`
@@ -53,15 +53,23 @@ export const useForm = <
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
+    TSelectData extends BaseRecord = TData,
 >({
     refineCoreProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     ...rest
-}: UseFormProps<TData, TError, TVariables, TContext> = {}): UseFormReturnType<
+}: UseFormProps<
     TData,
     TError,
     TVariables,
-    TContext
+    TContext,
+    TSelectData
+> = {}): UseFormReturnType<
+    TData,
+    TError,
+    TVariables,
+    TContext,
+    TSelectData
 > => {
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -70,7 +78,12 @@ export const useForm = <
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
-    const useFormCoreResult = useFormCore<TData, TError, TVariables>({
+    const useFormCoreResult = useFormCore<
+        TData,
+        TError,
+        TVariables,
+        TSelectData
+    >({
         ...refineCoreProps,
     });
 

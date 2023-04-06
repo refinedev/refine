@@ -56,6 +56,7 @@ type ActionFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 > = {
     /**
      * Resource name for API data interactions
@@ -121,7 +122,11 @@ type ActionFormProps<
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options of useOne hook used while in edit mode.
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
+    queryOptions?: UseQueryOptions<
+        GetOneResponse<TData>,
+        TError,
+        GetOneResponse<TSelectData>
+    >;
     /**
      * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
      */
@@ -150,17 +155,21 @@ export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = ActionFormProps<TData, TError, TVariables> & ActionParams & LiveModeProps;
+    TSelectData extends BaseRecord = TData,
+> = ActionFormProps<TData, TError, TVariables, TSelectData> &
+    ActionParams &
+    LiveModeProps;
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 > = {
     id?: BaseKey;
     setId: Dispatch<SetStateAction<BaseKey | undefined>>;
 
-    queryResult?: QueryObserverResult<GetOneResponse<TData>>;
+    queryResult?: QueryObserverResult<GetOneResponse<TSelectData>>;
     mutationResult:
         | UseUpdateReturnType<TData, TError, TVariables>
         | UseCreateReturnType<TData, TError, TVariables>;
@@ -190,6 +199,7 @@ export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 >({
     resource: resourceFromProps,
     action: actionFromProps,
@@ -211,11 +221,12 @@ export const useForm = <
     queryOptions,
     createMutationOptions,
     updateMutationOptions,
-}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TSelectData
+> = {}): UseFormReturnType<TData, TError, TVariables, TSelectData> => {
     const { options } = useRefineContext();
     const { resources } = useResource();
     const routerType = useRouterType();
@@ -349,7 +360,7 @@ export const useForm = <
 
     const enableQuery = id !== undefined && (isEdit || isClone);
 
-    const queryResult = useOne<TData>({
+    const queryResult = useOne<TData, TError, TSelectData>({
         resource: resource?.name,
         id: id ?? "",
         queryOptions: {

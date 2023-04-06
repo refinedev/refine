@@ -46,18 +46,20 @@ export type UseModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 > = Omit<
-    UseFormReturnType<TData, TError, TVariables>,
+    UseFormReturnType<TData, TError, TVariables, TSelectData>,
     "saveButtonProps" | "deleteButtonProps"
 > &
-    useModalFormFromSFReturnType<TData, TVariables>;
+    useModalFormFromSFReturnType<TSelectData, TVariables>;
 
 export type UseModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps<TData, TError, TVariables> &
+    TSelectData extends BaseRecord = TData,
+> = UseFormPropsCore<TData, TError, TVariables, TSelectData> &
+    UseFormProps<TData, TError, TVariables, TSelectData> &
     UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps &
@@ -77,17 +79,19 @@ export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 >({
     syncWithLocation,
     ...rest
-}: UseModalFormProps<TData, TError, TVariables>): UseModalFormReturnType<
+}: UseModalFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TSelectData
+>): UseModalFormReturnType<TData, TError, TVariables, TSelectData> => {
     const initiallySynced = React.useRef(false);
 
-    const useFormProps = useForm<TData, TError, TVariables>({
+    const useFormProps = useForm<TData, TError, TVariables, TSelectData>({
         ...rest,
     });
 
@@ -114,7 +118,7 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const sunflowerUseModal = useModalFormSF<TData, TVariables>({
+    const sunflowerUseModal = useModalFormSF<TSelectData, TVariables>({
         ...rest,
         form: form,
         submit: onFinish as any,

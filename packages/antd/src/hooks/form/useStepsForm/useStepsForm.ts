@@ -33,15 +33,17 @@ export type UseStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormReturnType<TData, TError, TVariables> &
-    UseStepsFormFromSFReturnType<TData, TVariables>;
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnType<TData, TError, TVariables, TSelectData> &
+    UseStepsFormFromSFReturnType<TSelectData, TVariables>;
 
 export type UseStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps<TData, TError, TVariables> &
+    TSelectData extends BaseRecord = TData,
+> = UseFormPropsCore<TData, TError, TVariables, TSelectData> &
+    UseFormProps<TData, TError, TVariables, TSelectData> &
     UseStepsFormConfig;
 
 /**
@@ -59,13 +61,16 @@ export const useStepsForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 >(
-    props: UseStepsFormProps<TData, TError, TVariables> = {},
-): UseStepsFormReturnType<TData, TError, TVariables> => {
-    const useFormProps = useForm<TData, TError, TVariables>({ ...props });
+    props: UseStepsFormProps<TData, TError, TVariables, TSelectData> = {},
+): UseStepsFormReturnType<TData, TError, TVariables, TSelectData> => {
+    const useFormProps = useForm<TData, TError, TVariables, TSelectData>({
+        ...props,
+    });
     const { form, formProps } = useFormProps;
 
-    const stepsPropsSunflower = useStepsFormSF<TData, TVariables>({
+    const stepsPropsSunflower = useStepsFormSF<TSelectData, TVariables>({
         isBackValidate: false,
         form: form,
         submit: (values: any) => {

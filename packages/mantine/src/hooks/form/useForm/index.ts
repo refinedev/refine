@@ -27,6 +27,7 @@ export type UseFormReturnType<
     TError extends HttpError,
     TVariables,
     TTransformed = TVariables,
+    TSelectData extends BaseRecord = TData,
 > = UseMantineFormReturnType<
     TVariables,
     (values: TVariables) => TTransformed
@@ -34,7 +35,8 @@ export type UseFormReturnType<
     refineCore: UseFormReturnTypeCore<
         TData,
         TError,
-        FormVariableType<TVariables, TTransformed>
+        FormVariableType<TVariables, TTransformed>,
+        TSelectData
     >;
     saveButtonProps: {
         disabled: boolean;
@@ -47,11 +49,13 @@ export type UseFormProps<
     TError extends HttpError,
     TVariables,
     TTransformed = TVariables,
+    TSelectData extends BaseRecord = TData,
 > = {
     refineCoreProps?: UseFormCoreProps<
         TData,
         TError,
-        FormVariableType<TVariables, TTransformed>
+        FormVariableType<TVariables, TTransformed>,
+        TSelectData
     > & {
         warnWhenUnsavedChanges?: boolean;
     };
@@ -62,6 +66,7 @@ export const useForm = <
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
+    TSelectData extends BaseRecord = TData,
 >({
     refineCoreProps,
     ...rest
@@ -69,8 +74,15 @@ export const useForm = <
     TData,
     TError,
     TVariables,
-    TTransformed
-> = {}): UseFormReturnType<TData, TError, TVariables, TTransformed> => {
+    TTransformed,
+    TSelectData
+> = {}): UseFormReturnType<
+    TData,
+    TError,
+    TVariables,
+    TTransformed,
+    TSelectData
+> => {
     const warnWhenUnsavedChangesProp = refineCoreProps?.warnWhenUnsavedChanges;
 
     const {
@@ -83,7 +95,8 @@ export const useForm = <
     const useFormCoreResult = useFormCore<
         TData,
         TError,
-        FormVariableType<TVariables, TTransformed>
+        FormVariableType<TVariables, TTransformed>,
+        TSelectData
     >({
         ...refineCoreProps,
     });
