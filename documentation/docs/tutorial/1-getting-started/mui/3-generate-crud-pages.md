@@ -41,9 +41,9 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
@@ -59,7 +59,7 @@ import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -87,9 +87,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route
@@ -160,9 +160,9 @@ setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
@@ -177,7 +177,7 @@ import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -207,9 +207,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
@@ -254,9 +254,9 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
@@ -271,7 +271,7 @@ import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -301,9 +301,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
@@ -348,9 +348,9 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
@@ -365,7 +365,7 @@ import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -395,9 +395,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}
@@ -442,9 +442,9 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
@@ -459,7 +459,7 @@ import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -489,9 +489,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 {/* highlight-start */}

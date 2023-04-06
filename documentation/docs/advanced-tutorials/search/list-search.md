@@ -85,12 +85,18 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
@@ -101,33 +107,35 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                notificationProvider={notificationProvider}
-                // highlight-start
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                ]}
-                //highlight-end
-            >
-                <Routes>
-                    <Route index element={<NavigateToResource />} />
-                    <Route
-                        element={(
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        )}
-                    >
-                        <Route path="/posts" element={<PostList />} />
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-            </Refine>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    // highlight-start
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                    //highlight-end
+                >
+                    <Routes>
+                        <Route index element={<NavigateToResource />} />
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            <Route path="/posts" element={<PostList />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

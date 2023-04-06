@@ -69,11 +69,7 @@ const authProvider = {
 setRefineProps({ Sider: () => null, dataProvider: sharedDataProvider("api") });
 
 const Wrapper = ({ children }) => {
-    return (
-        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </ChakraUI.ChakraProvider>
-    );
+    return children;
 };
 
 const DashboardPage = () => {
@@ -139,13 +135,15 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -155,41 +153,45 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-start */}
+            <ChakraProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
         </BrowserRouter>
     );
 };
@@ -225,7 +227,9 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -236,37 +240,41 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
+            <ChakraProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/login" element={<AuthPage />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
         </BrowserRouter>
     );
 };
@@ -320,7 +328,9 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -331,41 +341,45 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                        {/* highlight-next-line */}
+            <ChakraProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
         </BrowserRouter>
     );
 };
@@ -419,7 +433,9 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -430,45 +446,49 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
+            <ChakraProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        {/* highlight-next-line */}
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
                         <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
         </BrowserRouter>
     );
 };
@@ -522,7 +542,9 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -533,49 +555,53 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
+            <ChakraProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
                         <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
         </BrowserRouter>
     );
 };

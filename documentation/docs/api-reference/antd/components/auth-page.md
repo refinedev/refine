@@ -134,11 +134,13 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -148,41 +150,45 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-start */}
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -215,7 +221,9 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -226,37 +234,41 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/login" element={<AuthPage />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -307,7 +319,9 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -318,41 +332,45 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                        {/* highlight-next-line */}
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                >
+                    <Routes>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<DashboardPage />} />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<AuthPage />} />
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -391,7 +409,7 @@ const authProvider: AuthBindings = {
 
 The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
-```tsx live hideCode url=http://localhost:3000/forgot-password
+```tsx live hideCode url=http://localhost:3000/forgot-password previewHeight=600px
 setInitialRoutes(["/forgot-password"]);
 setRefineProps({ Sider: () => null });
 
@@ -403,7 +421,9 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -425,9 +445,9 @@ const App = () => {
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >
@@ -491,7 +511,7 @@ const authProvider: AuthBindings = {
 
 The `updatePassword` type is the page used to update the password of the user.
 
-```tsx live hideCode url=http://localhost:3000/update-password
+```tsx live hideCode url=http://localhost:3000/update-password previewHeight=600px
 setInitialRoutes(["/update-password"]);
 setRefineProps({ Sider: () => null });
 
@@ -503,7 +523,9 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -525,9 +547,9 @@ const App = () => {
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >

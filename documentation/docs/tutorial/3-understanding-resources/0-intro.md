@@ -140,8 +140,9 @@ export default App;
 <UIConditional is="antd">
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, Layout } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
+import { ConfigProvider } from "antd";
 import { Refine } from "@refinedev/core";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 import routerBindings, {
@@ -154,57 +155,64 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerBindings}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerBindings}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="blog_posts" />
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
                             }
-                        />
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
+                        >
                             <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
                             />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
-                        </Route>
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -217,7 +225,12 @@ export default App;
 <UIConditional is="chakra-ui">
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, Layout } from "@refinedev/chakra-ui";
+import {
+    ErrorComponent,
+    ThemedLayout,
+    RefineThemes,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import { Refine } from "@refinedev/core";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra";
 import routerBindings, {
@@ -230,60 +243,64 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerBindings}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+            <ChakraProvider theme={RefineThemes.Blue}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerBindings}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="blog_posts" />
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
                             }
-                        />
-                        <Route path="blog-posts">
-                            <Route index element={<ChakraUIInferencer />} />
+                        >
                             <Route
-                                path="show/:id"
-                                element={<ChakraUIInferencer />}
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
                             />
-                            <Route
-                                path="edit/:id"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="create"
-                                element={<ChakraUIInferencer />}
-                            />
-                        </Route>
+                            <Route path="blog-posts">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ChakraProvider>
         </BrowserRouter>
     );
 };
@@ -298,7 +315,8 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ErrorComponent, Layout } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { MantineProvider, Global } from "@mantine/core";
 import routerBindings, {
     NavigateToResource,
     UnsavedChangesNotifier,
@@ -309,60 +327,68 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerBindings}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
+            <MantineProvider
+                theme={RefineThemes.Blue}
+                withNormalizeCSS
+                withGlobalStyles
             >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerBindings}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="blog_posts" />
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
                             }
-                        />
-                        <Route path="blog-posts">
-                            <Route index element={<MantineInferencer />} />
+                        >
                             <Route
-                                path="show/:id"
-                                element={<MantineInferencer />}
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
                             />
-                            <Route
-                                path="edit/:id"
-                                element={<MantineInferencer />}
-                            />
-                            <Route
-                                path="create"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
+                            <Route path="blog-posts">
+                                <Route index element={<MantineInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<MantineInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<MantineInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<MantineInferencer />}
+                                />
+                            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </MantineProvider>
         </BrowserRouter>
     );
 };
@@ -377,7 +403,9 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
-import { ErrorComponent, Layout } from "@refinedev/mui";
+import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import routerBindings, {
     NavigateToResource,
     UnsavedChangesNotifier,
@@ -388,57 +416,68 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerBindings}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    routerProvider={routerBindings}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="blog_posts" />
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
                             }
-                        />
-                        <Route path="blog-posts">
-                            <Route index element={<MuiInferencer />} />
+                        >
                             <Route
-                                path="show/:id"
-                                element={<MuiInferencer />}
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
                             />
-                            <Route
-                                path="edit/:id"
-                                element={<MuiInferencer />}
-                            />
-                            <Route path="create" element={<MuiInferencer />} />
-                        </Route>
+                            <Route path="blog-posts">
+                                <Route index element={<MuiInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<MuiInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<MuiInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<MuiInferencer />}
+                                />
+                            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ThemeProvider>
         </BrowserRouter>
     );
 };

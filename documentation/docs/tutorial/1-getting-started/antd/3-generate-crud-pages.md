@@ -40,7 +40,11 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@refinedev/antd";
 import routerBindings, {
     NavigateToResource,
     UnsavedChangesNotifier,
@@ -50,62 +54,70 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
                         <Route
-                            index
                             element={
-                                <NavigateToResource resource="blog_posts" />
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
                             }
-                        />
-                        {/* highlight-start */}
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
+                        >
                             <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
                             />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
+                            {/* highlight-start */}
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-                        {/* highlight-end */}
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -143,7 +155,11 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -152,58 +168,66 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-                        {/* highlight-end */}
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -221,7 +245,11 @@ You should see the create page for the `blog_posts` resource that was generated 
 setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -230,58 +258,66 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-                        {/* highlight-end */}
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -299,7 +335,11 @@ You should see the edit page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -308,58 +348,66 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-                        {/* highlight-end */}
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -377,7 +425,11 @@ You should see the show page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -386,58 +438,66 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                //highlight-start
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                //highlight-end
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
-                        {/* highlight-end */}
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
