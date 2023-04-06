@@ -1,29 +1,28 @@
 {
   "name": "base-antd",
   "version": "3.25.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@refinedev/antd": "^5.3.14",
-    "@refinedev/core": "^4.7.2",
     "@refinedev/cli": "^2.1.2",
+    "@refinedev/core": "^4.7.2",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/simple-rest": "^4.1.0",
     "@types/node": "^12.20.11",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@uiw/react-md-editor": "^3.19.5",
+    "antd": "^5.0.5",
+    "cross-env": "^7.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "@uiw/react-md-editor": "^3.19.5",
-    "react-scripts": "^5.0.0",
-    "cross-env": "^7.0.3",
-    "typescript": "^4.7.4",
-    "antd": "^5.0.5"
+    "typescript": "^4.7.4"
   },
   "scripts": {
-    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "eject": "react-scripts eject",
-    "refine": "refine"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "browserslist": {
     "production": [
@@ -36,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite": "^4.2.1"
   }
 }
