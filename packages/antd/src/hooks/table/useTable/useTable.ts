@@ -21,21 +21,21 @@ import {
 } from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
 
-export type useTableProps<
-    TData,
-    TError,
-    TSearchVariables = unknown,
-> = useTablePropsCore<TData, TError> & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-};
+export type useTableProps<TData, TError, TSearchVariables, TSelectData> =
+    useTablePropsCore<TData, TError, TSelectData> & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+    };
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-> = useTableCoreReturnType<TData, TError> & {
+    TSelectData extends BaseRecord = TData,
+> = useTableCoreReturnType<TData, TError, TSelectData> & {
     searchFormProps: FormProps<TSearchVariables>;
-    tableProps: TableProps<TData>;
+    tableProps: TableProps<TSelectData>;
 };
 
 /**
@@ -50,6 +50,7 @@ export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
+    TSelectData extends BaseRecord = TData,
 >({
     onSearch,
     initialCurrent,
@@ -74,11 +75,12 @@ export const useTable = <
     meta,
     metaData,
     dataProviderName,
-}: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
+}: useTableProps<
     TData,
     TError,
-    TSearchVariables
-> => {
+    TSearchVariables,
+    TSelectData
+> = {}): useTableReturnType<TData, TError, TSearchVariables, TSelectData> => {
     const {
         tableQueryResult,
         current,
@@ -93,7 +95,7 @@ export const useTable = <
         setSorter,
         createLinkForSyncWithLocation,
         pageCount,
-    } = useTableCore<TData, TError>({
+    } = useTableCore<TData, TError, TSelectData>({
         permanentSorter,
         permanentFilter,
         initialCurrent,

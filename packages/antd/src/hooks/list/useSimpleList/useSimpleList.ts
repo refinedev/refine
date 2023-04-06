@@ -14,8 +14,8 @@ import { useLiveMode } from "@refinedev/core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
 import { PaginationConfig } from "antd/lib/pagination";
 
-export type useSimpleListProps<TData, TError, TSearchVariables> =
-    useTablePropsCore<TData, TError> & {
+export type useSimpleListProps<TData, TError, TSearchVariables, TSelectData> =
+    useTablePropsCore<TData, TError, TSelectData> & {
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
@@ -24,8 +24,9 @@ export type useSimpleListProps<TData, TError, TSearchVariables> =
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
-> = Omit<useTableReturnType<TData>, "tableQueryResult"> & {
-    listProps: ListProps<TData>;
+    TSelectData extends BaseRecord = TData,
+> = Omit<useTableReturnType<TSelectData>, "tableQueryResult"> & {
+    listProps: ListProps<TSelectData>;
     queryResult: useTableReturnType["tableQueryResult"];
     searchFormProps: FormProps<TSearchVariables>;
 };
@@ -46,6 +47,7 @@ export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     initialCurrent,
@@ -73,8 +75,9 @@ export const useSimpleList = <
 }: useSimpleListProps<
     TData,
     TError,
-    TSearchVariables
-> = {}): useSimpleListReturnType<TData, TSearchVariables> => {
+    TSearchVariables,
+    TSelectData
+> = {}): useSimpleListReturnType<TSelectData, TSearchVariables> => {
     const {
         sorters,
         sorter,

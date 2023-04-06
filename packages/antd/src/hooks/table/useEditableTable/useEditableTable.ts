@@ -10,7 +10,8 @@ export type useEditableTableReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
     TSearchVariables = unknown,
-> = useTableReturnType<TData, TError, TSearchVariables> &
+    TSelectData extends BaseRecord = TData,
+> = useTableReturnType<TData, TError, TSearchVariables, TSelectData> &
     UseFormReturnType<TData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;
@@ -29,8 +30,9 @@ type useEditableTableProps<
     TError extends HttpError = HttpError,
     TVariables = {},
     TSearchVariables = unknown,
+    TSelectData extends BaseRecord = TData,
 > = Omit<
-    useTableProps<TData, TError, TSearchVariables>,
+    useTableProps<TData, TError, TSearchVariables, TSelectData>,
     "successNotification" | "errorNotification"
 > &
     UseFormProps<TData, TError, TVariables>;

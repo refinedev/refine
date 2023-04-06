@@ -26,8 +26,8 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
  *
  */
 
-type UseCheckboxGroupProps<TData, TError> = Omit<
-    UseSelectProps<TData, TError>,
+type UseCheckboxGroupProps<TData, TError, TSelectData> = Omit<
+    UseSelectProps<TData, TError, TSelectData>,
     "defaultValue"
 > & {
     /**
@@ -39,6 +39,7 @@ type UseCheckboxGroupProps<TData, TError> = Omit<
 export const useCheckboxGroup = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     sort,
@@ -56,7 +57,11 @@ export const useCheckboxGroup = <
     meta,
     metaData,
     dataProviderName,
-}: UseCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
+}: UseCheckboxGroupProps<
+    TData,
+    TError,
+    TSelectData
+>): UseCheckboxGroupReturnType<TSelectData> => {
     const { queryResult, options } = useSelect({
         resource,
         sort,

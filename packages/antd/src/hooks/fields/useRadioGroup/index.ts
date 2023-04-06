@@ -25,8 +25,8 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
  *
  */
 
-type UseRadioGroupProps<TData, TError> = Omit<
-    UseSelectProps<TData, TError>,
+type UseRadioGroupProps<TData, TError, TSelectData> = Omit<
+    UseSelectProps<TData, TError, TSelectData>,
     "defaultValue"
 > & {
     /**
@@ -38,6 +38,7 @@ type UseRadioGroupProps<TData, TError> = Omit<
 export const useRadioGroup = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >({
     resource,
     sort,
@@ -55,7 +56,11 @@ export const useRadioGroup = <
     meta,
     metaData,
     dataProviderName,
-}: UseRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
+}: UseRadioGroupProps<
+    TData,
+    TError,
+    TSelectData
+>): UseRadioGroupReturnType<TSelectData> => {
     const { queryResult, options } = useSelect({
         resource,
         sort,
