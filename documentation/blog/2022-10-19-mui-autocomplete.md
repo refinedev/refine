@@ -537,7 +537,7 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
+      isOptionEqualToValue={(option, value) => value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()}
       getOptionLabel={(option) => option.title}
       options={options}
       loading={loading}

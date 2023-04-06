@@ -30,6 +30,7 @@ export const DailyOrders: React.FC = () => {
                 background: "url(images/daily-order.png)",
                 backgroundColor: "#332a4b",
                 backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
             }}
         >
             <Stack
