@@ -4,7 +4,7 @@ title: <ThemedLayout>
 sidebar_label: <ThemedLayout>
 description: <ThemedLayout> component from refine, defines the overall structure and layout of a web page.
 swizzle: true
-source: packages/chakra-ui/src/components/layout/index.tsx
+source: packages/chakra-ui/src/components/themedLayout/index.tsx
 ---
 
 ```tsx live shared

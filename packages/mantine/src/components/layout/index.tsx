@@ -5,6 +5,10 @@ import { RefineLayoutLayoutProps } from "./types";
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
 
+/**
+ * @deprecated use `<ThemedLayout>` instead with 100% backward compatibility.
+ * @see https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout
+ **/
 export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Sider,
     Header,

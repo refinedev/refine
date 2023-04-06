@@ -4,7 +4,7 @@ title: <ThemedLayout>
 sidebar_label: <ThemedLayout>
 description: <ThemedLayout> component from refine, defines the overall structure and layout of a web page.
 swizzle: true
-source: packages/antd/src/components/layout/index.tsx
+source: packages/antd/src/components/themedLayout/index.tsx
 ---
 
 ```tsx live shared
