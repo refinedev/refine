@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 3.1.6
+
+### Patch Changes
+
+-   [#4092](https://github.com/refinedev/refine/pull/4092) [`f973878dc47`](https://github.com/refinedev/refine/commit/f973878dc47b4d27293df96f6cdea3d1f81ae420) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fix the wrong import path for Mui `Checkbox` component.
+
+## 3.1.5
+
+### Patch Changes
+
+-   [#4092](https://github.com/refinedev/refine/pull/4092) [`f973878dc47`](https://github.com/refinedev/refine/commit/f973878dc47b4d27293df96f6cdea3d1f81ae420) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fix the wrong import path for Mui `Checkbox` component.
+
 ## 3.1.4
 
 ### Patch Changes

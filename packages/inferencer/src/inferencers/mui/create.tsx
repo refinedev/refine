@@ -148,7 +148,7 @@ export const renderer = ({
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
-                                option.id.toString() === ${optionEqualValue}?.toString()
+                                option?.id?.toString() === ${optionEqualValue}?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField

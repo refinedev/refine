@@ -27,25 +27,25 @@ const timeline = [
         link: "https://refine.dev/blog/refine-pixels-2/",
     },
     {
-        date: "16th February 2022",
+        date: "16th February 2023",
         title: "Adding CRUD Actions & Authentication",
         description: `We start implementing CRUD functionalities like creating, showing a canvas, drawing pixels and user authentication using <strong className="font-bold">Supabase</strong>`,
         link: "https://refine.dev/blog/refine-pixels-3/",
     },
     {
-        date: "17th February 2022",
+        date: "17th February 2023",
         title: "Adding Realtime Collaboration",
         description: `Adding <strong className="font-bold">Supabase</strong> as live provider to the project in order that multiple users drawing on the same canvas can see each other's paintings in real-time.`,
         link: "https://refine.dev/blog/refine-pixels-4/",
     },
     {
-        date: "18th February 2022",
+        date: "18th February 2023",
         title: "Initialize and Build Pixels Admin App",
         description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a refine app`,
         link: "https://refine.dev/blog/refine-pixels-5/",
     },
     {
-        date: "19th February 2022",
+        date: "19th February 2023",
         title: "Add Role Based Authorization",
         description:
             "We'll implement Role Based Access Control (RBAC) on our Pixels Admin app.",

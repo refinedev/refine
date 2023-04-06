@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@refinedev/antd": "^5.3.14",
-        "@refinedev/core": "^4.7.0",
+        "@refinedev/core": "^4.7.2",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/nextjs-router": "^5.1.4",
         "@refinedev/simple-rest": "^4.1.0",

@@ -1118,23 +1118,3 @@ html[data-theme="dark"] .sourcecode-badge {
     width: 13px;
     margin-bottom: -2px;
 }
-
-html #__docusaurus .navbar.navbar--customized {
-    display: none;
-}
-
-html #__docusaurus .navbar.navbar--rest {
-    display: flex;
-}
-
-html[data-page="index"] #__docusaurus .navbar.navbar--customized {
-    display: flex;
-}
-
-html[data-page="index"] #__docusaurus .navbar.navbar--rest {
-    display: none;
-}
-
-body.has-announcement #__docusaurus .main-wrapper {
-    padding-top: 96px;
-}
