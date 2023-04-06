@@ -39,6 +39,7 @@ export const DailyRevenue: React.FC = () => {
                 backgroundColor: "#3a233c",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "right",
+                backgroundSize: "cover",
             }}
         >
             <Stack>

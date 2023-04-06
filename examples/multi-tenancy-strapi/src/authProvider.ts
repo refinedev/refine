@@ -40,7 +40,10 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Invalid username or password"),
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
         };
     },
     logout: async () => {
@@ -67,7 +70,10 @@ export const authProvider: AuthBindings = {
 
         return {
             authenticated: false,
-            error: new Error("Invalid token"),
+            error: {
+                message: "Check failed",
+                name: "Token not found",
+            },
             logout: true,
             redirectTo: "/login",
         };

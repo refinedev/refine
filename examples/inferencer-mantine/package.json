@@ -8,10 +8,10 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@refinedev/mantine": "^2.5.0",
-        "@refinedev/core": "^4.5.8",
+        "@refinedev/mantine": "^2.5.2",
+        "@refinedev/core": "^4.7.2",
         "@refinedev/cli": "^2.1.2",
-        "@refinedev/inferencer": "^3.1.4",
+        "@refinedev/inferencer": "^3.1.6",
         "@refinedev/react-router-v6": "^4.1.0",
         "@refinedev/simple-rest": "^4.1.0",
         "@refinedev/react-table": "^5.1.4",

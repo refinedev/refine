@@ -29,6 +29,7 @@ import {
     TooltipProps,
     Styles,
     useMantineTheme,
+    Flex,
 } from "@mantine/core";
 import {
     IconList,
@@ -300,16 +301,17 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         zIndex: 199,
                     }}
                 >
-                    <Box>
-                        <RenderToTitle
-                            collapsed={collapsed}
-                            wrapperStyles={{
-                                height: "64px",
-                                paddingLeft: collapsed ? 0 : "16px",
-                                borderBottom: `1px solid ${borderColor}`,
-                            }}
-                        />
-                    </Box>
+                    <Flex
+                        h="64px"
+                        pl={collapsed ? 0 : "16px"}
+                        align="center"
+                        justify={collapsed ? "center" : "flex-start"}
+                        sx={{
+                            borderBottom: `1px solid ${borderColor}`,
+                        }}
+                    >
+                        <RenderToTitle collapsed={collapsed} />
+                    </Flex>
                     <Navbar.Section
                         grow
                         component={ScrollArea}

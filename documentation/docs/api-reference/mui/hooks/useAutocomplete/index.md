@@ -217,7 +217,7 @@ const filterOptions = createFilterOptions({
     filterOptions={filterOptions}
     // highlight-end
     isOptionEqualToValue={(option, value) =>
-        value === undefined || option.id.toString() === value.toString()
+        value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
     }
     placeholder="Select a category"
     renderInput={(params) => (

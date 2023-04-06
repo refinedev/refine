@@ -58,7 +58,10 @@ export const authProvider: AuthBindings = {
         return {
             authenticated: false,
             logout: true,
-            error: new Error("Token not found"),
+            error: {
+                message: "Check failed",
+                name: "Token not found",
+            },
             redirectTo: "/",
         };
     },

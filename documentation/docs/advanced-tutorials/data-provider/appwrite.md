@@ -119,7 +119,10 @@ const authProvider: AuthBindings = {
 
         return {
             authenticated: false,
-            error: new Error("Session not found"),
+            error: {
+                message: "Check failed",
+                name: "Session not found",
+            },
             logout: true,
             redirectTo: "/login",
         };

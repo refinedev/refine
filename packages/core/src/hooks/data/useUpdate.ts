@@ -39,7 +39,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions/helpers";
 
-export type UpdateParams<TVariables> = {
+export type UpdateParams<TData, TError, TVariables> = {
     /**
      * Resource name for API data interactions
      */
@@ -82,7 +82,11 @@ export type UpdateParams<TVariables> = {
      *  You can use it to manage the invalidations that will occur at the end of the mutation.
      */
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification<
+    UpdateResponse<TData>,
+    TError,
+    { id: BaseKey; values: TVariables }
+>;
 
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -91,7 +95,7 @@ export type UseUpdateReturnType<
 > = UseMutationResult<
     UpdateResponse<TData>,
     TError,
-    UpdateParams<TVariables>,
+    UpdateParams<TData, TError, TVariables>,
     UpdateContext<TData>
 >;
 
@@ -104,7 +108,7 @@ export type UseUpdateProps<
         UseMutationOptions<
             UpdateResponse<TData>,
             TError,
-            UpdateParams<TVariables>,
+            UpdateParams<TData, TError, TVariables>,
             UpdateContext<TData>
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
@@ -156,7 +160,7 @@ export const useUpdate = <
     const mutation = useMutation<
         UpdateResponse<TData>,
         TError,
-        UpdateParams<TVariables>,
+        UpdateParams<TData, TError, TVariables>,
         UpdateContext<TData>
     >(
         ({

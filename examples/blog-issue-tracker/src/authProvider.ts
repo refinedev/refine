@@ -12,7 +12,10 @@ const authProvider: AuthBindings = {
         if (error) {
             return {
                 success: false,
-                error: error || new Error("Session not found"),
+                error: error || {
+                    message: "Login failed",
+                    name: "Invalid credentials",
+                },
             };
         }
 
@@ -25,7 +28,10 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: error || new Error("Session not found"),
+            error: error || {
+                message: "Login failed",
+                name: "Invalid credentials",
+            },
         };
     },
     logout: async () => {
@@ -55,7 +61,10 @@ const authProvider: AuthBindings = {
                 authenticated: false,
                 redirectTo: "/login",
                 logout: true,
-                error: error || new Error("Session not found"),
+                error: error || {
+                    message: "Check failed",
+                    name: "Session not found",
+                },
             };
         }
 

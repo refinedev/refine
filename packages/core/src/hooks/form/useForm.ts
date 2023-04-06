@@ -138,7 +138,11 @@ type ActionFormProps<
         TError,
         TVariables
     >["mutationOptions"];
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<
+    UpdateResponse<TData> | CreateResponse<TData>,
+    TError,
+    { id: BaseKey; values: TVariables } | TVariables
+> &
     ActionParams &
     LiveModeProps;
 
@@ -442,7 +446,7 @@ export const useForm = <
 
         if (!resource) return;
 
-        const variables: UpdateParams<TVariables> = {
+        const variables: UpdateParams<TData, TError, TVariables> = {
             id: id ?? "",
             values,
             resource: resource.name,

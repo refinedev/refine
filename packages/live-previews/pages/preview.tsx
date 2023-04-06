@@ -121,6 +121,12 @@ const Preview: NextPage = () => {
                         : {},
             ];
 
+            if (code.includes("React.createElement(GoogleButton,")) {
+                callbacks.push(
+                    async () => (await import("../src/scope/google")).default,
+                );
+            }
+
             let scopesToUse: Record<string, any> = {};
 
             const resolvedScopes = await Promise.all(
@@ -170,7 +176,7 @@ const Preview: NextPage = () => {
                 };
                 element.setAttribute(
                     "href",
-                    "https://unpkg.com/antd/dist/reset.css",
+                    "https://refine.ams3.cdn.digitaloceanspaces.com/antd%2Fdist%2Freset.css",
                 );
                 document.head.appendChild(element);
             }

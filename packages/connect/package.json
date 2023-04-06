@@ -23,7 +23,7 @@
   "module": "dist/esm/index.js",
   "peerDependencies": {
     "@refinedev/core": "^4.0.0",
-    "@refinedev/sdk": "^1.0.0",
+    "@refinedev/sdk": "^1.1.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",

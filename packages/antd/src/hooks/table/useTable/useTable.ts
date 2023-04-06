@@ -8,9 +8,7 @@ import {
     useLiveMode,
     BaseRecord,
     CrudFilters,
-    SuccessErrorNotification,
     HttpError,
-    LiveModeProps,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableCoreReturnType,
@@ -27,13 +25,9 @@ export type useTableProps<
     TData,
     TError,
     TSearchVariables = unknown,
-> = useTablePropsCore<TData, TError> &
-    SuccessErrorNotification &
-    LiveModeProps & {
-        onSearch?: (
-            data: TSearchVariables,
-        ) => CrudFilters | Promise<CrudFilters>;
-    };
+> = useTablePropsCore<TData, TError> & {
+    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+};
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,

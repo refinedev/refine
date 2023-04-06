@@ -3,6 +3,7 @@ import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import qs from "qs";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
+import warnOnce from "warn-once";
 
 import {
     useRouterContext,
@@ -34,10 +35,10 @@ import {
     MetaQuery,
     LiveModeProps,
     Pagination,
+    Prettify,
 } from "../../interfaces";
-import { useParse } from "@hooks/router/use-parse";
 import { useGo } from "@hooks/router/use-go";
-import warnOnce from "warn-once";
+import { BaseListProps } from "../data/useList";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -152,7 +153,11 @@ export type useTableProps<TData, TError> = {
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
     dataProviderName?: string;
-} & SuccessErrorNotification &
+} & SuccessErrorNotification<
+    GetListResponse<TData>,
+    TError,
+    Prettify<BaseListProps>
+> &
     LiveModeProps;
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;

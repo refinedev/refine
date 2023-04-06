@@ -1336,8 +1336,7 @@ const SampleEdit = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() === value?.id?.toString()
+                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -1429,8 +1428,7 @@ const SampleCreate = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option.id.toString() === value?.id?.toString()
+                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField

@@ -17,9 +17,9 @@ import {
 import { useSelect } from "@refinedev/core";
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
-import { ICategory } from "../../interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
-export const CreatePostDrawer: React.FC<UseModalFormReturnType> = ({
+export const CreatePostDrawer: React.FC<UseModalFormReturnType<IPost>> = ({
     saveButtonProps,
     modal: { visible, close },
     register,
