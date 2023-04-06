@@ -26,7 +26,7 @@ const DiscordIcon = (props) => (
         width={24}
         height={19}
         viewBox="0 0 24 19"
-        fill="#000"
+        fill="#9696B4"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
@@ -39,7 +39,7 @@ const TwitterIcon = (props) => (
         width={24}
         height={20}
         viewBox="0 0 24 20"
-        fill="#000"
+        fill="#9696B4"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
@@ -56,7 +56,7 @@ const GithubIcon = (props) => (
         width={22}
         height={22}
         viewBox="0 0 22 22"
-        fill="#000"
+        fill="#9696B4"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
@@ -73,7 +73,7 @@ const LinkedinIcon = (props) => (
         width={19}
         height={19}
         viewBox="0 0 19 19"
-        fill="#000"
+        fill="#9696B4"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
@@ -86,7 +86,7 @@ const RedditIcon = (props) => (
         width={24}
         height={24}
         viewBox="0 0 35 31"
-        fill="#000"
+        fill="#9696B4"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
