@@ -277,6 +277,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         pl: 2,
                         py: 1,
                         justifyContent: "center",
+                        color:
+                            selectedKey === "/"
+                                ? "primary.main"
+                                : "text.primary",
                     }}
                 >
                     <ListItemIcon
@@ -285,6 +289,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             minWidth: "24px",
                             transition: "margin-right 0.3s",
                             marginRight: isSiderOpen ? "12px" : "0px",
+                            color: "currentColor",
                             fontSize: "14px",
                         }}
                     >
@@ -294,6 +299,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         primary={translate("dashboard.title", "Dashboard")}
                         primaryTypographyProps={{
                             noWrap: true,
+                            fontSize: "14px",
                         }}
                     />
                 </ListItemButton>
