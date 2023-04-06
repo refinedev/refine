@@ -340,6 +340,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         transition: "margin-right 0.3s",
                         marginRight: isSiderOpen ? "12px" : "0px",
                         marginLeft: "2px",
+                        color: "currentColor",
                     }}
                 >
                     <Logout />
