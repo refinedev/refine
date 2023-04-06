@@ -31,6 +31,7 @@ export const NewCustomers: React.FC = () => {
                 backgroundColor: "#3d335b",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "right",
+                backgroundSize: "cover",
             }}
         >
             <Stack direction="row" justifyContent="space-between">
