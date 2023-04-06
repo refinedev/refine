@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 4.7.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/mui/components/mui-themed-layout
+
+### Patch Changes
+
+-   Updated dependencies [[`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec)]:
+    -   @refinedev/react-hook-form@4.1.4
+
 ## 4.6.0
 
 ### Minor Changes
