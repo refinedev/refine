@@ -378,6 +378,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/chakra-ui/components/chakra-auth-page",
+                                "api-reference/chakra-ui/components/chakra-ui-themed-layout",
                                 "api-reference/chakra-ui/components/inferencer",
                                 {
                                     type: "category",
@@ -458,6 +459,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mantine/components/mantine-auth-page",
+                                "api-reference/mantine/components/mantine-themed-layout",
                                 "api-reference/mantine/components/inferencer",
                                 {
                                     type: "category",
@@ -529,6 +531,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mui/components/mui-auth-page",
+                                "api-reference/mui/components/mui-themed-layout",
                                 "api-reference/mui/components/inferencer",
                                 {
                                     type: "category",
