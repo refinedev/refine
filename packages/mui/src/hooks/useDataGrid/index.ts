@@ -53,39 +53,45 @@ type DataGridPropsType = Required<
         | "filterModel"
     >;
 
-export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
-    useTablePropsCore<TData, TError>,
-    "pagination" | "filters"
-> & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    pagination?: Prettify<
-        Omit<Pagination, "pageSize"> & {
-            /**
-             * Initial number of items per page
-             * @default 25
-             */
-            pageSize?: number;
-        }
-    >;
-    filters?: Prettify<
-        Omit<
-            NonNullable<useTablePropsCore<TData, TError>["filters"]>,
-            "defaultBehavior"
-        > & {
-            /**
-             * Default behavior of the `setFilters` function
-             * @default "replace"
-             */
-            defaultBehavior?: "replace" | "merge";
-        }
-    >;
-};
+export type UseDataGridProps<TData, TError, TSearchVariables, TSelectData> =
+    Omit<
+        useTablePropsCore<TData, TError, TSelectData>,
+        "pagination" | "filters"
+    > & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+        pagination?: Prettify<
+            Omit<Pagination, "pageSize"> & {
+                /**
+                 * Initial number of items per page
+                 * @default 25
+                 */
+                pageSize?: number;
+            }
+        >;
+        filters?: Prettify<
+            Omit<
+                NonNullable<
+                    useTablePropsCore<TData, TError, TSelectData>["filters"]
+                >,
+                "defaultBehavior"
+            > & {
+                /**
+                 * Default behavior of the `setFilters` function
+                 * @default "replace"
+                 */
+                defaultBehavior?: "replace" | "merge";
+            }
+        >;
+    };
 
 export type UseDataGridReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-> = useTableReturnTypeCore<TData, TError> & {
+    TSelectData extends BaseRecord = TData,
+> = useTableReturnTypeCore<TData, TError, TSelectData> & {
     dataGridProps: DataGridPropsType;
     search: (value: TSearchVariables) => Promise<void>;
 };
@@ -94,6 +100,7 @@ export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
+    TSelectData extends BaseRecord = TData,
 >({
     onSearch: onSearchProp,
     initialCurrent,
@@ -121,8 +128,9 @@ export function useDataGrid<
 }: UseDataGridProps<
     TData,
     TError,
-    TSearchVariables
-> = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
+    TSearchVariables,
+    TSelectData
+> = {}): UseDataGridReturnType<TData, TError, TSearchVariables, TSelectData> {
     const theme = useTheme();
     const liveMode = useLiveMode(liveModeFromProp);
 
@@ -142,7 +150,7 @@ export function useDataGrid<
         setSorter,
         pageCount,
         createLinkForSyncWithLocation,
-    } = useTableCore<TData, TError>({
+    } = useTableCore<TData, TError, TSelectData>({
         permanentSorter,
         permanentFilter,
         initialCurrent,

@@ -9,11 +9,14 @@ import { AutocompleteProps } from "@mui/material/Autocomplete";
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
 
-export type UseAutocompleteProps<TData, TError> = Pick<
-    UseSelectProps<TData, TError>,
+export type UseAutocompleteProps<TData, TError, TSelectData> = Pick<
+    UseSelectProps<TData, TError, TSelectData>,
     "resource"
 > &
-    Omit<UseSelectProps<TData, TError>, "optionLabel" | "optionValue">;
+    Omit<
+        UseSelectProps<TData, TError, TSelectData>,
+        "optionLabel" | "optionValue"
+    >;
 
 type AutocompletePropsType<TData> = Required<
     Pick<
@@ -32,12 +35,14 @@ export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
 export const useAutocomplete = <
     TData extends BaseRecord = any,
     TError extends HttpError = HttpError,
+    TSelectData extends BaseRecord = TData,
 >(
-    props: UseAutocompleteProps<TData, TError>,
-): UseAutocompleteReturnType<TData> => {
+    props: UseAutocompleteProps<TData, TError, TSelectData>,
+): UseAutocompleteReturnType<TSelectData> => {
     const { queryResult, defaultValueQueryResult, onSearch } = useSelectCore<
         TData,
-        TError
+        TError,
+        TSelectData
     >(props);
 
     return {
