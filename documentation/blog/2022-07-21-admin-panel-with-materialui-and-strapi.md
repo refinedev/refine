@@ -463,7 +463,7 @@ export const PostCreate: React.FC = () => {
                                 return item.title ? item.title : "";
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option.id === value.id
+                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -642,8 +642,7 @@ export const PostEdit: React.FC = () => {
                                       )?.title ?? "";
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option.id.toString() === value.toString()
+                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField

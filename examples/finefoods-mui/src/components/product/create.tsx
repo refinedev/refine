@@ -300,7 +300,10 @@ export const CreateProduct: React.FC<
                                                     value,
                                                 ) =>
                                                     value === undefined ||
-                                                    option.id === value.id
+                                                    option?.id?.toString() ===
+                                                        (
+                                                            value?.id ?? value
+                                                        )?.toString()
                                                 }
                                                 renderInput={(params) => (
                                                     <TextField
