@@ -1,28 +1,36 @@
 import React, { useState } from "react";
-import { useTitle, ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
+import { ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
 
-import { UnorderedListOutlined } from "@ant-design/icons";
-import { Layout as AntdLayout, Menu } from "antd";
+import {
+    UnorderedListOutlined,
+    LeftOutlined,
+    RightOutlined,
+} from "@ant-design/icons";
+import { Layout as AntdLayout, Menu, theme, Button } from "antd";
 import { Link } from "react-router-dom";
+import { ThemedTitle } from "@refinedev/antd";
+
+const { useToken } = theme;
 
 export const FixedSider: React.FC = () => {
+    const { token } = useToken();
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
-            const {
-                icon,
-                label,
-                route,
-                name,
-                children,
-                parentName,
-                meta,
-                options,
-            } = item;
+            const { name, children, meta, key, list } = item;
+
+            const icon = meta?.icon;
+            const label = meta?.label ?? name;
+            const parent = meta?.parent;
+            const route =
+                typeof list === "string"
+                    ? list
+                    : typeof list !== "function"
+                    ? list?.path
+                    : key;
 
             if (children.length > 0) {
                 return (
@@ -36,10 +44,7 @@ export const FixedSider: React.FC = () => {
                 );
             }
             const isSelected = route === selectedKey;
-            const isRoute = !(
-                (meta?.parent ?? options?.parent ?? parentName) !== undefined &&
-                children.length === 0
-            );
+            const isRoute = !(parent !== undefined && children.length === 0);
             return (
                 <CanAccess
                     key={route}
@@ -50,7 +55,7 @@ export const FixedSider: React.FC = () => {
                     <Menu.Item
                         key={route}
                         style={{
-                            fontWeight: isSelected ? "bold" : "normal",
+                            textTransform: "capitalize",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
@@ -74,11 +79,58 @@ export const FixedSider: React.FC = () => {
                 height: "100vh",
                 position: "fixed",
                 left: 0,
+                backgroundColor: token.colorBgContainer,
+                borderRight: `1px solid ${token.colorBgElevated}`,
             }}
+            trigger={
+                <Button
+                    type="text"
+                    style={{
+                        borderRadius: 0,
+                        height: "100%",
+                        width: "100%",
+                        backgroundColor: token.colorBgElevated,
+                    }}
+                >
+                    {collapsed ? (
+                        <RightOutlined
+                            style={{
+                                color: token.colorPrimary,
+                            }}
+                        />
+                    ) : (
+                        <LeftOutlined
+                            style={{
+                                color: token.colorPrimary,
+                            }}
+                        />
+                    )}
+                </Button>
+            }
         >
-            {Title && <Title collapsed={collapsed} />}
+            <div
+                style={{
+                    width: collapsed ? "80px" : "200px",
+                    padding: collapsed ? "0" : "0 16px",
+                    display: "flex",
+                    justifyContent: collapsed ? "center" : "flex-start",
+                    alignItems: "center",
+                    height: "64px",
+                    backgroundColor: token.colorBgElevated,
+                    fontSize: "14px",
+                }}
+            >
+                <ThemedTitle collapsed={collapsed} />
+            </div>
 
-            <Menu theme="dark" selectedKeys={[selectedKey]} mode="inline">
+            <Menu
+                style={{
+                    marginTop: "8px",
+                    border: "none",
+                }}
+                selectedKeys={[selectedKey]}
+                mode="inline"
+            >
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>

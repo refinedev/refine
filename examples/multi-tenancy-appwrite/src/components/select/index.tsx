@@ -22,7 +22,7 @@ export const StoreSelect: React.FC = () => {
     return (
         <Select
             defaultValue={store}
-            style={{ width: 130 }}
+            style={{ width: 120 }}
             onChange={handleChange}
             onSelect={() => false}
         >
