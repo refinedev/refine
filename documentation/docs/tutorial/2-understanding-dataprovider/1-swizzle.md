@@ -1,20 +1,20 @@
 ---
 id: swizzle
-title: 2. Create Data Provider with Swizzle
+title: 2. Create a data provider with swizzle
 tutorial:
     prev: tutorial/understanding-dataprovider/index
     next: tutorial/understanding-dataprovider/create-dataprovider
 ---
 
-## What is Swizzle?
+## What is `swizzle`?
 
-The [`swizzle`](../../packages/documentation/cli.md#swizzle) is a command in [`refine-cli`](../../packages/documentation/cli.md) that allows you to customize the refine's supported components and data providers. It allows you to eject selected files from the **refine** packages and modify depending on your needs.
+In some cases, **refine's** built-in data providers may not fully meet your API needs, and you may want to edit the existing data provider logic. If that is the case, you should use `swizzle`.
 
-Instead of starting from scratch, you can use the ejected file code logic as a starting point and make changes to fit your specific needs.
+The [`swizzle`](../../packages/documentation/cli.md#swizzle) is a command in [`refine-cli`](../../packages/documentation/cli.md) that allows you to customize **refine’s** supported components and data providers by letting you eject selected files from the **refine** packages and modify them depending on your needs.
 
-## How to Use Swizzle for Data Provider?
+This also allows you to use the ejected file code logic as a starting point for your modifications instead of starting from scratch.
 
-In some cases, refine's built-in data providers are not fully complying with our API needs and you may want to edit the existing data provider logic. In this case, we will use the `swizzle` command to customize the data provider:
+## How do you use `swizzle` to create an data provider?
 
 1. Run the `swizzle` command in the project directory:
 
@@ -22,7 +22,7 @@ In some cases, refine's built-in data providers are not fully complying with our
     npm run refine swizzle
     ```
 
-2. Select the data provider package from the list of packages that support `swizzle`. In this tutorial, we will use `@refinedev/simple-rest`.
+2. Select the data provider package of your choice from the list. We are using `@refinedev/simple-rest` in this tutorial so we will choose that.
 
     ```bash
     ? Which package do you want to swizzle?
@@ -32,7 +32,7 @@ In some cases, refine's built-in data providers are not fully complying with our
       @refinedev/antd
     ```
 
-The necessary files for this package are copied to the `src/rest-data-provider` folder with `swizzle`.
+    `swizzle` will copy the necessary files for this package to the `src/rest-data-provider` folder
 
     ```bash
     Successfully swizzled Data Provider
@@ -68,12 +68,12 @@ The necessary files for this package are copied to the `src/rest-data-provider` 
 
 3. To use the generated data provider, we need to import it in the `App.tsx` file and give it as a `dataProvider` prop to the `Refine` component.
 
-Now that you have ejected all the data provider, you can modify and use it according to your API. You'll realize that using the swizzle for creating a data provider is much faster than writing a new data provider from scratch.
+And with that, you are now able to modify and use the ejected data provider however you want. Amount of time saved using `swizzle` instead of creating a data provider from scratch is quite substantial.
 
 <Checklist>
 
 <ChecklistItem id="data-provider-swizzle">
-I learned what is swizzle and how to use it.
+I have learned what `swizzle` is and how to use it.
 </ChecklistItem>
 
 </Checklist>
