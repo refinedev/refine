@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.7.1
+
+### Patch Changes
+
+-   [#4102](https://github.com/refinedev/refine/pull/4102) [`44e403aa654`](https://github.com/refinedev/refine/commit/44e403aa654b733d2f9210faef5670752e60a3f3) Thanks [@aliemir](https://github.com/aliemir)! - Revert changes in `<GithubBanner />` to promote github stars.
+
 ## 4.7.0
 
 ### Minor Changes
