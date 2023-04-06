@@ -65,7 +65,7 @@ export const GitHubBanner = () => {
                             textShadow: "0px 0px 4px rgba(255, 255, 255, 0.5)",
                         }}
                     >
-                        Refine grants your wishes! Please give us a ⭐️ on
+                        refine grants your wishes! Please give us a ⭐️ on
                         GitHub to keep the magic going.
                     </span>
                 </div>
