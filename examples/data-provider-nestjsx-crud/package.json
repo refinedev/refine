@@ -3,7 +3,7 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/antd": "^5.3.14",
+        "@refinedev/antd": "^5.4.0",
         "@refinedev/core": "^4.7.2",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/nestjsx-crud": "^4.1.0",
