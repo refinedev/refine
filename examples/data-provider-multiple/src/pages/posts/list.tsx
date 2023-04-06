@@ -61,7 +61,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <Collapse defaultActiveKey={["1"]} expandIconPosition="right">
+            <Collapse defaultActiveKey={["1"]} expandIconPosition="end">
                 <Panel header="Default Data Provider" key="1">
                     <Table {...tableProps} rowKey="id">
                         <Table.Column dataIndex="id" title="ID" />
