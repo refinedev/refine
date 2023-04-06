@@ -18,31 +18,31 @@ const timeline = [
         date: "10th April 2023",
         title: "Pilot & refine architecture",
         description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">Strapi</strong> the app we built during the article series.`,
-        link: "https://refine.dev/blog/refine-invoicer-1/",
+        /*  link: "https://refine.dev/blog/refine-invoicer-1/", */
     },
     {
         date: "11th April 2023",
         title: "Setting Up the Invoicer App",
         description: `We start with setting up the Invoicer app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Strapi</strong> as a dataprovider`,
-        link: "https://refine.dev/blog/refine-invoicer-2/",
+        /* link: "https://refine.dev/blog/refine-invoicer-2/" */
     },
     {
         date: "12th April 2023",
         title: "Adding CRUD Actions & Views",
         description: `We leverage the Strapi dataProvider methods to implement CRUD operations for companies, clients and contacts resources. and user authentication using <strong className="font-bold">Strapi</strong>.`,
-        link: "https://refine.dev/blog/refine-invoicer-3/",
+        /* link: "https://refine.dev/blog/refine-invoicer-3/ */
     },
     {
         date: "13th April 2023",
         title: "Creating Mission and Invoices Pages",
         description: `We'll implement CRUD actions for companies, clients and contacts for our PDF Invoice Generator app.`,
-        link: "https://refine.dev/blog/refine-invoicer-4/",
+        /*link:  "https://refine.dev/blog/refine-invoicer-4/", */
     },
     {
         date: "14th April 2023",
         title: "Adding PDF Renderer",
         description: `We come past the refine features and add a pdf renderer to display our invoices in a pdf screen.`,
-        link: "https://refine.dev/blog/refine-invoicer-5/",
+        /*link: "https://refine.dev/blog/refine-invoicer-5/" */
     },
 ];
 
@@ -134,9 +134,16 @@ const RefineWeek = () => {
                                 />
                             </div>
                             <h2 className="font-montserrat mt-8 mb-0 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
-                                Stay tuned all week and learn the basics of
+                                <h3>
+                                    The event will start with releasing the
+                                    first article on 10th April 2023.
+                                </h3>
+                                <br />
+                                Stay tuned all week and learn the basicsof
                                 creating a CRUD PDF Invoce Generator app via{" "}
-                                <strong className="font-bold">refine</strong> &{" "}
+                                <strong className="font-bold">
+                                    refine
+                                </strong> &{" "}
                                 <strong className="font-bold">Strapi</strong> in
                                 a week.
                             </h2>

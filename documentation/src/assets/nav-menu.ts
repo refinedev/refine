@@ -81,9 +81,15 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: UseCasesIcon,
             },
             {
-                label: "refineweek",
+                label: "refineweek ft. Supabase",
                 description: "The official refine event",
                 link: "/week-of-refine",
+                icon: RefineWeekIcon,
+            },
+            {
+                label: "refineweek ft. Strapi",
+                description: "The official refine event",
+                link: "/week-of-refine-strapi",
                 icon: RefineWeekIcon,
             },
         ],
