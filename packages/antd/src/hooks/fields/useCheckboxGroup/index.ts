@@ -31,7 +31,7 @@ type UseCheckboxGroupProps<TQueryFnData, TError, TData> = Omit<
 /**
  * `useCheckboxGroup` hook allows you to manage an Ant Design {@link https://ant.design/components/checkbox/#components-checkbox-demo-group Checkbox.Group} component when records in a resource needs to be used as checkbox options.
  *
- * @see {@link https://refine.dev/docs/ui-framewors/antd/hooks/field/useCheckboxGroup} for more details
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/field/useCheckboxGroup/} for more details
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

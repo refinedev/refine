@@ -39,11 +39,11 @@ type useEditableTableProps<
 
 /**
  * `useEditeableTable` allows you to implement edit feature on the table with ease,
- * on top of all the features that {@link https://refine.dev/docs/api-references/hooks/table/useTable `useTable`} provides.
+ * on top of all the features that {@link https://refine.dev/docs/api-reference/core/hooks/useTable/ `useTable`} provides.
  * `useEditableTable` return properties that can be used on Ant Design's {@link https://ant.design/components/table/ `<Table>`}
  * and {@link https://ant.design/components/form/ `<Form>`} components.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/table/useEditableTable} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/table/useTable/} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

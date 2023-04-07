@@ -148,7 +148,7 @@ export type UseSelectReturnType<TQueryFnData extends BaseRecord = BaseRecord> =
  * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.
  *
  * It uses `getList` method as query function from the dataProvider that is
- * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
+ * passed to {@link https://refine.dev/docs/api-reference/core/components/refine-config/ `<Refine>`}.
  *
  * @see {@link https://refine.dev/docs/core/hooks/useSelect} for more details.
  *

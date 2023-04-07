@@ -22,7 +22,7 @@ export type UseSelectReturnType<TQueryFnData extends BaseRecord = BaseRecord> =
 /**
  * `useSelect` hook allows you to manage an Ant Design {@link https://ant.design/components/select/ Select} component when records in a resource needs to be used as select options.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/field/useSelect} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/field/useSelect/} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

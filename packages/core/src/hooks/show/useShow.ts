@@ -75,7 +75,7 @@ export type useShowProps<
 /**
  * `useShow` hook allows you to fetch the desired record.
  * It uses `getOne` method as query function from the dataProvider that is
- * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
+ * passed to {@link https://refine.dev/docs/api-reference/core/components/refine-config/ `<Refine>`}.
  *
  * @see {@link https://refine.dev/docs/core/hooks/show/useShow} for more details.
  *
