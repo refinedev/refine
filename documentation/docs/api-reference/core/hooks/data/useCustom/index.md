@@ -291,13 +291,13 @@ By default, the query key is generated based on the properties passed to `useCus
 
 ### Type Parameters
 
-| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TQuery      | Values for query params.                                                                                                                                     | `TQuery`                   | unknown                    |
-| TPayload    | Values for params.                                                                                                                                           | `TPayload`                 | unknown                    |
-| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TQuery       | Values for query params.                                                                                                                                            | `TQuery`                   | unknown                    |
+| TPayload     | Values for params.                                                                                                                                                  | `TPayload`                 | unknown                    |
+| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`                    |
 
 ### Return value
 
