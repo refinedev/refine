@@ -39,7 +39,6 @@ import {
 import { RefineThemedLayoutSiderProps } from "../types";
 
 import { ThemedTitle as DefaultTitle } from "@components";
-import { useTheme } from "@emotion/react";
 
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     Title: TitleFromProps,
@@ -48,7 +47,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     isSiderOpen,
     onToggleSiderClick,
 }) => {
-    const theme = useTheme();
     const [opened, setOpened] = useState(false);
 
     const drawerWidth = () => {
@@ -432,21 +430,22 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 >
                     <Box
                         sx={{
-                            height: 64,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "14px",
+                            width: drawerWidth(),
                         }}
                     >
-                        <RenderToTitle
-                            collapsed={false}
-                            wrapperStyles={{
-                                gap: "8px",
+                        <Box
+                            sx={{
+                                height: 64,
+                                display: "flex",
+                                alignItems: "center",
+                                paddingLeft: "16px",
+                                fontSize: "14px",
                             }}
-                        />
+                        >
+                            <RenderToTitle collapsed={false} />
+                        </Box>
+                        {drawer}
                     </Box>
-                    {drawer}
                 </Drawer>
                 <Drawer
                     variant="permanent"
@@ -480,12 +479,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                 `1px solid ${theme.palette.action.focus}`,
                         }}
                     >
-                        <RenderToTitle
-                            collapsed={!isSiderOpen}
-                            wrapperStyles={{
-                                gap: "32px",
-                            }}
-                        />
+                        <RenderToTitle collapsed={!isSiderOpen} />
                         {isSiderOpen && (
                             <IconButton
                                 size="small"
