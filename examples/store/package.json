@@ -15,7 +15,7 @@
         "@refinedev/core": "^4.7.2",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/nextjs-router": "^5.1.4",
-        "@refinedev/react-hook-form": "^4.1.4",
+        "@refinedev/react-hook-form": "^4.1.5",
         "@refinedev/medusa": "^2.1.0",
         "@stripe/react-stripe-js": "1.10.0",
         "@stripe/stripe-js": "1.34.0",
