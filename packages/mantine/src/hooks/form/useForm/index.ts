@@ -123,8 +123,8 @@ export const useForm = <
     const isValuesChanged = isDirty();
 
     useEffect(() => {
-        if (warnWhenUnsavedChanges && isValuesChanged) {
-            setWarnWhen(true);
+        if (warnWhenUnsavedChanges) {
+            setWarnWhen(isValuesChanged);
         }
     }, [isValuesChanged]);
 
