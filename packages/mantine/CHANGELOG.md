@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 2.7.3
+
+### Patch Changes
+
+-   [#4122](https://github.com/refinedev/refine/pull/4122) [`a36b17e86ba`](https://github.com/refinedev/refine/commit/a36b17e86ba8f670ad77b8a53386e3bf2076cebe) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: `warnWhenUnsavedChanges` was throwing even when there were no changes.
+
 ## 2.7.2
 
 ### Patch Changes
