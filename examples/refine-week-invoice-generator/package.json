@@ -14,6 +14,7 @@
     "@refinedev/strapi-v4": "^4.0.0",
     "antd": "^5.0.5",
     "axios": "^0.26.1",
+    "cross-env": "^7.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
