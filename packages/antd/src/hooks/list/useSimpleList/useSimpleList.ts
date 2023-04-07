@@ -14,19 +14,19 @@ import { useLiveMode } from "@refinedev/core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
 import { PaginationConfig } from "antd/lib/pagination";
 
-export type useSimpleListProps<TData, TError, TSearchVariables, TSelectData> =
-    useTablePropsCore<TData, TError, TSelectData> & {
+export type useSimpleListProps<TQueryFnData, TError, TSearchVariables, TData> =
+    useTablePropsCore<TQueryFnData, TError, TData> & {
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
     };
 
 export type useSimpleListReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
-    TSelectData extends BaseRecord = TData,
-> = Omit<useTableReturnType<TSelectData>, "tableQueryResult"> & {
-    listProps: ListProps<TSelectData>;
+    TData extends BaseRecord = TQueryFnData,
+> = Omit<useTableReturnType<TData>, "tableQueryResult"> & {
+    listProps: ListProps<TData>;
     queryResult: useTableReturnType["tableQueryResult"];
     searchFormProps: FormProps<TSearchVariables>;
 };
@@ -37,17 +37,18 @@ export type useSimpleListReturnType<
  *
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TSearchVariables - Antd form values
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
 
 export const useSimpleList = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     initialCurrent,
@@ -73,11 +74,11 @@ export const useSimpleList = <
     metaData,
     dataProviderName,
 }: useSimpleListProps<
-    TData,
+    TQueryFnData,
     TError,
     TSearchVariables,
-    TSelectData
-> = {}): useSimpleListReturnType<TSelectData, TSearchVariables> => {
+    TData
+> = {}): useSimpleListReturnType<TData, TSearchVariables> => {
     const {
         sorters,
         sorter,

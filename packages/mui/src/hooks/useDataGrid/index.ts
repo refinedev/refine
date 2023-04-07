@@ -53,9 +53,9 @@ type DataGridPropsType = Required<
         | "filterModel"
     >;
 
-export type UseDataGridProps<TData, TError, TSearchVariables, TSelectData> =
+export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
     Omit<
-        useTablePropsCore<TData, TError, TSelectData>,
+        useTablePropsCore<TQueryFnData, TError, TData>,
         "pagination" | "filters"
     > & {
         onSearch?: (
@@ -73,7 +73,7 @@ export type UseDataGridProps<TData, TError, TSearchVariables, TSelectData> =
         filters?: Prettify<
             Omit<
                 NonNullable<
-                    useTablePropsCore<TData, TError, TSelectData>["filters"]
+                    useTablePropsCore<TQueryFnData, TError, TData>["filters"]
                 >,
                 "defaultBehavior"
             > & {
@@ -87,20 +87,34 @@ export type UseDataGridProps<TData, TError, TSearchVariables, TSelectData> =
     };
 
 export type UseDataGridReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TSelectData extends BaseRecord = TData,
-> = useTableReturnTypeCore<TData, TError, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+> = useTableReturnTypeCore<TQueryFnData, TError, TData> & {
     dataGridProps: DataGridPropsType;
     search: (value: TSearchVariables) => Promise<void>;
 };
 
+/**
+ * By using useDataGrid, you are able to get properties that are compatible with
+ * Material UI {@link https://mui.com/x/react-data-grid/ `<DataGrid>`} component.
+ * All features such as sorting, filtering and pagination comes as out of box.
+ *
+ * @see {@link https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TSearchVariables - Values for search params
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
+ */
+
 export function useDataGrid<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     onSearch: onSearchProp,
     initialCurrent,
@@ -126,11 +140,11 @@ export function useDataGrid<
     metaData,
     dataProviderName,
 }: UseDataGridProps<
-    TData,
+    TQueryFnData,
     TError,
     TSearchVariables,
-    TSelectData
-> = {}): UseDataGridReturnType<TData, TError, TSearchVariables, TSelectData> {
+    TData
+> = {}): UseDataGridReturnType<TQueryFnData, TError, TSearchVariables, TData> {
     const theme = useTheme();
     const liveMode = useLiveMode(liveModeFromProp);
 
@@ -150,7 +164,7 @@ export function useDataGrid<
         setSorter,
         pageCount,
         createLinkForSyncWithLocation,
-    } = useTableCore<TData, TError, TSelectData>({
+    } = useTableCore<TQueryFnData, TError, TData>({
         permanentSorter,
         permanentFilter,
         initialCurrent,

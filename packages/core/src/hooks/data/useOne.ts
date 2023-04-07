@@ -29,7 +29,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions";
 
-export type UseOneProps<TData, TError, TSelectData> = {
+export type UseOneProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -43,9 +43,9 @@ export type UseOneProps<TData, TError, TSelectData> = {
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<
-        GetOneResponse<TData>,
+        GetOneResponse<TQueryFnData>,
         TError,
-        GetOneResponse<TSelectData>
+        GetOneResponse<TData>
     >;
     /**
      * Metadata query for `dataProvider`,
@@ -62,7 +62,7 @@ export type UseOneProps<TData, TError, TSelectData> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    GetOneResponse<TSelectData>,
+    GetOneResponse<TData>,
     TError,
     Prettify<{ id?: BaseKey } & MetaQuery>
 > &
@@ -75,14 +75,16 @@ export type UseOneProps<TData, TError, TSelectData> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useOne} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useOne = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     id,
@@ -95,8 +97,8 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseOneProps<TData, TError, TSelectData>): QueryObserverResult<
-    GetOneResponse<TSelectData>
+}: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
+    GetOneResponse<TData>
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
@@ -138,13 +140,13 @@ export const useOne = <
     });
 
     const queryResponse = useQuery<
-        GetOneResponse<TData>,
+        GetOneResponse<TQueryFnData>,
         TError,
-        GetOneResponse<TSelectData>
+        GetOneResponse<TData>
     >(
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
-            getOne<TData>({
+            getOne<TQueryFnData>({
                 resource: resource!,
                 id: id!,
                 meta: {

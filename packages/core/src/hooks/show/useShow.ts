@@ -22,16 +22,16 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 
-export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
-    queryResult: QueryObserverResult<GetOneResponse<TData>>;
+export type useShowReturnType<TQueryFnData extends BaseRecord = BaseRecord> = {
+    queryResult: QueryObserverResult<GetOneResponse<TQueryFnData>>;
     showId?: BaseKey;
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 };
 
 export type useShowProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 > = {
     /**
      * Resource name for API data interactions
@@ -47,9 +47,9 @@ export type useShowProps<
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<
-        GetOneResponse<TData>,
+        GetOneResponse<TQueryFnData>,
         TError,
-        GetOneResponse<TSelectData>
+        GetOneResponse<TData>
     >;
     /**
      * Additional meta data to pass to the data provider's `getOne`
@@ -67,7 +67,7 @@ export type useShowProps<
     dataProviderName?: string;
 } & LiveModeProps &
     SuccessErrorNotification<
-        GetOneResponse<TSelectData>,
+        GetOneResponse<TData>,
         TError,
         Prettify<{ id?: BaseKey } & MetaQuery>
     >;
@@ -78,11 +78,17 @@ export type useShowProps<
  * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
  *
  * @see {@link https://refine.dev/docs/core/hooks/show/useShow} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
  */
+
 export const useShow = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource: resourceFromProp,
     id,
@@ -95,10 +101,10 @@ export const useShow = <
     dataProviderName,
     queryOptions,
 }: useShowProps<
-    TData,
+    TQueryFnData,
     TError,
-    TSelectData
-> = {}): useShowReturnType<TSelectData> => {
+    TData
+> = {}): useShowReturnType<TData> => {
     const routerType = useRouterType();
     const { resources } = useResource();
     const { useParams } = useRouterContext();
@@ -180,7 +186,7 @@ export const useShow = <
             `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
     );
 
-    const queryResult = useOne<TData, TError, TSelectData>({
+    const queryResult = useOne<TQueryFnData, TError, TData>({
         resource: resource?.name,
         id: showId ?? "",
         queryOptions: {
