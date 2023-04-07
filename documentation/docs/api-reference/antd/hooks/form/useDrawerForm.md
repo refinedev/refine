@@ -30,10 +30,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React, { useState } from "react";
-import {
-    useShow,
-    HttpError,
-} from "@refinedev/core";
+import { useShow, HttpError } from "@refinedev/core";
 
 import { List, Create, useTable, useDrawerForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Drawer } from "antd";
@@ -147,10 +144,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React, { useState } from "react";
-import {
-    useShow,
-    HttpError,
-} from "@refinedev/core";
+import { useShow, HttpError } from "@refinedev/core";
 
 import {
     List,
@@ -382,6 +376,15 @@ It renders `<Drawer>` instead of lazy rendering it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
+### Type Parameters
+
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables  | Values for params.                                                                                                                                           | `{}`                       |                            |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return Value
 
 | Key               | Description                                                  | Type                                                                           |
@@ -395,14 +398,6 @@ It renders `<Drawer>` instead of lazy rendering it.
 | submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
 | open              | Whether the drawer is open or not                            | `boolean`                                                                      |
 | close             | Specify a function that can close the drawer                 | `() => void`                                                                   |
-
-### Type Parameters
-
-| Property   | Desription                                                       | Default                    |
-| ---------- | ---------------------------------------------------------------- | -------------------------- |
-| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
-| TVariables | Values for params.                                               | `{}`                       |
 
 ## Example
 

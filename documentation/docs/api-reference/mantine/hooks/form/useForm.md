@@ -1089,11 +1089,13 @@ const {
 
 ### Type Parameters
 
-| Property   | Desription                                                   | Type                       | Default                    |
-| ---------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData      | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError     | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TVariables | Form values for mutation function                            | `{}`                       | `Record<string, unknown>`  |
+| Property     | Desription                                                                                                                                                   | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData        | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables   | Form values for mutation function                                                                                                                            | `{}`                       | `Record<string, unknown>`  |
+| TTransformed | Form values after transformation for mutation function                                                                                                       | `{}`                       | `TVariables`               |
+| TSelectData  | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
 
 ## Example
 

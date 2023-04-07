@@ -406,10 +406,11 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Type Parameters
 
-| Property | Desription                                                                                     | Type                                                         | Default                                                      |
-| -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TData    | Result data of the query. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)    | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
 
 ### Return Values
 
@@ -420,3 +421,6 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 ## Example
 
 <CodeSandboxExample path="use-infinite-list" />
+
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

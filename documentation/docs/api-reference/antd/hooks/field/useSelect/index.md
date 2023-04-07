@@ -434,6 +434,14 @@ return <Select options={options} />;
 
 <PropsTable module="@refinedev/antd/useSelect"  />
 
+### Type Parameters
+
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return values
 
 | Property                   | Description                                    | Type                                                                                          |
@@ -450,3 +458,6 @@ return <Select options={options} />;
 ## Infinite Loading Example
 
 <CodeSandboxExample path="field-antd-use-select-infinite" />
+
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

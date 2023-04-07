@@ -219,6 +219,14 @@ Use `sorters` instead.
 
 <PropsTable module="@refinedev/antd/useRadioGroup"/>
 
+### Type Parameters
+
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return values
 
 | Property        | Description                      | Type                                                                                          |
@@ -229,3 +237,6 @@ Use `sorters` instead.
 ## Example
 
 <CodeSandboxExample path="field-antd-use-radio-group" />
+
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

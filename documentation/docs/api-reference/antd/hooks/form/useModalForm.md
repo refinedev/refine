@@ -689,6 +689,15 @@ return (
 
 > `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). If `action` is `edit` instead, `redirect`s default value is `list`.
 
+### Type Parameters
+
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables  | Values for params.                                                                                                                                           | `{}`                       |                            |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return Value
 
 | Key                      | Description                                                                                                | Type                                                                                                                                                                                  |
@@ -707,17 +716,9 @@ return (
 | queryResult              | Result of the query of a record                                                                            | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
 | mutationResult           | Result of the mutation triggered by submitting the form                                                    | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
-### Type Parameters
-
-| Property   | Desription                                                       | Default                    |
-| ---------- | ---------------------------------------------------------------- | -------------------------- |
-| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
-| TVariables | Values for params.                                               | `{}`                       |
-
 ## Example
 
-   <CodeSandboxExample path="form-antd-use-modal-form" />
+<CodeSandboxExample path="form-antd-use-modal-form" />
 
 [@refinedev/antd]: https://github.com/refinedev/refine/tree/master/packages/antd
 [baserecord]: /api-reference/core/interfaces.md#baserecord
@@ -726,15 +727,3 @@ return (
 [antd-use-form]: /docs/api-reference/antd/hooks/form/useForm
 [antd-modal]: https://ant.design/components/modal/
 [antd-form]: https://ant.design/components/form/
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```

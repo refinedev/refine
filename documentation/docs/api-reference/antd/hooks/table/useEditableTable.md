@@ -349,12 +349,13 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 
 ### Type Parameters
 
-| Property         | Desription                                                   | Type                       | Default                    |
-| ---------------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData            | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError           | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TVariables       | Values for params                                            |                            | `{}`                       |
-| TSearchVariables | Values for search params                                     |                            | `{}`                       |
+| Property         | Desription                                                                                                                                                   | Type                       | Default                    |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData            | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables       | Values for params                                                                                                                                            |                            | `{}`                       |
+| TSearchVariables | Values for search params                                                                                                                                     |                            | `{}`                       |
+| TSelectData      | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
 
 ### Return values
 
