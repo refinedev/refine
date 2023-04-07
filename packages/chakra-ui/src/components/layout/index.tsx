@@ -5,6 +5,10 @@ import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
 import { RefineLayoutLayoutProps } from "./types";
 
+/**
+ * @deprecated use `<ThemedLayout>` instead with 100% backward compatibility.
+ * @see https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout
+ **/
 export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Sider,
     Header,

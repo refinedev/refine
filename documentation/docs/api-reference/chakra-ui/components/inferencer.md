@@ -42,7 +42,10 @@ const App = () => {
                 >
                     <Routes>
                         {/* highlight-next-line */}
-                        <Route path="/samples" element={<ChakraUIInferencer />} />
+                        <Route
+                            path="/samples"
+                            element={<ChakraUIInferencer />}
+                        />
                     </Routes>
                 </Refine>
             </BrowserRouter>
@@ -105,7 +108,7 @@ setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, refineTheme } from "@refinedev/chakra-ui";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -119,7 +122,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
@@ -128,19 +131,22 @@ const App: React.FC = () => {
                         {
                             name: "samples",
                             list: "/samples",
-                        }
+                        },
                     ]}
                 >
                     <Routes>
                         <Route
-                            element={(
-                                <Layout>
+                            element={
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
-                            )}
+                                </ThemedLayout>
+                            }
                         >
                             {/* highlight-next-line */}
-                            <Route path="/samples" element={<ChakraUIInferencer />} />
+                            <Route
+                                path="/samples"
+                                element={<ChakraUIInferencer />}
+                            />
                         </Route>
                     </Routes>
                 </Refine>
@@ -163,7 +169,7 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, refineTheme } from "@refinedev/chakra-ui";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -177,7 +183,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
@@ -186,19 +192,22 @@ const App: React.FC = () => {
                         {
                             name: "samples",
                             show: "/samples/show/:id",
-                        }
+                        },
                     ]}
                 >
                     <Routes>
                         <Route
-                            element={(
-                                <Layout>
+                            element={
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
-                            )}
+                                </ThemedLayout>
+                            }
                         >
                             {/* highlight-next-line */}
-                            <Route path="/samples/show/:id" element={<ChakraUIInferencer />} />
+                            <Route
+                                path="/samples/show/:id"
+                                element={<ChakraUIInferencer />}
+                            />
                         </Route>
                     </Routes>
                 </Refine>
@@ -221,7 +230,7 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, refineTheme } from "@refinedev/chakra-ui";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -235,7 +244,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
@@ -244,19 +253,22 @@ const App: React.FC = () => {
                         {
                             name: "samples",
                             create: "/samples/create",
-                        }
+                        },
                     ]}
                 >
                     <Routes>
                         <Route
-                            element={(
-                                <Layout>
+                            element={
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
-                            )}
+                                </ThemedLayout>
+                            }
                         >
                             {/* highlight-next-line */}
-                            <Route path="/samples/create" element={<ChakraUIInferencer />} />
+                            <Route
+                                path="/samples/create"
+                                element={<ChakraUIInferencer />}
+                            />
                         </Route>
                     </Routes>
                 </Refine>
@@ -279,7 +291,7 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, refineTheme } from "@refinedev/chakra-ui";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -293,7 +305,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
@@ -302,19 +314,22 @@ const App: React.FC = () => {
                         {
                             name: "samples",
                             edit: "/samples/edit/:id",
-                        }
+                        },
                     ]}
                 >
                     <Routes>
                         <Route
-                            element={(
-                                <Layout>
+                            element={
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
-                            )}
+                                </ThemedLayout>
+                            }
                         >
                             {/* highlight-next-line */}
-                            <Route path="/samples/edit/:id" element={<ChakraUIInferencer />} />
+                            <Route
+                                path="/samples/edit/:id"
+                                element={<ChakraUIInferencer />}
+                            />
                         </Route>
                     </Routes>
                 </Refine>

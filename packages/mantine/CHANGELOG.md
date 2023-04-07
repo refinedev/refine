@@ -1,5 +1,25 @@
 # @pankod/refine-mantine
 
+## 2.7.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` hook's `modal.show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal. If not, the modal will not show. (Resolves #4062)
+
+## 2.6.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` hook's `modal.show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal. If not, the modal will not show. (Resolves #4062)
+
 ## 2.5.2
 
 ### Patch Changes

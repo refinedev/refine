@@ -1,5 +1,25 @@
 # @pankod/refine-antd
 
+## 5.5.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/antd/components/antd-themed-layout
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` and `useDrawerForm` hook's `show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal/drawer. If not, the modal/drawer will not show. (Resolves #4062)
+
+## 5.4.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/antd/components/antd-themed-layout
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` and `useDrawerForm` hook's `show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal/drawer. If not, the modal/drawer will not show. (Resolves #4062)
+
 ## 5.3.14
 
 ### Patch Changes

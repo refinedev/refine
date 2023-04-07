@@ -61,7 +61,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     refineTheme,
     notificationProvider,
     AuthPage,
@@ -98,9 +98,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -147,9 +147,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -179,123 +179,121 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
-    ```tsx
-    import { AuthPage } from "@refinedev/chakra-ui";
-    ```
+```tsx
+import { AuthPage } from "@refinedev/chakra-ui";
+```
 
 2. Place the `<AuthPage/>` component to the respective route inside your router.
 
-    ```tsx
-    import { Refin, Authenticated } from "@refinedev/core";
-    import routerBindings, {
-        CatchAllNavigate,
-        NavigateToResource,
-    } from "@refinedev/react-router-v6";
-    import dataProvider from "@refinedev/simple-rest";
-    import {
-        ErrorComponent,
-        Layout,
-        refineTheme,
-        notificationProvider,
-        //highlight-next-line
-        AuthPage,
-    } from "@refinedev/chakra-ui";
-    import { ChakraProvider } from "@chakra-ui/react";
-    import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
+```tsx
+import { Refin, Authenticated } from "@refinedev/core";
+import routerBindings, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import {
+    ErrorComponent,
+    ThemedLayout,
+    refineTheme,
+    notificationProvider,
+    //highlight-next-line
+    AuthPage,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-    import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostList } from "pages/blog-posts/list";
 
-    import { authProvider } from "./authProvider";
+import { authProvider } from "./authProvider";
 
-    const App = () => {
-        return (
-            <ChakraProvider theme={refineTheme}>
-                <BrowserRouter>
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                </Route>
+const App = () => {
+    return (
+        <ChakraProvider theme={refineTheme}>
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-start */}
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource />
-                                    </Authenticated>
-                                }
-                            >
-                                {/* highlight-start */}
-                                <Route
-                                    path="/login"
-                                    element={<AuthPage type="login" />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
-                            <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </ChakraProvider>
-        );
-    };
-    ```
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
+        </ChakraProvider>
+    );
+};
+```
 
-    By default, `<AuthPage>` component renders the login page. So, we don't need to pass any props to the `<AuthPage/>` component.
+By default, `<AuthPage>` component renders the login page. So, we don't need to pass any props to the `<AuthPage/>` component.
 
-    :::note
+:::note
 
-    When the user submits the login form, it passes the email, password and remember to the auth provider's `login` method like below:
+When the user submits the login form, it passes the email, password and remember to the auth provider's `login` method like below:
 
-    ```ts
+```ts
     const authProvider = {
         login: ({ email, password, remember }) => {
             ...
         },
         ...
     };
-    ```
+```
 
-    :::
+:::
 
-3. Run the app and navigate to the `/login` page.
+1. Run the app and navigate to the `/login` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
@@ -309,119 +307,117 @@ Register page is used to register new users. It provides a basic form to enter e
 
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
-    ```tsx
-    import { Refine, Authenticated } from "@refinedev/core";
-    import routerBindings, {
-        CatchAllNavigate,
-        NavigateToResource,
-    } from "@refinedev/react-router-v6";
-    import dataProvider from "@refinedev/simple-rest";
-    import {
-        ErrorComponent,
-        Layout,
-        refineTheme,
-        notificationProvider,
-        //highlight-next-line
-        AuthPage,
-    } from "@refinedev/chakra-ui";
-    import { ChakraProvider } from "@chakra-ui/react";
-    import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
+```tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import {
+    ErrorComponent,
+    ThemedLayout,
+    refineTheme,
+    notificationProvider,
+    //highlight-next-line
+    AuthPage,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-    import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostList } from "pages/blog-posts/list";
 
-    import { authProvider } from "./authProvider";
+import { authProvider } from "./authProvider";
 
-    const App = () => {
-        return (
-            <ChakraProvider theme={refineTheme}>
-                <BrowserRouter>
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                </Route>
+const App = () => {
+    return (
+        <ChakraProvider theme={refineTheme}>
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={<AuthPage type="login" />}
-                                />
-                                {/* highlight-start */}
-                                <Route
-                                    path="/register"
-                                    element={<AuthPage type="register" />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-start */}
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </ChakraProvider>
-        );
-    };
-    ```
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
+        </ChakraProvider>
+    );
+};
+```
 
-    We need to pass the `type` prop to the `<AuthPage/>` component to render the register page.
+We need to pass the `type` prop to the `<AuthPage/>` component to render the register page.
 
-    :::note
+:::note
 
-    When the user submits the register form, it passes the email and password to the auth provider's `register` method like below:
+When the user submits the register form, it passes the email and password to the auth provider's `register` method like below:
 
-    ```ts
+```ts
     const authProvider = {
         register: ({ email, password }) => {
             ...
         },
         ...
     };
-    ```
+```
 
-    :::
+:::
 
 2. Run the app and navigate to the `/register` page.
 
@@ -437,112 +433,110 @@ Forgot password page is used to send a reset password link to the user's email. 
 
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
-    ```tsx
-    import { Refine, Authenticated } from "@refinedev/core";
-    import routerBindings, {
-        CatchAllNavigate,
-        NavigateToResource,
-    } from "@refinedev/react-router-v6";
-    import dataProvider from "@refinedev/simple-rest";
-    import {
-        ErrorComponent,
-        Layout,
-        refineTheme,
-        notificationProvider,
-        //highlight-next-line
-        AuthPage,
-    } from "@refinedev/chakra-ui";
-    import { ChakraProvider } from "@chakra-ui/react";
-    import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
+```tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import {
+    ErrorComponent,
+    ThemedLayout,
+    refineTheme,
+    notificationProvider,
+    //highlight-next-line
+    AuthPage,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostList } from "pages/blog-posts/list";
 
-    import { authProvider } from "./authProvider";
+import { authProvider } from "./authProvider";
 
-    const App = () => {
-        return (
-            <ChakraProvider theme={refineTheme}>
-                <BrowserRouter>
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                </Route>
+const App = () => {
+    return (
+        <ChakraProvider theme={refineTheme}>
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={<AuthPage type="login" />}
-                                />
-                                <Route
-                                    path="/register"
-                                    element={<AuthPage type="register" />}
-                                />
-                                {/* highlight-start */}
-                                <Route
-                                    path="/forgot-password"
-                                    element={<AuthPage type="forgotPassword" />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </ChakraProvider>
-        );
-    };
-    ```
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-start */}
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
+        </ChakraProvider>
+    );
+};
+```
 
-    We need to pass the `forgotPassword` prop to the `<AuthPage/>` component to render the forgot password page.
+We need to pass the `forgotPassword` prop to the `<AuthPage/>` component to render the forgot password page.
 
-    :::note
+:::note
 
-    When the user submits the forgot password form, it passes the email to the auth provider's `forgotPassword` method like below:
+When the user submits the forgot password form, it passes the email to the auth provider's `forgotPassword` method like below:
 
-    ```ts
+```ts
 
     const authProvider = {
         forgotPassword: ({ email }) => {
@@ -550,9 +544,9 @@ Forgot password page is used to send a reset password link to the user's email. 
         },
         ...
     };
-    ```
+```
 
-    :::
+:::
 
 2. Run the app and navigate to the `/forgot-password` page.
 
@@ -568,127 +562,125 @@ Update password page is used to update the user's password. It provides a basic 
 
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
-    ```tsx
-    import { Refine, Authenticated } from "@refinedev/core";
-    import routerBindings, {
-        CatchAllNavigate,
-        NavigateToResource,
-    } from "@refinedev/react-router-v6";
-    import dataProvider from "@refinedev/simple-rest";
-    import {
-        ErrorComponent,
-        Layout,
-        refineTheme,
-        notificationProvider,
-        //highlight-next-line
-        AuthPage,
-    } from "@refinedev/chakra-ui";
-    import { ChakraProvider } from "@chakra-ui/react";
-    import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
+```tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import {
+    ErrorComponent,
+    ThemedLayout,
+    refineTheme,
+    notificationProvider,
+    //highlight-next-line
+    AuthPage,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-    import { BlogPostList } from "pages/blog-posts/list";
+import { BlogPostList } from "pages/blog-posts/list";
 
-    import { authProvider } from "./authProvider";
+import { authProvider } from "./authProvider";
 
-    const App = () => {
-        return (
-            <ChakraProvider theme={refineTheme}>
-                <BrowserRouter>
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                </Route>
+const App = () => {
+    return (
+        <ChakraProvider theme={refineTheme}>
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
                             </Route>
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={<AuthPage type="login" />}
-                                />
-                                <Route
-                                    path="/register"
-                                    element={<AuthPage type="register" />}
-                                />
-                                <Route
-                                    path="/forgot-password"
-                                    element={<AuthPage type="forgotPassword" />}
-                                />
-                                {/* highlight-start */}
-                                <Route
-                                    path="/update-password"
-                                    element={<AuthPage type="updatePassword" />}
-                                />
-                                {/* highlight-end */}
-                            </Route>
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
                             <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </ChakraProvider>
-        );
-    };
-    ```
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-start */}
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
+        </ChakraProvider>
+    );
+};
+```
 
-    We need to pass the `updatePassword` prop to the `<AuthPage/>` component to render the update password page.
+We need to pass the `updatePassword` prop to the `<AuthPage/>` component to render the update password page.
 
-    :::note
+:::note
 
-    When the user submits the update password form, it passes the new password and confirm password to the auth provider's `updatePassword` method like below:
+When the user submits the update password form, it passes the new password and confirm password to the auth provider's `updatePassword` method like below:
 
-    ```ts
+```ts
     const authProvider = {
         updatePassword: ({ password, confirmPassword }) => {
             ...
         },
         ...
     };
-    ```
+```
 
-    :::
+:::
 
 2. Run the app and navigate to the `/update-password` page.
 
@@ -710,26 +702,26 @@ Let's customize the auth pages.
 
 1. Run the following command in the project directory.
 
-    ```bash
+```bash
     npm run refine swizzle
-    ```
+```
 
 2. Select the `@refinedev/chakra-ui` package.
 
-    ```bash
+```bash
         ? Which package do you want to swizzle?
         UI Framework
         ❯  @refinedev/chakra-ui
-    ```
+```
 
 3. Select the `AuthPage` component.
 
-    ```bash
+```bash
         ? Which component do you want to swizzle?
         Pages
            ErrorPage
         ❯  AuthPage
-    ```
+```
 
 After swizzling the auth pages, you will show the success message like below.
 

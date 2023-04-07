@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 3.1.7
+
+### Patch Changes
+
+-   [#4093](https://github.com/refinedev/refine/pull/4093) [`c6637089837`](https://github.com/refinedev/refine/commit/c6637089837dfc0e27629afa763e4a8d2b6847c8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed the warning about using the `isOptionEqualToValue` props of the `Autocomplete` component.
+
 ## 3.1.6
 
 ### Patch Changes

@@ -32,12 +32,18 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import { dataProvider } from "@refinedev/appwrite";
 import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
@@ -46,16 +52,18 @@ import { authProvider } from "./authProvider";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                //highlight-start
-                dataProvider={dataProvider(appwriteClient)}
-                authProvider={authProvider}
-                //highlight-end
-                routerProvider={routerProvider}
-                notificationProvider={notificationProvider}
-            >
-                <Layout>{/* ... */}</Layout>
-            </Refine>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    //highlight-start
+                    dataProvider={dataProvider(appwriteClient)}
+                    authProvider={authProvider}
+                    //highlight-end
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                >
+                    <ThemedLayout>{/* ... */}</ThemedLayout>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -121,12 +129,19 @@ export const StoreProvider = (props: any) => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import { dataProvider } from "@refinedev/appwrite";
 import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
@@ -139,19 +154,19 @@ const App: React.FC = () => {
         //highlight-start
         <StoreProvider>
             <BrowserRouter>
-                <Refine
-                    dataProvider={dataProvider(appwriteClient)}
-                    authProvider={authProvider}
-                    routerProvider={routerProvider}
-                    notificationProvider={notificationProvider}
-                >
-                    <Layout>
-                        {/* ... */}
-                    </Layout>
-                </Refine>
+                <ConfigProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        dataProvider={dataProvider(appwriteClient)}
+                        authProvider={authProvider}
+                        routerProvider={routerProvider}
+                        notificationProvider={notificationProvider}
+                    >
+                        <ThemedLayout>{/* ... */}</ThemedLayout>
+                    </Refine>
+                </ConfigProvider>
             </BrowserRouter>
-        <StoreProvider>
-        //highlight-end
+        </StoreProvider>
+        // highlight-end
     );
 };
 ```
@@ -585,7 +600,12 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import routerProvider, {
     CatchAllNavigate,
@@ -594,6 +614,7 @@ import routerProvider, {
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
@@ -609,58 +630,62 @@ function App() {
     return (
         <StoreProvider>
             <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    //highlight-start
-                    liveProvider={liveProvider(appwriteClient)}
-                    options={{ liveMode: "auto" }}
-                    //highlight-end
-                    dataProvider={dataProvider(appwriteClient)}
-                    authProvider={authProvider}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "61cb01b17ef57",
-                            list: "/products",
-                            show: "/products/show:id",
-                            meta: {
-                                label: "Products",
+                <ConfigProvider theme={RefineThemes.Blue}>
+                    <Refine
+                        routerProvider={routerProvider}
+                        //highlight-start
+                        liveProvider={liveProvider(appwriteClient)}
+                        options={{ liveMode: "auto" }}
+                        //highlight-end
+                        dataProvider={dataProvider(appwriteClient)}
+                        authProvider={authProvider}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "61cb01b17ef57",
+                                list: "/products",
+                                show: "/products/show:id",
+                                meta: {
+                                    label: "Products",
+                                },
                             },
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout Sider={CustomSider}>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="show:id"
-                                    element={<ProductShow />}
-                                />
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayout Sider={CustomSider}>
+                                            <Outlet />
+                                        </ThemedLayout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                    <Route
+                                        path="show:id"
+                                        element={<ProductShow />}
+                                    />
+                                </Route>
                             </Route>
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<Login />} />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                </Refine>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<Login />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Refine>
+                </ConfigProvider>
             </BrowserRouter>
         </StoreProvider>
     );

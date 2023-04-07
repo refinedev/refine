@@ -109,10 +109,11 @@ In refine, authentication and authorization processes are performed with the aut
 ```tsx title="App.tsx"
 import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -123,6 +124,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { Login } from "pages/login";
@@ -217,47 +219,49 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                dataProvider={dataProvider(API_URL, axios)}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                    dataProvider={dataProvider(API_URL, axios)}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                        },
+                    ]}
+                >
+                    <Routes>
                         <Route
-                            path="/posts"
-                            element={<div>dummy list page</div>}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<Login />} />
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/posts"
+                                element={<div>dummy list page</div>}
+                            />
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="/login" element={<Login />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

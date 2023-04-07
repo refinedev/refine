@@ -9,9 +9,42 @@ Design Tokens are the smallest element that affects the theme. By modifying the 
 
 [Refer to the Ant Design documentation for more information about customizing Ant Design theme. &#8594](https://ant.design/docs/react/customize-theme)
 
+## Predefined Themes
+
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/antd/src/definitions/themes/index.ts) has predefined themes for you. You can use them by importing them from `@refinedev/antd` package. It is not required if you decide to use the default antd theme.
+
+```ts
+const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
+```
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
+
+const App: React.FC = () => {
+    return (
+        <ConfigProvider theme={RefineThemes.Blue}>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayout>{/* ... */}</ThemedLayout>
+            </Refine>
+        </ConfigProvider>
+    );
+};
+```
+
+:::info
+
+[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-antd/)
+
+:::
+
 ## Theme customization
 
-[`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component can be used to change theme. It is not required if you decide to use the default theme.
+[`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
 
 ### Overriding the themes
 
@@ -19,7 +52,9 @@ You can override or extend the default themes. You can also create your own them
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Layout, ConfigProvider } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
+
+import { ConfigProvider } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -43,11 +78,9 @@ const App: React.FC = () => {
         >
             {/* highlight-end */}
             <Refine
-                /* ... */
+            /* ... */
             >
-                <Layout>
-                    {/* ... */}
-                </Layout>
+                <ThemedLayout>{/* ... */}</ThemedLayout>
             </Refine>
             // highlight-next-line
         </ConfigProvider>
@@ -91,13 +124,13 @@ const Header: FC<HeaderProps> = (props) => {
         </Space>
     );
 };
-
 ```
 
 Then, we can use the `theme` property of the `ConfigProvider` component to switch between light and dark themes.
 
 ```tsx
 import { Refine } from "@refinedev/core";
+import { ThemedLayout } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
 
 import { Header } from "./Header";
@@ -118,11 +151,9 @@ const App: React.FC = () => {
             // highlight-end
         >
             <Refine
-                /* ... */
+            /* ... */
             >
-                <Layout Header={Header}>
-                    {/* ... */}
-                </Layout>
+                <ThemedLayout Header={Header}>{/* ... */}</ThemedLayout>
             </Refine>
         </ConfigProvider>
     );

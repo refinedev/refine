@@ -6,12 +6,8 @@ import {
     ThemedLayout,
     AuthPage,
 } from "@refinedev/antd";
-import {
-    GoogleOutlined,
-    GithubOutlined,
-    DashboardOutlined,
-} from "@ant-design/icons";
-import { Button, ConfigProvider, Modal, Space, theme } from "antd";
+import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+import { ConfigProvider, ThemeConfig, theme } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     CatchAllNavigate,
@@ -22,15 +18,14 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import DashboardPage from "pages/dashboard";
 import { useState } from "react";
 import { authProvider } from "utils/authProvider";
+import ThemeSettings from "components/theme-settings";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
-    const [customTheme, setCustomTheme] = useState({
+    const [customTheme, setCustomTheme] = useState<ThemeConfig>({
         token: RefineThemes.Magenta.token,
         algorithm: theme.darkAlgorithm,
     });
@@ -39,25 +34,15 @@ const App: React.FC = () => {
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={customTheme}>
+                <ThemeSettings
+                    currentTheme={customTheme}
+                    onThemeClick={(theme) => setCustomTheme(theme)}
+                />
                 <Refine
                     authProvider={authProvider}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
                     resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                            meta: {
-                                label: "Dashboard",
-                                icon: <DashboardOutlined />,
-                            },
-                        },
-                        {
-                            name: "Multi Level",
-                            meta: {
-                                label: "Multi Level",
-                            },
-                        },
                         {
                             name: "posts",
                             list: "/posts",
@@ -66,22 +51,6 @@ const App: React.FC = () => {
                             edit: "/posts/edit/:id",
                             meta: {
                                 canDelete: true,
-                            },
-                        },
-                        {
-                            name: "Demo 1",
-                            list: "/demo1",
-                            meta: {
-                                label: "Demo 1",
-                                parent: "Multi Level",
-                            },
-                        },
-                        {
-                            name: "Demo 2",
-                            list: "/demo2",
-                            meta: {
-                                label: "Demo 2",
-                                parent: "Multi Level",
                             },
                         },
                     ]}
@@ -103,8 +72,6 @@ const App: React.FC = () => {
                                 </Authenticated>
                             }
                         >
-                            <Route index element={<DashboardPage />} />
-
                             <Route path="/posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
@@ -211,90 +178,6 @@ const App: React.FC = () => {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
-
-                    {/** antd theme config debugger **/}
-                    <div
-                        style={{
-                            position: "absolute",
-                            bottom: 0,
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                        }}
-                    >
-                        <Button
-                            onClick={() =>
-                                setIsConfigModalOpen((prevState) => !prevState)
-                            }
-                        >
-                            Open Config Modal
-                        </Button>
-                    </div>
-                    <Modal
-                        open={isConfigModalOpen}
-                        onCancel={() => setIsConfigModalOpen(false)}
-                        destroyOnClose
-                    >
-                        <Space
-                            style={{
-                                flexWrap: "wrap",
-                            }}
-                        >
-                            {Object.keys(RefineThemes).map((name) => {
-                                const theme =
-                                    RefineThemes[
-                                        name as keyof typeof RefineThemes
-                                    ];
-
-                                return (
-                                    <Button
-                                        key={theme.token?.colorPrimary}
-                                        onClick={() => {
-                                            setCustomTheme((prevState) => ({
-                                                ...prevState,
-                                                token: theme.token,
-                                            }));
-                                            setIsConfigModalOpen(false);
-                                        }}
-                                        style={{
-                                            background:
-                                                theme.token?.colorPrimary,
-                                        }}
-                                    >
-                                        {theme.token?.colorPrimary}
-                                    </Button>
-                                );
-                            })}
-                        </Space>
-
-                        <Space
-                            style={{
-                                marginTop: 24,
-                            }}
-                        >
-                            <Button
-                                onClick={() => {
-                                    setCustomTheme((prevState) => ({
-                                        ...prevState,
-                                        algorithm: theme.darkAlgorithm,
-                                    }));
-                                    setIsConfigModalOpen(false);
-                                }}
-                            >
-                                Set dark mode
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                    setCustomTheme((prevState) => ({
-                                        ...prevState,
-                                        algorithm: theme.defaultAlgorithm,
-                                    }));
-                                    setIsConfigModalOpen(false);
-                                }}
-                            >
-                                Set light mode
-                            </Button>
-                        </Space>
-                    </Modal>
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

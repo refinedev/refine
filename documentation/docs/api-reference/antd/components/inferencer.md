@@ -100,9 +100,11 @@ setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -114,29 +116,34 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        list: "/samples",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-next-line */}
-                        <Route path="/samples" element={<AntdInferencer />} />
-                    </Route>
-                </Routes>
-            </Refine>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/samples"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -155,9 +162,11 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/antd";
+import { RefineThemes, ThemedLayout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -169,32 +178,34 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        show: "/samples/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-next-line */}
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            show: "/samples/show/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
                         <Route
-                            path="/samples/show/:id"
-                            element={<AntdInferencer />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/samples/show/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -213,9 +224,11 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -227,32 +240,34 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        create: "/samples/create",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-next-line */}
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            create: "/samples/create",
+                        },
+                    ]}
+                >
+                    <Routes>
                         <Route
-                            path="/samples/create"
-                            element={<AntdInferencer />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/samples/create"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -271,9 +286,11 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { ConfigProvider } from "antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -285,32 +302,34 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        edit: "/samples/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-next-line */}
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            edit: "/samples/edit/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
                         <Route
-                            path="/samples/edit/:id"
-                            element={<AntdInferencer />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route
+                                path="/samples/edit/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

@@ -1,6 +1,6 @@
-import React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import LinkItem from "@theme/Footer/LinkItem";
+import React from "react";
 
 function ColumnLinkItem({ item }) {
     return item.html ? (
@@ -12,13 +12,13 @@ function ColumnLinkItem({ item }) {
         />
     ) : (
         <li key={item.href ?? item.to} className="footer__item">
-            <LinkItem item={item} className="text-[#9696B4]" />
+            <LinkItem item={item} className="text-[#000]" />
         </li>
     );
 }
 function Column({ column }) {
     return (
-        <div className="text-[#9696B4] text-xs leading-[24px] font-montserrat">
+        <div className="text-[#000] text-xs leading-[24px] font-montserrat">
             <div className="mb-1 font-extrabold tracking-wide">
                 {column.title}
             </div>
@@ -40,7 +40,7 @@ export default function FooterLinksMultiColumn({ columns }) {
             {columns.map((column, i) => (
                 <Column key={i} column={column} />
             ))}
-            <div className="text-[#9696B4] text-xs leading-[24px] font-montserrat col-span-3 md:col-span-1 lg:col-span-2 max-w-[216px]">
+            <div className="text-[#000] text-xs leading-[24px] font-montserrat col-span-3 md:col-span-1 lg:col-span-2 max-w-[216px]">
                 <div className="mb-1 font-extrabold tracking-wide">
                     {contactTitle}
                 </div>
@@ -53,7 +53,7 @@ export default function FooterLinksMultiColumn({ columns }) {
                 </div>
                 <div className="mt-2">
                     <a
-                        className="text-[#9696B4] no-underline"
+                        className="text-[#000] no-underline"
                         href={`mailto:${contactEmail}`}
                     >
                         {contactEmail}

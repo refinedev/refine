@@ -42,9 +42,9 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
@@ -58,7 +58,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -83,9 +83,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route
@@ -156,9 +156,9 @@ setInitialRoutes(["/blog-posts"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
@@ -171,7 +171,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -198,9 +198,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             {/* highlight-start */}
@@ -245,9 +245,9 @@ setInitialRoutes(["/blog-posts/create"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
@@ -260,7 +260,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -287,9 +287,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             {/* highlight-start */}
@@ -334,9 +334,9 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
@@ -349,7 +349,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -374,9 +374,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             {/* highlight-start */}
@@ -421,9 +421,9 @@ setInitialRoutes(["/blog-posts/show/123"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, {
@@ -436,7 +436,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -463,9 +463,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             {/* highlight-start */}
