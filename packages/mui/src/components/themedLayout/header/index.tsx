@@ -56,7 +56,12 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = ({
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <Typography variant="subtitle2">
+                        <Typography
+                            sx={{
+                                display: { xs: "none", md: "block" },
+                            }}
+                            variant="subtitle2"
+                        >
                             {user?.name}
                         </Typography>
                         <Avatar src={user?.avatar} alt={user?.name} />

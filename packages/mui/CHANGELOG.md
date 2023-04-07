@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 4.7.1
+
+### Patch Changes
+
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+
+-   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
+    -   @refinedev/react-hook-form@4.1.5
+
 ## 4.7.0
 
 ### Minor Changes
