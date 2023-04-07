@@ -42,7 +42,6 @@ export const replaceImports = (content: string): string => {
         }
     }
 
-    console.log("includes google", "React.crateElement(GoogleButton,");
     const pretty = prettySpaces(`
     ${Array.from(imports).join("\n")}
     ${content

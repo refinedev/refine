@@ -206,11 +206,17 @@ export const useModalForm = <
         sunflowerUseModal.close();
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: BaseKey) => {
-        setId?.(id);
-
-        sunflowerUseModal.show();
-    }, []);
+    const handleShow = useCallback(
+        (showId?: BaseKey) => {
+            if (typeof showId !== "undefined") {
+                setId?.(showId);
+            }
+            if (typeof showId !== "undefined" || typeof id !== "undefined") {
+                sunflowerUseModal.show();
+            }
+        },
+        [id],
+    );
 
     const { visible: _visible, ...otherModalProps } = modalProps;
     const newModalProps = { open: _visible, ...otherModalProps };
