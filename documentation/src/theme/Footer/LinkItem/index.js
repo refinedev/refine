@@ -1,15 +1,15 @@
-import React from "react";
+import isInternalUrl from "@docusaurus/isInternalUrl";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import isInternalUrl from "@docusaurus/isInternalUrl";
 import IconExternalLink from "@theme/Icon/ExternalLink";
+import React from "react";
 export default function FooterLinkItem({ item }) {
     const { to, href, label, prependBaseUrlToHref, ...props } = item;
     const toUrl = useBaseUrl(to);
     const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
     return (
         <Link
-            className="text-xs leading-[24px] font-montserrat text-[#9696B4]"
+            className="text-xs leading-[24px] font-montserrat text-[#000]"
             {...(href
                 ? {
                       href: prependBaseUrlToHref ? normalizedHref : href,
