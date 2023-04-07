@@ -211,7 +211,10 @@ export const useModalForm = <
             if (typeof showId !== "undefined") {
                 setId?.(showId);
             }
-            if (typeof showId !== "undefined" || typeof id !== "undefined") {
+            const needsIdToOpen = action === "edit" || action === "clone";
+            const hasId =
+                typeof showId !== "undefined" || typeof id !== "undefined";
+            if (needsIdToOpen ? hasId : true) {
                 sunflowerUseModal.show();
             }
         },

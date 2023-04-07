@@ -79,6 +79,9 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        action: "edit",
+                    },
                     modalProps: {
                         defaultVisible: false,
                     },
