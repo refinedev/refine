@@ -47,7 +47,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
             sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
+                gap: "12px",
                 ...wrapperStyles,
             }}
         >
