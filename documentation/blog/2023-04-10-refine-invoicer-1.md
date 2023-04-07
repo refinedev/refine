@@ -34,11 +34,11 @@ In this series we are going to build a **Invoicer - React PDF Invoice Generator*
 
 [👉 The live version of the app is be available here.](https://invoice-generator.refine.dev/)
 
-[👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/master/examples/invoice-generator)
+[👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator)
 
   To get completed client source code simply run:
    ```
-    npm create refine-app@latest -- --example invoice-generator
+    npm create refine-app@latest -- --example refine-week-invoice-generator
    ```
 
 
