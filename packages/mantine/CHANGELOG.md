@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 2.7.2
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` with `create` actions.
+
 ## 2.7.1
 
 ### Patch Changes

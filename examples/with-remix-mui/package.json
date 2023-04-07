@@ -19,7 +19,7 @@
     "@refinedev/cli": "^2.1.2",
     "@refinedev/simple-rest": "^4.1.0",
     "@refinedev/remix-router": "^2.1.0",
-    "@refinedev/mui": "^4.7.1",
+    "@refinedev/mui": "^4.7.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
