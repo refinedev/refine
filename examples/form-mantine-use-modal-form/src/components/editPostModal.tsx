@@ -5,7 +5,7 @@ import {
     SaveButton,
 } from "@refinedev/mantine";
 import { Modal, TextInput, Select, Box, Text } from "@mantine/core";
-import { RichTextEditor } from "@mantine/rte";
+import MDEditor from "@uiw/react-md-editor";
 
 interface FormValues {
     title: string;
@@ -57,7 +57,7 @@ export const EditPostModal: React.FC<
             <Text mt={8} weight={500} size="sm" color="#212529">
                 Content
             </Text>
-            <RichTextEditor {...getInputProps("content")} />
+            <MDEditor data-color-mode="light" {...getInputProps("content")} />
             {errors.content && (
                 <Text mt={2} weight={500} size="xs" color="red">
                     {errors.content}

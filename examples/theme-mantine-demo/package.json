@@ -16,6 +16,7 @@
     "@refinedev/react-table": "^5.1.4",
     "@tanstack/react-table": "^8.2.6",
     "@mantine/rte": "^5.4.1",
+    "@uiw/react-md-editor": "^3.19.5",
     "@tabler/icons": "^1.1.0",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
