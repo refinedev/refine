@@ -26,7 +26,7 @@ Just be aware that the source code examples in this post have been updated to ve
 
 This post provides an introduction to [**refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
-It also presents the [AWeekOfRefine](https://refine.dev/week-of-refine/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
+It also presents the [refineWeek](https://refine.dev/week-of-refine/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
 
 At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **refine** and **Supabase**. 
 
@@ -287,7 +287,7 @@ As far as our features and functionalities go, we will cover most of the provide
 
 Here are the detailed outlines split per day:
 
-### Day One - On AWeekOfRefine
+### Day One - On refineWeek
 
 This post. Hello! :wave: :wave: **refine** welcomes you! We are here :smile: :smile:
 
@@ -355,7 +355,7 @@ We will display these logs inside a modal for each canvas both in the client **P
 
 ## Summary
 
-In this post, we introduced the **refine** framework and the [AWeekOfRefine](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
+In this post, we introduced the **refine** framework and the [refineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
 We layed out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 
