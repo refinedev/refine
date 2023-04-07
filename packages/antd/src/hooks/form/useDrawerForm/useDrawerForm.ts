@@ -207,11 +207,17 @@ export const useDrawerForm = <
         setId?.(undefined);
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: BaseKey) => {
-        setId?.(id);
-
-        show();
-    }, []);
+    const handleShow = useCallback(
+        (showId?: BaseKey) => {
+            if (typeof showId !== "undefined") {
+                setId?.(showId);
+            }
+            if (typeof showId !== "undefined" || typeof id !== "undefined") {
+                show();
+            }
+        },
+        [id],
+    );
 
     return {
         ...useFormProps,

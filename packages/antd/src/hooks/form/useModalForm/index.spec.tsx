@@ -59,6 +59,7 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    id: 1,
                     action: "edit",
                     defaultVisible: false,
                 }),
@@ -73,7 +74,7 @@ describe("useModalForm Hook", () => {
             result.current.show();
         });
 
-        expect(result.current.modalProps.open).toBe(true);
+        await waitFor(() => expect(result.current.modalProps.open).toBe(true));
     });
 
     it("'id' should be updated when 'show' is called with 'id'", async () => {
@@ -127,8 +128,15 @@ describe("useModalForm Hook", () => {
 
         await act(async () => {
             result.current.show();
+        });
+
+        await act(async () => {
             result.current.modalProps.onOk?.({} as any);
         });
+
+        await waitFor(() => result.current.mutationResult.isSuccess);
+
+        await waitFor(() => expect(result.current.modalProps.open).toBe(false));
 
         expect(result.current.modalProps.open).toBe(false);
     });
@@ -137,6 +145,7 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    id: 1,
                     action: "edit",
                     resource: "posts",
                     autoSubmitClose: false,
