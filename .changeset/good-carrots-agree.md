@@ -1,5 +1,6 @@
 ---
-"@refinedev/mui": patch
+"@refinedev/mui": minor
 ---
 
-`<Sider>` visibility has been improved with support for `ThemedLayoutContext` and `useSiderVisible` hook.
+- Added `ThemedLayoutContext` and `useSiderVisible` hooks.
+- `<Sider>` visibility has been improved with support for `ThemedLayoutContext` and `useSiderVisible` hook.
