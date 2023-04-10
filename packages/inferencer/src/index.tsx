@@ -1,5 +1,7 @@
 export { createInferencer } from "./create-inferencer";
 
+export { SharedCodeViewer } from "./components/shared-code-viewer";
+
 export {
     jsx,
     accessor,
