@@ -10,7 +10,7 @@ export const ThemedLayoutContextProvider: React.FC<{ children: ReactNode }> = ({
     children,
 }) => {
     const [siderVisible, setSiderVisible] = useState(false);
-    const [drawerSiderVisible, setDrawerSiderVisible] = useState(false);
+    const [drawerSiderVisible, setDrawerSiderVisible] = useState(true);
 
     return (
         <ThemedLayoutContext.Provider
