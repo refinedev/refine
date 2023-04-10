@@ -47,7 +47,7 @@ The `<Refine>` component serves as the starting point for **refine**. It is a wr
 
 Though `dataProvider` is the only necessary prop for initializing the app, there are other props such as `resources`, `routerProvider`, `authProvider`, `i18nProvider`, etc. Each of these props enables the configuration of various aspects of the application, such as data management, routing, authentication, localization, layout and more.
 
-[Refer to the `<Refine>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
+> For more information, refer to the [`<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/)
 
 ## What is resource?
 
@@ -488,11 +488,11 @@ When the user clicks on the `create` button, they will be redirected to `/:userI
 
 :::tip
 
-Features related to routing such as the inference of the resource by the route, the generation of the routes (optional) and etc. require the use of the `routerProvider` prop of the `<Refine/>` component.
-
-[Refer to the documentation for more information &#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+Features related to routing, such as the inference of the resource by the route, the generation of the routes (optional), etc., require the use of the `routerProvider` prop of the `<Refine/>` component.
 
 When using the **refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
+
+For more information, refer to the [router provider part of the `<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
 
 :::
 
@@ -503,7 +503,7 @@ Learn more about [resources](/docs/api-reference/core/components/refine-config/#
 <Checklist>
 
 <ChecklistItem id="understanding-resource">
-I understood what a resource is and how to add a resource to the app.
+I understood what a resource is and how to add it to my app.
 </ChecklistItem>
 
 </Checklist>
