@@ -1,5 +1,29 @@
 # @pankod/refine-mantine
 
+## 2.7.4
+
+### Patch Changes
+
+-   [#4122](https://github.com/refinedev/refine/pull/4122) [`a36b17e86ba`](https://github.com/refinedev/refine/commit/a36b17e86ba8f670ad77b8a53386e3bf2076cebe) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: `warnWhenUnsavedChanges` was throwing even when there were no changes.
+
+## 2.7.3
+
+### Patch Changes
+
+-   [#4122](https://github.com/refinedev/refine/pull/4122) [`a36b17e86ba`](https://github.com/refinedev/refine/commit/a36b17e86ba8f670ad77b8a53386e3bf2076cebe) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: `warnWhenUnsavedChanges` was throwing even when there were no changes.
+
+## 2.7.2
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` with `create` actions.
+
+## 2.7.1
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` with `create` actions.
+
 ## 2.7.0
 
 ### Minor Changes
