@@ -952,6 +952,15 @@ export const UserCreate: React.FC = () => {
 
 <br/>
 
+### Type Parameters
+
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables  | Values for params.                                                                                                                                           | `{}`                       |                            |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return values
 
 | Property        | Description                                             | Type                                                                                                                                                               |
@@ -966,14 +975,6 @@ export const UserCreate: React.FC = () => {
 | formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                          |
 | id              | Record id for `clone` and `create` action               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                             |
 | setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                   |
-
-### Type Parameters
-
-| Property   | Desription                                                       | Default                    |
-| ---------- | ---------------------------------------------------------------- | -------------------------- |
-| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
-| TVariables | Values for params.                                               | `{}`                       |
 
 ## Example
 

@@ -80,7 +80,7 @@ type BaseInfiniteListProps = {
     dataProviderName?: string;
 };
 
-export type UseInfiniteListProps<TData, TError> = {
+export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -88,7 +88,11 @@ export type UseInfiniteListProps<TData, TError> = {
     /**
      * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options
      */
-    queryOptions?: UseInfiniteQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseInfiniteQueryOptions<
+        GetListResponse<TQueryFnData>,
+        TError,
+        GetListResponse<TData>
+    >;
 } & BaseInfiniteListProps &
     SuccessErrorNotification<
         InfiniteData<GetListResponse<TData>>,
@@ -104,13 +108,16 @@ export type UseInfiniteListProps<TData, TError> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useInfiniteList} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useInfiniteList = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     config,
@@ -127,10 +134,11 @@ export const useInfiniteList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseInfiniteListProps<TData, TError>): InfiniteQueryObserverResult<
-    GetListResponse<TData>,
-    TError
-> => {
+}: UseInfiniteListProps<
+    TQueryFnData,
+    TError,
+    TData
+>): InfiniteQueryObserverResult<GetListResponse<TData>, TError> => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -203,7 +211,11 @@ export const useInfiniteList = <
         onLiveEvent,
     });
 
-    const queryResponse = useInfiniteQuery<GetListResponse<TData>, TError>(
+    const queryResponse = useInfiniteQuery<
+        GetListResponse<TQueryFnData>,
+        TError,
+        GetListResponse<TData>
+    >(
         queryKey.list({
             filters: prefferedFilters,
             hasPagination: isServerPagination,
@@ -223,7 +235,7 @@ export const useInfiniteList = <
                 current: pageParam,
             };
 
-            return getList<TData>({
+            return getList<TQueryFnData>({
                 resource,
                 pagination: paginationProperties,
                 hasPagination: isServerPagination,
