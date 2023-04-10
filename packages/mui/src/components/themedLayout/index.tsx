@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@mui/material";
+import { ThemedLayoutContextProvider } from "@refinedev/core";
 
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
@@ -13,43 +14,37 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     OffLayoutArea,
     children,
 }) => {
-    const [isSiderOpen, setIsSiderOpen] = useState(true);
-
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <Box display="flex" flexDirection="row">
-            <SiderToRender
-                Title={Title}
-                isSiderOpen={isSiderOpen}
-                onToggleSiderClick={(isOpen) => setIsSiderOpen(Boolean(isOpen))}
-            />
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    flex: 1,
-                    minHeight: "100vh",
-                }}
-            >
-                <HeaderToRender
-                    isSiderOpen={isSiderOpen}
-                    onToggleSiderClick={() => setIsSiderOpen((prev) => !prev)}
-                />
+        <ThemedLayoutContextProvider>
+            <Box display="flex" flexDirection="row">
+                <SiderToRender Title={Title} />
                 <Box
-                    component="main"
                     sx={{
-                        p: { xs: 1, md: 2, lg: 3 },
-                        flexGrow: 1,
-                        bgcolor: (theme) => theme.palette.background.default,
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                        minHeight: "100vh",
                     }}
                 >
-                    {children}
+                    <HeaderToRender />
+                    <Box
+                        component="main"
+                        sx={{
+                            p: { xs: 1, md: 2, lg: 3 },
+                            flexGrow: 1,
+                            bgcolor: (theme) =>
+                                theme.palette.background.default,
+                        }}
+                    >
+                        {children}
+                    </Box>
+                    {Footer && <Footer />}
                 </Box>
-                {Footer && <Footer />}
+                {OffLayoutArea && <OffLayoutArea />}
             </Box>
-            {OffLayoutArea && <OffLayoutArea />}
-        </Box>
+        </ThemedLayoutContextProvider>
     );
 };
