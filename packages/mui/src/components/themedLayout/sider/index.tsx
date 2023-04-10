@@ -34,11 +34,11 @@ import {
     useActiveAuthProvider,
     pickNotDeprecated,
     useWarnAboutChange,
-    useSiderVisible,
 } from "@refinedev/core";
 import { RefineThemedLayoutSiderProps } from "../types";
 
 import { ThemedTitle as DefaultTitle } from "@components";
+import { useSiderVisible } from "@hooks";
 
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     Title: TitleFromProps,

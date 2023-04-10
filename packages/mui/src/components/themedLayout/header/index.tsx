@@ -1,9 +1,5 @@
 import React from "react";
-import {
-    useGetIdentity,
-    useActiveAuthProvider,
-    useSiderVisible,
-} from "@refinedev/core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import {
     AppBar,
     Stack,
@@ -16,6 +12,7 @@ import {
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 
+import { useSiderVisible } from "@hooks";
 import { RefineThemedLayoutHeaderProps } from "../types";
 
 const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
