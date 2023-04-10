@@ -18,7 +18,7 @@ const timeline = [
         date: "10th April 2023",
         title: "Pilot & refine architecture",
         description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">Strapi</strong> the app we built during the article series.`,
-        /*  link: "https://refine.dev/blog/refine-invoicer-1/", */
+        link: "https://refine.dev/blog/refine-react-invoice-generator-1/",
     },
     {
         date: "11th April 2023",
@@ -134,16 +134,9 @@ const RefineWeek = () => {
                                 />
                             </div>
                             <h2 className="font-montserrat mt-8 mb-0 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
-                                <h3>
-                                    The event will start with releasing the
-                                    first article on 10th April 2023.
-                                </h3>
-                                <br />
-                                Stay tuned all week and learn the basicsof
-                                creating a CRUD PDF Invoce Generator app via{" "}
-                                <strong className="font-bold">
-                                    refine
-                                </strong> &{" "}
+                                Stay tuned all week and learn the basics of
+                                creating a React PDF Invoce Generator app via{" "}
+                                <strong className="font-bold">refine</strong> &{" "}
                                 <strong className="font-bold">Strapi</strong> in
                                 a week.
                             </h2>
