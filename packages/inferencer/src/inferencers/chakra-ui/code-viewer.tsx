@@ -21,6 +21,9 @@ import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
 
+/**
+ * @deprecated Please use `SharedCodeViewer` instead
+ */
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, loading }) => {
         const code = React.useMemo(() => {

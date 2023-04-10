@@ -16,7 +16,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -359,7 +359,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         ["@refinedev/mantine", "RefineMantine", RefineMantine],
         ["@mantine/core", "MantineCore", MantineCore],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

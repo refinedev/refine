@@ -17,7 +17,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -466,7 +466,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         ["dayjs", "dayjs", dayjs, true],
         ["antd", "AntdPackage", AntdPackage],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

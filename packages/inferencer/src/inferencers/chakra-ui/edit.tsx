@@ -21,7 +21,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -418,7 +418,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         ["@chakra-ui/react", "ChakraUI", ChakraUI],
         ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

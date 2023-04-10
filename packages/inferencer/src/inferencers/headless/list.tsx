@@ -15,7 +15,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -829,7 +829,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
         ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,
