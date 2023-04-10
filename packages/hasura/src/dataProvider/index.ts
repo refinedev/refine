@@ -10,6 +10,7 @@ import {
 } from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
+import mapKeys from "lodash/mapKeys";
 import camelCase from "camelcase";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
@@ -153,6 +154,11 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return nestedQuery;
 };
 
+const camelizeKeys = (obj: any): any => {
+    if (!obj) return undefined;
+    return mapKeys(obj, (_v, k) => camelCase(k));
+};
+
 type IDType = "uuid" | "Int" | "String" | "Numeric";
 
 type NamingConvention = "hasura-default" | "graphql-default";
@@ -177,14 +183,15 @@ const dataProvider = (
 
     return {
         getOne: async ({ resource, id, meta }) => {
-            const operation = `${meta?.operation ?? resource}_by_pk`;
-            const camelizedOperation = camelCase(operation);
+            const defaultNamingConvention =
+                namingConvention === "hasura-default";
+
+            const operation = defaultNamingConvention
+                ? `${meta?.operation ?? resource}_by_pk`
+                : camelCase(`${meta?.operation ?? resource}_by_pk`);
 
             const { query, variables } = gql.query({
-                operation:
-                    namingConvention === "graphql-default"
-                        ? camelizedOperation
-                        : operation,
+                operation,
                 variables: {
                     id: {
                         value: id,
@@ -204,14 +211,23 @@ const dataProvider = (
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            const operation = meta?.operation ?? resource;
+            const defaultNamingConvention =
+                namingConvention === "hasura-default";
+
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
+
+            const type = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.query({
                 operation,
                 fields: meta?.fields,
                 variables: meta?.variables ?? {
                     where: {
-                        type: `${operation}_bool_exp`,
+                        type,
                         value: {
                             id: {
                                 _in: ids,
@@ -234,16 +250,32 @@ const dataProvider = (
                 pageSize: limit = 10,
                 mode = "server",
             } = pagination ?? {};
+            const defaultNamingConvention =
+                namingConvention === "hasura-default";
 
-            const hasuraSorting = generateSorting(sorters);
+            const hasuraSorting = defaultNamingConvention
+                ? generateSorting(sorters)
+                : camelizeKeys(generateSorting(sorters));
+
             const hasuraFilters = generateFilters(filters);
 
-            const operation = meta?.operation ?? resource;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
 
             const aggregateOperation = `${operation}_aggregate`;
 
-            const hasuraSortingType = `[${operation}_order_by!]`;
-            const hasuraFiltersType = `${operation}_bool_exp`;
+            const camelizedAggregateOperation = camelCase(aggregateOperation);
+
+            const hasuraSortingType = defaultNamingConvention
+                ? `[${operation}_order_by!]`
+                : `[${camelCase(`${operation}_order_by!`, {
+                      pascalCase: true,
+                  })}]`;
+
+            const hasuraFiltersType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.query([
                 {
@@ -256,12 +288,20 @@ const dataProvider = (
                                   offset: (current - 1) * limit,
                               }
                             : {}),
-                        ...(hasuraSorting && {
-                            order_by: {
-                                value: hasuraSorting,
-                                type: hasuraSortingType,
-                            },
-                        }),
+                        ...(hasuraSorting &&
+                            (namingConvention === "graphql-default"
+                                ? {
+                                      orderBy: {
+                                          value: hasuraSorting,
+                                          type: hasuraSortingType,
+                                      },
+                                  }
+                                : {
+                                      order_by: {
+                                          value: hasuraSorting,
+                                          type: hasuraSortingType,
+                                      },
+                                  })),
                         ...(hasuraFilters && {
                             where: {
                                 value: hasuraFilters,
@@ -271,7 +311,9 @@ const dataProvider = (
                     },
                 },
                 {
-                    operation: aggregateOperation,
+                    operation: defaultNamingConvention
+                        ? aggregateOperation
+                        : camelizedAggregateOperation,
                     fields: [{ aggregate: ["count"] }],
                     variables: {
                         where: {
