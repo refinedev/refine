@@ -22,8 +22,8 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 
-export type useShowReturnType<TQueryFnData extends BaseRecord = BaseRecord> = {
-    queryResult: QueryObserverResult<GetOneResponse<TQueryFnData>>;
+export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
+    queryResult: QueryObserverResult<GetOneResponse<TData>>;
     showId?: BaseKey;
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 };
