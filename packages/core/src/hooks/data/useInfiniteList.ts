@@ -23,6 +23,7 @@ import {
     useTranslate,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -189,14 +190,19 @@ export const useInfiniteList = <
         preferredMeta,
     );
 
+    const metaFromHook = useMeta({
+        resource,
+        meta: preferredMeta,
+    });
+
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
-            meta: preferredMeta,
-            metaData: preferredMeta,
+            meta: metaFromHook,
+            metaData: metaFromHook,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -243,7 +249,7 @@ export const useInfiniteList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(preferredMeta || {}),
+                    ...(metaFromHook || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -251,7 +257,7 @@ export const useInfiniteList = <
                     },
                 },
                 metaData: {
-                    ...(preferredMeta || {}),
+                    ...(metaFromHook || {}),
                     queryContext: {
                         queryKey,
                         pageParam,

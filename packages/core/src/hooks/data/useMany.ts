@@ -20,6 +20,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -98,11 +99,12 @@ export const useMany = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
+    const preferredMeta = pickNotDeprecated(meta, metaData);
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
-        pickNotDeprecated(meta, metaData),
-        pickNotDeprecated(meta, metaData),
+        preferredMeta,
+        preferredMeta,
     );
 
     const { getMany, getOne } = dataProvider(
@@ -119,13 +121,18 @@ export const useMany = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
+    const metaFromHook = useMeta({
+        resource,
+        meta: preferredMeta,
+    });
+
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
             ids: ids ?? [],
-            meta: pickNotDeprecated(meta, metaData),
-            metaData: pickNotDeprecated(meta, metaData),
+            meta: metaFromHook,
+            metaData: metaFromHook,
             subscriptionType: "useMany",
             ...liveParams,
         },
@@ -147,7 +154,7 @@ export const useMany = <
                     resource,
                     ids,
                     meta: {
-                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        ...(metaFromHook || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -155,7 +162,7 @@ export const useMany = <
                         },
                     },
                     metaData: {
-                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        ...(metaFromHook || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -170,7 +177,7 @@ export const useMany = <
                             resource,
                             id,
                             meta: {
-                                ...(pickNotDeprecated(meta, metaData) || {}),
+                                ...(metaFromHook || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,
@@ -178,7 +185,7 @@ export const useMany = <
                                 },
                             },
                             metaData: {
-                                ...(pickNotDeprecated(meta, metaData) || {}),
+                                ...(metaFromHook || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,

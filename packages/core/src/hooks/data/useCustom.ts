@@ -8,6 +8,7 @@ import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
     useDataProvider,
     useHandleNotification,
+    useMeta,
     useOnError,
     useTranslate,
 } from "@hooks";
@@ -122,6 +123,12 @@ export const useCustom = <
     const translate = useTranslate();
     const handleNotification = useHandleNotification();
 
+    const preferredMeta = pickNotDeprecated(meta, metaData);
+
+    const metaFromHook = useMeta({
+        meta: preferredMeta,
+    });
+
     if (custom) {
         const queryResponse = useQuery<
             CustomResponse<TQueryFnData>,
@@ -133,15 +140,23 @@ export const useCustom = <
                 "custom",
                 method,
                 url,
-                { ...config, ...(pickNotDeprecated(meta, metaData) || {}) },
+                { ...config, ...(preferredMeta || {}) },
             ],
             queryFn: ({ queryKey, pageParam, signal }) =>
                 custom<TQueryFnData>({
                     url,
                     method,
                     ...config,
+                    meta: {
+                        ...(metaFromHook || {}),
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
+                    },
                     metaData: {
-                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        ...(metaFromHook || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -157,7 +172,7 @@ export const useCustom = <
                     typeof successNotification === "function"
                         ? successNotification(data, {
                               ...config,
-                              ...(pickNotDeprecated(meta, metaData) || {}),
+                              ...(metaFromHook || {}),
                           })
                         : successNotification;
 
@@ -171,7 +186,7 @@ export const useCustom = <
                     typeof errorNotification === "function"
                         ? errorNotification(err, {
                               ...config,
-                              ...(pickNotDeprecated(meta, metaData) || {}),
+                              ...(metaFromHook || {}),
                           })
                         : errorNotification;
 

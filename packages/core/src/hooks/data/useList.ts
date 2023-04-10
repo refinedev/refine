@@ -22,6 +22,7 @@ import {
     useTranslate,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -163,9 +164,15 @@ export const useList = <
         hasPagination: prefferedHasPagination,
     });
     const isServerPagination = prefferedPagination.mode === "server";
-    const notificationValues = {
+
+    const metaFromHook = useMeta({
+        resource,
         meta: preferredMeta,
-        metaData: preferredMeta,
+    });
+
+    const notificationValues = {
+        meta: metaFromHook,
+        metaData: metaFromHook,
         filters: prefferedFilters,
         hasPagination: isServerPagination,
         pagination: prefferedPagination,
@@ -192,8 +199,8 @@ export const useList = <
         resource,
         types: ["*"],
         params: {
-            meta: preferredMeta,
-            metaData: preferredMeta,
+            meta: metaFromHook,
+            metaData: metaFromHook,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -235,7 +242,7 @@ export const useList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(preferredMeta || {}),
+                    ...(metaFromHook || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -243,7 +250,7 @@ export const useList = <
                     },
                 },
                 metaData: {
-                    ...(preferredMeta || {}),
+                    ...(metaFromHook || {}),
                     queryContext: {
                         queryKey,
                         pageParam,

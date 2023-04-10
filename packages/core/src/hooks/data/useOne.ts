@@ -21,6 +21,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -102,11 +103,12 @@ export const useOne = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
+    const preferredMeta = pickNotDeprecated(meta, metaData);
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
-        pickNotDeprecated(meta, metaData),
-        pickNotDeprecated(meta, metaData),
+        preferredMeta,
+        preferredMeta,
     );
 
     const { getOne } = dataProvider(
@@ -119,6 +121,11 @@ export const useOne = <
     });
     const handleNotification = useHandleNotification();
 
+    const metaFromHook = useMeta({
+        resource,
+        meta: preferredMeta,
+    });
+
     useResourceSubscription({
         resource,
         types: ["*"],
@@ -126,8 +133,8 @@ export const useOne = <
         params: {
             ids: id ? [id] : [],
             id: id,
-            meta: pickNotDeprecated(meta, metaData),
-            metaData: pickNotDeprecated(meta, metaData),
+            meta: metaFromHook,
+            metaData: metaFromHook,
             subscriptionType: "useOne",
             ...liveParams,
         },
@@ -150,7 +157,7 @@ export const useOne = <
                 resource: resource!,
                 id: id!,
                 meta: {
-                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    ...(metaFromHook || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -158,7 +165,7 @@ export const useOne = <
                     },
                 },
                 metaData: {
-                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    ...(metaFromHook || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -181,7 +188,7 @@ export const useOne = <
                               data,
                               {
                                   id,
-                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                                  ...(metaFromHook || {}),
                               },
                               resource,
                           )
@@ -199,7 +206,7 @@ export const useOne = <
                               err,
                               {
                                   id,
-                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                                  ...(metaFromHook || {}),
                               },
                               resource,
                           )
