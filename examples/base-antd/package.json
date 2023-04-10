@@ -1,6 +1,7 @@
 {
   "name": "base-antd",
   "version": "3.25.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@refinedev/antd": "^5.5.2",
@@ -15,7 +16,7 @@
     "react-dom": "^18.0.0"
   },
   "scripts": {
-    "refine start": "vite",
+    "refine-start": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
