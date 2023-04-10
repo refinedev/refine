@@ -22,4 +22,3 @@ export * from "./auditLog";
 export * from "./invalidate";
 export * from "./breadcrumb";
 export * from "./menu";
-export * from "./themedLayout";
