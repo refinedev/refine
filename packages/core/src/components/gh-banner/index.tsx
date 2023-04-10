@@ -14,7 +14,6 @@ export const GitHubBanner = () => {
         <div
             className="banner"
             style={{
-                display: "flex",
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
@@ -24,6 +23,12 @@ export const GitHubBanner = () => {
                 borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
             }}
         >
+            {/* sider offset for center alignment */}
+            <div
+                style={{
+                    width: "200px",
+                }}
+            />
             <a
                 className="gh-link"
                 href="https://s.refine.dev/github-support"
@@ -34,7 +39,6 @@ export const GitHubBanner = () => {
                     className="content"
                     style={{
                         position: "relative",
-                        zIndex: 2,
                         color: "#fff",
                         display: "flex",
                         flexDirection: "row",
