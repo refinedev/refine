@@ -1,7 +1,6 @@
 {
   "name": "base-antd",
   "version": "3.25.0",
-  "type": "module",
   "private": true,
   "dependencies": {
     "@refinedev/antd": "^5.5.2",
@@ -13,11 +12,10 @@
     "antd": "^5.0.5",
     "cross-env": "^7.0.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "typescript": "^4.7.4"
+    "react-dom": "^18.0.0"
   },
   "scripts": {
-    "start": "vite",
+    "refine   start": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -38,6 +36,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.0.7",
+    "typescript": "^4.7.4",
     "vite": "^2.8.0"
   }
 }
