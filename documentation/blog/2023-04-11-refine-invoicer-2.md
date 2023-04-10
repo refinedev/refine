@@ -47,6 +47,26 @@ For this tutorial, we'll be select the following options:
 **Backend**: Strapi  
 **Authentication Provider**: Strapi
 
+
+
+
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.gif"  alt="react invoice generator" />
+
+
+</div>
+
+<br />
+
+
+
+
 After complete the step you can download the project and run it locally.
   </TabItem>
   <TabItem value="CLI" label="create refine-app">
@@ -798,7 +818,7 @@ For this app, we are going to have several collections in stored with the **Stra
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/database.png"  alt="react admin dashboard" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/database.png"  alt="react invoice generator" />
 </div>
 
 <br/>
@@ -897,7 +917,7 @@ The `clients` collection looks like this:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/edit_contact.png"  alt="react admin dashboard" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/edit_contact.png"  alt="react invoice generator" />
 </div>
 
 <br/>
@@ -910,7 +930,7 @@ The `contacts` collection should look as below:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_collection.png"  alt="react admin dashboard" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_collection.png"  alt="react invoice generator" />
 </div>
 
 <br />
@@ -921,7 +941,7 @@ And a contact has a `has one` association with client:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_hasmany.png"  alt="react admin dashboard" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_hasmany.png"  alt="react invoice generator" />
 </div>
 
 <br />
@@ -943,7 +963,7 @@ After creating the app user, we need to set the value of its `role` field to `Au
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/demo.png"  alt="react admin dashboard" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/demo.png"  alt="react invoice generator" />
 </div>
 
 <br />
@@ -955,7 +975,7 @@ We only want our app users to access the CRUD actions when `Authenticated`. So, 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/authenticated.png"  alt="react admin dashboard" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/authenticated.png"  alt="react invoice generator" />
 </div>
 
 <br />
