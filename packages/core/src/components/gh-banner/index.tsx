@@ -39,6 +39,7 @@ export const GitHubBanner = () => {
                     className="content"
                     style={{
                         position: "relative",
+                        zIndex: 2,
                         color: "#fff",
                         display: "flex",
                         flexDirection: "row",
