@@ -52,3 +52,7 @@ Added `meta` property to the inferencer components. This allows you to pass `met
 The inferencer components were using the `getOne` method of the data providers to infer the relational field data in a record. This has a chance of breaking the generated code and the preview if the data provider implements a `getMany` and `getOne` in a different manner which may not be compatible with each other. 
 
 In the generated code, fields with multiple values are handled via `useMany` hook but the inference was using the `getOne` method regardless of the field's cardinality. This has been fixed and the inferencer components will now use the `getMany` method for fields with multiple values and `getOne` method for fields with single values.
+
+## Redesigned code viewer components
+
+Updated the code viewers components and the bottom buttons and unified the design. The code viewers now use the same components.
