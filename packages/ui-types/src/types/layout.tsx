@@ -36,12 +36,27 @@ export type RefineLayoutLayoutProps = LayoutProps;
 
 export type RefineThemedLayoutProps = RefineLayoutLayoutProps;
 export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
+    /**
+     * @deprecated This is deprecated. Please use `useSiderVisible` instead.
+     */
     isSiderOpen?: boolean;
+    /**
+     * @deprecated This is deprecated. Please use `useSiderVisible` instead.
+     */
     onToggleSiderClick?: (isOpen?: boolean) => void;
 };
 export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
+    /**
+     * @deprecated This is deprecated. Please use `useSiderVisible` instead.
+     */
     isSiderOpen?: boolean;
+    /**
+     * @deprecated This is deprecated. Please use `useSiderVisible` instead.
+     */
     onToggleSiderClick?: (isOpen?: boolean) => void;
+    /**
+     * @deprecated This is deprecated. Please use `useSiderVisible` instead.
+     */
     toggleSiderIcon?: (open: boolean) => React.ReactNode;
 };
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
