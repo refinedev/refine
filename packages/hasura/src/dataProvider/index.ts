@@ -173,6 +173,7 @@ const dataProvider = (
     options?: HasuraDataProviderOptions,
 ): Required<DataProvider> => {
     const { idType, namingConvention = "hasura-default" } = options ?? {};
+    const defaultNamingConvention = namingConvention === "hasura-default";
 
     const getIdType = (resource: string) => {
         if (typeof idType === "function") {
@@ -183,9 +184,6 @@ const dataProvider = (
 
     return {
         getOne: async ({ resource, id, meta }) => {
-            const defaultNamingConvention =
-                namingConvention === "hasura-default";
-
             const operation = defaultNamingConvention
                 ? `${meta?.operation ?? resource}_by_pk`
                 : camelCase(`${meta?.operation ?? resource}_by_pk`);
@@ -211,9 +209,6 @@ const dataProvider = (
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            const defaultNamingConvention =
-                namingConvention === "hasura-default";
-
             const operation = defaultNamingConvention
                 ? meta?.operation ?? resource
                 : camelCase(meta?.operation ?? resource);
@@ -250,9 +245,6 @@ const dataProvider = (
                 pageSize: limit = 10,
                 mode = "server",
             } = pagination ?? {};
-            const defaultNamingConvention =
-                namingConvention === "hasura-default";
-
             const hasuraSorting = defaultNamingConvention
                 ? generateSorting(sorters)
                 : camelizeKeys(generateSorting(sorters));
@@ -333,13 +325,21 @@ const dataProvider = (
         },
 
         create: async ({ resource, variables, meta }) => {
-            const operation = meta?.operation ?? resource;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
 
             const insertOperation = `insert_${operation}_one`;
-            const insertType = `${operation}_insert_input`;
+            const camelizedInsertOperation = camelCase(insertOperation);
+
+            const insertType = defaultNamingConvention
+                ? `${operation}_insert_input`
+                : camelCase(`${operation}_insert_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: insertOperation,
+                operation: defaultNamingConvention
+                    ? insertOperation
+                    : camelizedInsertOperation,
                 variables: {
                     object: {
                         type: insertType,
