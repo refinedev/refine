@@ -135,6 +135,14 @@ export const useMany = <
                 return getMany({
                     resource,
                     ids,
+                    meta: {
+                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
+                    },
                     metaData: {
                         ...(pickNotDeprecated(meta, metaData) || {}),
                         queryContext: {
@@ -150,6 +158,14 @@ export const useMany = <
                         getOne<TData>({
                             resource,
                             id,
+                            meta: {
+                                ...(pickNotDeprecated(meta, metaData) || {}),
+                                queryContext: {
+                                    queryKey,
+                                    pageParam,
+                                    signal,
+                                },
+                            },
                             metaData: {
                                 ...(pickNotDeprecated(meta, metaData) || {}),
                                 queryContext: {
