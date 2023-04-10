@@ -1,5 +1,39 @@
 # @pankod/refine-mui
 
+## 4.8.0
+
+### Minor Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing third generic parameter to hooks which are using `useQuery` internally.
+
+    For example:
+
+    ```ts
+    import { useOne, HttpError } from "@refinedev/core";
+
+    const { data } = useOne<{ count: string }, HttpError, { count: number }>({
+        resource: "product-count",
+        queryOptions: {
+            select: (rawData) => {
+                return {
+                    data: {
+                        count: Number(rawData?.data?.count),
+                    },
+                };
+            },
+        },
+    });
+
+    console.log(typeof data?.data.count); // number
+    ```
+
+### Patch Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the generic type name of hooks that use `useQuery` to synchronize generic type names with `tanstack-query`.
+
+-   Updated dependencies [[`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d)]:
+    -   @refinedev/react-hook-form@4.2.0
+
 ## 4.7.2
 
 ### Patch Changes

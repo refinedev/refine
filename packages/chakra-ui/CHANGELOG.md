@@ -1,5 +1,16 @@
 # @pankod/refine-chakra-ui
 
+## 2.8.0
+
+### Minor Changes
+
+-   [#4131](https://github.com/refinedev/refine/pull/4131) [`0e7ee8876df`](https://github.com/refinedev/refine/commit/0e7ee8876df46d6c17dffb9b2c4e7be2399721cd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: `<ThemedSider>` logout icon alignment. `<LogoutButton>` icon changed to `<IconPower>` from `IconLogout`.
+
+### Patch Changes
+
+-   Updated dependencies [[`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d)]:
+    -   @refinedev/react-hook-form@4.2.0
+
 ## 2.7.0
 
 ### Minor Changes
