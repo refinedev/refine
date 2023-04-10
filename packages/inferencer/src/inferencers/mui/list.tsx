@@ -656,6 +656,7 @@ export const renderer = ({
             {
                 field: "actions",
                 headerName: "Actions",
+                sortable: false,
                 renderCell: function render({ row }) {
                     return (
                         <>
