@@ -56,3 +56,7 @@ In the generated code, fields with multiple values are handled via `useMany` hoo
 ## Redesigned code viewer components
 
 Updated the code viewers components and the bottom buttons and unified the design. The code viewers now use the same components.
+
+## Sortable actions in Material UI list inferencer
+
+Fixed the actions column in the Material UI list inferencer to be sortable.
