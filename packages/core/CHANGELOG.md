@@ -1,5 +1,38 @@
 # @pankod/refine-core
 
+## 4.8.0
+
+### Minor Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing third generic parameter to hooks which are using `useQuery` internally.
+
+    For example:
+
+    ```ts
+    import { useOne, HttpError } from "@refinedev/core";
+
+    const { data } = useOne<{ count: string }, HttpError, { count: number }>({
+        resource: "product-count",
+        queryOptions: {
+            select: (rawData) => {
+                return {
+                    data: {
+                        count: Number(rawData?.data?.count),
+                    },
+                };
+            },
+        },
+    });
+
+    console.log(typeof data?.data.count); // number
+    ```
+
+### Patch Changes
+
+-   [#4129](https://github.com/refinedev/refine/pull/4129) [`e64ffe999b3`](https://github.com/refinedev/refine/commit/e64ffe999b30649bf5161d876a21b7bd2efc0658) Thanks [@aliemir](https://github.com/aliemir)! - Added the missing connection between the data provider's and the `useMany` hook's `meta` property.
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the generic type name of hooks that use `useQuery` to synchronize generic type names with `tanstack-query`.
+
 ## 4.7.2
 
 ### Patch Changes
