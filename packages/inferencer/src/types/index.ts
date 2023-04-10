@@ -1,4 +1,4 @@
-import { IResourceItem } from "@refinedev/core";
+import { IResourceItem, DataProvider } from "@refinedev/core";
 import React from "react";
 
 export type InferType =
@@ -88,6 +88,7 @@ export type RendererContext = {
     resource: IResourceItem;
     resources: IResourceItem[];
     fields: Array<InferField | null>;
+    meta?: InferencerComponentProps["meta"];
     infer: FieldInferencer;
     isCustomPage: boolean;
     id?: string | number;
@@ -154,6 +155,16 @@ export type InferencerComponentProps = {
     fieldTransformer?: (
         field: InferField,
     ) => InferField | undefined | null | false;
+    meta?: {
+        [resourceIdentifierOrName: string]: {
+            [key in
+                | keyof Pick<
+                      DataProvider,
+                      "getList" | "getMany" | "getOne" | "update"
+                  >
+                | "default"]?: Record<string, any>;
+        };
+    };
 };
 
 export type InferencerResultComponent = React.FC<InferencerComponentProps>;

@@ -56,10 +56,12 @@ export const createInferencer: CreateInferencer = ({
     const Inferencer = ({
         resourceName,
         fieldTransformer,
+        meta,
         id,
     }: {
         resourceName?: string;
         fieldTransformer?: InferencerComponentProps["fieldTransformer"];
+        meta?: InferencerComponentProps["meta"];
         id?: string | number;
     }) => {
         const { resource, resources } = useResource(resourceName);
@@ -71,7 +73,7 @@ export const createInferencer: CreateInferencer = ({
             loading: recordLoading,
             initial: isInitialLoad,
             error: inferError,
-        } = useInferFetch(type, resourceName ?? resource?.name, id);
+        } = useInferFetch(type, resourceName ?? resource?.name, id, meta);
 
         const rawResults: InferField[] = React.useMemo(() => {
             if (record) {
@@ -119,6 +121,7 @@ export const createInferencer: CreateInferencer = ({
             record,
             fields: rawResults,
             infer,
+            meta,
         });
 
         const code = React.useMemo(() => {
@@ -133,6 +136,7 @@ export const createInferencer: CreateInferencer = ({
                     resources,
                     fields: results,
                     infer,
+                    meta,
                     isCustomPage: resource.name !== resourceFromURL?.name,
                     id,
                 });
@@ -185,6 +189,7 @@ export const createInferencer: CreateInferencer = ({
         name,
         resource,
         fieldTransformer,
+        meta,
         id,
     }) => {
         const { resource: resourceItem } = useResource(resource ?? name);
@@ -197,6 +202,7 @@ export const createInferencer: CreateInferencer = ({
             <Inferencer
                 fieldTransformer={fieldTransformer}
                 resourceName={resource ?? name}
+                meta={meta ?? {}}
                 key={key}
                 id={id}
             />

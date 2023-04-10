@@ -2,6 +2,8 @@ import React from "react";
 import { useDataProvider, useResource, BaseKey } from "@refinedev/core";
 
 import { pickDataProvider, dataProviderFromResource } from "@/utilities";
+import { InferencerComponentProps } from "@/types";
+import { pickMeta } from "@/utilities/get-meta-props";
 
 /**
  * This hook will handle the data fetching for the inferencer with `loading` and `initial` states.
@@ -11,6 +13,7 @@ export const useInferFetch = (
     type: "list" | "show" | "edit" | "create",
     resourceNameOrRouteName?: string,
     idFromProps?: string | number,
+    meta?: InferencerComponentProps["meta"],
 ) => {
     const {
         resource,
@@ -45,6 +48,11 @@ export const useInferFetch = (
                     if (resource) {
                         const response = await dp.getList({
                             resource: resource?.name,
+                            meta: pickMeta(
+                                resource?.identifier ?? resource?.name,
+                                meta,
+                                ["getList"],
+                            ),
                         });
                         const r = response.data?.[0];
 
@@ -66,6 +74,11 @@ export const useInferFetch = (
                         const response = await dp.getOne({
                             resource: resource?.name,
                             id: recordItemId,
+                            meta: pickMeta(
+                                resource?.identifier ?? resource?.name,
+                                meta,
+                                ["getOne"],
+                            ),
                         });
                         const r = response.data;
                         if (!r) {
