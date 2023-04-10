@@ -22,6 +22,7 @@ import {
     ImportElement,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for list page in Ant Design
@@ -30,6 +31,7 @@ import {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
@@ -86,6 +88,11 @@ export const renderer = ({
                     queryOptions: {
                         enabled: !!${recordName},
                     },
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getMany",
+                    )}
                 });
                 `;
             }
@@ -511,6 +518,11 @@ export const renderer = ({
         const { tableProps } = useTable({
             syncWithLocation: true,
             ${isCustomPage ? ` resource: "${resource.name}",` : ""}
+            ${getMetaProps(
+                resource?.identifier ?? resource?.name,
+                meta,
+                "getList",
+            )}
         });
     
         ${relationHooksCode}

@@ -25,6 +25,7 @@ import {
     InferField,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 const getAccessorKey = (field: InferField) => {
     return Array.isArray(field.accessor) || field.multiple
@@ -41,6 +42,7 @@ const getAccessorKey = (field: InferField) => {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
@@ -108,6 +110,11 @@ export const renderer = ({
                     queryOptions: {
                         enabled: !!${recordName},
                     },
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getMany",
+                    )}
                 });
                 `;
             }
@@ -708,8 +715,23 @@ export const renderer = ({
                     ? `
             refineCoreProps: {
                 resource: "${resource.name}",
+                ${getMetaProps(
+                    resource?.identifier ?? resource?.name,
+                    meta,
+                    "getList",
+                )}
             }
             `
+                    : getMetaProps(
+                          resource?.identifier ?? resource?.name,
+                          meta,
+                          "getList",
+                      )
+                    ? `refineCoreProps: { ${getMetaProps(
+                          resource?.identifier ?? resource?.name,
+                          meta,
+                          "getList",
+                      )} },`
                     : ""
             }
             

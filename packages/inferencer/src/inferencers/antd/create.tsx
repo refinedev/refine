@@ -26,6 +26,7 @@ import {
     RendererContext,
 } from "@/types";
 import { shouldDotAccess } from "@/utilities/accessor";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for create page in Ant Design
@@ -34,6 +35,7 @@ import { shouldDotAccess } from "@/utilities/accessor";
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
@@ -67,6 +69,11 @@ export const renderer = ({
                 useSelect({
                     resource: "${field.resource.name}",
                     ${getOptionLabel(field)}
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
             `;
             }
@@ -322,6 +329,11 @@ export const renderer = ({
                 ? `{
                       resource: "${resource.name}",
                       action: "create",
+                      ${getMetaProps(
+                          resource.identifier ?? resource.name,
+                          meta,
+                          "getOne",
+                      )}
                   }`
                 : ""
         });

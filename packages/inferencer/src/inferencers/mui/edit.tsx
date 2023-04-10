@@ -30,6 +30,7 @@ import {
     ImportElement,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for edit page in Material UI
@@ -38,6 +39,7 @@ import {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
     id,
 }: RendererContext) => {
@@ -87,6 +89,11 @@ export const renderer = ({
                 useAutocomplete({
                     resource: "${field.resource.name}",
                     defaultValue: ${val},
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
             `;
             }
@@ -425,8 +432,24 @@ export const renderer = ({
                     resource: "${resource.name}",
                     id: ${id},
                     action: "edit",
+                    ${getMetaProps(
+                        resource?.identifier ?? resource?.name,
+                        meta,
+                        "getOne",
+                    )}
                 }
             }`
+                    : getMetaProps(
+                          resource?.identifier ?? resource?.name,
+                          meta,
+                          "getOne",
+                      )
+                    ? `{ refineCoreProps: { ${getMetaProps(
+                          resource?.identifier ?? resource?.name,
+                          meta,
+                          "getOne",
+                      )} }
+              }`
                     : ""
             }
         );
