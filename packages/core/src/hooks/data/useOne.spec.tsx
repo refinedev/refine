@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useOne } from "./useOne";
 import { defaultRefineOptions } from "@contexts/refine";
@@ -34,6 +34,42 @@ describe("useOne Hook", () => {
         expect(data?.data.slug).toBe("ut-ad-et");
     });
 
+    it("should pass meta to dataProvider from resource, router and hook", async () => {
+        const getOneMock = jest.fn();
+
+        renderHook(
+            () => useOne({ resource: "posts", meta: { foo: "bar" }, id: "" }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getOne: getOneMock,
+                        },
+                    },
+                    routerProvider: mockRouterBindings({
+                        params: { baz: "qux" },
+                    }),
+                    resources: [{ name: "posts", meta: { dip: "dop" } }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(getOneMock).toBeCalled();
+        });
+
+        expect(getOneMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                    baz: "qux",
+                    dip: "dop",
+                }),
+            }),
+        );
+    });
+
     describe("useResourceSubscription", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
@@ -64,14 +100,12 @@ describe("useOne Hook", () => {
             expect(onSubscribeMock).toHaveBeenCalledWith({
                 channel: "resources/posts",
                 callback: expect.any(Function),
-                params: {
+                params: expect.objectContaining({
                     ids: ["1"],
                     id: "1",
-                    meta: undefined,
-                    metaData: undefined,
                     resource: "posts",
                     subscriptionType: "useOne",
-                },
+                }),
                 types: ["*"],
             });
         });
