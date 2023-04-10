@@ -11,12 +11,11 @@ import {
     pickNotDeprecated,
 } from "@refinedev/core";
 
-export type UseCheckboxGroupReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
-> = {
-    checkboxGroupProps: CheckboxGroupProps;
-    queryResult: QueryObserverResult<GetListResponse<TQueryFnData>>;
-};
+export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
+    {
+        checkboxGroupProps: CheckboxGroupProps;
+        queryResult: QueryObserverResult<GetListResponse<TData>>;
+    };
 
 type UseCheckboxGroupProps<TQueryFnData, TError, TData> = Omit<
     UseSelectProps<TQueryFnData, TError, TData>,

@@ -19,11 +19,10 @@ import {
 import { useIsFirstRender } from "../utils";
 
 export type UseTableReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TData extends BaseRecord = TQueryFnData,
 > = Table<TData> & {
-    refineCore: useTableReturnTypeCore<TQueryFnData, TError, TData>;
+    refineCore: useTableReturnTypeCore<TData, TError>;
 };
 
 export type UseTableProps<
@@ -48,9 +47,8 @@ export function useTable<
     initialState: reactTableInitialState = {},
     ...rest
 }: UseTableProps<TQueryFnData, TError, TData>): UseTableReturnType<
-    TQueryFnData,
-    TError,
-    TData
+    TData,
+    TError
 > {
     const isFirstRender = useIsFirstRender();
 

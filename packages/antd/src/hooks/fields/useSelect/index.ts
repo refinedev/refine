@@ -10,14 +10,11 @@ import {
     UseSelectProps,
 } from "@refinedev/core";
 
-export type UseSelectReturnType<TQueryFnData extends BaseRecord = BaseRecord> =
-    {
-        selectProps: SelectProps<{ value: string; label: string }>;
-        queryResult: QueryObserverResult<GetListResponse<TQueryFnData>>;
-        defaultValueQueryResult: QueryObserverResult<
-            GetManyResponse<TQueryFnData>
-        >;
-    };
+export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
+    selectProps: SelectProps<{ value: string; label: string }>;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+};
 
 /**
  * `useSelect` hook allows you to manage an Ant Design {@link https://ant.design/components/select/ Select} component when records in a resource needs to be used as select options.

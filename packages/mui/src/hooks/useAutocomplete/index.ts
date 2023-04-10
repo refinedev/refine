@@ -25,11 +25,11 @@ type AutocompletePropsType<TQueryFnData> = Required<
     >
 >;
 
-export type UseAutocompleteReturnType<TQueryFnData extends BaseRecord> = Omit<
-    UseSelectReturnType<TQueryFnData>,
+export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
+    UseSelectReturnType<TData>,
     "options"
 > & {
-    autocompleteProps: AutocompletePropsType<TQueryFnData>;
+    autocompleteProps: AutocompletePropsType<TData>;
 };
 
 /**

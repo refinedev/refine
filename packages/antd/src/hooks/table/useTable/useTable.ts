@@ -29,11 +29,10 @@ export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
     };
 
 export type useTableReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TData extends BaseRecord = TQueryFnData,
-> = useTableCoreReturnType<TQueryFnData, TError, TData> & {
+> = useTableCoreReturnType<TData, TError> & {
     searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
 };
@@ -86,7 +85,7 @@ export const useTable = <
     TError,
     TSearchVariables,
     TData
-> = {}): useTableReturnType<TQueryFnData, TError, TSearchVariables, TData> => {
+> = {}): useTableReturnType<TData, TError, TSearchVariables> => {
     const {
         tableQueryResult,
         current,

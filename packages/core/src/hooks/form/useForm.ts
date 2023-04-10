@@ -168,7 +168,6 @@ export type UseFormReturnType<
 > = {
     id?: BaseKey;
     setId: Dispatch<SetStateAction<BaseKey | undefined>>;
-
     queryResult?: QueryObserverResult<GetOneResponse<TSelectData>>;
     mutationResult:
         | UseUpdateReturnType<TData, TError, TVariables>

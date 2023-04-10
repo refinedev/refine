@@ -11,11 +11,9 @@ import {
     UseSelectProps,
 } from "@refinedev/core";
 
-export type UseRadioGroupReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
-> = {
+export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
-    queryResult: QueryObserverResult<GetListResponse<TQueryFnData>>;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
 type UseRadioGroupProps<TQueryFnData, TError, TData> = Omit<

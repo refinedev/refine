@@ -87,11 +87,10 @@ export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
     };
 
 export type UseDataGridReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TData extends BaseRecord = TQueryFnData,
-> = useTableReturnTypeCore<TQueryFnData, TError, TData> & {
+> = useTableReturnTypeCore<TData, TError> & {
     dataGridProps: DataGridPropsType;
     search: (value: TSearchVariables) => Promise<void>;
 };
@@ -144,7 +143,7 @@ export function useDataGrid<
     TError,
     TSearchVariables,
     TData
-> = {}): UseDataGridReturnType<TQueryFnData, TError, TSearchVariables, TData> {
+> = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
     const theme = useTheme();
     const liveMode = useLiveMode(liveModeFromProp);
 

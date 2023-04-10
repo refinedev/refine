@@ -10,14 +10,11 @@ import {
     UseSelectProps,
 } from "@refinedev/core";
 
-export type UseSelectReturnType<TQueryFnData extends BaseRecord = BaseRecord> =
-    {
-        selectProps: SelectProps;
-        queryResult: QueryObserverResult<GetListResponse<TQueryFnData>>;
-        defaultValueQueryResult: QueryObserverResult<
-            GetManyResponse<TQueryFnData>
-        >;
-    };
+export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
+    selectProps: SelectProps;
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+};
 
 /**
  * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.

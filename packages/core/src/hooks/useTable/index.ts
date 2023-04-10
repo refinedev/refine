@@ -177,9 +177,8 @@ type SyncWithLocationParams = {
 };
 
 export type useTableReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TData extends BaseRecord = TQueryFnData,
 > = {
     tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     /**
@@ -247,9 +246,8 @@ export function useTable<
     metaData,
     dataProviderName,
 }: useTableProps<TQueryFnData, TError, TData> = {}): useTableReturnType<
-    TQueryFnData,
-    TError,
-    TData
+    TData,
+    TError
 > {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 

@@ -11,7 +11,7 @@ export type useEditableTableReturnType<
     TVariables = {},
     TSearchVariables = unknown,
     TData extends BaseRecord = TQueryFnData,
-> = useTableReturnType<TQueryFnData, TError, TSearchVariables, TData> &
+> = useTableReturnType<TData, TError, TSearchVariables> &
     UseFormReturnType<TQueryFnData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;

@@ -134,15 +134,12 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
 > &
     LiveModeProps;
 
-export type UseSelectReturnType<TQueryFnData extends BaseRecord = BaseRecord> =
-    {
-        queryResult: QueryObserverResult<GetListResponse<TQueryFnData>>;
-        defaultValueQueryResult: QueryObserverResult<
-            GetManyResponse<TQueryFnData>
-        >;
-        onSearch: (value: string) => void;
-        options: Option[];
-    };
+export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
+    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+    onSearch: (value: string) => void;
+    options: Option[];
+};
 
 /**
  * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.
