@@ -204,6 +204,7 @@ export const renderer = ({
             return `
                 {
                     ${fieldProperty},
+                    flex: 1,
                     ${headerProperty},${valueGetterProperty}
                     minWidth: 300,${renderCell}
                 }
@@ -263,6 +264,7 @@ export const renderer = ({
             return `
                 {
                     ${fieldProperty},
+                    flex: 1,
                     ${headerProperty},${valueGetterProperty}
                     minWidth: 100,${renderCell}
                 }
@@ -326,6 +328,7 @@ export const renderer = ({
             return `
             {
                 ${fieldProperty},
+                flex: 1,
                 ${headerProperty},${valueGetterProperty}
                 minWidth: 250,${renderCell}
             }
@@ -389,6 +392,7 @@ export const renderer = ({
             return `
                 {
                     ${fieldProperty},
+                    flex: 1,
                     ${headerProperty},${valueGetterProperty}
                     minWidth: 250,${renderCell}
                 }
@@ -451,7 +455,7 @@ export const renderer = ({
                 {
                     ${fieldProperty},
                     ${headerProperty},${valueGetterProperty}
-                    minWidth: 250,${renderCell}
+                    minWidth: 100,${renderCell}
                 }
             `;
         }
@@ -507,6 +511,7 @@ export const renderer = ({
             return `
                 {
                     ${fieldProperty},
+                    flex: 1,
                     ${headerProperty},${valueGetterProperty}
                     minWidth: 250,${renderCell}
                 }
@@ -563,6 +568,7 @@ export const renderer = ({
             return `
                 {
                     ${fieldProperty},
+                    flex: 1,
                     ${headerProperty},${valueGetterProperty}
                     minWidth: 250,${renderCell}
                 }
@@ -627,7 +633,12 @@ export const renderer = ({
 
             return `
             {
-                ${fieldProperty},
+                ${fieldProperty}, ${
+                isIDKey(field.key)
+                    ? ""
+                    : `
+                flex: 1,`
+            }
                 ${headerProperty},${valueGetterProperty}${
                 field.type === "number" ? "type: 'number'," : ""
             }
