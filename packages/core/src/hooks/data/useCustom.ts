@@ -34,7 +34,7 @@ interface UseCustomConfig<TQuery, TPayload> {
     headers?: {};
 }
 
-export type UseCustomProps<TData, TError, TQuery, TPayload, TSelectData> = {
+export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
     /**
      * request's URL
      */
@@ -51,9 +51,9 @@ export type UseCustomProps<TData, TError, TQuery, TPayload, TSelectData> = {
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
      */
     queryOptions?: UseQueryOptions<
-        CustomResponse<TData>,
+        CustomResponse<TQueryFnData>,
         TError,
-        CustomResponse<TSelectData>
+        CustomResponse<TData>
     >;
     /**
      * meta data for `dataProvider`
@@ -69,7 +69,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload, TSelectData> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    CustomResponse<TSelectData>,
+    CustomResponse<TData>,
     TError,
     Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
 >;
@@ -81,18 +81,20 @@ export type UseCustomProps<TData, TError, TQuery, TPayload, TSelectData> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useCustom} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TQuery - Values for query params
  * @typeParam TPayload - Values for params
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useCustom = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TQuery = unknown,
     TPayload = unknown,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     url,
     method,
@@ -104,12 +106,12 @@ export const useCustom = <
     metaData,
     dataProviderName,
 }: UseCustomProps<
-    TData,
+    TQueryFnData,
     TError,
     TQuery,
     TPayload,
-    TSelectData
->): QueryObserverResult<CustomResponse<TSelectData>, TError> => {
+    TData
+>): QueryObserverResult<CustomResponse<TData>, TError> => {
     const dataProvider = useDataProvider();
 
     const { custom } = dataProvider(dataProviderName);
@@ -122,9 +124,9 @@ export const useCustom = <
 
     if (custom) {
         const queryResponse = useQuery<
-            CustomResponse<TData>,
+            CustomResponse<TQueryFnData>,
             TError,
-            CustomResponse<TSelectData>
+            CustomResponse<TData>
         >({
             queryKey: [
                 dataProviderName,
@@ -134,7 +136,7 @@ export const useCustom = <
                 { ...config, ...(pickNotDeprecated(meta, metaData) || {}) },
             ],
             queryFn: ({ queryKey, pageParam, signal }) =>
-                custom<TData>({
+                custom<TQueryFnData>({
                     url,
                     method,
                     ...config,

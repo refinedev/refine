@@ -25,7 +25,7 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource/index";
 import { BaseListProps } from "../data/useList";
 
-export type UseSelectProps<TData, TError, TSelectData> = {
+export type UseSelectProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -34,12 +34,16 @@ export type UseSelectProps<TData, TError, TSelectData> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: keyof TData extends string ? keyof TData : never;
+    optionLabel?: keyof TQueryFnData extends string
+        ? keyof TQueryFnData
+        : never;
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: keyof TData extends string ? keyof TData : never;
+    optionValue?: keyof TQueryFnData extends string
+        ? keyof TQueryFnData
+        : never;
     /**
      * Allow us to sort the options
      * @deprecated Use `sorters` instead
@@ -66,9 +70,9 @@ export type UseSelectProps<TData, TError, TSelectData> = {
      * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<
-        GetListResponse<TData>,
+        GetListResponse<TQueryFnData>,
         TError,
-        GetListResponse<TSelectData>
+        GetListResponse<TData>
     >;
     /**
      * Pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
@@ -94,7 +98,10 @@ export type UseSelectProps<TData, TError, TSelectData> = {
     /**
      * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
      */
-    defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    defaultValueQueryOptions?: UseQueryOptions<
+        GetManyResponse<TQueryFnData>,
+        TError
+    >;
     /**
      * If defined, this callback allows us to override all filters for every search request.
      * @default `undefined`
@@ -121,26 +128,43 @@ export type UseSelectProps<TData, TError, TSelectData> = {
      */
     fetchSize?: number;
 } & SuccessErrorNotification<
-    GetListResponse<TSelectData>,
+    GetListResponse<TData>,
     TError,
     Prettify<BaseListProps>
 > &
     LiveModeProps;
 
-export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
-    defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
-    onSearch: (value: string) => void;
-    options: Option[];
-};
+export type UseSelectReturnType<TQueryFnData extends BaseRecord = BaseRecord> =
+    {
+        queryResult: QueryObserverResult<GetListResponse<TQueryFnData>>;
+        defaultValueQueryResult: QueryObserverResult<
+            GetManyResponse<TQueryFnData>
+        >;
+        onSearch: (value: string) => void;
+        options: Option[];
+    };
+
+/**
+ * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.
+ *
+ * It uses `getList` method as query function from the dataProvider that is
+ * passed to {@link https://refine.dev/docs/api-reference/core/components/refine-config/ `<Refine>`}.
+ *
+ * @see {@link https://refine.dev/docs/core/hooks/useSelect} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
+ */
 
 export const useSelect = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >(
-    props: UseSelectProps<TData, TError, TSelectData>,
-): UseSelectReturnType<TSelectData> => {
+    props: UseSelectProps<TQueryFnData, TError, TData>,
+): UseSelectReturnType<TData> => {
     const [search, setSearch] = useState<CrudFilters>([]);
     const [options, setOptions] = useState<Option[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
@@ -184,7 +208,7 @@ export const useSelect = <
         : [defaultValue];
 
     const defaultValueQueryOnSuccess = useCallback(
-        (data: GetManyResponse<TSelectData>) => {
+        (data: GetManyResponse<TData>) => {
             setSelectedOptions(
                 data.data.map((item) => ({
                     label: get(item, optionLabel) as string,
@@ -198,7 +222,7 @@ export const useSelect = <
     const defaultValueQueryOptions =
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
-    const defaultValueQueryResult = useMany<TData, TError, TSelectData>({
+    const defaultValueQueryResult = useMany<TQueryFnData, TError, TData>({
         resource,
         ids: defaultValues,
         queryOptions: {
@@ -218,7 +242,7 @@ export const useSelect = <
     });
 
     const defaultQueryOnSuccess = useCallback(
-        (data: GetListResponse<TSelectData>) => {
+        (data: GetListResponse<TData>) => {
             {
                 setOptions(
                     data.data.map((item) => ({
@@ -231,7 +255,7 @@ export const useSelect = <
         [optionLabel, optionValue],
     );
 
-    const queryResult = useList<TData, TError, TSelectData>({
+    const queryResult = useList<TQueryFnData, TError, TData>({
         resource,
         sorters: pickNotDeprecated(sorters, sort),
         filters: filters.concat(search),

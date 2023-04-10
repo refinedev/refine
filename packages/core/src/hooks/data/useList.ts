@@ -77,7 +77,7 @@ export type BaseListProps = {
     dataProviderName?: string;
 };
 
-export type UseListProps<TData, TError, TSelectData> = {
+export type UseListProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -87,13 +87,13 @@ export type UseListProps<TData, TError, TSelectData> = {
      * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<
-        GetListResponse<TData>,
+        GetListResponse<TQueryFnData>,
         TError,
-        GetListResponse<TSelectData>
+        GetListResponse<TData>
     >;
 } & BaseListProps &
     SuccessErrorNotification<
-        GetListResponse<TSelectData>,
+        GetListResponse<TData>,
         TError,
         Prettify<BaseListProps>
     > &
@@ -106,14 +106,16 @@ export type UseListProps<TData, TError, TSelectData> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useList} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useList = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     config,
@@ -130,8 +132,8 @@ export const useList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseListProps<TData, TError, TSelectData>): QueryObserverResult<
-    GetListResponse<TSelectData>,
+}: UseListProps<TQueryFnData, TError, TData>): QueryObserverResult<
+    GetListResponse<TData>,
     TError
 > => {
     const { resources } = useResource();
@@ -207,9 +209,9 @@ export const useList = <
     });
 
     const queryResponse = useQuery<
-        GetListResponse<TData>,
+        GetListResponse<TQueryFnData>,
         TError,
-        GetListResponse<TSelectData>
+        GetListResponse<TData>
     >(
         queryKey.list({
             filters: prefferedFilters,
@@ -225,7 +227,7 @@ export const useList = <
             }),
         }),
         ({ queryKey, pageParam, signal }) => {
-            return getList<TData>({
+            return getList<TQueryFnData>({
                 resource: resource!,
                 pagination: prefferedPagination,
                 hasPagination: isServerPagination,
@@ -276,7 +278,7 @@ export const useList = <
                     return queryOptions?.select?.(data);
                 }
 
-                return data as unknown as GetListResponse<TSelectData>;
+                return data as unknown as GetListResponse<TData>;
             },
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);

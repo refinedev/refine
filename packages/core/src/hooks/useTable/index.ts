@@ -42,7 +42,7 @@ import { BaseListProps } from "../data/useList";
 
 type SetFilterBehavior = "merge" | "replace";
 
-export type useTableProps<TData, TError, TSelectData> = {
+export type useTableProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      * @default Resource name that it reads from route
@@ -140,9 +140,9 @@ export type useTableProps<TData, TError, TSelectData> = {
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<
-        GetListResponse<TData>,
+        GetListResponse<TQueryFnData>,
         TError,
-        GetListResponse<TSelectData>
+        GetListResponse<TData>
     >;
     /**
      * Metadata query for dataProvider
@@ -158,7 +158,7 @@ export type useTableProps<TData, TError, TSelectData> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<
-    GetListResponse<TSelectData>,
+    GetListResponse<TData>,
     TError,
     Prettify<BaseListProps>
 > &
@@ -177,11 +177,11 @@ type SyncWithLocationParams = {
 };
 
 export type useTableReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 > = {
-    tableQueryResult: QueryObserverResult<GetListResponse<TSelectData>, TError>;
+    tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     /**
      * @deprecated `sorter` is deprecated. Use `sorters` instead.
      */
@@ -209,15 +209,20 @@ export type useTableReturnType<
  * All features such as sorting, filtering and pagination comes as out of box.
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
  */
 
 const defaultPermanentFilter: CrudFilters = [];
 const defaultPermanentSorter: CrudSorting = [];
 
 export function useTable<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     initialCurrent,
     initialPageSize,
@@ -241,10 +246,10 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
-}: useTableProps<TData, TError, TSelectData> = {}): useTableReturnType<
-    TData,
+}: useTableProps<TQueryFnData, TError, TData> = {}): useTableReturnType<
+    TQueryFnData,
     TError,
-    TSelectData
+    TData
 > {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
@@ -485,7 +490,7 @@ export function useTable<
         }
     }, [syncWithLocation, current, pageSize, sorters, filters]);
 
-    const queryResult = useList<TData, TError, TSelectData>({
+    const queryResult = useList<TQueryFnData, TError, TData>({
         resource: resourceInUse,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
@@ -520,7 +525,7 @@ export function useTable<
         );
     };
 
-    const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
+    const setFiltersFn: useTableReturnType<TQueryFnData>["setFilters"] = (
         setterOrFilters,
         behavior: SetFilterBehavior = prefferedFilterBehavior,
     ) => {

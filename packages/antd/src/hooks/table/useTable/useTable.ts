@@ -21,21 +21,21 @@ import {
 } from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
 
-export type useTableProps<TData, TError, TSearchVariables, TSelectData> =
-    useTablePropsCore<TData, TError, TSelectData> & {
+export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
+    useTablePropsCore<TQueryFnData, TError, TData> & {
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
     };
 
 export type useTableReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TSelectData extends BaseRecord = TData,
-> = useTableCoreReturnType<TData, TError, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+> = useTableCoreReturnType<TQueryFnData, TError, TData> & {
     searchFormProps: FormProps<TSearchVariables>;
-    tableProps: TableProps<TSelectData>;
+    tableProps: TableProps<TData>;
 };
 
 /**
@@ -43,14 +43,20 @@ export type useTableReturnType<
  * Ant Design {@link https://ant.design/components/table/ `<Table>`} component.
  * All features such as sorting, filtering and pagination comes as out of box.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/table/useTable/} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TSearchVariables - Values for search params
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
  */
 
 export const useTable = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
 >({
     onSearch,
     initialCurrent,
@@ -76,11 +82,11 @@ export const useTable = <
     metaData,
     dataProviderName,
 }: useTableProps<
-    TData,
+    TQueryFnData,
     TError,
     TSearchVariables,
-    TSelectData
-> = {}): useTableReturnType<TData, TError, TSearchVariables, TSelectData> => {
+    TData
+> = {}): useTableReturnType<TQueryFnData, TError, TSearchVariables, TData> => {
     const {
         tableQueryResult,
         current,
@@ -95,7 +101,7 @@ export const useTable = <
         setSorter,
         createLinkForSyncWithLocation,
         pageCount,
-    } = useTableCore<TData, TError, TSelectData>({
+    } = useTableCore<TQueryFnData, TError, TData>({
         permanentSorter,
         permanentFilter,
         initialCurrent,
