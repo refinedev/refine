@@ -60,3 +60,9 @@ Updated the code viewers components and the bottom buttons and unified the desig
 ## Sortable actions in Material UI list inferencer
 
 Fixed the actions column in the Material UI list inferencer to be sortable.
+
+## Repeated relational fields
+
+Added a check for repeated relational fields and excluded the duplicate fields from the generated code according to the context of the inferencer. In `list` and `show` actions fields with displayable values are preferred over the fields with relational values. In `edit` and `create` actions, fields with relational values are preferred over the fields with displayable values.
+
+For example, if a `posts` resource item has both `category_id` (`number` or `string`) and `category` (record with key `title` and `id`) fields. The `list` and `show` actions will use the `category` field and the `edit` and `create` actions will use the `category_id` field.
