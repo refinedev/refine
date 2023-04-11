@@ -3,7 +3,7 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/core": "^4.8.2",
+        "@refinedev/core": "^4.8.3",
         "@refinedev/cli": "^2.1.2",
         "@refinedev/inferencer": "^3.1.7",
         "@refinedev/mui": "^4.8.0",
