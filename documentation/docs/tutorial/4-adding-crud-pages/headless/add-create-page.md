@@ -107,7 +107,7 @@ For example, if we need to select a category from the `categories` resource to a
 
 > For more information, refer to the [`useSelect` documentation&#8594](/docs/api-reference/core/hooks/useSelect/)
 
-In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
+In the auto-generated create page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
 const { options: categoryOptions } = useSelect({

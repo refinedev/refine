@@ -97,7 +97,7 @@ render(<App />);
 
 -   The `useResource` is hook is used to get current resource information and `resources` that are defined in `<Refine/>`.
 
-    > For more information, refer to the [`useResource`](/docs/api-reference/core/hooks/resource/useResource/), [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation/) and [`useShow`](/docs/api-reference/core/hooks/show/useShow/) documentations.
+    > For more information, refer to the [`useShow`](/docs/api-reference/core/hooks/show/useShow/),[`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation/) and [`useResource` documentations&#8594](/docs/api-reference/core/hooks/resource/useResource/)
 
 ### Handling Relationships
 

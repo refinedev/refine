@@ -96,7 +96,7 @@ Each blog post includes the `category` field, which has an `id` property. This i
 
 There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by **refine**.
 
-This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the blog posts categories. It is particularly useful when we need to fetch related data for multiple records.
+This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the "blog_posts" categories. It is particularly useful when we need to fetch related data for multiple records.
 
 In the code below, each blog post record has a `category` field:
 
