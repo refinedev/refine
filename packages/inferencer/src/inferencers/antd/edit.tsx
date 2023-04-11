@@ -438,6 +438,18 @@ export const renderer = ({
                           "getOne",
                       )}
                   }`
+                : getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      "getOne",
+                  )
+                ? `{
+                    ${getMetaProps(
+                        resource?.identifier ?? resource?.name,
+                        meta,
+                        "getOne",
+                    )}
+                }`
                 : ""
         });
     
