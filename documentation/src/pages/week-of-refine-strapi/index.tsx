@@ -23,8 +23,8 @@ const timeline = [
     {
         date: "11th April 2023",
         title: "Setting Up the Invoicer App",
-        description: `We start with setting up the Invoicer app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Strapi</strong> as a dataprovider`,
-        /* link: "https://refine.dev/blog/refine-invoicer-2/" */
+        description: `We start with setting up the Invoicer app using <strong className="font-bold">refine.new</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Strapi</strong> as a dataprovider`,
+        link: "https://refine.dev/blog/refine-react-invoice-generator-2/",
     },
     {
         date: "12th April 2023",
