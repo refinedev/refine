@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@refinedev/cli": "^2.1.2",
-        "@refinedev/core": "^4.7.2",
+        "@refinedev/core": "^4.8.2",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -14,7 +14,7 @@
         "react-scripts": "^5.0.0",
         "web-vitals": "^1.1.1",
         "@refinedev/simple-rest": "^4.1.0",
-        "@refinedev/antd": "^5.5.2",
+        "@refinedev/antd": "^5.6.0",
         "@refinedev/react-router-v6": "^4.1.0"
     },
     "devDependencies": {

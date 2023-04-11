@@ -1,17 +1,17 @@
-import React, { useMemo, useRef } from "react";
-import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
-import { RefineHatIcon, TimelineIcon } from "../../components/landing/icons";
+import Layout from "@theme/Layout";
 import clsx from "clsx";
+import React, { useMemo, useRef } from "react";
+import { Tweet } from "react-twitter-widgets";
+import GradientButton from "../../components/gradient-button";
+import { TimelineIcon } from "../../components/landing/icons";
 import {
-    RedditIcon,
     DiscordIcon,
-    TwitterIcon,
     GithubIcon,
+    RedditIcon,
+    TwitterIcon,
 } from "../../components/landing/icons/gray-social-icons";
 import LinkButton from "../../components/link-button";
-import GradientButton from "../../components/gradient-button";
-import { Tweet } from "react-twitter-widgets";
 
 const timeline = [
     {
@@ -23,8 +23,8 @@ const timeline = [
     {
         date: "11th April 2023",
         title: "Setting Up the Invoicer App",
-        description: `We start with setting up the Invoicer app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Strapi</strong> as a dataprovider`,
-        /* link: "https://refine.dev/blog/refine-invoicer-2/" */
+        description: `We start with setting up the Invoicer app using <strong className="font-bold">refine.new</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Strapi</strong> as a dataprovider`,
+        link: "https://refine.dev/blog/refine-react-invoice-generator-2/",
     },
     {
         date: "12th April 2023",
@@ -135,7 +135,7 @@ const RefineWeek = () => {
                             </div>
                             <h2 className="font-montserrat mt-8 mb-0 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
                                 Stay tuned all week and learn the basics of
-                                creating a React PDF Invoce Generator app via{" "}
+                                creating a React PDF Invoice Generator app via{" "}
                                 <strong className="font-bold">refine</strong> &{" "}
                                 <strong className="font-bold">Strapi</strong> in
                                 a week.

@@ -9,15 +9,18 @@ import { AutocompleteProps } from "@mui/material/Autocomplete";
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
 
-export type UseAutocompleteProps<TData, TError> = Pick<
-    UseSelectProps<TData, TError>,
+export type UseAutocompleteProps<TQueryFnData, TError, TData> = Pick<
+    UseSelectProps<TQueryFnData, TError, TData>,
     "resource"
 > &
-    Omit<UseSelectProps<TData, TError>, "optionLabel" | "optionValue">;
+    Omit<
+        UseSelectProps<TQueryFnData, TError, TData>,
+        "optionLabel" | "optionValue"
+    >;
 
-type AutocompletePropsType<TData> = Required<
+type AutocompletePropsType<TQueryFnData> = Required<
     Pick<
-        AutocompleteProps<TData, boolean, boolean, boolean>,
+        AutocompleteProps<TQueryFnData, boolean, boolean, boolean>,
         "options" | "loading" | "onInputChange" | "filterOptions"
     >
 >;
@@ -29,15 +32,31 @@ export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
     autocompleteProps: AutocompletePropsType<TData>;
 };
 
+/**
+ * `useAutocomplete` hook is used to fetch data from the dataProvider and return the options for the select box.
+ *
+ * It uses `getList` method as query function from the dataProvider that is
+ * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
+ *
+ * @see {@link https://refine.dev/docs/api-reference/mui/hooks/useAutocomplete/} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
+ */
+
 export const useAutocomplete = <
-    TData extends BaseRecord = any,
+    TQueryFnData extends BaseRecord = any,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >(
-    props: UseAutocompleteProps<TData, TError>,
+    props: UseAutocompleteProps<TQueryFnData, TError, TData>,
 ): UseAutocompleteReturnType<TData> => {
     const { queryResult, defaultValueQueryResult, onSearch } = useSelectCore<
-        TData,
-        TError
+        TQueryFnData,
+        TError,
+        TData
     >(props);
 
     return {
