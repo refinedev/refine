@@ -51,7 +51,7 @@ export const SectionBullets = () => {
             {/* Scroll animated section */}
             <motion.div
                 ref={innerRef}
-                className="relative top-0 left-0 flex flex-col w-screen h-auto pt-0 -mt-px overflow-x-hidden overflow-y-hidden lg:pt-8 max-w-ful lg:h-screen lg:snap-start"
+                className="relative top-0 left-0 flex flex-col h-auto pt-0 -mt-px overflow-x-hidden overflow-y-hidden lg:pt-8 max-w-ful lg:h-screen lg:snap-start"
             >
                 <motion.div
                     className="flex items-center justify-center px-2 mt-8 opacity-100 lg:pt-8 short:pt-14 lg:pb-4 lg:px-0"
