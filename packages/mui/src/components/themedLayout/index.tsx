@@ -17,15 +17,15 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
-    let __Internal__HasHeaderWithThemedContext;
 
     // TODO: It's a temporary solution for `ThemedLayoutContext`. After removing `onToggleSiderClick` it should be reverted.
+    let __Internal__HasHeaderWithThemedContext = false;
+    if ((HeaderToRender as any).__Internal__HasHeaderWithThemedContext) {
+        __Internal__HasHeaderWithThemedContext = true;
+    }
+
     const RenderHeader: React.FC<{}> = () => {
         const { drawerSiderVisible, setDrawerSiderVisible } = useSiderVisible();
-
-        if ((HeaderToRender as any).__Internal__HasHeaderWithThemedContext) {
-            __Internal__HasHeaderWithThemedContext = true;
-        }
 
         return (
             <HeaderToRender
@@ -39,7 +39,12 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     return (
         <ThemedLayoutContextProvider>
             <Box display="flex" flexDirection="row">
-                <SiderToRender Title={Title} />
+                <SiderToRender
+                    Title={Title}
+                    __Internal__HasHeaderWithThemedContext={
+                        __Internal__HasHeaderWithThemedContext
+                    }
+                />
                 <Box
                     sx={{
                         display: "flex",

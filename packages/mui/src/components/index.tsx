@@ -9,6 +9,7 @@ export { ThemedLayout } from "./themedLayout";
 export { ThemedSider } from "./themedLayout/sider";
 export { ThemedTitle } from "./themedLayout/title";
 export { ThemedHeader } from "./themedLayout/header";
+export { ThemedHamburgerMenu } from "./themedLayout/hamburgerMenu";
 export * from "./themedLayout/types";
 
 // Pages

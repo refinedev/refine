@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { ThemedLayoutContext } from "@contexts";
+import { ThemedLayoutContext } from "../../../contexts/themedLayout";
 
 export type UseSiderVisibleType = {
     siderVisible?: boolean;

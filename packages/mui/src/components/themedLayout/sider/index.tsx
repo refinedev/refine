@@ -506,6 +506,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     </Box>
                 </Drawer>
             </Box>
+
             {!__Internal__HasHeaderWithThemedContext ? (
                 <IconButton
                     sx={(theme) => {
