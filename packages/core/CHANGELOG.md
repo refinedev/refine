@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.8.1
+
+### Patch Changes
+
+-   [#4133](https://github.com/refinedev/refine/pull/4133) [`68f035dc4c0`](https://github.com/refinedev/refine/commit/68f035dc4c0a28848480e088e6e8970ae08c5a55) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: Hide `<GithubBanner />` on mobile.
+
 ## 4.8.0
 
 ### Minor Changes
