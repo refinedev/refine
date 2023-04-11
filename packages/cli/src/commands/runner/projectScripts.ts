@@ -13,7 +13,7 @@ export const projectScripts = {
         getBin: () => `${binPath}/react-scripts`,
     },
     [ProjectTypes.VITE]: {
-        dev: ["start"],
+        dev: ["dev"],
         start: ["preview"],
         build: ["build"],
         getBin: () => `${binPath}/vite`,
