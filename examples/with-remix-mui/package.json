@@ -3,9 +3,9 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "start": "remix dev",
-    "start:prod": "remix-serve build",
+    "build": "refine build",
+    "start": "refine dev",
+    "start:prod": "refine start",
     "refine": "refine"
   },
   "dependencies": {
