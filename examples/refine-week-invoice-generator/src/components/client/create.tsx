@@ -33,8 +33,8 @@ export const CreateClient: React.FC<CreateClientProps> = ({
         optionLabel: "first_name",
 
         pagination: {
-            mode: "server",
-        },
+            mode: "server"
+        }
     });
 
     const {
