@@ -116,13 +116,11 @@ render(<App />);
 
 ### Handling Relationships
 
-In the show page, we have a single record. The record may have relationships with other resources.
+On the show page, we have a single record, and it may have relationships with other resources.
 
-For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
+For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**, which allows us to fetch single record data by using the `id` and `resource` parameters.
 
-[Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
-
-In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record.
+In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record like below:
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -131,7 +129,7 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
-To ensure that the related data is only fetched after the blog post record has been successfully retrieved, we can use the `queryOptions` object. By setting the `enabled` property to `true` only if the record variable is truthy, we can control when the related data is fetched like below:
+To ensure that the related data is fetched only after the blog post record has been successfully retrieved, we can use the `queryOptions` object. By setting the `enabled` property to `true` only if the record variable is truthy, we can control when the related data is fetched, just like below:
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -143,9 +141,11 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
+> For more information, refer to the [`useOne` documentation&#8594](/docs/api-reference/core/hooks/data/useOne/)
+
 ## Adding the Show Page to the App
 
-Now that we have created the show page, we need to add it to the `App.tsx` file.
+Now that we have created the show page, we can add it to the `App.tsx` file:
 
 1. Open `src/App.tsx` file on your editor.
 
@@ -232,12 +232,11 @@ export default App;
 Now, we can see the show page in the browser at <a href="http://localhost:3000/blog-posts/show/123" rel="noopener noreferrer nofollow">localhost:3000/blog-posts/show/123</a>
 
 <br/>
-<br/>
 
 <Checklist>
 
 <ChecklistItem id="add-show-page-antd">
-I added the show page to the app.
+I have added the show page to the app.
 </ChecklistItem>
 <ChecklistItem id="add-show-page-antd-2">
 I understood the show page components and hooks.

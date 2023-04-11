@@ -105,8 +105,6 @@ On the show page, we have a single record, and it may have relationships with ot
 
 For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**, which allows us to fetch single record data by using the `id` and `resource` parameters.
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/api-reference/core/hooks/data/useOne/)
-
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record like below:
 
 ```tsx
@@ -127,6 +125,8 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
     },
 });
 ```
+
+> For more information, refer to the [`useOne` documentation&#8594](/docs/api-reference/core/hooks/data/useOne/)
 
 ## Adding the Show Page to the App
 

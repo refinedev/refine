@@ -7,28 +7,24 @@ tutorial:
     next: tutorial/understanding-authprovider/index
 ---
 
-In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed blog posts data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
-
 ## Adding Sorting
 
-We will use `<Table.Column/>`'s `sorter` prop to add sorting to the table.
+We will use `<Table.Column/>`'s `sorter` prop to add sorting to the table. You just need to open `src/pages/blog-posts/list.tsx` file and add the `sorter` prop to the `<Table.Column/>` component of the `id` column:
 
-1. Open `src/pages/blog-posts/list.tsx` file.
+```tsx
+<Table.Column
+    dataIndex="id"
+    title="Id"
+    //highlight-next-line
+    sorter
+/>
+```
 
-2. Add `sorter` prop to the `<Table.Column/>` component of the `id` column.
+Now, you can sort the data by `id` on the table.
 
-    ```tsx
-    <Table.Column
-        dataIndex="id"
-        title="Id"
-        //highlight-next-line
-        sorter
-    />
-    ```
-
-    Now, you can sort the data by `id` on the table.
-
-3. If you want to add multiple sorting capabilities to the table, you can add `sorter` prop by priority. For example, if you want to sort the data by `id` and `name` on the table, you can add `sorter` prop as below:
+:::note
+If you want to add multiple sorting capabilities to the table, you can add the `sorter` prop by priority.
+For example, if you want to sort the data by `id` first and then by `name` on the table, you can add `sorter` prop as below:
 
     ```tsx
     <Table.Column
@@ -45,17 +41,15 @@ We will use `<Table.Column/>`'s `sorter` prop to add sorting to the table.
     />
     ```
 
-    Now, the data will be sorted by `id` first and then by `name`.
+:::
 
 ## Adding Filters
 
-We will use `<Table.Column/>`'s `filterDropdown` prop and `<FilterDropdown/>` component to add filters to the table.
+We will use the `<Table.Column/>`'s `filterDropdown` prop and `<FilterDropdown/>` component to add filters to the table.
 
-`<FilterDropdown/>` component is a wrapper component. It serves as a bridge between its child input and **refine**'s `useTable` hook. It provides the necessary props to the child input and handles the logic of filtering the data. It also provides a filter and clear button to make the filtering process easier.
+`<FilterDropdown/>` component is a wrapper component that serves as a bridge between its child input and **refine**'s `useTable` hook. It provides the necessary props to the child input and handles the logic of filtering the data. It also provides a filter and clear button to make the filtering process easier.
 
-[Refer to the `<FilterDropdown/>` documentation for more information &#8594](/docs/api-reference/antd/components/filter-dropdown/)
-
-Also, to get more information about the `filterDropdown` prop, you can refer to the [**Ant Design**'s `<Table/>` documentation](https://ant.design/components/table#components-table-demo-custom-filter-panel).
+> Refer to [**Ant Design**'s `<Table/>` documentation](https://ant.design/components/table#components-table-demo-custom-filter-panel) for more information on the `filterDropdown` prop, and the [`<FilterDropdown/>` documentation&#8594](/docs/api-reference/antd/components/filter-dropdown/) for more information on the `<FilterDropdown/>` component.
 
 In this tutorial, we will add filters capabilities to the `category` column. To do this, we will use `<Select/>` component from **Ant Design** as the child input of `<FilterDropdown/>` component. So, we will also use `useSelect` hook to get the necessary props like `options` for `<Select/>` component.
 

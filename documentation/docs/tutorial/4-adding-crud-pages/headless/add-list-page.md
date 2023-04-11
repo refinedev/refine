@@ -1,6 +1,6 @@
 ---
 id: index
-title: 1. Adding the list page
+title: 1. Adding List Page
 tutorial:
     order: 0
     prev: false
