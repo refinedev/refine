@@ -168,4 +168,27 @@ describe("useMeta Hook", () => {
 
         expect(combinedData).toEqual({});
     });
+
+    it("should return the resource meta when defined the `identifier` prop", () => {
+        const { result } = renderHook(() => useMeta(), {
+            wrapper: TestWrapper({
+                resources: [
+                    { name: "posts", identifier: "foo", meta: { foo: "baz" } },
+                ],
+                routerProvider: mockRouterBindings({
+                    params: { id: "123", authorId: "456" },
+                }),
+            }),
+        });
+
+        const combinedMeta = result.current({
+            resource: "foo",
+        });
+
+        expect(combinedMeta).toEqual({
+            id: "123",
+            authorId: "456",
+            foo: "baz",
+        });
+    });
 });
