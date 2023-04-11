@@ -16,17 +16,8 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
-/**
- * `useRadioGroup` hook allows you to manage an Ant Design {@link https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name Radio.Group} component when records in a resource needs to be used as radio options.
- *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/field/useRadioGroup} for more details.
- *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- *
- */
-
-type UseRadioGroupProps<TData, TError> = Omit<
-    UseSelectProps<TData, TError>,
+type UseRadioGroupProps<TQueryFnData, TError, TData> = Omit<
+    UseSelectProps<TQueryFnData, TError, TData>,
     "defaultValue"
 > & {
     /**
@@ -35,9 +26,21 @@ type UseRadioGroupProps<TData, TError> = Omit<
     defaultValue?: BaseKey;
 };
 
+/**
+ * `useRadioGroup` hook allows you to manage an Ant Design {@link https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name Radio.Group} component when records in a resource needs to be used as radio options.
+ *
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/field/useRadioGroup/} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
+ */
+
 export const useRadioGroup = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     sort,
@@ -55,7 +58,11 @@ export const useRadioGroup = <
     meta,
     metaData,
     dataProviderName,
-}: UseRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
+}: UseRadioGroupProps<
+    TQueryFnData,
+    TError,
+    TData
+>): UseRadioGroupReturnType<TData> => {
     const { queryResult, options } = useSelect({
         resource,
         sort,

@@ -3,7 +3,7 @@ import axios from "axios";
 import { HttpError, useApiUrl } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, Image, SimpleGrid } from "@mantine/core";
-import { RichTextEditor } from "@mantine/rte";
+import MDEditor from "@uiw/react-md-editor";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
 
 import { ICategory, IPost } from "../../interfaces";
@@ -129,7 +129,10 @@ export const PostEdit: React.FC = () => {
                 <Text mt={8} weight={500} size="sm" color="#212529">
                     Content
                 </Text>
-                <RichTextEditor {...getInputProps("content")} />
+                <MDEditor
+                    data-color-mode="light"
+                    {...getInputProps("content")}
+                />
                 {errors.content && (
                     <Text mt={2} weight={500} size="xs" color="red">
                         {errors.content}

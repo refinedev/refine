@@ -2,7 +2,7 @@ import { HttpError } from "@refinedev/core";
 import { useState } from "react";
 import { Create, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, SimpleGrid, Image } from "@mantine/core";
-import { RichTextEditor } from "@mantine/rte";
+import MDEditor from "@uiw/react-md-editor";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
 
 import { convertBase64 } from "../../utils";
@@ -103,7 +103,10 @@ export const PostCreate: React.FC = () => {
                 <Text mt={8} weight={500} size="sm" color="#212529">
                     Content
                 </Text>
-                <RichTextEditor {...getInputProps("content")} />
+                <MDEditor
+                    data-color-mode="light"
+                    {...getInputProps("content")}
+                />
                 {errors.content && (
                     <Text mt={2} weight={500} size="xs" color="red">
                         {errors.content}

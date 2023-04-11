@@ -346,12 +346,7 @@ setInitialRoutes(["/posts/create"]);
 import React from "react";
 import { HttpError } from "@refinedev/core";
 
-import {
-    Create,
-    SaveButton,
-    useSelect,
-    useStepsForm,
-} from "@refinedev/antd";
+import { Create, SaveButton, useSelect, useStepsForm } from "@refinedev/antd";
 import { Form, Input, Select, Button, Steps } from "antd";
 
 const { Step } = Steps;
@@ -1131,6 +1126,15 @@ useStepsForm({
 
 > `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). if `action` is `edit` instead, `redirect`s default value is `list`.
 
+### Type Parameters
+
+| Property    | Desription                                                                                                                                                   | Type                       | Default                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData       | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError      | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables  | Values for params.                                                                                                                                           | `{}`                       |                            |
+| TSelectData | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return Values
 
 | Key                      | Description                                                  | Type                                                                           |
@@ -1142,14 +1146,6 @@ useStepsForm({
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
 | defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                      |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
-
-### Type Parameters
-
-| Property   | Desription                                                       | Default                    |
-| ---------- | ---------------------------------------------------------------- | -------------------------- |
-| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
-| TVariables | Values for params.                                               | `{}`                       |
 
 ## Example
 

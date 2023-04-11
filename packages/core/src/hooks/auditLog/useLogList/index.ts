@@ -7,34 +7,44 @@ import {
 
 import { AuditLogContext } from "@contexts/auditLog";
 import { queryKeys } from "@definitions/helpers";
-import { HttpError, MetaDataQuery } from "../../../interfaces";
+import { HttpError, MetaQuery } from "../../../interfaces";
 
-export type UseLogProps<TData, TError> = {
+export type UseLogProps<TQueryFnData, TError, TData> = {
     resource: string;
     action?: string;
     meta?: Record<number | string, any>;
     author?: Record<number | string, any>;
-    queryOptions?: UseQueryOptions<TData, TError>;
-    metaData?: MetaDataQuery;
+    queryOptions?: UseQueryOptions<TQueryFnData, TError, TData>;
+    metaData?: MetaQuery;
 };
 
 /**
  * useLogList is used to get and filter audit logs.
+ *
  * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLogList} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function.
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Defaults to `TQueryFnData`
+ *
  */
-export const useLogList = <TData = any, TError extends HttpError = HttpError>({
+export const useLogList = <
+    TQueryFnData = any,
+    TError extends HttpError = HttpError,
+    TData = TQueryFnData,
+>({
     resource,
     action,
     meta,
     author,
     metaData,
     queryOptions,
-}: UseLogProps<TData, TError>): UseQueryResult<TData> => {
+}: UseLogProps<TQueryFnData, TError, TData>): UseQueryResult<TData> => {
     const { get } = useContext(AuditLogContext);
 
     const queryKey = queryKeys(resource, undefined, metaData);
 
-    const queryResponse = useQuery<TData, TError>(
+    const queryResponse = useQuery<TQueryFnData, TError, TData>(
         queryKey.logList(meta),
         () =>
             get?.({

@@ -26,7 +26,7 @@ import {
     Box,
 } from "@mantine/core";
 
-import { RichTextEditor } from "@mantine/rte";
+import MDEditor from "@uiw/react-md-editor";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -277,7 +277,10 @@ export const PostList: React.FC = () => {
                     </tr>
                     <tr>
                         <td colSpan={getAllColumns().length}>
-                            <RichTextEditor {...getInputProps("content")} />
+                            <MDEditor
+                                data-color-mode="light"
+                                {...getInputProps("content")}
+                            />
                         </td>
                     </tr>
                 </React.Fragment>
@@ -351,8 +354,10 @@ export const PostList: React.FC = () => {
                                                             .length
                                                     }
                                                 >
-                                                    <RichTextEditor
-                                                        readOnly
+                                                    <MDEditor
+                                                        data-color-mode="light"
+                                                        contentEditable={false}
+                                                        preview="preview"
                                                         value={
                                                             row.original.content
                                                         }

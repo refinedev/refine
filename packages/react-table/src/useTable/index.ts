@@ -26,28 +26,33 @@ export type UseTableReturnType<
 };
 
 export type UseTableProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 > = {
     /**
      * Configuration object for the core of the [useTable](/docs/api-reference/core/hooks/useTable/)
-     * @type [`useTablePropsCore<TData, TError>`](/docs/api-reference/core/hooks/useTable/#properties)
+     * @type [`useTablePropsCore<TQueryFnData, TError>`](/docs/api-reference/core/hooks/useTable/#properties)
      */
-    refineCoreProps?: useTablePropsCore<TData, TError>;
+    refineCoreProps?: useTablePropsCore<TQueryFnData, TError, TData>;
 } & Pick<TableOptions<TData>, "columns"> &
     Partial<Omit<TableOptions<TData>, "columns">>;
 
 export function useTable<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
     initialState: reactTableInitialState = {},
     ...rest
-}: UseTableProps<TData, TError>): UseTableReturnType<TData, TError> {
+}: UseTableProps<TQueryFnData, TError, TData>): UseTableReturnType<
+    TData,
+    TError
+> {
     const isFirstRender = useIsFirstRender();
 
-    const useTableResult = useTableCore<TData, TError>({
+    const useTableResult = useTableCore<TQueryFnData, TError, TData>({
         ...refineCoreProps,
         hasPagination,
     });
