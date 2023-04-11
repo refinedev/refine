@@ -33,7 +33,7 @@
   "scripts": {
     "start": "refine start",
     "dev": "refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "refine": "refine"
