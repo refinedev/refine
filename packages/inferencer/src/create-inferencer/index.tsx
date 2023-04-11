@@ -124,6 +124,77 @@ export const createInferencer: CreateInferencer = ({
             meta,
         });
 
+        const clearedFields = React.useMemo(() => {
+            const cleanFields: InferField[] = [];
+
+            results.forEach((f, idx, arr) => {
+                if (f.resource) {
+                    if (
+                        cleanFields.findIndex(
+                            (el) => el.resource?.name === f.resource?.name,
+                        ) > -1
+                    ) {
+                        return;
+                    }
+                    const duplicates = arr.filter((field, index) => {
+                        if (index !== idx) {
+                            return (
+                                field.resource &&
+                                f.resource &&
+                                (field.resource.name === f.resource.name ||
+                                    field.resource.identifier ===
+                                        f.resource.identifier)
+                            );
+                        } else {
+                            return false;
+                        }
+                    });
+                    if (duplicates.length > 0) {
+                        if (type === "create" || type === "edit") {
+                            let toPush: InferField | undefined = undefined;
+
+                            [f, ...duplicates].find((el) => {
+                                if (
+                                    el.fieldable !== true &&
+                                    toPush === undefined
+                                ) {
+                                    toPush = el;
+                                }
+                            });
+                            if (toPush) {
+                                cleanFields.push(toPush);
+                            } else {
+                                cleanFields.push(f);
+                            }
+                        } else {
+                            let toPush: InferField | undefined = undefined;
+
+                            [f, ...duplicates].find((el) => {
+                                if (
+                                    el.fieldable !== false &&
+                                    toPush === undefined
+                                ) {
+                                    toPush = el;
+                                }
+                            });
+
+                            if (toPush) {
+                                cleanFields.push(toPush);
+                            } else {
+                                cleanFields.push(f);
+                            }
+                        }
+                    } else {
+                        cleanFields.push(f);
+                    }
+                } else {
+                    cleanFields.push(f);
+                }
+            });
+
+            return cleanFields;
+        }, [results, type]);
+
         const code = React.useMemo(() => {
             if (
                 !recordLoading &&
@@ -134,7 +205,7 @@ export const createInferencer: CreateInferencer = ({
                 return renderer({
                     resource,
                     resources,
-                    fields: results,
+                    fields: clearedFields,
                     infer,
                     meta,
                     isCustomPage: resource.name !== resourceFromURL?.name,
@@ -142,7 +213,13 @@ export const createInferencer: CreateInferencer = ({
                 });
             }
             return "";
-        }, [resource, resources, results, recordLoading, relationLoading]);
+        }, [
+            resource,
+            resources,
+            clearedFields,
+            recordLoading,
+            relationLoading,
+        ]);
 
         return (
             <>
