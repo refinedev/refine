@@ -114,20 +114,19 @@ export const useCustom = <
     TData
 >): QueryObserverResult<CustomResponse<TData>, TError> => {
     const dataProvider = useDataProvider();
-
-    const { custom } = dataProvider(dataProviderName);
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const translate = useTranslate();
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
 
-    const metaFromHook = useMeta({
-        meta: preferredMeta,
-    });
+    const { custom } = dataProvider(dataProviderName);
+
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     if (custom) {
         const queryResponse = useQuery<
@@ -148,7 +147,7 @@ export const useCustom = <
                     method,
                     ...config,
                     meta: {
-                        ...(metaFromHook || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -156,7 +155,7 @@ export const useCustom = <
                         },
                     },
                     metaData: {
-                        ...(metaFromHook || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -172,7 +171,7 @@ export const useCustom = <
                     typeof successNotification === "function"
                         ? successNotification(data, {
                               ...config,
-                              ...(metaFromHook || {}),
+                              ...(combinedMeta || {}),
                           })
                         : successNotification;
 
@@ -186,7 +185,7 @@ export const useCustom = <
                     typeof errorNotification === "function"
                         ? errorNotification(err, {
                               ...config,
-                              ...(metaFromHook || {}),
+                              ...(combinedMeta || {}),
                           })
                         : errorNotification;
 

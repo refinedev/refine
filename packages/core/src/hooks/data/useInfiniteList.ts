@@ -148,6 +148,7 @@ export const useInfiniteList = <
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
         resource,
@@ -190,10 +191,7 @@ export const useInfiniteList = <
         preferredMeta,
     );
 
-    const metaFromHook = useMeta({
-        resource,
-        meta: preferredMeta,
-    });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     const { getList } = dataProvider(pickedDataProvider);
 
@@ -201,8 +199,8 @@ export const useInfiniteList = <
         resource,
         types: ["*"],
         params: {
-            meta: metaFromHook,
-            metaData: metaFromHook,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -249,7 +247,7 @@ export const useInfiniteList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(metaFromHook || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -257,7 +255,7 @@ export const useInfiniteList = <
                     },
                 },
                 metaData: {
-                    ...(metaFromHook || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,

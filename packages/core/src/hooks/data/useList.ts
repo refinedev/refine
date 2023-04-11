@@ -145,6 +145,7 @@ export const useList = <
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
         resource,
@@ -165,14 +166,11 @@ export const useList = <
     });
     const isServerPagination = prefferedPagination.mode === "server";
 
-    const metaFromHook = useMeta({
-        resource,
-        meta: preferredMeta,
-    });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     const notificationValues = {
-        meta: metaFromHook,
-        metaData: metaFromHook,
+        meta: combinedMeta,
+        metaData: combinedMeta,
         filters: prefferedFilters,
         hasPagination: isServerPagination,
         pagination: prefferedPagination,
@@ -199,8 +197,8 @@ export const useList = <
         resource,
         types: ["*"],
         params: {
-            meta: metaFromHook,
-            metaData: metaFromHook,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -242,7 +240,7 @@ export const useList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(metaFromHook || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -250,7 +248,7 @@ export const useList = <
                     },
                 },
                 metaData: {
-                    ...(metaFromHook || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,

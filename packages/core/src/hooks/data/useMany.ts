@@ -99,7 +99,19 @@ export const useMany = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
+    const translate = useTranslate();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
+    const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
+
     const preferredMeta = pickNotDeprecated(meta, metaData);
+
+    const isEnabled =
+        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
@@ -111,28 +123,15 @@ export const useMany = <
         pickDataProvider(resource, dataProviderName, resources),
     );
 
-    const translate = useTranslate();
-    const authProvider = useActiveAuthProvider();
-    const { mutate: checkError } = useOnError({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
-    const handleNotification = useHandleNotification();
-
-    const isEnabled =
-        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
-
-    const metaFromHook = useMeta({
-        resource,
-        meta: preferredMeta,
-    });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
             ids: ids ?? [],
-            meta: metaFromHook,
-            metaData: metaFromHook,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             subscriptionType: "useMany",
             ...liveParams,
         },
@@ -154,7 +153,7 @@ export const useMany = <
                     resource,
                     ids,
                     meta: {
-                        ...(metaFromHook || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -162,7 +161,7 @@ export const useMany = <
                         },
                     },
                     metaData: {
-                        ...(metaFromHook || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -177,7 +176,7 @@ export const useMany = <
                             resource,
                             id,
                             meta: {
-                                ...(metaFromHook || {}),
+                                ...(combinedMeta || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,
@@ -185,7 +184,7 @@ export const useMany = <
                                 },
                             },
                             metaData: {
-                                ...(metaFromHook || {}),
+                                ...(combinedMeta || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,

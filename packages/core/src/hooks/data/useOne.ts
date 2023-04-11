@@ -103,7 +103,16 @@ export const useOne = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
+    const translate = useTranslate();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
+    const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
+
     const preferredMeta = pickNotDeprecated(meta, metaData);
+
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
@@ -114,17 +123,8 @@ export const useOne = <
     const { getOne } = dataProvider(
         pickDataProvider(resource, dataProviderName, resources),
     );
-    const translate = useTranslate();
-    const authProvider = useActiveAuthProvider();
-    const { mutate: checkError } = useOnError({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
-    const handleNotification = useHandleNotification();
 
-    const metaFromHook = useMeta({
-        resource,
-        meta: preferredMeta,
-    });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
         resource,
@@ -133,8 +133,8 @@ export const useOne = <
         params: {
             ids: id ? [id] : [],
             id: id,
-            meta: metaFromHook,
-            metaData: metaFromHook,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             subscriptionType: "useOne",
             ...liveParams,
         },
@@ -157,7 +157,7 @@ export const useOne = <
                 resource: resource!,
                 id: id!,
                 meta: {
-                    ...(metaFromHook || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -165,7 +165,7 @@ export const useOne = <
                     },
                 },
                 metaData: {
-                    ...(metaFromHook || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -188,7 +188,7 @@ export const useOne = <
                               data,
                               {
                                   id,
-                                  ...(metaFromHook || {}),
+                                  ...(combinedMeta || {}),
                               },
                               resource,
                           )
@@ -206,7 +206,7 @@ export const useOne = <
                               err,
                               {
                                   id,
-                                  ...(metaFromHook || {}),
+                                  ...(combinedMeta || {}),
                               },
                               resource,
                           )
