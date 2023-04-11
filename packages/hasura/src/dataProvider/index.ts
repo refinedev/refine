@@ -364,10 +364,18 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
-            const insertType = `[${operation}_insert_input!]`;
+            const camelizedInsertOperation = camelCase(insertOperation);
+
+            const insertType = defaultNamingConvention
+                ? `[${operation}_insert_input!]`
+                : `[${camelCase(`${operation}_insert_input!`, {
+                      pascalCase: true,
+                  })}]`;
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: insertOperation,
+                operation: defaultNamingConvention
+                    ? insertOperation
+                    : camelizedInsertOperation,
                 variables: {
                     objects: {
                         type: insertType,
@@ -396,20 +404,40 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
+            const camelizedUpdateOperation = camelCase(updateOperation);
 
-            const pkColumnsType = `${operation}_pk_columns_input`;
-            const setInputType = `${operation}_set_input`;
+            const pkColumnsType = defaultNamingConvention
+                ? `${operation}_pk_columns_input`
+                : camelCase(`${operation}_pk_columns_input!`, {
+                      pascalCase: true,
+                  });
+            const setInputType = defaultNamingConvention
+                ? `${operation}_set_input`
+                : camelCase(`${operation}_set_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: updateOperation,
+                operation: defaultNamingConvention
+                    ? updateOperation
+                    : camelizedUpdateOperation,
                 variables: {
-                    pk_columns: {
-                        type: pkColumnsType,
-                        value: {
-                            id: id,
-                        },
-                        required: true,
-                    },
+                    ...(defaultNamingConvention
+                        ? {
+                              pk_columns: {
+                                  type: pkColumnsType,
+                                  value: {
+                                      id: id,
+                                  },
+                                  required: true,
+                              },
+                          }
+                        : {
+                              pkColumns: {
+                                  type: pkColumnsType,
+                                  value: {
+                                      id: id,
+                                  },
+                              },
+                          }),
                     _set: {
                         type: setInputType,
                         value: variables,
@@ -432,12 +460,19 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
+            const camelizedUpdateOperation = camelCase(updateOperation);
 
-            const whereType = `${operation}_bool_exp`;
-            const setInputType = `${operation}_set_input`;
+            const whereType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
+            const setInputType = defaultNamingConvention
+                ? `${operation}_set_input`
+                : camelCase(`${operation}_set_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: updateOperation,
+                operation: defaultNamingConvention
+                    ? updateOperation
+                    : camelizedUpdateOperation,
                 variables: {
                     where: {
                         type: whereType,
@@ -475,9 +510,12 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
+            const camelizedDeleteOperation = camelCase(deleteOperation);
 
             const { query, variables } = gql.mutation({
-                operation: deleteOperation,
+                operation: defaultNamingConvention
+                    ? deleteOperation
+                    : camelizedDeleteOperation,
                 variables: {
                     id: {
                         value: id,
@@ -500,11 +538,16 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;
+            const camelizedDeleteOperation = camelCase(deleteOperation);
 
-            const whereType = `${operation}_bool_exp`;
+            const whereType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.mutation({
-                operation: deleteOperation,
+                operation: defaultNamingConvention
+                    ? deleteOperation
+                    : camelizedDeleteOperation,
                 fields: [
                     {
                         returning: meta?.fields ?? ["id"],
