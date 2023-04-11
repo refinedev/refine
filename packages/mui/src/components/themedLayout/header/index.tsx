@@ -86,3 +86,5 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
         </AppBar>
     );
 };
+
+(ThemedHeader as any).__Internal__HasHeaderWithThemedContext = true;

@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 
 import { ThemedLayoutContextProvider } from "@contexts";
+import { useSiderVisible } from "@hooks";
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
 import { RefineThemedLayoutProps } from "./types";
@@ -16,6 +17,24 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
+    let __Internal__HasHeaderWithThemedContext;
+
+    // TODO: It's a temporary solution for `ThemedLayoutContext`. After removing `onToggleSiderClick` it should be reverted.
+    const RenderHeader: React.FC<{}> = () => {
+        const { drawerSiderVisible, setDrawerSiderVisible } = useSiderVisible();
+
+        if ((HeaderToRender as any).__Internal__HasHeaderWithThemedContext) {
+            __Internal__HasHeaderWithThemedContext = true;
+        }
+
+        return (
+            <HeaderToRender
+                onToggleSiderClick={() => {
+                    setDrawerSiderVisible?.(!drawerSiderVisible);
+                }}
+            />
+        );
+    };
 
     return (
         <ThemedLayoutContextProvider>
@@ -29,7 +48,7 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
                         minHeight: "100vh",
                     }}
                 >
-                    <HeaderToRender />
+                    <RenderHeader />
                     <Box
                         component="main"
                         sx={{

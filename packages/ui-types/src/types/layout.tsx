@@ -44,6 +44,10 @@ export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
      * @deprecated This is deprecated. Please use `useSiderVisible` instead.
      */
     onToggleSiderClick?: (isOpen?: boolean) => void;
+    /**
+     * @internal This is internal. Please do not use it.
+     */
+    __Internal__HasHeaderWithThemedContext?: boolean;
 };
 export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
     /**

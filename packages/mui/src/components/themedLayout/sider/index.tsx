@@ -18,6 +18,7 @@ import {
     ExpandMore,
     ChevronLeft,
     Dashboard,
+    Menu,
 } from "@mui/icons-material";
 import {
     CanAccess,
@@ -44,6 +45,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
+    __Internal__HasHeaderWithThemedContext,
 }) => {
     const {
         siderVisible,
@@ -504,6 +506,34 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     </Box>
                 </Drawer>
             </Box>
+            {!__Internal__HasHeaderWithThemedContext ? (
+                <IconButton
+                    sx={(theme) => {
+                        const { palette } = theme;
+                        const { mode, getContrastText, primary, background } =
+                            palette;
+
+                        return {
+                            color:
+                                mode === "light"
+                                    ? getContrastText(primary.main)
+                                    : getContrastText(background.paper),
+                            display: { xs: "flex", md: "none" },
+                            justifyContent: "center",
+                            alignItems: "center",
+                            position: "fixed",
+                            top: "12px",
+                            left: "16px",
+                            zIndex: 1199,
+                            height: "36px",
+                            width: "36px",
+                        };
+                    }}
+                    onClick={() => setSiderVisible?.(!siderVisible)}
+                >
+                    <Menu />
+                </IconButton>
+            ) : null}
         </>
     );
 };
