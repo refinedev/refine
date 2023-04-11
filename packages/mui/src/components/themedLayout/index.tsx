@@ -1,11 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import { ThemedLayoutContextProvider } from "@contexts";
 import { useSiderVisible } from "@hooks";
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
 import { RefineThemedLayoutProps } from "./types";
+import { ThemedLayoutContextProvider } from "../../contexts";
 
 export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     Sider,
@@ -29,6 +29,7 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
 
         return (
             <HeaderToRender
+                isSiderOpen={drawerSiderVisible}
                 onToggleSiderClick={() => {
                     setDrawerSiderVisible?.(!drawerSiderVisible);
                 }}
