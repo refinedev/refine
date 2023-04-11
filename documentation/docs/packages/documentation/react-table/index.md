@@ -736,10 +736,11 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### Type Parameters
 
-| Property | Desription                                                   | Type                       | Default                    |
-| -------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError   | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| Property     | Desription                                                                                                                                                 | Type                       | Default                    |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData | Result data of the query. Extends [`BaseRecord`][baserecord]                                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                  | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TData        | Result data of the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
 
 ### Return values
 

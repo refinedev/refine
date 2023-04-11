@@ -923,11 +923,12 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ### Type Parameters
 
-| Property         | Desription                                                   | Type                       | Default                    |
-| ---------------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData            | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError           | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TSearchVariables | Values for search params                                     |                            | `{}`                       |
+| Property         | Desription                                                                                                                                                          | Type                       | Default                    |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TSearchVariables | Values for search params                                                                                                                                            |                            | `{}`                       |
+| TData            | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
 
 ### Return values
 

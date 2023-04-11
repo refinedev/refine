@@ -27,8 +27,9 @@ export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps<TData, TError, TVariables> &
+    TSelectData extends BaseRecord = TData,
+> = UseFormPropsCore<TData, TError, TVariables, TSelectData> &
+    UseFormProps<TData, TError, TVariables, TSelectData> &
     UseDrawerFormConfig &
     LiveModeProps &
     FormWithSyncWithLocationParams & {
@@ -41,7 +42,8 @@ export type UseDrawerFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormReturnType<TData, TError, TVariables> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnType<TData, TError, TVariables, TSelectData> & {
     formProps: FormProps<TVariables> & {
         form: FormInstance<TVariables>;
     };
@@ -69,24 +71,26 @@ export const useDrawerForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 >({
     syncWithLocation,
     defaultVisible = false,
     autoSubmitClose = true,
     autoResetForm = true,
     ...rest
-}: UseDrawerFormProps<TData, TError, TVariables>): UseDrawerFormReturnType<
+}: UseDrawerFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TSelectData
+>): UseDrawerFormReturnType<TData, TError, TVariables, TSelectData> => {
     const initiallySynced = React.useRef(false);
 
     const { visible, show, close } = useModal({
         defaultVisible,
     });
 
-    const useFormProps = useForm<TData, TError, TVariables>({
+    const useFormProps = useForm<TData, TError, TVariables, TSelectData>({
         ...rest,
     });
 

@@ -16,14 +16,29 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
 
+/**
+ * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.
+ *
+ * It uses `getList` method as query function from the dataProvider that is
+ * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
+ *
+ * @see {@link https://refine.dev/docs/mantine/hooks/useSelect} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
+ */
+
 export const useSelect = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >(
-    props: UseSelectProps<TData, TError>,
+    props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData> => {
     const { queryResult, defaultValueQueryResult, onSearch, options } =
-        useSelectCore(props);
+        useSelectCore<TQueryFnData, TError, TData>(props);
 
     return {
         selectProps: {

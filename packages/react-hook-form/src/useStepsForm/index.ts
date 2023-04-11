@@ -9,7 +9,8 @@ export type UseStepsFormReturnType<
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-> = UseFormReturnType<TData, TError, TVariables, TContext> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnType<TData, TError, TVariables, TContext, TSelectData> & {
     steps: {
         currentStep: number;
         gotoStep: (step: number) => void;
@@ -21,7 +22,8 @@ export type UseStepsFormProps<
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-> = UseFormProps<TData, TError, TVariables, TContext> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormProps<TData, TError, TVariables, TContext, TSelectData> & {
     /**
      * @description Configuration object for the steps.
      * `defaultStep`: Allows you to set the initial step.
@@ -44,6 +46,7 @@ export const useStepsForm = <
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
+    TSelectData extends BaseRecord = TData,
 >({
     stepsProps,
     ...rest
@@ -51,14 +54,28 @@ export const useStepsForm = <
     TData,
     TError,
     TVariables,
-    TContext
-> = {}): UseStepsFormReturnType<TData, TError, TVariables, TContext> => {
+    TContext,
+    TSelectData
+> = {}): UseStepsFormReturnType<
+    TData,
+    TError,
+    TVariables,
+    TContext,
+    TSelectData
+> => {
     const { defaultStep = 0, isBackValidate = false } = stepsProps ?? {};
     const [current, setCurrent] = useState(defaultStep);
 
-    const useHookFormResult = useForm({
+    const useHookFormResult = useForm<
+        TData,
+        TError,
+        TVariables,
+        TContext,
+        TSelectData
+    >({
         ...rest,
     });
+
     const {
         trigger,
         getValues,

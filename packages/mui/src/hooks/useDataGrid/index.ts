@@ -53,33 +53,38 @@ type DataGridPropsType = Required<
         | "filterModel"
     >;
 
-export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
-    useTablePropsCore<TData, TError>,
-    "pagination" | "filters"
-> & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    pagination?: Prettify<
-        Omit<Pagination, "pageSize"> & {
-            /**
-             * Initial number of items per page
-             * @default 25
-             */
-            pageSize?: number;
-        }
-    >;
-    filters?: Prettify<
-        Omit<
-            NonNullable<useTablePropsCore<TData, TError>["filters"]>,
-            "defaultBehavior"
-        > & {
-            /**
-             * Default behavior of the `setFilters` function
-             * @default "replace"
-             */
-            defaultBehavior?: "replace" | "merge";
-        }
-    >;
-};
+export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
+    Omit<
+        useTablePropsCore<TQueryFnData, TError, TData>,
+        "pagination" | "filters"
+    > & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+        pagination?: Prettify<
+            Omit<Pagination, "pageSize"> & {
+                /**
+                 * Initial number of items per page
+                 * @default 25
+                 */
+                pageSize?: number;
+            }
+        >;
+        filters?: Prettify<
+            Omit<
+                NonNullable<
+                    useTablePropsCore<TQueryFnData, TError, TData>["filters"]
+                >,
+                "defaultBehavior"
+            > & {
+                /**
+                 * Default behavior of the `setFilters` function
+                 * @default "replace"
+                 */
+                defaultBehavior?: "replace" | "merge";
+            }
+        >;
+    };
 
 export type UseDataGridReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -90,10 +95,25 @@ export type UseDataGridReturnType<
     search: (value: TSearchVariables) => Promise<void>;
 };
 
+/**
+ * By using useDataGrid, you are able to get properties that are compatible with
+ * Material UI {@link https://mui.com/x/react-data-grid/ `<DataGrid>`} component.
+ * All features such as sorting, filtering and pagination comes as out of box.
+ *
+ * @see {@link https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TSearchVariables - Values for search params
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
+ */
+
 export function useDataGrid<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
+    TData extends BaseRecord = TQueryFnData,
 >({
     onSearch: onSearchProp,
     initialCurrent,
@@ -119,9 +139,10 @@ export function useDataGrid<
     metaData,
     dataProviderName,
 }: UseDataGridProps<
-    TData,
+    TQueryFnData,
     TError,
-    TSearchVariables
+    TSearchVariables,
+    TData
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
     const theme = useTheme();
     const liveMode = useLiveMode(liveModeFromProp);
@@ -142,7 +163,7 @@ export function useDataGrid<
         setSorter,
         pageCount,
         createLinkForSyncWithLocation,
-    } = useTableCore<TData, TError>({
+    } = useTableCore<TQueryFnData, TError, TData>({
         permanentSorter,
         permanentFilter,
         initialCurrent,

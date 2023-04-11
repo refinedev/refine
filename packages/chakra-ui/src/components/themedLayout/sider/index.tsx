@@ -31,7 +31,7 @@ import {
     useColorModeValue,
     VStack,
 } from "@chakra-ui/react";
-import { IconList, IconDashboard, IconLogout, IconMenu2 } from "@tabler/icons";
+import { IconList, IconDashboard, IconPower, IconMenu2 } from "@tabler/icons";
 
 import { ThemedTitle as DefaultTitle } from "@components";
 import { RefineThemedLayoutSiderProps } from "../types";
@@ -244,7 +244,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     }
                     pl={!isSiderOpen && !opened ? 6 : 5}
                     fontWeight="normal"
-                    leftIcon={<IconLogout size={16} />}
+                    leftIcon={<IconPower size={16} />}
                     variant="ghost"
                     _active={{
                         color: "brand.200",
