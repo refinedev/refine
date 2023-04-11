@@ -15,9 +15,10 @@
     "react-dom": "^18.0.0"
   },
   "scripts": {
-    "start": "refine start",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "refine": "refine"
   },
   "browserslist": {
     "production": [
