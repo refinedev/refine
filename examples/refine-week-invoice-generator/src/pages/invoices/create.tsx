@@ -6,14 +6,14 @@ import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
 export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IInvoice>();
-
+    
     const { selectProps: companySelectProps } = useSelect<ICompany>({
         resource: "companies",
         optionLabel: "name",
 
         pagination: {
-            mode: "server",
-        },
+            mode: "server"
+        }
     });
 
     const { selectProps: contactSelectProps } = useSelect<IContact>({
@@ -21,8 +21,8 @@ export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "first_name",
 
         pagination: {
-            mode: "server",
-        },
+            mode: "server"
+        }
     });
 
     const { selectProps: missionSelectProps } = useSelect<IMission>({
@@ -30,13 +30,17 @@ export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "mission",
 
         pagination: {
-            mode: "server",
-        },
+            mode: "server"
+        }
     });
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+            <Form
+                {...formProps}
+                layout="vertical"
+                wrapperCol={{md: 18, lg: 16}}
+            >
                 <Form.Item label="Invoice Name" name="name">
                     <Input />
                 </Form.Item>
