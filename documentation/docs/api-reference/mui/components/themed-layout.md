@@ -660,6 +660,87 @@ If there is already a file with the same name in the directory, the swizzle comm
 
 ## Migrate ThemedLayout to ThemedLayoutV2
 
+Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayout` you can update it by following these steps.
+
+Only if you are using `ThemedLayout`. If you are not customizing the `Header` component, an update like the one below will suffice.
+
+```diff
+-import { ThemedLayout } from "@refinedev/mui";
++import { ThemedLayoutV2 } from "@refinedev/mui";
+
+...
+-<ThemedLayout>
++<ThemedLayoutV2>
+    <Outlet />
+-</ThemedLayout>
++</ThemedLayoutV2>
+...
+```
+
+But mostly we customize the `Header` component. For this, an update like the one below will suffice. Here, a `HamburgerMenu` should be added to the `Header` component that we have customized for the collapse/uncollapse of the `Sider` component.
+
+```diff title="src/components/header/index.tsx"
+-import { RefineThemedLayoutHeaderProps } from "@refinedev/mui";
++import { RefineThemedLayoutV2HeaderProps, HamburgerMenu } from "@refinedev/mui";
+
+-export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({
+-    isSiderOpen,
+-    onToggleSiderClick,
+-    toggleSiderIcon: toggleSiderIconFromProps,
+-}) => {
++export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
+    return (
+        <AppBar position="sticky">
+            <Toolbar>
+                <Stack direction="row" width="100%" alignItems="center">
+-                    {hasSidebarToggle && (
+-                        <IconButton
+-                            color="inherit"
+-                            aria-label="open drawer"
+-                            onClick={() => onToggleSiderClick?.()}
+-                            edge="start"
+-                            sx={{
+-                                mr: 2,
+-                                display: { xs: "none", md: "flex" },
+-                                ...(isSiderOpen && { display: "none" }),
+-                            }}
+-                        >
+-                            {toggleSiderIconFromProps?.(
+-                                Boolean(isSiderOpen),
+-                            ) ?? <Menu />}
+-                        </IconButton>
+-                    )}
++                    <HamburgerMenu />
+                    <Stack
+                        direction="row"
+                        width="100%"
+                        justifyContent="flex-end"
+                        alignItems="center"
+                        gap="16px"
+                    >
+                        {(user?.avatar || user?.name) && (
+                            <Stack
+                                direction="row"
+                                gap="16px"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                {user?.name && (
+                                    <Typography variant="subtitle2">
+                                        {user?.name}
+                                    </Typography>
+                                )}
+                                <Avatar src={user?.avatar} alt={user?.name} />
+                            </Stack>
+                        )}
+                    </Stack>
+                </Stack>
+            </Toolbar>
+        </AppBar>
+    );
+};
+```
+
 ## Hamburger Menu
 
 [themed-sider]: https://github.com/refinedev/refine/blob/next/packages/mui/src/components/themedLayoutV2/sider/index.tsx
