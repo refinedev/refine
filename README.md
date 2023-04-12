@@ -71,13 +71,15 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 ## Try refine online
 
+<br/>
+
 <a href="https://s.refine.dev/refine-new-github">
 <img src="https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png">
 </a>
 
 <br/>
 
- [refine.new](https://refine.new/) is a powerful open-source tool that lets you create refine apps. 
+ [refine.new](https://s.refine.dev/refine-new-github) is a powerful open-source browser tool that lets you create refine apps. 
 
 You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.  
 
