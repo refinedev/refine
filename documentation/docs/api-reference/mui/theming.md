@@ -23,7 +23,7 @@ const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } =
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, RefineThemes } from "@refinedev/mui";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/mui";
 
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -33,7 +33,7 @@ const App: React.FC = () => {
             <Refine
             /* ... */
             >
-                <ThemedLayout>{/* ... */}</ThemedLayout>
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
             </Refine>
         </ThemeProvider>
     );
@@ -52,7 +52,7 @@ The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-p
 
 ```tsx title="src/App.tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, ErrorComponent } from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 // highlight-next-line
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
@@ -87,9 +87,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="posts">
@@ -122,7 +122,7 @@ If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/cu
 
 ```tsx live previewOnly disableScroll
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, ErrorComponent } from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -155,9 +155,9 @@ const App: React.FC = () => {
                         <Route index element={<NavigateToResource />} />
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="samples">
@@ -192,7 +192,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     // highlight-next-line
     RefineThemes,
@@ -230,9 +230,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="samples">
@@ -297,7 +297,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     // highlight-next-line
     RefineThemes,
@@ -347,9 +347,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="samples">
@@ -441,7 +441,7 @@ For more information, you can review [`responsiveFontSizes()`](https://mui.com/m
 setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, ErrorComponent } from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { createTheme, responsiveFontSizes } from "@mui/material";
@@ -491,9 +491,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="samples">
@@ -556,7 +556,7 @@ For example:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, ErrorComponent, RefineThemes } from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { useMediaQuery } from "@mui/material";
@@ -601,9 +601,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="samples">
@@ -720,7 +720,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     RefineSnackbarProvider,
     notificationProvider,
@@ -790,9 +790,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     // highlight-next-line
-                                    <ThemedLayout Header={Header}>
+                                    <ThemedLayoutV2 Header={Header}>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route path="samples">
@@ -835,7 +835,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     RefineSnackbarProvider,
     notificationProvider,
@@ -910,9 +910,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout Header={Header}>
+                                    <ThemedLayoutV2 Header={Header}>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route path="samples">
@@ -955,7 +955,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
     // highlight-start
@@ -1002,9 +1002,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route path="samples">
