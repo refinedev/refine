@@ -184,12 +184,13 @@ const dataProvider = (
 
     return {
         getOne: async ({ resource, id, meta }) => {
-            const operation = defaultNamingConvention
-                ? `${meta?.operation ?? resource}_by_pk`
-                : camelCase(`${meta?.operation ?? resource}_by_pk`);
+            const operation = `${meta?.operation ?? resource}_by_pk`;
+            const camelizedOperation = camelCase(operation);
 
             const { query, variables } = gql.query({
-                operation,
+                operation: defaultNamingConvention
+                    ? operation
+                    : camelizedOperation,
                 variables: {
                     id: {
                         value: id,
