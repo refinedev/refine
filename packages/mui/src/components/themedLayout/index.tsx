@@ -5,6 +5,9 @@ import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
 import { RefineThemedLayoutProps } from "./types";
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review immigration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayoutv2
+ */
 export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     Sider,
     Header,

@@ -12,6 +12,9 @@ import { Menu } from "@mui/icons-material";
 
 import { RefineThemedLayoutHeaderProps } from "../types";
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review immigration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayoutv2
+ */
 export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = ({
     isSiderOpen,
     onToggleSiderClick,
