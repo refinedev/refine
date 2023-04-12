@@ -70,8 +70,20 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 **refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
 ## Try refine online
-You can try **refine** online with [refine.new](https://refine.new/). It's a powerful open-source tool that lets you create refine apps. You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.
-![Frame 2](https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png)
+
+<a href="https://s.refine.dev/refine-new-github">
+<img src="https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png">
+</a>
+
+<br/>
+
+ [refine.new](https://refine.new/) is a powerful open-source tool that lets you create refine apps. 
+
+You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.  
+
+
+
+
 
 ## What do you mean by "headless"?
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
