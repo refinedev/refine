@@ -1,15 +1,15 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
+import * as Icons from "@ant-design/icons";
 import {
     AuthPage,
     ErrorComponent,
-    ThemedLayout,
     notificationProvider,
+    ThemedLayout,
     ThemedTitle,
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import * as Icons from "@ant-design/icons";
 
 const {
     UserAddOutlined,
@@ -25,16 +25,16 @@ import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { DataProvider } from "@refinedev/strapi-v4";
+import { ClientList } from "pages/clients";
+import { CompanyList } from "pages/companies";
+import { ContactList, EditContact } from "pages/contacts";
+import { CreateInvoice, EditInvoice, InvoiceList } from "pages/invoices";
+import { MissionList } from "pages/missions";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { authProvider, axiosInstance } from "./authProvider";
 import { Header } from "./components/header";
 import { API_URL } from "./constants";
 import { ColorModeContextProvider } from "./contexts/color-mode";
-import { CompanyList } from "pages/companies";
-import { ClientList } from "pages/clients";
-import { ContactList, EditContact } from "pages/contacts";
-import { MissionList } from "pages/missions";
-import { CreateInvoice, EditInvoice, InvoiceList } from "pages/invoices";
 
 function App() {
     return (
@@ -98,7 +98,7 @@ function App() {
                                             Title={({ collapsed }) => (
                                                 <ThemedTitle
                                                     collapsed={collapsed}
-                                                    text="Invoicer"
+                                                    text="refine Invoicer"
                                                 />
                                             )}
                                         >
@@ -155,10 +155,12 @@ function App() {
                                             type="login"
                                             title={
                                                 <ThemedTitle
-                                                    collapsed
-                                                    text="Invoicer"
+                                                    collapsed={false}
+                                                    text="refine Invoicer"
                                                 />
                                             }
+                                            forgotPasswordLink={false}
+                                            registerLink={false}
                                             formProps={{
                                                 initialValues: {
                                                     email: "demo@refine.dev",
@@ -177,7 +179,7 @@ function App() {
                                             Title={({ collapsed }) => (
                                                 <ThemedTitle
                                                     collapsed={collapsed}
-                                                    text="Invoicer"
+                                                    text="refine Invoicer"
                                                 />
                                             )}
                                         >
