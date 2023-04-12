@@ -1,6 +1,6 @@
-import { RequestQueryBuilder } from "@nestjsx/crud-request";
+import { RequestQueryBuilder, QuerySort } from "@nestjsx/crud-request";
 import { CrudFilters, CrudSorting } from "@refinedev/core";
-import { handleFilter, handleSort } from "../../src/utils";
+import { handleFilter, generateSort, handleSort } from "../../src/utils";
 
 describe("handleSort", () => {
     it("should not modify the query if no sorters are provided", () => {
@@ -85,5 +85,65 @@ describe("handleSort", () => {
             "sort%5B0%5D=name%2CASC&s=%7B%22%24and%22%3A%5B%7B%22age%22%3A%7B%22%24gte%22%3A18%7D%7D%2C%7B%22email%22%3A%7B%22%24eq%22%3A%22john%22%7D%7D%5D%7D";
 
         expect(query.query()).toEqual(expectedQuery);
+    });
+});
+
+describe("generateSort", () => {
+    it("should return undefined when no sorting is provided", () => {
+        expect(generateSort()).toBeUndefined();
+    });
+
+    it("should generate an array of sort objects when sorting is provided", () => {
+        const sort: CrudSorting = [
+            {
+                field: "field1",
+                order: "asc",
+            },
+            {
+                field: "field2",
+                order: "desc",
+            },
+        ];
+
+        const expectedSort: QuerySort[] = [
+            {
+                field: "field1",
+                order: "ASC",
+            },
+            {
+                field: "field2",
+                order: "DESC",
+            },
+        ];
+
+        expect(generateSort(sort)).toEqual(expectedSort);
+    });
+
+    it("should ignore invalid sort entries", () => {
+        const sort: CrudSorting = [
+            {
+                field: "field1",
+                order: "asc",
+            },
+            {
+                field: "",
+                order: "desc",
+            },
+        ];
+
+        const expectedSort: QuerySort[] = [
+            {
+                field: "field1",
+                order: "ASC",
+            },
+        ];
+
+        expect(generateSort(sort)).toEqual(expectedSort);
+    });
+
+    it("should return undefined when array is empty", () => {
+        const sort: CrudSorting = [];
+
+        expect(generateSort(sort)).toBeUndefined();
     });
 });

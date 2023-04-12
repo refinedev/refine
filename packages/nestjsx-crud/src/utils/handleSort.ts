@@ -1,6 +1,29 @@
-import { RequestQueryBuilder } from "@nestjsx/crud-request";
+import {
+    RequestQueryBuilder,
+    QuerySort,
+    QuerySortArr,
+    QuerySortOperator,
+} from "@nestjsx/crud-request";
 import { CrudSorting } from "@refinedev/core";
-import { generateSort } from "./generateSort";
+
+export type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
+
+export const generateSort = (sort?: CrudSorting): SortBy | undefined => {
+    if (sort && sort.length > 0) {
+        const multipleSort: SortBy = [];
+        sort.map(({ field, order }) => {
+            if (field && order) {
+                multipleSort.push({
+                    field: field,
+                    order: order.toUpperCase() as QuerySortOperator,
+                });
+            }
+        });
+        return multipleSort;
+    }
+
+    return;
+};
 
 export const handleSort = (
     query: RequestQueryBuilder,

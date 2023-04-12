@@ -44,18 +44,6 @@ module.exports = {
                         dest: "./providers/nestjsx-crud/utils/index.ts",
                     },
                     {
-                        src: "./src/utils/createSearchQuery.ts",
-                        dest: "./providers/nestjsx-crud/utils/createSearchQuery.ts",
-                    },
-                    {
-                        src: "./src/utils/generateSearchFilter.ts",
-                        dest: "./providers/nestjsx-crud/utils/generateSearchFilter.ts",
-                    },
-                    {
-                        src: "./src/utils/generateSort.ts",
-                        dest: "./providers/nestjsx-crud/utils/generateSort.ts",
-                    },
-                    {
                         src: "./src/utils/handleFilter.ts",
                         dest: "./providers/nestjsx-crud/utils/handleFilter.ts",
                     },
