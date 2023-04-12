@@ -28,10 +28,7 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
-    useParsed,
 } from "@hooks";
-import { pickResource } from "@definitions/helpers/pick-resource";
-import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 
 type useCreateParams<TData, TError, TVariables> = {
     /**
