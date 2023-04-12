@@ -5,19 +5,18 @@ import {
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
-import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
 import { ConfigProvider } from "antd";
+
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
-
-const API_URL = "https://api.fake-rest.refine.dev";
+import dataProvider from "./rest-data-provider";
+import { PostList } from "./pages/posts";
+import { UserList } from "./pages/users";
 
 const App: React.FC = () => {
     return (
@@ -26,17 +25,23 @@ const App: React.FC = () => {
             <ConfigProvider theme={RefineThemes.Blue}>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
+                    dataProvider={dataProvider}
                     notificationProvider={notificationProvider}
                     resources={[
                         {
                             name: "posts",
                             list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
                             meta: {
-                                canDelete: true,
+                                role: "admin",
+                                order: 1,
+                            },
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            meta: {
+                                role: "editor",
+                                order: 2,
                             },
                         },
                     ]}
@@ -60,12 +65,8 @@ const App: React.FC = () => {
                                 }
                             />
 
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
+                            <Route path="/posts" element={<PostList />} />
+                            <Route path="/users" element={<UserList />} />
 
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
