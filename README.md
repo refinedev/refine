@@ -69,7 +69,10 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 **refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
-## What do you mean by "headless" ?
+## Try refine online
+You can try **refine** online with [refine.new](https://refine.new/). It's a powerful open-source tool that lets you create refine apps. You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.
+
+## What do you mean by "headless"?
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
 
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
