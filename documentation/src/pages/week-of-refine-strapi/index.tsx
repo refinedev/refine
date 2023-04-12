@@ -30,7 +30,7 @@ const timeline = [
         date: "12th April 2023",
         title: "Adding CRUD Actions & Views",
         description: `We leverage the Strapi dataProvider methods to implement CRUD operations for companies, clients and contacts resources. and user authentication using <strong className="font-bold">Strapi</strong>.`,
-        /* link: "https://refine.dev/blog/refine-invoicer-3/ */
+        link: "https://refine.dev/blog/refine-invoicer-3",
     },
     {
         date: "13th April 2023",
