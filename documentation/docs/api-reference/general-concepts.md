@@ -171,6 +171,10 @@ const dataProvider = {
 
 This can be useful when you want to customize the behavior of data provider methods based on query parameters passed in the URL.
 
-[Refer to the how to pass `meta` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
+### Use `meta` to generate GraphQL queries
 
 [Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql.md)
+
+### How to pass `meta` to your existing `dataProvider` methods
+
+[Refer to the how to pass `meta` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
