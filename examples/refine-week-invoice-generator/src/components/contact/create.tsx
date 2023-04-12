@@ -19,16 +19,17 @@ export const CreateContact: React.FC<CreateContactProps> = ({
         optionLabel: "name",
 
         pagination: {
-            mode: "server"
-        }
+            mode: "server",
+        },
     });
 
     return (
-        <Modal {...modalProps} title="Create Contact" width={breakpoint.sm ? "600px" : "80%"}>
-            <Form
-                {...formProps}
-                layout="vertical"
-                >
+        <Modal
+            {...modalProps}
+            title="Create Contact"
+            width={breakpoint.sm ? "600px" : "80%"}
+        >
+            <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="First Name"
                     name="first_name"

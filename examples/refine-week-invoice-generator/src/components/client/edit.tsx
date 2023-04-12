@@ -1,5 +1,14 @@
 import { Edit, useSelect } from "@refinedev/antd";
-import { Drawer, DrawerProps, Form, FormProps, Input, ButtonProps, Grid, Select } from "antd";
+import {
+    Drawer,
+    DrawerProps,
+    Form,
+    FormProps,
+    Input,
+    ButtonProps,
+    Grid,
+    Select,
+} from "antd";
 
 type EditClientProps = {
     drawerProps: DrawerProps;
@@ -19,8 +28,8 @@ export const EditClient: React.FC<EditClientProps> = ({
         optionLabel: "first_name",
 
         pagination: {
-            mode: "server"
-        }
+            mode: "server",
+        },
     });
 
     return (
@@ -31,11 +40,12 @@ export const EditClient: React.FC<EditClientProps> = ({
         >
             <Edit
                 saveButtonProps={saveButtonProps}
-                title={<h4
-                    style={{"padding": "0 24px", "fontWeight": "bold"}}
-                    >
+                title={
+                    <h4 style={{ padding: "0 24px", fontWeight: "bold" }}>
                         Edit Client
-                    </h4>}>
+                    </h4>
+                }
+            >
                 <Form
                     {...formProps}
                     layout="vertical"

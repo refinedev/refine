@@ -1,6 +1,10 @@
 import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
 
-import { useStrapiUpload, getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import {
+    useStrapiUpload,
+    getValueProps,
+    mediaUploadMapper,
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
 
@@ -19,7 +23,11 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
     });
 
     return (
-        <Modal {...modalProps} title="Edit Company" width={breakpoint.sm ? "600px" : "80%"}>
+        <Modal
+            {...modalProps}
+            title="Edit Company"
+            width={breakpoint.sm ? "600px" : "80%"}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

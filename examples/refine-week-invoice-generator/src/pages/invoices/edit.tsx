@@ -17,8 +17,8 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "name",
 
         pagination: {
-            mode: "server"
-        }
+            mode: "server",
+        },
     });
 
     const { selectProps: contactSelectProps } = useSelect({
@@ -27,8 +27,8 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "first_name",
 
         pagination: {
-            mode: "server"
-        }
+            mode: "server",
+        },
     });
 
     const { selectProps: missionSelectProps } = useSelect({
@@ -36,8 +36,8 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "mission",
 
         pagination: {
-            mode: "server"
-        }
+            mode: "server",
+        },
     });
 
     return (
@@ -45,8 +45,8 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
             <Form
                 {...formProps}
                 layout="vertical"
-                wrapperCol={{md: 18, lg: 16}}
-                >
+                wrapperCol={{ md: 18, lg: 16 }}
+            >
                 <Form.Item label="Invoice Name" name="name">
                     <Input />
                 </Form.Item>

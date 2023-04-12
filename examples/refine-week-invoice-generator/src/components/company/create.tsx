@@ -1,7 +1,11 @@
 import { useApiUrl } from "@refinedev/core";
 import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
 
-import { useStrapiUpload, getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import {
+    useStrapiUpload,
+    getValueProps,
+    mediaUploadMapper,
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 
@@ -21,7 +25,11 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     const API_URL = useApiUrl();
 
     return (
-        <Modal {...modalProps} title="Create Company" width={breakpoint.sm ? "600px" : "80%"}>
+        <Modal
+            {...modalProps}
+            title="Create Company"
+            width={breakpoint.sm ? "600px" : "80%"}
+        >
             <Form
                 {...formProps}
                 layout="vertical"
