@@ -1,39 +1,39 @@
 {
-    "name": "form-core-use-form",
-    "version": "3.25.0",
-    "private": true,
-    "dependencies": {
-        "@refinedev/core": "^4.8.5",
-        "@refinedev/cli": "^2.1.2",
-        "@refinedev/react-hook-form": "^4.2.0",
-        "@refinedev/react-router-v6": "^4.1.0",
-        "@refinedev/react-table": "^5.2.0",
-        "@tanstack/react-table": "^8.2.6",
-        "@refinedev/simple-rest": "^4.1.0",
-        "@types/node": "^12.20.11",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "react-scripts": "^5.0.0",
-        "typescript": "^4.7.4"
-    },
-    "scripts": {
-        "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
-        "eject": "react-scripts eject",
-        "refine": "refine"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "form-core-use-form",
+  "version": "3.25.0",
+  "private": true,
+  "dependencies": {
+    "@refinedev/core": "^4.8.5",
+    "@refinedev/cli": "^2.1.2",
+    "@refinedev/react-hook-form": "^4.2.0",
+    "@refinedev/react-router-v6": "^4.1.0",
+    "@refinedev/react-table": "^5.2.0",
+    "@tanstack/react-table": "^8.2.6",
+    "@refinedev/simple-rest": "^4.1.0",
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "DISABLE_ESLINT_PLUGIN=true refine start",
+    "build": "DISABLE_ESLINT_PLUGIN=true refine build",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

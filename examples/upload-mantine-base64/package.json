@@ -2,9 +2,9 @@
   "name": "upload-mantine-base64",
   "private": true,
   "scripts": {
-    "start": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "dependencies": {

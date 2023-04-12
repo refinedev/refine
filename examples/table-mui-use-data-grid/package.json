@@ -1,44 +1,44 @@
 {
-    "name": "table-mui-use-data-grid",
-    "version": "3.25.0",
-    "private": true,
-    "dependencies": {
-        "@refinedev/core": "^4.8.5",
-        "@refinedev/cli": "^2.1.2",
-        "@refinedev/mui": "^4.8.0",
-        "@refinedev/react-hook-form": "^4.2.0",
-        "@refinedev/react-router-v6": "^4.1.0",
-        "@refinedev/simple-rest": "^4.1.0",
-        "@emotion/react": "^11.8.2",
-        "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.8.6",
-        "@mui/x-data-grid": "^5.12.1",
-        "@types/node": "^12.20.11",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
-        "typescript": "^4.7.4"
-    },
-    "scripts": {
-        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
-        "eject": "react-scripts eject",
-        "refine": "refine"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "table-mui-use-data-grid",
+  "version": "3.25.0",
+  "private": true,
+  "dependencies": {
+    "@refinedev/core": "^4.8.5",
+    "@refinedev/cli": "^2.1.2",
+    "@refinedev/mui": "^4.8.0",
+    "@refinedev/react-hook-form": "^4.2.0",
+    "@refinedev/react-router-v6": "^4.1.0",
+    "@refinedev/simple-rest": "^4.1.0",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/lab": "^5.0.0-alpha.85",
+    "@mui/material": "^5.8.6",
+    "@mui/x-data-grid": "^5.12.1",
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

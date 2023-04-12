@@ -24,8 +24,8 @@
     "@ant-design/icons": "^5.0.1"
   },
   "scripts": {
-    "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "eject": "react-scripts eject",
     "refine": "refine"
   },

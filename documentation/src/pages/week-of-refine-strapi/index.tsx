@@ -117,7 +117,7 @@ const RefineWeek = () => {
             <Head title="Week of Refine | refine">
                 <html data-page="week-of-refine" data-customized="true" />
             </Head>
-            <div className="relative px-2 pt-0 pb-24 md:px-4 md:pt-12 lg:px-0 lg:pb-48 lg:pt-24">
+            <div className="relative px-2 pb-24 pt-0 md:px-4 md:pt-12 lg:px-0 lg:pb-48 lg:pt-24">
                 <div className="font-montserrat flex flex-col">
                     <div className="mx-auto flex h-auto max-w-[904px] flex-col-reverse md:flex-row lg:h-[432px]">
                         <div className="flex flex-col items-center justify-center md:items-start">
@@ -133,7 +133,7 @@ const RefineWeek = () => {
                                     className="block h-[46px]"
                                 />
                             </div>
-                            <h2 className="font-montserrat mt-8 mb-0 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
+                            <h2 className="font-montserrat mb-0 mt-8 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
                                 Stay tuned all week and learn the basics of
                                 creating a React PDF Invoice Generator app via{" "}
                                 <strong className="font-bold">refine</strong> &{" "}
@@ -201,7 +201,7 @@ const RefineWeek = () => {
                                         <div className="flex flex-col items-center">
                                             <div
                                                 className={clsx(
-                                                    "mt-[6px] mb-[6px] h-[10px] w-[10px] rounded-full border-[2px] border-solid border-[#1890FF]",
+                                                    "mb-[6px] mt-[6px] h-[10px] w-[10px] rounded-full border-[2px] border-solid border-[#1890FF]",
                                                     hasLink
                                                         ? "border-[#1890FF]"
                                                         : "border-[#C1C1C6]",
