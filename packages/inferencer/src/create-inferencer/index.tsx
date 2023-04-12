@@ -56,10 +56,12 @@ export const createInferencer: CreateInferencer = ({
     const Inferencer = ({
         resourceName,
         fieldTransformer,
+        hideCodeViewerInProduction,
         meta,
         id,
     }: {
         resourceName?: string;
+        hideCodeViewerInProduction?: boolean;
         fieldTransformer?: InferencerComponentProps["fieldTransformer"];
         meta?: InferencerComponentProps["meta"];
         id?: string | number;
@@ -221,6 +223,10 @@ export const createInferencer: CreateInferencer = ({
             relationLoading,
         ]);
 
+        const hiddenCodeViewer =
+            process.env.NODE_ENV !== "development" &&
+            hideCodeViewerInProduction;
+
         return (
             <>
                 {LoadingComponent && (recordLoading || relationLoading) && (
@@ -250,12 +256,13 @@ export const createInferencer: CreateInferencer = ({
                             errorComponent={ErrorComponent}
                             additionalScope={additionalScope}
                         />
-                        {CodeViewerComponent && (
+                        {typeof CodeViewerComponent !== "undefined" &&
+                        !hiddenCodeViewer ? (
                             <CodeViewerComponent
                                 code={removeHiddenCode(code)}
                                 loading={recordLoading || relationLoading}
                             />
-                        )}
+                        ) : null}
                     </>
                 )}
             </>
@@ -267,6 +274,7 @@ export const createInferencer: CreateInferencer = ({
         resource,
         fieldTransformer,
         meta,
+        hideCodeViewerInProduction,
         id,
     }) => {
         const { resource: resourceItem } = useResource(resource ?? name);
@@ -277,6 +285,7 @@ export const createInferencer: CreateInferencer = ({
 
         return (
             <Inferencer
+                hideCodeViewerInProduction={hideCodeViewerInProduction}
                 fieldTransformer={fieldTransformer}
                 resourceName={resource ?? name}
                 meta={meta ?? {}}

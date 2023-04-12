@@ -165,6 +165,12 @@ export type InferencerComponentProps = {
                 | "default"]?: Record<string, any>;
         };
     };
+    /**
+     * Use this prop to hide the code viewer and the information block components in production mode.
+     *
+     * Keep in mind that Inferencer components are not meant to be used in production.
+     */
+    hideCodeViewerInProduction?: boolean;
 };
 
 export type InferencerResultComponent = React.FC<InferencerComponentProps>;
