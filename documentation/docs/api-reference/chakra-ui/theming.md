@@ -160,9 +160,52 @@ The theme object is where you define your application's color palette, type scal
 
 [Refer to the Chakra UI documentation for more information about theme. &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
 
+## Predefined Themes
+
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/theme/index.ts#L92) has predefined themes for you. You can use them by importing them from `@refinedev/chakra-ui` package. It is not required if you decide to use the default chakra-ui theme.
+
+```ts
+const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
+```
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
+
+const App: React.FC = () => {
+    return (
+        <ChakraProvider theme={RefineThemes.Blue}>
+            <Refine
+            /* ... */
+            >
+                <ThemedLayout>{/* ... */}</ThemedLayout>
+            </Refine>
+        </ChakraProvider>
+    );
+};
+```
+
+:::info
+
+[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-chakra-ui/)
+
+:::
+
+:::caution
+
+If you want to use `<ThemedLayout>` you have to wrap your application with `<ChakraProvider>` component and should give `theme` prop to it.
+
+You can use `RefineThemes` provided by **refine** or you can create your own theme object.
+
+[Refer to the Chakra UI documentation for more information about theme. &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
+
+:::
+
 ## Theme customization
 
-`<ChakraProvider/>` component can be used to change theme and other global settings. It is not required if you decide to use the default theme. You can also use `refineTheme` provided by **refine**.
+`<ChakraProvider/>` component can be used to change the theme and other global settings. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
 
 ```tsx live url=http://localhost:3000 previewHeight=450px
 setInitialRoutes(["/posts"]);
@@ -173,10 +216,10 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
     // highlight-next-line
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
@@ -191,7 +234,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 const App = () => {
     // highlight-start
     const customTheme = extendTheme({
-        ...refineTheme,
+        ...RefineThemes.Blue,
         colors: {
             sider: {
                 background: "#4A5568",
@@ -207,7 +250,9 @@ const App = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider()}
                     resources={[
                         {
@@ -219,11 +264,13 @@ const App = () => {
                     ]}
                 >
                     <Routes>
-                        <Route element={(
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        )}>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
                             <Route path="posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
@@ -267,10 +314,10 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
     // highlight-next-line
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
@@ -319,7 +366,7 @@ const Header = () => {
 const App = () => {
     // highlight-start
     const customTheme = extendTheme({
-        ...refineTheme,
+        ...RefineThemes.Blue,
         config: {
             initialColorMode: "dark",
             useSystemColorMode: false,
@@ -333,7 +380,9 @@ const App = () => {
             <BrowserRouter>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider()}
                     resources={[
                         {
@@ -345,12 +394,14 @@ const App = () => {
                     ]}
                 >
                     <Routes>
-                        <Route element={(
-                            // highlight-next-line
-                            <Layout Header={Header}>
-                                <Outlet />
-                            </Layout>
-                        )}>
+                        <Route
+                            element={
+                                // highlight-next-line
+                                <ThemedLayout Header={Header}>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
                             <Route path="posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />

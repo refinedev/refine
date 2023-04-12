@@ -20,6 +20,7 @@ import { PostList, PostCreate, PostEdit } from "pages/posts";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={RefineThemes.Blue}>
                 <CssBaseline />
                 <GlobalStyles

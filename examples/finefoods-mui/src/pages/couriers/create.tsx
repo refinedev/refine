@@ -464,7 +464,11 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                         value,
                                                     ) =>
                                                         value === undefined ||
-                                                        option.id === value.id
+                                                        option?.id?.toString() ===
+                                                            (
+                                                                value?.id ??
+                                                                value
+                                                            )?.toString()
                                                     }
                                                     renderInput={(params) => (
                                                         <TextField

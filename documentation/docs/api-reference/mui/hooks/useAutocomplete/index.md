@@ -217,7 +217,8 @@ const filterOptions = createFilterOptions({
     filterOptions={filterOptions}
     // highlight-end
     isOptionEqualToValue={(option, value) =>
-        value === undefined || option.id.toString() === value.toString()
+        value === undefined ||
+        option?.id?.toString() === (value?.id ?? value)?.toString()
     }
     placeholder="Select a category"
     renderInput={(params) => (
@@ -415,6 +416,14 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 
 <PropsTable module="@refinedev/mui/useAutocomplete"/>
 
+### Type Parameters
+
+| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
+
 ### Return values
 
 | Property                   | Description                                    | Type                                                                                          |
@@ -436,3 +445,6 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 ## Example
 
 <CodeSandboxExample path="field-mui-use-autocomplete" />
+
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

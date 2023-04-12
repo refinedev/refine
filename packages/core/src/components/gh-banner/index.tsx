@@ -14,7 +14,6 @@ export const GitHubBanner = () => {
         <div
             className="banner"
             style={{
-                display: "flex",
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
@@ -24,9 +23,15 @@ export const GitHubBanner = () => {
                 borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
             }}
         >
+            {/* sider offset for center alignment */}
+            <div
+                style={{
+                    width: "200px",
+                }}
+            />
             <a
                 className="gh-link"
-                href="https://www.producthunt.com/posts/refine-new"
+                href="https://s.refine.dev/github-support"
                 target="_blank"
                 rel="noreferrer"
             >
@@ -65,8 +70,8 @@ export const GitHubBanner = () => {
                             textShadow: "0px 0px 4px rgba(255, 255, 255, 0.5)",
                         }}
                     >
-                        Our new refine tool has just been launched on Product
-                        Hunt 😻 We would greatly appreciate your support!
+                        refine grants your wishes! Please give us a ⭐️ on
+                        GitHub to keep the magic going.
                     </span>
                 </div>
             </a>

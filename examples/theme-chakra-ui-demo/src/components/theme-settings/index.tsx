@@ -4,62 +4,70 @@ import {
     Button,
     HStack,
     Modal,
+    ModalBody,
+    ModalCloseButton,
     ModalContent,
+    ModalHeader,
     ModalOverlay,
     useColorMode,
 } from "@chakra-ui/react";
 import { FC } from "react";
+
+type ThemeName = keyof typeof RefineThemes;
 
 interface Props {
     onColorClick: (theme: RefineTheme) => void;
 }
 
 export const ThemeSettings: FC<Props> = ({ onColorClick }) => {
-    const { toggleColorMode } = useColorMode();
+    const { colorMode, toggleColorMode } = useColorMode();
     const { visible, show, close } = useModal();
 
     return (
         <div>
-            {" "}
             <Button
                 sx={{
                     position: "fixed",
-                    bottom: 0,
+                    bottom: "16px",
                     left: "50%",
                     transform: "translateX(-50%)",
                 }}
                 onClick={show}
             >
-                Open Theme Settings
+                Theme Settings
             </Button>
             <Modal isOpen={visible} onClose={close} size={"2xl"}>
                 <ModalOverlay />
                 <ModalContent p="4">
-                    <HStack>
-                        {Object.keys(RefineThemes).map((name) => {
-                            const theme =
-                                RefineThemes[name as keyof typeof RefineThemes];
+                    <ModalHeader>Theme Settings</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <HStack>
+                            {Object.keys(RefineThemes).map((name) => {
+                                const theme = RefineThemes[name as ThemeName];
 
-                            return (
-                                <Button
-                                    p={8}
-                                    key={name}
-                                    onClick={() => {
-                                        onColorClick(theme);
-                                    }}
-                                    bg={theme.colors?.brand[500]}
-                                >
-                                    {name}
-                                </Button>
-                            );
-                        })}
-                    </HStack>
+                                return (
+                                    <Button
+                                        p={8}
+                                        key={name}
+                                        onClick={() => {
+                                            onColorClick(theme);
+                                        }}
+                                        bg={theme.colors?.brand[500]}
+                                    >
+                                        {name}
+                                    </Button>
+                                );
+                            })}
+                        </HStack>
 
-                    <HStack justifyContent="center" pt={4}>
-                        <Button onClick={toggleColorMode}>
-                            Toggle Color Mode
-                        </Button>
-                    </HStack>
+                        <HStack pt={8}>
+                            <Button onClick={toggleColorMode}>
+                                Set Mode to{" "}
+                                {colorMode === "dark" ? "Light ☀️" : "Dark  🌑"}
+                            </Button>
+                        </HStack>
+                    </ModalBody>
                 </ModalContent>
             </Modal>
         </div>

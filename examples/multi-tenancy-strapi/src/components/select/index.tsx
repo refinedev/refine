@@ -7,7 +7,7 @@ import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
 
 type SelectProps = {
-    onSelect: () => void;
+    onSelect?: () => void;
 };
 
 export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
@@ -26,7 +26,7 @@ export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
     return (
         <Select
             defaultValue={store}
-            style={{ width: 130 }}
+            style={{ width: 120 }}
             onChange={handleChange}
             onSelect={onSelect}
         >

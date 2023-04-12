@@ -33,8 +33,8 @@ import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import {
     ErrorComponent,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -45,7 +45,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -69,9 +69,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route
@@ -213,8 +213,8 @@ import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import {
     ErrorComponent,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -227,7 +227,7 @@ import { BlogPostList } from "pages/blog-posts/list";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -251,9 +251,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

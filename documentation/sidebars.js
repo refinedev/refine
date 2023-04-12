@@ -304,6 +304,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/antd/components/antd-auth-page",
+                                "api-reference/antd/components/antd-themed-layout",
                                 "api-reference/antd/components/inferencer",
                                 {
                                     type: "category",
@@ -377,6 +378,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/chakra-ui/components/chakra-auth-page",
+                                "api-reference/chakra-ui/components/chakra-ui-themed-layout",
                                 "api-reference/chakra-ui/components/inferencer",
                                 {
                                     type: "category",
@@ -457,6 +459,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mantine/components/mantine-auth-page",
+                                "api-reference/mantine/components/mantine-themed-layout",
                                 "api-reference/mantine/components/inferencer",
                                 {
                                     type: "category",
@@ -528,6 +531,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mui/components/mui-auth-page",
+                                "api-reference/mui/components/mui-themed-layout",
                                 "api-reference/mui/components/inferencer",
                                 {
                                     type: "category",
@@ -681,6 +685,7 @@ module.exports = {
                     type: "category",
                     label: "Customization",
                     items: [
+                        "examples/customization/customTheme",
                         "examples/customization/customFooter",
                         "examples/customization/customLogin",
                         "examples/customization/customSider",
@@ -893,11 +898,20 @@ module.exports = {
                         },
                     ],
                 },
-                "examples/customTheme",
                 {
                     type: "category",
                     label: "UI",
                     items: ["examples/ui/useModal"],
+                },
+                {
+                    type: "category",
+                    label: "Themes",
+                    items: [
+                        "examples/themes/refine-themes-antd",
+                        "examples/themes/refine-themes-chakra-ui",
+                        "examples/themes/refine-themes-mantine",
+                        "examples/themes/refine-themes-mui",
+                    ],
                 },
                 {
                     type: "category",

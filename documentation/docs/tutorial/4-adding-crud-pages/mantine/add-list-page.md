@@ -33,8 +33,8 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
 import {
     ErrorComponent,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
 } from "@refinedev/mantine";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -46,7 +46,11 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -70,9 +74,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route
@@ -220,8 +224,8 @@ import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import {
     ErrorComponent,
-    Layout,
-    LightTheme,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
 } from "@refinedev/mantine";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -233,7 +237,11 @@ import { BlogPostList } from "pages/blog-posts/list";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -257,9 +265,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route

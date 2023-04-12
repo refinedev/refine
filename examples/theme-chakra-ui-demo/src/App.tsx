@@ -14,10 +14,9 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { IconBrandGoogle, IconBrandGithub, IconDashboard } from "@tabler/icons";
+import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
-import DashboardPage from "./pages/dashboard";
 import { authProvider } from "./authProvider";
 import { useState } from "react";
 import { ThemeSettings } from "./components/theme-settings";
@@ -41,20 +40,6 @@ const App: React.FC = () => {
                     notificationProvider={notificationProvider()}
                     resources={[
                         {
-                            name: "dashboard",
-                            list: "/",
-                            meta: {
-                                label: "Dashboard",
-                                icon: <IconDashboard size={16} />,
-                            },
-                        },
-                        {
-                            name: "Multi Level",
-                            meta: {
-                                label: "Multi Level",
-                            },
-                        },
-                        {
                             name: "posts",
                             list: "/posts",
                             show: "/posts/show/:id",
@@ -62,22 +47,6 @@ const App: React.FC = () => {
                             edit: "/posts/edit/:id",
                             meta: {
                                 canDelete: true,
-                            },
-                        },
-                        {
-                            name: "Demo 1",
-                            list: "/demo1",
-                            meta: {
-                                label: "Demo 1",
-                                parent: "Multi Level",
-                            },
-                        },
-                        {
-                            name: "Demo 2",
-                            list: "/demo2",
-                            meta: {
-                                label: "Demo 2",
-                                parent: "Multi Level",
                             },
                         },
                     ]}
@@ -98,7 +67,12 @@ const App: React.FC = () => {
                                 </Authenticated>
                             }
                         >
-                            <Route index element={<DashboardPage />} />
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
 
                             <Route path="/posts">
                                 <Route index element={<PostList />} />

@@ -6,12 +6,13 @@ import { useTableProps, useTableReturnType } from "../useTable";
 import { UseFormReturnType, useForm } from "../../form/useForm";
 
 export type useEditableTableReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
     TSearchVariables = unknown,
+    TData extends BaseRecord = TQueryFnData,
 > = useTableReturnType<TData, TError, TSearchVariables> &
-    UseFormReturnType<TData, TError, TVariables> & {
+    UseFormReturnType<TQueryFnData, TError, TVariables> & {
         saveButtonProps: ButtonProps & {
             onClick: () => void;
         };
@@ -25,43 +26,59 @@ export type useEditableTableReturnType<
     };
 
 type useEditableTableProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
     TSearchVariables = unknown,
+    TData extends BaseRecord = TQueryFnData,
 > = Omit<
-    useTableProps<TData, TError, TSearchVariables>,
+    useTableProps<TQueryFnData, TError, TSearchVariables, TData>,
     "successNotification" | "errorNotification"
 > &
-    UseFormProps<TData, TError, TVariables>;
+    UseFormProps<TQueryFnData, TError, TVariables>;
 
 /**
  * `useEditeableTable` allows you to implement edit feature on the table with ease,
- * on top of all the features that {@link https://refine.dev/docs/api-references/hooks/table/useTable `useTable`} provides.
+ * on top of all the features that {@link https://refine.dev/docs/api-reference/core/hooks/useTable/ `useTable`} provides.
  * `useEditableTable` return properties that can be used on Ant Design's {@link https://ant.design/components/table/ `<Table>`}
  * and {@link https://ant.design/components/form/ `<Form>`} components.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/table/useEditableTable} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/table/useTable/} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TVariables - Values for params
+ * @typeParam TSearchVariables - Values for search params
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
  */
 export const useEditableTable = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
     TSearchVariables = unknown,
+    TData extends BaseRecord = TQueryFnData,
 >(
     props: useEditableTableProps<
-        TData,
+        TQueryFnData,
         TError,
         TVariables,
-        TSearchVariables
+        TSearchVariables,
+        TData
     > = {},
-): useEditableTableReturnType<TData, TError, TVariables, TSearchVariables> => {
-    const table = useTable<TData, TError, TSearchVariables>({
+): useEditableTableReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TSearchVariables,
+    TData
+> => {
+    const table = useTable<TQueryFnData, TError, TSearchVariables, TData>({
         ...props,
         successNotification: undefined,
         errorNotification: undefined,
     });
-    const edit = useForm<TData, TError, TVariables>({
+    const edit = useForm<TQueryFnData, TError, TVariables>({
         ...props,
         action: "edit",
         redirect: false,

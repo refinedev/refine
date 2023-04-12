@@ -29,7 +29,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions/helpers";
 
-export type UseManyProps<TData, TError> = {
+export type UseManyProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -42,7 +42,11 @@ export type UseManyProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetManyResponse<TQueryFnData>,
+        TError,
+        GetManyResponse<TData>
+    >;
     /**
      * Metadata query for `dataProvider`,
      */
@@ -67,13 +71,16 @@ export type UseManyProps<TData, TError> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useMany} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useMany = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     ids,
@@ -86,7 +93,7 @@ export const useMany = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseManyProps<TData, TError>): QueryObserverResult<
+}: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
     const { resources } = useResource();
@@ -128,13 +135,25 @@ export const useMany = <
         onLiveEvent,
     });
 
-    const queryResponse = useQuery<GetManyResponse<TData>, TError>(
+    const queryResponse = useQuery<
+        GetManyResponse<TQueryFnData>,
+        TError,
+        GetManyResponse<TData>
+    >(
         queryKey.many(ids),
         ({ queryKey, pageParam, signal }) => {
             if (getMany) {
                 return getMany({
                     resource,
                     ids,
+                    meta: {
+                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
+                    },
                     metaData: {
                         ...(pickNotDeprecated(meta, metaData) || {}),
                         queryContext: {
@@ -147,9 +166,17 @@ export const useMany = <
             } else {
                 return handleMultiple(
                     ids.map((id) =>
-                        getOne<TData>({
+                        getOne<TQueryFnData>({
                             resource,
                             id,
+                            meta: {
+                                ...(pickNotDeprecated(meta, metaData) || {}),
+                                queryContext: {
+                                    queryKey,
+                                    pageParam,
+                                    signal,
+                                },
+                            },
                             metaData: {
                                 ...(pickNotDeprecated(meta, metaData) || {}),
                                 queryContext: {

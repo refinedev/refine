@@ -22,7 +22,8 @@ export type UseModalFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-> = UseFormReturnType<TData, TError, TVariables, TTransformed> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnType<TData, TError, TVariables, TTransformed, TSelectData> & {
     modal: {
         submit: (
             values: ReturnType<
@@ -46,7 +47,8 @@ export type UseModalFormProps<
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-> = UseFormProps<TData, TError, TVariables, TTransformed> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormProps<TData, TError, TVariables, TTransformed, TSelectData> & {
     modalProps?: {
         defaultVisible?: boolean;
         autoSubmitClose?: boolean;
@@ -59,6 +61,7 @@ export const useModalForm = <
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
+    TSelectData extends BaseRecord = TData,
 >({
     modalProps,
     refineCoreProps,
@@ -68,8 +71,15 @@ export const useModalForm = <
     TData,
     TError,
     TVariables,
-    TTransformed
-> = {}): UseModalFormReturnType<TData, TError, TVariables, TTransformed> => {
+    TTransformed,
+    TSelectData
+> = {}): UseModalFormReturnType<
+    TData,
+    TError,
+    TVariables,
+    TTransformed,
+    TSelectData
+> => {
     const initiallySynced = React.useRef(false);
 
     const translate = useTranslate();
@@ -103,7 +113,8 @@ export const useModalForm = <
         TData,
         TError,
         TVariables,
-        TTransformed
+        TTransformed,
+        TSelectData
     >({
         refineCoreProps,
         ...rest,
@@ -212,10 +223,20 @@ export const useModalForm = <
         close();
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: BaseKey) => {
-        setId?.(id);
-        show();
-    }, []);
+    const handleShow = useCallback(
+        (showId?: BaseKey) => {
+            if (typeof showId !== "undefined") {
+                setId?.(showId);
+            }
+            const needsIdToOpen = action === "edit" || action === "clone";
+            const hasId =
+                typeof showId !== "undefined" || typeof id !== "undefined";
+            if (needsIdToOpen ? hasId : true) {
+                show();
+            }
+        },
+        [id],
+    );
 
     const title = translate(
         `${resource?.name}.titles.${actionProp}`,

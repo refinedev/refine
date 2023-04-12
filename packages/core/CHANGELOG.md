@@ -1,5 +1,80 @@
 # @pankod/refine-core
 
+## 4.8.5
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.4
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.3
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.2
+
+### Patch Changes
+
+-   [#4133](https://github.com/refinedev/refine/pull/4133) [`68f035dc4c0`](https://github.com/refinedev/refine/commit/68f035dc4c0a28848480e088e6e8970ae08c5a55) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: Hide `<GithubBanner />` on mobile.
+
+## 4.8.1
+
+### Patch Changes
+
+-   [#4133](https://github.com/refinedev/refine/pull/4133) [`68f035dc4c0`](https://github.com/refinedev/refine/commit/68f035dc4c0a28848480e088e6e8970ae08c5a55) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: Hide `<GithubBanner />` on mobile.
+
+## 4.8.0
+
+### Minor Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing third generic parameter to hooks which are using `useQuery` internally.
+
+    For example:
+
+    ```ts
+    import { useOne, HttpError } from "@refinedev/core";
+
+    const { data } = useOne<{ count: string }, HttpError, { count: number }>({
+        resource: "product-count",
+        queryOptions: {
+            select: (rawData) => {
+                return {
+                    data: {
+                        count: Number(rawData?.data?.count),
+                    },
+                };
+            },
+        },
+    });
+
+    console.log(typeof data?.data.count); // number
+    ```
+
+### Patch Changes
+
+-   [#4129](https://github.com/refinedev/refine/pull/4129) [`e64ffe999b3`](https://github.com/refinedev/refine/commit/e64ffe999b30649bf5161d876a21b7bd2efc0658) Thanks [@aliemir](https://github.com/aliemir)! - Added the missing connection between the data provider's and the `useMany` hook's `meta` property.
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the generic type name of hooks that use `useQuery` to synchronize generic type names with `tanstack-query`.
+
+## 4.7.2
+
+### Patch Changes
+
+-   [#4102](https://github.com/refinedev/refine/pull/4102) [`44e403aa654`](https://github.com/refinedev/refine/commit/44e403aa654b733d2f9210faef5670752e60a3f3) Thanks [@aliemir](https://github.com/aliemir)! - Revert changes in `<GithubBanner />` to promote github stars.
+
+## 4.7.1
+
+### Patch Changes
+
+-   [#4102](https://github.com/refinedev/refine/pull/4102) [`44e403aa654`](https://github.com/refinedev/refine/commit/44e403aa654b733d2f9210faef5670752e60a3f3) Thanks [@aliemir](https://github.com/aliemir)! - Revert changes in `<GithubBanner />` to promote github stars.
+
 ## 4.7.0
 
 ### Minor Changes

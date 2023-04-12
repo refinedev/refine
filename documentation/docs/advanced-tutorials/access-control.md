@@ -38,12 +38,18 @@ The app will have three resources: **posts**, **users**, and **categories** with
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+    RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -60,59 +66,78 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                        { meta: canDelete: true },
-                    },
-                    {
-                        name: "users",
-                        list: "/users",
-                        create: "/users/create",
-                        edit: "/users/edit/:id",
-                        show: "/users/show/:id",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        create: "/categories/create",
-                        edit: "/categories/edit/:id",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route element={<Layout><Outlet /></Layout>}>
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
+                        },
+                        {
+                            name: "users",
+                            list: "/users",
+                            create: "/users/create",
+                            edit: "/users/edit/:id",
+                            show: "/users/show/:id",
+                        },
+                        {
+                            name: "categories",
+                            list: "/categories",
+                            create: "/categories/create",
+                            edit: "/categories/edit/:id",
+                            show: "/categories/show/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+                            <Route path="users">
+                                <Route index element={<UserList />} />
+                                <Route path="create" element={<UserCreate />} />
+                                <Route path="show/:id" element={<UserShow />} />
+                                <Route path="edit/:id" element={<UserEdit />} />
+                            </Route>
+                            <Route path="categories">
+                                <Route index element={<CategoryList />} />
+                                <Route
+                                    path="create"
+                                    element={<CategoryCreate />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<CategoryShow />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<CategoryEdit />}
+                                />
+                            </Route>
                         </Route>
-                        <Route path="users">
-                            <Route index element={<UserList />} />
-                            <Route path="create" element={<UserCreate />} />
-                            <Route path="show/:id" element={<UserShow />} />
-                            <Route path="edit/:id" element={<UserEdit />} />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                            <Route path="edit/:id" element={<CategoryEdit />} />
-                        </Route>
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-            </Refine>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

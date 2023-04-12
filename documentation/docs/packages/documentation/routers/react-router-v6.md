@@ -185,7 +185,7 @@ We've also used the `<Outlet>` component inside the children of the `<Authentica
 
 ### Usage with Layouts
 
-When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<Layout>`](/docs/advanced-tutorials/custom-layout/#layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Layout>` component. This will allow us to define the common layout for our routes.
+When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<ThemedLayout>`](/docs/advanced-tutorials/custom-layout/#layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<ThemedLayout>` component. This will allow us to define the common layout for our routes.
 
 In the below example, we'll wrap our resource routes with the `Layout` component from `@refinedev/antd` and render the routes inside the `<Outlet>` component.
 
@@ -198,7 +198,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { authProvider } from "src/authProvider";
 
 // highlight-next-line
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout } from "@refinedev/antd";
 
 import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
@@ -240,9 +240,9 @@ const App = () => {
                         element={
                             <Authenticated redirectOnFail="/login">
                                 {/* highlight-start */}
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                                 {/* highlight-end */}
                             </Authenticated>
                         }
@@ -263,7 +263,7 @@ const App = () => {
 };
 ```
 
-Notice that we've wrapped the `<Outlet>` with `<Layout>` component. This way, we don't need to define the layout for each route and wrap the each route inside it with the `<Layout>` component.
+Notice that we've wrapped the `<Outlet>` with `<ThemedLayout>` component. This way, we don't need to define the layout for each route and wrap the each route inside it with the `<ThemedLayout>` component.
 
 ### Usage with Access Control providers
 
@@ -282,7 +282,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "src/authProvider";
 
-import { AuthPage, Layout } from "@refinedev/antd";
+import { AuthPage, ThemedLayout } from "@refinedev/antd";
 
 import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
@@ -323,7 +323,7 @@ const App = () => {
                     <Route
                         element={
                             <Authenticated redirectOnFail="/login">
-                                <Layout>
+                                <ThemedLayout>
                                     {/* highlight-start */}
                                     <CanAccess
                                         fallback={<div>Unauthorized!</div>}
@@ -331,7 +331,7 @@ const App = () => {
                                         <Outlet />
                                     </CanAccess>
                                     {/* highlight-end */}
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >
@@ -369,9 +369,9 @@ If you don't want to wrap your whole application with `CanAccess`, it's also pos
     <Route
         element={
             <Authenticated redirectOnFail="/login">
-                <Layout>
+                <ThemedLayout>
                     <Outlet />
-                </Layout>
+                </ThemedLayout>
             </Authenticated>
         }
     >
@@ -413,7 +413,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { authProvider } from "src/authProvider";
 
 // highlight-next-line
-import { AuthPage, Layout, ErrorComponent } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, ErrorComponent } from "@refinedev/antd";
 
 import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
@@ -454,9 +454,9 @@ const App = () => {
                     <Route
                         element={
                             <Authenticated redirectOnFail="/login">
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >
@@ -495,7 +495,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "src/authProvider";
 
-import { AuthPage, Layout, ErrorComponent } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, ErrorComponent } from "@refinedev/antd";
 
 import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
@@ -536,9 +536,9 @@ const App = () => {
                     <Route
                         element={
                             <Authenticated redirectOnFail="/login">
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             </Authenticated>
                         }
                     >

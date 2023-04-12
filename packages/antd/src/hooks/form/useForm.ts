@@ -19,7 +19,8 @@ export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormPropsCore<TData, TError, TVariables> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormPropsCore<TData, TError, TVariables, TSelectData> & {
     submitOnEnter?: boolean;
     /**
      * Shows notification when unsaved changes exist
@@ -31,7 +32,8 @@ export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormReturnTypeCore<TData, TError, TVariables> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnTypeCore<TData, TError, TVariables, TSelectData> & {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
     saveButtonProps: ButtonProps & {
@@ -57,6 +59,7 @@ export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
+    TSelectData extends BaseRecord = TData,
 >({
     action,
     resource,
@@ -80,18 +83,24 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     id: idFromProps,
-}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TSelectData
+> = {}): UseFormReturnType<TData, TError, TVariables, TSelectData> => {
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
         form: formAnt,
     });
     const { form } = formSF;
 
-    const useFormCoreResult = useFormCore<TData, TError, TVariables>({
+    const useFormCoreResult = useFormCore<
+        TData,
+        TError,
+        TVariables,
+        TSelectData
+    >({
         onMutationSuccess: onMutationSuccessProp
             ? onMutationSuccessProp
             : undefined,

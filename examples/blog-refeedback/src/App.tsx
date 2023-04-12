@@ -2,7 +2,7 @@ import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 
 import {
     notificationProvider,
-    LoginPage,
+    AuthPage,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
@@ -84,7 +84,10 @@ function App() {
                                 </Authenticated>
                             }
                         >
-                            <Route path="/login" element={<LoginPage />} />
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
                         </Route>
 
                         <Route
