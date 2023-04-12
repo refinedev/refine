@@ -62,6 +62,15 @@ Now with x feature, you can do y.
 
 ```
 
+or
+
+```
+fix: issue with x.
+
+We had an edge where it causes x issue to happen, now it's fixed.
+
+```
+
 and then you are done!
 
 ## Running in development mode
