@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^2.1.2",
+    "@refinedev/cli": "^2.2.0",
     "@refinedev/core": "^4.8.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -19,7 +19,7 @@
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.1.0",
     "@refinedev/react-router-v6": "^4.1.0",
-    "@refinedev/inferencer": "^3.1.7",
+    "@refinedev/inferencer": "^3.2.0",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",

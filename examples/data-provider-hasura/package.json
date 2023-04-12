@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/antd": "^5.6.0",
     "@refinedev/core": "^4.8.5",
-    "@refinedev/cli": "^2.1.2",
+    "@refinedev/cli": "^2.2.0",
     "@refinedev/hasura": "^6.0.1",
     "@refinedev/react-router-v6": "^4.1.0",
     "@types/node": "^12.20.11",
