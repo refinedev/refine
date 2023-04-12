@@ -86,13 +86,13 @@ How can I request an API with nested route?
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customize the data provider methods to handle specific use cases.
--   Generate GraphQL queries using plain JavaScript Objects (JSON).
--   Hooks related to routing also use `meta` to fill additional parameters in the target routes.
+-   Customizing the data provider methods for specific use cases.
+-   Generating GraphQL queries using plain JavaScript Objects (JSON).
+-   Filling additional parameters in target routes when occurs redirection.
 
 ### Pass global `meta` specific to a resource
 
-You can define a global `meta` specific to a resource. This `meta` will be passed to all the data provider methods whenever the resource is matched.
+You can define a global `meta` specific to a resource, which will be passed to all the data provider methods whenever the resource is matched.
 
 For instance, to pass the `role` property to all data provider methods for the `posts` resource, use the following code:
 
@@ -119,7 +119,7 @@ const App: React.FC = () => {
 
 ### Pass `meta` with hook-specific properties
 
-You can pass the `meta` property with hook-specific properties to data provider methods. This will override the global `meta` of the resource.
+You can pass the `meta` property with hook-specific properties to data provider methods, which will override the global `meta` of the resource.
 
 For example, you can pass the `headers` property to the `getOne` method by using the `meta` property in the `useOne` hook, as shown below:
 
@@ -152,7 +152,7 @@ For example, you can pass the `headers` property to the `getOne` method by using
     };
 ```
 
-By using this logic, you can pass any properties to handle your specific use cases.
+By using this logic, you can pass any property to handle your specific use cases.
 
 ### Use URL query parameters as `meta` properties
 
@@ -173,8 +173,8 @@ This can be useful when you want to customize the behavior of data provider meth
 
 ### Use `meta` to generate GraphQL queries
 
-[Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql.md)
+[Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries &#8594](/advanced-tutorials/data-provider/graphql.md)
 
 ### How to pass `meta` to your existing `dataProvider` methods
 
-[Refer to the how to pass `meta` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
+[Refer to the how to pass `meta` to your existing `dataProvider` methods &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
