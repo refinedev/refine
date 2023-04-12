@@ -2,4 +2,4 @@
 "@refinedev/cli": patch
 ---
 
--   Fixed: When the project type is vite, `refine dev` command was running `vite start` changed `vite dev`. Because there is no `start` command in vite.
+fix: When the project type is vite, the `refine dev` command was running `vite start`. It is now changed to `vite dev`, because there is no `start` command in vite.
