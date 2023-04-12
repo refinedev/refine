@@ -22,7 +22,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -30,6 +30,7 @@ import {
     ImportElement,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for create page in Material UI
@@ -38,6 +39,7 @@ import {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
@@ -67,6 +69,11 @@ export const renderer = ({
                 )} } =
                 useAutocomplete({
                     resource: "${field.resource.name}",
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
             `;
             }
@@ -329,8 +336,25 @@ export const renderer = ({
                 refineCoreProps: {
                     resource: "${resource.name}",
                     action: "create",
+                    ${getMetaProps(
+                        resource.identifier ?? resource.name,
+                        meta,
+                        "getOne",
+                    )}
                 }
             }`
+                    : getMetaProps(
+                          resource.identifier ?? resource.name,
+                          meta,
+                          "getOne",
+                      )
+                    ? `{
+                        refineCoreProps: { ${getMetaProps(
+                            resource.identifier ?? resource.name,
+                            meta,
+                            "getOne",
+                        )} }
+                        }`
                     : ""
             }
         );
@@ -371,7 +395,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
         ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,
