@@ -2,15 +2,15 @@
   "name": "form-mantine-use-steps-form",
   "private": true,
   "scripts": {
-    "start": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "dependencies": {
     "@refinedev/mantine": "^2.8.0",
-    "@refinedev/core": "^4.8.0",
-    "@refinedev/cli": "^2.1.2",
+    "@refinedev/core": "^4.8.5",
+    "@refinedev/cli": "^2.3.0",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/simple-rest": "^4.1.0",
     "@refinedev/react-table": "^5.2.0",

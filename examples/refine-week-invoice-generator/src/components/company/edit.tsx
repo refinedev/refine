@@ -1,4 +1,4 @@
-import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
+import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
 
 import {
     useStrapiUpload,
@@ -17,15 +17,19 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
     modalProps,
     formProps,
 }) => {
+    const breakpoint = Grid.useBreakpoint();
     const { ...uploadProps } = useStrapiUpload({
         maxCount: 1,
     });
 
     return (
-        <Modal {...modalProps}>
+        <Modal
+            {...modalProps}
+            title="Edit Company"
+            width={breakpoint.sm ? "600px" : "80%"}
+        >
             <Form
                 {...formProps}
-                wrapperCol={{ span: 12 }}
                 layout="vertical"
                 onFinish={(values) => {
                     console.log(values);

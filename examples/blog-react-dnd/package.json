@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@refinedev/antd": "^5.6.0",
-    "@refinedev/core": "^4.8.0",
-    "@refinedev/cli": "^2.1.2",
-    "@refinedev/inferencer": "^3.1.7",
+    "@refinedev/core": "^4.8.5",
+    "@refinedev/cli": "^2.3.0",
+    "@refinedev/inferencer": "^3.3.0",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/simple-rest": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -33,7 +33,7 @@
   "scripts": {
     "start": "refine start",
     "dev": "refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "refine": "refine"

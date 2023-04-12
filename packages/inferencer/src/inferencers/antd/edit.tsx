@@ -17,7 +17,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -26,6 +26,7 @@ import {
     RendererContext,
 } from "@/types";
 import { shouldDotAccess } from "@/utilities/accessor";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for edit page in Ant Design
@@ -34,6 +35,7 @@ import { shouldDotAccess } from "@/utilities/accessor";
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
     id,
 }: RendererContext) => {
@@ -99,6 +101,11 @@ export const renderer = ({
                                 : ""
                             : ""
                     }
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
             `;
             }
@@ -425,7 +432,24 @@ export const renderer = ({
                       resource: "${resource.name}",
                       id: ${id},
                       action: "edit",
+                      ${getMetaProps(
+                          resource?.identifier ?? resource?.name,
+                          meta,
+                          "getOne",
+                      )}
                   }`
+                : getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      "getOne",
+                  )
+                ? `{
+                    ${getMetaProps(
+                        resource?.identifier ?? resource?.name,
+                        meta,
+                        "getOne",
+                    )}
+                }`
                 : ""
         });
     
@@ -454,7 +478,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         ["dayjs", "dayjs", dayjs, true],
         ["antd", "AntdPackage", AntdPackage],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

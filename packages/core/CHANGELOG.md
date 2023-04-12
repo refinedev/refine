@@ -1,5 +1,35 @@
 # @pankod/refine-core
 
+## 4.8.5
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.4
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.3
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.2
+
+### Patch Changes
+
+-   [#4133](https://github.com/refinedev/refine/pull/4133) [`68f035dc4c0`](https://github.com/refinedev/refine/commit/68f035dc4c0a28848480e088e6e8970ae08c5a55) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: Hide `<GithubBanner />` on mobile.
+
+## 4.8.1
+
+### Patch Changes
+
+-   [#4133](https://github.com/refinedev/refine/pull/4133) [`68f035dc4c0`](https://github.com/refinedev/refine/commit/68f035dc4c0a28848480e088e6e8970ae08c5a55) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: Hide `<GithubBanner />` on mobile.
+
 ## 4.8.0
 
 ### Minor Changes

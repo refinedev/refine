@@ -1,5 +1,12 @@
 export const CSSRules = [
     `
+    .banner {
+        display: flex;
+        @media (max-width: 1000px) {
+            display: none;
+        }
+    }`,
+    `
     .banner::before,
     .banner::after {
         content: '';

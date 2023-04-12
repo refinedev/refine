@@ -1,5 +1,5 @@
 import { useApiUrl } from "@refinedev/core";
-import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
+import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
 
 import {
     useStrapiUpload,
@@ -18,13 +18,18 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     modalProps,
     formProps,
 }) => {
+    const breakpoint = Grid.useBreakpoint();
     const { ...uploadProps } = useStrapiUpload({
         maxCount: 1,
     });
     const API_URL = useApiUrl();
 
     return (
-        <Modal {...modalProps} title="Create Company">
+        <Modal
+            {...modalProps}
+            title="Create Company"
+            width={breakpoint.sm ? "600px" : "80%"}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

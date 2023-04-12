@@ -51,7 +51,25 @@ After that you need to,
 
 -   select the package(s) you are modifying
 -   choose one of `major/patch/minor` according to your change
--   some explanation about the changes
+-   add explanation about the changes
+
+explanation should follow the same format with commit convention with some extra description:
+
+```
+feat: added x feature
+
+Now with x feature, you can do y.
+
+```
+
+or
+
+```
+fix: issue with x.
+
+We had an edge where it causes x issue to happen, now it's fixed.
+
+```
 
 and then you are done!
 
@@ -78,19 +96,21 @@ From now on, depending on the packages you plan to work on, (they are located un
 Before running a package in development mode in the refine project, you need to first bootstrap and build all the packages.
 
 #### Bootstrap & build all packages
+
 ```bash
 npm run bootstrap:all
 npm run build:all
 ```
 
 Then, you can bootstrap the example you want to work on with the command below:
+
 ```bash
 npm run bootstrap -- --scope refine-use-select-example
 ```
+
 > You can add the packages you want to bootstrap with the [`scope`][lerna filter] filter.
 
 At this point, all/required packages are bootstrapped. You can add the packages you want to run in development mode with the [`scope`][lerna filter] filter. This way, the `watch` mode will start working for the packages you specified.
-
 
 In the command example below, we are running the core and antd packages in `development mode` along with the example.
 
@@ -449,12 +469,12 @@ render(
             <ReactRouterDom.Routes>
                 <ReactRouterDom.Route
                     path="/posts"
-                    element={(
+                    element={
                         <div>
                             <p>This page is empty.</p>
                             <CreateButton />
                         </div>
-                    )}
+                    }
                 />
                 <ReactRouterDom.Route
                     path="/posts/create"
@@ -469,43 +489,43 @@ render(
 
 ### Defined Scope
 
-| Variable              | Description                                                                                                                                                                                                                                                 |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `React`               | React 17                                                                                                                                                                                                                                                    |
-| `RefineCore`          | `@refinedev/core`                                                                                                                                                                                                                                       |
-| `RefineSimpleRest`    | `@refinedev/simple-rest`                                                                                                                                                                                                                                |
-| `RefineAntd`          | `@refinedev/antd`                                                                                                                                                                                                                                       |
-| `RefineMui`           | `@refinedev/mui`                                                                                                                                                                                                                                        |
-| `RefineMantine`       | `@refinedev/mantine`                                                                                                                                                                                                                                    |
-| `RefineChakra`       | `@refinedev/chakra-ui`                                                                                                                                                                                                                                  |
-| `RefineReactRouterV6` | `@refinedev/react-router-v6`                                                                                                                                                                                                                            |
-| `RefineReactHookForm` | `@refinedev/react-hook-form`                                                                                                                                                                                                                            |
-| `RefineReactTable`    | `@refinedev/react-table`                                                                                                                                                                                                                                |
-| `RefineAntdInferencer` | `@refinedev/inferencer/antd`                                                                                                                                                                                                                            |
-| `RefineMuiInferencer` | `@refinedev/inferencer/mui`                                                                                                                                                                                                                             |
-| `RefineMantineInferencer` | `@refinedev/inferencer/mantine`                                                                                                                                                                                                                         |
-| `RefineChakraInferencer` | `@refinedev/inferencer/chakra-ui`                                                                                                                                                                                                                          |
-| `LegacyRefineReactRouterV6` | `@refinedev/react-router-v6/legacy`                                                                                                                                                                                                                     |
-| `RefineReactRouterV6` | `@refinedev/react-router-v6`                                                                                                                                                                                                                            |
-| `ReactRouterDom` | `react-router-dom`                                                                                                                                                                                                                            |
-| `AntdCore` | `antd`                                                                                                                                                                                                                            |
-| `MantineCore` | `@mantine/core`                                                                                                                                                                                                                            |
-| `MantineHooks` | `@mantine/hooks`                                                                                                                                                                                                                            |
-| `MantineForm` | `@mantine/form`                                                                                                                                                                                                                            |
-| `MantineNotifications` | `@mantine/notifications`                                                                                                                                                                                                                            |
-| `EmotionReact` | `@emotion/react`                                                                                                                                                                                                                            |
-| `EmotionStyled` | `@emotion/styled`                                                                                                                                                                                                                            |
-| `MuiLab` | `@mui/lab`                                                                                                                                                                                                                            |
-| `MuiMaterial` | `@mui/material`                                                                                                                                                                                                                            |
-| `MuiXDataGrid` | `@mui/x-data-grid`                                                                                                                                                                                                                            |
-| `ChakraUI` | `@chakra-ui/react`                                                                                                                                                                                                                            |
-| `ReactHookForm` | `react-hook-form`                                                                                                                                                                                                                            |
-| `TanstackReactTable` | `@tanstack/react-table`                                                                                                                                                                                                                            |
-| `RefineHeadlessDemo`  | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                                                                                                                                  |
-| `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                                                                                                                                     |
-| `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                                                                                                                                      |
-| `setInitialRoutes`    | For live previews, we use `MemoryRouter` from `react-router-v6` and to set the initial entries of the history, you can use this function.                                                                                                                   |
-| `setRefineProps`      | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
+| Variable                    | Description                                                                                                                                                                                                                                                 |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `React`                     | React 17                                                                                                                                                                                                                                                    |
+| `RefineCore`                | `@refinedev/core`                                                                                                                                                                                                                                           |
+| `RefineSimpleRest`          | `@refinedev/simple-rest`                                                                                                                                                                                                                                    |
+| `RefineAntd`                | `@refinedev/antd`                                                                                                                                                                                                                                           |
+| `RefineMui`                 | `@refinedev/mui`                                                                                                                                                                                                                                            |
+| `RefineMantine`             | `@refinedev/mantine`                                                                                                                                                                                                                                        |
+| `RefineChakra`              | `@refinedev/chakra-ui`                                                                                                                                                                                                                                      |
+| `RefineReactRouterV6`       | `@refinedev/react-router-v6`                                                                                                                                                                                                                                |
+| `RefineReactHookForm`       | `@refinedev/react-hook-form`                                                                                                                                                                                                                                |
+| `RefineReactTable`          | `@refinedev/react-table`                                                                                                                                                                                                                                    |
+| `RefineAntdInferencer`      | `@refinedev/inferencer/antd`                                                                                                                                                                                                                                |
+| `RefineMuiInferencer`       | `@refinedev/inferencer/mui`                                                                                                                                                                                                                                 |
+| `RefineMantineInferencer`   | `@refinedev/inferencer/mantine`                                                                                                                                                                                                                             |
+| `RefineChakraInferencer`    | `@refinedev/inferencer/chakra-ui`                                                                                                                                                                                                                           |
+| `LegacyRefineReactRouterV6` | `@refinedev/react-router-v6/legacy`                                                                                                                                                                                                                         |
+| `RefineReactRouterV6`       | `@refinedev/react-router-v6`                                                                                                                                                                                                                                |
+| `ReactRouterDom`            | `react-router-dom`                                                                                                                                                                                                                                          |
+| `AntdCore`                  | `antd`                                                                                                                                                                                                                                                      |
+| `MantineCore`               | `@mantine/core`                                                                                                                                                                                                                                             |
+| `MantineHooks`              | `@mantine/hooks`                                                                                                                                                                                                                                            |
+| `MantineForm`               | `@mantine/form`                                                                                                                                                                                                                                             |
+| `MantineNotifications`      | `@mantine/notifications`                                                                                                                                                                                                                                    |
+| `EmotionReact`              | `@emotion/react`                                                                                                                                                                                                                                            |
+| `EmotionStyled`             | `@emotion/styled`                                                                                                                                                                                                                                           |
+| `MuiLab`                    | `@mui/lab`                                                                                                                                                                                                                                                  |
+| `MuiMaterial`               | `@mui/material`                                                                                                                                                                                                                                             |
+| `MuiXDataGrid`              | `@mui/x-data-grid`                                                                                                                                                                                                                                          |
+| `ChakraUI`                  | `@chakra-ui/react`                                                                                                                                                                                                                                          |
+| `ReactHookForm`             | `react-hook-form`                                                                                                                                                                                                                                           |
+| `TanstackReactTable`        | `@tanstack/react-table`                                                                                                                                                                                                                                     |
+| `RefineHeadlessDemo`        | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                                                                                                                                  |
+| `RefineMuiDemo`             | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                                                                                                                                     |
+| `RefineAntdDemo`            | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                                                                                                                                      |
+| `setInitialRoutes`          | For live previews, we use `MemoryRouter` from `react-router-v6` and to set the initial entries of the history, you can use this function.                                                                                                                   |
+| `setRefineProps`            | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
 
 :::tip
 Demo components are recommended to be used whenever possible to avoid unnecessary configuration at every code block. They are equipped with the `refine-react-router-v6` setup with `MemoryRouter`, `refine-simple-rest` data provider and the preferred UI Integration.
