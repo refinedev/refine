@@ -26,7 +26,7 @@ export const CreateMission: React.FC<CreateMissionProps> = ({
                 <Form.Item label="Description" name="mission_description">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Day(s)" name="days">
+                <Form.Item label="Day(s)" name="day">
                     <InputNumber defaultValue={1} />
                 </Form.Item>
                 <Form.Item label="Daily Rate" name="daily_rate">

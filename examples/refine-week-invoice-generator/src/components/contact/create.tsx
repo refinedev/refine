@@ -1,5 +1,5 @@
 import { useSelect } from "@refinedev/antd";
-import { Form, Modal, Input, ModalProps, FormProps, Select } from "antd";
+import { Form, Modal, Input, ModalProps, FormProps, Select, Grid } from "antd";
 
 type CreateContactProps = {
     modalProps: ModalProps;
@@ -12,6 +12,7 @@ export const CreateContact: React.FC<CreateContactProps> = ({
     formProps,
     hideCompanySelect = true,
 }) => {
+    const breakpoint = Grid.useBreakpoint();
     const { selectProps } = useSelect({
         resource: "clients",
         optionValue: "id",
@@ -23,7 +24,11 @@ export const CreateContact: React.FC<CreateContactProps> = ({
     });
 
     return (
-        <Modal {...modalProps} title="Create Contact">
+        <Modal
+            {...modalProps}
+            title="Create Contact"
+            width={breakpoint.sm ? "600px" : "80%"}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="First Name"
