@@ -27,6 +27,14 @@
 
     Now, when you call any data hook with the `posts` resource, the `meta` property will be accessible in the data provider methods.
 
+    ```tsx
+    const dataProvider = {
+        getList: async ({ resource, meta }) => {
+            console.log(meta.role); // "editor"
+        },
+    };
+    ```
+
 -   Added the query params to the `meta` property by default.
 
     For example, if you call the `useList` hook on the `example.com/posts?status=published` URL, the `meta` property will be accessible in the data provider methods as follows:
