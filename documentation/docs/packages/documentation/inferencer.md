@@ -166,6 +166,7 @@ This structure is designed to let users provide `meta` values for multiple resou
 />
 ```
 
+
 ### Modifying the inferred fields
 
 If you want to customize the output of the Inferencer such as setting a custom `accessor` property for `object` type fields or changing the `type` of a field, or changing the `resource` for a `relation` type, you can use`fieldTransformer` prop in Inferencer components. It is a function that takes the field as an argument and returns the modified field. If `undefined | false | null` is returned, the field will be removed from the output, both for the preview and the code.
