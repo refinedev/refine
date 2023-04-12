@@ -30,7 +30,8 @@ describe("useSelect Hook", () => {
 
         const { options } = result.current;
 
-        expect(options).toHaveLength(2);
+        await waitFor(() => expect(options).toHaveLength(2));
+
         expect(options).toEqual([
             {
                 label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
