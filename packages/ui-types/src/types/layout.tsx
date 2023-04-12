@@ -34,18 +34,34 @@ export type RefineLayoutTitleProps = TitleProps;
 
 export type RefineLayoutLayoutProps = LayoutProps;
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review immigration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayoutv2
+ */
 export type RefineThemedLayoutProps = RefineLayoutLayoutProps;
+
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review immigration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayoutv2
+ */
 export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
     isSiderOpen?: boolean;
     onToggleSiderClick?: (isOpen?: boolean) => void;
 };
+
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review immigration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayoutv2
+ */
 export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
     isSiderOpen?: boolean;
     onToggleSiderClick?: (isOpen?: boolean) => void;
     toggleSiderIcon?: (open: boolean) => React.ReactNode;
 };
+
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
     icon?: React.ReactNode;
     text?: React.ReactNode;
     wrapperStyles?: React.CSSProperties;
 };
+
+export type RefineThemedLayoutV2Props = RefineLayoutLayoutProps;
+export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {};
+export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {};
