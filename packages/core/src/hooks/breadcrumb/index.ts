@@ -77,7 +77,15 @@ export const useBreadcrumb = ({
             const href = hrefRaw
                 ? routerType === "legacy"
                     ? hrefRaw
-                    : composeRoute(hrefRaw, parsed, metaFromProps)
+                    : composeRoute(
+                          hrefRaw,
+                          {},
+                          {
+                              ...parentResource?.meta,
+                              ...parsed,
+                              ...metaFromProps,
+                          },
+                      )
                 : undefined;
 
             breadcrumbs.push({
