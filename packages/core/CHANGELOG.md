@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 4.8.5
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
+## 4.8.4
+
+### Patch Changes
+
+-   [#4139](https://github.com/refinedev/refine/pull/4139) [`e4c60056a4d`](https://github.com/refinedev/refine/commit/e4c60056a4d0d43b5e1e6130febcf77e3263669d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: incorrect css syntax on gh-banner
+
 ## 4.8.3
 
 ### Patch Changes
