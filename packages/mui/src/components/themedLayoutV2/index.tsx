@@ -1,20 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 
+import { ThemedLayoutContextProvider } from "@contexts";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
 import { RefineThemedLayoutV2Props } from "./types";
-
-export interface IThemedLayoutContext {
-    siderVisible?: boolean;
-    drawerSiderVisible?: boolean;
-    setSiderVisible?: (visible: boolean) => void;
-    setDrawerSiderVisible?: (visible: boolean) => void;
-}
-
-export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>(
-    {},
-);
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     Sider,
@@ -24,21 +14,11 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     OffLayoutArea,
     children,
 }) => {
-    const [siderVisible, setSiderVisible] = useState(false);
-    const [drawerSiderVisible, setDrawerSiderVisible] = useState(true);
-
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <ThemedLayoutContext.Provider
-            value={{
-                siderVisible,
-                drawerSiderVisible,
-                setSiderVisible,
-                setDrawerSiderVisible,
-            }}
-        >
+        <ThemedLayoutContextProvider>
             <Box display="flex" flexDirection="row">
                 <SiderToRender Title={Title} />
                 <Box
@@ -65,6 +45,6 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
                 </Box>
                 {OffLayoutArea && <OffLayoutArea />}
             </Box>
-        </ThemedLayoutContext.Provider>
+        </ThemedLayoutContextProvider>
     );
 };

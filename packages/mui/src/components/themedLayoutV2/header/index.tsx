@@ -3,7 +3,7 @@ import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
 
 import { RefineThemedLayoutV2HeaderProps } from "../types";
-import { HamburgerMenu } from "../hambergerMenu";
+import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     const authProvider = useActiveAuthProvider();

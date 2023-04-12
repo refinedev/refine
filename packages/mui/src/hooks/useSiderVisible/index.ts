@@ -1,13 +1,9 @@
 import { useContext } from "react";
 
-import { ThemedLayoutContext } from "@components/themedLayoutV2";
+import { ThemedLayoutContext } from "@contexts";
+import { IThemedLayoutContext } from "@contexts/themedLayoutContext/IThemedLayoutContext";
 
-export type UseSiderVisibleType = {
-    siderVisible?: boolean;
-    setSiderVisible?: (visible: boolean) => void;
-    drawerSiderVisible?: boolean;
-    setDrawerSiderVisible?: (visible: boolean) => void;
-};
+export type UseSiderVisibleType = IThemedLayoutContext;
 
 export const useSiderVisible = (): UseSiderVisibleType => {
     const {
