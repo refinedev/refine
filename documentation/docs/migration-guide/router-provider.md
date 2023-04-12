@@ -117,5 +117,6 @@ and [`react-router-dom`](https://reactrouter.com)
 If you are using Remix or Next.js, you will first need to create your routes using the file system-based routing method as you would normally do. Afterwards, you can pass the `routerProvider` from `@refinedev/remix-router` or `@refinedev/nextjs-router` to the `<Refine>` component, and specify the paths for your resource actions in the `resources` array. Our documentation provides step-by-step instructions on how to create routes and associate them with your resources, complete with examples for your reference.
 
 Check out their respective documentations:
-- [`@refinedev/remix-router`](/docs/packages/documentation/routers/remix) and [`Remix`](https://remix.run/docs/en/main) documentations for Remix
-- [`@refinedev/nextjs-router`](/docs/packages/documentation/routers/nextjs) and [`Next.js`](https://nextjs.org/docs/getting-started) documentations for Next.js.
+
+-   > [`@refinedev/remix-router`](/docs/packages/documentation/routers/remix) and [`Remix`](https://remix.run/docs/en/main) documentations for Remix
+-   > [`@refinedev/nextjs-router`](/docs/packages/documentation/routers/nextjs) and [`Next.js`](https://nextjs.org/docs/getting-started) documentations for Next.js.

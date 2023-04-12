@@ -7,27 +7,19 @@ tutorial:
     next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
-There are many ways to delete a record. In this tutorial, we will first use the `<DeleteButton/>` to delete a record and then we will learn how to enable the delete feature on the show page and edit page.
-
 ## Adding Delete Feature to List Page
 
-Let's start by adding the delete feature to the list page. To do this, we will use the `<DeleteButton/>` component.
+`<DeleteButton/>` is a **refine** component that is used for deleting records. When you click on the delete button, it will show a confirmation modal and delete the record upon confirmation. To add it to the "blog_posts" table:
 
-`<DeleteButton/>` is a **refine** component that is used to delete a record. When you click on the delete button, it will show a confirmation modal. If you confirm the deletion, it will delete the record.
+1.  Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
-[Refer to the `<DeleteButton/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/buttons/delete-button/)
-
-To add a delete feature to the blog posts table, you can follow the steps below:
-
-1. Open the `src/pages/blog-posts/list.tsx` file on your editor.
-
-2. Import the `<DeleteButton/>` component from `@refinedev/chakra-ui`:
+2.  Import the `<DeleteButton/>` component from `@refinedev/antd`:
 
     ```tsx
     import { DeleteButton } from "@refinedev/chakra-ui";
     ```
 
-3. Add the `<DeleteButton/>` component to the `actions` column of the table as shown below:
+3.  Add the `<DeleteButton/>` component to the `actions` column of the table:
 
     ```tsx
     {
@@ -57,13 +49,13 @@ To add a delete feature to the blog posts table, you can follow the steps below:
     },
     ```
 
-    `recordItemId` is the id of the record you want to delete.
+You can now delete a record from the list page by clicking on the delete button of any blog post.
 
-Now, you can try to delete a record from the list page. Just click on the delete button of the record you want to delete and confirm the deletion.
+> For more information, refer to the [`<DeleteButton/>` documentation&#8594](/docs/api-reference/chakra-ui/components/buttons/delete-button/)
 
-## Enabling Delete Feature on Show Page and Edit Page
+## Enabling the Delete Feature on Show and Edit Pages
 
-When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property in `meta` to `true` as shown below:
+We can enable the delete feature on both show and edit pages while we are defining a resource by setting the `canDelete` property in the `meta` to `true` as shown below:
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -121,9 +113,9 @@ const App = () => {
 export default App;
 ```
 
-After setting the `canDelete` property in `meta` to `true`, you will see a delete button on the show page and edit page. Because we used the `<Show/>` and `<Edit/>` components in the show page and edit page, the delete button will be added automatically in these components.
+After setting the `canDelete` property in `meta` to `true`, you will see a delete button on both show and edit pages.
 
-[Refer to the `<Refine/>` documentation for more information about the `canDelete` property &#8594](/docs/api-reference/core/components/refine-config.md#candelete)
+> For more information, refer to the [`canDelete` section of the `<Refine/>` documentation&#8594](/docs/api-reference/core/components/refine-config.md#candelete)
 
 <br/>
 
@@ -131,7 +123,7 @@ After setting the `canDelete` property in `meta` to `true`, you will see a delet
 
 You can also use `useDelete` hook provided by **refine** to delete a record.
 
-[Refer to the `useDelete` documentation for more information information &#8594](/docs/api-reference/core/hooks/data/useDelete/)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/api-reference/core/hooks/data/useDelete/)
 
 :::
 
@@ -140,7 +132,7 @@ You can also use `useDelete` hook provided by **refine** to delete a record.
 <Checklist>
 
 <ChecklistItem id="add-delete-feature-chakra-ui">
-I added the delete feature to the list page.
+I have added the delete feature to the list page.
 </ChecklistItem>
 <ChecklistItem id="add-delete-feature-chakra-ui-2">
 I enabled the delete feature on the show page and edit page.
