@@ -42,7 +42,11 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+            <Form
+                {...formProps}
+                layout="vertical"
+                wrapperCol={{ md: 18, lg: 16 }}
+            >
                 <Form.Item label="Invoice Name" name="name">
                     <Input />
                 </Form.Item>
