@@ -5,7 +5,8 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 import { MetaQuery } from "../../interfaces";
 
 /**
- * Hook that returns the meta object.
+ * Hook that returns a function to get meta.
+ * The meta is a combination of the resource meta, hook params and query params.
  * @internal
  */
 export const useMeta = () => {
