@@ -141,6 +141,31 @@ Here's the syntax for defining the `meta` values in Inferencer components:
 
 This structure is designed to let users provide `meta` values for multiple resources and actions at once since the Inferencer might find relations and try to use hooks to fetch the necessary data.
 
+#### Example Usage
+
+```tsx
+<AntdListInferencer
+    meta={{
+        posts: {
+            getList: {
+                fields: [
+                    "id",
+                    "title",
+                    "content",
+                    "category_id",
+                    "created_at",
+                ],
+            },
+        },
+        categories: {
+            default: {
+                fields: ["id", "title"],
+            },
+        },
+    }}
+/>
+```
+
 ### Modifying the inferred fields
 
 If you want to customize the output of the Inferencer such as setting a custom `accessor` property for `object` type fields or changing the `type` of a field, or changing the `resource` for a `relation` type, you can use`fieldTransformer` prop in Inferencer components. It is a function that takes the field as an argument and returns the modified field. If `undefined | false | null` is returned, the field will be removed from the output, both for the preview and the code.
