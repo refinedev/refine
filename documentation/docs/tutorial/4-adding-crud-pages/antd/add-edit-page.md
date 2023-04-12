@@ -183,6 +183,7 @@ import {
     RefineThemes,
     notificationProvider,
 } from "@refinedev/antd";
+import { ConfigProvider } from "antd";
 import { Refine } from "@refinedev/core";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 import routerBindings, {
