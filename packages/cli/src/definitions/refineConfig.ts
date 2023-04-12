@@ -19,6 +19,10 @@ export type SwizzleFile = {
      * Success message shown after swizzle is complete. Supports markdown features.
      */
     message?: string;
+    /**
+     * Array of packages to install after swizzling
+     */
+    requiredPackages?: string[];
 };
 
 export type SwizzleConfig = {

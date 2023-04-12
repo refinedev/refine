@@ -22,6 +22,7 @@ import { reorderImports } from "@utils/swizzle/import";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
 import boxen from "boxen";
 import { getPathPrefix } from "@utils/swizzle/getPathPrefix";
+import { installRequiredPackages } from "./install-required-packages";
 
 const swizzle = (program: Command) => {
     return program
@@ -263,13 +264,18 @@ const action = async (_options: OptionValues) => {
     );
 
     if (createdFiles.length > 0) {
-        render(
+        const { unmount } = render(
             <SwizzleMessage
                 label={selectedComponent.label}
                 files={createdFiles}
                 message={selectedComponent.message}
             />,
         );
+        unmount();
+
+        if (selectedComponent?.requiredPackages?.length) {
+            await installRequiredPackages(selectedComponent.requiredPackages);
+        }
     }
 };
 
