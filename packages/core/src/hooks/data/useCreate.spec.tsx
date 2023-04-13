@@ -1,9 +1,8 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useCreate } from "./useCreate";
-import { result } from "lodash";
 
 describe("useCreate Hook", () => {
     it("with rest json server", async () => {
@@ -26,7 +25,7 @@ describe("useCreate Hook", () => {
         expect(data?.data.slug).toBe("ut-ad-et");
     });
 
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const createMock = jest.fn();
 
         const { result } = renderHook(() => useCreate(), {
@@ -59,7 +58,6 @@ describe("useCreate Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
-                    dip: "dop",
                 }),
             }),
         );

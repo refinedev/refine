@@ -237,7 +237,7 @@ describe("useList Hook", () => {
         expect(result.current.data?.foo).toBe("bar");
     });
 
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const getListMock = jest.fn();
 
         renderHook(() => useList({ resource: "posts", meta: { foo: "bar" } }), {
@@ -264,7 +264,6 @@ describe("useList Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
-                    dip: "dop",
                 }),
             }),
         );

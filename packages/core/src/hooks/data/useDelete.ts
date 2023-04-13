@@ -146,7 +146,6 @@ export const useDelete = <
             values,
         }) => {
             const combinedMeta = getMeta({
-                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 

@@ -34,7 +34,7 @@ describe("useOne Hook", () => {
         expect(data?.data.slug).toBe("ut-ad-et");
     });
 
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const getOneMock = jest.fn();
 
         renderHook(
@@ -64,7 +64,6 @@ describe("useOne Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
-                    dip: "dop",
                 }),
             }),
         );

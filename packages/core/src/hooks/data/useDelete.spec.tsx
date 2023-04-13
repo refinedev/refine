@@ -75,7 +75,7 @@ describe("useDelete Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const deleteMock = jest.fn();
 
         const { result } = renderHook(() => useDelete(), {
@@ -108,7 +108,6 @@ describe("useDelete Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
-                    dip: "dop",
                 }),
             }),
         );

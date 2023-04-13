@@ -34,7 +34,7 @@ describe("useMany Hook", () => {
         expect(data?.data.length).toBe(2);
     });
 
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const getManyMock = jest.fn();
 
         renderHook(
@@ -64,7 +64,6 @@ describe("useMany Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
-                    dip: "dop",
                 }),
             }),
         );

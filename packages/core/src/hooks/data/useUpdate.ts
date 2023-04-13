@@ -177,7 +177,6 @@ export const useUpdate = <
             dataProviderName,
         }) => {
             const combinedMeta = getMeta({
-                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 

@@ -5,7 +5,7 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useCustomMutation } from "./useCustomMutation";
 
 describe("useCustomMutation Hook", () => {
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const customMock = jest.fn();
 
         const { result } = renderHook(() => useCustomMutation(), {

@@ -109,7 +109,6 @@ export const useCreateMany = <
             dataProviderName,
         }: useCreateManyParams<TData, TError, TVariables>) => {
             const combinedMeta = getMeta({
-                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 

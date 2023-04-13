@@ -136,7 +136,6 @@ export const useCreate = <
             dataProviderName,
         }: useCreateParams<TData, TError, TVariables>) => {
             const combinedMeta = getMeta({
-                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 

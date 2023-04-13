@@ -191,7 +191,7 @@ export const useInfiniteList = <
         preferredMeta,
     );
 
-    const combinedMeta = getMeta({ resource, meta: preferredMeta });
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     const { getList } = dataProvider(pickedDataProvider);
 

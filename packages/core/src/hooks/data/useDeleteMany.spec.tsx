@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -74,7 +74,7 @@ describe("useDeleteMany Hook", () => {
         expect(isSuccess).toBeTruthy();
     });
 
-    it("should pass meta to dataProvider from resource, router and hook", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const deleteManyMock = jest.fn();
 
         const { result } = renderHook(() => useDeleteMany(), {
@@ -107,7 +107,6 @@ describe("useDeleteMany Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
-                    dip: "dop",
                 }),
             }),
         );

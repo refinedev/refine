@@ -123,7 +123,7 @@ export const useMany = <
         pickDataProvider(resource, dataProviderName, resources),
     );
 
-    const combinedMeta = getMeta({ resource, meta: preferredMeta });
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     useResourceSubscription({
         resource,

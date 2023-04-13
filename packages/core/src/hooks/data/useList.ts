@@ -166,7 +166,7 @@ export const useList = <
     });
     const isServerPagination = prefferedPagination.mode === "server";
 
-    const combinedMeta = getMeta({ resource, meta: preferredMeta });
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     const notificationValues = {
         meta: combinedMeta,

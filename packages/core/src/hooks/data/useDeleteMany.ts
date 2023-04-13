@@ -145,7 +145,6 @@ export const useDeleteMany = <
             values,
         }: DeleteManyParams<TData, TError, TVariables>) => {
             const combinedMeta = getMeta({
-                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 
