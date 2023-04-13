@@ -2,6 +2,8 @@
 "@refinedev/core": minor
 ---
 
+feat: Expose the query params to the `meta` and add the ability to pass global `meta` to data provider methods
+
 -   Added the ability to pass `meta` to data provider methods globally for specific resources.
 
     For example, to pass the `role` property to all data provider methods for the `posts` resource, use the following code:
