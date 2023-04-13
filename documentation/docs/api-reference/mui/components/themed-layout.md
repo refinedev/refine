@@ -745,7 +745,7 @@ But mostly we customize the `Header` component. For this, an update like the one
 
 The `HamburgerMenu` component is a component that is used to collapse/uncollapse the `Sider` component. It is used by default in the `Header` component. However, you can do this anywhere you want using the `<HamburgerMenu />` component. Below you can see an example put on the dashboard page.
 
-```tsx live previewHeight=600px hideCode url=http://localhost:3000/samples
+```tsx live previewHeight=300px hideCode url=http://localhost:3000/samples
 setInitialRoutes(["/"]);
 
 // visible-block-start
