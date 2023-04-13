@@ -506,71 +506,6 @@ module.exports = {
             },
             {
                 group: "Other",
-                label: "ThemedLayout (deprecated use ThemedLayoutV2 instead)",
-                message: `
-                **\`Warning:\`**
-                If you want to change the default themed layout;
-                You should pass layout related components to the **<ThemedLayout/>** component's props.
-
-                \`\`\`
-                // title: App.tsx
-                import { ThemedLayout } from "components/themedLayout";
-                import { ThemedHeader } from "components/themedLayout/header";
-                import { ThemedSider } from "components/themedLayout/sider";
-                import { ThemedTitle } from "components/themedLayout/title";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            /* ... */
-                        >
-                            <ThemedLayout Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle}>
-                                /* ... */
-                            </ThemedLayout>
-                        </Refine>
-                    );
-                }
-                \`\`\`
-                `,
-                files: [
-                    {
-                        src: "./src/components/themedLayout/sider/index.tsx",
-                        dest: "./components/themedLayout/sider.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle @components import replacement
-                                if (importItem.importPath === "@components") {
-                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mui";`;
-
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        newStatement,
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
-                    },
-                    {
-                        src: "./src/components/themedLayout/header/index.tsx",
-                        dest: "./components/themedLayout/header.tsx",
-                    },
-                    {
-                        src: "./src/components/themedLayout/title/index.tsx",
-                        dest: "./components/themedLayout/title.tsx",
-                    },
-                    {
-                        src: "./src/components/themedLayout/index.tsx",
-                        dest: "./components/themedLayout/index.tsx",
-                    },
-                ],
-            },
-            {
-                group: "Other",
                 label: "ThemedLayoutV2",
                 message: `
                 **\`Warning:\`**
@@ -686,6 +621,71 @@ module.exports = {
 
                             return newContent;
                         },
+                    },
+                ],
+            },
+            {
+                group: "Other",
+                label: "ThemedLayout (deprecated use ThemedLayoutV2 instead)",
+                message: `
+                **\`Warning:\`**
+                If you want to change the default themed layout;
+                You should pass layout related components to the **<ThemedLayout/>** component's props.
+
+                \`\`\`
+                // title: App.tsx
+                import { ThemedLayout } from "components/themedLayout";
+                import { ThemedHeader } from "components/themedLayout/header";
+                import { ThemedSider } from "components/themedLayout/sider";
+                import { ThemedTitle } from "components/themedLayout/title";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            /* ... */
+                        >
+                            <ThemedLayout Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle}>
+                                /* ... */
+                            </ThemedLayout>
+                        </Refine>
+                    );
+                }
+                \`\`\`
+                `,
+                files: [
+                    {
+                        src: "./src/components/themedLayout/sider/index.tsx",
+                        dest: "./components/themedLayout/sider.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @components import replacement
+                                if (importItem.importPath === "@components") {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mui";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/themedLayout/header/index.tsx",
+                        dest: "./components/themedLayout/header.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayout/title/index.tsx",
+                        dest: "./components/themedLayout/title.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayout/index.tsx",
+                        dest: "./components/themedLayout/index.tsx",
                     },
                 ],
             },
