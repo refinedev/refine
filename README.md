@@ -77,7 +77,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 
-## Try refine online in just 10 seconds
+## 🔥 Try refine online in just 10 seconds
 
 
 <a href="https://s.refine.dev/refine-new-github">
