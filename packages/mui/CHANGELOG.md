@@ -1,5 +1,20 @@
 # @pankod/refine-mui
 
+## 4.9.0
+
+### Minor Changes
+
+-   [#4153](https://github.com/refinedev/refine/pull/4153) [`8d9c408d089`](https://github.com/refinedev/refine/commit/8d9c408d0893f6592709e688432a3274d0bd0fcb) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` and `HamburgerMenu` component
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `<HamburgerMenu />` component, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
+### Patch Changes
+
+-   Updated dependencies [[`8d9c408d089`](https://github.com/refinedev/refine/commit/8d9c408d0893f6592709e688432a3274d0bd0fcb)]:
+    -   @refinedev/ui-types@1.6.0
+
 ## 4.8.0
 
 ### Minor Changes
