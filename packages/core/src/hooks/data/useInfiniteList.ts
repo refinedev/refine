@@ -23,6 +23,7 @@ import {
     useTranslate,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -147,6 +148,7 @@ export const useInfiniteList = <
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
         resource,
@@ -189,14 +191,16 @@ export const useInfiniteList = <
         preferredMeta,
     );
 
+    const combinedMeta = getMeta({ meta: preferredMeta });
+
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
-            meta: preferredMeta,
-            metaData: preferredMeta,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -243,7 +247,7 @@ export const useInfiniteList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(preferredMeta || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -251,7 +255,7 @@ export const useInfiniteList = <
                     },
                 },
                 metaData: {
-                    ...(preferredMeta || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,

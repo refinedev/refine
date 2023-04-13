@@ -140,7 +140,7 @@ describe("useInfiniteList Hook", () => {
             expect(onSubscribeMock).toHaveBeenCalledWith({
                 channel: "resources/posts",
                 callback: expect.any(Function),
-                params: {
+                params: expect.objectContaining({
                     hasPagination: true,
                     pagination: {
                         current: 1,
@@ -149,7 +149,7 @@ describe("useInfiniteList Hook", () => {
                     },
                     resource: "posts",
                     subscriptionType: "useList",
-                },
+                }),
                 types: ["*"],
             });
         });

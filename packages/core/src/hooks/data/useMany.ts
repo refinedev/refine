@@ -20,6 +20,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -98,34 +99,39 @@ export const useMany = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        pickNotDeprecated(meta, metaData),
-        pickNotDeprecated(meta, metaData),
-    );
-
-    const { getMany, getOne } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
-
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
+
+    const preferredMeta = pickNotDeprecated(meta, metaData);
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        preferredMeta,
+        preferredMeta,
+    );
+
+    const { getMany, getOne } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
+
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
             ids: ids ?? [],
-            meta: pickNotDeprecated(meta, metaData),
-            metaData: pickNotDeprecated(meta, metaData),
+            meta: combinedMeta,
+            metaData: combinedMeta,
             subscriptionType: "useMany",
             ...liveParams,
         },
@@ -147,7 +153,7 @@ export const useMany = <
                     resource,
                     ids,
                     meta: {
-                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -155,7 +161,7 @@ export const useMany = <
                         },
                     },
                     metaData: {
-                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -170,7 +176,7 @@ export const useMany = <
                             resource,
                             id,
                             meta: {
-                                ...(pickNotDeprecated(meta, metaData) || {}),
+                                ...(combinedMeta || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,
@@ -178,7 +184,7 @@ export const useMany = <
                                 },
                             },
                             metaData: {
-                                ...(pickNotDeprecated(meta, metaData) || {}),
+                                ...(combinedMeta || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,

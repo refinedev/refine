@@ -130,25 +130,29 @@ describe("useImport hook", () => {
                     onFinish: async () => {
                         expect(
                             mockDataProvider.default?.createMany,
-                        ).toHaveBeenCalledWith({
-                            resource: "posts",
-                            variables: [parsedData[0], parsedData[1]].map(
-                                (parsedData) => ({
-                                    ...parsedData,
-                                }),
-                            ),
-                        });
+                        ).toHaveBeenCalledWith(
+                            expect.objectContaining({
+                                resource: "posts",
+                                variables: [parsedData[0], parsedData[1]].map(
+                                    (parsedData) => ({
+                                        ...parsedData,
+                                    }),
+                                ),
+                            }),
+                        );
 
                         expect(
                             mockDataProvider.default?.createMany,
-                        ).toHaveBeenCalledWith({
-                            resource: "posts",
-                            variables: [parsedData[0], parsedData[1]].map(
-                                (parsedData) => ({
-                                    ...parsedData,
-                                }),
-                            ),
-                        });
+                        ).toHaveBeenCalledWith(
+                            expect.objectContaining({
+                                resource: "posts",
+                                variables: [parsedData[0], parsedData[1]].map(
+                                    (parsedData) => ({
+                                        ...parsedData,
+                                    }),
+                                ),
+                            }),
+                        );
                     },
                 }),
             {
@@ -188,13 +192,15 @@ describe("useImport hook", () => {
                     onFinish: () => {
                         expect(
                             mockDataProvider.default?.createMany,
-                        ).toHaveBeenCalledWith({
-                            resource: "posts",
-                            variables: parsedData.map((parsedData) => ({
-                                id: parsedData.id,
-                                newTitle: parsedData.title,
-                            })),
-                        });
+                        ).toHaveBeenCalledWith(
+                            expect.objectContaining({
+                                resource: "posts",
+                                variables: parsedData.map((parsedData) => ({
+                                    id: parsedData.id,
+                                    newTitle: parsedData.title,
+                                })),
+                            }),
+                        );
                     },
                 }),
             {
@@ -231,12 +237,14 @@ describe("useImport hook", () => {
                     onFinish: () => {
                         expect(
                             mockDataProvider.default?.createMany,
-                        ).toHaveBeenCalledWith({
-                            resource: "tests",
-                            variables: parsedData.map((parsedData) => ({
-                                ...parsedData,
-                            })),
-                        });
+                        ).toHaveBeenCalledWith(
+                            expect.objectContaining({
+                                resource: "tests",
+                                variables: parsedData.map((parsedData) => ({
+                                    ...parsedData,
+                                })),
+                            }),
+                        );
                     },
                 }),
             {
@@ -383,22 +391,28 @@ describe("useImport hook", () => {
                         onFinish: () => {
                             expect(
                                 mockDataProvider.default?.create,
-                            ).toHaveBeenCalledWith({
-                                resource: "posts",
-                                variables: parsedData[0],
-                            });
+                            ).toHaveBeenCalledWith(
+                                expect.objectContaining({
+                                    resource: "posts",
+                                    variables: parsedData[0],
+                                }),
+                            );
                             expect(
                                 mockDataProvider.default?.create,
-                            ).toHaveBeenCalledWith({
-                                resource: "posts",
-                                variables: parsedData[1],
-                            });
+                            ).toHaveBeenCalledWith(
+                                expect.objectContaining({
+                                    resource: "posts",
+                                    variables: parsedData[1],
+                                }),
+                            );
                             expect(
                                 mockDataProvider.default?.create,
-                            ).toHaveBeenCalledWith({
-                                resource: "posts",
-                                variables: parsedData[2],
-                            });
+                            ).toHaveBeenCalledWith(
+                                expect.objectContaining({
+                                    resource: "posts",
+                                    variables: parsedData[2],
+                                }),
+                            );
                         },
                     }),
                 {

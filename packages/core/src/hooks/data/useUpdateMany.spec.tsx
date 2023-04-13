@@ -1,6 +1,6 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useUpdateMany } from "./useUpdateMany";
 
@@ -99,6 +99,45 @@ describe("useUpdateMany Hook", () => {
         const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
+    });
+
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
+        const updateManyMock = jest.fn();
+
+        const { result } = renderHook(() => useUpdateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        updateMany: updateManyMock,
+                    },
+                },
+                routerProvider: mockRouterBindings({
+                    params: { baz: "qux" },
+                }),
+                resources: [{ name: "posts", meta: { dip: "dop" } }],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            ids: [],
+            values: {},
+            meta: { foo: "bar" },
+        });
+
+        await waitFor(() => {
+            expect(updateManyMock).toBeCalled();
+        });
+
+        expect(updateManyMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                    baz: "qux",
+                }),
+            }),
+        );
     });
 
     describe("usePublish", () => {
