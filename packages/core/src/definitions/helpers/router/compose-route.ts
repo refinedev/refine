@@ -20,12 +20,12 @@ export const composeRoute = (
     // prepareRouteParams (from route params, params and meta)
     const preparedRouteParams = prepareRouteParams(routeParams, {
         ...resourceMeta,
-        ...(typeof parsed?.id !== "undefined" ? { id: parsed?.id } : {}),
+        ...(typeof parsed?.id !== "undefined" ? { id: parsed.id } : {}),
         ...(typeof parsed?.action !== "undefined"
-            ? { action: parsed?.action }
+            ? { action: parsed.action }
             : {}),
         ...(typeof parsed?.resource !== "undefined"
-            ? { resource: parsed?.resource }
+            ? { resource: parsed.resource }
             : {}),
         ...parsed?.params,
         ...meta,
