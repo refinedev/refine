@@ -3,6 +3,9 @@ import { stringify } from "query-string";
 import { DataProvider } from "@refinedev/core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
 
+type MethodTypes = "get" | "delete" | "head" | "options";
+type MethodTypesWithBody = "post" | "put" | "patch";
+
 export const dataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -18,6 +21,9 @@ export const dataProvider = (
             pageSize = 10,
             mode = "server",
         } = pagination ?? {};
+
+        const { headers: headersFromMeta, method } = meta ?? {};
+        const requestMethod = (method as MethodTypes) ?? "get";
 
         const queryFilters = generateFilter(filters);
 
@@ -40,9 +46,11 @@ export const dataProvider = (
             query._order = _order.join(",");
         }
 
-        const { data, headers } = await httpClient.get(
+        const { data, headers } = await httpClient[requestMethod](
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-            { headers: meta?.headers },
+            {
+                headers: headersFromMeta,
+            },
         );
 
         const total = +headers["x-total-count"];
@@ -54,9 +62,12 @@ export const dataProvider = (
     },
 
     getMany: async ({ resource, ids, meta }) => {
-        const { data } = await httpClient.get(
+        const { headers, method } = meta ?? {};
+        const requestMethod = (method as MethodTypes) ?? "get";
+
+        const { data } = await httpClient[requestMethod](
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-            { headers: meta?.headers },
+            { headers },
         );
 
         return {
@@ -67,8 +78,11 @@ export const dataProvider = (
     create: async ({ resource, variables, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, variables, {
-            headers: meta?.headers,
+        const { headers, method } = meta ?? {};
+        const requestMethod = (method as MethodTypesWithBody) ?? "post";
+
+        const { data } = await httpClient[requestMethod](url, variables, {
+            headers,
         });
 
         return {
@@ -79,8 +93,11 @@ export const dataProvider = (
     update: async ({ resource, id, variables, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, variables, {
-            headers: meta?.headers,
+        const { headers, method } = meta ?? {};
+        const requestMethod = (method as MethodTypesWithBody) ?? "patch";
+
+        const { data } = await httpClient[requestMethod](url, variables, {
+            headers,
         });
 
         return {
@@ -91,7 +108,10 @@ export const dataProvider = (
     getOne: async ({ resource, id, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.get(url, { headers: meta?.headers });
+        const { headers, method } = meta ?? {};
+        const requestMethod = (method as MethodTypes) ?? "get";
+
+        const { data } = await httpClient[requestMethod](url, { headers });
 
         return {
             data,
@@ -101,9 +121,12 @@ export const dataProvider = (
     deleteOne: async ({ resource, id, variables, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.delete(url, {
+        const { headers, method } = meta ?? {};
+        const requestMethod = (method as MethodTypesWithBody) ?? "get";
+
+        const { data } = await httpClient[requestMethod](url, {
             data: variables,
-            headers: meta?.headers,
+            headers,
         });
 
         return {
