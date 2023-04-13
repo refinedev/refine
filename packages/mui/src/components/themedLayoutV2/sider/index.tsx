@@ -17,7 +17,6 @@ import {
     ExpandLess,
     ExpandMore,
     ChevronLeft,
-    MenuRounded,
     Dashboard,
 } from "@mui/icons-material";
 import {
@@ -36,24 +35,25 @@ import {
     pickNotDeprecated,
     useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineThemedLayoutSiderProps } from "../types";
+import { RefineThemedLayoutV2SiderProps } from "../types";
 
-import { ThemedTitle as DefaultTitle } from "@components";
+import { ThemedTitleV2 as DefaultTitle } from "@components";
+import { useSiderVisible } from "@hooks";
 
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
+export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
-    isSiderOpen,
-    onToggleSiderClick,
 }) => {
-    const [opened, setOpened] = useState(false);
+    const {
+        siderVisible,
+        setSiderVisible,
+        drawerSiderVisible,
+        setDrawerSiderVisible,
+    } = useSiderVisible();
 
     const drawerWidth = () => {
-        if (isSiderOpen) return 240;
+        if (drawerSiderVisible) return 240;
         return 56;
     };
 
@@ -134,13 +134,13 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             <Tooltip
                                 title={label ?? name}
                                 placement="right"
-                                disableHoverListener={isSiderOpen}
+                                disableHoverListener={drawerSiderVisible}
                                 arrow
                             >
                                 <ListItemButton
                                     onClick={() => {
-                                        if (!isSiderOpen) {
-                                            onToggleSiderClick?.(true);
+                                        if (!drawerSiderVisible) {
+                                            setDrawerSiderVisible?.(true);
                                             if (!isOpen) {
                                                 handleClick(item.key || "");
                                             }
@@ -159,7 +159,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                             justifyContent: "center",
                                             minWidth: "24px",
                                             transition: "margin-right 0.3s",
-                                            marginRight: isSiderOpen
+                                            marginRight: drawerSiderVisible
                                                 ? "12px"
                                                 : "0px",
                                             color: "currentColor",
@@ -189,7 +189,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                     )}
                                 </ListItemButton>
                             </Tooltip>
-                            {isSiderOpen && (
+                            {drawerSiderVisible && (
                                 <Collapse
                                     in={open[item.key || ""]}
                                     timeout="auto"
@@ -215,7 +215,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     <Tooltip
                         title={label ?? name}
                         placement="right"
-                        disableHoverListener={isSiderOpen}
+                        disableHoverListener={drawerSiderVisible}
                         arrow
                     >
                         <ListItemButton
@@ -223,7 +223,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             to={route}
                             selected={isSelected}
                             onClick={() => {
-                                setOpened(false);
+                                setSiderVisible?.(false);
                             }}
                             sx={{
                                 pl: isNested ? 4 : 2,
@@ -238,7 +238,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                 sx={{
                                     justifyContent: "center",
                                     transition: "margin-right 0.3s",
-                                    marginRight: isSiderOpen ? "12px" : "0px",
+                                    marginRight: drawerSiderVisible
+                                        ? "12px"
+                                        : "0px",
                                     minWidth: "24px",
                                     color: "currentColor",
                                 }}
@@ -264,7 +266,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
             <Tooltip
                 title={translate("dashboard.title", "Dashboard")}
                 placement="right"
-                disableHoverListener={isSiderOpen}
+                disableHoverListener={drawerSiderVisible}
                 arrow
             >
                 <ListItemButton
@@ -272,7 +274,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     to="/"
                     selected={selectedKey === "/"}
                     onClick={() => {
-                        setOpened(false);
+                        setSiderVisible?.(false);
                     }}
                     sx={{
                         pl: 2,
@@ -289,7 +291,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             justifyContent: "center",
                             minWidth: "24px",
                             transition: "margin-right 0.3s",
-                            marginRight: isSiderOpen ? "12px" : "0px",
+                            marginRight: drawerSiderVisible ? "12px" : "0px",
                             color: "currentColor",
                             fontSize: "14px",
                         }}
@@ -330,7 +332,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         <Tooltip
             title={t("buttons.logout", "Logout")}
             placement="right"
-            disableHoverListener={isSiderOpen}
+            disableHoverListener={drawerSiderVisible}
             arrow
         >
             <ListItemButton
@@ -345,8 +347,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         justifyContent: "center",
                         minWidth: "24px",
                         transition: "margin-right 0.3s",
-                        marginRight: isSiderOpen ? "12px" : "0px",
-                        marginLeft: "2px",
+                        marginRight: drawerSiderVisible ? "12px" : "0px",
                         color: "currentColor",
                     }}
                 >
@@ -371,7 +372,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 dashboard,
                 logout,
                 items,
-                collapsed: !isSiderOpen,
+                collapsed: !drawerSiderVisible,
             });
         }
         return (
@@ -419,8 +420,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 <Drawer
                     variant="temporary"
                     elevation={2}
-                    open={opened}
-                    onClose={() => setOpened(false)}
+                    open={siderVisible}
+                    onClose={() => setSiderVisible?.(false)}
                     ModalProps={{
                         keepMounted: true, // Better open performance on mobile.
                     }}
@@ -455,7 +456,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     sx={{
                         display: { xs: "none", md: "block" },
                         "& .MuiDrawer-paper": {
-                            width: drawerWidth,
+                            width: drawerWidth(),
                             overflow: "hidden",
                             transition:
                                 "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
@@ -471,22 +472,22 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             height: 64,
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: !isSiderOpen
+                            justifyContent: !drawerSiderVisible
                                 ? "center"
                                 : "space-between",
-                            paddingLeft: !isSiderOpen ? 0 : "16px",
-                            paddingRight: !isSiderOpen ? 0 : "8px",
+                            paddingLeft: !drawerSiderVisible ? 0 : "16px",
+                            paddingRight: !drawerSiderVisible ? 0 : "8px",
                             variant: "outlined",
                             borderRadius: 0,
                             borderBottom: (theme) =>
                                 `1px solid ${theme.palette.action.focus}`,
                         }}
                     >
-                        <RenderToTitle collapsed={!isSiderOpen} />
-                        {isSiderOpen && (
+                        <RenderToTitle collapsed={!drawerSiderVisible} />
+                        {drawerSiderVisible && (
                             <IconButton
                                 size="small"
-                                onClick={() => onToggleSiderClick?.(false)}
+                                onClick={() => setDrawerSiderVisible?.(false)}
                             >
                                 {<ChevronLeft />}
                             </IconButton>
@@ -502,32 +503,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         {drawer}
                     </Box>
                 </Drawer>
-                <IconButton
-                    sx={(theme) => {
-                        const { palette } = theme;
-                        const { mode, getContrastText, primary, background } =
-                            palette;
-
-                        return {
-                            color:
-                                mode === "light"
-                                    ? getContrastText(primary.main)
-                                    : getContrastText(background.paper),
-                            display: { xs: "flex", md: "none" },
-                            justifyContent: "center",
-                            alignItems: "center",
-                            position: "fixed",
-                            top: "12px",
-                            left: "16px",
-                            zIndex: 1199,
-                            height: "36px",
-                            width: "36px",
-                        };
-                    }}
-                    onClick={() => setOpened((prev) => !prev)}
-                >
-                    <MenuRounded />
-                </IconButton>
             </Box>
         </>
     );

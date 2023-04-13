@@ -20,7 +20,7 @@ values={[
 
 ```tsx
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -54,9 +54,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-next-line */}
@@ -130,7 +130,7 @@ setInitialRoutes(["/samples"]);
 import { Refine } from "@refinedev/core";
 
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -169,9 +169,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-next-line */}
@@ -204,7 +204,7 @@ setInitialRoutes(["/samples/show/123"]);
 import { Refine } from "@refinedev/core";
 
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -243,9 +243,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-next-line */}
@@ -278,7 +278,7 @@ setInitialRoutes(["/samples/create"]);
 import { Refine } from "@refinedev/core";
 
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -317,9 +317,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-next-line */}
@@ -352,7 +352,7 @@ setInitialRoutes(["/samples/edit/123"]);
 import { Refine } from "@refinedev/core";
 
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -391,9 +391,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-next-line */}

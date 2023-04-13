@@ -148,7 +148,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -188,9 +188,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -247,7 +247,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -288,9 +288,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -361,7 +361,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -403,9 +403,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -480,7 +480,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -521,9 +521,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -602,7 +602,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -643,9 +643,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
