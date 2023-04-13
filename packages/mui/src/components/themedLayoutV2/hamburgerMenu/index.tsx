@@ -4,6 +4,19 @@ import { Menu } from "@mui/icons-material";
 
 import { useSiderVisible } from "@hooks";
 
+const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
+    props: React.PropsWithChildren,
+) => (
+    <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        {...props}
+    >
+        <Menu />
+    </IconButton>
+);
+
 export const HamburgerMenu: React.FC = () => {
     const {
         siderVisible,
@@ -11,19 +24,6 @@ export const HamburgerMenu: React.FC = () => {
         drawerSiderVisible,
         setDrawerSiderVisible,
     } = useSiderVisible();
-
-    const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
-        props: React.PropsWithChildren,
-    ) => (
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            {...props}
-        >
-            <Menu />
-        </IconButton>
-    );
 
     return (
         <>
