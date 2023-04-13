@@ -18,7 +18,7 @@ function ColumnLinkItem({ item }) {
 }
 function Column({ column }) {
     return (
-        <div className="font-montserrat text-xs leading-[24px] text-[#000]">
+        <div className="text-[#000] text-xs leading-[24px] font-montserrat">
             <div className="mb-1 font-extrabold tracking-wide">
                 {column.title}
             </div>

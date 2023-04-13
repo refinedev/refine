@@ -9,7 +9,7 @@ export default function FooterLinkItem({ item }) {
     const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
     return (
         <Link
-            className="font-montserrat text-xs leading-[24px] text-[#000]"
+            className="text-xs leading-[24px] font-montserrat text-[#000]"
             {...(href
                 ? {
                       href: prependBaseUrlToHref ? normalizedHref : href,

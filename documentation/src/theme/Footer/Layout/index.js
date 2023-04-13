@@ -135,7 +135,7 @@ export default function FooterLayout({
         <footer
             className={`refine-footer ${
                 pathname === "/" ? "refine-footer-index" : ""
-            } px-4 pb-24 pt-7 md:px-6 lg:pb-24 lg:pt-10 `}
+            } px-4 pb-24 pt-7 md:px-6 lg:pt-10 lg:pb-24 `}
         >
             <div className="mx-auto flex max-w-6xl flex-col gap-5">
                 <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-20">
