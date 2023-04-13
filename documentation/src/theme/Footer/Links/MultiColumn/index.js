@@ -36,7 +36,7 @@ export default function FooterLinksMultiColumn({ columns }) {
     const { contactTitle, contactDescription, contactEmail } = customFields;
 
     return (
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-[750px] lg:mr-0 place-content-center lg:place-content-end gap-4">            {" "}
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-[750px] lg:mr-0 place-content-center lg:place-content-end gap-4">
             {columns.map((column, i) => (
                 <Column key={i} column={column} />
             ))}
