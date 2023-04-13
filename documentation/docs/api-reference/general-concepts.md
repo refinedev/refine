@@ -171,6 +171,29 @@ const dataProvider = {
 
 This can be useful when you want to customize the behavior of data provider methods based on query parameters passed in the URL.
 
+<br />
+
+:::info
+
+The `meta` is created in the following order of precedence:
+
+1.  Passed to the hook.
+2.  Defined in the URL query parameters.
+3.  Defined in the `resources` prop of the `<Refine>`.
+
+:::
+
+:::caution
+
+The `meta` property defined in the `resources` prop of the `<Refine>` is only passed to the data provider methods via the following hooks and their derivatives:
+
+-   [`useTable`](/docs/api-reference/core/hooks/useTable/)
+-   [`useForm`](/docs/api-reference/core/hooks/useForm/)
+-   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
+-   [`useShow`](/docs/api-reference/core/hooks/show/useShow/)
+
+:::
+
 ### Use `meta` to generate GraphQL queries
 
 [Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries &#8594](/advanced-tutorials/data-provider/graphql.md)
