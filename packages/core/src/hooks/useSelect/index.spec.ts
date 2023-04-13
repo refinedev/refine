@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, act } from "@test";
+import { MockJSONServer, TestWrapper, act, mockRouterBindings } from "@test";
 
 import { useSelect } from "./";
 import {
@@ -778,5 +778,96 @@ describe("useSelect Hook", () => {
                 },
             },
         });
+    });
+
+    it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
+        const getListMock = jest.fn();
+
+        renderHook(
+            () => useSelect({ resource: "posts", meta: { foo: "bar" } }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: getListMock,
+                        },
+                    },
+                    routerProvider: mockRouterBindings({
+                        resource: { name: "posts" },
+                        params: { baz: "qux" },
+                    }),
+                    resources: [{ name: "posts", meta: { dip: "dop" } }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(getListMock).toBeCalled();
+        });
+
+        expect(getListMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                    baz: "qux",
+                    dip: "dop",
+                }),
+            }),
+        );
+    });
+
+    it("two resources with same name, should pass resource meta according to identifier", async () => {
+        const getListMock = jest.fn();
+
+        renderHook(() => useSelect({ resource: "recentPosts" }), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        getList: getListMock,
+                    },
+                },
+                routerProvider: mockRouterBindings({
+                    resource: { name: "posts" },
+                }),
+                resources: [
+                    {
+                        name: "posts",
+                        identifier: "recentPosts",
+                        meta: {
+                            startDate: "2021-01-01",
+                        },
+                    },
+                    {
+                        name: "posts",
+                        identifier: "popularPosts",
+                        meta: {
+                            likes: 100,
+                        },
+                    },
+                ],
+            }),
+        });
+
+        await waitFor(() => {
+            expect(getListMock).toBeCalled();
+        });
+
+        expect(getListMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    startDate: "2021-01-01",
+                }),
+            }),
+        );
+
+        expect(getListMock).not.toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    likes: 100,
+                }),
+            }),
+        );
     });
 });
