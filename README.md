@@ -79,11 +79,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## 🔥 Try refine online in just 10 seconds
 
-
-<a href="https://s.refine.dev/refine-new-github">
-<img src="https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png">
+<div align="center">
+<a  href="https://s.refine.dev/refine-new-github">
+<img  src="https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png">
 </a>
-
+</div>
 <br/>
 <br/>
 
