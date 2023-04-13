@@ -35,8 +35,8 @@ const timeline = [
     {
         date: "13th April 2023",
         title: "Creating Mission and Invoices Pages",
-        description: `We'll implement CRUD actions for companies, clients and contacts for our PDF Invoice Generator app.`,
-        /*link:  "https://refine.dev/blog/refine-invoicer-4/", */
+        description: `We add more CRUD views to the PDF Invoice Generator app we have been building using refine and Strapi last few days.`,
+        link: "https://refine.dev/blog/refine-react-invoice-generator-4/",
     },
     {
         date: "14th April 2023",
