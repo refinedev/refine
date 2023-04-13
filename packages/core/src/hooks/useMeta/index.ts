@@ -1,27 +1,22 @@
-import { useResource } from "@hooks/resource";
 import { useParsed } from "@hooks/router";
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
-import { pickResource } from "@definitions/helpers/pick-resource";
-import { MetaQuery } from "../../interfaces";
+import { IResourceItem, MetaQuery } from "../../interfaces";
 
 /**
  * Hook that returns a function to get meta.
- * The meta is a combination of the resource meta, hook params and query params.
+ * The meta is a combination of the resource meta, hook meta and query params.
  * @internal
  */
 export const useMeta = () => {
-    const { resources } = useResource();
     const { params } = useParsed();
 
     const getMetaFn = ({
-        resource: resourceFromProp,
+        resource,
         meta: metaFromProp,
     }: {
-        resource?: string;
+        resource?: IResourceItem;
         meta?: MetaQuery;
     } = {}) => {
-        const resource = pickResource(resourceFromProp, resources);
-
         const { meta } = sanitizeResource(resource ?? {});
 
         return { ...meta, ...params, ...metaFromProp };
