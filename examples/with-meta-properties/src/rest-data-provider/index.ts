@@ -8,7 +8,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const restDataProvider: DataProvider = {
     ...dataProvider(API_URL),
     getList: async ({ resource, pagination, filters, sorters, meta }) => {
-        console.log("getList:", meta);
+        console.log(`${resource} - getList`, meta);
 
         const url = `${API_URL}/${resource}`;
 
