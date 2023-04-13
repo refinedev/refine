@@ -69,8 +69,15 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 **refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
-## Try refine online in just 10 seconds
 
+
+## What do you mean by "headless"?
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
+
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+
+
+## Try refine online in just 10 seconds
 
 
 <a href="https://s.refine.dev/refine-new-github">
@@ -88,12 +95,6 @@ You have the ability to preview, modify, and download your project immediately, 
 <a href="https://s.refine.dev/refine-new-github" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/231501815-295deedd-cbee-4b90-80dc-12116ee53274.gif"   style="width:700px;"  />
 </a>
-
-
-## What do you mean by "headless"?
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
-
-**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## Use cases
 **refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like **storefronts**.
