@@ -15,9 +15,9 @@
     "react-dom": "^18.0.0"
   },
   "scripts": {
-    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "eject": "react-scripts eject",
+    "start": "refine dev",
+    "build": "tsc && refine build",
+    "preview": "refine start",
     "refine": "refine"
   },
   "browserslist": {
