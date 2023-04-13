@@ -126,7 +126,7 @@ render(<App />);
 
 -   The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-    > For more information, refer to the [`useForm` documentation](/docs/packages/documentation/react-hook-form/useForm/) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+    > For more information, refer to the [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) and [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
 -   All other components provided by **Chakra UI** are used to display the form fields.
 
@@ -138,8 +138,6 @@ On the edit page, we may need to select a record from another resource.
 
 For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<Select/>` component.
 
-> For more information, refer to the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) and the[**Chakra UI** `<Select/>` documentations&#8594](https://chakra-ui.com/docs/components/select/usage)
-
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
@@ -148,7 +146,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-`useSelect` returns 10 record by default, but the category of the blog post may not be in the first 10 records. To solve this problem, we can use the `defaultValue` prop to set the default value of the `useSelect` hook like below:
+The `useSelect` hook returns 10 records by default, but the category of the blog post may not be in the first 10 records. To solve this problem, we can use the `defaultVlaue` prop to set the default value of the `useSelect` hook like below:
 
 ```tsx
 const { options: categoryOptions } = useSelect({
@@ -157,9 +155,11 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
+> For more information, refer to the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) and the[**Chakra UI** `<Select/>` documentations&#8594](https://chakra-ui.com/docs/components/select/usage)
+
 ## Adding the Edit Page to the App
 
-Now that we have created the edit page, we need to add it to the `App.tsx` file.
+Now that we have created the edit page, we can add it to the `App.tsx` file:
 
 1. Open `src/App.tsx` file on your editor.
 
@@ -267,12 +267,11 @@ export default App;
 Now, we can see the edit page in the browser at <a href="http://localhost:3000/blog-posts/edit/123" rel="noopener noreferrer nofollow">localhost:3000/blog-posts/edit/123</a>
 
 <br/>
-<br/>
 
 <Checklist>
 
 <ChecklistItem id="add-edit-page-chakra-ui">
-I added the edit page to the app.
+I have added the edit page to the app.
 </ChecklistItem>
 <ChecklistItem id="add-edit-page-chakra-ui-2">
 I understood the edit page components and hooks.

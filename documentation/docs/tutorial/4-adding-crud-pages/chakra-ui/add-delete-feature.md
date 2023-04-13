@@ -135,7 +135,7 @@ For more information, refer to the [`useDelete` documentation&#8594](/docs/api-r
 I have added the delete feature to the list page.
 </ChecklistItem>
 <ChecklistItem id="add-delete-feature-chakra-ui-2">
-I enabled the delete feature on the show page and edit page.
+I have enabled the delete feature on the show page and edit page
 </ChecklistItem>
 
 </Checklist>

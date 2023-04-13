@@ -16,12 +16,11 @@ To see how the filtering and sorting work and more detail, you can refer to the 
 :::
 
 <br/>
-<br/>
 
 <Checklist>
 
 <ChecklistItem id="add-search-and-filters-mui">
-I added search and filters to the table
+I have checked the filter and sorting features in the list page
 </ChecklistItem>
 
 </Checklist>

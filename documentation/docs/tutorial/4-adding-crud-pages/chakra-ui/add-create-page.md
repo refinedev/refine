@@ -124,7 +124,7 @@ render(<App />);
 
 -   The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-    > For more information, refer to the [`useForm` documentation](/docs/packages/documentation/react-hook-form/useForm/) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+    > For more information, refer to the [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) and[**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
 -   All other components provided by **Chakra UI** are used to display the form fields.
 

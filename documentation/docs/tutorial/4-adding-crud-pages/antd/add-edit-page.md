@@ -124,8 +124,6 @@ On the edit page, we may need to select a record from another resource.
 
 For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Select/>` component.
 
-> For more information, refer to the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
-
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
@@ -142,6 +140,8 @@ const { selectProps: categorySelectProps } = useSelect({
     defaultValue: blogPostsData?.category?.id,
 });
 ```
+
+> For more information, refer to the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
 
 ## Adding the Edit Page to the App
 
