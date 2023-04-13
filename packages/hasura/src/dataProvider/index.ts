@@ -10,6 +10,8 @@ import {
 } from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
+import mapKeys from "lodash/mapKeys";
+import camelCase from "camelcase";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -152,17 +154,26 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return nestedQuery;
 };
 
+const camelizeKeys = (obj: any): any => {
+    if (!obj) return undefined;
+    return mapKeys(obj, (_v, k) => camelCase(k));
+};
+
 type IDType = "uuid" | "Int" | "String" | "Numeric";
+
+type NamingConvention = "hasura-default" | "graphql-default";
 
 export type HasuraDataProviderOptions = {
     idType?: IDType | ((resource: string) => IDType);
+    namingConvention?: NamingConvention;
 };
 
 const dataProvider = (
     client: GraphQLClient,
     options?: HasuraDataProviderOptions,
 ): Required<DataProvider> => {
-    const { idType } = options ?? {};
+    const { idType, namingConvention = "hasura-default" } = options ?? {};
+    const defaultNamingConvention = namingConvention === "hasura-default";
 
     const getIdType = (resource: string) => {
         if (typeof idType === "function") {
@@ -174,9 +185,12 @@ const dataProvider = (
     return {
         getOne: async ({ resource, id, meta }) => {
             const operation = `${meta?.operation ?? resource}_by_pk`;
+            const camelizedOperation = camelCase(operation);
 
             const { query, variables } = gql.query({
-                operation,
+                operation: defaultNamingConvention
+                    ? operation
+                    : camelizedOperation,
                 variables: {
                     id: {
                         value: id,
@@ -196,14 +210,20 @@ const dataProvider = (
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            const operation = meta?.operation ?? resource;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
+
+            const type = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.query({
                 operation,
                 fields: meta?.fields,
                 variables: meta?.variables ?? {
                     where: {
-                        type: `${operation}_bool_exp`,
+                        type,
                         value: {
                             id: {
                                 _in: ids,
@@ -226,16 +246,29 @@ const dataProvider = (
                 pageSize: limit = 10,
                 mode = "server",
             } = pagination ?? {};
+            const hasuraSorting = defaultNamingConvention
+                ? generateSorting(sorters)
+                : camelizeKeys(generateSorting(sorters));
 
-            const hasuraSorting = generateSorting(sorters);
             const hasuraFilters = generateFilters(filters);
 
-            const operation = meta?.operation ?? resource;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
 
             const aggregateOperation = `${operation}_aggregate`;
 
-            const hasuraSortingType = `[${operation}_order_by!]`;
-            const hasuraFiltersType = `${operation}_bool_exp`;
+            const camelizedAggregateOperation = camelCase(aggregateOperation);
+
+            const hasuraSortingType = defaultNamingConvention
+                ? `[${operation}_order_by!]`
+                : `[${camelCase(`${operation}_order_by!`, {
+                      pascalCase: true,
+                  })}]`;
+
+            const hasuraFiltersType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.query([
                 {
@@ -248,12 +281,20 @@ const dataProvider = (
                                   offset: (current - 1) * limit,
                               }
                             : {}),
-                        ...(hasuraSorting && {
-                            order_by: {
-                                value: hasuraSorting,
-                                type: hasuraSortingType,
-                            },
-                        }),
+                        ...(hasuraSorting &&
+                            (namingConvention === "graphql-default"
+                                ? {
+                                      orderBy: {
+                                          value: hasuraSorting,
+                                          type: hasuraSortingType,
+                                      },
+                                  }
+                                : {
+                                      order_by: {
+                                          value: hasuraSorting,
+                                          type: hasuraSortingType,
+                                      },
+                                  })),
                         ...(hasuraFilters && {
                             where: {
                                 value: hasuraFilters,
@@ -263,7 +304,9 @@ const dataProvider = (
                     },
                 },
                 {
-                    operation: aggregateOperation,
+                    operation: defaultNamingConvention
+                        ? aggregateOperation
+                        : camelizedAggregateOperation,
                     fields: [{ aggregate: ["count"] }],
                     variables: {
                         where: {
@@ -283,13 +326,21 @@ const dataProvider = (
         },
 
         create: async ({ resource, variables, meta }) => {
-            const operation = meta?.operation ?? resource;
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
 
             const insertOperation = `insert_${operation}_one`;
-            const insertType = `${operation}_insert_input`;
+            const camelizedInsertOperation = camelCase(insertOperation);
+
+            const insertType = defaultNamingConvention
+                ? `${operation}_insert_input`
+                : camelCase(`${operation}_insert_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: insertOperation,
+                operation: defaultNamingConvention
+                    ? insertOperation
+                    : camelizedInsertOperation,
                 variables: {
                     object: {
                         type: insertType,
@@ -314,10 +365,18 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
-            const insertType = `[${operation}_insert_input!]`;
+            const camelizedInsertOperation = camelCase(insertOperation);
+
+            const insertType = defaultNamingConvention
+                ? `[${operation}_insert_input!]`
+                : `[${camelCase(`${operation}_insert_input!`, {
+                      pascalCase: true,
+                  })}]`;
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: insertOperation,
+                operation: defaultNamingConvention
+                    ? insertOperation
+                    : camelizedInsertOperation,
                 variables: {
                     objects: {
                         type: insertType,
@@ -346,20 +405,40 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
+            const camelizedUpdateOperation = camelCase(updateOperation);
 
-            const pkColumnsType = `${operation}_pk_columns_input`;
-            const setInputType = `${operation}_set_input`;
+            const pkColumnsType = defaultNamingConvention
+                ? `${operation}_pk_columns_input`
+                : camelCase(`${operation}_pk_columns_input!`, {
+                      pascalCase: true,
+                  });
+            const setInputType = defaultNamingConvention
+                ? `${operation}_set_input`
+                : camelCase(`${operation}_set_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: updateOperation,
+                operation: defaultNamingConvention
+                    ? updateOperation
+                    : camelizedUpdateOperation,
                 variables: {
-                    pk_columns: {
-                        type: pkColumnsType,
-                        value: {
-                            id: id,
-                        },
-                        required: true,
-                    },
+                    ...(defaultNamingConvention
+                        ? {
+                              pk_columns: {
+                                  type: pkColumnsType,
+                                  value: {
+                                      id: id,
+                                  },
+                                  required: true,
+                              },
+                          }
+                        : {
+                              pkColumns: {
+                                  type: pkColumnsType,
+                                  value: {
+                                      id: id,
+                                  },
+                              },
+                          }),
                     _set: {
                         type: setInputType,
                         value: variables,
@@ -382,12 +461,19 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
+            const camelizedUpdateOperation = camelCase(updateOperation);
 
-            const whereType = `${operation}_bool_exp`;
-            const setInputType = `${operation}_set_input`;
+            const whereType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
+            const setInputType = defaultNamingConvention
+                ? `${operation}_set_input`
+                : camelCase(`${operation}_set_input`, { pascalCase: true });
 
             const { query, variables: gqlVariables } = gql.mutation({
-                operation: updateOperation,
+                operation: defaultNamingConvention
+                    ? updateOperation
+                    : camelizedUpdateOperation,
                 variables: {
                     where: {
                         type: whereType,
@@ -425,9 +511,12 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
+            const camelizedDeleteOperation = camelCase(deleteOperation);
 
             const { query, variables } = gql.mutation({
-                operation: deleteOperation,
+                operation: defaultNamingConvention
+                    ? deleteOperation
+                    : camelizedDeleteOperation,
                 variables: {
                     id: {
                         value: id,
@@ -450,11 +539,16 @@ const dataProvider = (
             const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;
+            const camelizedDeleteOperation = camelCase(deleteOperation);
 
-            const whereType = `${operation}_bool_exp`;
+            const whereType = defaultNamingConvention
+                ? `${operation}_bool_exp`
+                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             const { query, variables } = gql.mutation({
-                operation: deleteOperation,
+                operation: defaultNamingConvention
+                    ? deleteOperation
+                    : camelizedDeleteOperation,
                 fields: [
                     {
                         returning: meta?.fields ?? ["id"],

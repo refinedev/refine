@@ -1,5 +1,27 @@
 # @pankod/refine-nestjsx-crud
 
+## 4.3.0
+
+### Minor Changes
+
+-   [#4154](https://github.com/refinedev/refine/pull/4154) [`d6cb8f67d47`](https://github.com/refinedev/refine/commit/d6cb8f67d4788bb3071742b5a950163b6e10e1b6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling.
+    Now with swizzle support, you can easily customize nextjs-crud data provider for your needs.
+
+    feat: tests added for util functions.
+
+    chore: utility functions have been moved to their own files.
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#4154](https://github.com/refinedev/refine/pull/4154) [`d6cb8f67d47`](https://github.com/refinedev/refine/commit/d6cb8f67d4788bb3071742b5a950163b6e10e1b6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling.
+    Now with swizzle support, you can easily customize nextjs-crud data provider for your needs.
+
+    feat: tests added for util functions.
+
+    chore: utility functions have been moved to their own files.
+
 ## 4.1.0
 
 ### Minor Changes

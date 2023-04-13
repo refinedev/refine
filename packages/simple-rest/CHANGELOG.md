@@ -1,5 +1,17 @@
 # @pankod/refine-simple-rest
 
+## 4.3.0
+
+### Minor Changes
+
+-   [#4162](https://github.com/refinedev/refine/pull/4162) [`4ebd298fa8a`](https://github.com/refinedev/refine/commit/4ebd298fa8a9245a17fb724ae5817908cbb13926) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `requiredPackages` added to refine.config.js for CLI to automatically install required packages for the project.
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#4162](https://github.com/refinedev/refine/pull/4162) [`4ebd298fa8a`](https://github.com/refinedev/refine/commit/4ebd298fa8a9245a17fb724ae5817908cbb13926) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `requiredPackages` added to refine.config.js for CLI to automatically install required packages for the project.
+
 ## 4.1.0
 
 ### Minor Changes

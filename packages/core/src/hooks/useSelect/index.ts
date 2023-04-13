@@ -4,7 +4,7 @@ import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
 import get from "lodash/get";
 
-import { useList, useMany } from "@hooks";
+import { useList, useMany, useMeta } from "@hooks";
 import {
     CrudSorting,
     Option,
@@ -192,6 +192,7 @@ export const useSelect = <
     } = props;
 
     const { resources } = useResource();
+    const getMeta = useMeta();
 
     /**
      * Since `identifier` is an optional but prioritized way to match resources, users can provide identifier instead of resource name.
@@ -199,6 +200,11 @@ export const useSelect = <
     const pickedResource = pickResource(resourceFromProps, resources);
 
     const resource = pickedResource?.name ?? resourceFromProps;
+
+    const combinedMeta = getMeta({
+        resource: pickedResource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
 
     const defaultValues = Array.isArray(defaultValue)
         ? defaultValue
@@ -232,8 +238,8 @@ export const useSelect = <
                 defaultValueQueryOptions?.onSuccess?.(data);
             },
         },
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: combinedMeta,
+        metaData: combinedMeta,
         liveMode: "off",
         dataProviderName,
     });
@@ -271,8 +277,8 @@ export const useSelect = <
         },
         successNotification,
         errorNotification,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: combinedMeta,
+        metaData: combinedMeta,
         liveMode,
         liveParams,
         onLiveEvent,

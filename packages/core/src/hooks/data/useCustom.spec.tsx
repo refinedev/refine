@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import * as ReactQuery from "@tanstack/react-query";
 
@@ -92,6 +92,46 @@ describe("useCustom Hook", () => {
                     expect.objectContaining({ queryKey: ["MyKey"] }),
                 );
             });
+        });
+
+        it("should pass meta to dataProvider router and hook", async () => {
+            const customMock = jest.fn();
+
+            renderHook(
+                () =>
+                    useCustom({
+                        url: "remoteUrl",
+                        method: "get",
+                        meta: { foo: "bar" },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                custom: customMock,
+                            },
+                        },
+                        routerProvider: mockRouterBindings({
+                            params: { baz: "qux" },
+                        }),
+                        resources: [{ name: "posts", meta: { dip: "dop" } }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(customMock).toBeCalled();
+            });
+
+            expect(customMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        foo: "bar",
+                        baz: "qux",
+                    }),
+                }),
+            );
         });
     });
 });

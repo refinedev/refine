@@ -1,33 +1,33 @@
 {
-    "name": "blog-next-refine-pwa",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev",
-        "build": "next build && rm -rf .next/cache",
-        "start:prod": "next start",
-        "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
-    },
-    "dependencies": {
-        "@refinedev/core": "^4.8.0",
-        "@refinedev/cli": "^2.1.2",
-        "@refinedev/nextjs-router": "^5.1.4",
-        "@refinedev/simple-rest": "^4.1.0",
-        "next": "^13.0.6",
-        "cross-env": "^7.0.3",
-        "next-compose-plugins": "^2.2.1",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0"
-    },
-    "devDependencies": {
-        "@types/node": "^12.20.11",
-        "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
-        "@typescript-eslint/parser": "5.48.0",
-        "autoprefixer": "^10.4.1",
-        "next-pwa": "^5.6.0",
-        "postcss": "^8.1.4",
-        "tailwindcss": "^3.0.11",
-        "typescript": "^4.7.4"
-    }
+  "name": "blog-next-refine-pwa",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
+    "build": "refine build && rm -rf .next/cache",
+    "start:prod": "refine start",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+  },
+  "dependencies": {
+    "@refinedev/core": "^4.8.5",
+    "@refinedev/cli": "^2.3.0",
+    "@refinedev/nextjs-router": "^5.1.6",
+    "@refinedev/simple-rest": "^4.3.0",
+    "next": "^13.0.6",
+    "cross-env": "^7.0.3",
+    "next-compose-plugins": "^2.2.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/parser": "5.48.0",
+    "autoprefixer": "^10.4.1",
+    "next-pwa": "^5.6.0",
+    "postcss": "^8.1.4",
+    "tailwindcss": "^3.0.11",
+    "typescript": "^4.7.4"
+  }
 }

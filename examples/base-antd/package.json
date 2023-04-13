@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@refinedev/antd": "^5.6.0",
-    "@refinedev/core": "^4.8.0",
-    "@refinedev/cli": "^2.1.2",
+    "@refinedev/core": "^4.8.5",
+    "@refinedev/cli": "^2.3.0",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/simple-rest": "^4.1.0",
     "@uiw/react-md-editor": "^3.19.5",
@@ -15,9 +15,9 @@
     "react-dom": "^18.0.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "start": "refine start",
+    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "eject": "react-scripts eject",
     "refine": "refine"
   },
   "browserslist": {

@@ -403,7 +403,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
-import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/mui";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import routerBindings, {
@@ -445,9 +445,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

@@ -121,6 +121,58 @@ After the fields are determined, we use the `renderer` functions to create the c
 Component name is determined by the active `resource` element and the active action. If the resource has `option.label` field, it will be used as the part of the component name. Otherwise, the `resource.name` will be used. For example, if the resource name is `categories` and the action is `list`, the component name will be `CategoryList`.
 :::
 
+### Usage with GraphQL backends and `meta` values
+
+**refine* handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
+
+Here's the syntax for defining the `meta` values in Inferencer components:
+
+```tsx
+<AntdListInferencer
+    meta={{
+        [resourceNameOrIdentifier: string]: {
+            [methodName: "default" | "getList" | "getMany" | "getOne" | "update"]: Record<string, unknown>,
+        }
+    }}
+/>
+```
+
+`default` is the default `meta` value for all the methods. In the absence of a specific `meta` value for a method for a resource, the `default` value will be used.
+
+This structure is designed to let users provide `meta` values for multiple resources and actions at once since the Inferencer might find relations and try to use hooks to fetch the necessary data.
+
+#### Example Usage
+
+```tsx
+<AntdListInferencer
+    meta={{
+        posts: {
+            getList: {
+                fields: [
+                    "id",
+                    "title",
+                    "content",
+                    "category_id",
+                    "created_at",
+                ],
+            },
+        },
+        categories: {
+            default: {
+                fields: ["id", "title"],
+            },
+        },
+    }}
+/>
+```
+
+
 ### Modifying the inferred fields
 
 If you want to customize the output of the Inferencer such as setting a custom `accessor` property for `object` type fields or changing the `type` of a field, or changing the `resource` for a `relation` type, you can use`fieldTransformer` prop in Inferencer components. It is a function that takes the field as an argument and returns the modified field. If `undefined | false | null` is returned, the field will be removed from the output, both for the preview and the code.
+
+### Hiding the Code Viewer and Development Warning
+
+If you want to hide the code viewer and the warning components, you can use the `hideCodeViewerInProduction` prop. This will only work in production mode. In development mode, the code viewer and the information block will always be visible.
+
+Please note that the Inferencer components are not meant to be used in production. They are meant to be used in development mode to help you generate the code for your components.

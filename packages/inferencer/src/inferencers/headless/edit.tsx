@@ -20,7 +20,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -28,6 +28,7 @@ import {
     ImportElement,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for edit page with unstyled html elements
@@ -36,6 +37,7 @@ import {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
     id,
 }: RendererContext) => {
@@ -83,6 +85,11 @@ export const renderer = ({
                     resource: "${field.resource.name}",
                     defaultValue: ${val},
                     ${getOptionLabel(field)}
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
 
                 React.useEffect(() => {
@@ -343,8 +350,25 @@ export const renderer = ({
                     resource: "${resource.name}",
                     id: ${id},
                     action: "edit",
+                    ${getMetaProps(
+                        resource?.identifier ?? resource?.name,
+                        meta,
+                        "getOne",
+                    )}
                 }
             }`
+                    : getMetaProps(
+                          resource?.identifier ?? resource?.name,
+                          meta,
+                          "getOne",
+                      )
+                    ? `{ refineCoreProps: {
+                        ${getMetaProps(
+                            resource?.identifier ?? resource?.name,
+                            meta,
+                            "getOne",
+                        )}
+                    } }`
                     : ""
             }
         );
@@ -411,7 +435,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         ],
         ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

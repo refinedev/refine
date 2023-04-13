@@ -16,13 +16,14 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for create page in Mantine
@@ -31,6 +32,7 @@ import {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
@@ -63,6 +65,11 @@ export const renderer = ({
                 useSelect({
                     resource: "${field.resource.name}",
                     ${getOptionLabel(field)}
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
             `;
             }
@@ -309,8 +316,25 @@ export const renderer = ({
                 isCustomPage
                     ? `refineCoreProps: {
                         resource: "${resource.name}",
-                        action: "create",  
+                        action: "create",
+                        ${getMetaProps(
+                            resource.identifier ?? resource.name,
+                            meta,
+                            "getOne",
+                        )}
                     }`
+                    : getMetaProps(
+                          resource.identifier ?? resource.name,
+                          meta,
+                          "getOne",
+                      )
+                    ? `{
+                      refineCoreProps: { ${getMetaProps(
+                          resource.identifier ?? resource.name,
+                          meta,
+                          "getOne",
+                      )} }
+                      }`
                     : ""
             }
         });
@@ -335,7 +359,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         ["@refinedev/mantine", "RefineMantine", RefineMantine],
         ["@mantine/core", "MantineCore", MantineCore],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

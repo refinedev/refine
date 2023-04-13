@@ -1,5 +1,27 @@
 # @pankod/refine-cli
 
+## 2.3.0
+
+### Minor Changes
+
+-   [#4149](https://github.com/refinedev/refine/pull/4149) [`ca6a2b18576`](https://github.com/refinedev/refine/commit/ca6a2b185762e7dbae120da4090c47af5391fe45) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added required packages to install after swizzling.
+    Now with this feature, users can automatically install the required packages after swizzling.
+
+### Patch Changes
+
+-   [#4138](https://github.com/refinedev/refine/pull/4138) [`a15634d6621`](https://github.com/refinedev/refine/commit/a15634d66219f12de7cc195b5e97c9461e4b7164) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: When the project type is vite, the `refine dev` command was running `vite start`. It is now changed to `vite dev`, because there is no `start` command in vite.
+
+## 2.2.0
+
+### Minor Changes
+
+-   [#4149](https://github.com/refinedev/refine/pull/4149) [`ca6a2b18576`](https://github.com/refinedev/refine/commit/ca6a2b185762e7dbae120da4090c47af5391fe45) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added required packages to install after swizzling.
+    Now with this feature, users can automatically install the required packages after swizzling.
+
+### Patch Changes
+
+-   [#4138](https://github.com/refinedev/refine/pull/4138) [`a15634d6621`](https://github.com/refinedev/refine/commit/a15634d66219f12de7cc195b5e97c9461e4b7164) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: When the project type is vite, the `refine dev` command was running `vite start`. It is now changed to `vite dev`, because there is no `start` command in vite.
+
 ## 2.1.2
 
 ### Patch Changes

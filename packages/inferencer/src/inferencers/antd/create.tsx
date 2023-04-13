@@ -17,7 +17,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
@@ -26,6 +26,7 @@ import {
     RendererContext,
 } from "@/types";
 import { shouldDotAccess } from "@/utilities/accessor";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for create page in Ant Design
@@ -34,6 +35,7 @@ import { shouldDotAccess } from "@/utilities/accessor";
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
@@ -67,6 +69,11 @@ export const renderer = ({
                 useSelect({
                     resource: "${field.resource.name}",
                     ${getOptionLabel(field)}
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getList",
+                    )}
                 });
             `;
             }
@@ -322,7 +329,24 @@ export const renderer = ({
                 ? `{
                       resource: "${resource.name}",
                       action: "create",
+                      ${getMetaProps(
+                          resource.identifier ?? resource.name,
+                          meta,
+                          "getOne",
+                      )}
                   }`
+                : getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      "getOne",
+                  )
+                ? `{
+                  ${getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      "getOne",
+                  )}
+              }`
                 : ""
         });
     
@@ -349,7 +373,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         ["dayjs", "dayjs", dayjs, true],
         ["antd", "AntdPackage", AntdPackage],
     ],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

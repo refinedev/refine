@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useMany } from "./useMany";
 import { defaultRefineOptions } from "@contexts/refine";
@@ -34,6 +34,41 @@ describe("useMany Hook", () => {
         expect(data?.data.length).toBe(2);
     });
 
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
+        const getManyMock = jest.fn();
+
+        renderHook(
+            () => useMany({ resource: "posts", meta: { foo: "bar" }, ids: [] }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getMany: getManyMock,
+                        },
+                    },
+                    routerProvider: mockRouterBindings({
+                        params: { baz: "qux" },
+                    }),
+                    resources: [{ name: "posts", meta: { dip: "dop" } }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(getManyMock).toBeCalled();
+        });
+
+        expect(getManyMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                    baz: "qux",
+                }),
+            }),
+        );
+    });
+
     describe("useResourceSubscription", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
@@ -64,13 +99,11 @@ describe("useMany Hook", () => {
             expect(onSubscribeMock).toHaveBeenCalledWith({
                 channel: "resources/posts",
                 callback: expect.any(Function),
-                params: {
+                params: expect.objectContaining({
                     ids: ["1", "2"],
-                    meta: undefined,
-                    metaData: undefined,
                     resource: "posts",
                     subscriptionType: "useMany",
-                },
+                }),
                 types: ["*"],
             });
         });
