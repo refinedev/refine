@@ -15,6 +15,10 @@ CRUD actions are supported by the [**Strapi**](https://strapi.io/) data provider
 
 We're on Day Three and this **refineWeek** is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
+### refineWeek ft. Strapi series
+
+ - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
+ - Day 2 - [Setting Up the Invoicer App](https://refine.dev/blog/refine-react-invoice-generator-2/)
 ## Overview
 
 In the last episode, we explored **refine**'s auth and data providers in significant details. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support **Strapi** thanks to the [`@refinedev/strapi-v4`](https://github.com/refinedev/refine/tree/master/packages/strapi) package.
