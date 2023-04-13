@@ -36,11 +36,11 @@ export default function FooterLinksMultiColumn({ columns }) {
     const { contactTitle, contactDescription, contactEmail } = customFields;
 
     return (
-        <div className="grid max-w-[750px] grid-cols-3 place-content-center gap-4 md:grid-cols-4 lg:mr-0 lg:grid-cols-5 lg:place-content-end">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-[750px] lg:mr-0 place-content-center lg:place-content-end gap-4">            {" "}
             {columns.map((column, i) => (
                 <Column key={i} column={column} />
             ))}
-            <div className="font-montserrat col-span-3 max-w-[216px] text-xs leading-[24px] text-[#000] md:col-span-1 lg:col-span-2">
+            <div className="text-[#000] text-xs leading-[24px] font-montserrat col-span-3 md:col-span-1 lg:col-span-2 max-w-[216px]">
                 <div className="mb-1 font-extrabold tracking-wide">
                     {contactTitle}
                 </div>
