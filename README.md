@@ -69,7 +69,7 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 **refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
-## Try refine online
+## Try refine online in just 10 seconds
 
 
 
@@ -159,7 +159,14 @@ You can take a look at some live examples that can be built using **refine** fro
 
 ## Quick Start
 
-The fastest way to get started with **refine** is by using the `create refine-app` project starter tool.
+The fastest way to get started with **refine** is by using the `create refine-app` project starter tool or using [refine.new](https://s.refine.dev/refine-new-github) browser tool.
+
+
+### Using refine.new
+
+Building refine CRUD apps with [refine.new](https://s.refine.dev/refine-new-github) is very straight forward. You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
+
+### Using `create refine-app`
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
