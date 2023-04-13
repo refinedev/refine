@@ -30,9 +30,8 @@ describe("handleSort", () => {
 
         query = handleSort(query, sorters);
 
-        const expectedSortBy =
-            "sort%5B0%5D=field1%2CASC&sort%5B1%5D=field2%2CDESC";
-        expect(query.query()).toEqual(expectedSortBy);
+        const expectedSortBy = "sort[0]=field1,ASC&sort[1]=field2,DESC";
+        expect(decodeURIComponent(query.query())).toEqual(expectedSortBy);
     });
 
     it("should ignore invalid sort entries", () => {
@@ -51,8 +50,8 @@ describe("handleSort", () => {
 
         query = handleSort(query, sorters);
 
-        const expectedSortBy = "sort%5B0%5D=field1%2CASC";
-        expect(query.query()).toEqual(expectedSortBy);
+        const expectedSortBy = "sort[0]=field1,ASC";
+        expect(decodeURIComponent(query.query())).toEqual(expectedSortBy);
     });
 
     it("should work with complex sort and filter parameters", () => {
@@ -82,9 +81,9 @@ describe("handleSort", () => {
         query = handleFilter(query, filters);
 
         const expectedQuery =
-            "sort%5B0%5D=name%2CASC&s=%7B%22%24and%22%3A%5B%7B%22age%22%3A%7B%22%24gte%22%3A18%7D%7D%2C%7B%22email%22%3A%7B%22%24eq%22%3A%22john%22%7D%7D%5D%7D";
+            'sort[0]=name,ASC&s={"$and":[{"age":{"$gte":18}},{"email":{"$eq":"john"}}]}';
 
-        expect(query.query()).toEqual(expectedQuery);
+        expect(decodeURIComponent(query.query())).toEqual(expectedQuery);
     });
 });
 

@@ -23,8 +23,8 @@ describe("handleJoin", () => {
 
         query = handleJoin(query, join);
 
-        expect(query.query()).toEqual(
-            "join%5B0%5D=profile%7C%7Cname%2Cage&join%5B1%5D=posts%7C%7Ctitle%2Ccontent",
+        expect(decodeURIComponent(query.query())).toEqual(
+            "join[0]=profile||name,age&join[1]=posts||title,content",
         );
     });
 
@@ -75,8 +75,8 @@ describe("handleJoin", () => {
         query = handleFilter(query, filters);
 
         const expectedQuery =
-            "join%5B0%5D=profile%7C%7Cname%2Cage&join%5B1%5D=posts%7C%7Ctitle%2Ccontent&sort%5B0%5D=name%2CASC&s=%7B%22%24and%22%3A%5B%7B%22age%22%3A%7B%22%24gte%22%3A18%7D%7D%2C%7B%22email%22%3A%7B%22%24eq%22%3A%22john%22%7D%7D%5D%7D";
+            'join[0]=profile||name,age&join[1]=posts||title,content&sort[0]=name,ASC&s={"$and":[{"age":{"$gte":18}},{"email":{"$eq":"john"}}]}';
 
-        expect(query.query()).toEqual(expectedQuery);
+        expect(decodeURIComponent(query.query())).toEqual(expectedQuery);
     });
 });
