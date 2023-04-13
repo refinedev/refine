@@ -164,9 +164,10 @@ You can take a look at some live examples that can be built using **refine** fro
 The fastest way to get started with **refine** is by using the `create refine-app` project starter tool or using [refine.new](https://s.refine.dev/refine-new-github) browser tool.
 
 
-### Using refine.new
+### Using refine.new browser tool
+[refine.new](https://s.refine.dev/refine-new-github) lets you create a new refine application by making step-by-step selections directly in your browser.
 
-Building refine CRUD apps with [refine.new](https://s.refine.dev/refine-new-github) is very straight forward. You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
+You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
 
 ### Using `create refine-app`
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
