@@ -61,12 +61,9 @@ export const useNavigation = () => {
 
             return composeRoute(
                 createActionRoute.route,
-                {},
-                {
-                    ...resourceItem?.meta,
-                    ...parsed,
-                    ...meta,
-                },
+                resourceItem?.meta,
+                parsed,
+                meta,
             );
         } else {
             const resourceItem =
@@ -86,12 +83,9 @@ export const useNavigation = () => {
             return go({
                 to: composeRoute(
                     createActionRoute,
-                    {},
-                    {
-                        ...resourceItem?.meta,
-                        ...parsed,
-                        ...meta,
-                    },
+                    resourceItem?.meta,
+                    parsed,
+                    meta,
                 ),
                 type: "path",
             }) as string;
@@ -125,10 +119,9 @@ export const useNavigation = () => {
 
             return composeRoute(
                 editActionRoute.route,
-                {},
+                resourceItem?.meta,
+                parsed,
                 {
-                    ...resourceItem?.meta,
-                    ...parsed,
                     ...meta,
                     id: encodedId,
                 },
@@ -149,16 +142,10 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(
-                    editActionRoute,
-                    {},
-                    {
-                        ...resourceItem?.meta,
-                        ...parsed,
-                        ...meta,
-                        id: encodedId,
-                    },
-                ),
+                to: composeRoute(editActionRoute, resourceItem?.meta, parsed, {
+                    ...meta,
+                    id: encodedId,
+                }),
                 type: "path",
             }) as string;
         }
@@ -192,10 +179,9 @@ export const useNavigation = () => {
 
             return composeRoute(
                 cloneActionRoute.route,
-                {},
+                resourceItem?.meta,
+                parsed,
                 {
-                    ...resourceItem?.meta,
-                    ...parsed,
                     ...meta,
                     id: encodedId,
                 },
@@ -216,16 +202,10 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(
-                    cloneActionRoute,
-                    {},
-                    {
-                        ...resourceItem?.meta,
-                        ...parsed,
-                        ...meta,
-                        id: encodedId,
-                    },
-                ),
+                to: composeRoute(cloneActionRoute, resourceItem?.meta, parsed, {
+                    ...meta,
+                    id: encodedId,
+                }),
                 type: "path",
             }) as string;
         }
@@ -258,10 +238,9 @@ export const useNavigation = () => {
 
             return composeRoute(
                 showActionRoute.route,
-                {},
+                resourceItem?.meta,
+                parsed,
                 {
-                    ...resourceItem?.meta,
-                    ...parsed,
                     ...meta,
                     id: encodedId,
                 },
@@ -282,16 +261,10 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(
-                    showActionRoute,
-                    {},
-                    {
-                        ...resourceItem?.meta,
-                        ...parsed,
-                        ...meta,
-                        id: encodedId,
-                    },
-                ),
+                to: composeRoute(showActionRoute, resourceItem?.meta, parsed, {
+                    ...meta,
+                    id: encodedId,
+                }),
                 type: "path",
             }) as string;
         }
@@ -322,12 +295,9 @@ export const useNavigation = () => {
 
             return composeRoute(
                 listActionRoute.route,
-                {},
-                {
-                    ...resourceItem?.meta,
-                    ...parsed,
-                    ...meta,
-                },
+                resourceItem?.meta,
+                parsed,
+                meta,
             );
         } else {
             const resourceItem =
@@ -347,12 +317,9 @@ export const useNavigation = () => {
             return go({
                 to: composeRoute(
                     listActionRoute,
-                    {},
-                    {
-                        ...resourceItem?.meta,
-                        ...parsed,
-                        ...meta,
-                    },
+                    resourceItem?.meta,
+                    parsed,
+                    meta,
                 ),
                 type: "path",
             }) as string;

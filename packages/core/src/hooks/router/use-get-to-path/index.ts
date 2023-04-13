@@ -51,12 +51,9 @@ export const useGetToPath = (): GetToPathFn => {
 
             const composed = composeRoute(
                 actionRoute,
-                {},
-                {
-                    ...selectedResource?.meta,
-                    ...parsed?.params,
-                    ...meta,
-                },
+                selectedResource?.meta,
+                parsed,
+                meta,
             );
 
             return composed;

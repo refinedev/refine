@@ -79,12 +79,9 @@ export const useBreadcrumb = ({
                     ? hrefRaw
                     : composeRoute(
                           hrefRaw,
-                          {},
-                          {
-                              ...parentResource?.meta,
-                              ...parsed,
-                              ...metaFromProps,
-                          },
+                          parentResource?.meta,
+                          parsed,
+                          metaFromProps,
                       )
                 : undefined;
 
