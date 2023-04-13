@@ -664,7 +664,7 @@ Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayo
 
 Only if you are using `ThemedLayout`. If you are not customizing the `Header` component, an update like the one below will suffice.
 
-```diff
+```diff title="src/App.tsx"
 -import { ThemedLayout } from "@refinedev/mui";
 +import { ThemedLayoutV2 } from "@refinedev/mui";
 
@@ -742,6 +742,100 @@ But mostly we customize the `Header` component. For this, an update like the one
 ```
 
 ## Hamburger Menu
+
+The `HamburgerMenu` component is a component that is used to collapse/uncollapse the `Sider` component. It is used by default in the `Header` component. However, you can do this anywhere you want using the `<HamburgerMenu />` component. Below you can see an example put on the dashboard page.
+
+```tsx live previewHeight=600px hideCode url=http://localhost:3000/samples
+setInitialRoutes(["/"]);
+
+// visible-block-start
+
+import { Refine } from "@refinedev/core";
+
+import { 
+    ThemedLayoutV2, 
+    RefineThemes, 
+    // highlight-next-line
+    HamburgerMenu 
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles, Box } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
+
+import { authProvider } from "./authProvider";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+// highlight-start
+const DashboardPage = () => {
+    return (
+        <Box
+            sx={{
+                paddingLeft: "10px",
+            }}
+        >
+            <HamburgerMenu />
+        </Box>
+    );
+};
+// highlight-end
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    authProvider={authProvider}
+                    resources={[
+                        // highlight-start
+                        {
+                            name: "Dashboard",
+                            list: "/",
+                        },
+                        // highlight-end
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                // highlight-next-line
+                                <ThemedLayoutV2 Header={() => null}>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/" element={<DashboardPage />} />
+                            <Route path="samples">
+                                <Route index element={<MuiInferencer />} />
+                            </Route>
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ThemeProvider>
+        </BrowserRouter>
+    );
+};
+
+// visible-block-end
+
+render(<App />);
+```
 
 [themed-sider]: https://github.com/refinedev/refine/blob/next/packages/mui/src/components/themedLayoutV2/sider/index.tsx
 [themed-header]: https://github.com/refinedev/refine/blob/next/packages/mui/src/components/themedLayoutV2/header/index.tsx
