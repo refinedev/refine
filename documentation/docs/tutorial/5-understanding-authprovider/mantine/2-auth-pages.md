@@ -180,7 +180,7 @@ In this section, we will learn how to create auth pages such as login, signup, f
 
 It will allow us to easily create and customize them with various props. Though we do need to have an auth provider to use it, since we already created one in the previous section, we will just use that.
 
-> For more information, refer to the [`<AuthPage/>` documentation &#8594](/docs/api-reference/mantine/components/antd-auth-page/)
+> For more information, refer to the [`<AuthPage/>` documentation &#8594](/docs/api-reference/mantine/components/mantine-auth-page/)
 
 ## Login Page
 
