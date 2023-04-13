@@ -59,7 +59,12 @@ export const useNavigation = () => {
                 return "";
             }
 
-            return composeRoute(createActionRoute.route, parsed, meta);
+            return composeRoute(
+                createActionRoute.route,
+                resourceItem?.meta,
+                parsed,
+                meta,
+            );
         } else {
             const resourceItem =
                 typeof resource === "string"
@@ -76,7 +81,12 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(createActionRoute, parsed, meta),
+                to: composeRoute(
+                    createActionRoute,
+                    resourceItem?.meta,
+                    parsed,
+                    meta,
+                ),
                 type: "path",
             }) as string;
         }
@@ -107,10 +117,15 @@ export const useNavigation = () => {
                 return "";
             }
 
-            return composeRoute(editActionRoute.route, parsed, {
-                ...meta,
-                id: encodedId,
-            });
+            return composeRoute(
+                editActionRoute.route,
+                resourceItem?.meta,
+                parsed,
+                {
+                    ...meta,
+                    id: encodedId,
+                },
+            );
         } else {
             const resourceItem =
                 typeof resource === "string"
@@ -127,7 +142,7 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(editActionRoute, parsed, {
+                to: composeRoute(editActionRoute, resourceItem?.meta, parsed, {
                     ...meta,
                     id: encodedId,
                 }),
@@ -162,10 +177,15 @@ export const useNavigation = () => {
                 return "";
             }
 
-            return composeRoute(cloneActionRoute.route, parsed, {
-                ...meta,
-                id: encodedId,
-            });
+            return composeRoute(
+                cloneActionRoute.route,
+                resourceItem?.meta,
+                parsed,
+                {
+                    ...meta,
+                    id: encodedId,
+                },
+            );
         } else {
             const resourceItem =
                 typeof resource === "string"
@@ -182,7 +202,7 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(cloneActionRoute, parsed, {
+                to: composeRoute(cloneActionRoute, resourceItem?.meta, parsed, {
                     ...meta,
                     id: encodedId,
                 }),
@@ -216,10 +236,15 @@ export const useNavigation = () => {
                 return "";
             }
 
-            return composeRoute(showActionRoute.route, parsed, {
-                ...meta,
-                id: encodedId,
-            });
+            return composeRoute(
+                showActionRoute.route,
+                resourceItem?.meta,
+                parsed,
+                {
+                    ...meta,
+                    id: encodedId,
+                },
+            );
         } else {
             const resourceItem =
                 typeof resource === "string"
@@ -236,7 +261,7 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(showActionRoute, parsed, {
+                to: composeRoute(showActionRoute, resourceItem?.meta, parsed, {
                     ...meta,
                     id: encodedId,
                 }),
@@ -268,7 +293,12 @@ export const useNavigation = () => {
                 return "";
             }
 
-            return composeRoute(listActionRoute.route, parsed, meta);
+            return composeRoute(
+                listActionRoute.route,
+                resourceItem?.meta,
+                parsed,
+                meta,
+            );
         } else {
             const resourceItem =
                 typeof resource === "string"
@@ -285,7 +315,12 @@ export const useNavigation = () => {
             }
 
             return go({
-                to: composeRoute(listActionRoute, parsed, meta),
+                to: composeRoute(
+                    listActionRoute,
+                    resourceItem?.meta,
+                    parsed,
+                    meta,
+                ),
                 type: "path",
             }) as string;
         }

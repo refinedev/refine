@@ -20,12 +20,15 @@ describe("composeRoute", () => {
     });
 
     it("should return the route with multiple params replaced", () => {
-        const result = composeRoute("/users/:id/:name", {
-            id: 1,
-            params: {
+        const result = composeRoute(
+            "/users/:id/:name",
+            { name: "Jane" },
+            { id: 5 },
+            {
+                id: 1,
                 name: "John",
             },
-        });
+        );
 
         expect(result).toEqual("/users/1/John");
     });
@@ -33,7 +36,8 @@ describe("composeRoute", () => {
     it("should return the route with multiple params by prioritizing meta params", () => {
         const result = composeRoute(
             "/users/:id/:name",
-            { params: { id: 1, name: "John" } },
+            {},
+            { id: 1 },
             { name: "Doe" },
         );
 
