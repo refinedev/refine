@@ -79,11 +79,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## 🔥 Try refine online in just 10 seconds
 
-<div align="center">
+<br/>
+
 <a  href="https://s.refine.dev/refine-new-github">
 <img  src="https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png">
 </a>
-</div>
 <br/>
 <br/>
 
@@ -91,10 +91,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.  
 
-
+<div align="center">
 <a href="https://s.refine.dev/refine-new-github" target="_blank">
-<img src="https://user-images.githubusercontent.com/18739364/231501815-295deedd-cbee-4b90-80dc-12116ee53274.gif"   style="width:700px;"  />
+<img src="https://user-images.githubusercontent.com/18739364/231501815-295deedd-cbee-4b90-80dc-12116ee53274.gif"    />
 </a>
+</div>
 
 ## Use cases
 **refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like **storefronts**.
