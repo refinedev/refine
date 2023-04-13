@@ -1,5 +1,11 @@
 # @pankod/refine-ui-types
 
+## 1.6.0
+
+### Minor Changes
+
+-   [#4153](https://github.com/refinedev/refine/pull/4153) [`8d9c408d089`](https://github.com/refinedev/refine/commit/8d9c408d0893f6592709e688432a3274d0bd0fcb) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `RefineThemedLayoutV2Props`, `RefineThemedLayoutV2SiderProps`, `RefineThemedLayoutV2HeaderProps` types for `ThemedLayoutV2`
+
 ## 1.5.0
 
 ### Minor Changes

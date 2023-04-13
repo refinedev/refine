@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 5.1.5
+
+### Patch Changes
+
+-   [#4160](https://github.com/refinedev/refine/pull/4160) [`9dc8ba1dd81`](https://github.com/refinedev/refine/commit/9dc8ba1dd81c1fa21e8d9339d21d8398887deb91) Thanks [@joshbaumann](https://github.com/joshbaumann)! - fix: unsaved changes prompt not showing when the browser is refreshed.
+
 ## 5.1.4
 
 ### Patch Changes
