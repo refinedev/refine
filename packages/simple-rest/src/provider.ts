@@ -10,7 +10,7 @@ export const dataProvider = (
     Required<DataProvider>,
     "createMany" | "updateMany" | "deleteMany"
 > => ({
-    getList: async ({ resource, pagination, filters, sorters }) => {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
         const {
@@ -42,6 +42,7 @@ export const dataProvider = (
 
         const { data, headers } = await httpClient.get(
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
+            { headers: meta?.headers },
         );
 
         const total = +headers["x-total-count"];
@@ -52,9 +53,10 @@ export const dataProvider = (
         };
     },
 
-    getMany: async ({ resource, ids }) => {
+    getMany: async ({ resource, ids, meta }) => {
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
+            { headers: meta?.headers },
         );
 
         return {
@@ -62,41 +64,46 @@ export const dataProvider = (
         };
     },
 
-    create: async ({ resource, variables }) => {
+    create: async ({ resource, variables, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, variables);
+        const { data } = await httpClient.post(url, variables, {
+            headers: meta?.headers,
+        });
 
         return {
             data,
         };
     },
 
-    update: async ({ resource, id, variables }) => {
+    update: async ({ resource, id, variables, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.patch(url, variables);
+        const { data } = await httpClient.patch(url, variables, {
+            headers: meta?.headers,
+        });
 
         return {
             data,
         };
     },
 
-    getOne: async ({ resource, id }) => {
+    getOne: async ({ resource, id, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.get(url);
+        const { data } = await httpClient.get(url, { headers: meta?.headers });
 
         return {
             data,
         };
     },
 
-    deleteOne: async ({ resource, id, variables }) => {
+    deleteOne: async ({ resource, id, variables, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { data } = await httpClient.delete(url, {
             data: variables,
+            headers: meta?.headers,
         });
 
         return {
