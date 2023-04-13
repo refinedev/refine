@@ -13,7 +13,6 @@ describe("generateFilter", () => {
             { field: "age", operator: "gte", value: 25 },
         ];
         const result = generateFilter(filters);
-        console.log(result);
         expect(result).toEqual({
             name: "John",
             age_gte: 25,
@@ -36,8 +35,6 @@ describe("generateFilter", () => {
             { field: "name", operator: "eq", value: "John" },
         ];
         const result = generateFilter(filters);
-        console.log(result);
-
         expect(result).toEqual({
             q: "searchValue",
             name: "John",
