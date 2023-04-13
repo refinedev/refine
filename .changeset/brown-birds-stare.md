@@ -4,5 +4,3 @@
 
 feat: `requiredPackages` added to refine.config.js
 Now with that, CLI automatically installs the required packages for the project.
-
-chore: deprecated warning added to `stringify` export. Users should use from `query-string` package instead.
