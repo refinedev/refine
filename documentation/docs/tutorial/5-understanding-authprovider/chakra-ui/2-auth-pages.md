@@ -61,7 +61,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     refineTheme,
     notificationProvider,
     AuthPage,
@@ -98,9 +98,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -147,9 +147,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -190,7 +190,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -229,9 +229,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -256,9 +256,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -312,7 +312,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -351,9 +351,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -382,9 +382,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -438,7 +438,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -475,9 +475,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -510,9 +510,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -567,7 +567,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -606,9 +606,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -645,9 +645,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <Layout>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </Layout>
+                                    </ThemedLayout>
                                 </Authenticated>
                             }
                         >
@@ -688,32 +688,30 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them.
-
-Let's customize the auth pages.
+You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
 
 1. Run the following command in the project directory:
 
-    ```bash
+```bash
     npm run refine swizzle
-    ```
+```
 
 2. Select the `@refinedev/chakra-ui` package:
 
-    ```bash
+```bash
         ? Which package do you want to swizzle?
         UI Framework
         ❯  @refinedev/chakra-ui
-    ```
+```
 
 3. Select the `AuthPage` component:
 
-    ```bash
+```bash
         ? Which component do you want to swizzle?
         Pages
            ErrorPage
         ❯  AuthPage
-    ```
+```
 
 After swizzling the auth pages, you should see a success message like below:
 

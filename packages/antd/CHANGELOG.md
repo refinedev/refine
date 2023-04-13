@@ -1,5 +1,68 @@
 # @pankod/refine-antd
 
+## 5.6.0
+
+### Minor Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing third generic parameter to hooks which are using `useQuery` internally.
+
+    For example:
+
+    ```ts
+    import { useOne, HttpError } from "@refinedev/core";
+
+    const { data } = useOne<{ count: string }, HttpError, { count: number }>({
+        resource: "product-count",
+        queryOptions: {
+            select: (rawData) => {
+                return {
+                    data: {
+                        count: Number(rawData?.data?.count),
+                    },
+                };
+            },
+        },
+    });
+
+    console.log(typeof data?.data.count); // number
+    ```
+
+### Patch Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the generic type name of hooks that use `useQuery` to synchronize generic type names with `tanstack-query`.
+
+## 5.5.2
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` and `useDrawerForm` with `create` actions.
+
+## 5.5.1
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` and `useDrawerForm` with `create` actions.
+
+## 5.5.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/antd/components/antd-themed-layout
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` and `useDrawerForm` hook's `show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal/drawer. If not, the modal/drawer will not show. (Resolves #4062)
+
+## 5.4.0
+
+### Minor Changes
+
+-   [#4072](https://github.com/refinedev/refine/pull/4072) [`fad40e6237f`](https://github.com/refinedev/refine/commit/fad40e6237f06f99b1a5cad943cf34cf693a78fb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `<Layout>` is deprecated. use `<ThemedLayout>` instead with 100% backward compatibility. - https://refine.dev/docs/api-reference/antd/components/antd-themed-layout
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` and `useDrawerForm` hook's `show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal/drawer. If not, the modal/drawer will not show. (Resolves #4062)
+
 ## 5.3.14
 
 ### Patch Changes

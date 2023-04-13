@@ -39,8 +39,10 @@ import {
 import { RefineThemedLayoutSiderProps } from "../types";
 
 import { ThemedTitle as DefaultTitle } from "@components";
-import { useTheme } from "@emotion/react";
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     Title: TitleFromProps,
     render,
@@ -48,7 +50,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     isSiderOpen,
     onToggleSiderClick,
 }) => {
-    const theme = useTheme();
     const [opened, setOpened] = useState(false);
 
     const drawerWidth = () => {
@@ -159,7 +160,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                             minWidth: "24px",
                                             transition: "margin-right 0.3s",
                                             marginRight: isSiderOpen
-                                                ? "32px"
+                                                ? "12px"
                                                 : "0px",
                                             color: "currentColor",
                                         }}
@@ -237,7 +238,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                 sx={{
                                     justifyContent: "center",
                                     transition: "margin-right 0.3s",
-                                    marginRight: isSiderOpen ? "32px" : "0px",
+                                    marginRight: isSiderOpen ? "12px" : "0px",
                                     minWidth: "24px",
                                     color: "currentColor",
                                 }}
@@ -277,6 +278,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         pl: 2,
                         py: 1,
                         justifyContent: "center",
+                        color:
+                            selectedKey === "/"
+                                ? "primary.main"
+                                : "text.primary",
                     }}
                 >
                     <ListItemIcon
@@ -284,7 +289,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             justifyContent: "center",
                             minWidth: "24px",
                             transition: "margin-right 0.3s",
-                            marginRight: isSiderOpen ? "32px" : "0px",
+                            marginRight: isSiderOpen ? "12px" : "0px",
+                            color: "currentColor",
                             fontSize: "14px",
                         }}
                     >
@@ -294,6 +300,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         primary={translate("dashboard.title", "Dashboard")}
                         primaryTypographyProps={{
                             noWrap: true,
+                            fontSize: "14px",
                         }}
                     />
                 </ListItemButton>
@@ -331,7 +338,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 onClick={() => handleLogout()}
                 sx={{
                     justifyContent: "center",
-                    marginTop: "8px",
                 }}
             >
                 <ListItemIcon
@@ -339,8 +345,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         justifyContent: "center",
                         minWidth: "24px",
                         transition: "margin-right 0.3s",
-                        marginRight: isSiderOpen ? "32px" : "0px",
+                        marginRight: isSiderOpen ? "12px" : "0px",
                         marginLeft: "2px",
+                        color: "currentColor",
                     }}
                 >
                     <Logout />
@@ -426,21 +433,22 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 >
                     <Box
                         sx={{
-                            height: 64,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "14px",
+                            width: drawerWidth(),
                         }}
                     >
-                        <RenderToTitle
-                            collapsed={false}
-                            wrapperStyles={{
-                                gap: "8px",
+                        <Box
+                            sx={{
+                                height: 64,
+                                display: "flex",
+                                alignItems: "center",
+                                paddingLeft: "16px",
+                                fontSize: "14px",
                             }}
-                        />
+                        >
+                            <RenderToTitle collapsed={false} />
+                        </Box>
+                        {drawer}
                     </Box>
-                    {drawer}
                 </Drawer>
                 <Drawer
                     variant="permanent"
@@ -474,12 +482,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                 `1px solid ${theme.palette.action.focus}`,
                         }}
                     >
-                        <RenderToTitle
-                            collapsed={!isSiderOpen}
-                            wrapperStyles={{
-                                gap: "32px",
-                            }}
-                        />
+                        <RenderToTitle collapsed={!isSiderOpen} />
                         {isSiderOpen && (
                             <IconButton
                                 size="small"

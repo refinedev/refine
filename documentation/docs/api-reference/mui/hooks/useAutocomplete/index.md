@@ -217,7 +217,8 @@ const filterOptions = createFilterOptions({
     filterOptions={filterOptions}
     // highlight-end
     isOptionEqualToValue={(option, value) =>
-        value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+        value === undefined ||
+        option?.id?.toString() === (value?.id ?? value)?.toString()
     }
     placeholder="Select a category"
     renderInput={(params) => (
@@ -234,10 +235,12 @@ const filterOptions = createFilterOptions({
 
 ### `meta`
 
-[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
+`meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+-   Customizing the data provider methods for specific use cases.
+-   Generating GraphQL queries using plain JavaScript Objects (JSON).
+
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -415,6 +418,14 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 
 <PropsTable module="@refinedev/mui/useAutocomplete"/>
 
+### Type Parameters
+
+| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
+
 ### Return values
 
 | Property                   | Description                                    | Type                                                                                          |
@@ -436,3 +447,6 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 ## Example
 
 <CodeSandboxExample path="field-mui-use-autocomplete" />
+
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

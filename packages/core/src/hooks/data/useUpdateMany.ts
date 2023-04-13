@@ -17,6 +17,7 @@ import {
     useInvalidate,
     useLog,
     useOnError,
+    useMeta,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -118,7 +119,6 @@ export const useUpdateMany = <
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
-
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -132,6 +132,7 @@ export const useUpdateMany = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const { log } = useLog();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -150,6 +151,10 @@ export const useUpdateMany = <
             metaData,
             dataProviderName,
         }: UpdateManyParams<TData, TError, TVariables>) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -166,8 +171,8 @@ export const useUpdateMany = <
                         resource,
                         ids,
                         variables: values,
-                        meta: pickNotDeprecated(meta, metaData),
-                        metaData: pickNotDeprecated(meta, metaData),
+                        meta: combinedMeta,
+                        metaData: combinedMeta,
                     });
                 } else {
                     return handleMultiple(
@@ -176,8 +181,8 @@ export const useUpdateMany = <
                                 resource,
                                 id,
                                 variables: values,
-                                meta: pickNotDeprecated(meta, metaData),
-                                metaData: pickNotDeprecated(meta, metaData),
+                                meta: combinedMeta,
+                                metaData: combinedMeta,
                             }),
                         ),
                     );

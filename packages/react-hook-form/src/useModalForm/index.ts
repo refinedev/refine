@@ -22,7 +22,8 @@ export type UseModalFormReturnType<
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-> = UseFormReturnType<TData, TError, TVariables, TContext> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormReturnType<TData, TError, TVariables, TContext, TSelectData> & {
     modal: {
         submit: (values: TVariables) => void;
         close: () => void;
@@ -37,7 +38,8 @@ export type UseModalFormProps<
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-> = UseFormProps<TData, TError, TVariables, TContext> & {
+    TSelectData extends BaseRecord = TData,
+> = UseFormProps<TData, TError, TVariables, TContext, TSelectData> & {
     /**
      * @description Configuration object for the modal.
      * `defaultVisible`: Initial visibility state of the modal.
@@ -64,6 +66,7 @@ export const useModalForm = <
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
+    TSelectData extends BaseRecord = TData,
 >({
     modalProps,
     refineCoreProps,
@@ -73,8 +76,15 @@ export const useModalForm = <
     TData,
     TError,
     TVariables,
-    TContext
-> = {}): UseModalFormReturnType<TData, TError, TVariables, TContext> => {
+    TContext,
+    TSelectData
+> = {}): UseModalFormReturnType<
+    TData,
+    TError,
+    TVariables,
+    TContext,
+    TSelectData
+> => {
     const initiallySynced = React.useRef(false);
 
     const translate = useTranslate();
@@ -105,7 +115,13 @@ export const useModalForm = <
         autoResetForm = true,
     } = modalProps ?? {};
 
-    const useHookFormResult = useForm<TData, TError, TVariables, TContext>({
+    const useHookFormResult = useForm<
+        TData,
+        TError,
+        TVariables,
+        TContext,
+        TSelectData
+    >({
         refineCoreProps,
         ...rest,
     });
@@ -204,11 +220,20 @@ export const useModalForm = <
         close();
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: BaseKey) => {
-        setId?.(id);
-
-        show();
-    }, []);
+    const handleShow = useCallback(
+        (showId?: BaseKey) => {
+            if (typeof showId !== "undefined") {
+                setId?.(showId);
+            }
+            const needsIdToOpen = action === "edit" || action === "clone";
+            const hasId =
+                typeof showId !== "undefined" || typeof id !== "undefined";
+            if (needsIdToOpen ? hasId : true) {
+                show();
+            }
+        },
+        [id],
+    );
 
     const title = translate(
         `${resource?.name}.titles.${actionProp}`,

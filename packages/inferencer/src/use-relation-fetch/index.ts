@@ -7,19 +7,27 @@ import {
     toPlural,
     toSingular,
 } from "@/utilities";
-import { FieldInferencer, InferField, ResourceInferenceAttempt } from "@/types";
+import {
+    FieldInferencer,
+    InferField,
+    InferencerComponentProps,
+    ResourceInferenceAttempt,
+} from "@/types";
 import { get } from "lodash";
+import { pickMeta } from "@/utilities/get-meta-props";
 
 type UseRelationFetchProps = {
     record?: Record<string, unknown>;
     fields?: (InferField | null | false)[];
     infer: FieldInferencer;
+    meta?: InferencerComponentProps["meta"];
 };
 
 export const useRelationFetch = ({
     record,
     fields,
     infer,
+    meta,
 }: UseRelationFetchProps) => {
     const dataProvider = useDataProvider();
 
@@ -44,6 +52,8 @@ export const useRelationFetch = ({
                             );
                             const dp = dataProvider(dataProviderName);
 
+                            const isMultiple = field.multiple;
+
                             const requestId = Array.isArray(field.accessor)
                                 ? undefined
                                 : field.multiple
@@ -60,10 +70,37 @@ export const useRelationFetch = ({
 
                             if (requestId && field.resource) {
                                 try {
-                                    const { data } = await dp.getOne({
-                                        resource: field.resource.name,
-                                        id: requestId,
-                                    });
+                                    let record:
+                                        | Record<string, unknown>
+                                        | undefined = {};
+
+                                    if (isMultiple && dp.getMany) {
+                                        const { data } = await dp.getMany({
+                                            resource: field.resource.name,
+                                            ids: [requestId],
+                                            meta: pickMeta(
+                                                field.resource?.identifier ??
+                                                    field.resource?.name,
+                                                meta,
+                                                ["getMany"],
+                                            ),
+                                        });
+                                        record = data?.[0];
+                                    } else {
+                                        const { data } = await dp.getOne({
+                                            resource: field.resource.name,
+                                            id: requestId,
+                                            meta: pickMeta(
+                                                field.resource?.identifier ??
+                                                    field.resource?.name,
+                                                meta,
+                                                isMultiple
+                                                    ? ["getMany", "getOne"]
+                                                    : ["getOne"],
+                                            ),
+                                        });
+                                        record = data;
+                                    }
 
                                     attempts.push({
                                         status: "success",
@@ -73,7 +110,7 @@ export const useRelationFetch = ({
 
                                     const relationInfer = infer(
                                         "__",
-                                        data,
+                                        record,
                                         {},
                                         infer,
                                     );
@@ -100,12 +137,47 @@ export const useRelationFetch = ({
                                 let isPlural;
 
                                 try {
-                                    const { data } = await dp.getOne({
-                                        resource: toPlural(
-                                            removeRelationSuffix(field.key),
-                                        ),
-                                        id: requestId,
-                                    });
+                                    let record:
+                                        | Record<string, unknown>
+                                        | undefined = {};
+
+                                    if (isMultiple && dp.getMany) {
+                                        const { data } = await dp.getMany?.({
+                                            resource: toPlural(
+                                                removeRelationSuffix(field.key),
+                                            ),
+                                            ids: [requestId],
+                                            meta: pickMeta(
+                                                toPlural(
+                                                    removeRelationSuffix(
+                                                        field.key,
+                                                    ),
+                                                ),
+                                                meta,
+                                                ["getMany"],
+                                            ),
+                                        });
+                                        record = data?.[0];
+                                    } else {
+                                        const { data } = await dp.getOne({
+                                            resource: toPlural(
+                                                removeRelationSuffix(field.key),
+                                            ),
+                                            id: requestId,
+                                            meta: pickMeta(
+                                                toPlural(
+                                                    removeRelationSuffix(
+                                                        field.key,
+                                                    ),
+                                                ),
+                                                meta,
+                                                isMultiple
+                                                    ? ["getMany", "getOne"]
+                                                    : ["getOne"],
+                                            ),
+                                        });
+                                        record = data;
+                                    }
 
                                     attempts.push({
                                         status: "success",
@@ -115,7 +187,7 @@ export const useRelationFetch = ({
                                         field: field.key,
                                     });
 
-                                    responseData = data;
+                                    responseData = record;
                                     isPlural = true;
                                 } catch (error) {
                                     attempts.push({
@@ -126,13 +198,52 @@ export const useRelationFetch = ({
                                         field: field.key,
                                     });
 
+                                    let record:
+                                        | Record<string, unknown>
+                                        | undefined = {};
+
                                     try {
-                                        const { data } = await dp.getOne({
-                                            resource: toSingular(
-                                                removeRelationSuffix(field.key),
-                                            ),
-                                            id: requestId,
-                                        });
+                                        if (isMultiple && dp.getMany) {
+                                            const { data } = await dp.getMany({
+                                                resource: toSingular(
+                                                    removeRelationSuffix(
+                                                        field.key,
+                                                    ),
+                                                ),
+                                                meta: pickMeta(
+                                                    toSingular(
+                                                        removeRelationSuffix(
+                                                            field.key,
+                                                        ),
+                                                    ),
+                                                    meta,
+                                                    ["getMany"],
+                                                ),
+                                                ids: [requestId],
+                                            });
+                                            record = data?.[0];
+                                        } else {
+                                            const { data } = await dp.getOne({
+                                                resource: toSingular(
+                                                    removeRelationSuffix(
+                                                        field.key,
+                                                    ),
+                                                ),
+                                                meta: pickMeta(
+                                                    toSingular(
+                                                        removeRelationSuffix(
+                                                            field.key,
+                                                        ),
+                                                    ),
+                                                    meta,
+                                                    isMultiple
+                                                        ? ["getMany", "getOne"]
+                                                        : ["getOne"],
+                                                ),
+                                                id: requestId,
+                                            });
+                                            record = data;
+                                        }
 
                                         attempts.push({
                                             status: "success",
@@ -142,7 +253,7 @@ export const useRelationFetch = ({
                                             field: field.key,
                                         });
 
-                                        responseData = data;
+                                        responseData = record;
                                         isPlural = false;
                                     } catch (error) {
                                         attempts.push({

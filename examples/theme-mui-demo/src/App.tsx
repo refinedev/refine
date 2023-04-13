@@ -1,25 +1,14 @@
 import { useState } from "react";
-import { Refine, Authenticated, GitHubBanner, useModal } from "@refinedev/core";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Refine, Authenticated, GitHubBanner } from "@refinedev/core";
 import {
     ErrorComponent,
     notificationProvider,
     RefineSnackbarProvider,
     AuthPage,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
 } from "@refinedev/mui";
-import {
-    Card,
-    CardContent,
-    Chip,
-    CssBaseline,
-    Dialog,
-    DialogTitle,
-    Fab,
-    GlobalStyles,
-    Stack,
-} from "@mui/material";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -32,18 +21,19 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
-import DashboardPage from "pages/dashboard";
 import { authProvider } from "authProvider";
-import { RememeberMe } from "components/remember-me";
+import { ThemeSettings, RememeberMe } from "components";
 
 const App: React.FC = () => {
     const [customTheme, setCustomTheme] = useState(RefineThemes.MagentaDark);
-    const { show, close, visible } = useModal();
 
     return (
         <BrowserRouter>
             <GitHubBanner />
             <ThemeProvider theme={customTheme}>
+                <ThemeSettings
+                    onThemeClick={(theme) => setCustomTheme(theme)}
+                />
                 <CssBaseline />
                 <GlobalStyles
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
@@ -58,20 +48,6 @@ const App: React.FC = () => {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "dashboard",
-                                list: "/",
-                                meta: {
-                                    label: "Dashboard",
-                                    icon: <DashboardIcon />,
-                                },
-                            },
-                            {
-                                name: "Multi Level",
-                                meta: {
-                                    label: "Multi Level",
-                                },
-                            },
-                            {
                                 name: "posts",
                                 list: "/posts",
                                 show: "/posts/show/:id",
@@ -79,22 +55,6 @@ const App: React.FC = () => {
                                 edit: "/posts/edit/:id",
                                 meta: {
                                     canDelete: true,
-                                },
-                            },
-                            {
-                                name: "Demo 1",
-                                list: "/demo1",
-                                meta: {
-                                    label: "Demo 1",
-                                    parent: "Multi Level",
-                                },
-                            },
-                            {
-                                name: "Demo 2",
-                                list: "/demo2",
-                                meta: {
-                                    label: "Demo 2",
-                                    parent: "Multi Level",
                                 },
                             },
                         ]}
@@ -111,13 +71,18 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
-                                <Route index element={<DashboardPage />} />
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
 
                                 <Route path="/posts">
                                     <Route index element={<PostList />} />
@@ -222,9 +187,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -233,49 +198,6 @@ const App: React.FC = () => {
                         </Routes>
                         <UnsavedChangesNotifier />
                     </Refine>
-
-                    <Fab
-                        onClick={show}
-                        variant="extended"
-                        sx={{
-                            position: "fixed",
-                            bottom: 0,
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                        }}
-                    >
-                        Open Theme Settings
-                    </Fab>
-                    <Dialog open={visible} onClose={close}>
-                        <DialogTitle>Theme Settings</DialogTitle>
-                        <Card>
-                            <CardContent>
-                                <Stack gap={2} direction="row" flexWrap="wrap">
-                                    {Object.keys(RefineThemes).map((name) => {
-                                        const theme =
-                                            RefineThemes[
-                                                name as keyof typeof RefineThemes
-                                            ];
-
-                                        return (
-                                            <Chip
-                                                key={name}
-                                                label={name}
-                                                onClick={() => {
-                                                    setCustomTheme(theme);
-                                                }}
-                                                sx={{
-                                                    backgroundColor:
-                                                        theme.palette.primary
-                                                            .main,
-                                                }}
-                                            />
-                                        );
-                                    })}
-                                </Stack>
-                            </CardContent>
-                        </Card>
-                    </Dialog>
                 </RefineSnackbarProvider>
             </ThemeProvider>
         </BrowserRouter>

@@ -13,7 +13,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { CodeViewerComponent } from "./code-viewer";
+import { SharedCodeViewer } from "@/components/shared-code-viewer";
 
 import {
     ImportElement,
@@ -21,6 +21,7 @@ import {
     InferField,
     RendererContext,
 } from "@/types";
+import { getMetaProps } from "@/utilities/get-meta-props";
 
 /**
  * a renderer function for show page with unstyled html elements
@@ -29,6 +30,7 @@ import {
 export const renderer = ({
     resource,
     fields,
+    meta,
     isCustomPage,
     id,
 }: RendererContext) => {
@@ -78,6 +80,11 @@ export const renderer = ({
                     queryOptions: {
                         enabled: !!${recordName},
                     },
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getMany",
+                    )}
                 });
                 `;
                 }
@@ -98,6 +105,11 @@ export const renderer = ({
                     queryOptions: {
                         enabled: !!${recordName},
                     },
+                    ${getMetaProps(
+                        field?.resource?.identifier ?? field?.resource?.name,
+                        meta,
+                        "getOne",
+                    )}
                 });
             `;
             }
@@ -520,8 +532,23 @@ export const renderer = ({
             isCustomPage
                 ? `{ 
                     resource: "${resource.name}", 
-                    id: ${id}
+                    id: ${id},
+                    ${getMetaProps(
+                        resource?.identifier ?? resource?.name,
+                        meta,
+                        "getOne",
+                    )}
                 }`
+                : getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      "getOne",
+                  )
+                ? `{ ${getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      "getOne",
+                  )} }`
                 : ""
         });
         const { data, isLoading } = queryResult;
@@ -571,7 +598,7 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [],
-    codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer,

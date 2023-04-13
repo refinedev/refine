@@ -55,9 +55,9 @@ const authProvider = {
 
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayoutV2,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
     AuthPage,
@@ -74,7 +74,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -104,9 +104,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -153,9 +153,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -191,9 +191,9 @@ Then place the `<AuthPage/>` component to the respective route inside your route
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayoutV2,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
     //highlight-next-line
@@ -214,7 +214,7 @@ import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -241,9 +241,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -268,9 +268,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -319,9 +319,9 @@ To implement the page, place the `<AuthPage/>` component to the respective route
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayoutV2,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
     //highlight-next-line
@@ -342,7 +342,7 @@ import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -369,9 +369,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -400,9 +400,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -421,15 +421,15 @@ We need to pass the `type` prop to the `<AuthPage/>` component to render the reg
 
 :::note
 
-Email and password are passed to the auth provider's `register` method like below:
+When the user submits the register form, it passes the email and password to the auth provider's `register` method like below:
 
 ```ts
-const authProvider = {
-    register: ({ email, password }) => {
+    const authProvider = {
+        register: ({ email, password }) => {
+            ...
+        },
         ...
-    },
-    ...
-};
+    };
 ```
 
 :::
@@ -451,9 +451,9 @@ To implement the page, place the `<AuthPage/>` component to the respective route
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayoutV2,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
     //highlight-next-line
@@ -474,7 +474,7 @@ import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -501,9 +501,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -536,9 +536,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -588,9 +588,9 @@ To implement this page, place the `<AuthPage/>` component to the respective rout
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayoutV2,
     ErrorComponent,
-    LightTheme,
+    RefineThemes,
     RefineSnackbarProvider,
     notificationProvider,
     //highlight-next-line
@@ -611,7 +611,7 @@ import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={RefineThemes.Blue}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -638,9 +638,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -677,9 +677,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -721,32 +721,30 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them.
-
-Let's customize the auth pages.
+You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
 
 1. Run the following command in the project directory:
 
-    ```bash
+```bash
     npm run refine swizzle
-    ```
+```
 
 2. Select the `@refinedev/mui` package:
 
-    ```bash
+```bash
         ? Which package do you want to swizzle?
         UI Framework
         ❯  @refinedev/mui
-    ```
+```
 
 3. Select the `AuthPage` component:
 
-    ```bash
+```bash
         ? Which component do you want to swizzle?
         Pages
            ErrorPage
         ❯  AuthPage
-    ```
+```
 
 After swizzling the auth pages, you should see a success message like below:
 

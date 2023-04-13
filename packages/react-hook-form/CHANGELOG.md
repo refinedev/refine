@@ -1,5 +1,56 @@
 # @pankod/refine-react-hook-form
 
+## 4.2.0
+
+### Minor Changes
+
+-   [#4113](https://github.com/refinedev/refine/pull/4113) [`1c13602e308`](https://github.com/refinedev/refine/commit/1c13602e308ffba93099922c144966f25fb2087d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing third generic parameter to hooks which are using `useQuery` internally.
+
+    For example:
+
+    ```ts
+    import { useOne, HttpError } from "@refinedev/core";
+
+    const { data } = useOne<{ count: string }, HttpError, { count: number }>({
+        resource: "product-count",
+        queryOptions: {
+            select: (rawData) => {
+                return {
+                    data: {
+                        count: Number(rawData?.data?.count),
+                    },
+                };
+            },
+        },
+    });
+
+    console.log(typeof data?.data.count); // number
+    ```
+
+## 4.1.6
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` with `create` actions.
+
+## 4.1.5
+
+### Patch Changes
+
+-   [#4120](https://github.com/refinedev/refine/pull/4120) [`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9) Thanks [@aliemir](https://github.com/aliemir)! - Fix broken `useModalForm` with `create` actions.
+
+## 4.1.4
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` hook's `modal.show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal. If not, the modal will not show. (Resolves #4062)
+
+## 4.1.3
+
+### Patch Changes
+
+-   [#4114](https://github.com/refinedev/refine/pull/4114) [`afdaed3dd83`](https://github.com/refinedev/refine/commit/afdaed3dd8357d6106ed5a4e524d82cfcceaf7ec) Thanks [@aliemir](https://github.com/aliemir)! - Updated `useModalForm` hook's `modal.show` method to check if there's an `id` present or provided. If there is, it will continue to show the modal. If not, the modal will not show. (Resolves #4062)
+
 ## 4.1.2
 
 ### Patch Changes

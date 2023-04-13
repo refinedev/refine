@@ -44,12 +44,17 @@ Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/r
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+    ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 //highlight-next-line
@@ -63,42 +68,57 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                //highlight-start
-                liveProvider={liveProvider(ablyClient)}
-                options={{ liveMode: "auto" }}
-                //highlight-end
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: '/posts/edit/:id",
-                        show: "/posts/show/:id",
-                        meta: { canDelete: true },
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        )}
-                    >
-                        <Route index element={<NavigateToResource />} />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/create" element={<PostCreate />} />
-                        <Route path="/posts/show/:id" element={<PostShow />} />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-            </Refine>
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    //highlight-start
+                    liveProvider={liveProvider(ablyClient)}
+                    options={{ liveMode: "auto" }}
+                    //highlight-end
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                            meta: {
+                                canDelete: true,
+                            },
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <ThemedLayout>
+                                    <Outlet />
+                                </ThemedLayout>
+                            }
+                        >
+                            <Route index element={<NavigateToResource />} />
+                            <Route path="/posts" element={<PostList />} />
+                            <Route
+                                path="/posts/create"
+                                element={<PostCreate />}
+                            />
+                            <Route
+                                path="/posts/show/:id"
+                                element={<PostShow />}
+                            />
+                            <Route
+                                path="/posts/edit/:id"
+                                element={<PostEdit />}
+                            />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };

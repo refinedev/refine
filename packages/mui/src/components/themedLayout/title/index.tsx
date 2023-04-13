@@ -27,6 +27,9 @@ const defaultIcon = (
     </svg>
 );
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     collapsed,
     wrapperStyles,
@@ -47,7 +50,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
             sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
+                gap: "12px",
                 ...wrapperStyles,
             }}
         >

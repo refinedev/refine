@@ -19,8 +19,13 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import { LightTheme } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -29,26 +34,42 @@ import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const App = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        {/* highlight-next-line */}
-                        <Route path="/samples" element={<MuiInferencer />} />
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "samples",
+                                list: "/samples",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                }
+                            >
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/samples"
+                                    element={<MuiInferencer />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 ```
@@ -102,17 +123,24 @@ To learn more about `@refinedev/inferencer` package, please check out [Docs](/do
 
 Generates a sample list view for your resources according to the API response. It uses `List` component and `useDatagrid` hook from `@refinedev/mui`.
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, LightTheme } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerProvider from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
 
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
+import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
@@ -121,35 +149,42 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        }
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={(
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            )}
-                        >
-                            {/* highlight-next-line */}
-                            <Route path="/samples" element={<MuiInferencer />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "samples",
+                                list: "/samples",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                }
+                            >
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/samples"
+                                    element={<MuiInferencer />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 
@@ -167,13 +202,19 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, LightTheme } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 
 import routerProvider from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
@@ -182,35 +223,42 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            show: "/samples/show/:id",
-                        }
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={(
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            )}
-                        >
-                            {/* highlight-next-line */}
-                            <Route path="/samples/show/:id" element={<MuiInferencer />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "samples",
+                                show: "/samples/show/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                }
+                            >
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/samples/show/:id"
+                                    element={<MuiInferencer />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 
@@ -228,13 +276,19 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, LightTheme } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 
 import routerProvider from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
@@ -243,35 +297,42 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            create: "/samples/create",
-                        }
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={(
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            )}
-                        >
-                            {/* highlight-next-line */}
-                            <Route path="/samples/create" element={<MuiInferencer />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "samples",
+                                create: "/samples/create",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                }
+                            >
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/samples/create"
+                                    element={<MuiInferencer />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 
@@ -289,13 +350,19 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, LightTheme } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 
 import routerProvider from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
@@ -304,35 +371,42 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            edit: "/samples/edit/:id",
-                        }
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={(
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            )}
-                        >
-                            {/* highlight-next-line */}
-                            <Route path="/samples/edit/:id" element={<MuiInferencer />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(API_URL)}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: "samples",
+                                edit: "/samples/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <ThemedLayoutV2>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                }
+                            >
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/samples/edit/:id"
+                                    element={<MuiInferencer />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 

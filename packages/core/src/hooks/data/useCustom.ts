@@ -8,6 +8,7 @@ import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
     useDataProvider,
     useHandleNotification,
+    useMeta,
     useOnError,
     useTranslate,
 } from "@hooks";
@@ -34,7 +35,7 @@ interface UseCustomConfig<TQuery, TPayload> {
     headers?: {};
 }
 
-export type UseCustomProps<TData, TError, TQuery, TPayload> = {
+export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
     /**
      * request's URL
      */
@@ -50,7 +51,11 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
      */
-    queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        CustomResponse<TQueryFnData>,
+        TError,
+        CustomResponse<TData>
+    >;
     /**
      * meta data for `dataProvider`
      */
@@ -77,17 +82,20 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useCustom} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TQuery - Values for query params
  * @typeParam TPayload - Values for params
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useCustom = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TQuery = unknown,
     TPayload = unknown,
+    TData extends BaseRecord = TQueryFnData,
 >({
     url,
     method,
@@ -98,36 +106,56 @@ export const useCustom = <
     meta,
     metaData,
     dataProviderName,
-}: UseCustomProps<TData, TError, TQuery, TPayload>): QueryObserverResult<
-    CustomResponse<TData>,
-    TError
-> => {
+}: UseCustomProps<
+    TQueryFnData,
+    TError,
+    TQuery,
+    TPayload,
+    TData
+>): QueryObserverResult<CustomResponse<TData>, TError> => {
     const dataProvider = useDataProvider();
-
-    const { custom } = dataProvider(dataProviderName);
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const translate = useTranslate();
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
+
+    const preferredMeta = pickNotDeprecated(meta, metaData);
+
+    const { custom } = dataProvider(dataProviderName);
+
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     if (custom) {
-        const queryResponse = useQuery<CustomResponse<TData>, TError>({
+        const queryResponse = useQuery<
+            CustomResponse<TQueryFnData>,
+            TError,
+            CustomResponse<TData>
+        >({
             queryKey: [
                 dataProviderName,
                 "custom",
                 method,
                 url,
-                { ...config, ...(pickNotDeprecated(meta, metaData) || {}) },
+                { ...config, ...(preferredMeta || {}) },
             ],
             queryFn: ({ queryKey, pageParam, signal }) =>
-                custom<TData>({
+                custom<TQueryFnData>({
                     url,
                     method,
                     ...config,
+                    meta: {
+                        ...(combinedMeta || {}),
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
+                    },
                     metaData: {
-                        ...(pickNotDeprecated(meta, metaData) || {}),
+                        ...(combinedMeta || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -143,7 +171,7 @@ export const useCustom = <
                     typeof successNotification === "function"
                         ? successNotification(data, {
                               ...config,
-                              ...(pickNotDeprecated(meta, metaData) || {}),
+                              ...(combinedMeta || {}),
                           })
                         : successNotification;
 
@@ -157,7 +185,7 @@ export const useCustom = <
                     typeof errorNotification === "function"
                         ? errorNotification(err, {
                               ...config,
-                              ...(pickNotDeprecated(meta, metaData) || {}),
+                              ...(combinedMeta || {}),
                           })
                         : errorNotification;
 

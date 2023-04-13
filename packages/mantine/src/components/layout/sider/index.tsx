@@ -34,7 +34,7 @@ import {
     IconMenu2,
     IconChevronRight,
     IconChevronLeft,
-    IconLogout,
+    IconPower,
     IconDashboard,
 } from "@tabler/icons";
 import { RefineLayoutSiderProps } from "../types";
@@ -202,7 +202,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                 label={
                     collapsed && !opened ? null : t("buttons.logout", "Logout")
                 }
-                icon={<IconLogout size={18} />}
+                icon={<IconPower size={18} />}
                 onClick={handleLogout}
                 styles={commonNavLinkStyles}
             />

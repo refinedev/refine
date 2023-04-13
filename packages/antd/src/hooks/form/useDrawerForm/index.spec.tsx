@@ -57,6 +57,7 @@ describe("useDrawerForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useDrawerForm({
+                    id: 1,
                     action: "edit",
                     defaultVisible: false,
                 }),
@@ -69,7 +70,30 @@ describe("useDrawerForm Hook", () => {
             result.current.show();
         });
 
-        expect(result.current.drawerProps.open).toBe(true);
+        await act(async () =>
+            expect(result.current.drawerProps.open).toBe(true),
+        );
+    });
+
+    it("'open' value should be false when 'show' is called without id", async () => {
+        const { result } = renderHook(
+            () =>
+                useDrawerForm({
+                    action: "edit",
+                    defaultVisible: false,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        await act(async () => {
+            result.current.show();
+        });
+
+        await act(async () =>
+            expect(result.current.drawerProps.open).toBe(false),
+        );
     });
 
     it("'id' should be updated when 'show' is called with 'id'", async () => {
@@ -118,6 +142,7 @@ describe("useDrawerForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useDrawerForm({
+                    id: 1,
                     action: "edit",
                     resource: "posts",
                     autoSubmitClose: false,
@@ -129,10 +154,13 @@ describe("useDrawerForm Hook", () => {
 
         await act(async () => {
             result.current.show();
+        });
+        await act(async () => {
             result.current.saveButtonProps.onClick?.({} as any);
         });
 
-        expect(result.current.drawerProps.open).toBe(true);
+        await waitFor(() => result.current.mutationResult.isSuccess);
+        await waitFor(() => expect(result.current.drawerProps.open).toBe(true));
     });
 
     it("autoResetForm is true, 'reset' should be called when the form is submitted", async () => {

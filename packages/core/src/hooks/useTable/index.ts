@@ -14,6 +14,7 @@ import {
     useRouterType,
     useResource,
     useParsed,
+    useMeta,
 } from "@hooks";
 import {
     stringifyTableParams,
@@ -42,7 +43,7 @@ import { BaseListProps } from "../data/useList";
 
 type SetFilterBehavior = "merge" | "replace";
 
-export type useTableProps<TData, TError> = {
+export type useTableProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      * @default Resource name that it reads from route
@@ -139,7 +140,11 @@ export type useTableProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetListResponse<TQueryFnData>,
+        TError,
+        GetListResponse<TData>
+    >;
     /**
      * Metadata query for dataProvider
      */
@@ -204,14 +209,20 @@ export type useTableReturnType<
  * All features such as sorting, filtering and pagination comes as out of box.
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
  */
 
 const defaultPermanentFilter: CrudFilters = [];
 const defaultPermanentSorter: CrudSorting = [];
 
 export function useTable<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     initialCurrent,
     initialPageSize,
@@ -235,7 +246,10 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
-}: useTableProps<TData, TError> = {}): useTableReturnType<TData, TError> {
+}: useTableProps<TQueryFnData, TError, TData> = {}): useTableReturnType<
+    TData,
+    TError
+> {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
@@ -245,7 +259,7 @@ export function useTable<
     const routerType = useRouterType();
     const { useLocation } = useRouterContext();
     const { search, pathname } = useLocation();
-
+    const getMeta = useMeta();
     const parsedParams = useParsed();
 
     const hasPaginationString = hasPagination === false ? "off" : "server";
@@ -323,6 +337,11 @@ export function useTable<
     const go = useGo();
 
     const { resource } = useResource(resourceFromProp);
+
+    const combinedMeta = getMeta({
+        resource,
+        meta: preferredMeta,
+    });
 
     const resourceInUse = resource?.name;
 
@@ -475,7 +494,7 @@ export function useTable<
         }
     }, [syncWithLocation, current, pageSize, sorters, filters]);
 
-    const queryResult = useList<TData, TError>({
+    const queryResult = useList<TQueryFnData, TError, TData>({
         resource: resourceInUse,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
@@ -484,8 +503,8 @@ export function useTable<
         queryOptions,
         successNotification,
         errorNotification,
-        meta: preferredMeta,
-        metaData: preferredMeta,
+        meta: combinedMeta,
+        metaData: combinedMeta,
         liveMode,
         liveParams,
         onLiveEvent,
@@ -510,7 +529,7 @@ export function useTable<
         );
     };
 
-    const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
+    const setFiltersFn: useTableReturnType<TQueryFnData>["setFilters"] = (
         setterOrFilters,
         behavior: SetFilterBehavior = prefferedFilterBehavior,
     ) => {

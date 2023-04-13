@@ -21,6 +21,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -29,7 +30,7 @@ import {
     useActiveAuthProvider,
 } from "@definitions";
 
-export type UseOneProps<TData, TError> = {
+export type UseOneProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -42,7 +43,11 @@ export type UseOneProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetOneResponse<TQueryFnData>,
+        TError,
+        GetOneResponse<TData>
+    >;
     /**
      * Metadata query for `dataProvider`,
      */
@@ -71,13 +76,16 @@ export type UseOneProps<TData, TError> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useOne} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useOne = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     id,
@@ -90,25 +98,33 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
+}: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
+    GetOneResponse<TData>
+> => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        pickNotDeprecated(meta, metaData),
-        pickNotDeprecated(meta, metaData),
-    );
-
-    const { getOne } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
+
+    const preferredMeta = pickNotDeprecated(meta, metaData);
+
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        preferredMeta,
+        preferredMeta,
+    );
+
+    const { getOne } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
+
+    const combinedMeta = getMeta({ meta: preferredMeta });
 
     useResourceSubscription({
         resource,
@@ -117,8 +133,8 @@ export const useOne = <
         params: {
             ids: id ? [id] : [],
             id: id,
-            meta: pickNotDeprecated(meta, metaData),
-            metaData: pickNotDeprecated(meta, metaData),
+            meta: combinedMeta,
+            metaData: combinedMeta,
             subscriptionType: "useOne",
             ...liveParams,
         },
@@ -130,14 +146,18 @@ export const useOne = <
         onLiveEvent,
     });
 
-    const queryResponse = useQuery<GetOneResponse<TData>, TError>(
+    const queryResponse = useQuery<
+        GetOneResponse<TQueryFnData>,
+        TError,
+        GetOneResponse<TData>
+    >(
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
-            getOne<TData>({
+            getOne<TQueryFnData>({
                 resource: resource!,
                 id: id!,
                 meta: {
-                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -145,7 +165,7 @@ export const useOne = <
                     },
                 },
                 metaData: {
-                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -168,7 +188,7 @@ export const useOne = <
                               data,
                               {
                                   id,
-                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                                  ...(combinedMeta || {}),
                               },
                               resource,
                           )
@@ -186,7 +206,7 @@ export const useOne = <
                               err,
                               {
                                   id,
-                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                                  ...(combinedMeta || {}),
                               },
                               resource,
                           )

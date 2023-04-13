@@ -61,8 +61,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
     AuthPage,
 } from "@refinedev/mantine";
@@ -74,7 +74,11 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -103,9 +107,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -155,9 +159,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -199,8 +203,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -216,7 +220,11 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -242,9 +250,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -269,9 +277,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -326,8 +334,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -343,7 +351,11 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -369,9 +381,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -400,9 +412,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -457,8 +469,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -474,7 +486,11 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -500,9 +516,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -535,9 +551,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -593,8 +609,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    LightTheme,
-    Layout,
+    RefineThemes,
+    ThemedLayout,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -610,7 +626,11 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <BrowserRouter>
@@ -636,9 +656,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -675,9 +695,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <Layout>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </Layout>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -719,32 +739,30 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them.
-
-Let's customize the auth pages.
+You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
 
 1. Run the following command in the project directory:
 
-    ```bash
+```bash
     npm run refine swizzle
-    ```
+```
 
 2. Select the `@refinedev/mantine` package:
 
-    ```bash
+```bash
         ? Which package do you want to swizzle?
         UI Framework
         ❯  @refinedev/mantine
-    ```
+```
 
 3. Select the `AuthPage` component:
 
-    ```bash
+```bash
         ? Which component do you want to swizzle?
         Pages
            ErrorPage
         ❯  AuthPage
-    ```
+```
 
 After swizzling the auth pages, you should see a success message like below:
 

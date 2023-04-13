@@ -552,9 +552,7 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them.
-
-Let's customize the auth pages.
+You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
 
 1. Run the following command in the project directory:
 

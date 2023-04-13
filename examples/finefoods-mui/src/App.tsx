@@ -3,7 +3,7 @@ import { KBarProvider } from "@refinedev/kbar";
 import {
     ErrorComponent,
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
 import { GlobalStyles, CssBaseline } from "@mui/material";
@@ -149,13 +149,13 @@ const App: React.FC = () => {
                                                 <CatchAllNavigate to="/login" />
                                             }
                                         >
-                                            <ThemedLayout
+                                            <ThemedLayoutV2
                                                 Header={Header}
                                                 Title={Title}
                                                 OffLayoutArea={OffLayoutArea}
                                             >
                                                 <Outlet />
-                                            </ThemedLayout>
+                                            </ThemedLayoutV2>
                                         </Authenticated>
                                     }
                                 >
@@ -283,13 +283,13 @@ const App: React.FC = () => {
                                 <Route
                                     element={
                                         <Authenticated>
-                                            <ThemedLayout
+                                            <ThemedLayoutV2
                                                 Header={Header}
                                                 Title={Title}
                                                 OffLayoutArea={OffLayoutArea}
                                             >
                                                 <Outlet />
-                                            </ThemedLayout>
+                                            </ThemedLayoutV2>
                                         </Authenticated>
                                     }
                                 >

@@ -1,5 +1,53 @@
 # @pankod/refine-hasura
 
+## 6.2.0
+
+### Minor Changes
+
+-   [#4144](https://github.com/refinedev/refine/pull/4144) [`06bdf9e4837`](https://github.com/refinedev/refine/commit/06bdf9e4837db83870d30461db00297195e4ecc8) Thanks [@mattbho](https://github.com/mattbho)! - feat: support camelCase graphql naming convention for Hasura
+
+    Previously, our Hasura data provider only supported snake-case naming conventions for operations and type names.
+
+    Hasura recently released a setting allowing for camelCase support.
+
+    The following changes do the Hasura data provider now support the new setting.
+
+    All methods for the Hasura Data provider now support the camelCase `graphql-default` naming convention.
+
+    The data provider now accepts a `namingConvention` field in the options payload.
+
+    Ex:
+
+    ```
+    const gqlDataProvider = dataProvider(client, {namingConvention: "graphql-default"});
+    ```
+
+    If the `graphql-default` naming convention is provided, all field names and variables will be camel cased. Type names will be PascalCased.
+
+## 6.1.0
+
+### Minor Changes
+
+-   [#4144](https://github.com/refinedev/refine/pull/4144) [`06bdf9e4837`](https://github.com/refinedev/refine/commit/06bdf9e4837db83870d30461db00297195e4ecc8) Thanks [@mattbho](https://github.com/mattbho)! - feat: support camelCase graphql naming convention for Hasura
+
+    Previously, our Hasura data provider only supported snake-case naming conventions for operations and type names.
+
+    Hasura recently released a setting allowing for camelCase support.
+
+    The following changes do the Hasura data provider now support the new setting.
+
+    All methods for the Hasura Data provider now support the camelCase `graphql-default` naming convention.
+
+    The data provider now accepts a `namingConvention` field in the options payload.
+
+    Ex:
+
+    ```
+    const gqlDataProvider = dataProvider(client, {namingConvention: "graphql-default"});
+    ```
+
+    If the `graphql-default` naming convention is provided, all field names and variables will be camel cased. Type names will be PascalCased.
+
 ## 6.0.1
 
 ### Patch Changes

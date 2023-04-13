@@ -30,6 +30,7 @@ import {
     useInvalidate,
     useLog,
     useOnError,
+    useMeta,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -116,16 +117,15 @@ export const useDeleteMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const dataProvider = useDataProvider();
-
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const { log } = useLog();
-
     const { resources } = useResource();
     const queryClient = useQueryClient();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         DeleteManyResponse<TData>,
@@ -144,6 +144,10 @@ export const useDeleteMany = <
             dataProviderName,
             values,
         }: DeleteManyParams<TData, TError, TVariables>) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -159,8 +163,8 @@ export const useDeleteMany = <
                     return selectedDataProvider.deleteMany<TData, TVariables>({
                         resource,
                         ids,
-                        meta: pickNotDeprecated(meta, metaData),
-                        metaData: pickNotDeprecated(meta, metaData),
+                        meta: combinedMeta,
+                        metaData: combinedMeta,
                         variables: values,
                     });
                 } else {
@@ -169,8 +173,8 @@ export const useDeleteMany = <
                             selectedDataProvider.deleteOne<TData, TVariables>({
                                 resource,
                                 id,
-                                meta: pickNotDeprecated(meta, metaData),
-                                metaData: pickNotDeprecated(meta, metaData),
+                                meta: combinedMeta,
+                                metaData: combinedMeta,
                                 variables: values,
                             }),
                         ),

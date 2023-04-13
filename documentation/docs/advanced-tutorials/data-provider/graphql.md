@@ -443,6 +443,12 @@ mutation ($input: updatePostInput) {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-show.png" alt="GraphQL show page" />
 </div>
 
+## Usage with Inferencer
+
+You can also use `@refinedev/inferencer` package to generate sample codes for your views. Since the GraphQL data providers rely on `meta` fields, you'll need to provide some `meta` values beforehand and then Inferencer will use these values to infer the fields of the data provider's response, generate a code and a preview.
+
+[Check out Inferencer docs for more information. &#8594](/docs/packages/documentation/inferencer/#usage-with-graphql-backends-and-meta-values)
+
 ## Example
 
 <CodeSandboxExample path="data-provider-strapi-graphql" />

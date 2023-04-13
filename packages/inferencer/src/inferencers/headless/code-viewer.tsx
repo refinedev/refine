@@ -70,6 +70,9 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, children }) => {
     );
 };
 
+/**
+ * @deprecated Please use `SharedCodeViewer` instead
+ */
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, loading }) => {
         const code = React.useMemo(() => {

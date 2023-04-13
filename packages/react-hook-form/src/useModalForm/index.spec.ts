@@ -56,6 +56,9 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        id: "5",
+                    },
                     modalProps: {
                         defaultVisible: false,
                     },
@@ -69,7 +72,30 @@ describe("useModalForm Hook", () => {
             result.current.modal.show();
         });
 
-        expect(result.current.modal.visible).toBe(true);
+        await waitFor(() => expect(result.current.modal.visible).toBe(true));
+    });
+
+    it("'visible' value should be false when 'show' is called without id", async () => {
+        const { result } = renderHook(
+            () =>
+                useModalForm({
+                    refineCoreProps: {
+                        action: "edit",
+                    },
+                    modalProps: {
+                        defaultVisible: false,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        await act(async () => {
+            result.current.modal.show();
+        });
+
+        expect(result.current.modal.visible).toBe(false);
     });
 
     it("'id' should be updated when 'show' is called with 'id'", async () => {
@@ -132,6 +158,7 @@ describe("useModalForm Hook", () => {
             () =>
                 useModalForm({
                     refineCoreProps: {
+                        id: 5,
                         resource: "posts",
                     },
                     modalProps: {
@@ -145,10 +172,12 @@ describe("useModalForm Hook", () => {
 
         await act(async () => {
             result.current.modal.show();
+        });
+        await act(async () => {
             result.current.modal.submit({});
         });
 
-        expect(result.current.modal.visible).toBe(true);
+        await waitFor(() => expect(result.current.modal.visible).toBe(true));
     });
 
     it("autoResetForm is true, 'reset' should be called when 'submit' is called", async () => {

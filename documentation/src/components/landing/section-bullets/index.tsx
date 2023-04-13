@@ -51,10 +51,10 @@ export const SectionBullets = () => {
             {/* Scroll animated section */}
             <motion.div
                 ref={innerRef}
-                className="relative top-0 left-0 flex flex-col w-screen h-auto pt-0 -mt-px overflow-x-hidden overflow-y-hidden lg:pt-8 max-w-ful lg:h-screen lg:snap-start"
+                className="max-w-ful relative left-0 top-0 -mt-px flex h-auto flex-col overflow-x-hidden overflow-y-hidden pt-0 lg:h-screen lg:snap-start lg:pt-8"
             >
                 <motion.div
-                    className="flex items-center justify-center px-2 mt-8 opacity-100 lg:pt-8 short:pt-14 lg:pb-4 lg:px-0"
+                    className="short:pt-14 mt-8 flex items-center justify-center px-2 opacity-100 lg:px-0 lg:pb-4 lg:pt-8"
                     // animate={
                     //     !lg
                     //         ? {
@@ -93,7 +93,7 @@ export const SectionBullets = () => {
                               }
                     }
                 >
-                    <motion.div className="h-fit z-[1] px-1 lg:px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[36px] leading-[36px] lg:text-[52px] lg:leading-[52px]  lg:-rotate-3 shadow-startTiles flex rounded-lg">
+                    <motion.div className="font-montserrat shadow-startTiles z-[1] -mx-16 flex h-fit rounded-lg bg-[#1784EB] px-1 text-[36px] font-extrabold uppercase leading-[36px] text-white  lg:-rotate-3 lg:px-5 lg:text-[52px] lg:leading-[52px]">
                         why not both?
                     </motion.div>
                 </motion.div>
@@ -207,9 +207,9 @@ export const SectionBullets = () => {
                                             </strong>{" "}
                                             support with{" "}
                                         </div>
-                                        <div className="flex flex-row items-center justify-center gap-3 pt-2 lg:justify-start lg:">
-                                            <BenefitIcons.NextjsIcon className="w-auto h-[12px] lg:h-[18px]" />
-                                            <BenefitIcons.RemixIcon className="w-auto h-[12px] lg:h-[22px]" />
+                                        <div className="lg: flex flex-row items-center justify-center gap-3 pt-2 lg:justify-start">
+                                            <BenefitIcons.NextjsIcon className="h-[12px] w-auto lg:h-[18px]" />
+                                            <BenefitIcons.RemixIcon className="h-[12px] w-auto lg:h-[22px]" />
                                         </div>
                                     </div>
                                 </motion.div>
@@ -518,7 +518,7 @@ export const SectionBullets = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="text-center font-montserrat font-medium text-base xl:text-xl text-[#2A2A42] tracking-wide">
+                    <div className="font-montserrat text-center text-base font-medium tracking-wide text-[#2A2A42] xl:text-xl">
                         <p className="mb-0">
                             With <strong className="font-bold">refine</strong>{" "}
                             you can have it all without compromising

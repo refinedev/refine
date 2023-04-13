@@ -785,6 +785,16 @@ return (
 > | autoSubmitClose | Whether the form should be submitted when the modal is closed | `boolean` | `true`  |
 > | autoResetForm   | Whether the form should be reset when the form is submitted   | `boolean` | `true`  |
 
+### Type Parameters
+
+| Property     | Desription                                                                                                                                                   | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData        | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables   | Form values for mutation function                                                                                                                            | `{}`                       | `Record<string, unknown>`  |
+| TTransformed | Form values after transformation for mutation function                                                                                                       | `{}`                       | `TVariables`               |
+| TSelectData  | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+
 ### Return values
 
 | Property                                  | Description                                                     | Type                                                                        |
@@ -813,3 +823,5 @@ return (
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [use-modal-form-refine-mantine]: /api-reference/mantine/hooks/form/useModalForm.md
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

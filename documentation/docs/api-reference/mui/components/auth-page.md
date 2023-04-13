@@ -131,17 +131,7 @@ const GithubIcon = (
 );
 
 const Wrapper = ({ children }) => {
-    return (
-        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
-            <MuiMaterial.CssBaseline />
-            <MuiMaterial.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMui.RefineSnackbarProvider>
-                {children}
-            </RefineMui.RefineSnackbarProvider>
-        </MuiMaterial.ThemeProvider>
-    );
+    return children;
 };
 ```
 
@@ -155,12 +145,20 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { AuthPage, Layout } from "@refinedev/mui";
+
+import {
+    AuthPage,
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
@@ -169,41 +167,53 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
                             >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                </Routes>
-            </Refine>
+                                <Route index element={<DashboardPage />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                {/* highlight-start */}
+                                <Route
+                                    path="/login"
+                                    element={<AuthPage type="login" />}
+                                />
+                                {/* highlight-end */}
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
         </BrowserRouter>
     );
 };
@@ -234,13 +244,20 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+
+import {
+    AuthPage,
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-
-import { AuthPage, Layout } from "@refinedev/mui";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
@@ -250,37 +267,49 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
                             >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                                <Route index element={<DashboardPage />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                {/* highlight-next-line */}
+                                <Route path="/login" element={<AuthPage />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
         </BrowserRouter>
     );
 };
@@ -329,12 +358,20 @@ setInitialRoutes(["/register"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+
+import {
+    AuthPage,
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-
-import { AuthPage, Layout } from "@refinedev/mui";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -345,41 +382,53 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
                             >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                                <Route index element={<DashboardPage />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<AuthPage />} />
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/register"
+                                    element={<AuthPage type="register" />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
         </BrowserRouter>
     );
 };
@@ -422,19 +471,26 @@ const authProvider: AuthBindings = {
 
 The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
-```tsx hideCode live url=http://localhost:3000/forgot-password
+```tsx hideCode live url=http://localhost:3000/forgot-password previewHeight=600px
 setInitialRoutes(["/forgot-password"]);
 
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+
+import {
+    AuthPage,
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-
-import { AuthPage, Layout } from "@refinedev/mui";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
@@ -444,45 +500,57 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
                             >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                                <Route index element={<DashboardPage />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<AuthPage />} />
+                                <Route
+                                    path="/register"
+                                    element={<AuthPage type="register" />}
+                                />
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/forgot-password"
+                                    element={<AuthPage type="forgotPassword" />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
         </BrowserRouter>
     );
 };
@@ -525,19 +593,26 @@ const authProvider: AuthBindings = {
 
 The `updatePassword` type is the page used to update the password of the user.
 
-```tsx hideCode live url=http://localhost:3000/update-password
+```tsx hideCode live url=http://localhost:3000/update-password previewHeight=600px
 setInitialRoutes(["/update-password"]);
 
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
+
+import {
+    AuthPage,
+    ThemedLayoutV2,
+    RefineThemes,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-
-import { AuthPage, Layout } from "@refinedev/mui";
-
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
@@ -547,49 +622,61 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
     return (
         <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
+            <ThemeProvider theme={RefineThemes.Blue}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        routerProvider={routerProvider}
+                        authProvider={authProvider}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <ThemedLayoutV2>
+                                            <Outlet />
+                                        </ThemedLayoutV2>
+                                    </Authenticated>
+                                }
                             >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<AuthPage />} />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
+                                <Route index element={<DashboardPage />} />
+                            </Route>
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="/login" element={<AuthPage />} />
+                                <Route
+                                    path="/register"
+                                    element={<AuthPage type="register" />}
+                                />
+                                <Route
+                                    path="/forgot-password"
+                                    element={<AuthPage type="forgotPassword" />}
+                                />
+                                {/* highlight-next-line */}
+                                <Route
+                                    path="/update-password"
+                                    element={<AuthPage type="updatePassword" />}
+                                />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
         </BrowserRouter>
     );
 };

@@ -104,7 +104,7 @@ To learn more about `@refinedev/inferencer` package, please check out [Docs](/do
 Generates a sample list view for your resources according to the API response. It uses `useTable` hook from `@refinedev/react-table`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
-setInitialRoutes(["/"]);
+setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";

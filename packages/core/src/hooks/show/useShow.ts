@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
-import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
+import {
+    useMeta,
+    useOne,
+    useResourceWithRoute,
+    useRouterContext,
+} from "@hooks";
 
 import {
     ResourceRouterParams,
@@ -29,8 +34,9 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
 };
 
 export type useShowProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 > = {
     /**
      * Resource name for API data interactions
@@ -45,7 +51,11 @@ export type useShowProps<
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetOneResponse<TQueryFnData>,
+        TError,
+        GetOneResponse<TData>
+    >;
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
@@ -70,13 +80,20 @@ export type useShowProps<
 /**
  * `useShow` hook allows you to fetch the desired record.
  * It uses `getOne` method as query function from the dataProvider that is
- * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
+ * passed to {@link https://refine.dev/docs/api-reference/core/components/refine-config/ `<Refine>`}.
  *
  * @see {@link https://refine.dev/docs/core/hooks/show/useShow} for more details.
+ *
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ *
  */
+
 export const useShow = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource: resourceFromProp,
     id,
@@ -88,7 +105,11 @@ export const useShow = <
     onLiveEvent,
     dataProviderName,
     queryOptions,
-}: useShowProps<TData, TError> = {}): useShowReturnType<TData> => {
+}: useShowProps<
+    TQueryFnData,
+    TError,
+    TData
+> = {}): useShowReturnType<TData> => {
     const routerType = useRouterType();
     const { resources } = useResource();
     const { useParams } = useRouterContext();
@@ -96,6 +117,7 @@ export const useShow = <
 
     const { resource: legacyResourceFromRoute, id: legacyIdFromParams } =
         useParams<ResourceRouterParams>();
+    const getMeta = useMeta();
 
     const newResourceNameFromRouter = resourceFromRouter?.name;
 
@@ -163,6 +185,11 @@ export const useShow = <
         }
     }
 
+    const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
+
     warnOnce(
         Boolean(resourceFromProp) && !Boolean(id),
         `[useShow]: resource: "${resourceName}", id: ${id} \n\n` +
@@ -170,7 +197,7 @@ export const useShow = <
             `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
     );
 
-    const queryResult = useOne<TData, TError>({
+    const queryResult = useOne<TQueryFnData, TError, TData>({
         resource: resource?.name,
         id: showId ?? "",
         queryOptions: {
@@ -179,8 +206,8 @@ export const useShow = <
         },
         successNotification,
         errorNotification,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: combinedMeta,
+        metaData: combinedMeta,
         liveMode,
         onLiveEvent,
         dataProviderName,

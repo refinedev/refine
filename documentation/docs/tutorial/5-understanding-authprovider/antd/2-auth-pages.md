@@ -55,7 +55,8 @@ const authProvider = {
 
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     ErrorComponent,
     AuthPage,
@@ -69,88 +70,96 @@ import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        edit: "/blog-posts/edit/:id",
-                        create: "/blog-posts/create",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            edit: "/blog-posts/edit/:id",
+                            create: "/blog-posts/create",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<AntdInferencer />}
+                                />
+                                <Route
+                                    path="create"
+                                    element={<AntdInferencer />}
+                                />
+                            </Route>
                         </Route>
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -172,12 +181,17 @@ To implement the page, open `src/App.tsx` file and import the `<AuthPage/>` comp
 import { AuthPage } from "@refinedev/antd";
 ```
 
+```tsx
+import { AuthPage } from "@refinedev/antd";
+```
+
 Then place the `<AuthPage/>` component to the respective route inside your router.
 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     ErrorComponent,
     //highlight-next-line
@@ -195,37 +209,42 @@ import { BlogPostList } from "pages/blog-posts/list";
 
 import { authProvider } from "./authProvider";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="blog-posts">
-                            <Route index element={<BlogPostList />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
+                            </Route>
                         </Route>
                     </Route>
                     <Route
@@ -237,24 +256,33 @@ const App: React.FC = () => {
                     >
                         {/* highlight-start */}
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            {/* highlight-start */}
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -294,7 +322,8 @@ To implement the page, place the `<AuthPage/>` component to the respective route
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     ErrorComponent,
     //highlight-next-line
@@ -312,37 +341,42 @@ import { BlogPostList } from "pages/blog-posts/list";
 
 import { authProvider } from "./authProvider";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="blog-posts">
-                            <Route index element={<BlogPostList />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<BlogPostList />} />
+                            </Route>
                         </Route>
                     </Route>
                     <Route
@@ -358,24 +392,19 @@ const App: React.FC = () => {
                         />
                         {/* highlight-start */}
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -415,7 +444,8 @@ To implement the page, place the `<AuthPage/>` component to the respective route
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     ErrorComponent,
     //highlight-next-line
@@ -433,37 +463,42 @@ import { BlogPostList } from "pages/blog-posts/list";
 
 import { authProvider } from "./authProvider";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                            </Route>
                         </Route>
                     </Route>
                     <Route
@@ -478,29 +513,19 @@ const App: React.FC = () => {
                             element={<AuthPage type="login" />}
                         />
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        {/* highlight-start */}
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -517,8 +542,7 @@ The email is passed to the auth provider's `forgotPassword` method like below:
 const authProvider = {
     forgotPassword: ({ email }) => {
         ...
-    },
-    ...
+    };
 };
 ```
 
@@ -541,7 +565,8 @@ To implement this page, place the `<AuthPage/>` component to the respective rout
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    Layout,
+    ThemedLayout,
+    RefineThemes,
     notificationProvider,
     ErrorComponent,
     //highlight-next-line
@@ -559,37 +584,42 @@ import { BlogPostList } from "pages/blog-posts/list";
 
 import { authProvider } from "./authProvider";
 
+import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="blog-posts">
+                                <Route index element={<AntdInferencer />} />
+                            </Route>
                         </Route>
                     </Route>
                     <Route
@@ -604,33 +634,19 @@ const App: React.FC = () => {
                             element={<AuthPage type="login" />}
                         />
                         <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        {/* highlight-start */}
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                        {/* highlight-end */}
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <ThemedLayout>
+                                        <Outlet />
+                                    </ThemedLayout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 };
@@ -663,32 +679,30 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them.
-
-Let's customize the auth pages.
+You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
 
 1. Run the following command in the project directory:
 
-    ```bash
+```bash
     npm run refine swizzle
-    ```
+```
 
 2. Select the `@refinedev/antd` package:
 
-    ```bash
+```bash
         ? Which package do you want to swizzle?
         UI Framework
         ❯  @refinedev/antd
-    ```
+```
 
 3. Select the `AuthPage` component:
 
-    ```bash
+```bash
         ? Which component do you want to swizzle?
         Pages
            ErrorPage
         ❯  AuthPage
-    ```
+```
 
 After swizzling the auth pages, you should see a success message like below:
 

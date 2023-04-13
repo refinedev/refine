@@ -21,6 +21,7 @@ import {
     useDataProvider,
     useInvalidate,
     useLog,
+    useMeta,
 } from "@hooks";
 import {
     handleMultiple,
@@ -87,13 +88,13 @@ export const useCreateMany = <
     TVariables
 > => {
     const dataProvider = useDataProvider();
-
     const { resources } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const { log } = useLog();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -107,6 +108,10 @@ export const useCreateMany = <
             metaData,
             dataProviderName,
         }: useCreateManyParams<TData, TError, TVariables>) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             const selectedDataProvider = dataProvider(
                 pickDataProvider(resource, dataProviderName, resources),
             );
@@ -115,8 +120,8 @@ export const useCreateMany = <
                 return selectedDataProvider.createMany<TData, TVariables>({
                     resource,
                     variables: values,
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                 });
             } else {
                 return handleMultiple(
@@ -124,8 +129,8 @@ export const useCreateMany = <
                         selectedDataProvider.create<TData, TVariables>({
                             resource,
                             variables: val,
-                            meta: pickNotDeprecated(meta, metaData),
-                            metaData: pickNotDeprecated(meta, metaData),
+                            meta: combinedMeta,
+                            metaData: combinedMeta,
                         }),
                     ),
                 );

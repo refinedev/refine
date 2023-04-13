@@ -29,9 +29,9 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -45,7 +45,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -72,9 +72,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route
@@ -171,9 +171,9 @@ Now that we have created the edit page, we can add it to the `App.tsx` file:
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    Layout,
+    ThemedLayout,
     notificationProvider,
-    refineTheme,
+    RefineThemes,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -192,7 +192,7 @@ import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
+        <ChakraProvider theme={RefineThemes.Blue}>
             <BrowserRouter>
                 <Refine
                     notificationProvider={notificationProvider()}
@@ -220,9 +220,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <ThemedLayout>
                                     <Outlet />
-                                </Layout>
+                                </ThemedLayout>
                             }
                         >
                             <Route

@@ -22,6 +22,7 @@ import {
     useTranslate,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -77,7 +78,7 @@ export type BaseListProps = {
     dataProviderName?: string;
 };
 
-export type UseListProps<TData, TError> = {
+export type UseListProps<TQueryFnData, TError, TData> = {
     /**
      * Resource name for API data interactions
      */
@@ -86,7 +87,11 @@ export type UseListProps<TData, TError> = {
     /**
      * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<
+        GetListResponse<TQueryFnData>,
+        TError,
+        GetListResponse<TData>
+    >;
 } & BaseListProps &
     SuccessErrorNotification<
         GetListResponse<TData>,
@@ -102,13 +107,16 @@ export type UseListProps<TData, TError> = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/data/useList} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+
 export const useList = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    TData extends BaseRecord = TQueryFnData,
 >({
     resource,
     config,
@@ -125,7 +133,7 @@ export const useList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseListProps<TData, TError>): QueryObserverResult<
+}: UseListProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetListResponse<TData>,
     TError
 > => {
@@ -137,6 +145,7 @@ export const useList = <
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
         resource,
@@ -156,9 +165,12 @@ export const useList = <
         hasPagination: prefferedHasPagination,
     });
     const isServerPagination = prefferedPagination.mode === "server";
+
+    const combinedMeta = getMeta({ meta: preferredMeta });
+
     const notificationValues = {
-        meta: preferredMeta,
-        metaData: preferredMeta,
+        meta: combinedMeta,
+        metaData: combinedMeta,
         filters: prefferedFilters,
         hasPagination: isServerPagination,
         pagination: prefferedPagination,
@@ -185,8 +197,8 @@ export const useList = <
         resource,
         types: ["*"],
         params: {
-            meta: preferredMeta,
-            metaData: preferredMeta,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -201,7 +213,11 @@ export const useList = <
         onLiveEvent,
     });
 
-    const queryResponse = useQuery<GetListResponse<TData>, TError>(
+    const queryResponse = useQuery<
+        GetListResponse<TQueryFnData>,
+        TError,
+        GetListResponse<TData>
+    >(
         queryKey.list({
             filters: prefferedFilters,
             hasPagination: isServerPagination,
@@ -216,7 +232,7 @@ export const useList = <
             }),
         }),
         ({ queryKey, pageParam, signal }) => {
-            return getList<TData>({
+            return getList<TQueryFnData>({
                 resource: resource!,
                 pagination: prefferedPagination,
                 hasPagination: isServerPagination,
@@ -224,7 +240,7 @@ export const useList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(preferredMeta || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -232,7 +248,7 @@ export const useList = <
                     },
                 },
                 metaData: {
-                    ...(preferredMeta || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -267,7 +283,7 @@ export const useList = <
                     return queryOptions?.select?.(data);
                 }
 
-                return data;
+                return data as unknown as GetListResponse<TData>;
             },
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
