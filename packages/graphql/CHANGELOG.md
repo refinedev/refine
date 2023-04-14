@@ -1,5 +1,15 @@
 # @pankod/refine-graphql
 
+## 6.1.0
+
+### Minor Changes
+
+-   [#4168](https://github.com/refinedev/refine/pull/4168) [`51ab614f75b`](https://github.com/refinedev/refine/commit/51ab614f75bb96d55ff08061e7cb63bdda5f1c8f) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize graphql data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
 ## 6.0.1
 
 ### Patch Changes
