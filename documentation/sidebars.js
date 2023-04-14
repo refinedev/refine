@@ -602,6 +602,13 @@ module.exports = {
                     },
                     items: [
                         "packages/documentation/cli",
+                        {
+                            type: "category",
+                            label: "Data Providers",
+                            items: [
+                                "packages/documentation/data-providers/simple-rest",
+                            ],
+                        },
                         "packages/documentation/inferencer",
                         "packages/documentation/command-palette",
                         "packages/documentation/react-table/index",
