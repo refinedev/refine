@@ -6,9 +6,10 @@ import {
 } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
-import { generateFilters, generateSorting } from "../../dataProvider";
+import { generateFilters } from "./generateFilters";
+import { generateSorting } from "./generateSorting";
 
-type GenereteUseListSubscriptionParams = {
+type GenerateUseListSubscriptionParams = {
     resource: string;
     meta: MetaQuery;
     pagination?: Pagination;
@@ -16,19 +17,19 @@ type GenereteUseListSubscriptionParams = {
     filters?: CrudFilters;
 };
 
-type GenereteUseListSubscriptionReturnValues = {
+type GenerateUseListSubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteUseListSubscription = ({
+export const generateUseListSubscription = ({
     resource,
     meta,
     pagination,
     sorters,
     filters,
-}: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
+}: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
     const {
         current = 1,
         pageSize: limit = 10,
@@ -72,3 +73,8 @@ export const genereteUseListSubscription = ({
 
     return { query, variables, operation };
 };
+
+/**
+ * @deprecated Please use `generateUseListSubscription` instead.
+ */
+export const genereteUseListSubscription = generateUseListSubscription;

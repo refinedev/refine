@@ -22,6 +22,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
+    "@refinedev/cli": "^2.1.0",
     "@refinedev/core": "^4.5.6",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
@@ -39,7 +40,8 @@
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
-    "graphql-ws": "^5.9.1"
+    "graphql-ws": "^5.9.1",
+    "camelcase": "^6.2.0"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.0.0",
