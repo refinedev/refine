@@ -17,7 +17,8 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
 
     return (
         <Box
-            p="3"
+            py="2"
+            px="4"
             display="flex"
             alignItems="center"
             w="full"
