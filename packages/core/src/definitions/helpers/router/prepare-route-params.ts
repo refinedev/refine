@@ -1,5 +1,3 @@
-import { MetaDataQuery, ParseResponse } from "../../../interfaces";
-
 /**
  * Prepares the route params by checking the existing params and meta data.
  * Meta data is prioritized over params.
@@ -7,25 +5,15 @@ import { MetaDataQuery, ParseResponse } from "../../../interfaces";
  * This means, we can use `meta` for user supplied params (both manually or from the query string)
  */
 export const prepareRouteParams = <
-    TRouteParams extends Record<
-        string,
-        string | number | undefined | Symbol
-    > = Record<string, string | number | undefined | Symbol>,
+    TRouteParams extends Record<string, unknown> = Record<string, unknown>,
 >(
     routeParams: (keyof TRouteParams)[],
-    params: ParseResponse = {},
-    meta: MetaDataQuery = {},
+    meta: Record<string, unknown> = {},
 ): Partial<TRouteParams> => {
-    // meta is prioritized over params
     return routeParams.reduce((acc, key) => {
-        const value =
-            meta[key as string] ||
-            params.params?.[key as string] ||
-            (key === "id" ? params.id : undefined) ||
-            (key === "action" ? params.action : undefined) ||
-            (key === "resource" ? params.resource : undefined);
+        const value = meta[key as string];
         if (typeof value !== "undefined") {
-            acc[key] = value;
+            acc[key] = value as TRouteParams[keyof TRouteParams];
         }
         return acc;
     }, {} as Partial<TRouteParams>);

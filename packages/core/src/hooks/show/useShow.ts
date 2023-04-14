@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
-import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
+import {
+    useMeta,
+    useOne,
+    useResourceWithRoute,
+    useRouterContext,
+} from "@hooks";
 
 import {
     ResourceRouterParams,
@@ -112,6 +117,7 @@ export const useShow = <
 
     const { resource: legacyResourceFromRoute, id: legacyIdFromParams } =
         useParams<ResourceRouterParams>();
+    const getMeta = useMeta();
 
     const newResourceNameFromRouter = resourceFromRouter?.name;
 
@@ -179,6 +185,11 @@ export const useShow = <
         }
     }
 
+    const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
+
     warnOnce(
         Boolean(resourceFromProp) && !Boolean(id),
         `[useShow]: resource: "${resourceName}", id: ${id} \n\n` +
@@ -195,8 +206,8 @@ export const useShow = <
         },
         successNotification,
         errorNotification,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: combinedMeta,
+        metaData: combinedMeta,
         liveMode,
         onLiveEvent,
         dataProviderName,

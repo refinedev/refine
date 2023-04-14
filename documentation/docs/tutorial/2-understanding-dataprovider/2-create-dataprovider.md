@@ -923,13 +923,14 @@ mutate({
 
 ## meta Usage
 
-When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `meta` field, which allows the sent parameter to be easily accessed by the data provider.
+`meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
-Now let's send a custom header parameter to the [`getOne`](#getone) method using `meta`.
+-   Customizing the data provider methods for specific use cases.
+-   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-:::tip
-The `meta` parameter can be used in all data, form, and table hooks.
-:::
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+
+For example, let's say that we want to pass a custom header to the `getOne` method. We can do this by passing the `meta` parameter to the `useOne` data hook.
 
 ```ts title="post/edit.tsx"
 import { useOne } from "@refinedev/core";
@@ -945,7 +946,7 @@ useOne({
 });
 ```
 
-Now let's get the `meta` parameter from the data provider.
+Now, we can access the `meta` parameter in the `getOne` method of the data provider.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@refinedev/core";
@@ -972,6 +973,12 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
     // ...
 });
 ```
+
+:::tip
+The `meta` parameter can be used in all data, form, and table hooks.
+:::
+
+<br/>
 
 <Checklist>
 

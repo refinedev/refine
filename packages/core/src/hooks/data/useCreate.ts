@@ -27,6 +27,7 @@ import {
     useLog,
     useInvalidate,
     useOnError,
+    useMeta,
 } from "@hooks";
 
 type useCreateParams<TData, TError, TVariables> = {
@@ -114,13 +115,12 @@ export const useCreate = <
     });
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
-
     const { resources } = useResource();
-
     const translate = useTranslate();
     const publish = usePublish();
     const { log } = useLog();
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -135,13 +135,17 @@ export const useCreate = <
             metaData,
             dataProviderName,
         }: useCreateParams<TData, TError, TVariables>) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             return dataProvider(
                 pickDataProvider(resource, dataProviderName, resources),
             ).create<TData, TVariables>({
                 resource,
                 variables: values,
-                meta: pickNotDeprecated(meta, metaData),
-                metaData: pickNotDeprecated(meta, metaData),
+                meta: combinedMeta,
+                metaData: combinedMeta,
             });
         },
         {

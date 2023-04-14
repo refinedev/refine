@@ -17,6 +17,7 @@ import {
     useLog,
     useInvalidate,
     useOnError,
+    useMeta,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -125,6 +126,7 @@ export const useDelete = <
     const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
@@ -143,6 +145,10 @@ export const useDelete = <
             dataProviderName,
             values,
         }) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -155,8 +161,8 @@ export const useDelete = <
                 ).deleteOne<TData, TVariables>({
                     resource,
                     id,
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                     variables: values,
                 });
             }
@@ -174,7 +180,8 @@ export const useDelete = <
                             .deleteOne<TData, TVariables>({
                                 resource,
                                 id,
-                                meta: pickNotDeprecated(meta, metaData),
+                                meta: combinedMeta,
+                                metaData: combinedMeta,
                                 variables: values,
                             })
                             .then((result) => resolve(result))
