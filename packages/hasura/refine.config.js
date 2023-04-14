@@ -18,43 +18,43 @@ module.exports = {
                 files: [
                     {
                         src: "./src/index.ts",
-                        dest: "./providers/graphql/index.ts",
+                        dest: "./providers/hasura/index.ts",
                     },
                     {
                         src: "./src/dataProvider/index.ts",
-                        dest: "./providers/graphql/dataProvider/index.ts",
+                        dest: "./providers/hasura/dataProvider/index.ts",
                     },
                     {
                         src: "./src/liveProvider/index.ts",
-                        dest: "./providers/graphql/liveProvider/index.ts",
+                        dest: "./providers/hasura/liveProvider/index.ts",
                     },
                     {
                         src: "./src/utils/index.ts",
-                        dest: "./providers/graphql/utils/index.ts",
+                        dest: "./providers/hasura/utils/index.ts",
                     },
                     {
                         src: "./src/utils/camelizeKeys.ts",
-                        dest: "./providers/graphql/utils/camelizeKeys.ts",
+                        dest: "./providers/hasura/utils/camelizeKeys.ts",
                     },
                     {
                         src: "./src/utils/generateFilters.ts",
-                        dest: "./providers/graphql/utils/generateFilters.ts",
+                        dest: "./providers/hasura/utils/generateFilters.ts",
                     },
                     {
                         src: "./src/utils/generateSorting.ts",
-                        dest: "./providers/graphql/utils/generateSorting.ts",
+                        dest: "./providers/hasura/utils/generateSorting.ts",
                     },
                     {
                         src: "./src/utils/generateUseListSubscription.ts",
-                        dest: "./providers/graphql/utils/generateUseListSubscription.ts",
+                        dest: "./providers/hasura/utils/generateUseListSubscription.ts",
                     },
                     {
                         src: "./src/utils/generateUseManySubscription.ts",
-                        dest: "./providers/graphql/utils/generateUseManySubscription.ts",
+                        dest: "./providers/hasura/utils/generateUseManySubscription.ts",
                     },
                     {
                         src: "./src/utils/generateUseOneSubscription.ts",
-                        dest: "./providers/graphql/utils/generateUseOneSubscription.ts",
+                        dest: "./providers/hasura/utils/generateUseOneSubscription.ts",
                     },
                 ],
                 message: `
@@ -62,7 +62,7 @@ module.exports = {
 
             \`\`\`
             // title: App.tsx
-            import dataProvider, { liveProvider, GraphQLClient } from "providers/graphql";
+            import dataProvider, { liveProvider, GraphQLClient } from "providers/hasura";
 
             const App = () => {
                 return (
