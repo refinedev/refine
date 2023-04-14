@@ -606,7 +606,11 @@ module.exports = {
                             type: "category",
                             label: "Data Providers",
                             items: [
+                                "packages/documentation/data-providers/appwrite",
+                                "packages/documentation/data-providers/graphql",
                                 "packages/documentation/data-providers/simple-rest",
+                                "packages/documentation/data-providers/strapi-v4",
+                                "packages/documentation/data-providers/supabase",
                             ],
                         },
                         "packages/documentation/inferencer",
@@ -980,11 +984,7 @@ module.exports = {
                     type: "category",
                     label: "Data Provider",
                     items: [
-                        "advanced-tutorials/data-provider/appwrite",
-                        "advanced-tutorials/data-provider/graphql",
                         "advanced-tutorials/data-provider/handling-filters",
-                        "advanced-tutorials/data-provider/strapi-v4",
-                        "advanced-tutorials/data-provider/supabase",
                     ],
                 },
                 {
