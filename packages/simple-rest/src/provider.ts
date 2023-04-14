@@ -122,7 +122,7 @@ export const dataProvider = (
         const url = `${apiUrl}/${resource}/${id}`;
 
         const { headers, method } = meta ?? {};
-        const requestMethod = (method as MethodTypesWithBody) ?? "get";
+        const requestMethod = (method as MethodTypesWithBody) ?? "delete";
 
         const { data } = await httpClient[requestMethod](url, {
             data: variables,
