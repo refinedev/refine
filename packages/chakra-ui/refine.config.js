@@ -487,7 +487,132 @@ module.exports = {
             },
             {
                 group: "Other",
-                label: "Themed Layout",
+                label: "ThemedLayoutV2",
+                message: `
+                **\`Warning:\`**
+                If you want to change the default themed layout;
+                You should pass layout related components to the **<ThemedLayoutV2 />** component's props.
+
+                \`\`\`
+                // title: App.tsx
+                import { ThemedLayoutV2 } from "components/themedLayout";
+                import { ThemedHeaderV2 } from "components/themedLayout/header";
+                import { ThemedSiderV2 } from "components/themedLayout/sider";
+                import { ThemedTitleV2 } from "components/themedLayout/title";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            /* ... */
+                        >
+                            <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2}>
+                                /* ... */
+                            </ThemedLayoutV2>
+                        </Refine>
+                    );
+                }
+                \`\`\`
+                `,
+                files: [
+                    {
+                        src: "./src/components/themedLayoutV2/sider/index.tsx",
+                        dest: "./components/themedLayout/sider.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+                            imports.map((importItem) => {
+                                // handle @contexts import replacement
+                                if (importItem.importPath === "@hooks") {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/chakra-ui";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+                            });
+
+                            // for change style import path
+                            const styleImportRegex = /".\.\/title";/g;
+                            newContent = newContent.replace(
+                                styleImportRegex,
+                                `"./title";`,
+                            );
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/themedLayoutV2/header/index.tsx",
+                        dest: "./components/themedLayout/header.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for change style import path
+                            const styleImportRegex = /".\.\/hamburgerMenu";/g;
+                            newContent = newContent.replace(
+                                styleImportRegex,
+                                `"./hamburgerMenu";`,
+                            );
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/themedLayoutV2/title/index.tsx",
+                        dest: "./components/themedLayout/title.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayoutV2/index.tsx",
+                        dest: "./components/themedLayout/index.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @contexts import replacement
+                                if (
+                                    importItem.importPath === "../../contexts"
+                                ) {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/chakra-ui";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/themedLayoutV2/hamburgerMenu/index.tsx",
+                        dest: "./components/themedLayout/hamburgerMenu.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @hooks import replacement
+                                if (importItem.importPath === "@hooks") {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/chakra-ui";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                ],
+            },
+            {
+                group: "Other",
+                label: "ThemedLayout",
                 message: `
                 **\`Warning:\`**
                 If you want to change the default themed layout;
@@ -505,7 +630,7 @@ module.exports = {
                         <Refine
                             /* ... */
                         >
-                            <ThemedLayout Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle} />
+                            <ThemedLayout Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle}>
                                 /* ... */
                             </ThemedLayout>
                         </Refine>
