@@ -531,13 +531,11 @@ Features related to routing, such as the inference of the resource by the route,
 
 When using the **refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
 
-For more information, refer to the [router provider part of the `<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+For more information, refer to the [`<routerProvider` part of the `<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
 
 :::
 
-## Learn More
-
-Learn more about [resources](/docs/api-reference/core/components/refine-config/#resources) in the API reference.
+> To learn more about `resource`, refer to [its section in the API reference documentation](/docs/api-reference/core/components/refine-config/#resources)
 
 <Checklist>
 

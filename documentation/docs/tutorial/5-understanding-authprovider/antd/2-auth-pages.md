@@ -683,26 +683,26 @@ You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs
 
 1. Run the following command in the project directory:
 
-```bash
-    npm run refine swizzle
-```
+    ```bash
+        npm run refine swizzle
+    ```
 
 2. Select the `@refinedev/antd` package:
 
-```bash
-        ? Which package do you want to swizzle?
-        UI Framework
-        ❯  @refinedev/antd
-```
+    ```bash
+            ? Which package do you want to swizzle?
+            UI Framework
+            ❯  @refinedev/antd
+    ```
 
 3. Select the `AuthPage` component:
 
-```bash
-        ? Which component do you want to swizzle?
-        Pages
-           ErrorPage
-        ❯  AuthPage
-```
+    ```bash
+            ? Which component do you want to swizzle?
+            Pages
+            ErrorPage
+            ❯  AuthPage
+    ```
 
 After swizzling the auth pages, you should see a success message like below:
 

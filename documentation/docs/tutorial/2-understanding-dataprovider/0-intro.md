@@ -28,7 +28,7 @@ You don’t need to worry about creating data providers from scratch, as **refin
 <br/>
 <br/>
 
-A typical data provider has the following methods:
+A typical data provider has the following methods that are used to perform data operations:
 
 ```ts
 import { DataProvider } from "@refinedev/core";
@@ -50,11 +50,9 @@ const dataProvider: DataProvider = {
 }
 ```
 
-**refine** uses these methods to perform data operations.
-
 **refine** comes with various data providers out of the box, but for this tutorial, will be using the `refine-simple-rest` data provider to communicate with RESTful APIs.
 
-[Refer to the `refine-simple-rest` source code for more information &#8594](https://github.com/refinedev/refine/tree/next/packages/simple-rest)
+> For more information, refer to the [`refine-simple-rest` source code&#8594](https://github.com/refinedev/refine/tree/next/packages/simple-rest)
 
 ## Using data providers in refine
 
@@ -70,7 +68,7 @@ import dataProvider from "@refinedev/simple-rest";
 />;
 ```
 
-You can refer to the **refine's** [dataProvider prop component documentation](/docs/api-reference/core/components/refine-config/#dataprovider) for a more detailed explanation.
+> For more information, refer to **refine's** [dataProvider prop component documentation&#8594](/docs/api-reference/core/components/refine-config/#dataprovider)
 
 ## How are data provider methods used in the app?
 
