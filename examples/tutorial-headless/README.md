@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example tutorial-headless
 
 <br/>
 
-[![Open tutorial-headless example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/tutorial-headless?view=preview&theme=dark&codemirror=1)
+[![Open tutorial-headless example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/tutorial-headless?view=preview&theme=dark&codemirror=1)
         
