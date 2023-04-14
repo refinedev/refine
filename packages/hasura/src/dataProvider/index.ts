@@ -12,6 +12,7 @@ import setWith from "lodash/setWith";
 import set from "lodash/set";
 import mapKeys from "lodash/mapKeys";
 import camelCase from "camelcase";
+import { mapValues } from "lodash";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -159,6 +160,11 @@ const camelizeKeys = (obj: any): any => {
     return mapKeys(obj, (_v, k) => camelCase(k));
 };
 
+const uperCaseValues = (obj: any): any => {
+    if (!obj) return undefined;
+    return mapValues(obj, (v: string) => v.toUpperCase());
+};
+
 type IDType = "uuid" | "Int" | "String" | "Numeric";
 
 type NamingConvention = "hasura-default" | "graphql-default";
@@ -248,7 +254,7 @@ const dataProvider = (
             } = pagination ?? {};
             const hasuraSorting = defaultNamingConvention
                 ? generateSorting(sorters)
-                : camelizeKeys(generateSorting(sorters));
+                : uperCaseValues(camelizeKeys(generateSorting(sorters)));
 
             const hasuraFilters = generateFilters(filters);
 

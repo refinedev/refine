@@ -1,5 +1,9 @@
 import nock from "nock";
 
+/**
+ * Hasura default 'snake_case' naming convension
+ */
+
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($limit: Int, $offset: Int, $where: posts_bool_exp) { posts (limit: $limit, offset: $offset) { id, title } posts_aggregate (where: $where) { aggregate { count } } }",
@@ -227,6 +231,10 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
         ],
     );
 
+/**
+ * Graphql  default 'camelCase' naming convension
+ */
+
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($limit: Int, $offset: Int, $where: PostsBoolExp) { posts (limit: $limit, offset: $offset) { id, title } postsAggregate (where: $where) { aggregate { count } } }",
@@ -266,7 +274,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query ($limit: Int, $offset: Int, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) { posts (limit: $limit, offset: $offset, orderBy: $orderBy) { id, title } postsAggregate (where: $where) { aggregate { count } } }",
-        variables: { limit: 10, offset: 0, orderBy: { id: "asc" } },
+        variables: { limit: 10, offset: 0, orderBy: { id: "ASC" } },
     })
     .reply(
         200,
@@ -353,7 +361,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
         variables: {
             limit: 10,
             offset: 0,
-            orderBy: { title: "asc" },
+            orderBy: { title: "ASC" },
             where: {
                 _and: [
                     {
