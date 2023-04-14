@@ -638,11 +638,13 @@ useForm({
 
 ### `meta`
 
-[`meta`](/docs/api-reference/general-concepts/#meta) is used following three purposes:
+`meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
--   To provide additional parameters to the redirection path after the form is submitted. If your route has additional parameters, you can use `meta` to provide them.
+-   Customizing the data provider methods for specific use cases.
+-   Generating GraphQL queries using plain JavaScript Objects (JSON).
+-   Providing additional parameters to the redirection path after the form is submitted.
+
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 

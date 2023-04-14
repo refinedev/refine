@@ -12,6 +12,7 @@ import {
     useMutationMode,
     useOne,
     useRefineContext,
+    useMeta,
 } from "@hooks";
 
 import {
@@ -240,6 +241,7 @@ export const useForm = <
         action: legacyActionFromRoute,
         id: legacyIdFromParams,
     } = useParams<ResourceRouterParams>();
+    const getMeta = useMeta();
 
     const newResourceNameFromRouter =
         typeof resourceFromRouter === "string"
@@ -332,6 +334,11 @@ export const useForm = <
         }
     }
 
+    const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
+
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
@@ -369,8 +376,8 @@ export const useForm = <
         liveMode,
         onLiveEvent,
         liveParams,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: combinedMeta,
+        metaData: combinedMeta,
         dataProviderName,
     });
 
@@ -423,8 +430,8 @@ export const useForm = <
                     resource: resource.name,
                     successNotification,
                     errorNotification,
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                     dataProviderName,
                     invalidates,
                 },
@@ -464,8 +471,8 @@ export const useForm = <
             undoableTimeout,
             successNotification,
             errorNotification,
-            meta: pickNotDeprecated(meta, metaData),
-            metaData: pickNotDeprecated(meta, metaData),
+            meta: combinedMeta,
+            metaData: combinedMeta,
             dataProviderName,
             invalidates,
         };

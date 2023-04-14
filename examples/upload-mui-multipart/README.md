@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example upload-mui-multipart
 
 <br/>
 
-[![Open upload-mui-multipart example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/upload-mui-multipart?view=preview&theme=dark&codemirror=1)
+[![Open upload-mui-multipart example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/upload-mui-multipart?view=preview&theme=dark&codemirror=1)
         

@@ -14,6 +14,7 @@ import {
     useRouterType,
     useResource,
     useParsed,
+    useMeta,
 } from "@hooks";
 import {
     stringifyTableParams,
@@ -258,7 +259,7 @@ export function useTable<
     const routerType = useRouterType();
     const { useLocation } = useRouterContext();
     const { search, pathname } = useLocation();
-
+    const getMeta = useMeta();
     const parsedParams = useParsed();
 
     const hasPaginationString = hasPagination === false ? "off" : "server";
@@ -336,6 +337,11 @@ export function useTable<
     const go = useGo();
 
     const { resource } = useResource(resourceFromProp);
+
+    const combinedMeta = getMeta({
+        resource,
+        meta: preferredMeta,
+    });
 
     const resourceInUse = resource?.name;
 
@@ -497,8 +503,8 @@ export function useTable<
         queryOptions,
         successNotification,
         errorNotification,
-        meta: preferredMeta,
-        metaData: preferredMeta,
+        meta: combinedMeta,
+        metaData: combinedMeta,
         liveMode,
         liveParams,
         onLiveEvent,

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example refine-week-invoice-generator
 
 <br/>
 
-[![Open Invoicer example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/refine-week-invoice-generator?view=preview&theme=dark&codemirror=1)
+[![Open Invoicer example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/refine-week-invoice-generator?view=preview&theme=dark&codemirror=1)
         

@@ -10,14 +10,17 @@ describe("prepareRouteParams", () => {
     });
 
     it("should prioritize meta over params", () => {
-        expect(prepareRouteParams(["id"], { id: "1" }, { id: "2" })).toEqual({
+        expect(prepareRouteParams(["id"], { id: "2" })).toEqual({
             id: "2",
         });
     });
 
     it("should combine params and meta", () => {
         expect(
-            prepareRouteParams(["id", "action"], { id: "1" }, { action: "2" }),
+            prepareRouteParams(["id", "action"], {
+                ...{ id: "1" },
+                ...{ action: "2" },
+            }),
         ).toEqual({ id: "1", action: "2" });
     });
 });

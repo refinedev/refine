@@ -31,6 +31,7 @@ import {
     useLog,
     useInvalidate,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -156,6 +157,7 @@ export const useUpdate = <
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -174,6 +176,10 @@ export const useUpdate = <
             metaData,
             dataProviderName,
         }) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -187,8 +193,8 @@ export const useUpdate = <
                     resource,
                     id,
                     variables: values,
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                 });
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
@@ -205,8 +211,8 @@ export const useUpdate = <
                                 resource,
                                 id,
                                 variables: values,
-                                meta: pickNotDeprecated(meta, metaData),
-                                metaData: pickNotDeprecated(meta, metaData),
+                                meta: combinedMeta,
+                                metaData: combinedMeta,
                             })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));

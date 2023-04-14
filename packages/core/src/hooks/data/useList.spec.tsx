@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useList } from "./useList";
 import { defaultRefineOptions } from "@contexts/refine";
@@ -237,6 +237,38 @@ describe("useList Hook", () => {
         expect(result.current.data?.foo).toBe("bar");
     });
 
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
+        const getListMock = jest.fn();
+
+        renderHook(() => useList({ resource: "posts", meta: { foo: "bar" } }), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        getList: getListMock,
+                    },
+                },
+                routerProvider: mockRouterBindings({
+                    params: { baz: "qux" },
+                }),
+                resources: [{ name: "posts", meta: { dip: "dop" } }],
+            }),
+        });
+
+        await waitFor(() => {
+            expect(getListMock).toBeCalled();
+        });
+
+        expect(getListMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                    baz: "qux",
+                }),
+            }),
+        );
+    });
+
     describe("useResourceSubscription", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
@@ -271,7 +303,7 @@ describe("useList Hook", () => {
                 expect.objectContaining({
                     channel: "resources/posts",
                     callback: expect.any(Function),
-                    params: {
+                    params: expect.objectContaining({
                         hasPagination: true,
                         pagination: {
                             current: 1,
@@ -280,7 +312,7 @@ describe("useList Hook", () => {
                         },
                         resource: "posts",
                         subscriptionType: "useList",
-                    },
+                    }),
                     types: ["*"],
                 }),
             );
