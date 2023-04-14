@@ -227,7 +227,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -268,9 +268,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

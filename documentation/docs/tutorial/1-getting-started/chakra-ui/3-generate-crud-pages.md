@@ -42,7 +42,7 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -83,9 +83,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -156,7 +156,7 @@ setInitialRoutes(["/blog-posts"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -198,9 +198,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
@@ -245,7 +245,7 @@ setInitialRoutes(["/blog-posts/create"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -287,9 +287,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
@@ -334,7 +334,7 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -374,9 +374,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
@@ -421,7 +421,7 @@ setInitialRoutes(["/blog-posts/show/123"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -463,9 +463,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
