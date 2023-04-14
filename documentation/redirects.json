@@ -277,20 +277,8 @@
       "to": "/docs/packages/documentation/routers"
     },
     {
-      "from": "/docs/guides-and-concepts/data-provider/appwrite/",
-      "to": "/docs/advanced-tutorials/data-provider/appwrite/"
-    },
-    {
-      "from": "/docs/guides-and-concepts/data-provider/graphql/",
-      "to": "/docs/advanced-tutorials/data-provider/graphql/"
-    },
-    {
       "from": "/docs/guides-and-concepts/data-provider/handling-filters/",
       "to": "/docs/advanced-tutorials/data-provider/handling-filters/"
-    },
-    {
-      "from": "/docs/guides-and-concepts/data-provider/strapi-v4/",
-      "to": "/docs/advanced-tutorials/data-provider/strapi-v4/"
     },
     {
       "from": "/docs/guides-and-concepts/forms/custom-form-validation/",

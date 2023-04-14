@@ -445,7 +445,7 @@ Check that the URL is routed to /posts and that posts are present.
 
 When retrieving recorda, relations are not populated. Hence, We will use the `metaData` option to populate the Strapi v4 API with relational data (category data in our case).
 
-[Refer to docs for handling relations with strapi](https://refine.dev/docs/advanced-tutorials/data-provider/strapi-v4/#relations-population)
+[Refer to docs for handling relations with strapi](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 We will populate records with a `category id` field from the `/posts` endpoint with their respective titles. To automatically get `category titles` from the `/categories `endpoint for each record and display them on our table, we must use Strapi v4's populate feature.
 
