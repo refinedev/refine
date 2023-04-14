@@ -1,6 +1,6 @@
 import { layoutTitleTests } from "@refinedev/ui-tests";
-import { ThemedTitle } from "./index";
+import { ThemedTitleV2 } from "./index";
 
 describe("Layout", () => {
-    layoutTitleTests.bind(this)(ThemedTitle);
+    layoutTitleTests.bind(this)(ThemedTitleV2);
 });

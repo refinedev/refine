@@ -1,6 +1,6 @@
 import React from "react";
 import { render, TestWrapper } from "@test";
-import { ThemedHeader } from "./index";
+import { ThemedHeaderV2 } from "./index";
 import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
 
 const mockLegacyAuthProvider: LegacyAuthProvider = {
@@ -33,7 +33,7 @@ const mockAuthProvider: AuthBindings = {
 
 describe("Header", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
-        const { findByText, getByText } = render(<ThemedHeader />, {
+        const { findByText, getByText } = render(<ThemedHeaderV2 />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
@@ -47,7 +47,7 @@ describe("Header", () => {
 // NOTE: Will be removed in the refine v5
 describe("Header with legacyAuthProvider", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
-        const { findByText, getByText } = render(<ThemedHeader />, {
+        const { findByText, getByText } = render(<ThemedHeaderV2 />, {
             wrapper: TestWrapper({
                 legacyAuthProvider: mockLegacyAuthProvider,
             }),
