@@ -6,8 +6,8 @@ import {
 } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
-
-import { generateFilter, generateSort } from "../../dataProvider";
+import { generateSort } from "./generateSort";
+import { generateFilter } from "./generateFilter";
 
 type GenerateUseListSubscriptionParams = {
     resource: string;

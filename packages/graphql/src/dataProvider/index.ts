@@ -1,66 +1,9 @@
-import {
-    CrudFilters,
-    CrudSorting,
-    DataProvider,
-    LogicalFilter,
-    BaseRecord,
-} from "@refinedev/core";
+import { DataProvider, BaseRecord } from "@refinedev/core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
-
-export const generateSort = (sorters?: CrudSorting) => {
-    if (sorters && sorters.length > 0) {
-        const sortQuery = sorters.map((i) => {
-            return `${i.field}:${i.order}`;
-        });
-
-        return sortQuery.join();
-    }
-
-    return [];
-};
-
-/**
- * @deprecated Please use `generateSort` instead.
- */
-export const genereteSort = generateSort;
-
-export const generateFilter = (filters?: CrudFilters) => {
-    const queryFilters: { [key: string]: any } = {};
-
-    if (filters) {
-        filters.map((filter) => {
-            if (
-                filter.operator !== "or" &&
-                filter.operator !== "and" &&
-                "field" in filter
-            ) {
-                const { field, operator, value } = filter;
-
-                if (operator === "eq") {
-                    queryFilters[`${field}`] = value;
-                } else {
-                    queryFilters[`${field}_${operator}`] = value;
-                }
-            } else {
-                const value = filter.value as LogicalFilter[];
-
-                const orFilters: any[] = [];
-                value.map((val) => {
-                    orFilters.push({
-                        [`${val.field}_${val.operator}`]: val.value,
-                    });
-                });
-
-                queryFilters["_or"] = orFilters;
-            }
-        });
-    }
-
-    return queryFilters;
-};
+import { generateFilter, generateSort } from "../utils";
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
