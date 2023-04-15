@@ -160,7 +160,7 @@ const camelizeKeys = (obj: any): any => {
     return mapKeys(obj, (_v, k) => camelCase(k));
 };
 
-const uperCaseValues = (obj: any): any => {
+const upperCaseValues = (obj: any): any => {
     if (!obj) return undefined;
     return mapValues(obj, (v: string) => v.toUpperCase());
 };
@@ -254,7 +254,7 @@ const dataProvider = (
             } = pagination ?? {};
             const hasuraSorting = defaultNamingConvention
                 ? generateSorting(sorters)
-                : uperCaseValues(camelizeKeys(generateSorting(sorters)));
+                : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
             const hasuraFilters = generateFilters(filters);
 
