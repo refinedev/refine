@@ -5,7 +5,7 @@ import {
     generateUseListSubscription,
     generateUseManySubscription,
     generateUseOneSubscription,
-} from "../utilities";
+} from "../utils";
 
 const subscriptions = {
     useList: generateUseListSubscription,
