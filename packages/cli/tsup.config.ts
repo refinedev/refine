@@ -18,6 +18,15 @@ export default defineConfig({
     dts: false,
     clean: false,
     platform: "node",
+    external: [
+        ".bin/next",
+        ".bin/craco",
+        ".bin/react-scripts",
+        ".bin/parcel",
+        ".bin/remix-serve",
+        ".bin/remix",
+        ".bin/vite",
+    ],
     esbuildPlugins: [
         {
             name: "textReplace",
