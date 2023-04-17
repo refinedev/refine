@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -15,7 +15,6 @@ import {
     useWarnAboutChange,
 } from "@refinedev/core";
 import {
-    ActionIcon,
     Box,
     Drawer,
     Navbar,
@@ -24,25 +23,18 @@ import {
     NavLinkStylesParams,
     ScrollArea,
     MediaQuery,
-    Button,
     Tooltip,
     TooltipProps,
     Styles,
     useMantineTheme,
     Flex,
 } from "@mantine/core";
-import {
-    IconList,
-    IconMenu2,
-    IconIndentDecrease,
-    IconIndentIncrease,
-    IconPower,
-    IconDashboard,
-} from "@tabler/icons";
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import { IconList, IconPower, IconDashboard } from "@tabler/icons";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
 import { useSiderVisible } from "@hooks";
+
+import { RefineThemedLayoutV2SiderProps } from "../types";
 
 const defaultNavIcon = <IconList size={20} />;
 
@@ -52,14 +44,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
 }) => {
     const theme = useMantineTheme();
-    const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
-    // const [collapsed, setCollapsed] = useState(false);
-    // const [opened, setOpened] = useState(false);
+    const { siderVisible, setSiderVisible, drawerSiderVisible } =
+        useSiderVisible();
 
     const routerType = useRouterType();
     const NewLink = useLink();

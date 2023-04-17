@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionIcon, Button, MediaQuery } from "@mantine/core";
+import { ActionIcon, MediaQuery } from "@mantine/core";
 import {
     IconMenu2,
     IconIndentDecrease,
