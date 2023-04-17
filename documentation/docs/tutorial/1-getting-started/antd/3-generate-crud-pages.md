@@ -44,6 +44,7 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     NavigateToResource,
@@ -159,7 +160,9 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
+import { ConfigProvider } from "antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -249,7 +252,9 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
+import { ConfigProvider } from "antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -339,7 +344,9 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
+import { ConfigProvider } from "antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -429,7 +436,9 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
+import { ConfigProvider } from "antd";
 import routerBindings, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
