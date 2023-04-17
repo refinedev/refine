@@ -4,6 +4,7 @@ import { Box } from "@mantine/core";
 import { RefineThemedLayoutV2Props } from "./types";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
+import { ThemedLayoutContextProvider } from "../../contexts";
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     Sider,
@@ -17,28 +18,30 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <Box sx={{ display: "flex" }}>
-            <SiderToRender Title={Title} />
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    flex: 1,
-                    overflow: "auto",
-                }}
-            >
-                <HeaderToRender />
+        <ThemedLayoutContextProvider>
+            <Box sx={{ display: "flex" }}>
+                <SiderToRender Title={Title} />
                 <Box
-                    component="main"
-                    sx={(theme) => ({
-                        padding: theme.spacing.sm,
-                    })}
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                        overflow: "auto",
+                    }}
                 >
-                    {children}
+                    <HeaderToRender />
+                    <Box
+                        component="main"
+                        sx={(theme) => ({
+                            padding: theme.spacing.sm,
+                        })}
+                    >
+                        {children}
+                    </Box>
+                    {Footer && <Footer />}
                 </Box>
-                {Footer && <Footer />}
+                {OffLayoutArea && <OffLayoutArea />}
             </Box>
-            {OffLayoutArea && <OffLayoutArea />}
-        </Box>
+        </ThemedLayoutContextProvider>
     );
 };

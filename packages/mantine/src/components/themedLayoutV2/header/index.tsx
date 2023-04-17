@@ -2,13 +2,14 @@ import React from "react";
 import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import {
     Avatar,
-    Group,
+    Flex,
     Header as MantineHeader,
     Title,
     useMantineTheme,
 } from "@mantine/core";
 
 import { RefineThemedLayoutV2HeaderProps } from "../types";
+import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     const theme = useMantineTheme();
@@ -33,23 +34,26 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                 borderBottom: `1px solid ${borderColor}`,
             }}
         >
-            <Group
-                position="right"
+            <Flex
                 align="center"
+                justify="space-between"
                 sx={{
                     height: "100%",
                 }}
             >
-                <Title
-                    order={6}
-                    sx={{
-                        cursor: "pointer",
-                    }}
-                >
-                    {user?.name}
-                </Title>
-                <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
-            </Group>
+                <HamburgerMenu />
+                <Flex align="center" gap="sm">
+                    <Title
+                        order={6}
+                        sx={{
+                            cursor: "pointer",
+                        }}
+                    >
+                        {user?.name}
+                    </Title>
+                    <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
+                </Flex>
+            </Flex>
         </MantineHeader>
     );
 };

@@ -42,6 +42,7 @@ import {
 import { RefineThemedLayoutV2SiderProps } from "../types";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
+import { useSiderVisible } from "@hooks";
 
 const defaultNavIcon = <IconList size={20} />;
 
@@ -51,8 +52,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
 }) => {
     const theme = useMantineTheme();
-    const [collapsed, setCollapsed] = useState(false);
-    const [opened, setOpened] = useState(false);
+    const {
+        siderVisible,
+        setSiderVisible,
+        drawerSiderVisible,
+        setDrawerSiderVisible,
+    } = useSiderVisible();
+    // const [collapsed, setCollapsed] = useState(false);
+    // const [opened, setOpened] = useState(false);
 
     const routerType = useRouterType();
     const NewLink = useLink();
@@ -73,7 +80,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const drawerWidth = () => {
-        if (collapsed) return 80;
+        if (drawerSiderVisible) return 80;
         return 200;
     };
 
@@ -87,18 +94,21 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             root: {
                 display: "flex",
                 marginTop: "12px",
-                justifyContent: collapsed && !opened ? "center" : "flex-start",
+                justifyContent:
+                    drawerSiderVisible && !siderVisible
+                        ? "center"
+                        : "flex-start",
             },
             icon: {
-                marginRight: collapsed && !opened ? 0 : 12,
+                marginRight: drawerSiderVisible && !siderVisible ? 0 : 12,
             },
             body: {
-                display: collapsed && !opened ? "none" : "flex",
+                display: drawerSiderVisible && !siderVisible ? "none" : "flex",
             },
         };
 
     const commonTooltipProps: Partial<TooltipProps> = {
-        disabled: !collapsed || opened,
+        disabled: !drawerSiderVisible || siderVisible,
         position: "right",
         withinPortal: true,
         withArrow: true,
@@ -130,14 +140,24 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     <Tooltip label={label} {...commonTooltipProps}>
                         <NavLink
                             key={item.key}
-                            label={collapsed && !opened ? null : label}
+                            label={
+                                drawerSiderVisible && !siderVisible
+                                    ? null
+                                    : label
+                            }
                             icon={icon ?? defaultNavIcon}
                             active={isSelected}
-                            childrenOffset={collapsed && !opened ? 0 : 12}
+                            childrenOffset={
+                                drawerSiderVisible && !siderVisible ? 0 : 12
+                            }
                             defaultOpened={defaultOpenKeys.includes(
                                 item.key || "",
                             )}
-                            pl={collapsed || opened ? "12px" : "18px"}
+                            pl={
+                                drawerSiderVisible || siderVisible
+                                    ? "12px"
+                                    : "18px"
+                            }
                             styles={commonNavLinkStyles}
                             {...additionalLinkProps}
                         >
@@ -160,7 +180,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <NavLink
                     key="dashboard"
                     label={
-                        collapsed && !opened
+                        drawerSiderVisible && !siderVisible
                             ? null
                             : t("dashboard.title", "Dashboard")
                     }
@@ -197,10 +217,12 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             <NavLink
                 key="logout"
                 label={
-                    collapsed && !opened ? null : t("buttons.logout", "Logout")
+                    drawerSiderVisible && !siderVisible
+                        ? null
+                        : t("buttons.logout", "Logout")
                 }
                 icon={<IconPower size={20} />}
-                pl={collapsed || opened ? "12px" : "18px"}
+                pl={drawerSiderVisible || siderVisible ? "12px" : "18px"}
                 onClick={handleLogout}
                 styles={commonNavLinkStyles}
             />
@@ -213,7 +235,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 dashboard,
                 logout,
                 items,
-                collapsed,
+                collapsed: drawerSiderVisible,
             });
         }
         return (
@@ -228,24 +250,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     return (
         <>
             <MediaQuery largerThan="md" styles={{ display: "none" }}>
-                <Box
-                    sx={{ position: "fixed", top: 16, left: 16, zIndex: 1199 }}
-                >
-                    <ActionIcon
-                        color="gray"
-                        variant="filled"
-                        size={32}
-                        onClick={() => setOpened((prev) => !prev)}
-                    >
-                        <IconMenu2 />
-                    </ActionIcon>
-                </Box>
-            </MediaQuery>
-
-            <MediaQuery largerThan="md" styles={{ display: "none" }}>
                 <Drawer
-                    opened={opened}
-                    onClose={() => setOpened(false)}
+                    opened={siderVisible}
+                    onClose={() => setSiderVisible?.(false)}
                     size={200}
                     zIndex={1200}
                     withCloseButton={false}
@@ -303,14 +310,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 >
                     <Flex
                         h="64px"
-                        pl={collapsed ? 0 : "16px"}
+                        pl={drawerSiderVisible ? 0 : "16px"}
                         align="center"
-                        justify={collapsed ? "center" : "flex-start"}
+                        justify={drawerSiderVisible ? "center" : "flex-start"}
                         sx={{
                             borderBottom: `1px solid ${borderColor}`,
                         }}
                     >
-                        <RenderToTitle collapsed={collapsed} />
+                        <RenderToTitle collapsed={drawerSiderVisible} />
                     </Flex>
                     <Navbar.Section
                         grow
@@ -325,29 +332,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         }}
                     >
                         {renderSider()}
-                    </Navbar.Section>
-                    <Navbar.Section
-                        sx={{
-                            borderRadius: 0,
-                            borderRight: `1px solid ${borderColor}`,
-                        }}
-                    >
-                        <Button
-                            variant="subtle"
-                            color="gray"
-                            size="md"
-                            fullWidth
-                            sx={{
-                                border: "none",
-                            }}
-                            onClick={() => setCollapsed((prev) => !prev)}
-                        >
-                            {collapsed ? (
-                                <IconIndentIncrease size={16} />
-                            ) : (
-                                <IconIndentDecrease size={16} />
-                            )}
-                        </Button>
                     </Navbar.Section>
                 </Navbar>
             </MediaQuery>
