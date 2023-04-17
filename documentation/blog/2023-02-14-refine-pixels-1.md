@@ -259,7 +259,7 @@ For a complete list of all these modules, check out [this page](https://refine.d
 
 [**Supabase**](https://supabase.com/) is an open source alternative to Firebase. It is a hosted backend that provides a realtime database, authentication, storage, and API services. 
 
-refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/docs/advanced-tutorials/data-provider/supabase/).
+refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/docs/packages/documentation/data-providers/supabase/).
 
 We'll be using **Supabase** to build our backend for **Pixels** app.
 
