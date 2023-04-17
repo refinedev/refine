@@ -20,8 +20,7 @@ Although you could take the time to manually set up your environment and install
 Building **refine** CRUD apps with [refine.new](https://refine.new/) is very straight forward. You can choose the libraries and frameworks you want to work with, and the tool will generate the project.
 
 
-
-You can download the project code by clicking on the *"Build & Download"* button.
+Use the interactive form on [refine.new](https://refine.new/) choose your preferred technologies and download the project code by clicking on the *"Build & Download"* button.
 
 Once the setup is complete, navigate to the project folder install depencies and then start your project.
 
