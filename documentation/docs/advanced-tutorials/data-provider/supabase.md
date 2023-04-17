@@ -1355,7 +1355,7 @@ useMany({
     ids: [1, 2],
     //highlight-start
     meta: {
-        id: "post_id",
+        idColumnName: "post_id",
     },
     // highlight-end
 });
