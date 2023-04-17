@@ -17,10 +17,10 @@ Although you could take the time to manually set up your environment and install
 
 [refine.new](https://refine.new/) is a powerful tool that lets you create **refine** apps right in your browser. You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.
 
-Building **refine** CRUD apps with [refine.new](https://refine.new/) is very straight forward. You can choose the libraries and frameworks you want to work with, and the tool will generate the project.
+Building **refine** CRUD apps with [refine.new](https://refine.new/) is very straight forward. You can choose the libraries and frameworks you want to work with by using interactive UI, and the tool will generate the project.
 
 
-Use the interactive form on [refine.new](https://refine.new/) choose your preferred technologies and download the project code by clicking on the *"Build & Download"* button.
+After generating to project, you can download the project code by clicking on the *"Build & Download"* button.
 
 Once the setup is complete, navigate to the project folder install depencies and then start your project.
 
