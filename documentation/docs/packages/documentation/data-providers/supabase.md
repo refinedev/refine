@@ -1294,7 +1294,7 @@ The [`meta`](/docs/api-reference/general-concepts.md/#meta) property is used to 
 
 We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
-Take a look at the useTable hook in List page we created on the [previous sections](http://localhost:3000/docs/advanced-tutorials/data-provider/supabase/#adding-a-list-page).
+Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/documentation/data-providers/supabase/#adding-a-list-page).
 
 ### `select` - Handling one-to-many relationship
 

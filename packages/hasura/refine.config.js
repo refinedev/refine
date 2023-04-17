@@ -56,6 +56,10 @@ module.exports = {
                         src: "./src/utils/generateUseOneSubscription.ts",
                         dest: "./providers/hasura/utils/generateUseOneSubscription.ts",
                     },
+                    {
+                        src: "./src/utils/upperCaseValues.ts",
+                        dest: "./providers/hasura/utils/upperCaseValues.ts",
+                    },
                 ],
                 message: `
             **\`Usage\`**

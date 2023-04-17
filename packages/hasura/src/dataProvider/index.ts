@@ -2,7 +2,12 @@ import { DataProvider, BaseRecord } from "@refinedev/core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
-import { generateFilters, generateSorting, camelizeKeys } from "../utils";
+import {
+    generateFilters,
+    generateSorting,
+    camelizeKeys,
+    upperCaseValues,
+} from "../utils";
 
 type IDType = "uuid" | "Int" | "String" | "Numeric";
 
@@ -93,7 +98,7 @@ const dataProvider = (
             } = pagination ?? {};
             const hasuraSorting = defaultNamingConvention
                 ? generateSorting(sorters)
-                : camelizeKeys(generateSorting(sorters));
+                : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
             const hasuraFilters = generateFilters(filters);
 
