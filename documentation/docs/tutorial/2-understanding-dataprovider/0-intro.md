@@ -56,7 +56,7 @@ const dataProvider: DataProvider = {
 
 ## Using data providers in refine
 
-In the previous unit, we consumed the API to show the data in the auto-generated Inferencer pages. To allow **refine** to communicate with the API, we registered a data provider using `dataProvider` property of the `<Refine>` component.
+In the previous unit, we already consumed the API to show the data in the auto-generated Inferencer pages and registered a data provider using the `dataProvider` property of the `<Refine>` component to allow **refine** communicate with the API:
 
 ```tsx
 ...
