@@ -19,7 +19,7 @@ import { useTutorialUIPackage } from "../../hooks/use-tutorial-ui-package";
 import { PreferredUIPackage } from "../../context/TutorialUIPackageContext";
 // import { useTutorialConfig } from "../../hooks/use-tutorial-config";
 // import useGlobalData from "@docusaurus/useGlobalData";
-
+import { HTMLAttributes } from "react";
 const uiNames: Record<PreferredUIPackage, string> = {
     headless: "Headless",
     antd: "Ant Design",
@@ -27,28 +27,48 @@ const uiNames: Record<PreferredUIPackage, string> = {
     mantine: "Mantine",
     "chakra-ui": "Chakra UI",
 };
-
 const baseIconUrl =
     "https://refine.ams3.digitaloceanspaces.com/website/static/icons/colored/ui-framework-";
 
-const LinkWithId: React.FC<
-    React.PropsWithChildren<{
-        id: string;
-        className?: string;
-        isCurrent?: boolean;
-    }>
-> = ({ id, children, className, isCurrent }) => {
+type LinkWithIdProps = HTMLAttributes<HTMLAnchorElement> & {
+    id: string;
+    isCurrent?: boolean;
+    dangerouslySetInnerHTML?: { __html: string };
+};
+
+const LinkWithId = ({
+    id,
+    isCurrent,
+    className,
+    dangerouslySetInnerHTML,
+    ...rest
+}: LinkWithIdProps) => {
     const toUrl = useBaseUrl(`/docs/${id}`, { forcePrependBaseUrl: true });
 
     return (
-        <Link
-            to={toUrl}
-            className={className}
-            onClick={(e) => (isCurrent ? e?.preventDefault() : undefined)}
-        >
-            {children}
-        </Link>
+        <a
+            {...rest}
+            href={toUrl}
+            className={`${className || ""} ${
+                isCurrent ? "text-black" : "text-gray-600 hover:text-black"
+            }`}
+            dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+        />
     );
+};
+const markdownConverter = (text) => {
+    text = text.replace(
+        /(?<!`)\*\*\*(?!\*)(.*?)(?<!\*)\*\*\*(?!`)/g,
+        "<strong><em>$1</em></strong>",
+    );
+    text = text.replace(
+        /(?<!`)\*\*(?!\*)(.*?)(?<!\*)\*\*(?!`)/g,
+        "<strong>$1</strong>",
+    );
+    text = text.replace(/(?<!`)\*(?!\*)(.*?)(?<!\*)\*(?!`)/g, "<em>$1</em>");
+
+    text = text.replace(/`(\w+)`/g, "<code>$1</code>");
+    return text;
 };
 
 const TutorialUIStatus = () => {
@@ -110,13 +130,12 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 className="mb-1"
             >
                 <a
+                    dangerouslySetInnerHTML={{ __html: item.value }}
                     href={`#${item.id}`}
                     className={`tutorial__item--toc-item ${
                         `${hash}`.slice(1) === item.id ? "active" : ""
                     }`}
-                >
-                    {item.value}
-                </a>
+                ></a>
             </li>
         );
     };
@@ -133,6 +152,8 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
             typeof currentTutorial
         >["units"][number]["docs"][number],
     ) => {
+        const formattedTitle = markdownConverter(doc.title);
+        console.log(formattedTitle);
         return (
             <li key={doc.id} className="flex flex-row items-start gap-2 pb-2">
                 <div className="mt-0.5 h-5 w-5 flex-shrink-0">
@@ -149,9 +170,9 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                                 ? "hover:cursor-default hover:no-underline"
                                 : ""
                         }`}
-                    >
-                        {doc.title}
-                    </LinkWithId>
+                        dangerouslySetInnerHTML={{ __html: formattedTitle }}
+                    />
+
                     {doc.current && renderTOC()}
                 </div>
             </li>
@@ -222,7 +243,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div
-                className={`unit-list-container rounded-md py-3 px-3 ${
+                className={`unit-list-container rounded-md px-3 py-3 ${
                     currentUnit?.no === 1 ? "rounded-tl-none" : ""
                 }`}
                 style={{
