@@ -67,7 +67,7 @@ Path definitions in the resource configuration help **refine** recognize the ava
 
 Thanks to its flexibility, **refine** can be seamlessly integrated into any existing React application without imposing any limitations on users. It can also be attached to routes where it’s needed without interfering with your routing logic. This makes it possible to use **refine** with enterprise-grade applications that have complex requirements such as nested routes and multi-tenancy.
 
-:::note
+:::caution
 It’s important to note that route management will be handled by your preferred framework (React Router, Next.js, Remix).
 :::
 <UIConditional is="headless">
