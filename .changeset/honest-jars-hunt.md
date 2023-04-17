@@ -1,5 +1,5 @@
 ---
-"@refinedev/supabase": major
+"@refinedev/supabase": minor
 ---
 
 fix: update custom id column name on meta params
