@@ -35,8 +35,7 @@ export const UnsavedChangesNotifier: React.FC<UnsavedChangesNotifierProps> = ({
             window.addEventListener("beforeunload", warnWhenListener);
         }
 
-        return () =>
-            window.removeEventListener("beforeunload", warnWhenListener);
+        return () => window.removeEventListener("beforeunload", warnWhenListener);
     }, [warnWhen, warnWhenListener]);
 
     React.useEffect(() => {
