@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example import-export-mantine
 
 <br/>
 
-[![Open import-export-mantine example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/import-export-mantine?view=preview&theme=dark&codemirror=1)
+[![Open import-export-mantine example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/import-export-mantine?view=preview&theme=dark&codemirror=1)
         

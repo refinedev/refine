@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-google-login
 
 <br/>
 
-[![Open auth-google-login example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-google-login?view=preview&theme=dark&codemirror=1)
+[![Open auth-google-login example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/auth-google-login?view=preview&theme=dark&codemirror=1)
         

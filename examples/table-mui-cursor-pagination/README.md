@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mui-cursor-pagination
 
 <br/>
 
-[![Open cursor pagination mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/table-mui-cursor-pagination?view=preview&theme=dark&codemirror=1)
+[![Open cursor pagination mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/table-mui-cursor-pagination?view=preview&theme=dark&codemirror=1)
         

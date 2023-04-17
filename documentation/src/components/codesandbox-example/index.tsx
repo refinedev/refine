@@ -1,7 +1,7 @@
 import React from "react";
 
-import ExampleSourcePrompt from "../example-source-prompt";
 import ExampleLocalPrompt from "../example-local-prompt";
+import ExampleSourcePrompt from "../example-source-prompt";
 
 type Props = {
     path?: string;
@@ -16,7 +16,7 @@ const CodeSandboxExample: React.FC<Props> = ({
     hideLocal,
     hideSandbox,
 }) => {
-    const CODESANDBOX_URL = `https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/${path}`;
+    const CODESANDBOX_URL = `https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/${path}`;
 
     const EDITOR_URL = `${CODESANDBOX_URL}?view=preview&theme=dark&runonclick=1&codemirror=1`;
 

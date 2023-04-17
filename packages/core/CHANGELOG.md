@@ -1,5 +1,119 @@
 # @pankod/refine-core
 
+## 4.10.0
+
+### Minor Changes
+
+-   [#4135](https://github.com/refinedev/refine/pull/4135) [`e72c0d2b41f`](https://github.com/refinedev/refine/commit/e72c0d2b41ffcd9d5853e0d912a31cb88fab9841) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: Expose the query params to the `meta` and add the ability to pass global `meta` to data provider methods
+
+    -   Added the ability to pass `meta` to data provider methods globally for specific resources.
+
+        For example, to pass the `role` property to all data provider methods for the `posts` resource, use the following code:
+
+        ```tsx
+        import { Refine } from "@refinedev/core";
+
+        const App: React.FC = () => {
+            return (
+                <Refine
+                    resources={[
+                        {
+                            name: "posts",
+                            meta: {
+                                role: "editor",
+                            },
+                        },
+                    ]}
+                />
+            );
+        };
+        ```
+
+        Now, when you call any data hook with the `posts` resource, the `meta` property will be accessible in the data provider methods.
+
+        ```tsx
+        const dataProvider = {
+            getList: async ({ resource, meta }) => {
+                console.log(meta.role); // "editor"
+            },
+        };
+        ```
+
+    -   Added the query params to the `meta` property by default.
+
+        For example, if you call the `useList` hook on the `example.com/posts?status=published` URL, the `meta` property will be accessible in the data provider methods as follows:
+
+        ```tsx
+        const dataProvider = {
+            getList: async ({ resource, meta }) => {
+                console.log(meta.status); // "published"
+            },
+        };
+        ```
+
+### Patch Changes
+
+-   [#4159](https://github.com/refinedev/refine/pull/4159) [`f7f590589e7`](https://github.com/refinedev/refine/commit/f7f590589e78a255f2ce292311c6bae765b9de8f) Thanks [@aliemir](https://github.com/aliemir)! - fixed: missing resource meta in route compositions
+
+    Added missing resource meta values when composing routes. This fixes the bug where the resource meta values does not included in the route composition.
+
+## 4.9.0
+
+### Minor Changes
+
+-   [#4135](https://github.com/refinedev/refine/pull/4135) [`e72c0d2b41f`](https://github.com/refinedev/refine/commit/e72c0d2b41ffcd9d5853e0d912a31cb88fab9841) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: Expose the query params to the `meta` and add the ability to pass global `meta` to data provider methods
+
+    -   Added the ability to pass `meta` to data provider methods globally for specific resources.
+
+        For example, to pass the `role` property to all data provider methods for the `posts` resource, use the following code:
+
+        ```tsx
+        import { Refine } from "@refinedev/core";
+
+        const App: React.FC = () => {
+            return (
+                <Refine
+                    resources={[
+                        {
+                            name: "posts",
+                            meta: {
+                                role: "editor",
+                            },
+                        },
+                    ]}
+                />
+            );
+        };
+        ```
+
+        Now, when you call any data hook with the `posts` resource, the `meta` property will be accessible in the data provider methods.
+
+        ```tsx
+        const dataProvider = {
+            getList: async ({ resource, meta }) => {
+                console.log(meta.role); // "editor"
+            },
+        };
+        ```
+
+    -   Added the query params to the `meta` property by default.
+
+        For example, if you call the `useList` hook on the `example.com/posts?status=published` URL, the `meta` property will be accessible in the data provider methods as follows:
+
+        ```tsx
+        const dataProvider = {
+            getList: async ({ resource, meta }) => {
+                console.log(meta.status); // "published"
+            },
+        };
+        ```
+
+### Patch Changes
+
+-   [#4159](https://github.com/refinedev/refine/pull/4159) [`f7f590589e7`](https://github.com/refinedev/refine/commit/f7f590589e78a255f2ce292311c6bae765b9de8f) Thanks [@aliemir](https://github.com/aliemir)! - fixed: missing resource meta in route compositions
+
+    Added missing resource meta values when composing routes. This fixes the bug where the resource meta values does not included in the route composition.
+
 ## 4.8.5
 
 ### Patch Changes
