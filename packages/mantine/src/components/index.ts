@@ -21,3 +21,9 @@ export * from "./themedLayout/header";
 export * from "./themedLayout/sider";
 export * from "./themedLayout/title";
 export * from "./themedLayout/types";
+
+export * from "./themedLayoutV2";
+export * from "./themedLayoutV2/header";
+export * from "./themedLayoutV2/sider";
+export * from "./themedLayoutV2/title";
+export * from "./themedLayoutV2/types";
