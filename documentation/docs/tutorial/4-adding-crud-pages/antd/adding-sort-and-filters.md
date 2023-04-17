@@ -1,6 +1,6 @@
 ---
 id: adding-sort-and-filters
-title: 5. Adding Sort and Filters
+title: 6. Adding Sort and Filters
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
