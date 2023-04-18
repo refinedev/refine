@@ -44,6 +44,7 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     NavigateToResource,
@@ -159,6 +160,7 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -249,6 +251,7 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -339,6 +342,7 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -429,6 +433,7 @@ import {
     ThemedLayout,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,

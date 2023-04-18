@@ -52,7 +52,7 @@ npm create refine-app@latest refine-ecommerce-example -- -p refine-nextjs -b v3
 ✔ i18n - Internationalization: · no
 ```
 
-superplate will quickly create our **refine** project according to the features we choose. Let's continue by install the [**refine** Strapi-v4 Data Provider](/docs/advanced-tutorials/data-provider/strapi-v4/) and Chakra-UI packages that we will use later.
+superplate will quickly create our **refine** project according to the features we choose. Let's continue by install the [**refine** Strapi-v4 Data Provider](/docs/packages/documentation/data-providers/strapi-v4/) and Chakra-UI packages that we will use later.
 
 ## Installation
 
