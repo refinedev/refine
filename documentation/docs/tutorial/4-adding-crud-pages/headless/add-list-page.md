@@ -92,7 +92,7 @@ render(<App />);
 
 ### Handling Relationships
 
-Each blog post includes the `category` field, which has an `id` property. This is a foreign key that points to the `categories` resource, which is different from the "blog_posts" resource.
+Each blog post includes the `category` field, which has an `id` property. This is a foreign key that points to the `categories` resource, which is different from the `blog_posts` resource.
 
 There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by **refine**.
 
