@@ -5,7 +5,7 @@ import {
     genereteUseListSubscription,
     genereteUseManySubscription,
     genereteUseOneSubscription,
-} from "../utilities";
+} from "../utils";
 
 const subscriptions = {
     useList: genereteUseListSubscription,

@@ -29,7 +29,7 @@ setInitialRoutes(["/blog-posts"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -63,9 +63,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -196,7 +196,7 @@ Now that we have created the list page, we can add it to the `App.tsx` file:
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -234,9 +234,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

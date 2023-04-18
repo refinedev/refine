@@ -1,23 +1,23 @@
 import { MetaQuery, BaseKey } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
-type GenereteUseManySubscriptionParams = {
+type GenerateUseManySubscriptionParams = {
     resource: string;
     meta: MetaQuery;
     ids?: BaseKey[];
 };
 
-type GenereteUseManySubscriptionReturnValues = {
+type GenerateUseManySubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteUseManySubscription = ({
+export const generateUseManySubscription = ({
     resource,
     meta,
     ids,
-}: GenereteUseManySubscriptionParams): GenereteUseManySubscriptionReturnValues => {
+}: GenerateUseManySubscriptionParams): GenerateUseManySubscriptionReturnValues => {
     if (!ids) {
         console.error(
             "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
@@ -43,3 +43,8 @@ export const genereteUseManySubscription = ({
 
     return { query, variables, operation };
 };
+
+/**
+ * @deprecated Please use `generateUseManySubscription` instead.
+ */
+export const genereteUseManySubscription = generateUseManySubscription;

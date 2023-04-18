@@ -8,7 +8,7 @@ import {
     notificationProvider,
     RefineThemes,
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -46,7 +46,7 @@ function App() {
                         warnWhenUnsavedChanges: true,
                     }}
                 >
-                    <ThemedLayout>
+                    <ThemedLayoutV2>
                         <Routes>
                             <Route
                                 index
@@ -73,7 +73,7 @@ function App() {
 
                             <Route path="*" element={<ErrorComponent />} />
                         </Routes>
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                     <UnsavedChangesNotifier />
                 </Refine>
             </ChakraProvider>

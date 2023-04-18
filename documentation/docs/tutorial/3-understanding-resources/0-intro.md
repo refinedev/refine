@@ -226,7 +226,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -267,9 +267,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -314,7 +314,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import routerBindings, {
     NavigateToResource,
@@ -355,9 +355,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

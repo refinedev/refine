@@ -135,7 +135,7 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
@@ -167,9 +167,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -227,7 +227,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -254,9 +254,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -328,7 +328,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -355,9 +355,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -433,7 +433,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -460,9 +460,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -542,7 +542,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -569,9 +569,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
