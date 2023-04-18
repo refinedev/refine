@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
 import {
     DashboardOutlined,
@@ -28,6 +28,7 @@ import {
 import { drawerButtonStyles } from "./styles";
 import { RefineThemedLayoutV2SiderProps } from "../types";
 import { ThemedTitleV2 } from "@components";
+import { useSiderVisible } from "@hooks";
 
 const { SubMenu } = Menu;
 const { useToken } = theme;
@@ -38,9 +39,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     meta,
 }) => {
     const { token } = useToken();
+    const {
+        siderVisible,
+        setSiderVisible,
+        drawerSiderVisible,
+        setDrawerSiderVisible,
+    } = useSiderVisible();
 
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-    const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const routerType = useRouterType();
     const NewLink = useLink();
@@ -116,7 +121,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route ?? ""}>{label}</Link>
-                        {!collapsed && isSelected && (
+                        {!drawerSiderVisible && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
                     </Menu.Item>
@@ -156,7 +161,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     const dashboard = hasDashboard ? (
         <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
             <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
-            {!collapsed && selectedKey === "/" && (
+            {!drawerSiderVisible && selectedKey === "/" && (
                 <div className="ant-menu-tree-arrow" />
             )}
         </Menu.Item>
@@ -170,7 +175,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 dashboard,
                 items,
                 logout,
-                collapsed,
+                collapsed: drawerSiderVisible,
             });
         }
         return (
@@ -194,9 +199,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         border: "none",
                     }}
                     onClick={() => {
-                        setDrawerOpen(false);
+                        setSiderVisible?.(false);
                         if (!breakpoint.lg) {
-                            setCollapsed(true);
+                            setDrawerSiderVisible?.(true);
                         }
                     }}
                 >
@@ -210,8 +215,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         return (
             <>
                 <Drawer
-                    open={drawerOpen}
-                    onClose={() => setDrawerOpen(false)}
+                    open={siderVisible}
+                    onClose={() => setSiderVisible?.(false)}
                     placement="left"
                     closable={false}
                     width={200}
@@ -249,7 +254,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <Button
                     style={drawerButtonStyles}
                     size="large"
-                    onClick={() => setDrawerOpen(true)}
+                    onClick={() => setSiderVisible?.(true)}
                     icon={<BarsOutlined />}
                 ></Button>
             </>
@@ -267,8 +272,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 borderRight: `1px solid ${token.colorBgElevated}`,
             }}
             collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed) => setCollapsed(collapsed)}
+            collapsed={drawerSiderVisible}
+            onCollapse={(collapsed) => setDrawerSiderVisible?.(collapsed)}
             collapsedWidth={80}
             breakpoint="lg"
             trigger={
@@ -281,7 +286,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         backgroundColor: token.colorBgElevated,
                     }}
                 >
-                    {collapsed ? (
+                    {drawerSiderVisible ? (
                         <RightOutlined
                             style={{
                                 color: token.colorPrimary,
@@ -299,17 +304,19 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         >
             <div
                 style={{
-                    width: collapsed ? "80px" : "200px",
-                    padding: collapsed ? "0" : "0 16px",
+                    width: drawerSiderVisible ? "80px" : "200px",
+                    padding: drawerSiderVisible ? "0" : "0 16px",
                     display: "flex",
-                    justifyContent: collapsed ? "center" : "flex-start",
+                    justifyContent: drawerSiderVisible
+                        ? "center"
+                        : "flex-start",
                     alignItems: "center",
                     height: "64px",
                     backgroundColor: token.colorBgElevated,
                     fontSize: "14px",
                 }}
             >
-                <RenderToTitle collapsed={collapsed} />
+                <RenderToTitle collapsed={drawerSiderVisible} />
             </div>
             {renderMenu()}
         </Layout.Sider>

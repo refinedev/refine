@@ -4,6 +4,8 @@ import { Grid, Layout as AntdLayout } from "antd";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
 import { RefineThemedLayoutV2Props } from "./types";
+import { ThemedLayoutContextProvider } from "@contexts";
+import { useSiderVisible } from "@hooks";
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     children,
@@ -19,23 +21,25 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
 
     return (
-        <AntdLayout style={{ minHeight: "100vh" }}>
-            <SiderToRender Title={Title} />
-            <AntdLayout>
-                <HeaderToRender />
-                <AntdLayout.Content>
-                    <div
-                        style={{
-                            minHeight: 360,
-                            padding: isSmall ? 24 : 12,
-                        }}
-                    >
-                        {children}
-                    </div>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout.Content>
-                {Footer && <Footer />}
+        <ThemedLayoutContextProvider>
+            <AntdLayout style={{ minHeight: "100vh" }}>
+                <SiderToRender Title={Title} />
+                <AntdLayout>
+                    <HeaderToRender />
+                    <AntdLayout.Content>
+                        <div
+                            style={{
+                                minHeight: 360,
+                                padding: isSmall ? 24 : 12,
+                            }}
+                        >
+                            {children}
+                        </div>
+                        {OffLayoutArea && <OffLayoutArea />}
+                    </AntdLayout.Content>
+                    {Footer && <Footer />}
+                </AntdLayout>
             </AntdLayout>
-        </AntdLayout>
+        </ThemedLayoutContextProvider>
     );
 };
