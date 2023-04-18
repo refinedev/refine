@@ -683,12 +683,12 @@ const DashboardPage = () => {
     return (
         <Space style={{ paddingTop: 30 }}>
             <Button type="primary" onClick={() => setSiderVisible?.(!siderVisible)}>
-                toggle visible for mobile ({siderVisible ? "open" : "close"})
+                toggle visible for mobile
             </Button>
             <Button type="primary"
                 onClick={() => setDrawerSiderVisible?.(!drawerSiderVisible)}
             >
-                toggle drawer ({drawerSiderVisible ? "open" : "close"})
+                toggle drawer
             </Button>
             
         </Space>
