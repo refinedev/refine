@@ -265,6 +265,23 @@ useTable({
 });
 ```
 
+### `sorters.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, or `"server"`.
+
+-   **"off":** Sorting is disabled. All records will be fetched.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+```tsx
+useTable({
+    sorters: {
+        mode: "server",
+    },
+});
+```
+
 ### `sorters.initial`
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
@@ -299,6 +316,23 @@ useTable({
                 order: "asc",
             },
         ],
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** Filters are disabled. All records will be fetched.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useTable({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -837,6 +871,122 @@ A function to set current [sorters state][crudsorting].
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
+
+### How can I handle client side filtering?
+
+First, you need to set `filters.mode: "off"`
+
+```tsx
+const { tableProps } = useTable({
+    filters: {
+        mode: "off",
+    },
+});
+```
+
+Then, you can use `tableProps.dataSource` and `filters` to filter data.
+
+```tsx
+import { useMemo } from "react";
+import { Table } from "antd";
+import { getDefaultFilter } from "@refinedev/core";
+import { useTable, Radio, FilterDropdown } from "@refinedev/antd";
+
+const List = () => {
+    const { tableProps, filters } = useTable({
+        filters: {
+            mode: "off",
+        },
+    });
+
+    const filteredData = useMemo(() => {
+        // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
+        // We use flatMap for better type support.
+        const logicalFilters = filters.flatMap((item) =>
+            "field" in item ? item : [],
+        );
+
+        return tableProps.dataSource.filter((item) => {
+            return logicalFilters.some((filter) => {
+                if (filter.operator === "eq") {
+                    return item[filter.field] === filter.value;
+                }
+            });
+        });
+    }, [tableProps.dataSource, filters]);
+
+    return (
+        <Table {...tableProps} dataSource={filteredData}>
+            <Table.Column title="Title" dataIndex="title" />
+            <Table.Column
+                dataIndex="status"
+                title="Status"
+                defaultFilteredValue={getDefaultFilter("status", filters)}
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Radio.Group>
+                            <Radio value="published">Published</Radio>
+                            <Radio value="draft">Draft</Radio>
+                            <Radio value="rejected">Rejected</Radio>
+                        </Radio.Group>
+                    </FilterDropdown>
+                )}
+            />
+        </Table>
+    );
+};
+```
+
+### How can I handle client side sorting?
+
+First, you need to set `sorters.mode: "off"`
+
+```tsx
+const { tableProps } = useTable({
+    sorters: {
+        mode: "off",
+    },
+});
+```
+
+Then, you can use `tableProps.dataSource` and `sorters` to sort data.
+
+```tsx
+import { useMemo } from "react";
+import { Table } from "antd";
+import { getDefaultSortOrder, useTable } from "@refinedev/antd";
+
+const List = () => {
+    const { tableProps, sorters } = useTable({
+        sorters: {
+            mode: "off",
+        },
+    });
+
+    const sortedData = useMemo(() => {
+        return tableProps.dataSource.sort((a, b) => {
+            const sorter = sorters[0];
+            if (sorter.order === "asc") {
+                return a[sorter.field] > b[sorter.field] ? 1 : -1;
+            }
+            if (sorter.order === "descend") {
+                return a[sorter.field] < b[sorter.field] ? 1 : -1;
+            }
+        });
+    }, [tableProps.dataSource, sorters]);
+
+    return (
+        <Table {...tableProps} dataSource={sortedData}>
+            <Table.Column
+                title="Title"
+                dataIndex="title"
+                sorter={true}
+                defaultSortOrder={getDefaultSortOrder("id", sorters)}
+            />
+        </Table>
+    );
+};
+```
 
 ## API
 
