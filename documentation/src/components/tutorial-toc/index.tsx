@@ -58,7 +58,7 @@ const LinkWithId = ({
 };
 
 const markdownConverter = (text) => {
-    const numericStartRegexp = /^\d+.\s?/g;
+    const numericStartRegexp = /^\d+\.\s?/g;
     const numericStart = text.match(numericStartRegexp)?.[0] || "";
     const numericStartIgnore = text.replace(numericStartRegexp, "");
 
