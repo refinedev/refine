@@ -5,10 +5,29 @@ import path from "path";
 
 const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
-const getRefineCLIVersion = async () => {
-    const packages = await fs.promises.readFile("./package.json", "utf8");
-    const { version } = JSON.parse(packages);
-    return version;
+const getRefinePackageNames = async () => {
+    try {
+        const ignored = [
+            "live-previews",
+            "cli",
+            "antd-audit-log",
+            "demo-sidebar",
+            "create-refine-app",
+            "ui-types",
+            "ui-tests",
+        ];
+
+        const dirs = await fs.promises.readdir("../");
+
+        const packages = dirs.filter(
+            (el) =>
+                !el.startsWith(".") && el !== "cli" && !ignored.includes(el),
+        );
+
+        return packages;
+    } catch (error) {
+        return [];
+    }
 };
 
 export default defineConfig({
@@ -18,6 +37,15 @@ export default defineConfig({
     dts: false,
     clean: false,
     platform: "node",
+    external: [
+        ".bin/next",
+        ".bin/craco",
+        ".bin/react-scripts",
+        ".bin/parcel",
+        ".bin/remix-serve",
+        ".bin/remix",
+        ".bin/vite",
+    ],
     esbuildPlugins: [
         {
             name: "textReplace",
@@ -33,23 +61,26 @@ export default defineConfig({
                         ? "jsx"
                         : (extension as any);
 
-                    const versionRegex =
-                        /const REFINE_CLI_VERSION = "\d.\d.\d";/gm;
-                    const hasVersion = contents.match(versionRegex);
+                    const packageListRegex =
+                        /const REFINE_PACKAGES = \[(.|\s)*?\];/gm;
+                    const hasPackageList = contents.match(packageListRegex);
 
-                    if (!hasVersion) {
+                    if (!hasPackageList) {
                         return {
                             loader,
                             contents,
                         };
                     }
 
-                    const version = await getRefineCLIVersion();
+                    const packageList = await getRefinePackageNames();
+
                     return {
                         loader,
                         contents: contents.replace(
-                            versionRegex,
-                            `const REFINE_CLI_VERSION = "${version}";`,
+                            packageListRegex,
+                            `const REFINE_PACKAGES = [${packageList
+                                .map((el) => `"${el}"`)
+                                .join(", ")}];`,
                         ),
                     };
                 });

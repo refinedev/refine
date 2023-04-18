@@ -108,7 +108,7 @@ const action = async (_options: OptionValues) => {
 
     const packageConfigs = await Promise.all(
         packagesWithConfig.map(async (pkg) => {
-            const config = (await getRefineConfig(pkg.path)) ?? {
+            const config = (await getRefineConfig(pkg.path, true)) ?? {
                 swizzle: { items: [] },
             };
             return {
