@@ -45,6 +45,9 @@ import { ThemedTitle as DefaultTitle } from "@components";
 
 const defaultNavIcon = <IconList size={20} />;
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     render,
     meta,

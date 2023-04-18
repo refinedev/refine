@@ -29,7 +29,7 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -72,9 +72,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -146,7 +146,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-The `useSelect` hook returns 10 records by default, but the category of the blog post may not be in the first 10 records. To solve this problem, we can use the `defaultVlaue` prop to set the default value of the `useSelect` hook like below:
+The `useSelect` hook returns 10 records by default, but the category of the blog post may not be in the first 10 records. To solve this problem, we can use the `defaultValue` prop to set the default value of the `useSelect` hook like below:
 
 ```tsx
 const { options: categoryOptions } = useSelect({
@@ -171,7 +171,7 @@ Now that we have created the edit page, we can add it to the `App.tsx` file:
 import { ChakraProvider } from "@chakra-ui/react";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -220,9 +220,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

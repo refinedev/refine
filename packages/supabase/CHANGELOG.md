@@ -1,5 +1,55 @@
 # @pankod/refine-supabase
 
+## 5.3.0
+
+### Minor Changes
+
+-   [#4183](https://github.com/refinedev/refine/pull/4183) [`0c1d4944397`](https://github.com/refinedev/refine/commit/0c1d4944397569be649f71af22b367a75429ab0d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: update custom id column name on meta params
+
+    BREAKING CHANGE: `meta.idColumnName` is used instead of `meta.id` when the primary key column name of your data table is different from `id`.
+
+    ```diff
+    useMany({
+        resource: "posts",
+        ids: [1, 2],
+        meta: {
+    -        id: "post_id",
+    +        idColumnName: "post_id",
+        },
+    });
+    ```
+
+-   [#4182](https://github.com/refinedev/refine/pull/4182) [`a58e9a0f1b0`](https://github.com/refinedev/refine/commit/a58e9a0f1b0b7da0b3c67068a87570f937199d4b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize supabase data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
+## 5.2.0
+
+### Minor Changes
+
+-   [#4183](https://github.com/refinedev/refine/pull/4183) [`0c1d4944397`](https://github.com/refinedev/refine/commit/0c1d4944397569be649f71af22b367a75429ab0d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: update custom id column name on meta params
+
+    BREAKING CHANGE: `meta.idColumnName` is used instead of `meta.id` when the primary key column name of your data table is different from `id`.
+
+    ```diff
+    useMany({
+        resource: "posts",
+        ids: [1, 2],
+        meta: {
+    -        id: "post_id",
+    +        idColumnName: "post_id",
+        },
+    });
+    ```
+
+-   [#4182](https://github.com/refinedev/refine/pull/4182) [`a58e9a0f1b0`](https://github.com/refinedev/refine/commit/a58e9a0f1b0b7da0b3c67068a87570f937199d4b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize supabase data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
 ## 5.1.0
 
 ### Minor Changes

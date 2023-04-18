@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, readJSON, pathExists } from "fs-extra";
-import globby from "globby";
 import execa from "execa";
+import path from "path";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
 
@@ -64,13 +64,20 @@ export const getInstalledRefinePackages = async () => {
 };
 
 export const getInstalledRefinePackagesFromNodeModules = async () => {
+    const REFINE_PACKAGES = ["core"];
+
     try {
-        const packageDirsFromModules = await globby(
-            "node_modules/@refinedev/*",
-            {
-                onlyDirectories: true,
-            },
-        );
+        const packageDirsFromModules = REFINE_PACKAGES.flatMap((pkg) => {
+            try {
+                const pkgPath = require.resolve(
+                    path.join("@refinedev", pkg, "package.json"),
+                );
+
+                return [path.dirname(pkgPath)];
+            } catch (err) {
+                return [];
+            }
+        });
 
         const refinePackages: Array<{ name: string; path: string }> = [];
 

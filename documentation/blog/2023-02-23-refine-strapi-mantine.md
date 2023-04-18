@@ -196,7 +196,7 @@ export interface IPost {
 }
 ```
 
-The above interface should give you an idea of the shape of the data returned from the API. The Strapi API has the `posts` and `categories` collections. There is a relation between the two collection types. Read the [documentation](https://refine.dev/docs/advanced-tutorials/data-provider/strapi-v4/) to understand how the Strapi version 4 data provider works.
+The above interface should give you an idea of the shape of the data returned from the API. The Strapi API has the `posts` and `categories` collections. There is a relation between the two collection types. Read the [documentation](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/) to understand how the Strapi version 4 data provider works.
 
 Since we will work with blog posts, let us create a `posts` directory and keep all our component files in it. Create an `src/pages/posts/list.tsx` file and copy and paste the code below into it.
 
@@ -447,7 +447,7 @@ When you log into your refine application, you should have a table similar to th
 
 As highlighted in the previous section, our Strapi API has `posts` and `categories` collections with relational fields. However, Strapi version 4 doesn't populate relational data out of the box when fetching entries in a collection.
 
-[Refer to documentation for more info about relation populate.](https://refine.dev/docs/advanced-tutorials/data-provider/strapi-v4/#relations-population)
+[Refer to documentation for more info about relation populate.](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 [Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/tutorial/adding-crud-pages/mantine/index/#handling-relationships)
 

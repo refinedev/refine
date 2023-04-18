@@ -170,7 +170,7 @@ const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -180,7 +180,7 @@ const App: React.FC = () => {
             <Refine
             /* ... */
             >
-                <ThemedLayout>{/* ... */}</ThemedLayout>
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
             </Refine>
         </ChakraProvider>
     );
@@ -195,7 +195,7 @@ const App: React.FC = () => {
 
 :::caution
 
-If you want to use `<ThemedLayout>` you have to wrap your application with `<ChakraProvider>` component and should give `theme` prop to it.
+If you want to use `<ThemedLayoutV2>` you have to wrap your application with `<ChakraProvider>` component and should give `theme` prop to it.
 
 You can use `RefineThemes` provided by **refine** or you can create your own theme object.
 
@@ -216,7 +216,7 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     // highlight-next-line
     RefineThemes,
@@ -266,9 +266,9 @@ const App = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="posts">
@@ -314,7 +314,7 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     // highlight-next-line
     RefineThemes,
@@ -397,9 +397,9 @@ const App = () => {
                         <Route
                             element={
                                 // highlight-next-line
-                                <ThemedLayout Header={Header}>
+                                <ThemedLayoutV2 Header={Header}>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="posts">

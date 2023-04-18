@@ -62,7 +62,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
 } from "@refinedev/mantine";
@@ -107,9 +107,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -159,9 +159,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -204,7 +204,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -250,9 +250,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -277,9 +277,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -335,7 +335,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -381,9 +381,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -412,9 +412,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -470,7 +470,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -516,9 +516,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -551,9 +551,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -610,7 +610,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     //highlight-next-line
     AuthPage,
@@ -656,9 +656,9 @@ const App = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -695,9 +695,9 @@ const App = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
