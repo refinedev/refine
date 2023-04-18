@@ -31,7 +31,7 @@ const mockAuthProvider: AuthBindings = {
         Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
 };
 
-describe("ThemedHeader", () => {
+describe("ThemedHeaderV2", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
         const { findByText, getByTitle } = render(<ThemedHeaderV2 />, {
             wrapper: TestWrapper({
@@ -45,7 +45,7 @@ describe("ThemedHeader", () => {
 });
 
 // NOTE: Will be removed in the refine v5
-describe("ThemedHeader with legacyAuthProvider", () => {
+describe("ThemedHeaderV2 with legacyAuthProvider", () => {
     it("should render successfull user name and avatar fallback in header", async () => {
         const { findByText, getByTitle } = render(<ThemedHeaderV2 />, {
             wrapper: TestWrapper({
