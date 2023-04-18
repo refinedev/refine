@@ -145,7 +145,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-The `useSelect` hook returns 10 records by default, but the category of the blog post may not be in the first 10 records. To solve this problem, we can use the `defaultVlaue` prop to set the default value of the `useSelect` hook like below:
+The `useSelect` hook returns 10 records by default, but the category of the blog post may not be in the first 10 records. To solve this problem, we can use the `defaultValue` prop to set the default value of the `useSelect` hook like below:
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({

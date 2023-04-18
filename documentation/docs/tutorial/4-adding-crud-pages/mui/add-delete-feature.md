@@ -13,7 +13,7 @@ tutorial:
 
 1.  Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
-2.  Import the `<DeleteButton/>` component from `@refinedev/antd`:
+2.  Import the `<DeleteButton/>` component from `@refinedev/mui`:
 
     ```tsx
     import { DeleteButton } from "@refinedev/mui";
