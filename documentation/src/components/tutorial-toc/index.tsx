@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "@docusaurus/Link";
+import snarkdown from "snarkdown";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useWindowSize } from "@docusaurus/theme-common";
 // @ts-expect-error no types
@@ -56,19 +56,15 @@ const LinkWithId = ({
         />
     );
 };
-const markdownConverter = (text) => {
-    text = text.replace(
-        /(?<!`)\*\*\*(?!\*)(.*?)(?<!\*)\*\*\*(?!`)/g,
-        "<strong><em>$1</em></strong>",
-    );
-    text = text.replace(
-        /(?<!`)\*\*(?!\*)(.*?)(?<!\*)\*\*(?!`)/g,
-        "<strong>$1</strong>",
-    );
-    text = text.replace(/(?<!`)\*(?!\*)(.*?)(?<!\*)\*(?!`)/g, "<em>$1</em>");
 
-    text = text.replace(/`(\w+)`/g, "<code>$1</code>");
-    return text;
+const markdownConverter = (text) => {
+    const numericStartRegexp = /^\d+.\s?/g;
+    const numericStart = text.match(numericStartRegexp)?.[0] || "";
+    const numericStartIgnore = text.replace(numericStartRegexp, "");
+
+    const marked = snarkdown(numericStartIgnore);
+
+    return `${numericStart}${marked}`;
 };
 
 const TutorialUIStatus = () => {
@@ -153,7 +149,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
         >["units"][number]["docs"][number],
     ) => {
         const formattedTitle = markdownConverter(doc.title);
-        console.log(formattedTitle);
+
         return (
             <li key={doc.id} className="flex flex-row items-start gap-2 pb-2">
                 <div className="mt-0.5 h-5 w-5 flex-shrink-0">
