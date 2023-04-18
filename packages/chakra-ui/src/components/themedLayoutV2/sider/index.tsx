@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -25,27 +25,24 @@ import {
     Drawer,
     DrawerContent,
     DrawerOverlay,
-    IconButton,
     Tooltip,
     TooltipProps,
     useColorModeValue,
     VStack,
 } from "@chakra-ui/react";
-import { IconList, IconDashboard, IconPower, IconMenu2 } from "@tabler/icons";
+import { IconList, IconDashboard, IconPower } from "@tabler/icons";
 
-import { ThemedTitle as DefaultTitle } from "@components";
-import { RefineThemedLayoutSiderProps } from "../types";
+import { ThemedTitleV2 as DefaultTitle } from "../title";
+import { RefineThemedLayoutV2SiderProps } from "../types";
+import { useSiderVisible } from "@hooks";
 
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
+export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
-    isSiderOpen,
 }) => {
-    const [opened, setOpened] = useState(false);
+    const { siderVisible, setSiderVisible, drawerSiderVisible } =
+        useSiderVisible();
 
     const routerType = useRouterType();
     const NewLink = useLink();
@@ -65,14 +62,14 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const siderWidth = () => {
-        if (!isSiderOpen) return "56px";
+        if (!drawerSiderVisible) return "56px";
         return "200px";
     };
 
     const commonTooltipProps: Omit<TooltipProps, "children"> = {
         placement: "right",
         hasArrow: true,
-        isDisabled: isSiderOpen || opened,
+        isDisabled: drawerSiderVisible || siderVisible,
     };
 
     const renderTreeView = (tree: ITreeMenu[]) => {
@@ -122,7 +119,11 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                             isSelected ? "brand" : "gray"
                                         }
                                         borderRadius={0}
-                                        pl={!isSiderOpen && !opened ? 6 : 5}
+                                        pl={
+                                            !drawerSiderVisible && !siderVisible
+                                                ? 6
+                                                : 5
+                                        }
                                         width="full"
                                         variant="ghost"
                                         fontWeight="normal"
@@ -161,7 +162,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                                         isActive={isSelected}
                                         {...linkProps}
                                     >
-                                        {(isSiderOpen || opened) && (
+                                        {(siderVisible ||
+                                            drawerSiderVisible) && (
                                             <Box flexGrow={1} textAlign="left">
                                                 {label}
                                             </Box>
@@ -173,7 +175,11 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             {isParent && (
                                 <AccordionPanel
                                     p={0}
-                                    pl={!isSiderOpen && !opened ? 0 : 4}
+                                    pl={
+                                        !drawerSiderVisible && !siderVisible
+                                            ? 0
+                                            : 4
+                                    }
                                 >
                                     <Accordion width="full" allowToggle>
                                         {renderTreeView(children)}
@@ -198,7 +204,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 <Button
                     width="full"
                     justifyContent={
-                        !isSiderOpen && !opened ? "center" : "flex-start"
+                        !siderVisible && !drawerSiderVisible
+                            ? "center"
+                            : "flex-start"
                     }
                     fontWeight="normal"
                     leftIcon={<IconDashboard size={16} />}
@@ -211,7 +219,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     as={Link}
                     to="/"
                 >
-                    {(isSiderOpen || opened) &&
+                    {(siderVisible || drawerSiderVisible) &&
                         t("dashboard.title", "Dashboard")}
                 </Button>
             </Tooltip>
@@ -243,9 +251,11 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     borderRadius={0}
                     width="full"
                     justifyContent={
-                        !isSiderOpen && !opened ? "center" : "flex-start"
+                        !siderVisible && !drawerSiderVisible
+                            ? "center"
+                            : "flex-start"
                     }
-                    pl={!isSiderOpen && !opened ? 6 : 5}
+                    pl={!siderVisible && !drawerSiderVisible ? 6 : 5}
                     fontWeight="normal"
                     leftIcon={<IconPower size={16} />}
                     variant="ghost"
@@ -255,7 +265,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                     }}
                     onClick={handleLogout}
                 >
-                    {(isSiderOpen || opened) && t("buttons.logout", "Logout")}
+                    {(siderVisible || drawerSiderVisible) &&
+                        t("buttons.logout", "Logout")}
                 </Button>
             </Box>
         </Tooltip>
@@ -281,25 +292,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
 
     return (
         <>
-            <Box
-                position="fixed"
-                top={3}
-                left={0}
-                zIndex={1200}
-                display={["block", "block", "none", "none", "none"]}
-            >
-                <IconButton
-                    borderLeftRadius={0}
-                    aria-label="Open Menu"
-                    onClick={() => setOpened((prev) => !prev)}
-                >
-                    <IconMenu2 />
-                </IconButton>
-            </Box>
             <Drawer
                 placement="left"
-                isOpen={opened}
-                onClose={() => setOpened(false)}
+                isOpen={siderVisible}
+                onClose={() => setSiderVisible?.(!siderVisible)}
             >
                 <DrawerOverlay />
                 <DrawerContent w="200px" maxW="200px">
@@ -346,8 +342,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
             >
                 <Box
                     display="flex"
-                    pl={!isSiderOpen ? 0 : 4}
-                    justifyContent={!isSiderOpen ? "center" : "flex-start"}
+                    pl={!drawerSiderVisible ? 0 : 4}
+                    justifyContent={
+                        !drawerSiderVisible ? "center" : "flex-start"
+                    }
                     alignItems="center"
                     fontSize="14px"
                     height="64px"
@@ -358,7 +356,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                         "refine.sider.header.dark",
                     )}
                 >
-                    <RenderToTitle collapsed={!isSiderOpen} />
+                    <RenderToTitle collapsed={!drawerSiderVisible} />
                 </Box>
                 <VStack
                     alignItems="start"
