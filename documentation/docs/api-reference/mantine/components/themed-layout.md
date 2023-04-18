@@ -787,22 +787,6 @@ const App: React.FC = () => {
                             element={
                                 // highlight-next-line
                                 <ThemedLayoutV2 Header={() => null}>
-                                    OffLayoutArea={() => (
-                                        <Button
-                                            onClick={() =>
-                                                alert("Off layout are clicked")
-                                            }
-                                            compact
-                                            sx={{
-                                                position: "fixed",
-                                                bottom: "16px",
-                                                left: "16px",
-                                            }}
-                                        >
-                                            Send us Feedback 👋
-                                        </Button>
-                                    )}
-                                >
                                     <Outlet />
                                 </ThemedLayoutV2>
                             }
