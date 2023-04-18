@@ -1,5 +1,6 @@
 import { readFileSync, existsSync, readJSON, pathExists } from "fs-extra";
 import execa from "execa";
+import globby from "globby";
 import path from "path";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
@@ -67,6 +68,13 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
     const REFINE_PACKAGES = ["core"];
 
     try {
+        const packagesFromGlobbySearch = await globby(
+            "node_modules/@refinedev/*",
+            {
+                onlyDirectories: true,
+            },
+        );
+
         const packageDirsFromModules = REFINE_PACKAGES.flatMap((pkg) => {
             try {
                 const pkgPath = require.resolve(
@@ -82,21 +90,23 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
         const refinePackages: Array<{ name: string; path: string }> = [];
 
         await Promise.all(
-            packageDirsFromModules.map(async (packageDir) => {
-                const hasPackageJson = await pathExists(
-                    `${packageDir}/package.json`,
-                );
-                if (hasPackageJson) {
-                    const packageJson = await readJSON(
+            [...packageDirsFromModules, ...packagesFromGlobbySearch].map(
+                async (packageDir) => {
+                    const hasPackageJson = await pathExists(
                         `${packageDir}/package.json`,
                     );
+                    if (hasPackageJson) {
+                        const packageJson = await readJSON(
+                            `${packageDir}/package.json`,
+                        );
 
-                    refinePackages.push({
-                        name: packageJson.name,
-                        path: packageDir,
-                    });
-                }
-            }),
+                        refinePackages.push({
+                            name: packageJson.name,
+                            path: packageDir,
+                        });
+                    }
+                },
+            ),
         );
 
         return refinePackages;
