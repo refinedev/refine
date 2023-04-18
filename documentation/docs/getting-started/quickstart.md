@@ -18,8 +18,8 @@ Choose one of the methods below to bootstrap a refine app:
 
   [refine.new](https://refine.new/) is a powerful tool that lets you create **refine** apps right in your browser. You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.
 
- 1. **Navigate to [refine.new](https://refine.new/?form=true) and select libraries and frameworks you want to work with by using interactive UI.** 
- 2. **Download the generated project by clicking on the *"Build & Download"* button.**
+ 1. Navigate to [refine.new](https://refine.new/?form=true) and select libraries and frameworks you want to work with by using interactive UI. 
+ 2. Download the generated project by clicking on the **"Build & Download"** button.
 
 <br/>
 
@@ -41,7 +41,7 @@ Choose one of the methods below to bootstrap a refine app:
 
 <br/>
 
-3. **Next, navigate to the project folder, install the dependencies, and then start your project.**
+3. Next, navigate to the project folder, install the dependencies, and then start your project.
 
 ```
 > npm install
@@ -58,13 +58,13 @@ Choose one of the methods below to bootstrap a refine app:
 
 `create refine-app` provides built-in templates for *CRA*, *Next.js* and *Remix* environments, so you can bootstrap a **refine** project in just a couple of minutes. It also offers a wide range of options that you can easily configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* preferences.
 
-1. **To get started, run the following command. The *CLI wizard* will assist you for the rest of the setup process:**
+1. To get started, run the following command. The *CLI wizard* will assist you for the rest of the setup process:
 
 ```
 npm create refine-app@latest
 ```
 
-2. **Once the setup is complete, navigate to the project folder and start your application with:**
+2. Once the setup is complete, navigate to the project folder and start your application with:
 
 ```
 npm run dev
