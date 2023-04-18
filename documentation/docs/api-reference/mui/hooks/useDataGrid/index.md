@@ -334,6 +334,23 @@ useDataGrid({
 });
 ```
 
+### `sorters.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, or `"server"`.
+
+-   **"off":** Sorting is disabled. All records will be fetched.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+```tsx
+useDataGrid({
+    sorters: {
+        mode: "server",
+    },
+});
+```
+
 ### `sorters.initial`
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
@@ -368,6 +385,23 @@ useDataGrid({
                 order: "asc",
             },
         ],
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** Filters are disabled. All records will be fetched.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useDataGrid({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -916,6 +950,30 @@ A function to set current [sorters state][crudsorting].
 You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
+
+### How can I handle client side filtering?
+
+You can use `filters.mode: "off"`. `useDataGrid` fully compatible with [`<DataGrid>`][data-grid] component.
+
+```tsx
+useDataGrid({
+    filters: {
+        mode: "off",
+    },
+});
+```
+
+### How can I handle client side sorting?
+
+You can use `sorting.mode: "off"`. `useDataGrid` fully compatible with [`<DataGrid>`][data-grid] component.
+
+```tsx
+useDataGrid({
+    sorting: {
+        mode: "off",
+    },
+});
+```
 
 ## API
 

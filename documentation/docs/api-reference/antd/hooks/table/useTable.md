@@ -874,7 +874,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### How can I handle client side filtering?
 
-First, you need to set `filters.mode: "off"`
+First, you need to set `filters.mode: "off"`.
 
 ```tsx
 const { tableProps } = useTable({
@@ -939,7 +939,7 @@ const List = () => {
 
 ### How can I handle client side sorting?
 
-First, you need to set `sorters.mode: "off"`
+First, you need to set `sorters.mode: "off"`.
 
 ```tsx
 const { tableProps } = useTable({
