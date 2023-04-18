@@ -630,9 +630,23 @@ const App: React.FC = () => {
                         }
                     >
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-start */}
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                            {/* highlight-end */}
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
