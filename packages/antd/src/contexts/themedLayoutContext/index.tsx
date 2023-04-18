@@ -2,9 +2,10 @@ import React, { ReactNode, useState } from "react";
 
 import { IThemedLayoutContext } from "./IThemedLayoutContext";
 
-export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>(
-    {},
-);
+export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>({
+    siderVisible: false,
+    drawerSiderVisible: true,
+});
 
 export const ThemedLayoutContextProvider: React.FC<{ children: ReactNode }> = ({
     children,
