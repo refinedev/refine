@@ -57,7 +57,7 @@ const authProvider = {
 
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
     ErrorComponent,
@@ -102,9 +102,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -151,9 +151,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -192,7 +192,7 @@ import { AuthPage } from "@refinedev/antd";
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
     ErrorComponent,
@@ -238,9 +238,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -265,9 +265,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -315,7 +315,7 @@ Register page is used to register new users. It provides a basic form to enter e
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
     ErrorComponent,
@@ -361,9 +361,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -392,9 +392,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -442,7 +442,7 @@ Forgot password page is used to send a reset password link to the user's email. 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
     ErrorComponent,
@@ -488,9 +488,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -523,9 +523,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -574,7 +574,7 @@ Update password page is used to update the user's password. It provides a basic 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
     ErrorComponent,
@@ -620,9 +620,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -659,9 +659,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

@@ -707,7 +707,7 @@ Then, we will pass `<Header>` to our `<Layout>` component.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/antd";
+import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import { useTranslation } from "react-i18next";
 
@@ -730,7 +730,7 @@ const App: React.FC = () => {
             i18nProvider={i18nProvider}
             /* ... */
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-next-line
                 header={<Header />}
             >

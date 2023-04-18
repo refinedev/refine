@@ -32,7 +32,7 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
 } from "@refinedev/antd";
@@ -76,9 +76,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -168,7 +168,7 @@ Now that we have created the create page, we need to add it to the `App.tsx` fil
 ```tsx title="src/App.tsx"
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
 } from "@refinedev/antd";
@@ -218,9 +218,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

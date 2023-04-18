@@ -140,7 +140,7 @@ export default App;
 <UIConditional is="antd">
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import { ConfigProvider } from "antd";
 import { Refine } from "@refinedev/core";
@@ -180,9 +180,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

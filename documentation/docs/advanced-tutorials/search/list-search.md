@@ -86,7 +86,7 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 ```tsx
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
     RefineThemes,
@@ -125,9 +125,9 @@ const App: React.FC = () => {
                         <Route index element={<NavigateToResource />} />
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="/posts" element={<PostList />} />
