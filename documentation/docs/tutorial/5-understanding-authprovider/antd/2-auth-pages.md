@@ -242,14 +242,6 @@ const App: React.FC = () => {
                                 <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-start */}
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
@@ -373,19 +365,24 @@ const App: React.FC = () => {
                                 <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-start */}
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            {/* highlight-start */}
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
@@ -495,18 +492,28 @@ const App: React.FC = () => {
                                 <Route index element={<AntdInferencer />} />
                             </Route>
                         </Route>
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
                         <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={<AuthPage type="login" />}
+                            />
+                            <Route
+                                path="/register"
+                                element={<AuthPage type="register" />}
+                            />
+                            {/* highlight-start */}
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            {/* highlight-end */}
+                        </Route>
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
@@ -616,15 +623,14 @@ const App: React.FC = () => {
                                 <Route index element={<AntdInferencer />} />
                             </Route>
                         </Route>
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
                         <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
                                 path="/login"
                                 element={<AuthPage type="login" />}
                             />
@@ -642,6 +648,7 @@ const App: React.FC = () => {
                                 element={<AuthPage type="updatePassword" />}
                             />
                             {/* highlight-end */}
+                        </Route>
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
