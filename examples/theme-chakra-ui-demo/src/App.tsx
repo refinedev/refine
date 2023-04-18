@@ -1,7 +1,7 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     notificationProvider,
     RefineThemes,
@@ -21,7 +21,7 @@ import { authProvider } from "./authProvider";
 import { useState } from "react";
 import { ThemeSettings } from "./components/theme-settings";
 
-const CustomLayout = ThemedLayout;
+const CustomLayout = ThemedLayoutV2;
 
 const App: React.FC = () => {
     const [customTheme, setCustomTheme] = useState(RefineThemes.Magenta);

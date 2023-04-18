@@ -164,7 +164,7 @@ const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 
 import { MantineProvider } from "@mantine/core";
 
@@ -174,7 +174,7 @@ const App: React.FC = () => {
             <Refine
             /* ... */
             >
-                <ThemedLayout>{/* ... */}</ThemedLayout>
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
             </Refine>
         </MantineProvider>
     );
@@ -199,7 +199,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
     // highlight-next-line
@@ -241,9 +241,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route path="posts">
@@ -284,7 +284,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
     // highlight-next-line
@@ -336,7 +336,6 @@ const App = () => {
                             "https://api.fake-rest.refine.dev",
                         )}
                         notificationProvider={notificationProvider}
-                        ThemedLayout={ThemedLayout}
                         resources={[
                             {
                                 name: "posts",
@@ -349,9 +348,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route path="posts">
@@ -392,7 +391,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     notificationProvider,
     RefineThemes,
@@ -491,12 +490,12 @@ const App = () => {
                             <Routes>
                                 <Route
                                     element={
-                                        <ThemedLayout
+                                        <ThemedLayoutV2
                                             // highlight-next-line
                                             Header={Header}
                                         >
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     }
                                 >
                                     <Route path="posts">

@@ -36,6 +36,9 @@ import { IconList, IconDashboard, IconPower, IconMenu2 } from "@tabler/icons";
 import { ThemedTitle as DefaultTitle } from "@components";
 import { RefineThemedLayoutSiderProps } from "../types";
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     Title: TitleFromProps,
     render,

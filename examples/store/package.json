@@ -13,7 +13,7 @@
         "nextjs-progressbar": "^0.0.14",
         "@medusajs/medusa-js": "1.3.3",
         "@refinedev/core": "^4.10.0",
-        "@refinedev/cli": "^2.3.0",
+        "@refinedev/cli": "^2.5.0",
         "@refinedev/nextjs-router": "^5.1.6",
         "@refinedev/react-hook-form": "^4.2.0",
         "@refinedev/medusa": "^2.1.0",

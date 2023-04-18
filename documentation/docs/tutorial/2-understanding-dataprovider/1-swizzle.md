@@ -1,12 +1,13 @@
 ---
 id: swizzle
-title: 2. Create Data Provider with Swizzle
 tutorial:
     prev: tutorial/understanding-dataprovider/index
     next: tutorial/understanding-dataprovider/create-dataprovider
 ---
 
-## What is Swizzle?
+# 2. Create Data Provider with `swizzle`
+
+## What is `swizzle`?
 
 The [`swizzle`](../../packages/documentation/cli.md#swizzle) is a command in [`refine-cli`](../../packages/documentation/cli.md) that allows you to customize the refine's supported components and data providers. It allows you to eject selected files from the **refine** packages and modify depending on your needs.
 
