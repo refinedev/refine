@@ -560,7 +560,106 @@ module.exports = {
             },
             {
                 group: "Other",
-                label: "Themed Layout",
+                label: "ThemedLayoutV2",
+                message: `
+                **\`Warning:\`**
+                If you want to change the default layout;
+                You should pass layout related components to the **<ThemedLayoutV2 />** component's props.
+
+                \`\`\`
+                // title: App.tsx
+                import { ThemedLayoutV2 } from "components/themedLayout";
+                import { ThemedHeaderV2 } from "components/themedLayout/header";
+                import { ThemedSiderV2 } from "components/themedLayout/sider";
+                import { ThemedTitleV2 } from "components/themedLayout/title";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            /* ... */
+                        >
+                            <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2} />
+                                /* ... */
+                            </ThemedLayoutV2>
+                        </Refine>
+                    );
+                }
+                \`\`\`
+                `,
+                files: [
+                    {
+                        src: "./src/components/themedLayout/sider/index.tsx",
+                        dest: "./components/themedLayout/sider.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @components import replacement
+                                if (
+                                    importItem.importPath === "@components" ||
+                                    importItem.importPath === "@hooks"
+                                ) {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+
+                                // add content of ./styles.ts and remove import
+                                if (importItem.importPath === "./styles") {
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        "",
+                                    );
+
+                                    let appending = "";
+
+                                    try {
+                                        const stylesContent = getFileContent(
+                                            join(
+                                                dirname(
+                                                    "./src/components/themedLayout/sider/index.tsx",
+                                                ),
+                                                "/styles.ts",
+                                            ),
+                                            "utf-8",
+                                        ).replace("export const", "const");
+
+                                        appending = stylesContent;
+                                    } catch (err) {
+                                        // console.log(err);
+                                    }
+
+                                    newContent = appendAfterImports(
+                                        newContent,
+                                        appending,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/themedLayout/header/index.tsx",
+                        dest: "./components/themedLayout/header.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayout/title/index.tsx",
+                        dest: "./components/themedLayout/title.tsx",
+                    },
+                    {
+                        src: "./src/components/themedLayout/index.tsx",
+                        dest: "./components/themedLayout/index.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Other",
+                label: "Themed Layout (deprecated use ThemedLayoutV2 instead)",
                 message: `
                 **\`Warning:\`**
                 If you want to change the default layout;
