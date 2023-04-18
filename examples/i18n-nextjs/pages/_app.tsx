@@ -7,7 +7,7 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -56,9 +56,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                         warnWhenUnsavedChanges: true,
                     }}
                 >
-                    <ThemedLayout Header={Header}>
+                    <ThemedLayoutV2 Header={Header}>
                         <Component {...pageProps} />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                     <UnsavedChangesNotifier />
                 </Refine>
             </ConfigProvider>

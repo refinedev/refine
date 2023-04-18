@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
 } from "@refinedev/antd";
 import { ConfigProvider, Layout as AntdLayout } from "antd";
@@ -43,7 +43,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout
+                                <ThemedLayoutV2
                                     Sider={() => null}
                                     Header={() => {
                                         return (
@@ -78,7 +78,7 @@ const App: React.FC = () => {
                                             <Outlet />
                                         </div>
                                     </AntdLayout.Content>
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

@@ -3,7 +3,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
     Sider,
@@ -189,7 +189,7 @@ const App: React.FC = () => {
                     ]}
                     /**
                      * In earlier versions, `Refine` component had some component props,
-                     * which were used to render things like the `ThemedLayout`, `Sider`, `OffLayoutArea`, etc.
+                     * which were used to render things like the `ThemedLayoutV2`, `Sider`, `OffLayoutArea`, etc.
                      * And also some components like
                      * - `catchAll` which renders the error page in 404s
                      * - `DashboardPage` to render a page at the root path (`/`)
@@ -215,7 +215,7 @@ const App: React.FC = () => {
                              *
                              * We'll wrap the routes with `Authenticated` component to protect the routes.
                              * If the user is not authenticated, `Authenticated` component will redirect the user to the login page.
-                             * If the user is authenticated, it will render the routes with the `ThemedLayout` component wrapper.
+                             * If the user is authenticated, it will render the routes with the `ThemedLayoutV2` component wrapper.
                              *
                              * We'll also have another route for the login page.
                              * It will be rendered if the user is not authenticated.
@@ -230,9 +230,9 @@ const App: React.FC = () => {
                                                 <CatchAllNavigate to="/login" />
                                             }
                                         >
-                                            <ThemedLayout Sider={Sider}>
+                                            <ThemedLayoutV2 Sider={Sider}>
                                                 <Outlet />
-                                            </ThemedLayout>
+                                            </ThemedLayoutV2>
                                         </Authenticated>
                                     }
                                 >
