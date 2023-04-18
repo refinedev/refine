@@ -29,6 +29,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
+    "@refinedev/cli": "^2.1.0",
     "@refinedev/core": "^4.1.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/qs": "^6.9.7",
