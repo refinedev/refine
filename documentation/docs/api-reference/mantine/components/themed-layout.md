@@ -2,7 +2,7 @@
 id: mantine-themed-layout
 title: <ThemedLayout>
 sidebar_label: <ThemedLayout>
-description: <ThemedLayout> component from refine, defines the overall structure and layout of a web page.
+description: <ThemedLayoutV2> component from refine, defines the overall structure and layout of a web page.
 swizzle: true
 source: packages/mantine/src/components/themedLayout/index.tsx
 ---
@@ -32,13 +32,13 @@ const authProvider = {
 };
 ```
 
-`<ThemedLayout>` component that uses the [`<Drawer>`][mantine-drawer] from Mantine library to define the layout and structure of a web page. It includes customizable components for the header, sidebar, title, footer, and off-layout area, which can be replaced or customized as needed.
+`<ThemedLayoutV2>` component that uses the [`<Drawer>`][mantine-drawer] from Mantine library to define the layout and structure of a web page. It includes customizable components for the header, sidebar, title, footer, and off-layout area, which can be replaced or customized as needed.
 
-By using `<ThemedLayout>`, developers can create a consistent look and feel across multiple pages or sections of a website, while also improving code maintainability and reusability. The customizable sections of `<ThemedLayout>` include:
+By using `<ThemedLayoutV2>`, developers can create a consistent look and feel across multiple pages or sections of a website, while also improving code maintainability and reusability. The customizable sections of `<ThemedLayout>` include:
 
--   [`<ThemedHeader>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
--   [`<ThemedSider>`][themed-sider]: displayed on the left side of the page and can display menu items.
--   [`<ThemedTitle>`][themed-title]: displayed at the top of [`<ThemedSider>`][themed-sider] and includes an icon and text.
+-   [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
+-   [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
+-   [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 -   `<Footer>`: displayed at the bottom of the page.
 -   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
@@ -54,7 +54,7 @@ import { Refine } from "@refinedev/core";
 
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import routerProvider from "@refinedev/react-router-v6";
@@ -89,9 +89,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-next-line */}
@@ -114,19 +114,19 @@ render(<App />);
 
 :::note
 
-`<ThemedLayout>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][mantine-drawer]. On larger screens, it will use fixed open [`<Drawer>`][mantine-drawer].
+`<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][mantine-drawer]. On larger screens, it will use fixed open [`<Drawer>`][mantine-drawer].
 
 :::
 
 :::info
 
-Example of above showing how to use `<ThemedLayout>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
+Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/documentation/routers/react-router-v6/). You can see these examples for other routers:
 
 -   [React Router v6](https://github.com/refinedev/refine/blob/next/examples/auth-mantine/src/App.tsx#L180)
 -   [Next.js](https://github.com/refinedev/refine/blob/next/examples/with-nextjs-auth/pages/_app.tsx#L31)
 -   [Remix](https://github.com/refinedev/refine/blob/next/examples/with-remix-auth/app/routes/_protected.tsx)
 
-> ⚠️ Next.js and Remix examples are using `<ThemedLayout`> from `@refinedev/antd` package. But you can use `<ThemedLayout>` from `@refinedev/mantine` as same.
+> ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayout>` from `@refinedev/mantine` as same.
 
 :::
 
@@ -138,7 +138,7 @@ In `<ThemedLayout>`, the sidebar section is rendered using the [`<ThemedSider>`]
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/mantine";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
 
 import { CustomSider } from "./CustomSider";
 
@@ -147,12 +147,12 @@ const App: React.FC = () => {
         <Refine
         // ...
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-next-line
                 Sider={() => <CustomSider />}
             >
                 {/* ... */}
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -164,7 +164,7 @@ Here is an example of how to customize the default [`<ThemedSider>`][themed-side
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, ThemedSider } from "@refinedev/mantine";
+import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/mantine";
 
 import { CustomTitle } from "./CustomTitle";
 
@@ -173,10 +173,10 @@ const App: React.FC = () => {
         <Refine
         // ...
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-start
                 Sider={() => (
-                    <ThemedSider
+                    <ThemedSiderV2
                         Title={({ collapsed }) => (
                             <CustomTitle collapsed={collapsed} />
                         )}
@@ -194,7 +194,7 @@ const App: React.FC = () => {
                 // highlight-end
             >
                 {/* ... */}
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -219,13 +219,13 @@ type SiderRenderFunction = (props: {
 
 ### `Header`
 
-In `<ThemedLayout>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/auth/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/auth/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
 
-Here is an example of how to replace the default [`<ThemedHeader>`][themed-header] component:
+Here is an example of how to replace the default [`<ThemedHeaderV2>`][themed-header] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/mantine";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
 
 // highlight-next-line
 import { CustomHeader } from "./CustomHeader";
@@ -235,12 +235,12 @@ const App: React.FC = () => {
         <Refine
         // ...
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-next-line
                 Header={() => <CustomHeader />}
             >
                 {/* ... */}
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -248,14 +248,14 @@ const App: React.FC = () => {
 
 ### `Title`
 
-In `<ThemedLayout>`, the title section is rendered using the [`<ThemedTitle>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitle>`][themed-title] component by passing a custom component to the `Title` prop.
+In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2>`][themed-title] component by passing a custom component to the `Title` prop.
 
-Here is an example of how to replace the default [`<ThemedTitle>`][themed-title] component:
+Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-title] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayout, ThemedTitle } from "@refinedev/mantine";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/mantine";
 
 // highlight-next-line
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
@@ -265,10 +265,10 @@ const App: React.FC = () => {
         <Refine
         // ...
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-start
                 Title={({ collapsed }) => (
-                    <ThemedTitle
+                    <ThemedTitleV2
                         // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
                         collapsed={collapsed}
                         icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
@@ -278,7 +278,7 @@ const App: React.FC = () => {
                 // highlight-end
             >
                 {/* ... */}
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -297,7 +297,7 @@ setInitialRoutes(["/samples"]);
 import { Refine } from "@refinedev/core";
 
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Center, Global } from "@mantine/core";
 
 import routerProvider from "@refinedev/react-router-v6";
@@ -332,7 +332,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout
+                                <ThemedLayoutV2
                                     Footer={() => (
                                         <Center
                                             w="100%"
@@ -348,7 +348,7 @@ const App: React.FC = () => {
                                     )}
                                 >
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-next-line */}
@@ -371,7 +371,7 @@ render(<App />);
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/mantine";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
 import { Center } from "@mantine/core";
 
 const App: React.FC = () => {
@@ -379,7 +379,7 @@ const App: React.FC = () => {
         <Refine
         // ...
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-start
                 Footer={() => (
                     <Center
@@ -396,7 +396,7 @@ const App: React.FC = () => {
                 // highlight-end
             >
                 {/* ... */}
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -415,7 +415,7 @@ setInitialRoutes(["/samples"]);
 import { Refine } from "@refinedev/core";
 
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Button, Global } from "@mantine/core";
 
 import routerProvider from "@refinedev/react-router-v6";
@@ -450,7 +450,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout
+                                <ThemedLayoutV2
                                     OffLayoutArea={() => (
                                         <Button
                                             onClick={() =>
@@ -468,7 +468,7 @@ const App: React.FC = () => {
                                     )}
                                 >
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-next-line */}
@@ -491,7 +491,7 @@ render(<App />);
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/mantine";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const App: React.FC = () => {
@@ -499,7 +499,7 @@ const App: React.FC = () => {
         <Refine
         // ...
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 // highlight-start
                 OffLayoutArea={() => (
                     <Button
@@ -517,7 +517,7 @@ const App: React.FC = () => {
                 // highlight-end
             >
                 {/* ... */}
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -527,11 +527,11 @@ const App: React.FC = () => {
 
 > 🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/documentation/cli/#swizzle) for more information.
 
-`<ThemedLayout>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
+`<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
 ### Usage
 
-Let's create a new component by swizzling the `<ThemedLayout>` components.
+Let's create a new component by swizzling the `<ThemedLayoutV2>` components.
 
 ```bash
 > npm run refine swizzle
@@ -560,14 +560,14 @@ First, you need to select the package you want to swizzle. In this example, we w
  ◯ UrlField
 Other
  ◯ Breadcrumb
-❯◉ ThemedLayout
+❯◉ ThemedLayoutV2
 Pages
  ◯ ErrorPage
  ◯ AuthPage
 (Move up and down to reveal more choices)
 ```
 
-Then, you need to select the component you want to swizzle. In this example, we will swizzle the `ThemedLayout` component.
+Then, you need to select the component you want to swizzle. In this example, we will swizzle the `ThemedLayoutV2` component.
 
 ```bash
 Successfully swizzled Themed Layout
@@ -583,19 +583,23 @@ You should pass layout related components to the <ThemedLayout/> component's pro
 
     ╭ App.tsx ───────────────────────────────────────────────────────────────────────────────────────╮
     │                                                                                                │
-    │   import { ThemedLayout } from "components/themedLayout";                                      │
-    │   import { ThemedHeader } from "components/themedLayout/header";                               │
-    │   import { ThemedSider } from "components/themedLayout/sider";                                 │
-    │   import { ThemedTitle } from "components/themedLayout/title";                                 │
+    │   import { ThemedLayoutV2 } from "components/themedLayout";                                    │
+    │   import { ThemedHeaderV2 } from "components/themedLayout/header";                             │
+    │   import { ThemedSiderV2 } from "components/themedLayout/sider";                               │
+    │   import { ThemedTitleV2 } from "components/themedLayout/title";                               │
     │                                                                                                │
     │   const App = () => {                                                                          │
     │       return (                                                                                 │
     │           <Refine                                                                              │
     │               /* ... */                                                                        │
     │           >                                                                                    │
-    │               <ThemedLayout Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle} />   │
-    │                   /* ... */                                                                    │
-    │               </ThemedLayout>                                                                  │
+    │               <ThemedLayoutV2                                                                  │
+    │                    Header={ThemedHeaderV2}                                                     │
+    │                    Sider={ThemedSiderV2}                                                       │
+    │                    Title={ThemedTitleV2}                                                       │
+    │                />                                                                              │
+    │                    /* ... */                                                                   │
+    │               </ThemedLayoutV2>                                                                │
     │           </Refine>                                                                            │
     │       );                                                                                       │
     │   }                                                                                            │
@@ -609,7 +613,7 @@ You can use these components in your project as you wish.
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "components/themedLayout";
+import { ThemedLayoutV2 } from "components/themedLayout";
 import { ThemedHeader } from "components/themedLayout/header";
 import { ThemedSider } from "components/themedLayout/sider";
 import { ThemedTitle } from "components/themedLayout/title";
@@ -619,13 +623,13 @@ const App = () => {
         <Refine
         /* ... */
         >
-            <ThemedLayout
+            <ThemedLayoutV2
                 Header={ThemedHeader}
                 Sider={ThemedSider}
                 Title={ThemedTitle}
             >
                 /* ... */
-            </ThemedLayout>
+            </ThemedLayoutV2>
         </Refine>
     );
 };
@@ -640,6 +644,171 @@ const App = () => {
 :::caution
 
 If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
+
+:::
+
+## Migrate ThemedLayout to ThemedLayoutV2
+Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayout` you can update it by following these steps.
+Only if you are using `ThemedLayout`. If you are not customizing the `Header` component, an update like the one below will suffice.
+
+```diff title="src/App.tsx"
+-import { ThemedLayout } from "@refinedev/mantine";
++import { ThemedLayoutV2 } from "@refinedev/mantine";
+...
+-<ThemedLayout>
++<ThemedLayoutV2>
+    <Outlet />
+-</ThemedLayout>
++</ThemedLayoutV2>
+...
+```
+
+But mostly we customize the `Header` component. For this, an update like the one below will suffice. Here, a `HamburgerMenu` should be added to the `Header` component that we have customized for the collapse/uncollapse of the `Sider` component.
+
+```diff title="src/components/header/index.tsx"
+-import { RefineThemedLayoutHeaderProps } from "@refinedev/mantine";
++import { RefineThemedLayoutV2HeaderProps, HamburgerMenu, Flex } from "@refinedev/mantine";
+-export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({
+-    isSiderOpen,
+-    onToggleSiderClick,
+-    toggleSiderIcon: toggleSiderIconFromProps,
+-}) => {
++export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
+    return (
+        <MantineHeader
+            zIndex={199}
+            height={64}
+            py={6}
+            px="sm"
+            sx={{
+                borderBottom: `1px solid ${borderColor}`,
+            }}
+        >
+-           <Group
+-               position="right"
++           <Flex
++               justify="space-between"
+                align="center"
+                sx={{
+                    height: "100%",
+                }}
+            >
++               <HamburgerMenu />
++               <Group>
+                    <ActionIcon
+                        variant="outline"
+                        color={dark ? "yellow" : "primary"}
+                        onClick={() => toggleColorScheme()}
+                        title="Toggle color scheme"
+                    >
+                        {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
+                    </ActionIcon>
+                    {(user?.name || user?.avatar) && (
+                        <Group spacing="xs">
+                            {user?.name && <Title order={6}>{user?.name}</Title>}
+                            <Avatar
+                                src={user?.avatar}
+                                alt={user?.name}
+                                radius="xl"
+                            />
+                        </Group>
+                    )}
++               </Group>
++           </Flex>
+        </MantineHeader>
+    );
+};
+```
+## Hamburger Menu
+The `HamburgerMenu` component is a component that is used to collapse/uncollapse the `Sider` component. It is used by default in the `Header` component. However, you can do this anywhere you want using the `<HamburgerMenu />` component. Below you can see an example put on the dashboard page.
+
+```tsx live previewHeight=600px hideCode url=http://localhost:3000/samples
+setInitialRoutes(["/"]);
+
+// visible-block-start
+import { Refine } from "@refinedev/core";
+
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
+import { 
+    ThemedLayoutV2, 
+    RefineThemes,
+    // highlight-next-line
+    HamburgerMenu 
+} from "@refinedev/mantine";
+import { MantineProvider, Global, Box } from "@mantine/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "./authProvider";
+
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+// highlight-start
+const DashboardPage = () => {
+    return (
+        <Box>
+            <HamburgerMenu />
+        </Box>
+    );
+};
+// highlight-end
+
+const App: React.FC = () => {
+    return (
+        <MantineProvider
+            theme={RefineThemes.Blue}
+            withNormalizeCSS
+            withGlobalStyles
+        >
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        // highlight-start
+                        {
+                            name: "Dashboard",
+                            list: "/",
+                        },
+                        // highlight-end
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                // highlight-next-line
+                                <ThemedLayoutV2 Header={() => null}>
+                                    <Outlet />
+                                </ThemedLayoutV2>
+                            }
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/" element={<DashboardPage />} />
+                            <Route
+                                path="/samples"
+                                element={<MantineInferencer />}
+                            />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
+        </MantineProvider>
+    );
+};
+
+// visible-block-end
+
+render(<App />);
+```
 
 [themed-sider]: https://github.com/refinedev/refine/blob/next/packages/mantine/src/components/themedLayout/sider/index.tsx
 [themed-header]: https://github.com/refinedev/refine/blob/next/packages/mantine/src/components/themedLayout/header/index.tsx

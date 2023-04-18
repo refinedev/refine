@@ -35,7 +35,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
 } from "@refinedev/mantine";
@@ -82,9 +82,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route
@@ -191,7 +191,7 @@ import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     notificationProvider,
 } from "@refinedev/mantine";
@@ -241,9 +241,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route
