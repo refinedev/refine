@@ -116,7 +116,7 @@ render(<App />);
 
 ## Understanding the Show Component
 
-### The Show Page Hooks
+### Hooks and Components in Show Page
 
 -   `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
 

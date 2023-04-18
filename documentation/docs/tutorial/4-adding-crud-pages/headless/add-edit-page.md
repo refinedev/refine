@@ -89,7 +89,7 @@ render(<App />);
 
 ## Understanding the Edit Component
 
-### The Edit Page Hooks
+### Hooks and Components in Edit Page
 
 -   The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 

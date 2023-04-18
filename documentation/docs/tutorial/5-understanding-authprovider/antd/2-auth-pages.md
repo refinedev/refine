@@ -181,10 +181,6 @@ To implement the page, open `src/App.tsx` file and import the `<AuthPage/>` comp
 import { AuthPage } from "@refinedev/antd";
 ```
 
-```tsx
-import { AuthPage } from "@refinedev/antd";
-```
-
 Then place the `<AuthPage/>` component to the respective route inside your router.
 
 ```tsx
@@ -246,7 +242,6 @@ const App: React.FC = () => {
                                 <Route index element={<BlogPostList />} />
                             </Route>
                         </Route>
-                    </Route>
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>

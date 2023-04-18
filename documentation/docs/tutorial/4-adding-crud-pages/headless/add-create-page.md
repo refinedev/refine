@@ -89,7 +89,7 @@ render(<App />);
 
 ## Understanding the Create Component
 
-### The Create Page Hooks
+### Hooks and Components in Create Page
 
 -   The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 

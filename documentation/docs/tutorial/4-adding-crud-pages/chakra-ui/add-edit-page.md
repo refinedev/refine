@@ -118,7 +118,7 @@ render(<App />);
 
 ## Understanding the Edit Component
 
-### The Edit Page Hooks
+### Hooks and Components in Edit Page
 
 -   `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 

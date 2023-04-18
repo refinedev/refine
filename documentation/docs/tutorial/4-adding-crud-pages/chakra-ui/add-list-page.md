@@ -107,7 +107,7 @@ render(<App />);
 
 ## Understanding the List Component
 
-### The List Page Hooks
+### Hooks and Components in List Page
 
 -   `<List/>` is a **refine** component that is used for presentation purposes like showing the create button, page title etc.
 

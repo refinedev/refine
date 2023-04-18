@@ -80,7 +80,7 @@ render(<App />);
 
 ## Understanding the List Component
 
-### The List Page Hooks
+### Hooks and Components in List Page
 
 -   The `useTable` hook is used for fetching data and managing the table state. It is imported from the `@refinedev/react-table package`, which combines the functionality of the **TanStack Table v8** package and the `useTable` hook from the `@refinedev/core package`, providing the features of both.
 

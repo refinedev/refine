@@ -129,7 +129,7 @@ render(<App />);
 
 ## Understanding the Create Component
 
-### The Create Page Hooks
+### Hooks and Components in Create Page
 
 -   `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
 
