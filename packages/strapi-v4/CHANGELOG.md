@@ -1,5 +1,15 @@
 # @pankod/refine-strapi-v4
 
+## 4.2.0
+
+### Minor Changes
+
+-   [#4182](https://github.com/refinedev/refine/pull/4182) [`a58e9a0f1b0`](https://github.com/refinedev/refine/commit/a58e9a0f1b0b7da0b3c67068a87570f937199d4b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize strapi-v4 data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
 ## 4.1.0
 
 ### Minor Changes
