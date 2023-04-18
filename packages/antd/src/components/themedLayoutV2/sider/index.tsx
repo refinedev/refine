@@ -26,13 +26,13 @@ import {
 } from "@refinedev/core";
 
 import { drawerButtonStyles } from "./styles";
-import { RefineThemedLayoutSiderProps } from "../types";
-import { ThemedTitle } from "@components";
+import { RefineThemedLayoutV2SiderProps } from "../types";
+import { ThemedTitleV2 } from "@components";
 
 const { SubMenu } = Menu;
 const { useToken } = theme;
 
-export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
+export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
@@ -60,7 +60,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? ThemedTitle;
+    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? ThemedTitleV2;
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {

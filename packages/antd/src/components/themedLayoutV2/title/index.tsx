@@ -29,7 +29,7 @@ const defaultIcon = (
     </svg>
 );
 
-export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
+export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
     collapsed,
     icon = defaultIcon,
     text = defaultText,

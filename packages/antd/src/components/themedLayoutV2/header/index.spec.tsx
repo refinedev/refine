@@ -1,7 +1,7 @@
 import { layoutHeaderTests } from "@refinedev/ui-tests";
 
-import { ThemedHeader } from "./index";
+import { ThemedHeaderV2 } from "./index";
 
 describe("Header", () => {
-    layoutHeaderTests.bind(this)(ThemedHeader);
+    layoutHeaderTests.bind(this)(ThemedHeaderV2);
 });

@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid, Layout as AntdLayout } from "antd";
 
-import { ThemedSider as DefaultSider } from "./sider";
-import { ThemedHeader as DefaultHeader } from "./header";
-import { RefineThemedLayoutProps } from "./types";
+import { ThemedSiderV2 as DefaultSider } from "./sider";
+import { ThemedHeaderV2 as DefaultHeader } from "./header";
+import { RefineThemedLayoutV2Props } from "./types";
 
-export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
+export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     children,
     Header,
     Sider,

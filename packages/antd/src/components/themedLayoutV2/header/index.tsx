@@ -1,12 +1,12 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space, theme } from "antd";
 import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
-import { RefineThemedLayoutHeaderProps } from "../types";
+import { RefineThemedLayoutV2HeaderProps } from "../types";
 
 const { Text } = Typography;
 const { useToken } = theme;
 
-export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
+export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     const { token } = useToken();
 
     const authProvider = useActiveAuthProvider();
