@@ -634,8 +634,7 @@ If there is already a file with the same name in the directory, the swizzle comm
 :::
 
 ## Migrate ThemedLayout to ThemedLayoutV2
-Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayout` you can update it by following these steps.
-Only if you are using `ThemedLayout`. If you are not customizing the `Header` component, an update like the one below will suffice.
+Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayout` you can update it by following these step.
 
 ```diff title="src/App.tsx"
 -import { ThemedLayout } from "@refinedev/antd";
