@@ -5,4 +5,4 @@ export * from "./providers";
 export * from "./hooks";
 export * from "./theme";
 export * from "./definitions";
-export { FormContext } from "./contexts/form-context";
+export * from "./contexts";
