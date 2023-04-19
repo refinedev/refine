@@ -1,10 +1,5 @@
 import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
-
-import {
-    useStrapiUpload,
-    getValueProps,
-    mediaUploadMapper,
-} from "@refinedev/strapi-v4";
+import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
 
@@ -17,18 +12,22 @@ export const EditProduct: React.FC<EditProductProps> = ({
     modalProps,
     formProps,
 }) => {
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
-
     return (
-        <Modal {...modalProps}>
+        <Modal
+            {...modalProps}
+            okButtonProps={{
+                ...modalProps.okButtonProps,
+                onClick: () => {
+                    formProps.form?.submit();
+                },
+            }}
+        >
             <Form
                 {...formProps}
                 wrapperCol={{ span: 12 }}
                 layout="vertical"
                 onFinish={(values) => {
-                    return formProps.onFinish?.(mediaUploadMapper(values));
+                    formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item
@@ -67,7 +66,6 @@ export const EditProduct: React.FC<EditProductProps> = ({
                             }}
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

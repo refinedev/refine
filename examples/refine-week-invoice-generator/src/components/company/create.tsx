@@ -1,11 +1,7 @@
 import { useApiUrl } from "@refinedev/core";
 import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
 
-import {
-    useStrapiUpload,
-    getValueProps,
-    mediaUploadMapper,
-} from "@refinedev/strapi-v4";
+import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 
@@ -19,14 +15,17 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     formProps,
 }) => {
     const breakpoint = Grid.useBreakpoint();
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
     const API_URL = useApiUrl();
 
     return (
         <Modal
             {...modalProps}
+            okButtonProps={{
+                ...modalProps.okButtonProps,
+                onClick: () => {
+                    formProps.form?.submit();
+                },
+            }}
             title="Create Company"
             width={breakpoint.sm ? "600px" : "80%"}
         >
@@ -34,10 +33,7 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    console.log(values);
-                    return formProps.onFinish?.({
-                        ...mediaUploadMapper(values),
-                    });
+                    formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item
@@ -97,7 +93,6 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
                             }}
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

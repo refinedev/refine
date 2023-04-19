@@ -7,7 +7,7 @@ export const getValueProps = (data: any, imageUrl: string) => {
         file: data.file,
         fileList:
             data.fileList ??
-            (Array.isArray(data) ? data : [...data]).map((item: any) => {
+            (Array.isArray(data) ? data : [data]).map((item: any) => {
                 const file: any = {
                     name: item.name,
                     percent: item.percent,

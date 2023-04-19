@@ -95,7 +95,7 @@ function App() {
                                     >
                                         <ThemedLayout
                                             Header={Header}
-                                            Title={({ collapsed }) => (
+                                            Title={({ collapsed }: any) => (
                                                 <ThemedTitle
                                                     collapsed={collapsed}
                                                     text="refine Invoicer"
@@ -176,7 +176,7 @@ function App() {
                                     <Authenticated>
                                         <ThemedLayout
                                             Header={Header}
-                                            Title={({ collapsed }) => (
+                                            Title={({ collapsed }: any) => (
                                                 <ThemedTitle
                                                     collapsed={collapsed}
                                                     text="refine Invoicer"
