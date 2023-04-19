@@ -1057,7 +1057,7 @@ module.exports = {
         },
         {
             type: "doc",
-            id: "licence",
+            id: "license",
         },
         {
             type: "category",
