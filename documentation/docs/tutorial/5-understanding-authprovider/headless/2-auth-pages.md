@@ -165,9 +165,9 @@ import routerBindings, {
 
 import { BlogPostList } from "pages/blog-posts/list";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
 import { authProvider } from "./authProvider";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
@@ -204,14 +204,10 @@ const App = () => {
                             </Authenticated>
                         }
                     >
+                        {/* highlight-start */}
                         <Route
                             path="/login"
                             element={<AuthPage type="login" />}
-                        />
-                        {/* highlight-start */}
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
                         />
                         {/* highlight-end */}
                     </Route>
