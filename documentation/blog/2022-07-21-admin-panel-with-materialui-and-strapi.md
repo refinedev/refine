@@ -114,7 +114,7 @@ The required Strapi data provider setups are added automatically by the CLI wiza
 To consume refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
 
 ```tsx title="src/constants.ts"
-export const API_URL = "https://automatic-sweltering-dog.strapiapp.com";
+export const API_URL = "https://api.strapi-v4.refine.dev";
 ```
 
 
