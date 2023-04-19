@@ -25,13 +25,12 @@ import {
     SearchOutlined,
     DarkModeOutlined,
     LightModeOutlined,
-    Menu,
 } from "@mui/icons-material";
 import i18n from "i18n";
 
 import { IOrder, IStore, ICourier, IIdentity } from "interfaces";
 import { ColorModeContext } from "contexts";
-import { RefineThemedLayoutHeaderProps } from "@refinedev/mui";
+import { RefineThemedLayoutV2HeaderProps, HamburgerMenu } from "@refinedev/mui";
 
 interface IOptions {
     label: string;
@@ -40,10 +39,7 @@ interface IOptions {
     category: string;
 }
 
-export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({
-    isSiderOpen,
-    onToggleSiderClick,
-}) => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     const [value, setValue] = useState("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
@@ -142,24 +138,12 @@ export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({
             <Toolbar
                 sx={{
                     paddingLeft: {
-                        sm: "64px",
+                        sm: "24px",
                         md: "24px",
                     },
                 }}
             >
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={() => onToggleSiderClick?.()}
-                    edge="start"
-                    sx={{
-                        mr: 2,
-                        display: { xs: "none", md: "flex" },
-                        ...(isSiderOpen && { display: "none" }),
-                    }}
-                >
-                    <Menu />
-                </IconButton>
+                <HamburgerMenu />
 
                 <Stack
                     direction="row"

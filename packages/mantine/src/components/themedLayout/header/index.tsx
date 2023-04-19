@@ -10,6 +10,9 @@ import {
 
 import { RefineThemedLayoutHeaderProps } from "../types";
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
     const theme = useMantineTheme();
 

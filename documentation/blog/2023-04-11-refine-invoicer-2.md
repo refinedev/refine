@@ -16,7 +16,9 @@ In this episode, we initialize our **Pdf Invoice Generator** app using with the 
 
 This is Day 2 of the [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series. This five-part tutorial that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine)'s powerful capabilities and get going with **refine** within a week.
 
+### refineWeek ft. Strapi series
 
+ - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
 ## Overview
 
 In the previous post, we got a preview of [**refine**](https://github.com/refinedev/refine)'s underlying architecture, especially on how **refine**'s core modules abstract and divide an app's logic inside individual providers and allow their methods to be easily accessed and invoked with hooks from inside consumer components. This abstraction at the providers layer is where **refine** shines and require extensive configuration to begin with.
@@ -143,7 +145,7 @@ After that, if we navigate to `http://localhost:3000`, and we should have a **re
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/login.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/login.png"  alt="react invoice generator" />
 
 </div>
 
@@ -160,7 +162,7 @@ If we log in with the default values, we should be able to view a dashboard with
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/welcome.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/welcome.png"  alt="react invoice generator" />
 
 </div>
 
@@ -854,7 +856,7 @@ The admin dashboard at `/admin` after signing up and logging in should look some
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/strapi_welcome.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/strapi_welcome.png"  alt="react invoice generator" />
 
 </div>
 
@@ -884,7 +886,7 @@ The `companies` collection should look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/company_collection.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/company_collection.png"  alt="react invoice generator" />
 
 </div>
 
@@ -903,7 +905,7 @@ The `clients` collection looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/client.png"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/client.png"  alt="react invoice generator" />
 
 </div>
 

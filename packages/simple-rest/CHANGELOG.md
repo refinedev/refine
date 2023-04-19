@@ -1,5 +1,107 @@
 # @pankod/refine-simple-rest
 
+## 4.5.0
+
+### Minor Changes
+
+-   [#4177](https://github.com/refinedev/refine/pull/4177) [`623691b10f0`](https://github.com/refinedev/refine/commit/623691b10f07f13af11ed56c24161cc0dc9dd3f1) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: add the abilities to pass custom headers and custom http method to the request
+
+    Example of changing the http method:
+
+    ```tsx
+    import { useUpdate } from "@refinedev/core";
+
+    const { mutate } = useUpdate();
+
+    mutate({
+        resource: "posts",
+        id: 1,
+        variables: {
+            title: "New title",
+        },
+        //highlight-start
+        meta: {
+            method: "put",
+        },
+        //highlight-end
+    });
+    ```
+
+    Example of passing custom headers:
+
+    ```tsx
+    import { useOne } from "@refinedev/core";
+
+    useOne({
+        resource: "posts",
+        id: 1,
+        //highlight-start
+        meta: {
+            headers: {
+                "X-Custom-Header": "Custom header value",
+            },
+        },
+        //highlight-end
+    });
+    ```
+
+## 4.4.0
+
+### Minor Changes
+
+-   [#4177](https://github.com/refinedev/refine/pull/4177) [`623691b10f0`](https://github.com/refinedev/refine/commit/623691b10f07f13af11ed56c24161cc0dc9dd3f1) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: add the abilities to pass custom headers and custom http method to the request
+
+    Example of changing the http method:
+
+    ```tsx
+    import { useUpdate } from "@refinedev/core";
+
+    const { mutate } = useUpdate();
+
+    mutate({
+        resource: "posts",
+        id: 1,
+        variables: {
+            title: "New title",
+        },
+        //highlight-start
+        meta: {
+            method: "put",
+        },
+        //highlight-end
+    });
+    ```
+
+    Example of passing custom headers:
+
+    ```tsx
+    import { useOne } from "@refinedev/core";
+
+    useOne({
+        resource: "posts",
+        id: 1,
+        //highlight-start
+        meta: {
+            headers: {
+                "X-Custom-Header": "Custom header value",
+            },
+        },
+        //highlight-end
+    });
+    ```
+
+## 4.3.0
+
+### Minor Changes
+
+-   [#4162](https://github.com/refinedev/refine/pull/4162) [`4ebd298fa8a`](https://github.com/refinedev/refine/commit/4ebd298fa8a9245a17fb724ae5817908cbb13926) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `requiredPackages` added to refine.config.js for CLI to automatically install required packages for the project.
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#4162](https://github.com/refinedev/refine/pull/4162) [`4ebd298fa8a`](https://github.com/refinedev/refine/commit/4ebd298fa8a9245a17fb724ae5817908cbb13926) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `requiredPackages` added to refine.config.js for CLI to automatically install required packages for the project.
+
 ## 4.1.0
 
 ### Minor Changes

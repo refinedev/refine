@@ -39,7 +39,7 @@ The app will have three resources: **posts**, **users**, and **categories** with
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
     RefineThemes,
@@ -101,9 +101,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route path="posts">

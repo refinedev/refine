@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     notificationProvider,
     AuthPage,
@@ -86,9 +86,9 @@ const App: React.FC = () => {
                                                 <CatchAllNavigate to="/login" />
                                             }
                                         >
-                                            <ThemedLayout>
+                                            <ThemedLayoutV2>
                                                 <Outlet />
-                                            </ThemedLayout>
+                                            </ThemedLayoutV2>
                                         </Authenticated>
                                     }
                                 >
@@ -183,9 +183,9 @@ const App: React.FC = () => {
                                 <Route
                                     element={
                                         <Authenticated>
-                                            <ThemedLayout>
+                                            <ThemedLayoutV2>
                                                 <Outlet />
-                                            </ThemedLayout>
+                                            </ThemedLayoutV2>
                                         </Authenticated>
                                     }
                                 >

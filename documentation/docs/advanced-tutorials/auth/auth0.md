@@ -109,7 +109,7 @@ In refine, authentication and authorization processes are performed with the aut
 ```tsx title="App.tsx"
 import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
@@ -238,9 +238,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

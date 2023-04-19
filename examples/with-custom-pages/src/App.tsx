@@ -7,7 +7,7 @@ import {
 import {
     notificationProvider,
     AuthPage,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
@@ -101,9 +101,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout Sider={() => <Sider />}>
+                                    <ThemedLayoutV2 Sider={() => <Sider />}>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -144,9 +144,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

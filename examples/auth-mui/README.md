@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-mui
 
 <br/>
 
-[![Open auth-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-mui?view=preview&theme=dark&codemirror=1)
+[![Open auth-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/auth-mui?view=preview&theme=dark&codemirror=1)
         

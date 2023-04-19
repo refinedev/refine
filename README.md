@@ -69,10 +69,33 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 **refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
-## What do you mean by "headless" ?
+
+
+## What do you mean by "headless"?
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
 
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+
+
+## 🔥 Try refine online in just 10 seconds
+
+<br/>
+
+<a  href="https://s.refine.dev/refine-new-github">
+<img  src="https://user-images.githubusercontent.com/18739364/231496370-8c2accd3-321f-4ed5-9763-7ecae95c4600.png">
+</a>
+<br/>
+<br/>
+
+ [refine.new](https://s.refine.dev/refine-new-github) is a powerful open-source browser tool that lets you create refine apps. 
+
+You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.  
+
+<div align="center">
+<a href="https://s.refine.dev/refine-new-github" target="_blank">
+<img src="https://user-images.githubusercontent.com/18739364/231501815-295deedd-cbee-4b90-80dc-12116ee53274.gif"    />
+</a>
+</div>
 
 ## Use cases
 **refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like **storefronts**.
@@ -138,7 +161,15 @@ You can take a look at some live examples that can be built using **refine** fro
 
 ## Quick Start
 
-The fastest way to get started with **refine** is by using the `create refine-app` project starter tool.
+The fastest way to get started with **refine** is by using the `create refine-app` project starter tool or using [refine.new](https://s.refine.dev/refine-new-github) browser tool.
+
+
+### Using refine.new browser tool
+[refine.new](https://s.refine.dev/refine-new-github) lets you create a new refine application by making step-by-step selections directly in your browser.
+
+You can choose the libraries and frameworks you want to work with, and the tool will generate a downloadable boilerplate code for you.
+
+### Using `create refine-app`
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```

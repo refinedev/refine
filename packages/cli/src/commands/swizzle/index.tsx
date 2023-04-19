@@ -78,7 +78,10 @@ const action = async (_options: OptionValues) => {
     await Promise.all(
         installedPackages.map(async (pkg) => {
             const hasConfig = await isPackageHaveRefineConfig(pkg.path);
-            if (hasConfig) {
+            const isNotDuplicate =
+                packagesWithConfig.findIndex((el) => el.name === pkg.name) ===
+                -1;
+            if (hasConfig && isNotDuplicate) {
                 packagesWithConfig.push(pkg);
             }
         }),
@@ -108,9 +111,10 @@ const action = async (_options: OptionValues) => {
 
     const packageConfigs = await Promise.all(
         packagesWithConfig.map(async (pkg) => {
-            const config = (await getRefineConfig(pkg.path)) ?? {
-                swizzle: { items: [] },
-            };
+            const config = (await getRefineConfig(pkg.path, true)) ??
+                (await getRefineConfig(pkg.path, false)) ?? {
+                    swizzle: { items: [] },
+                };
             return {
                 ...pkg,
                 config,

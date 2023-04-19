@@ -6,7 +6,7 @@ import {
     RefineSnackbarProvider,
     AuthPage,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
@@ -71,9 +71,9 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -187,9 +187,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >

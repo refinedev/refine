@@ -22,6 +22,7 @@ import {
     useTranslate,
     useDataProvider,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     queryKeys,
@@ -144,6 +145,7 @@ export const useList = <
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
+    const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
         resource,
@@ -163,9 +165,12 @@ export const useList = <
         hasPagination: prefferedHasPagination,
     });
     const isServerPagination = prefferedPagination.mode === "server";
+
+    const combinedMeta = getMeta({ meta: preferredMeta });
+
     const notificationValues = {
-        meta: preferredMeta,
-        metaData: preferredMeta,
+        meta: combinedMeta,
+        metaData: combinedMeta,
         filters: prefferedFilters,
         hasPagination: isServerPagination,
         pagination: prefferedPagination,
@@ -192,8 +197,8 @@ export const useList = <
         resource,
         types: ["*"],
         params: {
-            meta: preferredMeta,
-            metaData: preferredMeta,
+            meta: combinedMeta,
+            metaData: combinedMeta,
             pagination: prefferedPagination,
             hasPagination: isServerPagination,
             sort: prefferedSorters,
@@ -235,7 +240,7 @@ export const useList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(preferredMeta || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -243,7 +248,7 @@ export const useList = <
                     },
                 },
                 metaData: {
-                    ...(preferredMeta || {}),
+                    ...(combinedMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,

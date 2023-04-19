@@ -6,7 +6,7 @@ import {
 } from "@refinedev/core";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
@@ -74,11 +74,11 @@ function App() {
                         <Route
                             element={
                                 <Authenticated>
-                                    <ThemedLayout Title={Title}>
+                                    <ThemedLayoutV2 Title={Title}>
                                         <CanAccess>
                                             <Outlet />
                                         </CanAccess>
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -115,9 +115,9 @@ function App() {
                         <Route
                             element={
                                 <Authenticated>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

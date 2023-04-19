@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mui-use-data-grid
 
 <br/>
 
-[![Open table-mui-use-data-grid example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/table-mui-use-data-grid?view=preview&theme=dark&codemirror=1)
+[![Open table-mui-use-data-grid example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/table-mui-use-data-grid?view=preview&theme=dark&codemirror=1)
         

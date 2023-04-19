@@ -35,14 +35,14 @@ const timeline = [
     {
         date: "13th April 2023",
         title: "Creating Mission and Invoices Pages",
-        description: `We'll implement CRUD actions for companies, clients and contacts for our PDF Invoice Generator app.`,
-        /*link:  "https://refine.dev/blog/refine-invoicer-4/", */
+        description: `We add more CRUD views to the PDF Invoice Generator app we have been building using refine and Strapi last few days.`,
+        link: "https://refine.dev/blog/refine-react-invoice-generator-4/",
     },
     {
         date: "14th April 2023",
         title: "Adding PDF Renderer",
-        description: `We come past the refine features and add a pdf renderer to display our invoices in a pdf screen.`,
-        /*link: "https://refine.dev/blog/refine-invoicer-5/" */
+        description: `We come past the refine features and add a pdf renderer to display our invoices in a PDF screen.`,
+        link: "https://refine.dev/blog/refine-react-invoice-generator-5/",
     },
 ];
 
@@ -79,6 +79,7 @@ const additionalSources = [
 
 const tweetUrl = "https://twitter.com/intent/tweet?text=%23refineweek";
 const tweetIDs = [
+    "1645507785621209097",
     "1635625661778763776",
     "1640741763408076803",
     "1625488050863353856",

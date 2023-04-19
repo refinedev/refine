@@ -9,6 +9,7 @@ import {
     useHandleNotification,
     useTranslate,
     useOnError,
+    useMeta,
 } from "@hooks";
 import {
     CreateResponse,
@@ -103,6 +104,7 @@ export const useCustomMutation = <
     const handleNotification = useHandleNotification();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
+    const getMeta = useMeta();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -119,6 +121,10 @@ export const useCustomMutation = <
             dataProviderName,
             config,
         }: useCustomMutationParams<TData, TError, TVariables>) => {
+            const combinedMeta = getMeta({
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
             const { custom } = dataProvider(dataProviderName);
 
             if (custom) {
@@ -126,8 +132,8 @@ export const useCustomMutation = <
                     url,
                     method,
                     payload: values,
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                     headers: { ...config?.headers },
                 });
             }

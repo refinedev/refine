@@ -71,6 +71,8 @@ export const useAutocomplete = <
             onInputChange: (event, value) => {
                 if (event?.type === "change") {
                     onSearch(value);
+                } else if (event?.type === "click") {
+                    onSearch("");
                 }
             },
             filterOptions: (x) => x,

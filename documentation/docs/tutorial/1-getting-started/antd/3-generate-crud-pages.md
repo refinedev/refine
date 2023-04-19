@@ -41,9 +41,10 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     NavigateToResource,
@@ -84,9 +85,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -156,9 +157,10 @@ setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -200,9 +202,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
@@ -246,9 +248,10 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -290,9 +293,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
@@ -336,9 +339,10 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -380,9 +384,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}
@@ -426,9 +430,10 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
+    RefineThemes,
 } from "@refinedev/antd";
 import routerBindings, {
     UnsavedChangesNotifier,
@@ -470,9 +475,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             {/* highlight-start */}

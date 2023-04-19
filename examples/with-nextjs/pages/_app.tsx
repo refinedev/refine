@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/antd";
@@ -35,9 +35,9 @@ function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
         }
 
         return (
-            <ThemedLayout>
+            <ThemedLayoutV2>
                 <Component {...pageProps} />
-            </ThemedLayout>
+            </ThemedLayoutV2>
         );
     };
 

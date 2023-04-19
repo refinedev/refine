@@ -5,6 +5,9 @@ import { RefineThemedLayoutProps } from "./types";
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     Sider,
     Header,

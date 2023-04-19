@@ -48,7 +48,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -92,9 +92,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route
@@ -174,7 +174,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -218,9 +218,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-start */}
@@ -274,7 +274,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -318,9 +318,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-start */}
@@ -374,7 +374,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -418,9 +418,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-start */}
@@ -474,7 +474,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -516,9 +516,9 @@ const App = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 {/* highlight-start */}

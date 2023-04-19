@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
@@ -64,9 +64,11 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayout OffLayoutArea={OffLayoutArea}>
+                                    <ThemedLayoutV2
+                                        OffLayoutArea={OffLayoutArea}
+                                    >
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 }
                             >
                                 <Route

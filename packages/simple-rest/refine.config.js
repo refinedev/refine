@@ -1,5 +1,3 @@
-const { getImports } = require("@refinedev/cli");
-
 /** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "Data Provider",
@@ -7,6 +5,7 @@ module.exports = {
         items: [
             {
                 label: "Data Provider",
+                requiredPackages: ["query-string@7.1.1", "axios@0.26.1"],
                 files: [
                     {
                         src: "./src/provider.ts",
@@ -34,9 +33,6 @@ module.exports = {
                     },
                 ],
                 message: `
-                **\`Warning:\`**
-                You will also need to add \`axios\` to your project dependencies.
-
                 **\`Usage\`**
 
                 \`\`\`
@@ -55,47 +51,5 @@ module.exports = {
                 `,
             },
         ],
-        transform: (content) => {
-            let newContent = content;
-            const imports = getImports(content);
-
-            imports?.map((importItem) => {
-                if (
-                    importItem?.importPath === "axios" &&
-                    importItem?.defaultImport === "axios"
-                ) {
-                    // add comment for axios import
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        `// "axios" package should be installed to customize the http client
-            ${importItem.statement}`,
-                    );
-                }
-                if (importItem?.importPath === "query-string") {
-                    // update query-string import
-                    newContent = newContent.replace(
-                        importItem?.statement,
-                        `// "stringify" function is re-exported from "query-string" package by "@refinedev/simple-rest"
-            ${importItem.statement.replace(
-                "query-string",
-                "@refinedev/simple-rest",
-            )}`,
-                    );
-                }
-                if (
-                    importItem?.importPath === "axios" &&
-                    importItem?.namedImports
-                ) {
-                    // update axios type import
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        `// "axios" package needs to be installed
-            ${importItem.statement}`,
-                    );
-                }
-            });
-
-            return newContent;
-        },
     },
 };

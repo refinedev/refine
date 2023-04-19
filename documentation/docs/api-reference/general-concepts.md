@@ -6,7 +6,7 @@ title: General Concepts
 -   **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
 -   All the **data** related hooks([`useTable`](/docs/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/api-reference/core/hooks/data/useList) etc.) of **refine** can be given some common properties like `resource`, `meta`, `queryOptions` etc.
 
-### `resource`
+## `resource`
 
 **refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how `resource` are handled.
 
@@ -82,47 +82,122 @@ How can I request an API with nested route?
 
 [Refer to how to use resource with nested routes documentation for more information. &#8594](/faq.md#how-can-i-request-an-api-with-nested-route)
 
-### `meta`
+## `meta`
 
-`meta` is used following three purposes:
+`meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON).
--   Hooks related with routing also uses `meta` to fill additional parameters in the target routes.
+-   Customizing the data provider methods for specific use cases.
+-   Generating GraphQL queries using plain JavaScript Objects (JSON).
+-   Filling additional parameters in target routes when occurs redirection.
 
-How to use `meta` to pass additional information to data provider methods?
+### Pass global `meta` specific to a resource
+
+You can define a global `meta` specific to a resource, which will be passed to all the data provider methods whenever the resource is matched.
+
+For instance, to pass the `role` property to all data provider methods for the `posts` resource, use the following code:
 
 ```tsx
-useOne({
-    resource: "posts",
-    id: 1,
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
-});
+import { Refine } from "@refinedev/core";
 
-const myDataProvider = {
-    ...
-    getOne: async ({ resource, id, meta }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}/${id}`;
+const App: React.FC = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    // highlight-start
+                    meta: {
+                        role: "editor",
+                    },
+                    // highlight-end
+                },
+            ]}
+        />
+    );
+};
+```
 
-        //highlight-next-line
-        const { data } = await httpClient.get(url, { headers });
+### Pass `meta` with hook-specific properties
 
-        return {
-            data,
-        };
+You can pass the `meta` property with hook-specific properties to data provider methods, which will override the global `meta` of the resource.
+
+For example, you can pass the `headers` property to the `getOne` method by using the `meta` property in the `useOne` hook, as shown below:
+
+```tsx
+    useOne({
+        resource: "posts",
+        id: 1,
+        // highlight-start
+        meta: {
+            headers: { "x-meta-data": "true" },
+        },
+        // highlight-end
+    });
+
+    const myDataProvider = {
+        ...
+        getOne: async ({ resource, id, meta }) => {
+            // highlight-next-line
+            const headers = meta?.headers ?? {};
+            const url = `${apiUrl}/${resource}/${id}`;
+
+            //highlight-next-line
+            const { data } = await httpClient.get(url, { headers });
+
+            return {
+                data,
+            };
+        },
+        ...
+    };
+```
+
+By using this logic, you can pass any property to handle your specific use cases.
+
+### Use URL query parameters as `meta` properties
+
+Query parameters on the URL can also be used as `meta` properties for data provider methods.
+
+For example, if the URL is `https://example.com/posts?foo=bar`, the `foo` property will be passed to the data provider methods as a `meta` property.
+
+```tsx
+const dataProvider = {
+    getList: async ({ resource, meta }) => {
+        console.log(meta); // { foo: "bar" }
     },
     ...
 };
 ```
 
-In the above example, we pass the `headers` property in the `meta` object to the `getOne` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+This can be useful when you want to customize the behavior of data provider methods based on query parameters passed in the URL.
 
-[Refer to the how to pass `meta` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
+<br />
 
-[Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql.md)
+:::info
+
+The `meta` is created in the following order of precedence:
+
+1.  Passed to the hook.
+2.  Defined in the URL query parameters.
+3.  Defined in the `resources` prop of the `<Refine>`.
+
+:::
+
+:::caution
+
+The `meta` property defined in the `resources` prop of the `<Refine>` is only passed to the data provider methods via the following hooks and their derivatives:
+
+-   [`useTable`](/docs/api-reference/core/hooks/useTable/)
+-   [`useForm`](/docs/api-reference/core/hooks/useForm/)
+-   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
+-   [`useShow`](/docs/api-reference/core/hooks/show/useShow/)
+
+:::
+
+### Use `meta` to generate GraphQL queries
+
+[Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries &#8594](/docs/packages/documentation/data-providers/graphql/)
+
+### How to pass `meta` to your existing `dataProvider` methods
+
+[Refer to the how to pass `meta` to your existing `dataProvider` methods &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)

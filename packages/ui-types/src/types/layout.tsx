@@ -55,8 +55,13 @@ export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
     onToggleSiderClick?: (isOpen?: boolean) => void;
     toggleSiderIcon?: (open: boolean) => React.ReactNode;
 };
+
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
     icon?: React.ReactNode;
     text?: React.ReactNode;
     wrapperStyles?: React.CSSProperties;
 };
+
+export type RefineThemedLayoutV2Props = RefineLayoutLayoutProps;
+export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {};
+export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {};

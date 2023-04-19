@@ -1,5 +1,99 @@
 # @pankod/refine-hasura
 
+## 6.4.0
+
+### Minor Changes
+
+-   [#4174](https://github.com/refinedev/refine/pull/4174) [`d040da9a428`](https://github.com/refinedev/refine/commit/d040da9a4282f0b90385035449c38815b2287ffe) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize hasura data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
+    chore: `genereteUseListSubscription` is deprecated and has been renamed to `generateListSubscriptionHook`.
+    chore: `genereteUseManySubscription` is deprecated and has been renamed to `generateUseManySubscription`.
+    chore: `genereteUseOneSubscription` is deprecated and has been renamed to `generateUseOneSubscription`.
+
+### Patch Changes
+
+-   [#4179](https://github.com/refinedev/refine/pull/4179) [`fd808368a36`](https://github.com/refinedev/refine/commit/fd808368a363bf9f4f7ec159676b3f69beb43772) Thanks [@austin047](https://github.com/austin047)! - fix: change enum from lowercase to UPPERCASE in api request for hasura camelCase naming convention
+
+    From the hasura documentation [here](https://hasura.io/docs/latest/schema/postgres/naming-convention/), for the graphql-default naming convention, the naming convention for enums is upper-cased. Currently the request are being made with the lowercase enum and not uppercase.
+
+    The change mainly
+    affects `sort`, desc gets changed to DESC and asc gets changed to ASC. the request from the refine client interface maintains the underscore and convertion to uppercase is only done at the API request layer.
+
+## 6.3.0
+
+### Minor Changes
+
+-   [#4174](https://github.com/refinedev/refine/pull/4174) [`d040da9a428`](https://github.com/refinedev/refine/commit/d040da9a4282f0b90385035449c38815b2287ffe) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize hasura data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
+    chore: `genereteUseListSubscription` is deprecated and has been renamed to `generateListSubscriptionHook`.
+    chore: `genereteUseManySubscription` is deprecated and has been renamed to `generateUseManySubscription`.
+    chore: `genereteUseOneSubscription` is deprecated and has been renamed to `generateUseOneSubscription`.
+
+### Patch Changes
+
+-   [#4179](https://github.com/refinedev/refine/pull/4179) [`fd808368a36`](https://github.com/refinedev/refine/commit/fd808368a363bf9f4f7ec159676b3f69beb43772) Thanks [@austin047](https://github.com/austin047)! - fix: change enum from lowercase to UPPERCASE in api request for hasura camelCase naming convention
+
+    From the hasura documentation [here](https://hasura.io/docs/latest/schema/postgres/naming-convention/), for the graphql-default naming convention, the naming convention for enums is upper-cased. Currently the request are being made with the lowercase enum and not uppercase.
+
+    The change mainly
+    affects `sort`, desc gets changed to DESC and asc gets changed to ASC. the request from the refine client interface maintains the underscore and convertion to uppercase is only done at the API request layer.
+
+## 6.2.0
+
+### Minor Changes
+
+-   [#4144](https://github.com/refinedev/refine/pull/4144) [`06bdf9e4837`](https://github.com/refinedev/refine/commit/06bdf9e4837db83870d30461db00297195e4ecc8) Thanks [@mattbho](https://github.com/mattbho)! - feat: support camelCase graphql naming convention for Hasura
+
+    Previously, our Hasura data provider only supported snake-case naming conventions for operations and type names.
+
+    Hasura recently released a setting allowing for camelCase support.
+
+    The following changes do the Hasura data provider now support the new setting.
+
+    All methods for the Hasura Data provider now support the camelCase `graphql-default` naming convention.
+
+    The data provider now accepts a `namingConvention` field in the options payload.
+
+    Ex:
+
+    ```
+    const gqlDataProvider = dataProvider(client, {namingConvention: "graphql-default"});
+    ```
+
+    If the `graphql-default` naming convention is provided, all field names and variables will be camel cased. Type names will be PascalCased.
+
+## 6.1.0
+
+### Minor Changes
+
+-   [#4144](https://github.com/refinedev/refine/pull/4144) [`06bdf9e4837`](https://github.com/refinedev/refine/commit/06bdf9e4837db83870d30461db00297195e4ecc8) Thanks [@mattbho](https://github.com/mattbho)! - feat: support camelCase graphql naming convention for Hasura
+
+    Previously, our Hasura data provider only supported snake-case naming conventions for operations and type names.
+
+    Hasura recently released a setting allowing for camelCase support.
+
+    The following changes do the Hasura data provider now support the new setting.
+
+    All methods for the Hasura Data provider now support the camelCase `graphql-default` naming convention.
+
+    The data provider now accepts a `namingConvention` field in the options payload.
+
+    Ex:
+
+    ```
+    const gqlDataProvider = dataProvider(client, {namingConvention: "graphql-default"});
+    ```
+
+    If the `graphql-default` naming convention is provided, all field names and variables will be camel cased. Type names will be PascalCased.
+
 ## 6.0.1
 
 ### Patch Changes

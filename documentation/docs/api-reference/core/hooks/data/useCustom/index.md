@@ -169,10 +169,12 @@ useCustom({
 
 ### `meta`
 
-[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
+`meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+-   Customizing the data provider methods for specific use cases.
+-   Generating GraphQL queries using plain JavaScript Objects (JSON).
+
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter.
 
@@ -297,7 +299,7 @@ By default, the query key is generated based on the properties passed to `useCus
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
 | TQuery       | Values for query params.                                                                                                                                            | `TQuery`                   | unknown                    |
 | TPayload     | Values for params.                                                                                                                                                  | `TPayload`                 | unknown                    |
-| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`                    |
+| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
 
 ### Return value
 

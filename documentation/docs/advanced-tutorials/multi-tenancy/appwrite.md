@@ -33,7 +33,7 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 ```tsx
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
     RefineThemes,
@@ -61,7 +61,7 @@ const App: React.FC = () => {
                     routerProvider={routerProvider}
                     notificationProvider={notificationProvider}
                 >
-                    <ThemedLayout>{/* ... */}</ThemedLayout>
+                    <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>
@@ -130,7 +130,7 @@ export const StoreProvider = (props: any) => {
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
@@ -161,7 +161,7 @@ const App: React.FC = () => {
                         routerProvider={routerProvider}
                         notificationProvider={notificationProvider}
                     >
-                        <ThemedLayout>{/* ... */}</ThemedLayout>
+                        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
                     </Refine>
                 </ConfigProvider>
             </BrowserRouter>
@@ -601,7 +601,7 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
     RefineThemes,
@@ -659,9 +659,9 @@ function App() {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout Sider={CustomSider}>
+                                        <ThemedLayoutV2 Sider={CustomSider}>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
