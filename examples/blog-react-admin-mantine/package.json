@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^2.5.0",
+    "@refinedev/cli": "^2.5.1",
     "@refinedev/core": "^4.10.0",
     "@refinedev/inferencer": "^3.3.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -14,7 +14,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1",
-    "@refinedev/strapi-v4": "^4.3.0",
+    "@refinedev/strapi-v4": "^4.3.1",
     "axios": "^0.26.1",
     "@refinedev/mantine": "^2.10.0",
     "@refinedev/react-table": "^5.2.0",

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@refinedev/core": "^4.10.0",
-    "@refinedev/cli": "^2.5.0",
+    "@refinedev/cli": "^2.5.1",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/supabase": "^5.3.0",
     "@testing-library/jest-dom": "^5.16.4",
