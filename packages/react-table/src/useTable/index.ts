@@ -121,8 +121,8 @@ export function useTable<
         },
         pageCount,
         manualPagination: true,
-        manualSorting: isServerSideSortingEnabled ? true : false,
-        manualFiltering: isServerSideFilteringEnabled ? true : false,
+        manualSorting: isServerSideSortingEnabled,
+        manualFiltering: isServerSideFilteringEnabled,
         ...rest,
     });
 
