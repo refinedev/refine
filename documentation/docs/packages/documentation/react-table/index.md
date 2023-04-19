@@ -235,6 +235,25 @@ useTable({
 });
 ```
 
+### `sorters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** Sorting are disabled. All records will be fetched.
+-   **"server":**: Sorting are done on the server side. Records will be fetched by using the `sorters` value.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        sorters: {
+            mode: "off",
+        },
+    },
+});
+```
+
 ### `filters.initial`
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
@@ -296,6 +315,25 @@ useTable({
     refineCoreProps: {
         filters: {
             defaultBehavior: "merge",
+        },
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** Filters are disabled. All records will be fetched.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        filters: {
+            mode: "off",
         },
     },
 });
@@ -729,6 +767,34 @@ A function to set current [sorters state][crudsorting].
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalLivePreview/>
+
+### How can I handle client side filtering?
+
+You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server-side filtering. `useTable` is fully compatible with [`TanStack Table`](https://tanstack.com/table/v8/docs/api/features/filters) filtering feature.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        filters: {
+            mode: "off",
+        },
+    },
+});
+```
+
+### How can I handle client side sorting?
+
+You can set the [`sorters.mode: "off"`](#sortersmode) in order to disable server-side sorting. `useTable` is fully compatible with [`TanStack Table`](https://tanstack.com/table/v8/docs/api/features/sorting) sorting feature.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        sorters: {
+            mode: "off",
+        },
+    },
+});
+```
 
 ## API Reference
 

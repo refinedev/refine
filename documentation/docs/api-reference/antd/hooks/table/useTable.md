@@ -265,23 +265,6 @@ useTable({
 });
 ```
 
-### `sorters.mode`
-
-> Default: `"server"`
-
-It can be `"off"`, or `"server"`.
-
--   **"off":** Sorting is disabled. All records will be fetched.
--   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
-
-```tsx
-useTable({
-    sorters: {
-        mode: "server",
-    },
-});
-```
-
 ### `sorters.initial`
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
@@ -320,19 +303,19 @@ useTable({
 });
 ```
 
-### `filters.mode`
+### `sorters.mode`
 
 > Default: `"server"`
 
-It can be `"off"` or `"server"`.
+It can be `"off"`, or `"server"`.
 
--   **"off":** Filters are disabled. All records will be fetched.
--   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+-   **"off":** Sorting is disabled. All records will be fetched.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
 useTable({
-    filters: {
-        mode: "off",
+    sorters: {
+        mode: "server",
     },
 });
 ```
@@ -393,6 +376,23 @@ You can also override the default value by using the second parameter of the [`s
 useTable({
     filters: {
         defaultBehavior: "replace",
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** Filters are disabled. All records will be fetched.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useTable({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -874,118 +874,26 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### How can I handle client side filtering?
 
-First, you need to set `filters.mode: "off"`.
+You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server-side filtering. `useTable` is fully compatible with [`Ant Design <Table> component's`](https://ant.design/components/table#components-table-demo-head) filtering feature.
 
 ```tsx
-const { tableProps } = useTable({
+useTable({
     filters: {
         mode: "off",
     },
 });
 ```
 
-Then, you can use `tableProps.dataSource` and `filters` to filter data.
-
-```tsx
-import { useMemo } from "react";
-import { Table } from "antd";
-import { getDefaultFilter } from "@refinedev/core";
-import { useTable, Radio, FilterDropdown } from "@refinedev/antd";
-
-const List = () => {
-    const { tableProps, filters } = useTable({
-        filters: {
-            mode: "off",
-        },
-    });
-
-    const filteredData = useMemo(() => {
-        // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
-        // We use flatMap for better type support.
-        const logicalFilters = filters.flatMap((item) =>
-            "field" in item ? item : [],
-        );
-
-        return tableProps.dataSource.filter((item) => {
-            return logicalFilters.some((filter) => {
-                if (filter.operator === "eq") {
-                    return item[filter.field] === filter.value;
-                }
-            });
-        });
-    }, [tableProps.dataSource, filters]);
-
-    return (
-        <Table {...tableProps} dataSource={filteredData}>
-            <Table.Column title="Title" dataIndex="title" />
-            <Table.Column
-                dataIndex="status"
-                title="Status"
-                defaultFilteredValue={getDefaultFilter("status", filters)}
-                filterDropdown={(props) => (
-                    <FilterDropdown {...props}>
-                        <Radio.Group>
-                            <Radio value="published">Published</Radio>
-                            <Radio value="draft">Draft</Radio>
-                            <Radio value="rejected">Rejected</Radio>
-                        </Radio.Group>
-                    </FilterDropdown>
-                )}
-            />
-        </Table>
-    );
-};
-```
-
 ### How can I handle client side sorting?
 
-First, you need to set `sorters.mode: "off"`.
+You can set the [`sorters.mode: "off"`](#sortersmode) in order to disable server-side sorting. `useTable` is fully compatible with [`Ant Design <Table> component's`](https://ant.design/components/table#components-table-demo-head) sorting feature.
 
 ```tsx
-const { tableProps } = useTable({
+useTable({
     sorters: {
         mode: "off",
     },
 });
-```
-
-Then, you can use `tableProps.dataSource` and `sorters` to sort data.
-
-```tsx
-import { useMemo } from "react";
-import { Table } from "antd";
-import { getDefaultSortOrder, useTable } from "@refinedev/antd";
-
-const List = () => {
-    const { tableProps, sorters } = useTable({
-        sorters: {
-            mode: "off",
-        },
-    });
-
-    const sortedData = useMemo(() => {
-        return tableProps.dataSource.sort((a, b) => {
-            const sorter = sorters[0];
-            if (sorter.order === "asc") {
-                return a[sorter.field] > b[sorter.field] ? 1 : -1;
-            }
-            if (sorter.order === "descend") {
-                return a[sorter.field] < b[sorter.field] ? 1 : -1;
-            }
-        });
-    }, [tableProps.dataSource, sorters]);
-
-    return (
-        <Table {...tableProps} dataSource={sortedData}>
-            <Table.Column
-                title="Title"
-                dataIndex="title"
-                sorter={true}
-                defaultSortOrder={getDefaultSortOrder("id", sorters)}
-            />
-        </Table>
-    );
-};
 ```
 
 ## API

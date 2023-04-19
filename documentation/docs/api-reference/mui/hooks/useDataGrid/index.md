@@ -334,23 +334,6 @@ useDataGrid({
 });
 ```
 
-### `sorters.mode`
-
-> Default: `"server"`
-
-It can be `"off"`, or `"server"`.
-
--   **"off":** Sorting is disabled. All records will be fetched.
--   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
-
-```tsx
-useDataGrid({
-    sorters: {
-        mode: "server",
-    },
-});
-```
-
 ### `sorters.initial`
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
@@ -389,19 +372,19 @@ useDataGrid({
 });
 ```
 
-### `filters.mode`
+### `sorters.mode`
 
 > Default: `"server"`
 
-It can be `"off"` or `"server"`.
+It can be `"off"`, or `"server"`.
 
--   **"off":** Filters are disabled. All records will be fetched.
--   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+-   **"off":** Sorting is disabled. All records will be fetched.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
 useDataGrid({
-    filters: {
-        mode: "off",
+    sorters: {
+        mode: "server",
     },
 });
 ```
@@ -462,6 +445,23 @@ You can also override the default value by using the second parameter of the [`s
 useDataGrid({
     filters: {
         defaultBehavior: "replace",
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** Filters are disabled. All records will be fetched.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useDataGrid({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -953,7 +953,7 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ### How can I handle client side filtering?
 
-You can use `filters.mode: "off"`. `useDataGrid` fully compatible with [`<DataGrid>`][data-grid] component.
+You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server-side filtering. `useDataGrid` is fully compatible with [`Material UI <DataGrid>  component's`](https://mui.com/x/react-data-grid/filtering/) filtering feature.
 
 ```tsx
 useDataGrid({
@@ -965,7 +965,7 @@ useDataGrid({
 
 ### How can I handle client side sorting?
 
-You can use `sorting.mode: "off"`. `useDataGrid` fully compatible with [`<DataGrid>`][data-grid] component.
+You can set the [`sorting.mode: "off"`](#sortersmode) in order to disable server-side sorting. `useDataGrid` is fully compatible with [`Material UI <DataGrid> component's`](https://mui.com/x/react-data-grid/sorting/) sorting feature.
 
 ```tsx
 useDataGrid({
