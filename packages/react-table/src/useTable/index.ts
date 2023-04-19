@@ -14,6 +14,8 @@ import {
     Table,
     getCoreRowModel,
     ColumnFilter,
+    getSortedRowModel,
+    getFilteredRowModel,
 } from "@tanstack/react-table";
 
 import { useIsFirstRender } from "../utils";
@@ -57,6 +59,10 @@ export function useTable<
         hasPagination,
     });
 
+    const isServerSideFilteringEnabled =
+        (refineCoreProps.filters?.mode || "server") === "server";
+    const isServerSideSortingEnabled =
+        (refineCoreProps.sorters?.mode || "server") === "server";
     const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
         (refineCoreProps.pagination?.mode ?? hasPaginationString) !== "off";
@@ -86,8 +92,14 @@ export function useTable<
     });
 
     const reactTableResult = useReactTable<TData>({
-        getCoreRowModel: getCoreRowModel(),
         data: data?.data ?? [],
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: isServerSideSortingEnabled
+            ? undefined
+            : getSortedRowModel(),
+        getFilteredRowModel: isServerSideFilteringEnabled
+            ? undefined
+            : getFilteredRowModel(),
         initialState: {
             pagination: {
                 pageIndex: current - 1,
@@ -109,8 +121,8 @@ export function useTable<
         },
         pageCount,
         manualPagination: true,
-        manualSorting: true,
-        manualFiltering: true,
+        manualSorting: isServerSideSortingEnabled ? true : false,
+        manualFiltering: isServerSideFilteringEnabled ? true : false,
         ...rest,
     });
 
