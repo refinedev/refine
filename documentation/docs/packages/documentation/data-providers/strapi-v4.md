@@ -762,6 +762,269 @@ const { selectProps } = useSelect({
 });
 ```
 
+## File Upload
+
+Strapi supports file upload. Below are examples of how to upload files to Strapi.
+
+[Refer to the Strapi documentation for more information &#8594](https://docs.strapi.io/dev-docs/plugins/upload#upload-files)
+
+<Tabs
+defaultValue="antd"
+values={[
+{label: 'Ant Design Form', value: 'antd'},
+{label: 'React Hook Form', value: 'react-hook-form'},
+{label: 'Mantine Form', value: 'mantine'}
+]}>
+<TabItem value="antd">
+
+`getValueProps` and `mediaUploadMapper` are helper functions for Ant Design Form.
+
+```tsx
+import { Edit, useForm } from "@refinedev/antd";
+import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import { Form, Upload } from "antd";
+
+import { TOKEN_KEY, API_URL } from "../../constants";
+import { IPost } from "../interfaces";
+
+export const PostEdit: React.FC = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>({
+        metaData: { populate: ["cover"] },
+    });
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form
+                {...formProps}
+                layout="vertical"
+                onFinish={(values) => {
+                    formProps.onFinish?.(mediaUploadMapper(values));
+                }}
+            >
+                <Form.Item label="Cover">
+                    <Form.Item
+                        name="cover"
+                        valuePropName="fileList"
+                        getValueProps={(data) => getValueProps(data, API_URL)}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="files"
+                            action={`${API_URL}/api/upload`}
+                            headers={{
+                                Authorization: `Bearer ${localStorage.getItem(
+                                    TOKEN_KEY,
+                                )}`,
+                            }}
+                            listType="picture"
+                            multiple
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
+```
+
+</TabItem>
+
+<TabItem value="react-hook-form">
+
+```tsx
+import { useState } from "react";
+import axios from "axios";
+import { Edit } from "@refinedev/mui";
+import { Box, Input, Stack, Typography } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
+
+import { ICategory, IPost } from "interfaces";
+
+import { TOKEN_KEY, API_URL } from "../../constants";
+
+export const PostEdit: React.FC = () => {
+    const [isUploadLoading, setIsUploadLoading] = useState(false);
+    const [imageURL, setImageURL] = useState("");
+
+    const {
+        saveButtonProps,
+        register,
+        formState: { errors },
+        setValue,
+        setError,
+    } = useForm<
+        IPost,
+        HttpError,
+        IPost & { category: ICategory; cover: any }
+    >();
+
+    const onChangeHandler = async (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        try {
+            setIsUploadLoading(true);
+
+            const formData = new FormData();
+
+            const target = event.target;
+            const file: File = (target.files as FileList)[0];
+
+            formData.append("files", file);
+
+            const res = await axios.post(`${API_URL}/api/upload`, formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+                },
+            });
+
+            setImageURL(`${API_URL}${res.data[0].url}`);
+            setValue("cover", res.data[0].id, { shouldValidate: true });
+
+            setIsUploadLoading(false);
+        } catch (error) {
+            setError("cover", { message: "Upload failed. Please try again." });
+            setIsUploadLoading(false);
+        }
+    };
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Box
+                component="form"
+                sx={{ display: "flex", flexDirection: "column" }}
+                autoComplete="off"
+            >
+                <Stack
+                    direction="row"
+                    gap={4}
+                    flexWrap="wrap"
+                    sx={{ marginTop: "16px" }}
+                >
+                    <label htmlFor="images-input">
+                        <Input
+                            id="images-input"
+                            type="file"
+                            sx={{ display: "none" }}
+                            onChange={onChangeHandler}
+                        />
+                        <input
+                            id="file"
+                            {...register("cover", {
+                                required: "This field is required",
+                            })}
+                            type="hidden"
+                        />
+                        <LoadingButton
+                            loading={isUploadLoading}
+                            loadingPosition="end"
+                            endIcon={<FileUploadIcon />}
+                            variant="contained"
+                            component="span"
+                        >
+                            Upload
+                        </LoadingButton>
+                        <br />
+                        {errors.cover && (
+                            <Typography variant="caption" color="#fa541c">
+                                {errors.cover?.message?.toString()}
+                            </Typography>
+                        )}
+                    </label>
+                    {imageURL && (
+                        <Box
+                            component="img"
+                            sx={{
+                                maxWidth: 250,
+                                maxHeight: 250,
+                            }}
+                            src={imageURL}
+                            alt="Post image"
+                        />
+                    )}
+                </Stack>
+            </Box>
+        </Edit>
+    );
+};
+```
+
+</TabItem>
+
+<TabItem value="mantine">
+
+```tsx
+import { useState } from "react";
+import axios from "axios";
+import { Edit, useForm } from "@refinedev/mantine";
+import { Text } from "@mantine/core";
+import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
+
+const API_URL = "http://localhost:1337";
+const TOKEN_KEY = "strapi-jwt-token";
+
+export const PostEdit: React.FC = () => {
+    const [isUploadLoading, setIsUploadLoading] = useState(false);
+
+    const { saveButtonProps, setFieldValue } = useForm<any>({
+        initialValues: {
+            title: "",
+            cover: "",
+        },
+    });
+
+    const handleOnDrop = async (files: FileWithPath[]) => {
+        try {
+            setIsUploadLoading(true);
+
+            const formData = new FormData();
+
+            const file = files[0];
+
+            formData.append("files", file);
+
+            const res = await axios.post(`${API_URL}/api/upload`, formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+                },
+            });
+
+            setFieldValue("cover", res.data[0].id);
+
+            setIsUploadLoading(false);
+        } catch (error) {
+            setIsUploadLoading(false);
+        }
+    };
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <form>
+                <Text mt={8} weight={500} size="sm" color="#212529">
+                    Cover
+                </Text>
+                <Dropzone
+                    accept={IMAGE_MIME_TYPE}
+                    onDrop={handleOnDrop}
+                    loading={isUploadLoading}
+                >
+                    <Text align="center">Drop images here</Text>
+                </Dropzone>
+            </form>
+        </Edit>
+    );
+};
+```
+
+</TabItem>
+</Tabs>
+
 ## Example
 
 :::note Demo Credentials

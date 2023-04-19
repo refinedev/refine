@@ -1,23 +1,13 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
-
+import { mediaUploadMapper, getValueProps } from "@refinedev/strapi-v4";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select, Upload, Radio } from "antd";
-
 import MDEditor from "@uiw/react-md-editor";
 
-import {
-    useStrapiUpload,
-    mediaUploadMapper,
-    getValueProps,
-} from "@refinedev/strapi-v4";
-
-import { TOKEN_KEY } from "../../constants";
+import { TOKEN_KEY, API_URL } from "../../constants";
 import { IPost } from "interfaces";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const API_URL = useApiUrl();
+export const PostCreate: React.FC = () => {
     const [locale, setLocale] = useState("en");
 
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -27,20 +17,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         metaData: { locale },
     });
 
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
-
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    return (
-                        formProps.onFinish &&
-                        formProps.onFinish(mediaUploadMapper(values))
-                    );
+                    formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item label="Locale" name="locale">
@@ -91,7 +74,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Upload.Dragger
                             name="files"
-                            action={`${API_URL}/upload`}
+                            action={`${API_URL}/api/upload`}
                             headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
@@ -99,7 +82,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             }}
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

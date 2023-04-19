@@ -1,10 +1,5 @@
 import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
-
-import {
-    useStrapiUpload,
-    getValueProps,
-    mediaUploadMapper,
-} from "@refinedev/strapi-v4";
+import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
 
@@ -18,13 +13,16 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
     formProps,
 }) => {
     const breakpoint = Grid.useBreakpoint();
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
 
     return (
         <Modal
             {...modalProps}
+            okButtonProps={{
+                ...modalProps.okButtonProps,
+                onClick: () => {
+                    formProps.form?.submit();
+                },
+            }}
             title="Edit Company"
             width={breakpoint.sm ? "600px" : "80%"}
         >
@@ -32,10 +30,7 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    console.log(values);
-                    return formProps.onFinish?.({
-                        ...mediaUploadMapper(values),
-                    });
+                    formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item
@@ -86,7 +81,6 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
                             }}
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area
