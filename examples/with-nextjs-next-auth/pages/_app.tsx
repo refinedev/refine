@@ -4,7 +4,7 @@ import { SessionProvider, useSession, signOut, signIn } from "next-auth/react";
 
 import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/antd";
@@ -147,9 +147,9 @@ function MyApp({
         }
 
         return (
-            <ThemedLayout>
+            <ThemedLayoutV2>
                 <Component {...pageProps} />
-            </ThemedLayout>
+            </ThemedLayoutV2>
         );
     };
 

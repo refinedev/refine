@@ -28,7 +28,7 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
 } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
@@ -67,9 +67,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <ThemedLayout>
+                            <ThemedLayoutV2>
                                 <Outlet />
-                            </ThemedLayout>
+                            </ThemedLayoutV2>
                         }
                     >
                         <Route
@@ -160,7 +160,7 @@ Now that we have created the show page, we can add it to the `App.tsx` file:
 ```tsx title="src/App.tsx"
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
 } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
@@ -205,9 +205,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <ThemedLayout>
+                            <ThemedLayoutV2>
                                 <Outlet />
-                            </ThemedLayout>
+                            </ThemedLayoutV2>
                         }
                     >
                         <Route

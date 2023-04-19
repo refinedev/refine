@@ -6,7 +6,7 @@ import {
     AuthPage,
     ErrorComponent,
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ThemedTitle,
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
@@ -93,7 +93,7 @@ function App() {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout
+                                        <ThemedLayoutV2
                                             Header={Header}
                                             Title={({ collapsed }: any) => (
                                                 <ThemedTitle
@@ -103,7 +103,7 @@ function App() {
                                             )}
                                         >
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -174,7 +174,7 @@ function App() {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayout
+                                        <ThemedLayoutV2
                                             Header={Header}
                                             Title={({ collapsed }: any) => (
                                                 <ThemedTitle
@@ -184,7 +184,7 @@ function App() {
                                             )}
                                         >
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >

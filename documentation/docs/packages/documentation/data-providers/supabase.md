@@ -1015,7 +1015,7 @@ Let's check out the `LoginPage` property:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
-import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/antd";
+import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
 import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
@@ -1046,9 +1046,9 @@ function App() {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

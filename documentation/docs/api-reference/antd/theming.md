@@ -19,7 +19,7 @@ const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -29,7 +29,7 @@ const App: React.FC = () => {
             <Refine
             /* ... */
             >
-                <ThemedLayout>{/* ... */}</ThemedLayout>
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
             </Refine>
         </ConfigProvider>
     );
@@ -52,7 +52,7 @@ You can override or extend the default themes. You can also create your own them
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/antd";
+import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -80,7 +80,7 @@ const App: React.FC = () => {
             <Refine
             /* ... */
             >
-                <ThemedLayout>{/* ... */}</ThemedLayout>
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
             </Refine>
             // highlight-next-line
         </ConfigProvider>
@@ -130,7 +130,7 @@ Then, we can use the `theme` property of the `ConfigProvider` component to switc
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayout } from "@refinedev/antd";
+import { ThemedLayoutV2 } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
 
 import { Header } from "./Header";
@@ -153,7 +153,7 @@ const App: React.FC = () => {
             <Refine
             /* ... */
             >
-                <ThemedLayout Header={Header}>{/* ... */}</ThemedLayout>
+                <ThemedLayoutV2 Header={Header}>{/* ... */}</ThemedLayoutV2>
             </Refine>
         </ConfigProvider>
     );

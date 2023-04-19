@@ -45,7 +45,7 @@ Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/r
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     ErrorComponent,
 } from "@refinedev/antd";
@@ -95,9 +95,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route index element={<NavigateToResource />} />
