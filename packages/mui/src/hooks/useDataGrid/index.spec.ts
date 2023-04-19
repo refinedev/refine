@@ -110,4 +110,50 @@ describe("useDataGrid Hook", () => {
             }),
         );
     });
+
+    it.each(["off", "server"] as const)(
+        "when filters.mode is %s, should set filterMode to %s",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useDataGrid({
+                        filters: {
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.dataGridProps).toEqual(
+                expect.objectContaining({
+                    filterMode: mode === "off" ? "client" : "server",
+                }),
+            );
+        },
+    );
+
+    it.each(["off", "server"] as const)(
+        "when sorters.mode is %s, should set sortingMode to %s",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useDataGrid({
+                        sorters: {
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.dataGridProps).toEqual(
+                expect.objectContaining({
+                    sortingMode: mode === "off" ? "client" : "server",
+                }),
+            );
+        },
+    );
 });
