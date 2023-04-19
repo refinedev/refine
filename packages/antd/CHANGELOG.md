@@ -1,5 +1,20 @@
 # @pankod/refine-antd
 
+## 5.9.0
+
+### Minor Changes
+
+-   [#4193](https://github.com/refinedev/refine/pull/4193) [`3d28fccc1ca`](https://github.com/refinedev/refine/commit/3d28fccc1ca14cdf316d518935cb6c17500c62a4) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` component and `useSiderVisible` hook
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `useSiderVisible` hook, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/antd/components/antd-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
+### Patch Changes
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.10.0
+
 ## 5.8.0
 
 ### Minor Changes
