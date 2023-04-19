@@ -67,8 +67,5 @@
   },
   "engines": {
     "node": ">=16"
-  },
-  "dependencies": {
-    "snarkdown": "^2.0.0"
   }
 }
