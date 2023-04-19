@@ -1,19 +1,19 @@
 export const team = [
     {
-        name: "Ömer Aplak",
-        avatar: "/about/images/team-avatars/omer.png",
-        avatar2x: "/about/images/team-avatars/omer2x.png",
-        role1: "Co-Founder",
-        role2: "CTO",
-        url: "https://www.linkedin.com/in/%C3%B6mer-faruk-aplak-14b87099/",
-    },
-    {
         name: "Civan Özseyhan",
         avatar: "/about/images/team-avatars/civan.png",
         avatar2x: "/about/images/team-avatars/civan2x.png",
         role1: "Co-Founder",
         role2: "CEO",
         url: "https://www.linkedin.com/in/civan-%C3%B6zseyhan-1ab48814/",
+    },
+    {
+        name: "Ömer Aplak",
+        avatar: "/about/images/team-avatars/omer.png",
+        avatar2x: "/about/images/team-avatars/omer2x.png",
+        role1: "Co-Founder",
+        role2: "CTO",
+        url: "https://www.linkedin.com/in/%C3%B6mer-faruk-aplak-14b87099/",
     },
     {
         name: "Eren Erkalkan",
