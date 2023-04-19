@@ -34,13 +34,22 @@ export type RefineLayoutTitleProps = TitleProps;
 
 export type RefineLayoutLayoutProps = LayoutProps;
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export type RefineThemedLayoutProps = RefineLayoutLayoutProps;
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
     isSiderOpen?: boolean;
     onToggleSiderClick?: (isOpen?: boolean) => void;
 };
 
+/**
+ * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
+ */
 export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
     isSiderOpen?: boolean;
     onToggleSiderClick?: (isOpen?: boolean) => void;
