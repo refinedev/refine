@@ -1,10 +1,5 @@
 import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
-
-import {
-    useStrapiUpload,
-    getValueProps,
-    mediaUploadMapper,
-} from "@refinedev/strapi-v4";
+import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
 
@@ -17,21 +12,22 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
     modalProps,
     formProps,
 }) => {
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
-
     return (
-        <Modal {...modalProps}>
+        <Modal
+            {...modalProps}
+            okButtonProps={{
+                ...modalProps.okButtonProps,
+                onClick: () => {
+                    formProps.form?.submit();
+                },
+            }}
+        >
             <Form
                 {...formProps}
                 wrapperCol={{ span: 12 }}
                 layout="vertical"
                 onFinish={(values) => {
-                    console.log(values);
-                    return formProps.onFinish?.({
-                        ...mediaUploadMapper(values),
-                    });
+                    formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item
@@ -62,7 +58,7 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
                 </Form.Item>
                 <Form.Item label="Company Logo">
                     <Form.Item
-                        name={"logo"}
+                        name="logo"
                         valuePropName="fileList"
                         getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle
@@ -82,7 +78,6 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
                             }}
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area

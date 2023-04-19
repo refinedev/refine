@@ -1,7 +1,6 @@
-import { useApiUrl } from "@refinedev/core";
-
+import { useContext } from "react";
 import { Create } from "@refinedev/antd";
-
+import { mediaUploadMapper, getValueProps } from "@refinedev/strapi-v4";
 import {
     Drawer,
     DrawerProps,
@@ -14,15 +13,7 @@ import {
 } from "antd";
 
 import { StoreContext } from "context/store";
-import { useContext } from "react";
-
-import {
-    useStrapiUpload,
-    mediaUploadMapper,
-    getValueProps,
-} from "@refinedev/strapi-v4";
-
-import { TOKEN_KEY } from "../../constants";
+import { TOKEN_KEY, API_URL } from "../../constants";
 
 type CreateProductProps = {
     drawerProps: DrawerProps;
@@ -35,14 +26,9 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     formProps,
     saveButtonProps,
 }) => {
-    const API_URL = useApiUrl();
     const [store] = useContext(StoreContext);
 
     const breakpoint = Grid.useBreakpoint();
-
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
 
     return (
         <Drawer
@@ -50,7 +36,14 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
             width={breakpoint.sm ? "500px" : "100%"}
             bodyStyle={{ padding: 0 }}
         >
-            <Create saveButtonProps={saveButtonProps}>
+            <Create
+                saveButtonProps={{
+                    ...saveButtonProps,
+                    onClick: () => {
+                        formProps.form?.submit();
+                    },
+                }}
+            >
                 <Form
                     {...formProps}
                     layout="vertical"
@@ -58,7 +51,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         isActive: true,
                     }}
                     onFinish={(values) => {
-                        return formProps.onFinish?.({
+                        formProps.onFinish?.({
                             ...mediaUploadMapper(values),
                             stores: store,
                         });
@@ -94,7 +87,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         >
                             <Upload.Dragger
                                 name="files"
-                                action={`${API_URL}/upload`}
+                                action={`${API_URL}/api/upload`}
                                 headers={{
                                     Authorization: `Bearer ${localStorage.getItem(
                                         TOKEN_KEY,
@@ -102,7 +95,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                 }}
                                 listType="picture"
                                 multiple
-                                {...uploadProps}
                             >
                                 <p className="ant-upload-text">
                                     Drag & drop a file in this area

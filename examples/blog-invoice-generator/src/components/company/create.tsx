@@ -1,13 +1,8 @@
-import { useApiUrl } from "@refinedev/core";
 import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 
-import {
-    useStrapiUpload,
-    getValueProps,
-    mediaUploadMapper,
-} from "@refinedev/strapi-v4";
+import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 
-import { TOKEN_KEY } from "../../constants";
+import { TOKEN_KEY, API_URL } from "../../constants";
 
 type CreateCompanyProps = {
     modalProps: ModalProps;
@@ -18,21 +13,22 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     modalProps,
     formProps,
 }) => {
-    const { ...uploadProps } = useStrapiUpload({
-        maxCount: 1,
-    });
-    const API_URL = useApiUrl();
-
     return (
-        <Modal {...modalProps} title="Create Company">
+        <Modal
+            {...modalProps}
+            title="Create Company"
+            okButtonProps={{
+                ...modalProps.okButtonProps,
+                onClick: () => {
+                    formProps.form?.submit();
+                },
+            }}
+        >
             <Form
                 {...formProps}
                 layout="vertical"
                 onFinish={(values) => {
-                    console.log(values);
-                    return formProps.onFinish?.({
-                        ...mediaUploadMapper(values),
-                    });
+                    formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item
@@ -72,7 +68,7 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
                 </Form.Item>
                 <Form.Item label="Company Logo">
                     <Form.Item
-                        name={"logo"}
+                        name="logo"
                         valuePropName="fileList"
                         getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle
@@ -84,7 +80,7 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
                     >
                         <Upload.Dragger
                             name="files"
-                            action={`${API_URL}/upload`}
+                            action={`${API_URL}/api/upload`}
                             headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
@@ -92,7 +88,6 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
                             }}
                             listType="picture"
                             multiple
-                            {...uploadProps}
                         >
                             <p className="ant-upload-text">
                                 Drag & drop a file in this area
