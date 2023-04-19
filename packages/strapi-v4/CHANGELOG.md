@@ -1,5 +1,13 @@
 # @pankod/refine-strapi-v4
 
+## 4.3.2
+
+### Patch Changes
+
+-   [#4196](https://github.com/refinedev/refine/pull/4196) [`05dd92662ce`](https://github.com/refinedev/refine/commit/05dd92662ce1016dced9fecd326f4c147e3d036a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: remove `useStrapiUpload` hook. It was outdated and not working properly.
+
+    fix: update `getValueProps` logic to return the correct value.
+
 ## 4.3.1
 
 ### Patch Changes
