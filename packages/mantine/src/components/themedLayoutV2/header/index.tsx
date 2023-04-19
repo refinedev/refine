@@ -32,6 +32,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
             px="sm"
             sx={{
                 borderBottom: `1px solid ${borderColor}`,
+                position: `sticky`,
             }}
         >
             <Flex
