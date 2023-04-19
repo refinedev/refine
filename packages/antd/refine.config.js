@@ -578,7 +578,7 @@ module.exports = {
                         <Refine
                             /* ... */
                         >
-                            <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2} />
+                            <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2}>
                                 /* ... */
                             </ThemedLayoutV2>
                         </Refine>
@@ -588,7 +588,7 @@ module.exports = {
                 `,
                 files: [
                     {
-                        src: "./src/components/themedLayout/sider/index.tsx",
+                        src: "./src/components/themedLayoutV2/sider/index.tsx",
                         dest: "./components/themedLayout/sider.tsx",
                         transform: (content) => {
                             let newContent = content;
@@ -621,7 +621,7 @@ module.exports = {
                                         const stylesContent = getFileContent(
                                             join(
                                                 dirname(
-                                                    "./src/components/themedLayout/sider/index.tsx",
+                                                    "./src/components/themedLayoutV2/sider/index.tsx",
                                                 ),
                                                 "/styles.ts",
                                             ),
@@ -644,16 +644,38 @@ module.exports = {
                         },
                     },
                     {
-                        src: "./src/components/themedLayout/header/index.tsx",
+                        src: "./src/components/themedLayoutV2/header/index.tsx",
                         dest: "./components/themedLayout/header.tsx",
                     },
                     {
-                        src: "./src/components/themedLayout/title/index.tsx",
+                        src: "./src/components/themedLayoutV2/title/index.tsx",
                         dest: "./components/themedLayout/title.tsx",
                     },
                     {
-                        src: "./src/components/themedLayout/index.tsx",
+                        src: "./src/components/themedLayoutV2/index.tsx",
                         dest: "./components/themedLayout/index.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @components import replacement
+                                if (
+                                    importItem.importPath === "@components" ||
+                                    importItem.importPath === "@contexts" ||
+                                    importItem.importPath === "@hooks"
+                                ) {
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
                     },
                 ],
             },

@@ -5,7 +5,6 @@ import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
 import { RefineThemedLayoutV2Props } from "./types";
 import { ThemedLayoutContextProvider } from "@contexts";
-import { useSiderVisible } from "@hooks";
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     children,
