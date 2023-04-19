@@ -1,5 +1,13 @@
 # @pankod/refine-cli
 
+## 2.5.2
+
+### Patch Changes
+
+-   [#4195](https://github.com/refinedev/refine/pull/4195) [`18f955a064e`](https://github.com/refinedev/refine/commit/18f955a064ef7524eef3f4434fb030d30058b4f9) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): add file system check to find installed packages
+
+    Updated the package find logic and added file system check for double checking if the package is installed or not.
+
 ## 2.5.1
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 4.10.2
+
+### Patch Changes
+
+-   [#4198](https://github.com/refinedev/refine/pull/4198) [`6081efbc26b`](https://github.com/refinedev/refine/commit/6081efbc26bad28629d5513d6e7a30c96b0dd080) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: `useAutocomplete` now resets the search value when the option is selected
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.9.0
+
 ## 4.10.1
 
 ### Patch Changes
