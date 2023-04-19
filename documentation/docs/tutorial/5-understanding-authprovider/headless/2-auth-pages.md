@@ -175,7 +175,9 @@ const App = () => {
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 resources={[
                     {
                         name: "blog_posts",
@@ -269,7 +271,9 @@ const App = () => {
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 resources={[
                     {
                         name: "blog_posts",
@@ -367,7 +371,9 @@ const App = () => {
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 resources={[
                     {
                         name: "blog_posts",
@@ -470,7 +476,9 @@ const App = () => {
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider(
+                    "https://api.fake-rest.refine.dev",
+                )}
                 resources={[
                     {
                         name: "blog_posts",
