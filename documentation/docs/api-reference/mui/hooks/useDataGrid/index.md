@@ -378,7 +378,7 @@ useDataGrid({
 
 It can be `"off"`, or `"server"`.
 
--   **"off":** Sorting is disabled. All records will be fetched.
+-   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
 -   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
@@ -455,7 +455,7 @@ useDataGrid({
 
 It can be `"off"` or `"server"`.
 
--   **"off":** Filters are disabled. All records will be fetched.
+-   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
 -   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx

@@ -326,7 +326,7 @@ useTable({
 
 It can be `"off"` or `"server"`.
 
--   **"off":** Filters are disabled. All records will be fetched.
+-   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
 -   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx
