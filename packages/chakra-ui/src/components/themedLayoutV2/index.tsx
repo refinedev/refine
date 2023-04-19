@@ -25,7 +25,6 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
                     display="flex"
                     flexDirection="column"
                     flex={1}
-                    overflow="hidden"
                     minH="100vh"
                 >
                     <HeaderToRender />
