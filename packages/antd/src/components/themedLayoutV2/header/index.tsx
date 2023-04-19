@@ -29,6 +29,9 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                 alignItems: "center",
                 padding: "0px 24px",
                 height: "64px",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
             }}
         >
             <Space>
