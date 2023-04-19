@@ -21,6 +21,7 @@
     "@tabler/icons": "^1.1.0",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/inferencer": "^3.3.0",
+    "cross-env": "^7.0.3",
     "@chakra-ui/react": "^2.5.1"
   },
   "devDependencies": {
@@ -31,7 +32,7 @@
   },
   "scripts": {
     "dev": "refine start",
-    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
+    "start": "cross-env FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

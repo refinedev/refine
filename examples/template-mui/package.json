@@ -22,6 +22,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
+    "cross-env": "^7.0.3",
     "@mui/x-data-grid": "^5.12.1"
   },
   "devDependencies": {
@@ -32,7 +33,7 @@
   },
   "scripts": {
     "dev": "refine start",
-    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
+    "start": "cross-env FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

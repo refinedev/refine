@@ -20,7 +20,7 @@
     "antd": "^5.0.5"
   },
   "scripts": {
-    "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
+    "start": "cross-env FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true refine start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "eject": "react-scripts eject",
     "refine": "refine"
