@@ -5,6 +5,7 @@ import {
     UseFormReturn,
     FieldValues,
     UseFormHandleSubmit,
+    Path,
 } from "react-hook-form";
 import {
     BaseRecord,
@@ -95,26 +96,24 @@ export const useForm = <
 
     const {
         watch,
-        reset,
+        setValue,
         getValues,
         handleSubmit: handleSubmitReactHookForm,
     } = useHookFormResult;
 
     useEffect(() => {
-        if (typeof queryResult?.data !== "undefined") {
-            const fields: any = {};
-            const registeredFields = Object.keys(getValues());
-            Object.entries(queryResult?.data?.data || {}).forEach(
-                ([key, value]) => {
-                    if (registeredFields.includes(key)) {
-                        fields[key] = value;
-                    }
-                },
-            );
+        const data = queryResult?.data?.data;
+        if (!data) return;
 
-            reset(fields as any);
-        }
-    }, [queryResult?.data]);
+        const registeredFields = Object.keys(getValues());
+        Object.entries(data).forEach(([key, value]) => {
+            const name = key as Path<TVariables>;
+
+            if (registeredFields.includes(name)) {
+                setValue(name, value);
+            }
+        });
+    }, [queryResult?.data, setValue, getValues]);
 
     useEffect(() => {
         const subscription = watch((values: any, { type }: { type?: any }) => {
