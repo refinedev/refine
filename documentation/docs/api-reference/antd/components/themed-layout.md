@@ -4,7 +4,7 @@ title: <ThemedLayout>
 sidebar_label: <ThemedLayout>
 description: <ThemedLayoutV2> component from refine, defines the overall structure and layout of a web page.
 swizzle: true
-source: packages/antd/src/components/themedLayout/index.tsx
+source: packages/antd/src/components/themedLayoutV2/index.tsx
 ---
 
 ```tsx live shared
@@ -38,7 +38,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 
 -   [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
 -   [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
--   [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+-   [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 -   `<Footer>`: displayed at the bottom of the page.
 -   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
@@ -243,9 +243,9 @@ const App: React.FC = () => {
 
 ### `Title`
 
-In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitle>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitle>`][themed-title] component by passing a custom component to the `Title` prop.
+In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2>`][themed-title] component by passing a custom component to the `Title` prop.
 
-Here is an example of how to replace the default [`<ThemedTitle>`][themed-title] component:
+Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-title] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -263,7 +263,7 @@ const App: React.FC = () => {
             <ThemedLayoutV2
                 // highlight-start
                 Title={({ collapsed }) => (
-                    <ThemedTitle
+                    <ThemedTitleV2
                         // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
                         collapsed={collapsed}
                         icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
@@ -741,9 +741,9 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayout/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayout/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayout/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/api-reference/core/hooks/ui/useMenu/
 [refine-component]: /docs/api-reference/core/components/refine-config/
 [antd-drawer]: https://ant.design/components/drawer
