@@ -43,41 +43,41 @@ Prefer to go through this tutorial in an online code editor? That's possible!
 
 <summary>Follow these instructions, then go directly to "Generate CRUD pages automatically with Inferencer" section!</summary>
 
-**Set up StackBlitz**
+**Set up CodeSandBox**
 
 <UIConditional is="antd">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-antd?file=src%2FApp.tsx) to open the Ant Design template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-antd?file=src%2FApp.tsx) to open the Ant Design template.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-chakra-ui?file=src%2FApp.tsx) to open the Chakra UI template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-chakra-ui?file=src%2FApp.tsx) to open the Chakra UI template.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-headless?file=src%2FApp.tsx) to open the headless template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-headless?file=src%2FApp.tsx) to open the headless template.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mantine?file=src%2FApp.tsx) to open the Mantine template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-mantine?file=src%2FApp.tsx) to open the Mantine template.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
 
 </UIConditional>
 
 2. Click “Sign in” on the top right to log in using your GitHub credentials.
 
-3. In the upper left of the StackBlitz editor window, click the "fork" button to fork the template (save to your own account dashboard).
+3. In the upper right of the CodeSandBox editor window, click the "fork" button to fork the template (save to your own account dashboard).
 
 <UIConditional is="antd">
 
