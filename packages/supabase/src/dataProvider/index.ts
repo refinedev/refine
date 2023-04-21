@@ -78,10 +78,11 @@ export const dataProvider = (
             } as any;
         },
 
-        create: async ({ resource, variables }) => {
+        create: async ({ resource, variables, meta }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .insert(variables);
+                .insert(variables)
+                .select(meta?.select ?? "*");
 
             if (error) {
                 return handleError(error);
@@ -92,10 +93,11 @@ export const dataProvider = (
             };
         },
 
-        createMany: async ({ resource, variables }) => {
+        createMany: async ({ resource, variables, meta }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .insert(variables);
+                .insert(variables)
+                .select(meta?.select ?? "*");
 
             if (error) {
                 return handleError(error);
@@ -108,6 +110,10 @@ export const dataProvider = (
 
         update: async ({ resource, id, variables, meta }) => {
             const query = supabaseClient.from(resource).update(variables);
+
+            if (meta?.select) {
+                query.select(meta.select);
+            }
 
             if (meta?.idColumnName) {
                 query.eq(meta.idColumnName, id);
@@ -131,6 +137,10 @@ export const dataProvider = (
                     const query = supabaseClient
                         .from(resource)
                         .update(variables);
+
+                    if (meta?.select) {
+                        query.select(meta.select);
+                    }
 
                     if (meta?.idColumnName) {
                         query.eq(meta.idColumnName, id);
