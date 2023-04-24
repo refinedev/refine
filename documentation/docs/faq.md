@@ -17,9 +17,13 @@ defaultValue="core"
 values={[
 {label: 'Core Form', value: 'core'},
 {label: 'Ant Design Form', value: 'antd'},
-{label: 'React Hook Form', value: 'react-hook-form'}
+{label: 'React Hook Form', value: 'react-hook-form'},
+{label: 'MUI + React Hook Form', value: 'mui-react-hook-form'},
+{label: 'Chakra UI + React Hook Form', value: 'chakra-ui-react-hook-form'}
 ]}>
 <TabItem value="core">
+
+[Refer to the `useForm` documentation for more information. &#8594][use-form-core]
 
 ```tsx
 import React, { useState } from "react";
@@ -53,6 +57,8 @@ export const UserCreate: React.FC = () => {
 
 </TabItem>
 <TabItem value="antd">
+
+[Refer to the `useForm` documentation for more information. &#8594][use-form-antd]
 
 ```tsx
 import React from "react";
@@ -92,6 +98,8 @@ export const UserCreate: React.FC = () => {
 </TabItem>
 <TabItem value="react-hook-form">
 
+[Refer to the `useForm` documentation for more information. &#8594][use-form-react-hook-form]
+
 ```tsx
 import React from "react";
 import { useForm } from "@refinedev/react-hook-form";
@@ -117,6 +125,266 @@ export const UserCreate: React.FC = () => {
             <input {...register("name")} />
             <input {...register("surname")} />
         </form>
+    );
+};
+```
+
+</TabItem>
+
+<TabItem value="mui-react-hook-form">
+
+[Refer to the `useForm` documentation for more information. &#8594][use-form-react-hook-form]
+
+```tsx
+import React from "react";
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import { Button, Box, TextField } from "@mui/material";
+
+type FormValues = {
+    name: string;
+    surname: string;
+};
+
+export const UserCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish },
+        register,
+        handleSubmit,
+    } = useForm<FormValues, HttpError, FormValues>();
+
+    const handleSubmitPostCreate = (values: FormValues) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            ...value,
+            fullName,
+        });
+    };
+
+    return (
+        <Box component="form" onSubmit={handleSubmit(handleSubmitPostCreate)}>
+            <TextField
+                {...register("name", {
+                    required: "This field is required",
+                })}
+                name="name"
+                label="Name"
+                error={!!errors.name}
+                helperText={errors.name?.message}
+            />
+            <TextField
+                {...register("surname", {
+                    required: "This field is required",
+                })}
+                name="surname"
+                label="Surname"
+                error={!!errors.surname}
+                helperText={errors.surname?.message}
+            />
+            <Button type="submit">Submit</Button>
+        </Box>
+    );
+};
+```
+
+If you use [`<Edit>`](/docs/api-reference/mui/components/basic-views/edit/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
+
+```tsx
+import React from "react";
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import { Button, Box, TextField } from "@mui/material";
+
+type FormValues = {
+    name: string;
+    surname: string;
+};
+
+export const UserCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        refineCore: { onFinish },
+        handleSubmit,
+    } = useForm<FormValues, HttpError, FormValues>();
+
+    const handleSubmitPostCreate = (values: FormValues) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            ...value,
+            fullName,
+        });
+    };
+
+    return (
+        <Edit
+            saveButtonProps={{
+                ...saveButtonProps,
+                onClick: handleSubmit(handleSubmitForm),
+            }}
+        >
+            <Box component="form">
+                <TextField
+                    {...register("name", {
+                        required: "This field is required",
+                    })}
+                    name="name"
+                    label="Name"
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
+                />
+                <TextField
+                    {...register("surname", {
+                        required: "This field is required",
+                    })}
+                    name="surname"
+                    label="Surname"
+                    error={!!errors.surname}
+                    helperText={errors.surname?.message}
+                />
+            </Box>
+        </Edit>
+    );
+};
+```
+
+</TabItem>
+
+<TabItem value="chakra-ui-react-hook-form">
+
+[Refer to the `useForm` documentation for more information. &#8594][use-form-react-hook-form]
+
+```tsx
+import React from "react";
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import {
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
+    Button,
+} from "@chakra-ui/react";
+
+type FormValues = {
+    name: string;
+    surname: string;
+};
+
+export const UserCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish },
+        register,
+        handleSubmit,
+    } = useForm<FormValues, HttpError, FormValues>();
+
+    const handleSubmitPostCreate = (values: FormValues) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            ...value,
+            fullName,
+        });
+    };
+
+    return (
+        <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
+            <FormControl mb="3" isInvalid={!!errors?.name}>
+                <FormLabel>Name</FormLabel>
+                <Input
+                    id="name"
+                    type="text"
+                    {...register("name", { required: "Name is required" })}
+                />
+                <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.surname}>
+                <FormLabel>Surname</FormLabel>
+                <Input
+                    id="surname"
+                    type="text"
+                    {...register("surname", {
+                        required: "Surname is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {`${errors.title?.surname}`}
+                </FormErrorMessage>
+                <Button type="submit">Submit</Button>
+            </FormControl>
+        </form>
+    );
+};
+```
+
+If you use [`<Edit>`](/docs/api-reference/mui/components/basic-views/edit/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
+
+```tsx
+import React from "react";
+import { HttpError } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
+import {
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
+    Button,
+} from "@chakra-ui/react";
+
+type FormValues = {
+    name: string;
+    surname: string;
+};
+
+export const UserCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        refineCore: { onFinish },
+        handleSubmit,
+    } = useForm<FormValues, HttpError, FormValues>();
+
+    const handleSubmitPostCreate = (values: FormValues) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            ...value,
+            fullName,
+        });
+    };
+
+    return (
+        <Edit
+            saveButtonProps={{
+                ...saveButtonProps,
+                onClick: handleSubmit(handleSubmitForm),
+            }}
+        >
+            <form>
+                <FormControl mb="3" isInvalid={!!errors?.name}>
+                    <FormLabel>Name</FormLabel>
+                    <Input
+                        id="name"
+                        type="text"
+                        {...register("name", { required: "Name is required" })}
+                    />
+                    <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
+                </FormControl>
+                <FormControl mb="3" isInvalid={!!errors?.surname}>
+                    <FormLabel>Surname</FormLabel>
+                    <Input
+                        id="surname"
+                        type="text"
+                        {...register("surname", {
+                            required: "Surname is required",
+                        })}
+                    />
+                    <FormErrorMessage>
+                        {`${errors.title?.surname}`}
+                    </FormErrorMessage>
+                </FormControl>
+            </form>
+        </Edit>
     );
 };
 ```
@@ -467,3 +735,8 @@ The third way is to use the `swizzle` command.
 You can use the command to copy the default `Sider` component to your project. This will allow you to customize the sider as you want.
 
 [Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)
+
+[use-form-core]: /docs/api-reference/core/hooks/useForm/
+[use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
+[use-form-antd]: /docs/api-reference/antd/hooks/form/useForm/
+[edit-mui]: /docs/packages/documentation/mui/edit/
