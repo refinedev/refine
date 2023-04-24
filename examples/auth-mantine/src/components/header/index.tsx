@@ -35,6 +35,8 @@ export const Header: React.FC = () => {
             sx={{
                 borderBottom: `1px solid ${borderColor}`,
                 position: `sticky`,
+                top: 0,
+                zIndex: 1,
             }}
         >
             <Group

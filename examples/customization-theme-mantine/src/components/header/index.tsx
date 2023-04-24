@@ -17,6 +17,8 @@ export const Header: React.FC = () => {
             p="xs"
             sx={{
                 position: `sticky`,
+                top: 0,
+                zIndex: 1,
             }}
         >
             <Flex justify="space-between" align="center">
