@@ -19,7 +19,16 @@ export const useMeta = () => {
     } = {}) => {
         const { meta } = sanitizeResource(resource ?? {});
 
-        return { ...meta, ...params, ...metaFromProp };
+        // this fields came from the query params and should be removed from the meta because they are not part of the meta.
+        const {
+            filters: _filters,
+            sorters: _sorters,
+            current: _current,
+            pageSize: _pageSize,
+            ...additionalParams
+        } = params ?? {};
+
+        return { ...meta, ...additionalParams, ...metaFromProp };
     };
 
     return getMetaFn;
