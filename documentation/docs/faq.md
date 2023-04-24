@@ -188,11 +188,12 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
-If you use [`<Edit>`](/docs/api-reference/mui/components/basic-views/edit/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
+If you use [`<Create>`](/docs/api-reference/mui/components/basic-views/create/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
 
 ```tsx
 import React from "react";
 import { HttpError } from "@refinedev/core";
+import { Create } from "@refinedev/mui";
 import { useForm } from "@refinedev/react-hook-form";
 import { Button, Box, TextField } from "@mui/material";
 
@@ -218,7 +219,7 @@ export const UserCreate: React.FC = () => {
     };
 
     return (
-        <Edit
+        <Create
             saveButtonProps={{
                 ...saveButtonProps,
                 onClick: handleSubmit(handleSubmitForm),
@@ -244,7 +245,7 @@ export const UserCreate: React.FC = () => {
                     helperText={errors.surname?.message}
                 />
             </Box>
-        </Edit>
+        </Create>
     );
 };
 ```
@@ -318,11 +319,12 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
-If you use [`<Edit>`](/docs/api-reference/mui/components/basic-views/edit/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
+If you use [`<Create>`](/docs/api-reference/chakra-ui/components/basic-views/create/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
 
 ```tsx
 import React from "react";
 import { HttpError } from "@refinedev/core";
+import { Create } from "@refinedev/chakra-ui";
 import { useForm } from "@refinedev/react-hook-form";
 import {
     FormControl,
@@ -354,7 +356,7 @@ export const UserCreate: React.FC = () => {
     };
 
     return (
-        <Edit
+        <Create
             saveButtonProps={{
                 ...saveButtonProps,
                 onClick: handleSubmit(handleSubmitForm),
@@ -384,7 +386,7 @@ export const UserCreate: React.FC = () => {
                     </FormErrorMessage>
                 </FormControl>
             </form>
-        </Edit>
+        </Create>
     );
 };
 ```
