@@ -12,7 +12,13 @@ export const Header: React.FC = () => {
     const dark = colorScheme === "dark";
 
     return (
-        <MantineHeader height={50} p="xs">
+        <MantineHeader
+            height={50}
+            p="xs"
+            sx={{
+                position: `sticky`,
+            }}
+        >
             <Flex justify="space-between" align="center">
                 <HamburgerMenu />
                 <ActionIcon
