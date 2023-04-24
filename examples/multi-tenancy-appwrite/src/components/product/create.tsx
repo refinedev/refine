@@ -1,5 +1,4 @@
 import { Create } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import {
     Drawer,
@@ -11,10 +10,7 @@ import {
     Upload,
     Grid,
 } from "antd";
-
-import { appwriteClient, normalizeFile, storage } from "utility";
-import { StoreContext } from "context/store";
-import { useContext } from "react";
+import { normalizeFile, storage } from "utility";
 
 type CreateProductProps = {
     drawerProps: DrawerProps;
@@ -28,7 +24,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     saveButtonProps,
 }) => {
     const breakpoint = Grid.useBreakpoint();
-    const [store] = useContext(StoreContext);
 
     return (
         <Drawer
@@ -46,7 +41,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                     onFinish={(values) => {
                         return formProps.onFinish?.({
                             ...values,
-                            storeId: store,
                             image: JSON.stringify(values.image),
                         });
                     }}

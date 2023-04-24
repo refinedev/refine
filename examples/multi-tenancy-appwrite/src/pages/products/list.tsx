@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
 import {
@@ -8,18 +7,13 @@ import {
     CreateButton,
     List,
 } from "@refinedev/antd";
-
 import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 import { ProductItem, EditProduct, CreateProduct } from "components/product";
-import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const [store] = useContext(StoreContext);
-    const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
-    });
+    const { listProps } = useSimpleList<IProduct>();
 
     const {
         drawerProps: createDrawerProps,
