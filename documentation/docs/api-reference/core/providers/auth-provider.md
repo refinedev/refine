@@ -6,13 +6,9 @@ sidebar_label: Auth Provider
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
 
-Auth provider is an object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
+Auth provider is an object that contains methods to handle authentication and access control in your app by having **refine** consume them. These methods expect to return a promise, meaning that they are async and can be used to create auth providers.
 
-By default, **refine** doesn't handle authentication in the app. When you need, you can pass `authProvider` to the `<Refine>` component as a prop.
-
-Auth provider's methods expect to return a resolved Promise. So, you can use async methods to create auth provider. Therefore, to create auth provider from scratch, you can use any third-party authentication service like [Auth0, Okta, etc.](#examples), or your own custom methods.
-
-[Refer to the "Create Auth Provider From Scratch" tutorial for more information &#8594][create-auth-provider-tutorial]
+You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch, which we will explore in the next section.
 
 ## Usage
 
@@ -131,25 +127,25 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 `login` method is used to authenticate users.
 
-You can use [`useLogin`][use-login] hook to call `login` method.
+You can use the [`useLogin`][use-login] hook to call `login` method.
 
 ### check <PropTag required />
 
 `check` method is used to check if the user is authenticated.
 
-You can use [`useIsAuthenticated`][use-is-authenticated] hook to call `check` method.
+You can use the [`useIsAuthenticated`][use-is-authenticated] hook to call `check` method.
 
 ### logout <PropTag required />
 
 `logout` method is used to log out users.
 
-You can use [`useLogout`][use-logout] hook to call `logout` method.
+You can use the [`useLogout`][use-logout] hook to call `logout` method.
 
 ### onError <PropTag required />
 
 `onError` method is called when you get an error response from the API. You can create your own business logic to handle the error such as refreshing the token, logging out the user, etc.
 
-You can use [`useOnError`][use-on-error] hook to call `onError` method.
+You can use the [`useOnError`][use-on-error] hook to call `onError` method.
 
 ## Optional Methods
 
@@ -157,31 +153,31 @@ You can use [`useOnError`][use-on-error] hook to call `onError` method.
 
 `getPermissions` method is used to get the user's permissions.
 
-You can use [`usePermissions`][use-permissions] hook to call `getPermissions` method.
+You can use the [`usePermissions`][use-permissions] hook to call `getPermissions` method.
 
 ### getIdentity
 
 `getIdentity` method is used to get the user's identity.
 
-You can use [`useGetIdentity`][use-get-identity] hook to call `getIdentity` method.
+You can use the [`useGetIdentity`][use-get-identity] hook to call `getIdentity` method.
 
 ### register
 
 `register` method is used to register a new user.
 
-You can use [`useRegister`][use-register] hook to call `register` method.
+You can use the [`useRegister`][use-register] hook to call `register` method.
 
 ### forgotPassword
 
 `forgotPassword` method is used to send a password reset link to the user's email address.
 
-You can use [`useForgotPassword`][use-forgot-password] hook to call `forgotPassword` method.
+You can use the [`useForgotPassword`][use-forgot-password] hook to call `forgotPassword` method.
 
 ### updatePassword
 
 `updatePassword` method is used to update the user's password.
 
-You can use [`useUpdatePassword`][use-update-password] hook to call `updatePassword` method.
+You can use the [`useUpdatePassword`][use-update-password] hook to call `updatePassword` method.
 
 ## Hooks and Components
 
@@ -200,7 +196,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Legacy Auth Provider
 
-**refine**'s v4 release is backward compatible and supports the legacy auth provider implementations until v5.
+**refine**'s v4 release is backward compatible and supports legacy auth provider implementations until v5.
 
 If you want to use a legacy auth provider, you can pass them to the `<Refine />` component using the `legacyAuthProvider` prop.
 
@@ -225,19 +221,9 @@ const App = () => {
 };
 ```
 
-## FAQ
-
-### How can I create authProvider?
-
-[Refer to the "Create Auth Provider From Scratch" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
-
-### How can I set authorization credentials?
-
-[Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#setting-authorization-credentials)
-
-### How can I implement refresh token mechanism?
-
-[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#implementing-refresh-token-mechanism)
+:::tip
+If you want to know about some topics such as setting authorization credentials, implementation of refresh token mechanism or creating an auth provider from scratch, refer to the ["Create Auth Provider From Scratch" tutorial&#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
+:::
 
 ## API Reference
 

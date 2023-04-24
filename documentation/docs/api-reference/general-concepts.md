@@ -3,29 +3,29 @@ id: general-concepts
 title: General Concepts
 ---
 
--   **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
--   All the **data** related hooks([`useTable`](/docs/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/api-reference/core/hooks/data/useList) etc.) of **refine** can be given some common properties like `resource`, `meta`, `queryOptions` etc.
+**refine** core is fully independent of UI, meaning that you can use core components and hooks without any UI dependency. All of the **data**-related hooks, such as [`useTable`](/docs/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/api-reference/core/hooks/data/useList), of refine can also be given some common properties like `resource`, `meta`, `queryOptions` etc. that are independent of UI.
 
 ## `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how `resource` are handled.
+`resource` is a prop that gets passed to `dataProvider` as a paremeter by **refine**. It is usually used as an API endpoint path but it all depends on how you hanlde it in your `dataProvider`
 
-How does refine know what the resource value is?
+> For an example, refer to the [`Creating a data provider from scratch part of the tutorial`](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
 
-1- The resource value is determined from the active route where the component or the hook is used.
+### How does **refine** know what the value of `resource` is?
+
+**refine** automatically determines the value from the active route where the component or the hook is used.
+
+For example, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"` because the active route is `/posts`
 
 :::info
-To make the inference work, you need to pass the `routerProvider` prop to the `<Refine>` component from your router package choice.
+To make the inferencer work, you need to pass the `routerProvider` prop to the `<Refine>` component from your router package choice.
 :::
-
-Like below, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"`. Because the active route is `/posts` and its also defined in the `resources` prop.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router-v6";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { PostList } from "pages/posts/list.tsx";
 
@@ -53,9 +53,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-2- The resource value is determined from the `resource` prop of the hook.
-
-You can override the default `resource` value hook by passing the `resource` prop to the hook like below:
+This value however can be overriden by passing the `resource` prop to the hook:
 
 ```tsx title="src/pages/posts/list.tsx"
 import { useTable } from "@refinedev/core";
@@ -71,16 +69,14 @@ const PostList: React.FC = () => {
 ```
 
 :::info
-
-The value you pass to the `resource` property is also used to determine the active `resource` from the `resources` array. Defining the resource in the `resources` array is **not** required for your API interactions to work but it will enable features of **refine** such as redirecting to the list page after a successful create or update operation.
-
+The value passed to the `resource` property is also used to determine the active `resource` from the `resources` array, which is optional for API interactions, but enables useful `refine` features such as redirecting to the list page after create and update operations.
 :::
 
-How can I request an API with nested route?
+---
 
-<br/>
-
-[Refer to how to use resource with nested routes documentation for more information. &#8594](/faq.md#how-can-i-request-an-api-with-nested-route)
+:::info
+If you want to use `resource` with nested routes, refer to the [related section in FAQ &#8594](/faq.md#how-can-i-request-an-api-with-nested-route)
+:::
 
 ## `meta`
 
@@ -90,11 +86,11 @@ How can I request an API with nested route?
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 -   Filling additional parameters in target routes when occurs redirection.
 
-### Pass global `meta` specific to a resource
+### Passing a global `meta` specific to a resource
 
 You can define a global `meta` specific to a resource, which will be passed to all the data provider methods whenever the resource is matched.
 
-For instance, to pass the `role` property to all data provider methods for the `posts` resource, use the following code:
+For instance, to pass the `role` property to all data provider methods for the `posts` resource:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -117,11 +113,11 @@ const App: React.FC = () => {
 };
 ```
 
-### Pass `meta` with hook-specific properties
+### Passing `meta` with hook-specific properties
 
 You can pass the `meta` property with hook-specific properties to data provider methods, which will override the global `meta` of the resource.
 
-For example, you can pass the `headers` property to the `getOne` method by using the `meta` property in the `useOne` hook, as shown below:
+For example, you can pass the `headers` property to the `getOne` method by using the `meta` property in the `useOne` hook:
 
 ```tsx
     useOne({
@@ -152,11 +148,13 @@ For example, you can pass the `headers` property to the `getOne` method by using
     };
 ```
 
-By using this logic, you can pass any property to handle your specific use cases.
+:::note
+You can pass any property to handle your specific use cases with the same logic
+:::
 
-### Use URL query parameters as `meta` properties
+### Using URL query parameters as `meta` properties
 
-Query parameters on the URL can also be used as `meta` properties for data provider methods.
+Query parameters on the URL can also be used as `meta` properties for data provider methods, which is very useful when you want to customize them based on query parameters.
 
 For example, if the URL is `https://example.com/posts?foo=bar`, the `foo` property will be passed to the data provider methods as a `meta` property.
 
@@ -169,23 +167,13 @@ const dataProvider = {
 };
 ```
 
-This can be useful when you want to customize the behavior of data provider methods based on query parameters passed in the URL.
-
-<br />
-
 :::info
-
-The `meta` is created in the following order of precedence:
-
-1.  Passed to the hook.
-2.  Defined in the URL query parameters.
-3.  Defined in the `resources` prop of the `<Refine>`.
-
+The order of precedence for creating the `meta` is as follows: first, it is passed to the hook; second, it is defined in the URL query parameters; and third, it is defined in the `resources` prop of the `<Refine>` component.
 :::
 
 :::caution
 
-The `meta` property defined in the `resources` prop of the `<Refine>` is only passed to the data provider methods via the following hooks and their derivatives:
+The `meta` property defined in the `resources` prop of the `<Refine>` is passed to the data provider methods only via the following hooks and their derivatives:
 
 -   [`useTable`](/docs/api-reference/core/hooks/useTable/)
 -   [`useForm`](/docs/api-reference/core/hooks/useForm/)
@@ -194,10 +182,10 @@ The `meta` property defined in the `resources` prop of the `<Refine>` is only pa
 
 :::
 
-### Use `meta` to generate GraphQL queries
+### Using `meta` to generate GraphQL queries
 
-[Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries &#8594](/docs/packages/documentation/data-providers/graphql/)
+[Refer to the `GraphQL` guide&#8594](/advanced-tutorials/data-provider/graphql.md)
 
-### How to pass `meta` to your existing `dataProvider` methods
+### Passing `meta` to your existing `dataProvider` methods
 
-[Refer to the how to pass `meta` to your existing `dataProvider` methods &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
+[Refer to the related section in FAQ&#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
