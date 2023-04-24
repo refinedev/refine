@@ -18,7 +18,7 @@ values={[
 {label: 'Core Form', value: 'core'},
 {label: 'Ant Design Form', value: 'antd'},
 {label: 'React Hook Form', value: 'react-hook-form'},
-{label: 'MUI + React Hook Form', value: 'mui-react-hook-form'},
+{label: 'Material UI + React Hook Form', value: 'mui-react-hook-form'},
 {label: 'Chakra UI + React Hook Form', value: 'chakra-ui-react-hook-form'}
 ]}>
 <TabItem value="core">
