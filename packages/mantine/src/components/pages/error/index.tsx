@@ -45,17 +45,17 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
 
     return (
         <Box
-            sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                minHeight: "100vh",
-                "@media (min-height: 755px)": {
-                    marginTop: "-150px",
+            sx={[
+                {
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    boxSizing: "border-box",
+                    minHeight: "calc(100vh - 150px)",
                 },
-            }}
+            ]}
         >
             <Title
                 sx={(theme) => ({
