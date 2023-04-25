@@ -90,7 +90,6 @@ function App() {
                                 index
                                 element={
                                     <NavigateToResource resource="products" />
-                                    // <Dashboard />
                                 }
                             />
 

@@ -13,7 +13,6 @@ export const StoreSelect: React.FC = () => {
         resource: "stores",
         optionLabel: "title",
         optionValue: "id",
-        // ignore the tenant param in the url
         meta: {
             tenant: undefined,
         },
