@@ -1,9 +1,12 @@
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import {
+    IResourceComponentsProps,
+    HttpError,
+    useParsed,
+} from "@refinedev/core";
 
 import {
     useSimpleList,
     useModalForm,
-    useDrawerForm,
     CreateButton,
     List,
 } from "@refinedev/antd";
@@ -13,14 +16,25 @@ import { IProduct } from "interfaces";
 import { ProductItem, EditProduct, CreateProduct } from "components/product";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const { listProps } = useSimpleList<IProduct>();
+    const { params } = useParsed<{ tenant?: string }>();
+    const { listProps } = useSimpleList<IProduct>({
+        filters: {
+            permanent: [
+                {
+                    field: "storeId",
+                    operator: "eq",
+                    value: params?.tenant,
+                },
+            ],
+        },
+    });
 
     const {
-        drawerProps: createDrawerProps,
+        modalProps: createModalProps,
         formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
         show: createShow,
-    } = useDrawerForm<IProduct, HttpError, IProduct>({
+    } = useModalForm<IProduct, HttpError, IProduct>({
+        resource: "products",
         action: "create",
         redirect: false,
     });
@@ -68,9 +82,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 formProps={editFormProps}
             />
             <CreateProduct
-                drawerProps={createDrawerProps}
+                modalProps={createModalProps}
                 formProps={createFormProps}
-                saveButtonProps={createSaveButtonProps}
             />
         </>
     );

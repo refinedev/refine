@@ -1,18 +1,20 @@
-import { IResourceComponentsProps } from "@refinedev/core";
+import { IResourceComponentsProps, useParsed } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
 
 export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
+    const { params } = useParsed<{ tenant?: string }>();
     const { formProps, saveButtonProps, queryResult } = useForm<IOrder>();
 
     const postData = queryResult?.data?.data;
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "61cb01b17ef57",
+        resource: "products",
         defaultValue: postData?.productId,
         optionLabel: "title",
         optionValue: "id",
+        filters: [{ field: "storeId", operator: "eq", value: params?.tenant }],
     });
 
     return (
@@ -30,7 +32,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...productSelectProps} />
                 </Form.Item>
 
-                <Form.Item label="Quantitiy" name="quantitity">
+                <Form.Item label="Quantity" name="quantity">
                     <InputNumber defaultValue={1} />
                 </Form.Item>
 
