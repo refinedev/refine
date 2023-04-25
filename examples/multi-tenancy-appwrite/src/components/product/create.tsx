@@ -10,7 +10,8 @@ import {
     Upload,
     Grid,
 } from "antd";
-import { normalizeFile, storage } from "utility";
+import { normalizeFile, storage, account } from "utility";
+import { Permission, Role } from "@refinedev/appwrite";
 
 type CreateProductProps = {
     drawerProps: DrawerProps;
@@ -89,7 +90,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                                 "default",
                                                 rcFile.name,
                                                 rcFile,
-                                                ["role:all"],
+                                                [Permission.read(Role.any())],
                                             );
 
                                         const url = storage.getFileView(

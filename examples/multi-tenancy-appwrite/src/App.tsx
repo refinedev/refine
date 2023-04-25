@@ -2,6 +2,7 @@ import {
     Authenticated,
     GitHubBanner,
     Refine,
+    useCreate,
     useParsed,
 } from "@refinedev/core";
 import {
@@ -31,15 +32,22 @@ import { ProductShow } from "components/product";
 import { Header } from "components/header";
 
 function App() {
-    const { params } = useParsed();
+    const { params } = useParsed<{ tenant?: string }>();
+    const defaultTenant = "644691f3098620a990ba";
+    const tenant = params?.tenant || defaultTenant;
+
     return (
         <BrowserRouter>
             <GitHubBanner />
             <ConfigProvider theme={RefineThemes.Blue}>
                 <Refine
                     routerProvider={routerProvider}
-                    liveProvider={liveProvider(appwriteClient)}
-                    dataProvider={dataProvider(appwriteClient)}
+                    liveProvider={liveProvider(appwriteClient, {
+                        databaseId: "multi-tenancy",
+                    })}
+                    dataProvider={dataProvider(appwriteClient, {
+                        databaseId: "multi-tenancy",
+                    })}
                     authProvider={authProvider}
                     options={{
                         liveMode: "auto",
@@ -48,22 +56,20 @@ function App() {
                     }}
                     resources={[
                         {
-                            name: "61cb01b17ef57",
+                            name: "products",
                             list: "/:tenant/products",
                             show: "/:tenant/products/show/:id",
                             meta: {
-                                label: "Products",
-                                tenant: params?.tenant,
+                                tenant,
                             },
                         },
                         {
-                            name: "61cb019fdbd11",
+                            name: "orders",
                             list: "/:tenant/orders",
                             create: "/:tenant/orders/create",
                             edit: "/:tenant/orders/edit/:id",
                             meta: {
-                                label: "Orders",
-                                tenant: params?.tenant,
+                                tenant,
                             },
                         },
                     ]}
@@ -84,7 +90,8 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="61cb01b17ef57" />
+                                    <NavigateToResource resource="products" />
+                                    // <Dashboard />
                                 }
                             />
 
@@ -120,7 +127,17 @@ function App() {
                         >
                             <Route
                                 path="/login"
-                                element={<AuthPage type="login" />}
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        formProps={{
+                                            initialValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
+                                }
                             />
                         </Route>
 

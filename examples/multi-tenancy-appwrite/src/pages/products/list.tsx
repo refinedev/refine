@@ -22,7 +22,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         show: createShow,
     } = useDrawerForm<IProduct, HttpError, IProduct>({
         action: "create",
-        resource: "61cb01b17ef57",
         redirect: false,
     });
 
