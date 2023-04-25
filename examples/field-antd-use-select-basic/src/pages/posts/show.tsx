@@ -1,10 +1,15 @@
-import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
+import {
+    useShow,
+    IResourceComponentsProps,
+    useOne,
+    useMany,
+} from "@refinedev/core";
 
 import { Show, MarkdownField } from "@refinedev/antd";
 
-import { Typography } from "antd";
+import { Space, Tag, Typography } from "antd";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, ITag } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -22,6 +27,14 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             },
         });
 
+    const { data: tagsData } = useMany<ITag>({
+        resource: "tags",
+        ids: record?.tags || [],
+        queryOptions: {
+            enabled: !!record?.tags.length,
+        },
+    });
+
     return (
         <Show isLoading={isLoading}>
             <Title level={5}>Id</Title>
@@ -37,6 +50,13 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />
+
+            <Title level={5}>Tags</Title>
+            <Space size={[0, 8]} wrap>
+                {tagsData?.data?.map((tag) => (
+                    <Tag key={tag.id}>{tag.title}</Tag>
+                ))}
+            </Space>
         </Show>
     );
 };

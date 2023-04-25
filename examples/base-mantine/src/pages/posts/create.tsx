@@ -1,6 +1,7 @@
 import { Create, useForm, useSelect } from "@refinedev/mantine";
-import { Select, TextInput, Text } from "@mantine/core";
+import { Select, TextInput, Text, MultiSelect } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
+import { ITag } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -29,6 +30,10 @@ export const PostCreate: React.FC = () => {
         resource: "categories",
     });
 
+    const { selectProps: tagSelectProps } = useSelect<ITag>({
+        resource: "tags",
+    });
+
     return (
         <Create saveButtonProps={saveButtonProps}>
             <form>
@@ -55,6 +60,17 @@ export const PostCreate: React.FC = () => {
                     placeholder="Pick one"
                     {...getInputProps("category.id")}
                     {...selectProps}
+                />
+                <MultiSelect
+                    {...getInputProps("tags")}
+                    {...tagSelectProps}
+                    mt={8}
+                    label="Tags"
+                    placeholder="Pick multiple"
+                    defaultValue={[]}
+                    filter={(value, _selected, item) => {
+                        return !!item.label?.toLowerCase().includes(value);
+                    }}
                 />
                 <Text mt={8} weight={500} size="sm" color="#212529">
                     Content

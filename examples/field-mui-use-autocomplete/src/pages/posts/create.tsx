@@ -5,7 +5,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, ITag } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -24,6 +24,11 @@ export const PostCreate: React.FC = () => {
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
+    });
+
+    const { autocompleteProps: tagsAutocompleteProps } = useAutocomplete<ITag>({
+        resource: "tags",
+        defaultValue: [],
     });
 
     return (
@@ -110,6 +115,63 @@ export const PostCreate: React.FC = () => {
                             )}
                         />
                     )}
+                />
+                <Controller
+                    control={control}
+                    name="tags"
+                    defaultValue={[]}
+                    render={({ field }) => {
+                        const newValue = tagsAutocompleteProps.options.filter(
+                            (p) =>
+                                field.value?.find((v) => v === p?.id) !==
+                                undefined,
+                        );
+
+                        return (
+                            <Autocomplete
+                                {...tagsAutocompleteProps}
+                                {...field}
+                                value={newValue}
+                                multiple
+                                clearOnBlur={false}
+                                onChange={(_, value) => {
+                                    const newValue = value.map((p) => p?.id);
+                                    field.onChange(newValue);
+                                }}
+                                getOptionLabel={(item) => {
+                                    return (
+                                        tagsAutocompleteProps?.options?.find(
+                                            (p) =>
+                                                p?.id?.toString() ===
+                                                item?.id.toString(),
+                                        )?.title ?? ""
+                                    );
+                                }}
+                                isOptionEqualToValue={(option, value) => {
+                                    return (
+                                        value === undefined ||
+                                        option?.id?.toString() ===
+                                            value?.id?.toString()
+                                    );
+                                }}
+                                renderInput={(params) => {
+                                    return (
+                                        <TextField
+                                            {...params}
+                                            label="Tags"
+                                            name="tags"
+                                            id="tags"
+                                            margin="normal"
+                                            variant="outlined"
+                                            error={!!errors.tags}
+                                            helperText={errors.tags?.message}
+                                            required
+                                        />
+                                    );
+                                }}
+                            />
+                        );
+                    }}
                 />
             </Box>
         </Create>
