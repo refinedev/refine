@@ -590,7 +590,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     return (
         <Edit
             isLoading={formLoading}
-            headerButtons={
+            footerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

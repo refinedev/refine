@@ -12,30 +12,30 @@ We will show you how to create an auth provider from scratch in this section. Af
 
 First, create a new file named `authProvider.ts` in the `src` folder and add the following code:
 
-    ```tsx title="src/authProvider.ts"
-    import type { AuthBindings } from "@refinedev/core";
+```tsx title="src/authProvider.ts"
+import type { AuthBindings } from "@refinedev/core";
 
-    const authProvider: AuthBindings = {
-        login: async (params: any) => ({}),
-        check: async (params: any) => ({}),
-        logout: async (params: any) => ({}),
-        onError: async (params: any) => ({}),
-    };
+const authProvider: AuthBindings = {
+    login: async (params: any) => ({}),
+    check: async (params: any) => ({}),
+    logout: async (params: any) => ({}),
+    onError: async (params: any) => ({}),
+};
 
-    export default authProvider;
-    ```
+export default authProvider;
+```
 
 Now, to pass the `authProvider` to the `<Refine/>` component, open `App.tsx` file and add the related code:
 
-    ```tsx title="src/App.tsx"
-    // ---
-    import authProvider from "./authProvider";
+```tsx title="src/App.tsx"
+// ---
+import authProvider from "./authProvider";
 
-    <Refine
-        // ---
-        authProvider={authProvider}
-    />;
-    ```
+<Refine
+    // ---
+    authProvider={authProvider}
+/>;
+```
 
 :::note
 `authProvider` isn't required for the `<Refine/>` to work but your app won't have any authentication and incidentally, you wo'nt be able to use the auth hooks.

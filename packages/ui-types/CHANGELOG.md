@@ -1,5 +1,17 @@
 # @pankod/refine-ui-types
 
+## 1.10.0
+
+### Minor Changes
+
+-   [#4163](https://github.com/refinedev/refine/pull/4163) [`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - refactor: deprecated `RefineThemedLayoutProps`, `RefineThemedLayoutSiderProps` and `RefineThemedLayoutHeaderProps` for `ThemedLayoutV2`
+
+## 1.9.0
+
+### Minor Changes
+
+-   [#4163](https://github.com/refinedev/refine/pull/4163) [`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - refactor: deprecated `RefineThemedLayoutProps`, `RefineThemedLayoutSiderProps` and `RefineThemedLayoutHeaderProps` for `ThemedLayoutV2`
+
 ## 1.8.0
 
 ### Minor Changes

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FieldValues } from "react-hook-form";
+import { FieldValues, Path } from "react-hook-form";
 import { BaseRecord, HttpError } from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
@@ -79,31 +79,26 @@ export const useStepsForm = <
     const {
         trigger,
         getValues,
-        reset,
+        setValue,
         formState: { dirtyFields },
         refineCore: { queryResult },
     } = useHookFormResult;
 
     useEffect(() => {
-        if (queryResult?.data) {
-            const fields: any = {};
-            const registeredFields = Object.keys(getValues());
-            Object.entries(queryResult?.data?.data).forEach(([key, value]) => {
-                if (registeredFields.includes(key)) {
-                    if (dirtyFields[key]) {
-                        fields[key] = getValues(key as any);
-                    } else {
-                        fields[key] = value;
-                    }
-                }
-            });
+        const data = queryResult?.data?.data;
+        if (!data) return;
 
-            reset(fields as any, {
-                keepDirty: true,
-                keepDirtyValues: true,
-            });
-        }
-    }, [queryResult?.data, current]);
+        const registeredFields = Object.keys(getValues());
+        Object.entries(data).forEach(([key, value]) => {
+            const name = key as Path<TVariables>;
+
+            if (registeredFields.includes(name)) {
+                if (!dirtyFields[name]) {
+                    setValue(name, value);
+                }
+            }
+        });
+    }, [queryResult?.data, current, setValue, getValues]);
 
     const go = (step: number) => {
         let targetStep = step;

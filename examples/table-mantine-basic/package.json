@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@refinedev/mantine": "^2.10.0",
-    "@refinedev/core": "^4.10.0",
-    "@refinedev/cli": "^2.5.1",
+    "@refinedev/core": "^4.12.0",
+    "@refinedev/cli": "^2.5.3",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/simple-rest": "^4.5.0",
-    "@refinedev/react-table": "^5.2.0",
+    "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.1.0",
     "@emotion/react": "^11.8.2",
@@ -27,9 +27,9 @@
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.0.7",
+    "@vitejs/plugin-react": "^4.0.0",
     "typescript": "^4.7.4",
-    "vite": "^2.8.0"
+    "vite": "^4.3.1"
   },
   "version": "3.25.0"
 }

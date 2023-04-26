@@ -1,5 +1,14 @@
 # @pankod/refine-live-previews
 
+## 0.3.2
+
+### Patch Changes
+
+-   Updated dependencies [[`3d28fccc1ca`](https://github.com/refinedev/refine/commit/3d28fccc1ca14cdf316d518935cb6c17500c62a4), [`05dd92662ce`](https://github.com/refinedev/refine/commit/05dd92662ce1016dced9fecd326f4c147e3d036a), [`6081efbc26b`](https://github.com/refinedev/refine/commit/6081efbc26bad28629d5513d6e7a30c96b0dd080)]:
+    -   @refinedev/antd@5.9.0
+    -   @refinedev/strapi-v4@5.0.0
+    -   @refinedev/mui@4.10.3
+
 ## 0.3.1
 
 ### Patch Changes

@@ -855,7 +855,7 @@ const MyLoginPage = () => {
         <AuthPage
             type="login"
             title={
-                <ThemedTitle
+                <ThemedTitleV2
                     title="My Title"
                     icon={<img src="https://refine.dev/img/logo.png" />}
                 />

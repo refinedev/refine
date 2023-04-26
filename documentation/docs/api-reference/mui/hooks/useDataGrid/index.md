@@ -372,6 +372,23 @@ useDataGrid({
 });
 ```
 
+### `sorters.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, or `"server"`.
+
+-   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+```tsx
+useDataGrid({
+    sorters: {
+        mode: "server",
+    },
+});
+```
+
 ### `filters.initial`
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
@@ -428,6 +445,23 @@ You can also override the default value by using the second parameter of the [`s
 useDataGrid({
     filters: {
         defaultBehavior: "replace",
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useDataGrid({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -916,6 +950,30 @@ A function to set current [sorters state][crudsorting].
 You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
+
+### How can I handle client side filtering?
+
+You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server-side filtering. `useDataGrid` is fully compatible with [`Material UI <DataGrid>  component's`](https://mui.com/x/react-data-grid/filtering/) filtering feature.
+
+```tsx
+useDataGrid({
+    filters: {
+        mode: "off",
+    },
+});
+```
+
+### How can I handle client side sorting?
+
+You can set the [`sorting.mode: "off"`](#sortersmode) in order to disable server-side sorting. `useDataGrid` is fully compatible with [`Material UI <DataGrid> component's`](https://mui.com/x/react-data-grid/sorting/) sorting feature.
+
+```tsx
+useDataGrid({
+    sorting: {
+        mode: "off",
+    },
+});
+```
 
 ## API
 
