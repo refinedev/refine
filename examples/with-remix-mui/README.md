@@ -29,4 +29,4 @@
 
 </div>
 
-This example repository has been moved to [here](https://github.com/refinedev/refine/tree/master/examples/with-remix-material-ui)
+This example repository has been moved to [here](https://github.com/refinedev/refine/tree/next/examples/with-remix-material-ui)

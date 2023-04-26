@@ -31,4 +31,4 @@
 
 </div>
 
-### This example repository has been moved to [here.](https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui)
+### This example repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/finefoods-material-ui)

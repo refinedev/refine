@@ -31,4 +31,15 @@
 
 </div>
 
-### This example repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/auth-material-ui)
+## Try it out on your local
+
+```bash
+npm create refine-app@latest -- --example auth-material-ui
+```
+
+## Try it out on CodeSandbox
+
+<br/>
+
+[![Open auth-material-ui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/auth-material-ui?view=preview&theme=dark&codemirror=1)
+        

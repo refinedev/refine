@@ -1,5 +1,5 @@
 {
-  "name": "auth-mui",
+  "name": "auth-material-ui",
   "version": "3.25.0",
   "private": true,
   "dependencies": {
