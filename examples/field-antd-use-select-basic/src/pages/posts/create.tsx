@@ -31,13 +31,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: tagSelectProps } = useSelect<ICategory>({
         resource: "tags",
-        onSearch: (value) => [
-            {
-                field: "title",
-                operator: "contains",
-                value,
-            },
-        ],
     });
 
     return (

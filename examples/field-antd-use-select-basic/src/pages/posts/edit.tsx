@@ -28,13 +28,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: tagSelectProps } = useSelect<ITag>({
         resource: "tags",
         defaultValue: postData?.tags || [],
-        onSearch: (value) => [
-            {
-                field: "title",
-                operator: "contains",
-                value,
-            },
-        ],
     });
 
     return (

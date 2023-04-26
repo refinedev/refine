@@ -14,6 +14,7 @@ export const PostCreate: React.FC = () => {
         register,
         control,
         formState: { errors },
+        getValues,
     } = useForm<
         IPost,
         HttpError,
@@ -28,7 +29,7 @@ export const PostCreate: React.FC = () => {
 
     const { autocompleteProps: tagsAutocompleteProps } = useAutocomplete<ITag>({
         resource: "tags",
-        defaultValue: [],
+        defaultValue: getValues("tags") || [],
     });
 
     return (
