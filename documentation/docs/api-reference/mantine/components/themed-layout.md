@@ -217,6 +217,22 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
+### `isSiderCollapsedByDefault`
+
+This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+
+-   `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
+-   `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
+
+```tsx
+<ThemedLayoutV2
+    // highlight-next-line
+    isSiderCollapsedByDefault={true}
+>
+    {/* ... */}
+</ThemedLayoutV2>
+```
+
 ### `Header`
 
 In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/auth/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
@@ -648,6 +664,7 @@ If there is already a file with the same name in the directory, the swizzle comm
 :::
 
 ## Migrate ThemedLayout to ThemedLayoutV2
+
 Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayout` you can update it by following these steps.
 Only if you are using `ThemedLayout`. If you are not customizing the `Header` component, an update like the one below will suffice.
 
@@ -719,7 +736,9 @@ But mostly we customize the `Header` component. For this, an update like the one
     );
 };
 ```
+
 ## Hamburger Menu
+
 The `HamburgerMenu` component is a component that is used to collapse/uncollapse the `Sider` component. It is used by default in the `Header` component. However, you can do this anywhere you want using the `<HamburgerMenu />` component. Below you can see an example put on the dashboard page.
 
 ```tsx live previewHeight=600px hideCode url=http://localhost:3000/samples
@@ -729,11 +748,11 @@ setInitialRoutes(["/"]);
 import { Refine } from "@refinedev/core";
 
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { 
-    ThemedLayoutV2, 
+import {
+    ThemedLayoutV2,
     RefineThemes,
     // highlight-next-line
-    HamburgerMenu 
+    HamburgerMenu,
 } from "@refinedev/mantine";
 import { MantineProvider, Global, Box } from "@mantine/core";
 
@@ -808,6 +827,139 @@ const App: React.FC = () => {
 // visible-block-end
 
 render(<App />);
+```
+
+## FAQ
+
+### How can I persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component?
+
+You can use [`isSiderCollapsedByDefault`](#issidercollapsedbydefault) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+
+For example, you can get `isSiderCollapsedByDefault`'s value from `localStorage` or `cookie` for persistence between sessions.
+
+<Tabs
+defaultValue="react-router"
+values={[
+{label: 'React Router', value: 'react-router'},
+{label: 'Next.js', value: 'next.js'},
+{label: 'Remix', value: 'remix'},
+]}>
+
+<TabItem value="react-router">
+
+```tsx title="src/App.tsx"
+import { useState } from "react";
+import { Refine } from "@refinedev/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
+
+const App: React.FC = () => {
+    // you can get this value from `localStorage` or `cookie`
+    // for persistence between sessions
+    const [isSiderCollapsedByDefault, setIsSiderCollapsedByDefault] =
+        useState(true);
+
+    return (
+        <BrowserRouter>
+            <Refine
+            // ...
+            >
+                {/* ... */}
+                <Routes>
+                    <Route
+                        element={
+                            <ThemedLayoutV2
+                                isSiderCollapsedByDefault={
+                                    isSiderCollapsedByDefault
+                                }
+                            >
+                                <Outlet />
+                            </ThemedLayoutV2>
+                        }
+                    >
+                        {/* ... */}
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+
+<TabItem value="next.js">
+
+```tsx title="pages/_app.tsx"
+import { useState } from "react";
+
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
+
+import type { AppProps } from "next/app";
+import type { NextPage } from "next";
+
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+    // you can get this value from `localStorage` or `cookie`
+    // for persistence between sessions
+    const [isSiderCollapsedByDefault, setIsSiderCollapsedByDefault] =
+        useState(true);
+
+    const renderComponent = () => {
+        if (Component.noLayout) {
+            return <Component {...pageProps} />;
+        }
+
+        return (
+            <ThemedLayoutV2
+                isSiderCollapsedByDefault={isSiderCollapsedByDefault}
+            >
+                <Component {...pageProps} />
+            </ThemedLayoutV2>
+        );
+    };
+
+    return (
+        <Refine
+        // ...
+        >
+            {/* ... */}
+            {renderComponent()}
+        </Refine>
+    );
+}
+
+export default MyApp;
+```
+
+</TabItem>
+
+<TabItem value="remix">
+
+```tsx title="app/routes/_layout.tsx"
+import { useState } from "react";
+import { Outlet } from "@remix-run/react";
+import { ThemedLayoutV2 } from "@refinedev/mantine";
+
+export default function BaseLayout() {
+    // you can get this value from `localStorage` or `cookie`
+    // for persistence between sessions
+    const [isSiderCollapsedByDefault, setIsSiderCollapsedByDefault] =
+        useState(true);
+
+    return (
+        <ThemedLayoutV2 isSiderCollapsedByDefault={isSiderCollapsedByDefault}>
+            <Outlet />
+        </ThemedLayoutV2>
+    );
+}
+```
+
+</TabItem>
+
+</Tabs>
 ```
 
 [themed-sider]: https://github.com/refinedev/refine/blob/next/packages/mantine/src/components/themedLayoutV2/sider/index.tsx

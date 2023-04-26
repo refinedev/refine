@@ -13,12 +13,15 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     Footer,
     OffLayoutArea,
     children,
+    isSiderCollapsedByDefault,
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <ThemedLayoutContextProvider>
+        <ThemedLayoutContextProvider
+            isSiderCollapsedByDefault={isSiderCollapsedByDefault}
+        >
             <Box display="flex">
                 <SiderToRender Title={Title} />
                 <Box
