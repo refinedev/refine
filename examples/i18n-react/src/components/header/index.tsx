@@ -39,6 +39,9 @@ export const Header: React.FC = () => {
                 padding: "0px 24px",
                 height: "48px",
                 backgroundColor: "#FFF",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
             }}
         >
             <Dropdown
