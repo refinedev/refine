@@ -29,11 +29,6 @@
     "eject": "react-scripts eject",
     "refine": "refine"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
