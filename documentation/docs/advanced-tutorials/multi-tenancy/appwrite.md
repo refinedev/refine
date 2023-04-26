@@ -371,7 +371,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
 </p>
 </details>
 
-|             <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/sider.png" alt="sider" />              |
+|             <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/header.jpg" alt="sider" />             |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _As you can see, you can create a store-specific product and order by selecting `tenant` in the `Header` component and choosing according to the `storeId` information._ |
 
@@ -505,7 +505,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/store-filter.gif" alt="Store Filter" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/tenant-filter.gif" alt="Store Filter" />
 </div>
 <br/>
 
@@ -662,7 +662,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/create.gif" alt="create" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/create-product.gif" alt="create" />
 </div>
 <br/>
 
