@@ -1,5 +1,5 @@
 {
-  "name": "base-mui",
+  "name": "base-material-ui",
   "version": "3.25.0",
   "private": true,
   "dependencies": {
