@@ -64,4 +64,6 @@ export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
 
 export type RefineThemedLayoutV2Props = RefineLayoutLayoutProps;
 export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {};
-export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {};
+export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
+    isSticky?: boolean;
+};
