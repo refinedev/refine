@@ -6,7 +6,7 @@ sidebar_label: Live Provider
 
 ## Overview
 
-**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), [Hasura](https://hasura.io/), GraphQL Subscriptions, etc.) to be integrated.
+The `liveProvider` is a built-in provider in **refine** that enables real-time updates and interactions between the server and the client. **refine** being agnostic as always allows you to integrate any solution of your choice
 
 A live provider must include following methods:
 
@@ -22,11 +22,13 @@ const liveProvider = {
 **refine** uses these methods in [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) and [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
 :::
 
+---
+
 :::tip
-**refine** includes out-of-the-box live providers to use in your projects like:
+**refine** includes some out-of-the-box live providers to use in your projects such as:
 
 -   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+-   **supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
