@@ -5,21 +5,11 @@ export const Menu = () => {
     const { menuItems } = useMenu();
 
     return (
-        <nav style={{ flexShrink: 0 }}>
+        <nav className="menu">
             <ul>
                 {menuItems.map((item) => (
                     <li key={item.key}>
-                        <NavLink
-                            to={item.route}
-                            style={({ isActive, isPending }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : "",
-                                    color: isPending ? "red" : "black",
-                                };
-                            }}
-                        >
-                            {item.label}
-                        </NavLink>
+                        <NavLink to={item.route}>{item.label}</NavLink>
                     </li>
                 ))}
             </ul>
