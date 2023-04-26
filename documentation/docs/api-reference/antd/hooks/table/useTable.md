@@ -303,6 +303,23 @@ useTable({
 });
 ```
 
+### `sorters.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, or `"server"`.
+
+-   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+```tsx
+useTable({
+    sorters: {
+        mode: "server",
+    },
+});
+```
+
 ### `filters.initial`
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
@@ -359,6 +376,23 @@ You can also override the default value by using the second parameter of the [`s
 useTable({
     filters: {
         defaultBehavior: "replace",
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useTable({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -837,6 +871,76 @@ A function to set current [sorters state][crudsorting].
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
+
+### How can I handle client side filtering?
+
+You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server-side filtering. `useTable` is fully compatible with [`Ant Design <Table> component's`](https://ant.design/components/table#components-table-demo-head) filtering feature.
+
+```tsx
+import { useTable } from "@refinedev/antd";
+import { Table } from "antd";
+
+const ListPage = () => {
+    const { tableProps } = useTable({
+        filters: {
+            mode: "off",
+        },
+    });
+
+    return (
+        <Table {...tableProps} rowKey="id">
+            {/* ... */}
+            <Table.Column
+                dataIndex="status"
+                title="Status"
+                filters={[
+                    {
+                        text: "Published",
+                        value: "published",
+                    },
+                    {
+                        text: "Draft",
+                        value: "draft",
+                    },
+                    {
+                        text: "Rejected",
+                        value: "rejected",
+                    },
+                ]}
+                onFilter={(value, record) => record.status === value}
+            />
+        </Table>
+    );
+};
+```
+
+### How can I handle client side sorting?
+
+You can set the [`sorters.mode: "off"`](#sortersmode) in order to disable server-side sorting. `useTable` is fully compatible with [`Ant Design <Table> component's`](https://ant.design/components/table#components-table-demo-head) sorting feature.
+
+```tsx
+import { useTable } from "@refinedev/antd";
+import { Table } from "antd";
+
+const ListPage = () => {
+    const { tableProps } = useTable({
+        sorters: {
+            mode: "off",
+        },
+    });
+
+    return (
+        <Table {...tableProps} rowKey="id">
+            <Table.Column
+                dataIndex="id"
+                title="ID"
+                sorter={(a, b) => a.id - b.id}
+            />
+            {/* ... */}
+        </Table>
+    );
+};
+```
 
 ## API
 

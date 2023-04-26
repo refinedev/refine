@@ -1,9 +1,9 @@
 import { renderHook } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 
-import { TestWrapper } from "../../test";
+import { TestWrapper, waitFor, act } from "../../test";
 
 import { useStepsForm } from "./";
+import * as UseForm from "../useForm";
 
 describe("useStepsForm Hook", () => {
     it("'defaultStep' props should set the initial value of 'currentStep'", async () => {
@@ -18,7 +18,6 @@ describe("useStepsForm Hook", () => {
                 wrapper: TestWrapper({}),
             },
         );
-
         expect(result.current.steps.currentStep).toBe(4);
     });
 
@@ -26,11 +25,9 @@ describe("useStepsForm Hook", () => {
         const { result } = renderHook(() => useStepsForm({}), {
             wrapper: TestWrapper({}),
         });
-
         await act(async () => {
             result.current.steps.gotoStep(1);
         });
-
         expect(result.current.steps.currentStep).toBe(1);
     });
 
@@ -38,11 +35,9 @@ describe("useStepsForm Hook", () => {
         const { result } = renderHook(() => useStepsForm({}), {
             wrapper: TestWrapper({}),
         });
-
         await act(async () => {
             result.current.steps.gotoStep(-7);
         });
-
         expect(result.current.steps.currentStep).toBe(0);
     });
 
@@ -50,11 +45,9 @@ describe("useStepsForm Hook", () => {
         const { result } = renderHook(() => useStepsForm({}), {
             wrapper: TestWrapper({}),
         });
-
         await act(async () => {
             result.current.steps.gotoStep(-7);
         });
-
         expect(result.current.steps.currentStep).toBe(0);
     });
 
@@ -70,11 +63,70 @@ describe("useStepsForm Hook", () => {
                 wrapper: TestWrapper({}),
             },
         );
-
         await act(async () => {
             result.current.steps.gotoStep(2);
         });
-
         expect(result.current.steps.currentStep).toBe(2);
     });
+
+    it.each([
+        {
+            mockDirtyFields: {},
+        },
+        {
+            mockDirtyFields: { field2: true },
+        },
+    ])(
+        "should call setValue with correct data according to dirty fields",
+        async (scenario) => {
+            const mockData = { field1: "field1", field2: "field2" };
+            const mockDirtyFields = scenario.mockDirtyFields;
+            const setValue = jest.fn();
+            const getValues = () => mockData;
+
+            (jest.spyOn(UseForm, "useForm") as jest.Mock).mockReturnValueOnce({
+                setValue,
+                getValues,
+                formState: { dirtyFields: mockDirtyFields },
+                refineCore: { queryResult: { data: { data: mockData } } },
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useStepsForm({
+                        stepsProps: {
+                            defaultStep: 1,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            await waitFor(() => {
+                expect(!result.current.refineCore.formLoading).toBeTruthy();
+            });
+
+            expect(result.current.refineCore.queryResult?.data?.data).toEqual(
+                mockData,
+            );
+
+            const setValueCallTimes =
+                Object.keys(mockData).length -
+                Object.keys(mockDirtyFields).length;
+            expect(setValue).toHaveBeenCalledTimes(setValueCallTimes);
+
+            Object.keys(mockData).forEach((key) => {
+                const keyName = key as keyof typeof mockData &
+                    keyof typeof mockDirtyFields;
+
+                if (!mockDirtyFields[keyName]) {
+                    expect(setValue).toHaveBeenCalledWith(
+                        key,
+                        mockData[keyName],
+                    );
+                }
+            });
+        },
+    );
 });

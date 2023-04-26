@@ -682,6 +682,15 @@ module.exports = {
                     ],
                 },
                 "examples/antd-calendar-example",
+                {
+                    type: "category",
+                    label: "Build Systems",
+                    items: [
+                        "examples/build-systems/turbo",
+                        "examples/build-systems/lerna",
+                        "examples/build-systems/nx",
+                    ],
+                },
                 "examples/command-palette",
                 {
                     type: "category",

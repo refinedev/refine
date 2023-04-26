@@ -965,6 +965,10 @@ You can override the default behavior by passing an `onFinish` function in the h
 
 For example you can [change values before sending to the API](/docs/packages/documentation/react-hook-form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
+### `saveButtonProps`
+
+It contains all the props needed by the "submit" button within the form (disabled, onClick etc.). When `saveButtonProps.onClick` is called, it triggers `handleSubmit`function with `onFinish`. You can manually pass these props to your custom button.
+
 ### `formLoading`
 
 Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.

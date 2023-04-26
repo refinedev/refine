@@ -178,4 +178,42 @@ describe("useMeta Hook", () => {
             hookMeta: "hookMeta",
         });
     });
+
+    it("should not return filters, sorters, current, pageSize, pagination", () => {
+        const { result } = renderHook(() => useMeta(), {
+            wrapper: TestWrapper({
+                routerProvider: mockRouterBindings({
+                    params: {
+                        id: "123",
+                        filters: [
+                            {
+                                field: "title",
+                                operator: "contains",
+                                value: "foo",
+                            },
+                        ],
+                        sorters: [
+                            {
+                                field: "title",
+                                order: "asc",
+                            },
+                        ],
+                        current: 1,
+                        pageSize: 10,
+                    },
+                }),
+            }),
+        });
+
+        const combinedMeta = result.current({
+            meta: {
+                hookMeta: "hookMeta",
+            },
+        });
+
+        expect(combinedMeta).toEqual({
+            id: "123",
+            hookMeta: "hookMeta",
+        });
+    });
 });

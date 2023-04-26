@@ -78,6 +78,11 @@ export type useTableProps<TQueryFnData, TError, TData> = {
          *  @default `[]`
          */
         permanent?: CrudSorting;
+        /**
+         * Whether to use server side sorting or not.
+         * @default "server"
+         */
+        mode?: "server" | "off";
     };
     /**
      * Initial sorter state
@@ -108,6 +113,11 @@ export type useTableProps<TQueryFnData, TError, TData> = {
          * @default `"merge"`
          */
         defaultBehavior?: SetFilterBehavior;
+        /**
+         * Whether to use server side filter or not.
+         * @default "server"
+         */
+        mode?: "server" | "off";
     };
     /**
      * Initial filter state
@@ -262,6 +272,10 @@ export function useTable<
     const getMeta = useMeta();
     const parsedParams = useParsed();
 
+    const isServerSideFilteringEnabled =
+        (filtersFromProp?.mode || "server") === "server";
+    const isServerSideSortingEnabled =
+        (sortersFromProp?.mode || "server") === "server";
     const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
         (pagination?.mode ?? hasPaginationString) !== "off";
@@ -498,8 +512,12 @@ export function useTable<
         resource: resourceInUse,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
-        filters: unionFilters(preferredPermanentFilters, filters),
-        sorters: unionSorters(preferredPermanentSorters, sorters),
+        filters: isServerSideFilteringEnabled
+            ? unionFilters(preferredPermanentFilters, filters)
+            : undefined,
+        sorters: isServerSideSortingEnabled
+            ? unionSorters(preferredPermanentSorters, sorters)
+            : undefined,
         queryOptions,
         successNotification,
         errorNotification,
