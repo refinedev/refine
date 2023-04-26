@@ -1,9 +1,7 @@
-import { useContext } from "react";
 import { useSelect } from "@refinedev/antd";
-
 import { Select } from "antd";
+import { useGetToPath, useGo, useParsed } from "@refinedev/core";
 
-import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
 
 type SelectProps = {
@@ -11,23 +9,38 @@ type SelectProps = {
 };
 
 export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
-    const [store, setStore] = useContext(StoreContext);
+    const getToPath = useGetToPath();
+    const go = useGo();
+    const { resource, action, params } = useParsed<{ tenant: string }>();
 
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
         optionLabel: "title",
         optionValue: "id",
+        meta: {
+            tenant: undefined,
+        },
     });
 
-    const handleChange = (selectedValue: string) => {
-        setStore(selectedValue);
-    };
+    if (!params?.tenant) {
+        return null;
+    }
 
     return (
         <Select
-            defaultValue={store}
+            defaultValue={+params?.tenant}
             style={{ width: 120 }}
-            onChange={handleChange}
+            onChange={(tenant) =>
+                go({
+                    to: getToPath({
+                        resource,
+                        action: action || "list",
+                        meta: {
+                            tenant,
+                        },
+                    }),
+                })
+            }
             onSelect={onSelect}
         >
             {storeSelectProps.options?.map(({ value, label }) => (
