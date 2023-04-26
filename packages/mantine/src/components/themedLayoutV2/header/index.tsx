@@ -4,6 +4,7 @@ import {
     Avatar,
     Flex,
     Header as MantineHeader,
+    Sx,
     Title,
     useMantineTheme,
 } from "@mantine/core";
@@ -11,7 +12,9 @@ import {
 import { RefineThemedLayoutV2HeaderProps } from "../types";
 import { HamburgerMenu } from "../hamburgerMenu";
 
-export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
+export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+    isSticky,
+}) => {
     const theme = useMantineTheme();
 
     const authProvider = useActiveAuthProvider();
@@ -24,6 +27,15 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
             ? theme.colors.dark[6]
             : theme.colors.gray[2];
 
+    let stickyStyles: Sx = {};
+    if (isSticky) {
+        stickyStyles = {
+            position: `sticky`,
+            top: 0,
+            zIndex: 1,
+        };
+    }
+
     return (
         <MantineHeader
             zIndex={199}
@@ -32,9 +44,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
             px="sm"
             sx={{
                 borderBottom: `1px solid ${borderColor}`,
-                position: `sticky`,
-                top: 0,
-                zIndex: 1,
+                ...stickyStyles,
             }}
         >
             <Flex
