@@ -16,7 +16,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
-import ThemedLayout from "./pages/layout";
+import { Layout } from "./components/layout";
+
+import "./App.css";
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
@@ -160,9 +162,9 @@ const App: React.FC = () => {
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <ThemedLayout>
+                                <Layout>
                                     <Outlet />
-                                </ThemedLayout>
+                                </Layout>
                             </Authenticated>
                         }
                     >
@@ -207,9 +209,9 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <Authenticated>
-                                <ThemedLayout>
+                                <Layout>
                                     <Outlet />
-                                </ThemedLayout>
+                                </Layout>
                             </Authenticated>
                         }
                     >
