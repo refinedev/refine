@@ -5,14 +5,16 @@ import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
 import { RefineThemedLayoutV2HeaderProps } from "../types";
 import { HamburgerMenu } from "../hamburgerMenu";
 
-export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
+export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+    isSticky = true,
+}) => {
     const authProvider = useActiveAuthProvider();
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     return (
-        <AppBar position="sticky">
+        <AppBar position={isSticky ? "sticky" : "relative"}>
             <Toolbar>
                 <HamburgerMenu />
                 <Stack
