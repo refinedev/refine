@@ -31,9 +31,8 @@ import { ProductShow } from "components/product";
 import { Header } from "components/header";
 
 function App() {
-    const { params } = useParsed<{ tenant?: string }>();
-    const defaultTenant = "644691f3098620a990ba";
-    const tenant = params?.tenant || defaultTenant;
+    // inital tenant
+    const tenant = "refine";
 
     return (
         <BrowserRouter>
