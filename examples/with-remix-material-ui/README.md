@@ -29,4 +29,14 @@
 
 </div>
 
-This example repository has been moved to [here](https://github.com/refinedev/refine/tree/master/examples/with-remix-material-ui)
+## Try it out on your local
+
+```bash
+npm create refine-app@latest -- --example with-remix-material-ui
+```
+
+## Try it out on CodeSandbox
+
+<br/>
+
+[![Open with-remix-material-ui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-remix-material-ui?view=preview&theme=dark&codemirror=1)
