@@ -184,7 +184,7 @@ The `meta` property defined in the `resources` prop of the `<Refine>` is passed 
 
 ### Using `meta` to generate GraphQL queries
 
-[Refer to the `GraphQL` guide&#8594](/advanced-tutorials/data-provider/graphql.md)
+[Refer to the `GraphQL` guide&#8594](/docs/packages/documentation/data-providers/graphql/)
 
 ### Passing `meta` to your existing `dataProvider` methods
 
