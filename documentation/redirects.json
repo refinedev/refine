@@ -772,6 +772,10 @@
     {
       "from": "/docs/api-reference/mantine/customization/theme",
       "to": "/docs/api-reference/mantine/theming"
+    },
+    {
+      "from": "/docs/examples/remix/remix-mui/",
+      "to": "/docs/examples/remix/remix-material-ui/"
     }
   ]
 }
