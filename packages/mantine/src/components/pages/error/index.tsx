@@ -51,10 +51,8 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
-                minHeight: "100vh",
-                "@media (min-height: 755px)": {
-                    marginTop: "-150px",
-                },
+                boxSizing: "border-box",
+                minHeight: "calc(100vh - 150px)",
             }}
         >
             <Title

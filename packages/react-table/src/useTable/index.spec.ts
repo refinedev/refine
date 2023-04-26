@@ -415,4 +415,60 @@ describe("useTable Hook", () => {
             { id: "category.id", desc: true },
         ]);
     });
+
+    it.each(["off", "server"] as const)(
+        "when sorters.mode is %s, should set sortingMode to %s",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useTable({
+                        columns,
+                        refineCoreProps: {
+                            sorters: {
+                                mode,
+                            },
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.options.getSortedRowModel).toEqual(
+                mode === "server" ? undefined : expect.any(Function),
+            );
+
+            expect(result.current.options.manualSorting).toEqual(
+                mode === "server" ? true : false,
+            );
+        },
+    );
+
+    it.each(["off", "server"] as const)(
+        "when filters.mode is %s, should set sortingMode to %s",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useTable({
+                        columns,
+                        refineCoreProps: {
+                            filters: {
+                                mode,
+                            },
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.options.getFilteredRowModel).toEqual(
+                mode === "server" ? undefined : expect.any(Function),
+            );
+
+            expect(result.current.options.manualFiltering).toEqual(
+                mode === "server" ? true : false,
+            );
+        },
+    );
 });
