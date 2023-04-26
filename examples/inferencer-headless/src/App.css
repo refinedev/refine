@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 table {
     border-spacing: 0;
     border: 1px solid black;
@@ -26,4 +30,14 @@ td {
 table th:last-child,
 td:last-child {
     border-right: 0;
+}
+
+.layout {
+    display: flex;
+}
+
+@media screen and (max-width: 751px) {
+    .layout {
+        display: block;
+    }
 }
