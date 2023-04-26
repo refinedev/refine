@@ -6,13 +6,15 @@ sidebar_label: Auth Provider
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
 
-Auth provider is an object that contains methods to handle authentication and access control in your app by having **refine** consume them. These methods expect to return a promise, meaning that they are async and can be used to create auth providers.
+Auth provider is an object that contains methods to handle authentication and access control in your app by having **refine** consume them. These methods expect to return a promise, so they can be used with async methods.
 
-You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch, which we will explore in the next section.
+You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch.
+
+> For more information on how you can create your own data providers, refer to the [Create a Data Provider tutorial&#8594][create-auth-provider-tutorial]
 
 ## Usage
 
-To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
+To use `authProvider` in **refine**, just pass it to the `<Refine />` component.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -40,8 +42,6 @@ const App = () => {
 
 ## Methods
 
-Auth provider's methods are expected to return a resolved Promise. So, you can use these async methods to [create auth provider][create-auth-provider-tutorial].
-
 An `authProvider` includes the following methods:
 
 ```tsx
@@ -62,7 +62,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-`login`, `logout`, `register`, `forgotPassword`, `updatePassword` expect to return a resolved Promise with the following type:
+`login`, `logout`, `register`, `forgotPassword`, `updatePassword` expect to return a resolved promise with the following type:
 
 ```ts
 type AuthActionResponse = {
@@ -78,7 +78,7 @@ type AuthActionResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-`check` expects to return a Promise with the following type:
+`check` expects to return a promise with the following type:
 
 ```ts
 type CheckResponse = {
@@ -94,32 +94,27 @@ type CheckResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-`getPermission` expects to return a Promise with the following type:
+`getPermission` expects to return a promise with the following type:
 
 ```ts
 type PermissionResponse = unknown;
 ```
 
-You can return any type of data from `getPermission` method.
-
-`getIdentity` expects to return a Promise with the following type:
+`getIdentity` expects to return a promise with the following type:
 
 ```ts
 type IdentityResponse = unknown;
 ```
 
-You can return any type of data from `getIdentity` method.
-
-<br/>
-
-:::info-tip
-
-**refine** consumes these methods using [authorization hooks](#hooks-and-components).
-Authorization hooks are used to manage authentication and authorization operations like login, logout, catching **HTTP** errors, etc.
-
+:::tip
+You can return any type of data from the `getPermission` and `getIdentity` methods.
 :::
 
-[Refer to the Auth Provider tutorial for more information and usage examples. &#8594][create-auth-provider-tutorial]
+---
+
+:::info-tip
+**refine** consumes these methods using the [authorization hooks](#hooks-and-components), which are used for authorization operations like login, logout, catching **HTTP** errors, etc.
+:::
 
 ## Required Methods
 
@@ -127,25 +122,25 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 `login` method is used to authenticate users.
 
-You can use the [`useLogin`][use-login] hook to call `login` method.
+It can be called with the [`useLogin`][use-login] hook
 
 ### check <PropTag required />
 
 `check` method is used to check if the user is authenticated.
 
-You can use the [`useIsAuthenticated`][use-is-authenticated] hook to call `check` method.
+It can be called with the [`useIsAuthenticated`][use-is-authenticated] hook
 
 ### logout <PropTag required />
 
 `logout` method is used to log out users.
 
-You can use the [`useLogout`][use-logout] hook to call `logout` method.
+It can be called with the [`useLogout`][use-logout] hook
 
 ### onError <PropTag required />
 
 `onError` method is called when you get an error response from the API. You can create your own business logic to handle the error such as refreshing the token, logging out the user, etc.
 
-You can use the [`useOnError`][use-on-error] hook to call `onError` method.
+It can be called with the [`useOnError`][use-on-error] hook
 
 ## Optional Methods
 
@@ -153,35 +148,35 @@ You can use the [`useOnError`][use-on-error] hook to call `onError` method.
 
 `getPermissions` method is used to get the user's permissions.
 
-You can use the [`usePermissions`][use-permissions] hook to call `getPermissions` method.
+It can be called with the [`usePermissions`][use-permissions] hook
 
 ### getIdentity
 
 `getIdentity` method is used to get the user's identity.
 
-You can use the [`useGetIdentity`][use-get-identity] hook to call `getIdentity` method.
+It can be called with the [`useGetIdentity`][use-get-identity] hook
 
 ### register
 
 `register` method is used to register a new user.
 
-You can use the [`useRegister`][use-register] hook to call `register` method.
+It can be called with the [`useRegister`][use-register] hook
 
 ### forgotPassword
 
 `forgotPassword` method is used to send a password reset link to the user's email address.
 
-You can use the [`useForgotPassword`][use-forgot-password] hook to call `forgotPassword` method.
+It can be called with the [`useForgotPassword`][use-forgot-password] hook
 
 ### updatePassword
 
 `updatePassword` method is used to update the user's password.
 
-You can use the [`useUpdatePassword`][use-update-password] hook to call `updatePassword` method.
+It can be called with the [`useUpdatePassword`][use-update-password] hook
 
 ## Hooks and Components
 
-These hooks can be used with the `authProvider` authentication and authorization operations.
+These hooks can be used with the `authProvider` authentication and authorization operations:
 
 -   [useIsAuthenticated][use-is-authenticated]
 -   [useOnError][use-on-error]
@@ -221,10 +216,6 @@ const App = () => {
 };
 ```
 
-:::tip
-If you want to know about some topics such as setting authorization credentials, implementation of refresh token mechanism or creating an auth provider from scratch, refer to the ["Create Auth Provider From Scratch" tutorial&#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
-:::
-
 ## API Reference
 
 ### Properties
@@ -242,6 +233,10 @@ If you want to know about some topics such as setting authorization credentials,
 | updatePassword                                    | Can be use to get update password         | Auth confirms update password         |
 
 <br />
+
+:::tip
+If you want to know about some topics such as setting authorization credentials, implementation of refresh token mechanism or creating an auth provider from scratch, refer to the ["Create Auth Provider From Scratch" tutorial&#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
+:::
 
 ## Example
 

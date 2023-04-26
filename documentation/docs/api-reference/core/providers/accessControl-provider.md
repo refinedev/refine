@@ -110,6 +110,16 @@ export const accessControlProvider = {
 You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from **refine** when they are disabled.
 :::
 
+---
+
+:::tip
+You can find access control examples made with **refine**
+
+-   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-casbin/?view=preview&theme=dark&codemirror=1)
+-   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-cerbos/?view=preview&theme=dark&codemirror=1)
+
+:::
+
 ## Hooks and Components
 
 **refine** provides a hook and a component to use the `can` method from the `accessControlProvider`.
@@ -202,7 +212,8 @@ These buttons will be disabled if access control returns `{ can: false }`
 
 ## Examples
 
-You can check either of **refine**'s access control provider examples: [**Cerbos**](/docs/examples/access-control/cerbos/) and [**Casbin**](/docs/examples/access-control/cassbin/)
+This example is for **Casbin** access control provider. You can check our other access control provider, [**Cerbos**](/docs/examples/access-control/cerbos/) as well.
+<CodeSandboxExample path="access-control-casbin" />
 
 [iresourceitem]: /api-reference/core/interfaces.md#resourceitemprops
 [basekey]: /api-reference/core/interfaces.md#basekey

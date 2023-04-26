@@ -6,16 +6,22 @@ sidebar_label: Data Provider
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
 
-The data provider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
+Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks.
 
-You don't need to worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can [create your own data provider][create-a-data-provider] according to your needs.
+You don’t need to worry about creating data providers from scratch, as **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers).
 
 <div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
 </div>
 
 :::note
-Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetching. It handles important concerns like caching, invalidation, loading states, etc.
+If you want to create your own data provider, check out the ["Creating a data provider from scratch" tutorial][create-a-data-provider]
+:::
+
+---
+
+:::note
+Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetching, which handles important concerns like caching, invalidation, loading states, etc.
 :::
 
 <br/>
@@ -38,9 +44,9 @@ const App: React.FC = () => {
 
 ## Multiple Data Providers
 
-**refine** gives you the ability to use multiple data providers in your app. All you need to do is to pass key, value pairs to the `dataProvider` prop of the `<Refine />` component in a form of value being the data provider and the key being the name of the data provider.
+**refine** gives you the ability to use multiple data providers in your app. All you need to do is to pass key and value pairs to the `dataProvider` prop of the `<Refine />` component in a form of value being the data provider and the key being the name of the data provider.
 
-Here is an example of using multiple data providers in your app:
+Here is an example which uses multiple data providers:
 
 ```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -48,11 +54,10 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useList } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
-import { Layout } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Collapse, Tag } from "antd";
 
@@ -169,7 +174,7 @@ render(<App />);
 ```
 
 :::caution
-`default` key is required for the default data provider and it will be used as the default data provider.
+The `default` key is required for the default data provider and will be used as the default data provider.
 
 ```tsx title="App.tsx"
 const App = () => {
@@ -188,9 +193,11 @@ const App = () => {
 
 :::
 
+### Usage
+
 You can pick data providers in two ways:
 
--   **Using `dataProviderName` prop in the data hooks and all data-related components/functions.**
+You can either use the `dataProviderName` prop in data hooks and data-related components/functions:
 
 ```tsx
 useTable({
@@ -198,9 +205,7 @@ useTable({
 });
 ```
 
--   **Using `meta.dataProviderName` property in your resource config**
-
-This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
+Or use the `meta.dataProviderName` property in your resource config, which will be the default data provider but can be overriden in data hooks and components:
 
 ```tsx
 const App = () => {
@@ -230,7 +235,7 @@ const App = () => {
 
 ## Methods
 
-Data provider's methods are expected to return a Promise. So, you can use these async methods to [create a data provider][create-a-data-provider].
+Data provider's methods are expected to return a promise, meaning that they are async and can be used to create a data provider.
 
 ```tsx
 import { DataProvider } from "@refinedev/core";
@@ -268,20 +273,17 @@ const dataProvider: DataProvider = {
 ```
 
 :::info-tip
-**refine** consumes data provider methods using [data hooks](#supported-hooks).
-
-Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
-
+**refine** consumes these data provider methods using [data hooks](#supported-hooks), which are used for CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 :::
 
-[Refer to the Data Provider tutorial for more information and usage examples →][data-provider-tutorial]
+[Refer to the Data Provider tutorial for more information and usage examples&#8594][data-provider-tutorial]
 
 ### getList <PropTag required />
 
 `getList` method is used to get a list of resources with sorting, filtering, and pagination features.
 It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
 
-**refine** will consume this `getList` method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
+**refine** will consume this method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
 ```ts
 getList: async ({ resource, pagination, sorters, filters, meta }) => {
@@ -299,9 +301,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 ```
 
 :::tip
-
-`getList` also can support cursor-based pagination. Refer to [this example](/docs/api-reference/core/hooks/data/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
-
+`getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/docs/api-reference/core/hooks/data/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
 :::
 
 **Parameter Types:**
@@ -318,7 +318,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 
 The `create` method creates a new record with the `resource` and `variables` parameters.
 
-**refine** will consume this `create` method using the [`useCreate`][use-create] data hook.
+**refine** will consume this method using the [`useCreate`][use-create] data hook.
 
 ```ts
 create: async ({ resource, variables, meta }) => {
@@ -344,7 +344,7 @@ create: async ({ resource, variables, meta }) => {
 
 The `update` method updates the record with the `resource`, `id`, and, `variables` parameters.
 
-**refine** will consume this `update` method using the [`useUpdate`][use-update] data hook.
+**refine** will consume this method using the [`useUpdate`][use-update] data hook.
 
 ```ts
 update: async ({ resource, id, variables, meta }) => {
@@ -371,7 +371,7 @@ update: async ({ resource, id, variables, meta }) => {
 
 The `deleteOne` method delete the record with the `resource` and `id` parameters.
 
-**refine** will consume this `deleteOne` method using the [`useDelete`][use-delete] data hook.
+**refine** will consume this method using the [`useDelete`][use-delete] data hook.
 
 ```ts
 deleteOne: async ({ resource, id, variables, meta }) => {
@@ -398,7 +398,7 @@ deleteOne: async ({ resource, id, variables, meta }) => {
 
 The `getOne` method gets the record with the `resource` and `id` parameters.
 
-**refine** will consume this `getOne` method using the [`useOne`][use-one] data hook.
+**refine** will consume this method using the [`useOne`][use-one] data hook.
 
 ```ts
 getOne: async ({ resource, id, meta }) => {
@@ -422,7 +422,7 @@ getOne: async ({ resource, id, meta }) => {
 
 The `getApiUrl` method returns the `apiUrl` value.
 
-**refine** will consume this `getApiUrl` method using the [`useApiUrl`][use-api-url] data hook.
+**refine** will consume this method using the [`useApiUrl`][use-api-url] data hook.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@refinedev/core";
@@ -435,10 +435,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ### custom
 
-An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods, and configurations.
+An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.
 It's useful if you have non-standard REST API endpoints or want to make a connection with external resources.
 
-**refine** will consume this `custom` method using the [`useCustom`][use-custom] data hook.
+**refine** will consume this method using the [`useCustom`][use-custom] data hook.
 
 ```ts
 custom: async ({
@@ -474,15 +474,13 @@ custom: async ({
 
 ## Bulk Actions
 
-Bulk actions are actions that can be performed on multiple items at once. Performing bulk actions is a common pattern in admin panels. If your API supports bulk actions, you can implement them in your data provider.
+Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](../../api-reference/core/hooks/import-export/useExport.md), and are also atomic, meaning that they are treated as a single unit.
 
-:::tip
-Bulk operations are a way to perform many database operations at once, improving speed and efficiency. They can be used for data [`import`](/docs/api-reference/core/hooks/import-export/useImport/) and [`export`](/docs/api-reference/core/hooks/import-export/useExport/), and have the added benefit of being atomic, meaning that they are treated as a single unit.
-:::
+If your API supports bulk actions, you can implement them in your data provider.
 
 ### getMany
 
-The `getMany` method gets the records with the `resource` and `ids` parameters. Implementation of this method is optional. If you don't implement it, refine will use [`getOne`](#getone) method to handle multiple requests.
+The `getMany` method gets the records with the `resource` and `ids` parameters. This method is optional, and refine will use the [`getOne`](#getone-) method to handle multiple requests if you don't implement it.
 
 **refine** will consume this `getMany` method using the [`useMany`][use-many] data hook.
 
@@ -506,7 +504,7 @@ getMany: async ({ resource, ids, meta }) => {
 
 ### createMany
 
-This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`create`](#create) method to handle multiple requests.
+This method allows us to create multiple items in a resource. This method is optional, and refine will use the [`create`](#create-) method to handle multiple requests if you don't implement it.
 
 **refine** will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
 
@@ -532,7 +530,7 @@ createMany: async ({ resource, variables, meta }) => {
 
 ### deleteMany
 
-This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`deleteOne`](#deleteone) method to handle multiple requests.
+This method allows us to delete multiple items in a resource. This method is optional, and refine will use the [`deleteOne`](#deleteone-) method to handle multiple requests if you don't implement it.
 
 **refine** will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
 
@@ -557,7 +555,7 @@ deleteMany: async ({ resource, ids, variables, meta }) => {
 
 ### updateMany
 
-This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`update`](#update) method to handle multiple requests.
+This method allows us to update multiple items in a resource. This method is optional, and refine will use the [`update`](#update-) method to handle multiple requests if you don't implement it.
 
 **refine** will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
 
@@ -623,7 +621,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-Also, Axios interceptor can be used to transform the error from the response before Axios returns the response to your code. Interceptors are methods that are triggered before the main method.
+Also, the Axios interceptor can be used to transform the error from the response before Axios returns the response to your code.
 
 ```ts title="src/data-provider.ts"
 // highlight-start
@@ -657,17 +655,17 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
+:::note
+Interceptors are methods that are triggered before the main method.
+:::
+
 ## meta Usage
 
 When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `meta` field, which allows the sent parameter to be easily accessed by the data provider.
 
-:::tip
-The `meta` parameter can be used in all data, form, and table hooks.
-:::
-
 Here is an example of how to send a custom header parameter to the `getOne` method using `meta`:
 
--   Send a custom header parameter to the [`getOne`](#getone) method using `meta`.
+We first need to send a custom header parameter to the [`getOne`](#getone-) method using `meta`.
 
 ```ts title="post/edit.tsx"
 import { useOne } from "@refinedev/core";
@@ -683,7 +681,7 @@ useOne({
 });
 ```
 
--   Get the `meta` parameter from the data provider.
+Then we can get the `meta` parameter from the data provider:
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@refinedev/core";
@@ -710,6 +708,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
+:::tip
+The `meta` parameter can be used in all data, form, and table hooks.
+:::
+
 ## Supported Data Providers
 
 <SupportedDataProviders/>
@@ -718,12 +720,12 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **refine** will consume:
 
--   [`getList`](#getlist) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
--   [`create`](#create) method using the [`useCreate`][use-create] data hook.
--   [`update`](#update) method using the [`useUpdate`][use-update] data hook.
--   [`deleteOne`](#deleteone) method using the [`useDeleteOne`][use-delete] data hook.
--   [`getOne`](#getone) method using the [`useOne`][use-one] data hook.
--   [`getApiUrl`](#getapiurl) method using the [`useApiUrl`][use-api-url] data hook.
+-   [`getList`](#getlist-) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
+-   [`create`](#create-) method using the [`useCreate`][use-create] data hook.
+-   [`update`](#update-) method using the [`useUpdate`][use-update] data hook.
+-   [`deleteOne`](#deleteone-) method using the [`useDeleteOne`][use-delete] data hook.
+-   [`getOne`](#getone-) method using the [`useOne`][use-one] data hook.
+-   [`getApiUrl`](#getapiurl-) method using the [`useApiUrl`][use-api-url] data hook.
 -   [`custom`](#custom) method using the [`useCustom`][use-custom] data hook.
 -   [`getMany`](#getmany) method using the [`useMany`][use-many] data hook.
 -   [`createMany`](#createmany) method using the [`useCreateMany`][use-create-many] data hook.
@@ -774,8 +776,6 @@ const myDataProvider = {
 [use-create]: /docs/api-reference/core/hooks/data/useCreate/
 [use-create-many]: /docs/api-reference/core/hooks/data/useCreateMany/
 [use-custom]: /docs/api-reference/core/hooks/data/useCustom/
-[use-custom-mutation]: /docs/api-reference/core/hooks/data/useCustomMutation/
-[use-data-provider]: /docs/api-reference/core/hooks/data/useDataProvider/
 [use-delete]: /docs/api-reference/core/hooks/data/useDelete/
 [use-delete-many]: /docs/api-reference/core/hooks/data/useDeleteMany/
 [use-list]: /docs/api-reference/core/hooks/data/useList/
