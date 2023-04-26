@@ -116,12 +116,8 @@ To view the products and orders of two different stores separately, we need to f
 ```tsx title="src/App.tsx"
 function App() {
     // highlight-start
-    // Using `useParsed` we get the tenant from the url.
-    const { params } = useParsed<{ tenant?: string }>();
-
     // When `domain.com` is entered, we set the default tenant to redirect `domain.com/name`.
-    const defaultTenant = "644691f3098620a990ba";
-    const tenant = params?.tenant || defaultTenant;
+    const tenant = "refine";
     // highlight-end
 
     return (
@@ -219,30 +215,6 @@ import { useParsed } from "@refinedev/core";
 const { params } = useParsed<{ tenant: string }>();
 
 console.log(params?.tenant); // { tenant: "refine" }
-```
-
-## Using the `tenant` at the data provider
-
-The `resource.meta` object is passed as `meta` to **all methods** in the data providers. For this you have to swizzle the data provider. 
-
-You can check out the [swizzle data provider guide](/docs/packages/documentation/cli/#swizzle) for more information.
-
-```tsx title="src/dataProvider.ts"
-//...
-export const dataProvider = (): Required<DataProvider> => {
-    //...
-    return {
-        getList: async ({ resource, pagination, filters, sorters, meta }) => {
-            // ...
-            console.log(meta.tenant); // { tenant: "refine" }
-        },
-        getOne: async ({ resource, id, meta }) => {
-            // ...
-            console.log(meta.tenant); // { tenant: "refine" }
-        }
-        // ...
-    }
-}
 ```
 
 ## Shop Select to Sider Component
@@ -508,6 +480,34 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/tenant-filter.gif" alt="Store Filter" />
 </div>
 <br/>
+
+:::tip
+
+In this example, we used the `filter.permanent` object to filter the data, as Appwrite does not support multitenancy. However, you can do this from a single point by swizzle the data provider in your own RestApi.
+
+You can check out the [swizzle data provider guide](/docs/packages/documentation/cli/#swizzle) for more information.
+
+The `resource.meta` object is passed as `meta` to **all methods** in the data providers. For this you have to swizzle the data provider. 
+
+```tsx title="src/dataProvider.ts"
+//...
+export const dataProvider = (): Required<DataProvider> => {
+    //...
+    return {
+        getList: async ({ resource, pagination, filters, sorters, meta }) => {
+            // ...
+            console.log(meta.tenant); // { tenant: "refine" }
+        },
+        getOne: async ({ resource, id, meta }) => {
+            // ...
+            console.log(meta.tenant); // { tenant: "refine" }
+        }
+        // ...
+    }
+}
+```
+
+:::
 
 ## Product Create Page
 
