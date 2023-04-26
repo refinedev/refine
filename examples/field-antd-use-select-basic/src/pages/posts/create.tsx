@@ -29,6 +29,10 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
+    const { selectProps: tagSelectProps } = useSelect<ICategory>({
+        resource: "tags",
+    });
+
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -53,6 +57,21 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Tags"
+                    name={["tags"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        {...tagSelectProps}
+                        onBlur={() => tagSelectProps?.onSearch?.("")}
+                        mode="multiple"
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Status"
