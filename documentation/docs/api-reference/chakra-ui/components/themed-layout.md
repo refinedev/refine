@@ -834,7 +834,7 @@ render(<App />);
 
 ### How can I persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component?
 
-You can use [`initialSiderCollapsed`](#issidercollapsedbydefault) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+You can use [`initialSiderCollapsed`](#initialsidercollapsed) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
 For example, you can get `initialSiderCollapsed`'s value from `localStorage` or `cookie` for persistence between sessions.
 
