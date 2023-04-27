@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.12.0",
+    "@refinedev/antd": "^5.13.0",
     "@refinedev/core": "^4.12.0",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/inferencer": "^3.3.0",
