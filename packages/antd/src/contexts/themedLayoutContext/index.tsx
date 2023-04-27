@@ -9,11 +9,11 @@ export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>({
 
 export const ThemedLayoutContextProvider: React.FC<{
     children: ReactNode;
-    isSiderCollapsedByDefault?: boolean;
-}> = ({ children, isSiderCollapsedByDefault }) => {
+    initialSiderCollapsed?: boolean;
+}> = ({ children, initialSiderCollapsed }) => {
     const [siderVisible, setSiderVisible] = useState(false);
     const [drawerSiderVisible, setDrawerSiderVisible] = useState(
-        isSiderCollapsedByDefault ?? true,
+        initialSiderCollapsed ?? true,
     );
 
     return (

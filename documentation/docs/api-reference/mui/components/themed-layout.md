@@ -221,7 +221,7 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
-### `isSiderCollapsedByDefault`
+### `initialSiderCollapsed`
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
@@ -231,7 +231,7 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 ```tsx
 <ThemedLayoutV2
     // highlight-next-line
-    isSiderCollapsedByDefault={true}
+    initialSiderCollapsed={true}
 >
     {/* ... */}
 </ThemedLayoutV2>
@@ -857,9 +857,9 @@ render(<App />);
 
 ### How can I persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component?
 
-You can use [`isSiderCollapsedByDefault`](#issidercollapsedbydefault) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+You can use [`initialSiderCollapsed`](#issidercollapsedbydefault) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
 
-For example, you can get `isSiderCollapsedByDefault`'s value from `localStorage` or `cookie` for persistence between sessions.
+For example, you can get `initialSiderCollapsed`'s value from `localStorage` or `cookie` for persistence between sessions.
 
 <Tabs
 defaultValue="react-router"
@@ -880,8 +880,7 @@ import { ThemedLayoutV2 } from "@refinedev/mui";
 const App: React.FC = () => {
     // you can get this value from `localStorage` or `cookie`
     // for persistence between sessions
-    const [isSiderCollapsedByDefault, setIsSiderCollapsedByDefault] =
-        useState(true);
+    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
     return (
         <BrowserRouter>
@@ -893,9 +892,7 @@ const App: React.FC = () => {
                     <Route
                         element={
                             <ThemedLayoutV2
-                                isSiderCollapsedByDefault={
-                                    isSiderCollapsedByDefault
-                                }
+                                initialSiderCollapsed={initialSiderCollapsed}
                             >
                                 <Outlet />
                             </ThemedLayoutV2>
@@ -928,8 +925,7 @@ import type { NextPage } from "next";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     // you can get this value from `localStorage` or `cookie`
     // for persistence between sessions
-    const [isSiderCollapsedByDefault, setIsSiderCollapsedByDefault] =
-        useState(true);
+    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
     const renderComponent = () => {
         if (Component.noLayout) {
@@ -937,9 +933,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         }
 
         return (
-            <ThemedLayoutV2
-                isSiderCollapsedByDefault={isSiderCollapsedByDefault}
-            >
+            <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
                 <Component {...pageProps} />
             </ThemedLayoutV2>
         );
@@ -970,11 +964,10 @@ import { ThemedLayoutV2 } from "@refinedev/mui";
 export default function BaseLayout() {
     // you can get this value from `localStorage` or `cookie`
     // for persistence between sessions
-    const [isSiderCollapsedByDefault, setIsSiderCollapsedByDefault] =
-        useState(true);
+    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
 
     return (
-        <ThemedLayoutV2 isSiderCollapsedByDefault={isSiderCollapsedByDefault}>
+        <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
             <Outlet />
         </ThemedLayoutV2>
     );
