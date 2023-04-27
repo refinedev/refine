@@ -11,7 +11,9 @@ import SharedComponents from "../../../partials/tutorial/headless-layout.md";
 
 <SharedComponents />
 
-In [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we created the CRUD pages automatically with Inferencer, and wrapped them with a `<Layout>` component. This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing a simple implementations of `Menu` and `Breadcrumb` components using **refine**'s hooks, [`useMenu`](/docs/api-reference/core/hooks/ui/useMenu) and [`useBreadcrumb`](/docs/api-reference/core/hooks/useBreadcrumb).
+In [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we created the CRUD pages automatically with Inferencer, and wrapped them with a `<Layout>` component.
+
+This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing a simple implementations of `Menu` and `Breadcrumb` components using **refine**'s hooks, [`useMenu`](/docs/api-reference/core/hooks/ui/useMenu) and [`useBreadcrumb`](/docs/api-reference/core/hooks/useBreadcrumb).
 
 Here is the preview for the `Layout`, `Menu` and `Breadcrumb` components:
 
@@ -182,6 +184,10 @@ It uses the `useBreadcrumb` hook to get the breadcrumb items and renders them as
 
 <ChecklistItem id="layout-menu-breadcrumb">
 I have learned about the Layout, Menu and Breadcrumb components.
+</ChecklistItem>
+
+<ChecklistItem id="layout-menu-breadcrumb">
+I understood the usage of `useMenu` and `useBreadcrumb` hooks.
 </ChecklistItem>
 
 </Checklist>
