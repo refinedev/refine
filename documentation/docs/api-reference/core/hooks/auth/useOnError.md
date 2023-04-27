@@ -12,7 +12,7 @@ This hook can only be used if the [`authProvider`][auth-provider] is provided.
 
 `useOnError` calls the [`onError`][on-error] method from the [`authProvider`][auth-provider] under the hood.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation), which includes many properties like `isSuccess` and `isError`.
 
 Data that is resolved from the [`onError`][on-error] will be returned as the `data` in the query result with the following type:
 
