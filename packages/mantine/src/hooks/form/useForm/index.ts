@@ -23,20 +23,24 @@ type FormVariableType<TVariables, TTransformed> = ReturnType<
 >;
 
 export type UseFormReturnType<
-    TData extends BaseRecord,
-    TError extends HttpError,
-    TVariables,
+    TQueryFnData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = UseMantineFormReturnType<
     TVariables,
     (values: TVariables) => TTransformed
 > & {
     refineCore: UseFormReturnTypeCore<
-        TData,
+        TQueryFnData,
         TError,
         FormVariableType<TVariables, TTransformed>,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     >;
     saveButtonProps: {
         disabled: boolean;
@@ -45,43 +49,53 @@ export type UseFormReturnType<
 };
 
 export type UseFormProps<
-    TData extends BaseRecord,
-    TError extends HttpError,
-    TVariables,
+    TQueryFnData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = {
     refineCoreProps?: UseFormCoreProps<
-        TData,
+        TQueryFnData,
         TError,
         FormVariableType<TVariables, TTransformed>,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     > & {
         warnWhenUnsavedChanges?: boolean;
     };
 } & UseFormInput<TVariables, (values: TVariables) => TTransformed>;
 
 export const useForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     refineCoreProps,
     ...rest
 }: UseFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TTransformed,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > = {}): UseFormReturnType<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TTransformed,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > => {
     const warnWhenUnsavedChangesProp = refineCoreProps?.warnWhenUnsavedChanges;
 
@@ -93,10 +107,12 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const useFormCoreResult = useFormCore<
-        TData,
+        TQueryFnData,
         TError,
         FormVariableType<TVariables, TTransformed>,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     >({
         ...refineCoreProps,
     });
