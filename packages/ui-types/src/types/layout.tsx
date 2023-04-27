@@ -62,7 +62,12 @@ export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
     wrapperStyles?: React.CSSProperties;
 };
 
-export type RefineThemedLayoutV2Props = RefineLayoutLayoutProps;
+export type RefineThemedLayoutV2Props = {
+    /**
+     * Whether the sider is collapsed or not by default.
+     */
+    initialSiderCollapsed?: boolean;
+} & RefineLayoutLayoutProps;
 export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {};
 export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
     isSticky?: boolean;
