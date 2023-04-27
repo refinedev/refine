@@ -63,7 +63,7 @@ It uses the `useMenu` hook to get the menu items and renders them as a list. Als
 
 ## Breadcrumb
 
-The `Breadcrumb` component is located in the `src/components/breadcrumb.tsx` file and it looks like this:
+The `Breadcrumb` component is located in the `src/components/breadcrumb.tsx` file and it looks like below:
 
 ```tsx title="src/components/breadcrumb.tsx"
 import { useBreadcrumb } from "@refinedev/core";
