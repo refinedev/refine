@@ -11,6 +11,86 @@ import SharedComponents from "../../../partials/tutorial/headless-layout.md";
 
 <SharedComponents />
 
+In [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we created the CRUD pages automatically with Inferencer, and wrapped them with a `<Layout>` component. This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing a simple implementations of `Menu` and `Breadcrumb` components using **refine**'s hooks, [`useMenu`](/docs/api-reference/core/hooks/ui/useMenu) and [`useBreadcrumb`](/docs/api-reference/core/hooks/useBreadcrumb).
+
+Here is the preview for the `Layout`, `Menu` and `Breadcrumb` components:
+
+```tsx live previewOnly previewHeight=600px url=http://localhost:3000
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
+import routerBindings, {
+    NavigateToResource,
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
+
+                        <Route path="/blog-posts">
+                            <Route index element={<HeadlessInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="create"
+                                element={<HeadlessInferencer />}
+                            />
+                        </Route>
+
+                        <Route path="*" element={<div>Error!</div>} />
+                    </Route>
+                </Routes>
+
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
+    );
+};
+
+render(<App />);
+```
+
 ## Layout
 
 When you create a new application with the **refine**, it creates a default layout under the `src/components/layout.tsx` file and it looks like below:
@@ -96,89 +176,6 @@ It uses the `useBreadcrumb` hook to get the breadcrumb items and renders them as
 
 > For more information, refer to the [`useBreadcrumb` documentation &#8594](/docs/api-reference/core/hooks/useBreadcrumb)
 
-
-## Preview
-
-Here is the preview for the `Layout`, `Menu` and `Breadcrumb` components:
-
-
-```tsx live previewOnly previewHeight=600px url=http://localhost:3000
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="blog_posts" />
-                            }
-                        />
-
-                        <Route path="/blog-posts">
-                            <Route index element={<HeadlessInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="create"
-                                element={<HeadlessInferencer />}
-                            />
-                        </Route>
-
-                        <Route path="*" element={<div>Error!</div>} />
-                    </Route>
-                </Routes>
-
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
-    );
-};
-
-render(<App />);
-```
-
-<br/>
 <br/>
 
 <Checklist>
