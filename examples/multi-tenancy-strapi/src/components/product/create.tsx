@@ -32,7 +32,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                     isActive: true,
                 }}
                 onFinish={(values) => {
-                    console.log("values", values);
                     formProps.onFinish?.(
                         mediaUploadMapper({
                             ...values,
