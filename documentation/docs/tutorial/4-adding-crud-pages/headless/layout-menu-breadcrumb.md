@@ -9,7 +9,7 @@ tutorial:
 
 ## Layout
 
-When you create a new application with the **refine**, it creates a default layout under the `src/components/layout.tsx` file and it looks like this:
+When you create a new application with the **refine**, it creates a default layout under the `src/components/layout.tsx` file and it looks like below:
 
 ```tsx title="src/components/layout.tsx"
 import { PropsWithChildren } from "react";
