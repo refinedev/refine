@@ -36,7 +36,7 @@ According to the `onError` method's returned values, the following process will 
 
 [Refer to Data Provider documentation for more information about data hooks. → ](/docs/api-reference/core/providers/data-provider/#supported-hooks)
 
-When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider]. This error object can be utilized to redirect the user to the login page or to log them out.
+When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider]. This error object can be utilized to redirect the user or to log them out.
 
 ```tsx
 import type { AuthBindings } from "@refinedev/core";
