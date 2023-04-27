@@ -12,8 +12,8 @@ You may use the `useDataGrid` hook to process your data with features compatible
 
 ## With `DataGrid` Component
 
-<CodeSandboxExample path="table-mui-use-data-grid" />
+<CodeSandboxExample path="table-material-ui-use-data-grid" />
 
 ## With `DataGridPro` Component
 
-<CodeSandboxExample path="table-mui-data-grid-pro" />
+<CodeSandboxExample path="table-material-ui-data-grid-pro" />

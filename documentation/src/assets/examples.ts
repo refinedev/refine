@@ -43,7 +43,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.mui.admin.refine.dev",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-mui",
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui",
     },
 ];
 

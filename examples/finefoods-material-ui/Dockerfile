@@ -13,12 +13,12 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope finefoods-mui -- --force
-RUN npm run build -- --scope finefoods-mui
+RUN npm run bootstrap -- --scope finefoods-material-ui -- --force
+RUN npm run build -- --scope finefoods-material-ui
 
 FROM node:16-alpine
 
-COPY --from=0 /opt/app/examples/finefoods-mui/build /opt/app
+COPY --from=0 /opt/app/examples/finefoods-material-ui/build /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
