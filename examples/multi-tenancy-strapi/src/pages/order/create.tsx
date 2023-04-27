@@ -9,7 +9,7 @@ import { Form, Input, Select, InputNumber } from "antd";
 import { IOrder, IOrderForm, IProduct } from "interfaces";
 
 export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
-    const { params } = useParsed<{ tenant: number }>();
+    const { params } = useParsed<{ tenant: string }>();
     const { formProps, saveButtonProps } = useForm<
         IOrder,
         HttpError,

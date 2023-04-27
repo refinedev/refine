@@ -17,9 +17,6 @@ export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
         resource: "stores",
         optionLabel: "title",
         optionValue: "id",
-        meta: {
-            tenant: undefined,
-        },
     });
 
     if (!params?.tenant) {

@@ -29,5 +29,5 @@ export interface IOrderForm {
     customerName: string;
     products?: number[];
     customerAddress: string;
-    stores?: [number];
+    stores?: [string];
 }
