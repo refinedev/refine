@@ -34,7 +34,7 @@ It has a `Menu` and a `Breadcrumb` component and it renders the children. You ca
 
 ## Menu
 
-The `Menu` component is located in the `src/components/menu.tsx` file and it looks like this:
+The `Menu` component is located in the `src/components/menu.tsx` file and it looks like below:
 
 ```tsx title="src/components/menu.tsx"
 import { useMenu } from "@refinedev/core";
