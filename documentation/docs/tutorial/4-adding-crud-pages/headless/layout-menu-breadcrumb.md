@@ -97,7 +97,7 @@ It uses the `useBreadcrumb` hook to get the breadcrumb items and renders them as
 <Checklist>
 
 <ChecklistItem id="layout-menu-breadcrumb">
-I have learned about the layout, menu and breadcrumb components.
+I have learned about the Layout, Menu and Breadcrumb components.
 </ChecklistItem>
 
 </Checklist>
