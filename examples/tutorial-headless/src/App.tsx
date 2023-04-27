@@ -4,12 +4,16 @@ import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 import { BlogPostShow } from "pages/blog-posts/show";
 import { BlogPostCreate } from "pages/blog-posts/create";
+
+import { Layout } from "./components/layout";
+
+import "./App.css";
 
 function App() {
     return (
@@ -37,18 +41,28 @@ function App() {
             >
                 <Routes>
                     <Route
-                        index
-                        element={<NavigateToResource resource="blog_posts" />}
-                    />
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={
+                                <NavigateToResource resource="blog_posts" />
+                            }
+                        />
 
-                    <Route path="/blog-posts">
-                        <Route index element={<BlogPostList />} />
-                        <Route path="show/:id" element={<BlogPostShow />} />
-                        <Route path="create" element={<BlogPostCreate />} />
-                        <Route path="edit/:id" element={<BlogPostEdit />} />
+                        <Route path="/blog-posts">
+                            <Route index element={<BlogPostList />} />
+                            <Route path="show/:id" element={<BlogPostShow />} />
+                            <Route path="create" element={<BlogPostCreate />} />
+                            <Route path="edit/:id" element={<BlogPostEdit />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
                     </Route>
-
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>
