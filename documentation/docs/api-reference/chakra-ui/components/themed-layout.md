@@ -258,7 +258,7 @@ const App: React.FC = () => {
 };
 ```
 
-You can also make it sticky with the `isSticky` component. It is optional and is `false` by default. The usage example is below.
+You can also make it sticky using the `isSticky` property, which is optional and defaults to `false`. An example of its usage is shown below.
 
 ```tsx
 import { Refine } from "@refinedev/core";
