@@ -9,6 +9,97 @@ tutorial:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+```css live shared
+body {
+    margin: 0px;
+}
+
+table {
+    border-spacing: 0;
+    border: 1px solid black;
+}
+
+table th,
+td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+table tr:last-child td {
+    border-bottom: 0;
+}
+
+table th,
+td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+table th:last-child,
+td:last-child {
+    border-right: 0;
+}
+
+.layout {
+    display: flex;
+    gap: 16px;
+}
+
+@media screen and (max-width: 751px) {
+    .layout {
+        display: block;
+    }
+}
+
+.layout .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 24px;
+    list-style-type: "/  ";
+    padding: 8px 16px;
+    border-bottom: 1px solid lightgray;
+}
+
+.breadcrumb a {
+    color: blue;
+    text-decoration: none;
+}
+
+.menu {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-right: 1px solid lightgray;
+}
+
+.menu a {
+    color: black;
+}
+
+.menu .active {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 751px) {
+    .menu {
+        border-right: none;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+.menu ul {
+    padding-left: 16px;
+}
+```
+
 ## Inferencer
 
 Inferencer is a powerful tool in the **refine** ecosystem that helps developers quickly generate CRUD (create, read, update, delete) pages for their data model. It analyzes your data model based on the resource scheme and automatically creates the pages with the required forms and tables for CRUD operations.
@@ -82,6 +173,8 @@ import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
+
+import "./App.css";
 
 const App = () => {
     return (
@@ -166,6 +259,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
+import "./App.css";
+
 const App = () => {
     return (
         <BrowserRouter>
@@ -232,6 +327,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import "./App.css";
+
 const App = () => {
     return (
         <BrowserRouter>
@@ -292,6 +389,8 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import "./App.css";
 
 const App = () => {
     return (
@@ -354,6 +453,8 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import "./App.css";
+
 const App = () => {
     return (
         <BrowserRouter>
@@ -396,6 +497,81 @@ const App = () => {
     );
 };
 render(<App />);
+```
+
+## Adding layout to the pages
+
+The Inferencer generates pages without any predefined layout, whereas creating a new app with **refine** comes with a default layout that includes basic components such as `Menu` and `Breadcrumb` to navigate between pages. Let's add a layout to our app.
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+import routerBindings, {
+    UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
+
+//highlight-next-line
+import { Layout } from "./components/layout";
+
+import "./App.css";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
+                    },
+                ]}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+            >
+                <Routes>
+                    {/* highlight-start */}
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        {/* highlight-end */}
+                        <Route path="blog-posts">
+                            <Route index element={<HeadlessInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="create"
+                                element={<HeadlessInferencer />}
+                            />
+                        </Route>
+                        {/* highlight-start */}
+                    </Route>
+                    {/* highlight-end */}
+                </Routes>
+                <UnsavedChangesNotifier />
+            </Refine>
+        </BrowserRouter>
+    );
+};
+export default App;
 ```
 
 <br/>
