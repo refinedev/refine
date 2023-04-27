@@ -4,7 +4,7 @@ import { IThemedLayoutContext } from "./IThemedLayoutContext";
 
 export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>({
     siderVisible: false,
-    drawerSiderVisible: true,
+    drawerSiderVisible: false,
 });
 
 export const ThemedLayoutContextProvider: React.FC<{
@@ -13,7 +13,7 @@ export const ThemedLayoutContextProvider: React.FC<{
 }> = ({ children, initialSiderCollapsed }) => {
     const [siderVisible, setSiderVisible] = useState(false);
     const [drawerSiderVisible, setDrawerSiderVisible] = useState(
-        initialSiderCollapsed ?? true,
+        initialSiderCollapsed ?? false,
     );
 
     return (
