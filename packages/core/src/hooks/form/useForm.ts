@@ -54,10 +54,12 @@ export type ActionParams = {
 };
 
 type ActionFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = {
     /**
      * Resource name for API data interactions
@@ -93,7 +95,7 @@ type ActionFormProps<
      * Called when a mutation is successful
      */
     onMutationSuccess?: (
-        data: CreateResponse<TData> | UpdateResponse<TData>,
+        data: CreateResponse<TResponse> | UpdateResponse<TResponse>,
         variables: TVariables,
         context: any,
     ) => void;
@@ -101,7 +103,7 @@ type ActionFormProps<
      * Called when a mutation encounters an error
      */
     onMutationError?: (
-        error: TError,
+        error: TResponseError,
         variables: TVariables,
         context: any,
     ) => void;
@@ -124,59 +126,70 @@ type ActionFormProps<
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options of useOne hook used while in edit mode.
      */
     queryOptions?: UseQueryOptions<
-        GetOneResponse<TData>,
+        GetOneResponse<TQueryFnData>,
         TError,
-        GetOneResponse<TSelectData>
+        GetOneResponse<TData>
     >;
     /**
      * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
      */
     createMutationOptions?: UseCreateProps<
-        TData,
-        TError,
+        TResponse,
+        TResponseError,
         TVariables
     >["mutationOptions"];
     /**
      * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useUpdate hook used while submitting in edit mode.
      */
     updateMutationOptions?: UseUpdateProps<
-        TData,
-        TError,
+        TResponse,
+        TResponseError,
         TVariables
     >["mutationOptions"];
 } & SuccessErrorNotification<
-    UpdateResponse<TData> | CreateResponse<TData>,
-    TError,
+    UpdateResponse<TResponse> | CreateResponse<TResponse>,
+    TResponseError,
     { id: BaseKey; values: TVariables } | TVariables
 > &
     ActionParams &
     LiveModeProps;
 
 export type UseFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
-> = ActionFormProps<TData, TError, TVariables, TSelectData> &
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = ActionFormProps<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> &
     ActionParams &
     LiveModeProps;
 
 export type UseFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = {
     id?: BaseKey;
     setId: Dispatch<SetStateAction<BaseKey | undefined>>;
-    queryResult?: QueryObserverResult<GetOneResponse<TSelectData>>;
+    queryResult?: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult:
-        | UseUpdateReturnType<TData, TError, TVariables>
-        | UseCreateReturnType<TData, TError, TVariables>;
+        | UseUpdateReturnType<TResponse, TResponseError, TVariables>
+        | UseCreateReturnType<TResponse, TResponseError, TVariables>;
     formLoading: boolean;
     onFinish: (
         values: TVariables,
-    ) => Promise<CreateResponse<TData> | UpdateResponse<TData> | void>;
+    ) => Promise<CreateResponse<TResponse> | UpdateResponse<TResponse> | void>;
     redirect: (
         redirect: RedirectAction,
         idFromFunction?: BaseKey | undefined,
@@ -189,17 +202,21 @@ export type UseFormReturnType<
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/form/useForm} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TVariables - Values for params. default `{}`
- *
+ * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
+ * @typeParam TResponse - Result data returned by the mutation function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TData`
+ * @typeParam TResponseError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}. Defaults to `TError`
  *
  */
 export const useForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     resource: resourceFromProps,
     action: actionFromProps,
@@ -222,11 +239,20 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
 }: UseFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
-    TSelectData
-> = {}): UseFormReturnType<TData, TError, TVariables, TSelectData> => {
+    TData,
+    TResponse,
+    TResponseError
+> = {}): UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> => {
     const { options } = useRefineContext();
     const { resources } = useResource();
     const routerType = useRouterType();
@@ -366,7 +392,7 @@ export const useForm = <
 
     const enableQuery = id !== undefined && (isEdit || isClone);
 
-    const queryResult = useOne<TData, TError, TSelectData>({
+    const queryResult = useOne<TQueryFnData, TError, TData>({
         resource: resource?.name,
         id: id ?? "",
         queryOptions: {
@@ -383,13 +409,21 @@ export const useForm = <
 
     const { isFetching: isFetchingQuery } = queryResult;
 
-    const mutationResultCreate = useCreate<TData, TError, TVariables>({
+    const mutationResultCreate = useCreate<
+        TResponse,
+        TResponseError,
+        TVariables
+    >({
         mutationOptions: createMutationOptions,
     });
     const { mutate: mutateCreate, isLoading: isLoadingCreate } =
         mutationResultCreate;
 
-    const mutationResultUpdate = useUpdate<TData, TError, TVariables>({
+    const mutationResultUpdate = useUpdate<
+        TResponse,
+        TResponseError,
+        TVariables
+    >({
         mutationOptions: updateMutationOptions,
     });
     const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
@@ -417,45 +451,47 @@ export const useForm = <
             });
         }
 
-        return new Promise<CreateResponse<TData> | void>((resolve, reject) => {
-            if (mutationMode !== "pessimistic") {
-                resolve();
-            }
+        return new Promise<CreateResponse<TResponse> | void>(
+            (resolve, reject) => {
+                if (mutationMode !== "pessimistic") {
+                    resolve();
+                }
 
-            if (!resource) return;
+                if (!resource) return;
 
-            return mutateCreate(
-                {
-                    values,
-                    resource: resource.name,
-                    successNotification,
-                    errorNotification,
-                    meta: combinedMeta,
-                    metaData: combinedMeta,
-                    dataProviderName,
-                    invalidates,
-                },
-                {
-                    onSuccess: (data, _, context) => {
-                        if (onMutationSuccess) {
-                            onMutationSuccess(data, values, context);
-                        }
-
-                        const responseId = data?.data?.id;
-
-                        onSuccess(responseId);
-
-                        resolve(data);
+                return mutateCreate(
+                    {
+                        values,
+                        resource: resource.name,
+                        successNotification,
+                        errorNotification,
+                        meta: combinedMeta,
+                        metaData: combinedMeta,
+                        dataProviderName,
+                        invalidates,
                     },
-                    onError: (error: TError, _, context) => {
-                        if (onMutationError) {
-                            return onMutationError(error, values, context);
-                        }
-                        reject();
+                    {
+                        onSuccess: (data, _, context) => {
+                            if (onMutationSuccess) {
+                                onMutationSuccess(data, values, context);
+                            }
+
+                            const responseId = data?.data?.id;
+
+                            onSuccess(responseId);
+
+                            resolve(data);
+                        },
+                        onError: (error: TResponseError, _, context) => {
+                            if (onMutationError) {
+                                return onMutationError(error, values, context);
+                            }
+                            reject();
+                        },
                     },
-                },
-            );
-        });
+                );
+            },
+        );
     };
 
     const onFinishUpdate = async (values: TVariables) => {
@@ -463,7 +499,7 @@ export const useForm = <
 
         if (!resource) return;
 
-        const variables: UpdateParams<TData, TError, TVariables> = {
+        const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
             id: id ?? "",
             values,
             resource: resource.name,
@@ -494,32 +530,34 @@ export const useForm = <
         }
 
         // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
-        return new Promise<UpdateResponse<TData> | void>((resolve, reject) => {
-            if (mutationMode !== "pessimistic") {
-                resolve();
-            }
-            return setTimeout(() => {
-                mutateUpdate(variables, {
-                    onSuccess: (data, _, context) => {
-                        if (onMutationSuccess) {
-                            onMutationSuccess(data, values, context);
-                        }
+        return new Promise<UpdateResponse<TResponse> | void>(
+            (resolve, reject) => {
+                if (mutationMode !== "pessimistic") {
+                    resolve();
+                }
+                return setTimeout(() => {
+                    mutateUpdate(variables, {
+                        onSuccess: (data, _, context) => {
+                            if (onMutationSuccess) {
+                                onMutationSuccess(data, values, context);
+                            }
 
-                        if (mutationMode === "pessimistic") {
-                            onSuccess();
-                        }
+                            if (mutationMode === "pessimistic") {
+                                onSuccess();
+                            }
 
-                        resolve(data);
-                    },
-                    onError: (error: TError, _, context) => {
-                        if (onMutationError) {
-                            return onMutationError(error, values, context);
-                        }
-                        reject();
-                    },
+                            resolve(data);
+                        },
+                        onError: (error: TResponseError, _, context) => {
+                            if (onMutationError) {
+                                return onMutationError(error, values, context);
+                            }
+                            reject();
+                        },
+                    });
                 });
-            });
-        });
+            },
+        );
     };
 
     const createResult = {

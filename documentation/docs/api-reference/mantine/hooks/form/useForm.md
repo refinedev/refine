@@ -1091,13 +1091,15 @@ const {
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                   | Type                       | Default                    |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData        | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TVariables   | Form values for mutation function                                                                                                                            | `{}`                       | `Record<string, unknown>`  |
-| TTransformed | Form values after transformation for mutation function                                                                                                       | `{}`                       | `TVariables`               |
-| TSelectData  | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables     | Form values for mutation function                                                                                                                                   | `{}`                       | `Record<string, unknown>`  |
+| TTransformed   | Form values after transformation for mutation function                                                                                                              | `{}`                       | `TVariables`               |
+| TData          | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
+| TResponse      | Result data returned by the mutation function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value.        | [`BaseRecord`][baserecord] | `TData`                    |
+| TResponseError | Custom error object that extends [`HttpError`][httperror]. If not specified, the value of `TError` will be used as the default value.                               | [`HttpError`][httperror]   | `TError`                   |
 
 ## Example
 
