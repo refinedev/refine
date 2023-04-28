@@ -31,7 +31,7 @@
 
 <br />
 
-### This repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/field-material-ui-use-autocomplete)
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/field-material-ui-use-autocomplete)
 
 </div>
 

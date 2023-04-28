@@ -31,7 +31,7 @@
 
 <br />
 
-### This repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/finefoods-material-ui)
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/finefoods-material-ui)
 
 </div>
 

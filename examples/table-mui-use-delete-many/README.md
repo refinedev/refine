@@ -31,7 +31,7 @@
 
 <br />
 
-### This repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/table-material-ui-use-delete-many)
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/table-material-ui-use-delete-many)
 
 
 </div>

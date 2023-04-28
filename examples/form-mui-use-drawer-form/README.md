@@ -31,7 +31,7 @@
 
 <br />
 
-### This repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/form-material-ui-use-drawer-form)
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/form-material-ui-use-drawer-form)
 
 
 </div>

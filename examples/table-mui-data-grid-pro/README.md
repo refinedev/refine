@@ -32,7 +32,7 @@
 
 <br />
 
-### This repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/table-material-ui-data-grid-pro)
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/table-material-ui-data-grid-pro)
 
 
 </div>

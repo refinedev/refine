@@ -31,6 +31,6 @@
 
 <br />
 
-### This repository has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/auth-material-ui)
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/auth-material-ui)
 
 </div>
