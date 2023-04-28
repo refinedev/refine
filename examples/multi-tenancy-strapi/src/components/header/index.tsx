@@ -38,7 +38,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                     {user?.username && (
                         <>
                             <Text strong>{user.username}</Text>
-                            <Avatar>{user.username[0].toUpperCase()}</Avatar>
+                            <Avatar>{user.username?.[0].toUpperCase()}</Avatar>
                         </>
                     )}
                 </Space>
