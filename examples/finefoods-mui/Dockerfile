@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 WORKDIR /opt/app
 
@@ -16,7 +16,7 @@ COPY . /opt/app
 RUN npm run bootstrap -- --scope finefoods-mui -- --force
 RUN npm run build -- --scope finefoods-mui
 
-FROM node:16-alpine
+FROM node:18-alpine
 
 COPY --from=0 /opt/app/examples/finefoods-mui/build /opt/app
 WORKDIR /opt/app/
