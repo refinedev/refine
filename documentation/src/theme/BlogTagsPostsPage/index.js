@@ -55,13 +55,14 @@ function BlogTagsPostsPageMetadata({ tag }) {
 }
 
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
-    // const title = useBlogTagsPostsPageTitle(tag);
+    const title = useBlogTagsPostsPageTitle(tag);
 
     return (
         <BlogLayout sidebar={sidebar}>
             <TagsList tags={tags} activeTag={tag} />
             <br />
-            <BlogPostItems items={items} />
+            <h1 className="font-montserrat">{title}</h1>
+            <BlogPostItems items={items} showTitle={false} />
             <br />
             <BlogListPaginator
                 metadata={listMetadata}

@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Link from "@docusaurus/Link";
 
 import {
     PageMetadata,
