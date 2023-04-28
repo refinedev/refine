@@ -266,6 +266,36 @@ const App: React.FC = () => {
 };
 ```
 
+You can also make it sticky using the `isSticky` property, which is optional and defaults to `true`. An example of its usage is shown below.
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { 
+    ThemedLayoutV2,
+    // highlight-next-line
+    ThemedHeaderV2
+} from "@refinedev/antd";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+        // ...
+        >
+            <ThemedLayoutV2
+                // highlight-start
+                Header={() => (
+                    <ThemedHeaderV2 isSticky={false} />
+                )}
+                // highlight-end
+            >
+                {/* ... */}
+            </ThemedLayoutV2>
+        </Refine>
+    );
+};
+```
+
+
 ### `Title`
 
 In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2V2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2V2>`][themed-title] component by passing a custom component to the `Title` prop.
