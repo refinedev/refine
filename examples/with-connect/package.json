@@ -10,7 +10,7 @@
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/antd-audit-log": "^4.1.0",
     "@refinedev/connect": "^1.0.2",
-    "@types/node": "^12.20.11",
+    "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
