@@ -11,6 +11,7 @@ import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
+import TagsList from "@theme/TagsList";
 
 import { FeaturedBlogPostItems } from "../../components/blog";
 
@@ -52,6 +53,7 @@ function BlogListPageContent(props) {
                 </Link>
             )} */}
             <br />
+            <TagsList tags={props.tags} />
             <br />
             <br />
 

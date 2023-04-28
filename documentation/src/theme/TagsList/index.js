@@ -8,7 +8,7 @@ export default function TagsList({ tags, activeTag }) {
                 <li
                     style={{
                         display: "inline-flex",
-                        margin: "0.5rem 0.5rem 0 0",
+                        margin: "1rem 1rem 0 0",
                     }}
                     key={tag.permalink}
                 >
