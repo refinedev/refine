@@ -71,7 +71,7 @@ Prefer to finish this tutorial in an online code editor? That's possible!
 
 <UIConditional is="mui">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
+1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-material-ui?file=src%2FApp.tsx) to open the Material UI template.
 
 </UIConditional>
 

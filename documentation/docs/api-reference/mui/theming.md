@@ -543,7 +543,7 @@ declare module "@mui/material/styles" {
 }
 ```
 
-You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/next/examples/finefoods-mui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/next/examples/finefoods-mui/src/interfaces/theme.d.ts) by accessing the links.
+You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/next/examples/finefoods-material-ui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/next/examples/finefoods-material-ui/src/interfaces/theme.d.ts) by accessing the links.
 
 ## Dark Mode
 
@@ -828,7 +828,7 @@ export default App;
   </div>
 </details>
 
-[You can use this CodeSandbox link to access this example. &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-mui/?view=preview&theme=dark&codemirror=1)
+[You can use this CodeSandbox link to access this example. &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
 
 ```tsx live previewOnly previewHeight=450px disableScroll
 setInitialRoutes(["/samples"]);

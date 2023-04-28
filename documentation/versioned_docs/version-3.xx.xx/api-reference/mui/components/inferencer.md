@@ -360,4 +360,4 @@ render(<App />);
 
 Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mui` components.
 
-<CodeSandboxExample path="inferencer-mui" />
+<CodeSandboxExample path="inferencer-material-ui" />
