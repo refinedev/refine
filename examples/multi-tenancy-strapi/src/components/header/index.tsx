@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space, theme } from "antd";
-import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
+import { useGetIdentity } from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 
 import { StoreSelect } from "../select";
@@ -10,11 +10,7 @@ const { useToken } = theme;
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     const { token } = useToken();
-
-    const authProvider = useActiveAuthProvider();
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+    const { data: user } = useGetIdentity<{ username: string }>();
 
     return (
         <AntdLayout.Header
@@ -42,7 +38,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                     {user?.username && (
                         <>
                             <Text strong>{user.username}</Text>
-                            <Avatar>R</Avatar>
+                            <Avatar>{user.username[0].toUpperCase()}</Avatar>
                         </>
                     )}
                 </Space>
