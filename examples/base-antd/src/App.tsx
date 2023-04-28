@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    ThemedLayoutV2,
+    ThemedLayout,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
@@ -14,7 +14,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -47,9 +47,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayoutV2>
+                                <ThemedLayout>
                                     <Outlet />
-                                </ThemedLayoutV2>
+                                </ThemedLayout>
                             }
                         >
                             <Route
