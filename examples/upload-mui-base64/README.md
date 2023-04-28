@@ -29,17 +29,11 @@
 
 <a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
+
+<br />
+
+### This example has been moved to [here.](https://github.com/refinedev/refine/tree/next/examples/upload-material-ui-base64)
+
+
 </div>
 
-## Try it out on your local
-
-```bash
-npm create refine-app@latest -- --example upload-mui-base64
-```
-
-## Try it out on CodeSandbox
-
-<br/>
-
-[![Open upload-mui-base64 example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/upload-mui-base64?view=preview&theme=dark&codemirror=1)
-        
