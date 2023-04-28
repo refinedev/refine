@@ -4,12 +4,22 @@ import { BaseRecord, HttpError } from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
 export type UseStepsFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
-> = UseFormReturnType<TData, TError, TVariables, TTransformed, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TTransformed,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     steps: {
         currentStep: number;
         gotoStep: (step: number) => void;
@@ -17,12 +27,22 @@ export type UseStepsFormReturnType<
 };
 
 export type UseStepsFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
-> = UseFormProps<TData, TError, TVariables, TTransformed, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormProps<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TTransformed,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     /**
      * @description Configuration object for the steps.
      * `defaultStep`: Allows you to set the initial step.
@@ -41,36 +61,44 @@ export type UseStepsFormProps<
 };
 
 export const useStepsForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     stepsProps,
     ...rest
 }: UseStepsFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TTransformed,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > = {}): UseStepsFormReturnType<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TTransformed,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > => {
     const { defaultStep = 0, isBackValidate = false } = stepsProps ?? {};
     const [current, setCurrent] = useState(defaultStep);
 
     const useMantineFormResult = useForm<
-        TData,
+        TQueryFnData,
         TError,
         TVariables,
         TTransformed,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     >({
         ...rest,
     });

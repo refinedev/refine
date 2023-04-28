@@ -3,7 +3,7 @@ import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/antd";
 import routerProvider, {
@@ -144,13 +144,13 @@ const App: React.FC = () => {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout
+                                        <ThemedLayoutV2
                                             Header={Header}
                                             Title={Title}
                                             OffLayoutArea={OffLayoutArea}
                                         >
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -264,13 +264,13 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayout
+                                        <ThemedLayoutV2
                                             Header={Header}
                                             Title={Title}
                                             OffLayoutArea={OffLayoutArea}
                                         >
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >

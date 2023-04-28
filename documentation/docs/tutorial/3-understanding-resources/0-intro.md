@@ -11,66 +11,65 @@ tutorial:
 
 <UIConditional is="antd">
 
-In the [Unit 2.4](/docs/tutorial/getting-started/antd/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In [Unit 2.4](/docs/tutorial/getting-started/antd/generate-crud-pages/), we defined a resource to create our CRUD pages with the Inferencer component but did not explain how it works. We will take care of that in this unit and thoroughly explain the resources prop of the `<Refine/>` component using mock components.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-In the [Unit 2.4](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In [Unit 2.4](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we defined a resource to create our CRUD pages with the Inferencer component but did not explain how it works. We will take care of that in this unit and thoroughly explain the resources prop of the `<Refine/>` component using mock components.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-In the [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we defined a resource to create our CRUD pages with the Inferencer component but did not explain how it works. We will take care of that in this unit and thoroughly explain the resources prop of the `<Refine/>` component using mock components.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-In the [Unit 2.4](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In [Unit 2.4](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we defined a resource to create our CRUD pages with the Inferencer component but did not explain how it works. We will take care of that in this unit and thoroughly explain the resources prop of the `<Refine/>` component using mock components.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-In the [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we defined a resource to create our CRUD pages with the Inferencer component but did not explain how it works. We will take care of that in this unit and thoroughly explain the resources prop of the `<Refine/>` component using mock components.
 
 </UIConditional>
 
 :::
 
-Before we start, let's understand what `<Refine>` component is.
+Before we start, we need to understand what the `<Refine>` component is.
 
-The `<Refine>` component serves as the starting point for **refine**. It is a wrapper component that offers context to the **refine** components and hooks. It is utilized to configure the top-level settings of the application.
+The `<Refine>` component serves as the starting point for **refine**. It is a wrapper component that offers context to the **refine** components and hooks and is used to configure the top-level settings of the application.
 
-To initialize the app, the dataProvider is the only necessary prop that must be provided. Additionally, there are other props such as `resources`, `routerProvider`, `authProvider`, `i18nProvider`, etc.
+Though `dataProvider` is the only necessary prop for initializing the app, there are other props such as `resources`, `routerProvider`, `authProvider`, `i18nProvider`, etc. Each of these props enables the configuration of various aspects of the application, such as data management, routing, authentication, localization, layout and more.
 
-These props enable the configuration of various aspects of the application, such as data management, routing, authentication, localization, layout, and more.
-
-[Refer to the `<Refine>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
+> For more information, refer to the [`<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/)
 
 ## What is resource?
 
 In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a blog post in an online store, or any other piece of data that can be managed by the CRUD app.
 
-To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions and additional metadata such as label, icon, audit log settings, and sider menu nesting etc.
+To add a `resource` to our app, we need to use the `resources` prop of the `<Refine>` component. This prop accepts an array of objects, each representing a resource. These objects may contain properties to define the resource’s name, actions' routes, and additional metadata such as label, icon, audit log settings, and sider menu nesting etc.
 
 :::note
 
-The action paths we define in resources helps **refine** to render menu items, breadcrumbs, and handle form redirections, among other things. This means **refine** co-exists with your routes and complements them and doesn't impose any limitation.
+The action paths we define in resources help **refine** render menu items, breadcrumbs, and handle form redirections, among other things. Which means that **refine** coexists with your routes and complements them without imposing any limitations.
 
 :::
 
-### Note on resources and routes
+### Resources and routes
 
-Path definitions in the resource configuration helps **refine** to recognize the available actions for the resource at that particular path. This way, **refine** can automatically identify the resource based on the current path, without requiring users to manually specify the resource prop in their hooks and components.
+Path definitions in the resource configuration help **refine** recognize the available actions for the resource at that particular path. This allows **refine** to automatically identify the resource based on the current path without requiring users to manually specify the resource prop in their hooks and components.
 
-It's important to note that **route management will be handled by your preferred framework** (React Router, Next.js, Remix). This makes it possible to use **refine** with any React (Web, Electron, React Native etc.) application, without any constraints.
+Thanks to its flexibility, **refine** can be seamlessly integrated into any existing React application without imposing any limitations on users. It can also be attached to routes where it’s needed without interfering with your routing logic. This makes it possible to use **refine** with enterprise-grade applications that have complex requirements such as nested routes and multi-tenancy.
 
-Thanks to its flexibility, **refine** can be seamlessly integrated into existing React applications without imposing any limitations on users. It can be attached to routes where it's needed without interfering with your routing logic. This makes it possible to use **refine** with enterprise-grade applications that have complex requirements such as nested routes and multi-tenancy.
-
+:::caution
+It’s important to note that route management will be handled by your preferred framework (React Router, Next.js, Remix) which is what makes it possible to use **refine** with any React (Web, Electron, React Native etc.) application freely.
+:::
 <UIConditional is="headless">
 
 ```tsx title="src/App.tsx"
@@ -140,7 +139,7 @@ export default App;
 <UIConditional is="antd">
 
 ```tsx title="src/App.tsx"
-import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import { ConfigProvider } from "antd";
 import { Refine } from "@refinedev/core";
@@ -180,9 +179,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -227,7 +226,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -268,9 +267,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -315,7 +314,7 @@ export default App;
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import routerBindings, {
     NavigateToResource,
@@ -356,9 +355,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout>
+                                <ThemedLayoutV2>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route
@@ -487,13 +486,13 @@ export default App;
 
 </UIConditional>
 
-To have more information about router usage, refer to [React Router Documentation](https://reactrouter.com/en/main/components/routes).
+> For more information about router usage, refer to the [React Router Documentation](https://reactrouter.com/en/main/components/routes).
 
-## Defining Actions for a Resource
+## Defining actions for a resource
 
-A resource can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone`. These actions except `delete`, are defined in the properties of the resource object.
+A resource can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone`. All of these actions, except `delete`, are defined in the properties of the resource object.
 
-The simplest way to define the actions is to provide the path of the page. For example, if we want to define the `list` action of the `blog_posts` resource, we can do it as follows:
+The simplest way to define the actions is to provide the path of the page. For example, if we want to define the `list` action of the `blog_posts` resource, we can do it like this:
 
 ```tsx
 {
@@ -502,7 +501,7 @@ The simplest way to define the actions is to provide the path of the page. For e
 }
 ```
 
-Paths can include parameters with a convention similar `:paramName`. For example, if we want to define the `show` action of the `blog_posts` resource, we can do it as follows:
+Paths can include parameters with a convention similar `:paramName`. For example, if we want to define the `show` action of the `blog_posts` resource:
 
 ```tsx
 {
@@ -511,7 +510,7 @@ Paths can include parameters with a convention similar `:paramName`. For example
 }
 ```
 
-Additional parameters can also be defined in the path. For example, if we want to define the `edit` action of the `blog_posts` resource, we can do it as follows:
+Additional parameters can also be defined in the path. For example, if we want to define the `edit` action of the `blog_posts` resource:
 
 ```tsx
 {
@@ -520,26 +519,28 @@ Additional parameters can also be defined in the path. For example, if we want t
 }
 ```
 
-These additional parameters except for the `id` parameter, can be passed to the components or hooks using `meta` properties. Also the existing parameters in the URL will be used by default when handling the navigation. So, let's say we have a `create` action for the `blog_posts` resource as `/:userId/blog-posts/create` and the user is currently on the `/:userId/blog-posts` page. When the user clicks on the `create` button, the user will be redirected to `/:userId/blog-posts/create` page. The `userId` parameter will be inferred from the current path unless it is explicitly defined in the `meta` property.
+These additional parameters, except for the `id` parameter, can be passed to the components or hooks using `meta` properties. The existing parameters in the URL will be used by default when handling the navigation.
+
+For example, let’s say that we have a `create` action for the `blog_posts` resource as `/:userId/blog-posts/create` and the user is currently on the `/:userID/blog-posts` page.
+
+When the user clicks on the `create` button, they will be redirected to `/:userId/blog-posts/create` because the `userId` parameter has been inferred from the current path.
 
 :::tip
 
-Features related to routing such as the inference of the resource by the route, the generation of the routes (optional) and etc. require the use of the `routerProvider` prop of the `<Refine/>` component.
-
-[Refer to the documentation for more information &#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+Features related to routing, such as the inference of the resource by the route, the generation of the routes (optional), etc., require the use of the `routerProvider` prop of the `<Refine/>` component.
 
 When using the **refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
 
+For more information, refer to the [`<routerProvider` part of the `<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+
 :::
 
-## Learn More
-
-Learn more about [resources](/docs/api-reference/core/components/refine-config/#resources) in the API reference.
+> To learn more about `resource`, refer to [its section in the API reference documentation](/docs/api-reference/core/components/refine-config/#resources)
 
 <Checklist>
 
 <ChecklistItem id="understanding-resource">
-I understood what a resource is and how to add a resource to the app.
+I understood what a resource is and how to add it to my app.
 </ChecklistItem>
 
 </Checklist>

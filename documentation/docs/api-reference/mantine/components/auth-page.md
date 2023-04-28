@@ -141,7 +141,7 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/mantine";
+import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -170,9 +170,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -230,7 +230,7 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -260,9 +260,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -334,7 +334,7 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -364,9 +364,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -442,7 +442,7 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -472,9 +472,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -554,7 +554,7 @@ import routerProvider, {
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 
-import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -584,9 +584,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -891,7 +891,7 @@ const MyLoginPage = () => {
         <AuthPage
             type="login"
             title={
-                <ThemedTitle
+                <ThemedTitleV2
                     title="My Title"
                     icon={<img src="https://refine.dev/img/logo.png" />}
                 />

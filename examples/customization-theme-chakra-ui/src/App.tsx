@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     notificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -44,9 +44,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout Header={Header}>
+                                <ThemedLayoutV2 Header={Header}>
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

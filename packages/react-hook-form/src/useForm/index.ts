@@ -5,6 +5,7 @@ import {
     UseFormReturn,
     FieldValues,
     UseFormHandleSubmit,
+    Path,
 } from "react-hook-form";
 import {
     BaseRecord,
@@ -16,13 +17,22 @@ import {
 } from "@refinedev/core";
 
 export type UseFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = UseFormReturn<TVariables, TContext> & {
-    refineCore: UseFormReturnTypeCore<TData, TError, TVariables, TSelectData>;
+    refineCore: UseFormReturnTypeCore<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >;
     saveButtonProps: {
         disabled: boolean;
         onClick: (e: React.BaseSyntheticEvent) => void;
@@ -30,17 +40,26 @@ export type UseFormReturnType<
 };
 
 export type UseFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = {
     /**
      * Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)
-     * @type [`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)
+     * @type [`UseFormCoreProps<TQueryFnData, TError, TVariables, TData, TResponse, TResponseError>`](/docs/api-reference/core/hooks/useForm/#properties)
      */
-    refineCoreProps?: UseFormCoreProps<TData, TError, TVariables, TSelectData>;
+    refineCoreProps?: UseFormCoreProps<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >;
     /**
      * When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
      * @default `false*`
@@ -49,27 +68,33 @@ export type UseFormProps<
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     refineCoreProps,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     ...rest
 }: UseFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TContext,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > = {}): UseFormReturnType<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TContext,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > => {
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -79,10 +104,12 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const useFormCoreResult = useFormCore<
-        TData,
+        TQueryFnData,
         TError,
         TVariables,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     >({
         ...refineCoreProps,
     });
@@ -95,26 +122,24 @@ export const useForm = <
 
     const {
         watch,
-        reset,
+        setValue,
         getValues,
         handleSubmit: handleSubmitReactHookForm,
     } = useHookFormResult;
 
     useEffect(() => {
-        if (typeof queryResult?.data !== "undefined") {
-            const fields: any = {};
-            const registeredFields = Object.keys(getValues());
-            Object.entries(queryResult?.data?.data || {}).forEach(
-                ([key, value]) => {
-                    if (registeredFields.includes(key)) {
-                        fields[key] = value;
-                    }
-                },
-            );
+        const data = queryResult?.data?.data;
+        if (!data) return;
 
-            reset(fields as any);
-        }
-    }, [queryResult?.data]);
+        const registeredFields = Object.keys(getValues());
+        Object.entries(data).forEach(([key, value]) => {
+            const name = key as Path<TVariables>;
+
+            if (registeredFields.includes(name)) {
+                setValue(name, value);
+            }
+        });
+    }, [queryResult?.data, setValue, getValues]);
 
     useEffect(() => {
         const subscription = watch((values: any, { type }: { type?: any }) => {

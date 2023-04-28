@@ -5,7 +5,7 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     RefineThemes,
     ErrorComponent,
     AuthPage,
@@ -80,9 +80,9 @@ function App() {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >
@@ -151,9 +151,9 @@ function App() {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayout>
+                                        <ThemedLayoutV2>
                                             <Outlet />
-                                        </ThemedLayout>
+                                        </ThemedLayoutV2>
                                     </Authenticated>
                                 }
                             >

@@ -18,12 +18,22 @@ import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import React from "react";
 
 export type UseModalFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormReturnType<TData, TError, TVariables, TContext, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TContext,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     modal: {
         submit: (values: TVariables) => void;
         close: () => void;
@@ -34,12 +44,22 @@ export type UseModalFormReturnType<
 };
 
 export type UseModalFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormProps<TData, TError, TVariables, TContext, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormProps<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TContext,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     /**
      * @description Configuration object for the modal.
      * `defaultVisible`: Initial visibility state of the modal.
@@ -62,28 +82,34 @@ export type UseModalFormProps<
 } & FormWithSyncWithLocationParams;
 
 export const useModalForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     modalProps,
     refineCoreProps,
     syncWithLocation,
     ...rest
 }: UseModalFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TContext,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > = {}): UseModalFormReturnType<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TContext,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > => {
     const initiallySynced = React.useRef(false);
 
@@ -116,11 +142,13 @@ export const useModalForm = <
     } = modalProps ?? {};
 
     const useHookFormResult = useForm<
-        TData,
+        TQueryFnData,
         TError,
         TVariables,
         TContext,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     >({
         refineCoreProps,
         ...rest,

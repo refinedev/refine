@@ -6,50 +6,48 @@ tutorial:
     next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
 ---
 
-This section will show you how to create an auth provider from scratch. We'll use mock data to be able to focus on the auth provider methods. When you understand the logic of auth provider, you can easly integrate third-party authentication services or your own custom auth provider which includes many possible strategies like JWT, OAuth, etc.
+We will show you how to create an auth provider from scratch in this section. After you understand the logic of the auth provider, you can easily integrate third-party authentication services or custom auth providers. We will be using mock data to better focus on the auth provider.
 
-## Create Mock Auth Provider
+## Creating a Mock Auth Provider
 
-1. Create a new file named `authProvider.ts` in `src` folder and add the following code:
+First, create a new file named `authProvider.ts` in the `src` folder and add the following code:
 
-    ```tsx title="src/authProvider.ts"
-    import type { AuthBindings } from "@refinedev/core";
+```tsx title="src/authProvider.ts"
+import type { AuthBindings } from "@refinedev/core";
 
-    const authProvider: AuthBindings = {
-        login: async (params: any) => ({}),
-        check: async (params: any) => ({}),
-        logout: async (params: any) => ({}),
-        onError: async (params: any) => ({}),
-    };
+const authProvider: AuthBindings = {
+    login: async (params: any) => ({}),
+    check: async (params: any) => ({}),
+    logout: async (params: any) => ({}),
+    onError: async (params: any) => ({}),
+};
 
-    export default authProvider;
-    ```
+export default authProvider;
+```
 
-    We created a mock auth provider. It has all the required methods. But, they don't do anything. We'll add the logic to these methods in the next.
+Now, to pass the `authProvider` to the `<Refine/>` component, open `App.tsx` file and add the related code:
 
-2. Now, we need to pass the `authProvider` to the `<Refine/>` component. Open `App.tsx` file and add the related code:
+```tsx title="src/App.tsx"
+// ---
+import authProvider from "./authProvider";
 
-    ```tsx title="src/App.tsx"
+<Refine
     // ---
-    import authProvider from "./authProvider";
+    authProvider={authProvider}
+/>;
+```
 
-    <Refine
-        // ---
-        authProvider={authProvider}
-    />;
-    ```
+:::note
+`authProvider` isn't required for the `<Refine/>` to work but your app won't have any authentication and incidentally, you wo'nt be able to use the auth hooks.
+:::
 
-    The `authProvider` is not required for the `<Refine/>` component. If you don't pass it, your app will work without authentication. But, you won't be able to use the auth hooks.
-
-<br />
-
-We created a mock auth provider and passed it to the `<Refine/>` component. Now, we'll add the logic to the auth provider methods.
+Our mock auth provider is now up and running with all the required methods, but they don't do anything yet. We will now add logic to these methods.
 
 ## Required Methods
 
 ### login
 
-`login` method is used to authenticate users. It expects to return a resolved Promise with the following type:
+`login` method is used to authenticate users. It expects to return a resolved promise with the following type:
 
 ```ts
 type AuthActionResponse = {
@@ -65,7 +63,7 @@ type AuthActionResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-We'll use mock data to authenticate users. So, we'll create a mock user list and check if the user exists in the list. If the user exists, we'll save the user data to the local storage and resolve the Promise with `success: true`. Otherwise, we'll resolve the Promise with `success: false`.
+We will use a mock user list and check if the user exists in the list. If they do, we will save the user data to the local storage and resolve the promise with `success: true`. Otherwise, we will resolve the promise with `success: false`:
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -101,8 +99,6 @@ const authProvider: AuthBindings = {
 
 Invoking the `useLogin` hook's mutation will call the `login` method, passing in the mutation's parameters as arguments. This means the parameters for the `useLogin` hook's mutation must match the parameters of the login method.
 
-[Refer to the `useLogin` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useLogin/)
-
 For example, if we call the `useLogin` hook's mutation like this:
 
 ```tsx
@@ -115,7 +111,7 @@ mutate({ email: "john@mail.com", password: "123456" });
 
 The `login` method will get the mutation's parameters as arguments.
 
-At this point, we can authenticate users. But, we can't check if the user is authenticated or not when the user refreshes the page or navigates to another page. We'll add the logic to the `check` method to solve this problem.
+At this point, we can authenticate users but can't check if the user is authenticated or not when the user refreshes the page or navigates to another page. We will add the logic to the `check` method to solve this problem.
 
 <br />
 
@@ -138,7 +134,7 @@ const { mutate } = useLogin<{
 <details>
   <summary><strong>How can I redirect the user to a specific page after login?</strong></summary>
 
-If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
+If you want to redirect the user to a specific page, you can resolve the promise with an object that has the `redirectTo` property.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -160,7 +156,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-Also, you can use the `useLogin` hook's for this purpose.
+You can also use the `useLogin` hook's for this purpose:
 
 ```tsx
 const { mutate } = useLogin();
@@ -168,7 +164,7 @@ const { mutate } = useLogin();
 mutate({ redirectPath: "/custom-page" });
 ```
 
-Then, you can use the `redirectPath` parameter in the `login` method to redirect the user to the specific page.
+Then use the `redirectPath` parameter in the `login` method to redirect the user to the specific page:
 
 ```ts
 const authProvider: AuthBindings = {
@@ -183,7 +179,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-If you don't want to redirect the user anywhere, you can resolve the `login` method's Promise with `redirectTo: undefined`.
+If you don't want to redirect the user anywhere, you can resolve the `login` method's promise with `redirectTo: undefined`.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -203,7 +199,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**refine** automatically displays an error notification when the `login` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+**refine** automatically displays an error notification when the `login` method resolves the promise with `success: false`. If you want to customize the error message, you can resolve the promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -226,11 +222,11 @@ const authProvider: AuthBindings = {
 
 </details>
 
+> For more information, refer to the [`useLogin` documentation&#8594](/docs/api-reference/core/hooks/auth/useLogin/)
+
 ### check
 
-`check` method is used to check if the user is authenticated. Internally, it is called when the user navigates to a page that requires authentication.
-
-`check` method expects to return a resolved Promise with the following type:
+The `check` method is used to check if the user is authenticated. It is internally called when the user navigates to a page that requires authentication. This method expects to return a resolved promise with the following type:
 
 ```ts
 type CheckResponse = {
@@ -246,7 +242,7 @@ type CheckResponse = {
 -   `logout`: A boolean value indicating whether the user should be logged out.
 -   `error`: An Error object representing any errors that may have occurred during the check.
 
-In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll check if the user data exists in the local storage to determine if the user is authenticated.
+Since we saved the user data to the local storage, we will check that to determine if the user is authenticated:
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -280,8 +276,6 @@ const authProvider: AuthBindings = {
 
 Invoking the `useIsAuthenticated` hook will call the `check` method. If `check` method resolves a data, it will be available in the `useIsAuthenticated` hook's `data` property.
 
-[Refer to the `useIsAuthenticated` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useIsAuthenticated/)
-
 ```tsx
 import { useIsAuthenticated } from "@refinedev/core";
 
@@ -290,16 +284,16 @@ const { data, isSuccess, isLoading, isError, refetch } = useIsAuthenticated();
 
 :::tip
 
-The `<Authenticated>` component makes use of the `useIsAuthenticated` hook. It allows you to render components only if the user is authenticated.
+The `<Authenticated>` component makes use of the `useIsAuthenticated` hook, allowing you to render the components only if the user is authenticated.
 
-[Refer to the `<Authenticated>` documentation for more information &#8594](/docs/api-reference/core/components/auth/authenticated/)
+For more information, refer to the [`<Authenticated>`&#8594](/docs/api-reference/core/components/auth/authenticated/)
 
 :::
 
 <br />
 
 <details>
-  <summary><strong>How can I redirect the user if the user is not authenticated?</strong></summary>
+  <summary><strong>How can I redirect the user if they are not authenticated?</strong></summary>
 
 If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
 
@@ -318,9 +312,11 @@ const authProvider: AuthBindings = {
 
 </details>
 
+> For more information, refer to the [`useIsAuthenticated` documentation&#8594](/docs/api-reference/core/hooks/auth/useIsAuthenticated/)
+
 ### logout
 
-`logout` method is used to log out users. It expects to return a resolved Promise with the following type:
+The `logout` method is used to log out users. It expects to return a resolved promise with the following type:
 
 ```ts
 type AuthActionResponse = {
@@ -336,7 +332,7 @@ type AuthActionResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll remove the user data from the local storage when the user logs out.
+Opposite to what we did in the `login` method, we now need to remove the user data from the local storage upon log out:
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -358,8 +354,6 @@ const authProvider: AuthBindings = {
 
 Invoking the `useLogout` hook's mutation will call the `logout` method. If you need to pass any parameters to the `logout` method, you can use the `useLogout` hook's mutation.
 
-[Refer to the `useLogout` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useLogout/)
-
 For example, if we call the `useLogout` hook's mutation like this:
 
 ```tsx
@@ -377,7 +371,7 @@ The `logout` method will get the mutation's parameters as an argument.
 <details>
   <summary><strong>Can I pass any parameters to the <code>logout</code> method?</strong></summary>
 
-Yes, you can pass any parameters to the `logout` method. `useLogout` hook's mutation will pass the mutation's parameters to the `logout` method without any type constraints.
+Yes, you can pass any parameters to the `logout` method. The `useLogout` hook's mutation will pass the mutation's parameters to the `logout` method without any type constraints.
 
 ```ts
 const { mutate } = useLogout<{
@@ -391,7 +385,7 @@ const { mutate } = useLogout<{
 <details>
   <summary><strong>How can I redirect the user to a specific page after logout?</strong></summary>
 
-If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
+If you want to redirect the user to a specific page, you can resolve the promise with an object that has the `redirectTo` property.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -406,7 +400,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-Also, you can use the `useLogout` hook for this purpose.
+You can also use the `useLogout` hook for this purpose:
 
 ```tsx
 const { mutate } = useLogout();
@@ -414,7 +408,7 @@ const { mutate } = useLogout();
 mutate({ redirectPath: "/custom-page" });
 ```
 
-Then, you can use the `redirectPath` parameter in the `logout` method to redirect the user to the specific page.
+Then use the `redirectPath` parameter in the `logout` method to redirect the user to the specific page:
 
 ```ts
 const authProvider: AuthBindings = {
@@ -471,6 +465,8 @@ const authProvider: AuthBindings = {
 
 </details>
 
+> For more information, refer to the [`useLogout` documentation&#8594](/docs/api-reference/core/hooks/auth/useLogout/)
+
 ### onError
 
 `onError` method is called when you get an error response from the API. You can create your own business logic to handle the error such as refreshing the token, logging out the user, etc.
@@ -515,8 +511,6 @@ const authProvider: AuthBindings = {
 
 Invoking the `useOnError` hook's mutation will call the `onError` method, passing in the mutation's parameters as arguments.
 
-[Refer to the `useOnError` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useOnError/)
-
 For example, if you want to check the error of a fetch request, you can use the `useOnError` hook's mutation like this:
 
 ```tsx
@@ -534,7 +528,7 @@ fetch("http://example.com/payment")
 <details>
   <summary><strong>How can I redirect the user to a specific page after logout?</strong></summary>
 
-If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
+If you want to redirect the user to a specific page, you can resolve the promise with an object that has `redirectTo` property.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -554,15 +548,15 @@ const authProvider: AuthBindings = {
 
 </details>
 
+> For more information, refer to the [`useOnError` documentation&#8594](/docs/api-reference/core/hooks/auth/useOnError/)
+
 ## Optional Methods
 
 ### getPermissions
 
-`getPermissions` method is used to get the user's permissions. It expects to return a resolved Promise.
+`getPermissions` method is used to get the user's permissions. It expects to return a resolved promise.
 
--   If the Promise resolves with data, the user's permissions will be available in the `usePermissions` hook's `data` property.
-
-We'll use the `getPermissions` method to get the user's permissions from the `localStorage`.
+We will use the `getPermissions` method to get the user's permissions from the `localStorage`.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -593,8 +587,6 @@ const authProvider: AuthBindings = {
 
 Invoking the `usePermissions` hook will call the `getPermissions` method. If `getPermissions` method resolves a data, it will be available in the `usePermissions` hook's `data` property.
 
-[Refer to the `usePermissions` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/usePermissions/)
-
 For example, if you want to check if the user has a specific permission, you can use the `usePermissions` hook like this:
 
 ```tsx
@@ -610,18 +602,18 @@ if (data?.includes("admin")) {
 <br />
 
 :::info
-`usePermissions` hook can be used for simply authorization purposes. If you need more complex authorization logic, we recommend using the access control provider to handle the authorization logic.
+Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-[Refer to the `accessControlProvider` documentation for more information &#8594](docs/api-reference/core/providers/accessControl-provider/)
+For more information, refer to the [`accessControlProvider` documentation&#8594](docs/api-reference/core/providers/accessControl-provider/)
 :::
+
+> For more information, refer to the [`usePermissions` documentation &#8594](/docs/api-reference/core/hooks/auth/usePermissions/)
 
 ### getIdentity
 
-`getIdentity` method is used to get the user's identity. It expects to return a resolved Promise.
+`getIdentity` method is used to get the user's identity. It expects to return a resolved promise.
 
--   If the Promise resolves with data, the user's identity will be available in the `useGetIdentity` hook's `data` property.
-
-We'll get the user's identity from the local storage and resolve the Promise.
+To get the user's identity from the local storage and resolve the promise:
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -652,8 +644,6 @@ const authProvider: AuthBindings = {
 
 Invoking the `useGetIdentity` hook will call the `getIdentity` method. If `getIdentity` method resolves a data, it will be available in the `useGetIdentity` hook's `data` property.
 
-[Refer to the `useGetIdentity` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
-
 For example, if you want to get the user's email, you can use the `useGetIdentity` hook like this:
 
 ```tsx
@@ -668,7 +658,7 @@ if (data) {
 
 :::info
 
-Depending on the UI framework you use, if you resolve `name` and `avatar` properties in the `getIdentity` method, the user's name and avatar will be shown in the header in the default layout.
+Depending on the UI framework you use, resolving `name` and `avatar` properties in the `getIdentity` method may show the user's name and avatar in the header in the default layout.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -697,9 +687,11 @@ const authProvider: AuthBindings = {
 
 :::
 
+> For more information, refer to the [`useGetIdentity` documentation&#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
+
 ### register
 
-`register` method is used to register a new user. It is similar to the `login` method. It expects to return a resolved Promise with the following type:
+`register` method is used to register a new user. It is similar to the `login` method. It expects to return a resolved promise with the following type:
 
 ```ts
 type RegisterResponse = {
@@ -715,7 +707,7 @@ type RegisterResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-We'll register a new user and resolve the Promise.
+We'll register a new user and resolve the promise.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -751,8 +743,6 @@ const authProvider: AuthBindings = {
 <br />
 
 Invoking the `useRegister` hook's mutation will call the `register` method, passing in the mutation's parameters as arguments.
-
-[Refer to the `useRegister` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useRegister/)
 
 For example, if you want to register a new user, you can use the `useRegister` hook like this:
 
@@ -805,7 +795,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-Also, you can use the `useRegister` hook's for this purpose.
+You can also use the `useRegister` hook's for this purpose:
 
 ```tsx
 const { mutate } = useRegister();
@@ -813,7 +803,7 @@ const { mutate } = useRegister();
 mutate({ redirectPath: "/custom-page" });
 ```
 
-Then, you can use the `redirectPath` parameter in the `register` method to redirect the user to the specific page.
+Then use the `redirectPath` parameter in the `register` method to redirect the user to the specific page:
 
 ```ts
 const authProvider: AuthBindings = {
@@ -868,9 +858,11 @@ const authProvider: AuthBindings = {
 
 </details>
 
+> For more information, refer to the [`useRegister` documentation&#8594](/docs/api-reference/core/hooks/auth/useRegister/)
+
 ### forgotPassword
 
-`forgotPassword` method is used to send a password reset link to the user's email address. It expects to return a resolved Promise with the following type:
+`forgotPassword` method is used to send a password reset link to the user's email address. It expects to return a resolved promise with the following type:
 
 ```ts
 type AuthActionResponse = {
@@ -886,7 +878,7 @@ type AuthActionResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-We'll show how to send a password reset link to the user's email address and resolve the Promise.
+To send a password reset link to the user's email address and resolve the promise:
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -918,8 +910,6 @@ const authProvider: AuthBindings = {
 <br />
 
 Invoking the `useForgotPassword` hook's mutation will call the `forgotPassword` method, passing in the mutation's parameters as arguments.
-
-[Refer to the `useForgotPassword` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useForgotPassword/)
 
 For example, if you want to send a password reset link to the user's email address, you can use the `useForgotPassword` hook like this:
 
@@ -1016,9 +1006,11 @@ const authProvider: AuthBindings = {
 
 </details>
 
+> For more information, refer to the [`useForgotPassword` documentation &#8594](/docs/api-reference/core/hooks/auth/useForgotPassword/)
+
 ### updatePassword
 
-`updatePassword` method is used to update the user's password. It expects to return a resolved Promise with the following type:
+`updatePassword` method is used to update the user's password. It expects to return a resolved promise with the following type:
 
 ```ts
 type AuthActionResponse = {
@@ -1034,7 +1026,7 @@ type AuthActionResponse = {
 -   `error`: An object containing details about any errors encountered during the operation.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
-We'll show how to update the user's password and resolve the Promise.
+To update the user's password and resolve the promise:
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -1065,9 +1057,7 @@ const authProvider: AuthBindings = {
 
 <br />
 
-Invoking the `useUpdatePassword` hook's mutation will call the `updatePassword` method, passing in the mutation's parameters as arguments. Additionally, the `updatePassword` method will take query parameters as arguments from the URL as well.
-
-[Refer to the `useUpdatePassword` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useUpdatePassword/)
+Invoking the `useUpdatePassword` hook's mutation will call the `updatePassword` method, passing in the mutation's parameters as arguments. Additionally, the `updatePassword` method will take query parameters as arguments from the URL.
 
 For example, if you want to update the user's password, you can use the `useUpdatePassword` hook like this:
 
@@ -1081,7 +1071,7 @@ const handleUpdatePassword = ({ password, confirmPassword }) => {
 };
 ```
 
-If we assume that the URL is `http://localhost:3000/reset-password?token=123`, the `updatePassword` method will get the mutation's parameters as arguments and `token` query parameter as well.
+If we assume that the URL is `http://localhost:3000/reset-password?token=123`, the `updatePassword` method will get the mutation's parameters as arguments and the `token` query parameter as well.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -1132,7 +1122,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-Also, you can use the `useUpdatePassword` hook's for this purpose.
+You can also use the `useUpdatePassword` hook's for this purpose:
 
 ```ts
 const { mutate } = useUpdatePassword();
@@ -1140,7 +1130,7 @@ const { mutate } = useUpdatePassword();
 useUpdatePassword({ redirectPath: "/custom-page" });
 ```
 
-Then, you can use the `redirectPath` parameter in the `updatePassword` method to redirect the user to the specific page.
+Then use the `redirectPath` parameter in the `updatePassword` method to redirect the user to the specific page:
 
 ```ts
 const authProvider: AuthBindings = {
@@ -1179,6 +1169,8 @@ const authProvider: AuthBindings = {
 ```
 
 </details>
+
+> For more information, refer to the [`useUpdatePassword` documentation &#8594](/docs/api-reference/core/hooks/auth/useUpdatePassword/)
 
 ## Setting Authorization Credentials
 
@@ -1244,14 +1236,12 @@ const App = () => {
 ```
 
 :::note
-We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md). Other **HTTP** clients can also be preferred.
+We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md) but other **HTTP** clients can also be preferred.
 :::
 
 <br />
 
 You can also use `axios.interceptors.request.use` to add the token acquired from the `login` method to the `Authorization` header of API calls. It is similar to the above example, but it is more flexible for more complex use cases such as refreshing tokens when they expire.
-
-[Refer to the axios documentation for more information about interceptors &#8594](https://axios-http.com/docs/interceptors)
 
 ```tsx title="App.tsx"
 // ---
@@ -1325,11 +1315,11 @@ const App = () => {
 };
 ```
 
+> For mor information, refer to the [interceptors section of the `axios` documentation &#8594](https://axios-http.com/docs/interceptors)
+
 ## Implementing Refresh Token Mechanism
 
-Previously, we stored the token in the `localStorage` and added it to the `Authorization` header of API calls. However, tokens typically have a limited lifespan and expire after a certain amount of time. When the token expires, the user will be redirected to the login page. To avoid this, we'll implement a refresh token mechanism using the `axios-auth-refresh` package.
-
-[Refer to the `axios-auth-refresh` repository for more information &#8594](https://github.com/Flyrell/axios-auth-refresh)
+Though we were able to store the token in the `localStorage`, it will have a limited life time. To avoid the user from logging out in mid session, we can implement a refresh token mechanism using the `axios-auth-refresh` package:
 
 ```tsx title="App.tsx"
 /* ... */
@@ -1377,9 +1367,12 @@ const App = () => {
 };
 ```
 
-In this example, we used the `axios-auth-refresh` package to refresh the token. You can use any other package or your own implementation.
+:::note
+Though we used the `axios-auth-refresh` package, you can use another package or create a method of your own for this purpose
+:::
 
-<br />
+> For more information, refer to the [`axios-auth-refresh` repository&#8594](https://github.com/Flyrell/axios-auth-refresh)
+
 <br />
 
 <Checklist>

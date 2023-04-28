@@ -1,18 +1,28 @@
 import {
     ActionIcon,
-    Group,
+    Flex,
     Header as MantineHeader,
     useMantineColorScheme,
 } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons";
+import { HamburgerMenu } from "@refinedev/mantine";
 
 export const Header: React.FC = () => {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const dark = colorScheme === "dark";
 
     return (
-        <MantineHeader height={50} p="xs">
-            <Group position="right">
+        <MantineHeader
+            height={50}
+            p="xs"
+            sx={{
+                position: `sticky`,
+                top: 0,
+                zIndex: 1,
+            }}
+        >
+            <Flex justify="space-between" align="center">
+                <HamburgerMenu />
                 <ActionIcon
                     variant="outline"
                     color={dark ? "yellow" : "primary"}
@@ -21,7 +31,7 @@ export const Header: React.FC = () => {
                 >
                     {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
                 </ActionIcon>
-            </Group>
+            </Flex>
         </MantineHeader>
     );
 };

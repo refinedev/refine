@@ -51,12 +51,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
-            minH="100vh"
-            sx={{
-                "@media (min-height: 755px)": {
-                    marginTop: "-150px",
-                },
-            }}
+            minH="calc(100vh - 150px)"
         >
             <Heading fontWeight={900} fontSize={[120, 160, 220]} color={color}>
                 404

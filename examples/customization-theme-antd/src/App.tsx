@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
@@ -69,7 +69,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route
                             element={
-                                <ThemedLayout
+                                <ThemedLayoutV2
                                     Header={() => (
                                         <Header
                                             theme={currentTheme}
@@ -78,7 +78,7 @@ const App: React.FC = () => {
                                     )}
                                 >
                                     <Outlet />
-                                </ThemedLayout>
+                                </ThemedLayoutV2>
                             }
                         >
                             <Route

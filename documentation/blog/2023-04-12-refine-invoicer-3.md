@@ -102,7 +102,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitle
+                        <ThemedTitleV2
                           collapsed={collapsed}
                           text="Invoicer"
                         />
@@ -128,7 +128,7 @@ function App() {
                     <AuthPage
                       type="login"
                       title={
-                        <ThemedTitle
+                        <ThemedTitleV2
                             collapsed
                             text="Invoicer"
                         />
@@ -149,7 +149,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitle
+                        <ThemedTitleV2
                           collapsed={collapsed}
                           text="Invoicer"
                         />
@@ -432,7 +432,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitle
+                        <ThemedTitleV2
                           collapsed={collapsed}
                           text="Invoicer"
                         />
@@ -471,7 +471,7 @@ function App() {
                     <AuthPage
                       type="login"
                       title={
-                        <ThemedTitle
+                        <ThemedTitleV2
                             collapsed
                             text="Invoicer"
                         />
@@ -492,7 +492,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitle
+                        <ThemedTitleV2
                           collapsed={collapsed}
                           text="Invoicer"
                         />
@@ -901,7 +901,7 @@ The routing and components involved are the following:
         <AuthPage
             type="login"
             title={
-                <ThemedTitle
+                <ThemedTitleV2
                     collapsed
                     text="Invoicer"
                 />

@@ -245,6 +245,22 @@
       "to": "/docs/api-reference/core/providers/router-provider/"
     },
     {
+      "from": "/docs/advanced-tutorials/data-provider/appwrite/",
+      "to": "/docs/packages/documentation/data-providers/appwrite/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/data-provider/graphql/",
+      "to": "/docs/packages/documentation/data-providers/graphql/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/data-provider/strapi-v4/",
+      "to": "/docs/packages/documentation/data-providers/strapi-v4/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/data-provider/supabase/",
+      "to": "/docs/packages/documentation/data-providers/supabase/"
+    },
+    {
       "from": "/docs/guides-and-concepts/access-control/",
       "to": "/docs/advanced-tutorials/access-control/"
     },
@@ -261,20 +277,8 @@
       "to": "/docs/packages/documentation/routers"
     },
     {
-      "from": "/docs/guides-and-concepts/data-provider/appwrite/",
-      "to": "/docs/advanced-tutorials/data-provider/appwrite/"
-    },
-    {
-      "from": "/docs/guides-and-concepts/data-provider/graphql/",
-      "to": "/docs/advanced-tutorials/data-provider/graphql/"
-    },
-    {
       "from": "/docs/guides-and-concepts/data-provider/handling-filters/",
       "to": "/docs/advanced-tutorials/data-provider/handling-filters/"
-    },
-    {
-      "from": "/docs/guides-and-concepts/data-provider/strapi-v4/",
-      "to": "/docs/advanced-tutorials/data-provider/strapi-v4/"
     },
     {
       "from": "/docs/guides-and-concepts/forms/custom-form-validation/",

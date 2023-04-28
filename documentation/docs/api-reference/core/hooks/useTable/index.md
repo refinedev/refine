@@ -153,6 +153,23 @@ useTable({
 });
 ```
 
+### `sorters.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, or `"server"`.
+
+-   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+-   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+```tsx
+useTable({
+    sorters: {
+        mode: "server",
+    },
+});
+```
+
 ### `sorters.initial`
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
@@ -187,6 +204,23 @@ useTable({
                 order: "asc",
             },
         ],
+    },
+});
+```
+
+### `filters.mode`
+
+> Default: `"server"`
+
+It can be `"off"` or `"server"`.
+
+-   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+-   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+
+```tsx
+useTable({
+    filters: {
+        mode: "off",
     },
 });
 ```
@@ -638,11 +672,121 @@ A function to set current [sorters state][crudsorting].
 
 ## FAQ
 
-### How can I handle relational data ?
+### How can I handle relational data?
 
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
+
+### How can I handle client side filtering?
+
+First, you need to set `filters.mode: "off"`
+
+```tsx
+const { tableQueryResult, filters, setFilters } = useTable({
+    filters: {
+        mode: "off",
+    },
+});
+```
+
+Then, you can use the `filters` state to filter your data.
+
+```tsx
+// ...
+
+const List = () => {
+    const { tableQueryResult, filters } = useTable();
+
+    // ...
+
+    const filteredData = useMemo(() => {
+        if (filters.length === 0) {
+            return tableQueryResult.data;
+        }
+
+        // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
+        // We use flatMap for better type support.
+        const logicalFilters = filters.flatMap((item) =>
+            "field" in item ? item : [],
+        );
+
+        return tableProps.dataSource.filter((item) => {
+            return logicalFilters.some((filter) => {
+                if (filter.operator === "eq") {
+                    return item[filter.field] === filter.value;
+                }
+            });
+        });
+    }, [tableQueryResult.data, filters]);
+};
+
+return (
+    <div>
+        {/* ...  */}
+        <table>
+            <tbody>
+                {filteredData.map((item) => (
+                    <tr key={item.id}>{/* ...  */}</tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+);
+```
+
+### How can I handle client side sorting?
+
+First, you need to set `sorters.mode: "off"`
+
+```tsx
+const { tableQueryResult, sorters, setSorters } = useTable({
+    sorters: {
+        mode: "off",
+    },
+});
+```
+
+Then, you can use the `sorters` state to sort your data.
+
+```tsx
+// ...
+
+const List = () => {
+    const { tableQueryResult, sorters } = useTable();
+
+    // ...
+
+    const sortedData = useMemo(() => {
+        if (sorters.length === 0) {
+            return tableQueryResult.data;
+        }
+
+        return tableQueryResult.data.sort((a, b) => {
+            const sorter = sorters[0];
+
+            if (sorter.order === "asc") {
+                return a[sorter.field] > b[sorter.field] ? 1 : -1;
+            } else {
+                return a[sorter.field] < b[sorter.field] ? 1 : -1;
+            }
+        });
+    }, [tableQueryResult.data, sorters]);
+
+    return (
+        <div>
+            {/* ...  */}
+            <table>
+                <tbody>
+                    {sortedData.map((item) => (
+                        <tr key={item.id}>{/* ...  */}</tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+```
 
 ## API
 

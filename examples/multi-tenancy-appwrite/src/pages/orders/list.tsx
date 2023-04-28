@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import { IResourceComponentsProps, useMany } from "@refinedev/core";
-
+import { IResourceComponentsProps, useMany, useParsed } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -10,23 +8,29 @@ import {
     DeleteButton,
     ImageField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
-import { StoreContext } from "context/store";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
-    const [store] = useContext(StoreContext);
+    const { params } = useParsed<{ tenant?: string }>();
     const { tableProps } = useTable<IOrder>({
-        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+        filters: {
+            permanent: [
+                {
+                    field: "storeId",
+                    operator: "eq",
+                    value: params?.tenant,
+                },
+            ],
+        },
     });
 
     const productIds =
         tableProps?.dataSource?.map((item) => item.productId) ?? [];
 
     const { data: productData, isLoading } = useMany<IProduct>({
-        resource: "61cb01b17ef57",
+        resource: "products",
         ids: productIds,
     });
 
@@ -73,7 +77,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         ? JSON.parse(image).map(
                                               (p: { url: string }) => p.url,
                                           )
-                                        : undefined
+                                        : "/error.png"
                                 }
                                 width={72}
                                 preview={{ mask: <></> }}
@@ -82,7 +86,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     }}
                 />
 
-                <Table.Column dataIndex="quantitity" title="Quantitity" />
+                <Table.Column dataIndex="quantity" title="Quantity" />
 
                 <Table.Column
                     dataIndex="status"

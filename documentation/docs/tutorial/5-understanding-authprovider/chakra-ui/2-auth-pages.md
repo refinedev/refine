@@ -61,7 +61,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     refineTheme,
     notificationProvider,
     AuthPage,
@@ -98,9 +98,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -147,9 +147,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -165,25 +165,21 @@ const App = () => {
 
 In this section, we will learn how to create auth pages such as login, signup, forgot password and reset password using the `<AuthPage/>` component.
 
-[Refer to the `<AuthPage/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/chakra-auth-page)
+It will allow us to easily create and customize them with various props. Though we do need to have an auth provider to use it, since we already created one in the previous section, we will just use that.
 
-`<AuthPage/>` component provides auth pages for login, signup, forgot password and reset password. It also provides a way to customize theses pages with various props. So, `<AuthPage/>` is a quick starting point for creating auth pages.
-
-Before using `<AuthPage/>` component, we need to create an auth provider because `<AuthPage/>` component uses the auth provider to perform auth operations. However, we have already created an auth provider in the previous section. So, we will use the same auth provider for this section.
-
-Let's create the auth pages step by step.
+> For more information, refer to the [`<AuthPage/>` documentation &#8594](/docs/api-reference/chakra-ui/components/chakra-auth-page)
 
 ## Login Page
 
-Login page is used to authenticate users. It provides a basic form to enter email, password and remember. After submitting the form, it sends the email, password and remember to the auth provider's `login` method via `useLogin` hook.
+Login page is used for authenticating the users. It provides a basic form to enter email, password and remember, which it sends to auth provider’s `login` method via the `useLogin` hook.
 
-1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
+To implement the page, open `src/App.tsx` file and import the `<AuthPage/>` component.
 
 ```tsx
 import { AuthPage } from "@refinedev/chakra-ui";
 ```
 
-2. Place the `<AuthPage/>` component to the respective route inside your router.
+Then place the `<AuthPage/>` component to the respective route inside your router.
 
 ```tsx
 import { Refin, Authenticated } from "@refinedev/core";
@@ -194,7 +190,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -233,9 +229,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -260,9 +256,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -276,24 +272,24 @@ const App = () => {
 };
 ```
 
-By default, `<AuthPage>` component renders the login page. So, we don't need to pass any props to the `<AuthPage/>` component.
+The `<AuthPage>` component renders the login page by default, so we don't need to pass any props to the `<AuthPage/>` component.
 
 :::note
 
-When the user submits the login form, it passes the email, password and remember to the auth provider's `login` method like below:
+Email, password and remember are passed to the auth provider's `login` method like below upon login:
 
 ```ts
-    const authProvider = {
-        login: ({ email, password, remember }) => {
-            ...
-        },
+const authProvider = {
+    login: ({ email, password, remember }) => {
         ...
-    };
+    },
+    ...
+};
 ```
 
 :::
 
-1. Run the app and navigate to the `/login` page.
+Finally, run the app and navigate to the `/login` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
@@ -303,9 +299,9 @@ render(<App />);
 
 ## Register Page
 
-Register page is used to register new users. It provides a basic form to enter email and password. After submitting the form, it sends the email and password to the auth provider's `register` method via `useRegister` hook.
+Register page is used to register new users. It provides a basic form to enter email and password, which it sends to the auth provider's `register` method via the `useRegister` hook.
 
-1. Place the `<AuthPage/>` component to the respective route inside your router.
+To implement the page, place the `<AuthPage/>` component to the respective route inside your router.
 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
@@ -316,7 +312,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -355,9 +351,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -386,9 +382,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -406,20 +402,20 @@ We need to pass the `type` prop to the `<AuthPage/>` component to render the reg
 
 :::note
 
-When the user submits the register form, it passes the email and password to the auth provider's `register` method like below:
+Email and password are passed to the auth provider's `register` method like below:
 
 ```ts
-    const authProvider = {
-        register: ({ email, password }) => {
-            ...
-        },
+const authProvider = {
+    register: ({ email, password }) => {
         ...
-    };
+    },
+    ...
+};
 ```
 
 :::
 
-2. Run the app and navigate to the `/register` page.
+Then run the app and navigate to the `/register` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/register
 setInitialRoutes(["/register"]);
@@ -429,9 +425,9 @@ render(<App />);
 
 ## Forgot Password Page
 
-Forgot password page is used to send a reset password link to the user's email. It provides a basic form to enter email. After submitting the form, it sends the email to the auth provider's `forgotPassword` method via `useForgotPassword` hook.
+Forgot password page is used to send a reset password link to the user's email. It provides a basic form to enter email, which it sends to the auth provider's `forgotPassword` method via the `useForgotPassword` hook.
 
-1. Place the `<AuthPage/>` component to the respective route inside your router.
+To implement the page, place the `<AuthPage/>` component to the respective route inside your router:
 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
@@ -442,7 +438,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -479,9 +475,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -514,9 +510,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -534,21 +530,21 @@ We need to pass the `forgotPassword` prop to the `<AuthPage/>` component to rend
 
 :::note
 
-When the user submits the forgot password form, it passes the email to the auth provider's `forgotPassword` method like below:
+The email is passed to the auth provider's `forgotPassword` method like below:
 
 ```ts
 
-    const authProvider = {
-        forgotPassword: ({ email }) => {
-            ...
-        },
+const authProvider = {
+    forgotPassword: ({ email }) => {
         ...
-    };
+    },
+    ...
+};
 ```
 
 :::
 
-2. Run the app and navigate to the `/forgot-password` page.
+Then run the app and navigate to the `/forgot-password` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/forgot-password
 setInitialRoutes(["/forgot-password"]);
@@ -558,9 +554,9 @@ render(<App />);
 
 ## Update Password Page
 
-Update password page is used to update the user's password. It provides a basic form to enter new password and confirm password. After submitting the form, it sends the new password and confirm password to the auth provider's `updatePassword` method via `useUpdatePassword` hook.
+Update password page is used to update the user's password. It provides a basic form to enter new password and confirm password, which it sends to the auth provider's `updatePassword` method via `useUpdatePassword` hook.
 
-1. Place the `<AuthPage/>` component to the respective route inside your router.
+To implement this page, place the `<AuthPage/>` component to the respective route inside your router:
 
 ```tsx
 import { Refine, Authenticated } from "@refinedev/core";
@@ -571,7 +567,7 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
-    ThemedLayout,
+    ThemedLayoutV2,
     refineTheme,
     notificationProvider,
     //highlight-next-line
@@ -610,9 +606,9 @@ const App = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -649,9 +645,9 @@ const App = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -669,20 +665,20 @@ We need to pass the `updatePassword` prop to the `<AuthPage/>` component to rend
 
 :::note
 
-When the user submits the update password form, it passes the new password and confirm password to the auth provider's `updatePassword` method like below:
+The new password and confirm password are passed to the auth provider's `updatePassword` method like below:
 
 ```ts
-    const authProvider = {
-        updatePassword: ({ password, confirmPassword }) => {
-            ...
-        },
+const authProvider = {
+    updatePassword: ({ password, confirmPassword }) => {
         ...
-    };
+    },
+    ...
+};
 ```
 
 :::
 
-2. Run the app and navigate to the `/update-password` page.
+Then run the app and navigate to the `/update-password` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/update-password
 setInitialRoutes(["/update-password"]);
@@ -692,38 +688,32 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can customize the auth pages by using the `<AuthPage/>` component's props. Also, you can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages.
+You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
 
-[Refer to the `<AuthPage/>` component's props to customize the auth pages &#8594](/docs/api-reference/chakra-ui/components/auth-page.md#props)
+1. Run the following command in the project directory:
 
-When you swizzle the auth pages, default auth pages will be copied to the `components/pages/auth` folder. You can customize the auth pages as you want by editing the files.
+    ```bash
+        npm run refine swizzle
+    ```
 
-Let's customize the auth pages.
+2. Select the `@refinedev/chakra-ui` package:
 
-1. Run the following command in the project directory.
+    ```bash
+            ? Which package do you want to swizzle?
+            UI Framework
+            ❯  @refinedev/chakra-ui
+    ```
 
-```bash
-    npm run refine swizzle
-```
+3. Select the `AuthPage` component:
 
-2. Select the `@refinedev/chakra-ui` package.
+    ```bash
+            ? Which component do you want to swizzle?
+            Pages
+            ErrorPage
+            ❯  AuthPage
+    ```
 
-```bash
-        ? Which package do you want to swizzle?
-        UI Framework
-        ❯  @refinedev/chakra-ui
-```
-
-3. Select the `AuthPage` component.
-
-```bash
-        ? Which component do you want to swizzle?
-        Pages
-           ErrorPage
-        ❯  AuthPage
-```
-
-After swizzling the auth pages, you will show the success message like below.
+After swizzling the auth pages, you should see a success message like below:
 
 ```bash
     Successfully swizzled AuthPage
@@ -741,7 +731,12 @@ After swizzling the auth pages, you will show the success message like below.
 
 Now, you can customize the auth pages by editing the files in the `src/components/pages/auth` folder.
 
-<br/>
+:::tip
+You can also customize the auth pages by using the `<AuthPage>` component's props.
+
+For more information, refer to the [component props section of the `<AuthPage/>` documentation &#8594](/docs/api-reference/chakra-ui/components/auth-page.md#props)
+:::
+
 <br/>
 
 <Checklist>

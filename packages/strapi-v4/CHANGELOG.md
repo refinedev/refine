@@ -1,5 +1,51 @@
 # @pankod/refine-strapi-v4
 
+## 5.0.0
+
+### Major Changes
+
+-   [#4196](https://github.com/refinedev/refine/pull/4196) [`05dd92662ce`](https://github.com/refinedev/refine/commit/05dd92662ce1016dced9fecd326f4c147e3d036a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: remove `useStrapiUpload` hook. It was outdated and not working properly.
+
+    fix: update `getValueProps` logic to return the correct value.
+
+    > For more details > [https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#file-upload](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#file-upload)
+
+## 4.3.2
+
+### Patch Changes
+
+-   [#4196](https://github.com/refinedev/refine/pull/4196) [`05dd92662ce`](https://github.com/refinedev/refine/commit/05dd92662ce1016dced9fecd326f4c147e3d036a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: remove `useStrapiUpload` hook. It was outdated and not working properly.
+
+    fix: update `getValueProps` logic to return the correct value.
+
+## 4.3.1
+
+### Patch Changes
+
+-   [#4196](https://github.com/refinedev/refine/pull/4196) [`05dd92662ce`](https://github.com/refinedev/refine/commit/05dd92662ce1016dced9fecd326f4c147e3d036a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: remove `useStrapiUpload` hook. It was outdated and not working properly.
+
+    fix: update `getValueProps` logic to return the correct value.
+
+## 4.3.0
+
+### Minor Changes
+
+-   [#4182](https://github.com/refinedev/refine/pull/4182) [`a58e9a0f1b0`](https://github.com/refinedev/refine/commit/a58e9a0f1b0b7da0b3c67068a87570f937199d4b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize strapi-v4 data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#4182](https://github.com/refinedev/refine/pull/4182) [`a58e9a0f1b0`](https://github.com/refinedev/refine/commit/a58e9a0f1b0b7da0b3c67068a87570f937199d4b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added refine.config.js to support swizzling. Now with swizzle support, you can easily customize strapi-v4 data provider for your needs.
+
+    feat: tests added for utility functions.
+
+    chore: utility functions have been moved to their own files.
+
 ## 4.1.0
 
 ### Minor Changes

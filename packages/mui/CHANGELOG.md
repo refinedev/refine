@@ -1,5 +1,146 @@
 # @pankod/refine-mui
 
+## 4.14.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component. Default is `true`.
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/mui";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={false} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.12.0
+
+## 4.13.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component. Default is `true`.
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/mui";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={false} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.11.0
+
+## 4.12.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+### Patch Changes
+
+-   Updated dependencies [[`b992e11e338`](https://github.com/refinedev/refine/commit/b992e11e3387464186d552112460aebbc18d3cc5)]:
+    -   @refinedev/react-hook-form@4.2.2
+
+## 4.11.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+### Patch Changes
+
+-   Updated dependencies [[`b992e11e338`](https://github.com/refinedev/refine/commit/b992e11e3387464186d552112460aebbc18d3cc5)]:
+    -   @refinedev/react-hook-form@4.2.1
+
+## 4.10.3
+
+### Patch Changes
+
+-   [#4198](https://github.com/refinedev/refine/pull/4198) [`6081efbc26b`](https://github.com/refinedev/refine/commit/6081efbc26bad28629d5513d6e7a30c96b0dd080) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: `useAutocomplete` now resets the search value when the option is selected
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.10.0
+
+## 4.10.2
+
+### Patch Changes
+
+-   [#4198](https://github.com/refinedev/refine/pull/4198) [`6081efbc26b`](https://github.com/refinedev/refine/commit/6081efbc26bad28629d5513d6e7a30c96b0dd080) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: `useAutocomplete` now resets the search value when the option is selected
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.9.0
+
+## 4.10.1
+
+### Patch Changes
+
+-   [#4198](https://github.com/refinedev/refine/pull/4198) [`6081efbc26b`](https://github.com/refinedev/refine/commit/6081efbc26bad28629d5513d6e7a30c96b0dd080) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: `useAutocomplete` now resets the search value when the option is selected
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.8.0
+
 ## 4.10.0
 
 ### Minor Changes

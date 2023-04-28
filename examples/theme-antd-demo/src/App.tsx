@@ -3,7 +3,7 @@ import {
     notificationProvider,
     ErrorComponent,
     RefineThemes,
-    ThemedLayout,
+    ThemedLayoutV2,
     AuthPage,
 } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
@@ -66,9 +66,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -168,9 +168,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

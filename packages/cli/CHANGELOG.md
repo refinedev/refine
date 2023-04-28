@@ -1,5 +1,53 @@
 # @pankod/refine-cli
 
+## 2.5.3
+
+### Patch Changes
+
+-   [#4195](https://github.com/refinedev/refine/pull/4195) [`18f955a064e`](https://github.com/refinedev/refine/commit/18f955a064ef7524eef3f4434fb030d30058b4f9) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): add file system check to find installed packages
+
+    Updated the package find logic and added file system check for double checking if the package is installed or not.
+
+## 2.5.2
+
+### Patch Changes
+
+-   [#4195](https://github.com/refinedev/refine/pull/4195) [`18f955a064e`](https://github.com/refinedev/refine/commit/18f955a064ef7524eef3f4434fb030d30058b4f9) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): add file system check to find installed packages
+
+    Updated the package find logic and added file system check for double checking if the package is installed or not.
+
+## 2.5.1
+
+### Patch Changes
+
+-   [#4195](https://github.com/refinedev/refine/pull/4195) [`18f955a064e`](https://github.com/refinedev/refine/commit/18f955a064ef7524eef3f4434fb030d30058b4f9) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): add file system check to find installed packages
+
+    Updated the package find logic and added file system check for double checking if the package is installed or not.
+
+## 2.5.0
+
+### Minor Changes
+
+-   [#4187](https://github.com/refinedev/refine/pull/4187) [`014ad4d5e79`](https://github.com/refinedev/refine/commit/014ad4d5e79069b0a5e393d0bfc5e30f66f99c49) Thanks [@aliemir](https://github.com/aliemir)! - refactor: use `require.resolve` to find script executables.
+
+    Updated the runner command to use `require.resolve` to find the script executable. This allows the script to be run from anywhere in the project and allow mono-repos with workspaces to work.
+
+-   [#4187](https://github.com/refinedev/refine/pull/4187) [`014ad4d5e79`](https://github.com/refinedev/refine/commit/014ad4d5e79069b0a5e393d0bfc5e30f66f99c49) Thanks [@aliemir](https://github.com/aliemir)! - refactor: use `require.resolve` to find refine package paths.
+
+    Updated the refine package search to use `require.resolve` to find the package path. This allows the package to be run from anywhere in the project and allow mono-repos with workspaces to work.
+
+## 2.4.0
+
+### Minor Changes
+
+-   [#4187](https://github.com/refinedev/refine/pull/4187) [`014ad4d5e79`](https://github.com/refinedev/refine/commit/014ad4d5e79069b0a5e393d0bfc5e30f66f99c49) Thanks [@aliemir](https://github.com/aliemir)! - refactor: use `require.resolve` to find script executables.
+
+    Updated the runner command to use `require.resolve` to find the script executable. This allows the script to be run from anywhere in the project and allow mono-repos with workspaces to work.
+
+-   [#4187](https://github.com/refinedev/refine/pull/4187) [`014ad4d5e79`](https://github.com/refinedev/refine/commit/014ad4d5e79069b0a5e393d0bfc5e30f66f99c49) Thanks [@aliemir](https://github.com/aliemir)! - refactor: use `require.resolve` to find refine package paths.
+
+    Updated the refine package search to use `require.resolve` to find the package path. This allows the package to be run from anywhere in the project and allow mono-repos with workspaces to work.
+
 ## 2.3.0
 
 ### Minor Changes

@@ -1,5 +1,57 @@
 # @pankod/refine-ui-types
 
+## 1.12.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` to `RefineThemedLayoutV2HeaderProps` type
+
+## 1.11.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` to `RefineThemedLayoutV2HeaderProps` type
+
+## 1.10.0
+
+### Minor Changes
+
+-   [#4163](https://github.com/refinedev/refine/pull/4163) [`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - refactor: deprecated `RefineThemedLayoutProps`, `RefineThemedLayoutSiderProps` and `RefineThemedLayoutHeaderProps` for `ThemedLayoutV2`
+
+## 1.9.0
+
+### Minor Changes
+
+-   [#4163](https://github.com/refinedev/refine/pull/4163) [`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - refactor: deprecated `RefineThemedLayoutProps`, `RefineThemedLayoutSiderProps` and `RefineThemedLayoutHeaderProps` for `ThemedLayoutV2`
+
+## 1.8.0
+
+### Minor Changes
+
+-   [#4163](https://github.com/refinedev/refine/pull/4163) [`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - refactor: deprecated `RefineThemedLayoutProps`, `RefineThemedLayoutSiderProps` and `RefineThemedLayoutHeaderProps` for `ThemedLayoutV2`
+
 ## 1.7.0
 
 ### Minor Changes

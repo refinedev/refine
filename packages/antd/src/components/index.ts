@@ -11,6 +11,12 @@ export { ThemedSider } from "./themedLayout/sider";
 export { ThemedTitle } from "./themedLayout/title";
 export * from "./themedLayout/types";
 
+export { ThemedLayoutV2 } from "./themedLayoutV2";
+export { ThemedHeaderV2 } from "./themedLayoutV2/header";
+export { ThemedSiderV2 } from "./themedLayoutV2/sider";
+export { ThemedTitleV2 } from "./themedLayoutV2/title";
+export * from "./themedLayoutV2/types";
+
 export * from "./buttons";
 export * from "./crud";
 export * from "./fields";

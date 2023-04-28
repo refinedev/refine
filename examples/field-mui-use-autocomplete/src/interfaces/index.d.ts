@@ -9,4 +9,10 @@ export interface IPost {
     content: string;
     status: "published" | "draft" | "rejected";
     category: { id: number };
+    tags: number[];
+}
+
+export interface ITag {
+    id: number;
+    title: string;
 }

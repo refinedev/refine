@@ -12,8 +12,8 @@ export interface IOrder {
     productId: string;
     customerName: string;
     customerAdress: string;
-    quantitity: number;
-    storeId: string;
+    quantity: number;
+    storeId: string | undefined;
     status: "delivered" | "not delivered";
 }
 

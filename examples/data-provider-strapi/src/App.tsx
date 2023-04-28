@@ -6,7 +6,7 @@ import {
 } from "@refinedev/core";
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
     RefineThemes,
@@ -147,9 +147,9 @@ const App: React.FC = () => {
                                 <Authenticated
                                     fallback={<CatchAllNavigate to="/login" />}
                                 >
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >
@@ -204,9 +204,9 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated>
-                                    <ThemedLayout>
+                                    <ThemedLayoutV2>
                                         <Outlet />
-                                    </ThemedLayout>
+                                    </ThemedLayoutV2>
                                 </Authenticated>
                             }
                         >

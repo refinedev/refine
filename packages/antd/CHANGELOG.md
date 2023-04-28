@@ -1,5 +1,154 @@
 # @pankod/refine-antd
 
+## 5.13.0
+
+### Minor Changes
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/antd";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={true} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.12.0
+
+## 5.12.0
+
+### Minor Changes
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/antd";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={true} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.11.0
+
+## 5.11.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+## 5.10.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+## 5.9.0
+
+### Minor Changes
+
+-   [#4193](https://github.com/refinedev/refine/pull/4193) [`3d28fccc1ca`](https://github.com/refinedev/refine/commit/3d28fccc1ca14cdf316d518935cb6c17500c62a4) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` component and `useSiderVisible` hook
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `useSiderVisible` hook, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/antd/components/antd-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
+### Patch Changes
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.10.0
+
+## 5.8.0
+
+### Minor Changes
+
+-   [#4193](https://github.com/refinedev/refine/pull/4193) [`3d28fccc1ca`](https://github.com/refinedev/refine/commit/3d28fccc1ca14cdf316d518935cb6c17500c62a4) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` component and `useSiderVisible` hook
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `useSiderVisible` hook, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/antd/components/antd-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
+### Patch Changes
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.9.0
+
+## 5.7.0
+
+### Minor Changes
+
+-   [#4193](https://github.com/refinedev/refine/pull/4193) [`3d28fccc1ca`](https://github.com/refinedev/refine/commit/3d28fccc1ca14cdf316d518935cb6c17500c62a4) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` component and `useSiderVisible` hook
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `useSiderVisible` hook, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/antd/components/antd-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
+### Patch Changes
+
+-   Updated dependencies [[`deec38a034a`](https://github.com/refinedev/refine/commit/deec38a034a0b5ab2d7842e428f6fc3a1b8561fa)]:
+    -   @refinedev/ui-types@1.8.0
+
 ## 5.6.0
 
 ### Minor Changes

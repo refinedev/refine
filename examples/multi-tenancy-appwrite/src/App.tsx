@@ -1,7 +1,12 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import {
+    Authenticated,
+    GitHubBanner,
+    Refine,
+    useParsed,
+} from "@refinedev/core";
 import {
     notificationProvider,
-    ThemedLayout,
+    ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
     RefineThemes,
@@ -9,15 +14,10 @@ import {
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import routerProvider, {
     CatchAllNavigate,
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Outlet,
-    Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
@@ -28,65 +28,71 @@ import { authProvider } from "./authProvider";
 import { ProductList } from "pages/products";
 import { OrderCreate, OrderList, OrderEdit } from "pages/orders";
 import { ProductShow } from "components/product";
-import { StoreProvider } from "context/store";
-import { CustomSider } from "components/sider";
+import { Header } from "components/header";
 
 function App() {
+    // inital tenant
+    const tenant = "refine";
+
     return (
         <BrowserRouter>
             <GitHubBanner />
-            <StoreProvider>
-                <ConfigProvider theme={RefineThemes.Blue}>
-                    <Refine
-                        routerProvider={routerProvider}
-                        liveProvider={liveProvider(appwriteClient)}
-                        dataProvider={dataProvider(appwriteClient)}
-                        authProvider={authProvider}
-                        options={{
-                            liveMode: "auto",
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                        resources={[
-                            {
-                                name: "61cb01b17ef57",
-                                list: "/products",
-                                show: "/products/show/:id",
-                                meta: {
-                                    label: "Products",
-                                },
+            <ConfigProvider theme={RefineThemes.Blue}>
+                <Refine
+                    routerProvider={routerProvider}
+                    liveProvider={liveProvider(appwriteClient, {
+                        databaseId: "multi-tenancy",
+                    })}
+                    dataProvider={dataProvider(appwriteClient, {
+                        databaseId: "multi-tenancy",
+                    })}
+                    authProvider={authProvider}
+                    options={{
+                        liveMode: "auto",
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/:tenant/products",
+                            show: "/:tenant/products/show/:id",
+                            meta: {
+                                tenant,
                             },
-                            {
-                                name: "61cb019fdbd11",
-                                list: "/orders",
-                                create: "/orders/create",
-                                edit: "/orders/edit/:id",
-                                meta: {
-                                    label: "Orders",
-                                },
+                        },
+                        {
+                            name: "orders",
+                            list: "/:tenant/orders",
+                            create: "/:tenant/orders/create",
+                            edit: "/:tenant/orders/edit/:id",
+                            meta: {
+                                tenant,
                             },
-                        ]}
-                        notificationProvider={notificationProvider}
-                    >
-                        <Routes>
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <ThemedLayoutV2 Header={Header}>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                </Authenticated>
+                            }
+                        >
                             <Route
+                                index
                                 element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayout Sider={CustomSider}>
-                                            <Outlet />
-                                        </ThemedLayout>
-                                    </Authenticated>
+                                    <NavigateToResource resource="products" />
                                 }
-                            >
-                                <Route
-                                    index
-                                    element={<Navigate to="products" />}
-                                />
+                            />
 
+                            <Route path="/:tenant">
                                 <Route path="products">
                                     <Route index element={<ProductList />} />
                                     <Route
@@ -107,36 +113,46 @@ function App() {
                                     />
                                 </Route>
                             </Route>
+                        </Route>
 
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource resource="products" />
+                                </Authenticated>
+                            }
+                        >
                             <Route
+                                path="/login"
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <Navigate to="products" />
-                                    </Authenticated>
+                                    <AuthPage
+                                        type="login"
+                                        formProps={{
+                                            initialValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
                                 }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={<AuthPage type="login" />}
-                                />
-                            </Route>
+                            />
+                        </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated>
-                                        <ThemedLayout Sider={CustomSider}>
-                                            <Outlet />
-                                        </ThemedLayout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </ConfigProvider>
-            </StoreProvider>
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <ThemedLayoutV2 Header={Header}>
+                                        <Outlet />
+                                    </ThemedLayoutV2>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                    <UnsavedChangesNotifier />
+                </Refine>
+            </ConfigProvider>
         </BrowserRouter>
     );
 }

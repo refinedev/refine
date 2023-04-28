@@ -11,11 +11,15 @@ import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples
 
 ## What is auth provider?
 
-Auth provider is an object which contains methods to handle authentication and access control in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
+Auth provider is an object that contains methods to handle authentication and access control in your app by having **refine** consume them. These methods expect to return a promise, so they can be used with async methods.
 
-Auth provider's methods expect to return a Promise. So, you can use async methods to create auth provider. Therefore, to create auth provider from scratch, you can use any third-party authentication service like Auth0, Okta, etc. or your own custom methods. We'll see how to create auth provider in the next sections.
+You can use any third-party authentication service like Auth0, Okta, etc. or your own custom methods while creating an auth provider from scratch, which we will explore in the next section.
 
-Moreover, **refine** offers built-in examples for auth providers. You can use them as a starting point for your own auth provider. You can check [Auth Provider Examples](#auth-provider-examples) to see the list of examples.
+:::tip
+**refine** does offer built-in examples for auth providers that you can use as a starting point for your own auth providers as well.
+
+Refer to the [Auth Provider Examples &#8594](#auth-provider-examples)
+:::
 
 The typical auth provider has the following methods:
 
@@ -37,11 +41,11 @@ const authProvider: AuthBindings = {
 };
 ```
 
-These methods are used to perform auth operations by **refine** hooks. You can check [Auth Provider](/docs/api-reference/core/providers/auth-provider/) documentation to see the details of each method.
+> For more information about these methods and how **refine** hooks use them, refer to the [Auth Provider documentation&#8594](/docs/api-reference/core/providers/auth-provider/)
 
 ## Using Auth Providers in refine
 
-When you create a new auth provider, you need to pass it to the `<Refine/>` component as a prop. So, **refine** can use to handle authentication.
+When creating a new auth provider, you need to pass it to the `<Refine/>` component as a prop for authentication:
 
 ```tsx
 // ---
@@ -62,13 +66,13 @@ const authProvider: AuthBindings = {
 />;
 ```
 
-[Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
+> For more information, refer to the [`<Refine/>` documentation&#8594](/docs/api-reference/core/components/refine-config/)
 
 ## How are auth provider methods used in the app?
 
-Each method of auth provider is corresponding to a hook in **refine**. So, you can use these hooks to perform auth operations in your app. You can check [Auth Hooks](/docs/api-reference/core/hooks/auth/useIsAuthenticated/) documentation to see the details of each hook.
+Each method of auth provider corresponds to a hook in **refine** that you can use these hooks to perform auth operations in your app.
 
-For example, you can use `useLogin` hook to perform login operation like below:
+For example, to show you how relationship between auth provider methods and hooks, here is how you can use the `useLogin` hook to perform a login operation:
 
 ```tsx
 import { useLogin } from "@refinedev/core";
@@ -85,7 +89,7 @@ const handleLogin = async (values) => {
 };
 ```
 
-As you can see, `useLogin` hook returns a `mutate` function. When you call this function, it calls the `login` method of auth provider like the below:
+As you can see, the `useLogin` hook returns a `mutate` function. When you call this function, it calls the `login` method of auth provider like the below:
 
 ```ts
 import { AuthBindings } from "@refinedev/core";
@@ -114,16 +118,15 @@ const authProvider: AuthBindings = {
 ```
 
 :::info
-
-We made an example to show the relationship between auth provider methods and auth hooks. We used the `useLogin` hook in the example, but all auth hooks work the same way.
-
+All auth hooks are identical in usage
 :::
+
+> For more information about each hook, refer to the [Auth Hooks documentation&#8594](/docs/api-reference/core/hooks/auth/useIsAuthenticated/)
 
 ## Auth Provider Examples
 
 <AuthProviderExamplesLinks/>
 
-<br />
 <br />
 
 <Checklist>
@@ -132,7 +135,7 @@ We made an example to show the relationship between auth provider methods and au
 I understood what is auth provider and how it works.
 </ChecklistItem>
 <ChecklistItem id="auth-provider-intro-2">
-I learned that refine offers built-in auth provider examples.
+I have learned that refine offers built-in auth provider examples.
 </ChecklistItem>
 
 </Checklist>

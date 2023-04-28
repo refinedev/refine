@@ -192,6 +192,10 @@ export function useDataGrid<
 
     const { data, isFetched, isLoading } = tableQueryResult;
 
+    const isServerSideFilteringEnabled =
+        (filtersFromProp?.mode || "server") === "server";
+    const isServerSideSortingEnabled =
+        (sortersFromProp?.mode || "server") === "server";
     const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
         (pagination?.mode ?? hasPaginationString) !== "off";
@@ -261,12 +265,12 @@ export function useDataGrid<
             loading: liveMode === "auto" ? isLoading : !isFetched,
             rowCount: data?.total || 0,
             ...dataGridPaginationValues(),
-            sortingMode: "server",
+            sortingMode: isServerSideSortingEnabled ? "server" : "client",
             sortModel: transformCrudSortingToSortModel(
                 differenceWith(sorters, preferredPermanentSorters, isEqual),
             ),
             onSortModelChange: handleSortModelChange,
-            filterMode: "server",
+            filterMode: isServerSideFilteringEnabled ? "server" : "client",
             filterModel: transformCrudFiltersToFilterModel(
                 differenceWith(
                     muiCrudFilters,

@@ -3,6 +3,7 @@ import Head from "@docusaurus/Head";
 
 import Layout from "../../theme/Layout";
 import { team } from "../../assets/team";
+import { backedBy } from "../../assets/backed-by";
 import { community } from "../../assets/community";
 import { Pin, Mail } from "../../assets/about-icons";
 import styles from "./styles.module.css";
@@ -141,21 +142,17 @@ const About: React.FC = () => {
                     <div className={styles.backedByContainer}>
                         <Card500 />
                         <div className={styles.backedMember}>
-                            <TeamCard
-                                fullName="Emre Baran"
-                                role1="CEO & Co-founder at Cerbos"
-                                role2="Expert-in-Residence at Seedcamp"
-                                image="/about/images/team-avatars/emre.png"
-                                href="https://www.linkedin.com/in/emrebaran/"
-                                srcSet="/about/images/team-avatars/emre2x.png"
-                            />
-                            <TeamCard
-                                fullName="Burak Emre Kabakçı"
-                                role1="Staff SWE @ LiveRamp Maker"
-                                image="/about/images/team-avatars/burak.png"
-                                href="https://www.linkedin.com/in/burak-emre-kabakc%C4%B1-15b2bb33/"
-                                srcSet="/about/images/team-avatars/burak2x.png"
-                            />
+                            {backedBy.map((item) => (
+                                <TeamCard
+                                    key={item.name}
+                                    fullName={item.name}
+                                    image={item.avatar}
+                                    role1={item.role1}
+                                    role2={item?.role2}
+                                    href={item.url}
+                                    srcSet={item.avatar2x}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import { Edit, useAutocomplete } from "@refinedev/mui";
 
 import { Box, TextField, Autocomplete } from "@mui/material";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, ITag } from "interfaces";
 import { HttpError } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {
@@ -14,6 +14,7 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
+        getValues,
     } = useForm<
         IPost,
         HttpError,
@@ -25,6 +26,11 @@ export const PostEdit: React.FC = () => {
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
+    });
+
+    const { autocompleteProps: tagsAutocompleteProps } = useAutocomplete<ITag>({
+        resource: "tags",
+        defaultValue: getValues("tags") || [],
     });
 
     return (
@@ -115,6 +121,63 @@ export const PostEdit: React.FC = () => {
                             )}
                         />
                     )}
+                />
+                <Controller
+                    control={control}
+                    name="tags"
+                    defaultValue={[]}
+                    render={({ field }) => {
+                        const newValue = tagsAutocompleteProps.options.filter(
+                            (p) =>
+                                field.value?.find((v) => v === p?.id) !==
+                                undefined,
+                        );
+
+                        return (
+                            <Autocomplete
+                                {...tagsAutocompleteProps}
+                                {...field}
+                                value={newValue}
+                                multiple
+                                clearOnBlur={false}
+                                onChange={(_, value) => {
+                                    const newValue = value.map((p) => p?.id);
+                                    field.onChange(newValue);
+                                }}
+                                getOptionLabel={(item) => {
+                                    return (
+                                        tagsAutocompleteProps?.options?.find(
+                                            (p) =>
+                                                p?.id?.toString() ===
+                                                item?.id.toString(),
+                                        )?.title ?? ""
+                                    );
+                                }}
+                                isOptionEqualToValue={(option, value) => {
+                                    return (
+                                        value === undefined ||
+                                        option?.id?.toString() ===
+                                            value?.id?.toString()
+                                    );
+                                }}
+                                renderInput={(params) => {
+                                    return (
+                                        <TextField
+                                            {...params}
+                                            label="Tags"
+                                            name="tags"
+                                            id="tags"
+                                            margin="normal"
+                                            variant="outlined"
+                                            error={!!errors.tags}
+                                            helperText={errors.tags?.message}
+                                            required
+                                        />
+                                    );
+                                }}
+                            />
+                        );
+                    }}
                 />
             </Box>
         </Edit>

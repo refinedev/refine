@@ -1,5 +1,17 @@
 # @pankod/refine-graphql
 
+## 6.4.0
+
+### Minor Changes
+
+-   [#4211](https://github.com/refinedev/refine/pull/4211) [`dca1d8b7ca8`](https://github.com/refinedev/refine/commit/dca1d8b7ca8b84184d00180af7e265c6bd12d708) Thanks [@mattbho](https://github.com/mattbho)! - Custom GraphQL data provider now allow users to provide a custom InputType via the meta field.
+
+## 6.3.0
+
+### Minor Changes
+
+-   [#4211](https://github.com/refinedev/refine/pull/4211) [`dca1d8b7ca8`](https://github.com/refinedev/refine/commit/dca1d8b7ca8b84184d00180af7e265c6bd12d708) Thanks [@mattbho](https://github.com/mattbho)! - Custom GraphQL data provider now allow users to provide a custom InputType via the meta field.
+
 ## 6.2.0
 
 ### Minor Changes

@@ -43,41 +43,41 @@ Prefer to go through this tutorial in an online code editor? That's possible!
 
 <summary>Follow these instructions, then go directly to "Generate CRUD pages automatically with Inferencer" section!</summary>
 
-**Set up StackBlitz**
+**Set up CodeSandBox**
 
 <UIConditional is="antd">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-antd?file=src%2FApp.tsx) to open the Ant Design template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-antd?file=src%2FApp.tsx) to open the Ant Design template.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-chakra-ui?file=src%2FApp.tsx) to open the Chakra UI template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-chakra-ui?file=src%2FApp.tsx) to open the Chakra UI template.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-headless?file=src%2FApp.tsx) to open the headless template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-headless?file=src%2FApp.tsx) to open the headless template.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mantine?file=src%2FApp.tsx) to open the Mantine template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-mantine?file=src%2FApp.tsx) to open the Mantine template.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
+1. Click [here](https://codesandbox.io/s/github/refinedev/refine/tree/next/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
 
 </UIConditional>
 
 2. Click “Sign in” on the top right to log in using your GitHub credentials.
 
-3. In the upper left of the StackBlitz editor window, click the "fork" button to fork the template (save to your own account dashboard).
+3. In the upper right of the CodeSandBox editor window, click the "fork" button to fork the template (save to your own account dashboard).
 
 <UIConditional is="antd">
 
@@ -188,7 +188,83 @@ In this unit, we will be covering the following steps:
 -   Storing your project in a git repository.
 -   Deploying your project to the cloud.
 
-As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuilds and deploys your application on every commit. This allows anyone to access and view the latest version of your app.
+<h3> What will we be building?</h3>
+
+
+
+
+
+<UIConditional is="antd">
+
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2).
+
+
+ <div className="centered-image"  >
+<a href="https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2">
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
+  </a>
+</div>
+
+</UIConditional>
+
+<UIConditional is="chakra-ui">
+
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/cc646686-c243-4cf9-8a32-3cd0b6294486).
+
+
+ <div className="centered-image">
+<a href="https://refine.new/preview/cc646686-c243-4cf9-8a32-3cd0b6294486">
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/chakra-intro.png" alt="tutorial chakra" />
+  </a>
+</div>
+</UIConditional>
+
+<UIConditional is="headless">
+
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/58e74e1e-cd45-4da0-aa0d-7715c7ed1cb4).
+
+
+ <div className="centered-image">
+<a href="https://refine.new/preview/58e74e1e-cd45-4da0-aa0d-7715c7ed1cb4">
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/headless-intro.png" alt="tutorial headless" />
+  </a>
+</div>
+
+</UIConditional>
+
+<UIConditional is="mantine">
+
+
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/798fafde-866d-4c8d-9478-37cbb1b4b8e7).
+
+
+ <div className="centered-image">
+<a href="https://refine.new/preview/798fafde-866d-4c8d-9478-37cbb1b4b8e7">
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/mantine-intro.png" alt="tutorial mantine" />
+  </a>
+</div>
+</UIConditional>
+
+<UIConditional is="mui">
+
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/7281d6a6-4929-4657-a61c-4f5002c8eab5).
+
+
+ <div className="centered-image"  >
+<a href="https://refine.new/preview/7281d6a6-4929-4657-a61c-4f5002c8eab5">
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/mui-intro.png" alt="tutorial antd" />
+
+  </a>
+</div>
+
+</UIConditional>
+
+<br/>
+
+🏄 If you're a busy developer, you can quickly download the final version of the application by clicking on the **"Build & Download"** button.
+
+
+<br/>
 
 <Checklist>
 

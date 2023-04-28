@@ -15,7 +15,9 @@
             "@test/*": ["test/*"],
             "@test": ["test"],
             "@definitions/*": ["src/definitions/*"],
-            "@definitions": ["src/definitions"]
+            "@definitions": ["src/definitions"],
+            "@contexts/*": ["src/contexts/*"],
+            "@contexts": ["src/contexts"]
         },
         "typeRoots": ["./src/types", "../../node_modules/@types"]
     }

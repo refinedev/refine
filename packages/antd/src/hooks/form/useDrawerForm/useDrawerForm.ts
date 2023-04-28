@@ -24,12 +24,28 @@ export interface UseDrawerFormConfig extends UseFormConfig {
 }
 
 export type UseDrawerFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormPropsCore<TData, TError, TVariables, TSelectData> &
-    UseFormProps<TData, TError, TVariables, TSelectData> &
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormPropsCore<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> &
+    UseFormProps<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    > &
     UseDrawerFormConfig &
     LiveModeProps &
     FormWithSyncWithLocationParams & {
@@ -39,11 +55,20 @@ export type UseDrawerFormProps<
     };
 
 export type UseDrawerFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormReturnType<TData, TError, TVariables, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     formProps: FormProps<TVariables> & {
         form: FormInstance<TVariables>;
     };
@@ -68,10 +93,12 @@ export type UseDrawerFormReturnType<
  */
 
 export const useDrawerForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     syncWithLocation,
     defaultVisible = false,
@@ -79,18 +106,34 @@ export const useDrawerForm = <
     autoResetForm = true,
     ...rest
 }: UseDrawerFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
-    TSelectData
->): UseDrawerFormReturnType<TData, TError, TVariables, TSelectData> => {
+    TData,
+    TResponse,
+    TResponseError
+>): UseDrawerFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> => {
     const initiallySynced = React.useRef(false);
 
     const { visible, show, close } = useModal({
         defaultVisible,
     });
 
-    const useFormProps = useForm<TData, TError, TVariables, TSelectData>({
+    const useFormProps = useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
         ...rest,
     });
 

@@ -1,5 +1,105 @@
 # @pankod/refine-mantine
 
+## 2.12.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/mantine";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={true} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+### Patch Changes
+
+-   [#4223](https://github.com/refinedev/refine/pull/4223) [`c2ca3a67b22`](https://github.com/refinedev/refine/commit/c2ca3a67b22deda76e341e588c1e2baefd85ea4f) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the `ErrorComponent` height overflow issue which was causing header to be unresponsive.
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.12.0
+
+## 2.11.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/mantine";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={true} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+### Patch Changes
+
+-   [#4223](https://github.com/refinedev/refine/pull/4223) [`c2ca3a67b22`](https://github.com/refinedev/refine/commit/c2ca3a67b22deda76e341e588c1e2baefd85ea4f) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the `ErrorComponent` height overflow issue which was causing header to be unresponsive.
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.11.0
+
+## 2.10.0
+
+### Minor Changes
+
+-   [#4176](https://github.com/refinedev/refine/pull/4176) [`13448252cd7`](https://github.com/refinedev/refine/commit/13448252cd7b6002af1d7ef1ff65dbf984aef6de) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` and `HamburgerMenu` component
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `<HamburgerMenu />` component, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
+## 2.9.0
+
+### Minor Changes
+
+-   [#4176](https://github.com/refinedev/refine/pull/4176) [`13448252cd7`](https://github.com/refinedev/refine/commit/13448252cd7b6002af1d7ef1ff65dbf984aef6de) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `ThemedLayoutV2` and `HamburgerMenu` component
+
+    `ThemeLayout` is deprecated. Added `ThemedLayoutV2` instead. This update fixed some UI problems in the layout. Also, with the new `<HamburgerMenu />` component, it's easier to collapse/uncollapse the `Sider`.
+
+    See here for detailed [migration guideline](https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2).
+
 ## 2.8.0
 
 ### Minor Changes

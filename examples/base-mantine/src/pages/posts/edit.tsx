@@ -1,8 +1,8 @@
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
-import { Select, TextInput, Text } from "@mantine/core";
+import { Select, TextInput, Text, MultiSelect } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
-import { ICategory } from "../../interfaces";
+import { ICategory, ITag } from "../../interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -18,6 +18,7 @@ export const PostEdit: React.FC = () => {
                 id: "",
             },
             content: "",
+            tags: [],
         },
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
@@ -32,9 +33,16 @@ export const PostEdit: React.FC = () => {
         },
     });
 
+    const defaultTags = queryResult?.data?.data?.tags || [];
+
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
+    });
+
+    const { selectProps: tagSelectProps } = useSelect<ITag>({
+        resource: "tags",
+        defaultValue: defaultTags,
     });
 
     return (
@@ -63,6 +71,17 @@ export const PostEdit: React.FC = () => {
                     placeholder="Pick one"
                     {...getInputProps("category.id")}
                     {...selectProps}
+                />
+                <MultiSelect
+                    {...getInputProps("tags")}
+                    {...tagSelectProps}
+                    mt={8}
+                    label="Tags"
+                    placeholder="Pick multiple"
+                    defaultValue={defaultTags}
+                    filter={(value, _selected, item) => {
+                        return !!item.label?.toLowerCase().includes(value);
+                    }}
                 />
                 <Text mt={8} weight={500} size="sm" color="#212529">
                     Content
