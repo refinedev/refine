@@ -92,9 +92,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     />
                 </Link>
                 {/* highlight-start */}
-                <ul>
-                    {renderMenuItems(menuItems)}
-                </ul>
+                <ul>{renderMenuItems(menuItems)}</ul>
                 {/* highlight-end */}
             </div>
             <div>{children}</div>
@@ -121,25 +119,31 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: "/posts"
+                        list: "/posts",
                     },
                     {
                         name: "categories",
-                        list: "/categories"
+                        list: "/categories",
                     },
                 ]}
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         <Route index element={<NavigateToResource />} />
-                        <Route path="/posts" element={<div>dummy posts page</div>} />
-                        <Route path="/categories" element={<div>dummy categories page</div>} />
+                        <Route
+                            path="/posts"
+                            element={<div>dummy posts page</div>}
+                        />
+                        <Route
+                            path="/categories"
+                            element={<div>dummy categories page</div>}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -205,15 +209,21 @@ const App: React.FC = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Layout>
                                 <Outlet />
                             </Layout>
-                        )}
+                        }
                     >
                         <Route index element={<NavigateToResource />} />
-                        <Route path="/posts" element={<div>dummy posts page</div>} />
-                        <Route path="/categories" element={<div>dummy categories page</div>} />
+                        <Route
+                            path="/posts"
+                            element={<div>dummy posts page</div>}
+                        />
+                        <Route
+                            path="/categories"
+                            element={<div>dummy categories page</div>}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -239,32 +249,38 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const renderMenuItems = (items: ITreeMenu[]) => {
         return (
             <>
-                {items.map(({ key, name, label, icon, route, children, list }) => {
-                    if (!list) {
+                {items.map(
+                    ({ key, name, label, icon, route, children, list }) => {
+                        if (!list) {
+                            return (
+                                <li key={label}>
+                                    <span>{label ?? name}</span>
+                                    {children
+                                        ? renderMenuItems(children)
+                                        : null}
+                                </li>
+                            );
+                        }
+
+                        const isSelected = key === selectedKey;
+
                         return (
                             <li key={label}>
-                                <span>{label ?? name}</span>
-                                {children ? renderMenuItems(children) : null}
+                                <Link
+                                    to={route}
+                                    style={{
+                                        fontWeight: isSelected
+                                            ? "bold"
+                                            : "normal",
+                                    }}
+                                >
+                                    {icon}
+                                    <span>{label ?? name}</span>
+                                </Link>
                             </li>
                         );
-                    }
-
-                    const isSelected = key === selectedKey;
-
-                    return (
-                        <li key={label}>
-                            <Link
-                                to={route}
-                                style={{
-                                    fontWeight: isSelected ? "bold" : "normal",
-                                }}
-                            >
-                                {icon}
-                                <span>{label ?? name}</span>
-                            </Link>
-                        </li>
-                    );
-                })}
+                    },
+                )}
             </>
         );
     };
@@ -279,9 +295,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                         alt="Logo"
                     />
                 </Link>
-                <ul>
-                    {renderMenuItems(menuItems)}
-                </ul>
+                <ul>{renderMenuItems(menuItems)}</ul>
             </div>
             <div>{children}</div>
         </div>
@@ -289,15 +303,37 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
+## Properties
+
+### `hideOnMissingParameter`
+
+> Default: `true`
+
+It only affects menu items that require additional parameters to generate their URL. If the parameters are missing in the current URL neither in the `meta` property of the `useMenu` or in the `meta` property of the resource definition, the menu items that require a parameter will be hidden.
+
+For example, suppose you have a resource with a list path defined as `/authors/:authorId/books`. If there is no `authorId` parameter in the current URL or in the `meta` object, the menu item for this resource will be hidden.
+
+However, if you set `hideOnMissingParameter` to `false` when calling `useMenu`, the menu item for this resource will still be shown, even if the `authorId` parameter is missing.
+
+### `meta`
+
+An object of parameters to use when additional parameters are present in the resource paths. Such as, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu, you can do;
+
+```ts
+const { menuItems } = useMenu({ meta: { authorId: 123 } });
+```
+
+If there is already an `authorId` parameter in the current URL or in the `meta` property of the resource definition, useMenu will use this parameter by default. You can override this behavior by passing the `meta` property to the `useMenu` hook.
+
 ## Return Values
 
 ### `selectedKey`
 
-Key of the resource the user is viewing at the moment.
+If the current URL matches a resource path, the key of the resource will be returned. Otherwise, `undefined` will be returned.
 
 ### `menuItems`
 
-List of keys and routes and some metadata of resources and also the dashboard if exists.
+List of the menu tems returned based on the `resources` prop of the `<Refine/>` component.
 
 ### `defaultOpenKeys`
 
@@ -305,13 +341,20 @@ Array with the keys of default opened menus.
 
 ## API Reference
 
+### Properties
+
+| Property               | Description                                                                                 | Type                      | Default |
+| ---------------------- | ------------------------------------------------------------------------------------------- | ------------------------- | ------- |
+| hideOnMissingParameter | Whether to hide menu items that require additional parameters to generate their URL or not. | `boolean`                 | `true`  |
+| meta                   | It is used when creating menu item URL with additional parameters.                          | `Record<string, unknown>` | `{}`    |
+
 ### Return values
 
-| Property        | Description                                                                              | Type                         |
-| --------------- | ---------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey     | Key of the resource the user is viewing at the moment.                                   | `string` \| `undefined`                     |
-| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists. | [`TreeMenuItem[]`](#interfaces) |
-| defaultOpenKeys | Array with the keys of default opened menus.                                             | `string[]`                   |
+| Property        | Description                                                        | Type                            |
+| --------------- | ------------------------------------------------------------------ | ------------------------------- |
+| selectedKey     | Key of the resource the user is viewing at the moment.             | `string` \| `undefined`         |
+| menuItems       | List of the menu items returned based on the resource definitions. | [`TreeMenuItem[]`](#interfaces) |
+| defaultOpenKeys | Array with the keys of default opened menus.                       | `string[]`                      |
 
 #### Interfaces
 
