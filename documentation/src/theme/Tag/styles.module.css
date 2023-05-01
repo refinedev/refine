@@ -5,9 +5,10 @@
 .tag {
     background: var(--ifm-color-white);
     transition: border var(--ifm-transition-fast);
-    padding: 0.5rem 1rem;
+    padding: 0.2rem 0.5rem;
     border-radius: var(--ifm-global-radius);
-    box-shadow: 0px 2px 16px -4px rgba(42, 42, 66, 0.4);
+    /* box-shadow: 0px 1px 4px -1px rgba(42, 42, 66, 0.4); */
+    border: 1px solid var(--docusaurus-tag-list-border);
     color: var(--ifm-color-black);
     font-weight: 700;
 }
