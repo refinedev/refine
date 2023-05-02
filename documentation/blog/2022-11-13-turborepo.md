@@ -46,7 +46,7 @@ Turborepo's magic lies in the execution of its tasks. For package installation, 
 
 ---
 
-<PromotionBanner title="Tired of repeating your form logic in every place you need it?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 

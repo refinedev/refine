@@ -40,9 +40,10 @@ You can override the entrypoint instruction when initiating the container using 
 •	CMD: exec form
 
 
+
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
  

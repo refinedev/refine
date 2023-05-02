@@ -170,10 +170,9 @@ Spelling errors do not apply only to API endpoints, they can also occur while at
 - Use the try-and-catch method in your function to prevent your app from crashing.
     
 
-
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 

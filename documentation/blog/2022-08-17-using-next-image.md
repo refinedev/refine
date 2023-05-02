@@ -54,10 +54,9 @@ Once you're done optimizing your images manually, you can now proceed to use the
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
-
 ## The NextJS image component
 
 The [`<Image />`](https://nextjs.org/docs/api-reference/next/image) component is a batteries-included modern solution for serving images in NextJS applications. It's similar to the native HTML `<img/>` element but has a few differences.
