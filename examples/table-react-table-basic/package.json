@@ -9,7 +9,7 @@
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",
     "@refinedev/simple-rest": "^4.5.0",
-    "@types/node": "^12.20.11",
+    "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
