@@ -261,14 +261,14 @@ const App = () => {
 
 <CodeSandboxExample path="auth-antd" />
 
-[use-login]: /docs/api-reference/core/hooks/auth/useLogin/
-[use-logout]: /docs/api-reference/core/hooks/auth/useLogout/
-[use-is-authenticated]: /docs/api-reference/core/hooks/auth/useIsAuthenticated/
-[use-on-error]: /docs/api-reference/core/hooks/auth/useOnError/
-[use-get-identity]: /docs/api-reference/core/hooks/auth/useGetIdentity/
-[use-permissions]: /docs/api-reference/core/hooks/auth/usePermissions/
-[authenticated]: /docs/api-reference/core/components/auth/authenticated/
-[use-register]: /docs/api-reference/core/hooks/auth/useRegister/
-[use-forgot-password]: /docs/api-reference/core/hooks/auth/useForgotPassword/
-[use-update-password]: /docs/api-reference/core/hooks/auth/useUpdatePassword/
+[use-login]: /docs/api-reference/core/hooks/authentication/useLogin/
+[use-logout]: /docs/api-reference/core/hooks/authentication/useLogout/
+[use-is-authenticated]: /docs/api-reference/core/hooks/authentication/useIsAuthenticated/
+[use-on-error]: /docs/api-reference/core/hooks/authentication/useOnError/
+[use-get-identity]: /docs/api-reference/core/hooks/authentication/useGetIdentity/
+[use-permissions]: /docs/api-reference/core/hooks/authentication/usePermissions/
+[authenticated]: /docs/api-reference/core/components/authentication/authenticated/
+[use-register]: /docs/api-reference/core/hooks/authentication/useRegister/
+[use-forgot-password]: /docs/api-reference/core/hooks/authentication/useForgotPassword/
+[use-update-password]: /docs/api-reference/core/hooks/authentication/useUpdatePassword/
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider

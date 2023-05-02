@@ -368,7 +368,7 @@ export const LoginPage = () => {
 </div>
 <br />
 
-We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/api-reference/core/providers/auth-provider/) [`<useLogin>`](/docs/api-reference/core/hooks/auth/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
+We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/api-reference/core/providers/auth-provider/) [`<useLogin>`](/docs/api-reference/core/hooks/authentication/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
 
 ## Refine Post Page
 
