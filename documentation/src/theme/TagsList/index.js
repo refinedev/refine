@@ -1,8 +1,28 @@
 import React from "react";
 import Tag from "@theme/Tag";
 import Link from "@docusaurus/Link";
+import { titleCase } from "title-case";
 
 import tagStyles from "../Tag/styles.module.css";
+
+const mapLabel = (label) => {
+    const replace = [
+        ["typescript", "TypeScript"],
+        ["javascript", "JavaScript"],
+        ["chakra-ui", "Chakra UI"],
+        ["material-ui", "Material UI"],
+        ["nextjs", "Next.js"],
+        ["nestjs", "NestJS"],
+        ["react-hook-form", "React Hook Form"],
+        ["ant-design", "Ant Design"],
+    ];
+
+    replace.forEach((element) => {
+        label = label.replace(element[0], element[1]);
+    });
+
+    return titleCase(label);
+};
 
 export default function TagsList({ tags, activeTag, collapsable = true }) {
     const [collapsed, setCollapsed] = React.useState(true);
@@ -32,8 +52,9 @@ export default function TagsList({ tags, activeTag, collapsable = true }) {
                         key={tag.permalink}
                     >
                         <Tag
-                            isActive={activeTag?.label === tag.label}
+                            isActive={activeTag?.permalink === tag.permalink}
                             {...tag}
+                            label={mapLabel(tag.label)}
                         />
                     </li>
                 ))}
