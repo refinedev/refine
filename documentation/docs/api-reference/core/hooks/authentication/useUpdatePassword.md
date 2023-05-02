@@ -3,7 +3,7 @@ id: useUpdatePassword
 title: useUpdatePassword
 siderbar_label: useUpdatePassword
 description: useUpdatePassword data hook from refine is a modified version of react-query's useMutation for registration.
-source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
+source: /packages/core/src/hooks/authentication/useUpdatePassword/index.ts
 ---
 
 :::caution
