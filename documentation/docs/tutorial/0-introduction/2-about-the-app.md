@@ -9,7 +9,7 @@ tutorial:
 
 Our app is a basic admin panel to manage blog posts. It will be created as default at initialization by the **refine.new**, which employs the **refine CLI** in the background. Generally, for your custom app, you need to remove the blog app resources and then start tweaking according to your requirements. However, for the simple purposes of this tutorial, we'll stick with the blog app.
 
-As you'll see in the next post, we will initialize the app using the **refine.new** platform.
+As you'll see in the next unit, we will initialize the app using the **refine.new** platform.
 
 :::info Using CodeSandbox?
 Prefer to go through this tutorial in an online code editor? That's possible!
@@ -61,23 +61,10 @@ Now you can navigate to [Generate CRUD pages automatically with Inferencer](/doc
 </details>
 :::
 
-
-<h3>Where are we going?</h3>
-
-In this unit, we will be covering the following steps:
-
--   Setting up your development environment.
--   Creating a new project.
--   Generating CRUD pages for your data model.
--   Storing your project in a git repository.
--   Deploying your project to the cloud.
-
-As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuilds and deploys your application on every commit. This allows anyone to access and view the latest version of your app.
-
 <Checklist>
 
 <ChecklistItem id="getting-started">
-Let's prepare to build a refine project!
+Let's head over to the next unit and get to know **refine.new** first!
 </ChecklistItem>
 
 </Checklist>
