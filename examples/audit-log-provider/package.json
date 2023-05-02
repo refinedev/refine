@@ -14,7 +14,8 @@
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/react-hook-form": "^4.2.4",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
