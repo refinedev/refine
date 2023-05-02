@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@refinedev/cli": "^2.5.3",
-    "@refinedev/core": "^4.12.0",
+    "@refinedev/core": "^4.14.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -15,7 +15,7 @@
     "web-vitals": "^1.1.1",
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/chakra-ui": "^2.12.0",
-    "@refinedev/react-hook-form": "^4.2.2",
+    "@refinedev/react-hook-form": "^4.2.4",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.1.0",
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@types/node": "^12.20.11",
+    "@types/node": "^18.16.2",
     "typescript": "^4.7.4"
   },
   "scripts": {

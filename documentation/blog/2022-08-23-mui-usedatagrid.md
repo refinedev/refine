@@ -40,6 +40,8 @@ In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.c
 Material UI is a React UI component library with a rich set of components and tools for bootstrapping elegant user interfaces. We'll use the `<DataGrid/>` component to render a list of employees from a mock server. We'll also look at some of the properties and custom configurations that can be used with the component.
 
 Steps we’ll cover:
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
 - [Setting up a `refine` application](#setting-up-a-refine-application)
 - [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 - [Material UI DataGrid component](#material-ui-datagrid-component)
@@ -53,6 +55,8 @@ Steps we’ll cover:
     - [Controlled sorting](#controlled-sorting)
   - [Filtering](#filtering)
     - [Controlled filtering](#controlled-filtering)
+- [Conclusion](#conclusion)
+- [Example](#example)
   
 
 ## Prerequisites
@@ -849,7 +853,7 @@ Where to go next? Check the useDataGrid hook documentation [here](https://refine
 
 ## Example
 
-<CodeSandboxExample path="blog-mui-datagrid" />
+<CodeSandboxExample path="blog-material-ui-datagrid" />
 
 
 ---

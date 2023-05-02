@@ -7,7 +7,7 @@ import {
     translateTagsPageTitle,
 } from "@docusaurus/theme-common";
 import BlogLayout from "@theme/BlogLayout";
-import TagsListByLetter from "@theme/TagsListByLetter";
+import TagsList from "@theme/TagsList";
 import SearchMetadata from "@theme/SearchMetadata";
 
 export default function BlogTagsListPage({ tags, sidebar }) {
@@ -23,7 +23,7 @@ export default function BlogTagsListPage({ tags, sidebar }) {
             <SearchMetadata tag="blog_tags_list" />
             <BlogLayout sidebar={sidebar}>
                 <h1 className="font-montserrat">{title}</h1>
-                <TagsListByLetter tags={tags} />
+                <TagsList tags={tags} />
             </BlogLayout>
         </HtmlClassNameProvider>
     );

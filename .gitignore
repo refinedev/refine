@@ -16,7 +16,7 @@ coverage
 .env.production.local
 
 !examples/finefoods-antd/.env
-!examples/finefoods-mui/.env
+!examples/finefoods-material-ui/.env
 !examples/store/.env
 
 

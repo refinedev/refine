@@ -15,7 +15,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3

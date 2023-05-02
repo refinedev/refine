@@ -13,7 +13,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     outputs:
       published: ${{ steps.changesets.outputs.published }}
@@ -94,7 +94,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: "18.x"
       - name: Add key to allow access to repository
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock

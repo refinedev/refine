@@ -1,36 +1,38 @@
-import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-
+import {
+    IResourceComponentsProps,
+    HttpError,
+    useParsed,
+} from "@refinedev/core";
 import {
     useSimpleList,
     useModalForm,
-    useDrawerForm,
     CreateButton,
     List,
 } from "@refinedev/antd";
-
 import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 
 import { ProductItem, CreateProduct, EditProduct } from "components/product";
-import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const [store] = useContext(StoreContext);
+    const { params } = useParsed<{ tenant: string }>();
     const { listProps } = useSimpleList<IProduct>({
         permanentFilter: [
-            { field: "stores][id]", operator: "eq", value: store },
+            {
+                field: "stores][id]",
+                operator: "eq",
+                value: params?.tenant,
+            },
         ],
         metaData: { populate: ["image"] },
     });
 
     const {
-        drawerProps: createDrawerProps,
-        formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
+        modalProps: createModalProps,
+        formProps: createModalFormProps,
         show: createShow,
-    } = useDrawerForm<IProduct, HttpError, IProduct>({
+    } = useModalForm<IProduct, HttpError, IProduct>({
         action: "create",
         resource: "products",
         redirect: false,
@@ -43,6 +45,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     } = useModalForm<IProduct, HttpError, IProduct>({
         action: "edit",
         metaData: { populate: ["image"] },
+        resource: "products",
+        redirect: false,
     });
 
     return (
@@ -70,9 +74,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 formProps={editFormProps}
             />
             <CreateProduct
-                drawerProps={createDrawerProps}
-                formProps={createFormProps}
-                saveButtonProps={createSaveButtonProps}
+                modalProps={createModalProps}
+                formProps={createModalFormProps}
             />
         </>
     );

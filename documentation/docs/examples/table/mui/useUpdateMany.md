@@ -9,4 +9,4 @@ example-tags: [table,mui,refine-hooks,react-router]
 
 [Refer to the **refine** useUpdateMany data hook documentation for more information. →](/docs/api-reference/core/hooks/data/useUpdateMany/)
 
-<CodeSandboxExample path="table-mui-use-update-many" />
+<CodeSandboxExample path="table-material-ui-use-update-many" />

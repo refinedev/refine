@@ -1,3 +1,3 @@
 # finefoods-mui
 
-This example has been moved to [finefoods-mui](../../.././finefoods-mui)
+This example has been moved to [finefoods-material-ui](../../.././finefoods-material-ui)
