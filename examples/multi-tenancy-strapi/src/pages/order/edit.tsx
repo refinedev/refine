@@ -1,15 +1,15 @@
-import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-
+import {
+    IResourceComponentsProps,
+    HttpError,
+    useParsed,
+} from "@refinedev/core";
 import { useForm, useSelect, Edit } from "@refinedev/antd";
-
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
-import { StoreContext } from "context/store";
 
 export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
-    const [store] = useContext(StoreContext);
+    const { params } = useParsed<{ tenant: string }>();
     const { formProps, saveButtonProps, queryResult } = useForm<
         IOrder,
         HttpError,
@@ -25,7 +25,13 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: productData?.product?.id,
         optionLabel: "title",
         optionValue: "id",
-        filters: [{ field: "stores][id]", operator: "eq", value: store }],
+        filters: [
+            {
+                field: "stores][id]",
+                operator: "eq",
+                value: params?.tenant,
+            },
+        ],
     });
 
     return (
