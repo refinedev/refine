@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 4.14.1
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
 ## 4.14.0
 
 ### Minor Changes
