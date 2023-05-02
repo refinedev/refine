@@ -10,6 +10,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
         categoryId: 2,
         image: {},
     })
+    .matchHeader("Prefer", "return=representation")
+    .query({ select: "*" })
     .reply(
         201,
         [
