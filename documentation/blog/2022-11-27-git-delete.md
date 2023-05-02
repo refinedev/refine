@@ -40,6 +40,11 @@ Steps we'll cover:
 - [Deleting a git branch with unmerged changes](#deleting-a-git-branch-with-unmerged-changes)
 - [What are tracking branches and how to delete them](#what-are-tracking-branches-and-how-to-delete-them)
 - [How to delete a branch on Github using web console](#how-to-delete-a-branch-on-github-using-web-console)
+- [Frequently asked questions](#frequently-asked-questions)
+  - [I am unable to delete my branch](#i-am-unable-to-delete-my-branch)
+  - [I deleted a branch by mistake, can I recover it?](#i-deleted-a-branch-by-mistake-can-i-recover-it)
+  - [How to automatically delete a branch when it is merge back into master](#how-to-automatically-delete-a-branch-when-it-is-merge-back-into-master)
+  - [I am getting an error when I delete a branch having the same name as a tag](#i-am-getting-an-error-when-i-delete-a-branch-having-the-same-name-as-a-tag)
 
 
 ## Why you might need to remove a branch

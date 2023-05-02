@@ -20,8 +20,8 @@ In the previous post, we went through an example where we derived a `GuestUser` 
 In this post, we will consider an example of `Omit<>` by creating a type for our `Subscriber` entity.
 
 Step we'll cover:
-- [TypeScript `Omit<Type, Keys>` Example](#typescript-omittype-keys-example)
-- [TypeScript `Omit<>` with Interface](#typescript-omit-with-interface)
+- [TypeScript Omit Example](#typescript-omittype-keys-example)
+- [TypeScript Omit with Interface](#typescript-omit-with-interface)
 - [When to Avoid](#when-to-avoid)
 
 ## TypeScript `Omit<Type, Keys>` Example
