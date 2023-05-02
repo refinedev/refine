@@ -1,65 +1,31 @@
 :root {
-  --docusaurus-tag-list-border: var(--ifm-color-emphasis-300);
+    --docusaurus-tag-list-border: var(--ifm-color-emphasis-300);
 }
 
 .tag {
-  border: 1px solid var(--docusaurus-tag-list-border);
-  transition: border var(--ifm-transition-fast);
-  color: #1890ff;
+    background: var(--ifm-color-white);
+    transition: border var(--ifm-transition-fast);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--ifm-global-radius);
+    /* box-shadow: 0px 1px 4px -1px rgba(42, 42, 66, 0.4); */
+    border: 1px solid var(--docusaurus-tag-list-border);
+    color: var(--ifm-color-black);
+    font-weight: 700;
+}
+
+.tagActive {
+    --docusaurus-tag-list-border: #1890ff;
+    text-decoration: none;
+    background-color: #1890ff;
+    color: var(--ifm-color-white);
+}
+
+.tagActive:hover {
+    color: var(--ifm-color-white) !important;
 }
 
 .tag:hover {
-  --docusaurus-tag-list-border: #1890ff;
-  text-decoration: none;
-  color: #1890ff;
-}
-
-.tagRegular {
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.5rem;
-  font-size: 90%;
-}
-
-.tagWithCount {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 0 0.5rem 0 1rem;
-  border-left: 0;
-}
-
-.tagWithCount::before,
-.tagWithCount::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  border: 1px solid var(--docusaurus-tag-list-border);
-  transition: inherit;
-}
-
-.tagWithCount::before {
-  right: 100%;
-  transform: translate(50%, -50%) rotate(-45deg);
-  width: 1.18rem;
-  height: 1.18rem;
-  border-right: 0;
-  border-bottom: 0;
-}
-
-.tagWithCount::after {
-  left: 0;
-  transform: translateY(-50%);
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-}
-
-.tagWithCount span {
-  background: var(--ifm-color-secondary);
-  color: var(--ifm-color-black);
-  font-size: 0.7rem;
-  line-height: 1.2;
-  border-radius: var(--ifm-global-radius);
-  padding: 0.1rem 0.4rem;
-  margin-left: 0.3rem;
+    --docusaurus-tag-list-border: #1890ff;
+    text-decoration: none;
+    color: #1890ff;
 }
