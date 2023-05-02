@@ -3,7 +3,7 @@ id: useOnError
 title: useOnError
 siderbar_label: useOnError
 description: useOnError data hook from refine is a modified version of react-query's useMutation for create mutations
-source: /packages/core/src/hooks/authentication/useOnError/index.ts
+source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---
 
 :::caution

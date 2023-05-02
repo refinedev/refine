@@ -3,7 +3,7 @@ id: useIsAuthenticated
 title: useIsAuthenticated
 siderbar_label: useIsAuthenticated
 description: useIsAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
-source: /packages/core/src/hooks/authentication/useIsAuthenticated/index.ts
+source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
 
 :::caution

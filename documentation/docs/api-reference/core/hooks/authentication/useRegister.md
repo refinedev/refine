@@ -3,7 +3,7 @@ id: useRegister
 title: useRegister
 siderbar_label: useRegister
 description: useRegister data hook from refine is a modified version of react-query's useMutation for registration.
-source: /packages/core/src/hooks/authentication/useRegister/index.ts
+source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
 
 :::caution
