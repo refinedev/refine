@@ -79,10 +79,13 @@ export const dataProvider = (
         },
 
         create: async ({ resource, variables, meta }) => {
-            const { data, error } = await supabaseClient
-                .from(resource)
-                .insert(variables)
-                .select(meta?.select ?? "*");
+            const query = supabaseClient.from(resource).insert(variables);
+
+            if (meta?.select) {
+                query.select(meta.select);
+            }
+
+            const { data, error } = await query;
 
             if (error) {
                 return handleError(error);
@@ -94,10 +97,13 @@ export const dataProvider = (
         },
 
         createMany: async ({ resource, variables, meta }) => {
-            const { data, error } = await supabaseClient
-                .from(resource)
-                .insert(variables)
-                .select(meta?.select ?? "*");
+            const query = supabaseClient.from(resource).insert(variables);
+
+            if (meta?.select) {
+                query.select(meta.select);
+            }
+
+            const { data, error } = await query;
 
             if (error) {
                 return handleError(error);
@@ -117,7 +123,9 @@ export const dataProvider = (
                 query.match({ id });
             }
 
-            query.select(meta?.select ?? "*");
+            if (meta?.select) {
+                query.select(meta.select);
+            }
 
             const { data, error } = await query;
             if (error) {
@@ -142,7 +150,9 @@ export const dataProvider = (
                         query.match({ id });
                     }
 
-                    query.select(meta?.select ?? "*");
+                    if (meta?.select) {
+                        query.select(meta.select);
+                    }
 
                     const { data, error } = await query;
                     if (error) {
