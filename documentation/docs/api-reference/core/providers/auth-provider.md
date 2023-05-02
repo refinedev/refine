@@ -267,7 +267,7 @@ const App = () => {
 [use-on-error]: /docs/api-reference/core/hooks/authentication/useOnError/
 [use-get-identity]: /docs/api-reference/core/hooks/authentication/useGetIdentity/
 [use-permissions]: /docs/api-reference/core/hooks/authentication/usePermissions/
-[authenticated]: /docs/api-reference/core/components/authentication/authenticated/
+[authenticated]: /docs/api-reference/core/components/auth/authenticated/
 [use-register]: /docs/api-reference/core/hooks/authentication/useRegister/
 [use-forgot-password]: /docs/api-reference/core/hooks/authentication/useForgotPassword/
 [use-update-password]: /docs/api-reference/core/hooks/authentication/useUpdatePassword/
