@@ -1,5 +1,5 @@
 ---
-"@refinedev/supabase": patch
+"@refinedev/supabase": minor
 ---
 
-fix(supabase): return data on create/update
+fix: added select field capability to data provider mutation methods
