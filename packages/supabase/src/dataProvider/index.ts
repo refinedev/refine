@@ -111,15 +111,13 @@ export const dataProvider = (
         update: async ({ resource, id, variables, meta }) => {
             const query = supabaseClient.from(resource).update(variables);
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
-
             if (meta?.idColumnName) {
                 query.eq(meta.idColumnName, id);
             } else {
                 query.match({ id });
             }
+
+            query.select(meta?.select ?? "*");
 
             const { data, error } = await query;
             if (error) {
@@ -138,15 +136,13 @@ export const dataProvider = (
                         .from(resource)
                         .update(variables);
 
-                    if (meta?.select) {
-                        query.select(meta.select);
-                    }
-
                     if (meta?.idColumnName) {
                         query.eq(meta.idColumnName, id);
                     } else {
                         query.match({ id });
                     }
+
+                    query.select(meta?.select ?? "*");
 
                     const { data, error } = await query;
                     if (error) {
