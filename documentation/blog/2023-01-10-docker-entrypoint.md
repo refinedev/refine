@@ -19,6 +19,7 @@ Docker ENTRYPOINT instructions can be written in both shell and exec forms, such
 
 Steps we'll cover:
 
+- [Introduction](#introduction)
 - [How does docker ENTRYPOINT work?](#how-does-docker-entrypoint-work)
 - [Docker entrypoint example commands](#docker-entrypoint-example-commands)
 - [Difference between ENTRYPOINT and CMD](#difference-between-entrypoint-and-cmd)
@@ -43,7 +44,7 @@ You can override the entrypoint instruction when initiating the container using 
 
 ---
 
-<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
  

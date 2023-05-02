@@ -54,7 +54,7 @@ Once you're done optimizing your images manually, you can now proceed to use the
 
 ---
 
-<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 ## The NextJS image component

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 
-const PromotionBanner = ({ image, title, description, isDark = false }) => {
+const PromotionBanner = ({ image, title, description, isDark }) => {
     let renderDescription;
 
     if (description === "refineNew") {

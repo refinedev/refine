@@ -16,12 +16,14 @@ This post aims to address the "Unexpected token in JSON at position 0" error mes
 
 Steps we'll cover:
 
+- [Introduction.](#introduction)
 - [What is JSON?](#what-is-json)
 - [What does the "Unexpected token \< in JSON at position 0" error mean?](#what-does-the-unexpected-token--in-json-at-position-0-error-mean)
 - [Different Reasons Why You Might Have This Error and Their Fixes.](#different-reasons-why-you-might-have-this-error-and-their-fixes)
 - [Hitting Any API endpoint that does not exist:](#hitting-any-api-endpoint-that-does-not-exist)
 - [Spelling Error](#spelling-error)
 - [Forgetting to stringify your object:](#forgetting-to-stringify-your-object)
+- [Conclusion](#conclusion)
 
 
 ## What is JSON?
@@ -172,7 +174,7 @@ Spelling errors do not apply only to API endpoints, they can also occur while at
 
 ---
 
-<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 

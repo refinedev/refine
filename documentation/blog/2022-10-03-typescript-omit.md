@@ -20,9 +20,11 @@ In the previous post, we went through an example where we derived a `GuestUser` 
 In this post, we will consider an example of `Omit<>` by creating a type for our `Subscriber` entity.
 
 Step we'll cover:
-- [TypeScript Omit Example](#typescript-omittype-keys-example)
-- [TypeScript Omit with Interface](#typescript-omit-with-interface)
+- [Introduction](#introduction)
+- [TypeScript `Omit<Type, Keys>` Example](#typescript-omittype-keys-example)
+- [TypeScript `Omit<>` with Interface](#typescript-omit-with-interface)
 - [When to Avoid](#when-to-avoid)
+- [Conclusion](#conclusion)
 
 ## TypeScript `Omit<Type, Keys>` Example
 `Omit<>`, like `Pick<>`, takes a base type as the first argument. It takes an union type of the keys to be omitted as the second argument and returns the derived type that excludes those properties.
@@ -106,7 +108,7 @@ So, caution there, as it is an important distinction that TypeScript is applying
 
 ---
 
-<PromotionBanner title="Effortlessly create React enterprise CRUD apps on the browser"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 
