@@ -86,7 +86,13 @@ export const PostEdit: React.FC = () => {
                     },
                 );
 
-                setFiles((prev) => [...prev, { url: res.data.url, ...file }]);
+                setFiles(
+                    (prev) =>
+                        [
+                            ...prev,
+                            { url: res.data.url, ...file },
+                        ] as FileWithURL[],
+                );
             });
 
             setIsUploadLoading(false);
