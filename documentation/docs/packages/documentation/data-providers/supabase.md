@@ -1297,6 +1297,23 @@ We'll show an example of getting relational data from different tables on Supaba
 
 Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/documentation/data-providers/supabase/#adding-a-list-page).
 
+### `select` - Getting selected fields
+
+By default, the data provider methods are returning all fields from the table by passing `*` to the `select` property. You can override this behavior by passing the `select` property in the `meta` object. 
+
+For example, if you want to get only the `title` and `content` fields from the `posts` table, you can pass `select` property in the `meta` as shown below:
+
+```tsx
+useList({
+    resource: "posts",
+    //highlight-start
+    meta: {
+        select: "title, content",
+    },
+    // highlight-end
+});
+```
+
 ### `select` - Handling one-to-many relationship
 
 We pass a `select` value in `meta` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
