@@ -19,7 +19,7 @@ export default function TagsList({ tags, activeTag, collapsable = true }) {
                 style={{
                     margin: 0,
                     padding: 0,
-                    height: collapsable && collapsed ? "34px" : "auto",
+                    height: collapsable && collapsed ? "35px" : "auto",
                     overflow: "hidden",
                 }}
             >
