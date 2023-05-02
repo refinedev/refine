@@ -6,21 +6,24 @@ import { titleCase } from "title-case";
 import tagStyles from "../Tag/styles.module.css";
 
 const mapLabel = (label) => {
+    // remove `-`
+    label = label.replace(/-/g, " ");
+
+    // replace
     const replace = [
         ["typescript", "TypeScript"],
         ["javascript", "JavaScript"],
-        ["chakra-ui", "Chakra UI"],
-        ["material-ui", "Material UI"],
+        ["chakra ui", "Chakra UI"],
+        ["material ui", "Material UI"],
         ["nextjs", "Next.js"],
         ["nestjs", "NestJS"],
-        ["react-hook-form", "React Hook Form"],
-        ["ant-design", "Ant Design"],
     ];
 
     replace.forEach((element) => {
         label = label.replace(element[0], element[1]);
     });
 
+    // title case
     return titleCase(label);
 };
 
