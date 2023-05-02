@@ -3,7 +3,7 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("update", () => {
-    it("correct response", async () => {
+    it("correct response with `select`", async () => {
         const { data } = await dataProvider(supabaseClient).update({
             id: 1246,
             resource: "posts",
@@ -11,6 +11,9 @@ describe("update", () => {
                 title: "test",
                 categoryId: 52,
                 content: "test content",
+            },
+            meta: {
+                select: "*",
             },
         });
 
