@@ -75,7 +75,7 @@ and then you are done!
 
 ## Running in development mode
 
-`node` version 16 is required.
+`node` version 18 is required.
 
 This project has multiple packages and uses [Lerna][lerna] to manage packages under `packages/`.
 
