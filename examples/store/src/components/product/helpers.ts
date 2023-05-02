@@ -1,12 +1,9 @@
 // import type { Product } from "@commerce/types/product";
 export type SelectedOptions = Record<string, string | null>;
 import { Dispatch, SetStateAction } from "react";
-import Medusa from "@medusajs/medusa-js";
 import { Product } from "@medusajs/medusa";
 
-export type MedusaProduct = Awaited<
-    ReturnType<Medusa["products"]["list"]>
->["products"][number];
+export type MedusaProduct = Awaited<Product>;
 
 export function getProductVariant(product: Product, opts: SelectedOptions) {
     const variant = product?.variants.find((variant) => {
