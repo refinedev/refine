@@ -5,13 +5,22 @@ import "./index.mock";
 describe("update", () => {
     it("correct response", async () => {
         const { data } = await dataProvider(supabaseClient).update({
+            id: 1246,
             resource: "posts",
-            id: "2",
             variables: {
-                title: "Hello World!!",
+                title: "test",
+                categoryId: 52,
+                content: "test content",
             },
         });
 
-        expect(data["title"]).toBe("Hello World!!");
+        expect(data).toEqual(
+            expect.objectContaining({
+                id: 1246,
+                title: "test",
+                categoryId: 52,
+                content: "test content",
+            }),
+        );
     });
 });
