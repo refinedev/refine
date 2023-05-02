@@ -682,6 +682,15 @@ module.exports = {
                     ],
                 },
                 "examples/antd-calendar-example",
+                {
+                    type: "category",
+                    label: "Build Systems",
+                    items: [
+                        "examples/build-systems/turbo",
+                        "examples/build-systems/lerna",
+                        "examples/build-systems/nx",
+                    ],
+                },
                 "examples/command-palette",
                 {
                     type: "category",
@@ -843,7 +852,7 @@ module.exports = {
                     label: "Remix",
                     items: [
                         "examples/remix/remix-antd",
-                        "examples/remix/remix-mui",
+                        "examples/remix/remix-material-ui",
                         "examples/remix/remix-headless",
                         "examples/remix/remix-auth",
                     ],

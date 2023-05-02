@@ -7,12 +7,12 @@ import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, ITag } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
-
     const postData = queryResult?.data?.data;
+
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
@@ -23,6 +23,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 value,
             },
         ],
+    });
+
+    const { selectProps: tagSelectProps } = useSelect<ITag>({
+        resource: "tags",
+        defaultValue: postData?.tags || [],
     });
 
     return (
@@ -49,6 +54,21 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Tags"
+                    name={["tags"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        {...tagSelectProps}
+                        onBlur={() => tagSelectProps?.onSearch?.("")}
+                        mode="multiple"
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Status"

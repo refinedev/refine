@@ -73,13 +73,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const camelCreateName = camelCase(`create-${singularResource}`);
 
             const operation = meta?.operation ?? camelCreateName;
+            const inputType = meta?.inputType ?? `${camelCreateName}Input`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
                 variables: {
                     input: {
                         value: { data: variables },
-                        type: `${camelCreateName}Input`,
+                        type: inputType,
                     },
                 },
                 fields: meta?.fields ?? [
@@ -105,6 +106,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const camelCreateName = camelCase(`create-${singularResource}`);
 
             const operation = meta?.operation ?? camelCreateName;
+            const inputType = meta?.operation ?? `${camelCreateName}Input`;
 
             const response = await Promise.all(
                 variables.map(async (param) => {
@@ -113,7 +115,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         variables: {
                             input: {
                                 value: { data: param },
-                                type: `${camelCreateName}Input`,
+                                type: inputType,
                             },
                         },
                         fields: meta?.fields ?? [
@@ -142,13 +144,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const camelUpdateName = camelCase(`update-${singularResource}`);
 
             const operation = meta?.operation ?? camelUpdateName;
+            const inputType = meta?.operation ?? `${camelUpdateName}Input`;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
                 variables: {
                     input: {
                         value: { where: { id }, data: variables },
-                        type: `${camelUpdateName}Input`,
+                        type: inputType,
                     },
                 },
                 fields: meta?.fields ?? [
@@ -174,6 +177,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const camelUpdateName = camelCase(`update-${singularResource}`);
 
             const operation = meta?.operation ?? camelUpdateName;
+            const inputType = meta?.operation ?? `${camelUpdateName}Input`;
 
             const response = await Promise.all(
                 ids.map(async (id) => {
@@ -182,7 +186,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         variables: {
                             input: {
                                 value: { where: { id }, data: variables },
-                                type: `${camelUpdateName}Input`,
+                                type: inputType,
                             },
                         },
                         fields: meta?.fields ?? [
@@ -232,13 +236,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const camelDeleteName = camelCase(`delete-${singularResource}`);
 
             const operation = meta?.operation ?? camelDeleteName;
+            const inputType = meta?.operation ?? `${camelDeleteName}Input`;
 
             const { query, variables } = gql.mutation({
                 operation,
                 variables: {
                     input: {
                         value: { where: { id } },
-                        type: `${camelDeleteName}Input`,
+                        type: inputType,
                     },
                 },
                 fields: meta?.fields ?? [
@@ -262,6 +267,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const camelDeleteName = camelCase(`delete-${singularResource}`);
 
             const operation = meta?.operation ?? camelDeleteName;
+            const inputType = meta?.operation ?? `${camelDeleteName}Input`;
 
             const response = await Promise.all(
                 ids.map(async (id) => {
@@ -270,7 +276,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         variables: {
                             input: {
                                 value: { where: { id } },
-                                type: `${camelDeleteName}Input`,
+                                type: inputType,
                             },
                         },
                         fields: meta?.fields ?? [

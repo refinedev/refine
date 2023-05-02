@@ -11,6 +11,9 @@ export const Header: React.FC = () => {
                 height: "64px",
                 backgroundColor: "#FFF",
                 borderBottom: "1px solid #f0f0f0",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
             }}
         >
             <img

@@ -140,4 +140,4 @@ useRegisterActions(customAction);
 [refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
 [access-contol]: https://refine.dev/docs/core/providers/accessControl-provider/
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
-[refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-mui/src/hooks/useOrderCustomKbarActions/index.tsx
+[refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx

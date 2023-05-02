@@ -419,4 +419,4 @@ render(<App />);
 
 Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@refinedev/inferencer/mui` components.
 
-<CodeSandboxExample path="inferencer-mui" />
+<CodeSandboxExample path="inferencer-material-ui" />

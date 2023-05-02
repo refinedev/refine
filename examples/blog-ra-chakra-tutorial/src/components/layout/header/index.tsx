@@ -27,6 +27,9 @@ export const Header: React.FC = () => {
             gap={2}
             w="full"
             bg="chakra-body-bg"
+            position="sticky"
+            top="0"
+            zIndex="1"
         >
             {showUserInfo && (
                 <HStack>

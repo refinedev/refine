@@ -273,7 +273,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             }}
             collapsible
             collapsed={drawerSiderVisible}
-            onCollapse={(collapsed) => setDrawerSiderVisible?.(collapsed)}
+            onCollapse={(collapsed, type) => {
+                if (type === "clickTrigger") {
+                    setDrawerSiderVisible?.(collapsed);
+                }
+            }}
             collapsedWidth={80}
             breakpoint="lg"
             trigger={

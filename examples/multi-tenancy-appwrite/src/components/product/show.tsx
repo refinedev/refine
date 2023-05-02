@@ -1,7 +1,5 @@
 import { useShow, IResourceComponentsProps } from "@refinedev/core";
-
 import { Show, ImageField } from "@refinedev/antd";
-
 import { Typography, Space } from "antd";
 
 import { IProduct } from "interfaces";

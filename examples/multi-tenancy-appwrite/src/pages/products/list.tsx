@@ -1,34 +1,41 @@
-import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import {
+    IResourceComponentsProps,
+    HttpError,
+    useParsed,
+} from "@refinedev/core";
 
 import {
     useSimpleList,
     useModalForm,
-    useDrawerForm,
     CreateButton,
     List,
 } from "@refinedev/antd";
-
 import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 import { ProductItem, EditProduct, CreateProduct } from "components/product";
-import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const [store] = useContext(StoreContext);
+    const { params } = useParsed<{ tenant?: string }>();
     const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+        filters: {
+            permanent: [
+                {
+                    field: "storeId",
+                    operator: "eq",
+                    value: params?.tenant,
+                },
+            ],
+        },
     });
 
     const {
-        drawerProps: createDrawerProps,
+        modalProps: createModalProps,
         formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
         show: createShow,
-    } = useDrawerForm<IProduct, HttpError, IProduct>({
+    } = useModalForm<IProduct, HttpError, IProduct>({
+        resource: "products",
         action: "create",
-        resource: "61cb01b17ef57",
         redirect: false,
     });
 
@@ -75,9 +82,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 formProps={editFormProps}
             />
             <CreateProduct
-                drawerProps={createDrawerProps}
+                modalProps={createModalProps}
                 formProps={createFormProps}
-                saveButtonProps={createSaveButtonProps}
             />
         </>
     );

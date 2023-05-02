@@ -896,13 +896,12 @@ The component wanted to be placed out of the app layout structure can be set by 
 ```tsx title="App.tsx"
 // highlight-next-line
 import { Refine } from "@refinedev/core";
-import { BackTop } from "@refinedev/antd";
 
 const App: React.FC = () => (
     <Refine
         ...
         // highlight-next-line
-        OffLayoutArea={() => <BackTop />}
+        OffLayoutArea={() => <div>Some elements to place outside the layout</div>}
     />
 );
 ```
