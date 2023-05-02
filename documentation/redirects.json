@@ -706,7 +706,7 @@
     },
     {
       "from": "/docs/core/hooks/auth/useResetPassword/",
-      "to": "/docs/api-reference/core/hooks/auth/useForgotPassword/"
+      "to": "/docs/api-reference/core/hooks/authentication/useForgotPassword/"
     },
     {
       "from": "/docs/examples/authorization/",
