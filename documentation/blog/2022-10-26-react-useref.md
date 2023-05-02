@@ -23,13 +23,11 @@ React allows for developer discretion, and more so than most UI libraries, it en
 In this article, we will discuss the **React useRef** hook, using ref to access DOM and the **differences between ref and useRef**.
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [What is useRef?](#what-is-useref)
 - [Using Ref to Access DOM Elements](#using-ref-to-access-dom-elements)
 - [Difference between Ref and useRef](#difference-between-ref-and-useref)
 - [Using Ref and useRef in an Application](#using-ref-and-useref-in-an-application)
 - [Use-cases of Ref and useRef](#use-cases-of-ref-and-useref)
-- [Conclusion](#conclusion)
 
 
 ## What is useRef?

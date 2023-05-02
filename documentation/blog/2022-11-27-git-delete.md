@@ -33,7 +33,6 @@ For this article, we assume you have installed GIT, and you have the access righ
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
 - [Why you might need to remove a branch](#why-you-might-need-to-remove-a-branch)
 - [Deleting a GIT local branch](#deleting-a-git-local-branch)
 - [Deleting a Git remote branch](#deleting-a-git-remote-branch)
@@ -41,12 +40,7 @@ Steps we'll cover:
 - [Deleting a git branch with unmerged changes](#deleting-a-git-branch-with-unmerged-changes)
 - [What are tracking branches and how to delete them](#what-are-tracking-branches-and-how-to-delete-them)
 - [How to delete a branch on Github using web console](#how-to-delete-a-branch-on-github-using-web-console)
-- [Frequently asked questions](#frequently-asked-questions)
-  - [I am unable to delete my branch](#i-am-unable-to-delete-my-branch)
-  - [I deleted a branch by mistake, can I recover it?](#i-deleted-a-branch-by-mistake-can-i-recover-it)
-  - [How to automatically delete a branch when it is merge back into master](#how-to-automatically-delete-a-branch-when-it-is-merge-back-into-master)
-  - [I am getting an error when I delete a branch having the same name as a tag](#i-am-getting-an-error-when-i-delete-a-branch-having-the-same-name-as-a-tag)
-- [Conclusion](#conclusion)
+
 
 ## Why you might need to remove a branch
 You need to ensure that your Git repository is not a mess of outdated and old branches that are not being worked on anymore. You should perform periodic cleanup of the branches where you would either remove the old branches or you would merge them into the master. Your code repository should be neat, tidy, and easy to navigate.
