@@ -80,7 +80,7 @@ Refer to one of the following documentations, depending on your preferred router
 :::tip
 You can also access the resource object directly.
 
-In the example below, the `can` function recieves the `resource`([ResourceItemProps][iresourceitem]) object you pass to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
+In the example below, the `can` function receives the `resource`([ResourceItemProps][iresourceitem]) object you pass to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
 ```tsx
 export const accessControlProvider = {
