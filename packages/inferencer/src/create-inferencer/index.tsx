@@ -140,12 +140,20 @@ export const createInferencer: CreateInferencer = ({
                     }
                     const duplicates = arr.filter((field, index) => {
                         if (index !== idx) {
+                            const currentFieldHasResource = f.resource;
+                            const fieldHasResource = field.resource;
+                            const hasAnyIdentifier =
+                                field.resource?.identifier ||
+                                f.resource?.identifier;
+                            const isSameResource = hasAnyIdentifier
+                                ? field.resource?.identifier ===
+                                  f.resource?.identifier
+                                : field.resource?.name === f.resource?.name;
+
                             return (
-                                field.resource &&
-                                f.resource &&
-                                (field.resource.name === f.resource.name ||
-                                    field.resource.identifier ===
-                                        f.resource.identifier)
+                                currentFieldHasResource &&
+                                fieldHasResource &&
+                                isSameResource
                             );
                         } else {
                             return false;
