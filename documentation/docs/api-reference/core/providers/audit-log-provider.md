@@ -595,7 +595,7 @@ mutate({
 
 The `meta.audit` allows you to manage the audit log events for a resource. It can additionally manage which type of mutations an event will have when created, **if no definition is made, it will have all**
 
-For examepl, if you have the code below, only events will be created for the `create` mutation.
+For example, if you have the code below, only events will be created for the `create` mutation.
 
 ```ts title="App.tsx"
 <Refine

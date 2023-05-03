@@ -234,9 +234,19 @@ const App = () => {
 
 <br />
 
-:::tip
-If you want to know about some topics such as setting authorization credentials, implementation of refresh token mechanism or creating an auth provider from scratch, refer to the ["Create Auth Provider From Scratch" tutorial&#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
-:::
+## FAQ
+
+### How can I create authProvider?
+
+[Refer to the "Create Auth Provider From Scratch" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
+
+### How can I set authorization credentials?
+
+[Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#setting-authorization-credentials)
+
+### How can I implement refresh token mechanism?
+
+[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#implementing-refresh-token-mechanism)
 
 ## Example
 

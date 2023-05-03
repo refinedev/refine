@@ -80,7 +80,7 @@ Refer to one of the following documentations, depending on your preferred router
 :::tip
 You can also access the resource object directly.
 
-In the example below, the `can` function recieves the `resource`([ResourceItemProps][iresourceitem]) object you pass to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
+In the example below, the `can` function receives the `resource`([ResourceItemProps][iresourceitem]) object you pass to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
 ```tsx
 export const accessControlProvider = {
@@ -199,7 +199,7 @@ Menu items will check access control with `{ resource, action: "list" }`. For ex
 
 These buttons will be checked for access control.
 
-Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will recieve the `resource`([ResourceItemProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
+Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceItemProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
 -   [**List**](/api-reference/antd/components/buttons/list.md): `{ resource: "posts", action: "list", params: { *resource } }`
 -   [**Create**](/api-reference/antd/components/buttons/create.md): `{ resource: "posts", action: "create", params: { *resource } }`
