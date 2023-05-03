@@ -8,7 +8,7 @@ import {
 } from "@refinedev/core";
 import { useCallback, useContext } from "react";
 import { parse, stringify } from "qs";
-import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link, matchPath } from "react-router-dom";
 import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
 
 export const stringifyConfig = {
@@ -85,13 +85,16 @@ export const routerBindings: RouterBindings = {
         return fn;
     },
     parse: () => {
-        const params = useParams();
         const { pathname, search } = useLocation();
         const { resources } = useContext(ResourceContext);
 
         const { resource, action } = React.useMemo(() => {
             return matchResourceFromRoute(pathname, resources);
         }, [resources, pathname]);
+        const params =
+            resource &&
+            action &&
+            matchPath(resource[action] as string, pathname)?.params;
 
         const fn = useCallback(() => {
             const parsedSearch = parse(search, { ignoreQueryPrefix: true });
