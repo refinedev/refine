@@ -21,7 +21,7 @@ import {
 } from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
-export type useModalFormFromSFReturnType<TData, TVariables> = {
+export type useModalFormFromSFReturnType<TResponse, TVariables> = {
     open: boolean;
     form: FormInstance<TVariables>;
     show: (id?: BaseKey) => void;
@@ -33,7 +33,7 @@ export type useModalFormFromSFReturnType<TData, TVariables> = {
     formValues: {};
     initialValues: {};
     formResult: undefined;
-    submit: (values?: TVariables) => Promise<TData>;
+    submit: (values?: TVariables) => Promise<TResponse>;
     /** @deprecated Please use `open` instead. */
     visible: boolean;
 };
@@ -43,23 +43,48 @@ type useModalFormConfig = {
 };
 
 export type UseModalFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 > = Omit<
-    UseFormReturnType<TData, TError, TVariables, TSelectData>,
+    UseFormReturnType<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >,
     "saveButtonProps" | "deleteButtonProps"
 > &
-    useModalFormFromSFReturnType<TSelectData, TVariables>;
+    useModalFormFromSFReturnType<TResponse, TVariables>;
 
 export type UseModalFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormPropsCore<TData, TError, TVariables, TSelectData> &
-    UseFormProps<TData, TError, TVariables, TSelectData> &
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormPropsCore<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> &
+    UseFormProps<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    > &
     UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps &
@@ -76,22 +101,40 @@ export type UseModalFormProps<
  *
  */
 export const useModalForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     syncWithLocation,
     ...rest
 }: UseModalFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
-    TSelectData
->): UseModalFormReturnType<TData, TError, TVariables, TSelectData> => {
+    TData,
+    TResponse,
+    TResponseError
+>): UseModalFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> => {
     const initiallySynced = React.useRef(false);
 
-    const useFormProps = useForm<TData, TError, TVariables, TSelectData>({
+    const useFormProps = useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
         ...rest,
     });
 
@@ -118,7 +161,7 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const sunflowerUseModal = useModalFormSF<TSelectData, TVariables>({
+    const sunflowerUseModal = useModalFormSF<TResponse, TVariables>({
         ...rest,
         form: form,
         submit: onFinish as any,

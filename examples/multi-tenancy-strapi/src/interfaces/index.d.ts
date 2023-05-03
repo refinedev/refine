@@ -21,3 +21,13 @@ export interface IOrder {
     customerAddress: string;
     stores: IStore;
 }
+
+export interface IOrderForm {
+    title: string;
+    status: "delivered" | "not delivered";
+    quantitiy: number;
+    customerName: string;
+    products?: number[];
+    customerAddress: string;
+    stores?: [string];
+}

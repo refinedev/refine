@@ -13,19 +13,21 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     Footer,
     OffLayoutArea,
     children,
+    initialSiderCollapsed,
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <ThemedLayoutContextProvider>
+        <ThemedLayoutContextProvider
+            initialSiderCollapsed={initialSiderCollapsed}
+        >
             <Box display="flex">
                 <SiderToRender Title={Title} />
                 <Box
                     display="flex"
                     flexDirection="column"
                     flex={1}
-                    overflow="hidden"
                     minH="100vh"
                 >
                     <HeaderToRender />

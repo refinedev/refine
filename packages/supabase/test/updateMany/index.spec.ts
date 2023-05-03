@@ -3,15 +3,27 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("updateMany", () => {
-    it("correct response", async () => {
+    it("correct response with `select`", async () => {
         const { data } = await dataProvider(supabaseClient).updateMany!({
             resource: "posts",
-            ids: ["42"],
+            ids: [1246],
             variables: {
-                slug: "update-many",
+                title: "test",
+                categoryId: 52,
+                content: "test content",
+            },
+            meta: {
+                select: "*",
             },
         });
 
-        expect(data[0]["slug"]).toBe("update-many");
+        expect(data[0]).toEqual(
+            expect.objectContaining({
+                id: 1246,
+                title: "test",
+                categoryId: 52,
+                content: "test content",
+            }),
+        );
     });
 });

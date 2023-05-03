@@ -20,7 +20,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Create Example Chunks
 
@@ -60,7 +60,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 1)
 
@@ -85,7 +85,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria 
+        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
   build-chunk-2:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 2)
 
@@ -130,7 +130,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 3)
 
@@ -165,7 +165,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 4)
 
@@ -200,7 +200,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 5)
 
@@ -235,7 +235,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 6)
 
@@ -270,7 +270,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 7)
 
@@ -305,7 +305,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Build All Examples (Chunk 8)
 

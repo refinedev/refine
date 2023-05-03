@@ -92,6 +92,9 @@ export const Header: React.FC = () => {
             style={{
                 padding: "0px 24px",
                 backgroundColor: "#FFF",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
             }}
         >
             <AutoComplete

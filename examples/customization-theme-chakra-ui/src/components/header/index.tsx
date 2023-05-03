@@ -13,6 +13,10 @@ export const Header = () => {
             alignItems="center"
             w="full"
             bg="chakra-body-bg"
+            height="64px"
+            position="sticky"
+            top="0"
+            zIndex="1"
         >
             <HamburgerMenu />
             <IconButton

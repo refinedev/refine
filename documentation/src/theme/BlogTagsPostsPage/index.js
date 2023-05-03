@@ -12,6 +12,7 @@ import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
+import TagsList from "@theme/TagsList";
 
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -53,27 +54,15 @@ function BlogTagsPostsPageMetadata({ tag }) {
     );
 }
 
-function BlogTagsPostsPageContent({ tag, items, sidebar, listMetadata }) {
+function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
     const title = useBlogTagsPostsPageTitle(tag);
 
     return (
         <BlogLayout sidebar={sidebar}>
-            <header className="margin-bottom--lg">
-                <h1 className="font-montserrat">{title}</h1>
-
-                <Link
-                    href={tag.allTagsPath}
-                    className="uppercase all-tags-button text-white font-extrabold p-2 rounded-[10px] inline-flex items-center"
-                >
-                    <Translate
-                        id="theme.tags.tagsPageLink"
-                        description="The label of the link targeting the tag list page"
-                    >
-                        View All Tags
-                    </Translate>
-                </Link>
-            </header>
-            <BlogPostItems items={items} />
+            <TagsList tags={tags} activeTag={tag} collapsable={false} />
+            <br />
+            <h1 className="font-montserrat">{title}</h1>
+            <BlogPostItems items={items} showTitle={false} />
             <br />
             <BlogListPaginator
                 metadata={listMetadata}

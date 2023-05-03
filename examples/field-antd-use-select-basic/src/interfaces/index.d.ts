@@ -1,3 +1,8 @@
+export interface ITag {
+    id: number;
+    title: string;
+}
+
 export interface ICategory {
     id: number;
     title: string;
@@ -9,4 +14,5 @@ export interface IPost {
     content: string;
     status: "published" | "draft" | "rejected";
     category: { id: number };
+    tags: number[];
 }

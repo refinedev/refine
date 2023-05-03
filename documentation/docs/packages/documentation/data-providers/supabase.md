@@ -1286,7 +1286,8 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-    :::
+
+:::
 
 ## Using `meta` to pass values to data provider
 
@@ -1295,6 +1296,40 @@ The [`meta`](/docs/api-reference/general-concepts.md/#meta) property is used to 
 We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
 Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/documentation/data-providers/supabase/#adding-a-list-page).
+
+### `select` - Getting selected fields
+
+By default, the data provider query methods use the `*` value for the `select` property, while the mutation methods do not use the `select` property. You can pass the `select` property in the `meta` object to override this behavior.
+
+For example, if you want to get only the `title` and `content` fields from the `posts` table instead of all fields, you can override the `"*"` value by passing the `select` property in the `meta` as shown below:
+
+```tsx
+useList({
+    resource: "posts",
+    //highlight-start
+    meta: {
+        select: "title, content",
+    },
+    // highlight-end
+});
+```
+
+Also, since mutation methods do not use the `select` property by default, you can pass the `select` property in the `meta` object to get the selected fields.
+
+```tsx
+useCreate({
+    resource: "posts",
+    variables: {
+        title: "Hello World",
+        content: "Lorem ipsum dolor sit amet",
+    },
+    //highlight-start
+    meta: {
+        select: "title, content",
+    },
+    // highlight-end
+});
+```
 
 ### `select` - Handling one-to-many relationship
 

@@ -1,5 +1,51 @@
 # @pankod/refine-supabase
 
+## 5.5.0
+
+### Minor Changes
+
+-   [#4213](https://github.com/refinedev/refine/pull/4213) [`db3b63c1e71`](https://github.com/refinedev/refine/commit/db3b63c1e713bb1f88099a7ccec6a51d175ce930) Thanks [@02JanDal](https://github.com/02JanDal)! - feat: added select field capability to data provider mutation methods
+
+    Now you can pass `select` field to `create`, `update` `createMany` and `updateMany` methods of data provider to get fields you need from the response.
+
+    For example:
+
+    ```tsx
+    useCreate({
+        resource: "posts",
+        variables: {
+            title: "Hello World",
+            content: "Lorem ipsum dolor sit amet",
+        },
+        meta: {
+            select: "title, content",
+        },
+    });
+    ```
+
+## 5.4.0
+
+### Minor Changes
+
+-   [#4213](https://github.com/refinedev/refine/pull/4213) [`db3b63c1e71`](https://github.com/refinedev/refine/commit/db3b63c1e713bb1f88099a7ccec6a51d175ce930) Thanks [@02JanDal](https://github.com/02JanDal)! - feat: added select field capability to data provider mutation methods
+
+    Now you can pass `select` field to `create`, `update` `createMany` and `updateMany` methods of data provider to get fields you need from the response.
+
+    For example:
+
+    ```tsx
+    useCreate({
+        resource: "posts",
+        variables: {
+            title: "Hello World",
+            content: "Lorem ipsum dolor sit amet",
+        },
+        meta: {
+            select: "title, content",
+        },
+    });
+    ```
+
 ## 5.3.0
 
 ### Minor Changes

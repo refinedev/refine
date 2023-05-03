@@ -3,11 +3,13 @@ import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Outlet, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
-import "./App.css";
-
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
+
+import { Layout } from "components/layout";
+
+import "./App.css";
 
 const App: React.FC = () => {
     return (
@@ -55,49 +57,66 @@ const App: React.FC = () => {
             >
                 <Routes>
                     <Route
-                        index
-                        element={<NavigateToResource resource="samples" />}
-                    />
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="samples" />}
+                        />
 
-                    <Route path="samples">
-                        <Route index element={<HeadlessInferencer />} />
-                        <Route path="create" element={<HeadlessInferencer />} />
-                        <Route
-                            path="edit/:id"
-                            element={<HeadlessInferencer />}
-                        />
-                        <Route
-                            path="show/:id"
-                            element={<HeadlessInferencer />}
-                        />
-                    </Route>
+                        <Route path="samples">
+                            <Route index element={<HeadlessInferencer />} />
+                            <Route
+                                path="create"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="show/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                        </Route>
 
-                    <Route path="categories">
-                        <Route index element={<HeadlessInferencer />} />
-                        <Route path="create" element={<HeadlessInferencer />} />
-                        <Route
-                            path="edit/:id"
-                            element={<HeadlessInferencer />}
-                        />
-                        <Route
-                            path="show/:id"
-                            element={<HeadlessInferencer />}
-                        />
-                    </Route>
+                        <Route path="categories">
+                            <Route index element={<HeadlessInferencer />} />
+                            <Route
+                                path="create"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="show/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                        </Route>
 
-                    <Route path="users">
-                        <Route index element={<HeadlessInferencer />} />
-                        <Route path="create" element={<HeadlessInferencer />} />
-                        <Route
-                            path="edit/:id"
-                            element={<HeadlessInferencer />}
-                        />
-                        <Route
-                            path="show/:id"
-                            element={<HeadlessInferencer />}
-                        />
+                        <Route path="users">
+                            <Route index element={<HeadlessInferencer />} />
+                            <Route
+                                path="create"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="edit/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                            <Route
+                                path="show/:id"
+                                element={<HeadlessInferencer />}
+                            />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
                     </Route>
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
                 <UnsavedChangesNotifier />
             </Refine>

@@ -1,9 +1,9 @@
-import { useShow, useOne } from "@refinedev/core";
+import { useShow, useOne, useMany } from "@refinedev/core";
 import { Show, MarkdownField } from "@refinedev/mantine";
 
-import { Title, Text } from "@mantine/core";
+import { Title, Text, Badge, Flex } from "@mantine/core";
 
-import { ICategory, IPost } from "../../interfaces";
+import { ICategory, IPost, ITag } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
@@ -15,6 +15,14 @@ export const PostShow: React.FC = () => {
         id: record?.category.id || "",
         queryOptions: {
             enabled: !!record?.category.id,
+        },
+    });
+
+    const { data: tagsData } = useMany<ITag>({
+        resource: "tags",
+        ids: record?.tags || [],
+        queryOptions: {
+            enabled: !!record?.tags.length,
         },
     });
 
@@ -37,6 +45,23 @@ export const PostShow: React.FC = () => {
                 Category
             </Title>
             <Text mt="xs">{categoryData?.data?.title}</Text>
+
+            <Title mt="xs" order={5}>
+                Tags
+            </Title>
+            <Flex
+                gap="xs"
+                justify="flex-start"
+                align="center"
+                direction="row"
+                wrap="wrap"
+            >
+                {tagsData?.data?.map((tag) => (
+                    <Badge key={tag.id} mt="xs">
+                        {tag.title}
+                    </Badge>
+                ))}
+            </Flex>
 
             <Title mt="xs" order={5}>
                 Content

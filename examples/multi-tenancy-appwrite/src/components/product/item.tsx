@@ -15,7 +15,7 @@ const { Meta } = Card;
 export const ProductItem: React.FC<ProductItemProps> = ({ item, editShow }) => {
     const image = item.image
         ? JSON.parse(item.image).map((p: { url: string }) => p.url)
-        : "./error.png";
+        : "/error.png";
 
     return (
         <Card

@@ -1,125 +1,103 @@
-import { Create } from "@refinedev/antd";
-
+import { Form, FormProps, Input, Upload, ModalProps, Modal } from "antd";
+import { Permission, Role } from "@refinedev/appwrite";
+import { useParsed } from "@refinedev/core";
 import { RcFile } from "antd/lib/upload/interface";
-import {
-    Drawer,
-    DrawerProps,
-    Form,
-    FormProps,
-    Input,
-    ButtonProps,
-    Upload,
-    Grid,
-} from "antd";
 
-import { appwriteClient, normalizeFile, storage } from "utility";
-import { StoreContext } from "context/store";
-import { useContext } from "react";
+import { normalizeFile, storage } from "utility";
 
 type CreateProductProps = {
-    drawerProps: DrawerProps;
+    modalProps: ModalProps;
     formProps: FormProps;
-    saveButtonProps: ButtonProps;
 };
 
 export const CreateProduct: React.FC<CreateProductProps> = ({
-    drawerProps,
+    modalProps,
     formProps,
-    saveButtonProps,
 }) => {
-    const breakpoint = Grid.useBreakpoint();
-    const [store] = useContext(StoreContext);
-
+    const { params } = useParsed<{ tenant?: string }>();
     return (
-        <Drawer
-            {...drawerProps}
-            width={breakpoint.sm ? "500px" : "100%"}
-            bodyStyle={{ padding: 0 }}
+        <Modal
+            {...modalProps}
+            okButtonProps={{
+                ...modalProps.okButtonProps,
+                onClick: () => {
+                    formProps.form?.submit();
+                },
+            }}
         >
-            <Create saveButtonProps={saveButtonProps}>
-                <Form
-                    {...formProps}
-                    layout="vertical"
-                    initialValues={{
-                        isActive: true,
-                    }}
-                    onFinish={(values) => {
-                        return formProps.onFinish?.({
-                            ...values,
-                            storeId: store,
-                            image: JSON.stringify(values.image),
-                        });
-                    }}
+            <Form
+                {...formProps}
+                layout="vertical"
+                initialValues={{
+                    isActive: true,
+                }}
+                onFinish={(values) =>
+                    formProps.onFinish?.({
+                        ...values,
+                        storeId: params?.tenant,
+                        image: JSON.stringify(values.image),
+                    })
+                }
+            >
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Description" name="description">
+                    <Input />
+                </Form.Item>
+
+                <Form.Item label="Images">
                     <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
+                        name="image"
+                        valuePropName="fileList"
+                        normalize={normalizeFile}
+                        noStyle
                     >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Description" name="description">
-                        <Input />
-                    </Form.Item>
+                        <Upload.Dragger
+                            name="file"
+                            listType="picture"
+                            multiple
+                            customRequest={async ({
+                                file,
+                                onError,
+                                onSuccess,
+                            }) => {
+                                try {
+                                    const rcFile = file as RcFile;
 
-                    <Form.Item label="Images">
-                        <Form.Item
-                            name="image"
-                            valuePropName="fileList"
-                            normalize={normalizeFile}
-                            noStyle
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
+                                    const { $id } = await storage.createFile(
+                                        "default",
+                                        rcFile.name,
+                                        rcFile,
+                                        [Permission.read(Role.any())],
+                                    );
+
+                                    const url = storage.getFileView(
+                                        "default",
+                                        $id,
+                                    );
+
+                                    onSuccess?.({ url }, new XMLHttpRequest());
+                                } catch (error) {
+                                    onError?.(new Error("Upload Error"));
+                                }
+                            }}
                         >
-                            <Upload.Dragger
-                                name="file"
-                                listType="picture"
-                                multiple
-                                customRequest={async ({
-                                    file,
-                                    onError,
-                                    onSuccess,
-                                }) => {
-                                    try {
-                                        const rcFile = file as RcFile;
-
-                                        const { $id } =
-                                            await storage.createFile(
-                                                "default",
-                                                rcFile.name,
-                                                rcFile,
-                                                ["role:all"],
-                                            );
-
-                                        const url = storage.getFileView(
-                                            "default",
-                                            $id,
-                                        );
-
-                                        onSuccess?.(
-                                            { url },
-                                            new XMLHttpRequest(),
-                                        );
-                                    } catch (error) {
-                                        onError?.(new Error("Upload Error"));
-                                    }
-                                }}
-                            >
-                                <p className="ant-upload-text">
-                                    Drag &amp; drop a file in this area
-                                </p>
-                            </Upload.Dragger>
-                        </Form.Item>
+                            <p className="ant-upload-text">
+                                Drag &amp; drop a file in this area
+                            </p>
+                        </Upload.Dragger>
                     </Form.Item>
-                </Form>
-            </Create>
-        </Drawer>
+                </Form.Item>
+            </Form>
+        </Modal>
     );
 };

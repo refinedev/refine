@@ -34,12 +34,12 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example with-remix-antd
+npm create refine-app@latest -- --example with-remix-auth
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open with-remix-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-remix-antd?view=preview&theme=dark&codemirror=1)
+[![Open with-remix-auth example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-remix-auth?view=preview&theme=dark&codemirror=1)
         

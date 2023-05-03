@@ -10,6 +10,8 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import "./App.css";
+
 function App() {
     return (
         <BrowserRouter>

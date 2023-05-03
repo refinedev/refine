@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 WORKDIR /opt/app
 
@@ -24,7 +24,7 @@ ENV LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview
 
 RUN npm run build
 
-FROM node:16-alpine
+FROM node:18-alpine
 
 COPY --from=0 /opt/app/documentation/build /opt/app
 WORKDIR /opt/app/
