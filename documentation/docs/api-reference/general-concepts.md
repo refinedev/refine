@@ -18,7 +18,7 @@ title: General Concepts
 For example, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"` because the active route is `/posts`
 
 :::info
-To make the inferencer work, you need to pass the `routerProvider` prop to the `<Refine>` component from your router package choice.
+To make the inference work, you need to pass the `routerProvider` prop to the `<Refine>` component from your router package choice.
 :::
 
 ```tsx title="src/App.tsx"
