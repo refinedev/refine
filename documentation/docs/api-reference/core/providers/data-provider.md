@@ -748,8 +748,6 @@ In some cases, you may need to override the method of **refine** data providers.
 
 For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
-<br />
-
 ```tsx
 import dataProvider from "@refinedev/simple-rest";
 

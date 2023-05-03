@@ -232,11 +232,9 @@ const App = () => {
 | forgotPassword                                    | Can be use to get password reset          | Auth confirms forgot password         |
 | updatePassword                                    | Can be use to get update password         | Auth confirms update password         |
 
-<br />
-
 ## FAQ
 
-### How can I create authProvider?
+### How can I create an auth provider?
 
 [Refer to the "Create Auth Provider From Scratch" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
 
@@ -247,6 +245,8 @@ const App = () => {
 ### How can I implement refresh token mechanism?
 
 [Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#implementing-refresh-token-mechanism)
+
+<br />
 
 ## Example
 
