@@ -1,22 +1,15 @@
 ---
-title: How to create React draggable components with react-dnd
-description: We'll be using the react-dnd library to create draggable components in React.
+title: How to implement a date picker in React
+description: We’ll show you how to implement a date picker using the ‘react-datepicker’ library and how to customize the functionality for your use case.
 slug: react-date-picker
 authors: irakli_tchigladze
-tags: [react, refine, tutorial]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-07-react-dnd%2Fsocial.png
+tags: [react]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/social.png
 hide_table_of_contents: false
 ---
 
-<div className="centered-image"  >
-<a href="https://github.com/refinedev/refine" >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-22-react-admin-templates%2Frefine-1.png"  alt="react admin template 1" />
-   </a>
-</div>
 
-<br/>
-
-# Introduction
+## Introduction
 
 Having a date picker that is simple, intuitive and consistent may be necessary to ensure users have a good experience using your web application.
 
@@ -26,11 +19,11 @@ Fortunately, the React community has come up with various libraries that provide
 
 In this article, we’ll show you how to implement a date picker using the ‘react-datepicker’ library and how to customize the date picker’s appearance and functionality for your use case.
 
-# React Date Picker
 
-‘react-datepicker’ is a lightweight library with a lot of features.
 
-To build a simple date picker, all you need to do is import the custom component and set two props. Advanced features require only a little more time. 
+[`react-datepicker`](https://www.npmjs.com/package/react-datepicker) is a lightweight library with a lot of features.
+
+To build a simple React date picker, all you need to do is import the custom component and set two props. Advanced features require only a little more time. 
 
 ## Create a Datepicker
 
@@ -46,13 +39,13 @@ npm install react-datepicker
 
 Once installed, import the custom **DatePicker** component in the file where you want to use it.
 
-```jsx
+```tsx
 import DatePicker from 'react-datepicker'
 ```
 
 You also need to import CSS styles to display elements in all their beauty.
 
-```jsx
+```tsx
 import 'react-datepicker/dist/react-datepicker.css’
 ```
 
@@ -64,14 +57,14 @@ In class components, we initialize a state object and use the **setState()** met
 
 In functional components, we have the **useState()** hook that creates a state variable and the function to update it. In this case, a state variable will hold the selected date.
 
-The ‘**react-datepicker**’ library exports a custom component by default. When you import it, you can choose any name you want. In this case, we named it **DatePicker**.
+The **react-datepicker** library exports a custom component by default. When you import it, you can choose any name you want. In this case, we named it **DatePicker**.
 
 Every **DatePicker** component must have at least two props to work:
 
-1. **selected** - set to the selected date, stored in the state. It is similar to **value** prop on **<input>** elements. 
+1. **selected** - set to the selected date, stored in the state. It is similar to **value** prop on `**<input>**` elements. 
 2. **onChange** - set to a callback function with one argument, which stands for the date selected by the user. The function body should call the updater function returned by the **useState** hook to update the state. 
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 export default function App() {
@@ -90,8 +83,10 @@ export default function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/dMLFbyC/ezgif-4-a7875a5c70.gif" alt="basic" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/first.gif" alt="react date picker" />
 </div>
+
+<br/>
 
 As simple as that, users can select a date. Try it yourself on [CodeSandbox](https://codesandbox.io/s/white-fast-3ewybj?file=/src/App.js).
 
@@ -115,7 +110,7 @@ Selecting a range of dates is a very common and useful feature - for booking acc
 
 By default, one DatePicker component selects a single date value.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 export default function App() {
@@ -132,7 +127,7 @@ You can modify the event handler to select a range of dates. The function will a
 
 So far we’ve only created one state variable. So our component is not equipped to store two dates. We need to create new **startDate** and **endDate** state variables to store the beginning and end of the range of dates. We’ll also create functions to update them.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 export default function App() {
@@ -151,18 +146,21 @@ We’ll need to change the event handler as well. When users select a range of v
 
 We need to destructure the array to get both the start and end of the range. Then we can update their corresponding state variables.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
   const handleChange = (range) => {
     const [startDate, endDate] = range;
     setStartDate(startDate);
     setEndDate(endDate);
   };
+
   return (
     <div>
       <DatePicker selected={date} onChange={handleChange} />
@@ -173,7 +171,7 @@ export default function App() {
 
 When selecting a single date, it was possible to write an inline event handler, like so:
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 export default function App() {
@@ -186,20 +184,23 @@ export default function App() {
 }
 ```
 
-Selecting a range of dates makes **handleChange** a bit more complex, so it can’t be an inline event handler. You’ll need to define it outside the JSX and reference it as the value of the **onChange** prop.
+Selecting a range of dates makes **handleChange** a bit more complex, so it can’t be an inline event handler. You’ll need to define it outside the tsx and reference it as the value of the **onChange** prop.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
   const handleChange = (range) => {
     const [startDate, endDate] = range;
     setStartDate(startDate);
     setEndDate(endDate);
   };
+
   return (
     <div>
       <DatePicker selected={date} onChange={handleChange} />
@@ -212,26 +213,29 @@ Next, we need to add **startDate**, **endDate**, and **selectsRange** props to t
 
 Set **startDate** and **endDate** props to their respective state values. **selectsRange** is simply a boolean prop.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
   const handleChange = (range) => {
     const [startDate, endDate] = range;
     setStartDate(startDate);
     setEndDate(endDate);
   };
+
   return (
     <div>
       <DatePicker
-      selected={startDate}
-      onChange={onChange}
-      startDate={startDate}
-      endDate={endDate}
-      selectsRange
+        selected={startDate}
+        onChange={onChange}
+        startDate={startDate}
+        endDate={endDate}
+        selectsRange
     />
     </div>
   );
@@ -244,8 +248,10 @@ export default function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/Xb7x52R/ezgif-4-5a64de8dc9.gif" alt="select range of dates" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/select_range%20.gif" alt="react date picker" />
 </div>
+
+<br/>
 
 #### Using two separate components
 
@@ -255,20 +261,22 @@ We still need to create state variables **startDate** and **endDate**.
 
 Let’s say the first component selects a start date. Set the **selectsStart** prop to specify its purpose. Set **selected** and **startDate** props to values from the state, and **onChange** to a simple handler that updates the **startDate** state variable.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
   return (
     <div>
       <DatePicker
-     selectsStart
-     selected={startDate}
-     onChange={date => setStartDate(date)}
-     startDate={startDate}
+        selectsStart
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+        startDate={startDate}
       />
     </div>
   );
@@ -280,35 +288,37 @@ Next, we need a second **DatePicker** component with a **selectsEnd** prop to sp
 The component should get its values from the state. So **selected** and **endDate** props should be set to the **endDate** state variable.
 The **onChange** function should update the **endDate** state variable.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
   return (
     <div>
       <DatePicker
-     selectsStart
-     selected={startDate}
-     onChange={date => setStartDate(date)}
-     startDate={startDate}
+        selectsStart
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+        startDate={startDate}
       />
       <DatePicker
-     selectsEnd
-     selected={endDate}
-     onChange={date => setEndDate(date)}
-     endDate={endDate}
-     startDate={startDate}
-     minDate={startDate}
+        selectsEnd
+        selected={endDate}
+        onChange={date => setEndDate(date)}
+        endDate={endDate}
+        startDate={startDate}
+        minDate={startDate}
      />
     </div>
   );
 }
 ```
 
-The date picker that selects the end should have a **startDate** prop as well. 
+The React date picker that selects the end should have a **startDate** prop as well. 
 
 Also, have the **minDate** prop set to the start date. This will ensure that users can’t select an end date that comes earlier than the start date.
 
@@ -318,8 +328,10 @@ Also, have the **minDate** prop set to the start date. This will ensure that use
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/7bXgZQk/two-datepickers.png" alt="two datepickers" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/two-datepickers.png" alt="react date picker" />
 </div>
+
+<br/>
 
 ### Select time
 
@@ -333,19 +345,21 @@ This could be a useful use case for booking appointments or meetings.
 
 For example, set **minTime** to 12:30, and **maxTime** to 19:00. Users will only be able to select times from 12:30 to 7 pm.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
+
   return (
     <div>
       <DatePicker
-      showTimeSelect
-      minTime={new Date(0, 0, 0, 12, 30)}
-      maxTime={new Date(0, 0, 0, 19, 0)}
-      selected={date}
-      onChange={date => setDate(date)}
+        showTimeSelect
+        minTime={new Date(0, 0, 0, 12, 30)}
+        maxTime={new Date(0, 0, 0, 19, 0)}
+        selected={date}
+        onChange={date => setDate(date)}
       />
     </div>
   );
@@ -358,26 +372,31 @@ export default function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/rQFjJ1c/time-mintime.png" alt="min time" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/time-mintime.png" alt="react date picker" />
 </div>
+
+<br/>
+
 Set the **dateFormat** prop to display both date and time within the field.
 
 For example:
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
+
   return (
     <div>
       <DatePicker
-      showTimeSelect
-      minTime={new Date(0, 0, 0, 12, 30)}
-      maxTime={new Date(0, 0, 0, 19, 0)}
-      selected={date}
-      onChange={date => setDate(date)}
-      dateFormat="MMMM d, yyyy h:mmaa"
+        showTimeSelect
+        minTime={new Date(0, 0, 0, 12, 30)}
+        maxTime={new Date(0, 0, 0, 19, 0)}
+        selected={date}
+        onChange={date => setDate(date)}
+        dateFormat="MMMM d, yyyy h:mmaa"
       />
     </div>
   );
@@ -385,6 +404,13 @@ export default function App() {
 ```
 
 If you want users to enter their own time instead of selecting it, replace the **showTimeSelect** with the **showTimeInput** boolean prop.
+
+
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+---
 
 ### Conditionally disable dates
 
@@ -396,21 +422,22 @@ For example, here’s a function that returns **false** for dates less than (ear
 
 You can similarly check if the date is a weekend, a weekday, or a holiday, or disable dates based on any other condition.
 
-```jsx
+```tsx
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 export default function App() {
   const [date, setDate] = useState(new Date());
-  const weekend = (date) => {
-   return new Date() < date;
- }
+
+  const weekend = (date) => new Date() < date;
+
   return (
     <div>
       <DatePicker
-      showTimeSelect
-      filterDate={weekend}
-      selected={date}
-      onChange={date => setDate(date)}
+        showTimeSelect
+        filterDate={weekend}
+        selected={date}
+        onChange={date => setDate(date)}
       />
     </div>
   );
@@ -423,10 +450,10 @@ export default function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/vwZyFtJ/conditional-disable.png" alt="disable dates conditionally" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/disable_dates.png" alt="react date picker" />
 </div>
 
-
+<br/>
 
 For example, you might want to disable past dates so users can’t select them when booking accommodation or flights.
 
@@ -460,8 +487,11 @@ Simply add the **isClearable** prop to the date picker to display a button to re
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/5LrcNyw/clear.png" alt="is clearable prop" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/is_clearable.png" alt="react date picker" />
 </div>
+
+
+<br/>
 
 #### locale
 
@@ -531,11 +561,13 @@ By default, a date picker shows a calendar where users can select a date. Use th
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://i.ibb.co/7nk3npK/monthsshown.png" alt="months shown" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/monthsshown.png" alt="react date picker" />
 </div>
 
-# Conclusion
+<br/>
 
-Date pickers are sometimes a web application’s most important feature. In this article, we showed how to create basic date pickers using **react-datepicker** package, implementing advanced features and their possible use cases.
+## Conclusion
+
+Date pickers are sometimes a web application’s most important feature. In this article, we showed how to create basic React date picker using **react-datepicker** package, implementing advanced features and their possible use cases.
 
 Hopefully our article has helped you make best use of the ‘react-datepicker’ package to create datepickers in a short time.
