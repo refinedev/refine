@@ -174,7 +174,7 @@ render(<App />);
 ```
 
 :::caution
-The `default` key is required for the default data provider and will be used as the default data provider.
+When using multiple data providers, the `default` key is required for defining the default data provider.
 
 ```tsx title="App.tsx"
 const App = () => {
