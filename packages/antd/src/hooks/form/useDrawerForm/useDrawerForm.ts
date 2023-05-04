@@ -208,21 +208,11 @@ export const useDrawerForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const submit = async () => {
-        await onFinish(form.getFieldsValue());
-
-        if (autoSubmitClose) {
-            close();
-        }
-
-        if (autoResetForm) {
-            form.resetFields();
-        }
-    };
-
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: submit,
+        onClick: () => {
+            form.submit();
+        },
         loading: formLoading,
     };
 
@@ -278,7 +268,17 @@ export const useDrawerForm = <
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps.onFinish,
+            onFinish: async (values) => {
+                await onFinish(values);
+
+                if (autoSubmitClose) {
+                    close();
+                }
+
+                if (autoResetForm) {
+                    form.resetFields();
+                }
+            },
         },
         drawerProps: {
             width: "500px",
