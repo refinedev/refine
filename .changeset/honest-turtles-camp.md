@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": patch
+"@refinedev/antd": minor
 ---
 
 feat: added the `fixed` prop to the `<ThemedSiderV2/>` to allow the sider to be fixed
