@@ -10,13 +10,13 @@ export function generateDefaultDocumentTitle(
     id?: string,
 ) {
     const actionPrefixMatcher = {
-        create: "Create new",
-        edit: `#${id} Edit`,
-        show: `#${id} Show`,
+        create: "Create new ",
+        edit: `#${id} Edit `,
+        show: `#${id} Show `,
         list: "",
     };
 
     return `${
         actionPrefixMatcher[action as keyof typeof actionPrefixMatcher]
-    } ${capitalize(resource.name)} | Refine`;
+    }${capitalize(resource.name)} | Refine`;
 }
