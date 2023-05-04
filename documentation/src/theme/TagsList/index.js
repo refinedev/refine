@@ -17,6 +17,7 @@ const mapLabel = (label) => {
         ["material ui", "Material UI"],
         ["nextjs", "Next.js"],
         ["nestjs", "NestJS"],
+        ["css", "CSS"],
     ];
 
     replace.forEach((element) => {
@@ -29,6 +30,28 @@ const mapLabel = (label) => {
 
 export default function TagsList({ tags, activeTag, collapsable = true }) {
     const [collapsed, setCollapsed] = React.useState(true);
+    const priorityTags = [
+        "refine",
+        "react",
+        "nextjs",
+        "typescript",
+        "tutorial",
+        "material-ui",
+        "ant-design",
+        "docker",
+        "comparison",
+    ];
+
+    const sortedTags = tags.sort((a, b) => {
+        let aIndex = priorityTags.indexOf(a.label);
+        let bIndex = priorityTags.indexOf(b.label);
+
+        if (aIndex === -1) {
+            return bIndex === -1 ? 0 : 1;
+        } else {
+            return bIndex === -1 ? -1 : aIndex - bIndex;
+        }
+    });
 
     return (
         <div
@@ -46,7 +69,7 @@ export default function TagsList({ tags, activeTag, collapsable = true }) {
                     overflow: "hidden",
                 }}
             >
-                {tags.map((tag) => (
+                {sortedTags.map((tag) => (
                     <li
                         style={{
                             display: "inline-flex",
