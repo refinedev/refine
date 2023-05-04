@@ -8,7 +8,7 @@
     "@refinedev/cli": "^2.5.3",
     "@refinedev/hasura": "^6.4.0",
     "@refinedev/react-router-v6": "^4.1.0",
-    "@refinedev/inferencer": "^3.3.1",
+    "@refinedev/inferencer": "^3.3.2",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

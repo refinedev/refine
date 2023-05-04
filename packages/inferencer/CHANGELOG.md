@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 3.3.2
+
+### Patch Changes
+
+-   [#4265](https://github.com/refinedev/refine/pull/4265) [`ff43684f787`](https://github.com/refinedev/refine/commit/ff43684f787880d120a66d5747bb3e4cbade5ea6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: fixed an issue that caused the duplicate field error
+
 ## 3.3.1
 
 ### Patch Changes
