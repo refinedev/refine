@@ -131,7 +131,7 @@ describe("useModalForm Hook", () => {
         });
 
         await act(async () => {
-            result.current.modalProps.onOk?.({} as any);
+            result.current.formProps.onFinish?.({});
         });
 
         await waitFor(() => result.current.mutationResult.isSuccess);
@@ -157,7 +157,7 @@ describe("useModalForm Hook", () => {
 
         await act(async () => {
             result.current.show();
-            result.current.modalProps.onOk?.({} as any);
+            result.current.formProps.onFinish?.({});
         });
 
         expect(result.current.modalProps.open).toBe(true);
@@ -218,7 +218,7 @@ describe("useModalForm Hook", () => {
 
         await act(async () => {
             result.current.show();
-            result.current.modalProps.onOk?.({} as any);
+            result.current.formProps.onFinish?.({});
             jest.runAllTimers();
         });
 
@@ -229,4 +229,40 @@ describe("useModalForm Hook", () => {
         expect(updateMock).toBeCalledTimes(1);
         expect(result.current.modalProps.open).toBe(false);
     });
+
+    it.each(["optimistic", "undoable"] as const)(
+        "when mutationMode is '%s', the form should be closed when the mutation is successful",
+        async (mutationMode) => {
+            jest.useFakeTimers();
+            const updateMock = jest.fn(
+                () => new Promise((resolve) => setTimeout(resolve, 1000)),
+            );
+
+            const { result } = renderHook(
+                () =>
+                    useModalForm({
+                        action: "edit",
+                        resource: "posts",
+                        id: 1,
+                        mutationMode,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer,
+                            update: updateMock,
+                        },
+                    }),
+                },
+            );
+
+            await act(async () => {
+                result.current.show();
+                result.current.formProps.onFinish?.({});
+                jest.runAllTimers();
+            });
+
+            expect(result.current.modalProps.open).toBe(false);
+        },
+    );
 });
