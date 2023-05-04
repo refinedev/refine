@@ -82,7 +82,6 @@ export type UseModalFormProps<
         TResponse,
         TResponseError
     > &
-    // UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps &
     FormWithSyncWithLocationParams & {
