@@ -1,5 +1,12 @@
 # create-refine-app
 
+## 1.7.0
+
+### Minor Changes
+
+-   [#4270](https://github.com/refinedev/refine/pull/4270) [`92c9dd7187d`](https://github.com/refinedev/refine/commit/92c9dd7187d977ca520f933b950228b765a99ec3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added Vite support.
+    Now with Vite support, you can create your app with Vite.
+
 ## 1.6.0
 
 ### Minor Changes
