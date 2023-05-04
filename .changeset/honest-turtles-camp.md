@@ -4,7 +4,7 @@
 
 feat: added the `fixed` prop to the `<ThemedSiderV2/>` to allow the sider to be fixed
 
-The props is optional and defaults to `false`. You can see the usage as follows:
+The prop is optional and defaults to `false`. You can see the usage as follows:
 
 ```tsx
 import { Refine } from "@refinedev/core";
