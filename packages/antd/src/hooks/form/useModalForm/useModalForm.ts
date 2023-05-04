@@ -85,6 +85,7 @@ export type UseModalFormProps<
     useModalFormConfig &
     LiveModeProps &
     FormWithSyncWithLocationParams & {
+        defaultVisible?: boolean;
         autoSubmitClose?: boolean;
         autoResetForm?: boolean;
     };
@@ -108,6 +109,7 @@ export const useModalForm = <
     TResponseError extends HttpError = TError,
 >({
     syncWithLocation,
+    defaultVisible = false,
     autoSubmitClose = true,
     autoResetForm = true,
     ...rest
@@ -162,7 +164,11 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const { show, close, modalProps } = useModal();
+    const { show, close, modalProps } = useModal({
+        modalProps: {
+            open: defaultVisible,
+        },
+    });
 
     const visible = modalProps.open || false;
     const sunflowerUseModal: useModalFormFromSFReturnType<
