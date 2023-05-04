@@ -283,9 +283,12 @@ export default App;
 
 As you can notice, there are so many things going on here. So, we'll break it down and explain part by part the ones important to us in the coming units. We'll discuss with the `<Refine />` component before we move to the next post.
 
+
 ## The `<Refine />` Component
 
-The `<Refine />` component is the centerstage of a **refine** app. This is what holds all the main action in our app. As you can see, it is a crowded room of props which basically represent configurations for different components of the app, like data fetching to and from APIs, authentication and authorization, routing, etc. Most of `<Refine />`'s props are configured as provider objects, but there are some others that are not backed by contexts, such as the `resources` and `options`.
+The `<Refine />` component is the centerstage of a **refine** app. This is what carries all the main action in our app. As we can see, it is crowded with many props that basically represent configurations for different components of the app, like data fetching to and from APIs, authentication and authorization, routing, etc. It is a wrapper component that offers context to **refine** components and hooks.
+
+The `<Refine />` component is used to configure the top-level settings of the application. Most of `<Refine />`'s props are configured as provider objects, but there are some others that are not backed by contexts, such as the `resources` and `options`.
 
 In this tutorial, we cover the `dataProvider`, `authProvider` and `resources` props.
 
