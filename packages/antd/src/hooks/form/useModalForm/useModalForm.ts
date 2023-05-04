@@ -1,9 +1,5 @@
 import React, { useCallback } from "react";
 import { FormInstance, FormProps, ModalProps } from "antd";
-import {
-    useModalForm as useModalFormSF,
-    UseModalFormConfig as UseModalFormConfigSF,
-} from "sunflower-antd";
 
 import {
     useTranslate,
@@ -20,6 +16,7 @@ import {
     useGo,
 } from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useModal } from "@hooks/modal";
 
 export type useModalFormFromSFReturnType<TResponse, TVariables> = {
     open: boolean;
@@ -85,10 +82,13 @@ export type UseModalFormProps<
         TResponse,
         TResponseError
     > &
-    UseModalFormConfigSF &
+    // UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps &
-    FormWithSyncWithLocationParams;
+    FormWithSyncWithLocationParams & {
+        autoSubmitClose?: boolean;
+        autoResetForm?: boolean;
+    };
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
  *
@@ -109,6 +109,8 @@ export const useModalForm = <
     TResponseError extends HttpError = TError,
 >({
     syncWithLocation,
+    autoSubmitClose = true,
+    autoResetForm = true,
     ...rest
 }: UseModalFormProps<
     TQueryFnData,
@@ -161,18 +163,26 @@ export const useModalForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const sunflowerUseModal = useModalFormSF<TResponse, TVariables>({
-        ...rest,
-        form: form,
-        submit: onFinish as any,
-    });
-
-    const {
-        visible,
-        show,
-        formProps: modalFormProps,
+    const { show, close, modalProps } = useModal();
+    const sunflowerUseModal: useModalFormFromSFReturnType<
+        TResponse,
+        TVariables
+    > = {
+        close,
+        defaultFormValuesLoading: false,
+        form,
+        formLoading,
+        formProps,
+        formResult: undefined,
+        formValues: form.getFieldsValue,
+        initialValues: {},
         modalProps,
-    } = sunflowerUseModal;
+        open: modalProps.open || false,
+        visible: modalProps.visible || false,
+        show,
+        submit: onFinish as any,
+    };
+    const visible = modalProps.open || false;
 
     React.useEffect(() => {
         if (initiallySynced.current === false && syncWithLocationKey) {
@@ -227,6 +237,9 @@ export const useModalForm = <
     const saveButtonPropsSF = {
         disabled: formLoading,
         loading: formLoading,
+        onClick: () => {
+            form.submit();
+        },
     };
 
     const handleClose = useCallback(() => {
@@ -274,11 +287,21 @@ export const useModalForm = <
         close: handleClose,
         open: visible,
         formProps: {
-            ...modalFormProps,
+            ...formProps,
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps.onFinish,
+            onFinish: async (values) => {
+                await onFinish(values);
+
+                if (autoSubmitClose) {
+                    close();
+                }
+
+                if (autoResetForm) {
+                    form.resetFields();
+                }
+            },
         },
         modalProps: {
             ...newModalProps,
