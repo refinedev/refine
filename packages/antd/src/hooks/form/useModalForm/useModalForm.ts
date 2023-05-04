@@ -163,25 +163,26 @@ export const useModalForm = <
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
     const { show, close, modalProps } = useModal();
+
+    const visible = modalProps.open || false;
     const sunflowerUseModal: useModalFormFromSFReturnType<
         TResponse,
         TVariables
     > = {
-        close,
-        defaultFormValuesLoading: false,
+        modalProps,
         form,
         formLoading,
         formProps,
         formResult: undefined,
         formValues: form.getFieldsValue,
+        defaultFormValuesLoading: false,
         initialValues: {},
-        modalProps,
-        open: modalProps.open || false,
-        visible: modalProps.visible || false,
-        show,
         submit: onFinish as any,
+        close,
+        open: modalProps.open || false,
+        show,
+        visible,
     };
-    const visible = modalProps.open || false;
 
     React.useEffect(() => {
         if (initiallySynced.current === false && syncWithLocationKey) {
