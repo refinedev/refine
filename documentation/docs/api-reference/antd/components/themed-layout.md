@@ -38,7 +38,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 
 -   [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
 -   [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
--   [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+-   [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 -   `<Footer>`: displayed at the bottom of the page.
 -   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
@@ -129,7 +129,7 @@ Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](
 
 ### `Sider`
 
-In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSider>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSider>`][themed-sider] component by passing a custom component to the `Sider` prop.
+In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSiderV2>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSiderV2>`][themed-sider] component by passing a custom component to the `Sider` prop.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -153,13 +153,13 @@ const App: React.FC = () => {
 };
 ```
 
-Also, you can customize the default [`<ThemedSider>`][themed-sider] component either by using its props or with the [swizzle](#customizing-with-swizzle) feature.
+Also, you can customize the default [`<ThemedSiderV2>`][themed-sider] component either by using its props or with the [swizzle](#customizing-with-swizzle) feature.
 
-Here is an example of how to customize the default [`<ThemedSider>`][themed-sider] component using the `render` and `Title` prop:
+Here is an example of how to customize the default [`<ThemedSiderV2>`][themed-sider] component using the `render` and `Title` prop:
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ThemedSider } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
 
 import { CustomTitle } from "./CustomTitle";
 
@@ -171,7 +171,7 @@ const App: React.FC = () => {
             <ThemedLayoutV2
                 // highlight-start
                 Sider={() => (
-                    <ThemedSider
+                    <ThemedSiderV2
                         Title={({ collapsed }) => (
                             <CustomTitle collapsed={collapsed} />
                         )}
@@ -195,13 +195,37 @@ const App: React.FC = () => {
 };
 ```
 
+Also, you can make the sidebar fixed by passing the `fixed` property, which is optional and `false` by default. You can see the usage as follows:
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+        // ...
+        >
+            <ThemedLayoutV2
+                // highlight-start
+                Sider={() => <ThemedSiderV2 fixed />}
+                // highlight-end
+            >
+                {/* ... */}
+            </ThemedLayoutV2>
+        </Refine>
+    );
+};
+```
+
 #### `Sider Props`
 
 | Prop              | Type                                          | Description                                                                     |
 | ----------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`Title`](#title) | `React.FC`                                    | Component to render at the top                                                  |
-| `render`          | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSider>` |
+| `render`          | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSiderV2>` |
 | `meta`            | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                        |
+| `fixed`           | `boolean`                                     | Whether the sider is fixed or not                                               |
 
 ```tsx
 type SiderRenderFunction = (props: {
@@ -230,9 +254,9 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 
 ### `Header`
 
-In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/auth/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/auth/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
 
-Here is an example of how to replace the default [`<ThemedHeader>`][themed-header] component:
+Here is an example of how to replace the default [`<ThemedHeaderV2>`][themed-header] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -261,10 +285,10 @@ You can also make it sticky using the `isSticky` property, which is optional and
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { 
+import {
     ThemedLayoutV2,
     // highlight-next-line
-    ThemedHeaderV2
+    ThemedHeaderV2,
 } from "@refinedev/antd";
 
 const App: React.FC = () => {
@@ -274,9 +298,7 @@ const App: React.FC = () => {
         >
             <ThemedLayoutV2
                 // highlight-start
-                Header={() => (
-                    <ThemedHeaderV2 isSticky={true} />
-                )}
+                Header={() => <ThemedHeaderV2 isSticky={true} />}
                 // highlight-end
             >
                 {/* ... */}
@@ -295,7 +317,7 @@ Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-titl
 ```tsx
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, ThemedTitle } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
 
 // highlight-next-line
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
@@ -645,9 +667,9 @@ You can use these components in your project as you wish.
 ```tsx
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2 } from "components/themedLayout";
-import { ThemedHeader } from "components/themedLayout/header";
-import { ThemedSider } from "components/themedLayout/sider";
-import { ThemedTitle } from "components/themedLayout/title";
+import { ThemedHeaderV2 } from "components/themedLayout/header";
+import { ThemedSiderV2 } from "components/themedLayout/sider";
+import { ThemedTitleV2 } from "components/themedLayout/title";
 
 const App = () => {
     return (
@@ -655,9 +677,9 @@ const App = () => {
         /* ... */
         >
             <ThemedLayoutV2
-                Header={ThemedHeader}
-                Sider={ThemedSider}
-                Title={ThemedTitle}
+                Header={ThemedHeaderV2}
+                Sider={ThemedSiderV2}
+                Title={ThemedTitleV2}
             >
                 /* ... */
             </ThemedLayoutV2>
