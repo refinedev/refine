@@ -1,5 +1,9 @@
 import React from "react";
-import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
+import {
+    useGetIdentity,
+    useActiveAuthProvider,
+    pickNotDeprecated,
+} from "@refinedev/core";
 import {
     Avatar,
     Flex,
@@ -14,6 +18,7 @@ import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     isSticky,
+    sticky,
 }) => {
     const theme = useMantineTheme();
 
@@ -28,7 +33,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             : theme.colors.gray[2];
 
     let stickyStyles: Sx = {};
-    if (isSticky) {
+    if (pickNotDeprecated(sticky, isSticky)) {
         stickyStyles = {
             position: `sticky`,
             top: 0,
