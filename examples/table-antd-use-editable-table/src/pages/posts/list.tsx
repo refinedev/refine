@@ -21,9 +21,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
-    } = useEditableTable<IPost>({
-        autoSubmitClose: false,
-    });
+    } = useEditableTable<IPost>();
 
     return (
         <List>
