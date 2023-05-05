@@ -372,39 +372,44 @@ It renders `<Drawer>` instead of lazy rendering it.
 
 You may need to modify the form data before it is sent to the API.
 
-For example, Let's send the values we received from the user in two separate inputs, name and surname, to the API as fullName.
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
-```tsx
-import { useDrawerForm, Drawer, Create, Form } from "@refinedev/antd";
+```tsx title="pages/user/create.tsx"
+import React from "react";
+import { Drawer, Create, useDrawerForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
 
-const { formProps, drawerProps, saveButtonProps } = useDrawerForm<IPost>({
-    action: "create",
-});
+export const UserCreate: React.FC = () => {
+    // highlight-start
+    const { formProps, drawerProps, saveButtonProps, onFinish } = useDrawerForm({
+        action: "create",
+    });
+    // highlight-end
 
-//...
+    // highlight-start
+    const handleOnFinish = (values) => {
+        onFinish({
+            fullName: `${values.name} ${values.surname}`,
+        });
+    };
+    // highlight-end
 
-return (
-    //...
-    <Drawer {...drawerProps}>
-        <Create saveButtonProps={saveButtonProps} goBack={false}>
-            <Form 
-                {...formProps}
-                layout="vertical"
-                // highlight-start
-                onFinish={(values) => {
-                    const fullName = `${values.name} ${values.surname}`;
-                    formProps.onFinish?.({
-                        ...values,
-                        fullName,
-                    });
-                }}
-                // highlight-end
-            >
-            //...
-            </Form>
-        </Create>
-    </Drawer>
-);
+    return (
+        <Drawer {...drawerProps}>
+            <Create saveButtonProps={saveButtonProps}>
+                // highlight-next-line
+                <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+                    <Form.Item label="Name" name="name">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="Surname" name="surname">
+                        <Input />
+                    </Form.Item>
+                </Form>
+            </Create>
+        </Drawer>
+    );
+};
 ```
 
 ## API Parameters
