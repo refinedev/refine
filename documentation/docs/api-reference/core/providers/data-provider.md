@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
 ## Multiple Data Providers
 
-**refine** gives you the ability to use multiple data providers in your app. All you need to do is to pass key and value pairs to the `dataProvider` prop of the `<Refine />` component in a form of value being the data provider and the key being the name of the data provider.
+**refine** allows you to use multiple data providers in your app. All you need to do is pass key and value pairs to the `dataProvider` prop of the `<Refine />` component. In the pair object, the key corresponds to the data provider name, and the value corresponds to the data provider itself.
 
 Here is an example which uses multiple data providers:
 
