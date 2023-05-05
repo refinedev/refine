@@ -1,5 +1,5 @@
 ---
-"@refinedev/appwrite": major
+"@refinedev/appwrite": minor
 ---
 
 feat: added swizzle to appwrite
