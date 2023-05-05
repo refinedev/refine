@@ -679,6 +679,45 @@ return (
 );
 ```
 
+## FAQ
+
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, name and surname, to the API as fullName.
+
+```tsx
+import { useModalForm, Modal, Form } from "@refinedev/antd";
+
+const { formProps, modalProps } = useModalForm<IPost>({
+    action: "create",
+});
+
+//...
+
+return (
+    //...
+    <Modal {...modalProps}>
+        <Form 
+            {...formProps}
+            layout="vertical"
+            // highlight-start
+            onFinish={(values) => {
+                const fullName = `${values.name} ${values.surname}`;
+                formProps.onFinish?.({
+                    ...values,
+                    fullName,
+                });
+            }}
+            // highlight-end
+        >
+        //...
+        </Form>
+    </Modal>
+);
+```
+
 ## API Reference
 
 ### Properties

@@ -366,6 +366,47 @@ Current visible state of `<Drawer>`.
 
 It renders `<Drawer>` instead of lazy rendering it.
 
+## FAQ
+
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, name and surname, to the API as fullName.
+
+```tsx
+import { useDrawerForm, Drawer, Create, Form } from "@refinedev/antd";
+
+const { formProps, drawerProps, saveButtonProps } = useDrawerForm<IPost>({
+    action: "create",
+});
+
+//...
+
+return (
+    //...
+    <Drawer {...drawerProps}>
+        <Create saveButtonProps={saveButtonProps} goBack={false}>
+            <Form 
+                {...formProps}
+                layout="vertical"
+                // highlight-start
+                onFinish={(values) => {
+                    const fullName = `${values.name} ${values.surname}`;
+                    formProps.onFinish?.({
+                        ...values,
+                        fullName,
+                    });
+                }}
+                // highlight-end
+            >
+            //...
+            </Form>
+        </Create>
+    </Drawer>
+);
+```
+
 ## API Parameters
 
 ### Properties
