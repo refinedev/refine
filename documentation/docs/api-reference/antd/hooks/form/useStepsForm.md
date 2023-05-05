@@ -1098,9 +1098,17 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`. We can do this by overriding the `submit` function.
 
 ```tsx title="pages/user/create.tsx"
-// --
-useStepsForm({
-    submit: (formValues) => {
+import { useStepsForm } from "@refinedev/antd";
+// ...
+const {
+    current,
+    gotoStep,
+    stepsProps,
+    formProps,
+    saveButtonProps,
+    onFinish,
+} = useStepsForm<IPost>({
+    submit: (values) => {
         // highlight-start
         const data = {
             fullName: `${formValues.name} ${formValues.surname}`,
@@ -1108,10 +1116,10 @@ useStepsForm({
             city: formValues.city,
         };
         onFinish(data as any);
-        // highlight-end
+    // highlight-end
     },
 });
-// --
+// ...
 ```
 
 <br/>
