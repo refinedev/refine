@@ -5,7 +5,7 @@ import {
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
-import { dataProvider } from "./providers/airtable";
+import dataProvider from "@refinedev/airtable";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
