@@ -1,6 +1,6 @@
 ---
 id: developing-locally
-title: 4. Developing Locally
+title: 3. Developing Locally
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/create-project
     next: tutorial/getting-started/{preferredUI}/generate-crud-pages
@@ -326,4 +326,4 @@ In this tutorial, we cover the `dataProvider`, `authProvider` and `resources` pr
 </Refine>
 ```
 
-We'll come to these props starting the next unit with `dataProvider`. However, **refine** has a very powerful tool, **the Inferencer**, which created at lightspeed all the CRUD pages we have in use in our app. We'll cover **Inferencer** in the next post.
+We'll come to these props starting the next unit with `dataProvider`. However, **refine** has a very powerful tool, **the Inferencer**, which automatically coded all the CRUD pages we have in use in our app. We'll cover **Inferencer** in the next post.
