@@ -17,7 +17,7 @@ In [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have 
 
 :::
 
-## What is a `resource`?
+## `resources` in refine
 
 In a frontend CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. In MVC applications, it represents a model in the Model layer. For example, a resource could be an user account, a blog post, an saleable item in an online store, or any other piece of data that is stored in a database server and accessed via RESTful API endpoints.
 
@@ -29,7 +29,7 @@ The action paths we define in resources helps **refine** to render menu items, b
 
 :::
 
-### Note on `resources` and routes
+### Note on `resources` and Routes
 
 Path definitions for a resource helps **refine** to recognize its available actions that particular path. Basing on the current path the browser is at, **refine** refers to the path definitions configured in the `resources` object to automatically identify the valid resource and action, without requiring us to specify the resource prop in their hooks and components. It also goes ahead and invokes the relevant data hook.
 
