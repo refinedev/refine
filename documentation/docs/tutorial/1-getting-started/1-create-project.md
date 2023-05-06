@@ -1,6 +1,6 @@
 ---
 id: create-project
-title: 3. Creating Your Project Using refine.new
+title: 2. Creating Your Project Using refine.new
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/prepare-env
     next: tutorial/getting-started/{preferredUI}/generate-crud-pages
