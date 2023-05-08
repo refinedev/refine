@@ -3,7 +3,7 @@ name: e2e tests
 on: [pull_request]
 
 jobs:
-  matrix_input:
+  generate_e2e_projects:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,12 +14,12 @@ jobs:
           separator: newline
     outputs:
       param: ${{ steps.array.outputs.build }}
-  dynamic_matrix:
+  cypress-e2e-tests:
     needs:
-      - matrix_input
+      - generate_e2e_projects
     strategy:
       matrix:
-        param: ${{ fromJson(needs.matrix_input.outputs.param) }}
+        param: ${{ fromJson(needs.generate_e2e_projects.outputs.param) }}
     runs-on: ubuntu-latest
     steps:
       - run: |
