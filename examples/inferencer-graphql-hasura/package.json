@@ -6,7 +6,7 @@
     "@refinedev/antd": "^5.16.0",
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
-    "@refinedev/hasura": "^6.4.0",
+    "@refinedev/hasura": "^6.4.1",
     "@refinedev/react-router-v6": "^4.1.0",
     "@refinedev/inferencer": "^3.3.2",
     "@types/node": "^18.16.2",

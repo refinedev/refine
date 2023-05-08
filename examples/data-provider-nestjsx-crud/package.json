@@ -6,7 +6,7 @@
     "@refinedev/antd": "^5.16.0",
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
-    "@refinedev/nestjsx-crud": "^4.3.0",
+    "@refinedev/nestjsx-crud": "^4.3.1",
     "@refinedev/react-router-v6": "^4.1.0",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
