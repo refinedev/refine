@@ -688,17 +688,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     const { params } = useParsed<{ tenant: string }>();
 
     return (
-        <Modal
-            {...modalProps}
-            // highlight-start
-            okButtonProps={{
-                ...modalProps.okButtonProps,
-                onClick: () => {
-                    formProps.form?.submit();
-                },
-            }}
-            // highlight-end
-        >
+        <Modal {...modalProps}>
             <Form
                 {...formProps}
                 layout="vertical"
