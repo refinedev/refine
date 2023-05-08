@@ -6,10 +6,8 @@ jobs:
   matrix_input:
     runs-on: ubuntu-latest
     steps:
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v6
       - uses: actions/checkout@v3
+      - uses: tj-actions/branch-names@v6
       - uses: danyow/json-matrix-builder@${{ steps.branch-name.outputs.current_branch }}
         id: array
         with:
