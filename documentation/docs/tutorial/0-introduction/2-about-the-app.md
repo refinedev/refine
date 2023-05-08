@@ -1,15 +1,23 @@
 ---
 id: about-the-app
-title: 3. About the App
+title: 3. About the app
 tutorial:
     order: 2
-    prev: tutorial/introduction/prequisite
+    prev: tutorial/introduction/prerequisites
     next: tutorial/getting-started/index
 ---
 
-Our app is a basic admin panel to manage blog posts. It will be created as default at initialization by the **refine.new**, which employs the **refine CLI** in the background. Generally, for your custom app, you need to remove the blog app resources and then start tweaking according to your requirements. However, for the simple purposes of this tutorial, we'll stick with the blog app.
+The app generated is a basic admin panel to manage blog posts. It is created as default at initialization by **refine.new**, which employs the **refine CLI** in the background. Generally, for your custom app, we need to remove the blog app resources and then start tweaking according to your requirements. However, for the simple purposes of this tutorial, we'll stick with the resources related to the blog.
 
-As you'll see in the next unit, we will initialize the app using the **refine.new** platform.
+As we see in the next unit, we initialize the app using the **refine.new** platform. The stack consists of:
+
+- Vite for managing configurations
+
+- Material UI for frontend UI
+
+- A **Simple REST API** as backend API, developed and hosted by **refine** for learning purposes
+
+- Custom **refine** Athentication provided by **refine** core and **refine**'s **Material UI** (`@refinedev/mui@`) support packages
 
 :::info Using CodeSandbox?
 Prefer to go through this tutorial in an online code editor? That's possible!
@@ -43,6 +51,7 @@ Prefer to go through this tutorial in an online code editor? That's possible!
 In the files panel, click on `src/App.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages/)
 
 </UIConditional>
+
 
 **Create a GitHub Repository**
 
