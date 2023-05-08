@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
-        "dev": "PORT=3030 next dev",
+        "dev": "NODE_OPTIONS='--max-http-header-size=32767' PORT=3030 next dev",
         "build": "next build && rm -rf .next/cache",
         "start:prod": "NODE_OPTIONS='--max-http-header-size=32767' next start",
         "lint": "next lint",
