@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: danyow/json-matrix-builder@v1
+      - uses: danyow/json-matrix-builder@master
         id: array
         with:
           cmd: ls examples
