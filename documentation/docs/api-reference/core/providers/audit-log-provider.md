@@ -352,7 +352,7 @@ For example, using `useLog`'s `log` method creates an event like below:
 }
 ```
 
-```ts title="auditLogProvider.ts"
+```ts title="auditLogProvideru.ts"
 import refineSimpleRestDataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -371,6 +371,10 @@ const auditLogProvider: AuditLogProvider = {
 };
 ```
 
+:::info
+For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
+:::
+
 #### Parameter Types
 
 This method can take the following parameters.
@@ -384,10 +388,6 @@ This method can take the following parameters.
 
 :::tip
 You can use this hook to name an event and create a milestone.
-:::
-
-:::info
-For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
 :::
 
 ## Supported Hooks
