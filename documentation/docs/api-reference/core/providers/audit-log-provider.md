@@ -593,7 +593,7 @@ mutate({
 
 ## Enable/Disable to Audit Log by Mutation Type for a Resource
 
-The `meta.audit` allows you to manage the audit log events for a resource. It can additionally manage which type of mutations an event will have when created, **if no definition is made, it will have all**
+With `meta.audit`, you can specify which mutations trigger audit logs; otherwise, all create, update, and delete actions will be logged by default.
 
 For example, if you have the code below, only events will be created for the `create` mutation.
 
