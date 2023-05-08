@@ -9,4 +9,4 @@
 "@refinedev/supabase": patch
 ---
 
-fixed: `./refine.config.js` added to `files` in `package.json` to include it in the npm package
+fixed: A bug that prevented data providers from being swizzled.
