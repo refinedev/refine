@@ -1,5 +1,36 @@
 # @pankod/refine-chakra-ui
 
+## 2.12.5
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
 ## 2.12.4
 
 ### Patch Changes

@@ -1,5 +1,34 @@
 # @pankod/refine-mantine
 
+## 2.12.7
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
 ## 2.12.6
 
 ### Patch Changes
