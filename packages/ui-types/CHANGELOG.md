@@ -1,5 +1,15 @@
 # @pankod/refine-ui-types
 
+## 1.13.0
+
+### Minor Changes
+
+-   [#4291](https://github.com/refinedev/refine/pull/4291) [`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added a new prop that `sticky` to `RefineThemedLayoutV2HeaderProps` type
+
+    fix: deprecated the `isStick` prop of `RefineThemedLayoutV2HeaderProps` type
+
+    To provide backwards compatibility, `isSticky` is still supported, but it is deprecated and will be removed in the next major version.
+
 ## 1.12.0
 
 ### Minor Changes
