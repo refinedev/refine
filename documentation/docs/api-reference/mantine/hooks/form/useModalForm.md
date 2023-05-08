@@ -1012,6 +1012,64 @@ return (
 );
 ```
 
+## FAQ
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+
+```tsx title="pages/user/create.tsx"
+import React from "react";
+import { useModalForm } from "@refinedev/mantine";
+import { TextInput, Modal } from "@mantine/core";
+
+const UserCreate: React.FC = () => {
+    const {
+        getInputProps,
+        saveButtonProps,
+        modal: { show, close, title, visible },
+    } = useModalForm({
+        refineCoreProps: { action: "create" },
+        initialValues: {
+            name: "",
+            surname: "",
+        },
+        // highlight-start
+        transformValues: (values) => ({
+            fullName: `${values.name} ${values.surname}`,
+        }),
+        // highlight-end
+    });
+    
+    return (
+        <Modal opened={visible} onClose={close} title={title}>
+            <TextInput
+                mt={8}
+                label="Name"
+                placeholder="Name"
+                {...getInputProps("name")}
+            />
+            <TextInput
+                mt={8}
+                label="Surname"
+                placeholder="Surname"
+                {...getInputProps("surname")}
+            />
+            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+                <Button
+                    {...saveButtonProps}
+                    onClick={(e) => {
+                        // -- your custom logic
+                        saveButtonProps.onClick(e);
+                    }}
+                />
+            </Box>
+        </Drawer>
+    );
+};
+```
+
 ## API Reference
 
 ### Properties

@@ -1,5 +1,23 @@
 # @pankod/refine-core
 
+## 4.14.3
+
+### Patch Changes
+
+-   [#4279](https://github.com/refinedev/refine/pull/4279) [`3e4c977b8d3`](https://github.com/refinedev/refine/commit/3e4c977b8d3cbe17f4f460f22204c3880a40bb13) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: queryKey method params for `useDelete`, `useDeleteMany` and`useUpdate` hooks
+
+## 4.14.2
+
+### Patch Changes
+
+-   [#4279](https://github.com/refinedev/refine/pull/4279) [`3e4c977b8d3`](https://github.com/refinedev/refine/commit/3e4c977b8d3cbe17f4f460f22204c3880a40bb13) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: queryKey method params for `useDelete`, `useDeleteMany` and`useUpdate` hooks
+
+## 4.14.1
+
+### Patch Changes
+
+-   [#4279](https://github.com/refinedev/refine/pull/4279) [`3e4c977b8d3`](https://github.com/refinedev/refine/commit/3e4c977b8d3cbe17f4f460f22204c3880a40bb13) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: queryKey method params for `useDelete`, `useDeleteMany` and`useUpdate` hooks
+
 ## 4.14.0
 
 ### Minor Changes

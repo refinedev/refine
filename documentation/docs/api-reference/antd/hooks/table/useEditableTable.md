@@ -301,6 +301,19 @@ export const PostList: React.FC = () => {
 
 All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
 
+### `autoSubmitClose`
+
+> Default: `true`
+
+When `true`, table's row will be closed after successful submit.
+To do that, `useEditableTable` automatically calls `setId` function with `undefined` after successful submit.
+
+```tsx
+const editableTable = useEditableTable({
+    autoSubmitClose: false,
+});
+```
+
 :::
 
 ## Return Values

@@ -121,7 +121,7 @@ const authProvider: AuthBindings = {
 All auth hooks are identical in usage
 :::
 
-> For more information about each hook, refer to the [Auth Hooks documentation&#8594](/docs/api-reference/core/hooks/auth/useIsAuthenticated/)
+> For more information about each hook, refer to the [Auth Hooks documentation&#8594](/docs/api-reference/core/hooks/authentication/useIsAuthenticated/)
 
 ## Auth Provider Examples
 

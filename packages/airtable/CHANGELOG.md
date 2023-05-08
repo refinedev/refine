@@ -1,5 +1,35 @@
 # @pankod/refine-airtable
 
+## 4.4.2
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 4.4.1
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 4.4.0
+
+### Minor Changes
+
+-   [#4276](https://github.com/refinedev/refine/pull/4276) [`740cef82e9e`](https://github.com/refinedev/refine/commit/740cef82e9e71274edb4be1d6936a2b74b73b4ec) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to airtable
+
+## 4.3.0
+
+### Minor Changes
+
+-   [#4276](https://github.com/refinedev/refine/pull/4276) [`740cef82e9e`](https://github.com/refinedev/refine/commit/740cef82e9e71274edb4be1d6936a2b74b73b4ec) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to airtable
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#4276](https://github.com/refinedev/refine/pull/4276) [`740cef82e9e`](https://github.com/refinedev/refine/commit/740cef82e9e71274edb4be1d6936a2b74b73b4ec) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to airtable
+
 ## 4.1.0
 
 ### Minor Changes

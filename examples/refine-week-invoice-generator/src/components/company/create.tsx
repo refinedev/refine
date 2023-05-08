@@ -20,12 +20,6 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     return (
         <Modal
             {...modalProps}
-            okButtonProps={{
-                ...modalProps.okButtonProps,
-                onClick: () => {
-                    formProps.form?.submit();
-                },
-            }}
             title="Create Company"
             width={breakpoint.sm ? "600px" : "80%"}
         >

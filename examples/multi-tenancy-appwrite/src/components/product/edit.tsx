@@ -15,15 +15,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
 }) => {
     const { params } = useParsed<{ tenant?: string }>();
     return (
-        <Modal
-            {...modalProps}
-            okButtonProps={{
-                ...modalProps.okButtonProps,
-                onClick: () => {
-                    formProps.form?.submit();
-                },
-            }}
-        >
+        <Modal {...modalProps}>
             <Form
                 {...formProps}
                 wrapperCol={{ span: 12 }}

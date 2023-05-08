@@ -1,6 +1,10 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space, theme } from "antd";
-import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
+import {
+    pickNotDeprecated,
+    useActiveAuthProvider,
+    useGetIdentity,
+} from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps } from "../types";
 
 const { Text } = Typography;
@@ -8,6 +12,7 @@ const { useToken } = theme;
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     isSticky,
+    sticky,
 }) => {
     const { token } = useToken();
 
@@ -31,7 +36,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
         height: "64px",
     };
 
-    if (isSticky) {
+    if (pickNotDeprecated(sticky, isSticky)) {
         headerStyles.position = "sticky";
         headerStyles.top = 0;
         headerStyles.zIndex = 1;

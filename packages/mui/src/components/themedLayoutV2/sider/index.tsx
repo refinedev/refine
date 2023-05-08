@@ -471,6 +471,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             width: "100%",
                             height: 64,
                             display: "flex",
+                            flexShrink: 0,
                             alignItems: "center",
                             justifyContent: !drawerSiderVisible
                                 ? "center"
