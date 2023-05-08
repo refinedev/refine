@@ -1,4 +1,5 @@
 import { Command } from "commander";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const express = require("express");
 import {
     createProxyMiddleware,
@@ -27,9 +28,21 @@ const action = async () => {
     );
 
     app.use(
+        "/.kratos",
+        createProxyMiddleware({
+            target: "https://develop.cloud.refine.dev/.kratos",
+            changeOrigin: true,
+            cookieDomainRewrite: {
+                "refine.dev": "",
+            },
+            pathRewrite: { "^/.kratos": "" },
+        }),
+    );
+
+    app.use(
         "/.ory",
         createProxyMiddleware({
-            target: "https://develop.cloud.refine.dev/.ory/kratos/public",
+            target: "https://develop.cloud.refine.dev/.ory",
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
