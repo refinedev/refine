@@ -1,5 +1,11 @@
 # @pankod/refine-appwrite
 
+## 6.3.0
+
+### Minor Changes
+
+-   [#4269](https://github.com/refinedev/refine/pull/4269) [`396bf067e3c`](https://github.com/refinedev/refine/commit/396bf067e3c78aaf533e368a68b3e07e0ca64d82) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to appwrite
+
 ## 6.2.0
 
 ### Minor Changes

@@ -1,5 +1,70 @@
 # @pankod/refine-antd
 
+## 5.15.0
+
+### Minor Changes
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added the `fixed` prop to the `<ThemedSiderV2/>` to allow the sider to be fixed
+
+    The prop is optional and defaults to `false`. You can see the usage as follows:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+             ...
+            >
+                <ThemedLayoutV2 Sider={() => <ThemedSiderV2 fixed />}>
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4278](https://github.com/refinedev/refine/pull/4278) [`b14f2ad8a70`](https://github.com/refinedev/refine/commit/b14f2ad8a700d5ae157f437a8f610481d88ae09b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `autoSubmitClose` prop to `useEditableTable`.
+    Now you can choose whether to close the table's row after submitting the form or not.
+
+    ```tsx
+    const editableTable = useEditableTable({
+        autoSubmitClose: false,
+    });
+    ```
+
+### Patch Changes
+
+-   [#4267](https://github.com/refinedev/refine/pull/4267) [`5e128c76c16`](https://github.com/refinedev/refine/commit/5e128c76c162cb01822c283e567003a5b6ce62f8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: `onFinish` prop override on `useDrawerForm` and `useModalForm` hook
+
+    When override `onFinish` prop using the `useDrawerForm` and `useModalForm` hooks, the modal not close after submit the form.
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
 ## 5.14.0
 
 ### Minor Changes
