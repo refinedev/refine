@@ -6,7 +6,7 @@ tutorial:
     next: tutorial/getting-started/prepare-env
 ---
 
-We are going to initialize our app using the **refine.new** platform. Generally, for local development, we are able to initialize a **refine** app using the **refine CLI**. However, this tutorial is intended for a busy developer to get a jetspeed introduction to **refine** concepts with **refine.new**.
+In this unit, we initialize our app using the **refine.new** platform. Generally, for local development, we are able to initialize a **refine** app using the **refine CLI**. However, this tutorial is intended to provide busy developers a jetspeed introduction to **refine** concepts with an app built and hosted quickly on **refine.new**.
 
 
 ### What is refine.new ?
@@ -65,10 +65,11 @@ Now you can navigate to [Generate CRUD pages automatically with Inferencer](/doc
 
 <h3>Where are we going?</h3>
 
-In this unit, we will be covering the following steps:
+In this unit, we cover the following steps:
 
 -   Creating a new project with **refine.new**.
--   Using Inferencer to generate CRUD pages.
+-   Developing the app locally.
+-   Previewing Inferencer-generated CRUD pages.
 
 <Checklist>
 
