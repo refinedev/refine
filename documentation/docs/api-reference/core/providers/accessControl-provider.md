@@ -120,6 +120,8 @@ You can find access control examples made with **refine**
 
 :::
 
+[**refine** checks for access control in its related components and pages.](#list-of-default-access-control-points)
+
 ## Hooks and Components
 
 **refine** provides a hook and a component to use the `can` method from the `accessControlProvider`.

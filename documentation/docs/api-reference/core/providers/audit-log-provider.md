@@ -352,7 +352,7 @@ For example, using `useLog`'s `log` method creates an event like below:
 }
 ```
 
-```ts title="auditLogProvideru.ts"
+```ts title="auditLogProvider.ts"
 import refineSimpleRestDataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
