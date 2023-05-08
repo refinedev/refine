@@ -1,5 +1,15 @@
-import * as RefineMantine from "@refinedev/mantine";
-import * as MantineCore from "@mantine/core";
+import {
+    Show,
+    TagField,
+    TextField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/mantine";
+import { Title, Group, Image } from "@mantine/core";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -537,8 +547,22 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/mantine", "RefineMantine", RefineMantine],
-        ["@mantine/core", "MantineCore", MantineCore],
+        [
+            "@refinedev/mantine",
+            "RefineMantine",
+            {
+                Show,
+                TagField,
+                TextField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["@mantine/core", "MantineCore", { Title, Group, Image }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
