@@ -26,7 +26,7 @@ import {
     Image,
 } from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 
 import { createInferencer } from "@/create-inferencer";
