@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 5.16.1
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
 ## 5.16.0
 
 ### Minor Changes

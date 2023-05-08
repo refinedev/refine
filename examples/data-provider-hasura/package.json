@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.16.0",
+    "@refinedev/antd": "^5.16.1",
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/hasura": "^6.4.2",
