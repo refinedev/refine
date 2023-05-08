@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-v4
 
+## 5.0.2
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
 ## 5.0.1
 
 ### Patch Changes

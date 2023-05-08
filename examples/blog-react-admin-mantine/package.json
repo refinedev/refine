@@ -15,7 +15,7 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1",
-    "@refinedev/strapi-v4": "^5.0.1",
+    "@refinedev/strapi-v4": "^5.0.2",
     "axios": "^0.26.1",
     "@refinedev/mantine": "^2.12.7",
     "@refinedev/react-table": "^5.4.0",
