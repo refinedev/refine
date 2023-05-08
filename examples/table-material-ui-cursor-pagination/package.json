@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
-    "@refinedev/mui": "^4.14.6",
+    "@refinedev/mui": "^4.14.7",
     "@refinedev/react-router-v6": "^4.1.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
