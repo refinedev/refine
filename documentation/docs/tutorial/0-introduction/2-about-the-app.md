@@ -7,17 +7,17 @@ tutorial:
     next: tutorial/getting-started/index
 ---
 
-The app generated is a basic admin panel to manage blog posts. It is created as default at initialization by **refine.new**, which employs the **refine CLI** in the background. Generally, for your custom app, we need to remove the blog app resources and then start tweaking according to your requirements. However, for the simple purposes of this tutorial, we'll stick with the resources related to the blog.
+The app generated is a basic admin panel to manage blog posts. It is created as default at initialization by [**refine.new**](https://refine.new), which employs the [**refine CLI**](https://refine.new) in the background. Generally, for your custom app, we need to remove the blog app resources and then start tweaking according to your requirements. However, for the simple purposes of this tutorial, we'll stick with the resources related to the blog.
 
-As we see in the next unit, we initialize the app using the **refine.new** platform. The stack consists of:
+As we'll see in the next unit, we initialize the app using the [**refine.new**](https://refine.new) platform. The stack consists of:
 
 - Vite for managing configurations
 
 - Material UI for frontend UI
 
-- A **Simple REST API** as backend API, developed and hosted by **refine** for learning purposes
+- A [**Simple REST API**](https://github.com/refinedev/refine/tree/master/packages/simple-rest) as backend API, developed and hosted by **refine** for learning purposes
 
-- Custom **refine** Athentication provided by **refine** core and **refine**'s **Material UI** (`@refinedev/mui@`) support packages
+- Custom **refine** Athentication provided by **refine** core and **refine**'s **Material UI** (`@refinedev/mui`) support packages
 
 :::info Using CodeSandbox?
 Prefer to go through this tutorial in an online code editor? That's possible!
