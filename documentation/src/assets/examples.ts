@@ -76,9 +76,9 @@ export const EXAMPLES: Examples = [
         image: "/examples/invoice-generator.png",
         button: {
             text: "READ BLOG",
-            link: "https://refine.dev/blog/refine-invoice-generator/",
+            link: "https://refine.dev/week-of-refine-strapi/",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/blog-invoice-generator",
+        source: "https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator",
     },
     {
         title: "REFEEDBACK!",
@@ -140,8 +140,8 @@ export const EXAMPLES: Examples = [
             "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>refine</strong>.",
         image: "/examples/refine-pixels.png",
         button: {
-            text: "VIEW DEMO",
-            link: "https://pixels.refine.dev",
+            text: "READ BLOG",
+            link: "https://refine.dev/week-of-refine/",
         },
         source: "https://github.com/refinedev/refine/tree/master/examples/pixels",
         isExternal: true,
