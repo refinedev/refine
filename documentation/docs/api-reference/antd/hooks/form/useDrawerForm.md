@@ -381,14 +381,14 @@ import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
     // highlight-start
-    const { formProps, drawerProps, saveButtonProps, onFinish } = useDrawerForm({
+    const { formProps, drawerProps, saveButtonProps } = useDrawerForm({
         action: "create",
     });
     // highlight-end
 
     // highlight-start
     const handleOnFinish = (values) => {
-        onFinish({
+        formProps.onFinish?.({
             fullName: `${values.name} ${values.surname}`,
         });
     };

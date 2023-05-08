@@ -694,14 +694,14 @@ import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
     // highlight-start
-    const { formProps, modalProps, onFinish } = useModalForm({
+    const { formProps, modalProps } = useModalForm({
         action: "create",
     });
     // highlight-end
 
     // highlight-start
     const handleOnFinish = (values) => {
-        onFinish({
+        formProps.onFinish?.({
             fullName: `${values.name} ${values.surname}`,
         });
     };
