@@ -6,7 +6,7 @@ jobs:
   generate_e2e_projects:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: kanga333/json-array-builder@main
         id: array
         with:
@@ -19,11 +19,17 @@ jobs:
       - generate_e2e_projects
     strategy:
       matrix:
-        param: ${{ fromJson(needs.generate_e2e_projects.outputs.param) }}
+        projectName: ${{ fromJson(needs.generate_e2e_projects.outputs.param) }}
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo ${{ matrix.param }}
+      - name: Install & Build Deps
+        run: |
+          cd ./examples/${{ matrix.projectName }}
+          npm install
+          npm run build
+          npm install -g serve
+          serve -s build &
+
   # cypress-e2e-tests:
   #   runs-on: ubuntu-latest
   #   name: cypress e2e tests
