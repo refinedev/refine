@@ -1,10 +1,10 @@
 ---
-id: index
-title: 1. Data Provider
+id: data-provider
+title: 2. Data Provider
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/understanding-dataprovider/swizzle
+    order: 1
+    prev: intro
+    next: tutorial/understanding-refine-props/resources
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
@@ -14,9 +14,9 @@ The data provider unit is optional for the tutorial and can be skipped to next u
 if desired.
 :::
 
-## What is data provider?
+## What is a Data Provider?
 
-The data provider object represents the data layer or context of our **refine** app from which HTTP requests are carried out and encapsulates how the data is retrieved. It contains a specific set of methods that should be defined to carry out CRUD actions against resources accessible from a backend API. 
+The data provider object represents the data layer or context of our **refine** app from which HTTP requests are carried out and retrieved data is encapsulated. It contains a specific set of methods that should be defined to carry out CRUD actions against resources accessible from a backend API. 
 
 A typical data provider has the following methods:
 
@@ -40,7 +40,7 @@ const dataProvider: DataProvider = {
 }
 ```
 
-The data provider methods are used to perform data operations from consumer components. Consumer components are able to access and invoke these methods via data hooks.
+The data provider methods are used to perform data retrieval and mutation operations from consumer components. Consumer components are able to access and invoke these methods via a myriad of data hooks **refine** and its supplementary packages provide.
 
 Normally, for a custom backend API of our own, we should define the methods of the `dataProvider` object from scratch. For this app though, we don't need to worry about defining a data provider ourselves because we are using `Simple Rest API` data provider shipped by the `@refinedev/simple-rest` supplementary package.
 
@@ -57,7 +57,7 @@ Data providers are geared to communicate with `REST`, `GraphQL`, `RPC`, and `SOA
 <br/>
 
 
-## Using Data Providers in refine
+## Using a Data Provider in refine
 
 In the previous units, our REST API was consumed from the default Inferencer-generated pages. To enable **refine** to communicate with the API, we registered our data provider using the `dataProvider` prop of `<Refine />`:
 
@@ -76,11 +76,11 @@ import dataProvider from "@refinedev/simple-rest";
 Please refer to the `<Refine />` component's [dataProvider](/docs/api-reference/core/components/refine-config/#dataprovider) prop documentation for more detailed information.
 
 
-## How are data provider methods used in the app?
+## Using Data Hooks to Access Data Provider Methods
 
-We use **refine's** data hooks when we need to fetch data from the API. These data hooks manages the overhead of accessing data provider methods internally. The required parameters accepted by a data provider method need to be passed to the data hooks, for exmaple, used inside a component and the response from the API is returned.
+We use **refine's** data hooks when we need to fetch data from the API. These data hooks internally manage the overhead of accessing data provider methods. The required parameters accepted by a data provider method need to be passed to the data hooks that are used inside a component and the response from the API is returned.
 
-For instance, the use of list data hook when we want to get all records from the `blog_posts` resource using refine's `useList` data hook would look like this:
+For instance, the use of list data hook when we want to get all records from the `blog_posts` resource using refine's `useList()` data hook would look like this:
 
 ```ts title="src/pages/posts/index.tsx"
 import { useList } from "@refinedev/core";
@@ -103,7 +103,7 @@ const postUseListResult = useList({
 });
 ```
 
-In the above code, the `useList` hook accepts a parameter object which basically configures the query for the backend server. These parameters are forwarded to the data provider's `getList` method internally.
+In the above code, the `useList()` hook accepts a parameter object which basically configures the query to the backend server. These parameters are forwarded to the data provider's `getList()` method internally.
 
 ```ts title="dataProvider.ts"
 const dataProvider = {
@@ -131,6 +131,9 @@ const dataProvider = {
     ...
 }
 ```
+
+
+The return value is then passed to components for presenting the data. We elaborate on presentation of the data in the **Material UI** `<DataGird />` component in [Unit 5.1]().
 
 ## Supported Data Providers
 
