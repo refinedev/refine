@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 2.2.0
+
+### Minor Changes
+
+-   [#4281](https://github.com/refinedev/refine/pull/4281) [`ebfb075f07e`](https://github.com/refinedev/refine/commit/ebfb075f07e793e5ff7c5c3f712136fb54d8b0de) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to medusa
+
 ## 2.1.0
 
 ### Minor Changes

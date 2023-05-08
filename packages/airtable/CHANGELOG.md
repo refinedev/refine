@@ -1,5 +1,11 @@
 # @pankod/refine-airtable
 
+## 4.2.0
+
+### Minor Changes
+
+-   [#4276](https://github.com/refinedev/refine/pull/4276) [`740cef82e9e`](https://github.com/refinedev/refine/commit/740cef82e9e71274edb4be1d6936a2b74b73b4ec) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added swizzle to airtable
+
 ## 4.1.0
 
 ### Minor Changes
