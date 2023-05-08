@@ -281,7 +281,7 @@ const App: React.FC = () => {
 };
 ```
 
-You can also make it sticky using the `isSticky` property, which is optional and defaults to `false`. An example of its usage is shown below.
+You can also make it sticky using the `sticky` property, which is optional and defaults to `false`. An example of its usage is shown below:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -298,7 +298,7 @@ const App: React.FC = () => {
         >
             <ThemedLayoutV2
                 // highlight-start
-                Header={() => <ThemedHeaderV2 isSticky={true} />}
+                Header={() => <ThemedHeaderV2 sticky />}
                 // highlight-end
             >
                 {/* ... */}

@@ -223,10 +223,15 @@ export const useDeleteMany = <
                 resource,
                 mutationMode,
                 dataProviderName,
+                meta,
+                metaData,
             }) => {
+                const preferredMeta = pickNotDeprecated(meta, metaData);
                 const queryKey = queryKeys(
                     resource,
                     pickDataProvider(resource, dataProviderName, resources),
+                    preferredMeta,
+                    preferredMeta,
                 );
 
                 const mutationModePropOrContext =
