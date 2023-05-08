@@ -6,7 +6,8 @@
   "private": false,
   "files": [
     "dist",
-    "src"
+    "src",
+    "./refine.config.js"
   ],
   "engines": {
     "node": ">=10"
