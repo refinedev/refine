@@ -56,7 +56,7 @@
         "html-react-parser": "^3.0.15",
         "qs": "^6.10.1",
         "lz-string": "^1.4.4",
-        "next": "^13.0.6",
+        "next": "13.0.6",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-router-dom": "^6.8.1",
