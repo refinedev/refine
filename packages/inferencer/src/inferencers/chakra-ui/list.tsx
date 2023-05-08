@@ -1,8 +1,33 @@
-import * as RefineChakraUI from "@refinedev/chakra-ui";
-import * as ChakraUI from "@chakra-ui/react";
-import * as RefineReactTable from "@refinedev/react-table";
-import * as TanstackReactTable from "@tanstack/react-table";
-import * as TablerIcons from "@tabler/icons";
+import {
+    List,
+    usePagination,
+    TagField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+} from "@refinedev/chakra-ui";
+import {
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    HStack,
+    Button,
+    IconButton,
+    Box,
+    Image,
+} from "@chakra-ui/react";
+import { useTable } from "@refinedev/react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -62,7 +87,6 @@ export const renderer = ({
         ["Tr", "@chakra-ui/react"],
         ["Th", "@chakra-ui/react"],
         ["Tbody", "@chakra-ui/react"],
-        ["Tr", "@chakra-ui/react"],
         ["Td", "@chakra-ui/react"],
         ["HStack", "@chakra-ui/react"],
         ["Button", "@chakra-ui/react"],
@@ -859,11 +883,44 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/chakra-ui", "RefineChakraUI", RefineChakraUI],
-        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
-        ["@tabler/icons", "TablerIcons", TablerIcons],
-        ["@chakra-ui/react", "ChakraUI", ChakraUI],
-        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
+        [
+            "@refinedev/chakra-ui",
+            "RefineChakraUI",
+            {
+                List,
+                usePagination,
+                TagField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                EditButton,
+                ShowButton,
+                DeleteButton,
+            },
+        ],
+        ["@refinedev/react-table", "RefineReactTable", { useTable }],
+        ["@tabler/icons", "TablerIcons", { IconChevronRight, IconChevronLeft }],
+        [
+            "@chakra-ui/react",
+            "ChakraUI",
+            {
+                TableContainer,
+                Table,
+                Thead,
+                Tr,
+                Th,
+                Tbody,
+                Td,
+                HStack,
+                Button,
+                IconButton,
+                Box,
+                Image,
+            },
+        ],
+        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
