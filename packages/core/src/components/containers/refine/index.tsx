@@ -173,7 +173,7 @@ export interface RefineProps {
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     /**
      * `options` is used to configure the app.
-     * @type [`IRefineOptions`](/docs/api-reference/core/components/refine-config/#options)
+     * @type [`IRefineOptions`](https://refine.dev/docs/api-reference/core/components/refine-config/#options)
      * */
     options?: IRefineOptions;
 }
