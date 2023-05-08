@@ -1,0 +1,60 @@
+name: e2e tests
+
+on:
+  - workflow_dispatch
+
+jobs:
+  matrix_input:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: danyow/json-matrix-builder@master
+        id: array
+        with:
+          cmd: ls e2e
+          separator: newline
+    outputs:
+      param: ${{ steps.array.outputs.build }}
+  dynamic_matrix:
+    needs:
+      - matrix_input
+    strategy:
+      matrix:
+        param: ${{ fromJson(needs.matrix_input.outputs.param) }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ matrix.param }}
+  # cypress-e2e-tests:
+  #   runs-on: ubuntu-latest
+  #   name: cypress e2e tests
+  #   strategy:
+  #     fail-fast: false
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  # - name: Install
+  #   run: npm install
+  # - name: Copy Examples
+  #   id: download_step
+  #   run: FRAMEWORK=react CI_USER_AGENT=${{secrets.CI_USER_AGENT}} DATA_PROVIDER=${{matrix.data_provider}} UI_FRAMEWORK=${{matrix.ui_framework}} node ./.github/workflows/build-remote.js
+  # - name: Install & Build Deps
+  #   run: |
+  #     cd ${{ steps.download_step.outputs.project_path }}
+  #     npm install
+  #     npm run build
+  #     npm install -g serve
+  #     serve -s build &
+  # - name: Run Cypress on local
+  #   uses: cypress-io/github-action@v4
+  #   with:
+  #     command: npx cypress run --record --group react --parallel --env=AUTH_PROVIDER=${{ steps.download_step.outputs.auth_provider }},UI_FRAMEWORK=${{ matrix.ui_framework }},FRAMEWORK=react,DATA_PROVIDER=${{ matrix.data_provider }} --ci-build-id react-${{ matrix.ui_framework }}-${{ matrix.data_provider }}-${{ steps.download_step.outputs.auth_provider }}-${{ steps.download_step.outputs.project_path }}-${{ github.run_attempt }}
+  #     install: false
+  #     start: "npm ls"
+  #     wait-on: "http://0.0.0.0:3000"
+  #   env:
+  #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  #     CYPRESS_USER_AGENT: ${{ secrets.CI_USER_AGENT }}
