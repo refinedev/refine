@@ -26,7 +26,6 @@ jobs:
       - name: Copy e2e files
         run: |
           cp -R ./e2e/${{ matrix.projectName }}/. ./examples/${{ matrix.projectName }}
-      - uses: actions/checkout@v3
       - name: Install & Build Deps
         run: |
           cd examples/${{ matrix.projectName }}
