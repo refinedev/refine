@@ -7,6 +7,12 @@ import { render, TestWrapper, waitFor } from "@test";
 
 import { Show } from "./index";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    DeleteButton,
+    EditButton,
+    ListButton,
+    RefreshButton,
+} from "@components/buttons";
 
 const renderShow = (
     show: ReactNode,
@@ -314,5 +320,49 @@ describe("Show", () => {
                 expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
             });
         });
+    });
+
+    it("should customize default buttons with default props", async () => {
+        const { queryByTestId } = render(
+            <Routes>
+                <Route
+                    path="/:resource/:action/:id"
+                    element={
+                        <Show
+                            canEdit
+                            canDelete
+                            headerButtons={({
+                                deleteButtonProps,
+                                editButtonProps,
+                                listButtonProps,
+                                refreshButtonProps,
+                            }) => {
+                                return (
+                                    <>
+                                        <DeleteButton {...deleteButtonProps} />
+                                        <EditButton {...editButtonProps} />
+                                        <ListButton {...listButtonProps} />
+                                        <RefreshButton
+                                            {...refreshButtonProps}
+                                        />
+                                    </>
+                                );
+                            }}
+                        />
+                    }
+                />
+            </Routes>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    routerInitialEntries: ["/posts/show/1"],
+                }),
+            },
+        );
+
+        expect(queryByTestId(RefineButtonTestIds.DeleteButton)).not.toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.EditButton)).not.toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.ListButton)).not.toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.RefreshButton)).not.toBeNull();
     });
 });

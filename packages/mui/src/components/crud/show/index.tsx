@@ -95,60 +95,55 @@ export const Show: React.FC<ShowProps> = ({
             <Breadcrumb />
         );
 
+    const listButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+    };
+    const editButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+        recordItemId: id,
+    };
+    const deleteButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+        recordItemId: id,
+        onSuccess: () => {
+            if (routerType === "legacy") {
+                legacyGoList(resource?.route ?? resource?.name ?? "");
+            } else {
+                go({ to: goListPath });
+            }
+        },
+        dataProviderName,
+    };
+    const refreshButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+        recordItemId: id,
+        dataProviderName,
+    };
+
     const defaultHeaderButtons = (
         <>
-            {!recordItemId && (
-                <ListButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                />
-            )}
-            {isEditButtonVisible && (
-                <EditButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                    recordItemId={id}
-                />
-            )}
+            {!recordItemId && <ListButton {...listButtonProps} />}
+            {isEditButtonVisible && <EditButton {...editButtonProps} />}
             {isDeleteButtonVisible && typeof id !== "undefined" && (
-                <DeleteButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                    recordItemId={id}
-                    onSuccess={() => {
-                        if (routerType === "legacy") {
-                            legacyGoList(
-                                resource?.route ?? resource?.name ?? "",
-                            );
-                        } else {
-                            go({ to: goListPath });
-                        }
-                    }}
-                    dataProviderName={dataProviderName}
-                />
+                <DeleteButton {...deleteButtonProps} />
             )}
-            <RefreshButton
-                {...(isLoading ? { disabled: true } : {})}
-                resource={
-                    routerType === "legacy"
-                        ? resource?.route
-                        : resource?.identifier ?? resource?.name
-                }
-                recordItemId={id}
-                dataProviderName={dataProviderName}
-            />
+            <RefreshButton {...refreshButtonProps} />
         </>
     );
 
@@ -201,6 +196,10 @@ export const Show: React.FC<ShowProps> = ({
                             ? typeof headerButtons === "function"
                                 ? headerButtons({
                                       defaultButtons: defaultHeaderButtons,
+                                      deleteButtonProps,
+                                      editButtonProps,
+                                      listButtonProps,
+                                      refreshButtonProps,
                                   })
                                 : headerButtons
                             : defaultHeaderButtons}

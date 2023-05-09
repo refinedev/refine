@@ -451,7 +451,9 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -467,6 +469,46 @@ const PostList: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <span>Rest of your page here</span>
+        </List>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts"]}
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<CreateButton>`][create-button] component.
+
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
+// visible-block-start
+import { List, CreateButton } from "@refinedev/mui";
+import { Button } from "@mui/material";
+
+const PostList: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <List
+            // highlight-start
+            headerButtons={({ createButtonProps }) => (
+                <>
+                    <CreateButton {...createButtonProps} />
                     <Button type="primary">Custom Button</Button>
                 </>
             )}
@@ -567,3 +609,5 @@ const Wrapper = ({ children }) => {
     );
 };
 ```
+
+[create-button]: /docs/api-reference/mui/components/buttons/create-button/
