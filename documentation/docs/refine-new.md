@@ -1,17 +1,21 @@
 
-## refine.new - Introducing the Fastest Way to Create refine Apps
-
-Discover how refine.new and the refine framework are transforming the way developers create front-end applications in the React.
-
 <br/>
 
-<div className="centered-image"  >
+<div  >
   <a href="https://github.com/refinedev/refine">
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-10-what-is-refine-new/social.png" alt="refine banner" />
 </a>
 </div>
 
 <br/>
+
+
+
+# refine.new - Introducing the Fastest Way to Create refine Apps
+
+Discover how [refine.new](https://refine.new/)  and the [refine](https://github.com/refinedev/refine)  framework are transforming the way developers create front-end applications in the React.
+
+
 
 ## Introduction
 
@@ -23,9 +27,9 @@ As you know, [refine](https://github.com/refinedev/refine) is an open-source Rea
 It is specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools, but can also power customer-facing applications like storefronts and any type of CRUD apps.
 
 
- <div className="centered-image"  >
+ <div  >
   <a href="https://github.com/refinedev/refine">
-  <img style={{alignSelf:"center", width:"600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png
 " alt="refine banner" />
 </a>
 </div>
