@@ -36,7 +36,7 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
-          command: npx cypress run --project ./examples/${{ matrix.projectName }} --record --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+          command: npx cypress run --project ./examples/${{ matrix.projectName }} --record --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }} --key ${{ secrets.CYPRESS_RECORD_KEY }}
           install: false
           wait-on: "http://127.0.0.1:5173"
         env:
