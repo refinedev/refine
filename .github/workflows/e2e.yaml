@@ -25,8 +25,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Copy e2e files
         run: |
-          cd e2e/${{ matrix.projectName }}
-          cp -R . ../../examples/${{ matrix.projectName }}
+          cd 
+          cp -R ./e2e/${{ matrix.projectName }}/. ./examples/${{ matrix.projectName }}
       - uses: actions/checkout@v3
       - name: Install & Build Deps
         run: |
@@ -34,11 +34,12 @@ jobs:
           npm install
           npm run build
           HOST=0.0.0.0 npm run start &
+      - uses: actions/checkout@v3
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
-          project: examples/${{ matrix.projectName }}
-          command: npx cypress run --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+          project:
+          command: npx cypress run --project ./examples/${{ matrix.projectName }} --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
           install: false
           start: "npm ls"
           wait-on: "http://0.0.0.0:3000"
