@@ -6,7 +6,7 @@ Cypress.on("uncaught:exception", () => {
 
 describe("build test", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
