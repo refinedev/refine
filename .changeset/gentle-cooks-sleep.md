@@ -15,26 +15,28 @@ import {
 } from "@refinedev/antd";
 
 const PostShow = () => {
-    <Show
-        isLoading={isLoading}
-        headerButtons={({
-            deleteButtonProps,
-            editButtonProps,
-            listButtonProps,
-            refreshButtonProps,
-        }) => {
-            return (
-                <>
-                    {/* custom components */}
-                    <ListButton {...listButtonProps} />
-                    <RefreshButton {...refreshButtonProps} />
-                    <EditButton {...editButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
-                </>
-            );
-        }}
-    >
-        {/* ... */}
-    </Show>;
+    return (
+        <Show
+            isLoading={isLoading}
+            headerButtons={({
+                deleteButtonProps,
+                editButtonProps,
+                listButtonProps,
+                refreshButtonProps,
+            }) => {
+                return (
+                    <>
+                        {/* custom components */}
+                        <ListButton {...listButtonProps} />
+                        <RefreshButton {...refreshButtonProps} />
+                        <EditButton {...editButtonProps} />
+                        <DeleteButton {...deleteButtonProps} />
+                    </>
+                );
+            }}
+        >
+            {/* ... */}
+        </Show>
+    );
 };
 ```
