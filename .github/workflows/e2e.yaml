@@ -30,12 +30,12 @@ jobs:
           npm run build
           npm install -g serve
           serve -s build &
-  - name: Run Cypress on local
-    uses: cypress-io/github-action@v4
-    with:
-      command: npx cypress run --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
-      install: false
-      start: "npm ls"
-      wait-on: "http://0.0.0.0:3000"
-    env:
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Run Cypress on local
+        uses: cypress-io/github-action@v4
+        with:
+          command: npx cypress run --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+          install: false
+          start: "npm ls"
+          wait-on: "http://0.0.0.0:3000"
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
