@@ -32,12 +32,12 @@ jobs:
           cd examples/${{ matrix.projectName }}
           npm install
           npm run build
-          npm run start &
+          npm run start -- --host 127.0.0.1 &
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
-          command: npx cypress run --project ./examples/${{ matrix.projectName }} --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+          command: npx cypress run --project ./examples/${{ matrix.projectName }} --record --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
           install: false
-          wait-on: "http://localhost:5173"
+          wait-on: "http://127.0.0.1:5173"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
