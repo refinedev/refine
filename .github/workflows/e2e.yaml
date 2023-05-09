@@ -41,7 +41,6 @@ jobs:
           project: examples/${{ matrix.projectName }}
           command: npx cypress run --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
           install: false
-          start: "npm ls"
           wait-on: "http://0.0.0.0:3000"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
