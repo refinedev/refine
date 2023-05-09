@@ -2,6 +2,7 @@ import { ENV } from "@utils/env";
 import { Command } from "commander";
 import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import { OnProxyResCallback } from "http-proxy-middleware/dist/types";
 
 const load = (program: Command) => {
     return program
@@ -35,6 +36,27 @@ const action = async ({
     domain: string;
 }) => {
     const app = express();
+
+    const targetUrl = new URL(target);
+
+    const onProxyRes: OnProxyResCallback | undefined =
+        targetUrl.protocol === "http:"
+            ? (proxyRes) => {
+                  if (proxyRes.headers["set-cookie"]) {
+                      proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
+                          if (
+                              proxyRes &&
+                              proxyRes.headers &&
+                              proxyRes.headers["set-cookie"]
+                          ) {
+                              console.log("Set cookie", cookie);
+                              proxyRes.headers["set-cookie"][i] =
+                                  cookie.replace("Secure", "");
+                          }
+                      });
+                  }
+              }
+            : undefined;
 
     app.use(
         "/.refine",
@@ -88,6 +110,7 @@ const action = async ({
                 debug: console.debug,
                 error: console.error,
             }),
+            onProxyRes,
         }),
     );
 
@@ -117,6 +140,7 @@ const action = async ({
                 debug: console.debug,
                 error: console.error,
             }),
+            onProxyRes,
         }),
     );
 
