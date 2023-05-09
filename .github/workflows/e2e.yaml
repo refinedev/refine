@@ -37,10 +37,8 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
-          project:
           command: npx cypress run --project ./examples/${{ matrix.projectName }} --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
           install: false
-          start: "npm ls"
           wait-on: "http://0.0.0.0:3000"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
