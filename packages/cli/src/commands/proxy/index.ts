@@ -49,7 +49,6 @@ const action = async ({
                               proxyRes.headers &&
                               proxyRes.headers["set-cookie"]
                           ) {
-                              console.log("Set cookie", cookie);
                               proxyRes.headers["set-cookie"][i] =
                                   cookie.replace("Secure", "");
                           }
