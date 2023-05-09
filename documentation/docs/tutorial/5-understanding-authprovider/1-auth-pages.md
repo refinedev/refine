@@ -6,131 +6,142 @@ tutorial:
     next: false
 ---
 
-In this post, we explore how authentication is implemented in a login page. We also discuss briefly how to make use of **refine-MUI**'s `<AuthPage />` component in order to render pages for login, signup, forgot password and reset password.
+This post explores how auth related actions are implemented in **refine** with the `<Authpage />` component. We examine `<AuthPage />` variants for `login`, `register` and `forgotPassword` methods of the auth provider object.
 
+## Auth Pages in refine
 
-## Login Page
+**refine** provides a robust set of auth pages with `<AuthPage />` components provided by the core package, as well as supplementary packages such as **Material UI**, **Ant Design**, **Mantine**, etc.
 
-The login page is used to authenticate users. Logging in a user is carried out by the data provider's `login` action, which is accessible via the `useLogin()` hook.
+The `<AuthPage />` component we have in use in the app is provided by `@refinedev/mui`, **refine**'s support package for **Material UI**. It comes with all required variations for login, register, forgot password pages which basically implement their respctive `authProvider` methods. The component used is the same `<AuthPage />` component, but the UI and auth action are characterized by the `type` prop passed to the component.
 
+For example, the `<AuthPage type="login" >` implements `useLogin()` hook and shows only the login fields in the form.
 
-Our **Blog** app initialized by **refine.new** implements user login in the `<Login />` component. It looks like this:
+[Refer to the `<AuthPage />` documentation for more information &#8594](/docs/api-reference/mui/components/mui-auth-page/)
+
+## Login Page with `<AuthPage type="login" />`
+
+The login page is used to authenticate users. Logging in a user is carried out by the auth provider's `login` method, which is accessible via the `useLogin()` hook.
+
+Our **Blog** app initialized by **refine.new** with **Custom Auth** option implements user login in the `<Login />` component with `<AuthPage type="login" />` component. The `<Login />` component looks like this:
 
 ```tsx
-// src/pages/login.tsx
+// src/pages/login/index.tsx
 
-import { useLogin } from "@refinedev/core";
-import { useEffect, useRef } from "react";
+import { AuthPage, ThemedTitleV2 } from "@refinedev/mui";
+import { AppIcon } from "../../components/app-icon";
 
-import { Box, Container, Typography } from "@mui/material";
-import { ThemedTitleV2 } from "@refinedev/mui";
-
-import { CredentialResponse } from "../interfaces/google";
-
-import { AppIcon } from "components/app-icon";
-
-// Todo: Update your Google Client ID here
-const GOOGLE_CLIENT_ID =
-  "1041339102270-jlljcjl19jo1hkgf695em3ibr7q2m734.apps.googleusercontent.com";
-
-export const Login: React.FC = () => {
-  const { mutate: login } = useLogin<CredentialResponse>();
-
-  const GoogleButton = (): JSX.Element => {
-    const divRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-      if (typeof window === "undefined" || !window.google || !divRef.current) {
-        return;
-      }
-
-      try {
-        window.google.accounts.id.initialize({
-          ux_mode: "popup",
-          client_id: GOOGLE_CLIENT_ID,
-          callback: async (res: CredentialResponse) => {
-            if (res.credential) {
-              login(res);
-            }
-          },
-        });
-        window.google.accounts.id.renderButton(divRef.current, {
-          theme: "filled_blue",
-          size: "medium",
-          type: "standard",
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }, []);
-
-    return <div ref={divRef} />;
-  };
-
+export const Login = () => {
   return (
-    <Container
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Box
-        display="flex"
-        gap="36px"
-        justifyContent="center"
-        flexDirection="column"
-      >
+    <AuthPage
+      type="login"
+      title={
         <ThemedTitleV2
           collapsed={false}
-          wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
-          }}
           text="refine Project"
           icon={<AppIcon />}
         />
-
-        <GoogleButton />
-
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
-          Powered by
-          <img
-            style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
-          />
-          Google
-        </Typography>
-      </Box>
-    </Container>
+      }
+      formProps={{
+        defaultValues: { email: "demo@refine.dev", password: "demodemo" },
+      }}
+    />
   );
 };
 ```
 
-This is a simple login page that allows logging in a user with Google account. Notice the `mutate` function exposed by the call to the `useLogin()` hook. It is stored as `login`, which we are using to log the user in with a Google account.
+This is a simple login page that allows an email / password login. The `<AuthPage type="login" />` component provides all the form fields, UI features and login functionality for a user to login. The corresponding UI for the above `<Login />` looks like this:
+
+![login-page](https://imgbox.com/wAtDTupL)
+
+The `<AuthPage type="login" />` internally implements the `useLogin()` hook to access and invoke the `authProvider.login` method to sign in a user.
+
+[Refer to the login section in the `<AuthPage />` documentation for more information &#8594](https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#login)
 
 
-## Auth Pages in refine
+## Signup Page with `<AuthPage type="register" />`
 
-The example provided is a simplistic login page that involves only Google Auth. However, **refine** provides more robust auth pages with `<AuthPage />` components that come from the core package, as well as supplementary packages such as **Material UI**, **Ant Design**, **Mantine**, etc.
+The signup / register page is used to register a user to our app. Registering a user is carried out by the auth provider's `register` method, which is accessible via the `useRegister()` hook.
 
-The `<AuthPage />` component provided by `@refinedev/mui`, **refine**'s support package for **Material UI**, comes with all required variations for login, register, forgot password, update password pages. The component used is the same `<AuthPage />` component, but the UI and functionality changes with the `type` prop passed to the component.
+Our app implements user registration in the `<Register />` component with `<AuthPage type="register" />` component. The `<Register />` component looks like this:
 
-For example, `<AuthPage type="register" />` implements signing up a user with the `useRegister()` hook and renders all fields required for the sign up form, whereas `<AuthPage type="login" >` implements `useLogin()` hook and shows only the login fields in the form.
+```tsx
+// src/pages/register/index.tsx
 
-[Refer to the `<AuthPage />` documentation for more information &#8594](/docs/api-reference/mui/components/mui-auth-page/)
+import { AuthPage, ThemedTitleV2 } from "@refinedev/mui";
+import { AppIcon } from "../../components/app-icon";
 
-<br/>
-<br/>
+export const Register = () => {
+  return (
+    <AuthPage
+      type="register"
+      title={
+        <ThemedTitleV2
+          collapsed={false}
+          text="refine Project"
+          icon={<AppIcon />}
+        />
+      }
+    />
+  );
+};
+```
+
+This is a simple user sign up page that allows users to sign up with an email and password. The `<AuthPage type="register" />` component provides necessary form fields, UI features and sign up functionality to register a user with our app. The corresponding UI for the above `<Register />` component looks like this:
+
+![signup-page](https://imgbox.com/zMfFaz73)
+
+The `<AuthPage type="register" />` implements the `useRegister()` hook to access and invoke the `authProvider.register` method to sign up a user.
+
+[Refer to the register section in the `<AuthPage />` documentation for more information &#8594](https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#register)
+
+
+## Password Resetting with `<AuthPage type="forgotPassword" />`
+
+The forgot password page is used to reset a password. Password resetting is carried out by the auth provider's `forgotPassword` method, which is accessible via the `useForgotPassword()` hook.
+
+Our app implements resetting password in the `<ForgotPassword />` component with the `<AuthPage type="forgotPassword" />` variant. The `<ForgotPassword />` component looks like this:
+
+```tsx
+// src/pages/forgotPassword/index.tsx
+
+import { AuthPage, ThemedTitleV2 } from "@refinedev/mui";
+import { AppIcon } from "../../components/app-icon";
+
+export const ForgotPassword = () => {
+  return (
+    <AuthPage
+      type="forgotPassword"
+      title={
+        <ThemedTitleV2
+          collapsed={false}
+          text="refine Project"
+          icon={<AppIcon />}
+        />
+      }
+    />
+  );
+};
+```
+
+This is a simple password reset page that allows users to renew their password with their email. The `<AuthPage type="forgotPassword" />` component provides necessary form fields, UI features and reset logic for renewing a user's password. The corresponding UI for the above `<ForgotPassword />` component looks like this:
+
+![forgot-password-page](https://imgbox.com/vaw5Hjws)
+
+The `<AuthPage type="forgotPassword" />` implements the `useForgotPassword()` hook to access and invoke the `authProvider.forgotPassword` method to set a new password.
+
+[Refer to the forgot password section in the `<AuthPage />` documentation for more information &#8594](https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#forgotpassword)
 
 <Checklist>
 
 <ChecklistItem id="auth-provider-headless-auth-pages">
-I understood how to implement login using `useLogin()` hook.
+I understood how to implement login using `<AuthPage type="login" />` variant.
 </ChecklistItem>
-<ChecklistItem id="auth-provider-headless-auth-pages-2">
+<ChecklistItem id="auth-provider-headless-auth-pages-1">
+I understood how to implement user sign up using `<AuthPage type="register" />` variant.
+</ChecklistItem><ChecklistItem id="auth-provider-headless-auth-pages-2">
+I understood how to implement password reset using `<AuthPage type="forgotPassword" />` variant.
+</ChecklistItem>
+<ChecklistItem id="auth-provider-headless-auth-pages-3">
 I understood how `<AuthPage /> variations work.
 </ChecklistItem>
 

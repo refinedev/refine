@@ -9,6 +9,9 @@ tutorial:
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
 
+This unit explores the auth provider object of `<Refine />`. It also shows how **refine**'s core and supplementary **Material UI** packages implement various auth pages with the `<AuthPage />` component.
+
+
 ## What is Auth Provider?
 
 **refine**'s Auth Provider represents the context which handles authentication and access control in the app. It provides a way to authenticate users and authorize them to access resources.
@@ -37,7 +40,7 @@ const authProvider: AuthBindings = {
 
 We have methods to handle login, logging out, registering, recovering and updating passwords, and getting user identity and authorization status.
 
-As indicated above, an auth provider's methods are expected to return a Promise. So, `async` methods are used to compose an auth provider. These methods perform auth operations when they are invoked via **refine** auth hooks. Please check [Auth Provider](/docs/api-reference/core/providers/auth-provider/) documentation to see the details of each method.
+As indicated above, an auth provider's methods are expected to return a Promise. So, `async` methods are used to compose an auth provider. These methods perform their respective operations when they are invoked via **refine** auth hooks. Please check [Auth Provider](/docs/api-reference/core/providers/auth-provider/) documentation to see the details of each method.
 
 
 ## Using Auth Providers in refine
@@ -56,86 +59,70 @@ As indicated above, an auth provider's methods are expected to return a Promise.
 The auth provider is closely related to the backend service, which is **Simple REST API** in our case. At initialization, **refine.new** generated an auth provider for us, which is tailored to address **Simple REST API**, a simple RESTful API service provided by **refine**. It looks like below:
 
 ```TypeScript
-// authProvider in refine
+// src/authProvider.ts
 
-const authProvider: AuthBindings = {
-    login: async ({ credential }: CredentialResponse) => {
-      const profileObj = credential ? parseJwt(credential) : null;
+import { AuthBindings } from "@refinedev/core";
 
-      if (profileObj) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            ...profileObj,
-            avatar: profileObj.picture,
-          })
-        );
+export const TOKEN_KEY = "refine-auth";
 
-        localStorage.setItem("token", `${credential}`);
-
-        return {
-          success: true,
-          redirectTo: "/",
-        };
-      }
-
-      return {
-        success: false,
-      };
-    },
-    logout: async () => {
-      const token = localStorage.getItem("token");
-
-      if (token && typeof window !== "undefined") {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        axios.defaults.headers.common = {};
-        window.google?.accounts.id.revoke(token, () => {
-          return {};
-        });
-      }
-
+export const authProvider: AuthBindings = {
+  login: async ({ username, email, password }) => {
+    if ((username || email) && password) {
+      localStorage.setItem(TOKEN_KEY, username);
       return {
         success: true,
-        redirectTo: "/login",
+        redirectTo: "/",
       };
-    },
-    onError: async (error) => {
-      console.error(error);
-      return { error };
-    },
-    check: async () => {
-      const token = localStorage.getItem("token");
+    }
 
-      if (token) {
-        return {
-          authenticated: true,
-        };
-      }
-
+    return {
+      success: false,
+      error: {
+        name: "LoginError",
+        message: "Invalid username or password",
+      },
+    };
+  },
+  logout: async () => {
+    localStorage.removeItem(TOKEN_KEY);
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  check: async () => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) {
       return {
-        authenticated: false,
-        error: {
-          message: "Check failed",
-          name: "Token not found",
-        },
-        logout: true,
-        redirectTo: "/login",
+        authenticated: true,
       };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => {
-      const user = localStorage.getItem("user");
-      if (user) {
-        return JSON.parse(user);
-      }
+    }
 
-      return null;
-    },
-  };
+    return {
+      authenticated: false,
+      redirectTo: "/login",
+    };
+  },
+  getPermissions: async () => null,
+  getIdentity: async () => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      return {
+        id: 1,
+        name: "John Doe",
+        avatar: "https://i.pravatar.cc/300",
+      };
+    }
+    return null;
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+};
 ```
 
-These methods define the app's ability to authenticate and authorize requests with the **Simple REST API** backend for the **Blog** app.
+These methods define the app's ability to authenticate and authorize requests with the backend for our **Blog** app.
 
 [Refer to the `<Refine />` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
@@ -144,7 +131,7 @@ These methods define the app's ability to authenticate and authorize requests wi
 
 Each auth provider method in **refine** has corresponding hooks via which they can be accessed from inside a component. So, we use these hooks to perform auth operations in our app. Please check [Auth Hooks](/docs/api-reference/core/hooks/auth/useIsAuthenticated/) documentation for the details of each hook.
 
-For example, we can use `useLogin()` hook to implement login operations like below:
+For example, we can use the `useLogin()` hook to implement login operations like below:
 
 ```tsx
 import { useLogin } from "@refinedev/core";
@@ -161,7 +148,7 @@ const handleLogin = async (values) => {
 };
 ```
 
-As we can see, the `useLogin()` hook returns a `mutate` function, which basically gives us access to the `authProvider.login` method. Ivoking this `mutate()` function then executes the auth provider `login` method and logs the user in.
+As we can see, `useLogin()` returns a `mutate` function, which basically gives us access to the `authProvider.login` method. Ivoking this `mutate()` function then executes the auth provider `login` method and logs the user in.
 
 :::info
 
