@@ -30,6 +30,7 @@ jobs:
         run: |
           cd examples/${{ matrix.projectName }}
           npm install
+          npm i cypress 
           npm run build
           npm run start -- --host 127.0.0.1 &
       - name: Run Cypress
