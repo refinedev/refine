@@ -33,7 +33,6 @@ jobs:
           npm install
           npm run build
           HOST=0.0.0.0 npm run start &
-      - uses: actions/checkout@v3
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
