@@ -14,6 +14,5 @@ describe("build test", () => {
 
     it("should build", () => {
         cy.get("#root").should("exist");
-        cy.get("#root").should("exist");
     });
 });
