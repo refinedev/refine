@@ -281,6 +281,13 @@ If you navigate to the [refine landing page](https://refine.dev/) and use Lighth
 
 It is worth mentioning that PWAs have several features and best practices to follow. Google lighthouse can audit only a  handful of these features. You need to check some of them manually. Google lighthouse will also hint at the items you need to check manually.
 
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
+
 ## How to view Google lighthouse report
 
 Using Google lighthouse via the Chrome DevTools or the browser extension will generate the report and immediately display it in the browser. Depending on how you use Google lighthouse, you can also save the performance data in HTML or JSON format.
@@ -359,24 +366,3 @@ Therefore, you must go above and beyond to test your site with actual users even
 
 ---
 
-## Build your React-based CRUD applications without constraints
-
-Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

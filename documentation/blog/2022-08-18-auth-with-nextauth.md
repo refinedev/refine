@@ -248,12 +248,12 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=YOUR_SECRET
 ```
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ### For GithubProvider (you will need a GitHub account):
 
