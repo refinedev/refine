@@ -248,12 +248,12 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=YOUR_SECRET
 ```
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ### For GithubProvider (you will need a GitHub account):
 
@@ -350,10 +350,9 @@ Congratulations! You’ve added your complete API route. The next thing you are 
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
-
 ## Configure Shared Session State
 
 The `useSession()` React Hook in the NextAuth.js client is the easiest way to check if someone is signed in, and to be able to use this hook, first you’ll need to expose the session context, `<SessionProvider />`, at the top level of your application:

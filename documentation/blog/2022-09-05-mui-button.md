@@ -18,8 +18,10 @@ In this article, we will deeply explore the MUI `Button` component, its variants
 Steps we'll cover:
 - [What is Material UI](#what-is-material-ui)
 - [Getting Started with the MUI Button component](#getting-started-with-the-mui-button-component)
-- [How to use MUI Button Component in your React project](#how-to-use-mui-button-component-in-your-react-project)
+- [How to use Material UI Button Component in your React project](#how-to-use-material-ui-button-component-in-your-react-project)
+ 
 - [Creating a Calculator UI with light and dark mode using React MUI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-mui-button-component)
+
   
 
 ## What is Material UI
@@ -146,9 +148,10 @@ Here’s the result:
 
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
+
 ## How to use Material UI Button Component in your React project
 
 ### Text Button
