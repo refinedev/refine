@@ -42,6 +42,23 @@ const action = async ({
             target: `${domain}/.refine`,
             changeOrigin: true,
             pathRewrite: { "^/.refine": "" },
+            logProvider: () => ({
+                log: console.log,
+                info: (msg) => {
+                    if (`${msg}`.includes("Proxy rewrite rule created")) return;
+
+                    if (`${msg}`.includes("Proxy created")) {
+                        console.log(
+                            `Proxying localhost:${port}/.refine to ${domain}/.refine`,
+                        );
+                    } else if (msg) {
+                        console.log(msg);
+                    }
+                },
+                warn: console.warn,
+                debug: console.debug,
+                error: console.error,
+            }),
         }),
     );
 
@@ -54,6 +71,23 @@ const action = async ({
                 "refine.dev": "",
             },
             pathRewrite: { "^/.kratos": "" },
+            logProvider: () => ({
+                log: console.log,
+                info: (msg) => {
+                    if (`${msg}`.includes("Proxy rewrite rule created")) return;
+
+                    if (`${msg}`.includes("Proxy created")) {
+                        console.log(
+                            `Proxying localhost:${port}/.kratos to ${domain}/.kratos`,
+                        );
+                    } else if (msg) {
+                        console.log(msg);
+                    }
+                },
+                warn: console.warn,
+                debug: console.debug,
+                error: console.error,
+            }),
         }),
     );
 
@@ -66,6 +100,23 @@ const action = async ({
                 "refine.dev": "",
             },
             pathRewrite: { "^/.ory": "" },
+            logProvider: () => ({
+                log: console.log,
+                info: (msg) => {
+                    if (`${msg}`.includes("Proxy rewrite rule created")) return;
+
+                    if (`${msg}`.includes("Proxy created")) {
+                        console.log(
+                            `Proxying localhost:${port}/.ory to ${domain}/.ory`,
+                        );
+                    } else if (msg) {
+                        console.log(msg);
+                    }
+                },
+                warn: console.warn,
+                debug: console.debug,
+                error: console.error,
+            }),
         }),
     );
 
@@ -75,6 +126,19 @@ const action = async ({
             target: `${target}`,
             changeOrigin: true,
             ws: true,
+            logProvider: () => ({
+                log: console.log,
+                info: (msg) => {
+                    if (`${msg}`.includes("Proxy created")) {
+                        console.log(`Proxying localhost:${port} to ${target}`);
+                    } else if (msg) {
+                        console.log(msg);
+                    }
+                },
+                warn: console.warn,
+                debug: console.debug,
+                error: console.error,
+            }),
         }),
     );
 
