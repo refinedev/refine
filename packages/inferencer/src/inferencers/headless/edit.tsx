@@ -1,6 +1,4 @@
-import * as RefineCore from "@refinedev/core";
-import * as RefineReactHookForm from "@refinedev/react-hook-form";
-import * as ReactHookForm from "react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -427,13 +425,7 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@refinedev/core", "RefineCore", RefineCore],
-        [
-            "@refinedev/react-hook-form",
-            "RefineReactHookForm",
-            RefineReactHookForm,
-        ],
-        ["react-hook-form", "ReactHookForm", ReactHookForm],
+        ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

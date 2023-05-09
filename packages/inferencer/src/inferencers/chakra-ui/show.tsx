@@ -1,5 +1,15 @@
-import * as RefineChakraUI from "@refinedev/chakra-ui";
-import * as ChakraUI from "@chakra-ui/react";
+import {
+    Show,
+    TagField,
+    TextField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/chakra-ui";
+import { Heading, HStack, Image } from "@chakra-ui/react";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -548,8 +558,22 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/chakra-ui", "RefineChakraUI", RefineChakraUI],
-        ["@chakra-ui/react", "ChakraUI", ChakraUI],
+        [
+            "@refinedev/chakra-ui",
+            "RefineChakraUI",
+            {
+                Show,
+                TagField,
+                TextField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["@chakra-ui/react", "ChakraUI", { Heading, HStack, Image }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,
