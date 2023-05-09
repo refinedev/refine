@@ -1,5 +1,5 @@
 {
-  "name": "form-chakra-use-modal-antd-form",
+  "name": "form-chakra-use-modal-form",
   "private": true,
   "scripts": {
     "start": "refine dev",
