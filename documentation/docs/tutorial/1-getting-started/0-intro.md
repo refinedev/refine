@@ -2,8 +2,8 @@
 id: index
 title: 1. Intro
 tutorial:
-    prev: tutorial/introduction/select-framework
-    next: tutorial/getting-started/prepare-env
+    prev: tutorial/introduction/about-the-app
+    next: tutorial/getting-started/create-project
 ---
 
 In this unit, we initialize our app using the **refine.new** platform. Generally, for local development, we are able to initialize a **refine** app using the **refine CLI**. However, this tutorial is intended to provide busy developers a jetspeed introduction to **refine** concepts with an app built and hosted quickly on **refine.new**.

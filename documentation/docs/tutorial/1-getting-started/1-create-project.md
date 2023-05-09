@@ -3,7 +3,7 @@ id: create-project
 title: 2. Creating your project using refine.new
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/index
-    next: tutorial/getting-started/{preferredUI}/generate-crud-pages
+    next: tutorial/getting-started/{preferredUI}/developing-locally
 ---
 
 import Tabs from '@theme/Tabs';

@@ -2,8 +2,8 @@
 id: inferencer-for-crud-pages
 title: 4. Inferencer for CRUD Pages
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/store-your-repository
+    prev: tutorial/getting-started/{preferredUI}/developing-locally
+    next: tutorial/understanding-refine-props/index
 ---
 
 This post provides an examination of the **Inferencer** tool which works behind a number of **Inferencer** components to generate CRUD pages automatically in **refine**.

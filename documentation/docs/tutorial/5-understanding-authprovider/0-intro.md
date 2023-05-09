@@ -4,7 +4,7 @@ title: 1. Auth Provider
 tutorial:
     order: 0
     prev: false
-    next: tutorial/understanding-authprovider/create-authprovider
+    next: tutorial/understanding-authprovider/auth-pages
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";

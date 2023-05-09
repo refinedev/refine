@@ -3,7 +3,7 @@ id: data-provider
 title: 2. Data Provider
 tutorial:
     order: 1
-    prev: intro
+    prev: tutorial/understanding-refine-props/index
     next: tutorial/understanding-refine-props/resources
 ---
 
