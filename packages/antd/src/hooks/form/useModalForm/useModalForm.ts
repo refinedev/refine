@@ -128,7 +128,7 @@ export const useModalForm = <
     TResponse,
     TResponseError
 > => {
-    const initiallySynced = React.useRef(false);
+    const [initiallySynced, setInitiallySynced] = React.useState(false);
 
     const useFormProps = useForm<
         TQueryFnData,
@@ -151,7 +151,8 @@ export const useModalForm = <
     const action = rest.action ?? actionFromParams ?? "";
 
     const syncingId =
-        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+        syncWithLocation === true ||
+        (typeof syncWithLocation === "object" && syncWithLocation.syncId);
 
     const syncWithLocationKey =
         typeof syncWithLocation === "object" && "key" in syncWithLocation
@@ -191,7 +192,7 @@ export const useModalForm = <
     };
 
     React.useEffect(() => {
-        if (initiallySynced.current === false && syncWithLocationKey) {
+        if (initiallySynced === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
                 if (openStatus) {
@@ -210,12 +211,12 @@ export const useModalForm = <
                 }
             }
 
-            initiallySynced.current = true;
+            setInitiallySynced(true);
         }
     }, [syncWithLocationKey, parsed, syncingId, setId]);
 
     React.useEffect(() => {
-        if (initiallySynced.current === true) {
+        if (initiallySynced === true) {
             if (visible && syncWithLocationKey) {
                 go({
                     query: {
