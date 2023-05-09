@@ -23,6 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Copy e2e files
+        run: |
+          cd e2e/${{ matrix.projectName }}
+          cp -R . ../../examples/${{ matrix.projectName }}
+      - uses: actions/checkout@v3
       - name: Install & Build Deps
         run: |
           cd examples/${{ matrix.projectName }}
@@ -30,9 +35,10 @@ jobs:
           npm run build
           npm install -g serve
           serve -s build &
-      - name: Run Cypress on local
-        uses: cypress-io/github-action@v4
+      - name: Run Cypress
+        uses: cypress-io/github-action@v5
         with:
+          project: examples/${{ matrix.projectName }}
           command: npx cypress run --record --group react --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
           install: false
           start: "npm ls"
