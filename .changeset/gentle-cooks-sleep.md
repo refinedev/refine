@@ -17,7 +17,6 @@ import {
 const PostShow = () => {
     return (
         <Show
-            isLoading={isLoading}
             headerButtons={({
                 deleteButtonProps,
                 editButtonProps,
