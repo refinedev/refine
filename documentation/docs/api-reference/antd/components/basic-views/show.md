@@ -649,7 +649,9 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, listButtonProps, editButtonProps, deleteButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton } = RefineAntd;
@@ -666,6 +668,66 @@ const PostShow: React.FC = () => {
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Show>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/show/2"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <ShowButton />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] components.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
+const { ShowButton } = RefineAntd;
+
+// visible-block-start
+import {
+    Show,
+    ListButton,
+    EditButton,
+    DeleteButton,
+    RefreshButton,
+} from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostShow: React.FC = () => {
+    return (
+        <Show
+            // highlight-start
+            headerButtons={({
+                deleteButtonProps,
+                editButtonProps,
+                listButtonProps,
+                refreshButtonProps,
+            }) => (
+                <>
+                    <Button type="primary">Custom Button</Button>
+                    <ListButton {...listButtonProps} />
+                    <EditButton {...editButtonProps} />
+                    <DeleteButton {...deleteButtonProps} />
+                    <RefreshButton {...refreshButtonProps} />
                 </>
             )}
             // highlight-end
@@ -870,3 +932,8 @@ breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
+
+[list-button]: /docs/api-reference/antd/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/antd/components/buttons/refresh-button/
+[edit-button]: /docs/api-reference/antd/components/buttons/edit-button/
+[delete-button]: /docs/api-reference/antd/components/buttons/delete-button/

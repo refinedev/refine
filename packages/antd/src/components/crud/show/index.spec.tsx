@@ -3,10 +3,16 @@ import { Route, Routes } from "react-router-dom";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { AccessControlProvider } from "@refinedev/core";
 
-import { act, render, TestWrapper, waitFor } from "@test";
+import { render, TestWrapper } from "@test";
 
 import { Show } from "./index";
 import { crudShowTests } from "@refinedev/ui-tests";
+import {
+    DeleteButton,
+    EditButton,
+    ListButton,
+    RefreshButton,
+} from "@components/buttons";
 
 const renderShow = (
     show: ReactNode,
@@ -25,7 +31,7 @@ const renderShow = (
     );
 };
 describe("Show", () => {
-    crudShowTests.bind(this)(Show);
+    crudShowTests.bind(this)(Show as any);
 
     it("should render optional recordItemId with resource prop, not render list button", async () => {
         const { getByText, queryByTestId } = renderShow(
@@ -237,6 +243,60 @@ describe("Show", () => {
 
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
+        });
+
+        it("should customize default buttons with default props", async () => {
+            const { queryByTestId } = render(
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={
+                            <Show
+                                canEdit
+                                canDelete
+                                headerButtons={({
+                                    deleteButtonProps,
+                                    editButtonProps,
+                                    listButtonProps,
+                                    refreshButtonProps,
+                                }) => {
+                                    return (
+                                        <>
+                                            <DeleteButton
+                                                {...deleteButtonProps}
+                                            />
+                                            <EditButton {...editButtonProps} />
+                                            <ListButton {...listButtonProps} />
+                                            <RefreshButton
+                                                {...refreshButtonProps}
+                                            />
+                                        </>
+                                    );
+                                }}
+                            />
+                        }
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerInitialEntries: ["/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.EditButton),
+            ).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.ListButton),
+            ).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.RefreshButton),
             ).not.toBeNull();
         });
     });

@@ -2,10 +2,16 @@ import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@refinedev/core";
 
-import { act, render, TestWrapper, waitFor } from "@test";
+import { render, TestWrapper, waitFor } from "@test";
 import { Edit } from "./";
 import { crudEditTests } from "@refinedev/ui-tests";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    DeleteButton,
+    ListButton,
+    RefreshButton,
+    SaveButton,
+} from "@components/buttons";
 
 const renderEdit = (
     edit: ReactNode,
@@ -25,7 +31,7 @@ const renderEdit = (
 };
 
 describe("Edit", () => {
-    crudEditTests.bind(this)(Edit);
+    crudEditTests.bind(this)(Edit as any);
 
     it("should render optional mutationMode with mutationModeProp prop", async () => {
         const container = renderEdit(<Edit mutationMode="undoable" />);
@@ -187,6 +193,62 @@ describe("Edit", () => {
                     queryByTestId(RefineButtonTestIds.DeleteButton),
                 ).toBeDisabled(),
             );
+        });
+
+        it("should customize default buttons with default props", async () => {
+            const { queryByTestId } = renderEdit(
+                <Edit
+                    canDelete
+                    saveButtonProps={{ className: "customize-test" }}
+                    headerButtons={({
+                        listButtonProps,
+                        refreshButtonProps,
+                    }) => {
+                        return (
+                            <>
+                                <RefreshButton {...refreshButtonProps} />
+                                <ListButton {...listButtonProps} />
+                            </>
+                        );
+                    }}
+                    footerButtons={({ deleteButtonProps, saveButtonProps }) => {
+                        return (
+                            <>
+                                <DeleteButton {...deleteButtonProps} />
+                                <SaveButton {...saveButtonProps} />
+                            </>
+                        );
+                    }}
+                />,
+                {
+                    can: ({ action }) => {
+                        switch (action) {
+                            case "list":
+                            case "delete":
+                                return Promise.resolve({ can: false });
+                            default:
+                                return Promise.resolve({ can: false });
+                        }
+                    },
+                },
+            );
+
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.DeleteButton),
+                ).toBeDisabled(),
+            );
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.ListButton),
+                ).toBeDisabled(),
+            );
+            expect(queryByTestId(RefineButtonTestIds.SaveButton)).toHaveClass(
+                "customize-test",
+            );
+            expect(
+                queryByTestId(RefineButtonTestIds.RefreshButton),
+            ).toBeTruthy();
         });
     });
 });
