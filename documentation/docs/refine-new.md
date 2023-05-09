@@ -27,10 +27,9 @@ As you know, [refine](https://github.com/refinedev/refine) is an open-source Rea
 It is specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools, but can also power customer-facing applications like storefronts and any type of CRUD apps.
 
 
- <div  >
+ <div >
   <a href="https://github.com/refinedev/refine">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png
-" alt="refine banner" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine banner" />
 </a>
 </div>
 
