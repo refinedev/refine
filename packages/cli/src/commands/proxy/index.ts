@@ -22,6 +22,7 @@ const action = async () => {
         "/.refine",
         createProxyMiddleware({
             target: "https://develop.cloud.refine.dev/.refine",
+            // target: "http://localhost:3001",
             changeOrigin: true,
             pathRewrite: { "^/.refine": "" },
         }),
@@ -31,6 +32,7 @@ const action = async () => {
         "/.kratos",
         createProxyMiddleware({
             target: "https://develop.cloud.refine.dev/.kratos",
+            // target: "http://localhost:3001",
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
@@ -56,6 +58,7 @@ const action = async () => {
         createProxyMiddleware({
             target: "http://localhost:3000",
             changeOrigin: true,
+            ws: true,
         }),
     );
 
