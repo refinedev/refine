@@ -1,28 +1,45 @@
+import { ENV } from "@utils/env";
 import { Command } from "commander";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const express = require("express");
-import {
-    createProxyMiddleware,
-    Filter,
-    Options,
-    RequestHandler,
-} from "http-proxy-middleware";
+import express from "express";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
-const proxy = (program: Command) => {
+const load = (program: Command) => {
     return program
         .command("proxy")
         .description("Manage proxy settings")
-        .action(action);
+        .action(action)
+        .option(
+            "-p, --port [port]",
+            "Port to serve the proxy server. You can also set this with the `REFINE_PROXY_PORT` environment variable.",
+            ENV.REFINE_PROXY_PORT,
+        )
+        .option(
+            "-t, --target [target]",
+            "Target to proxy. You can also set this with the `REFINE_PROXY_TARGET` environment variable.",
+            ENV.REFINE_PROXY_TARGET,
+        )
+        .option(
+            "-d, --domain [domain]",
+            "Domain to proxy. You can also set this with the `REFINE_PROXY_DOMAIN` environment variable.",
+            ENV.REFINE_PROXY_DOMAIN,
+        );
 };
 
-const action = async () => {
+const action = async ({
+    port,
+    target,
+    domain,
+}: {
+    port: string;
+    target: string;
+    domain: string;
+}) => {
     const app = express();
 
     app.use(
         "/.refine",
         createProxyMiddleware({
-            target: "https://develop.cloud.refine.dev/.refine",
-            // target: "http://localhost:3001",
+            target: `${domain}/.refine`,
             changeOrigin: true,
             pathRewrite: { "^/.refine": "" },
         }),
@@ -31,8 +48,7 @@ const action = async () => {
     app.use(
         "/.kratos",
         createProxyMiddleware({
-            target: "https://develop.cloud.refine.dev/.kratos",
-            // target: "http://localhost:3001",
+            target: `${domain}/.kratos`,
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
@@ -44,7 +60,7 @@ const action = async () => {
     app.use(
         "/.ory",
         createProxyMiddleware({
-            target: "https://develop.cloud.refine.dev/.ory",
+            target: `${domain}/.ory`,
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
@@ -56,13 +72,13 @@ const action = async () => {
     app.use(
         "*",
         createProxyMiddleware({
-            target: "http://localhost:3000",
+            target: `${target}`,
             changeOrigin: true,
             ws: true,
         }),
     );
 
-    app.listen(7313);
+    app.listen(Number(port));
 };
 
-export default proxy;
+export default load;
