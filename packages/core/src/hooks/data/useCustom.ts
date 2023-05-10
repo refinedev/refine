@@ -147,7 +147,7 @@ export const useCustom = <
                     method,
                     ...config,
                     meta: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -155,7 +155,7 @@ export const useCustom = <
                         },
                     },
                     metaData: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -171,7 +171,7 @@ export const useCustom = <
                     typeof successNotification === "function"
                         ? successNotification(data, {
                               ...config,
-                              ...(combinedMeta || {}),
+                              ...combinedMeta,
                           })
                         : successNotification;
 
@@ -185,7 +185,7 @@ export const useCustom = <
                     typeof errorNotification === "function"
                         ? errorNotification(err, {
                               ...config,
-                              ...(combinedMeta || {}),
+                              ...combinedMeta,
                           })
                         : errorNotification;
 
