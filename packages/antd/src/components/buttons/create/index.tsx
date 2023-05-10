@@ -96,8 +96,8 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.CreateButton}
-                type="primary"
                 className={RefineButtonClassNames.CreateButton}
+                type="primary"
                 {...rest}
             >
                 {!hideText &&

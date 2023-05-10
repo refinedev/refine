@@ -109,6 +109,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
+                    className={RefineButtonClassNames.ListButton}
                     {...commonProps}
                 >
                     <IconList size={18} {...svgIconProps} />

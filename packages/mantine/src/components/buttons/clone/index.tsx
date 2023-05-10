@@ -110,6 +110,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                           }
                         : { variant: "default" })}
                     data-testid={RefineButtonTestIds.CloneButton}
+                    className={RefineButtonClassNames.CloneButton}
                     {...commonProps}
                 >
                     <IconSquarePlus size={18} {...svgIconProps} />

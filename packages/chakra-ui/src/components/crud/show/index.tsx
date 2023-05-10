@@ -23,6 +23,7 @@ import {
     Breadcrumb,
 } from "@components";
 import { ShowProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Show: React.FC<ShowProps> = (props) => {
     const {
@@ -176,7 +177,11 @@ export const Show: React.FC<ShowProps> = (props) => {
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (
-                    <Heading as="h3" size="lg">
+                    <Heading
+                        as="h3"
+                        size="lg"
+                        className={RefinePageHeaderClassNames.Title}
+                    >
                         {title}
                     </Heading>
                 );
@@ -186,7 +191,11 @@ export const Show: React.FC<ShowProps> = (props) => {
         }
 
         return (
-            <Heading as="h3" size="lg">
+            <Heading
+                as="h3"
+                size="lg"
+                className={RefinePageHeaderClassNames.Title}
+            >
                 {translate(
                     `${resource?.name}.titles.show`,
                     `Show ${userFriendlyResourceName(

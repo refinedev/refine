@@ -104,6 +104,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     title={disabledTitle()}
                     disabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...(variant
                         ? {
                               variant:

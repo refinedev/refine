@@ -101,6 +101,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                           }
                         : { variant: "filled" })}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CloneButton}
                     {...commonProps}
                 >
                     <IconSquarePlus size={18} {...svgIconProps} />
@@ -111,9 +112,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     color="primary"
                     variant="filled"
-                    className={RefineButtonClassNames.CreateButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.create", "Create")}

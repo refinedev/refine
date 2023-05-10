@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus } from "@tabler/icons";
 
@@ -94,6 +97,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     aria-label={translate("buttons.clone", "Clone")}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CloneButton}
+                    className={RefineButtonClassNames.CloneButton}
                     {...rest}
                 >
                     <IconSquarePlus size={20} {...svgIconProps} />
@@ -105,6 +109,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     leftIcon={<IconSquarePlus size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CloneButton}
+                    className={RefineButtonClassNames.CloneButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.clone", "Clone")}

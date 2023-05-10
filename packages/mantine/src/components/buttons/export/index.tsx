@@ -36,6 +36,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
                 : { variant: "default" })}
             loading={loading}
             data-testid={RefineButtonTestIds.ExportButton}
+            className={RefineButtonClassNames.ExportButton}
             {...commonProps}
         >
             <IconFileExport size={18} {...svgIconProps} />

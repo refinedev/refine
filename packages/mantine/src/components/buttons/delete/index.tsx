@@ -123,6 +123,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                             (recordItemId ?? id) === variables?.id && isLoading
                         }
                         data-testid={RefineButtonTestIds.DeleteButton}
+                        className={RefineButtonClassNames.DeleteButton}
                         {...(variant
                             ? {
                                   variant:

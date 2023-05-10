@@ -42,6 +42,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     component="span"
                     loading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
+                    className={RefineButtonClassNames.ImportButton}
                     {...commonProps}
                 >
                     <IconFileImport size={18} {...svgIconProps} />

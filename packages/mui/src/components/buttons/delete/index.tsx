@@ -122,6 +122,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}
                 data-testid={RefineButtonTestIds.DeleteButton}
+                className={RefineButtonClassNames.DeleteButton}
                 {...restProps}
             >
                 {hideText ? (
@@ -149,7 +150,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         color="error"
                         onClick={handleCloseOnConfirm}
                         autoFocus
-                        className={RefineButtonClassNames.DeleteButton}
                     >
                         {confirmOkText ?? translate("buttons.delete", "Delete")}
                     </Button>

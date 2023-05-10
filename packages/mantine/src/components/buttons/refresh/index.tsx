@@ -61,6 +61,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             }
             loading={isFetching}
             data-testid={RefineButtonTestIds.RefreshButton}
+            className={RefineButtonClassNames.RefreshButton}
             {...(variant
                 ? {
                       variant: mapButtonVariantToActionIconVariant(variant),

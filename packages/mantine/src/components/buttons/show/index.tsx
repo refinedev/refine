@@ -109,6 +109,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
+                    className={RefineButtonClassNames.ShowButton}
                     {...commonProps}
                 >
                     <IconEye size={18} {...svgIconProps} />
