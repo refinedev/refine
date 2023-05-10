@@ -1,10 +1,9 @@
 ---
 id: add-edit-page
-title: 2. Adding Edit Page
+title: 4.2. Adding Edit Page
 tutorial:
-    order: 1
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+    prev: tutorial/adding-crud-actions/index
+    next: tutorial/adding-crud-actions/add-show-page
 ---
 
 This post shows how to implement the `edit` page of `blog_posts` resource without resorting to `<MuiEditInferencer />`. Basically, we just replace the existing code inside the `src/pages/blog-posts/edit.tsx` file with the Inferencer-generated code.

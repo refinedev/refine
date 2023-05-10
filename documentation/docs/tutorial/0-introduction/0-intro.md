@@ -1,13 +1,12 @@
 ---
 id: index
-title: 1. Build your first refine app
+title: 1.1. Build your first refine app
 tutorial:
-    order: 0
     prev: false
     next: tutorial/introduction/prerequisites
 ---
 
-## About this Tutorial
+## About This Tutorial
 
 This tutorial guides through the process of using [**refine.new**](https://refine.new) to quickly initialize, build and launch a fully-functional admin panel 🚀.
 

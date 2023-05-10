@@ -1,8 +1,7 @@
 ---
 id: about-the-app
-title: 3. About the app
+title: 1.3. About the app
 tutorial:
-    order: 2
     prev: tutorial/introduction/prerequisites
     next: tutorial/getting-started/index
 ---

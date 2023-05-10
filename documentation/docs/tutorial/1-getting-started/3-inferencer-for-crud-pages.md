@@ -1,8 +1,8 @@
 ---
 id: inferencer-for-crud-pages
-title: 4. Inferencer for CRUD Pages
+title: 2.4. Inferencer for CRUD Pages
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/developing-locally
+    prev: tutorial/getting-started/developing-locally
     next: tutorial/understanding-refine-props/index
 ---
 

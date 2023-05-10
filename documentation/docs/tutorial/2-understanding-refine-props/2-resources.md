@@ -1,10 +1,9 @@
 ---
 id: resources
-title: 3. Resources
+title: 3.3. Resources
 tutorial:
-    order: 2
     prev: tutorial/understanding-refine-props/data-provider
-    next: tutorial/adding-crud-actions/{preferredUI}/index
+    next: tutorial/adding-crud-actions/index
 ---
 
 :::info Remember

@@ -1,10 +1,9 @@
 ---
 id: add-delete-action
-title: 5. Adding Delete Action
+title: 4.5. Adding Delete Action
 tutorial:
-    order: 4
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
-    next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
+    prev: tutorial/adding-crud-actions/add-create-page
+    next: tutorial/adding-crud-actions/sort-and-filters
 ---
 
 There are multiple ways to implement deleting a record in **refine**. This post explores one way that already came implemented with the project, using the `meta.canDelete` property. And second, by adding a `<DeleteButton />` component.

@@ -12,9 +12,9 @@ import { useInView } from "../../hooks/use-in-view";
 import { Conditional } from "../conditional";
 import { splitCode } from "../../utils/split-code";
 import { useLivePreviewContext } from "../live-preview-context";
-import Buffer from "buffer";
+// import Buffer from "buffer";
 
-global.Buffer = global.Buffer || Buffer.Buffer;
+// global.Buffer = global.Buffer || Buffer.Buffer;
 
 /**
  * Live Preview Frame

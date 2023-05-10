@@ -1,8 +1,7 @@
 ---
 id: prerequisites
-title: 2. Prerequisites
+title: 1.2. Prerequisites
 tutorial:
-    order: 1
     prev: tutorial/introduction/index
     next: tutorial/introduction/about-the-app
 ---

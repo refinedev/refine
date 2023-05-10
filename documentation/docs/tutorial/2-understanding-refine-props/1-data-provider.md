@@ -1,8 +1,7 @@
 ---
 id: data-provider
-title: 2. Data Provider
+title: 3.2. Data Provider
 tutorial:
-    order: 1
     prev: tutorial/understanding-refine-props/index
     next: tutorial/understanding-refine-props/resources
 ---
@@ -133,7 +132,7 @@ const dataProvider = {
 ```
 
 
-The return value is then passed to components for presenting the data. We elaborate on presentation of the data in the **Material UI** `<DataGird />` component in [Unit 5.1]().
+The return value is then passed to components for presenting the data. We elaborate on presentation of the data in the **Material UI** `<DataGird />` component in [Unit 5.1](https://refine.new).
 
 ## Supported Data Providers
 

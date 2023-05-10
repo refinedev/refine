@@ -1,6 +1,6 @@
 ---
 id: auth-pages
-title: 2. Auth Pages
+title: 5.2. Auth Pages
 tutorial:
     prev: tutorial/understanding-authprovider/index
     next: false
@@ -132,17 +132,15 @@ The `<AuthPage type="forgotPassword" />` implements the `useForgotPassword()` ho
 [Refer to the forgot password section in the `<AuthPage />` documentation for more information &#8594](https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#forgotpassword)
 
 <Checklist>
-
-<ChecklistItem id="auth-provider-headless-auth-pages">
-I understood how to implement login using `<AuthPage type="login" />` variant.
-</ChecklistItem>
-<ChecklistItem id="auth-provider-headless-auth-pages-1">
-I understood how to implement user sign up using `<AuthPage type="register" />` variant.
-</ChecklistItem><ChecklistItem id="auth-provider-headless-auth-pages-2">
-I understood how to implement password reset using `<AuthPage type="forgotPassword" />` variant.
-</ChecklistItem>
-<ChecklistItem id="auth-provider-headless-auth-pages-3">
-I understood how `<AuthPage /> variations work.
-</ChecklistItem>
-
+  <ChecklistItem id="auth-provider-headless-auth-pages">
+  I understood how to implement login using {`<AuthPage type="login" />`} variant.
+  </ChecklistItem>
+  <ChecklistItem id="auth-provider-headless-auth-pages-1">
+  I understood how to implement user sign up using `<AuthPage type="register" />` variant.
+  </ChecklistItem><ChecklistItem id="auth-provider-headless-auth-pages-2">
+  I understood how to implement password reset using `<AuthPage type="forgotPassword" />` variant.
+  </ChecklistItem>
+  <ChecklistItem id="auth-provider-headless-auth-pages-3">
+  I understood how `<AuthPage />` variations work.
+  </ChecklistItem>
 </Checklist>

@@ -1,9 +1,8 @@
 ---
 id: index
-title: 1. Auth Provider
+title: 5.1. Auth Provider
 tutorial:
-    order: 0
-    prev: false
+    prev: tutorial/adding-crud-actions/sort-and-filters
     next: tutorial/understanding-authprovider/auth-pages
 ---
 

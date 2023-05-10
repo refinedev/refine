@@ -1,9 +1,9 @@
 ---
 id: create-project
-title: 2. Creating your project using refine.new
+title: 2.2. Creating your project using refine.new
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/index
-    next: tutorial/getting-started/{preferredUI}/developing-locally
+    prev: tutorial/getting-started/index
+    next: tutorial/getting-started/developing-locally
 ---
 
 import Tabs from '@theme/Tabs';

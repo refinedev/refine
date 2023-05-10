@@ -1,9 +1,8 @@
 ---
 id: index
-title: 1. Intro
+title: 3.1. Understanding <Refine /> Props
 tutorial:
-    order: 0
-    prev: false
+    prev: tutorial/getting-started/inferencer-for-crud-pages
     next: tutorial/understanding-refine-props/data-provider
 ---
 
@@ -16,7 +15,7 @@ As we mentioned earlier, almost everything in **refine** is centered around the 
 
 For example, we are covering `dataProvider`, `authProvider` and `resources` props in this tutorial:
 
-<!-- ```TypeScript
+```TypeScript
 // Inside src/App.tsx
 
 <Refine
@@ -48,7 +47,7 @@ For example, we are covering `dataProvider`, `authProvider` and `resources` prop
     // other props
 >
 </Refine>
-``` -->
+```
 
 **refine**'s architecture segregates different components of the app into individual contexts, which are then supplied with their individual provider objects containing methods specific to the requirements they are implementing.
 
@@ -58,4 +57,4 @@ Similarly, the `authProvider` object represents the context that handles authent
 
 We dive into detailed implementations of these provider objects and hooks in the upcoming posts.
 
-The `resources` prop, in contrast, does not rely on a context. It is an array of resource items used to directly declare the names of resources in the app and possible actions on each resource. Since **refine** implements RESTful API principles, paths to individual actions are also specified for a resource item. We delve into the `resources` prop in [Unit 3.3]().
+The `resources` prop, in contrast, does not rely on a context. It is an array of resource items used to directly declare the names of resources in the app and possible actions on each resource. Since **refine** implements RESTful API principles, paths to individual actions are also specified for a resource item. We delve into the `resources` prop in [Unit 3.3](https://refine.new).

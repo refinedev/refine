@@ -1,13 +1,12 @@
 ---
 id: index
-title: 1. Adding List Page
+title: 4.1. Adding List Page
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+    prev: tutorial/understanding-refine-props/resources
+    next: tutorial/adding-crud-actions/add-edit-page
 ---
 
-In [Unit 2.3](), we previously saw that our CRUD pages were coded automatically with Inferencer. And we are able to customize our pages. In this unit, we add the CRUD pages ourselves using Material UI.
+In [Unit 2.3](https://refine.new), we previously saw that our CRUD pages were coded automatically with Inferencer. And we are able to customize our pages. In this unit, we add the CRUD pages ourselves using Material UI.
 
 We actually place the components Inferencer produced for us inside our pages and witness the same UI being rendered. In this post we cover the `blog_posts` `list` page.
 

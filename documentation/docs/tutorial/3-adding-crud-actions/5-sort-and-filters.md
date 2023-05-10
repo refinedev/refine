@@ -1,9 +1,8 @@
 ---
 id: sort-and-filters
-title: 6. Sort and Filters
+title: 4.6. Sort and Filters
 tutorial:
-    order: 5
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-action
+    prev: tutorial/adding-crud-actions/add-delete-action
     next: tutorial/understanding-authprovider/index
 ---
 

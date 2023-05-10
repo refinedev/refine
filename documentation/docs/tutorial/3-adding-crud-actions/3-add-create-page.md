@@ -1,10 +1,9 @@
 ---
 id: add-create-page
-title: 4. Adding Create Page
+title: 4.4. Adding Create Page
 tutorial:
-    order: 3
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-delete-action
+    prev: tutorial/adding-crud-actions/add-show-page
+    next: tutorial/adding-crud-actions/add-delete-action
 ---
 
 This post shows how to implement the `create` page of `blog_posts` resource without resorting to `<MuiCreateInferencer />`. Basically, we just replace the existing code inside the `src/pages/blog-posts/create.tsx` file with the Inferencer-generated code.

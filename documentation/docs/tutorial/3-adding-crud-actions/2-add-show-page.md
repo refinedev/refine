@@ -1,10 +1,9 @@
 ---
 id: add-show-page
-title: 3. Adding Show Page
+title: 4.3. Adding Show Page
 tutorial:
-    order: 2
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+    prev: tutorial/adding-crud-actions/add-edit-page
+    next: tutorial/adding-crud-actions/add-create-page
 ---
 
 This post shows how to implement the `show` page of `blog_posts` resource without resorting to `<MuiShowInferencer />`. Basically, we just replace the existing code inside the `src/pages/blog-posts/show.tsx` file with the Inferencer-generated code.

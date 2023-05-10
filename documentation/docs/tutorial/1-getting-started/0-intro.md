@@ -1,6 +1,6 @@
 ---
 id: index
-title: 1. Intro
+title: 2.1. Introduction to refine.new
 tutorial:
     prev: tutorial/introduction/about-the-app
     next: tutorial/getting-started/create-project

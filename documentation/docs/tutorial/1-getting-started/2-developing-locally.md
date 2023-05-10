@@ -1,9 +1,9 @@
 ---
 id: developing-locally
-title: 3. Developing Locally
+title: 2.3. Developing Locally
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/{preferredUI}/inferencer-for-crud-pages
+    prev: tutorial/getting-started/create-project
+    next: tutorial/getting-started/inferencer-for-crud-pages
 ---
 
 This post shows how to download the code for the initialized app and set it up for local development.
