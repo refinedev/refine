@@ -98,7 +98,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 data-testid={RefineButtonTestIds.CreateButton}
                 className={RefineButtonClassNames.CreateButton}
                 type="primary"
-                className={RefineButtonClassNames.CreateButton}
                 {...rest}
             >
                 {!hideText &&
