@@ -5,7 +5,7 @@ import {
     RefreshButtonProps,
     ListButtonProps,
     SaveButtonProps,
-} from "@components/buttons";
+} from "../buttons/types";
 import {
     BoxProps,
     CardActionsProps,

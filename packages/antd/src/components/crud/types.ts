@@ -6,7 +6,7 @@ import {
     ListButtonProps,
     RefreshButtonProps,
     SaveButtonProps,
-} from "@components/buttons";
+} from "../buttons/types";
 import {
     RefineCrudCreateProps,
     RefineCrudEditProps,
