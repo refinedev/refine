@@ -30,7 +30,6 @@ module.exports = {
         },
     },
     plugins: [
-        require("@tailwindcss/line-clamp"),
         plugin(function ({ addVariant }) {
             addVariant("is-firefox", "@supports (-moz-appearance:none)");
         }),
