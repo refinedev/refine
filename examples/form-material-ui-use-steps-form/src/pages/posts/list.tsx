@@ -10,13 +10,15 @@ export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+    const { data: categories, isLoading: isLoadingCategories } =
+        useMany<ICategory>({
+            resource: "categories",
+            ids: categoryIds,
+            queryOptions: {
+                enabled: categoryIds.length > 0,
+            },
+        });
+    const categoriesData = categories?.data || [];
 
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
@@ -36,11 +38,11 @@ export const PostList: React.FC = () => {
                 minWidth: 250,
                 flex: 0.5,
                 renderCell: function render({ row }) {
-                    if (isLoading) {
+                    if (isLoadingCategories) {
                         return "Loading...";
                     }
 
-                    const category = categoriesData?.data.find(
+                    const category = categoriesData.find(
                         (item) => item.id === row.category.id,
                     );
                     return category?.title;
@@ -58,7 +60,7 @@ export const PostList: React.FC = () => {
                 minWidth: 80,
             },
         ],
-        [],
+        [isLoadingCategories, categoriesData],
     );
 
     return (

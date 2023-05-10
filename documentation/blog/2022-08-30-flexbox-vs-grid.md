@@ -153,12 +153,12 @@ Nothing will happen if we change `display: flex` to `display: grid` You have to 
 <br/>
 
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ## Intrinsic and Extrinsic Sizing
 In CSS, you have intrinsic and extrinsic sizing, like:
@@ -341,26 +341,3 @@ To summarise, when you should use flexbox and when you should use the grid. Alth
 </div>
 
 
----
-
-## Build your React-based CRUD applications without constraints
-
-Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

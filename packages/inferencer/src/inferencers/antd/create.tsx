@@ -1,5 +1,5 @@
-import * as RefineAntd from "@refinedev/antd";
-import * as AntdPackage from "antd";
+import { Create, useForm, useSelect, getValueFromEvent } from "@refinedev/antd";
+import { Form, Input, Select, Upload, Checkbox, DatePicker } from "antd";
 import dayjs from "dayjs";
 
 import { createInferencer } from "@/create-inferencer";
@@ -369,9 +369,17 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@refinedev/antd", "RefineAntd", RefineAntd],
+        [
+            "@refinedev/antd",
+            "RefineAntd",
+            { Create, useForm, useSelect, getValueFromEvent },
+        ],
         ["dayjs", "dayjs", dayjs, true],
-        ["antd", "AntdPackage", AntdPackage],
+        [
+            "antd",
+            "AntdPackage",
+            { Form, Input, Select, Upload, Checkbox, DatePicker },
+        ],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

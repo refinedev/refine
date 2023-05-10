@@ -167,19 +167,8 @@ Here’s the result:
 
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" 
-description={<div>
-           Meet the headless, React-based solution to build sleek CRUD applications. With refine, you can build complex projects without having advanced frontend skills.
-            <br />
-            <br />
-            Try{" "}
-            <a href="https://github.com/refinedev/refine" target="_blank">
-                refine
-            </a>{" "}
-            to rapidly build your next <b>CRUD</b> project, whether {"it's"} an
-            admin panel, dashboard, internal tool or storefront.
-        </div>}
-/>
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
 
 ---
 

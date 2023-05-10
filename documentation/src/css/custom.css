@@ -101,10 +101,11 @@
     background-color: #f8f8f8;
     padding: 18px;
     border-radius: 10px;
+    font-weight: 500;
 }
 
 .banner-container.dark {
-    background-color: #000000;
+    background: linear-gradient(to bottom, #2f2f2f, #000000);
     color: #ffffff;
 }
 
@@ -113,6 +114,7 @@
     font-weight: 700;
     line-height: 1.4;
     margin-bottom: 25px;
+    text-align: center;
 }
 
 .window {
