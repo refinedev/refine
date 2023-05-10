@@ -11,7 +11,7 @@
 
 
 
-# refine.new - Introducing the Fastest Way to Create refine Apps
+# [refine.new](https://refine.new/) - Introducing the Fastest Way to Create refine Apps
 
 Discover how [refine.new](https://refine.new/)  and the [refine](https://github.com/refinedev/refine)  framework are transforming the way developers create front-end applications in the React.
 
@@ -24,12 +24,13 @@ I would like to introduce our new open source browser tool - [refine.new](https:
 Let's recap the refine architecture first 💙
 
 As you know, [refine](https://github.com/refinedev/refine) is an open-source React-based framework designed to simplify and accelerate the development of web applications with SSR support with [Next.js](https://nextjs.org/) or [Remix](https://remix.run/).  
-It is specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools, but can also power customer-facing applications like storefronts and any type of CRUD apps.
+
+It's specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools, but can also power customer-facing applications like storefronts and any type of CRUD apps.
 
 
- <div >
+<div align="center" >
   <a href="https://github.com/refinedev/refine">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine banner" />
+  <img style="width: 700px" src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine banner" />
 </a>
 </div>
 
@@ -42,8 +43,9 @@ The refine is **headless by design**, offering unlimited styling and customizati
 
   refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/)
 
-[Refer to documentation for more info about refine&#8594](https://refine.dev/docs/)
-[Step up to refine tutorials &#8594](https://refine.dev/docs/tutorial/introduction/index/)
+[Refer to documentation for more info about refine 👉](https://refine.dev/docs/) 
+
+[Step up to refine tutorials 👉](https://refine.dev/docs/tutorial/introduction/index/)
 
 ✨ With the introduction of [refine.new](https://refine.new/), developers can now create refine apps in just **15 seconds**.
 
@@ -56,9 +58,9 @@ The refine is **headless by design**, offering unlimited styling and customizati
 
 <br/>
 
- <div className="centered-image"  >
+<div align="center" >
   <a href="https://refine.new/">
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" alt="refine banner" />
+  <img style="width: 800px"  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" alt="refine banner" />
 </a>
 </div>
 
@@ -89,9 +91,9 @@ You can download the complete project code and use as a starting point for your 
 View the example refine app built using refine.new from [this link](https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2).
 
 
- <div className="centered-image"  >
+ <div align="center" >
 <a href="https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
+  <img style="width: 800px" src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
   </a>
 </div>
 
