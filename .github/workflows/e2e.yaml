@@ -16,7 +16,7 @@ jobs:
       param: ${{ steps.array.outputs.build }}
   run-cypress-tests:
     needs:
-      - generate_e2e_projects
+      - find-cypress-config
     strategy:
       matrix:
         cypressConfig: ${{ fromJson(needs.find-cypress-config.outputs.param) }}
