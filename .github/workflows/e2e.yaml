@@ -29,11 +29,15 @@ jobs:
           cd $examplePath
           npm install
           npm run start -- --host 127.0.0.1 &
-      - name: Run Cypress
-        uses: cypress-io/github-action@v5
-        with:
-          command: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
-          install: false
-          wait-on: "http://127.0.0.1:5173"
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Run
+        run: |
+          npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+      # - name: Run Cypress
+      #   uses: cypress-io/github-action@v5
+      #   with:
+      #     command: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+      #     install: false
+      #     wait-on: "http://127.0.0.1:5173"
+      #     start: "npm ls"
+      #   env:
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
