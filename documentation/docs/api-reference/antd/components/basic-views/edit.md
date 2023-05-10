@@ -1019,7 +1019,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 :::caution
 
-If [user don't have permission to delete](#candelete-and-deletebuttonprops), [`<DeleteButton>`][delete-button] will not rendered and `deleteButtonProps` will `undefined`.
+If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, [`<DeleteButton>`][delete-button] will not rendered and `deleteButtonProps` will `undefined`.
 
 :::
 
