@@ -10,7 +10,7 @@ jobs:
       - uses: kanga333/json-array-builder@main
         id: array
         with:
-          cmd: find . -name 'cypress.config.ts' \| sed 's/\/cypress.config.ts//g'
+          cmd: find . -name 'cypress.config.ts'
           separator: newline
     outputs:
       param: ${{ steps.array.outputs.build }}
@@ -23,8 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # - name: Install & Build Deps
-      #   run: |
+      - name: Install & Build Deps
+        run: |
+          echo "${{ matrix.projectName }}" | sed 's/\/cypress.config.ts//g'
 
       #     cd examples/${{ matrix.projectName }}
       #     npm install
