@@ -23,15 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Copy e2e files
-        run: |
-          cp -R ./e2e/${{ matrix.projectName }}/. ./examples/${{ matrix.projectName }}
       - name: Install & Build Deps
         run: |
           cd examples/${{ matrix.projectName }}
           npm install
-          npm i cypress 
-          npm run build
           npm run start -- --host 127.0.0.1 &
       - name: Run Cypress
         uses: cypress-io/github-action@v5
