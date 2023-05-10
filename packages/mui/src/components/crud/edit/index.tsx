@@ -30,6 +30,10 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
+    ListButtonProps,
+    RefreshButtonProps,
+    DeleteButtonProps,
+    SaveButtonProps,
 } from "@components";
 import { EditProps } from "../types";
 
@@ -90,12 +94,10 @@ export const Edit: React.FC<EditProps> = ({
             : breadcrumbFromProps;
 
     const hasList = resource?.list && !recordItemId;
-    const hasDelete =
+    const isDeleteButtonVisible =
         canDelete ??
         ((resource?.meta?.canDelete ?? resource?.canDelete) ||
             deleteButtonPropsFromProps);
-    const isDeleteButtonVisible =
-        hasDelete && (id || deleteButtonPropsFromProps?.recordItemId);
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (
@@ -104,7 +106,7 @@ export const Edit: React.FC<EditProps> = ({
             <Breadcrumb />
         );
 
-    const listButtonProps = hasList
+    const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
               resource:
@@ -114,7 +116,7 @@ export const Edit: React.FC<EditProps> = ({
           }
         : undefined;
 
-    const refreshButtonProps = {
+    const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         resource:
             routerType === "legacy"
@@ -131,29 +133,30 @@ export const Edit: React.FC<EditProps> = ({
         </>
     );
 
-    const deleteButtonProps = isDeleteButtonVisible
-        ? ({
-              ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              mutationMode,
-              variant: "outlined",
-              onSuccess: () => {
-                  if (routerType === "legacy") {
-                      legacyGoList(resource?.route ?? resource?.name ?? "");
-                  } else {
-                      go({ to: goListPath });
-                  }
-              },
-              recordItemId: id,
-              dataProviderName,
-              ...deleteButtonPropsFromProps,
-          } as const)
-        : undefined;
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? ({
+                  ...(isLoading ? { disabled: true } : {}),
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  mutationMode,
+                  variant: "outlined",
+                  onSuccess: () => {
+                      if (routerType === "legacy") {
+                          legacyGoList(resource?.route ?? resource?.name ?? "");
+                      } else {
+                          go({ to: goListPath });
+                      }
+                  },
+                  recordItemId: id,
+                  dataProviderName,
+                  ...deleteButtonPropsFromProps,
+              } as const)
+            : undefined;
 
-    const saveButtonProps = {
+    const saveButtonProps: SaveButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         ...saveButtonPropsFromProps,
     };

@@ -8,7 +8,12 @@ import {
     useResource,
 } from "@refinedev/core";
 
-import { Breadcrumb, CreateButton, PageHeader } from "@components";
+import {
+    Breadcrumb,
+    CreateButton,
+    CreateButtonProps,
+    PageHeader,
+} from "@components";
 import { ListProps } from "../types";
 
 /**
@@ -48,16 +53,17 @@ export const List: React.FC<ListProps> = ({
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const createButtonProps = isCreateButtonVisible
-        ? ({
-              size: "middle",
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              ...createButtonPropsFromProps,
-          } as const)
-        : undefined;
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  size: "middle",
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
 
     const defaultExtra = isCreateButtonVisible ? (
         <CreateButton {...createButtonProps} />

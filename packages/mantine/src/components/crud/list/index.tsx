@@ -8,7 +8,7 @@ import {
     useTranslate,
 } from "@refinedev/core";
 
-import { CreateButton, Breadcrumb } from "@components";
+import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
 
 export const List: React.FC<ListProps> = (props) => {
@@ -43,16 +43,17 @@ export const List: React.FC<ListProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const createButtonProps = isCreateButtonVisible
-        ? ({
-              size: "sm",
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              ...createButtonPropsFromProps,
-          } as const)
-        : undefined;
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? ({
+                  size: "sm",
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              } as const)
+            : undefined;
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton {...createButtonProps} />

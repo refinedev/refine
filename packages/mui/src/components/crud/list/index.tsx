@@ -10,7 +10,7 @@ import {
 
 import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 
-import { CreateButton, Breadcrumb } from "@components";
+import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
 
 /**
@@ -57,15 +57,16 @@ export const List: React.FC<ListProps> = ({
             <Breadcrumb />
         );
 
-    const createButtonProps = isCreateButtonVisible
-        ? {
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              ...createButtonPropsFromProps,
-          }
-        : undefined;
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton {...createButtonProps} />

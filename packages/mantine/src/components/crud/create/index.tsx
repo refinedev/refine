@@ -18,7 +18,7 @@ import {
     useTranslate,
 } from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons";
-import { SaveButton, Breadcrumb } from "@components";
+import { SaveButton, Breadcrumb, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
 
 export const Create: React.FC<CreateProps> = (props) => {
@@ -60,7 +60,7 @@ export const Create: React.FC<CreateProps> = (props) => {
             <Breadcrumb />
         );
 
-    const saveButtonProps = {
+    const saveButtonProps: SaveButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         ...saveButtonPropsFromProps,
     };

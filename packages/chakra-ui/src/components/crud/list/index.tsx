@@ -9,7 +9,7 @@ import {
 
 import { Box, Heading } from "@chakra-ui/react";
 
-import { CreateButton, Breadcrumb } from "@components";
+import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
 
 export const List: React.FC<ListProps> = (props) => {
@@ -44,15 +44,16 @@ export const List: React.FC<ListProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const createButtonProps = isCreateButtonVisible
-        ? {
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              ...createButtonPropsFromProps,
-          }
-        : undefined;
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton {...createButtonProps} />

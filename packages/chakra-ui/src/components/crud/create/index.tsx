@@ -13,7 +13,7 @@ import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 // We use @tabler/icons for icons but you can use any icon library you want.
 import { IconArrowLeft } from "@tabler/icons";
 
-import { Breadcrumb, SaveButton } from "@components";
+import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
 
 export const Create: React.FC<CreateProps> = (props) => {
@@ -48,7 +48,7 @@ export const Create: React.FC<CreateProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const saveButtonProps = {
+    const saveButtonProps: SaveButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         ...saveButtonPropsFromProps,
     };

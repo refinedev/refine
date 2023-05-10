@@ -27,6 +27,10 @@ import {
     ListButton,
     RefreshButton,
     Breadcrumb,
+    ListButtonProps,
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
 } from "@components";
 import { ShowProps } from "../types";
 
@@ -90,7 +94,7 @@ export const Show: React.FC<ShowProps> = (props) => {
     const isEditButtonVisible =
         canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
-    const listButtonProps = hasList
+    const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
               resource:
@@ -99,8 +103,8 @@ export const Show: React.FC<ShowProps> = (props) => {
                       : resource?.identifier ?? resource?.name,
           }
         : undefined;
-    const editButtonProps = isEditButtonVisible
-        ? ({
+    const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
+        ? {
               ...(isLoading ? { disabled: true } : {}),
               color: "primary",
               variant: "filled",
@@ -109,27 +113,28 @@ export const Show: React.FC<ShowProps> = (props) => {
                       ? resource?.route
                       : resource?.identifier ?? resource?.name,
               recordItemId: id,
-          } as const)
-        : undefined;
-    const deleteButtonProps = isDeleteButtonVisible
-        ? {
-              ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              recordItemId: id,
-              onSuccess: () => {
-                  if (routerType === "legacy") {
-                      legacyGoList(resource?.route ?? resource?.name ?? "");
-                  } else {
-                      go({ to: goListPath });
-                  }
-              },
-              dataProviderName,
           }
         : undefined;
-    const refreshButtonProps = {
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? {
+                  ...(isLoading ? { disabled: true } : {}),
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  recordItemId: id,
+                  onSuccess: () => {
+                      if (routerType === "legacy") {
+                          legacyGoList(resource?.route ?? resource?.name ?? "");
+                      } else {
+                          go({ to: goListPath });
+                      }
+                  },
+                  dataProviderName,
+              }
+            : undefined;
+    const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         resource:
             routerType === "legacy"

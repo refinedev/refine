@@ -21,6 +21,10 @@ import {
     SaveButton,
     Breadcrumb,
     PageHeader,
+    ListButtonProps,
+    RefreshButtonProps,
+    DeleteButtonProps,
+    SaveButtonProps,
 } from "@components";
 import { EditProps } from "../types";
 
@@ -86,19 +90,17 @@ export const Edit: React.FC<EditProps> = ({
         ((resource?.meta?.canDelete ?? resource?.canDelete) ||
             deleteButtonPropsFromProps);
 
-    const listButtonProps = hasList
+    const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
               resource:
                   routerType === "legacy"
                       ? resource?.route
                       : resource?.identifier ?? resource?.name,
-              recordItemId: id,
-              dataProviderName,
           }
         : undefined;
 
-    const refreshButtonProps = {
+    const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         resource:
             routerType === "legacy"
@@ -108,28 +110,29 @@ export const Edit: React.FC<EditProps> = ({
         dataProviderName,
     };
 
-    const deleteButtonProps = isDeleteButtonVisible
-        ? ({
-              ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              mutationMode,
-              onSuccess: () => {
-                  if (routerType === "legacy") {
-                      legacyGoList(resource?.route ?? resource?.name ?? "");
-                  } else {
-                      go({ to: goListPath });
-                  }
-              },
-              recordItemId: id,
-              dataProviderName,
-              ...deleteButtonPropsFromProps,
-          } as const)
-        : undefined;
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? {
+                  ...(isLoading ? { disabled: true } : {}),
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  mutationMode,
+                  onSuccess: () => {
+                      if (routerType === "legacy") {
+                          legacyGoList(resource?.route ?? resource?.name ?? "");
+                      } else {
+                          go({ to: goListPath });
+                      }
+                  },
+                  recordItemId: id,
+                  dataProviderName,
+                  ...deleteButtonPropsFromProps,
+              }
+            : undefined;
 
-    const saveButtonProps = {
+    const saveButtonProps: SaveButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         ...saveButtonPropsFromProps,
     };

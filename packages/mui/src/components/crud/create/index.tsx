@@ -21,7 +21,7 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { Breadcrumb, SaveButton } from "@components";
+import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
 
 /**
@@ -68,7 +68,7 @@ export const Create: React.FC<CreateProps> = ({
             <Breadcrumb />
         );
 
-    const saveButtonProps = {
+    const saveButtonProps: SaveButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         ...saveButtonPropsFromProps,
     };

@@ -28,6 +28,10 @@ import {
     ListButton,
     EditButton,
     Breadcrumb,
+    ListButtonProps,
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
 } from "@components";
 import { ShowProps } from "../types";
 
@@ -97,7 +101,7 @@ export const Show: React.FC<ShowProps> = ({
             <Breadcrumb />
         );
 
-    const listButtonProps = hasList
+    const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
               resource:
@@ -106,17 +110,7 @@ export const Show: React.FC<ShowProps> = ({
                       : resource?.identifier ?? resource?.name,
           }
         : undefined;
-    const editButtonProps = isEditButtonVisible
-        ? {
-              ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resource?.identifier ?? resource?.name,
-              recordItemId: id,
-          }
-        : undefined;
-    const deleteButtonProps = isDeleteButtonVisible
+    const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
         ? {
               ...(isLoading ? { disabled: true } : {}),
               resource:
@@ -124,17 +118,28 @@ export const Show: React.FC<ShowProps> = ({
                       ? resource?.route
                       : resource?.identifier ?? resource?.name,
               recordItemId: id,
-              onSuccess: () => {
-                  if (routerType === "legacy") {
-                      legacyGoList(resource?.route ?? resource?.name ?? "");
-                  } else {
-                      go({ to: goListPath });
-                  }
-              },
-              dataProviderName,
           }
         : undefined;
-    const refreshButtonProps = {
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? {
+                  ...(isLoading ? { disabled: true } : {}),
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  recordItemId: id,
+                  onSuccess: () => {
+                      if (routerType === "legacy") {
+                          legacyGoList(resource?.route ?? resource?.name ?? "");
+                      } else {
+                          go({ to: goListPath });
+                      }
+                  },
+                  dataProviderName,
+              }
+            : undefined;
+    const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
         resource:
             routerType === "legacy"
