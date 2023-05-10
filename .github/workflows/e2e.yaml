@@ -31,6 +31,8 @@ jobs:
           npm run start -- --host 127.0.0.1 &
       - name: Run
         run: |
+          examplePath=$(echo "${{ matrix.cypressConfig }}" | sed 's/\/cypress.config.ts//g')
+          cd $examplePath
           npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
       # - name: Run Cypress
       #   uses: cypress-io/github-action@v5
