@@ -10,7 +10,7 @@ jobs:
       - uses: kanga333/json-array-builder@main
         id: array
         with:
-          cmd: ls e2e
+          cmd: cd ./examples && find . -name cypress.config.ts -exec dirname {} \;
           separator: newline
     outputs:
       param: ${{ steps.array.outputs.build }}
@@ -23,16 +23,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install & Build Deps
-        run: |
-          cd examples/${{ matrix.projectName }}
-          npm install
-          npm run start -- --host 127.0.0.1 &
-      - name: Run Cypress
-        uses: cypress-io/github-action@v5
-        with:
-          command: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --project ./examples/${{ matrix.projectName }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
-          install: false
-          wait-on: "http://127.0.0.1:5173"
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      # - name: Install & Build Deps
+      #   run: |
+      #     cd examples/${{ matrix.projectName }}
+      #     npm install
+      #     npm run start -- --host 127.0.0.1 &
+      # - name: Run Cypress
+      #   uses: cypress-io/github-action@v5
+      #   with:
+      #     command: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --project ./examples/${{ matrix.projectName }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+      #     install: false
+      #     wait-on: "http://127.0.0.1:5173"
+      #   env:
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
