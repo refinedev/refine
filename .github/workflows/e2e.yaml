@@ -3,28 +3,29 @@ name: e2e tests
 on: [pull_request]
 
 jobs:
-  generate_e2e_projects:
+  find-cypress-config:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: kanga333/json-array-builder@main
         id: array
         with:
-          cmd: find . -name cypress.config.ts
+          cmd: find . -name cypress.config.ts | sed 's/\/cypress.config.ts//g'
           separator: newline
     outputs:
       param: ${{ steps.array.outputs.build }}
-  cypress-e2e-tests:
+  run-cypress-tests:
     needs:
       - generate_e2e_projects
     strategy:
       matrix:
-        projectName: ${{ fromJson(needs.generate_e2e_projects.outputs.param) }}
+        cypressConfig: ${{ fromJson(needs.find-cypress-config.outputs.param) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       # - name: Install & Build Deps
       #   run: |
+
       #     cd examples/${{ matrix.projectName }}
       #     npm install
       #     npm run start -- --host 127.0.0.1 &
