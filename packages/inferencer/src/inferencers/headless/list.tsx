@@ -1,5 +1,5 @@
-import * as RefineReactTable from "@refinedev/react-table";
-import * as TanstackReactTable from "@tanstack/react-table";
+import { useTable } from "@refinedev/react-table";
+import { flexRender } from "@tanstack/react-table";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -826,8 +826,8 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
-        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
+        ["@refinedev/react-table", "RefineReactTable", { useTable }],
+        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

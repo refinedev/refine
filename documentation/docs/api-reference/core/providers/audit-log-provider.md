@@ -8,15 +8,27 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-**refine** allows you to track changes in your data and keep track of who made the changes. This is done by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
+**refine** allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
 
-An audit log provider must have the following three methods:
+To use `auditLogProvider`, you just need to pass it to `<Refine>`:
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+
+import auditLogProvider from "./auditLogProvider";
+
+const App: React.FC = () => {
+    return <Refine auditLogProvider={auditLogProvider} />;
+};
+```
+
+An `auditLogProvider` must have the following methods:
 
 -   `create`: Logs an event to the audit log.
 -   `get`: Returns a list of events.
 -   `update`: Updates an event in the audit log.
 
-Below are the corresponding interfaces for each of these methods.
+Below are the corresponding interfaces for each of these methods:
 
 ```ts
 const auditLogProvider = {
@@ -46,32 +58,18 @@ const auditLogProvider = {
 ```
 
 :::note
-**refine** provides the `useLog` and `useLogList` hooks to access your `auditLogProvider` methods from anywhere in your application.
+**refine** provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
 :::
-
-## Usage
-
-You just need to pass your `auditLogProvider` object to `<Refine>`:
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-
-import auditLogProvider from "./auditLogProvider";
-
-const App: React.FC = () => {
-    return <Refine auditLogProvider={auditLogProvider} />;
-};
-```
 
 ## Creating an Audit Log Provider
 
-Let's create an `auditLogProvider` to understand better. In this example, we will use `dataProvider` to handle events. But you can handle events whatever you want because **refine** provides an agnostic API. So, If you want to use a third-party library, of course, you can.
+Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to **refine** providing an agnostic API.
 
 ### `get`
 
-This method is used to list audit log events.
+This method is used to get a list of audit log events.
 
-For example, using `useLogList` hook to list all resource activities by a specific record id creates an event like this:
+For example, using the `useLogList` hook to list all resource activities by a specific record id creates an event like this:
 
 ```json
 {
@@ -83,7 +81,7 @@ For example, using `useLogList` hook to list all resource activities by a specif
 ```
 
 :::info
-The event is create with parameters passed to the `useLogList` hook.
+The event is created with parameters that were passed to the `useLogList` hook.
 :::
 
 Now let's see how we can handle these events in our audit log provider.
@@ -131,10 +129,10 @@ This method can take the following parameters via hooks. You can use these param
 
 ### `create`
 
-This method is used to create an audit log event. It is triggered when a new successful mutation or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
+This method is used to create an audit log event. It is triggered when a new successful mutation is made or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
 
 :::caution
-We recommend you create audit logs on the API side for security concerns because data can be changed on the client side.
+We recommend you create audit logs on the API side for security concerns since the data can be changed on the client side.
 :::
 
 When the mutations is successful, the `create` method is called with the following parameters, depending on the mutation type:
@@ -170,7 +168,7 @@ When a record is created, refine automatically sends an event to `create` method
 ```
 
 :::info
-The `id` of the created record is added to the `meta` object. It can be used for filtering purposes.
+The `id` of the created record is added to the `meta` object and can be used for filtering purposes.
 :::
 
 </TabItem>
@@ -198,7 +196,7 @@ When a record is updated, refine automatically sends an event to `create` method
 ```
 
 :::info
-**refine** returns the `previousData` from the react-query cache. So, if it cannot find the previous data, it will return `undefined`.
+**refine** returns the `previousData` from the react-query cache but it can't find it, it will return `undefined`.
 :::
 
 </TabItem>
@@ -228,10 +226,10 @@ When a record is created with the `useCreateMany` hook, refine automatically sen
     "resource": "posts",
     "data": [
         {
-            "title": "Hello World 1",
+            "title": "Hello World 1"
         },
         {
-            "title": "Hello World 2",
+            "title": "Hello World 2"
         }
     ],
     "meta": {
@@ -243,7 +241,7 @@ When a record is created with the `useCreateMany` hook, refine automatically sen
 ```
 
 :::info
-The `id` of the created record is added to the `meta` object. It can be used for filtering purposes.
+The `id` of the created record is added to the `meta` object and can be used for filtering purposes.
 :::
 
 </TabItem>
@@ -256,14 +254,14 @@ When a record is updated with the `useUpdateMany` hook, refine automatically sen
     "action": "updateMany",
     "resource": "posts",
     "data": {
-        "status": "published",
+        "status": "published"
     },
     "previousData": [
         {
-            "status": "draft",
+            "status": "draft"
         },
         {
-            "status": "archived",
+            "status": "archived"
         }
     ],
     "meta": {
@@ -274,7 +272,7 @@ When a record is updated with the `useUpdateMany` hook, refine automatically sen
 ```
 
 :::info
-**refine** returns the `previousData` from the react-query cache. So, if it cannot find the previous data, it will return `undefined`.
+**refine** returns the `previousData` from the react-query cache but if it can't find it, it will return `undefined`.
 :::
 
 </TabItem>
@@ -297,13 +295,13 @@ When a record is deleted with the `useDeleteMany` hook, refine automatically sen
 </Tabs>
 
 :::tip
-If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object is added to the event with the value returned by `getUserIdentity`.
+If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
 
 :::
 
 <br />
 
-Now let's see how we can handle these events in our audit log provider.
+And here is how we can handle these events in our audit log provider:
 
 ```ts title="auditLogProvider.ts"
 import refineSimpleRestDataProvider from "@refinedev/simple-rest";
@@ -337,19 +335,13 @@ This method can take the following parameters.
 <br/>
 
 :::info
-**refine** will use this `create` method in the [`useLog`](/api-reference/core/hooks/audit-log/useLog.md) hook.
-
-[Refer to the `useLog` documentation for more information. &#8594](/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
 
 ### `update`
 
 This method is used to update an audit log event.
-
-:::tip
-If you want to name an event, this is the way to do it. You can create a milestone by naming it.
-:::
 
 For example, using `useLog`'s `log` method creates an event like below:
 
@@ -379,6 +371,10 @@ const auditLogProvider: AuditLogProvider = {
 };
 ```
 
+:::info
+For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
+:::
+
 #### Parameter Types
 
 This method can take the following parameters.
@@ -390,21 +386,17 @@ This method can take the following parameters.
 
 <br />
 
-:::info
-
-**refine** will use this `update` method in the [`useLog`](/api-reference/core/hooks/audit-log/useLog.md) hook.
-
-[Refer to the `useLog` documentation for more information. &#8594](/api-reference/core/hooks/audit-log/useLog.md)
-
+:::tip
+You can use this hook to name an event and create a milestone.
 :::
 
 ## Supported Hooks
 
-**refine** creates an audit log event when the mutation is successful on hooks that `useCreate`, `useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks.
+**refine** will send specific parameters to the audit log provider's `create` method when a mutation is successful.
+
+Here are the parameters each hook send to `create`:
 
 ### `useCreate`
-
-When `useCreate` is called, `refine` sends the following parameters to audit log provider's `create` method.
 
 ```ts
 const { mutate } = useCreate();
@@ -441,8 +433,6 @@ mutate({
 
 ### `useCreateMany`
 
-When `useCreateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
-
 ```ts
 const { mutate } = useCreateMany();
 
@@ -450,15 +440,15 @@ mutate({
     resource: "posts",
     values: [
         {
-            "title": "Title1",
-            "status": "published",
-            "content": "New Post Content1"
+            title: "Title1",
+            status: "published",
+            content: "New Post Content1",
         },
         {
-            "title": "Title2",
-            "status": "published",
-            "content": "New Post Content2"
-        }
+            title: "Title2",
+            status: "published",
+            content: "New Post Content2",
+        },
     ],
     metaData: {
         foo: "bar",
@@ -491,8 +481,6 @@ mutate({
 ```
 
 ### `useUpdate`
-
-When `useUpdate` is called, `refine` sends the following parameters to audit log provider's `create` method.
 
 ```ts
 const { mutate } = useUpdate();
@@ -528,8 +516,6 @@ mutate({
 
 ### `useUpdateMany`
 
-When `useUpdateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
-
 ```ts
 const { mutate } = useUpdateMany();
 
@@ -547,14 +533,14 @@ mutate({
     "action": "updateMany",
     "resource": "posts",
     "data": {
-        "title": "Updated New Title",
+        "title": "Updated New Title"
     },
     "previousData": [
         {
-            "title": "Title1",
+            "title": "Title1"
         },
         {
-            "title": "Title2",
+            "title": "Title2"
         }
     ],
     "meta": {
@@ -564,8 +550,6 @@ mutate({
 ```
 
 ### `useDelete`
-
-When `useDelete` is called, `refine` sends the following parameters to audit log provider's `create` method.
 
 ```ts
 const { mutate } = useDelete();
@@ -588,8 +572,6 @@ mutate({
 
 ### `useDeleteMany`
 
-When `useDeleteMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
-
 ```ts
 const { mutate } = useDeleteMany();
 
@@ -609,13 +591,11 @@ mutate({
 }
 ```
 
-<br/>
-
 ## Enable/Disable to Audit Log by Mutation Type for a Resource
 
-The `meta.audit` allows you to manage the audit log events for a resource. In addition, it can be managed in which type of mutations an event will be created. **If no definition is made, it works in all actions**.
+With `meta.audit`, you can specify which mutations trigger audit logs; otherwise, all create, update, and delete actions will be logged by default.
 
-In this case, only events will be created for the `create` mutation.
+For example, if you have the code below, only events will be created for the `create` mutation.
 
 ```ts title="App.tsx"
 <Refine

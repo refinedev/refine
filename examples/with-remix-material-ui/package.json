@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "nookies": "^2.5.2",
-    "@refinedev/inferencer": "^3.3.2",
+    "@refinedev/inferencer": "^3.3.4",
     "@refinedev/kbar": "^1.0.0",
     "@remix-run/node": "^1.6.7",
     "@remix-run/react": "^1.6.7",
@@ -19,7 +19,7 @@
     "@refinedev/cli": "^2.5.3",
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/remix-router": "^2.1.0",
-    "@refinedev/mui": "^4.14.5",
+    "@refinedev/mui": "^4.14.7",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",

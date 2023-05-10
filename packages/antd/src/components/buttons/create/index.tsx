@@ -96,6 +96,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.CreateButton}
+                className={RefineButtonClassNames.CreateButton}
                 type="primary"
                 className={RefineButtonClassNames.CreateButton}
                 {...rest}

@@ -1,8 +1,13 @@
-import * as RefineCore from "@refinedev/core";
-import * as RefineChakraUI from "@refinedev/chakra-ui";
-import * as ChakraUI from "@chakra-ui/react";
-import * as RefineReactHookForm from "@refinedev/react-hook-form";
-import * as ReactHookForm from "react-hook-form";
+import { Edit } from "@refinedev/chakra-ui";
+import {
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    Select,
+    Input,
+    Checkbox,
+} from "@chakra-ui/react";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -408,15 +413,20 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@refinedev/core", "RefineCore", RefineCore],
-        ["@refinedev/chakra-ui", "RefineChakraUI", RefineChakraUI],
+        ["@refinedev/chakra-ui", "RefineChakraUI", { Edit }],
+        ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
         [
-            "@refinedev/react-hook-form",
-            "RefineReactHookForm",
-            RefineReactHookForm,
+            "@chakra-ui/react",
+            "ChakraUI",
+            {
+                FormControl,
+                FormLabel,
+                FormErrorMessage,
+                Select,
+                Input,
+                Checkbox,
+            },
         ],
-        ["@chakra-ui/react", "ChakraUI", ChakraUI],
-        ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

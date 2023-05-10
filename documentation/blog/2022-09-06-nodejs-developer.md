@@ -48,7 +48,8 @@ Luckily, ES6 solved some of these problems by introducing Promises as a new way 
 
 ---
 
-<PromotionBanner title="Backend devs love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
 
 ---
 

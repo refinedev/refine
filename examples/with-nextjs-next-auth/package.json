@@ -9,14 +9,14 @@
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.16.0",
+    "@refinedev/antd": "^5.16.2",
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/nextjs-router": "^5.1.6",
     "@refinedev/simple-rest": "^4.5.0",
-    "@refinedev/inferencer": "^3.3.2",
+    "@refinedev/inferencer": "^3.3.4",
     "cross-env": "^7.0.3",
-    "next": "^13.0.6",
+    "next": "13.0.6",
     "next-auth": "^4.20.1",
     "nookies": "^2.5.2",
     "react": "^18.0.0",

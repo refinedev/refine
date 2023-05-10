@@ -1,9 +1,15 @@
-import * as RefineMui from "@refinedev/mui";
-import * as EmotionReact from "@emotion/react";
-import * as EmotionStyled from "@emotion/styled";
-import * as MuiLab from "@mui/lab";
-import * as MuiMaterial from "@mui/material";
-import * as MuiXDataGrid from "@mui/x-data-grid";
+import {
+    Show,
+    TagField,
+    TextFieldComponent,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/mui";
+import { Typography, Stack } from "@mui/material";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -560,12 +566,22 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/mui", "RefineMui", RefineMui],
-        ["@emotion/react", "EmotionReact", EmotionReact],
-        ["@emotion/styled", "EmotionStyled", EmotionStyled],
-        ["@mui/lab", "MuiLab", MuiLab],
-        ["@mui/material", "MuiMaterial", MuiMaterial],
-        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+        [
+            "@refinedev/mui",
+            "RefineMui",
+            {
+                Show,
+                TagField,
+                TextFieldComponent,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["@mui/material", "MuiMaterial", { Typography, Stack }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

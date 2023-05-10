@@ -121,17 +121,7 @@ This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensiv
 
 ---
 
-<PromotionBanner title="CRUD apps are just boring!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" description={<div>
-            Meet the headless, React-based solution to build sleek CRUD applications.  refine eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n.
-            <br />
-            <br />
-            Try{" "}
-            <a href="https://github.com/refinedev/refine" target="_blank">
-                refine
-            </a>{" "}
-            to rapidly build your next <b>CRUD</b> project, whether {"it's"} an
-            admin panel, dashboard, internal tool or storefront.
-        </div>} />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 

@@ -99,7 +99,10 @@ Now, we are able to inspect the browser console when testing the following cases
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 ## Temporal API Data Types

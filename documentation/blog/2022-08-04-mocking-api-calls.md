@@ -152,7 +152,8 @@ With the nock mock service, we can intercept requests to the API and return cust
 
 ---
 
-<PromotionBanner title="React state management: Even the pros get it wrong!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
 
 ---
 

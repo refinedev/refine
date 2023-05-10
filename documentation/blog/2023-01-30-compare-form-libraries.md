@@ -99,7 +99,10 @@ The example above is a basic illustration of React Hook Form. Do check out the R
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 

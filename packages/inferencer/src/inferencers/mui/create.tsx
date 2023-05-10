@@ -1,11 +1,13 @@
-import * as RefineMui from "@refinedev/mui";
-import * as RefineReactHookForm from "@refinedev/react-hook-form";
-import * as EmotionReact from "@emotion/react";
-import * as EmotionStyled from "@emotion/styled";
-import * as MuiLab from "@mui/lab";
-import * as MuiMaterial from "@mui/material";
-import * as MuiXDataGrid from "@mui/x-data-grid";
-import * as ReactHookForm from "react-hook-form";
+import { Create, useAutocomplete } from "@refinedev/mui";
+import { useForm } from "@refinedev/react-hook-form";
+import {
+    Box,
+    Autocomplete,
+    TextField,
+    Checkbox,
+    FormControlLabel,
+} from "@mui/material";
+import { Controller } from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -382,18 +384,14 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@refinedev/mui", "RefineMui", RefineMui],
+        ["@refinedev/mui", "RefineMui", { Create, useAutocomplete }],
+        ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
         [
-            "@refinedev/react-hook-form",
-            "RefineReactHookForm",
-            RefineReactHookForm,
+            "@mui/material",
+            "MuiMaterial",
+            { Box, Autocomplete, TextField, Checkbox, FormControlLabel },
         ],
-        ["@emotion/react", "EmotionReact", EmotionReact],
-        ["@emotion/styled", "EmotionStyled", EmotionStyled],
-        ["@mui/lab", "MuiLab", MuiLab],
-        ["@mui/material", "MuiMaterial", MuiMaterial],
-        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
-        ["react-hook-form", "ReactHookForm", ReactHookForm],
+        ["react-hook-form", "ReactHookForm", { Controller }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

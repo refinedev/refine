@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { VisibilityOutlined } from "@mui/icons-material";
 
@@ -102,6 +105,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ShowButton}
+                className={RefineButtonClassNames.ShowButton}
                 {...restProps}
             >
                 {hideText ? (
