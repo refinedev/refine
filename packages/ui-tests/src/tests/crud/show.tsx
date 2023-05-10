@@ -48,8 +48,13 @@ export const crudShowTests = function (
                 <Show
                     canEdit
                     canDelete
-                    headerButtons={({ defaultButtons, editButtonProps }) => {
-                        expect(editButtonProps).not.toBeDefined();
+                    headerButtons={({
+                        defaultButtons,
+                        editButtonProps,
+                        deleteButtonProps,
+                    }) => {
+                        expect(editButtonProps).toBeDefined();
+                        expect(deleteButtonProps).toBeDefined();
                         return <>{defaultButtons}</>;
                     }}
                 />,
