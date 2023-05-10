@@ -26,10 +26,12 @@ const PostShow = () => {
                 return (
                     <>
                         {/* custom components */}
-                        <ListButton {...listButtonProps} />
+                        {listButtonProps && <ListButton {...listButtonProps} />}
+                        {editButtonProps && <EditButton {...editButtonProps} />}
+                        {deleteButtonProps && (
+                            <DeleteButton {...deleteButtonProps} />
+                        )}
                         <RefreshButton {...refreshButtonProps} />
-                        <EditButton {...editButtonProps} />
-                        <DeleteButton {...deleteButtonProps} />
                     </>
                 );
             }}
