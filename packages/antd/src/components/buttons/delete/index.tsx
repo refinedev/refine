@@ -10,7 +10,10 @@ import {
     pickNotDeprecated,
     useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { DeleteButtonProps } from "../types";
 
@@ -116,6 +119,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 icon={<DeleteOutlined />}
                 disabled={data?.can === false}
                 data-testid={RefineButtonTestIds.DeleteButton}
+                className={RefineButtonClassNames.DeleteButton}
                 {...rest}
             >
                 {!hideText &&

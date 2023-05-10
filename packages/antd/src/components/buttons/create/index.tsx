@@ -10,7 +10,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { CreateButtonProps } from "../types";
 
@@ -94,6 +97,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.CreateButton}
                 type="primary"
+                className={RefineButtonClassNames.CreateButton}
                 {...rest}
             >
                 {!hideText &&
