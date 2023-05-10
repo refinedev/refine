@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons";
 
@@ -50,6 +53,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     leftIcon={<IconFileImport size={18} {...svgIconProps} />}
                     loading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
+                    className={RefineButtonClassNames.ImportButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.import", "Import")}

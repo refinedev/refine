@@ -29,6 +29,7 @@ import {
     Breadcrumb,
 } from "@components";
 import { EditProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Edit: React.FC<EditProps> = (props) => {
     const {
@@ -196,7 +197,11 @@ export const Edit: React.FC<EditProps> = (props) => {
                     <Group spacing="xs">
                         {buttonBack}
                         {title ?? (
-                            <Title order={3} transform="capitalize">
+                            <Title
+                                order={3}
+                                transform="capitalize"
+                                className={RefinePageHeaderClassNames.Title}
+                            >
                                 {translate(
                                     `${resource?.name}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(

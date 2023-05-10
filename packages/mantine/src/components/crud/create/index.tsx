@@ -20,6 +20,7 @@ import {
 import { IconArrowLeft } from "@tabler/icons";
 import { SaveButton, Breadcrumb } from "@components";
 import { CreateProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {
@@ -112,7 +113,11 @@ export const Create: React.FC<CreateProps> = (props) => {
                     <Group spacing="xs">
                         {buttonBack}
                         {title ?? (
-                            <Title order={3} transform="capitalize">
+                            <Title
+                                order={3}
+                                transform="capitalize"
+                                className={RefinePageHeaderClassNames.Title}
+                            >
                                 {translate(
                                     `${resource?.name}.titles.create`,
                                     `Create ${userFriendlyResourceName(

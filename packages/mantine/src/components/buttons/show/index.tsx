@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconEye } from "@tabler/icons";
 
@@ -117,6 +120,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     leftIcon={<IconEye size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
+                    className={RefineButtonClassNames.ShowButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.show", "Show")}

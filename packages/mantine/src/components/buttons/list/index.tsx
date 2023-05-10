@@ -10,7 +10,10 @@ import {
     useLink,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons";
 
@@ -117,6 +120,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     leftIcon={<IconList size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
+                    className={RefineButtonClassNames.ListButton}
                     {...rest}
                 >
                     {children ??

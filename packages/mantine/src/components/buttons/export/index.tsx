@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileExport } from "@tabler/icons";
 
@@ -43,6 +46,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             loading={loading}
             leftIcon={<IconFileExport size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
+            className={RefineButtonClassNames.ExportButton}
             {...rest}
         >
             {children ?? translate("buttons.export", "Export")}

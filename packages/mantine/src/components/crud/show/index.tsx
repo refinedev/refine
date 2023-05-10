@@ -29,6 +29,7 @@ import {
     Breadcrumb,
 } from "@components";
 import { ShowProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Show: React.FC<ShowProps> = (props) => {
     const {
@@ -192,7 +193,11 @@ export const Show: React.FC<ShowProps> = (props) => {
                     <Group spacing="xs">
                         {buttonBack}
                         {title ?? (
-                            <Title order={3} transform="capitalize">
+                            <Title
+                                order={3}
+                                transform="capitalize"
+                                className={RefinePageHeaderClassNames.Title}
+                            >
                                 {translate(
                                     `${resource?.name}.titles.show`,
                                     `Show ${userFriendlyResourceName(

@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons";
 
@@ -110,6 +113,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     data-testid={RefineButtonTestIds.CreateButton}
                     color="primary"
                     variant="filled"
+                    className={RefineButtonClassNames.CreateButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.create", "Create")}

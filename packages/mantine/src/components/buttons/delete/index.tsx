@@ -8,7 +8,10 @@ import {
     pickNotDeprecated,
     useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons";
 
@@ -143,6 +146,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         }
                         leftIcon={<IconTrash size={18} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
+                        className={RefineButtonClassNames.DeleteButton}
                         {...rest}
                     >
                         {children ?? translate("buttons.delete", "Delete")}

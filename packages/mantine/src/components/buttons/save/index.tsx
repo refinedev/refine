@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons";
 
@@ -40,6 +43,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             variant="filled"
             leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
+            className={RefineButtonClassNames.SaveButton}
             {...rest}
         >
             {children ?? translate("buttons.save", "Save")}
