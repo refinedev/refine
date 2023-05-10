@@ -144,9 +144,10 @@ export const useDrawerForm = <
 
     const action = rest.action ?? actionFromParams ?? "";
 
-    const syncingId =
-        syncWithLocation === true ||
-        (typeof syncWithLocation === "object" && syncWithLocation.syncId);
+    const syncingId = !(
+        typeof syncWithLocation === "object" &&
+        syncWithLocation?.syncId === false
+    );
 
     const syncWithLocationKey =
         typeof syncWithLocation === "object" && "key" in syncWithLocation
