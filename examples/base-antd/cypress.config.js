@@ -1,8 +1,6 @@
-import { defineConfig } from "cypress";
+const { defineConfig } = require("cypress");
 
-console.log("cypress config1");
-
-export default defineConfig({
+module.exports = defineConfig({
     projectId: "sq5j3e",
     e2e: {
         supportFile: "../../cypress/support/e2e.ts",
