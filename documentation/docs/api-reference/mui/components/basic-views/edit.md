@@ -89,7 +89,9 @@ const SampleEdit = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -516,7 +518,9 @@ const SampleEdit = () => {
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                                value === undefined ||
+                                option?.id?.toString() ===
+                                    (value?.id ?? value)?.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
@@ -869,7 +873,15 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, refreshButtonProps, listButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, [`<ListButton>`][list-button] will not rendered and `listButtonProps` will `undefined`.
+
+:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -885,6 +897,53 @@ const PostEdit: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <span>Rest of your page here</span>
+        </Edit>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/edit/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.EditButton recordItemId={123} />
+                    </div>
+                ),
+                edit: PostEdit,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `refreshButtonProps` and `listButtonProps` to utilize the default values of the [`<ListButton>`][list-button] and [`<RefreshButton>`][refresh-button] components.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+// visible-block-start
+import { Edit, ListButton, RefreshButton } from "@refinedev/mui";
+import { Button } from "@mui/material";
+
+const PostEdit: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <Edit
+            // highlight-start
+            headerButtons={({ refreshButtonProps, listButtonProps }) => (
+                <>
+                    <RefreshButton {...refreshButtonProps} />
+                    <ListButton {...listButtonProps} />
                     <Button type="primary">Custom Button</Button>
                 </>
             )}
@@ -972,7 +1031,15 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`<DeleteButton>`][delete-button] at the footer.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps, deleteButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If [user don't have permission to delete](#candelete-and-deletebuttonprops), [`<DeleteButton>`][delete-button] will not rendered and `deleteButtonProps` will `undefined`.
+
+:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -989,6 +1056,53 @@ const PostEdit: React.FC = () => {
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <span>Rest of your page here</span>
+        </Edit>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/edit/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.EditButton recordItemId={123} />
+                    </div>
+                ),
+                edit: PostEdit,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` and `deleteButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] and [`<DeleteButton>`][delete-button] components.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+// visible-block-start
+import { Edit, SaveButton, DeleteButton } from "@refinedev/mui";
+import { Button } from "@mui/material";
+
+const PostEdit: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <Edit
+            // highlight-start
+            footerButtons={({ saveButtonProps, deleteButtonProps }) => (
+                <>
+                    <Button type="primary">Custom Button</Button>
+                    <SaveButton {...saveButtonProps} />
+                    <DeleteButton {...deleteButtonProps} />
                 </>
             )}
             // highlight-end
@@ -1190,3 +1304,8 @@ const Wrapper = ({ children }) => {
     );
 };
 ```
+
+[list-button]: /docs/api-reference/mui/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/mui/components/buttons/refresh-button/
+[save-button]: /docs/api-reference/mui/components/buttons/save-button/
+[delete-button]: /docs/api-reference/mui/components/buttons/delete-button/

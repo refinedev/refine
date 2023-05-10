@@ -1,6 +1,9 @@
 import {
     CreateButtonProps,
     DeleteButtonProps,
+    EditButtonProps,
+    RefreshButtonProps,
+    ListButtonProps,
     SaveButtonProps,
 } from "@components/buttons";
 import {
@@ -35,7 +38,9 @@ export type EditProps = RefineCrudEditProps<
     CardProps,
     CardHeaderProps,
     CardContentProps,
-    {}
+    {},
+    RefreshButtonProps,
+    ListButtonProps
 >;
 
 export type ListProps = RefineCrudListProps<
@@ -53,5 +58,9 @@ export type ShowProps = RefineCrudShowProps<
     CardProps,
     CardHeaderProps,
     CardContentProps,
-    {}
+    {},
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
+    ListButtonProps
 >;
