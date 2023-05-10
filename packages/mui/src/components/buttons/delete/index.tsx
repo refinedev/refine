@@ -8,7 +8,10 @@ import {
     pickNotDeprecated,
     useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { DeleteOutline } from "@mui/icons-material";
@@ -146,6 +149,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         color="error"
                         onClick={handleCloseOnConfirm}
                         autoFocus
+                        className={RefineButtonClassNames.DeleteButton}
                     >
                         {confirmOkText ?? translate("buttons.delete", "Delete")}
                     </Button>

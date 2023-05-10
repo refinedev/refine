@@ -12,6 +12,10 @@ import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 
 import { CreateButton, Breadcrumb } from "@components";
 import { ListProps } from "../types";
+import {
+    RefineButtonClassNames,
+    RefinePageHeaderClassNames,
+} from "@refinedev/ui-types";
 
 /**
  * `<List>` provides us a layout for displaying the page.
@@ -74,7 +78,10 @@ export const List: React.FC<ListProps> = ({
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
                     title ?? (
-                        <Typography variant="h5">
+                        <Typography
+                            variant="h5"
+                            className={RefinePageHeaderClassNames.Title}
+                        >
                             {translate(
                                 `${resource?.name}.titles.list`,
                                 userFriendlyResourceName(

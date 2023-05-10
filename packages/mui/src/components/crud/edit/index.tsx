@@ -32,6 +32,7 @@ import {
     Breadcrumb,
 } from "@components";
 import { EditProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
  * `<Edit>` provides us a layout for displaying the page.
@@ -167,7 +168,10 @@ export const Edit: React.FC<EditProps> = ({
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
                     title ?? (
-                        <Typography variant="h5">
+                        <Typography
+                            variant="h5"
+                            className={RefinePageHeaderClassNames.Title}
+                        >
                             {translate(
                                 `${resource?.name}.titles.edit`,
                                 `Edit ${userFriendlyResourceName(

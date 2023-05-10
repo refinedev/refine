@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { AddBoxOutlined } from "@mui/icons-material";
 
@@ -99,6 +102,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 variant="contained"
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.CreateButton}
+                className={RefineButtonClassNames.CreateButton}
                 {...restProps}
             >
                 {hideText ? (
