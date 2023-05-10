@@ -5,7 +5,6 @@ module.exports = {
             type: "category",
             label: "Getting Started",
             items: ["getting-started/overview", "getting-started/quickstart"],
-            collapsed: false,
         },
         {
             type: "doc",
@@ -23,12 +22,9 @@ module.exports = {
         },
         {
             type: "category",
+            collapsible: false,
             label: "API Reference",
-            link: {
-                type: "generated-index",
-                title: "API Reference",
-                slug: "/api-reference",
-            },
+            className: "category-as-header",
             items: [
                 "api-reference/general-concepts",
                 {

@@ -1,8 +1,7 @@
-import React from "react";
-import Admonition from "@theme-original/Admonition";
-import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import Translate from "@docusaurus/Translate";
+import clsx from "clsx";
+import React from "react";
 import styles from "./styles.module.css";
 
 function GithubIcon() {
@@ -47,6 +46,7 @@ function NoteIcon() {
         </svg>
     );
 }
+
 function TipIcon() {
     return (
         <svg viewBox="0 0 12 16">
@@ -57,6 +57,7 @@ function TipIcon() {
         </svg>
     );
 }
+
 function DangerIcon() {
     return (
         <svg viewBox="0 0 12 16">
@@ -67,6 +68,7 @@ function DangerIcon() {
         </svg>
     );
 }
+
 function InfoIcon() {
     return (
         <svg viewBox="0 0 14 16">
@@ -77,6 +79,7 @@ function InfoIcon() {
         </svg>
     );
 }
+
 function CautionIcon() {
     return (
         <svg viewBox="0 0 16 16">
@@ -150,6 +153,7 @@ const AdmonitionConfigs = {
         ),
     },
 };
+
 // Legacy aliases, undocumented but kept for retro-compatibility
 const aliases = {
     secondary: "note",
@@ -163,9 +167,6 @@ function getAdmonitionConfig(unsafeType) {
     if (config) {
         return config;
     }
-    console.warn(
-        `No admonition config found for admonition type "${type}". Using Info as fallback.`,
-    );
     return AdmonitionConfigs.info;
 }
 // Workaround because it's difficult in MDX v1 to provide a MDX title as props

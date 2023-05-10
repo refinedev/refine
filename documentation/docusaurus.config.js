@@ -277,6 +277,11 @@ const siteConfig = {
                 },
             ],
         },
+        docs: {
+            sidebar: {
+                autoCollapseCategories: true,
+            },
+        },
     },
     customFields: {
         /** Footer Fields */

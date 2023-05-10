@@ -1,24 +1,28 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
-import { createPortal } from "react-dom";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useHistory } from "@docusaurus/router";
-import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
-import Link from "@docusaurus/Link";
-import Head from "@docusaurus/Head";
-import { isRegexpStringMatch } from "@docusaurus/theme-common";
-import { useSearchPage } from "@docusaurus/theme-common/internal";
 import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
-import { useAlgoliaContextualFacetFilters } from "@docusaurus/theme-search-algolia/client";
+import Head from "@docusaurus/Head";
+import Link from "@docusaurus/Link";
+import { useHistory } from "@docusaurus/router";
+import {
+    isRegexpStringMatch,
+    useSearchLinkCreator,
+} from "@docusaurus/theme-common";
+import {
+    useAlgoliaContextualFacetFilters,
+    useSearchResultUrlProcessor,
+} from "@docusaurus/theme-search-algolia/client";
 import Translate from "@docusaurus/Translate";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import translations from "@theme/SearchTranslations";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 let DocSearchModal = null;
 function Hit({ hit, children }) {
     return <Link to={hit.url}>{children}</Link>;
 }
 function ResultsFooter({ state, onClose }) {
-    const { generateSearchPageLink } = useSearchPage();
+    const createSearchLink = useSearchLinkCreator();
     return (
-        <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
+        <Link to={createSearchLink(state.query)} onClick={onClose}>
             <Translate
                 id="theme.SearchBar.seeAll"
                 values={{ count: state.context.nbHits }}
@@ -32,8 +36,9 @@ function mergeFacetFilters(f1, f2) {
     const normalize = (f) => (typeof f === "string" ? [f] : f);
     return [...normalize(f1), ...normalize(f2)];
 }
-function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
+function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
     const { siteMetadata } = useDocusaurusContext();
+    const processSearchResultUrl = useSearchResultUrlProcessor();
     const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
     const configFacetFilters = props.searchParameters?.facetFilters ?? [];
     const facetFilters = contextualSearch
@@ -46,13 +51,12 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         ...props.searchParameters,
         facetFilters,
     };
-    const { withBaseUrl } = useBaseUrlUtils();
     const history = useHistory();
     const searchContainer = useRef(null);
     const searchButtonRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [initialQuery, setInitialQuery] = useState(undefined);
-    const importDocSearchModalIfNeeded = useCallback(() => {
+    const importDocSearchModalIfNeeded = useCallback(async () => {
         if (DocSearchModal) {
             return Promise.resolve();
         }
@@ -99,25 +103,20 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         },
     }).current;
     const transformItems = useRef((items) =>
-        items.map((item) => {
-            // If Algolia contains a external domain, we should navigate without
-            // relative URL
-            if (isRegexpStringMatch(externalUrlRegex, item.url)) {
-                return item;
-            }
-            // We transform the absolute URL into a relative URL.
-            const url = new URL(item.url);
-            return {
-                ...item,
-                url: withBaseUrl(`${url.pathname}${url.hash}`),
-            };
-        }),
+        props.transformItems
+            ? // Custom transformItems
+              props.transformItems(items)
+            : // Default transformItems
+              items.map((item) => ({
+                  ...item,
+                  url: processSearchResultUrl(item.url),
+              })),
     ).current;
     const resultsFooterComponent = useMemo(
         () =>
-            // eslint-disable-next-line react/no-unstable-nested-components
-            (footerProps) =>
-                <ResultsFooter {...footerProps} onClose={onClose} />,
+            function ResultsFooterWrapper(footerProps) {
+                return <ResultsFooter {...footerProps} onClose={onClose} />;
+            },
         [onClose],
     );
     const transformSearchClient = useCallback(
@@ -187,5 +186,9 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
 }
 export default function SearchBar() {
     const { siteConfig } = useDocusaurusContext();
-    return <DocSearch {...siteConfig.themeConfig.algolia} className="asd" />;
+    return (
+        <DocSearch
+            {...(siteConfig.themeConfig.algolia as Record<string, any>)}
+        />
+    );
 }

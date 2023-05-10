@@ -1,13 +1,13 @@
 import { Plugin } from "@docusaurus/types";
 //
+import fs from "fs-extra";
+import ora from "ora";
+import path from "path";
 import {
-    withCustomConfig,
     ComponentDoc,
     PropItem,
+    withCustomConfig,
 } from "react-docgen-typescript";
-import path from "path";
-import fs from "fs-extra";
-import {} from "react-docgen-typescript";
 import { ParentType, Props } from "react-docgen-typescript/lib/parser";
 import ts from "typescript";
 
@@ -22,13 +22,7 @@ type DocgenContent = Record<string, Record<string, DeclarationType>>;
 /** CONSTANTS */
 const packagesDir = path.join(__dirname, "./../..", "./packages");
 
-const packagePrefix = "@refinedev";
-
 const sourceDir = "./src";
-
-const outputDir = path.join(__dirname, "./../", "./src/assets/docgen");
-
-const outputFileName = "docgen.json";
 
 const excludedFilePatterns = [
     "node_modules",
@@ -98,6 +92,8 @@ const replacementProps: Record<string, string> = {
         "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
 };
 
+const spinner = ora("Generating Refine declarations...");
+
 /** HELPERS */
 const getPackageNamePathMap = async (directory: string) => {
     const packages = await fs.readdir(directory);
@@ -164,28 +160,8 @@ const getComponentName = (name: string, _fileName: string) => {
     // return `${getPrefixFromDeclarationPath(fileName)}#${name}`;
 };
 
-const writeDeclarationsToFile = (
-    filePath: string,
-    declarations:
-        | DeclarationType[]
-        | Record<string, DeclarationType>
-        | Record<string, Record<string, DeclarationType>>,
-) => {
-    fs.writeJSONSync(filePath, declarations, {
-        spaces: 2,
-    });
-};
-
 const getOutputName = (packageName: string) => {
     return packageName;
-    // return packageName.replace(`${packagePrefix}/`, "");
-};
-
-const getOutputFileName = (packageName: string, dir: string) => {
-    const fileName = `${getOutputName(packageName)}.json`;
-    const filePath = path.join(dir, fileName);
-
-    return filePath;
 };
 
 const declarationFilter = (declaration: ParentType) => {
@@ -312,7 +288,7 @@ const generateDeclarations = async (packagePaths: [string, string][]) => {
             const sourcePath = path.join(packagePath, sourceDir);
 
             if (!(await fs.pathExists(sourcePath))) {
-                console.log("Component path does not exist", sourcePath);
+                spinner.fail("Component path does not exist", sourcePath);
                 process.exit(1);
             }
 
@@ -329,21 +305,16 @@ const generateDeclarations = async (packagePaths: [string, string][]) => {
 
             const outputName = getOutputName(packageName);
 
-            // const outputFileName = getOutputFileName(packageName, outputDir);
-
-            // writeDeclarationsToFile(outputFileName, transposed);
-
             generated[outputName] = transposed;
 
-            console.log(`- Generated declarations - ${packageName}`);
+            spinner.stop();
+            spinner.start(`- Generated declarations - ${packageName}`);
 
             return [packageName, packagePath];
         }),
     );
 
     return generated;
-
-    // writeDeclarationsToFile(path.join(outputDir, outputFileName), generated);
 };
 
 /** DOCGEN */
@@ -351,16 +322,14 @@ const handleDocgen = async () => {
     const packagePathMap = await getPackageNamePathMap(packagesDir);
     const packagePathMapArray = Object.entries(packagePathMap);
 
-    console.log(`- Found ${packagePathMapArray.length} packages`);
+    spinner.stop();
+    spinner.start(`- Found ${packagePathMapArray.length} packages`);
 
-    // if (!fs.existsSync(outputDir)) {
-    //     console.log(`- Creating output directory`);
-    //     fs.mkdirSync(outputDir, { recursive: true });
-    // }
+    const res = await generateDeclarations(packagePathMapArray);
 
-    return await generateDeclarations(packagePathMapArray);
+    spinner.succeed("Generated declarations");
 
-    // console.log(`- Saved declarations to ${outputDir}`);
+    return res;
 };
 
 export default function plugin(): Plugin<DocgenContent> {
@@ -371,7 +340,7 @@ export default function plugin(): Plugin<DocgenContent> {
         },
         async loadContent() {
             if (!process.env.DISABLE_DOCGEN) {
-                console.log("Generating Refine declarations...");
+                spinner.start();
                 return await handleDocgen();
             }
 
@@ -392,7 +361,7 @@ export default function plugin(): Plugin<DocgenContent> {
         },
         async contentLoaded({ content, actions }): Promise<void> {
             if (!process.env.DISABLE_DOCGEN) {
-                console.log("Creating Refine declaration files...");
+                ora("Creating Refine declaration files...").succeed();
 
                 const { createData } = actions;
 

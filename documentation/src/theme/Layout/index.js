@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo } from "react";
-import clsx from "clsx";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import ErrorBoundary from "@docusaurus/ErrorBoundary";
+import { useLocation } from "@docusaurus/router";
 import { PageMetadata, ThemeClassNames } from "@docusaurus/theme-common";
 import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
-import SkipToContent from "@theme/SkipToContent";
 import AnnouncementBar from "@theme/AnnouncementBar";
-import Navbar from "@theme/Navbar";
+import ErrorPageContent from "@theme/ErrorPageContent";
 import Footer from "@theme/Footer";
 import LayoutProvider from "@theme/Layout/Provider";
-import ErrorPageContent from "@theme/ErrorPageContent";
-import styles from "./styles.module.css";
+import Navbar from "@theme/Navbar";
+import SkipToContent from "@theme/SkipToContent";
+import clsx from "clsx";
+import React, { useEffect, useMemo } from "react";
+import GithubCTA from "../../components/github-floating-cta";
 import { LivePreviewProvider } from "../../components/live-preview-context";
-import GithubFloatingCta from "../../components/github-floating-cta";
-import { useLocation } from "@docusaurus/router";
-import BrowserOnly from "@docusaurus/BrowserOnly";
 import useIsMobile from "../../hooks/use-is-mobile";
+import styles from "./styles.module.css";
 
 export default function Layout(props) {
     const {
@@ -31,15 +31,18 @@ export default function Layout(props) {
 
     const isMobile = useIsMobile();
 
-    const showGithubCta = useMemo(() => {
+    React.useEffect(() => {
         if (typeof window !== "undefined" && !isMobile) {
+            console.log("runnin");
             if (location.pathname.startsWith("/blog")) {
                 window?.Intercom?.("update", { hide_default_launcher: true });
             } else {
                 window?.Intercom?.("update", { hide_default_launcher: false });
             }
         }
+    }, [location, isMobile]);
 
+    const showGithubCta = useMemo(() => {
         if (location.pathname.startsWith("/docs")) {
             return false;
         }
@@ -79,9 +82,7 @@ export default function Layout(props) {
 
             {!noFooter && <Footer />}
 
-            {showGithubCta && (
-                <BrowserOnly>{() => <GithubFloatingCta />}</BrowserOnly>
-            )}
+            {showGithubCta && <BrowserOnly>{() => <GithubCTA />}</BrowserOnly>}
         </LayoutProvider>
     );
 }

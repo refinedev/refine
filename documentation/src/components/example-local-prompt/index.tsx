@@ -7,10 +7,6 @@ type Props = {
 };
 
 const ExampleLocalPrompt: React.FC<Props> = ({ path }) => {
-    const REPO_TREE_URL = "https://github.com/refinedev/refine/tree";
-
-    const SOURCE_URL = `${REPO_TREE_URL}/master/examples/${path}`;
-
     return (
         <Admonition type="create-example">
             <CodeBlock language="bash">

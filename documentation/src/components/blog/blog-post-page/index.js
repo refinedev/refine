@@ -16,7 +16,6 @@ import {
 
 import { Tags } from "@site/src/components/blog";
 import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
-/* import NewsletterCta from "../../newsletter-cta"; */
 
 export const BlogPostPageView = ({ children }) => {
     const { metadata, isBlogPostPage } = useBlogPost();
@@ -106,7 +105,6 @@ export const BlogPostPageView = ({ children }) => {
                 <br />
                 <Tags />
             </div>
-            {/* <NewsletterCta /> */}
         </BlogPostItemContainer>
     );
 };

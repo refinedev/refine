@@ -20,7 +20,6 @@ const CodeSandboxExample: React.FC<Props> = ({
 
     const EDITOR_URL = `${CODESANDBOX_URL}?view=preview&theme=dark&runonclick=1&codemirror=1`;
 
-    console.log({ EDITOR_URL });
     return (
         <div>
             {!hideSource && <ExampleSourcePrompt path={path} />}
