@@ -2,29 +2,25 @@ module.exports = {
     tutorial: {
         path_prefix: "/docs/tutorial/",
         units: {
-            introduction: {
+            "introduction": {
                 no: 1,
                 label: "Welcome",
             },
             "getting-started": {
                 no: 2,
-                label: "Create and deploy your first refine app",
+                label: "Create and deploy your app with refine.new",
             },
-            "understanding-dataprovider": {
+            "understanding-refine-props": {
                 no: 3,
-                label: "Understanding the Data Provider",
+                label: "Understanding `<Refine />` Props",
             },
-            "understanding-resources": {
+            "adding-crud-actions": {
                 no: 4,
-                label: "Understanding the Resources",
-            },
-            "adding-crud-pages": {
-                no: 5,
-                label: "Adding CRUD pages",
+                label: "Adding CRUD Actions",
             },
             "understanding-authprovider": {
-                no: 6,
-                label: "Understanding the Auth provider",
+                no: 5,
+                label: "Understanding the Auth Provider",
             },
         },
     },

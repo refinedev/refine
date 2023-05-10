@@ -16,7 +16,7 @@ As we mentioned earlier, almost everything in **refine** is centered around the 
 
 For example, we are covering `dataProvider`, `authProvider` and `resources` props in this tutorial:
 
-```TypeScript
+<!-- ```TypeScript
 // Inside src/App.tsx
 
 <Refine
@@ -48,7 +48,7 @@ For example, we are covering `dataProvider`, `authProvider` and `resources` prop
     // other props
 >
 </Refine>
-```
+``` -->
 
 **refine**'s architecture segregates different components of the app into individual contexts, which are then supplied with their individual provider objects containing methods specific to the requirements they are implementing.
 
