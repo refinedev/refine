@@ -1087,7 +1087,7 @@ const PostEdit: React.FC = () => {
             headerButtons={({ refreshButtonProps, listButtonProps }) => (
                 <>
                     <RefreshButton {...refreshButtonProps} />
-                    <ListButton {...listButtonProps} />
+                    {listButtonProps && <ListButton {...listButtonProps} />}
                     <Button variant="outline" type="primary">
                         Custom Button
                     </Button>
@@ -1289,7 +1289,9 @@ const PostEdit: React.FC = () => {
             footerButtons={({ saveButtonProps, deleteButtonProps }) => (
                 <>
                     <SaveButton {...saveButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} />
+                    )}
                     <Button variant="gradient">Custom Button</Button>
                 </>
             )}

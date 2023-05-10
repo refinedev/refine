@@ -930,7 +930,7 @@ const PostEdit: React.FC = () => {
                 <>
                     <Button type="primary">Custom Button</Button>
                     <RefreshButton {...refreshButtonProps} />
-                    <ListButton {...listButtonProps} />
+                    {listButtonProps && <ListButton {...listButtonProps} />}
                 </>
             )}
             // highlight-end
@@ -1084,7 +1084,9 @@ const PostEdit: React.FC = () => {
                 <>
                     <Button type="primary">Custom Button</Button>
                     <SaveButton {...saveButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} />
+                    )}
                 </>
             )}
             // highlight-end

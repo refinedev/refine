@@ -1010,7 +1010,7 @@ const PostEdit: React.FC = () => {
             headerButtons={({ refreshButtonProps, listButtonProps }) => (
                 <HStack>
                     <RefreshButton {...refreshButtonProps} />
-                    <ListButton {...listButtonProps} />
+                    {listButtonProps && <ListButton {...listButtonProps} />}
                     <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
@@ -1198,7 +1198,9 @@ const PostEdit: React.FC = () => {
                     p="2"
                 >
                     <SaveButton {...saveButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} />
+                    )}
                     <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>

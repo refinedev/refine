@@ -734,9 +734,11 @@ const PostShow: React.FC = () => {
             }) => (
                 <>
                     <Button type="primary">Custom Button</Button>
-                    <ListButton {...listButtonProps} />
-                    <EditButton {...editButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
+                    {listButtonProps && <ListButton {...listButtonProps} />}
+                    {editButtonProps && <EditButton {...editButtonProps} />}
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} />
+                    )}
                     <RefreshButton {...refreshButtonProps} />
                 </>
             )}

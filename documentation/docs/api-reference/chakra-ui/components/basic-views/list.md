@@ -662,7 +662,9 @@ const PostList: React.FC = () => {
             // highlight-start
             headerButtons={({ createButtonProps }) => (
                 <>
-                    <CreateButton {...createButtonProps} />
+                    {createButtonProps && (
+                        <CreateButton {...createButtonProps} />
+                    )}
                     <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>

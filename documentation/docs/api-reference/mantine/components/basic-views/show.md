@@ -929,9 +929,11 @@ const PostShow: React.FC = () => {
                 refreshButtonProps,
             }) => (
                 <>
-                    <ListButton {...listButtonProps} />
-                    <EditButton {...editButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
+                    {listButtonProps && <ListButton {...listButtonProps} />}
+                    {editButtonProps && <EditButton {...editButtonProps} />}
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} />
+                    )}
                     <RefreshButton {...refreshButtonProps} />
                     <Button variant="outline" type="primary">
                         Custom Button

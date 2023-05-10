@@ -857,9 +857,11 @@ const PostShow: React.FC = () => {
                 refreshButtonProps,
             }) => (
                 <HStack>
-                    <ListButton {...listButtonProps} />
-                    <EditButton {...editButtonProps} />
-                    <DeleteButton {...deleteButtonProps} />
+                    {listButtonProps && <ListButton {...listButtonProps} />}
+                    {editButtonProps && <EditButton {...editButtonProps} />}
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} />
+                    )}
                     <RefreshButton {...refreshButtonProps} />
                     <Button colorScheme="red">Custom Button</Button>
                 </HStack>
