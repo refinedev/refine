@@ -586,7 +586,15 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps}) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "create" resource is not defined or [user don't have permission to create](#cancreate-and-createbuttonprops), [`<CreateButton>`][create-button] will not rendered and `createButtonProps` will `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -604,6 +612,57 @@ const PostList: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </List>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<CreateButton>`][create-button] component.
+
+```tsx live url=http://localhost:3000/posts previewHeight=280px
+setInitialRoutes(["/posts"]);
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { List } from "@refinedev/chakra-ui";
+import { Button, CreateButton } from "@chakra-ui/react";
+
+const PostList: React.FC = () => {
+    return (
+        <List
+            // highlight-start
+            headerButtons={({ createButtonProps }) => (
+                <>
+                    <CreateButton {...createButtonProps} />
                     <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>
@@ -700,3 +759,5 @@ render(
 ### Props
 
 <PropsTable module="@refinedev/chakra-ui/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
+
+[create-button]: /docs/api-reference/chakra-ui/components/buttons/create-button/

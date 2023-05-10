@@ -71,66 +71,68 @@ export const Show: React.FC<ShowProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
+    const hasList = resource?.list && !recordItemId;
     const isDeleteButtonVisible =
         canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
     const isEditButtonVisible =
         canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
+    const listButtonProps = hasList
+        ? {
+              ...(isLoading ? { disabled: true } : {}),
+              resource:
+                  routerType === "legacy"
+                      ? resource?.route
+                      : resource?.identifier ?? resource?.name,
+          }
+        : undefined;
+    const editButtonProps = isEditButtonVisible
+        ? {
+              colorScheme: "brand",
+              ...(isLoading ? { disabled: true } : {}),
+              resource:
+                  routerType === "legacy"
+                      ? resource?.route
+                      : resource?.identifier ?? resource?.name,
+              recordItemId: id,
+          }
+        : undefined;
+    const deleteButtonProps = isDeleteButtonVisible
+        ? {
+              ...(isLoading ? { disabled: true } : {}),
+              resource:
+                  routerType === "legacy"
+                      ? resource?.route
+                      : resource?.identifier ?? resource?.name,
+              recordItemId: id,
+              onSuccess: () => {
+                  if (routerType === "legacy") {
+                      legacyGoList(resource?.route ?? resource?.name ?? "");
+                  } else {
+                      go({ to: goListPath });
+                  }
+              },
+              dataProviderName,
+          }
+        : undefined;
+    const refreshButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+        recordItemId: id,
+        dataProviderName,
+    };
+
     const defaultHeaderButtons = (
         <>
-            {!recordItemId && (
-                <ListButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                />
-            )}
+            {listButtonProps && <ListButton {...listButtonProps} />}
             {isEditButtonVisible && (
-                <EditButton
-                    colorScheme="brand"
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                    recordItemId={id}
-                />
+                <EditButton colorScheme="brand" {...editButtonProps} />
             )}
-            {isDeleteButtonVisible && (
-                <DeleteButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                    recordItemId={id}
-                    onSuccess={() => {
-                        if (routerType === "legacy") {
-                            legacyGoList(
-                                resource?.route ?? resource?.name ?? "",
-                            );
-                        } else {
-                            go({ to: goListPath });
-                        }
-                    }}
-                    dataProviderName={dataProviderName}
-                />
-            )}
-            <RefreshButton
-                {...(isLoading ? { disabled: true } : {})}
-                resource={
-                    routerType === "legacy"
-                        ? resource?.route
-                        : resource?.identifier ?? resource?.name
-                }
-                recordItemId={id}
-                dataProviderName={dataProviderName}
-            />
+            {isDeleteButtonVisible && <DeleteButton {...deleteButtonProps} />}
+            <RefreshButton {...refreshButtonProps} />
         </>
     );
 
@@ -160,6 +162,10 @@ export const Show: React.FC<ShowProps> = (props) => {
         ? typeof headerButtonsFromProps === "function"
             ? headerButtonsFromProps({
                   defaultButtons: defaultHeaderButtons,
+                  deleteButtonProps,
+                  editButtonProps,
+                  listButtonProps,
+                  refreshButtonProps,
               })
             : headerButtonsFromProps
         : defaultHeaderButtons;

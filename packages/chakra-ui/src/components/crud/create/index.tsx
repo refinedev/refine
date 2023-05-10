@@ -19,7 +19,7 @@ import { CreateProps } from "../types";
 export const Create: React.FC<CreateProps> = (props) => {
     const {
         children,
-        saveButtonProps,
+        saveButtonProps: saveButtonPropsFromProps,
         isLoading,
         resource: resourceFromProps,
         footerButtons: footerButtonsFromProps,
@@ -48,12 +48,12 @@ export const Create: React.FC<CreateProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const defaultFooterButtons = (
-        <SaveButton
-            {...(isLoading ? { disabled: true } : {})}
-            {...saveButtonProps}
-        />
-    );
+    const saveButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        ...saveButtonPropsFromProps,
+    };
+
+    const defaultFooterButtons = <SaveButton {...saveButtonProps} />;
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
@@ -87,7 +87,10 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const footerButtons = footerButtonsFromProps
         ? typeof footerButtonsFromProps === "function"
-            ? footerButtonsFromProps({ defaultButtons: defaultFooterButtons })
+            ? footerButtonsFromProps({
+                  defaultButtons: defaultFooterButtons,
+                  saveButtonProps,
+              })
             : footerButtonsFromProps
         : defaultFooterButtons;
 
