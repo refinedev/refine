@@ -19,7 +19,7 @@
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",
-    "cypress": "cypress open"
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "browserslist": {
     "production": [
