@@ -8,12 +8,7 @@ import {
     useResource,
 } from "@refinedev/core";
 
-import {
-    Breadcrumb,
-    CreateButton,
-    CreateButtonProps,
-    PageHeader,
-} from "@components";
+import { Breadcrumb, CreateButton, PageHeader } from "@components";
 import { ListProps } from "../types";
 
 /**
