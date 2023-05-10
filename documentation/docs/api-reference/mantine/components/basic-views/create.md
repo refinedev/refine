@@ -839,7 +839,7 @@ const PostCreate: React.FC = () => {
             // highlight-start
             footerButtons={({ saveButtonProps }) => (
                 <>
-                    <SaveButton {...saveButtonProps} />
+                    <SaveButton {...saveButtonProps} hideText />
                     <Button variant="gradient">Custom Button</Button>
                 </>
             )}

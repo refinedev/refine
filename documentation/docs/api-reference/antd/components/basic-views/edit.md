@@ -929,8 +929,16 @@ const PostEdit: React.FC = () => {
             headerButtons={({ refreshButtonProps, listButtonProps }) => (
                 <>
                     <Button type="primary">Custom Button</Button>
-                    <RefreshButton {...refreshButtonProps} />
-                    {listButtonProps && <ListButton {...listButtonProps} />}
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
                 </>
             )}
             // highlight-end
@@ -1083,9 +1091,9 @@ const PostEdit: React.FC = () => {
             footerButtons={({ saveButtonProps, deleteButtonProps }) => (
                 <>
                     <Button type="primary">Custom Button</Button>
-                    <SaveButton {...saveButtonProps} />
+                    <SaveButton {...saveButtonProps} hideText />
                     {deleteButtonProps && (
-                        <DeleteButton {...deleteButtonProps} />
+                        <DeleteButton {...deleteButtonProps} hideText />
                     )}
                 </>
             )}

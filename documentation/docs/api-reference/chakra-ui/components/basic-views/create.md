@@ -783,7 +783,7 @@ const PostCreate: React.FC = () => {
                     borderWidth="2px"
                     p="2"
                 >
-                    <SaveButton {...saveButtonProps} />
+                    <SaveButton {...saveButtonProps} hideText />
                     <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>

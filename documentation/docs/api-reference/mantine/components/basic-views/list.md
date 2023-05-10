@@ -682,7 +682,10 @@ const PostList: React.FC = () => {
             headerButtons={({ createButtonProps }) => (
                 <>
                     {createButtonProps && (
-                        <CreateButton {...createButtonProps} />
+                        <CreateButton
+                            {...createButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
                     )}
                     <Button variant="outline" type="primary">
                         Custom Button
