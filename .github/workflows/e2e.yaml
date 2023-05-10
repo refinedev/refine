@@ -10,7 +10,7 @@ jobs:
       - uses: kanga333/json-array-builder@main
         id: array
         with:
-          cmd: find . -name cypress.config.ts -exec dirname {}\;
+          cmd: find . -name cypress.config.ts -exec echo dirname {}\;
           separator: newline
     outputs:
       param: ${{ steps.array.outputs.build }}
