@@ -30,11 +30,7 @@ jobs:
           npm install
           npm run start -- --host 127.0.0.1 &
       - name: Run Cypress
-        uses: cypress-io/github-action@v5
-        with:
-          project: ./examples/base-antd
-          command: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} -C ./examples/base-antd/cypress.config.ts --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
-          install: false
-          wait-on: "http://127.0.0.1:5173"
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: |
+          examplePath=$(echo "${{ matrix.cypressConfig }}" | sed 's/\/cypress.config.ts//g')
+          cd $examplePath
+          npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} -C ${{ matrix.cypressConfig }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
