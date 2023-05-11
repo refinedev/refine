@@ -55,7 +55,7 @@ export type RefineCrudListProps<
         /**
          * Default `<CreateButton />` props
          */
-        createButtonProps?: TCreateButtonProps;
+        createButtonProps: TCreateButtonProps | undefined;
     }>;
     /**
      * Additional props to be passed to the wrapper of the header buttons
@@ -133,7 +133,7 @@ export type RefineCrudCreateProps<
         /**
          * Default `<SaveButton />` props
          */
-        saveButtonProps?: TSaveButtonProps;
+        saveButtonProps: TSaveButtonProps | undefined;
     }>;
     /**
      * Additional props to be passed to the wrapper of the footer buttons
@@ -204,11 +204,11 @@ export type RefineCrudEditProps<
         /**
          * Default `<RefreshButton />` props
          */
-        refreshButtonProps?: TRefreshButtonProps;
+        refreshButtonProps: TRefreshButtonProps | undefined;
         /**
          * Default `<ListButton />` props
          */
-        listButtonProps?: TListButtonProps;
+        listButtonProps: TListButtonProps | undefined;
     }>;
     /**
      * Additional props to be passed to the wrapper of the header buttons
@@ -222,11 +222,11 @@ export type RefineCrudEditProps<
         /**
          * Default `<DeleteButton />` props
          */
-        deleteButtonProps?: TDeleteButtonProps;
+        deleteButtonProps: TDeleteButtonProps | undefined;
         /**
          * Default `<SaveButton />` props
          */
-        saveButtonProps?: TSaveButtonProps;
+        saveButtonProps: TSaveButtonProps | undefined;
     }>;
     /**
      * Additional props to be passed to the wrapper of the footer buttons
@@ -319,19 +319,19 @@ export type RefineCrudShowProps<
         /**
          * Default `<EditButton />` props
          */
-        editButtonProps?: TEditButtonProps;
+        editButtonProps: TEditButtonProps | undefined;
         /**
          * Default `<DeleteButton />` props
          */
-        deleteButtonProps?: TDeleteButtonProps;
+        deleteButtonProps: TDeleteButtonProps | undefined;
         /**
          * Default `<RefreshButton />` props
          */
-        refreshButtonProps?: TRefreshButtonProps;
+        refreshButtonProps: TRefreshButtonProps | undefined;
         /**
          * Default `<ListButton />` props
          */
-        listButtonProps?: TListButtonProps;
+        listButtonProps: TListButtonProps | undefined;
     }>;
     /**
      * Additional props to be passed to the wrapper of the header buttons
