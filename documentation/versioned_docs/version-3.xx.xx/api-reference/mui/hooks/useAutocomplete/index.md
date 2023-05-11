@@ -415,4 +415,4 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 
 ## Example
 
-<CodeSandboxExample path="field-mui-use-autocomplete" />
+<CodeSandboxExample path="field-material-ui-use-autocomplete" />

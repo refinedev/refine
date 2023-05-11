@@ -1,5 +1,29 @@
 # @pankod/refine-graphql
 
+## 6.4.2
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 6.4.1
+
+### Patch Changes
+
+-   [#4285](https://github.com/refinedev/refine/pull/4285) [`b5cd3328504`](https://github.com/refinedev/refine/commit/b5cd332850428383e8b43f997cbb0340ac7f0dc6) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: A bug that prevented data providers from being swizzled.
+
+## 6.4.0
+
+### Minor Changes
+
+-   [#4211](https://github.com/refinedev/refine/pull/4211) [`dca1d8b7ca8`](https://github.com/refinedev/refine/commit/dca1d8b7ca8b84184d00180af7e265c6bd12d708) Thanks [@mattbho](https://github.com/mattbho)! - Custom GraphQL data provider now allow users to provide a custom InputType via the meta field.
+
+## 6.3.0
+
+### Minor Changes
+
+-   [#4211](https://github.com/refinedev/refine/pull/4211) [`dca1d8b7ca8`](https://github.com/refinedev/refine/commit/dca1d8b7ca8b84184d00180af7e265c6bd12d708) Thanks [@mattbho](https://github.com/mattbho)! - Custom GraphQL data provider now allow users to provide a custom InputType via the meta field.
+
 ## 6.2.0
 
 ### Minor Changes

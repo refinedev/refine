@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import { ThemedLayoutContextProvider } from "@contexts";
+import { ThemedLayoutContextProvider } from "../../contexts/themedLayoutContext";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
 import { RefineThemedLayoutV2Props } from "./types";
@@ -13,12 +13,15 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
     Footer,
     OffLayoutArea,
     children,
+    initialSiderCollapsed,
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <ThemedLayoutContextProvider>
+        <ThemedLayoutContextProvider
+            initialSiderCollapsed={initialSiderCollapsed}
+        >
             <Box display="flex" flexDirection="row">
                 <SiderToRender Title={Title} />
                 <Box

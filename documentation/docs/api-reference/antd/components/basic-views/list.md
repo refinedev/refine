@@ -271,7 +271,7 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `breadcrumb`
 
@@ -448,7 +448,15 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "create" resource is not defined or [`canCrate`](#cancreate-and-createbuttonprops) is `false`, (#cancreate-and-createbuttonprops), the [`<CreateButton>`][create-button] will not render and `createButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
@@ -462,6 +470,49 @@ const PostList: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </List>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts"]}
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<CreateButton>`][create-button] component.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+// visible-block-start
+import { List, CreateButton } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostList: React.FC = () => {
+    return (
+        <List
+            // highlight-start
+            headerButtons={({ createButtonProps }) => (
+                <>
+                    {createButtonProps && (
+                        <CreateButton
+                            {...createButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
                     <Button type="primary">Custom Button</Button>
                 </>
             )}
@@ -542,3 +593,4 @@ canCreate-default="If the resource is passed a create component, `true` else `fa
 />
 
 [breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
+[create-button]: /docs/api-reference/antd/components/buttons/create-button/

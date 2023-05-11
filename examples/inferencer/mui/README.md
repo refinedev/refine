@@ -1,3 +1,3 @@
 # inferencer-mui
 
-This example has been moved to [inferencer-mui](../.././inferencer-mui)
+This example has been moved to [inferencer-material-ui](../.././inferencer-material-ui)

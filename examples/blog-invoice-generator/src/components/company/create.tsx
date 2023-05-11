@@ -14,16 +14,7 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({
     formProps,
 }) => {
     return (
-        <Modal
-            {...modalProps}
-            title="Create Company"
-            okButtonProps={{
-                ...modalProps.okButtonProps,
-                onClick: () => {
-                    formProps.form?.submit();
-                },
-            }}
-        >
+        <Modal {...modalProps} title="Create Company">
             <Form
                 {...formProps}
                 layout="vertical"

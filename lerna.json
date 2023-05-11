@@ -4,6 +4,7 @@
     "packages/*",
     "examples/*"
   ],
+  "ignore": "{monorepo-*,with-nx}",
   "registry": "https://registry.npmjs.org/",
   "npmClient": "npm",
   "publishConfig": {

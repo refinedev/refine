@@ -3,7 +3,7 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("createMany", () => {
-    it("correct response", async () => {
+    it("correct response with `select`", async () => {
         const { data } = await dataProvider(supabaseClient).createMany!({
             resource: "posts",
             variables: [
@@ -22,6 +22,9 @@ describe("createMany", () => {
                     image: {},
                 },
             ],
+            meta: {
+                select: "*",
+            },
         });
 
         expect(data[0]["id"]).toEqual(36);

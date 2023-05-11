@@ -381,7 +381,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
 
 ---
 

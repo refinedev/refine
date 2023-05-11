@@ -3,19 +3,33 @@ import nock from "nock";
 nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     encodedQueryParams: true,
 })
-    .patch("/rest/v1/posts", { title: "Hello World!!" })
-    .query({ id: "eq.2" })
+    .patch("/rest/v1/posts", {
+        title: "test",
+        categoryId: 52,
+        content: "test content",
+    })
+    .query({ id: "eq.1246", select: "*" })
     .reply(
         200,
         [
             {
-                id: 2,
-                title: "Hello World!!",
-                slug: "test-slug",
-                createdAt: "2021-09-03T07:36:42+00:00",
+                id: 1246,
+                title: "test",
+                slug: "255",
+                createdAt: "2022-05-17T04:25:58.80596+00:00",
                 content: "test content",
-                categoryId: 1,
-                image: {},
+                categoryId: 52,
+                images: [
+                    {
+                        uid: "rc-upload-1653445523640-23",
+                        name: "Screen Shot 2022-05-24 at 01.44.50.png",
+                        url: "https://iwdfzvfqbtokqetmbmbp.supabase.co/storage/v1/object/public/refine/public/Screen Shot 2022-05-24 at 01.44.50.png",
+                        type: "image/png",
+                        size: 1052925,
+                        percent: 100,
+                        status: "done",
+                    },
+                ],
             },
         ],
         [

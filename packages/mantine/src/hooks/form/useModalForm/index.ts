@@ -18,12 +18,22 @@ import { UseFormInput } from "@mantine/form/lib/types";
 import React from "react";
 
 export type UseModalFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
-> = UseFormReturnType<TData, TError, TVariables, TTransformed, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TTransformed,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     modal: {
         submit: (
             values: ReturnType<
@@ -43,12 +53,22 @@ export type UseModalFormReturnType<
 };
 
 export type UseModalFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
-> = UseFormProps<TData, TError, TVariables, TTransformed, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormProps<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TTransformed,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     modalProps?: {
         defaultVisible?: boolean;
         autoSubmitClose?: boolean;
@@ -57,30 +77,36 @@ export type UseModalFormProps<
 } & FormWithSyncWithLocationParams;
 
 export const useModalForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     modalProps,
     refineCoreProps,
     syncWithLocation,
     ...rest
 }: UseModalFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TTransformed,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > = {}): UseModalFormReturnType<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
     TTransformed,
-    TSelectData
+    TData,
+    TResponse,
+    TResponseError
 > => {
-    const initiallySynced = React.useRef(false);
+    const [initiallySynced, setInitiallySynced] = React.useState(false);
 
     const translate = useTranslate();
 
@@ -99,8 +125,10 @@ export const useModalForm = <
 
     const action = actionProp ?? actionFromParams ?? "";
 
-    const syncingId =
-        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+    const syncingId = !(
+        typeof syncWithLocation === "object" &&
+        syncWithLocation?.syncId === false
+    );
 
     const syncWithLocationKey =
         typeof syncWithLocation === "object" && "key" in syncWithLocation
@@ -110,11 +138,13 @@ export const useModalForm = <
             : undefined;
 
     const useMantineFormResult = useForm<
-        TData,
+        TQueryFnData,
         TError,
         TVariables,
         TTransformed,
-        TSelectData
+        TData,
+        TResponse,
+        TResponseError
     >({
         refineCoreProps,
         ...rest,
@@ -132,7 +162,7 @@ export const useModalForm = <
     });
 
     React.useEffect(() => {
-        if (initiallySynced.current === false && syncWithLocationKey) {
+        if (initiallySynced === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
                 if (openStatus) {
@@ -151,12 +181,12 @@ export const useModalForm = <
                 }
             }
 
-            initiallySynced.current = true;
+            setInitiallySynced(true);
         }
     }, [syncWithLocationKey, parsed, syncingId, setId]);
 
     React.useEffect(() => {
-        if (initiallySynced.current === true) {
+        if (initiallySynced === true) {
             if (visible && syncWithLocationKey) {
                 go({
                     query: {

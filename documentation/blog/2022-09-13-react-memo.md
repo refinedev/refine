@@ -58,7 +58,8 @@ The focus of this article will be the `<Post />` component, but `<App />`, `<Blo
 
 ---
 
-<PromotionBanner title="Still building from scratch in 2022?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
 
 ---
 

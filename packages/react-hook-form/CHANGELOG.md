@@ -1,5 +1,29 @@
 # @pankod/refine-react-hook-form
 
+## 4.2.4
+
+### Patch Changes
+
+-   [#4241](https://github.com/refinedev/refine/pull/4241) [`fbe109b5a8b`](https://github.com/refinedev/refine/commit/fbe109b5a8ba8f5d870eab2d96b7477508bceec0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added new generic types to the `useForm` hooks. Now you can pass the query types and the mutation types to the hook.
+
+## 4.2.3
+
+### Patch Changes
+
+-   [#4241](https://github.com/refinedev/refine/pull/4241) [`fbe109b5a8b`](https://github.com/refinedev/refine/commit/fbe109b5a8ba8f5d870eab2d96b7477508bceec0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added new generic types to the `useForm` hooks. Now you can pass the query types and the mutation types to the hook.
+
+## 4.2.2
+
+### Patch Changes
+
+-   [#4210](https://github.com/refinedev/refine/pull/4210) [`b992e11e338`](https://github.com/refinedev/refine/commit/b992e11e3387464186d552112460aebbc18d3cc5) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: The values of the registered fields were set using the `reset()` function. This has been changed to use `getValues()` instead. This fixes an issue where the values of the registered fields' dirty state were not being set correctly.
+
+## 4.2.1
+
+### Patch Changes
+
+-   [#4210](https://github.com/refinedev/refine/pull/4210) [`b992e11e338`](https://github.com/refinedev/refine/commit/b992e11e3387464186d552112460aebbc18d3cc5) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: The values of the registered fields were set using the `reset()` function. This has been changed to use `getValues()` instead. This fixes an issue where the values of the registered fields' dirty state were not being set correctly.
+
 ## 4.2.0
 
 ### Minor Changes

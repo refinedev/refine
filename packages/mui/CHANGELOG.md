@@ -1,5 +1,239 @@
 # @pankod/refine-mui
 
+## 4.14.7
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+-   Updated dependencies [[`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec)]:
+    -   @refinedev/ui-types@1.14.0
+
+## 4.14.6
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+## 4.14.5
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
+## 4.14.4
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
+## 4.14.3
+
+### Patch Changes
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: updated the sider styles to solve issues that occur when there are too many items in the sider
+
+## 4.14.2
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
+## 4.14.1
+
+### Patch Changes
+
+-   [#4255](https://github.com/refinedev/refine/pull/4255) [`9694245718c`](https://github.com/refinedev/refine/commit/9694245718cea7812c85aefc4880d165bb4d124d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `ThemedLayoutContextProvider` import path in internal usage.
+
+## 4.14.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component. Default is `true`.
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/mui";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={false} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.12.0
+
+## 4.13.0
+
+### Minor Changes
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component. Default is `true`.
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/mui";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={false} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.11.0
+
+## 4.12.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+### Patch Changes
+
+-   Updated dependencies [[`b992e11e338`](https://github.com/refinedev/refine/commit/b992e11e3387464186d552112460aebbc18d3cc5)]:
+    -   @refinedev/react-hook-form@4.2.2
+
+## 4.11.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+### Patch Changes
+
+-   Updated dependencies [[`b992e11e338`](https://github.com/refinedev/refine/commit/b992e11e3387464186d552112460aebbc18d3cc5)]:
+    -   @refinedev/react-hook-form@4.2.1
+
 ## 4.10.3
 
 ### Patch Changes

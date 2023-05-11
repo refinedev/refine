@@ -38,7 +38,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 
 -   [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
 -   [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
--   [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+-   [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 -   `<Footer>`: displayed at the bottom of the page.
 -   `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
@@ -129,7 +129,7 @@ Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](
 
 ### `Sider`
 
-In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSider>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSider>`][themed-sider] component by passing a custom component to the `Sider` prop.
+In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSiderV2>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSiderV2>`][themed-sider] component by passing a custom component to the `Sider` prop.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -153,13 +153,13 @@ const App: React.FC = () => {
 };
 ```
 
-Also, you can customize the default [`<ThemedSider>`][themed-sider] component either by using its props or with the [swizzle](#customizing-with-swizzle) feature.
+Also, you can customize the default [`<ThemedSiderV2>`][themed-sider] component either by using its props or with the [swizzle](#customizing-with-swizzle) feature.
 
-Here is an example of how to customize the default [`<ThemedSider>`][themed-sider] component using the `render` and `Title` prop:
+Here is an example of how to customize the default [`<ThemedSiderV2>`][themed-sider] component using the `render` and `Title` prop:
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ThemedSider } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
 
 import { CustomTitle } from "./CustomTitle";
 
@@ -171,7 +171,7 @@ const App: React.FC = () => {
             <ThemedLayoutV2
                 // highlight-start
                 Sider={() => (
-                    <ThemedSider
+                    <ThemedSiderV2
                         Title={({ collapsed }) => (
                             <CustomTitle collapsed={collapsed} />
                         )}
@@ -195,13 +195,37 @@ const App: React.FC = () => {
 };
 ```
 
+Also, you can make the sidebar fixed by passing the `fixed` property, which is optional and `false` by default. You can see the usage as follows:
+
+```tsx
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+        // ...
+        >
+            <ThemedLayoutV2
+                // highlight-start
+                Sider={() => <ThemedSiderV2 fixed />}
+                // highlight-end
+            >
+                {/* ... */}
+            </ThemedLayoutV2>
+        </Refine>
+    );
+};
+```
+
 #### `Sider Props`
 
 | Prop              | Type                                          | Description                                                                     |
 | ----------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`Title`](#title) | `React.FC`                                    | Component to render at the top                                                  |
-| `render`          | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSider>` |
+| `render`          | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSiderV2>` |
 | `meta`            | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                        |
+| `fixed`           | `boolean`                                     | Whether the sider is fixed or not                                               |
 
 ```tsx
 type SiderRenderFunction = (props: {
@@ -212,11 +236,27 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
+### `initialSiderCollapsed`
+
+This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+
+-   `true`: The [`<ThemedSiderV2>`][themed-sider] component will be collapsed by default.
+-   `false`: The [`<ThemedSiderV2>`][themed-sider] component will be expanded by default.
+
+```tsx
+<ThemedLayoutV2
+    // highlight-next-line
+    initialSiderCollapsed={true}
+>
+    {/* ... */}
+</ThemedLayoutV2>
+```
+
 ### `Header`
 
-In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/auth/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/api-reference/core/hooks/authentication/useGetIdentity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
 
-Here is an example of how to replace the default [`<ThemedHeader>`][themed-header] component:
+Here is an example of how to replace the default [`<ThemedHeaderV2>`][themed-header] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -241,6 +281,33 @@ const App: React.FC = () => {
 };
 ```
 
+You can also make it sticky using the `sticky` property, which is optional and defaults to `false`. An example of its usage is shown below:
+
+```tsx
+import { Refine } from "@refinedev/core";
+import {
+    ThemedLayoutV2,
+    // highlight-next-line
+    ThemedHeaderV2,
+} from "@refinedev/antd";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+        // ...
+        >
+            <ThemedLayoutV2
+                // highlight-start
+                Header={() => <ThemedHeaderV2 sticky />}
+                // highlight-end
+            >
+                {/* ... */}
+            </ThemedLayoutV2>
+        </Refine>
+    );
+};
+```
+
 ### `Title`
 
 In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2>`][themed-title] component by passing a custom component to the `Title` prop.
@@ -250,7 +317,7 @@ Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-titl
 ```tsx
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, ThemedTitle } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
 
 // highlight-next-line
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
@@ -600,9 +667,9 @@ You can use these components in your project as you wish.
 ```tsx
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2 } from "components/themedLayout";
-import { ThemedHeader } from "components/themedLayout/header";
-import { ThemedSider } from "components/themedLayout/sider";
-import { ThemedTitle } from "components/themedLayout/title";
+import { ThemedHeaderV2 } from "components/themedLayout/header";
+import { ThemedSiderV2 } from "components/themedLayout/sider";
+import { ThemedTitleV2 } from "components/themedLayout/title";
 
 const App = () => {
     return (
@@ -610,9 +677,9 @@ const App = () => {
         /* ... */
         >
             <ThemedLayoutV2
-                Header={ThemedHeader}
-                Sider={ThemedSider}
-                Title={ThemedTitle}
+                Header={ThemedHeaderV2}
+                Sider={ThemedSiderV2}
+                Title={ThemedTitleV2}
             >
                 /* ... */
             </ThemedLayoutV2>
@@ -634,6 +701,7 @@ If there is already a file with the same name in the directory, the swizzle comm
 :::
 
 ## Migrate ThemedLayout to ThemedLayoutV2
+
 Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayout` you can update it by following these step.
 
 ```diff title="src/App.tsx"
@@ -649,6 +717,7 @@ Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayo
 ```
 
 ## collapse/uncollapse `Sider` component with `useSiderVisible` hook
+
 The `useSiderVisible` hook is that is used to collapse/uncollapse the `Sider` component. You can do this anywhere you want using the `useSiderVisible` hook. Below you can see an example put on the dashboard page.
 
 ```tsx live previewHeight=300px hideCode url=http://localhost:3000/
@@ -682,15 +751,18 @@ const DashboardPage = () => {
 
     return (
         <Space style={{ paddingTop: 30 }}>
-            <Button type="primary" onClick={() => setSiderVisible?.(!siderVisible)}>
+            <Button
+                type="primary"
+                onClick={() => setSiderVisible?.(!siderVisible)}
+            >
                 toggle visible for mobile
             </Button>
-            <Button type="primary"
+            <Button
+                type="primary"
                 onClick={() => setDrawerSiderVisible?.(!drawerSiderVisible)}
             >
                 toggle drawer
             </Button>
-            
         </Space>
     );
 };
@@ -727,7 +799,10 @@ const App: React.FC = () => {
                         >
                             {/* highlight-next-line */}
                             <Route path="/" element={<DashboardPage />} />
-                            <Route path="/samples" element={<AntdInferencer />} />
+                            <Route
+                                path="/samples"
+                                element={<AntdInferencer />}
+                            />
                         </Route>
                     </Routes>
                 </Refine>
@@ -739,6 +814,132 @@ const App: React.FC = () => {
 // visible-block-end
 
 render(<App />);
+```
+
+## FAQ
+
+### How can I persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component?
+
+You can use [`initialSiderCollapsed`](#initialsidercollapsed) prop to persist the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component.
+
+For example, you can get `initialSiderCollapsed`'s value from `localStorage` or `cookie` for persistence between sessions.
+
+<Tabs
+defaultValue="react-router"
+values={[
+{label: 'React Router', value: 'react-router'},
+{label: 'Next.js', value: 'next.js'},
+{label: 'Remix', value: 'remix'},
+]}>
+
+<TabItem value="react-router">
+
+```tsx title="src/App.tsx"
+import { useState } from "react";
+import { Refine } from "@refinedev/core";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ThemedLayoutV2 } from "@refinedev/antd";
+
+const App: React.FC = () => {
+    // you can get this value from `localStorage` or `cookie`
+    // for persistence between sessions
+    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+
+    return (
+        <BrowserRouter>
+            <Refine
+            // ...
+            >
+                {/* ... */}
+                <Routes>
+                    <Route
+                        element={
+                            <ThemedLayoutV2
+                                initialSiderCollapsed={initialSiderCollapsed}
+                            >
+                                <Outlet />
+                            </ThemedLayoutV2>
+                        }
+                    >
+                        {/* ... */}
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+
+<TabItem value="next.js">
+
+```tsx title="pages/_app.tsx"
+import { useState } from "react";
+
+import { Refine } from "@refinedev/core";
+import { ThemedLayoutV2 } from "@refinedev/antd";
+
+import type { AppProps } from "next/app";
+import type { NextPage } from "next";
+
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+    // you can get this value from `localStorage` or `cookie`
+    // for persistence between sessions
+    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+
+    const renderComponent = () => {
+        if (Component.noLayout) {
+            return <Component {...pageProps} />;
+        }
+
+        return (
+            <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+                <Component {...pageProps} />
+            </ThemedLayoutV2>
+        );
+    };
+
+    return (
+        <Refine
+        // ...
+        >
+            {/* ... */}
+            {renderComponent()}
+        </Refine>
+    );
+}
+
+export default MyApp;
+```
+
+</TabItem>
+
+<TabItem value="remix">
+
+```tsx title="app/routes/_layout.tsx"
+import { useState } from "react";
+import { Outlet } from "@remix-run/react";
+import { ThemedLayoutV2 } from "@refinedev/antd";
+
+export default function BaseLayout() {
+    // you can get this value from `localStorage` or `cookie`
+    // for persistence between sessions
+    const [initialSiderCollapsed, setInitialSiderCollapsed] = useState(true);
+
+    return (
+        <ThemedLayoutV2 initialSiderCollapsed={initialSiderCollapsed}>
+            <Outlet />
+        </ThemedLayoutV2>
+    );
+}
+```
+
+</TabItem>
+
+</Tabs>
 ```
 
 [themed-sider]: https://github.com/refinedev/refine/blob/next/packages/antd/src/components/themedLayoutV2/sider/index.tsx

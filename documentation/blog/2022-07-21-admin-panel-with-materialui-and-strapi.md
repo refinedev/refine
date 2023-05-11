@@ -128,7 +128,7 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 
 ---
 
-<PromotionBanner title="Tired of looking for the best template for your B2B app" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 

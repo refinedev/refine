@@ -3,15 +3,27 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("update", () => {
-    it("correct response", async () => {
+    it("correct response with `select`", async () => {
         const { data } = await dataProvider(supabaseClient).update({
+            id: 1246,
             resource: "posts",
-            id: "2",
             variables: {
-                title: "Hello World!!",
+                title: "test",
+                categoryId: 52,
+                content: "test content",
+            },
+            meta: {
+                select: "*",
             },
         });
 
-        expect(data["title"]).toBe("Hello World!!");
+        expect(data).toEqual(
+            expect.objectContaining({
+                id: 1246,
+                title: "test",
+                categoryId: 52,
+                content: "test content",
+            }),
+        );
     });
 });

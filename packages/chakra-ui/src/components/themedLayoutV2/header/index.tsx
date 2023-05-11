@@ -1,10 +1,24 @@
 import React from "react";
-import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
-import { Box, Avatar, Text, HStack, useColorModeValue } from "@chakra-ui/react";
+import {
+    useGetIdentity,
+    useActiveAuthProvider,
+    pickNotDeprecated,
+} from "@refinedev/core";
+import {
+    Box,
+    Avatar,
+    Text,
+    HStack,
+    useColorModeValue,
+    BoxProps,
+} from "@chakra-ui/react";
 import { RefineThemedLayoutV2HeaderProps } from "../types";
 import { HamburgerMenu } from "../hamburgerMenu";
 
-export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
+export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+    isSticky,
+    sticky,
+}) => {
     const authProvider = useActiveAuthProvider();
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -14,6 +28,15 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
         "refine.header.bg.light",
         "refine.header.bg.dark",
     );
+
+    let stickyProps: BoxProps = {};
+    if (pickNotDeprecated(sticky, isSticky)) {
+        stickyProps = {
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+        };
+    }
 
     return (
         <Box
@@ -26,6 +49,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
             bg={bgColor}
             borderBottom="1px"
             borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+            {...stickyProps}
         >
             <Box
                 w="full"

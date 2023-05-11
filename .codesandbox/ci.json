@@ -12,5 +12,5 @@
         "packages/react-table",
         "packages/simple-rest"
     ],
-    "sandboxes": ["/examples/finefoods-antd", "/examples/finefoods-client", "/examples/finefoods-mui", "/examples/base-antd"]
+    "sandboxes": ["/examples/finefoods-antd", "/examples/finefoods-client", "/examples/finefoods-material-ui", "/examples/base-antd"]
   }

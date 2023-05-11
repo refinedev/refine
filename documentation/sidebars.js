@@ -67,17 +67,17 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "Authorization",
+                                    label: "Authentication",
                                     items: [
-                                        "api-reference/core/hooks/auth/useIsAuthenticated",
-                                        "api-reference/core/hooks/auth/useOnError",
-                                        "api-reference/core/hooks/auth/useGetIdentity",
-                                        "api-reference/core/hooks/auth/useLogin",
-                                        "api-reference/core/hooks/auth/useLogout",
-                                        "api-reference/core/hooks/auth/usePermissions",
-                                        "api-reference/core/hooks/auth/useRegister",
-                                        "api-reference/core/hooks/auth/useForgotPassword",
-                                        "api-reference/core/hooks/auth/useUpdatePassword",
+                                        "api-reference/core/hooks/authentication/useIsAuthenticated",
+                                        "api-reference/core/hooks/authentication/useOnError",
+                                        "api-reference/core/hooks/authentication/useGetIdentity",
+                                        "api-reference/core/hooks/authentication/useLogin",
+                                        "api-reference/core/hooks/authentication/useLogout",
+                                        "api-reference/core/hooks/authentication/usePermissions",
+                                        "api-reference/core/hooks/authentication/useRegister",
+                                        "api-reference/core/hooks/authentication/useForgotPassword",
+                                        "api-reference/core/hooks/authentication/useUpdatePassword",
                                     ],
                                 },
                                 {
@@ -682,6 +682,15 @@ module.exports = {
                     ],
                 },
                 "examples/antd-calendar-example",
+                {
+                    type: "category",
+                    label: "Build Systems",
+                    items: [
+                        "examples/build-systems/turbo",
+                        "examples/build-systems/lerna",
+                        "examples/build-systems/nx",
+                    ],
+                },
                 "examples/command-palette",
                 {
                     type: "category",
@@ -843,7 +852,7 @@ module.exports = {
                     label: "Remix",
                     items: [
                         "examples/remix/remix-antd",
-                        "examples/remix/remix-mui",
+                        "examples/remix/remix-material-ui",
                         "examples/remix/remix-headless",
                         "examples/remix/remix-auth",
                     ],

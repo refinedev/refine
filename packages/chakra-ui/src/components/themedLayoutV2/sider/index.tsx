@@ -301,6 +301,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <DrawerContent w="200px" maxW="200px">
                     <Box
                         display="flex"
+                        flexShrink={0}
                         pl={4}
                         alignItems="center"
                         height="64px"
@@ -308,6 +309,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         bg={useColorModeValue(
                             "refine.sider.header.light",
                             "refine.sider.header.dark",
+                        )}
+                        borderBottom="1px"
+                        borderBottomColor={useColorModeValue(
+                            "gray.200",
+                            "gray.700",
                         )}
                     >
                         <RenderToTitle collapsed={false} />
@@ -319,6 +325,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             "refine.sider.bg.light",
                             "refine.sider.bg.dark",
                         )}
+                        overflow="auto"
                     >
                         <Box width="full">{renderSider()}</Box>
                     </VStack>
@@ -342,6 +349,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             >
                 <Box
                     display="flex"
+                    flexShrink={0}
                     pl={!drawerSiderVisible ? 0 : 4}
                     justifyContent={
                         !drawerSiderVisible ? "center" : "flex-start"
@@ -351,6 +359,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     height="64px"
                     borderRight="1px"
                     borderRightColor={useColorModeValue("gray.200", "gray.700")}
+                    borderBottom="1px"
+                    borderBottomColor={useColorModeValue(
+                        "gray.200",
+                        "gray.700",
+                    )}
                     bg={useColorModeValue(
                         "refine.sider.header.light",
                         "refine.sider.header.dark",
@@ -360,7 +373,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 </Box>
                 <VStack
                     alignItems="start"
-                    paddingTop={2}
+                    paddingY={2}
+                    height="100%"
                     flexGrow={1}
                     borderRight="1px"
                     borderRightColor={useColorModeValue("gray.200", "gray.700")}
@@ -369,7 +383,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         "refine.sider.bg.dark",
                     )}
                 >
-                    <Box width="full">{renderSider()}</Box>
+                    <Box width="full" overflow="auto">
+                        {renderSider()}
+                    </Box>
                 </VStack>
             </Box>
         </>

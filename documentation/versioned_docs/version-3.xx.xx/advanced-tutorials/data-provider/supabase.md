@@ -282,7 +282,7 @@ export default authProvider;
 </details>
 
 :::tip
-Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/auth/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [refine authorization hooks](api-reference/core/hooks/auth/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
 <br/>

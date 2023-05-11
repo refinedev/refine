@@ -1047,6 +1047,40 @@ Current step, counting from `0`.
 Is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
 
+## FAQ
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+
+```tsx title="pages/user/create.tsx"
+import React from "react";
+import { useStepsForm } from "@refinedev/mantine";
+
+const UserCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = useStepsForm({
+        refineCoreProps: { action: "create" },
+        initialValues: {
+            name: "",
+            surname: "",
+        },
+        // highlight-start
+        transformValues: (values) => ({
+            fullName: `${values.name} ${values.surname}`,
+        }),
+        // highlight-end
+    });
+    
+    // ...
+};
+```
+
 ## API Reference
 
 ### Properties
@@ -1060,13 +1094,15 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                   | Type                       | Default                    |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | -------------------------- |
-| TData        | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TVariables   | Form values for mutation function                                                                                                                            | `{}`                       | `Record<string, unknown>`  |
-| TTransformed | Form values after transformation for mutation function                                                                                                       | `{}`                       | `TVariables`               |
-| TSelectData  | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value. | [`BaseRecord`][baserecord] | `TData`                    |
+| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables     | Form values for mutation function                                                                                                                                   | `{}`                       | `Record<string, unknown>`  |
+| TTransformed   | Form values after transformation for mutation function                                                                                                              | `{}`                       | `TVariables`               |
+| TData          | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
+| TResponse      | Result data returned by the mutation function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TData` will be used as the default value.        | [`BaseRecord`][baserecord] | `TData`                    |
+| TResponseError | Custom error object that extends [`HttpError`][httperror]. If not specified, the value of `TError` will be used as the default value.                               | [`HttpError`][httperror]   | `TError`                   |
 
 ### Return values
 

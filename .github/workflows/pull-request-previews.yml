@@ -9,7 +9,7 @@ on:
     paths:
       - "packages/**"
       - "examples/finefoods-antd/**"
-      - "examples/finefoods-mui/**"
+      - "examples/finefoods-material-ui/**"
       - "examples/finefoods-client/**"
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     name: Fine Foods Antd
 
@@ -60,9 +60,9 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
-    name: Fine Foods MUI
+    name: Fine Foods Material UI
 
     steps:
       - name: Workflow run cleanup action
@@ -77,12 +77,12 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci
-          npm run bootstrap -- --scope finefoods-mui
-          npm run build -- --scope finefoods-mui
+          npm run bootstrap -- --scope finefoods-material-ui
+          npm run build -- --scope finefoods-material-ui
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./examples/finefoods-mui/build"
+          publish-dir: "./examples/finefoods-material-ui/build"
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-mui-${{ github.event.number }}

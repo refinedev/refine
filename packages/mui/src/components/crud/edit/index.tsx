@@ -30,6 +30,10 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
+    ListButtonProps,
+    RefreshButtonProps,
+    DeleteButtonProps,
+    SaveButtonProps,
 } from "@components";
 import { EditProps } from "../types";
 
@@ -41,11 +45,11 @@ import { EditProps } from "../types";
  */
 export const Edit: React.FC<EditProps> = ({
     title,
-    saveButtonProps,
+    saveButtonProps: saveButtonPropsFromProps,
     mutationMode: mutationModeProp,
     recordItemId,
     children,
-    deleteButtonProps,
+    deleteButtonProps: deleteButtonPropsFromProps,
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
@@ -89,10 +93,11 @@ export const Edit: React.FC<EditProps> = ({
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
+    const hasList = resource?.list && !recordItemId;
     const isDeleteButtonVisible =
         canDelete ??
         ((resource?.meta?.canDelete ?? resource?.canDelete) ||
-            deleteButtonProps);
+            deleteButtonPropsFromProps);
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (
@@ -101,62 +106,65 @@ export const Edit: React.FC<EditProps> = ({
             <Breadcrumb />
         );
 
+    const listButtonProps: ListButtonProps | undefined = hasList
+        ? {
+              ...(isLoading ? { disabled: true } : {}),
+              resource:
+                  routerType === "legacy"
+                      ? resource?.route
+                      : resource?.identifier ?? resource?.name,
+          }
+        : undefined;
+
+    const refreshButtonProps: RefreshButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+        recordItemId: id,
+        dataProviderName,
+    };
+
     const defaultHeaderButtons = (
         <>
-            {!recordItemId && (
-                <ListButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                />
-            )}
-            <RefreshButton
-                {...(isLoading ? { disabled: true } : {})}
-                resource={
-                    routerType === "legacy"
-                        ? resource?.route
-                        : resource?.identifier ?? resource?.name
-                }
-                recordItemId={id}
-                dataProviderName={dataProviderName}
-            />
+            {hasList && <ListButton {...listButtonProps} />}
+            <RefreshButton {...refreshButtonProps} />
         </>
     );
 
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? ({
+                  ...(isLoading ? { disabled: true } : {}),
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  mutationMode,
+                  variant: "outlined",
+                  onSuccess: () => {
+                      if (routerType === "legacy") {
+                          legacyGoList(resource?.route ?? resource?.name ?? "");
+                      } else {
+                          go({ to: goListPath });
+                      }
+                  },
+                  recordItemId: id,
+                  dataProviderName,
+                  ...deleteButtonPropsFromProps,
+              } as const)
+            : undefined;
+
+    const saveButtonProps: SaveButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        ...saveButtonPropsFromProps,
+    };
+
     const defaultFooterButtons = (
         <>
-            {isDeleteButtonVisible &&
-                (id || deleteButtonProps?.recordItemId) && (
-                    <DeleteButton
-                        {...(isLoading ? { disabled: true } : {})}
-                        resource={
-                            routerType === "legacy"
-                                ? resource?.route
-                                : resource?.identifier ?? resource?.name
-                        }
-                        mutationMode={mutationMode}
-                        variant="outlined"
-                        onSuccess={() => {
-                            if (routerType === "legacy") {
-                                legacyGoList(
-                                    resource?.route ?? resource?.name ?? "",
-                                );
-                            } else {
-                                go({ to: goListPath });
-                            }
-                        }}
-                        recordItemId={id}
-                        dataProviderName={dataProviderName}
-                        {...deleteButtonProps}
-                    />
-                )}
-            <SaveButton
-                {...(isLoading ? { disabled: true } : {})}
-                {...saveButtonProps}
-            />
+            {isDeleteButtonVisible && <DeleteButton {...deleteButtonProps} />}
+            <SaveButton {...saveButtonProps} />
         </>
     );
 
@@ -209,6 +217,8 @@ export const Edit: React.FC<EditProps> = ({
                             ? typeof headerButtons === "function"
                                 ? headerButtons({
                                       defaultButtons: defaultHeaderButtons,
+                                      listButtonProps,
+                                      refreshButtonProps,
                                   })
                                 : headerButtons
                             : defaultHeaderButtons}
@@ -230,6 +240,8 @@ export const Edit: React.FC<EditProps> = ({
                     ? typeof footerButtons === "function"
                         ? footerButtons({
                               defaultButtons: defaultFooterButtons,
+                              deleteButtonProps,
+                              saveButtonProps,
                           })
                         : footerButtons
                     : defaultFooterButtons}

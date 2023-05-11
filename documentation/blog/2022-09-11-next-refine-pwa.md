@@ -595,6 +595,13 @@ If you save your progress and go back to the browser, you should see a nicely re
 
 That’s it! We’ve successfully built a storefront using refine and Next.js SSR. Next, we’ll demonstrate how to generate a PWA manifest for our app, and how to turn it into a PWA.
 
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
+
 ## Generating PWA manifest
 
 The first thing we need to do is to create a manifest for our application. This is a JSON file that contains metadata such as the name of the app or the start URL, which defines the look and behavior of our **PWA** when installed as an application. You should be familiar with the concept if you've built a chrome extension before.

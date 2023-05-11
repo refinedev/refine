@@ -17,12 +17,6 @@ export const EditCompany: React.FC<EditCompanyProps> = ({
     return (
         <Modal
             {...modalProps}
-            okButtonProps={{
-                ...modalProps.okButtonProps,
-                onClick: () => {
-                    formProps.form?.submit();
-                },
-            }}
             title="Edit Company"
             width={breakpoint.sm ? "600px" : "80%"}
         >

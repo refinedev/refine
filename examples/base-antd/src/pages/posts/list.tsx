@@ -17,7 +17,7 @@ import {
 
 import { Table, Space, Select, Radio } from "antd";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost>({

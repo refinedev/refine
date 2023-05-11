@@ -1,5 +1,12 @@
-import * as RefineMantine from "@refinedev/mantine";
-import * as MantineCore from "@mantine/core";
+import { Create, useForm, useSelect } from "@refinedev/mantine";
+import {
+    MultiSelect,
+    Select,
+    TextInput,
+    Checkbox,
+    Textarea,
+    NumberInput,
+} from "@mantine/core";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -356,8 +363,12 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@refinedev/mantine", "RefineMantine", RefineMantine],
-        ["@mantine/core", "MantineCore", MantineCore],
+        ["@refinedev/mantine", "RefineMantine", { Create, useForm, useSelect }],
+        [
+            "@mantine/core",
+            "MantineCore",
+            { MultiSelect, Select, TextInput, Checkbox, Textarea, NumberInput },
+        ],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

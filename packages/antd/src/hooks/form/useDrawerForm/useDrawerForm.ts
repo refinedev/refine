@@ -24,12 +24,28 @@ export interface UseDrawerFormConfig extends UseFormConfig {
 }
 
 export type UseDrawerFormProps<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormPropsCore<TData, TError, TVariables, TSelectData> &
-    UseFormProps<TData, TError, TVariables, TSelectData> &
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormPropsCore<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> &
+    UseFormProps<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    > &
     UseDrawerFormConfig &
     LiveModeProps &
     FormWithSyncWithLocationParams & {
@@ -39,11 +55,20 @@ export type UseDrawerFormProps<
     };
 
 export type UseDrawerFormReturnType<
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
-> = UseFormReturnType<TData, TError, TVariables, TSelectData> & {
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
+> = UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> & {
     formProps: FormProps<TVariables> & {
         form: FormInstance<TVariables>;
     };
@@ -68,10 +93,12 @@ export type UseDrawerFormReturnType<
  */
 
 export const useDrawerForm = <
-    TData extends BaseRecord = BaseRecord,
+    TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-    TSelectData extends BaseRecord = TData,
+    TData extends BaseRecord = TQueryFnData,
+    TResponse extends BaseRecord = TData,
+    TResponseError extends HttpError = TError,
 >({
     syncWithLocation,
     defaultVisible = false,
@@ -79,21 +106,35 @@ export const useDrawerForm = <
     autoResetForm = true,
     ...rest
 }: UseDrawerFormProps<
-    TData,
+    TQueryFnData,
     TError,
     TVariables,
-    TSelectData
->): UseDrawerFormReturnType<TData, TError, TVariables, TSelectData> => {
-    const initiallySynced = React.useRef(false);
-
+    TData,
+    TResponse,
+    TResponseError
+>): UseDrawerFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+> => {
     const { visible, show, close } = useModal({
         defaultVisible,
     });
 
-    const useFormProps = useForm<TData, TError, TVariables, TSelectData>({
+    const useFormProps = useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >({
         ...rest,
     });
-
+    const [initiallySynced, setInitiallySynced] = React.useState(false);
     const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
@@ -103,8 +144,10 @@ export const useDrawerForm = <
 
     const action = rest.action ?? actionFromParams ?? "";
 
-    const syncingId =
-        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+    const syncingId = !(
+        typeof syncWithLocation === "object" &&
+        syncWithLocation?.syncId === false
+    );
 
     const syncWithLocationKey =
         typeof syncWithLocation === "object" && "key" in syncWithLocation
@@ -114,7 +157,7 @@ export const useDrawerForm = <
             : undefined;
 
     React.useEffect(() => {
-        if (initiallySynced.current === false && syncWithLocationKey) {
+        if (initiallySynced === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
                 openStatus ? show() : close();
@@ -131,12 +174,12 @@ export const useDrawerForm = <
                 }
             }
 
-            initiallySynced.current = true;
+            setInitiallySynced(true);
         }
-    }, [syncWithLocationKey, parsed, syncingId, setId]);
+    }, [syncWithLocationKey, parsed, syncingId, setId, initiallySynced]);
 
     React.useEffect(() => {
-        if (initiallySynced.current === true) {
+        if (initiallySynced === true) {
             if (visible && syncWithLocationKey) {
                 go({
                     query: {
@@ -159,27 +202,25 @@ export const useDrawerForm = <
                 });
             }
         }
-    }, [id, visible, show, close, syncWithLocationKey, syncingId]);
+    }, [
+        id,
+        visible,
+        show,
+        close,
+        syncWithLocationKey,
+        syncingId,
+        initiallySynced,
+    ]);
 
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const submit = async () => {
-        await onFinish(form.getFieldsValue());
-
-        if (autoSubmitClose) {
-            close();
-        }
-
-        if (autoResetForm) {
-            form.resetFields();
-        }
-    };
-
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: submit,
+        onClick: () => {
+            form.submit();
+        },
         loading: formLoading,
     };
 
@@ -235,7 +276,17 @@ export const useDrawerForm = <
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps.onFinish,
+            onFinish: async (values) => {
+                await onFinish(values);
+
+                if (autoSubmitClose) {
+                    close();
+                }
+
+                if (autoResetForm) {
+                    form.resetFields();
+                }
+            },
         },
         drawerProps: {
             width: "500px",

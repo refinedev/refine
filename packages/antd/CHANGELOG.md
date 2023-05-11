@@ -1,5 +1,331 @@
 # @pankod/refine-antd
 
+## 5.16.2
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+-   Updated dependencies [[`dc62abc890f`](https://github.com/refinedev/refine/commit/dc62abc890f68be161c7035c28c0118216a9e0ec)]:
+    -   @refinedev/ui-types@1.14.0
+
+## 5.16.1
+
+### Patch Changes
+
+-   [#4295](https://github.com/refinedev/refine/pull/4295) [`7f24a6a2b14`](https://github.com/refinedev/refine/commit/7f24a6a2b14f1e10a2483298b13cc143861fb08f) Thanks [@salihozdemir](https://github.com/salihozdemir)! - chore: bump to latest version of `@refinedev/ui-types`
+
+## 5.16.0
+
+### Minor Changes
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added the `fixed` prop to the `<ThemedSiderV2/>` to allow the sider to be fixed
+
+    The prop is optional and defaults to `false`. You can see the usage as follows:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+             ...
+            >
+                <ThemedLayoutV2 Sider={() => <ThemedSiderV2 fixed />}>
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4278](https://github.com/refinedev/refine/pull/4278) [`b14f2ad8a70`](https://github.com/refinedev/refine/commit/b14f2ad8a700d5ae157f437a8f610481d88ae09b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `autoSubmitClose` prop to `useEditableTable`.
+    Now you can choose whether to close the table's row after submitting the form or not.
+
+    ```tsx
+    const editableTable = useEditableTable({
+        autoSubmitClose: false,
+    });
+    ```
+
+### Patch Changes
+
+-   [#4267](https://github.com/refinedev/refine/pull/4267) [`5e128c76c16`](https://github.com/refinedev/refine/commit/5e128c76c162cb01822c283e567003a5b6ce62f8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: `onFinish` prop override on `useDrawerForm` and `useModalForm` hook
+
+    When override `onFinish` prop using the `useDrawerForm` and `useModalForm` hooks, the modal not close after submit the form.
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+## 5.15.0
+
+### Minor Changes
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added the `fixed` prop to the `<ThemedSiderV2/>` to allow the sider to be fixed
+
+    The prop is optional and defaults to `false`. You can see the usage as follows:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+             ...
+            >
+                <ThemedLayoutV2 Sider={() => <ThemedSiderV2 fixed />}>
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4278](https://github.com/refinedev/refine/pull/4278) [`b14f2ad8a70`](https://github.com/refinedev/refine/commit/b14f2ad8a700d5ae157f437a8f610481d88ae09b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `autoSubmitClose` prop to `useEditableTable`.
+    Now you can choose whether to close the table's row after submitting the form or not.
+
+    ```tsx
+    const editableTable = useEditableTable({
+        autoSubmitClose: false,
+    });
+    ```
+
+### Patch Changes
+
+-   [#4267](https://github.com/refinedev/refine/pull/4267) [`5e128c76c16`](https://github.com/refinedev/refine/commit/5e128c76c162cb01822c283e567003a5b6ce62f8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: `onFinish` prop override on `useDrawerForm` and `useModalForm` hook
+
+    When override `onFinish` prop using the `useDrawerForm` and `useModalForm` hooks, the modal not close after submit the form.
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+## 5.14.0
+
+### Minor Changes
+
+-   [#4272](https://github.com/refinedev/refine/pull/4272) [`420d2442741`](https://github.com/refinedev/refine/commit/420d2442741d211561dd48c72bcb143ee5f44e9e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - feat: added the `fixed` prop to the `<ThemedSiderV2/>` to allow the sider to be fixed
+
+    The prop is optional and defaults to `false`. You can see the usage as follows:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+             ...
+            >
+                <ThemedLayoutV2 Sider={() => <ThemedSiderV2 fixed />}>
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+-   [#4278](https://github.com/refinedev/refine/pull/4278) [`b14f2ad8a70`](https://github.com/refinedev/refine/commit/b14f2ad8a700d5ae157f437a8f610481d88ae09b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `autoSubmitClose` prop to `useEditableTable`.
+    Now you can choose whether to close the table's row after submitting the form or not.
+
+    ```tsx
+    const editableTable = useEditableTable({
+        autoSubmitClose: false,
+    });
+    ```
+
+### Patch Changes
+
+-   [#4267](https://github.com/refinedev/refine/pull/4267) [`5e128c76c16`](https://github.com/refinedev/refine/commit/5e128c76c162cb01822c283e567003a5b6ce62f8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: `onFinish` prop override on `useDrawerForm` and `useModalForm` hook
+
+    When override `onFinish` prop using the `useDrawerForm` and `useModalForm` hooks, the modal not close after submit the form.
+
+-   [#4277](https://github.com/refinedev/refine/pull/4277) [`7172c1b42d2`](https://github.com/refinedev/refine/commit/7172c1b42d26ade22780527892ce26ceef15c838) Thanks [@salihozdemir](https://github.com/salihozdemir)! - fix: renamed the `<ThemedHeaderV2/>` prop `isSticky` to `sticky`
+
+    To provide backwards compatibility, the old prop name is still supported, but it is deprecated and will be removed in the next major version.
+
+    Example:
+
+    ```tsx
+    import { Refine } from "@refinedev/core";
+    import { ThemedLayoutV2, ThemedHeaderV2 } from "@refinedev/antd"; // or @refinedev/chakra-ui, @refinedev/mui, @refinedev/mantine
+
+    const App: React.FC = () => {
+        return (
+            <Refine
+                ...
+            >
+                <ThemedLayoutV2
+                    Header={() => <ThemedHeaderV2 sticky />}
+                >
+                    {/* ... */}
+                </ThemedLayoutV2>
+            </Refine>
+        );
+    };
+    ```
+
+## 5.13.2
+
+### Patch Changes
+
+-   [#4241](https://github.com/refinedev/refine/pull/4241) [`fbe109b5a8b`](https://github.com/refinedev/refine/commit/fbe109b5a8ba8f5d870eab2d96b7477508bceec0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added new generic types to the `useForm` hooks. Now you can pass the query types and the mutation types to the hook.
+
+## 5.13.1
+
+### Patch Changes
+
+-   [#4241](https://github.com/refinedev/refine/pull/4241) [`fbe109b5a8b`](https://github.com/refinedev/refine/commit/fbe109b5a8ba8f5d870eab2d96b7477508bceec0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added new generic types to the `useForm` hooks. Now you can pass the query types and the mutation types to the hook.
+
+## 5.13.0
+
+### Minor Changes
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/antd";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={true} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.12.0
+
+## 5.12.0
+
+### Minor Changes
+
+-   [#4209](https://github.com/refinedev/refine/pull/4209) [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: add `isSticky` prop to `ThemedHeaderV2` component
+
+    ```tsx
+    import { ThemedHeaderV2, ThemedLayoutV2 } from "@refinedev/antd";
+
+    const CustomHeader = () => <ThemedHeaderV2 isSticky={true} />;
+
+    const App = () => (
+        <Refine>
+            // ...
+            <ThemedLayoutV2 Header={CustomHeader}>
+                <Outlet />
+            </ThemedLayoutV2>
+            // ...
+        </Refine>
+    );
+    ```
+
+-   [#4232](https://github.com/refinedev/refine/pull/4232) [`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `initialSiderCollapsed` added to `RefineThemedLayoutV2Props` to control initial state of `<ThemedSiderV2>`.
+    From now on, you can control the initial collapsed state of `<ThemedSiderV2>` by passing the `initialSiderCollapsed` prop to `<ThemedLayoutV2>`.
+
+    ```tsx
+    <ThemedLayoutV2
+        initialSiderCollapsed={true} // This will make the sider collapsed by default
+    >
+        {/* .. */}
+    </ThemedLayoutV2>
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`c99bc0ad7f7`](https://github.com/refinedev/refine/commit/c99bc0ad7f7b71cf47e45a797acdea2325e6fbc8), [`3f4b5fef76f`](https://github.com/refinedev/refine/commit/3f4b5fef76f3558fc4466f455b9f55083cf47fc2)]:
+    -   @refinedev/ui-types@1.11.0
+
+## 5.11.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+## 5.10.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
 ## 5.9.0
 
 ### Minor Changes

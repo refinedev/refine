@@ -222,7 +222,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useLogin` documentation&#8594](/docs/api-reference/core/hooks/auth/useLogin/)
+> For more information, refer to the [`useLogin` documentation&#8594](/docs/api-reference/core/hooks/authentication/useLogin/)
 
 ### check
 
@@ -312,7 +312,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useIsAuthenticated` documentation&#8594](/docs/api-reference/core/hooks/auth/useIsAuthenticated/)
+> For more information, refer to the [`useIsAuthenticated` documentation&#8594](/docs/api-reference/core/hooks/authentication/useIsAuthenticated/)
 
 ### logout
 
@@ -465,7 +465,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useLogout` documentation&#8594](/docs/api-reference/core/hooks/auth/useLogout/)
+> For more information, refer to the [`useLogout` documentation&#8594](/docs/api-reference/core/hooks/authentication/useLogout/)
 
 ### onError
 
@@ -548,7 +548,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useOnError` documentation&#8594](/docs/api-reference/core/hooks/auth/useOnError/)
+> For more information, refer to the [`useOnError` documentation&#8594](/docs/api-reference/core/hooks/authentication/useOnError/)
 
 ## Optional Methods
 
@@ -607,7 +607,7 @@ Though `usePermissions` hook can be used for simple authorization purposes, if y
 For more information, refer to the [`accessControlProvider` documentation&#8594](docs/api-reference/core/providers/accessControl-provider/)
 :::
 
-> For more information, refer to the [`usePermissions` documentation &#8594](/docs/api-reference/core/hooks/auth/usePermissions/)
+> For more information, refer to the [`usePermissions` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions/)
 
 ### getIdentity
 
@@ -687,7 +687,7 @@ const authProvider: AuthBindings = {
 
 :::
 
-> For more information, refer to the [`useGetIdentity` documentation&#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
+> For more information, refer to the [`useGetIdentity` documentation&#8594](/docs/api-reference/core/hooks/authentication/useGetIdentity/)
 
 ### register
 
@@ -858,7 +858,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useRegister` documentation&#8594](/docs/api-reference/core/hooks/auth/useRegister/)
+> For more information, refer to the [`useRegister` documentation&#8594](/docs/api-reference/core/hooks/authentication/useRegister/)
 
 ### forgotPassword
 
@@ -1006,7 +1006,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useForgotPassword` documentation &#8594](/docs/api-reference/core/hooks/auth/useForgotPassword/)
+> For more information, refer to the [`useForgotPassword` documentation &#8594](/docs/api-reference/core/hooks/authentication/useForgotPassword/)
 
 ### updatePassword
 
@@ -1170,7 +1170,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useUpdatePassword` documentation &#8594](/docs/api-reference/core/hooks/auth/useUpdatePassword/)
+> For more information, refer to the [`useUpdatePassword` documentation &#8594](/docs/api-reference/core/hooks/authentication/useUpdatePassword/)
 
 ## Setting Authorization Credentials
 

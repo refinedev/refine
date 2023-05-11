@@ -1,5 +1,16 @@
-import * as RefineAntd from "@refinedev/antd";
-import * as AntdPackage from "antd";
+import {
+    Show,
+    TagField,
+    TextField,
+    ImageField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+    NumberField,
+} from "@refinedev/antd";
+import { Typography } from "antd";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -494,8 +505,23 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@refinedev/antd", "RefineAntd", RefineAntd],
-        ["antd", "AntdPackage", AntdPackage],
+        [
+            "@refinedev/antd",
+            "RefineAntd",
+            {
+                Show,
+                TagField,
+                TextField,
+                ImageField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+                NumberField,
+            },
+        ],
+        ["antd", "AntdPackage", { Typography }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

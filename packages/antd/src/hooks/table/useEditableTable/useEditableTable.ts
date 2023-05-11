@@ -35,7 +35,12 @@ type useEditableTableProps<
     useTableProps<TQueryFnData, TError, TSearchVariables, TData>,
     "successNotification" | "errorNotification"
 > &
-    UseFormProps<TQueryFnData, TError, TVariables>;
+    UseFormProps<TQueryFnData, TError, TVariables> & {
+        /**
+         * When true, row will be closed after successful submit.
+         */
+        autoSubmitClose?: boolean;
+    };
 
 /**
  * `useEditeableTable` allows you to implement edit feature on the table with ease,
@@ -58,15 +63,16 @@ export const useEditableTable = <
     TVariables = {},
     TSearchVariables = unknown,
     TData extends BaseRecord = TQueryFnData,
->(
-    props: useEditableTableProps<
-        TQueryFnData,
-        TError,
-        TVariables,
-        TSearchVariables,
-        TData
-    > = {},
-): useEditableTableReturnType<
+>({
+    autoSubmitClose = true,
+    ...props
+}: useEditableTableProps<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TSearchVariables,
+    TData
+> = {}): useEditableTableReturnType<
     TQueryFnData,
     TError,
     TVariables,
@@ -103,6 +109,16 @@ export const useEditableTable = <
     return {
         ...table,
         ...edit,
+        formProps: {
+            ...edit.formProps,
+            onFinish: async (values) => {
+                const result = await edit.onFinish(values);
+                if (autoSubmitClose) {
+                    setId(undefined);
+                }
+                return result;
+            },
+        },
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,

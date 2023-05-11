@@ -1,7 +1,18 @@
-import * as RefineMantine from "@refinedev/mantine";
-import * as RefineReactTable from "@refinedev/react-table";
-import * as MantineCore from "@mantine/core";
-import * as TanstackReactTable from "@tanstack/react-table";
+import {
+    List,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+    TagField,
+    EmailField,
+    UrlField,
+    BooleanField,
+    DateField,
+    MarkdownField,
+} from "@refinedev/mantine";
+import { useTable } from "@refinedev/react-table";
+import { ScrollArea, Table, Pagination, Group, Image } from "@mantine/core";
+import { flexRender } from "@tanstack/react-table";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -795,10 +806,29 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@refinedev/mantine", "RefineMantine", RefineMantine],
-        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
-        ["@mantine/core", "MantineCore", MantineCore],
-        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
+        [
+            "@refinedev/mantine",
+            "RefineMantine",
+            {
+                List,
+                EditButton,
+                ShowButton,
+                DeleteButton,
+                TagField,
+                EmailField,
+                UrlField,
+                BooleanField,
+                DateField,
+                MarkdownField,
+            },
+        ],
+        ["@refinedev/react-table", "RefineReactTable", { useTable }],
+        [
+            "@mantine/core",
+            "MantineCore",
+            { ScrollArea, Table, Pagination, Group, Image },
+        ],
+        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
     ],
     codeViewerComponent: SharedCodeViewer,
     loadingComponent: LoadingComponent,

@@ -1,5 +1,97 @@
 # @pankod/refine-core
 
+## 4.14.3
+
+### Patch Changes
+
+-   [#4279](https://github.com/refinedev/refine/pull/4279) [`3e4c977b8d3`](https://github.com/refinedev/refine/commit/3e4c977b8d3cbe17f4f460f22204c3880a40bb13) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: queryKey method params for `useDelete`, `useDeleteMany` and`useUpdate` hooks
+
+## 4.14.2
+
+### Patch Changes
+
+-   [#4279](https://github.com/refinedev/refine/pull/4279) [`3e4c977b8d3`](https://github.com/refinedev/refine/commit/3e4c977b8d3cbe17f4f460f22204c3880a40bb13) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: queryKey method params for `useDelete`, `useDeleteMany` and`useUpdate` hooks
+
+## 4.14.1
+
+### Patch Changes
+
+-   [#4279](https://github.com/refinedev/refine/pull/4279) [`3e4c977b8d3`](https://github.com/refinedev/refine/commit/3e4c977b8d3cbe17f4f460f22204c3880a40bb13) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: queryKey method params for `useDelete`, `useDeleteMany` and`useUpdate` hooks
+
+## 4.14.0
+
+### Minor Changes
+
+-   [#4241](https://github.com/refinedev/refine/pull/4241) [`fbe109b5a8b`](https://github.com/refinedev/refine/commit/fbe109b5a8ba8f5d870eab2d96b7477508bceec0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added new generic types to the `useForm` hooks. Now you can pass the query types and the mutation types to the hook.
+
+    ```ts
+    import { useForm } from "@refinedev/core";
+
+    useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >();
+    ```
+
+## 4.13.0
+
+### Minor Changes
+
+-   [#4241](https://github.com/refinedev/refine/pull/4241) [`fbe109b5a8b`](https://github.com/refinedev/refine/commit/fbe109b5a8ba8f5d870eab2d96b7477508bceec0) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added new generic types to the `useForm` hooks. Now you can pass the query types and the mutation types to the hook.
+
+    ```ts
+    import { useForm } from "@refinedev/core";
+
+    useForm<
+        TQueryFnData,
+        TError,
+        TVariables,
+        TData,
+        TResponse,
+        TResponseError
+    >();
+    ```
+
+## 4.12.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+### Patch Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `filters`, `sorters`, `current`, and, `pageSize` removed from `useMeta` returned object.
+
+## 4.11.0
+
+### Minor Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `sorters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the sorting mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+    -   **"server"**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+
+    feat:`filters.mode` prop added to `useTable` and `useDataGrid` hooks. This prop handles the filtering mode of the table. It can be either `server` or `off`.
+
+    -   **"off"**: `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+    -   **"server"**: Filtering is done on the server side. Records will be fetched by using the `filters` value.
+
+### Patch Changes
+
+-   [#4194](https://github.com/refinedev/refine/pull/4194) [`8df15fe0e4e`](https://github.com/refinedev/refine/commit/8df15fe0e4e0fb2bb81102ed1e3a12a0a9532b80) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `filters`, `sorters`, `current`, and, `pageSize` removed from `useMeta` returned object.
+
 ## 4.10.0
 
 ### Minor Changes

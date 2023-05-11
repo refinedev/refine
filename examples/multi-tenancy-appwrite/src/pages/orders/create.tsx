@@ -1,22 +1,22 @@
-import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-
+import {
+    IResourceComponentsProps,
+    HttpError,
+    useParsed,
+} from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
-import { StoreContext } from "context/store";
 
 export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
-    const [store] = useContext(StoreContext);
+    const { params } = useParsed<{ tenant?: string }>();
     const { formProps, saveButtonProps } = useForm<IOrder, HttpError, IOrder>();
 
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "61cb01b17ef57",
+        resource: "products",
         optionLabel: "title",
         optionValue: "id",
-        filters: [{ field: "storeId", operator: "eq", value: store }],
+        filters: [{ field: "storeId", operator: "eq", value: params?.tenant }],
     });
 
     return (
@@ -30,7 +30,7 @@ export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
                 onFinish={(values) => {
                     return formProps.onFinish?.({
                         ...values,
-                        storeId: store,
+                        storeId: params?.tenant,
                     });
                 }}
             >
@@ -45,7 +45,7 @@ export const OrderCreate: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Select {...productSelectProps} />
                 </Form.Item>
-                <Form.Item label="Quantitiy" name="quantitity">
+                <Form.Item label="Quantity" name="quantity">
                     <InputNumber defaultValue={1} />
                 </Form.Item>
 

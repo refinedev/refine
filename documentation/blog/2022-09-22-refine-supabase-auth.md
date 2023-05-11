@@ -347,6 +347,14 @@ In this case, we pass the supabaseClient as the data provider. Supabase is suppo
 
 [You can learn more about data provider in the Refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
+
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
+
 ## Auth Provider
 
 The `authProvider` is an object that refine uses to authenticate and authorize the users. The auth provider must have methods like `login()`, `register()`, etc., to manage authentication in your app. These methods should return a Promise and are accessible via hooks.

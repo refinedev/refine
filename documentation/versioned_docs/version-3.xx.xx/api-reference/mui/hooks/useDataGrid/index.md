@@ -771,7 +771,7 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ## Example
 
-<CodeSandboxExample path="table-mui-use-data-grid" />
+<CodeSandboxExample path="table-material-ui-use-data-grid" />
 
 [use-table-core]: /docs/api-reference/core/hooks/useTable
 [source-code]: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts

@@ -19,9 +19,11 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             image: {},
         },
     ])
+    .matchHeader("Prefer", "return=representation")
     .query({
         columns:
             "%22title%22%2C%22slug%22%2C%22content%22%2C%22categoryId%22%2C%22image%22",
+        select: "*",
     })
     .reply(
         201,

@@ -40,6 +40,8 @@ In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.c
 Material UI is a React UI component library with a rich set of components and tools for bootstrapping elegant user interfaces. We'll use the `<DataGrid/>` component to render a list of employees from a mock server. We'll also look at some of the properties and custom configurations that can be used with the component.
 
 Steps we’ll cover:
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
 - [Setting up a `refine` application](#setting-up-a-refine-application)
 - [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 - [Material UI DataGrid component](#material-ui-datagrid-component)
@@ -53,6 +55,8 @@ Steps we’ll cover:
     - [Controlled sorting](#controlled-sorting)
   - [Filtering](#filtering)
     - [Controlled filtering](#controlled-filtering)
+- [Conclusion](#conclusion)
+- [Example](#example)
   
 
 ## Prerequisites
@@ -433,6 +437,12 @@ Which renders our grid like this:
 
 You can refer to the pagination [documentation](https://mui.com/x/react-data-grid/pagination/) for additional props on pagination.
 
+---
+
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
+
+
+---
 
 ### Sorting
 
@@ -849,34 +859,6 @@ Where to go next? Check the useDataGrid hook documentation [here](https://refine
 
 ## Example
 
-<CodeSandboxExample path="blog-mui-datagrid" />
+<CodeSandboxExample path="blog-material-ui-datagrid" />
 
 
----
-<div style={{backgroundColor:"#F8F8F8", padding:"18px", borderRadius:"10px"}}>
-<div style={{fontSize:"32px", fontWeight:"700", lineHeight:"1.4", marginBottom:"25px"}} >Stop wasting your time copy/pasting your form code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>

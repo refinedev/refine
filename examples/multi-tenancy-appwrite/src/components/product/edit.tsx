@@ -2,6 +2,7 @@ import { RcFile } from "antd/lib/upload/interface";
 import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 
 import { normalizeFile, storage } from "utility";
+import { useParsed } from "@refinedev/core";
 
 type EditProductProps = {
     modalProps: ModalProps;
@@ -12,6 +13,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
     modalProps,
     formProps,
 }) => {
+    const { params } = useParsed<{ tenant?: string }>();
     return (
         <Modal {...modalProps}>
             <Form
@@ -21,6 +23,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                 onFinish={(values) => {
                     formProps.onFinish?.({
                         ...values,
+                        storeId: params?.tenant,
                         image: JSON.stringify(values.image),
                     });
                 }}
@@ -45,11 +48,6 @@ export const EditProduct: React.FC<EditProductProps> = ({
                         valuePropName="fileList"
                         normalize={normalizeFile}
                         noStyle
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
                     >
                         <Upload.Dragger
                             name="file"

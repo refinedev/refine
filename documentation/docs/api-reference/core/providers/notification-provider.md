@@ -78,14 +78,9 @@ values={[
 {label: 'Material UI', value: 'mui'},
 {label: 'Mantine', value: 'mantine'},
 {label: 'Chakra UI', value: 'chakra'},
-{label: 'Custom', value: 'custom'},
 ]}>
 
-  <TabItem value="custom">
 
-Create a custom notification provider by following the [guide](/docs/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
-
-  </TabItem>
 
   <TabItem value="antd">
 
@@ -156,7 +151,7 @@ return (
   </TabItem>
 </Tabs>
 
-## Creating an `notificationProvider`
+## Creating a `notificationProvider` from scratch
 
 We will build a simple `notificationProvider` from scratch to show the logic of how `notificationProvider` methods interact with the app. For this, we will use the [`react-toastify`](https://github.com/fkhadra/react-toastify) package, which is very **popular** in the **React Ecosystem**. If you want to use another notification library, you can use the same approach.
 

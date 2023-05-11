@@ -267,7 +267,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     }));
 
     return (
-        <List createButtonProps={CreateButton}>
+        <List>
             <Table highlightOnHover striped withBorder withColumnBorders>
                 <thead>
                     {getHeaderGroups().map((headerGroup) => (
@@ -369,7 +369,7 @@ function App() {
 
 ---
 
-<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+<PromotionBanner isDark title="Open-source enterprise application platform for serious web developers"  description="refineNew" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" />
 
 ---
 
