@@ -40,7 +40,7 @@ jobs:
           install: false
           command: cd ./examples/base-antd && npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
           start: "pwd"
-          wait-on: "http://127.0.0.1:5773"
+          wait-on: "http://127.0.0.1:5173"
           project: ./examples/base-antd
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
