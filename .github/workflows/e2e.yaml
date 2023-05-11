@@ -37,7 +37,9 @@ jobs:
         with:
           install: false
           command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
-          start: cd ${{ steps.build-step.outputs.example-path }}
+          # start: pwd
           wait-on: "http://127.0.0.1:5173"
+          # project: ${{ steps.build-step.outputs.example-path }}
+          working-directory: ${{ steps.build-step.outputs.example-path }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
