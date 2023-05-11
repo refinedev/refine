@@ -8,14 +8,14 @@ tutorial:
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
 
-This unit explores the auth provider object of `<Refine />`. It also shows how **refine**'s core and supplementary **Material UI** packages implement various auth pages with the `<AuthPage />` component.
+This unit explores the auth provider object passed to `<Refine />`. It also shows how **refine**'s supplementary **Material UI** package implement various auth pages with the `<AuthPage />` component.
 
 
 ## What is Auth Provider?
 
-**refine**'s Auth Provider represents the context which handles authentication and access control in the app. It provides a way to authenticate users and authorize them to access resources.
+**refine**'s Auth Provider represents the layer which handles authentication and access control in the app. It provides a way to authenticate users and authorize them to access resources.
 
-The Auth Provider is an object which contains methods related to authentication and access control. It is passed as a value to `<Refine />`'s `authProvider` prop. The methods are consumed inside components via **refine**'s auth hooks.
+The Auth Provider is an object which contains methods related to authentication and access control. It is passed as a value to `<Refine />`'s `authProvider` prop. The methods are consumed from UI components via **refine**'s auth hooks.
 
 A typical auth provider has the following methods:
 
@@ -37,14 +37,16 @@ const authProvider: AuthBindings = {
 };
 ```
 
-We have methods to handle login, logging out, registering, recovering and updating passwords, and getting user identity and authorization status.
+We have methods to handle login, logging out, registering, recovering and updating passwords, and getting auth status, user identity and user permissions.
 
-As indicated above, an auth provider's methods are expected to return a Promise. So, `async` methods are used to compose an auth provider. These methods perform their respective operations when they are invoked via **refine** auth hooks. Please check [Auth Provider](/docs/api-reference/core/providers/auth-provider/) documentation to see the details of each method.
+As indicated above, an auth provider's methods are expected to return a Promise. So, `async` methods are used to compose an auth provider. These methods perform their respective operations when they are invoked via **refine** auth hooks.
+
+[Refer to Auth Provider documentation to see the details of each method](/docs/api-reference/core/providers/auth-provider/).
 
 
-## Using Auth Providers in refine
+## Using an Auth Provider in refine
 
-`<Refine />`'s auth context is enabled by passing the `authProvider` object to its `authProvider` prop. It comes enabled with the initialized app.
+`<Refine />`'s auth context is enabled by passing the `authProvider` object to its `authProvider` prop. It already comes enabled with our initialized app.
 
 ```tsx
 // Inside App.tsx
@@ -55,10 +57,9 @@ As indicated above, an auth provider's methods are expected to return a Promise.
 />;
 ```
 
-The auth provider is closely related to the backend service, which is **Simple REST API** in our case. At initialization, **refine.new** generated an auth provider for us, which is tailored to address **Simple REST API**, a simple RESTful API service provided by **refine**. It looks like below:
+The auth provider is closely related to the backend API service, which is **Simple REST API** in our case. At initialization, **refine.new** generated an auth provider for us, which is tailored to address **Simple REST API**, a simple RESTful API service provided by **refine**. It looks like below:
 
-```TypeScript
-// src/authProvider.ts
+```TypeScript title="src/authProvider.ts"
 
 import { AuthBindings } from "@refinedev/core";
 
@@ -121,14 +122,14 @@ export const authProvider: AuthBindings = {
 };
 ```
 
-These methods define the app's ability to authenticate and authorize requests with the backend for our **Blog** app.
+These methods define the app's ability to authenticate and authorize requests with the backend for our React admin panel app.
 
 [Refer to the `<Refine />` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
 
-## How to Use Auth Provider Methods in Components
+## Using Auth Provider Methods in Components
 
-Each auth provider method in **refine** has corresponding hooks via which they can be accessed from inside a component. So, we use these hooks to perform auth operations in our app. Please check [Auth Hooks](/docs/api-reference/core/hooks/auth/useIsAuthenticated/) documentation for the details of each hook.
+Each auth provider method in **refine** has corresponding hooks via which they can be accessed from inside a component. So, we use these hooks to perform auth operations in our app.
 
 For example, we can use the `useLogin()` hook to implement login operations like below:
 
@@ -149,6 +150,8 @@ const handleLogin = async (values) => {
 
 As we can see, `useLogin()` returns a `mutate` function, which basically gives us access to the `authProvider.login` method. Ivoking this `mutate()` function then executes the auth provider `login` method and logs the user in.
 
+[Refer to Auth Hooks documentation for the details of each hook](/docs/api-reference/core/hooks/auth/useIsAuthenticated/).
+
 :::info
 
 We made an example to show the relationship between auth provider methods and auth hooks. We used the `useLogin()` hook in the example, but all auth hooks work the same way.
@@ -165,10 +168,13 @@ We made an example to show the relationship between auth provider methods and au
 <Checklist>
 
 <ChecklistItem id="auth-provider-intro">
-I understood what is auth provider and how it works.
+I understand that auth provider methods deal with user authentication adn authorization.
 </ChecklistItem>
 <ChecklistItem id="auth-provider-intro-2">
-I learned that refine offers built-in auth provider examples.
+I understand that in <strong>refine</strong>, <code>useLogin()</code> hook is used to log a user in.
+</ChecklistItem>
+<ChecklistItem id="auth-provider-intro-3">
+I learned that refine offers built-in auth provider examples for various Auth Providers like Google Auth, Auth0, Okta, etc.
 </ChecklistItem>
 
 </Checklist>
