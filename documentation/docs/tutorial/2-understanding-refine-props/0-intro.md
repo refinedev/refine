@@ -7,13 +7,13 @@ tutorial:
 ---
 
 
-This unit explains the two fundamental concepts in **refine**: data providers representing the `dataProvider` prop of `<Refine />` and the `resources` prop.
+This unit explains the two fundamental concepts in **refine**: data providers representing the `dataProvider` prop of `<Refine />` and the array of resource objects defined for the `resources` prop.
 
 ## Understanding `<Refine />` Props
 
-As we mentioned earlier, almost everything in **refine** is centered around the `<Refine />` component. As we have already noticed, the `<Refine />` component have several props, among plenty others.
+As we mentioned earlier, almost everything in **refine** is centered around the `<Refine />` component. As we have already noticed, the `<Refine />` component is passed plenty of props that configure different layers of our React admin panel app.
 
-For example, we are covering `dataProvider`, `authProvider` and `resources` props in this tutorial:
+For example, the `dataProvider`, `authProvider` and `resources` props, which we are covering in this tutorial:
 
 ```TypeScript
 // Inside src/App.tsx
@@ -49,12 +49,19 @@ For example, we are covering `dataProvider`, `authProvider` and `resources` prop
 </Refine>
 ```
 
-**refine**'s architecture segregates different components of the app into individual contexts, which are then supplied with their individual provider objects containing methods specific to the requirements they are implementing.
+**refine**'s architecture separates different concerns of the app into indvidual layers backed by their respective contexts. These contexts are then supplied their provider objects containing methods for fulfilling their specific requirements.
 
 For example, the `dataProvider` object represents the context responsible for the app's interaction with backend APIs. It is passed as a value to the `dataProvider` prop of `<Refine />`. The methods inside the `dataProvider` object are defined specifically to handle data fetching for CRUD actions in a **refine** app.
 
-Similarly, the `authProvider` object represents the context that handles authentication and authorization of the app. It is passed as a value to the `authProvider` prop (as you can infer, by convention, the prop and its value have the same identifier). The methods of the `authProvider` object are defined to handle authentication and authorization in a **refine** app. Then, these methods are accessible from consumer components via correspondnig hooks.
+Similarly, the `authProvider` object represents the context that handles authentication and authorization of the app. It is passed as a value to the `authProvider` prop (as you can infer, by convention, the prop and its value have the same identifier). The methods of the `authProvider` object are defined to handle authentication and authorization in a **refine** app. Then, these methods are accessible from consumer components via corresponding hooks.
 
 We dive into detailed implementations of these provider objects and hooks in the upcoming posts.
 
-The `resources` prop, in contrast, does not rely on a context. It is an array of resource items used to directly declare the names of resources in the app and possible actions on each resource. Since **refine** implements RESTful API principles, paths to individual actions are also specified for a resource item. We delve into the `resources` prop in [Unit 3.3](https://refine.new).
+The `resources` prop, in contrast, is an array of resource items used to declare the names of resources and their valid actions in the app. Since **refine** implements RESTful principles, paths to individual actions are also specified for a resource item. We delve into the `resources` prop in [Unit 3.3](/docs/tutorial/understanding-refine-props/resources).
+
+
+<Checklist>
+<ChecklistItem id="understanding-refine-props">
+I understand that <code>Refine</code> props such as <code>dataProvider</code>, <code>authProvider</code> and <code>resources</code> help configure different layers of a <strong>refine</strong> app.
+</ChecklistItem>
+</Checklist>

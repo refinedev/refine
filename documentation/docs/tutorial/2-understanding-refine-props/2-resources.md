@@ -6,15 +6,7 @@ tutorial:
     next: tutorial/adding-crud-actions/index
 ---
 
-:::info Remember
-
-<UIConditional is="mui">
-
-In [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we explain the `resources` prop of the `<Refine/>` component using mock components.
-
-</UIConditional>
-
-:::
+This post explains how `resources` and their valid actions are declared in a **refine** app. We discuss how **refine**'s resource actions are related to routes and how to define valid resource actions.
 
 ## `resources` in refine
 
@@ -30,11 +22,10 @@ The action paths we define in resources, among other things, help **refine** to 
 
 ### Note on `resources` and Routes
 
-Path definitions for a resource helps **refine** to recognize its available actions across that particular path. Basing on the current path the browser is at, **refine** refers to the path definitions configured in the `resources` object to automatically identify the valid resource and action, without requiring us to specify the resource prop in their hooks and components. It also goes ahead and invokes the relevant data hook.
+Path definitions for a resource helps **refine** to recognize valid actions across that particular path. Basing on the current URL the browser is at, **refine** refers to the path definitions configured in the `resources` object to automatically identify the valid resource action, without requiring us to specify the resource prop in their hooks and components. It also goes ahead and invokes the relevant data hook when the component is loaded.
 
-It's important to note that **routing is managed directly by our preferred framework** (React Router, Next.js, Remix). This makes **refine** constraint-free to be used with any React (Web, Electron, React Native etc.) application. Such flexibility allows seamless integration of **refine** into existing React applications to works side by side with the existing app's routing logic without any conflict. This makes the use of **refine** convenient in enterprise-grade applications with complex requirements such as nested routes and multi-tenancy.
+It's important to note that **routing is managed directly by the preferred framework** (React Router, Next.js, Remix). This makes **refine** constraint-free for use with any React (Web, Electron, React Native etc.) application. Such flexibility allows seamless integration of **refine** into existing React applications to work side by side with the existing app's routing logic without any conflict. This makes the use of **refine** convenient in enterprise-grade applications with complex requirements such as nested routes and multi-tenancy.
 
-<UIConditional is="mui">
 
 ```tsx title="src/App.tsx"
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
@@ -100,6 +91,7 @@ function App() {
               authProvider={authProvider}
               i18nProvider={i18nProvider}
               routerProvider={routerBindings}
+              // highlight-start
               resources={[
                 {
                   name: "blog_posts",
@@ -122,6 +114,7 @@ function App() {
                   },
                 },
               ]}
+              // highlight-end
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
@@ -146,6 +139,7 @@ function App() {
                     </Authenticated>
                   }
                 >
+                  // highlight-start
                   <Route
                     index
                     element={<NavigateToResource resource="blog_posts" />}
@@ -162,6 +156,7 @@ function App() {
                     <Route path="edit/:id" element={<CategoryEdit />} />
                     <Route path="show/:id" element={<CategoryShow />} />
                   </Route>
+                  // highlight-end
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
                 <Route
@@ -176,7 +171,6 @@ function App() {
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                 </Route>
               </Routes>
-
               <RefineKbar />
               <UnsavedChangesNotifier />
             </Refine>
@@ -190,41 +184,38 @@ function App() {
 export default App;
 ```
 
-</UIConditional>
-
 To get more information about router usage, refer to [React Router Documentation](https://reactrouter.com/en/main/components/routes).
 
 
 ## Defining Actions for a Resource
 
-Our app can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone` on a resource. All valid actions, except `delete`, must be defined in the properties of a `resource` object inside the `resources` array.
+Our React admin panel app can perform actions such as `list`, `show`, `edit`, `create`, `delete` and `clone` on a resource. All valid actions, except `delete`, must be defined in the properties of a `resource` object inside the `resources` array.
 
 For our app, we have the following `resources` array, with two resources:
 
 ```TypeScript
 resources={[
-                {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-                {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-              ]}
-
+              {
+                  name: "blog_posts",
+                  list: "/blog-posts",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
+                  meta: {
+                      canDelete: true,
+                  },
+              },
+              {
+                  name: "categories",
+                  list: "/categories",
+                  create: "/categories/create",
+                  edit: "/categories/edit/:id",
+                  show: "/categories/show/:id",
+                  meta: {
+                      canDelete: true,
+                  },
+              },
+          ]}
 ```
 
 Additional parameters can also be defined in a path. For example, if we had to specify the version for the `edit` action of the `blog_posts` resource, we could have done it as follows:
@@ -236,13 +227,13 @@ Additional parameters can also be defined in a path. For example, if we had to s
 }
 ```
 
-This additional parameter, can be passed to the components or hooks using `meta` property, which will then be used in the API call.
+This additional parameter, can be passed to the components or hooks using `meta` property, which then is used in the API call.
 
 :::tip
 
 Features related to routing such as inferencing the resource from a route path, and generation of routes (optional) require us to use the `routerProvider` prop of the `<Refine />` component.
 
-[Refer to the documentation for more information &#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+[Refer to the routerProvider documentation for more information &#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
 
 If you provide a `routerProvider`, by default, a **refine** hook or component infers its target `resource` from the current route, and passes it as the `resource` to the argument of `dataProvider` functions, hooks and components.
 
@@ -250,12 +241,15 @@ If you provide a `routerProvider`, by default, a **refine** hook or component in
 
 ## Learn More
 
-Learn more about [resources](/docs/api-reference/core/components/refine-config/#resources) in the API reference.
+[Learn more about resources in the API reference](/docs/api-reference/core/components/refine-config/#resources).
 
 <Checklist>
 
 <ChecklistItem id="understanding-resource">
-I understood what a resource is and how to add a resource to the app.
+I understand what a resource is and how to add a resource to the app.
+</ChecklistItem>
+<ChecklistItem id="understanding-resource-1">
+I understand how to declare valid actions for my app resources.
 </ChecklistItem>
 
 </Checklist>
