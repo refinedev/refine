@@ -33,7 +33,7 @@ While preparing the refine's tutorial, we were _quite_ inspired by the [Astro](h
 :::
 
 <Checklist>
-    <ChecklistItem id="looks-great">
-    Great! I'm ready to begin!
-    </ChecklistItem>
+<ChecklistItem id="looks-great">
+Great! I'm ready to begin!
+</ChecklistItem>
 </Checklist>

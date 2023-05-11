@@ -128,7 +128,7 @@ Now, if we view the blog post `show` page in the browser at <a href="http://loca
 <Checklist>
 
 <ChecklistItem id="add-show-page-mui">
-I added the Inferenccer-generated code to <code>BlogPostShow</code> component.
+I added the Inferenccer-generated code to {`<BlogPostShow />`} component.
 </ChecklistItem>
 <ChecklistItem id="add-show-page-mui-2">
 I understand the use of <strong>refine</strong> core and <strong>Material UI</strong>'s data hooks in the show page in order to fetch data from backend API.
@@ -137,6 +137,6 @@ I understand the use of <strong>refine</strong> core and <strong>Material UI</st
 I understand the use of <strong>refine</strong>'s <strong>Material UI</strong> components in the show page to display fetched data.
 </ChecklistItem>
 <ChecklistItem id="add-show-page-mui-4">
-I understand how the <code>useOne()</code> hook is used to fetch associated single resource item.
+I understand how the <code>useOne()</code> hook is used to fetch a single associated resource item.
 </ChecklistItem>
 </Checklist>

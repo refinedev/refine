@@ -221,7 +221,7 @@ From this point on, we can start customizing the pages to our liking. But for th
 
 <Checklist>
 <ChecklistItem id="add-list-page-mui">
-I added manually the Inferencer-generated code to <code>BlogPostList</code> component.
+I added manually the Inferencer-generated code to {`<BlogPostList />`} component.
 </ChecklistItem>
 <ChecklistItem id="add-list-page-mui-2">
 I understand the use of <strong>refine</strong> core and <strong>Material UI</strong>'s data hooks in the list page to fetch data from the backend.

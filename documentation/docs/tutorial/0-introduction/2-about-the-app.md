@@ -53,9 +53,7 @@ Now you can navigate to [Inferencer for CRUD Pages](/docs/tutorial/getting-start
 :::
 
 <Checklist>
-
 <ChecklistItem id="prequisite-looks-great-3">
 I figured out what we're building. Let's head over to <a href="/docs/tutorial/getting-started/index">Unit 2</a> and get to know <strong><a href="https://refine.new">refine.new</a></strong> first!
 </ChecklistItem>
-
 </Checklist>

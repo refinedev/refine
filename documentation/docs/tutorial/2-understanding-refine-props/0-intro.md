@@ -62,6 +62,6 @@ The `resources` prop, in contrast, is an array of resource items used to declare
 
 <Checklist>
 <ChecklistItem id="understanding-refine-props">
-I understand that <code>Refine</code> props such as <code>dataProvider</code>, <code>authProvider</code> and <code>resources</code> help configure different layers of a <strong>refine</strong> app.
+I understand that {`<Refine />`} props such as <code>dataProvider</code>, <code>authProvider</code> and <code>resources</code> help configure different layers of a <strong>refine</strong> app.
 </ChecklistItem>
 </Checklist>

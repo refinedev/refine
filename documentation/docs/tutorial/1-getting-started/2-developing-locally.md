@@ -246,9 +246,9 @@ We delve into these props starting [Unit 3](/docs/tutorial/understanding-refine-
 I understand how to download and extract a <strong>refine</strong> app from <strong>refine.new</strong>!
 </ChecklistItem>
 <ChecklistItem id="getting-started-8">
-I understand how the <code>Refine</code> component plays a central role in a <strong>refine</strong> app
+I understand how the {`<Refine />`} component plays a central role in a <strong>refine</strong> app
 </ChecklistItem>
 <ChecklistItem id="getting-started-9">
-I am now familiar with the <code>dataProvider</code>, <code>authProvider</code> and <code>resources</code> props of <code>Refine</code>.
+I am now familiar with the <code>dataProvider</code>, <code>authProvider</code> and <code>resources</code> props of {`<Refine />`}.
 </ChecklistItem>
 </Checklist>

@@ -196,6 +196,6 @@ You can also use the `useDelete()` hook provided by **refine** to delete a recor
 I understand how <code>delete</code> action is enable using <code>meta.canDelete</code> property of a resource item in the <code>resources</code> array.
 </ChecklistItem>
 <ChecklistItem id="add-delete-feature-mui-2">
-I know how to implement deleting a record using the <code>DeleteButton</code> component
+I know how to implement deleting a record using the {`<DeleteButton />`} component
 </ChecklistItem>
 </Checklist>

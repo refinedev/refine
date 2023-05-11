@@ -218,7 +218,7 @@ Notice also that we no longer see the box that houses `Show the auto-generated c
 
 <Checklist>
 <ChecklistItem id="add-edit-page-mui">
-I added the Inferenccer-generated code to <code>BlogPostEdit</code> component.
+I added the Inferenccer-generated code to {`<BlogPostEdit />`} component.
 </ChecklistItem>
 <ChecklistItem id="add-edit-page-mui-2">
 I understand the use of <strong>refine</strong> core and <strong>Material UI</strong>'s data hooks in the edit page in order to fetch data to and from backend API.

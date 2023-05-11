@@ -245,12 +245,10 @@ If you provide a `routerProvider`, by default, a **refine** hook or component in
 [Learn more about resources in the API reference](/docs/api-reference/core/components/refine-config/#resources).
 
 <Checklist>
-
 <ChecklistItem id="understanding-resource">
 I understand what a resource is and how to add a resource to the app.
 </ChecklistItem>
 <ChecklistItem id="understanding-resource-1">
 I understand how to declare valid actions for my app resources.
 </ChecklistItem>
-
 </Checklist>

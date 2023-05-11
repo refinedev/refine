@@ -36,20 +36,11 @@ A clickable task checklist is waiting for you at the end of each page to measure
 
 </details>
 
-<!-- <details>
-<summary>What is the mini-quiz at the bottom of each page?</summary>
-
-The mini-quiz at the bottom of each page is a quick way to test your understanding of the content. It is not required to complete the tutorial, but it is recommended to take it to make sure you understand the content.
-
-</details> -->
-
 <Checklist>
-
 <ChecklistItem id="prequisite-looks-great">
 I understood how to use the checklists.
 </ChecklistItem>
 <ChecklistItem id="prequisite-looks-great-2">
 I now know how to get help and where to leave feedback.
 </ChecklistItem>
-
 </Checklist>

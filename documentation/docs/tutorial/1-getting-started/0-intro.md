@@ -62,9 +62,9 @@ In this unit, we cover the following steps:
 
 <Checklist>
 <ChecklistItem id="getting-started">
-I understand <strong>refine.new</strong> allows us to quickly initialize, build and deploy **refine** apps!
+I understand <strong>refine.new</strong> allows us to quickly initialize, build and deploy <strong>refine</strong> apps!
 </ChecklistItem>
 <ChecklistItem id="getting-started-2">
-Let's prepare to build our React admin panel app with **refine**!
+Let's prepare to build our React admin panel app with <strong>refine</strong>!
 </ChecklistItem>
 </Checklist>

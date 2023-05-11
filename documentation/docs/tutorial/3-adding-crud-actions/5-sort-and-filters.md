@@ -25,6 +25,6 @@ To see how filtering and sorting work and more detail, you can refer to the [`us
 
 <Checklist>
 <ChecklistItem id="add-search-and-filters-mui">
-I understand how sort and filters come implemented out-of-the-box in the `<DataGrid />` component.
+I understand how sort and filters come implemented out-of-the-box in the {`<DataGrid />`} component.
 </ChecklistItem>
 </Checklist>

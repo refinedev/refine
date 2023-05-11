@@ -194,7 +194,7 @@ Now, if we view the blog post `create` page in the browser at <a href="http://lo
 
 <Checklist>
 <ChecklistItem id="add-create-page-mui">
-I added the Inferenccer-generated code to <code>BlogPostCreate</code> component.
+I added the Inferencer-generated code to {`<BlogPostCreate />`} component.
 </ChecklistItem>
 <ChecklistItem id="add-create-page-mui-2">
 I understand the use of <strong>refine</strong> core and <strong>Material UI</strong>'s data hooks in the create page in order to fetch data to backend API.
