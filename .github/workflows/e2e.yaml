@@ -31,14 +31,14 @@ jobs:
           cd $examplePath
           echo "::set-output name=example-path::$examplePath"
           npm install
-          npm run start -- --host 127.0.0.1 &
+          npm run start &
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
           install: false
           command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
           # start: pwd
-          wait-on: "http://127.0.0.1:5173"
+          wait-on: "http://127.0.0.1:3000"
           # project: ${{ steps.build-step.outputs.example-path }}
           working-directory: ${{ steps.build-step.outputs.example-path }}
         env:
