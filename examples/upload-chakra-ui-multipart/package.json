@@ -8,7 +8,7 @@
     "refine": "refine"
   },
   "dependencies": {
-    "@refinedev/chakra-ui": "^2.12.7",
+    "@refinedev/chakra-ui": "^2.13.0",
     "@tabler/icons": "^1.1.0",
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
@@ -16,7 +16,7 @@
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",
-    "@refinedev/react-hook-form": "^4.2.4",
+    "@refinedev/react-hook-form": "^4.3.0",
     "@chakra-ui/react": "^2.5.1",
     "rc-upload": "^4.3.4",
     "react": "^18.0.0",

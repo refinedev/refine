@@ -1,5 +1,74 @@
 # @pankod/refine-antd
 
+## 5.17.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/antd";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+-   [#4306](https://github.com/refinedev/refine/pull/4306) [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: `syncWithLocation.syncId` default to `true` for `useDrawerForm` and `useModalForm`.
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.15.0
+
 ## 5.16.2
 
 ### Patch Changes
