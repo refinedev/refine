@@ -623,7 +623,7 @@ exports[`MuiCreateInferencer should match the snapshot 1`] = `
         class="MuiCardActions-root MuiCardActions-spacing css-otuins-MuiCardActions-root"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-refresh-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
           id=":rf:"
           tabindex="0"
           type="button"
