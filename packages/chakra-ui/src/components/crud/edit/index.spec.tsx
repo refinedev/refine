@@ -2,14 +2,21 @@ import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@refinedev/core";
 
-import { act, render, TestWrapper, waitFor } from "@test";
+import { ITestWrapperProps, render, TestWrapper, waitFor } from "@test";
 import { Edit } from "./";
 import { crudEditTests } from "@refinedev/ui-tests";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    DeleteButton,
+    ListButton,
+    RefreshButton,
+    SaveButton,
+} from "@components/buttons";
 
 const renderEdit = (
     edit: ReactNode,
     accessControlProvider?: AccessControlProvider,
+    wrapperOptions?: ITestWrapperProps,
 ) => {
     return render(
         <Routes>
@@ -19,6 +26,7 @@ const renderEdit = (
             wrapper: TestWrapper({
                 routerInitialEntries: ["/posts/edit/1"],
                 accessControlProvider,
+                ...wrapperOptions,
             }),
         },
     );
@@ -77,7 +85,17 @@ describe("Edit", () => {
                 <Routes>
                     <Route
                         path="/:resource/edit/:id"
-                        element={<Edit />}
+                        element={
+                            <Edit
+                                footerButtons={({
+                                    defaultButtons,
+                                    deleteButtonProps,
+                                }) => {
+                                    expect(deleteButtonProps).toBeUndefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     ></Route>
                 </Routes>,
                 {
@@ -244,6 +262,104 @@ describe("Edit", () => {
             );
 
             expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
+        });
+    });
+    it("should customize default buttons with default props", async () => {
+        const { queryByTestId } = renderEdit(
+            <Edit
+                canDelete
+                saveButtonProps={{ className: "customize-test" }}
+                headerButtons={({ listButtonProps, refreshButtonProps }) => {
+                    return (
+                        <>
+                            <RefreshButton {...refreshButtonProps} />
+                            <ListButton {...listButtonProps} />
+                        </>
+                    );
+                }}
+                footerButtons={({ deleteButtonProps, saveButtonProps }) => {
+                    return (
+                        <>
+                            <DeleteButton {...deleteButtonProps} />
+                            <SaveButton {...saveButtonProps} />
+                        </>
+                    );
+                }}
+            />,
+            {
+                can: ({ action }) => {
+                    switch (action) {
+                        case "list":
+                        case "delete":
+                            return Promise.resolve({ can: false });
+                        default:
+                            return Promise.resolve({ can: false });
+                    }
+                },
+            },
+        );
+
+        await waitFor(() =>
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).toBeDisabled(),
+        );
+        await waitFor(() =>
+            expect(
+                queryByTestId(RefineButtonTestIds.ListButton),
+            ).toBeDisabled(),
+        );
+        expect(queryByTestId(RefineButtonTestIds.SaveButton)).toHaveClass(
+            "customize-test",
+        );
+        expect(queryByTestId(RefineButtonTestIds.RefreshButton)).toBeTruthy();
+    });
+
+    describe("list button", () => {
+        it("should render list button", async () => {
+            const { queryByTestId } = renderEdit(<Edit />);
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.ListButton),
+                ).not.toBeNull(),
+            );
+        });
+
+        it("should not render list button when list resource is undefined", async () => {
+            const { queryByTestId } = renderEdit(
+                <Edit
+                    headerButtons={({ defaultButtons, listButtonProps }) => {
+                        expect(listButtonProps).toBeUndefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+                undefined,
+                {
+                    resources: [{ name: "posts", list: undefined }],
+                },
+            );
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.ListButton),
+                ).toBeNull(),
+            );
+        });
+
+        it("should not render list button when has recordItemId", async () => {
+            const { queryByTestId } = renderEdit(
+                <Edit
+                    recordItemId="1"
+                    headerButtons={({ defaultButtons, listButtonProps }) => {
+                        expect(listButtonProps).toBeUndefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+            );
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.ListButton),
+                ).toBeNull(),
+            );
         });
     });
 });

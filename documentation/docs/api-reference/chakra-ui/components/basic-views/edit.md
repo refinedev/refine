@@ -930,7 +930,15 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, refreshButtonProps, listButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -950,6 +958,67 @@ const PostEdit: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <HStack>
                     {defaultButtons}
+                    <Button colorScheme="red">Custom Button</Button>
+                </HStack>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    edit: PostEdit,
+                    list: DummyListPage,
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `refreshButtonProps` and `listButtonProps` to utilize the default values of the [`<ListButton>`][list-button] and [`<RefreshButton>`][refresh-button] components.
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
+import { Refine } from "@refinedev/core";
+import { EditButton, RefreshButton, ListButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { Edit } from "@refinedev/chakra-ui";
+import { Button, HStack, Box } from "@chakra-ui/react";
+
+const PostEdit: React.FC = () => {
+    return (
+        <Edit
+            // highlight-start
+            headerButtons={({ refreshButtonProps, listButtonProps }) => (
+                <HStack>
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
                     <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
@@ -1045,7 +1114,15 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`<DeleteButton>`][delete-button] at the footer.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps, deleteButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -1070,6 +1147,68 @@ const PostEdit: React.FC = () => {
                     p="2"
                 >
                     {defaultButtons}
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
+                </HStack>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    edit: PostEdit,
+                    list: DummyListPage,
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` and `deleteButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] and [`<DeleteButton>`][delete-button] components.
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
+import { Refine } from "@refinedev/core";
+import { EditButton, SaveButton, DeleteButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { Edit } from "@refinedev/chakra-ui";
+import { Button, HStack } from "@chakra-ui/react";
+
+const PostEdit: React.FC = () => {
+    return (
+        <Edit
+            // highlight-start
+            footerButtons={({ saveButtonProps, deleteButtonProps }) => (
+                <HStack
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px"
+                    p="2"
+                >
+                    <SaveButton {...saveButtonProps} hideText />
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} hideText />
+                    )}
                     <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>
@@ -1165,3 +1304,8 @@ render(
 ### Props
 
 <PropsTable module="@refinedev/chakra-ui/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
+
+[list-button]: /docs/api-reference/chakra-ui/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/chakra-ui/components/buttons/refresh-button/
+[save-button]: /docs/api-reference/chakra-ui/components/buttons/save-button/
+[delete-button]: /docs/api-reference/chakra-ui/components/buttons/delete-button/
