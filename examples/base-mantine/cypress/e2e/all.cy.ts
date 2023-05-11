@@ -5,7 +5,7 @@ Cypress.on("uncaught:exception", () => {
     return false;
 });
 
-describe("base-antd", () => {
+describe("base-mantine", () => {
     beforeEach(() => {
         cy.visit("http://localhost:5173");
         cy.clearAllCookies();

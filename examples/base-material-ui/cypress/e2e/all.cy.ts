@@ -5,7 +5,7 @@ Cypress.on("uncaught:exception", () => {
     return false;
 });
 
-describe("base-antd", () => {
+describe("base-material-ui", () => {
     beforeEach(() => {
         cy.visit("http://localhost:3000");
         cy.clearAllCookies();
