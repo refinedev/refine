@@ -25,18 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install & Build Deps
+        id: build-step
         run: |
           examplePath=$(echo "${{ matrix.cypressConfig }}" | sed 's/\/cypress.config.ts//g')
           cd $examplePath
+          echo "::set-output name=example-path::$examplePath"
           npm install
           npm run start -- --host 127.0.0.1 &
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
           install: false
-          command: cd ./examples/base-antd && npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
-          # start: echo "$(dirname ${{ matrix.cypressConfig }})"
+          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
+          start: echo ${{ steps.build-step.outputs.example-path }}
           wait-on: "http://127.0.0.1:5173"
-          # project: ./examples/base-antd
+          project: ${{ steps.build-step.outputs.example-path }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
