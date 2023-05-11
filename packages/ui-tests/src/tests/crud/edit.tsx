@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { RefineCrudEditProps, RefineButtonTestIds } from "@refinedev/ui-types";
 import { AccessControlProvider } from "@refinedev/core";
 
-import { act, ITestWrapperProps, render, TestWrapper } from "@test";
+import { ITestWrapperProps, render, TestWrapper } from "@test";
 
 const renderEdit = (
     edit: React.ReactNode,
@@ -29,7 +29,7 @@ const renderEdit = (
 
 export const crudEditTests = function (
     Edit: React.ComponentType<
-        RefineCrudEditProps<any, any, any, any, any, any, any, {}>
+        RefineCrudEditProps<any, any, any, any, any, any, any, {}, any, any>
     >,
 ): void {
     describe("[@refinedev/ui-tests] Common Tests / CRUD Edit", () => {
@@ -44,7 +44,14 @@ export const crudEditTests = function (
         });
 
         it("should render default list button successfuly", async () => {
-            const { queryByTestId } = renderEdit(<Edit />);
+            const { queryByTestId } = renderEdit(
+                <Edit
+                    headerButtons={({ defaultButtons, listButtonProps }) => {
+                        expect(listButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+            );
 
             expect(
                 queryByTestId(RefineButtonTestIds.ListButton),
@@ -52,7 +59,20 @@ export const crudEditTests = function (
         });
 
         it("should render default save and delete buttons successfuly", async () => {
-            const { container, getByText } = renderEdit(<Edit canDelete />);
+            const { container, getByText } = renderEdit(
+                <Edit
+                    canDelete
+                    footerButtons={({
+                        defaultButtons,
+                        saveButtonProps,
+                        deleteButtonProps,
+                    }) => {
+                        expect(saveButtonProps).toBeDefined();
+                        expect(deleteButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
+            );
 
             expect(container.querySelector("button")).toBeTruthy();
             getByText("Save");
@@ -102,7 +122,12 @@ export const crudEditTests = function (
 
         it("should render delete button ", async () => {
             const { getByText, queryByTestId } = renderEdit(
-                <Edit />,
+                <Edit
+                    footerButtons={({ defaultButtons, deleteButtonProps }) => {
+                        expect(deleteButtonProps).toBeDefined();
+                        return <>{defaultButtons}</>;
+                    }}
+                />,
                 undefined,
                 {
                     resources: [{ name: "posts", canDelete: true }],

@@ -2,13 +2,7 @@ import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import {
-    List,
-    DateField,
-    CreateButton,
-    EditButton,
-    DeleteButton,
-} from "@refinedev/mantine";
+import { List, DateField, EditButton, DeleteButton } from "@refinedev/mantine";
 
 import { Table, Pagination, Group } from "@mantine/core";
 
@@ -99,7 +93,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     }));
 
     return (
-        <List createButtonProps={CreateButton}>
+        <List>
             <Table highlightOnHover striped withBorder withColumnBorders>
                 <thead>
                     {getHeaderGroups().map((headerGroup) => (

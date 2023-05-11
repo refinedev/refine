@@ -765,7 +765,19 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+
+If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
+
+If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not render and `editButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -784,6 +796,89 @@ const PostShow: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <HStack>
                     {defaultButtons}
+                    <Button colorScheme="red">Custom Button</Button>
+                </HStack>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Show>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    show: PostShow,
+                    list: DummyListPage,
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] components.
+
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import {
+    Show,
+    ListButton,
+    EditButton,
+    DeleteButton,
+    RefreshButton,
+} from "@refinedev/chakra-ui";
+import { Button, HStack, Box } from "@chakra-ui/react";
+
+const PostShow: React.FC = () => {
+    return (
+        <Show
+            // highlight-start
+            headerButtons={({
+                deleteButtonProps,
+                editButtonProps,
+                listButtonProps,
+                refreshButtonProps,
+            }) => (
+                <HStack>
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    {editButtonProps && (
+                        <EditButton
+                            {...editButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    {deleteButtonProps && (
+                        <DeleteButton
+                            {...deleteButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
                     <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
@@ -1000,3 +1095,8 @@ render(
 ### Props
 
 <PropsTable module="@refinedev/chakra-ui/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
+
+[list-button]: /docs/api-reference/chakra-ui/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/chakra-ui/components/buttons/refresh-button/
+[edit-button]: /docs/api-reference/chakra-ui/components/buttons/edit-button/
+[delete-button]: /docs/api-reference/chakra-ui/components/buttons/delete-button/

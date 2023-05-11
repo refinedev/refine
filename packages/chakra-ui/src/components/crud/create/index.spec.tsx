@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import { act, render, TestWrapper } from "@test";
 import { Create } from "./";
 import { crudCreateTests } from "@refinedev/ui-tests";
+import { SaveButton } from "@components/buttons";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 describe("Create", () => {
     crudCreateTests.bind(this)(Create);
@@ -42,5 +44,39 @@ describe("Create", () => {
         );
 
         expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
+    });
+
+    it("should customize default buttons with default props", async () => {
+        const { queryByTestId } = render(
+            <Routes>
+                <Route
+                    path="/:resource/:action"
+                    element={
+                        <Create
+                            resource="posts"
+                            saveButtonProps={{ className: "customize-test" }}
+                            footerButtons={({ saveButtonProps }) => {
+                                expect(saveButtonProps).toBeDefined();
+
+                                return (
+                                    <>
+                                        <SaveButton {...saveButtonProps} />
+                                    </>
+                                );
+                            }}
+                        />
+                    }
+                />
+            </Routes>,
+            {
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts/create"],
+                }),
+            },
+        );
+
+        expect(queryByTestId(RefineButtonTestIds.SaveButton)).toHaveClass(
+            "customize-test",
+        );
     });
 });

@@ -7,6 +7,12 @@ import { render, TestWrapper, waitFor } from "@test";
 
 import { Show } from "./index";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    DeleteButton,
+    EditButton,
+    ListButton,
+    RefreshButton,
+} from "@components/buttons";
 
 const renderShow = (
     show: ReactNode,
@@ -29,18 +35,33 @@ describe("Show", () => {
     crudShowTests.bind(this)(Show);
 
     it("depending on the accessControlProvider it should get the buttons successfully", async () => {
-        const { getByTestId } = renderShow(<Show canEdit canDelete />, {
-            can: ({ action }) => {
-                switch (action) {
-                    case "edit":
-                    case "list":
-                        return Promise.resolve({ can: true });
-                    case "delete":
-                    default:
-                        return Promise.resolve({ can: false });
-                }
+        const { getByTestId } = renderShow(
+            <Show
+                canEdit
+                canDelete
+                headerButtons={({
+                    defaultButtons,
+                    deleteButtonProps,
+                    editButtonProps,
+                }) => {
+                    expect(deleteButtonProps).toBeDefined();
+                    expect(editButtonProps).toBeDefined();
+                    return <>{defaultButtons}</>;
+                }}
+            />,
+            {
+                can: ({ action }) => {
+                    switch (action) {
+                        case "edit":
+                        case "list":
+                            return Promise.resolve({ can: true });
+                        case "delete":
+                        default:
+                            return Promise.resolve({ can: false });
+                    }
+                },
             },
-        });
+        );
 
         await waitFor(() =>
             expect(
@@ -61,7 +82,13 @@ describe("Show", () => {
 
     it("should render optional recordItemId with resource prop, not render list button", async () => {
         const { getByText, queryByTestId } = renderShow(
-            <Show recordItemId="1" />,
+            <Show
+                recordItemId="1"
+                headerButtons={({ defaultButtons, listButtonProps }) => {
+                    expect(listButtonProps).not.toBeDefined();
+                    return <>{defaultButtons}</>;
+                }}
+            />,
         );
 
         getByText("Show Post");
@@ -75,7 +102,17 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show />}
+                        element={
+                            <Show
+                                headerButtons={({
+                                    defaultButtons,
+                                    editButtonProps,
+                                }) => {
+                                    expect(editButtonProps).toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     ></Route>
                 </Routes>,
                 {
@@ -96,7 +133,20 @@ describe("Show", () => {
         it("should not render edit button on resource canEdit false", async () => {
             const { getByText, queryByTestId } = render(
                 <Routes>
-                    <Route path="/:resource/:action/:id" element={<Show />} />
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={
+                            <Show
+                                headerButtons={({
+                                    defaultButtons,
+                                    editButtonProps,
+                                }) => {
+                                    expect(editButtonProps).not.toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
+                    />
                 </Routes>,
                 {
                     wrapper: TestWrapper({
@@ -116,7 +166,18 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show canEdit={false} />}
+                        element={
+                            <Show
+                                canEdit={false}
+                                headerButtons={({
+                                    defaultButtons,
+                                    editButtonProps,
+                                }) => {
+                                    expect(editButtonProps).not.toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     />
                 </Routes>,
                 {
@@ -135,7 +196,18 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show canEdit={true} />}
+                        element={
+                            <Show
+                                canEdit={true}
+                                headerButtons={({
+                                    defaultButtons,
+                                    editButtonProps,
+                                }) => {
+                                    expect(editButtonProps).toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     />
                 </Routes>,
                 {
@@ -156,7 +228,18 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show recordItemId="1" />}
+                        element={
+                            <Show
+                                recordItemId="1"
+                                headerButtons={({
+                                    defaultButtons,
+                                    editButtonProps,
+                                }) => {
+                                    expect(editButtonProps).toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     />
                 </Routes>,
                 {
@@ -179,7 +262,20 @@ describe("Show", () => {
         it("should render delete button", async () => {
             const { queryByTestId } = render(
                 <Routes>
-                    <Route path="/:resource/:action/:id" element={<Show />} />
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={
+                            <Show
+                                headerButtons={({
+                                    defaultButtons,
+                                    deleteButtonProps,
+                                }) => {
+                                    expect(deleteButtonProps).toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
+                    />
                 </Routes>,
                 {
                     wrapper: TestWrapper({
@@ -197,7 +293,20 @@ describe("Show", () => {
         it("should not render delete button on resource canDelete false", async () => {
             const { queryByTestId } = render(
                 <Routes>
-                    <Route path="/:resource/:action/:id" element={<Show />} />
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={
+                            <Show
+                                headerButtons={({
+                                    defaultButtons,
+                                    deleteButtonProps,
+                                }) => {
+                                    expect(deleteButtonProps).not.toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
+                    />
                 </Routes>,
 
                 {
@@ -216,7 +325,18 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show canDelete={false} />}
+                        element={
+                            <Show
+                                canDelete={false}
+                                headerButtons={({
+                                    defaultButtons,
+                                    deleteButtonProps,
+                                }) => {
+                                    expect(deleteButtonProps).not.toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     />
                 </Routes>,
                 {
@@ -235,7 +355,18 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show canDelete={true} />}
+                        element={
+                            <Show
+                                canDelete={true}
+                                headerButtons={({
+                                    defaultButtons,
+                                    deleteButtonProps,
+                                }) => {
+                                    expect(deleteButtonProps).toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     />
                 </Routes>,
                 {
@@ -256,7 +387,18 @@ describe("Show", () => {
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
-                        element={<Show recordItemId="1" />}
+                        element={
+                            <Show
+                                recordItemId="1"
+                                headerButtons={({
+                                    defaultButtons,
+                                    deleteButtonProps,
+                                }) => {
+                                    expect(deleteButtonProps).toBeDefined();
+                                    return <>{defaultButtons}</>;
+                                }}
+                            />
+                        }
                     />
                 </Routes>,
                 {
@@ -271,46 +413,88 @@ describe("Show", () => {
                 queryByTestId(RefineButtonTestIds.DeleteButton),
             ).not.toBeNull();
         });
+    });
 
-        describe("Breadcrumb", () => {
-            it("should render breadcrumb", async () => {
-                const { getAllByLabelText } = render(
-                    <Routes>
-                        <Route
-                            path="/:resource/:action/:id"
-                            element={<Show recordItemId="1" />}
-                        />
-                    </Routes>,
-                    {
-                        wrapper: TestWrapper({
-                            resources: [{ name: "posts" }],
-                            routerInitialEntries: ["/posts/show/1"],
-                        }),
-                    },
-                );
+    describe("Breadcrumb", () => {
+        it("should render breadcrumb", async () => {
+            const { getAllByLabelText } = render(
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show recordItemId="1" />}
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerInitialEntries: ["/posts/show/1"],
+                    }),
+                },
+            );
 
-                expect(getAllByLabelText("breadcrumb")).not.toBeNull();
-            });
-            it("should not render breadcrumb", async () => {
-                const { queryByLabelText } = render(
-                    <Routes>
-                        <Route
-                            path="/:resource/:action/:id"
-                            element={
-                                <Show recordItemId="1" breadcrumb={null} />
-                            }
-                        />
-                    </Routes>,
-                    {
-                        wrapper: TestWrapper({
-                            resources: [{ name: "posts" }],
-                            routerInitialEntries: ["/posts/show/1"],
-                        }),
-                    },
-                );
-
-                expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
-            });
+            expect(getAllByLabelText("breadcrumb")).not.toBeNull();
         });
+        it("should not render breadcrumb", async () => {
+            const { queryByLabelText } = render(
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show recordItemId="1" breadcrumb={null} />}
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerInitialEntries: ["/posts/show/1"],
+                    }),
+                },
+            );
+
+            expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
+        });
+    });
+
+    it("should customize default buttons with default props", async () => {
+        const { queryByTestId } = render(
+            <Routes>
+                <Route
+                    path="/:resource/:action/:id"
+                    element={
+                        <Show
+                            canEdit
+                            canDelete
+                            headerButtons={({
+                                deleteButtonProps,
+                                editButtonProps,
+                                listButtonProps,
+                                refreshButtonProps,
+                            }) => {
+                                return (
+                                    <>
+                                        <DeleteButton {...deleteButtonProps} />
+                                        <EditButton {...editButtonProps} />
+                                        <ListButton {...listButtonProps} />
+                                        <RefreshButton
+                                            {...refreshButtonProps}
+                                        />
+                                    </>
+                                );
+                            }}
+                        />
+                    }
+                />
+            </Routes>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    routerInitialEntries: ["/posts/show/1"],
+                }),
+            },
+        );
+
+        expect(queryByTestId(RefineButtonTestIds.DeleteButton)).not.toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.EditButton)).not.toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.ListButton)).not.toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.RefreshButton)).not.toBeNull();
     });
 });
