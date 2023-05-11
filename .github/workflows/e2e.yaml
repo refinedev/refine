@@ -38,7 +38,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
+          command: cd ./examples/base-antd && npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
           start: "pwd"
           wait-on: "http://127.0.0.1:5773"
           project: ./examples/base-antd
