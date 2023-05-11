@@ -6,12 +6,12 @@ tutorial:
     next: tutorial/adding-crud-actions/sort-and-filters
 ---
 
-There are multiple ways to implement deleting a record in **refine**. This post explores one way that already came implemented with the project, using the `meta.canDelete` property. And second, by adding a `<DeleteButton />` component.
+There are multiple ways to implement deleting a record in **refine**. This post explores one way that already came implemented with the project, using the `meta.canDelete` property of a resource item in the `resources` array. It also demonstrate a second option by adding a `<DeleteButton />` component to each item in the blog post `list` page.
 
 
-## Using `meta.canDelete` Property on Show Page and Edit Page
+## `delete` Action Using `meta.canDelete` Property on a Resource
 
-When we define a resource, we are able enable the delete feature on the `show` page and `edit` page of an item belonging to that resource. We can do this by setting the resource's `meta.canDelete` property to `true`:
+When we define a resource, we are able to enable the delete feature on that resource item's `show` page and `edit` page. We can do this by setting the resource's `meta.canDelete` property to `true`:
 
 ```tsx src="src/App.tsx"
 // Inside App.tsx
@@ -44,18 +44,18 @@ When we define a resource, we are able enable the delete feature on the `show` p
 </Refine>
 ```
 
-Setting `meta.canDelete: true` places a `<DeleteButton />` component inside the `<Show />` and `<Edit />` components that we used in the show page and edit page respectively. Thanks to this setting, we can see the `Delete` buttons respectively in these pages.
+Setting `meta.canDelete: true` places a `<DeleteButton />` component inside the `<Show />` and `<Edit />` components that are used in the show page and edit page respectively. Thanks to this setting, we can see a `Delete` button in these pages.
 
 [Refer to the `<Refine/>` documentation for more information about the `canDelete` property &#8594](/docs/api-reference/core/components/refine-config.md#candelete)
 
 
 ## Adding `<DeleteButton />` to List Page
 
-We also add the delete feature to the list page using the `<DeleteButton />` component.
+We can also add the `delete` action using the `<DeleteButton />` component. In this section, add a little customization to our React admin panel app by adding a `<DeleteButton />` to each row in the blog post list page.
 
 `<DeleteButton />` is a **refine** core component used to delete a record. Clicking on the delete button shows a confirmation modal. After confirmation, the item gets deleted.
 
-Below, we are adding this `<DeleteButton />` to each item in the blog posts `list` page:
+Below, we are adding this `<DeleteButton />` to each item in the blog posts data grid:
 
 ```TypeScript
 // src/pages/blog-posts/list.tsx
@@ -179,7 +179,7 @@ With the above one-liner change, we are placing the `<DeleteButton />` component
 
 [Refer to the `<DeleteButton />` documentation for more information &#8594](/docs/api-reference/mui/components/buttons/delete-button/)
 
-With this customization, we have a button to delete a blog post item from the list page.
+With this customization, we have a button to delete a blog post item from the list page in our React admin panel app.
 
 <br/>
 
@@ -191,15 +191,11 @@ You can also use the `useDelete()` hook provided by **refine** to delete a recor
 
 :::
 
-<br/>
-
 <Checklist>
-
 <ChecklistItem id="add-delete-feature-mui">
-I added the delete feature to the list page
+I understand how <code>delete</code> action is enable using <code>meta.canDelete</code> property of a resource item in the <code>resources</code> array.
 </ChecklistItem>
 <ChecklistItem id="add-delete-feature-mui-2">
-I enabled the delete feature on the show page and edit page
+I know how to implement deleting a record using the <code>DeleteButton</code> component
 </ChecklistItem>
-
 </Checklist>

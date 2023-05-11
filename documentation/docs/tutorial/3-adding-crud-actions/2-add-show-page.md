@@ -6,12 +6,12 @@ tutorial:
     next: tutorial/adding-crud-actions/add-create-page
 ---
 
-This post shows how to implement the `show` page of `blog_posts` resource without resorting to `<MuiShowInferencer />`. Basically, we just replace the existing code inside the `src/pages/blog-posts/show.tsx` file with the Inferencer-generated code.
+This post shows how to implement the `show` page of `blog_posts` resource without resorting to `<MuiShowInferencer />`. We replace the existing code inside the `src/pages/blog-posts/show.tsx` file with the Inferencer-generated **refine** and **Material UI** components.
 
 
 ## The Show Page
 
-The Inferencer-generated `<BlogPostShow />` component is available at the `/blog-posts/show/:id` route. For a blog post with a given `:id`, when we visit its `show` page, we can view the code in a modal by clicking on `Show the auto-generated code` button. The code looks like below:
+The Inferencer-generated `<BlogPostShow />` component is available at the `/blog-posts/show/:id` route. For a blog post with a given `:id`, when we visit its `show` page, we can view the code in a modal by clicking on `Show the auto-generated code` button:
 
 ```TypeScript
 // src/pages/blog-posts/show.tsx
@@ -80,9 +80,7 @@ export const BlogPostShow = () => {
 
 Let's copy this and paste it into the file at `src/pages/blog-posts/show.tsx`. We should replace the existing code that uses the `<MuiShowInferencer />`.
 
-Below, we briefly make sense of the components and hooks used in the `show` page.
-
-The Inferencer generated this `<BlogPostShow />` component by carrying out an initial polling, figuring out the shape of the API response and placing the Material UI elements for the page appropriately. This gives us the possibility to further customize the compoent.
+The Inferencer generated this `<BlogPostShow />` component by carrying out an initial polling of the blog post resource, figuring out the shape of the API response and placing the **Material UI** elements for the page appropriately. This gives us the possibility to further customize the compoent.
 
 
 ## Understanding the Show Page Components
@@ -104,7 +102,7 @@ Below, we briefly make sense of the components and hooks used in the `show` page
 
 ### Handling Relationships
 
-The `blog_posts` resource is associated with the `categories` resource. In the `show` page for a blog post item, we retrieve associated `categories` with **refine**'s core `useOne()` hook. This hook allows us to fetch a single record based on the `id` and `resource` parameters passed to it. Here, we are getting the category of the blog post:
+The `blog_posts` resource is associated with the `categories` resource. In the `show` page for a blog post item, we retrieve associated `categories` data with **refine**'s core `useOne()` hook. This hook allows us to fetch a single record based on the `id` and `resource` parameters passed to it. Here, we are getting the category of the blog post:
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -116,7 +114,7 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
-We use the `queryOptions` object to make sure the associated `categories` data is fetched only after the blog post record has been successfully retrieved. By setting the `enabled` property to `true` only if the `blog_posts` record variable is truthy, we are able to control the fetching of `categories` record:
+We use the `queryOptions` object to make sure the associated `categories` data is fetched only after the blog post record has been successfully retrieved. By setting the `enabled` property to `true` only if the `blog_posts` record variable is truthy, we are able to control the fetching of `categories` record.
 
 [Refer to the `useOne()` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
 
@@ -130,13 +128,15 @@ Now, if we view the blog post `show` page in the browser at <a href="http://loca
 <Checklist>
 
 <ChecklistItem id="add-show-page-mui">
-I added the show page to the app.
+I added the Inferenccer-generated code to <code>BlogPostShow</code> component.
 </ChecklistItem>
 <ChecklistItem id="add-show-page-mui-2">
-I understood the show page components and hooks.
+I understand the use of <strong>refine</strong> core and <strong>Material UI</strong>'s data hooks in the show page in order to fetch data from backend API.
 </ChecklistItem>
 <ChecklistItem id="add-show-page-mui-3">
-I understood the relationship handling.
+I understand the use of <strong>refine</strong>'s <strong>Material UI</strong> components in the show page to display fetched data.
 </ChecklistItem>
-
+<ChecklistItem id="add-show-page-mui-4">
+I understand how the <code>useOne()</code> hook is used to fetch associated single resource item.
+</ChecklistItem>
 </Checklist>
