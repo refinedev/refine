@@ -31,7 +31,7 @@ jobs:
           cd $examplePath
           echo "::set-output name=example-path::$examplePath"
           npm install
-          npm run start -- --PORT 3000 --host 127.0.0.1 &
+          npm run start -- --PORT 3000 --host 127.0.0.1  &
       - name: Run Cypress
         uses: cypress-io/github-action@v5
         with:
