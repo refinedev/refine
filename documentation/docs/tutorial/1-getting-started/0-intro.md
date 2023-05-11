@@ -6,7 +6,9 @@ tutorial:
     next: tutorial/getting-started/create-project
 ---
 
-In this unit, we initialize our app using the **refine.new** platform. Generally, for local development, we are able to initialize a **refine** app using the **refine CLI**. However, this tutorial is intended to provide busy developers a jetspeed introduction to **refine** concepts with an app built and hosted quickly on **refine.new**.
+In this unit, we make our way through initializing a React admin panel app using the [**refine.new**](https://refine.new) platform and examine the app's features.
+
+Generally, for local development, we are able to initialize a **refine** app using the [**refine CLI**](https://refine.dev/docs/packages/documentation/cli/). However, this tutorial is intended to provide busy developers a jetspeed introduction to **refine** concepts with an app built and hosted quickly on **refine.new**.
 
 
 ### What is refine.new ?
@@ -18,33 +20,23 @@ Prefer to go through this tutorial in an online code editor? That's possible!
 
 <details>
 
-<summary>Follow these instructions, then go directly to "Generate CRUD pages automatically with Inferencer" section!</summary>
+<summary>Follow these instructions, then go directly to "Inferencer for CRUD Pages" section!</summary>
 
 **Set up StackBlitz**
 
-<UIConditional is="mui">
-
 1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
-
-</UIConditional>
 
 2. Click “Sign in” on the top right to log in using your GitHub credentials.
 
 3. In the upper left of the StackBlitz editor window, click the "fork" button to fork the template (save to your own account dashboard).
 
-<UIConditional is="mui">
-
 4. After the project loads, you will see a live preview of the “refine-mui-boilerplate” starter.
 
-</UIConditional>
 
 **Make Changes**
 
-<UIConditional is="mui">
+In the files panel, click on `src/App.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Inferencer for CRUD Pages](/docs/tutorial/getting-started/inferencer-for-crud-pages/)
 
-In the files panel, click on `src/App.tsx` to open it. Afterwards, go to this part of the tutorial to learn how to make changes to this file: [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages/)
-
-</UIConditional>
 
 **Create a GitHub Repository**
 
@@ -52,13 +44,10 @@ In the files panel, click on `src/App.tsx` to open it. Afterwards, go to this pa
 
 2. When you have changes to be commit to GitHub, a “Commit” button will appear at the top left of your workspace. Clicking on this will allow you to enter a commit message, and update your repository.
 
+
 **What's next?**
 
-<UIConditional is="mui">
-
-Now you can navigate to [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages) to start building with **refine**!
-
-</UIConditional>
+Now you can navigate to [Inferencer for CRUD Pages](/docs/tutorial/getting-started/inferencer-for-crud-pages) to start building with **refine**!
 
 </details>
 :::
@@ -67,14 +56,15 @@ Now you can navigate to [Generate CRUD pages automatically with Inferencer](/doc
 
 In this unit, we cover the following steps:
 
--   Creating a new project with **refine.new**.
+-   Creating a React admin panel app with **refine.new**.
 -   Developing the app locally.
 -   Previewing Inferencer-generated CRUD pages.
 
 <Checklist>
-
 <ChecklistItem id="getting-started">
-Let's prepare to build a refine project!
+I understand <strong>refine.new</strong> allows us to quickly initialize, build and deploy **refine** apps!
 </ChecklistItem>
-
+<ChecklistItem id="getting-started-2">
+Let's prepare to build our React admin panel app with **refine**!
+</ChecklistItem>
 </Checklist>
