@@ -6,11 +6,12 @@ tutorial:
     next: tutorial/adding-crud-actions/index
 ---
 
-This post explains how `resources` and their valid actions are declared in a **refine** app. We discuss how **refine**'s resource actions are related to routes and how to define valid resource actions.
+This post discusses the `resources` prop of `<Refine />` component. It explains how resource actions  are related to routes and demonstrates how to declare valid resource actions for the data models of our React admin panel app.
+
 
 ## `resources` in refine
 
-In a frontend CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. In MVC applications, it represents a model in the Model layer. For example, a resource could be an user account, a blog post, an saleable item in an online store, or any other piece of data that is stored in a database server and accessed via RESTful API endpoints.
+In a frontend CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted via endpoints in an external API. In MVC applications, it represents a model in the Model layer. For example, a resource could be an user account, a blog post, an saleable item in an online store, or any other piece of data that is stored in a database server and accessed via RESTful API endpoints.
 
 In **refine**, the `resources` prop of `<Refine />` component is used to add `resources` to our app. This prop accepts an array of resource objects where each object represents a resource. The resource object contains properties to define the name of the resource, RESTful paths of the actions and additional metadata such as label, icon, audit log settings, and sider menu nesting, etc.
 
