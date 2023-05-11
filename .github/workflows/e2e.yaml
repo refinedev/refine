@@ -29,8 +29,18 @@ jobs:
           cd $examplePath
           npm install
           npm run start -- --host 127.0.0.1 &
+      # - name: Run Cypress
+      #   run: |
+      #     examplePath=$(echo "${{ matrix.cypressConfig }}" | sed 's/\/cypress.config.ts//g')
+      #     cd $examplePath
+      #     npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} -C ${{ matrix.cypressConfig }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
       - name: Run Cypress
-        run: |
-          examplePath=$(echo "${{ matrix.cypressConfig }}" | sed 's/\/cypress.config.ts//g')
-          cd $examplePath
-          npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} -C ${{ matrix.cypressConfig }} --parallel --ci-build-id refine-${{ matrix.projectName }}-${{ github.run_attempt }}
+        uses: cypress-io/github-action@v5
+        with:
+          install: false
+          command: pwd && npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
+          # start: "npm ls"
+          wait-on: "http://127.0.0.1:5773"
+          project: ./examples/base-antd
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
