@@ -5,7 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@react-pdf/renderer": "^3.1.8",
-    "@refinedev/antd": "^5.17.0",
+    "@refinedev/antd": "^5.18.0",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/core": "^4.14.3",
     "@refinedev/inferencer": "^3.3.4",
