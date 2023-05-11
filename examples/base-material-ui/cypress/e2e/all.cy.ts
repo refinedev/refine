@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/// <reference types="../../cypress/support" />
 
 Cypress.on("uncaught:exception", () => {
     return false;
