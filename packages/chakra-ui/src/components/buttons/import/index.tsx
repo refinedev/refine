@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconFileImport } from "@tabler/icons";
 
@@ -32,6 +35,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     aria-label={translate("buttons.import", "Import")}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
+                    className={RefineButtonClassNames.ImportButton}
                     {...rest}
                 >
                     <IconFileImport size={20} {...svgIconProps} />
@@ -43,6 +47,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     leftIcon={<IconFileImport size={20} {...svgIconProps} />}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
+                    className={RefineButtonClassNames.ImportButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.import", "Import")}

@@ -10,7 +10,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { ShowButtonProps } from "../types";
 
@@ -95,6 +98,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.ShowButton}
+                className={RefineButtonClassNames.ShowButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.show", "Show"))}

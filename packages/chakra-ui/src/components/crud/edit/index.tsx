@@ -30,6 +30,7 @@ import {
     SaveButtonProps,
 } from "@components";
 import { EditProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Edit: React.FC<EditProps> = (props) => {
     const {
@@ -197,7 +198,11 @@ export const Edit: React.FC<EditProps> = (props) => {
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (
-                    <Heading as="h3" size="lg">
+                    <Heading
+                        as="h3"
+                        size="lg"
+                        className={RefinePageHeaderClassNames.Title}
+                    >
                         {title}
                     </Heading>
                 );
@@ -207,7 +212,11 @@ export const Edit: React.FC<EditProps> = (props) => {
         }
 
         return (
-            <Heading as="h3" size="lg">
+            <Heading
+                as="h3"
+                size="lg"
+                className={RefinePageHeaderClassNames.Title}
+            >
                 {translate(
                     `${resource?.name}.titles.edit`,
                     `Edit ${userFriendlyResourceName(

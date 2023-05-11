@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconPencil } from "@tabler/icons";
 
@@ -101,6 +104,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     title={disabledTitle()}
                     disabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...(variant
                         ? {
                               variant:
@@ -118,6 +122,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     leftIcon={<IconPencil size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.edit", "Edit")}

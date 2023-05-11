@@ -10,6 +10,7 @@ import {
 
 import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const List: React.FC<ListProps> = (props) => {
     const {
@@ -81,7 +82,11 @@ export const List: React.FC<ListProps> = (props) => {
                 <Stack spacing="xs">
                     {breadcrumbComponent}
                     {title ?? (
-                        <Title order={3} transform="capitalize">
+                        <Title
+                            order={3}
+                            transform="capitalize"
+                            className={RefinePageHeaderClassNames.Title}
+                        >
                             {translate(
                                 `${resource?.name}.titles.list`,
                                 userFriendlyResourceName(

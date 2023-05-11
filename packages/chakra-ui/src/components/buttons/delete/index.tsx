@@ -8,7 +8,10 @@ import {
     pickNotDeprecated,
     useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import {
     Button,
@@ -120,6 +123,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                             (recordItemId ?? id) === variables?.id && isLoading
                         }
                         data-testid={RefineButtonTestIds.DeleteButton}
+                        className={RefineButtonClassNames.CloneButton}
                         {...rest}
                     >
                         <IconTrash size={20} {...svgIconProps} />
@@ -133,6 +137,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         isLoading={id === variables?.id && isLoading}
                         leftIcon={<IconTrash size={20} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
+                        className={RefineButtonClassNames.CloneButton}
                         {...rest}
                     >
                         {children ?? translate("buttons.delete", "Delete")}

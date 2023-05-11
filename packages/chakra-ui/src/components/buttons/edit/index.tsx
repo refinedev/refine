@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { IconPencil } from "@tabler/icons";
 import { Button, IconButton } from "@chakra-ui/react";
 
@@ -95,6 +98,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     title={disabledTitle()}
                     isDisabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...rest}
                 >
                     <IconPencil size={20} {...svgIconProps} />
@@ -106,6 +110,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     leftIcon={<IconPencil size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.EditButton}
+                    className={RefineButtonClassNames.EditButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.edit", "Edit")}

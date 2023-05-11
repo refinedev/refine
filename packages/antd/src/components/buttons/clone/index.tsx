@@ -10,7 +10,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonTestIds,
+    RefineButtonClassNames,
+} from "@refinedev/ui-types";
 
 import { CloneButtonProps } from "../types";
 
@@ -95,6 +98,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.CloneButton}
+                className={RefineButtonClassNames.CloneButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.clone", "Clone"))}
