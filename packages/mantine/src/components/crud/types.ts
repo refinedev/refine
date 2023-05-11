@@ -1,8 +1,11 @@
 import {
     CreateButtonProps,
     DeleteButtonProps,
+    EditButtonProps,
+    ListButtonProps,
+    RefreshButtonProps,
     SaveButtonProps,
-} from "@components/buttons";
+} from "../buttons/types";
 import { BoxProps, CardProps, GroupProps } from "@mantine/core";
 import {
     RefineCrudCreateProps,
@@ -24,7 +27,12 @@ export type ShowProps = RefineCrudShowProps<
     GroupProps,
     CardProps,
     GroupProps,
-    BoxProps
+    BoxProps,
+    {},
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
+    ListButtonProps
 >;
 
 export type CreateProps = RefineCrudCreateProps<
@@ -43,5 +51,8 @@ export type EditProps = RefineCrudEditProps<
     GroupProps,
     CardProps,
     GroupProps,
-    BoxProps
+    BoxProps,
+    {},
+    RefreshButtonProps,
+    ListButtonProps
 >;

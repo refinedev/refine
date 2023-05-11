@@ -859,7 +859,15 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, refreshButtonProps, listButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -876,6 +884,61 @@ const PostEdit: React.FC = () => {
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/edit/2"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <EditButton />
+                    </div>
+                ),
+                edit: PostEdit,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `refreshButtonProps` and `listButtonProps` to utilize the default values of the `<ListButton>`[list-button] and `<RefreshButton>`[refresh-button] components.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
+const { EditButton } = RefineAntd;
+
+// visible-block-start
+import { Edit, ListButton, RefreshButton } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostEdit: React.FC = () => {
+    return (
+        <Edit
+            // highlight-start
+            headerButtons={({ refreshButtonProps, listButtonProps }) => (
+                <>
+                    <Button type="primary">Custom Button</Button>
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
                 </>
             )}
             // highlight-end
@@ -958,7 +1021,15 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`<DeleteButton>`][delete-button] at the footer.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps, deleteButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -975,6 +1046,55 @@ const PostEdit: React.FC = () => {
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Edit>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/edit"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <EditButton />
+                    </div>
+                ),
+                edit: PostEdit,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` and `deleteButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] and [`<DeleteButton>`][delete-button] components.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
+const { EditButton } = RefineAntd;
+
+// visible-block-start
+import { Edit, SaveButton, DeleteButton } from "@refinedev/antd";
+import { Button } from "antd";
+
+const PostEdit: React.FC = () => {
+    return (
+        <Edit
+            // highlight-start
+            footerButtons={({ saveButtonProps, deleteButtonProps }) => (
+                <>
+                    <Button type="primary">Custom Button</Button>
+                    <SaveButton {...saveButtonProps} hideText />
+                    {deleteButtonProps && (
+                        <DeleteButton {...deleteButtonProps} hideText />
+                    )}
                 </>
             )}
             // highlight-end
@@ -1079,3 +1199,7 @@ goBack-type="`ReactNode`"
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
 [breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
+[list-button]: /docs/api-reference/antd/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/antd/components/buttons/refresh-button/
+[save-button]: /docs/api-reference/antd/components/buttons/save-button/
+[delete-button]: /docs/api-reference/antd/components/buttons/delete-button/

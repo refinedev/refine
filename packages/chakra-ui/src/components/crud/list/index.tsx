@@ -9,7 +9,7 @@ import {
 
 import { Box, Heading } from "@chakra-ui/react";
 
-import { CreateButton, Breadcrumb } from "@components";
+import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
@@ -17,7 +17,7 @@ export const List: React.FC<ListProps> = (props) => {
     const {
         canCreate,
         children,
-        createButtonProps,
+        createButtonProps: createButtonPropsFromProps,
         resource: resourceFromProps,
         wrapperProps,
         contentProps,
@@ -37,28 +37,34 @@ export const List: React.FC<ListProps> = (props) => {
 
     const isCreateButtonVisible =
         canCreate ??
-        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
+        ((resource?.canCreate ?? !!resource?.create) ||
+            createButtonPropsFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
+
     const defaultHeaderButtons = isCreateButtonVisible ? (
-        <CreateButton
-            resource={
-                routerType === "legacy"
-                    ? resource?.route
-                    : resource?.identifier ?? resource?.name
-            }
-            {...createButtonProps}
-        />
+        <CreateButton {...createButtonProps} />
     ) : null;
 
     const headerButtons = headerButtonsFromProps
         ? typeof headerButtonsFromProps === "function"
             ? headerButtonsFromProps({
                   defaultButtons: defaultHeaderButtons,
+                  createButtonProps,
               })
             : headerButtonsFromProps
         : defaultHeaderButtons;
