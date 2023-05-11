@@ -771,11 +771,11 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 :::caution
 
-If "list" resource is not defined, [`<ListButton>`][list-button] will not rendered and `listButtonProps` will `undefined`.
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
-If [`canDelete`](#candelete-and-canedit) is `false`, [`<DeleteButton>`][delete-button] will not rendered and `deleteButtonProps` will `undefined`.
+If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
 
-If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not rendered and `editButtonProps` will `undefined`.
+If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not render and `editButtonProps` will be `undefined`.
 
 :::
 

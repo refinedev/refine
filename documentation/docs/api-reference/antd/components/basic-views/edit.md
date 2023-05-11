@@ -865,7 +865,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 :::caution
 
-If "list" resource is not defined, [`<ListButton>`][list-button] will not rendered and `listButtonProps` will `undefined`.
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
 :::
 
@@ -1027,7 +1027,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 :::caution
 
-If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, [`<DeleteButton>`][delete-button] will not rendered and `deleteButtonProps` will `undefined`.
+If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
 
 :::
 
