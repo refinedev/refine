@@ -27,7 +27,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             type="primary"
             icon={<SaveOutlined />}
             data-testid={RefineButtonTestIds.SaveButton}
-            className={RefineButtonClassNames.RefreshButton}
+            className={RefineButtonClassNames.SaveButton}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.save", "Save"))}

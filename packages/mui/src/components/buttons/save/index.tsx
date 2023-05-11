@@ -31,7 +31,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             sx={{ minWidth: 0, ...sx }}
             variant="contained"
             data-testid={RefineButtonTestIds.SaveButton}
-            className={RefineButtonClassNames.RefreshButton}
+            className={RefineButtonClassNames.SaveButton}
             {...restProps}
         >
             {hideText ? (
