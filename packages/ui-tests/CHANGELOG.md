@@ -1,5 +1,16 @@
 # @pankod/refine-ui-tests
 
+## 1.4.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: button props tests for `headerButtons` and `footerButtons` renderer functions
+
+### Patch Changes
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.15.0
+
 ## 1.3.2
 
 ### Patch Changes
