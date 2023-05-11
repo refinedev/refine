@@ -34,7 +34,7 @@ When we define a resource, we are able to enable the delete feature on that reso
       create: "/categories/create",
       edit: "/categories/edit/:id",
       show: "/categories/show/:id",
-      // hightlight-start
+      // highlight-start
       meta: {
         canDelete: true,
       },
