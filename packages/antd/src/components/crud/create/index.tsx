@@ -10,7 +10,12 @@ import {
     useBack,
 } from "@refinedev/core";
 
-import { Breadcrumb, SaveButton, PageHeader } from "@components";
+import {
+    Breadcrumb,
+    SaveButton,
+    PageHeader,
+    SaveButtonProps,
+} from "@components";
 import { CreateProps } from "../types";
 
 /**
@@ -21,7 +26,7 @@ import { CreateProps } from "../types";
  */
 export const Create: React.FC<CreateProps> = ({
     title,
-    saveButtonProps,
+    saveButtonProps: saveButtonPropsFromProps,
     children,
     resource: resourceFromProps,
     isLoading = false,
@@ -50,13 +55,15 @@ export const Create: React.FC<CreateProps> = ({
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
+    const saveButtonProps: SaveButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        ...saveButtonPropsFromProps,
+        htmlType: "submit",
+    };
+
     const defaultFooterButtons = (
         <>
-            <SaveButton
-                {...(isLoading ? { disabled: true } : {})}
-                {...saveButtonProps}
-                htmlType="submit"
-            />
+            <SaveButton {...saveButtonProps} />
         </>
     );
 
@@ -119,6 +126,7 @@ export const Create: React.FC<CreateProps> = ({
                                         ? footerButtons({
                                               defaultButtons:
                                                   defaultFooterButtons,
+                                              saveButtonProps: saveButtonProps,
                                           })
                                         : footerButtons
                                     : defaultFooterButtons}

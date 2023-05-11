@@ -703,7 +703,9 @@ render(
 
 ### `footerButtons`
 
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the header.
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -726,6 +728,62 @@ const PostCreate: React.FC = () => {
                     p="2"
                 >
                     {defaultButtons}
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
+                </HStack>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Create>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <RefineHeadlessDemo
+            resources={[
+                {
+                    name: "posts",
+                    create: PostCreate,
+                    list: DummyListPage,
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] component.
+
+```tsx live url=http://localhost:3000/posts/create previewHeight=280px
+setInitialRoutes(["/posts/create"]);
+import { Refine } from "@refinedev/core";
+import { CreateButton, SaveButton } from "@refinedev/chakra-ui";
+
+// visible-block-start
+import { Create } from "@refinedev/chakra-ui";
+import { Button, HStack } from "@chakra-ui/react";
+
+const PostCreate: React.FC = () => {
+    return (
+        <Create
+            // highlight-start
+            footerButtons={({ saveButtonProps }) => (
+                <HStack
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px"
+                    p="2"
+                >
+                    <SaveButton {...saveButtonProps} hideText />
                     <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>
@@ -817,3 +875,5 @@ render(
 ### Props
 
 <PropsTable module="@refinedev/chakra-ui/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
+
+[save-button]: /docs/api-reference/chakra-ui/components/buttons/save-button/

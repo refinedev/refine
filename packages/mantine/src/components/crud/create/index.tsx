@@ -18,13 +18,13 @@ import {
     useTranslate,
 } from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons";
-import { SaveButton, Breadcrumb } from "@components";
+import { SaveButton, Breadcrumb, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {
         children,
-        saveButtonProps,
+        saveButtonProps: saveButtonPropsFromProps,
         isLoading,
         resource: resourceFromProps,
         footerButtons: footerButtonsFromProps,
@@ -60,15 +60,15 @@ export const Create: React.FC<CreateProps> = (props) => {
             <Breadcrumb />
         );
 
+    const saveButtonProps: SaveButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        ...saveButtonPropsFromProps,
+    };
+
     const loadingOverlayVisible =
         isLoading ?? saveButtonProps?.disabled ?? false;
 
-    const defaultFooterButtons = (
-        <SaveButton
-            {...(isLoading ? { disabled: true } : {})}
-            {...saveButtonProps}
-        />
-    );
+    const defaultFooterButtons = <SaveButton {...saveButtonProps} />;
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
@@ -99,7 +99,10 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const footerButtons = footerButtonsFromProps
         ? typeof footerButtonsFromProps === "function"
-            ? footerButtonsFromProps({ defaultButtons: defaultFooterButtons })
+            ? footerButtonsFromProps({
+                  defaultButtons: defaultFooterButtons,
+                  saveButtonProps,
+              })
             : footerButtonsFromProps
         : defaultFooterButtons;
 

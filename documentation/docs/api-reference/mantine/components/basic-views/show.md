@@ -825,7 +825,19 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+
+If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
+
+If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not render and `editButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -845,6 +857,100 @@ const PostShow: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
+                    <Button variant="outline" type="primary">
+                        Custom Button
+                    </Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <p>Rest of your page here</p>
+        </Show>
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            legacyRouterProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    show: PostShow,
+                    list: () => (
+                        <div>
+                            <p>This page is empty.</p>
+                            <ShowButton recordItemId="123">
+                                Show Item 123
+                            </ShowButton>
+                        </div>
+                    ),
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] components.
+
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import {
+    Show,
+    ListButton,
+    EditButton,
+    DeleteButton,
+    RefreshButton,
+} from "@refinedev/mantine";
+import { Button } from "@mantine/core";
+
+const PostShow: React.FC = () => {
+    return (
+        <Show
+            // highlight-start
+            headerButtons={({
+                deleteButtonProps,
+                editButtonProps,
+                listButtonProps,
+                refreshButtonProps,
+            }) => (
+                <>
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    {editButtonProps && (
+                        <EditButton
+                            {...editButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    {deleteButtonProps && (
+                        <DeleteButton
+                            {...deleteButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
                     <Button variant="outline" type="primary">
                         Custom Button
                     </Button>
@@ -1096,3 +1202,8 @@ render(
 ### Props
 
 <PropsTable module="@refinedev/mantine/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
+
+[list-button]: /docs/api-reference/mantine/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/mantine/components/buttons/refresh-button/
+[edit-button]: /docs/api-reference/mantine/components/buttons/edit-button/
+[delete-button]: /docs/api-reference/mantine/components/buttons/delete-button/

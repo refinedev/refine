@@ -10,7 +10,7 @@ import {
 
 import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 
-import { CreateButton, Breadcrumb } from "@components";
+import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
 
 /**
@@ -23,7 +23,7 @@ export const List: React.FC<ListProps> = ({
     title,
     canCreate,
     children,
-    createButtonProps,
+    createButtonProps: createButtonPropsFromProps,
     resource: resourceFromProps,
     breadcrumb: breadcrumbFromProps,
     wrapperProps,
@@ -42,7 +42,8 @@ export const List: React.FC<ListProps> = ({
 
     const isCreateButtonVisible =
         canCreate ??
-        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
+        ((resource?.canCreate ?? !!resource?.create) ||
+            createButtonPropsFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
@@ -56,15 +57,19 @@ export const List: React.FC<ListProps> = ({
             <Breadcrumb />
         );
 
+    const createButtonProps: CreateButtonProps | undefined =
+        isCreateButtonVisible
+            ? {
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  ...createButtonPropsFromProps,
+              }
+            : undefined;
+
     const defaultHeaderButtons = isCreateButtonVisible ? (
-        <CreateButton
-            resource={
-                routerType === "legacy"
-                    ? resource?.route
-                    : resource?.identifier ?? resource?.name
-            }
-            {...createButtonProps}
-        />
+        <CreateButton {...createButtonProps} />
     ) : null;
 
     return (
@@ -94,6 +99,7 @@ export const List: React.FC<ListProps> = ({
                             ? typeof headerButtons === "function"
                                 ? headerButtons({
                                       defaultButtons: defaultHeaderButtons,
+                                      createButtonProps,
                                   })
                                 : headerButtons
                             : defaultHeaderButtons}
