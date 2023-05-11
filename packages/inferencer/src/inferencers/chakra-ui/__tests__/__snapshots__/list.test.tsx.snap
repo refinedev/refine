@@ -13,7 +13,7 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
           class="css-gqssyb"
         >
           <h3
-            class="chakra-heading refine-pageHeader-title css-0"
+            class="chakra-heading css-0"
           >
             Posts
           </h3>

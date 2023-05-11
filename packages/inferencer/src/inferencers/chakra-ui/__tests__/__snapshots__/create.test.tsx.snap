@@ -60,7 +60,7 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
               </svg>
             </button>
             <h3
-              class="chakra-heading refine-pageHeader-title css-0"
+              class="chakra-heading css-0"
             >
               Create Post
             </h3>
@@ -399,7 +399,7 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
         class="css-e6thd7"
       >
         <button
-          class="chakra-button refine-save-button css-4xx2wk"
+          class="chakra-button css-4xx2wk"
           type="button"
         >
           <span

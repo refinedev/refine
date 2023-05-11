@@ -17,7 +17,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
             class="mantine-Breadcrumbs-root mantine-16ttirm"
           />
           <h3
-            class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+            class="mantine-Text-root mantine-Title-root mantine-6hw97m"
           />
         </div>
         <div
@@ -12003,7 +12003,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               </svg>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
             >
               Create 
             </h3>
@@ -12505,7 +12505,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
         class="mantine-Group-root mantine-n0y6vz"
       >
         <button
-          class="mantine-UnstyledButton-root mantine-Button-root refine-save-button mantine-4xmesm"
+          class="mantine-UnstyledButton-root mantine-Button-root mantine-4xmesm"
           data-button="true"
           type="button"
         >
@@ -17494,7 +17494,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               </svg>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
             >
               Edit 
             </h3>
@@ -17503,85 +17503,8 @@ exports[`MantineInferencer should match the snapshot 3`] = `
         <div
           class="mantine-Group-root mantine-1g4q40w"
         >
-          <a
-            class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-            href="/custom-page"
-          >
-            <button
-              class="mantine-UnstyledButton-root mantine-Button-root refine-list-button mantine-1gzbrws"
-              data-button="true"
-              title=""
-              type="button"
-            >
-              <div
-                class="mantine-3xbgk5 mantine-Button-inner"
-              >
-                <span
-                  class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
-                >
-                  <svg
-                    class="icon icon-tabler icon-tabler-list"
-                    fill="none"
-                    height="18"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    width="18"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                      stroke="none"
-                    />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="6"
-                      y2="6"
-                    />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="12"
-                      y2="12"
-                    />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="18"
-                      y2="18"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="6"
-                      y2="6.01"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="12"
-                      y2="12.01"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="18"
-                      y2="18.01"
-                    />
-                  </svg>
-                </span>
-                <span
-                  class="mantine-qo1k2 mantine-Button-label"
-                />
-              </div>
-            </button>
-          </a>
           <button
-            class="mantine-UnstyledButton-root mantine-Button-root refine-refresh-button mantine-1gzbrws"
+            class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
             data-button="true"
             type="button"
           >
@@ -18187,7 +18110,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
         class="mantine-Group-root mantine-n0y6vz"
       >
         <button
-          class="mantine-UnstyledButton-root mantine-Button-root refine-save-button mantine-4xmesm"
+          class="mantine-UnstyledButton-root mantine-Button-root mantine-4xmesm"
           data-button="true"
           type="button"
         >
@@ -23601,7 +23524,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
               </svg>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
             >
               Show 
             </h3>
@@ -23610,85 +23533,8 @@ exports[`MantineInferencer should match the snapshot 4`] = `
         <div
           class="mantine-Group-root mantine-1g4q40w"
         >
-          <a
-            class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-            href="/custom-page"
-          >
-            <button
-              class="mantine-UnstyledButton-root mantine-Button-root refine-list-button mantine-1gzbrws"
-              data-button="true"
-              title=""
-              type="button"
-            >
-              <div
-                class="mantine-3xbgk5 mantine-Button-inner"
-              >
-                <span
-                  class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
-                >
-                  <svg
-                    class="icon icon-tabler icon-tabler-list"
-                    fill="none"
-                    height="18"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    width="18"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                      stroke="none"
-                    />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="6"
-                      y2="6"
-                    />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="12"
-                      y2="12"
-                    />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="18"
-                      y2="18"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="6"
-                      y2="6.01"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="12"
-                      y2="12.01"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="18"
-                      y2="18.01"
-                    />
-                  </svg>
-                </span>
-                <span
-                  class="mantine-qo1k2 mantine-Button-label"
-                />
-              </div>
-            </button>
-          </a>
           <button
-            class="mantine-UnstyledButton-root mantine-Button-root refine-refresh-button mantine-1gzbrws"
+            class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
             data-button="true"
             type="button"
           >

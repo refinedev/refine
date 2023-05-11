@@ -13,7 +13,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
           class="mantine-Stack-root mantine-zyu68o"
         >
           <h3
-            class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+            class="mantine-Text-root mantine-Title-root mantine-6hw97m"
           >
             Posts
           </h3>

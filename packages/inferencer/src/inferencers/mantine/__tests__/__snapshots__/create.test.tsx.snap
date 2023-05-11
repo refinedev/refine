@@ -57,7 +57,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </svg>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
             >
               Create Post
             </h3>
@@ -559,7 +559,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
         class="mantine-Group-root mantine-n0y6vz"
       >
         <button
-          class="mantine-UnstyledButton-root mantine-Button-root refine-save-button mantine-4xmesm"
+          class="mantine-UnstyledButton-root mantine-Button-root mantine-4xmesm"
           data-button="true"
           type="button"
         >
