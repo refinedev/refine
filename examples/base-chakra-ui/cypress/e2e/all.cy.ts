@@ -5,9 +5,9 @@ Cypress.on("uncaught:exception", () => {
     return false;
 });
 
-describe("base-antd", () => {
+describe("base-chakra-ui", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:5173");
+        cy.visit("http://localhost:3000");
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();

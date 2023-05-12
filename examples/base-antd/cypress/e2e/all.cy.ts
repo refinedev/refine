@@ -7,7 +7,7 @@ Cypress.on("uncaught:exception", () => {
 
 describe("base-antd", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:5173");
+        cy.visit("http://localhost:3000");
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();

@@ -38,7 +38,7 @@ const App: React.FC = () => {
                                 name: "posts",
                                 list: "/posts",
                                 create: "/posts/create",
-                                edit: "/posts/edit/:id",
+                                // edit: "/posts/edit/:id",
                             },
                         ]}
                         options={{
