@@ -89,7 +89,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Table>
             </List>
-            <Modal {...createModalProps} destroyOnClose>
+            <Modal {...createModalProps}>
                 <Form {...createFormProps} layout="vertical">
                     <Form.Item
                         label="Title"
@@ -130,7 +130,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     </Form.Item>
                 </Form>
             </Modal>
-            <Modal {...editModalProps} destroyOnClose>
+            <Modal {...editModalProps}>
                 <Form {...editFormProps} layout="vertical">
                     <Form.Item
                         label="Title"
