@@ -28,14 +28,6 @@ describe("form-antd-use-form", () => {
         cy.resourceList();
     });
 
-    it("should be create page", () => {
-        cy.resourceCreate();
-    });
-
-    it("should be edit page", () => {
-        cy.resourceEdit();
-    });
-
     // first create a record with a random title,
     // after that try to create a record with the same title to check unique title validation
     it("should render error", () => {

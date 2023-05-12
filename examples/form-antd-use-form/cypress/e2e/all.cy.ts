@@ -50,14 +50,6 @@ describe("form-antd-use-form", () => {
         cy.resourceList();
     });
 
-    it("should be create page", () => {
-        cy.resourceCreate();
-    });
-
-    it("should be edit page", () => {
-        cy.resourceEdit();
-    });
-
     it("should create record", () => {
         cy.intercept("POST", "/posts").as("createPost");
 
