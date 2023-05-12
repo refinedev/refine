@@ -1,6 +1,10 @@
 name: e2e tests
 
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [synchronize]
+  schedule:
+    - cron: "0 6 * * *"
 
 jobs:
   find-cypress-config:
