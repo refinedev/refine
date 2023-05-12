@@ -107,7 +107,7 @@ describe("form-antd-use-form", () => {
         });
     });
 
-    it.only("should delete a record", () => {
+    it("should delete a record", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
         cy.intercept("DELETE", "/posts/*").as("deletePost");
 

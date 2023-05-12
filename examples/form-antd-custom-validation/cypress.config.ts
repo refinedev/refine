@@ -8,4 +8,6 @@ export default defineConfig({
     chromeWebSecurity: false,
     experimentalMemoryManagement: true,
     numTestsKeptInMemory: 1,
+    viewportWidth: 1920,
+    viewportHeight: 1080,
 });

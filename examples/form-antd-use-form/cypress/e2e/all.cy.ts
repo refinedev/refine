@@ -115,7 +115,7 @@ describe("form-antd-use-form", () => {
         cy.getAntdFormItemError({ id: "status" }).should("not.exist");
     });
 
-    it.only("should edit form render errors", () => {
+    it("should edit form render errors", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
 
         cy.visit(`${BASE_URL}/posts/edit/123`);

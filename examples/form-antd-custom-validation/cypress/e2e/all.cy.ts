@@ -38,7 +38,7 @@ describe("form-antd-use-form", () => {
 
     // first create a record with a random title,
     // after that try to create a record with the same title to check unique title validation
-    it.only("should render error", () => {
+    it("should render error", () => {
         cy.intercept("POST", "/posts").as("createPost");
 
         // create a record
