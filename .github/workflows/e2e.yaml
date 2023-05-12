@@ -45,4 +45,4 @@ jobs:
           group: merge
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }} (${{ steps.build-step.outputs.example-path }})
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
