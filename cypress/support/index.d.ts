@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 interface ISetAntdDropdownParams {
     id: string;
     selectIndex?: number;
@@ -24,10 +26,10 @@ declare namespace Cypress {
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
         setAntdDropdown(
             params: ISetAntdDropdownParams,
-        ): Cypress.Chainable<JQuery<HTMLElement>>;
+        ): Chainable<JQuery<HTMLElement>>;
         setAntdSelect(
             params: ISetAntdSelectParams,
-        ): Cypress.Chainable<JQuery<HTMLElement>>;
+        ): Chainable<JQuery<HTMLElement>>;
         getAntdFormItemError(
             params: IGetAntdFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
