@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("form-antd-use-form", () => {
+describe("form-antd-use-drawer-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {

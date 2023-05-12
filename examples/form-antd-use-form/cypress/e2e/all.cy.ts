@@ -53,7 +53,7 @@ describe("form-antd-use-form", () => {
     it("should create record", () => {
         cy.intercept("POST", "/posts").as("createPost");
 
-        cy.resourceCreate();
+        cy.getCreateButton().click();
 
         fillForm();
         submitForm();
@@ -83,7 +83,7 @@ describe("form-antd-use-form", () => {
     });
 
     it("should create form render errors", () => {
-        cy.resourceCreate();
+        cy.getCreateButton().click();
 
         submitForm();
         cy.getAntdFormItemError({ id: "title" }).contains(
