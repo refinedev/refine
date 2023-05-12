@@ -1,6 +1,6 @@
 name: e2e tests
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   find-cypress-config:
