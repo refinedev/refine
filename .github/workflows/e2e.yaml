@@ -1,6 +1,6 @@
 name: e2e tests
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   find-cypress-config:
@@ -32,14 +32,17 @@ jobs:
           echo "::set-output name=example-path::$examplePath"
           npm install
           npm run start -- --port 3000 --host 127.0.0.1  &
-      - name: Run Cypress
+      - name: Run Cypress on ${{ github.event_name }}
         uses: cypress-io/github-action@v5
         with:
           install: false
-          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
+          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ github.ref_name }}-${{ steps.build-step.outputs.example-path }}-${{ github.run_attempt }}
           # start: pwd
           wait-on: "http://127.0.0.1:3000"
           # project: ${{ steps.build-step.outputs.example-path }}
           working-directory: ${{ steps.build-step.outputs.example-path }}
+          tag: ${{ github.event_name }}
+          group: merge
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
