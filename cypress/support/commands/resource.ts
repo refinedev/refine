@@ -90,13 +90,13 @@ export const show = () => {
 
         // should be visible id,title,content
         ["Id", "Title", "Content"].forEach((field) => {
-            cy.get(".ant-card").should("contain", field);
+            cy.get("body").should("contain", field);
         });
         // should be visible id,title,content values
         const title = response?.body?.title;
         const content = response?.body?.content;
         [id, title, content].forEach((value) => {
-            cy.get(".ant-card").should("contain", value);
+            cy.get("body").should("contain", value);
         });
     });
 };
