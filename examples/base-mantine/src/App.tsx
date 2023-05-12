@@ -39,7 +39,7 @@ const App: React.FC = () => {
                                 list: "/posts",
                                 show: "/posts/show/:id",
                                 create: "/posts/create",
-                                // edit: "/posts/edit/:id",
+                                edit: "/posts/edit/:id",
                             },
                         ]}
                         options={{
