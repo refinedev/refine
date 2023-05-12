@@ -6,16 +6,14 @@ tutorial:
     next: tutorial/adding-crud-actions/add-create-page
 ---
 
-This post shows how to implement the `show` page of `blog_posts` resource without resorting to `<MuiShowInferencer />`. We replace the existing code inside the `src/pages/blog-posts/show.tsx` file with the Inferencer-generated **refine** and **Material UI** components.
+This post demonstrates how to implement the `show` page of `blog_posts` resource without resorting to `<MuiShowInferencer />`. We replace the existing code inside the `src/pages/blog-posts/show.tsx` file with the Inferencer-generated **refine** and **Material UI** code.
 
 
 ## The Show Page
 
-The Inferencer-generated `<BlogPostShow />` component is available at the `/blog-posts/show/:id` route. For a blog post with a given `:id`, when we visit its `show` page, we can view the code in a modal by clicking on `Show the auto-generated code` button:
+The Inferencer-generated `<BlogPostShow />` component is available at the `/blog-posts/show/:id` route. For a blog post with a given `:id`, when we visit its `show` page, we can view the code in a modal by clicking on `Show the auto-generated code` button. The code looks like this:
 
-```TypeScript
-// src/pages/blog-posts/show.tsx
-
+```tsx
 import { useShow, useOne } from "@refinedev/core";
 import {
     Show,
@@ -78,14 +76,13 @@ export const BlogPostShow = () => {
 };
 ```
 
-Let's copy this and paste it into the file at `src/pages/blog-posts/show.tsx`. We should replace the existing code that uses the `<MuiShowInferencer />`.
+The Inferencer generated this `<BlogPostShow />` component by carrying out an initial polling of the blog post resource, figuring out the shape of the API response and placing the **Material UI** elements for the page appropriately.
 
-The Inferencer generated this `<BlogPostShow />` component by carrying out an initial polling of the blog post resource, figuring out the shape of the API response and placing the **Material UI** elements for the page appropriately. This gives us the possibility to further customize the compoent.
+
+Below, we briefly make sense of the components and hooks used in this page.
 
 
 ## Understanding the Show Page Components
-
-Below, we briefly make sense of the components and hooks used in the `show` page.
 
 -   `<Show />` is a **refine** component that is used to present a `show` page. It acts as a wrapper around other components like the title of the page, list button, etc.
 
@@ -102,7 +99,11 @@ Below, we briefly make sense of the components and hooks used in the `show` page
 
 ### Handling Relationships
 
-The `blog_posts` resource is associated with the `categories` resource. In the `show` page for a blog post item, we retrieve associated `categories` data with **refine**'s core `useOne()` hook. This hook allows us to fetch a single record based on the `id` and `resource` parameters passed to it. Here, we are getting the category of the blog post:
+The `blog_posts` resource is associated with the `categories` resource. In the `show` page for a blog post item, we retrieve associated `categories` data with **refine**'s core `useOne()` hook.
+
+### refine `useOne()` Hook
+
+This hook allows us to fetch a single record based on the `id` and `resource` parameters passed to it. Here, we are getting the category of the blog post:
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -118,15 +119,150 @@ We use the `queryOptions` object to make sure the associated `categories` data i
 
 [Refer to the `useOne()` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
 
+
+Let's copy this and paste the Inferencer-generated code into the file at `src/pages/blog-posts/show.tsx`. We should replace the existing code that uses the `<MuiShowInferencer />`.
+
+
+## Show Page Preview
+
 Now, if we view the blog post `show` page in the browser at <a href="http://localhost:5173/blog-posts/show/123" rel="noopener noreferrer nofollow">localhost:5173/blog-posts/show/123</a>, we see the same UI being rendered, except the `Show the auto-generated code` is missing because we removed the `<MuiShowInferencer />` component:
 
-![1-blog-post-show](https://imgbox.com/UC3BP4fY)
 
-<br/>
-<br/>
+```tsx live previewOnly previewHeight=600px url=http://localhost:5173/blog-posts/show/123
+setInitialRoutes(["/blog-posts/show/123"]);
+
+
+import { Authenticated, GitHubBanner, IResourceComponentsProps, Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
+import {
+  ErrorComponent,
+  notificationProvider,
+  RefineSnackbarProvider,
+  ThemedLayoutV2,
+  ThemedTitleV2,
+} from "@refinedev/mui";
+import { MuiShowInferencer } from "@refinedev/inferencer/mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import routerBindings, {
+  CatchAllNavigate,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { authProvider } from "./authProvider";
+import {
+  BlogPostCreate,
+  BlogPostEdit,
+  BlogPostList,
+  BlogPostShow,
+} from "./pages/blog-posts";
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "./pages/categories";
+import { ForgotPassword } from "./pages/forgotPassword";
+import { Login } from "./pages/login";
+import { Register } from "./pages/register";
+
+// visible-block-start
+const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
+  return <MuiShowInferencer />;
+};
+// visible-block-end
+
+function App() {
+  const { t, i18n } = useTranslation();
+
+  const i18nProvider = {
+    translate: (key: string, params: object) => t(key, params),
+    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    getLocale: () => i18n.language,
+  };
+
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+          <CssBaseline />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <RefineSnackbarProvider>
+            <Refine
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              notificationProvider={notificationProvider}
+              routerProvider={routerBindings}
+              resources={[
+                {
+                  name: "blog_posts",
+                  // list: "/blog-posts",
+                  // create: "/blog-posts/create",
+                  // edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                },
+                // {
+                //   name: "categories",
+                //   list: "/categories",
+                //   create: "/categories/create",
+                //   edit: "/categories/edit/:id",
+                //   show: "/categories/show/:id",
+                //   meta: {
+                //     canDelete: true,
+                //   },
+                // },
+              ]}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}
+            >
+              <Routes>
+                <Route
+                  element={
+                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                      <ThemedLayoutV2
+                        Title={({ collapsed }) => (
+                          <ThemedTitleV2
+                            collapsed={collapsed}
+                            text="refine Project"
+                          />
+                        )}
+                      >
+                        <Outlet />
+                      </ThemedLayoutV2>
+                    </Authenticated>
+                  }
+                >
+                  <Route
+                    index
+                    element={<NavigateToResource resource="blog_posts" />}
+                  />
+                  <Route path="/blog-posts">
+                    <Route path="show/:id" element={<BlogPostShow />} />
+                  </Route>
+                  <Route path="*" element={<ErrorComponent />} />
+                </Route>
+              </Routes>
+
+              <RefineKbar />
+              <UnsavedChangesNotifier />
+            </Refine>
+          </RefineSnackbarProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
+}
+
+render(<App />);
+```
 
 <Checklist>
-
 <ChecklistItem id="add-show-page-mui">
 I added the Inferenccer-generated code to {`<BlogPostShow />`} component.
 </ChecklistItem>

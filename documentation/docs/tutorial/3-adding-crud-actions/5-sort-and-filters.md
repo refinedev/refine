@@ -11,11 +11,17 @@ The [Blog Posts List](/docs/tutorial/adding-crud-pages/index) page section brief
 
 ## The `<DataGrid />` Component
 
-The **Material UI** `<DataGrid />` component is very powerful and **refine** has excellent support for many of its props. For example, **refine** provides built-in support for sorting and filtering records inside `<DataGrid />` so we don't have to manually implement these features.
+The **Material UI** `<DataGrid />` component is very powerful and **refine** has excellent support for many of its props. For example, **refine** provides built-in support for sorting and filtering records inside `<DataGrid />` so we don't have to manually implement these features. We can see these features in action when we hover over the table and column headers.
 
-We can see these features in action when we click on the arrow icon which appears in a table header when it is hovered. Clicking allows us sort the table rows ascending or descending by the columns.
+### Sorting by Column
 
-When we hover on the topleft corder of the table, a menu of items pops up and presents options to sort, filter, select and hide the data in the table.
+For example, when we hover over a column header, an arrow appears in the left of the target column header. Clicking on the arrow icon allows us sort the table rows by ascending or descending order of with respect to the column.
+
+### Sorting and Filters Menu
+
+When we hover over a column header, a kebab icon appears in the right side. Clicking on the kebab icon pops a menu of items that allow sorting, filtering, selecting and hiding rows of data in the table.
+
+![1-sorting-filter-menu](https://imgbox.com/SyCmjOrB)
 
 The props for all these features come baked into the `dataGridProps` object exposed by the `useDataGrid()` hook. `useDataGrid()` is a high level hook provided by **refine**'s **Material UI** support package, `@refinedev/mui`.
 
