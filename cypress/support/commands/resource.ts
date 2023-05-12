@@ -1,24 +1,102 @@
 /// <reference types="cypress" />
+import { faker } from "@faker-js/faker";
+
+const mockPost = {
+    title: faker.lorem.paragraph(1),
+    content: faker.lorem.paragraphs(2),
+    status: "Published",
+};
+
+const assertSuccessResponse = (response: any) => {
+    const body = response?.body;
+
+    expect(response?.statusCode).to.eq(200);
+    expect(body).to.have.property("id");
+    expect(body).to.have.property("category");
+    expect(body?.title).to.eq(mockPost.title);
+    expect(body?.content).to.eq(mockPost.content);
+    expect(body?.status?.toLowerCase()).to.eq(mockPost?.status?.toLowerCase());
+
+    cy.getAntdNotification().should("contain", "Success");
+    cy.location().should((loc) => {
+        expect(loc.pathname).to.eq("/posts");
+    });
+};
 
 export const list = () => {
     cy.url().should("include", "/posts");
     cy.get(".refine-pageHeader-title").should("contain", "Posts");
 };
 
-export const create = () => {
+export const create = ({ ui }: IResourceCreateParams) => {
+    cy.intercept("POST", "/posts").as("createPost");
+
     cy.getCreateButton().click();
     cy.url().should("include", "/posts/create");
-    // TODO: Fill all form fields and submit
+
+    switch (ui) {
+        case "antd":
+            cy.get("#title").clear().type(mockPost.title);
+            cy.get("#content textarea").clear().type(mockPost.content);
+            cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+            cy.setAntdSelect({ id: "status", value: mockPost.status });
+            break;
+    }
+
+    cy.getSaveButton().click();
+
+    cy.wait("@createPost").then((interception) => {
+        const response = interception?.response;
+        assertSuccessResponse(response);
+    });
 };
 
-export const edit = () => {
+export const edit = ({ ui }: IResourceEditParams) => {
+    cy.intercept("GET", "/posts/*").as("getPost");
+    cy.intercept("PATCH", "/posts/*").as("patchPost");
+
     cy.get(".refine-edit-button").first().click();
     cy.url().should("include", "/posts/edit");
-    // TODO: Update form fields and submit
+
+    cy.wait("@getPost");
+    cy.wait(500);
+
+    switch (ui) {
+        case "antd":
+            cy.get("#title").clear().type(mockPost.title);
+            cy.get("#content textarea").clear().type(mockPost.content);
+            cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+            cy.setAntdSelect({ id: "status", value: mockPost.status });
+            break;
+    }
+
+    cy.getSaveButton().click();
+
+    cy.wait("@patchPost").then((interception) => {
+        const response = interception?.response;
+        assertSuccessResponse(response);
+    });
 };
 
 export const show = () => {
     cy.get(".refine-show-button").first().click();
-    cy.url().should("include", "/posts/show");
-    // TODO: Check if all fields are visible (title,category,status ..etc)
+    cy.intercept("GET", "/posts/*").as("getPost");
+
+    cy.wait("@getPost").then((interception) => {
+        const response = interception?.response;
+
+        const id = response?.body?.id;
+        cy.url().should("include", `/posts/show/${id}`);
+
+        // should be visible id,title,content
+        ["Id", "Title", "Content"].forEach((field) => {
+            cy.get(".ant-card").should("contain", field);
+        });
+        // should be visible id,title,content values
+        const title = response?.body?.title;
+        const content = response?.body?.content;
+        [id, title, content].forEach((value) => {
+            cy.get(".ant-card").should("contain", value);
+        });
+    });
 };

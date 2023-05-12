@@ -14,11 +14,23 @@ interface IGetAntdFormItemErrorParams {
     id: string;
 }
 
+interface IResourceCreateParams {
+    ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
+}
+
+interface IResourceEditParams {
+    ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
+}
+
 declare namespace Cypress {
     interface Chainable {
         resourceList(): Chainable<void>;
-        resourceCreate(): Chainable<void>;
-        resourceEdit(): Chainable<void>;
+        resourceCreate(
+            params: IResourceCreateParams,
+        ): Chainable<JQuery<HTMLElement>>;
+        resourceEdit(
+            params: IResourceCreateParams,
+        ): Chainable<JQuery<HTMLElement>>;
         resourceShow(): Chainable<void>;
         getSaveButton(): Chainable<JQuery<HTMLElement>>;
         getCreateButton(): Chainable<JQuery<HTMLElement>>;
