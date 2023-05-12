@@ -6,8 +6,10 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("base-material-ui", () => {
+    const BASE_URL = "http://localhost:3000";
+
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
+        cy.visit(BASE_URL);
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
@@ -18,14 +20,16 @@ describe("base-material-ui", () => {
     });
 
     it("should be create page", () => {
-        cy.resourceCreate();
+        cy.resourceCreate({
+            ui: "material-ui",
+        });
     });
 
     it("should be edit page", () => {
-        cy.resourceEdit();
+        cy.resourceEdit({ ui: "material-ui" });
     });
 
-    // it("should be show page", () => {
-    //     cy.resourceShow();
-    // });
+    it("should be show page", () => {
+        cy.resourceShow();
+    });
 });
