@@ -6,7 +6,7 @@ export const list = () => {
 };
 
 export const create = () => {
-    cy.get(".refine-create-button").click();
+    cy.getCreateButton().click();
     cy.url().should("include", "/posts/create");
     // TODO: Fill all form fields and submit
 };
