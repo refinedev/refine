@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+/// <reference types="./index.d.ts" />
+
 import {
     getAntdNotification,
     setAntdSelect,
