@@ -36,7 +36,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
+          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ github.ref_name }}-${{ matrix.cypressConfig }}-${{ github.run_attempt }}
           # start: pwd
           wait-on: "http://127.0.0.1:3000"
           # project: ${{ steps.build-step.outputs.example-path }}
