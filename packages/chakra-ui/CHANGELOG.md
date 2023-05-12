@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 2.14.1
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
 ## 2.14.0
 
 ### Minor Changes
