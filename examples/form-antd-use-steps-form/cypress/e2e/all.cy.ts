@@ -5,17 +5,18 @@ describe("form-antd-use-steps-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
-        title: "test title",
-        content: "test content",
+        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        content:
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         status: "Published",
     };
 
     const fillForm = () => {
-        cy.get("#title").clear().type("test title");
+        cy.get("#title").clear().type(mockPost.title);
         cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
-        cy.setAntdSelect({ id: "status", value: "Published" });
+        cy.setAntdSelect({ id: "status", value: mockPost.status });
         cy.get(".ant-btn").contains(/next/gi).click();
-        cy.get("#content textarea").clear().type("test content");
+        cy.get("#content textarea").clear().type(mockPost.content);
     };
 
     const assertSuccessResponse = (response: any) => {
@@ -64,7 +65,7 @@ describe("form-antd-use-steps-form", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
         cy.intercept("PATCH", "/posts/*").as("patchPost");
 
-        cy.visit(`${BASE_URL}/posts/edit/123`);
+        cy.getEditButton().first().click();
 
         cy.wait("@getPost");
         cy.wait(500);

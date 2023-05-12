@@ -5,8 +5,9 @@ describe("form-antd-use-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
-        title: "test title",
-        content: "test content",
+        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        content:
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         status: "Published",
     };
 
@@ -68,7 +69,7 @@ describe("form-antd-use-form", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
         cy.intercept("PATCH", "/posts/*").as("patchPost");
 
-        cy.visit(`${BASE_URL}/posts/edit/123`);
+        cy.getEditButton().first().click();
 
         cy.wait("@getPost");
         cy.wait(500);

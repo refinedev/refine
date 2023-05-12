@@ -4,6 +4,13 @@
 describe("form-antd-use-mpdal-form", () => {
     const BASE_URL = "http://localhost:3000";
 
+    const mockPost = {
+        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        content:
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        status: "Published",
+    };
+
     const openModal = () => {
         return cy.getCreateButton().click();
     };
@@ -47,8 +54,8 @@ describe("form-antd-use-mpdal-form", () => {
         cy.intercept("POST", "/posts").as("createPost");
 
         openModal();
-        cy.get("#title").type("test title");
-        cy.setAntdSelect({ id: "status", value: "Published" });
+        cy.get("#title").type(mockPost.title);
+        cy.setAntdSelect({ id: "status", value: mockPost.status });
         cy.get(".ant-modal-footer > .ant-btn-primary")
             .eq(0)
             .click({ force: true });
@@ -58,8 +65,10 @@ describe("form-antd-use-mpdal-form", () => {
             const body = response?.body;
 
             expect(response?.statusCode).to.eq(200);
-            expect(body?.title).to.eq("test title");
-            expect(body?.status?.toLowerCase()).to.eq("published");
+            expect(body?.title).to.eq(mockPost.title);
+            expect(body?.status?.toLowerCase()).to.eq(
+                mockPost.status.toLowerCase(),
+            );
             isModalNotVisible();
             cy.getAntdNotification().should("contain", "Success");
         });
@@ -69,14 +78,7 @@ describe("form-antd-use-mpdal-form", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
         cy.intercept("PATCH", "/posts/*").as("patchPost");
 
-        // find first record and click .refine-edit-button button
-        cy.get(".ant-table-row-level-0")
-            .first()
-            .find("td")
-            .last()
-            .within(() => {
-                cy.get(".refine-edit-button").click();
-            });
+        cy.getEditButton().first().click();
 
         cy.wait("@getPost");
         cy.wait(500);
@@ -86,11 +88,11 @@ describe("form-antd-use-mpdal-form", () => {
             .clear({
                 force: true,
             })
-            .type("test title", { force: true });
+            .type(mockPost.title, { force: true });
         cy.get("input#status")
             .eq(1)
             .click({ force: true })
-            .get(`.ant-select-item[title="Published"]`)
+            .get(`.ant-select-item[title="${mockPost.status}"]`)
             .click({ force: true });
         cy.get(".ant-modal-footer > .ant-btn-primary")
             .eq(1)
@@ -101,8 +103,10 @@ describe("form-antd-use-mpdal-form", () => {
             const body = response?.body;
 
             expect(response?.statusCode).to.eq(200);
-            expect(body?.title).to.eq("test title");
-            expect(body?.status?.toLowerCase()).to.eq("published");
+            expect(body?.title).to.eq(mockPost.title);
+            expect(body?.status?.toLowerCase()).to.eq(
+                mockPost.status.toLowerCase(),
+            );
             isModalNotVisible();
             cy.getAntdNotification().should("contain", "Success");
         });

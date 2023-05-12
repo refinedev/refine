@@ -35,6 +35,7 @@ declare namespace Cypress {
         getSaveButton(): Chainable<JQuery<HTMLElement>>;
         getCreateButton(): Chainable<JQuery<HTMLElement>>;
         getDeleteButton(): Chainable<JQuery<HTMLElement>>;
+        getEditButton(): Chainable<JQuery<HTMLElement>>;
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
         setAntdDropdown(
             params: ISetAntdDropdownParams,

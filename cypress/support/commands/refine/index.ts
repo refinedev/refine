@@ -9,3 +9,7 @@ export const getCreateButton = () => {
 export const getDeleteButton = () => {
     return cy.get(".refine-delete-button");
 };
+
+export const getEditButton = () => {
+    return cy.get(".refine-edit-button");
+};

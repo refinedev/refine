@@ -10,6 +10,7 @@ import {
 import {
     getCreateButton,
     getDeleteButton,
+    getEditButton,
     getSaveButton,
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
@@ -21,6 +22,7 @@ Cypress.Commands.add("resourceShow", show);
 Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
 Cypress.Commands.add("getDeleteButton", getDeleteButton);
+Cypress.Commands.add("getEditButton", getEditButton);
 Cypress.Commands.add("getAntdNotification", getAntdNotification);
 Cypress.Commands.add("setAntdSelect", setAntdSelect);
 Cypress.Commands.add("setAntdDropdown", setAntdDropdown);

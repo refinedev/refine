@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+/// <reference types="../../index.d.ts" />
+
 export const getAntdNotification = () => {
     return cy.get(".ant-notification-notice");
 };
