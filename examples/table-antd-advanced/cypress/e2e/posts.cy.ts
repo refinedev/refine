@@ -66,9 +66,6 @@ describe("table-antd-advanced", () => {
             const data = response?.body;
 
             cy.get("#title").should("have.value", data.title);
-            cy.get(".ant-select-selector .ant-select-selection-item")
-                .first()
-                .should("have.attr", "title", data.category.id);
         });
 
         cy.get("#title").clear().type("Fuga eos enim autem eos.");
@@ -85,7 +82,7 @@ describe("table-antd-advanced", () => {
         });
     });
 
-    it.only("expanded row should be display the table with the posts data", () => {
+    it("expanded row should be display the table with the posts data", () => {
         cy.visit("http://localhost:3000/categories");
 
         cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");

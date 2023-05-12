@@ -1,16 +1,9 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-Cypress.on("uncaught:exception", () => {
-    return false;
-});
-
 describe("table-antd-advanced", () => {
     beforeEach(() => {
         cy.visit("http://localhost:3000/categories");
-        cy.clearAllCookies();
-        cy.clearAllLocalStorage();
-        cy.clearAllSessionStorage();
     });
 
     it("should be view list page", () => {
