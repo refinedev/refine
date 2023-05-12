@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/chakra-ui": "^2.14.1",
+    "@refinedev/chakra-ui": "^2.14.2",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/core": "^4.14.3",
     "@refinedev/inferencer": "^3.3.4",
