@@ -59,7 +59,7 @@ As indicated above, an auth provider's methods are expected to return a Promise.
 
 The auth provider is closely related to the backend API service, which is **Simple REST API** in our case. At initialization, **refine.new** generated an auth provider for us, which is tailored to address **Simple REST API**, a simple RESTful API service provided by **refine**. It looks like below:
 
-```TypeScript title="src/authProvider.ts"
+```tsx title="src/authProvider.ts"
 
 import { AuthBindings } from "@refinedev/core";
 
