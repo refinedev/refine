@@ -32,7 +32,7 @@ jobs:
           echo "::set-output name=example-path::$examplePath"
           npm install
           npm run start -- --port 3000 --host 127.0.0.1  &
-      - name: Run Cypress
+      - name: Run Cypress on ${{ github.event_name }}
         uses: cypress-io/github-action@v5
         with:
           install: false
@@ -41,5 +41,8 @@ jobs:
           wait-on: "http://127.0.0.1:3000"
           # project: ${{ steps.build-step.outputs.example-path }}
           working-directory: ${{ steps.build-step.outputs.example-path }}
+          tag: ${{ github.event_name }}
+          group: merge
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
