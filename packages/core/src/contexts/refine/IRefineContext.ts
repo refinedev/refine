@@ -10,7 +10,6 @@ import {
     LiveModeProps,
     RedirectAction,
 } from "../../interfaces";
-import { IGenerateDocumentTitle } from "src/interfaces/document-title";
 
 export interface IRefineOptions {
     breadcrumb?: ReactNode;
@@ -20,7 +19,6 @@ export interface IRefineOptions {
     undoableTimeout?: number;
     liveMode?: LiveModeProps["liveMode"];
     disableTelemetry?: boolean;
-    generateDocumentTitle?: IGenerateDocumentTitle;
     redirect?: {
         afterCreate?: RedirectAction;
         afterClone?: RedirectAction;
@@ -39,7 +37,6 @@ export interface IRefineContextOptions {
     warnWhenUnsavedChanges: boolean;
     undoableTimeout: number;
     liveMode: LiveModeProps["liveMode"];
-    generateDocumentTitle: IGenerateDocumentTitle;
     redirect: {
         afterCreate: RedirectAction;
         afterClone: RedirectAction;

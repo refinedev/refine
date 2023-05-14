@@ -7,6 +7,7 @@ import {
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
+    DocumentTitleHandler,
     NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -66,11 +67,11 @@ const App: React.FC = () => {
                                 <Route path="edit/:id" element={<PostEdit />} />
                                 <Route path="show/:id" element={<PostShow />} />
                             </Route>
-
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

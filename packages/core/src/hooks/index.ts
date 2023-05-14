@@ -23,4 +23,3 @@ export * from "./invalidate";
 export * from "./breadcrumb";
 export * from "./menu";
 export * from "./useMeta";
-export * from "./document-title";

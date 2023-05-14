@@ -15,7 +15,6 @@ describe("handleRefineOptions", () => {
             mutationMode: "optimistic",
             disableTelemetry: true,
             liveMode: "auto",
-            generateDocumentTitle: true,
             reactQuery: {
                 clientConfig: {
                     defaultOptions: { queries: { enabled: false } },
@@ -38,14 +37,13 @@ describe("handleRefineOptions", () => {
             disableTelemetryWithDefault,
             reactQueryWithDefaults,
         } = handleRefineOptions({ options });
-        console.log(optionsWithDefaults);
+
         expect(optionsWithDefaults).toEqual({
             liveMode: "auto",
             mutationMode: "optimistic",
             syncWithLocation: true,
             undoableTimeout: 1000,
             warnWhenUnsavedChanges: true,
-            generateDocumentTitle: true,
             redirect: {
                 afterClone: "show",
                 afterCreate: "edit",
@@ -67,7 +65,6 @@ describe("handleRefineOptions", () => {
             mutationMode: "optimistic",
             disableTelemetry: true,
             liveMode: "auto",
-            generateDocumentTitle: true,
             reactQuery: {
                 clientConfig: {
                     defaultOptions: { queries: { enabled: false } },
@@ -104,7 +101,6 @@ describe("handleRefineOptions", () => {
             mutationMode: "optimistic",
             syncWithLocation: true,
             undoableTimeout: 1000,
-            generateDocumentTitle: true,
             warnWhenUnsavedChanges: true,
             redirect: {
                 afterClone: "list",
@@ -147,7 +143,6 @@ describe("handleRefineOptions", () => {
             syncWithLocation: false,
             undoableTimeout: 2000,
             warnWhenUnsavedChanges: false,
-            generateDocumentTitle: false,
             redirect: {
                 afterClone: "list",
                 afterCreate: "list",

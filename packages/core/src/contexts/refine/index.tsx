@@ -15,7 +15,6 @@ export const defaultRefineOptions: IRefineContextOptions = {
     undoableTimeout: 5000,
     warnWhenUnsavedChanges: false,
     liveMode: "off",
-    generateDocumentTitle: false,
     redirect: {
         afterCreate: "list",
         afterClone: "list",

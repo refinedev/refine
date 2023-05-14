@@ -45,7 +45,6 @@ import { RouterBindingsProvider } from "../../../contexts/router";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
 import { RouterPickerProvider } from "@contexts/router-picker";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
-import { DocumentTitleProvider } from "@contexts/document-title";
 
 export interface RefineProps {
     children?: React.ReactNode;
@@ -376,19 +375,17 @@ export const Refine: React.FC<RefineProps> = ({
                                                                         optionsWithDefaults
                                                                     }
                                                                 >
-                                                                    <DocumentTitleProvider>
-                                                                        <UnsavedWarnContextProvider>
-                                                                            <RouterComponent>
-                                                                                {
-                                                                                    children
-                                                                                }
-                                                                                {!disableTelemetryWithDefault && (
-                                                                                    <Telemetry />
-                                                                                )}
-                                                                                <RouteChangeHandler />
-                                                                            </RouterComponent>
-                                                                        </UnsavedWarnContextProvider>
-                                                                    </DocumentTitleProvider>
+                                                                    <UnsavedWarnContextProvider>
+                                                                        <RouterComponent>
+                                                                            {
+                                                                                children
+                                                                            }
+                                                                            {!disableTelemetryWithDefault && (
+                                                                                <Telemetry />
+                                                                            )}
+                                                                            <RouteChangeHandler />
+                                                                        </RouterComponent>
+                                                                    </UnsavedWarnContextProvider>
                                                                 </RefineContextProvider>
                                                             </UndoableQueueContextProvider>
                                                         </AuditLogContextProvider>

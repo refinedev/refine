@@ -19,8 +19,8 @@ type HandleRefineOptionsProps = {
     disableTelemetry?: boolean;
     reactQueryClientConfig?: QueryClientConfig;
     reactQueryDevtoolConfig?:
-    | React.ComponentProps<typeof ReactQueryDevtools>
-    | false;
+        | React.ComponentProps<typeof ReactQueryDevtools>
+        | false;
 };
 
 type HandleRefineOptionsReturnValues = {
@@ -63,7 +63,6 @@ export const handleRefineOptions = ({
             defaultRefineOptions.warnWhenUnsavedChanges,
         liveMode:
             options?.liveMode ?? liveMode ?? defaultRefineOptions.liveMode,
-        generateDocumentTitle: options?.generateDocumentTitle ?? defaultRefineOptions.generateDocumentTitle,
         redirect: {
             afterCreate:
                 options?.redirect?.afterCreate ??
