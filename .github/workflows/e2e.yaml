@@ -10,6 +10,9 @@ jobs:
   find-cypress-config:
     runs-on: ubuntu-latest
     steps:
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       - uses: actions/checkout@v3
       - uses: kanga333/json-array-builder@main
         id: array
@@ -40,7 +43,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ github.ref_name }}-${{ steps.build-step.outputs.example-path }}-${{ github.run_attempt }}
+          command: npx cypress run --record -C ./cypress.config.ts --parallel --ci-build-id refine-${{ github.ref_name }}-${{ steps.build-step.outputs.example-path }}-{{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }}
           # start: pwd
           wait-on: "http://127.0.0.1:3000"
           # project: ${{ steps.build-step.outputs.example-path }}
