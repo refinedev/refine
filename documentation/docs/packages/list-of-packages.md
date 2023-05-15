@@ -74,10 +74,9 @@ title: List of Packages
 -  `@refinedev/react-hook-form` - [React Hook Form](https://react-hook-form.com/) integration. Extensible forms and validation for your projects.
 
 ### React Frameworks
- `NextJS` - SSR and SSG support for your projects.
 
-### React Frameworks
- `Remix` - SSR support for your projects.
+- `NextJS` - SSR and SSG support for your projects.
+- `Remix` - SSR support for your projects.
 
 ### ❤️ Community Packages:
 
