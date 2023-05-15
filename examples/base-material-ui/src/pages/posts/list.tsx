@@ -1,6 +1,6 @@
 import React from "react";
 import { useMany } from "@refinedev/core";
-import { useDataGrid, List, EditButton } from "@refinedev/mui";
+import { useDataGrid, List, EditButton, ShowButton } from "@refinedev/mui";
 
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
@@ -51,7 +51,12 @@ export const PostList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 renderCell: function render({ row }) {
-                    return <EditButton hideText recordItemId={row.id} />;
+                    return (
+                        <div>
+                            <EditButton hideText recordItemId={row.id} />
+                            <ShowButton hideText recordItemId={row.id} />
+                        </div>
+                    );
                 },
                 align: "center",
                 headerAlign: "center",
