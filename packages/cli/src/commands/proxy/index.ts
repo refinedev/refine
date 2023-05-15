@@ -50,7 +50,7 @@ const action = async ({
                               proxyRes.headers["set-cookie"]
                           ) {
                               proxyRes.headers["set-cookie"][i] =
-                                  cookie.replace("Secure", "");
+                                  cookie.replace("Secure;", "");
                           }
                       });
                   }
@@ -84,42 +84,16 @@ const action = async ({
     );
 
     app.use(
-        "/.kratos",
-        createProxyMiddleware({
-            target: `${domain}/.kratos`,
-            changeOrigin: true,
-            cookieDomainRewrite: {
-                "refine.dev": "",
-            },
-            pathRewrite: { "^/.kratos": "" },
-            logProvider: () => ({
-                log: console.log,
-                info: (msg) => {
-                    if (`${msg}`.includes("Proxy rewrite rule created")) return;
-
-                    if (`${msg}`.includes("Proxy created")) {
-                        console.log(
-                            `Proxying localhost:${port}/.kratos to ${domain}/.kratos`,
-                        );
-                    } else if (msg) {
-                        console.log(msg);
-                    }
-                },
-                warn: console.warn,
-                debug: console.debug,
-                error: console.error,
-            }),
-            onProxyRes,
-        }),
-    );
-
-    app.use(
         "/.ory",
         createProxyMiddleware({
             target: `${domain}/.ory`,
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
+            },
+            headers: {
+                // TODO: fix me
+                "ory-base-url-rewrite": `http://localhost:${port}/.ory`,
             },
             pathRewrite: { "^/.ory": "" },
             logProvider: () => ({
