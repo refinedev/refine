@@ -40,8 +40,10 @@ describe("form-antd-use-drawer-form", () => {
         const body = response?.body;
 
         expect(response?.statusCode).to.eq(200);
-        expect(body?.title).to.eq("test title");
-        expect(body?.status?.toLowerCase()).to.eq("published");
+        expect(body?.title).to.eq(mockPost.title);
+        expect(body?.status?.toLowerCase()).to.eq(
+            mockPost?.status?.toLowerCase(),
+        );
         isDrawerNotVisible();
         cy.getAntdNotification().should("contain", "Success");
     };
