@@ -5,7 +5,7 @@ describe("form-antd-use-drawer-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
-        title: "test title",
+        title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
         status: "Published",
     };
 
