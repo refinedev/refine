@@ -10,9 +10,6 @@ jobs:
   find-cypress-config:
     runs-on: ubuntu-latest
     steps:
-      - name: Get short SHA
-        id: slug
-        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       - uses: actions/checkout@v3
       - uses: kanga333/json-array-builder@main
         id: array
@@ -39,6 +36,9 @@ jobs:
           echo "::set-output name=example-path::$examplePath"
           npm install
           npm run start -- --port 3000 --host 127.0.0.1  &
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       - name: Run Cypress on ${{ github.event_name }}
         uses: cypress-io/github-action@v5
         with:
