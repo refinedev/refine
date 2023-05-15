@@ -45,7 +45,8 @@ describe("form-antd-custom-validation", () => {
         });
 
         // try to create a record with the same title
-        cy.getCreateButton().click();
+        // we click button with force: true because the button is covered by the notification
+        cy.getCreateButton().click({ force: true });
         cy.get("#title")
             .clear()
             .type(mockPost.title)
