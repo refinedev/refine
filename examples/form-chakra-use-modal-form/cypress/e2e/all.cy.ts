@@ -68,15 +68,7 @@ describe("form-chakra-use-modal-form", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
         cy.intercept("PATCH", "/posts/*").as("editPost");
 
-        // find first row in the table
-        cy.get(".chakra-table > tbody > tr")
-            .first()
-            // get the last column
-            .last()
-            // get the edit button
-            .within(() => {
-                cy.getEditButton().click();
-            });
+        cy.getEditButton().first().click();
 
         // assert response values are equal to the form values
         cy.wait("@getPost").then((interception) => {
