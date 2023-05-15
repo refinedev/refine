@@ -51,11 +51,11 @@ const App: React.FC = () => {
 
 ## Creating a live provider
 
-We will build **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
+We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
 
 ### `subscribe`
 
-This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks. This way it can be aware of data changes.
+This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
 
 ```ts title="liveProvider.ts"
 import { LiveProvider, LiveEvent } from "@refinedev/core";
@@ -109,17 +109,13 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 | params   | `{ids?: string[]; [key: string]: any;}`                               |         |
 | callback | `(event: LiveEvent) => void;`                                         |         |
 
-> [`LiveEvent`](/api-reference/core/interfaces.md#liveevent)
+> For more information, refer to [`LiveEvent`](/api-reference/core/interfaces.md#liveevent)
 
 #### Return Type
 
 | Type  |
 | ----- |
 | `any` |
-
-:::caution
-The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for `unsubscription` must be returned from `subscribe` method.
-:::
 
 <br/>
 
@@ -134,9 +130,11 @@ useSubscription({
 });
 ```
 
-> [Refer to the useSubscription documentation for more information. &#8594](/api-reference/core/hooks/live/useSubscription.md)
+:::caution
+The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for unsubscription must be returned from `subscribe` method.
+:::
 
-<br />
+> For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
 
 ### `unsubscribe`
 
@@ -159,7 +157,7 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 ```
 
 :::caution
-If you don't handle unsubscription it could lead to memory leaks.
+If you don't handle unsubscription, it could lead to memory leaks.
 :::
 
 #### Parameter Types
@@ -178,7 +176,7 @@ If you don't handle unsubscription it could lead to memory leaks.
 
 ### `publish`
 
-This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
+This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and the best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
 
 This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
 
@@ -224,7 +222,7 @@ import { usePublish } from "@refinedev/core";
 const publish = usePublish();
 ```
 
-> [Refer to the usePublish documentation for more information. &#8594](/api-reference/core/hooks/live/usePublish.md)
+> For more information, refer to the [usePublish documentation&#8594](/api-reference/core/hooks/live/usePublish.md)
 
 ## `liveMode`
 
