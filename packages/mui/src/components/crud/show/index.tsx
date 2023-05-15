@@ -34,6 +34,7 @@ import {
     RefreshButtonProps,
 } from "@components";
 import { ShowProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
  * `<Show>` provides us a layout for displaying the page.
@@ -165,7 +166,10 @@ export const Show: React.FC<ShowProps> = ({
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
                     title ?? (
-                        <Typography variant="h5">
+                        <Typography
+                            variant="h5"
+                            className={RefinePageHeaderClassNames.Title}
+                        >
                             {translate(
                                 `${resource?.name}.titles.show`,
                                 `Show ${userFriendlyResourceName(

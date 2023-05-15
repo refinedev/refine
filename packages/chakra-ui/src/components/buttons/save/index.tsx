@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconDeviceFloppy } from "@tabler/icons";
 
@@ -25,6 +28,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             colorScheme="green"
             aria-label={translate("buttons.save", "Save")}
             data-testid={RefineButtonTestIds.SaveButton}
+            className={RefineButtonClassNames.SaveButton}
             {...rest}
         >
             <IconDeviceFloppy size={20} {...svgIconProps} />
@@ -34,6 +38,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             colorScheme="green"
             leftIcon={<IconDeviceFloppy size={20} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
+            className={RefineButtonClassNames.SaveButton}
             {...rest}
         >
             {children ?? translate("buttons.save", "Save")}

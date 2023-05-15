@@ -10,7 +10,10 @@ import {
     useLink,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconList } from "@tabler/icons";
 
@@ -103,6 +106,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     isDisabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
+                    className={RefineButtonClassNames.ListButton}
                     {...rest}
                 >
                     <IconList size={20} {...svgIconProps} />
@@ -114,6 +118,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     leftIcon={<IconList size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
+                    className={RefineButtonClassNames.ListButton}
                     {...rest}
                 >
                     {children ??

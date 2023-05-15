@@ -23,6 +23,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
  * `<Create>` provides us a layout to display the page.
@@ -82,7 +83,10 @@ export const Create: React.FC<CreateProps> = ({
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
                     title ?? (
-                        <Typography variant="h5">
+                        <Typography
+                            variant="h5"
+                            className={RefinePageHeaderClassNames.Title}
+                        >
                             {translate(
                                 `${resource?.name}.titles.create`,
                                 `Create ${userFriendlyResourceName(

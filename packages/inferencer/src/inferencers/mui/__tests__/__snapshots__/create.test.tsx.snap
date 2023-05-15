@@ -37,7 +37,7 @@ exports[`MuiCreateInferencer should match the snapshot 1`] = `
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
           >
             Create Post
           </h5>
@@ -623,7 +623,7 @@ exports[`MuiCreateInferencer should match the snapshot 1`] = `
         class="MuiCardActions-root MuiCardActions-spacing css-otuins-MuiCardActions-root"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
           id=":rf:"
           tabindex="0"
           type="button"

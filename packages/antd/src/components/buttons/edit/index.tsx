@@ -10,7 +10,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { EditButtonProps } from "../types";
 
@@ -96,6 +99,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.EditButton}
+                className={RefineButtonClassNames.EditButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.edit", "Edit"))}

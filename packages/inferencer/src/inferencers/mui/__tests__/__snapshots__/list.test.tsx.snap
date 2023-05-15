@@ -13,7 +13,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
           class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
           >
             Posts
           </h5>

@@ -11,6 +11,7 @@ import { Box, Heading } from "@chakra-ui/react";
 
 import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 import { ListProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const List: React.FC<ListProps> = (props) => {
     const {
@@ -74,7 +75,11 @@ export const List: React.FC<ListProps> = (props) => {
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (
-                    <Heading as="h3" size="lg">
+                    <Heading
+                        as="h3"
+                        size="lg"
+                        className={RefinePageHeaderClassNames.Title}
+                    >
                         {title}
                     </Heading>
                 );
@@ -84,7 +89,11 @@ export const List: React.FC<ListProps> = (props) => {
         }
 
         return (
-            <Heading as="h3" size="lg">
+            <Heading
+                as="h3"
+                size="lg"
+                className={RefinePageHeaderClassNames.Title}
+            >
                 {translate(
                     `${resource?.name}.titles.list`,
                     userFriendlyResourceName(

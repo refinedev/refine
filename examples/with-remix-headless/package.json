@@ -16,7 +16,7 @@
     "@refinedev/cli": "^2.5.3",
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/remix-router": "^2.1.0",
-    "@refinedev/react-hook-form": "^4.2.4",
+    "@refinedev/react-hook-form": "^4.4.0",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",
     "js-cookie": "^3.0.1",

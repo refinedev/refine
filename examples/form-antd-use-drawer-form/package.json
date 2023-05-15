@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.16.2",
+    "@refinedev/antd": "^5.18.2",
     "@refinedev/core": "^4.14.3",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/react-router-v6": "^4.1.0",
@@ -19,11 +19,15 @@
     "typescript": "^4.7.4",
     "antd": "^5.0.5"
   },
+  "devDependencies": {
+    "cypress": "^12.11.0"
+  },
   "scripts": {
     "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "eject": "react-scripts eject",
-    "refine": "refine"
+    "refine": "refine",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "browserslist": {
     "production": [

@@ -10,7 +10,10 @@ import {
     useLink,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { ListOutlined } from "@mui/icons-material";
 
@@ -100,6 +103,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ListButton}
+                className={RefineButtonClassNames.ListButton}
                 {...restProps}
             >
                 {hideText ? (
