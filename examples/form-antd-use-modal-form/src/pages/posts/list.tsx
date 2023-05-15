@@ -7,6 +7,7 @@ import {
     ShowButton,
     useTable,
     useModalForm,
+    DeleteButton,
 } from "@refinedev/antd";
 
 import { Table, Form, Select, Input, Modal, Space, Typography } from "antd";
@@ -77,6 +78,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                         setShowId(record.id);
                                         setVisibleShowModal(true);
                                     }}
+                                />
+                                <DeleteButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
                                 />
                             </Space>
                         )}
