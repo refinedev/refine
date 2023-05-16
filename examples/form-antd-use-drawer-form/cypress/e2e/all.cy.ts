@@ -5,7 +5,7 @@ describe("form-antd-use-drawer-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
-        title: "test title",
+        title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
         status: "Published",
     };
 
@@ -40,8 +40,10 @@ describe("form-antd-use-drawer-form", () => {
         const body = response?.body;
 
         expect(response?.statusCode).to.eq(200);
-        expect(body?.title).to.eq("test title");
-        expect(body?.status?.toLowerCase()).to.eq("published");
+        expect(body?.title).to.eq(mockPost.title);
+        expect(body?.status?.toLowerCase()).to.eq(
+            mockPost?.status?.toLowerCase(),
+        );
         isDrawerNotVisible();
         cy.getAntdNotification().should("contain", "Success");
     };
