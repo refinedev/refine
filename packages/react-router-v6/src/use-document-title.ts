@@ -1,13 +1,26 @@
+import { useTranslate } from "@refinedev/core";
 import { useEffect } from "react";
 
-export const useDocumentTitle = (title?: string) => {
+type Title = string | { i18nKey: string };
+
+export const useDocumentTitle = (title?: Title) => {
+    const translate = useTranslate();
+
     useEffect(() => {
-        if (title) {
-            document.title = title;
+        if (!title) return;
+
+        if (typeof title === "string") {
+            document.title = translate(title);
+        } else {
+            document.title = translate(title.i18nKey);
         }
     }, [title]);
 
-    return (title: string) => {
-        document.title = title;
+    return (title: Title) => {
+        if (typeof title === "string") {
+            document.title = translate(title);
+        } else {
+            document.title = translate(title.i18nKey);
+        }
     };
 };
