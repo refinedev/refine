@@ -652,7 +652,6 @@ module.exports = {
                 id: "examples/examples",
             },
             items: [
-                "examples/real-world-example",
                 {
                     type: "category",
                     label: "Access Control",
@@ -866,14 +865,6 @@ module.exports = {
                     items: ["examples/live-provider/ably"],
                 },
                 "examples/multi-level-menu/multi-level-menu",
-                {
-                    type: "category",
-                    label: "Multitenancy",
-                    items: [
-                        "examples/multi-tenancy/appwrite",
-                        "examples/multi-tenancy/strapi-v4",
-                    ],
-                },
                 "examples/mern-dashboard",
                 "examples/mutation-mode",
                 {
