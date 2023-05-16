@@ -116,8 +116,8 @@ describe("form-antd-use-form", () => {
         cy.wait("@getPost");
         cy.wait(500);
 
-        cy.get("#title").clear();
-        cy.get("#content textarea").clear();
+        cy.get("#title").should("not.have.value", "").clear();
+        cy.get("#content textarea").should("not.have.value", "").clear();
 
         cy.getAntdFormItemError({ id: "title" }).contains(
             /please enter title/gi,

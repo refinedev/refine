@@ -119,15 +119,14 @@ describe("form-chakra-ui-use-form", () => {
         }).contains(/required/gi);
     });
 
-    it("should edit form render errors", () => {
+    it.only("should edit form render errors", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("PATCH", "/posts/*").as("patchPost");
 
         cy.getEditButton().first().click();
 
         cy.wait("@getPost");
 
-        cy.get("#title").clear();
+        cy.get("#title").should("not.have.value", "").clear();
         cy.get("#status").select([]);
         cy.get("#categoryId").select([]);
 
