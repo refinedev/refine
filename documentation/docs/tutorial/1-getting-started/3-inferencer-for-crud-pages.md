@@ -246,9 +246,9 @@ render(<App />);
 
 We can see a tabular presentation which did not need to be coded by us. Feel free to play with sorting the table content with respect to a given column.
 
-You can also use the table **menu** to explore options for sorting and filtering the presented data:
+For example, you can use the table **menu** to explore options for sorting and filtering the presented data:
 
-![1-inferencer-for-crud-pages](https://imgbox.com/SyCmjOrB)
+![1-inferencer-for-crud-pages](https://imgbox.com/Yv2CJCvf)
 
 All these components were appropriately figured out and coded by the Inferencer. We inspect and analyze the generated code in [Unit 4.1](/docs/tutorial/adding-crud-actions/index).
 
