@@ -35,7 +35,6 @@ const staticTags = [
     "customization",
     "upload",
     "tutorial",
-    "vite",
     "testing",
 ];
 
@@ -46,7 +45,6 @@ const visibleTags = staticTags.map((tag) => ({
 
 const PREDEFINED_COLORS = {
     react: "#61dafb",
-    vite: "#646cff",
     "react-router": "#ca4245",
     rest: "#f1e05a",
     graphql: "#e10098",

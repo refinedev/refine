@@ -681,7 +681,26 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Audit Log",
+                    items: [
+                        "examples/audit-log/audit-log-antd",
+                        "examples/audit-log/audit-log-provider",
+                    ],
+                },
                 "examples/antd-calendar-example",
+                {
+                    type: "category",
+                    label: "Base",
+                    items: [
+                        "examples/base/antd-base",
+                        "examples/base/chakra-ui-base",
+                        "examples/base/headless-base",
+                        "examples/base/mantine-base",
+                        "examples/base/mui-base",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Build Systems",
@@ -697,15 +716,26 @@ module.exports = {
                     label: "Core",
                     items: [
                         "examples/core/useImport",
+                        "examples/core/useMenu",
                         "examples/core/useModal",
                         "examples/core/useSelect",
+                        "examples/core/useInfiniteList",
                     ],
                 },
                 {
                     type: "category",
                     label: "Customization",
                     items: [
-                        "examples/customization/customTheme",
+                        {
+                            type: "category",
+                            label: "Custom Theme",
+                            items: [
+                                "examples/customization/theme/customThemeAntd",
+                                "examples/customization/theme/customThemeChakraUI",
+                                "examples/customization/theme/customThemeMaterialUI",
+                                "examples/customization/theme/customThemeMantine",
+                            ],
+                        },
                         "examples/customization/customFooter",
                         "examples/customization/customLogin",
                         "examples/customization/customSider",
@@ -741,6 +771,8 @@ module.exports = {
                         "examples/field/useCheckboxGroup",
                         "examples/field/useRadioGroup",
                         "examples/field/useSelect",
+                        "examples/field/useSelect-with-infinite-list",
+                        "examples/field/useAutocomplete",
                     ],
                 },
                 {
@@ -761,7 +793,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "Headless",
-                            items: ["examples/form/headless/save-and-continue"],
+                            items: [
+                                "examples/form/headless/save-and-continue",
+                                "examples/form/headless/useForm",
+                            ],
                         },
                         {
                             type: "category",
@@ -802,7 +837,15 @@ module.exports = {
                         "examples/i18n/i18n-react",
                     ],
                 },
-                "examples/import-export",
+                {
+                    type: "category",
+                    label: "Import / Export",
+                    items: [
+                        "examples/import-export/antd",
+                        "examples/import-export/material-ui",
+                        "examples/import-export/mantine",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Inputs",
@@ -831,6 +874,8 @@ module.exports = {
                         "examples/multi-tenancy/strapi-v4",
                     ],
                 },
+                "examples/mern-dashboard",
+                "examples/mutation-mode",
                 {
                     type: "category",
                     label: "Next.js",
@@ -866,6 +911,14 @@ module.exports = {
                     type: "category",
                     label: "Search",
                     items: ["examples/search/search"],
+                },
+                {
+                    type: "category",
+                    label: "Storybook",
+                    items: [
+                        "examples/storybook/antd-storybook",
+                        "examples/storybook/material-ui-storybook",
+                    ],
                 },
                 {
                     type: "category",
@@ -931,6 +984,16 @@ module.exports = {
                         "examples/themes/refine-themes-chakra-ui",
                         "examples/themes/refine-themes-mantine",
                         "examples/themes/refine-themes-mui",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Tutorial",
+                    items: [
+                        "examples/tutorial/antd-tutorial",
+                        "examples/tutorial/headless-tutorial",
+                        "examples/tutorial/mantine-tutorial",
+                        "examples/tutorial/mui-tutorial",
                     ],
                 },
                 {

@@ -1,7 +1,7 @@
 ---
 id: meta-properties
 title: Meta Properties Example
-example-tags: [meta, antd, vite, refine-hooks, data-provider]
+example-tags: [meta,refine-hooks,data-provider]
 ---
 
 In this example, we will show you how to use the `meta` property to pass additional parameters to the data provider methods. It contains the following features:
