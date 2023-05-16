@@ -55,9 +55,7 @@ describe("form-antd-custom-validation", () => {
         cy.wait("@uniqueCheck").then((interception) => {
             const response = interception?.response;
             expect(response?.statusCode).to.eq(200);
-            if (response?.statusCode === 200) {
-                cy.getAntdFormItemError({ id: "title" }).contains(/unique/gi);
-            }
+            cy.getAntdFormItemError({ id: "title" }).contains(/unique/gi);
         });
     });
 });
