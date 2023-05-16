@@ -123,7 +123,7 @@ describe("form-chakra-ui-use-form", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
         cy.intercept("PATCH", "/posts/*").as("patchPost");
 
-        cy.visit(`${BASE_URL}/posts/edit/123`);
+        cy.getEditButton().first().click();
 
         cy.wait("@getPost");
 
