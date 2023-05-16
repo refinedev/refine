@@ -119,7 +119,7 @@ describe("form-chakra-ui-use-form", () => {
         }).contains(/required/gi);
     });
 
-    it.only("should edit form render errors", () => {
+    it("should edit form render errors", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
 
         cy.getEditButton().first().click();
