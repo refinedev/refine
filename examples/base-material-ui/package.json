@@ -14,23 +14,20 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
     "@mui/x-data-grid": "^5.12.1",
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "@uiw/react-md-editor": "^3.19.5",
     "react-scripts": "^5.0.0",
     "cross-env": "^7.0.3",
-    "typescript": "^4.7.4",
     "react-hook-form": "^7.30.0"
   },
   "scripts": {
     "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "eject": "react-scripts eject",
-    "refine": "refine"
+    "refine": "refine",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "browserslist": {
     "production": [
@@ -43,5 +40,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.7.4",
+    "cypress": "^12.11.0"
   }
 }

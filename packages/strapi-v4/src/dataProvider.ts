@@ -26,7 +26,7 @@ export const DataProvider = (
         const populate = meta?.populate;
         const publicationState = meta?.publicationState;
 
-        const quertSorters = generateSort(sorters);
+        const querySorters = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
@@ -40,7 +40,7 @@ export const DataProvider = (
             publicationState,
             fields,
             populate,
-            sort: quertSorters.length > 0 ? quertSorters.join(",") : undefined,
+            sort: querySorters.length > 0 ? querySorters.join(",") : undefined,
         };
 
         const { data } = await httpClient.get(
