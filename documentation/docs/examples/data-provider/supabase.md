@@ -1,7 +1,7 @@
 ---
 id: supabase
 title: Supabase
-example-tags: [supabase,data-provider,live-provider,auth-provider]
+example-tags: [data-provider,live-provider,auth-provider]
 ---
 
 Connect your [Supabase](https://supabase.com/) database with **refine** Supabase Data Provider and easily manage all the features that the database offers in your interface. This example will show you how Supabase Data Provider works and is used.

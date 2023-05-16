@@ -1,7 +1,7 @@
 ---
 id: strapi-v4
 title: Strapi-v4
-example-tags: [strapi,strapi-v4,data-provider]
+example-tags: [multi-tenancy]
 ---
 
 In this example, we've shown how to build a Multi-Tenant app using the [Strapi-v4](https://strapi.io/) and **refine** in a simple manner. You can learn more by taking a look at the Live Example and reading the **refine** Strapi-v4 Multi-Tenancy Guide.
