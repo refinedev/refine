@@ -823,7 +823,7 @@
     },
     {
       "from": "/docs/examples/import-export",
-      "to": "/docs/examples/import-export/import"
+      "to": "/docs/examples/import-export/antd"
     }
   ]
 }
