@@ -310,6 +310,16 @@ Before we get started, let's look at the translations that **refine** uses in co
     },
     "dashboard": {
         "title": "Dashboard"
+    },
+    "documentTitle": {
+        "default": "Refine",
+        "suffix": " | Refine",
+        "post": {
+            "list": "Posts | Refine",
+            "show": "#{{id}} Show Post | Refine",
+            "edit": "#{{id}} Edit Post | Refine",
+            "create": "Create new Post | Refine",
+        }
     }
 }
 ```
@@ -475,6 +485,16 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
     },
     "table": {
         "actions": "Actions"
+    },
+    "documentTitle": {
+        "default": "Refine",
+        "suffix": " | Refine",
+        "post": {
+            "list": "Posts | Refine",
+            "show": "#{{id}} Show Post | Refine",
+            "edit": "#{{id}} Edit Post | Refine",
+            "create": "Create new Post | Refine",
+        }
     }
 }
 ```
@@ -622,6 +642,16 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
     },
     "table": {
         "actions": "Aktionen"
+    },
+    "documentTitle": {
+        "default": "Refine",
+        "suffix": " | Refine",
+        "post": {
+            "list": "Beiträge | Refine",
+            "show": "#{{id}} Beitrag anzeigen | Refine",
+            "edit": "#{{id}} Beitrag bearbeiten | Refine",
+            "create": "Neuen Beitrag erstellen | Refine"
+        }
     }
 }
 ```
