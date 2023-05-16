@@ -93,7 +93,7 @@ const action = async ({
     app.use(
         "/.auth",
         createProxyMiddleware({
-            target: `${domain}`,
+            target: `${domain}/.auth`,
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
