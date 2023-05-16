@@ -42,4 +42,6 @@ export const ENV = {
     REFINE_PROXY_TARGET:
         process.env.REFINE_PROXY_TARGET || "http://localhost:3000",
     REFINE_PROXY_PORT: process.env.REFINE_PROXY_PORT || "7313",
+    REFINE_PROXY_REWRITE_URL:
+        process.env.REFINE_REWRITE_URL || "http://localhost:7313",
 };

@@ -23,6 +23,11 @@ const load = (program: Command) => {
             "-d, --domain [domain]",
             "Domain to proxy. You can also set this with the `REFINE_PROXY_DOMAIN` environment variable.",
             ENV.REFINE_PROXY_DOMAIN,
+        )
+        .option(
+            "-r, --rewrite-url [rewrite URL]",
+            "Rewrite URL for redirects. You can also set this with the `REFINE_PROXY_REWRITE_URL` environment variable.",
+            ENV.REFINE_PROXY_REWRITE_URL,
         );
 };
 
@@ -30,10 +35,12 @@ const action = async ({
     port,
     target,
     domain,
+    rewriteUrl,
 }: {
     port: string;
     target: string;
     domain: string;
+    rewriteUrl: string;
 }) => {
     const app = express();
 
@@ -84,18 +91,17 @@ const action = async ({
     );
 
     app.use(
-        "/.ory",
+        "/.auth",
         createProxyMiddleware({
-            target: `${domain}/.ory`,
+            target: `${domain}`,
             changeOrigin: true,
             cookieDomainRewrite: {
                 "refine.dev": "",
             },
             headers: {
-                // TODO: fix me
-                "ory-base-url-rewrite": `http://localhost:${port}/.ory`,
+                "auth-base-url-rewrite": `${rewriteUrl}/.auth`,
             },
-            pathRewrite: { "^/.ory": "" },
+            pathRewrite: { "^/.auth": "" },
             logProvider: () => ({
                 log: console.log,
                 info: (msg) => {
@@ -103,7 +109,7 @@ const action = async ({
 
                     if (`${msg}`.includes("Proxy created")) {
                         console.log(
-                            `Proxying localhost:${port}/.ory to ${domain}/.ory`,
+                            `Proxying localhost:${port}/.auth to ${domain}/.auth`,
                         );
                     } else if (msg) {
                         console.log(msg);
