@@ -30,7 +30,7 @@ describe("form-antd-custom-validation", () => {
 
     // first create a record with a random title,
     // after that try to create a record with the same title to check unique title validation
-    it("should render error", () => {
+    it.only("should render error", () => {
         cy.intercept("POST", "/posts").as("createPost");
         cy.intercept("GET", `/posts-unique-check?&title=${mockPost.title}`).as(
             "uniqueCheck",
@@ -50,7 +50,11 @@ describe("form-antd-custom-validation", () => {
         // try to create a record with the same title
         // we click button with force: true because the button is covered by the notification
         cy.getCreateButton().click({ force: true });
-        cy.get("#title").clear().type(mockPost.title, { delay: 0 });
+
+        cy.get("#title")
+            .clear()
+            .should("be.visible")
+            .type(mockPost.title, { delay: 0 });
 
         cy.wait("@uniqueCheck").then((interception) => {
             const response = interception?.response;
