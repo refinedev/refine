@@ -1,7 +1,7 @@
 ---
 id: react-location
 title: React Location
-example-tags: [router-provider,react-location]
+example-tags: [router-provider]
 ---
 
 [React Location](https://react-location.tanstack.com/) is responsible for handling all the routing configurations of your application. With **refine**'s React Location support, you can use React Location for routing in your project. The following example uses React Location for routing. You may look at the sample to see how it's done.

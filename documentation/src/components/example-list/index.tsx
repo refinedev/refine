@@ -26,16 +26,13 @@ const staticTags = [
     "data-provider",
     "live-provider",
     "auth-provider",
-    "router-provider",
     "access-control",
     "i18n",
     "form",
     "table",
-    "refine-hooks",
     "customization",
     "upload",
     "tutorial",
-    "testing",
 ];
 
 const visibleTags = staticTags.map((tag) => ({

@@ -1,7 +1,7 @@
 ---
 id: nextjs
 title: Next.js
-example-tags: [next.js,router-provider]
+example-tags: [next.js]
 ---
 
 **refine** allows you to build your [**SSR**](https://nextjs.org/docs/basic-features/pages#server-side-rendering) supported web applications using Next.js. With this example, you can see how to make a simple SSR supported CMS Admin panel.

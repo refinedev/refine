@@ -762,7 +762,6 @@ module.exports = {
                         "examples/data-provider/supabase",
                     ],
                 },
-                "examples/e2e-testing",
                 {
                     type: "category",
                     label: "Field",
