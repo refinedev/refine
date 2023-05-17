@@ -22,10 +22,12 @@ export const PostEdit: React.FC = () => {
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
+                value?.length <= 0 || !value ? "Status is required" : null,
             category: {
                 id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
+                    value?.length <= 0 || !value
+                        ? "Category is required"
+                        : null,
             },
             content: (value) =>
                 value.length < 10 ? "Too short content" : null,
@@ -42,12 +44,14 @@ export const PostEdit: React.FC = () => {
             <form>
                 <TextInput
                     mt={8}
+                    id="title"
                     label="Title"
                     placeholder="Title"
                     {...getInputProps("title")}
                 />
                 <Select
                     mt={8}
+                    id="status"
                     label="Status"
                     placeholder="Pick one"
                     {...getInputProps("status")}
@@ -59,6 +63,7 @@ export const PostEdit: React.FC = () => {
                 />
                 <Select
                     mt={8}
+                    id="categoryId"
                     label="Category"
                     placeholder="Pick one"
                     {...getInputProps("category.id")}
@@ -68,11 +73,18 @@ export const PostEdit: React.FC = () => {
                     Content
                 </Text>
                 <MDEditor
+                    id="content"
                     data-color-mode="light"
                     {...getInputProps("content")}
                 />
                 {errors.content && (
-                    <Text mt={2} weight={500} size="xs" color="red">
+                    <Text
+                        id="content-error"
+                        mt={2}
+                        weight={500}
+                        size="xs"
+                        color="red"
+                    >
                         {errors.content}
                     </Text>
                 )}
