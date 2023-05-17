@@ -12,6 +12,7 @@ import {
 import {
     getChakraUIDeletePopoverButton,
     getChakraUIFormItemError,
+    getChakraUILoadingOverlay,
     getChakraUINotification,
 } from "./commands/chakra-ui";
 import {
@@ -44,3 +45,4 @@ Cypress.Commands.add(
     "getChakraUIDeletePopoverButton",
     getChakraUIDeletePopoverButton,
 );
+Cypress.Commands.add("getChakraUILoadingOverlay", getChakraUILoadingOverlay);

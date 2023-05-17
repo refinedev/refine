@@ -25,3 +25,7 @@ export const getChakraUIFormItemError = ({
 export const getChakraUIDeletePopoverButton = () => {
     return cy.get(".chakra-popover__body button").contains(/delete/gi);
 };
+
+export const getChakraUILoadingOverlay = () => {
+    return cy.get(".chakra-spinner");
+};

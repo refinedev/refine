@@ -44,8 +44,9 @@ describe("form-chakra-ui-use-form", () => {
         cy.clearAllSessionStorage();
     });
 
-    it("should create and delete record", () => {
+    it("should create, edit, and, delete record", () => {
         cy.intercept("GET", "/posts/*").as("getPost");
+        cy.intercept("PATCH", "/posts/*").as("patchPost");
         cy.intercept("POST", "/posts").as("createPost");
         cy.intercept("DELETE", "/posts/*").as("deletePost");
 
@@ -56,51 +57,55 @@ describe("form-chakra-ui-use-form", () => {
 
         cy.wait("@createPost").then((interception) => {
             const response = interception?.response;
+            const recordId = response?.body?.id;
             assertSuccessResponse(response);
 
-            // visit eidt page to delete the record
-            cy.visit(`${BASE_URL}/posts/edit/${response?.body?.id}`);
+            // visit edit page to `EDIT` the record
+            cy.visit(`${BASE_URL}/posts/edit/${recordId}`);
+            cy.wait("@getPost").then((getInterception) => {
+                const getResponse = getInterception?.response;
+                const body = getResponse?.body;
+
+                // wait loading state and render to be finished
+                cy.getSaveButton().should("not.be.disabled");
+                cy.getChakraUILoadingOverlay().should("not.exist");
+
+                // assert response values are equal to the form values
+                cy.get("#title").should("have.value", body?.title);
+                cy.get("#status").should("have.value", body?.status);
+                cy.get("#categoryId").should("have.value", body?.category?.id);
+
+                fillForm();
+                submitForm();
+
+                cy.wait("@patchPost").then((patchInterception) => {
+                    const patchResponse = patchInterception?.response;
+                    assertSuccessResponse(patchResponse);
+                });
+            });
+
+            // visit edit page to `DELETE` the record
+            cy.visit(`${BASE_URL}/posts/edit/${recordId}`);
             cy.wait("@getPost").then(() => {
+                // wait loading state and render to be finished
+                cy.getSaveButton().should("not.be.disabled");
+                cy.getChakraUILoadingOverlay().should("not.exist");
+
                 cy.getDeleteButton()
                     .click()
                     .getChakraUIDeletePopoverButton()
                     .click();
 
-                cy.wait("@deletePost").then((interception) => {
-                    const response = interception?.response;
+                cy.wait("@deletePost").then((deleteInterception) => {
+                    const deleteResponse = deleteInterception?.response;
 
-                    expect(response?.statusCode).to.eq(200);
+                    expect(deleteResponse?.statusCode).to.eq(200);
                     cy.getChakraUINotification().contains(/success/gi);
                     cy.location().should((loc) => {
                         expect(loc.pathname).to.eq("/posts");
                     });
                 });
             });
-        });
-    });
-
-    it("should edit record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("PATCH", "/posts/*").as("patchPost");
-
-        cy.getEditButton().first().click();
-
-        // assert response values are equal to the form values
-        cy.wait("@getPost").then((interception) => {
-            const response = interception?.response;
-            const body = response?.body;
-
-            cy.get("#title").should("have.value", body?.title);
-            cy.get("#status").should("have.value", body?.status);
-            cy.get("#categoryId").should("have.value", body?.category?.id);
-        });
-
-        fillForm();
-        submitForm();
-
-        cy.wait("@patchPost").then((interception) => {
-            const response = interception?.response;
-            assertSuccessResponse(response);
         });
     });
 

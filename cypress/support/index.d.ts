@@ -58,5 +58,6 @@ declare namespace Cypress {
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
+        getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
     }
 }
