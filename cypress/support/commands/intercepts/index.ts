@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+/// <reference types="../../index.d.ts" />
+
 import { getIdFromURL } from "../../../utils";
 
 Cypress.Commands.add("interceptGETPosts", () => {
@@ -49,7 +52,11 @@ Cypress.Commands.add("interceptPOSTPost", () => {
                     pathname: "/posts",
                 },
                 (req) => {
-                    req.reply({ ...req.body, id: posts.length + 1 });
+                    const merged = Object.assign({}, req.body, {
+                        id: posts.length + 1,
+                    });
+
+                    return req.reply(merged);
                 },
             )
             .as("postPost"),
@@ -71,11 +78,10 @@ Cypress.Commands.add("interceptPATCHPost", () => {
                     const post = posts.find((post) => post.id === id);
 
                     if (!post) {
-                        req.reply(404, {});
-                        return;
+                        return req.reply(404, {});
                     }
-
-                    req.reply({ ...post, ...req.body });
+                    const merged = Object.assign({}, post, req.body);
+                    return req.reply(merged);
                 },
             );
         })

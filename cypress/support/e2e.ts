@@ -23,6 +23,7 @@ import {
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
 
+// add commands to the Cypress chain
 import "./commands/intercepts";
 
 Cypress.Keyboard.defaults({
