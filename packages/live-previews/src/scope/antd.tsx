@@ -51,7 +51,7 @@ const RefineAntdDemo: React.FC<
     );
 };
 
-const ThemedTitle: typeof RefineAntd.ThemedTitle = ({
+const ThemedTitleV2: typeof RefineAntd.ThemedTitleV2 = ({
     collapsed,
     wrapperStyles,
     text: textFromProps,
@@ -116,7 +116,7 @@ const ThemedTitle: typeof RefineAntd.ThemedTitle = ({
     }, []);
 
     return (
-        <RefineAntd.ThemedTitle
+        <RefineAntd.ThemedTitleV2
             collapsed={collapsed}
             wrapperStyles={wrapperStyles}
             text={title || textFromProps}
@@ -176,7 +176,7 @@ const AntdScope = {
     RefineAntdDemo,
     RefineAntd: {
         ...RefineAntd,
-        ThemedTitle,
+        ThemedTitleV2,
     },
     AntdCore: {
         ...AntdCore,
