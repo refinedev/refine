@@ -8,6 +8,6 @@ example-tags: [headless,refine-hooks]
 
 The `useInfiniteList` hook was created by **refine** to help you create infinite lists. This example shows how to use the `useInfiniteList` hook from `@refinedev/core`.
 
-[Refer to the **refine** useInfiniteList hook documentation for more information. →](/docs/api-reference/core/hooks/useInfiniteList/index)
+[Refer to the **refine** useInfiniteList hook documentation for more information. →](/docs/api-reference/core/hooks/data/useInfiniteList)
 
 <CodeSandboxExample path="use-infinite-list" />
