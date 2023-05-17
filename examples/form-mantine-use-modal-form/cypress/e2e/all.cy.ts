@@ -2,7 +2,7 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-mantine-use-modal-form", () => {
-    const BASE_URL = "http://localhost:5173";
+    const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
         title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
