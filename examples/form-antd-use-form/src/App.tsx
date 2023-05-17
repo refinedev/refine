@@ -34,6 +34,9 @@ const App: React.FC = () => {
                             create: "/posts/create",
                             clone: "/posts/clone/:id",
                             edit: "/posts/edit/:id",
+                            meta: {
+                                canDelete: true,
+                            },
                         },
                     ]}
                     notificationProvider={notificationProvider}

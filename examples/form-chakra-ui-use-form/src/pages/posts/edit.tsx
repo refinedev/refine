@@ -32,11 +32,7 @@ export const PostEdit = () => {
     }, [options]);
 
     return (
-        <Edit
-            isLoading={formLoading}
-            saveButtonProps={saveButtonProps}
-            canDelete
-        >
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <FormControl mb="3" isInvalid={!!errors?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input

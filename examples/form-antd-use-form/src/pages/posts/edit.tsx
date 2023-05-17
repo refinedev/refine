@@ -20,7 +20,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <Edit saveButtonProps={saveButtonProps} canDelete>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
