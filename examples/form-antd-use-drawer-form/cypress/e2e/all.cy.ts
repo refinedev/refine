@@ -77,11 +77,14 @@ describe("form-antd-use-drawer-form", () => {
         });
     });
 
-    it("should edit a record", () => {
+    it.only("should edit a record", () => {
         cy.getEditButton().first().click();
 
+        // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.wait(500);
+        isDrawerVisible();
+        cy.getSaveButton().should("not.be.disabled");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get("#title.ant-input").eq(1).clear();
         cy.get("#title.ant-input").eq(1).type(mockPost.title);

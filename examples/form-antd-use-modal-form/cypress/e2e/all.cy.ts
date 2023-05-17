@@ -86,6 +86,7 @@ describe("form-antd-use-modal-form", () => {
 
         // wait loading state and render to be finished
         cy.wait("@getPost");
+        isModalVisible();
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get("#title.ant-input")
