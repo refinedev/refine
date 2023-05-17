@@ -104,15 +104,15 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
 
     it("succeed and redirect forgot password with routerProvider", async () => {
         const mockFn = jest.fn();
-        const routerProvider = {
-            ...mockRouterBindings(),
-            go: mockFn,
-        };
         const { result } = renderHook(
             () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
-                    routerProvider,
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            go: () => mockFn,
+                        },
+                    }),
                     legacyAuthProvider: {
                         login: () => Promise.resolve(),
                         forgotPassword: ({ email }) => {
