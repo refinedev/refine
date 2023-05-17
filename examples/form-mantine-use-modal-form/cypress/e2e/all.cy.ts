@@ -52,7 +52,7 @@ describe("form-mantine-use-modal-form", () => {
         cy.visit(BASE_URL);
     });
 
-    it.only("should create record", () => {
+    it("should create record", () => {
         cy.getCreateButton().click();
         fillForm();
         submitForm();
