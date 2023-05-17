@@ -31,10 +31,18 @@ describe("form-antd-use-modal-form", () => {
     };
 
     beforeEach(() => {
-        cy.visit(BASE_URL);
+        cy.interceptGETPost();
+        cy.interceptPOSTPost();
+        cy.interceptPATCHPost();
+        cy.interceptDELETEPost();
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.visit(BASE_URL);
     });
 
     it("should open and close modal", () => {
@@ -51,16 +59,15 @@ describe("form-antd-use-modal-form", () => {
     });
 
     it("should create a new record", () => {
-        cy.intercept("POST", "/posts").as("createPost");
-
         openModal();
+
         cy.get("#title").type(mockPost.title);
         cy.setAntdSelect({ id: "status", value: mockPost.status });
         cy.get(".ant-modal-footer > .ant-btn-primary")
             .eq(0)
             .click({ force: true });
 
-        cy.wait("@createPost").then((interception) => {
+        cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -75,13 +82,11 @@ describe("form-antd-use-modal-form", () => {
     });
 
     it("should edit a record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("PATCH", "/posts/*").as("patchPost");
-
         cy.getEditButton().first().click();
 
+        // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.wait(500);
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get("#title.ant-input")
             .eq(1)
@@ -96,6 +101,7 @@ describe("form-antd-use-modal-form", () => {
             .click({ force: true });
         cy.get(".ant-modal-footer > .ant-btn-primary")
             .eq(1)
+            .should("not.be.disabled")
             .click({ force: true });
 
         cy.wait("@patchPost").then((interception) => {

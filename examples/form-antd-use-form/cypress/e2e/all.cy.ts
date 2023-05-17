@@ -12,8 +12,10 @@ describe("form-antd-use-form", () => {
     };
 
     const fillForm = () => {
-        cy.get("#title").clear().type(mockPost.title);
-        cy.get("#content textarea").clear().type(mockPost.content);
+        cy.get("#title").clear();
+        cy.get("#title").type(mockPost.title);
+        cy.get("#content textarea").clear();
+        cy.get("#content textarea").type(mockPost.content);
         cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
         cy.setAntdSelect({ id: "status", value: mockPost.status });
     };
@@ -41,73 +43,67 @@ describe("form-antd-use-form", () => {
     };
 
     beforeEach(() => {
-        cy.visit(BASE_URL);
+        cy.interceptGETPost();
+        cy.interceptPOSTPost();
+        cy.interceptPATCHPost();
+        cy.interceptDELETEPost();
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.visit(BASE_URL);
     });
 
-    it("should create, edit, and, delete record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("POST", "/posts").as("createPost");
-        cy.intercept("PATCH", "/posts/*").as("patchPost");
-        cy.intercept("DELETE", "/posts/*").as("deletePost");
-
+    it("should create record", () => {
         cy.getCreateButton().click();
 
         fillForm();
         submitForm();
 
-        cy.wait("@createPost").then((interception) => {
+        cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
-            const recordId = response?.body?.id;
             assertSuccessResponse(response);
+        });
+    });
 
-            //visit edit page to `EDIT` the record
-            cy.visit(`${BASE_URL}/posts/edit/${recordId}`);
-            cy.wait("@getPost").then((getInterception) => {
-                const getResponse = getInterception?.response;
-                const body = getResponse?.body;
-                expect(getResponse?.statusCode).to.eq(200);
+    it("should edit record", () => {
+        cy.getEditButton().first().click();
 
-                // wait loading state and render to be finished
-                cy.getSaveButton().should("not.be.disabled");
-                cy.getAntdLoadingOverlay().should("not.exist");
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        cy.getSaveButton().should("not.be.disabled");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
-                cy.get("#title").should("have.value", body?.title);
-                cy.get("#content textarea").should("have.value", body?.content);
+        fillForm();
+        submitForm();
 
-                fillForm();
-                submitForm();
-                cy.wait("@patchPost").then((interception) => {
-                    const response = interception?.response;
-                    assertSuccessResponse(response);
-                });
-            });
+        cy.wait("@patchPost").then((interception) => {
+            const response = interception?.response;
+            assertSuccessResponse(response);
+        });
+    });
 
-            //visit edit page to `DELETE` the record
-            cy.visit(`${BASE_URL}/posts/edit/${recordId}`);
-            cy.wait("@getPost").then((getInterception) => {
-                const getResponse = getInterception?.response;
-                expect(getResponse?.statusCode).to.eq(200);
+    it("should delete record", () => {
+        cy.getEditButton().first().click();
 
-                // wait loading state and render to be finished
-                cy.getSaveButton().should("not.be.disabled");
-                cy.getAntdLoadingOverlay().should("not.exist");
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        cy.getSaveButton().should("not.be.disabled");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
-                cy.getDeleteButton()
-                    .click()
-                    .getAntdPopoverDeleteButton()
-                    .click();
-                cy.wait("@deletePost").then((interception) => {
-                    const response = interception?.response;
+        cy.getDeleteButton().first().click();
+        cy.getAntdPopoverDeleteButton().click();
 
-                    expect(response?.statusCode).to.eq(200);
-                    cy.getAntdNotification().should("contain", "Success");
-                    cy.location().should((loc) => {
-                        expect(loc.pathname).to.eq("/posts");
-                    });
-                });
+        cy.wait("@deletePost").then((interception) => {
+            const response = interception?.response;
+
+            expect(response?.statusCode).to.eq(200);
+            cy.getAntdNotification().should("contain", "Success");
+            cy.location().should((loc) => {
+                expect(loc.pathname).to.eq("/posts");
             });
         });
     });
@@ -138,12 +134,12 @@ describe("form-antd-use-form", () => {
     });
 
     it("should edit form render errors", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
+        cy.getEditButton().first().click();
 
-        cy.visit(`${BASE_URL}/posts/edit/123`);
-
+        // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.wait(500);
+        cy.getSaveButton().should("not.be.disabled");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get("#title").should("not.have.value", "").clear();
         cy.get("#content textarea").should("not.have.value", "").clear();

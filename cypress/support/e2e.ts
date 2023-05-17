@@ -23,6 +23,12 @@ import {
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
 
+import "./commands/intercepts";
+
+Cypress.Keyboard.defaults({
+    keystrokeDelay: 0,
+});
+
 Cypress.Commands.add("resourceList", list);
 Cypress.Commands.add("resourceCreate", create);
 Cypress.Commands.add("resourceEdit", edit);

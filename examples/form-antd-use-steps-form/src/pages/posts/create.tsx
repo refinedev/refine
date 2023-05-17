@@ -10,8 +10,14 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost>();
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        formProps,
+        saveButtonProps,
+        formLoading,
+    } = useStepsForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -85,6 +91,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Create
+            isLoading={formLoading}
             footerButtons={
                 <>
                     {current > 0 && (

@@ -37,10 +37,12 @@ declare namespace Cypress {
             params: IResourceCreateParams,
         ): Chainable<JQuery<HTMLElement>>;
         resourceShow(): Chainable<void>;
+
         getSaveButton(): Chainable<JQuery<HTMLElement>>;
         getCreateButton(): Chainable<JQuery<HTMLElement>>;
         getDeleteButton(): Chainable<JQuery<HTMLElement>>;
         getEditButton(): Chainable<JQuery<HTMLElement>>;
+
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
         getAntdLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
         getAntdPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
@@ -53,11 +55,21 @@ declare namespace Cypress {
         getAntdFormItemError(
             params: IGetAntdFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
+
         getChakraUINotification(): Chainable<JQuery<HTMLElement>>;
         getChakraUIFormItemError(
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
+
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
         getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
+
+        interceptGETPost(): Chainable<null>;
+        interceptGETPosts(): Chainable<null>;
+        interceptPOSTPost(): Chainable<null>;
+        interceptPATCHPost(): Chainable<null>;
+        interceptDELETEPost(): Chainable<null>;
+
+        interceptGETCategories(): Chainable<null>;
     }
 }
