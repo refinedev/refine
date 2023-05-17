@@ -43,7 +43,7 @@ const RefineChakraDemo: React.FC<
     );
 };
 
-const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
+const ThemedTitleV2: typeof RefineChakra.ThemedTitleV2 = ({
     collapsed,
     wrapperStyles,
     text: textFromProps,
@@ -108,7 +108,7 @@ const ThemedTitle: typeof RefineChakra.ThemedTitle = ({
     }, []);
 
     return (
-        <RefineChakra.ThemedTitle
+        <RefineChakra.ThemedTitleV2
             collapsed={collapsed}
             wrapperStyles={wrapperStyles}
             text={title || textFromProps}
@@ -173,7 +173,7 @@ const AntdScope = {
     // RefineMantineDemo,
     RefineChakra: {
         ...RefineChakra,
-        ThemedTitle,
+        ThemedTitleV2,
     },
     RefineChakraDemo,
     ChakraUI: {
