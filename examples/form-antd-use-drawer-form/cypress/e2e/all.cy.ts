@@ -77,7 +77,7 @@ describe("form-antd-use-drawer-form", () => {
         });
     });
 
-    it.only("should edit a record", () => {
+    it("should edit a record", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
