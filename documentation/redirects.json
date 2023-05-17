@@ -489,10 +489,6 @@
       "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
-      "from": "/docs/examples/customTheme/",
-      "to": "/docs/api-reference/antd/theming"
-    },
-    {
       "from": "/docs/ui-frameworks/antd/customization/antd-custom-theme/",
       "to": "/docs/api-reference/antd/theming"
     },
