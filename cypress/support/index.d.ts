@@ -42,6 +42,8 @@ declare namespace Cypress {
         getDeleteButton(): Chainable<JQuery<HTMLElement>>;
         getEditButton(): Chainable<JQuery<HTMLElement>>;
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
+        getAntdLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
+        getAntdPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
         setAntdDropdown(
             params: ISetAntdDropdownParams,
         ): Chainable<JQuery<HTMLElement>>;
@@ -56,5 +58,6 @@ declare namespace Cypress {
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
+        getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
     }
 }

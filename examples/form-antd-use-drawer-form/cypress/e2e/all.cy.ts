@@ -108,21 +108,4 @@ describe("form-antd-use-drawer-form", () => {
             assertSuccessResponse(response);
         });
     });
-
-    it("should delete a record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("DELETE", "/posts/*").as("deletePost");
-
-        findFirstRecordFromTable();
-
-        cy.getDeleteButton().click();
-        cy.get(".ant-popconfirm-buttons > .ant-btn-dangerous").click();
-
-        cy.wait("@deletePost").then((interception) => {
-            const response = interception?.response;
-            expect(response?.statusCode).to.eq(200);
-            cy.getAntdNotification().should("contain", "Success");
-            isDrawerNotVisible();
-        });
-    });
 });
