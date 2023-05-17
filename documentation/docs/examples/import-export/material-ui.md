@@ -1,8 +1,8 @@
 ---
 id: material-ui
 title: Material UI
-example-title: Material UI
-example-tags: [import,export]
+example-title: Import / Export CSV with Material UI
+example-tags: [csv]
 ---
 
 **refine** allows you to export and import your data as CSV files. You can quickly do CSV import and export operation with **refine** by creating model operations on the CSV data.

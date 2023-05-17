@@ -1,8 +1,8 @@
 ---
 id: mantine
 title: Mantine
-example-title: Mantine
-example-tags: [import,export]
+example-title: Import / Export CSV with Mantine
+example-tags: [csv]
 ---
 
 **refine** allows you to export and import your data as CSV files. You can quickly do CSV import and export operation with **refine** by creating model operations on the CSV data.
