@@ -1,8 +1,8 @@
 ---
 slug: mui-base
 id: mui-base
-title: Material UI Base
-example-title: Material UI
+title: Material UI
+example-title: Material UI Base
 example-tags: [mui,base]
 ---
 
