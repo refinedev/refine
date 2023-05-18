@@ -853,7 +853,6 @@ module.exports = {
                     items: ["examples/live-provider/ably"],
                 },
                 "examples/multi-level-menu/multi-level-menu",
-                "examples/mern-dashboard",
                 "examples/mutation-mode",
                 {
                     type: "category",
