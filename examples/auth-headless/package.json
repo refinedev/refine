@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@refinedev/core": "^4.14.3",
-    "@refinedev/cli": "^2.5.4",
+    "@refinedev/cli": "^2.5.5",
     "@refinedev/react-hook-form": "^4.4.0",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@refinedev/core": "^4.14.3",
-    "@refinedev/cli": "^2.5.4",
+    "@refinedev/cli": "^2.5.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
