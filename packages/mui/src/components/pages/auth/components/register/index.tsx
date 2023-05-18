@@ -6,20 +6,19 @@ import {
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-import {
-    Button,
-    TextField,
-    Box,
-    Typography,
-    Container,
-    Card,
-    CardContent,
-    BoxProps,
-    CardContentProps,
-    Divider,
-    Link as MuiLink,
-    Stack,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import MuiLink from "@mui/material/Link";
+
+import type { BoxProps } from "@mui/material/Box";
+import type { CardContentProps } from "@mui/material/CardContent";
 
 import {
     BaseRecord,

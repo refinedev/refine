@@ -13,15 +13,14 @@ import {
     useGo,
 } from "@refinedev/core";
 
-import {
-    Card,
-    CardHeader,
-    IconButton,
-    CardContent,
-    CardActions,
-    Typography,
-    Box,
-} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import {

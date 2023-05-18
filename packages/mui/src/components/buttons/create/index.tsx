@@ -12,8 +12,9 @@ import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { Button } from "@mui/material";
-import { AddBoxOutlined } from "@mui/icons-material";
+
+import Button from "@mui/material/Button";
+import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
 
 import { CreateButtonProps } from "../types";
 

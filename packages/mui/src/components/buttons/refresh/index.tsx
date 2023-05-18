@@ -9,8 +9,9 @@ import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { LoadingButton } from "@mui/lab";
-import { RefreshOutlined } from "@mui/icons-material";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+import RefreshOutlined from "@mui/icons-material/RefreshOutlined";
 
 import { RefreshButtonProps } from "../types";
 

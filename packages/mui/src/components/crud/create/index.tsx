@@ -10,15 +10,14 @@ import {
     useResource,
 } from "@refinedev/core";
 
-import {
-    Card,
-    CardHeader,
-    CardActions,
-    CardContent,
-    IconButton,
-    Typography,
-    Box,
-} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";

@@ -12,8 +12,9 @@ import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { Button } from "@mui/material";
-import { EditOutlined } from "@mui/icons-material";
+
+import Button from "@mui/material/Button";
+import EditOutlined from "@mui/icons-material/EditOutlined";
 
 import { EditButtonProps } from "../types";
 
