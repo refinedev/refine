@@ -23,6 +23,7 @@
         "autoprefixer": "^10.4.8",
         "axios": "^0.24.0",
         "base64url": "^3.0.1",
+        "buffer": "^6.0.3",
         "clsx": "^1.1.1",
         "docusaurus-plugin-copy": "^0.1.1",
         "dotenv": "^16.0.2",
