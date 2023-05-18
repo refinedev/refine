@@ -149,10 +149,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             <Drawer {...editDrawerProps}>
                 <Edit
                     recordItemId={id}
-                    saveButtonProps={{
-                        ...editSaveButtonProps,
-                        disabled: editFormLoading,
-                    }}
+                    saveButtonProps={editSaveButtonProps}
                     isLoading={editFormLoading}
                     deleteButtonProps={deleteButtonProps}
                     contentProps={{
