@@ -11,6 +11,7 @@ import swizzle from "@commands/swizzle";
 import { dev, build, start, run } from "@commands/runner";
 import "@utils/env";
 import { telemetryHook } from "@telemetryindex";
+import proxy from "@commands/proxy";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_CLI_VERSION = "1.0.0";
@@ -45,6 +46,7 @@ const bootstrap = () => {
     run(program);
     checkUpdates(program);
     whoami(program);
+    proxy(program);
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];
