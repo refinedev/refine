@@ -688,7 +688,6 @@ module.exports = {
                         "examples/audit-log/audit-log-provider",
                     ],
                 },
-                "examples/antd-calendar-example",
                 {
                     type: "category",
                     label: "Build Systems",
@@ -698,6 +697,7 @@ module.exports = {
                         "examples/build-systems/nx",
                     ],
                 },
+                "examples/antd-calendar-example",
                 "examples/command-palette",
                 {
                     type: "category",
