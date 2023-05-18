@@ -1,7 +1,8 @@
 ---
 id: audit-log-provider
 title: Audit Log Provider
-example-tags: [audit-log]
+example-tags: [audit-log-provider]
+example-title: Audit Log with Headless
 ---
 
 **refine** allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. This example demonstrates how to create an audit log provider.
