@@ -20,7 +20,7 @@
     "web-vitals": "^1.1.1",
     "antd": "^5.0.5",
     "cross-env": "^7.0.3",
-    "@ant-design/icons": "^5.0.1"
+    "@ant-design/icons": "5.0.1"
   },
   "devDependencies": {
     "@types/node": "^18.16.2",
