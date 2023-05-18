@@ -691,17 +691,6 @@ module.exports = {
                 "examples/antd-calendar-example",
                 {
                     type: "category",
-                    label: "Base",
-                    items: [
-                        "examples/base/antd-base",
-                        "examples/base/chakra-ui-base",
-                        "examples/base/headless-base",
-                        "examples/base/mantine-base",
-                        "examples/base/mui-base",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Build Systems",
                     items: [
                         "examples/build-systems/turbo",
