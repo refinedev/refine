@@ -7,27 +7,33 @@ export const PostEdit: React.FC = () => {
         refineCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
-        resetField,
         formState: { errors },
+        setValue,
+        saveButtonProps,
     } = useForm();
 
     const { options } = useSelect({
         resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
+        defaultValue: queryResult?.data?.data?.category?.id,
+        queryOptions: {
+            enabled: !!queryResult?.data?.data?.category?.id,
+        },
     });
 
     useEffect(() => {
-        resetField("category.id");
-    }, [options]);
+        setValue("category.id", queryResult?.data?.data?.category?.id);
+    }, [queryResult?.data]);
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
+            <input id="title" {...register("title", { required: true })} />
+            {errors.title && (
+                <span id="title-error">This field is required</span>
+            )}
             <br />
             <label>Status: </label>
-            <select {...register("status")}>
+            <select id="status" {...register("status")}>
                 <option value="published">published</option>
                 <option value="draft">draft</option>
                 <option value="rejected">rejected</option>
@@ -35,6 +41,7 @@ export const PostEdit: React.FC = () => {
             <br />
             <label>Category: </label>
             <select
+                id="category"
                 {...register("category.id", {
                     required: true,
                 })}
@@ -46,16 +53,21 @@ export const PostEdit: React.FC = () => {
                     </option>
                 ))}
             </select>
-            {errors.category && <span>This field is required</span>}
+            {errors.category && (
+                <span id="category-error">This field is required</span>
+            )}
             <br />
             <label>Content: </label>
             <br />
             <textarea
+                id="content"
                 {...register("content", { required: true })}
                 rows={10}
                 cols={50}
             />
-            {errors.content && <span>This field is required</span>}
+            {errors.content && (
+                <span id="content-error">This field is required</span>
+            )}
             <br />
 
             {queryResult?.data?.data?.thumbnail && (
@@ -74,7 +86,11 @@ export const PostEdit: React.FC = () => {
                 </>
             )}
 
-            <input type="submit" value="Submit" />
+            <input
+                type="submit"
+                value="Submit"
+                disabled={saveButtonProps.disabled}
+            />
             {formLoading && <p>Loading</p>}
         </form>
     );
