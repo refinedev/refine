@@ -19,6 +19,10 @@ interface IGetChakraUIFormItemErrorParams {
     type?: "text" | "select";
 }
 
+interface IGetMaterialUIFormItemErrorParams {
+    id: string;
+}
+
 interface IResourceCreateParams {
     ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
 }
@@ -64,12 +68,17 @@ declare namespace Cypress {
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
         getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
 
+        getMaterialUINotification(): Chainable<JQuery<HTMLElement>>;
+        getMaterialUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
+        getMaterialUIFormItemError(
+            params: IGetChakraUIFormItemErrorParams,
+        ): Chainable<JQuery<HTMLElement>>;
+
         interceptGETPost(): Chainable<null>;
         interceptGETPosts(): Chainable<null>;
         interceptPOSTPost(): Chainable<null>;
         interceptPATCHPost(): Chainable<null>;
         interceptDELETEPost(): Chainable<null>;
-
         interceptGETCategories(): Chainable<null>;
     }
 }

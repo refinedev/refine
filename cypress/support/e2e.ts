@@ -25,6 +25,11 @@ import { list, create, edit, show } from "./commands/resource";
 
 // add commands to the Cypress chain
 import "./commands/intercepts";
+import {
+    getMaterialUIDeletePopoverButton,
+    getMaterialUIFormItemError,
+    getMaterialUINotifications,
+} from "./commands/material-ui";
 
 Cypress.Keyboard.defaults({
     keystrokeDelay: 0,
@@ -53,3 +58,10 @@ Cypress.Commands.add(
     getChakraUIDeletePopoverButton,
 );
 Cypress.Commands.add("getChakraUILoadingOverlay", getChakraUILoadingOverlay);
+
+Cypress.Commands.add("getMaterialUINotification", getMaterialUINotifications);
+Cypress.Commands.add(
+    "getMaterialUIDeletePopoverButton",
+    getMaterialUIDeletePopoverButton,
+);
+Cypress.Commands.add("getMaterialUIFormItemError", getMaterialUIFormItemError);

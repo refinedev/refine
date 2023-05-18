@@ -53,6 +53,7 @@ export const PostEdit: React.FC = () => {
             case 0:
                 return (
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -76,6 +77,7 @@ export const PostEdit: React.FC = () => {
                             defaultValue={null as any}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="status"
                                     options={["published", "draft", "rejected"]}
                                     {...field}
                                     onChange={(_, value) => {
@@ -103,6 +105,7 @@ export const PostEdit: React.FC = () => {
                             defaultValue={null as any}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="category"
                                     {...autocompleteProps}
                                     {...field}
                                     onChange={(_, value) => {
@@ -144,6 +147,7 @@ export const PostEdit: React.FC = () => {
                 return (
                     <>
                         <TextField
+                            id="slug"
                             {...register("slug", {
                                 required: "This field is required",
                             })}
@@ -154,6 +158,7 @@ export const PostEdit: React.FC = () => {
                             label="Slug"
                         />
                         <TextField
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}
@@ -177,6 +182,7 @@ export const PostEdit: React.FC = () => {
                 <>
                     {currentStep > 0 && (
                         <Button
+                            disabled={formLoading}
                             onClick={() => {
                                 gotoStep(currentStep - 1);
                             }}
@@ -186,6 +192,7 @@ export const PostEdit: React.FC = () => {
                     )}
                     {currentStep < stepTitles.length - 1 && (
                         <Button
+                            disabled={formLoading}
                             onClick={() => {
                                 gotoStep(currentStep + 1);
                             }}
