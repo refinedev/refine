@@ -6,7 +6,7 @@
     "@ant-design/icons": "5.0.1",
     "@react-pdf/renderer": "^3.1.8",
     "@refinedev/antd": "^5.18.2",
-    "@refinedev/cli": "^2.5.4",
+    "@refinedev/cli": "^2.5.5",
     "@refinedev/core": "^4.14.3",
     "@refinedev/inferencer": "^3.3.4",
     "@refinedev/kbar": "^1.0.0",
