@@ -1,15 +1,17 @@
 import { Create, useAutocomplete } from "@refinedev/mui";
+
 import { useForm } from "@refinedev/react-hook-form";
-import {
-    Box,
-    Autocomplete,
-    TextField,
-    Checkbox,
-    FormControlLabel,
-} from "@mui/material";
+
+import Box from "@mui/material/Box";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+
 import { Controller } from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
+
 import {
     jsx,
     componentName,
