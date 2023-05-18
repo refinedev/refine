@@ -2,7 +2,7 @@
 id: useAutocomplete
 title: useAutocomplete
 example-title: Material UI useAutocomplete hook
-example-tags: [material-ui]
+example-tags: [mui]
 ---
 
 This example shows how to use the **useAutocomplete** hook.

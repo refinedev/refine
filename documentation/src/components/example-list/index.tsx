@@ -17,9 +17,40 @@ const { examples, tags } = data as {
     }[];
 };
 
+const priorityTags = [
+    "antd",
+    "mui",
+    "chakra-ui",
+    "mantine",
+    "headless",
+    "auth-provider",
+    "audit-log-provider",
+    "data-provider",
+    "live-provider",
+    "notification-provider",
+    "access-control",
+    "next.js",
+    "remix",
+    "table",
+    "react-table",
+    "form",
+    "react-hook-form",
+];
+
+const sortedTags = tags.sort((a, b) => {
+    const aIndex = priorityTags.indexOf(a.name);
+    const bIndex = priorityTags.indexOf(b.name);
+
+    if (aIndex === -1) {
+        return bIndex === -1 ? 0 : 1;
+    } else {
+        return bIndex === -1 ? -1 : aIndex - bIndex;
+    }
+});
+
 const PREDEFINED_COLORS = {
     antd: "#fa8c16",
-    "material-ui": "#0081cb",
+    mui: "#0081cb",
     mantine: "#0ea5e9",
     "chakra-ui": "#319795",
 };
@@ -144,7 +175,7 @@ const ExampleList: React.FC = () => {
                     </span>
                 </div>
                 <div className="flex justify-start gap-2 flex-wrap">
-                    {tags.map(({ name, color }) => {
+                    {sortedTags.sort().map(({ name, color }) => {
                         const isActive = filters.has(name);
                         const allSelected = filters.size === tags.length;
                         return (
