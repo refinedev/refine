@@ -1,7 +1,7 @@
 ---
 id: elide
 title: Elide
-example-tags: [antd, community, data-provider, elide]
+example-tags: [community,data-provider]
 ---
 
 [Elide](https://elide.io/) Data Provider allows you call Elide backend JSON api. Elide data provider builds the queries that Elide Application can understand, so we have done the hard work for you. This example will show how to utilize the **refine** Elide Provider in this project.

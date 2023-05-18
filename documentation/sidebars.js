@@ -652,7 +652,6 @@ module.exports = {
                 id: "examples/examples",
             },
             items: [
-                "examples/real-world-example",
                 {
                     type: "category",
                     label: "Access Control",
@@ -681,7 +680,14 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
-                "examples/antd-calendar-example",
+                {
+                    type: "category",
+                    label: "Audit Log",
+                    items: [
+                        "examples/audit-log/audit-log-antd",
+                        "examples/audit-log/audit-log-provider",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Build Systems",
@@ -691,21 +697,33 @@ module.exports = {
                         "examples/build-systems/nx",
                     ],
                 },
+                "examples/antd-calendar-example",
                 "examples/command-palette",
                 {
                     type: "category",
                     label: "Core",
                     items: [
                         "examples/core/useImport",
+                        "examples/core/useMenu",
                         "examples/core/useModal",
                         "examples/core/useSelect",
+                        "examples/core/useInfiniteList",
                     ],
                 },
                 {
                     type: "category",
                     label: "Customization",
                     items: [
-                        "examples/customization/customTheme",
+                        {
+                            type: "category",
+                            label: "Custom Theme",
+                            items: [
+                                "examples/customization/theme/customThemeAntd",
+                                "examples/customization/theme/customThemeChakraUI",
+                                "examples/customization/theme/customThemeMaterialUI",
+                                "examples/customization/theme/customThemeMantine",
+                            ],
+                        },
                         "examples/customization/customFooter",
                         "examples/customization/customLogin",
                         "examples/customization/customSider",
@@ -733,7 +751,6 @@ module.exports = {
                         "examples/data-provider/supabase",
                     ],
                 },
-                "examples/e2e-testing",
                 {
                     type: "category",
                     label: "Field",
@@ -741,6 +758,8 @@ module.exports = {
                         "examples/field/useCheckboxGroup",
                         "examples/field/useRadioGroup",
                         "examples/field/useSelect",
+                        "examples/field/useSelect-with-infinite-list",
+                        "examples/field/useAutocomplete",
                     ],
                 },
                 {
@@ -761,7 +780,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "Headless",
-                            items: ["examples/form/headless/save-and-continue"],
+                            items: [
+                                "examples/form/headless/save-and-continue",
+                                "examples/form/headless/useForm",
+                            ],
                         },
                         {
                             type: "category",
@@ -802,7 +824,15 @@ module.exports = {
                         "examples/i18n/i18n-react",
                     ],
                 },
-                "examples/import-export",
+                {
+                    type: "category",
+                    label: "Import / Export",
+                    items: [
+                        "examples/import-export/antd",
+                        "examples/import-export/material-ui",
+                        "examples/import-export/mantine",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Inputs",
@@ -823,14 +853,7 @@ module.exports = {
                     items: ["examples/live-provider/ably"],
                 },
                 "examples/multi-level-menu/multi-level-menu",
-                {
-                    type: "category",
-                    label: "Multitenancy",
-                    items: [
-                        "examples/multi-tenancy/appwrite",
-                        "examples/multi-tenancy/strapi-v4",
-                    ],
-                },
+                "examples/mutation-mode",
                 {
                     type: "category",
                     label: "Next.js",
@@ -859,13 +882,16 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Router Provider",
-                    items: ["examples/router-provider/react-location"],
+                    label: "Search",
+                    items: ["examples/search/search"],
                 },
                 {
                     type: "category",
-                    label: "Search",
-                    items: ["examples/search/search"],
+                    label: "Storybook",
+                    items: [
+                        "examples/storybook/antd-storybook",
+                        "examples/storybook/material-ui-storybook",
+                    ],
                 },
                 {
                     type: "category",
@@ -931,6 +957,16 @@ module.exports = {
                         "examples/themes/refine-themes-chakra-ui",
                         "examples/themes/refine-themes-mantine",
                         "examples/themes/refine-themes-mui",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Tutorial",
+                    items: [
+                        "examples/tutorial/antd-tutorial",
+                        "examples/tutorial/headless-tutorial",
+                        "examples/tutorial/mantine-tutorial",
+                        "examples/tutorial/mui-tutorial",
                     ],
                 },
                 {
