@@ -1,7 +1,7 @@
 ---
 id: javascript
 title: JavaScript
-example-title: Refine with Javascript
+example-title: refine with JavaScript
 example-tags: [javascript]
 ---
 
