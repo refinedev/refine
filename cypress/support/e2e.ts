@@ -6,7 +6,15 @@ import {
     setAntdSelect,
     setAntdDropdown,
     getAntdFormItemError,
+    getAntdLoadingOverlay,
+    getAntdPopoverDeleteButton,
 } from "./commands/antd";
+import {
+    getChakraUIDeletePopoverButton,
+    getChakraUIFormItemError,
+    getChakraUILoadingOverlay,
+    getChakraUINotification,
+} from "./commands/chakra-ui";
 import {
     getCreateButton,
     getDeleteButton,
@@ -27,3 +35,13 @@ Cypress.Commands.add("getAntdNotification", getAntdNotification);
 Cypress.Commands.add("setAntdSelect", setAntdSelect);
 Cypress.Commands.add("setAntdDropdown", setAntdDropdown);
 Cypress.Commands.add("getAntdFormItemError", getAntdFormItemError);
+Cypress.Commands.add("getAntdLoadingOverlay", getAntdLoadingOverlay);
+Cypress.Commands.add("getAntdPopoverDeleteButton", getAntdPopoverDeleteButton);
+
+Cypress.Commands.add("getChakraUINotification", getChakraUINotification);
+Cypress.Commands.add("getChakraUIFormItemError", getChakraUIFormItemError);
+Cypress.Commands.add(
+    "getChakraUIDeletePopoverButton",
+    getChakraUIDeletePopoverButton,
+);
+Cypress.Commands.add("getChakraUILoadingOverlay", getChakraUILoadingOverlay);

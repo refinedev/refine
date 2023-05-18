@@ -11,20 +11,20 @@ describe("form-antd-custom-validation", () => {
     };
 
     const fillForm = () => {
-        cy.get("#title").clear().type(mockPost.title);
+        cy.get("#title").clear().type(mockPost.title, { delay: 0 });
         cy.get("#content textarea").clear().type(mockPost.content);
         cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
         cy.setAntdSelect({ id: "status", value: mockPost.status });
     };
 
     beforeEach(() => {
-        cy.visit(BASE_URL);
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
     });
 
     it("should be view list page", () => {
+        cy.visit(BASE_URL);
         cy.resourceList();
     });
 
@@ -32,9 +32,12 @@ describe("form-antd-custom-validation", () => {
     // after that try to create a record with the same title to check unique title validation
     it("should render error", () => {
         cy.intercept("POST", "/posts").as("createPost");
+        cy.intercept("GET", `/posts-unique-check?&title=${mockPost.title}`).as(
+            "uniqueCheck",
+        );
 
-        // create a record
-        cy.getCreateButton().click();
+        cy.visit(`${BASE_URL}/posts/create`);
+
         fillForm();
         cy.getSaveButton().click();
 
@@ -45,12 +48,15 @@ describe("form-antd-custom-validation", () => {
         });
 
         // try to create a record with the same title
-        cy.getCreateButton().click();
-        cy.get("#title")
-            .clear()
-            .type(mockPost.title)
-            .then(() => {
-                cy.getAntdFormItemError({ id: "title" }).contains(/unique/gi);
-            });
+        // we click button with force: true because the button is covered by the notification
+        cy.getCreateButton().click({ force: true });
+
+        cy.get("#title").type(mockPost.title, { delay: 0 });
+
+        cy.wait("@uniqueCheck").then((interception) => {
+            const response = interception?.response;
+            expect(response?.statusCode).to.eq(200);
+            cy.getAntdFormItemError({ id: "title" }).contains(/unique/gi);
+        });
     });
 });

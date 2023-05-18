@@ -157,4 +157,193 @@ describe("useCreateMany Hook", () => {
             });
         });
     });
+
+    it("should use `create` method if does not exist `createMany` method in dataProvider", async () => {
+        const createMock = jest.fn();
+
+        const { result } = renderHook(() => useCreateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        create: createMock,
+                        createMany: undefined,
+                    },
+                },
+                resources: [{ name: "posts" }],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: [{ title: "foo" }, { title: "bar" }],
+        });
+
+        await waitFor(() => {
+            expect(createMock).toBeCalled();
+        });
+
+        expect(createMock).toBeCalledTimes(2);
+        expect(createMock).toHaveBeenNthCalledWith(
+            1,
+            expect.objectContaining({
+                resource: "posts",
+                variables: { title: "foo" },
+            }),
+        );
+        expect(createMock).toHaveBeenNthCalledWith(
+            2,
+            expect.objectContaining({
+                resource: "posts",
+                variables: { title: "bar" },
+            }),
+        );
+    });
+
+    describe("useNotification", () => {
+        it("should call `open` from the notification provider on success", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                values: [{ title: "foo" }, { title: "bar" }],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Success",
+                key: "createMany-posts-notification",
+                message: "Successfully created posts",
+                type: "success",
+            });
+        });
+
+        it("should call `open` from the notification provider on error", async () => {
+            const createManyMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            createMany: createManyMock,
+                        },
+                    },
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                values: [{ title: "foo" }, { title: "bar" }],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Error",
+                key: "createMany-posts-notification",
+                message:
+                    "There was an error creating posts (status code: undefined",
+                type: "error",
+            });
+        });
+
+        it("should call `open` from notification provider on success with custom notification params", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                values: [{ title: "bar" }],
+                successNotification: () => ({
+                    message: "Success",
+                    description: "Successfully created post",
+                    type: "success",
+                }),
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Successfully created post",
+                message: "Success",
+                type: "success",
+            });
+        });
+
+        it("should call `open` from notification provider on error with custom notification params", async () => {
+            const createManyMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useCreateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            createMany: createManyMock,
+                        },
+                    },
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                values: [{ title: "foo" }, { title: "bar" }],
+                errorNotification: () => ({
+                    message: "Error",
+                    description: "There was an error creating post",
+                    type: "error",
+                }),
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "There was an error creating post",
+                message: "Error",
+                type: "error",
+            });
+        });
+    });
 });

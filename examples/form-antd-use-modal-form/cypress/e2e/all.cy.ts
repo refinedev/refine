@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("form-antd-use-mpdal-form", () => {
+describe("form-antd-use-modal-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {

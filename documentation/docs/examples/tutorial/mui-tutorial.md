@@ -1,13 +1,13 @@
 ---
 slug: mui-tutorial
-id: mui-tutorial-example
+id: mui-tutorial
 title: Material UI
 example-title: Material UI Tutorial
-example-tags: [mui, tutorial, rest]
+example-tags: [mui,tutorial]
 ---
 
 It is the example created at the end of the [tutorial](/docs/tutorial/introduction/index/) with Material UI selection.
 
 <br/>
 
-<CodeSandboxExample path="tutorial-mui" />
+<CodeSandboxExample path="tutorial-material-ui" />

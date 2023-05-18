@@ -123,7 +123,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                             (recordItemId ?? id) === variables?.id && isLoading
                         }
                         data-testid={RefineButtonTestIds.DeleteButton}
-                        className={RefineButtonClassNames.CloneButton}
+                        className={RefineButtonClassNames.DeleteButton}
                         {...rest}
                     >
                         <IconTrash size={20} {...svgIconProps} />
@@ -137,7 +137,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         isLoading={id === variables?.id && isLoading}
                         leftIcon={<IconTrash size={20} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
-                        className={RefineButtonClassNames.CloneButton}
+                        className={RefineButtonClassNames.DeleteButton}
                         {...rest}
                     >
                         {children ?? translate("buttons.delete", "Delete")}

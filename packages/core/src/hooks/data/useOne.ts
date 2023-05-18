@@ -157,7 +157,7 @@ export const useOne = <
                 resource: resource!,
                 id: id!,
                 meta: {
-                    ...(combinedMeta || {}),
+                    ...combinedMeta,
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -165,7 +165,7 @@ export const useOne = <
                     },
                 },
                 metaData: {
-                    ...(combinedMeta || {}),
+                    ...combinedMeta,
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -188,7 +188,7 @@ export const useOne = <
                               data,
                               {
                                   id,
-                                  ...(combinedMeta || {}),
+                                  ...combinedMeta,
                               },
                               resource,
                           )
@@ -206,7 +206,7 @@ export const useOne = <
                               err,
                               {
                                   id,
-                                  ...(combinedMeta || {}),
+                                  ...combinedMeta,
                               },
                               resource,
                           )

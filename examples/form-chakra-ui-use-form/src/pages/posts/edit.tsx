@@ -7,7 +7,7 @@ import {
     Input,
     Select,
 } from "@chakra-ui/react";
-import { useSelect } from "@refinedev/core";
+import { HttpError, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { IPost } from "../../interfaces";
@@ -18,18 +18,17 @@ export const PostEdit = () => {
         saveButtonProps,
         register,
         formState: { errors },
-        resetField,
-    } = useForm<IPost>();
+        setValue,
+    } = useForm<IPost, HttpError, IPost>();
 
     const { options } = useSelect({
         resource: "categories",
-
-        defaultValue: queryResult?.data?.data.category.id,
-        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+        defaultValue: queryResult?.data?.data?.category?.id,
+        queryOptions: { enabled: !!queryResult?.data?.data?.category?.id },
     });
 
     useEffect(() => {
-        resetField("category.id");
+        setValue("category.id", queryResult?.data?.data?.category?.id || 1);
     }, [options]);
 
     return (
@@ -48,7 +47,7 @@ export const PostEdit = () => {
             <FormControl mb="3" isInvalid={!!errors?.status}>
                 <FormLabel>Status</FormLabel>
                 <Select
-                    id="content"
+                    id="status"
                     placeholder="Select Post Status"
                     {...register("status", {
                         required: "Status is required",
@@ -62,13 +61,13 @@ export const PostEdit = () => {
                     {`${errors.status?.message}`}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+            <FormControl mb="3" isInvalid={!!errors?.category?.id}>
                 <FormLabel>Category</FormLabel>
                 <Select
-                    id="ca"
+                    id="categoryId"
                     placeholder="Select Category"
                     {...register("category.id", {
-                        required: true,
+                        required: "Category is required",
                     })}
                 >
                     {options?.map((option) => (
@@ -78,7 +77,7 @@ export const PostEdit = () => {
                     ))}
                 </Select>
                 <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
+                    {`${errors.category?.id?.message}`}
                 </FormErrorMessage>
             </FormControl>
         </Edit>

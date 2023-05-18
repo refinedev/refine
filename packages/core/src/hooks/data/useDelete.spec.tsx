@@ -189,4 +189,216 @@ describe("useDelete Hook", () => {
             });
         });
     });
+
+    describe("useNotification", () => {
+        it("should call `open` from the notification provider on success", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Success",
+                key: "1-posts-notification",
+                message: "Successfully deleted a post",
+                type: "success",
+            });
+        });
+
+        it("should call `open` from the notification provider on error", async () => {
+            const deleteMock = jest.fn().mockRejectedValue(new Error("Error"));
+            const notificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteMock,
+                        },
+                    },
+                    notificationProvider: {
+                        open: notificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(notificationMock).toBeCalledWith({
+                description: "Error",
+                key: "1-posts-notification",
+                message: "Error (status code: undefined)",
+                type: "error",
+            });
+        });
+
+        it("should call `open` from notification provider on success with custom notification params", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                id: "1",
+                successNotification: () => ({
+                    message: "Success",
+                    description: "Successfully created post",
+                    type: "success",
+                }),
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Successfully created post",
+                message: "Success",
+                type: "success",
+            });
+        });
+
+        it("should call `open` from notification provider on error with custom notification params", async () => {
+            const deleteOneMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneMock,
+                        },
+                    },
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                id: "1",
+                errorNotification: () => ({
+                    message: "Error",
+                    description: "There was an error creating post",
+                    type: "error",
+                }),
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "There was an error creating post",
+                message: "Error",
+                type: "error",
+            });
+        });
+    });
+
+    describe("useOnError", () => {
+        it("should call `onError` from the auth provider on error", async () => {
+            const deleteOneMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const onErrorMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneMock,
+                        },
+                    },
+                    authProvider: {
+                        onError: onErrorMock,
+                    } as any,
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+
+        it("should call `checkError` from the legacy auth provider on error", async () => {
+            const deleteOneMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const onErrorMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneMock,
+                        },
+                    },
+                    legacyAuthProvider: {
+                        checkError: onErrorMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+    });
 });

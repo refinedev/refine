@@ -129,7 +129,7 @@ export const useMany = <
         resource,
         types: ["*"],
         params: {
-            ids: ids ?? [],
+            ids: ids,
             meta: combinedMeta,
             metaData: combinedMeta,
             subscriptionType: "useMany",
@@ -153,7 +153,7 @@ export const useMany = <
                     resource,
                     ids,
                     meta: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -161,7 +161,7 @@ export const useMany = <
                         },
                     },
                     metaData: {
-                        ...(combinedMeta || {}),
+                        ...combinedMeta,
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -176,7 +176,7 @@ export const useMany = <
                             resource,
                             id,
                             meta: {
-                                ...(combinedMeta || {}),
+                                ...combinedMeta,
                                 queryContext: {
                                     queryKey,
                                     pageParam,
@@ -184,7 +184,7 @@ export const useMany = <
                                 },
                             },
                             metaData: {
-                                ...(combinedMeta || {}),
+                                ...combinedMeta,
                                 queryContext: {
                                     queryKey,
                                     pageParam,
