@@ -9,7 +9,7 @@
   },
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^2.5.3",
+    "@refinedev/cli": "^2.5.4",
     "@refinedev/core": "^4.14.3",
     "@refinedev/inferencer": "^3.3.4",
     "@refinedev/kbar": "^1.1.0",
