@@ -1,6 +1,7 @@
 import { useSelect, HttpError } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 import { IPost } from "interfaces";
+import { Controller } from "react-hook-form";
 
 const stepTitles = ["Title", "Status", "Category and content"];
 
@@ -11,6 +12,7 @@ export const PostCreate: React.FC = () => {
         handleSubmit,
         formState: { errors },
         steps: { currentStep, gotoStep },
+        control,
     } = useStepsForm<IPost, HttpError, IPost>();
 
     const { options } = useSelect({
@@ -46,25 +48,32 @@ export const PostCreate: React.FC = () => {
             case 2:
                 return (
                     <>
-                        <label>Category: </label>
-                        <select
-                            id="category"
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
+                        <Controller
+                            name="category.id"
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <>
+                                        <label>Category: </label>
+                                        <select id="category" {...field}>
+                                            {options?.map((category) => (
+                                                <option
+                                                    key={category.value}
+                                                    value={category.value}
+                                                >
+                                                    {category.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {errors.category && (
+                                            <span>
+                                                {errors.category.message}
+                                            </span>
+                                        )}
+                                    </>
+                                );
+                            }}
+                        />
                         <br />
                         <br />
                         <label>Content: </label>
