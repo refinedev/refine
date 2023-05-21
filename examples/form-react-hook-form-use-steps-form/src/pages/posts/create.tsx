@@ -24,6 +24,7 @@ export const PostCreate: React.FC = () => {
                     <>
                         <label>Title: </label>
                         <input
+                            id="title"
                             {...register("title", {
                                 required: "This field is required",
                             })}
@@ -35,7 +36,7 @@ export const PostCreate: React.FC = () => {
                 return (
                     <>
                         <label>Status: </label>
-                        <select {...register("status")}>
+                        <select id="status" {...register("status")}>
                             <option value="published">published</option>
                             <option value="draft">draft</option>
                             <option value="rejected">rejected</option>
@@ -47,6 +48,7 @@ export const PostCreate: React.FC = () => {
                     <>
                         <label>Category: </label>
                         <select
+                            id="category"
                             {...register("category.id", {
                                 required: "This field is required",
                             })}
@@ -67,6 +69,7 @@ export const PostCreate: React.FC = () => {
                         <br />
                         <label>Content: </label>
                         <textarea
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}

@@ -26,6 +26,7 @@ export const PostEdit: React.FC = () => {
                     <>
                         <label>Title: </label>
                         <input
+                            id="title"
                             {...register("title", {
                                 required: "This field is required",
                             })}
@@ -37,7 +38,7 @@ export const PostEdit: React.FC = () => {
                 return (
                     <>
                         <label>Status: </label>
-                        <select {...register("status")}>
+                        <select id="status" {...register("status")}>
                             <option value="published">published</option>
                             <option value="draft">draft</option>
                             <option value="rejected">rejected</option>
@@ -49,10 +50,11 @@ export const PostEdit: React.FC = () => {
                     <>
                         <label>Category: </label>
                         <select
+                            id="category"
                             {...register("category.id", {
                                 required: "This field is required",
                             })}
-                            defaultValue={queryResult?.data?.data.category.id}
+                            value={queryResult?.data?.data.category.id}
                         >
                             {options?.map((category) => (
                                 <option
@@ -70,6 +72,7 @@ export const PostEdit: React.FC = () => {
                         <br />
                         <label>Content: </label>
                         <textarea
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}

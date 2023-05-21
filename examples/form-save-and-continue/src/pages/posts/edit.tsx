@@ -37,15 +37,6 @@ export const PostEdit: React.FC = () => {
     const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
         await onFinish(formValues);
 
-        setFormValues({
-            title: "",
-            content: "",
-            status: "draft",
-            category: {
-                id: 1,
-            },
-        });
-
         redirect(redirectTo);
     };
 
@@ -59,6 +50,7 @@ export const PostEdit: React.FC = () => {
                     <div className="form-group">
                         <label>Title: </label>
                         <input
+                            id="title"
                             required
                             onChange={(e) =>
                                 setFormValues({
@@ -72,6 +64,7 @@ export const PostEdit: React.FC = () => {
                     <div className="form-group">
                         <label>Status: </label>
                         <select
+                            id="status"
                             required
                             onChange={(e) =>
                                 setFormValues({
@@ -89,6 +82,7 @@ export const PostEdit: React.FC = () => {
                     <div className="form-group">
                         <label>Category: </label>
                         <select
+                            id="category"
                             required
                             onChange={(e) =>
                                 setFormValues({
@@ -116,6 +110,7 @@ export const PostEdit: React.FC = () => {
                     <div className="form-group">
                         <label>Content: </label>
                         <textarea
+                            id="content"
                             required
                             onChange={(e) =>
                                 setFormValues({
