@@ -125,7 +125,7 @@ i18n.use(Backend)
 export default i18n;
 ```
 
-### Wraping the app with React.Suspense
+### Wrapping the app with React.Suspense
 
 Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
