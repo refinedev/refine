@@ -1,11 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import {
-    TestWrapper,
-    act,
-    mockLegacyRouterProvider,
-    mockRouterBindings,
-} from "@test";
+import { TestWrapper, act, mockLegacyRouterProvider } from "@test";
 
 import { useUpdatePassword } from "./";
 
@@ -18,13 +13,6 @@ const mockRouterProvider = {
         replace: mockFn,
     }),
     useLocation: () => ({}),
-};
-
-const mockAuthProvider = {
-    login: () => Promise.resolve({ success: true }),
-    check: () => Promise.resolve({ authenticated: true }),
-    onError: () => Promise.resolve({}),
-    logout: () => Promise.resolve({ success: true }),
 };
 
 // NOTE : Will be removed in v5
@@ -116,6 +104,13 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
 });
 
 describe("useUpdatePassword Hook", () => {
+    const mockAuthProvider = {
+        login: () => Promise.resolve({ success: true }),
+        check: () => Promise.resolve({ authenticated: true }),
+        onError: () => Promise.resolve({}),
+        logout: () => Promise.resolve({ success: true }),
+    };
+
     beforeEach(() => {
         mockFn.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -125,7 +120,7 @@ describe("useUpdatePassword Hook", () => {
         });
     });
 
-    it("succeed update password with legacyRouterProvider", async () => {
+    it("succeed update password", async () => {
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
@@ -158,51 +153,6 @@ describe("useUpdatePassword Hook", () => {
 
         expect(result.current.data).toEqual({ success: true });
         expect(mockFn).not.toBeCalledWith();
-    });
-
-    it("succeed update password", async () => {
-        const mockGo = jest.fn();
-        const { result } = renderHook(() => useUpdatePassword(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    ...mockAuthProvider,
-                    updatePassword: ({ password, confirmPassword }: any) => {
-                        if (password && confirmPassword) {
-                            return Promise.resolve({
-                                success: true,
-                                redirectTo: "redirectTo",
-                            });
-                        }
-                        return Promise.resolve({
-                            success: false,
-                            error: new Error("Missing fields"),
-                        });
-                    },
-                },
-                routerProvider: mockRouterBindings({
-                    fns: {
-                        go: () => mockGo,
-                    },
-                }),
-            }),
-        });
-
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
-
-        await act(async () => {
-            updatePassword({ password: "123", confirmPassword: "321" });
-        });
-
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(mockGo).toBeCalledWith({
-            to: "redirectTo",
-            type: "replace",
-        });
     });
 
     it("fail update password", async () => {
@@ -526,105 +476,5 @@ describe("useUpdatePassword Hook authProvider selection", () => {
 
         expect(legacyUpdatePassword).toHaveBeenCalled();
         expect(updatePassword).not.toHaveBeenCalled();
-    });
-});
-
-describe("useUpdatePassword Hook with v3LegacyAuthProviderCompatible", () => {
-    it("should be redirect legacyRouterProvider", async () => {
-        const { result } = renderHook(
-            () =>
-                useUpdatePassword({
-                    v3LegacyAuthProviderCompatible: true,
-                }),
-            {
-                wrapper: TestWrapper({
-                    legacyAuthProvider: {
-                        login: () => Promise.resolve(),
-                        updatePassword: ({ password, confirmPassword }) => {
-                            if (password && confirmPassword) {
-                                return Promise.resolve("redirectTo");
-                            }
-                            return Promise.reject(new Error("Missing fields"));
-                        },
-                        checkAuth: () => Promise.resolve(),
-                        checkError: () => Promise.resolve(),
-                        getPermissions: () => Promise.resolve(),
-                        logout: () => Promise.resolve(),
-                        getUserIdentity: () => Promise.resolve({ id: 1 }),
-                    },
-                    legacyRouterProvider: {
-                        ...mockLegacyRouterProvider(),
-                        useHistory: () => ({
-                            replace: mockFn,
-                        }),
-                        useLocation: () => ({
-                            search: undefined,
-                        }),
-                    },
-                }),
-            },
-        );
-
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
-
-        await act(async () => {
-            updatePassword({ password: "123", confirmPassword: "321" });
-        });
-
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(mockFn).toBeCalledWith("redirectTo");
-    });
-
-    it("should be redirect routerProvider", async () => {
-        const { result } = renderHook(
-            () =>
-                useUpdatePassword({
-                    v3LegacyAuthProviderCompatible: true,
-                }),
-            {
-                wrapper: TestWrapper({
-                    legacyAuthProvider: {
-                        login: () => Promise.resolve(),
-                        updatePassword: ({ password, confirmPassword }) => {
-                            if (password && confirmPassword) {
-                                return Promise.resolve("redirectTo");
-                            }
-                            return Promise.reject(new Error("Missing fields"));
-                        },
-                        checkAuth: () => Promise.resolve(),
-                        checkError: () => Promise.resolve(),
-                        getPermissions: () => Promise.resolve(),
-                        logout: () => Promise.resolve(),
-                        getUserIdentity: () => Promise.resolve({ id: 1 }),
-                    },
-                    routerProvider: {
-                        ...mockRouterBindings({
-                            fns: {
-                                go: () => mockFn,
-                            },
-                        }),
-                    },
-                }),
-            },
-        );
-
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
-
-        await act(async () => {
-            updatePassword({ password: "123", confirmPassword: "321" });
-        });
-
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(mockFn).toBeCalledWith("redirectTo");
     });
 });
