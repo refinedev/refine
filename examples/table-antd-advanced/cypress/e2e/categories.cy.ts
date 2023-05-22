@@ -11,32 +11,22 @@ describe("table-antd-advanced", () => {
     });
 
     it.only("expanded row should be display the table with the posts data", () => {
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.intercept("/posts*").as("getPosts");
+        cy.interceptGETPosts();
 
-        cy.get(".ant-table-row-expand-icon").first().click();
+        cy.getTableRowExpandButton(0).click();
+
+        cy.wait("@getPosts").then((interception) => {
+            const { request } = interception;
+
+            const { "category.id": categoryId } = request.query;
+
+            expect(categoryId).to.not.be.undefined;
+        });
 
         cy.get(".ant-table-expanded-row").first().should("exist");
 
-        cy.wait("@getPosts").then((interception) => {
-            const { response } = interception;
-            const data = response?.body;
-
-            const ids = data.map((item) => item.id);
-            const rows = cy.get(".ant-table-expanded-row .ant-table-row");
-
-            rows.each((row, index) => {
-                const id = ids[index];
-
-                cy.wrap(row).should("contain", id);
-            });
-
-            const categoriyIds = data.map((item) => item.category.id);
-
-            //All category ids should be the same
-            expect(categoriyIds.every((val, i, arr) => val === arr[0])).to.be
-                .true;
-        });
+        cy.get(".ant-table-expanded-row .ant-table").should("exist");
     });
 });

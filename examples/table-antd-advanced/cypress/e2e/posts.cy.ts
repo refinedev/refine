@@ -11,15 +11,15 @@ describe("table-antd-advanced", () => {
     });
 
     it("the row should be expandable", () => {
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.get(".ant-table-row-expand-icon").first().click();
+        cy.getTableRowExpandButton(0).click();
 
         cy.get(".ant-table-expanded-row").first().should("exist");
     });
 
     it("should select all rows when click the checkbox in the table header", () => {
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get(".ant-table-thead .ant-checkbox-input").first().click();
 
@@ -27,7 +27,7 @@ describe("table-antd-advanced", () => {
     });
 
     it("should select the row when click the checkbox in the row", () => {
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get(".ant-table-row .ant-checkbox-input").first().click();
 
@@ -35,7 +35,7 @@ describe("table-antd-advanced", () => {
     });
 
     it("delete button should only be showed when at least one row is selected", () => {
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get(".ant-btn-dangerous").should("not.exist");
 
@@ -45,11 +45,11 @@ describe("table-antd-advanced", () => {
     });
 
     it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.intercept("/posts/*").as("getPost");
+        cy.interceptGETPost();
 
-        cy.get(".refine-edit-button").first().click();
+        cy.getEditButton().first().click();
 
         cy.get(".ant-input").should("exist");
         cy.get(".ant-select").should("exist");
@@ -63,11 +63,11 @@ describe("table-antd-advanced", () => {
 
         cy.get("#title").clear().type("Fuga eos enim autem eos.");
 
-        cy.intercept("PATCH", "/posts/*").as("updatePost");
+        cy.interceptPATCHPost();
 
-        cy.get(".refine-save-button").first().click();
+        cy.getSaveButton().first().click();
 
-        cy.wait("@updatePost").then((interception) => {
+        cy.wait("@patchPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 
@@ -75,14 +75,12 @@ describe("table-antd-advanced", () => {
         });
     });
 
-    it("expanded row should be display the table with the posts data", () => {
-        cy.visit("http://localhost:3000/categories");
+    it("expanded row should be display the post content", () => {
+        cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.get(".ant-spin", { timeout: 10000 }).should("not.exist");
+        cy.interceptGETPosts();
 
-        cy.intercept("/posts*").as("getPosts");
-
-        cy.get(".ant-table-row-expand-icon").first().click();
+        cy.getTableRowExpandButton(0).click();
 
         cy.get(".ant-table-expanded-row").first().should("exist");
 
@@ -90,20 +88,9 @@ describe("table-antd-advanced", () => {
             const { response } = interception;
             const data = response?.body;
 
-            const ids = data.map((item) => item.id);
-            const rows = cy.get(".ant-table-expanded-row .ant-table-row");
-
-            rows.each((row, index) => {
-                const id = ids[index];
-
-                cy.wrap(row).should("contain", id);
-            });
-
-            const categoriyIds = data.map((item) => item.category.id);
-
-            //All category ids should be the same
-            expect(categoriyIds.every((val, i, arr) => val === arr[0])).to.be
-                .true;
+            cy.get(".ant-table-expanded-row > .ant-table-cell")
+                .first()
+                .should("contain", data[0].content);
         });
     });
 });

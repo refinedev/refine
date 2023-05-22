@@ -40,3 +40,19 @@ export const getAntdLoadingOverlay = () => {
 export const getAntdPopoverDeleteButton = () => {
     return cy.get(".ant-popconfirm-buttons button").contains(/delete/gi);
 };
+
+export const getAntdColumnSorter = (index: number) => {
+    return cy.get(".ant-table-column-sorters").eq(index);
+};
+
+export const getAntdFilterTrigger = (index: number) => {
+    return cy.get(".ant-table-filter-trigger").eq(index);
+};
+
+export const getAntdPaginationItem = (index: number) => {
+    return cy.get(`.ant-pagination-item-${index}`);
+};
+
+export const getTableRowExpandButton = (index: number) => {
+    return cy.get(".ant-table-row-expand-icon").eq(index);
+};
