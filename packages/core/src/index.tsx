@@ -118,3 +118,4 @@ export {
 export { file2Base64 } from "./definitions/upload";
 
 export { ResourceContext } from "./contexts/resource/index";
+export { TranslationContext } from "./contexts/translation/index";
