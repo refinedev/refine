@@ -12,11 +12,13 @@ describe("form-antd-use-steps-form", () => {
     };
 
     const fillForm = () => {
-        cy.get("#title").clear().type(mockPost.title);
+        cy.get("#title").clear();
+        cy.get("#title").type(mockPost.title);
         cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
         cy.setAntdSelect({ id: "status", value: mockPost.status });
         cy.get(".ant-btn").contains(/next/gi).click();
-        cy.get("#content textarea").clear().type(mockPost.content);
+        cy.get("#content textarea").clear();
+        cy.get("#content textarea").type(mockPost.content);
     };
 
     const assertSuccessResponse = (response: any) => {
@@ -42,33 +44,36 @@ describe("form-antd-use-steps-form", () => {
     };
 
     beforeEach(() => {
-        cy.visit(BASE_URL);
+        cy.interceptGETPost();
+        cy.interceptPOSTPost();
+        cy.interceptPATCHPost();
+        cy.interceptDELETEPost();
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.visit(BASE_URL);
     });
 
     it("should create a new record", () => {
-        cy.intercept("POST", "/posts").as("createPost");
-
         cy.getCreateButton().click();
         fillForm();
         submitForm();
 
-        cy.wait("@createPost").then((interception) => {
+        cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
     });
 
     it("should edit a record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("PATCH", "/posts/*").as("patchPost");
-
         cy.getEditButton().first().click();
 
         cy.wait("@getPost");
-        cy.wait(500);
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         fillForm();
         submitForm();
