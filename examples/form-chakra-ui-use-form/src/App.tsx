@@ -3,6 +3,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
+    notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
@@ -24,6 +25,7 @@ const App: React.FC = () => {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
                     resources={[
                         {
                             name: "posts",
@@ -31,6 +33,9 @@ const App: React.FC = () => {
                             create: "/posts/create",
                             edit: "/posts/edit/:id",
                             show: "/posts/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
                         },
                     ]}
                     options={{

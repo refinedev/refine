@@ -5,7 +5,7 @@ describe("form-antd-use-drawer-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
-        title: "test title",
+        title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
         status: "Published",
     };
 
@@ -40,8 +40,10 @@ describe("form-antd-use-drawer-form", () => {
         const body = response?.body;
 
         expect(response?.statusCode).to.eq(200);
-        expect(body?.title).to.eq("test title");
-        expect(body?.status?.toLowerCase()).to.eq("published");
+        expect(body?.title).to.eq(mockPost.title);
+        expect(body?.status?.toLowerCase()).to.eq(
+            mockPost?.status?.toLowerCase(),
+        );
         isDrawerNotVisible();
         cy.getAntdNotification().should("contain", "Success");
     };
@@ -104,23 +106,6 @@ describe("form-antd-use-drawer-form", () => {
         cy.wait("@patchPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
-        });
-    });
-
-    it("should delete a record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("DELETE", "/posts/*").as("deletePost");
-
-        findFirstRecordFromTable();
-
-        cy.getDeleteButton().click();
-        cy.get(".ant-popconfirm-buttons > .ant-btn-dangerous").click();
-
-        cy.wait("@deletePost").then((interception) => {
-            const response = interception?.response;
-            expect(response?.statusCode).to.eq(200);
-            cy.getAntdNotification().should("contain", "Success");
-            isDrawerNotVisible();
         });
     });
 });

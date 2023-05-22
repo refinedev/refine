@@ -73,7 +73,7 @@ const RefineMuiDemo: React.FC<
     );
 };
 
-const ThemedTitle: typeof RefineMui.ThemedTitle = ({
+const ThemedTitleV2: typeof RefineMui.ThemedTitleV2 = ({
     collapsed,
     wrapperStyles,
     text: textFromProps,
@@ -138,7 +138,7 @@ const ThemedTitle: typeof RefineMui.ThemedTitle = ({
     }, []);
 
     return (
-        <RefineMui.ThemedTitle
+        <RefineMui.ThemedTitleV2
             collapsed={collapsed}
             wrapperStyles={wrapperStyles}
             text={title || textFromProps}
@@ -210,7 +210,7 @@ const MuiScope = {
     RefineMuiDemo,
     RefineMui: {
         ...RefineMui,
-        ThemedTitle,
+        ThemedTitleV2,
     },
     EmotionReact,
     EmotionStyled,

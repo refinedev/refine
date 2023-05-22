@@ -14,6 +14,11 @@ interface IGetAntdFormItemErrorParams {
     id: string;
 }
 
+interface IGetChakraUIFormItemErrorParams {
+    id: string;
+    type?: "text" | "select";
+}
+
 interface IResourceCreateParams {
     ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
 }
@@ -37,6 +42,8 @@ declare namespace Cypress {
         getDeleteButton(): Chainable<JQuery<HTMLElement>>;
         getEditButton(): Chainable<JQuery<HTMLElement>>;
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
+        getAntdLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
+        getAntdPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
         setAntdDropdown(
             params: ISetAntdDropdownParams,
         ): Chainable<JQuery<HTMLElement>>;
@@ -46,5 +53,11 @@ declare namespace Cypress {
         getAntdFormItemError(
             params: IGetAntdFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
+        getChakraUINotification(): Chainable<JQuery<HTMLElement>>;
+        getChakraUIFormItemError(
+            params: IGetChakraUIFormItemErrorParams,
+        ): Chainable<JQuery<HTMLElement>>;
+        getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
+        getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
     }
 }
