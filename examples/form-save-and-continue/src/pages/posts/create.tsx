@@ -25,14 +25,17 @@ export const PostCreate: React.FC = () => {
     const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
         const response = await onFinish(formValues);
 
-        setFormValues({
-            title: "",
-            content: "",
-            status: "draft",
-            category: {
-                id: "",
-            },
-        });
+        if (redirectTo === "create") {
+            setFormValues({
+                title: "",
+                content: "",
+                status: "draft",
+                category: {
+                    id: "",
+                },
+            });
+            return;
+        }
 
         redirect(redirectTo, response?.data?.id);
     };
@@ -46,6 +49,7 @@ export const PostCreate: React.FC = () => {
                 <div className="form-group">
                     <label>Title: </label>
                     <input
+                        id="title"
                         required
                         onChange={(e) =>
                             setFormValues({
@@ -59,6 +63,7 @@ export const PostCreate: React.FC = () => {
                 <div className="form-group">
                     <label>Status: </label>
                     <select
+                        id="status"
                         required
                         onChange={(e) =>
                             setFormValues({
@@ -76,6 +81,7 @@ export const PostCreate: React.FC = () => {
                 <div className="form-group">
                     <label>Category: </label>
                     <select
+                        id="category"
                         required
                         onChange={(e) =>
                             setFormValues({
@@ -99,8 +105,8 @@ export const PostCreate: React.FC = () => {
                 </div>
                 <div className="form-group">
                     <label>Content: </label>
-
                     <textarea
+                        id="content"
                         required
                         onChange={(e) =>
                             setFormValues({
@@ -114,15 +120,24 @@ export const PostCreate: React.FC = () => {
                     />
                 </div>
                 <div className="saveActions">
-                    <button onClick={() => handleSubmit("list")} type="button">
+                    <button
+                        onClick={() => handleSubmit("list")}
+                        type="button"
+                        disabled={formLoading}
+                    >
                         Save
                     </button>
-                    <button onClick={() => handleSubmit("edit")} type="button">
+                    <button
+                        onClick={() => handleSubmit("edit")}
+                        type="button"
+                        disabled={formLoading}
+                    >
                         Save and continue editing
                     </button>
                     <button
                         onClick={() => handleSubmit("create")}
                         type="button"
+                        disabled={formLoading}
                     >
                         Save and add another
                     </button>
