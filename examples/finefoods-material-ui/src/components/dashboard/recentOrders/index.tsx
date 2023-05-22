@@ -2,8 +2,12 @@ import React from "react";
 import { useNavigation, useTranslate, useUpdate } from "@refinedev/core";
 import { NumberField, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridActionsCellItem, GridColumns } from "@mui/x-data-grid";
-import { Avatar, Button, Stack, Typography } from "@mui/material";
-import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import CheckOutlined from "@mui/icons-material/CheckOutlined";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import { OrderStatus } from "components/orderStatus";
 import { IOrder } from "interfaces";

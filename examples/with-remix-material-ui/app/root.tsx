@@ -18,7 +18,7 @@ import routerProvider, {
 } from "@refinedev/remix-router";
 
 import { withEmotionCache } from "@emotion/react";
-import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
+import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 import dataProvider from "@refinedev/simple-rest";
 import { authProvider } from "~/authProvider";
 import { ClientStyleContext } from "~/contexts/ClientStyleContext";

@@ -6,7 +6,8 @@ import {
     Priority,
     useRegisterActions,
 } from "@refinedev/kbar";
-import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
+import CheckOutlined from "@mui/icons-material/CheckOutlined";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import { IOrder } from "interfaces";
 

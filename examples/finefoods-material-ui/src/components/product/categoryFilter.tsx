@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { LoadingButton } from "@mui/lab";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
     CrudFilters,
     getDefaultFilter,
     useList,
     useTranslate,
 } from "@refinedev/core";
-import { Stack, Grid } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 import { ICategory } from "interfaces";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDataGrid, List, EditButton, DeleteButton } from "@refinedev/mui";
 
-import { Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 interface IPost {

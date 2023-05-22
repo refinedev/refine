@@ -36,6 +36,26 @@
                 "argsIgnorePattern": "^_",
                 "varsIgnorePattern": "^_"
             }
+        ],
+        "no-restricted-imports": [
+            "error",
+            {
+                "paths": [
+                    {
+                        "name": "@mui/material",
+                        "message": "Do not use named import from '@mui/material'. Use @mui/material/<component-name> instead."
+                    },
+                    {
+                        "name": "@mui/icons-material",
+                        "message": "Do not use named import from '@mui/material'. Use @mui/icons-material/<component-name> instead."
+                    },
+                    {
+                        "name": "@mui/lab",
+                        "message": "Do not use named import from '@mui/lab'. Use @mui/lab/<component-name> instead."
+                    }
+                ],
+                "patterns": ["@mui/material/*/*/*"]
+            }
         ]
     },
     "settings": {

@@ -9,15 +9,14 @@ import {
 
 import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import {
-    Typography,
-    Tooltip,
-    Avatar,
-    Rating,
-    Stack,
-    Button,
-} from "@mui/material";
-import { Check, Clear } from "@mui/icons-material";
+import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
+import Avatar from "@mui/material/Avatar";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Check from "@mui/icons-material/Check";
+import Clear from "@mui/icons-material/Clear";
 
 import { IReview } from "interfaces";
 

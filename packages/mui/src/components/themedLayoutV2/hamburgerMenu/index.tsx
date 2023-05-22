@@ -3,7 +3,7 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/icons-material/Menu";
 
-import type { ExtendButtonBase } from "@mui/material";
+import type { ExtendButtonBase } from "@mui/material/ButtonBase";
 import type { IconButtonTypeMap } from "@mui/material/IconButton";
 
 import { useSiderVisible } from "@hooks";

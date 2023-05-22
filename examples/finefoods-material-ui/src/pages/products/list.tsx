@@ -8,15 +8,13 @@ import {
 } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 import { CreateButton } from "@refinedev/mui";
-import {
-    Grid,
-    Paper,
-    Typography,
-    InputBase,
-    IconButton,
-    Stack,
-    Pagination,
-} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Pagination from "@mui/material/Pagination";
 import SearchIcon from "@mui/icons-material/Search";
 
 import {

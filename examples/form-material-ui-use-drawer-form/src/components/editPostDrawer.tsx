@@ -1,15 +1,13 @@
 import { HttpError } from "@refinedev/core";
 import { Edit, useAutocomplete } from "@refinedev/mui";
-import {
-    Autocomplete,
-    Box,
-    Drawer,
-    IconButton,
-    TextField,
-} from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { CloseOutlined } from "@mui/icons-material";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import { IPost } from "interfaces";
 

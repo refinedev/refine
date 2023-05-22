@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Avatar, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
 
 type CourierInfoBoxProps = {
     text: string;

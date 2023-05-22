@@ -1,18 +1,16 @@
 import { FC, useMemo } from "react";
 import { useModal } from "@refinedev/core";
 import { RefineThemes } from "@refinedev/mui";
-import {
-    Card,
-    CardContent,
-    Chip,
-    Dialog,
-    DialogTitle,
-    Divider,
-    Fab,
-    Stack,
-    Theme,
-    Typography,
-} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import Divider from "@mui/material/Divider";
+import Fab from "@mui/material/Fab";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import type { Theme } from "@mui/material/styles";
 
 type ThemeName = keyof typeof RefineThemes;
 
