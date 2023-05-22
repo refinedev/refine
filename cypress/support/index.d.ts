@@ -20,6 +20,10 @@ interface IGetChakraUIFormItemErrorParams {
 }
 
 interface IGetMaterialUIFormItemErrorParams {
+      id: string;
+}
+
+interface IGetMantineFormItemErrorParams {
     id: string;
 }
 
@@ -64,9 +68,16 @@ declare namespace Cypress {
         getChakraUIFormItemError(
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
-
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
         getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
+        getChakraUIPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
+
+        getMantineNotification(): Chainable<JQuery<HTMLElement>>;
+        getMantinePopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
+        getMantineFormItemError(
+            params: IGetMantineFormItemErrorParams,
+        ): Chainable<JQuery<HTMLElement>>;
+        getMantineLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
 
         getMaterialUINotification(): Chainable<JQuery<HTMLElement>>;
         getMaterialUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;

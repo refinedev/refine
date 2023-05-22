@@ -80,12 +80,14 @@ export const PostEdit: React.FC = () => {
                     allowStepSelect={currentStep > 0}
                 >
                     <TextInput
+                        id="title"
                         mt="md"
                         label="Title"
                         placeholder="Title"
                         {...getInputProps("title")}
                     />
                     <TextInput
+                        id="slug"
                         mt="md"
                         label="Slug"
                         placeholder="Slug"
@@ -99,6 +101,7 @@ export const PostEdit: React.FC = () => {
                     allowStepSelect={currentStep > 1}
                 >
                     <Select
+                        id="status"
                         mt="md"
                         label="Status"
                         placeholder="Pick one"
@@ -111,6 +114,7 @@ export const PostEdit: React.FC = () => {
                     />
 
                     <DatePicker
+                        id="createdAt"
                         mt="md"
                         label="CreatedAt"
                         placeholder="CreatedAt"
@@ -129,6 +133,7 @@ export const PostEdit: React.FC = () => {
                         Content
                     </Text>
                     <MDEditor
+                        id="content"
                         data-color-mode="light"
                         {...getInputProps("content")}
                     />

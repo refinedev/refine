@@ -22,7 +22,7 @@ export const getChakraUIFormItemError = ({
     return cy.get(`#${id}`).siblings(".chakra-form__error-message");
 };
 
-export const getChakraUIDeletePopoverButton = () => {
+export const getChakraUIPopoverDeleteButton = () => {
     return cy.get(".chakra-popover__body button").contains(/delete/gi);
 };
 

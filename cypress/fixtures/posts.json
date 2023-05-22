@@ -7,7 +7,8 @@
       "id": 1
     },
     "status": "published",
-    "createdAt": "2022-06-12T11:03:09.829Z"
+    "createdAt": "2022-06-12T11:03:09.829Z",
+    "slug": "ut-voluptatem-est"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
       "id": 2
     },
     "status": "published",
-    "createdAt": "2021-10-11T08:03:00.155Z"
+    "createdAt": "2021-10-11T08:03:00.155Z",
+    "slug": "sequi-quod-repellendus"
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
       "id": 1
     },
     "status": "rejected",
-    "createdAt": "2022-04-16T16:34:03.319Z"
+    "createdAt": "2022-04-16T16:34:03.319Z",
+    "slug": "ad-enim-blanditiis"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
       "id": 2
     },
     "status": "published",
-    "createdAt": "2021-05-20T02:19:56.513Z"
+    "createdAt": "2021-05-20T02:19:56.513Z",
+    "slug": "dolores-modi-natus"
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
       "id": 3
     },
     "status": "rejected",
-    "createdAt": "2022-01-09T07:01:11.195Z"
+    "createdAt": "2022-01-09T07:01:11.195Z",
+    "slug": "repellendus-aspernatur-porro"
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
       "id": 4
     },
     "status": "published",
-    "createdAt": "2023-02-01T15:32:15.719Z"
+    "createdAt": "2023-02-01T15:32:15.719Z",
+    "slug": "natus-ut-distinctio"
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
       "id": 5
     },
     "status": "rejected",
-    "createdAt": "2022-02-27T09:01:32.679Z"
+    "createdAt": "2022-02-27T09:01:32.679Z",
+    "slug": "vel-labore-sint"
   },
   {
     "id": 8,
@@ -77,7 +84,8 @@
       "id": 6
     },
     "status": "rejected",
-    "createdAt": "2022-11-07T12:30:27.331Z"
+    "createdAt": "2022-11-07T12:30:27.331Z",
+    "slug": "minus-nulla-molestias"
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
       "id": 7
     },
     "status": "draft",
-    "createdAt": "2021-12-18T05:22:45.857Z"
+    "createdAt": "2021-12-18T05:22:45.857Z",
+    "slug": "quibusdam-ut-natus"
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
       "id": 8
     },
     "status": "rejected",
-    "createdAt": "2021-11-21T05:29:05.942Z"
+    "createdAt": "2021-11-21T05:29:05.942Z",
+    "slug": "nam-voluptas-ipsum"
   },
   {
     "id": 11,
@@ -107,7 +117,8 @@
       "id": 9
     },
     "status": "rejected",
-    "createdAt": "2023-05-05T19:52:59.535Z"
+    "createdAt": "2023-05-05T19:52:59.535Z",
+    "slug": "nam-placeat-expedita"
   },
   {
     "id": 12,
@@ -117,7 +128,8 @@
       "id": 4
     },
     "status": "rejected",
-    "createdAt": "2021-06-26T00:07:45.503Z"
+    "createdAt": "2021-06-26T00:07:45.503Z",
+    "slug": "rerum-voluptatem-sunt"
   },
   {
     "id": 13,
@@ -127,7 +139,8 @@
       "id": 2
     },
     "status": "draft",
-    "createdAt": "2021-10-02T13:20:44.138Z"
+    "createdAt": "2021-10-02T13:20:44.138Z",
+    "slug": "in-sequi-recusandae"
   },
   {
     "id": 14,
@@ -137,7 +150,8 @@
       "id": 3
     },
     "status": "draft",
-    "createdAt": "2021-06-06T15:12:04.543Z"
+    "createdAt": "2021-06-06T15:12:04.543Z",
+    "slug": "impedit-maiores-consequatur"
   },
   {
     "id": 15,
@@ -147,6 +161,7 @@
       "id": 9
     },
     "status": "draft",
-    "createdAt": "2022-04-24T18:07:20.293Z"
+    "createdAt": "2022-04-24T18:07:20.293Z",
+    "slug": "deserunt-ut-enim"
   }
 ]
