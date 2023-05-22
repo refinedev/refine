@@ -1,6 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { TestWrapper, act } from "@test";
+import {
+    TestWrapper,
+    act,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useForgotPassword } from ".";
 
@@ -47,6 +52,100 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
+        });
+    });
+
+    it("succeed and redirect forgot password", async () => {
+        const mockFn = jest.fn();
+        const legacyRouterProvider = {
+            ...mockLegacyRouterProvider(),
+            useHistory: () => ({
+                push: mockFn,
+                replace: mockFn,
+            }),
+        };
+        const { result } = renderHook(
+            () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyRouterProvider,
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        forgotPassword: ({ email }) => {
+                            if (email) {
+                                return Promise.resolve("/redirect-path");
+                            }
+                            return Promise.reject(new Error("Missing email"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({ email: "test@test.com" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+            expect(result.current.data).toBe("/redirect-path");
+            expect(mockFn).toBeCalledWith("/redirect-path");
+        });
+    });
+
+    it("succeed and redirect forgot password with routerProvider", async () => {
+        const mockFn = jest.fn();
+        const { result } = renderHook(
+            () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            go: () => mockFn,
+                        },
+                    }),
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        forgotPassword: ({ email }) => {
+                            if (email) {
+                                return Promise.resolve("/redirect-path");
+                            }
+                            return Promise.reject(new Error("Missing email"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({ email: "test@test.com" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+            expect(result.current.data).toBe("/redirect-path");
+            expect(mockFn).toBeCalledWith({
+                to: "/redirect-path",
+                type: "replace",
+            });
         });
     });
 
@@ -131,6 +230,79 @@ describe("useForgotPassword Hook", () => {
 
         await waitFor(() => {
             expect(result.current.data?.success).toBeTruthy();
+        });
+    });
+
+    it("succeed and redirect forgot password", async () => {
+        const { result } = renderHook(() => useForgotPassword(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    ...mockAuthProvider,
+                    forgotPassword: (params: any) => {
+                        if (!params?.["email"]) {
+                            return Promise.resolve({ success: false });
+                        }
+                        return Promise.resolve({
+                            success: true,
+                            redirectTo: "/rediect-path",
+                        });
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({ email: "test@test.com" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.data?.success).toBeTruthy();
+            expect(result.current.data?.redirectTo).toBe("/rediect-path");
+        });
+    });
+
+    it("succeed and redirect forgot password with legacyRouterProvider", async () => {
+        const mockFn = jest.fn();
+        const legacyRouterProvider = {
+            ...mockLegacyRouterProvider(),
+            useHistory: () => ({
+                push: mockFn,
+                replace: mockFn,
+            }),
+        };
+        const { result } = renderHook(() => useForgotPassword(), {
+            wrapper: TestWrapper({
+                legacyRouterProvider,
+                authProvider: {
+                    ...mockAuthProvider,
+                    forgotPassword: (params: any) => {
+                        if (!params?.["email"]) {
+                            return Promise.resolve({ success: false });
+                        }
+                        return Promise.resolve({
+                            success: true,
+                            redirectTo: "/rediect-path",
+                        });
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({ email: "test@test.com" });
+        });
+
+        await waitFor(() => {
+            expect(result.current.data?.success).toBeTruthy();
+            expect(result.current.data?.redirectTo).toBe("/rediect-path");
         });
     });
 

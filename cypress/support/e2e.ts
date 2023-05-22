@@ -10,11 +10,17 @@ import {
     getAntdPopoverDeleteButton,
 } from "./commands/antd";
 import {
-    getChakraUIDeletePopoverButton,
+    getChakraUIPopoverDeleteButton,
     getChakraUIFormItemError,
     getChakraUILoadingOverlay,
     getChakraUINotification,
 } from "./commands/chakra-ui";
+import {
+    getMantineFormItemError,
+    getMantineLoadingOverlay,
+    getMantineNotification,
+    getMantinePopoverDeleteButton,
+} from "./commands/mantine";
 import {
     getCreateButton,
     getDeleteButton,
@@ -23,10 +29,23 @@ import {
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
 
+// add commands to the Cypress chain
+import "./commands/intercepts";
+import {
+    getMaterialUIDeletePopoverButton,
+    getMaterialUIFormItemError,
+    getMaterialUINotifications,
+} from "./commands/material-ui";
+
+Cypress.Keyboard.defaults({
+    keystrokeDelay: 0,
+});
+
 Cypress.Commands.add("resourceList", list);
 Cypress.Commands.add("resourceCreate", create);
 Cypress.Commands.add("resourceEdit", edit);
 Cypress.Commands.add("resourceShow", show);
+
 Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
 Cypress.Commands.add("getDeleteButton", getDeleteButton);
@@ -41,7 +60,22 @@ Cypress.Commands.add("getAntdPopoverDeleteButton", getAntdPopoverDeleteButton);
 Cypress.Commands.add("getChakraUINotification", getChakraUINotification);
 Cypress.Commands.add("getChakraUIFormItemError", getChakraUIFormItemError);
 Cypress.Commands.add(
-    "getChakraUIDeletePopoverButton",
-    getChakraUIDeletePopoverButton,
+    "getChakraUIPopoverDeleteButton",
+    getChakraUIPopoverDeleteButton,
 );
 Cypress.Commands.add("getChakraUILoadingOverlay", getChakraUILoadingOverlay);
+
+Cypress.Commands.add("getMaterialUINotification", getMaterialUINotifications);
+Cypress.Commands.add(
+    "getMaterialUIDeletePopoverButton",
+    getMaterialUIDeletePopoverButton,
+);
+Cypress.Commands.add("getMaterialUIFormItemError", getMaterialUIFormItemError);
+
+Cypress.Commands.add("getMantineNotification", getMantineNotification);
+Cypress.Commands.add(
+    "getMantinePopoverDeleteButton",
+    getMantinePopoverDeleteButton,
+);
+Cypress.Commands.add("getMantineFormItemError", getMantineFormItemError);
+Cypress.Commands.add("getMantineLoadingOverlay", getMantineLoadingOverlay);

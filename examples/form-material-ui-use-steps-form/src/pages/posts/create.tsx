@@ -48,6 +48,7 @@ export const PostCreate: React.FC = () => {
             case 0:
                 return (
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -69,6 +70,7 @@ export const PostCreate: React.FC = () => {
                             rules={{ required: "This field is required" }}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="status"
                                     options={["published", "draft", "rejected"]}
                                     {...field}
                                     onChange={(_, value) => {
@@ -94,6 +96,7 @@ export const PostCreate: React.FC = () => {
                             rules={{ required: "This field is required" }}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="category"
                                     {...autocompleteProps}
                                     {...field}
                                     onChange={(_, value) => {
@@ -135,6 +138,7 @@ export const PostCreate: React.FC = () => {
                 return (
                     <>
                         <TextField
+                            id="slug"
                             {...register("slug", {
                                 required: "This field is required",
                             })}
@@ -145,6 +149,7 @@ export const PostCreate: React.FC = () => {
                             label="Slug"
                         />
                         <TextField
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}

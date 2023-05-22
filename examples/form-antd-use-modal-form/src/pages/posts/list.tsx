@@ -10,7 +10,16 @@ import {
     DeleteButton,
 } from "@refinedev/antd";
 
-import { Table, Form, Select, Input, Modal, Space, Typography } from "antd";
+import {
+    Table,
+    Form,
+    Select,
+    Input,
+    Modal,
+    Space,
+    Typography,
+    Spin,
+} from "antd";
 
 import { IPost } from "interfaces";
 
@@ -24,6 +33,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         modalProps: createModalProps,
         formProps: createFormProps,
         show: createModalShow,
+        formLoading: createFormLoading,
     } = useModalForm<IPost>({
         action: "create",
     });
@@ -33,6 +43,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         modalProps: editModalProps,
         formProps: editFormProps,
         show: editModalShow,
+        formLoading: editFormLoading,
     } = useModalForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
@@ -90,86 +101,90 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 </Table>
             </List>
             <Modal {...createModalProps}>
-                <Form {...createFormProps} layout="vertical">
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Status"
-                        name="status"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select
-                            options={[
+                <Spin spinning={createFormLoading}>
+                    <Form {...createFormProps} layout="vertical">
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
                                 {
-                                    label: "Published",
-                                    value: "published",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                                {
-                                    label: "Rejected",
-                                    value: "rejected",
+                                    required: true,
                                 },
                             ]}
-                        />
-                    </Form.Item>
-                </Form>
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label="Status"
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+                    </Form>
+                </Spin>
             </Modal>
             <Modal {...editModalProps}>
-                <Form {...editFormProps} layout="vertical">
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Status"
-                        name="status"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select
-                            options={[
+                <Spin spinning={editFormLoading}>
+                    <Form {...editFormProps} layout="vertical">
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
                                 {
-                                    label: "Published",
-                                    value: "published",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                                {
-                                    label: "Rejected",
-                                    value: "rejected",
+                                    required: true,
                                 },
                             ]}
-                        />
-                    </Form.Item>
-                </Form>
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label="Status"
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+                    </Form>
+                </Spin>
             </Modal>
             <Modal
                 visible={visibleShowModal}

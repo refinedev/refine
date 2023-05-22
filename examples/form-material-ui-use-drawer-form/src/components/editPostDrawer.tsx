@@ -55,6 +55,7 @@ export const EditPostDrawer: React.FC<
                     sx={{ display: "flex", flexDirection: "column" }}
                 >
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -74,6 +75,7 @@ export const EditPostDrawer: React.FC<
                         defaultValue={null as any}
                         render={({ field }) => (
                             <Autocomplete
+                                id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
                                 onChange={(_, value) => {
@@ -101,6 +103,7 @@ export const EditPostDrawer: React.FC<
                         defaultValue={null as any}
                         render={({ field }) => (
                             <Autocomplete
+                                id="category"
                                 {...autocompleteProps}
                                 {...field}
                                 onChange={(_, value) => {
@@ -134,6 +137,7 @@ export const EditPostDrawer: React.FC<
                         )}
                     />
                     <TextField
+                        id="content"
                         {...register("content", {
                             required: "This field is required",
                         })}

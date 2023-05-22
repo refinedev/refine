@@ -11,12 +11,15 @@ import {
     Pagination,
     Prettify,
 } from "@refinedev/core";
-import {
+
+import type {
     DataGridProps,
     GridFilterModel,
     GridSortModel,
 } from "@mui/x-data-grid";
-import { useTheme, darken } from "@mui/material";
+
+import { useTheme, darken } from "@mui/material/styles";
+
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 

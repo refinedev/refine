@@ -1,6 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, TestWrapper, mockLegacyRouterProvider } from "@test";
+import {
+    act,
+    TestWrapper,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useOnError } from ".";
 
@@ -137,6 +142,82 @@ describe("useOnError Hook", () => {
 
         await act(async () => {
             expect(mockFn).toBeCalledWith("/login");
+        });
+    });
+
+    it("not logout and redirect to given path if check error rejected with legacyRouterProvider", async () => {
+        const { result } = renderHook(() => useOnError(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve({ success: true }),
+                    check: () => Promise.resolve({ authenticated: true }),
+                    onError: () =>
+                        Promise.resolve({
+                            error: new Error("rejected"),
+                            redirectTo: "/login",
+                            logout: false,
+                        }),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve({ success: true }),
+                },
+                legacyRouterProvider: mockRouterProvider,
+            }),
+        });
+
+        const { mutate: checkError } = result.current!;
+
+        await act(async () => {
+            await checkError({});
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        await act(async () => {
+            expect(mockFn).toBeCalledWith("/login");
+        });
+    });
+
+    it("not logout and redirect to given path if check error rejected", async () => {
+        const mockGo = jest.fn();
+        const { result } = renderHook(() => useOnError(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve({ success: true }),
+                    check: () => Promise.resolve({ authenticated: true }),
+                    onError: () =>
+                        Promise.resolve({
+                            error: new Error("rejected"),
+                            redirectTo: "/login",
+                            logout: false,
+                        }),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve({ success: true }),
+                },
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGo,
+                    },
+                }),
+            }),
+        });
+
+        const { mutate: checkError } = result.current!;
+
+        await act(async () => {
+            await checkError({});
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        await act(async () => {
+            expect(mockGo).toBeCalledWith({
+                to: "/login",
+                type: "replace",
+            });
         });
     });
 });

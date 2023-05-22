@@ -25,17 +25,6 @@ describe("form-antd-use-drawer-form", () => {
         return cy.get(".ant-drawer-content").should("not.be.visible");
     };
 
-    const findFirstRecordFromTable = () => {
-        return cy
-            .get(".ant-table-row-level-0")
-            .first()
-            .find("td")
-            .last()
-            .within(() => {
-                cy.get(".refine-edit-button").click();
-            });
-    };
-
     const assertSuccessResponse = (response: any) => {
         const body = response?.body;
 
@@ -49,10 +38,18 @@ describe("form-antd-use-drawer-form", () => {
     };
 
     beforeEach(() => {
-        cy.visit(BASE_URL);
+        cy.interceptGETPost();
+        cy.interceptPOSTPost();
+        cy.interceptPATCHPost();
+        cy.interceptDELETEPost();
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.visit(BASE_URL);
     });
 
     it("should open and close drawer", () => {
@@ -69,27 +66,25 @@ describe("form-antd-use-drawer-form", () => {
     });
 
     it("should create a new record", () => {
-        cy.intercept("POST", "/posts").as("createPost");
-
         openDrawer();
         cy.get("#title").type(mockPost.title);
         cy.setAntdSelect({ id: "status", value: mockPost.status });
         cy.getSaveButton().eq(0).click();
 
-        cy.wait("@createPost").then((interception) => {
+        cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
     });
 
     it("should edit a record", () => {
-        cy.intercept("GET", "/posts/*").as("getPost");
-        cy.intercept("PATCH", "/posts/*").as("patchPost");
+        cy.getEditButton().first().click();
 
-        findFirstRecordFromTable();
-
+        // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.wait(500);
+        isDrawerVisible();
+        cy.getSaveButton().should("not.be.disabled");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get("#title.ant-input").eq(1).clear();
         cy.get("#title.ant-input").eq(1).type(mockPost.title);

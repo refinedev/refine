@@ -8,14 +8,16 @@ import {
     useResource,
 } from "@refinedev/core";
 
-import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
+
 import { ListProps } from "../types";
-import {
-    RefineButtonClassNames,
-    RefinePageHeaderClassNames,
-} from "@refinedev/ui-types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
  * `<List>` provides us a layout for displaying the page.
