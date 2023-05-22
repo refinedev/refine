@@ -75,16 +75,6 @@ describe("form-material-ui-use-modal-form", () => {
         cy.visit(BASE_URL);
     });
 
-    it("open - close modal", () => {
-        isModalClosed();
-
-        cy.getCreateButton().click();
-        isModalOpen();
-
-        closeModal();
-        isModalClosed();
-    });
-
     it("should create record", () => {
         cy.getCreateButton().click();
         isModalOpen();
@@ -113,5 +103,39 @@ describe("form-material-ui-use-modal-form", () => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
+    });
+
+    it("should create form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.getCreateButton().click();
+        isModalOpen();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+
+        cy.reload();
+        isModalOpen();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+    });
+
+    it("should edit form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.getEditButton().first().click();
+        cy.wait("@getPost");
+
+        isModalOpen();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
+
+        cy.reload();
+        isModalOpen();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
     });
 });

@@ -30,6 +30,7 @@ import { FilterElementProps, ICategory, IPost } from "../../interfaces";
 export const PostList: React.FC = () => {
     const createModalFormProps = useModalForm<IPost>({
         refineCoreProps: { action: "create" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showCreateModal },
@@ -37,6 +38,7 @@ export const PostList: React.FC = () => {
 
     const editModalFormProps = useModalForm<IPost>({
         refineCoreProps: { action: "edit" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showEditModal },

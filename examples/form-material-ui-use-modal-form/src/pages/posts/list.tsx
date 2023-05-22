@@ -25,6 +25,7 @@ export const PostList: React.FC = () => {
         IPost & { category: ICategory }
     >({
         refineCoreProps: { action: "create" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showCreateModal },
@@ -36,6 +37,7 @@ export const PostList: React.FC = () => {
         IPost & { category: ICategory }
     >({
         refineCoreProps: { action: "edit" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showEditModal },
