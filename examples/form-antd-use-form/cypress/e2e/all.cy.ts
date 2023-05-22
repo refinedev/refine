@@ -141,8 +141,10 @@ describe("form-antd-use-form", () => {
         cy.getSaveButton().should("not.be.disabled");
         cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.get("#title").should("not.have.value", "").clear();
-        cy.get("#content textarea").should("not.have.value", "").clear();
+        cy.get("#title").should("not.have.value", "");
+        cy.get("#title").clear();
+        cy.get("#content textarea").should("not.have.value", "");
+        cy.get("#content textarea").clear();
 
         cy.getAntdFormItemError({ id: "title" }).contains(
             /please enter title/gi,
