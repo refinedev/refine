@@ -4,7 +4,7 @@ import { useAutocomplete } from "@refinedev/mui";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
-import type { AutocompleteProps } from "@mui/material/AutocompleteProps";
+import type { AutocompleteProps } from "@mui/material/Autocomplete";
 
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
