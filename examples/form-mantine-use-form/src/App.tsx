@@ -39,6 +39,9 @@ const App: React.FC = () => {
                                 list: "/posts",
                                 create: "/posts/create",
                                 edit: "/posts/edit/:id",
+                                meta: {
+                                    canDelete: true,
+                                },
                             },
                         ]}
                         options={{

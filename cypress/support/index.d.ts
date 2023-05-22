@@ -19,6 +19,10 @@ interface IGetChakraUIFormItemErrorParams {
     type?: "text" | "select";
 }
 
+interface IGetMantineFormItemErrorParams {
+    id: string;
+}
+
 interface IResourceCreateParams {
     ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
 }
@@ -60,16 +64,22 @@ declare namespace Cypress {
         getChakraUIFormItemError(
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
-
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
         getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
+        getChakraUIPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
+
+        getMantineNotification(): Chainable<JQuery<HTMLElement>>;
+        getMantinePopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
+        getMantineFormItemError(
+            params: IGetMantineFormItemErrorParams,
+        ): Chainable<JQuery<HTMLElement>>;
+        getMantineLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
 
         interceptGETPost(): Chainable<null>;
         interceptGETPosts(): Chainable<null>;
         interceptPOSTPost(): Chainable<null>;
         interceptPATCHPost(): Chainable<null>;
         interceptDELETEPost(): Chainable<null>;
-
         interceptGETCategories(): Chainable<null>;
     }
 }
