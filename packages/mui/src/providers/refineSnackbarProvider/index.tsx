@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { SnackbarProvider } from "notistack";
 
 export const RefineSnackbarProvider = styled(SnackbarProvider)`

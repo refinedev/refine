@@ -6,21 +6,23 @@ import {
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { FormProvider } from "react-hook-form";
-import {
-    Button,
-    BoxProps,
-    Box,
-    Checkbox,
-    Container,
-    Card,
-    CardContent,
-    CardContentProps,
-    FormControlLabel,
-    TextField,
-    Typography,
-    Divider,
-    Link as MuiLink,
-} from "@mui/material";
+
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Divider from "@mui/material/Divider";
+import MuiLink from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+
+import type { BoxProps } from "@mui/material/Box";
+import type { CardContentProps } from "@mui/material/CardContent";
+
 import {
     BaseRecord,
     HttpError,
@@ -34,7 +36,6 @@ import { layoutStyles, titleStyles } from "../styles";
 
 import { FormPropsType } from "../../index";
 import { ThemedTitle } from "@components";
-import { Stack } from "@mui/system";
 
 type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 

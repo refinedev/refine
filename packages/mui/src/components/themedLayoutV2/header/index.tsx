@@ -4,9 +4,15 @@ import {
     useActiveAuthProvider,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
+
+import AppBar from "@mui/material/AppBar";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
 import { RefineThemedLayoutV2HeaderProps } from "../types";
+
 import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({

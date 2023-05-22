@@ -12,9 +12,15 @@ import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
-import { DeleteOutline } from "@mui/icons-material";
+
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+
+import DeleteOutline from "@mui/icons-material/DeleteOutline";
 
 import { DeleteButtonProps } from "../types";
 

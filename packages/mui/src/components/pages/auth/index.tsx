@@ -1,6 +1,9 @@
 import React from "react";
-import { BoxProps, CardProps } from "@mui/material";
+import type { BoxProps } from "@mui/material/Box";
+import type { CardProps } from "@mui/material/Card";
+
 import { AuthPageProps, RegisterFormTypes } from "@refinedev/core";
+
 import { UseFormProps } from "@refinedev/react-hook-form";
 
 import {

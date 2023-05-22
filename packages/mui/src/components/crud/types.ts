@@ -6,13 +6,13 @@ import {
     ListButtonProps,
     SaveButtonProps,
 } from "../buttons/types";
-import {
-    BoxProps,
-    CardActionsProps,
-    CardContentProps,
-    CardHeaderProps,
-    CardProps,
-} from "@mui/material";
+
+import type { BoxProps } from "@mui/material/Box";
+import type { CardActionsProps } from "@mui/material/CardActions";
+import type { CardContentProps } from "@mui/material/CardContent";
+import type { CardHeaderProps } from "@mui/material/CardHeader";
+import type { CardProps } from "@mui/material/Card";
+
 import {
     RefineCrudCreateProps,
     RefineCrudEditProps,

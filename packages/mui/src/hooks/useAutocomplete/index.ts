@@ -5,7 +5,9 @@ import {
     UseSelectReturnType,
     BaseRecord,
 } from "@refinedev/core";
-import { AutocompleteProps } from "@mui/material/Autocomplete";
+
+import type { AutocompleteProps } from "@mui/material/Autocomplete";
+
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
 
