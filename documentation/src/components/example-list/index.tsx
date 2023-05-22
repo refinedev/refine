@@ -9,7 +9,7 @@ type ExampleDoc = Record<
     string
 > & { tags: string[] };
 
-const { examples, tags: allTags } = data as {
+const { examples, tags } = data as {
     examples: ExampleDoc[];
     tags: {
         name: string;
@@ -17,65 +17,56 @@ const { examples, tags: allTags } = data as {
     }[];
 };
 
-const staticTags = [
-    "headless",
+const priorityTags = [
     "antd",
     "mui",
-    "mantine",
     "chakra-ui",
+    "mantine",
+    "headless",
+    "auth-provider",
+    "audit-log-provider",
     "data-provider",
     "live-provider",
-    "auth-provider",
-    "router-provider",
+    "notification-provider",
     "access-control",
-    "i18n",
-    "form",
+    "next.js",
+    "remix",
     "table",
-    "refine-hooks",
-    "customization",
-    "upload",
-    "tutorial",
-    "vite",
-    "testing",
+    "react-table",
+    "form",
+    "react-hook-form",
 ];
 
-const visibleTags = staticTags.map((tag) => ({
-    name: tag,
-    color: allTags.find((aTag) => aTag.name === tag)?.color,
-}));
+const sortedTags = tags.sort((a, b) => {
+    const aIndex = priorityTags.indexOf(a.name);
+    const bIndex = priorityTags.indexOf(b.name);
+
+    if (aIndex === -1) {
+        return bIndex === -1 ? 0 : 1;
+    } else {
+        return bIndex === -1 ? -1 : aIndex - bIndex;
+    }
+});
 
 const PREDEFINED_COLORS = {
-    react: "#61dafb",
-    vite: "#646cff",
-    "react-router": "#ca4245",
-    rest: "#f1e05a",
-    graphql: "#e10098",
     antd: "#fa8c16",
-    "material-ui": "#0081cb",
-    tailwind: "#38b2ac",
+    mui: "#0081cb",
     mantine: "#0ea5e9",
     "chakra-ui": "#319795",
-    auth0: "#eb5424",
-    appwrite: "#f24c69",
-    supabase: "#00c7b7",
-    firebase: "#ffca28",
-    strapi: "#2e7eea",
-    medusa: "#5b21b6",
 };
 
 const PREDEFINED_NAMES = {
     antd: "Ant Design",
     "material-ui": "Material UI",
-    tailwind: "Tailwind CSS",
-    rest: "REST",
-    graphql: "GraphQL",
     "chakra-ui": "Chakra UI",
+    csv: "CSV Import / Export",
+    javascript: "JavaScript",
 };
 
 const ExampleList: React.FC = () => {
     const [query, setQuery] = React.useState("");
     const [filters, setFilters] = React.useState<Set<string>>(
-        new Set(visibleTags.map(({ name }) => name)),
+        new Set(tags.map(({ name }) => name)),
     );
 
     const { search } = useLocation();
@@ -89,7 +80,7 @@ const ExampleList: React.FC = () => {
             // validate tags by checking `staticTags`
             const validTags = tags
                 .split(",")
-                .filter((tag) => staticTags.includes(tag));
+                .filter((tag) => tags.includes(tag));
             setFilters(new Set(validTags));
         }
     }, []);
@@ -103,7 +94,7 @@ const ExampleList: React.FC = () => {
             .toLowerCase()
             .includes((query ?? "").toLowerCase());
         // if all tags are selected, do not filter
-        if (filters.size === visibleTags.length) {
+        if (filters.size === tags.length) {
             return queryMatch;
         }
 
@@ -138,7 +129,7 @@ const ExampleList: React.FC = () => {
     const updateURLParams = (nextFilters?: Set<string>) => {
         if (
             !nextFilters ||
-            nextFilters.size === visibleTags.length ||
+            nextFilters.size === tags.length ||
             nextFilters.size === 0
         ) {
             replace({
@@ -154,7 +145,7 @@ const ExampleList: React.FC = () => {
     const updateFilters = (tag: string) => {
         const newFilters = new Set(filters);
         // if all tags are selected, unselect all and select the clicked tag
-        if (filters.size === visibleTags.length) {
+        if (filters.size === tags.length) {
             newFilters.clear();
             newFilters.add(tag);
         } else {
@@ -167,7 +158,7 @@ const ExampleList: React.FC = () => {
 
         if (newFilters.size === 0) {
             updateURLParams();
-            setFilters(new Set(visibleTags.map(({ name }) => name)));
+            setFilters(new Set(tags.map(({ name }) => name)));
         } else {
             updateURLParams(newFilters);
             setFilters(newFilters);
@@ -184,9 +175,9 @@ const ExampleList: React.FC = () => {
                     </span>
                 </div>
                 <div className="flex justify-start gap-2 flex-wrap">
-                    {visibleTags.map(({ name, color }) => {
+                    {sortedTags.sort().map(({ name, color }) => {
                         const isActive = filters.has(name);
-                        const allSelected = filters.size === visibleTags.length;
+                        const allSelected = filters.size === tags.length;
                         return (
                             <button
                                 key={name}
@@ -253,7 +244,7 @@ const ExampleList: React.FC = () => {
                                 style={{
                                     backgroundColor:
                                         getTagColor(tag) ??
-                                        allTags.find(({ name }) => name === tag)
+                                        tags.find(({ name }) => name === tag)
                                             ?.color,
                                 }}
                             />

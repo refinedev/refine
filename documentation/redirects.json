@@ -489,10 +489,6 @@
       "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
-      "from": "/docs/examples/customTheme/",
-      "to": "/docs/api-reference/antd/theming"
-    },
-    {
       "from": "/docs/ui-frameworks/antd/customization/antd-custom-theme/",
       "to": "/docs/api-reference/antd/theming"
     },
@@ -812,6 +808,18 @@
     {
       "from": "/docs/api-reference/core/hooks/auth/useUpdatePassword",
       "to": "/docs/api-reference/core/hooks/authentication/useUpdatePassword"
+    },
+    {
+      "from": "/docs/examples/customization/customTheme",
+      "to": "/docs/examples/customization/theme/customThemeAntd"
+    },
+    {
+      "from": "/docs/examples/customTheme",
+      "to": "/docs/examples/customization/theme/customThemeAntd"
+    },
+    {
+      "from": "/docs/examples/import-export",
+      "to": "/docs/examples/import-export/antd"
     }
   ]
 }

@@ -72,7 +72,7 @@ Then, we need to add the `<HeadlessInferencer/>` component which is used by pass
 
 :::info
 
-The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/understanding-resources/index. For now, you can assume that the resource is a collection of data on your API used in the app.
+The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/understanding-resources/index). For now, you can assume that the resource is a collection of data on your API used in the app.
 
 :::
 

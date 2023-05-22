@@ -7,13 +7,13 @@ sidebar_label: i18n Provider
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**refine** can work with any i18n framework, but an `i18nProvider` must be created, based on the chosen library.
+Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. **refine** can work with any i18n framework, but needs an `i18nProvider` to be created based on the chosen library.
 
-The default language of **refine** is currently English. If you want to use other languages, follow the instructions in the next sections. If your application is in English, you don't need to create an `i18nProvider`.
+This document will help you if you want to use other languages, but if your application uses English, the default language of **refine**, you can skip it.
 
 ## Usage
 
-If you want to add i18n support in the app, **refine** expects the `i18nProvider` type as follows.
+First of all, **refine** expects the `i18nProvider` type as follows:
 
 ```ts
 import { I18nProvider } from "@refinedev/core";
@@ -25,7 +25,7 @@ const i18nProvider: I18nProvider = {
 };
 ```
 
-After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
+After creating a `i18nProvider`, you can pass it to the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -45,7 +45,7 @@ const App: React.FC = () => {
 };
 ```
 
-`i18nProvider` allows us to put translation features to the followings hooks:
+This will allow us to put translation features to the followings hooks:
 
 -   [`useTranslate`][use-translate] shows translation between different languages.
 -   [`useSetLocale`][use-setlocale] changes locale at runtime.
@@ -53,22 +53,25 @@ const App: React.FC = () => {
 
 ## Example
 
+Let's add multi-language support to our application using the `react-i18next` framework. When we are done, our application will support both German and English.
+
+> For more information, refer to the [react-i18next documentation&#8594](https://react.i18next.com/getting-started)
+
 :::tip
-We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects. It configures the project according to your needs including the i18n provider.
+We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
+
+If you choose to have
 :::
+
+---
 
 :::caution
-This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][i18nnextjs]
+The following parts of the document are for SPA react apps, for Next.js refer to [i18n Nextjs example&#8594][i18nnextjs]
 :::
-
-Let's add multi-language support using the [`react-i18next`][react-i18next] framework. At the end of our example, our application will support both German and English.
-
-[Refer to the react-i18next docs for detailed information &#8594](https://react.i18next.com/getting-started)
 
 ### Installation
 
-Run the following command within your project directory to install both [`react-i18next`][react-i18next] and `i18next` packages :
-
+To install both `react-i18next` and `i18next` packages, run the following command within your project directory:
 <Tabs
 defaultValue="npm"
 values={[
@@ -103,15 +106,15 @@ pnpm install react-i18next i18next
 
 </Tabs>
 
-### Creating i18n Instance
+### Creating the i18n Instance
 
-First, we will create an i18n instance using [`react-i18next`][react-i18next].
+First, we will create an i18n instance using `react-i18next`.
 
 ```ts title="src/i18n.ts"
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next"; // https://react.i18next.com/latest/using-with-hooks
-import Backend from "i18next-http-backend"; // adding lazy loading for translations, more information here: https://github.com/i18next/i18next-http-backend
-import detector from "i18next-browser-languagedetector"; // auto detect the user language, more information here: https://github.com/i18next/i18next-browser-languageDetector
+import Backend from "i18next-http-backend"; // For lazy loading for translations: https://github.com/i18next/i18next-http-backend
+import detector from "i18next-browser-languagedetector"; // For auto detecting the user language: https://github.com/i18next/i18next-browser-languageDetector
 
 i18n.use(Backend)
     .use(detector)
@@ -128,7 +131,7 @@ i18n.use(Backend)
 export default i18n;
 ```
 
-### Wraping app with React.Suspense
+### Wrapping the app with React.Suspense
 
 Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
@@ -157,14 +160,14 @@ root.render(
 We use `React.Suspense` because it improves performance by preventing the app from rendering unnecessarily.
 :::
 
-### Creating i18n Provider
+### Creating the i18n Provider
 
-Next, we will include the i18n instance and create the `i18nProvider` using [`react-i18next`][react-i18next].
+Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
 
 ```tsx title="src/App.tsx"
 // highlight-next-line
-import { Refine } from "@refinedev/core";
 import type { I18nProvider } from "@refinedev/core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -191,14 +194,14 @@ const App: React.FC = () => {
 };
 ```
 
-After we pass the `i18nProvider` to the `<Refine>` component, translation hooks([`useTranslate`][use-translate], [`useSetLocale`][use-setlocale], [`useGetLocale`][use-getlocale]) are fully ready to use.
+After we pass the `i18nProvider` to the `<Refine>` component, all three translation hooks ([`useTranslate`][use-translate], [`useSetLocale`][use-setlocale], [`useGetLocale`][use-getlocale]) will be ready for use.
 
-### Adding Translations Files
+### Adding the Translations Files
 
-Before we get started, let's look at the translations that **refine** uses in components.
+Before we get started, let's look at which parts are going to be translated:
 
 <details>
-<summary>Show translation file</summary>
+<summary>The translation file</summary>
 
 ```json
 {
@@ -315,8 +318,6 @@ Before we get started, let's look at the translations that **refine** uses in co
 ```
 
 </details>
-
-All components of **refine** supports i18n. If you want to change the **refine** component texts, you can create your own translation file with reference to the keys above.
 
 Now, let's add the language files:
 
@@ -635,14 +636,20 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 We can override refine's default texts by changing the `common.json` files in the example above.
 :::
 
+---
+
+:::tip
+All of **refine**'s components support i18n, meaning that if you want to change their text, you can create your own translation files with the reference to the keys above.
+:::
+
 ### Changing The Locale
 
 Next, we will create a `<Header>` component. This component will allow us to change the language.
 
 ```tsx title="src/components/header.tsx"
-import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { Layout, Space, Menu, Button, Dropdown, Avatar } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { useGetLocale, useSetLocale } from "@refinedev/core";
+import { Avatar, Button, Dropdown, Layout, Menu, Space } from "antd";
 import { useTranslation } from "react-i18next";
 
 export const Header: React.FC = () => {

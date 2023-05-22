@@ -19,7 +19,7 @@
 
 <br />
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open-source, headless web application framework developed with flexibility in mind.
 
 <br />
 <br />
@@ -65,7 +65,7 @@
 
 ## What is refine?
 **refine** is a React-based framework for the rapid ✨ development of web applications. 
-It eliminates repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+It eliminates repetitive tasks demanded by **CRUD** operations and provides industry-standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
 **refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
@@ -89,7 +89,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
  [refine.new](https://s.refine.dev/refine-new-github) is a powerful open-source browser tool that lets you create refine apps. 
 
-You have the ability to preview, modify, and download your project immediately, thereby streamlining the development process.  
+You can preview, modify, and download your project immediately, thereby streamlining the development process.  
 
 <div align="center">
 <a href="https://s.refine.dev/refine-new-github" target="_blank">
@@ -286,7 +286,7 @@ Now, you should see the output as a table populated with `blog_posts` & `categor
 
 <br/>
 
-You can get the auto-generated pages codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing with the Inferencer components.
+You can get the auto-generated page codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing them with the Inferencer components.
 
 ## Next Steps
 
