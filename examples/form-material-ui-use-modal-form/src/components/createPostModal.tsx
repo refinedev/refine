@@ -45,6 +45,7 @@ export const CreatePostModal: React.FC<
                     sx={{ display: "flex", flexDirection: "column" }}
                 >
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -61,6 +62,7 @@ export const CreatePostModal: React.FC<
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
                             <Autocomplete
+                                id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
                                 onChange={(_, value) => {
@@ -86,6 +88,7 @@ export const CreatePostModal: React.FC<
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
                             <Autocomplete
+                                id="category"
                                 {...autocompleteProps}
                                 {...field}
                                 onChange={(_, value) => {
@@ -119,6 +122,7 @@ export const CreatePostModal: React.FC<
                         )}
                     />
                     <TextField
+                        id="content"
                         {...register("content", {
                             required: "This field is required",
                         })}
