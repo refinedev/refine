@@ -47,7 +47,7 @@
                     },
                     {
                         "name": "@mui/icons-material",
-                        "message": "Do not use named import from '@mui/material'. Use @mui/icons-material/<component-name> instead."
+                        "message": "Do not use named import from '@mui/icons-material'. Use @mui/icons-material/<component-name> instead."
                     },
                     {
                         "name": "@mui/lab",
