@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 4.16.3
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
 ## 4.16.2
 
 ### Patch Changes
