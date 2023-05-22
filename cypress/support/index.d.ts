@@ -10,6 +10,10 @@ interface ISetAntdSelectParams {
     value: string;
 }
 
+interface ISetAntdRangeDatePickerToTodayParams {
+    id: string;
+}
+
 interface IGetAntdFormItemErrorParams {
     id: string;
 }
@@ -63,6 +67,9 @@ declare namespace Cypress {
         ): Chainable<JQuery<HTMLElement>>;
         setAntdSelect(
             params: ISetAntdSelectParams,
+        ): Chainable<JQuery<HTMLElement>>;
+        setAntdRangeDatePickerToToday(
+            params: ISetAntdRangeDatePickerToTodayParams,
         ): Chainable<JQuery<HTMLElement>>;
         getAntdFormItemError(
             params: IGetAntdFormItemErrorParams,

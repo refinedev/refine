@@ -29,6 +29,17 @@ export const setAntdSelect = ({ id, value }: ISetAntdSelectParams) => {
         .blur();
 };
 
+export const setAntdRangeDatePickerToToday = ({
+    id,
+}: ISetAntdRangeDatePickerToTodayParams) => {
+    return cy
+        .get(`#${id}`)
+        .click({ force: true })
+        .get(".ant-picker-cell-today")
+        .click({ force: true })
+        .click({ force: true });
+};
+
 export const getAntdFormItemError = ({ id }: IGetAntdFormItemErrorParams) => {
     return cy.get(`#${id}_help > .ant-form-item-explain-error`);
 };
