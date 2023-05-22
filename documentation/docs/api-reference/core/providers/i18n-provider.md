@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. **refine** can work with any i18n framework, but needs an `i18nProvider` to be created based on the chosen library.
 
-If you want to use other languages, follow the next sections, but if your application uses English, the default language of **refine**, you can skip this documentation.
+This document will help you if you want to use other languages, but if your application uses English, the default language of **refine**, you can skip it.
 
 ## Usage
 
@@ -44,6 +44,12 @@ const App: React.FC = () => {
     );
 };
 ```
+
+This will allow us to put translation features to the followings hooks:
+
+-   [`useTranslate`][use-translate] shows translation between different languages.
+-   [`useSetLocale`][use-setlocale] changes locale at runtime.
+-   [`useGetLocale`][use-getlocale] getting current locale.
 
 ## Example
 
@@ -125,7 +131,7 @@ i18n.use(Backend)
 export default i18n;
 ```
 
-### Wraping the app with React.Suspense
+### Wrapping the app with React.Suspense
 
 Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
@@ -748,16 +754,20 @@ Finally, we will create the `<PostList>` page and then we will translate texts u
 
 ```tsx title="src/App.tsx"
 import {
-    EditButton,
+    // highlight-next-line
+    useTranslate,
+    useMany,
+} from "@refinedev/core";
+import {
     List,
-    ShowButton,
-    TextField,
     useTable,
+    TextField,
+    EditButton,
+    ShowButton,
 } from "@refinedev/antd";
-import { useMany, useTranslate } from "@refinedev/core";
-import { Space, Table } from "antd";
+import { Table, Space } from "antd";
 
-import { ICategory, IPost } from "interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
     // highlight-next-line
