@@ -4,7 +4,6 @@ import { createInferencer } from "@/create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     toSingular,
@@ -13,7 +12,7 @@ import {
     getOptionLabel,
     noOp,
     getVariableName,
-    toPlural,
+    translatePrettyString,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -38,6 +37,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -47,8 +47,13 @@ export const renderer = ({
     const imports: Array<ImportElement> = [
         ["React", "react", true],
         ["useNavigation", "@refinedev/core"],
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["useForm", "@refinedev/react-hook-form"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -111,9 +116,12 @@ export const renderer = ({
 
             return jsx`
             <label>
-                <span style={{ marginRight: "8px" }}>${prettyString(
-                    field.key,
-                )}</span>
+                <span style={{ marginRight: "8px" }}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</span>
                 <select
                     placeholder="Select ${toSingular(field.resource.name)}"
                     {...register("${dotAccessor(
@@ -175,7 +183,12 @@ export const renderer = ({
                         )}?.map((item: any, index: number) => (
                             <label key={index}>
                                 <span style={{ marginRight: "8px" }}>
-                                    ${prettyString(field.key)} #{index + 1}
+                                    ${translatePrettyString({
+                                        resource,
+                                        field,
+                                        i18n,
+                                        noQuotes: true,
+                                    })}
                                 </span>
                                 <input ${
                                     field.type !== "richtext"
@@ -199,9 +212,12 @@ export const renderer = ({
             const inp = field.type === "richtext" ? "textarea" : "input";
             return jsx`
             <label>
-                <span style={{ marginRight: "8px" }}>${prettyString(
-                    field.key,
-                )}</span>
+                <span style={{ marginRight: "8px" }}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</span>
                 <${inp}
                 ${isIDKey(field.key) ? "disabled" : ""}
                 ${
@@ -258,7 +274,12 @@ export const renderer = ({
                         )}?.map((item: any, index: number) => (
                             <label key={index}>
                             <span style={{ marginRight: "8px" }}>
-                            ${prettyString(field.key)} #{index + 1}
+                            ${translatePrettyString({
+                                resource,
+                                field,
+                                i18n,
+                                noQuotes: true,
+                            })}
                             </span>
                             <input
                                 type="checkbox"
@@ -276,9 +297,12 @@ export const renderer = ({
 
             return jsx`
             <label>
-                <span style={{ marginRight: "8px" }}>${prettyString(
-                    field.key,
-                )}</span>
+                <span style={{ marginRight: "8px" }}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</span>
                 <input type="checkbox" {...register("${dotAccessor(
                     field.key,
                     undefined,
@@ -321,11 +345,14 @@ export const renderer = ({
     const canList = !!resource.list;
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+    const singulaResourceName = toSingular(resource.label ?? resource.name);
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         ${
             canList
                 ? `
@@ -380,12 +407,13 @@ export const renderer = ({
                 <div style={{ display: "flex", justifyContent: ${
                     canList ? '"space-between"' : '"flex-start"'
                 } }}>
-                    <h1>
-                        ${prettyString(
-                            toSingular(resource.label ?? resource.name) +
-                                " Edit",
-                        )}
-                    </h1>
+                    <h1>${
+                        i18n
+                            ? `{translate("` +
+                              singulaResourceName +
+                              `.titles.edit")}`
+                            : singulaResourceName + " Edit"
+                    }</h1>
                     ${
                         canList
                             ? jsx`
@@ -395,10 +423,13 @@ export const renderer = ({
                                     list("${resource.name}");
                                 }}
                         >
-                            ${prettyString(
-                                toPlural(resource.label ?? resource.name) +
-                                    " List",
-                            )}
+                            ${
+                                i18n
+                                    ? `{translate("` +
+                                      singulaResourceName +
+                                      `.titles.list")}`
+                                    : singulaResourceName + " List"
+                            }
                         </button>
                     </div>
                     `
@@ -409,7 +440,9 @@ export const renderer = ({
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                         ${renderedFields.join("")}
                         <div>
-                            <input type="submit" value="Save" />
+                            <input type="submit" value=${
+                                i18n ? `{translate("buttons.save")}` : "Save"
+                            } />
                         </div>
                     </div>
                 </form>

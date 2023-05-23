@@ -2,13 +2,12 @@ import { createInferencer } from "@/create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     noOp,
     getVariableName,
-    toPlural,
     toSingular,
+    translatePrettyString,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -33,6 +32,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -44,7 +44,12 @@ export const renderer = ({
         ["useShow", "@refinedev/core"],
         ["useResource", "@refinedev/core"],
         ["useNavigation", "@refinedev/core"],
+        ["IResourceComponentsProps", "@refinedev/core"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -125,7 +130,12 @@ export const renderer = ({
             if (field.multiple) {
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                     {${variableIsLoading} ? <>Loading...</> : (
                         <>
@@ -166,7 +176,12 @@ export const renderer = ({
             }
             return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <div>
                     {${variableIsLoading} ? <>Loading...</> : (
                         <>
@@ -209,7 +224,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                         {${accessor(
                             recordName,
@@ -225,7 +245,12 @@ export const renderer = ({
             }
             return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <div>
                     {${accessor(recordName, field.key, field.accessor)}}
                     </div>
@@ -241,7 +266,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <li key={${val}}>
@@ -254,7 +284,12 @@ export const renderer = ({
             }
             return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <img src={{ maxWidth: 200 }} src={${accessor(
                         recordName,
                         field.key,
@@ -273,7 +308,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                         {${accessor(
                             recordName,
@@ -289,7 +329,12 @@ export const renderer = ({
             }
             return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <div>
                         <a href={"mailto:" + ${accessor(
                             recordName,
@@ -317,7 +362,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                         {${accessor(
                             recordName,
@@ -333,7 +383,12 @@ export const renderer = ({
             }
             return jsx`
             <div style={{ marginTop: "6px" }}>
-                <h5>${prettyString(field.key)}</h5>
+                <h5>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</h5>
                 <div>
                     <a href={${accessor(
                         recordName,
@@ -361,7 +416,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                         {${accessor(
                             recordName,
@@ -377,7 +437,12 @@ export const renderer = ({
             }
             return jsx`
             <div style={{ marginTop: "6px" }}>
-                <h5>${prettyString(field.key)}</h5>
+                <h5>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</h5>
                 <div>
                 {${accessor(
                     recordName,
@@ -398,7 +463,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <li key={${val}}>
@@ -411,7 +481,12 @@ export const renderer = ({
             }
             return jsx`
             <div style={{ marginTop: "6px" }}>
-                <h5>${prettyString(field.key)}</h5>
+                <h5>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</h5>
                 <div>
                     {(new Date(${accessor(
                         recordName,
@@ -430,7 +505,12 @@ export const renderer = ({
         if (field.type === "richtext") {
             return jsx`
             <div style={{ marginTop: "6px" }}>
-                <h5>${prettyString(field.key)}</h5>
+                <h5>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</h5>
                 <p>
                 {${accessor(
                     recordName,
@@ -452,7 +532,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <ul>
                         {${accessor(
                             recordName,
@@ -468,7 +553,12 @@ export const renderer = ({
             }
             return jsx`
                 <div style={{ marginTop: "6px" }}>
-                    <h5>${prettyString(field.key)}</h5>
+                    <h5>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</h5>
                     <div>
                     {${accessor(
                         recordName,
@@ -521,11 +611,14 @@ export const renderer = ({
     const canList = !!list;
 
     noOp(imports);
+    const singulaResourceName = toSingular(resource.label ?? resource.name);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { edit, list } = useNavigation();
         ${isCustomPage ? "" : `const { id } = useResource();`}
         const { queryResult } = useShow(${
@@ -561,24 +654,35 @@ export const renderer = ({
             <div style={{ padding: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <h1>
-                ${prettyString(toSingular(resource.label ?? resource.name))}
+                    ${
+                        i18n
+                            ? `{translate("` +
+                              singulaResourceName +
+                              `.titles.show")}`
+                            : singulaResourceName + " Show"
+                    }
                 </h1>
                 <div style={{ display: "flex", gap: "8px" }}>
                 ${
                     canList
                         ? jsx`<button onClick={() => list("${
                               resource.name
-                          }")}>${prettyString(
-                              toPlural(resource.label ?? resource.name) +
-                                  " list",
-                          )}</button>`
+                          }")}>${
+                              i18n
+                                  ? `{translate("` +
+                                    singulaResourceName +
+                                    `.titles.list")}`
+                                  : singulaResourceName + " List"
+                          }</button>`
                         : ""
                 }
                 ${
                     canEdit
                         ? jsx`<button onClick={() => edit("${resource.name}", ${
                               isCustomPage ? `"${id}"` : "id ?? ''"
-                          })}>Edit</button>`
+                          })}>${
+                              i18n ? `{translate("buttons.edit")}` : "Edit"
+                          }</button>`
                         : ""
                 }
                 </div>
