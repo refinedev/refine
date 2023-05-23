@@ -335,13 +335,13 @@ export const renderer = ({
                           meta,
                           "getOne",
                       )
-                    ? `{
+                    ? `
                       refineCoreProps: { ${getMetaProps(
                           resource.identifier ?? resource.name,
                           meta,
                           "getOne",
                       )} }
-                      }`
+                      `
                     : ""
             }
         });
