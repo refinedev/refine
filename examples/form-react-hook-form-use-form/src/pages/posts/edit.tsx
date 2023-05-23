@@ -11,9 +11,7 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
         setValue,
         saveButtonProps,
-    } = useForm({
-        warnWhenUnsavedChanges: true,
-    });
+    } = useForm();
 
     const { options } = useSelect({
         resource: "categories",
