@@ -68,6 +68,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should edit record when mutation mode is pessimistic", () => {
         changeMutationMode("pessimistic");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
         cy.wait("@getPost").then((interception) => {
             const response = interception?.response;
@@ -94,6 +95,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should edit record when mutation mode is undoable", () => {
         changeMutationMode("undoable");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -118,10 +120,12 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should undo editing when mutation mode is undoable", () => {
         changeMutationMode("undoable");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
         cy.wait("@getPost");
+        cy.wait("@getCategories");
         waitForLoading();
         submitForm();
         // should redirect to list page
@@ -132,7 +136,7 @@ describe("form-mantine-mutation-mode", () => {
             .contains(/seconds to undo/gi)
             .parent()
             .siblings("button")
-            .click();
+            .click({ force: true });
         cy.getMantineNotification().should("not.exist");
         cy.get("@patchPost").should("be.null");
     });
@@ -160,6 +164,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should edit a record when mutation mode is optimistic", () => {
         changeMutationMode("optimistic");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -182,6 +187,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should delete record when mutation mode is pessimistic", () => {
         changeMutationMode("pessimistic");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -202,6 +208,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should delete record when mutation mode is undoable", () => {
         changeMutationMode("undoable");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -228,6 +235,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should undo deleting record when mutation mode is undoable", () => {
         changeMutationMode("undoable");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -249,6 +257,7 @@ describe("form-mantine-mutation-mode", () => {
 
     it("should delete record when mutation mode is optimistic", () => {
         changeMutationMode("optimistic");
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
