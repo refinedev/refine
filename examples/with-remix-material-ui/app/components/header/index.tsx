@@ -1,12 +1,11 @@
-import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
-import {
-    AppBar,
-    Avatar,
-    IconButton,
-    Stack,
-    Toolbar,
-    Typography,
-} from "@mui/material";
+import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import { useGetIdentity } from "@refinedev/core";
 import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
 import React, { useContext } from "react";

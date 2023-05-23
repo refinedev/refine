@@ -1,19 +1,17 @@
 import { useState, useEffect, useContext } from "react";
-import {
-    AppBar,
-    IconButton,
-    Link,
-    Avatar,
-    Typography,
-    TextField,
-    Toolbar,
-    Box,
-    Autocomplete,
-    Stack,
-    FormControl,
-    MenuItem,
-    Select,
-} from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
+import Link from "@mui/material/Link";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
+import Autocomplete from "@mui/material/Autocomplete";
+import Stack from "@mui/material/Stack";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import {
     useList,
     useTranslate,
@@ -21,11 +19,9 @@ import {
     useGetLocale,
     useSetLocale,
 } from "@refinedev/core";
-import {
-    SearchOutlined,
-    DarkModeOutlined,
-    LightModeOutlined,
-} from "@mui/icons-material";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
+import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
 import i18n from "i18n";
 
 import { IOrder, IStore, ICourier, IIdentity } from "interfaces";

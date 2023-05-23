@@ -19,28 +19,24 @@ import {
 
 import { GridColumns, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 
-import {
-    Checkbox,
-    TableContainer,
-    Table,
-    Stack,
-    TableBody,
-    TableRow,
-    Button,
-    TableCell,
-    TextField,
-    TableHead,
-    IconButton,
-    Typography,
-    TablePagination,
-    Avatar,
-} from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import Stack from "@mui/material/Stack";
+import TableBody from "@mui/material/TableBody";
+import TableRow from "@mui/material/TableRow";
+import Button from "@mui/material/Button";
+import TableCell from "@mui/material/TableCell";
+import TextField from "@mui/material/TextField";
+import TableHead from "@mui/material/TableHead";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import TablePagination from "@mui/material/TablePagination";
+import Avatar from "@mui/material/Avatar";
 
-import {
-    Edit,
-    AddCircleOutline,
-    RemoveCircleOutline,
-} from "@mui/icons-material";
+import Edit from "@mui/icons-material/Edit";
+import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutline from "@mui/icons-material/RemoveCircleOutline";
 
 import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components";

@@ -14,8 +14,9 @@ import {
     TextFieldComponent,
 } from "@refinedev/mui";
 import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import { Avatar, Paper } from "@mui/material";
-import { EditOutlined } from "@mui/icons-material";
+import Avatar from "@mui/material/Avatar";
+import Paper from "@mui/material/Paper";
+import EditOutlined from "@mui/icons-material/EditOutlined";
 
 import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";

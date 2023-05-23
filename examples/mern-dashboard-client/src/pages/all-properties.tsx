@@ -1,13 +1,11 @@
-import { Add } from "@mui/icons-material";
+import Add from "@mui/icons-material/Add";
 import { useTable } from "@refinedev/core";
-import {
-    Box,
-    Stack,
-    Typography,
-    TextField,
-    Select,
-    MenuItem,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 

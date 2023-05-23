@@ -1,6 +1,10 @@
 import React from "react";
 import { useGetIdentity } from "@refinedev/core";
-import { AppBar, Avatar, Stack, Toolbar, Typography } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 export const Header: React.FC = () => {
     const { data: user } = useGetIdentity({
