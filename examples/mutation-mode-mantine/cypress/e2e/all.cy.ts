@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("mutation-mode-chakra-ui", () => {
+describe("form-mantine-use-modal-undoable-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
@@ -12,8 +12,11 @@ describe("mutation-mode-chakra-ui", () => {
 
     const fillForm = () => {
         cy.get("#title").clear().type(mockPost.title);
-        cy.get("#status").select(mockPost.status);
-        cy.get("#categoryId").select(2);
+        cy.get("#content textarea")
+            .clear({ force: true })
+            .type(mockPost.content);
+        cy.get("#status").click().get("#status-1").click();
+        cy.get("#categoryId").clear().get("#categoryId-1").click();
     };
 
     const assertSuccessResponse = (response: any) => {
@@ -35,9 +38,17 @@ describe("mutation-mode-chakra-ui", () => {
     const changeMutationMode = (
         mode: "pessimistic" | "optimistic" | "undoable",
     ) => {
-        return cy.get(`.chakra-radio__input[value=${mode}]`).click({
+        // uppercase first letter
+        const uppercaseMode = mode.charAt(0).toUpperCase() + mode.slice(1);
+
+        return cy.get(`.mantine-Radio-label`).contains(uppercaseMode).click({
             force: true,
         });
+    };
+
+    const waitForLoading = () => {
+        cy.getMantineLoadingOverlay().should("not.exist");
+        cy.getSaveButton().should("not.be.disabled");
     };
 
     beforeEach(() => {
@@ -58,26 +69,25 @@ describe("mutation-mode-chakra-ui", () => {
     it("should edit record when mutation mode is pessimistic", () => {
         changeMutationMode("pessimistic");
         cy.getEditButton().first().click();
-
         cy.wait("@getPost").then((interception) => {
-            const getResponse = interception?.response;
-            const body = getResponse?.body;
+            const response = interception?.response;
+            const body = response?.body;
 
             // wait loading state and render to be finished
-            cy.getSaveButton().should("not.be.disabled");
-            cy.getChakraUILoadingOverlay().should("not.exist");
+            waitForLoading();
 
-            // assert response values are equal to the form values
             cy.get("#title").should("have.value", body?.title);
-            cy.get("#status").should("have.value", body?.status);
-            cy.get("#categoryId").should("have.value", body?.category?.id);
-
-            fillForm();
-            submitForm();
-
-            cy.wait("@patchPost").then((patchInterception) => {
-                const patchResponse = patchInterception?.response;
-                assertSuccessResponse(patchResponse);
+            cy.get("#content textarea").should("have.value", body?.content);
+        });
+        fillForm();
+        submitForm();
+        cy.wait("@patchPost").then((interception) => {
+            const response = interception?.response;
+            assertSuccessResponse(response);
+            cy.getMantineNotification().contains(/success/gi);
+            // should redirect to list page
+            cy.location().should((loc) => {
+                expect(loc.pathname).to.eq("/posts");
             });
         });
     });
@@ -86,62 +96,53 @@ describe("mutation-mode-chakra-ui", () => {
         changeMutationMode("undoable");
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost").then((interception) => {
-            const getResponse = interception?.response;
-            const body = getResponse?.body;
-
-            // wait loading state and render to be finished
-            cy.getSaveButton().should("not.be.disabled");
-            cy.getChakraUILoadingOverlay().should("not.exist");
-
-            // assert response values are equal to the form values
-            cy.get("#title").should("have.value", body?.title);
-            cy.get("#status").should("have.value", body?.status);
-            cy.get("#categoryId").should("have.value", body?.category?.id);
-        });
-
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        waitForLoading();
         fillForm();
         submitForm();
-
-        // should show notification
-        cy.getChakraUIToast().contains(/seconds to undo/gi);
-        // notification should disappear after certain time
-        cy.getChakraUIToast()
+        // should redirect to list page
+        cy.location().should((loc) => {
+            expect(loc.pathname).to.eq("/posts");
+        });
+        cy.getMantineNotification().contains(/seconds to undo/gi);
+        cy.getMantineNotification()
             .contains("seconds to undo", { timeout: 10000 })
             .should("not.exist");
-
-        // should sent a PATCH request after certain time
         cy.wait("@patchPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
+            cy.getMantineNotification().contains(/success/gi);
         });
     });
 
     it("should undo editing when mutation mode is undoable", () => {
+        changeMutationMode("undoable");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
-
+        waitForLoading();
         submitForm();
-
-        cy.getChakraUIToast()
+        // should redirect to list page
+        cy.location().should((loc) => {
+            expect(loc.pathname).to.eq("/posts");
+        });
+        cy.getMantineNotification()
             .contains(/seconds to undo/gi)
+            .parent()
             .siblings("button")
             .click();
-        cy.getChakraUIToast().should("not.exist");
-
+        cy.getMantineNotification().should("not.exist");
         cy.get("@patchPost").should("be.null");
     });
 
-    it("should create record when mutation mode is optimistic", () => {
+    it("should create a record when mutation mode is optimistic", () => {
         changeMutationMode("optimistic");
         cy.getCreateButton().click();
 
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
+        // wait loading state and render to be finished
+        waitForLoading();
         fillForm();
         submitForm();
 
@@ -150,20 +151,20 @@ describe("mutation-mode-chakra-ui", () => {
             expect(loc.pathname).to.eq("/posts");
         });
 
-        // should sent a PATCH request after certain time
         cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
-            cy.getChakraUINotification().should("contain", "Success");
+            cy.getMantineNotification().contains(/success/gi);
         });
     });
 
-    it("should edit record when mutation mode is optimistic", () => {
+    it("should edit a record when mutation mode is optimistic", () => {
         changeMutationMode("optimistic");
         cy.getEditButton().first().click();
 
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        waitForLoading();
         fillForm();
         submitForm();
 
@@ -172,11 +173,10 @@ describe("mutation-mode-chakra-ui", () => {
             expect(loc.pathname).to.eq("/posts");
         });
 
-        // should sent a PATCH request after certain time
         cy.wait("@patchPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
-            cy.getChakraUINotification().should("contain", "Success");
+            cy.getMantineNotification().contains(/success/gi);
         });
     });
 
@@ -184,18 +184,16 @@ describe("mutation-mode-chakra-ui", () => {
         changeMutationMode("pessimistic");
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost");
         // wait loading state and render to be finished
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
-
-        cy.getDeleteButton().click().getChakraUIPopoverDeleteButton().click();
+        cy.wait("@getPost");
+        waitForLoading();
+        cy.getDeleteButton().click().getMantinePopoverDeleteButton().click();
 
         cy.wait("@deletePost").then((interception) => {
-            const deleteResponse = interception?.response;
-            expect(deleteResponse?.statusCode).to.eq(200);
+            const response = interception?.response;
 
-            cy.getChakraUINotification().contains(/success/gi);
+            expect(response?.statusCode).to.eq(200);
+            cy.getMantineNotification().contains(/success/gi);
             cy.location().should((loc) => {
                 expect(loc.pathname).to.eq("/posts");
             });
@@ -206,23 +204,22 @@ describe("mutation-mode-chakra-ui", () => {
         changeMutationMode("undoable");
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost");
         // wait loading state and render to be finished
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
-
-        cy.getDeleteButton().click().getChakraUIPopoverDeleteButton().click();
-
+        cy.wait("@getPost");
+        waitForLoading();
+        cy.getDeleteButton().click().getMantinePopoverDeleteButton().click();
         // should show notification
-        cy.getChakraUIToast().contains(/seconds to undo/gi);
+        cy.getMantineNotification().contains(/seconds to undo/gi);
         // notification should disappear after certain time
-        cy.getChakraUIToast()
+        cy.getMantineNotification()
             .contains("seconds to undo", { timeout: 10000 })
             .should("not.exist");
-
         // should sent a PATCH request after certain time
-        cy.wait("@deletePost").then(() => {
-            cy.getChakraUINotification().contains(/success/gi);
+        cy.wait("@deletePost").then((interception) => {
+            const response = interception?.response;
+
+            expect(response?.statusCode).to.eq(200);
+            cy.getMantineNotification().contains(/success/gi);
             cy.location().should((loc) => {
                 expect(loc.pathname).to.eq("/posts");
             });
@@ -233,19 +230,17 @@ describe("mutation-mode-chakra-ui", () => {
         changeMutationMode("undoable");
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost");
         // wait loading state and render to be finished
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
-
-        cy.getDeleteButton().click().getChakraUIPopoverDeleteButton().click();
-
+        cy.wait("@getPost");
+        waitForLoading();
+        cy.getDeleteButton().click().getMantinePopoverDeleteButton().click();
         cy.getDeleteButton().should("be.disabled");
         // should show notification
-        cy.getChakraUIToast().contains(/seconds to undo/gi);
+        cy.getMantineNotification().contains(/seconds to undo/gi);
         // click undo button
-        cy.getChakraUIToast()
+        cy.getMantineNotification()
             .contains(/seconds to undo/gi)
+            .parent()
             .siblings("button")
             .click();
         cy.getDeleteButton().should("not.be.disabled");
@@ -256,21 +251,22 @@ describe("mutation-mode-chakra-ui", () => {
         changeMutationMode("optimistic");
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost");
         // wait loading state and render to be finished
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getChakraUILoadingOverlay().should("not.exist");
-
-        cy.getDeleteButton().click().getChakraUIPopoverDeleteButton().click();
-
+        cy.wait("@getPost");
+        waitForLoading();
+        cy.getDeleteButton().click().getMantinePopoverDeleteButton().click();
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
             expect(loc.pathname).to.eq("/posts");
         });
-
         // should sent a DELETE request after certain time
-        cy.wait("@deletePost").then(() => {
-            cy.getChakraUINotification().contains(/success/gi);
+        cy.wait("@deletePost").then((interception) => {
+            const response = interception?.response;
+            expect(response?.statusCode).to.eq(200);
+            cy.getMantineNotification().contains(/success/gi);
+            cy.location().should((loc) => {
+                expect(loc.pathname).to.eq("/posts");
+            });
         });
     });
 });

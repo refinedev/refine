@@ -17,7 +17,7 @@ const MutationModePicker: React.FC<Props> = ({
             p="6"
             rounded="md"
             sx={{
-                position: "absolute",
+                position: "fixed",
                 bottom: "16px",
                 left: "50%",
                 transform: "translateX(-50%)",

@@ -14,7 +14,7 @@ const MutationModePicker: React.FC<Props> = ({
     return (
         <div
             style={{
-                position: "absolute",
+                position: "fixed",
                 bottom: "16px",
                 left: "50%",
                 transform: "translateX(-50%)",
