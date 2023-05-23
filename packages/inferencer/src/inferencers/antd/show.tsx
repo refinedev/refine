@@ -148,7 +148,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${variableIsLoading} ? <>Loading...</> : (
                     <>
@@ -201,7 +201,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${variableIsLoading} ? <>Loading...</> : (
                     <>
@@ -248,7 +248,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -260,7 +260,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <TextField value={${accessor(
                     recordName,
@@ -282,7 +282,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <ImageField style={{ maxWidth: 200 }} value={${val}} key={${val}} />
@@ -294,7 +294,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <ImageField style={{ maxWidth: 200 }} value={${accessor(
                     recordName,
@@ -320,7 +320,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
@@ -334,7 +334,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <EmailField value={${accessor(
                     recordName,
@@ -360,7 +360,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -372,7 +372,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <UrlField value={${accessor(
                     recordName,
@@ -398,7 +398,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {(${accessor(
                     recordName,
@@ -413,7 +413,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <BooleanField value={${accessor(
                     recordName,
@@ -436,7 +436,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <DateField value={${val}} key={${val}} />
@@ -448,7 +448,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <DateField value={${accessor(
                     recordName,
@@ -469,7 +469,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <MarkdownField value={${accessor(
                     recordName,
@@ -493,7 +493,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 {${accessor(recordName, field.key)}?.map((item: any) => (
                     <TagField value={${val}} key={${val}} />
@@ -505,7 +505,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
-                    wrapper: undefined,
+                    noQuotes: true,
                 })}</Title>
                 <NumberField value={${accessor(
                     recordName,
