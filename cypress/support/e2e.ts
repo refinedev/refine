@@ -14,6 +14,7 @@ import {
     getChakraUIFormItemError,
     getChakraUILoadingOverlay,
     getChakraUINotification,
+    getChakraUIToast,
 } from "./commands/chakra-ui";
 import {
     getMantineFormItemError,
@@ -61,6 +62,7 @@ Cypress.Commands.add("getAntdLoadingOverlay", getAntdLoadingOverlay);
 Cypress.Commands.add("getAntdPopoverDeleteButton", getAntdPopoverDeleteButton);
 
 Cypress.Commands.add("getChakraUINotification", getChakraUINotification);
+Cypress.Commands.add("getChakraUIToast", getChakraUIToast);
 Cypress.Commands.add("getChakraUIFormItemError", getChakraUIFormItemError);
 Cypress.Commands.add(
     "getChakraUIPopoverDeleteButton",

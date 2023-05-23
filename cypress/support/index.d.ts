@@ -66,6 +66,7 @@ declare namespace Cypress {
         ): Chainable<JQuery<HTMLElement>>;
 
         getChakraUINotification(): Chainable<JQuery<HTMLElement>>;
+        getChakraUIToast(): Chainable<JQuery<HTMLElement>>;
         getChakraUIFormItemError(
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
