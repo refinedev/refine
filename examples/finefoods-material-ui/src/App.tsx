@@ -6,7 +6,8 @@ import {
     ThemedLayoutV2,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
-import { GlobalStyles, CssBaseline } from "@mui/material";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import CssBaseline from "@mui/material/CssBaseline";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     CatchAllNavigate,
@@ -15,15 +16,13 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-    AddShoppingCartOutlined,
-    StarBorderOutlined,
-    CategoryOutlined,
-    StoreOutlined,
-    LocalPizzaOutlined,
-    PeopleOutlineOutlined,
-    Dashboard,
-} from "@mui/icons-material";
+import AddShoppingCartOutlined from "@mui/icons-material/AddShoppingCartOutlined";
+import StarBorderOutlined from "@mui/icons-material/StarBorderOutlined";
+import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
+import StoreOutlined from "@mui/icons-material/StoreOutlined";
+import LocalPizzaOutlined from "@mui/icons-material/LocalPizzaOutlined";
+import PeopleOutlineOutlined from "@mui/icons-material/PeopleOutlineOutlined";
+import Dashboard from "@mui/icons-material/Dashboard";
 
 import { authProvider } from "authProvider";
 import { DashboardPage } from "pages/dashboard";

@@ -28,6 +28,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         ],
         initialFilter: [
             {
+                field: "title",
+                operator: "contains",
+                value: "",
+            },
+            {
                 field: "status",
                 operator: "eq",
                 value: "draft",

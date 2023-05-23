@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 import { CustomButtonProps } from "interfaces/common";
 

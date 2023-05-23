@@ -42,9 +42,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
             },
         );
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({ email: "test@test.com" });
@@ -60,7 +58,6 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
         const legacyRouterProvider = {
             ...mockLegacyRouterProvider(),
             useHistory: () => ({
-                push: mockFn,
                 replace: mockFn,
             }),
         };
@@ -87,9 +84,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
             },
         );
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({ email: "test@test.com" });
@@ -131,9 +126,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
             },
         );
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({ email: "test@test.com" });
@@ -168,9 +161,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
             },
         );
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -220,9 +211,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({ email: "test@test.com" });
@@ -251,9 +240,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({ email: "test@test.com" });
@@ -270,7 +257,6 @@ describe("useForgotPassword Hook", () => {
         const legacyRouterProvider = {
             ...mockLegacyRouterProvider(),
             useHistory: () => ({
-                push: mockFn,
                 replace: mockFn,
             }),
         };
@@ -292,9 +278,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({ email: "test@test.com" });
@@ -320,9 +304,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -355,9 +337,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -391,9 +371,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -426,9 +404,7 @@ describe("useForgotPassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -473,9 +449,7 @@ describe("useForgotPassword Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -516,9 +490,7 @@ describe("useForgotPassword Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});

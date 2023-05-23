@@ -1,12 +1,10 @@
 import React from "react";
-import {
-    TextField,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    Button,
-} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import Button from "@mui/material/Button";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import * as Yup from "yup";

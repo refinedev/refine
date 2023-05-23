@@ -9,19 +9,21 @@ import {
 
 import { useOnError } from ".";
 
-const mockFn = jest.fn();
+const mockReplace = jest.fn();
+const mockPush = jest.fn();
 
 const mockRouterProvider = {
     ...mockLegacyRouterProvider(),
     useHistory: () => ({
-        push: mockFn,
-        replace: mockFn,
+        replace: mockReplace,
+        push: mockPush,
     }),
 };
 // NOTE : Will be removed in v5
 describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
     beforeEach(() => {
-        mockFn.mockReset();
+        mockReplace.mockReset();
+        mockPush.mockReset();
 
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message === "rejected" || message === "/customPath") return;
@@ -50,7 +52,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
             },
         );
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -61,7 +63,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
         });
 
         expect(onErrorMock).toBeCalledTimes(1);
-        expect(mockFn).toBeCalledWith("/login");
+        expect(mockPush).toBeCalledWith("/login");
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
@@ -85,7 +87,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
             },
         );
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -96,14 +98,15 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
         });
 
         await act(async () => {
-            expect(mockFn).toBeCalledWith("/customPath");
+            expect(mockPush).toBeCalledWith("/customPath");
         });
     });
 });
 
 describe("useOnError Hook", () => {
     beforeEach(() => {
-        mockFn.mockReset();
+        mockReplace.mockReset();
+        mockPush.mockReset();
 
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message === "rejected" || message === "/customPath") return;
@@ -130,7 +133,7 @@ describe("useOnError Hook", () => {
             }),
         });
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -141,7 +144,7 @@ describe("useOnError Hook", () => {
         });
 
         await act(async () => {
-            expect(mockFn).toBeCalledWith("/login");
+            expect(mockPush).toBeCalledWith("/login");
         });
     });
 
@@ -164,7 +167,7 @@ describe("useOnError Hook", () => {
             }),
         });
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -175,7 +178,7 @@ describe("useOnError Hook", () => {
         });
 
         await act(async () => {
-            expect(mockFn).toBeCalledWith("/login");
+            expect(mockReplace).toBeCalledWith("/login");
         });
     });
 
@@ -203,7 +206,7 @@ describe("useOnError Hook", () => {
             }),
         });
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -245,9 +248,7 @@ describe("useOnError Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -285,9 +286,7 @@ describe("useOnError Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});

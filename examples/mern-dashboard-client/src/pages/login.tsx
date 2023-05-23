@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLogin } from "@refinedev/core";
-import { Container, Box } from "@mui/material";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 import { yariga } from "../assets";
 

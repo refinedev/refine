@@ -9,24 +9,20 @@ import {
 
 import { List, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import {
-    Avatar,
-    Grid,
-    Paper,
-    Stack,
-    Typography,
-    Button,
-    Tooltip,
-    Rating,
-} from "@mui/material";
-import {
-    LocalPhoneOutlined,
-    MapOutlined,
-    DirectionsCarFilledOutlined,
-    EmailOutlined,
-    AccountBalanceOutlined,
-    StoreOutlined,
-} from "@mui/icons-material";
+import Avatar from "@mui/material/Avatar";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import Rating from "@mui/material/Rating";
+import LocalPhoneOutlined from "@mui/icons-material/LocalPhoneOutlined";
+import MapOutlined from "@mui/icons-material/MapOutlined";
+import DirectionsCarFilledOutlined from "@mui/icons-material/DirectionsCarFilledOutlined";
+import EmailOutlined from "@mui/icons-material/EmailOutlined";
+import AccountBalanceOutlined from "@mui/icons-material/AccountBalanceOutlined";
+import StoreOutlined from "@mui/icons-material/StoreOutlined";
 
 import { ICourier, IReview } from "interfaces";
 

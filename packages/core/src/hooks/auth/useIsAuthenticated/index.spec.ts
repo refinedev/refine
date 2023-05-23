@@ -1,16 +1,12 @@
 import { renderHook, waitFor } from "@testing-library/react";
-
 import { TestWrapper, mockLegacyRouterProvider } from "@test";
-
 import { useIsAuthenticated } from ".";
-import { act } from "react-dom/test-utils";
 
 const mockFn = jest.fn();
 
 const mockRouterProvider = {
     ...mockLegacyRouterProvider(),
     useHistory: () => ({
-        push: mockFn,
         replace: mockFn,
     }),
 };

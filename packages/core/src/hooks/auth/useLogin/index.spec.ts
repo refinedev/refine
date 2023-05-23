@@ -554,9 +554,7 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -592,9 +590,7 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -630,9 +626,7 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -675,9 +669,7 @@ describe("useLogin Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -715,9 +707,7 @@ describe("useLogin Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});

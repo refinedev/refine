@@ -6,7 +6,8 @@ import {
     MarkdownField,
     DateField,
 } from "@refinedev/mui";
-import { Typography, Stack } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 export const PostShow = () => {
     const { queryResult } = useShow();

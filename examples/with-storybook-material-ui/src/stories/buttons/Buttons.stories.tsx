@@ -12,7 +12,7 @@ import {
     ShowButton,
 } from "@refinedev/mui";
 
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

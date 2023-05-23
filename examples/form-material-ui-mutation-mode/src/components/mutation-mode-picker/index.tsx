@@ -4,7 +4,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Card from "@mui/material/Card";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 interface Props {
     currentMutationMode: MutationMode;

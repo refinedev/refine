@@ -11,14 +11,13 @@ import {
     ReadyPage,
     ErrorComponent,
 } from "@refinedev/mui";
-import { CssBaseline, GlobalStyles } from "@mui/material";
-import {
-    AccountCircleOutlined,
-    ChatBubbleOutline,
-    PeopleAltOutlined,
-    StarOutlineRounded,
-    VillaOutlined,
-} from "@mui/icons-material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
+import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
+import PeopleAltOutlined from "@mui/icons-material/PeopleAltOutlined";
+import StarOutlineRounded from "@mui/icons-material/StarOutlineRounded";
+import VillaOutlined from "@mui/icons-material/VillaOutlined";
 
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6/legacy";
