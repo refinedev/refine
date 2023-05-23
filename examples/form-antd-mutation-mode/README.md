@@ -32,11 +32,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example mutation-mode-mantine
+npm create refine-app@latest -- --example form-antd-mutation-mode
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open mutation-mode-mantine example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/mutation-mode-mantine?view=preview&theme=dark&codemirror=1)
+[![Open form-antd-mutation-mode example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/form-antd-mutation-mode?view=preview&theme=dark&codemirror=1)

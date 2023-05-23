@@ -32,11 +32,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example mutation-mode-material-ui
+npm create refine-app@latest -- --example form-material-ui-mutation-mode
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open mutation-mode-material-ui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/mutation-mode-material-ui?view=preview&theme=dark&codemirror=1)
+[![Open form-material-ui-mutation-mode example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/form-material-ui-mutation-mode?view=preview&theme=dark&codemirror=1)

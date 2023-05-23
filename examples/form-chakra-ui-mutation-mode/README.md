@@ -32,11 +32,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example mutation-mode-antd
+npm create refine-app@latest -- --example form-chakra-ui-mutation-mode
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open mutation-mode-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/mutation-mode-antd?view=preview&theme=dark&codemirror=1)
+[![Open form-chakra-ui-mutation-mode example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/form-chakra-ui-mutation-mode?view=preview&theme=dark&codemirror=1)
