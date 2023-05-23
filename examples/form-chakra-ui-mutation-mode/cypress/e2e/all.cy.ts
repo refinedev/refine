@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("mutation-mode-chakra-ui", () => {
+describe("form-chakra-ui-mutation-mode", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
@@ -122,6 +122,7 @@ describe("mutation-mode-chakra-ui", () => {
 
         // wait loading state and render to be finished
         cy.wait("@getPost");
+        cy.wait("@getCategories");
         cy.getSaveButton().should("not.be.disabled");
         cy.getChakraUILoadingOverlay().should("not.exist");
 

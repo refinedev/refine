@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("mutation-mode-antd", () => {
+describe("form-antd-mutation-mode", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {

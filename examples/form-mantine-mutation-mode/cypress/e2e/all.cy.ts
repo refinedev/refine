@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("form-mantine-use-modal-undoable-form", () => {
+describe("form-mantine-mutation-mode", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
