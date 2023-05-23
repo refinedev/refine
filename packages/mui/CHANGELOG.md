@@ -1,5 +1,165 @@
 # @pankod/refine-mui
 
+## 4.16.4
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
+## 4.16.3
+
+### Patch Changes
+
+-   [#4355](https://github.com/refinedev/refine/pull/4355) [`bf4011f1d00`](https://github.com/refinedev/refine/commit/bf4011f1d00b6b5ce85f9cd67d58afb78fc9c924) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@mui/material` and `@mui/icons-material` imports to use subpath imports.
+
+## 4.16.2
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
+## 4.16.1
+
+### Patch Changes
+
+-   [#4316](https://github.com/refinedev/refine/pull/4316) [`4690c627e05`](https://github.com/refinedev/refine/commit/4690c627e053a7e35eb8bcb1bfca808308bfa89d) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - fix: fixed `className` for easier selection of all buttons and titles of CRUD components
+
+## 4.16.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/mui";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.16.0
+    -   @refinedev/react-hook-form@4.4.0
+
+## 4.15.0
+
+### Minor Changes
+
+-   [#4303](https://github.com/refinedev/refine/pull/4303) [`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added default button props into the renderer functions `headerButtons` and `footerButtons` in CRUD components.
+    Now, customization of the header and footer buttons can be achieved without losing the default functionality.
+
+    ```tsx
+    import {
+        DeleteButton,
+        EditButton,
+        ListButton,
+        RefreshButton,
+        Show,
+    } from "@refinedev/mui";
+
+    const PostShow = () => {
+        return (
+            <Show
+                headerButtons={({
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                }) => {
+                    return (
+                        <>
+                            {/* custom components */}
+                            {listButtonProps && (
+                                <ListButton
+                                    {...listButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {editButtonProps && (
+                                <EditButton
+                                    {...editButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            {deleteButtonProps && (
+                                <DeleteButton
+                                    {...deleteButtonProps}
+                                    meta={{ foo: "bar" }}
+                                />
+                            )}
+                            <RefreshButton
+                                {...refreshButtonProps}
+                                meta={{ foo: "bar" }}
+                            />
+                        </>
+                    );
+                }}
+            >
+                {/* ... */}
+            </Show>
+        );
+    };
+    ```
+
+### Patch Changes
+
+-   [#4312](https://github.com/refinedev/refine/pull/4312) [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: added `className` for easier selection of all buttons and titles of CRUD components
+
+-   Updated dependencies [[`0c569f42b4e`](https://github.com/refinedev/refine/commit/0c569f42b4e7caec75928fd8a1ebeb337c95ff81), [`e6eb4dea627`](https://github.com/refinedev/refine/commit/e6eb4dea6279983d04a9f654ac2cd74915fba075), [`9a5f79186c1`](https://github.com/refinedev/refine/commit/9a5f79186c107d52e12b8ff87558a3c3dd7807b8)]:
+    -   @refinedev/ui-types@1.15.0
+    -   @refinedev/react-hook-form@4.3.0
+
 ## 4.14.7
 
 ### Patch Changes

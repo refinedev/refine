@@ -7,7 +7,9 @@ sidebar_label: Router Provider
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **refine**. Rather than restricting and limiting our users to specific routing libraries or practices, we have designed the `routerProvider` interface to communicate with the router libraries rather than managing them.
+**refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but recommended to get the most out of **refine**.
+
+Rather than restricting and limiting our users to specific routing libraries or practices, we have designed the `routerProvider` interface to communicate with the router libraries rather than managing them.
 
 A router provider may contain the following methods:
 
@@ -48,7 +50,7 @@ const routerProvider: {
 -   [React Router V6][react-router-v6]
 -   [Next.js Router][nextjs-router]
 -   [Remix Router][remix-router]
--   [React Router V5][react-router-v5] (Only available for `legacyRouterProvider`)
+-   [React Router V5][react-router-v5] (Only available for `legacyRouterProvider`, see below.)
 
 :::
 
@@ -60,7 +62,7 @@ You can also create your own router provider or easily customize the existing on
 
 ## Usage
 
-To activate router provider in **refine**, we have to pass the `routerProvider` to the `<Refine />` component.
+To activate router provider in **refine**, we have to pass the `routerProvider` to the `<Refine />` component:
 
 <Tabs
 defaultValue="react-router-v6"
@@ -182,17 +184,17 @@ export default function App() {
 
 ## Creating a router provider
 
-The `routerProvider`methods are designed to be as simple as possible and to be compatible with any router library. **refine** also exports some helper functions to make it easier to create a customized `routerProvider` for your needs.
+The `routerProvider` methods are designed to be as simple as possible and to be compatible with any router library. **refine** also exports some helper functions to make it easier to create a customized `routerProvider`.
 
 ### `go`
 
-The `go` method is used to navigate to a specific page. It accepts a `to` parameter which is the path of the page to navigate to. It also accepts `query`, `hash`, and `options` parameters to customize the navigation. The `type` parameter is used to specify the type of navigation. It can be `push`, `replace`, or `path`.
+The `go` method is used to navigate to a specific page. It accepts a `to` parameter, which is the path of the page to navigate to; the `query`, `hash`, and `options` parameters to customize the navigation; and the `type` parameter is used to specify the type of navigation, which can be either `push`, `replace` or `path`.
 
 The `path` type returns the path to navigate, which can be used in links or redirects. The `push` and `replace` types navigate to the path.
 
-`to` parameter is `undefined`. In this case, we expect `go` function to use the current path and add the `query` and `hash` parameters to it.
+The `to` parameter is `undefined` by default. In this case, we expect the `go` function to use the current path and add the `query` and `hash` parameters to it.
 
-`query` is passed as an object to let the router library handle the query string. In our implementations, we use `qs` library to stringify the query object which supports nested objects. The `query` is also parsed in the `parse` method of the `routerProvider`, this allows us to implement custom ways of stringifying and parsing the queries.
+The `query` parameter is passed as an object to let the router library handle the query string. In our implementations, we use the `qs` library to stringify the query object, which supports nested objects. The `query` is also parsed in the `parse` method of the `routerProvider`, which allows us to implement custom ways of stringifying and parsing the queries.
 
 ### `back`
 
@@ -200,9 +202,9 @@ The `back` method is used to navigate back to the previous page. It has no param
 
 ### `parse`
 
-The `parse` method is used to parse the current path and return the current `resource`, `id` and `action` of the page as well as the `pathname` and the `params` of the page.
+The `parse` method is used to parse the current path and return the current `resource`, `id` and `action` of the page as well as the `pathname` and the `params`.
 
-`params` is an object that contains both the URL parameters and the query parameters. We use `qs` library to parse the query string and return the query parameters as an object. But you can use any other library or implement your own way of parsing the query string.
+`params` is an object that contains both the URL parameters and the query parameters. We use the `qs` library to parse the query string and return the query parameters as an object, but you can use any other library or implement your own way of parsing the query string.
 
 `resource` is the name of the resource that is used in the current page and also defined in the `resources` prop of the `<Refine />` component. This can be `undefined` if there's no matching resource route.
 
@@ -218,13 +220,13 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ### Source Code for the Existing Router Providers
 
-- [React Router V6](https://github.com/refinedev/refine/blob/next/packages/react-router-v6/src/bindings.tsx)
-- [Next.js Router](https://github.com/refinedev/refine/blob/next/packages/nextjs-router/src/pages/bindings.tsx)
-- [Remix Router](https://github.com/refinedev/refine/blob/next/packages/remix/src/bindings.tsx)
+-   [React Router V6](https://github.com/refinedev/refine/blob/next/packages/react-router-v6/src/bindings.tsx)
+-   [Next.js Router](https://github.com/refinedev/refine/blob/next/packages/nextjs-router/src/pages/bindings.tsx)
+-   [Remix Router](https://github.com/refinedev/refine/blob/next/packages/remix/src/bindings.tsx)
 
 ## Legacy Router Provider
 
-**refine**'s v4 release is backward compatible and supports the legacy router provider implementations until v5. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@refinedev/react-router-v6/legacy`.
+**refine**'s v4 release is backward compatible and supports the legacy router provider implementations until v5 comes out. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@refinedev/react-router-v6/legacy`.
 
 If you want to use a legacy router provider, you can pass them to the `<Refine />` component using the `legacyRouterProvider` prop.
 

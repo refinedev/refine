@@ -1,8 +1,12 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { LoadingButton } from "@mui/lab";
-import { ImportExportOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+import ImportExportOutlined from "@mui/icons-material/ImportExportOutlined";
 
 import { ExportButtonProps } from "../types";
 
@@ -31,6 +35,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             loadingPosition={hideText ? "center" : "start"}
             sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.ExportButton}
+            className={RefineButtonClassNames.ExportButton}
             {...restProps}
         >
             {hideText ? (

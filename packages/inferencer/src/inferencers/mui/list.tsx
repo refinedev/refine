@@ -11,8 +11,9 @@ import {
     MarkdownField,
     ShowButton,
 } from "@refinedev/mui";
+
 import { DataGrid } from "@mui/x-data-grid";
-import { Checkbox } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
 
 import { createInferencer } from "@/create-inferencer";
 import {

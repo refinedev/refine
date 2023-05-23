@@ -34,12 +34,14 @@ export const PostCreate: React.FC = () => {
             <form>
                 <TextInput
                     mt={8}
+                    id="title"
                     label="Title"
                     placeholder="Title"
                     {...getInputProps("title")}
                 />
                 <Select
                     mt={8}
+                    id="status"
                     label="Status"
                     placeholder="Pick one"
                     {...getInputProps("status")}
@@ -51,6 +53,7 @@ export const PostCreate: React.FC = () => {
                 />
                 <Select
                     mt={8}
+                    id="categoryId"
                     label="Category"
                     placeholder="Pick one"
                     {...getInputProps("category.id")}
@@ -60,6 +63,7 @@ export const PostCreate: React.FC = () => {
                     Content
                 </Text>
                 <MDEditor
+                    id="content"
                     data-color-mode="light"
                     {...getInputProps("content")}
                 />

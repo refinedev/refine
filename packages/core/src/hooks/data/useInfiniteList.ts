@@ -247,7 +247,7 @@ export const useInfiniteList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(combinedMeta || {}),
+                    ...combinedMeta,
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -255,7 +255,7 @@ export const useInfiniteList = <
                     },
                 },
                 metaData: {
-                    ...(combinedMeta || {}),
+                    ...combinedMeta,
                     queryContext: {
                         queryKey,
                         pageParam,

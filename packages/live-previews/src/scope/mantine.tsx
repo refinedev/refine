@@ -52,7 +52,7 @@ const RefineMantineDemo: React.FC<
     );
 };
 
-const ThemedTitle: typeof RefineMantine.ThemedTitle = ({
+const ThemedTitleV2: typeof RefineMantine.ThemedTitleV2 = ({
     collapsed,
     wrapperStyles,
     text: textFromProps,
@@ -117,7 +117,7 @@ const ThemedTitle: typeof RefineMantine.ThemedTitle = ({
     }, []);
 
     return (
-        <RefineMantine.ThemedTitle
+        <RefineMantine.ThemedTitleV2
             collapsed={collapsed}
             wrapperStyles={wrapperStyles}
             text={title || textFromProps}
@@ -179,7 +179,7 @@ const MantineProvider = ({
 const MantineScope = {
     RefineMantine: {
         ...RefineMantine,
-        ThemedTitle,
+        ThemedTitleV2,
     },
     RefineMantineDemo,
     MantineCore: {

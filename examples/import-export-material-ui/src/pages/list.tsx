@@ -2,7 +2,7 @@ import { useImport, useExport, useNotification, useOne } from "@refinedev/core";
 
 import { useDataGrid, ImportButton, List, ExportButton } from "@refinedev/mui";
 
-import { Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../interfaces";

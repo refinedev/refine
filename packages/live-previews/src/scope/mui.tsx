@@ -7,13 +7,16 @@ import * as MuiMaterialStyles from "@mui/material/styles";
 
 import * as EmotionReact from "@emotion/react";
 import * as EmotionStyled from "@emotion/styled";
+// eslint-disable-next-line no-restricted-imports
 import * as MuiLab from "@mui/lab";
+// eslint-disable-next-line no-restricted-imports
 import * as MuiMaterial from "@mui/material";
 import * as MuiXDataGrid from "@mui/x-data-grid";
 import * as ReactHookForm from "react-hook-form";
 
+// eslint-disable-next-line no-restricted-imports
 import { CssBaseline, GlobalStyles } from "@mui/material";
-
+// eslint-disable-next-line no-restricted-imports
 import {
     LightModeOutlined,
     DarkModeOutlined,
@@ -73,7 +76,7 @@ const RefineMuiDemo: React.FC<
     );
 };
 
-const ThemedTitle: typeof RefineMui.ThemedTitle = ({
+const ThemedTitleV2: typeof RefineMui.ThemedTitleV2 = ({
     collapsed,
     wrapperStyles,
     text: textFromProps,
@@ -138,7 +141,7 @@ const ThemedTitle: typeof RefineMui.ThemedTitle = ({
     }, []);
 
     return (
-        <RefineMui.ThemedTitle
+        <RefineMui.ThemedTitleV2
             collapsed={collapsed}
             wrapperStyles={wrapperStyles}
             text={title || textFromProps}
@@ -210,7 +213,7 @@ const MuiScope = {
     RefineMuiDemo,
     RefineMui: {
         ...RefineMui,
-        ThemedTitle,
+        ThemedTitleV2,
     },
     EmotionReact,
     EmotionStyled,

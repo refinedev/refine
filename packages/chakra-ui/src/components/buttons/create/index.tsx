@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { Button, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus } from "@tabler/icons";
 
@@ -86,6 +89,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     title={disabledTitle()}
                     isDisabled={data?.can === false}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     {...rest}
                 >
                     <IconSquarePlus size={20} {...svgIconProps} />
@@ -97,6 +101,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     leftIcon={<IconSquarePlus size={20} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.create", "Create")}

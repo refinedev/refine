@@ -8,9 +8,13 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { Button } from "@mui/material";
-import { EditOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import Button from "@mui/material/Button";
+import EditOutlined from "@mui/icons-material/EditOutlined";
 
 import { EditButtonProps } from "../types";
 
@@ -108,6 +112,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.EditButton}
+                className={RefineButtonClassNames.EditButton}
                 {...restProps}
             >
                 {hideText ? (

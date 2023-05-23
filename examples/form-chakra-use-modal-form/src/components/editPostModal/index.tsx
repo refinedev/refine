@@ -63,7 +63,7 @@ export const EditPostModal: React.FC<UseModalFormReturnType<IPost>> = ({
                         <FormControl mb="3" isInvalid={!!errors?.status}>
                             <FormLabel>Status</FormLabel>
                             <Select
-                                id="content"
+                                id="status"
                                 placeholder="Select Post Status"
                                 {...register("status", {
                                     required: "Status is required",
@@ -80,7 +80,7 @@ export const EditPostModal: React.FC<UseModalFormReturnType<IPost>> = ({
                         <FormControl mb="3" isInvalid={!!errors?.categoryId}>
                             <FormLabel>Category</FormLabel>
                             <Select
-                                id="category.id"
+                                id="categoryId"
                                 placeholder="Select Category"
                                 {...register("category.id", {
                                     required: "Category is required",

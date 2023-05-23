@@ -1,6 +1,7 @@
 import { useTranslate } from "@refinedev/core";
 import { useTheme } from "@mui/material/styles";
-import { Chip, ChipProps } from "@mui/material";
+import Chip from "@mui/material/Chip";
+import type { ChipProps } from "@mui/material/Chip";
 
 type OrderStatusProps = {
     status?: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";

@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useGo, useResource, useRouterType } from "@refinedev/core";
 import { RefineErrorPageProps } from "@refinedev/ui-types";
 import { useNavigation, useTranslate } from "@refinedev/core";
-import { Stack, Button, Tooltip, Typography, Grid } from "@mui/material";
-import { Info } from "@mui/icons-material";
+
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+
+import Info from "@mui/icons-material/Info";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
     const [errorMessage, setErrorMessage] = useState<string>();

@@ -4,8 +4,11 @@ import { NotificationProvider } from "@refinedev/core";
 import { useSnackbar } from "notistack";
 
 import { CircularDeterminate } from "@components";
-import { Box, IconButton, Typography } from "@mui/material";
-import { UndoOutlined } from "@mui/icons-material";
+
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import UndoOutlined from "@mui/icons-material/UndoOutlined";
 
 export const notificationProvider = (): NotificationProvider => {
     const { closeSnackbar, enqueueSnackbar } = useSnackbar();

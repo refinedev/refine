@@ -2,7 +2,10 @@ import React from "react";
 import { Button } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { ExportButtonProps } from "../types";
 
@@ -24,6 +27,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             type="default"
             icon={<ExportOutlined />}
             data-testid={RefineButtonTestIds.ExportButton}
+            className={RefineButtonClassNames.ExportButton}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.export", "Export"))}

@@ -40,7 +40,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps: editSaveButtonProps,
         deleteButtonProps,
         id,
-        formLoading,
+        formLoading: editFormLoading,
     } = useDrawerForm<IPost>({
         action: "edit",
         warnWhenUnsavedChanges: true,
@@ -149,10 +149,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             <Drawer {...editDrawerProps}>
                 <Edit
                     recordItemId={id}
-                    saveButtonProps={{
-                        ...editSaveButtonProps,
-                        disabled: formLoading,
-                    }}
+                    saveButtonProps={editSaveButtonProps}
+                    isLoading={editFormLoading}
                     deleteButtonProps={deleteButtonProps}
                     contentProps={{
                         style: {

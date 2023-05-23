@@ -186,4 +186,260 @@ describe("useDeleteMany Hook", () => {
             });
         });
     });
+
+    it("should use `deleteOne` method if does not exist `deleteMany` method in dataProvider", async () => {
+        const deleteOneMock = jest.fn();
+
+        const { result } = renderHook(() => useDeleteMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        deleteOne: deleteOneMock,
+                        deleteMany: undefined,
+                    },
+                },
+                resources: [{ name: "posts" }],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            ids: ["1", "2"],
+        });
+
+        await waitFor(() => {
+            expect(deleteOneMock).toBeCalled();
+        });
+
+        expect(deleteOneMock).toBeCalledTimes(2);
+        expect(deleteOneMock).toHaveBeenNthCalledWith(
+            1,
+            expect.objectContaining({
+                resource: "posts",
+                id: "1",
+            }),
+        );
+        expect(deleteOneMock).toHaveBeenNthCalledWith(
+            2,
+            expect.objectContaining({
+                resource: "posts",
+                id: "2",
+            }),
+        );
+    });
+
+    describe("useNotification", () => {
+        it("should call `open` from the notification provider on success", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                ids: ["1", "2"],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Success",
+                key: "1,2-posts-notification",
+                message: "Successfully deleted posts",
+                type: "success",
+            });
+        });
+
+        it("should call `open` from the notification provider on error", async () => {
+            const deleteManyMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const notificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteMany: deleteManyMock,
+                        },
+                    },
+                    notificationProvider: {
+                        open: notificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                ids: ["1", "2"],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(notificationMock).toBeCalledWith({
+                description: "Error",
+                key: "1,2-posts-notification",
+                message: "Error (status code: undefined)",
+                type: "error",
+            });
+        });
+
+        it("should call `open` from notification provider on success with custom notification params", async () => {
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                ids: ["1", "2"],
+                successNotification: () => ({
+                    message: "Success",
+                    description: "Successfully created post",
+                    type: "success",
+                }),
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "Successfully created post",
+                message: "Success",
+                type: "success",
+            });
+        });
+
+        it("should call `open` from notification provider on error with custom notification params", async () => {
+            const deleteManyMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const openNotificationMock = jest.fn();
+
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteMany: deleteManyMock,
+                        },
+                    },
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                ids: ["1", "2"],
+                errorNotification: () => ({
+                    message: "Error",
+                    description: "There was an error creating post",
+                    type: "error",
+                }),
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(openNotificationMock).toBeCalledWith({
+                description: "There was an error creating post",
+                message: "Error",
+                type: "error",
+            });
+        });
+    });
+
+    describe("useOnError", () => {
+        it("should call `onError` from the auth provider on error", async () => {
+            const deleteManyMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const onErrorMock = jest.fn();
+
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteMany: deleteManyMock,
+                        },
+                    },
+                    authProvider: {
+                        onError: onErrorMock,
+                    } as any,
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                ids: ["1"],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+
+        it("should call `checkError` from the legacy auth provider on error", async () => {
+            const deleteManyMock = jest
+                .fn()
+                .mockRejectedValue(new Error("Error"));
+            const onErrorMock = jest.fn();
+
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteMany: deleteManyMock,
+                        },
+                    },
+                    legacyAuthProvider: {
+                        checkError: onErrorMock,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                ids: ["1"],
+            });
+
+            await waitFor(() => {
+                expect(result.current.isError).toBeTruthy();
+            });
+
+            expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+    });
 });

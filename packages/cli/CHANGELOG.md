@@ -1,5 +1,17 @@
 # @pankod/refine-cli
 
+## 2.5.5
+
+### Patch Changes
+
+-   [#4350](https://github.com/refinedev/refine/pull/4350) [`79955f1dfef`](https://github.com/refinedev/refine/commit/79955f1dfefc558798e5f3af4e4548a391ec488d) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added proxy command to CLI
+
+## 2.5.4
+
+### Patch Changes
+
+-   [#4350](https://github.com/refinedev/refine/pull/4350) [`79955f1dfef`](https://github.com/refinedev/refine/commit/79955f1dfefc558798e5f3af4e4548a391ec488d) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added proxy command to CLI
+
 ## 2.5.3
 
 ### Patch Changes

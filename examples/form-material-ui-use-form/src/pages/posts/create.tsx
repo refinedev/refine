@@ -1,6 +1,8 @@
 import { HttpError } from "@refinedev/core";
 import { Create, useAutocomplete } from "@refinedev/mui";
-import { Box, TextField, Autocomplete } from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
@@ -33,6 +35,7 @@ export const PostCreate: React.FC = () => {
                 autoComplete="off"
             >
                 <TextField
+                    id="title"
                     {...register("title", {
                         required: "This field is required",
                     })}
@@ -50,6 +53,7 @@ export const PostCreate: React.FC = () => {
                     rules={{ required: "This field is required" }}
                     render={({ field }) => (
                         <Autocomplete
+                            id="status"
                             options={["published", "draft", "rejected"]}
                             {...field}
                             onChange={(_, value) => {
@@ -75,6 +79,7 @@ export const PostCreate: React.FC = () => {
                     rules={{ required: "This field is required" }}
                     render={({ field }) => (
                         <Autocomplete
+                            id="category"
                             {...autocompleteProps}
                             {...field}
                             onChange={(_, value) => {
@@ -109,6 +114,7 @@ export const PostCreate: React.FC = () => {
                     )}
                 />
                 <TextField
+                    id="content"
                     {...register("content", {
                         required: "This field is required",
                     })}

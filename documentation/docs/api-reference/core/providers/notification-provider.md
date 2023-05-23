@@ -37,7 +37,7 @@ interface OpenNotificationParams {
 
 ## Usage
 
-To use `notificationProvider` in refine, we have to pass the notificationProvider to the `<Refine>` component.
+To use `notificationProvider` in refine, we have to pass the `notificationProvider` to the `<Refine>` component.
 
 ```tsx
 import { Refine, NotificationProvider } from "@refinedev/core";
@@ -64,7 +64,7 @@ const App = () => {
 
 By default, **refine** doesn't require `notificationProvider` configuration.
 
-If an `notificationProvider` property is not provided, **refine** will use the default `notificationProvider`. This default `notificationProvider` lets the app work without an notification.
+If an `notificationProvider` property is not provided, **refine** will use the default `notificationProvider`, which lets the app work without an notification.
 If your app doesn't require `notification`, no further setup is necessary for the app to work.
 
 ## Built-in Notification Providers
@@ -79,8 +79,6 @@ values={[
 {label: 'Mantine', value: 'mantine'},
 {label: 'Chakra UI', value: 'chakra'},
 ]}>
-
-
 
   <TabItem value="antd">
 
@@ -100,10 +98,7 @@ return (
   <TabItem value="mui">
 
 ```tsx
-import {
-    notificationProvider,
-    RefineSnackbarProvider,
-} from "@refinedev/mui";
+import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 
 return (
     <RefineSnackbarProvider>
@@ -153,7 +148,7 @@ return (
 
 ## Creating a `notificationProvider` from scratch
 
-We will build a simple `notificationProvider` from scratch to show the logic of how `notificationProvider` methods interact with the app. For this, we will use the [`react-toastify`](https://github.com/fkhadra/react-toastify) package, which is very **popular** in the **React Ecosystem**. If you want to use another notification library, you can use the same approach.
+We will now build a simple `notificationProvider` from scratch to show the logic of how `notificationProvider` methods interact with the app. For this, we will use the [`react-toastify`](https://github.com/fkhadra/react-toastify) package, which is very **popular** in the **React Ecosystem**. If you want to use another notification library, you can use the same approach.
 
 Before we start, we need set up the `react-toastify` requirements.
 
@@ -168,7 +163,7 @@ import "react-toastify/dist/ReactToastify.css";
 const App: React.FC = () => {
     return (
         <Refine
-            /* ...*/
+        /* ...*/
         >
             {/* ... */}
             {/* highlight-start */}
@@ -179,14 +174,13 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 ```
 
 ### `open`
 
-**refine** calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the **refine** open method. For example, `message`, `description`, etc...
+**refine** calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the **refine** open method. For example, `message`, `description`, etc.
 
-Here we open a **notification** with [`react-toastify`](https://github.com/fkhadra/react-toastify).
+Here we open a notification with [`react-toastify`](https://github.com/fkhadra/react-toastify):
 
 ```tsx
 import { toast } from "react-toastify";
@@ -201,9 +195,7 @@ const notificationProvider: NotificationProvider = {
 };
 ```
 
-In case the notification is called repeatedly with the same `key`, let's update the previous notification instead of creating a new one.
-
-`toast.isActive(key)` returns `true` if the notification is still active. So we can check if the notification is already active and update it instead of creating a new one.
+Let's make it so that the previous notification is updated when the notification is called again with the same `key` instead of creating a new one each time. We can use `toast.isActive(key)` for this since it returns `true` if the notification is still active.
 
 ```tsx
 import { toast } from "react-toastify";
@@ -227,9 +219,9 @@ const notificationProvider: NotificationProvider = {
 };
 ```
 
-Now, let's create a custom notification when the mutation mode is `undoable`. In this case, **refine** sends notification's type as `progress` as well as the `cancelMutation` and `undoableTimeout`.
+Now, let's create a custom notification when the mutation mode is `undoable`. In this case, **refine** sends the notification's type as `progress` as well as `cancelMutation` and `undoableTimeout`.
 
-`undoableTimeout` decreases by 1 every second until it reaches 0. When it reaches 0, the notification is closed. `open` method is called again with the same `key` each countdown. So, the notification should be updated with the new `undoableTimeout` value.
+`undoableTimeout` decreases by 1 every second until it reaches 0, at which point the notification is closed. The `open` method is called again with the same`key` each countdown. So, the notification should be updated with the new`undoableTimeout` value.
 
 ```tsx
 import { toast } from "react-toastify";
@@ -287,8 +279,6 @@ const notificationProvider: NotificationProvider = {
 };
 ```
 
-> **Note**: We add `closeButton` and `autoClose` for progress notifications are not closable by default. Because, when progress is done, the progress notification to be updated should be closeable.
-
 <details><summary>See UndoableNotification Component</summary>
 <p>
 
@@ -320,11 +310,15 @@ export const UndoableNotification: React.FC<UndoableNotification> = ({
 };
 ```
 
+:::note
+We add `closeButton` and `autoClose` for progress notifications, which are not closable by default to allow users to close them when the progress is done.
+:::
+
 </p>
 </details>
 
 :::tip
-`open` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
+The `open` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
 import { useNotification } from "@refinedev/core";

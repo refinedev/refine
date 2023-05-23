@@ -2,8 +2,11 @@ import { CardProps, SpaceProps } from "antd";
 import {
     CreateButtonProps,
     DeleteButtonProps,
+    EditButtonProps,
+    ListButtonProps,
+    RefreshButtonProps,
     SaveButtonProps,
-} from "@components/buttons";
+} from "../buttons/types";
 import {
     RefineCrudCreateProps,
     RefineCrudEditProps,
@@ -34,7 +37,10 @@ export type EditProps = RefineCrudEditProps<
         HTMLDivElement
     >,
     PageHeaderProps,
-    CardProps
+    CardProps,
+    {},
+    RefreshButtonProps,
+    ListButtonProps
 >;
 
 export type ListProps = RefineCrudListProps<
@@ -59,5 +65,10 @@ export type ShowProps = RefineCrudShowProps<
         HTMLDivElement
     >,
     PageHeaderProps,
-    CardProps
+    CardProps,
+    {},
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
+    ListButtonProps
 >;

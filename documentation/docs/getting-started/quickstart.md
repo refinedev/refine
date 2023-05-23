@@ -7,7 +7,7 @@ title: Quick Start Guide
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**refine** works on any environment that can run **React** (incl. *CRA, Next.js, Remix, Vite* etc.)
+**refine** works on any environment that can run **React** (incl. *Vite, Next.js, Remix, and CRA(Legacy)* etc.)
 
 Although you could take the time to manually set up your environment and install the **refine** packages afterwards, the optimal way to get started with **refine** is using the [refine.new](https://refine.new/) platform or `create refine-app` project starter tool.
 
@@ -56,7 +56,7 @@ Choose one of the methods below to bootstrap a refine app:
   </TabItem>
   <TabItem value="CLI" label="create refine-app">
 
-`create refine-app` provides built-in templates for *CRA*, *Next.js* and *Remix* environments, so you can bootstrap a **refine** project in just a couple of minutes. It also offers a wide range of options that you can easily configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* preferences.
+`create refine-app` provides built-in templates for *Vite*, *Next.js*, *Remix*, and *CRA(Legacy)* environments, so you can bootstrap a **refine** project in just a couple of minutes. It also offers a wide range of options that you can easily configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* preferences.
 
 1. To get started, run the following command. The *CLI wizard* will assist you for the rest of the setup process:
 

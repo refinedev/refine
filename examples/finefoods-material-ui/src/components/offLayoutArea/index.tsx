@@ -1,5 +1,5 @@
 import { RefineKbar } from "@refinedev/kbar";
-import { ArrowLeftOutlined } from "@mui/icons-material";
+import ArrowLeftOutlined from "@mui/icons-material/ArrowLeftOutlined";
 
 import "./style.css";
 

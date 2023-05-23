@@ -8,9 +8,13 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { Button } from "@mui/material";
-import { AddBoxOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import Button from "@mui/material/Button";
+import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
 
 import { CloneButtonProps } from "../types";
 
@@ -101,6 +105,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.CloneButton}
+                className={RefineButtonClassNames.CloneButton}
                 {...restProps}
             >
                 {hideText ? (

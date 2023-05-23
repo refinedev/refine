@@ -1,5 +1,9 @@
-import { Email, Phone, Place } from "@mui/icons-material";
-import { Box, Stack, Typography } from "@mui/material";
+import Email from "@mui/icons-material/Email";
+import Phone from "@mui/icons-material/Phone";
+import Place from "@mui/icons-material/Place";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 import { ProfileProps, PropertyProps } from "interfaces/common";
 import PropertyCard from "./PropertyCard";

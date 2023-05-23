@@ -18,6 +18,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps,
         queryResult,
     } = useStepsForm<IPost>();
+    const formLoading = queryResult?.isFetching || queryResult?.isLoading;
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -93,6 +94,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit
+            isLoading={formLoading}
             footerButtons={
                 <>
                     {current > 0 && (
