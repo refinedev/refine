@@ -168,7 +168,7 @@ describe("mutation-mode-antd", () => {
         });
     });
 
-    it.only("should delete record when mutation mode is pessimistic", () => {
+    it("should delete record when mutation mode is pessimistic", () => {
         cy.get("input[value=pessimistic]").check();
         cy.getEditButton().first().click();
 

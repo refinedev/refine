@@ -142,7 +142,7 @@ describe("form-material-ui-use-form", () => {
         cy.get("#category-error").should("not.exist");
     });
 
-    it.only("should create form warn when unsaved changes", () => {
+    it("should create form warn when unsaved changes", () => {
         cy.wait("@getPosts");
         cy.get("button").contains("Create Post").click();
         cy.get("#title").type("any value");
@@ -152,7 +152,7 @@ describe("form-material-ui-use-form", () => {
         });
     });
 
-    it.only("should edit form warn when unsaved changes", () => {
+    it("should edit form warn when unsaved changes", () => {
         cy.wait("@getPosts");
         cy.get("button").contains(/edit/i).first().click();
 
