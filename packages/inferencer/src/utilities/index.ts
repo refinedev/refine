@@ -9,6 +9,7 @@ export { pickInferredField } from "./pick-inferred-field";
 export { prettierFormat } from "./prettier-format";
 export { prettySpaces } from "./pretty-spaces";
 export { prettyString } from "./pretty-string";
+export { translatePrettyString } from "./translate-pretty-string";
 
 export { removeRelationSuffix } from "./remove-relation-suffix";
 export { replaceExports } from "./replace-exports";
