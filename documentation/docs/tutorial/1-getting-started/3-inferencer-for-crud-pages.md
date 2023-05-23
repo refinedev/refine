@@ -127,7 +127,11 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/mui";
-import { MuiListInferencer } from "@refinedev/inferencer/mui";
+import { MuiListInferencer,
+         MuiCreateInferencer,
+         MuiEditInferencer,
+         MuiShowInferencer          
+} from "@refinedev/inferencer/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -157,6 +161,18 @@ const BlogPostList: React.FC<IResourceComponentsProps> = () => {
 };
 // visible-block-end
 
+const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
+  return <MuiCreateInferencer />;
+};
+
+const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
+  return <MuiEditInferencer />;
+};
+
+const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
+  return <MuiShowInferencer />;
+};
+
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -181,23 +197,13 @@ function App() {
                 {
                   name: "blog_posts",
                   list: "/blog-posts",
-                  // create: "/blog-posts/create",
-                  // edit: "/blog-posts/edit/:id",
-                  // show: "/blog-posts/show/:id",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
                   meta: {
                     canDelete: true,
                   },
                 },
-                // {
-                //   name: "categories",
-                //   list: "/categories",
-                //   create: "/categories/create",
-                //   edit: "/categories/edit/:id",
-                //   show: "/categories/show/:id",
-                //   meta: {
-                //     canDelete: true,
-                //   },
-                // },
               ]}
               options={{
                 syncWithLocation: true,
@@ -227,6 +233,9 @@ function App() {
                   />
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
+                    <Route path="create" element={<BlogPostCreate />} />
+                    <Route path="edit/:id" element={<BlogPostEdit />} />
+                    <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
@@ -283,7 +292,11 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/mui";
-import { MuiCreateInferencer } from "@refinedev/inferencer/mui";
+import { MuiListInferencer,
+         MuiCreateInferencer,
+         MuiEditInferencer,
+         MuiShowInferencer          
+} from "@refinedev/inferencer/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -306,15 +319,24 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
 
 // visible-block-start
+const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+  return <MuiListInferencer />;
+};
+// visible-block-end
+
 const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
   return <MuiCreateInferencer />;
 };
-// visible-block-end
+
+const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
+  return <MuiEditInferencer />;
+};
+
+const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
+  return <MuiShowInferencer />;
+};
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -341,22 +363,12 @@ function App() {
                   name: "blog_posts",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
-                  // edit: "/blog-posts/edit/:id",
-                  // show: "/blog-posts/show/:id",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
                   meta: {
                     canDelete: true,
                   },
                 },
-                // {
-                //   name: "categories",
-                //   list: "/categories",
-                //   create: "/categories/create",
-                //   edit: "/categories/edit/:id",
-                //   show: "/categories/show/:id",
-                //   meta: {
-                //     canDelete: true,
-                //   },
-                // },
               ]}
               options={{
                 syncWithLocation: true,
@@ -385,7 +397,10 @@ function App() {
                     element={<NavigateToResource resource="blog_posts" />}
                   />
                   <Route path="/blog-posts">
+                    <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
+                    <Route path="edit/:id" element={<BlogPostEdit />} />
+                    <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
@@ -439,7 +454,11 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/mui";
-import { MuiEditInferencer } from "@refinedev/inferencer/mui";
+import { MuiListInferencer,
+         MuiCreateInferencer,
+         MuiEditInferencer,
+         MuiShowInferencer          
+} from "@refinedev/inferencer/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -462,15 +481,24 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
 
 // visible-block-start
+const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+  return <MuiListInferencer />;
+};
+// visible-block-end
+
+const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
+  return <MuiCreateInferencer />;
+};
+
 const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
   return <MuiEditInferencer />;
 };
-// visible-block-end
+
+const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
+  return <MuiShowInferencer />;
+};
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -496,23 +524,13 @@ function App() {
                 {
                   name: "blog_posts",
                   list: "/blog-posts",
-                  // create: "/blog-posts/create",
+                  create: "/blog-posts/create",
                   edit: "/blog-posts/edit/:id",
-                  // show: "/blog-posts/show/:id",
+                  show: "/blog-posts/show/:id",
                   meta: {
                     canDelete: true,
                   },
                 },
-                // {
-                //   name: "categories",
-                //   list: "/categories",
-                //   create: "/categories/create",
-                //   edit: "/categories/edit/:id",
-                //   show: "/categories/show/:id",
-                //   meta: {
-                //     canDelete: true,
-                //   },
-                // },
               ]}
               options={{
                 syncWithLocation: true,
@@ -541,7 +559,10 @@ function App() {
                     element={<NavigateToResource resource="blog_posts" />}
                   />
                   <Route path="/blog-posts">
+                    <Route index element={<BlogPostList />} />
+                    <Route path="create" element={<BlogPostCreate />} />
                     <Route path="edit/:id" element={<BlogPostEdit />} />
+                    <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
@@ -575,7 +596,6 @@ The code for this `show` page was also generated by Inferencer, as per `<MuiShow
 ```tsx live previewOnly previewHeight=600px url=http://localhost:5173/blog-posts/show/123
 setInitialRoutes(["/blog-posts/show/123"]);
 
-
 import { Authenticated, GitHubBanner, IResourceComponentsProps, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -586,7 +606,11 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/mui";
-import { MuiShowInferencer } from "@refinedev/inferencer/mui";
+import { MuiListInferencer,
+         MuiCreateInferencer,
+         MuiEditInferencer,
+         MuiShowInferencer          
+} from "@refinedev/inferencer/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -609,15 +633,24 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
 
 // visible-block-start
+const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+  return <MuiListInferencer />;
+};
+// visible-block-end
+
+const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
+  return <MuiCreateInferencer />;
+};
+
+const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
+  return <MuiEditInferencer />;
+};
+
 const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
   return <MuiShowInferencer />;
 };
-// visible-block-end
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -643,23 +676,13 @@ function App() {
                 {
                   name: "blog_posts",
                   list: "/blog-posts",
-                  // create: "/blog-posts/create",
-                  // edit: "/blog-posts/edit/:id",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
                   show: "/blog-posts/show/:id",
                   meta: {
                     canDelete: true,
                   },
                 },
-                // {
-                //   name: "categories",
-                //   list: "/categories",
-                //   create: "/categories/create",
-                //   edit: "/categories/edit/:id",
-                //   show: "/categories/show/:id",
-                //   meta: {
-                //     canDelete: true,
-                //   },
-                // },
               ]}
               options={{
                 syncWithLocation: true,
@@ -688,6 +711,9 @@ function App() {
                     element={<NavigateToResource resource="blog_posts" />}
                   />
                   <Route path="/blog-posts">
+                    <Route index element={<BlogPostList />} />
+                    <Route path="create" element={<BlogPostCreate />} />
+                    <Route path="edit/:id" element={<BlogPostEdit />} />
                     <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
