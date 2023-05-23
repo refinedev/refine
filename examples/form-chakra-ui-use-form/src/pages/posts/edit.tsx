@@ -19,7 +19,9 @@ export const PostEdit = () => {
         register,
         formState: { errors },
         setValue,
-    } = useForm<IPost, HttpError, IPost>();
+    } = useForm<IPost, HttpError, IPost>({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { options } = useSelect({
         resource: "categories",

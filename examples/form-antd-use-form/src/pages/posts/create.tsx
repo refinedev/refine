@@ -10,7 +10,9 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+        warnWhenUnsavedChanges: true,
+    });
 
     const postData = queryResult?.data?.data;
 

@@ -141,4 +141,30 @@ describe("form-material-ui-use-form", () => {
         cy.get("#content-error").should("not.exist");
         cy.get("#category-error").should("not.exist");
     });
+
+    it.only("should create form warn when unsaved changes", () => {
+        cy.wait("@getPosts");
+        cy.get("button").contains("Create Post").click();
+        cy.get("#title").type("any value");
+        cy.contains(/cancel/i).click();
+        cy.on("window:confirm", (str) => {
+            expect(str).to.includes("You have unsaved changes");
+        });
+    });
+
+    it.only("should edit form warn when unsaved changes", () => {
+        cy.wait("@getPosts");
+        cy.get("button").contains(/edit/i).first().click();
+
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        waitForLoading();
+
+        cy.get("#title").clear();
+        cy.get("#title").type("any value");
+        cy.contains(/cancel/i).click();
+        cy.on("window:confirm", (str) => {
+            expect(str).to.includes("You have unsaved changes");
+        });
+    });
 });

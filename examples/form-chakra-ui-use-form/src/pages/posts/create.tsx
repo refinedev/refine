@@ -17,7 +17,9 @@ export const PostCreate = () => {
         saveButtonProps,
         register,
         formState: { errors },
-    } = useForm<IPost, HttpError, IPost>();
+    } = useForm<IPost, HttpError, IPost>({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { options } = useSelect({
         resource: "categories",

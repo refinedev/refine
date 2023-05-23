@@ -25,6 +25,7 @@ import {
     getCreateButton,
     getDeleteButton,
     getEditButton,
+    getPageHeaderTitle,
     getSaveButton,
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
@@ -50,6 +51,7 @@ Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
 Cypress.Commands.add("getDeleteButton", getDeleteButton);
 Cypress.Commands.add("getEditButton", getEditButton);
+Cypress.Commands.add("getPageHeaderTitle", getPageHeaderTitle);
 
 Cypress.Commands.add("getAntdNotification", getAntdNotification);
 Cypress.Commands.add("setAntdSelect", setAntdSelect);

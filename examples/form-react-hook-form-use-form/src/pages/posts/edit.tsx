@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useForm } from "@refinedev/react-hook-form";
-import { useSelect } from "@refinedev/core";
+import { useBack, useSelect } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {
+    const back = useBack();
     const {
         refineCore: { onFinish, formLoading, queryResult },
         register,
@@ -10,7 +11,9 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
         setValue,
         saveButtonProps,
-    } = useForm();
+    } = useForm({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { options } = useSelect({
         resource: "categories",
@@ -85,7 +88,7 @@ export const PostEdit: React.FC = () => {
                     <br />
                 </>
             )}
-
+            <button onClick={back}>Cancel</button>
             <input
                 type="submit"
                 value="Submit"

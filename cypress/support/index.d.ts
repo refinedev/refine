@@ -20,7 +20,7 @@ interface IGetChakraUIFormItemErrorParams {
 }
 
 interface IGetMaterialUIFormItemErrorParams {
-      id: string;
+    id: string;
 }
 
 interface IGetMantineFormItemErrorParams {
@@ -50,6 +50,7 @@ declare namespace Cypress {
         getCreateButton(): Chainable<JQuery<HTMLElement>>;
         getDeleteButton(): Chainable<JQuery<HTMLElement>>;
         getEditButton(): Chainable<JQuery<HTMLElement>>;
+        getPageHeaderTitle(): Chainable<JQuery<HTMLElement>>;
 
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
         getAntdLoadingOverlay(): Chainable<JQuery<HTMLElement>>;

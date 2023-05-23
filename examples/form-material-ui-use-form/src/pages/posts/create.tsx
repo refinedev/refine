@@ -19,7 +19,9 @@ export const PostCreate: React.FC = () => {
         IPost & {
             category: ICategory;
         }
-    >();
+    >({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
