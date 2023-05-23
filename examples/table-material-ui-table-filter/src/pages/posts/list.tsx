@@ -157,6 +157,7 @@ export const PostList: React.FC = () => {
                         >
                             <TextField
                                 {...register("q")}
+                                id="q"
                                 label="Search"
                                 placeholder="ID, Title, Content, etc."
                                 margin="normal"
@@ -177,6 +178,7 @@ export const PostList: React.FC = () => {
                                 name="status"
                                 render={({ field }) => (
                                     <Autocomplete
+                                        id="status"
                                         options={[
                                             "published",
                                             "draft",
@@ -204,6 +206,7 @@ export const PostList: React.FC = () => {
                                 name="category"
                                 render={({ field }) => (
                                     <Autocomplete
+                                        id="category"
                                         {...autocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {

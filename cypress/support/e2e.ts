@@ -37,8 +37,10 @@ import { list, create, edit, show } from "./commands/resource";
 // add commands to the Cypress chain
 import "./commands/intercepts";
 import {
+    getMaterialUIColumnHeader,
     getMaterialUIDeletePopoverButton,
     getMaterialUIFormItemError,
+    getMaterialUILoadingCircular,
     getMaterialUINotifications,
 } from "./commands/material-ui";
 
@@ -84,6 +86,11 @@ Cypress.Commands.add(
     getMaterialUIDeletePopoverButton,
 );
 Cypress.Commands.add("getMaterialUIFormItemError", getMaterialUIFormItemError);
+Cypress.Commands.add(
+    "getMaterialUILoadingCircular",
+    getMaterialUILoadingCircular,
+);
+Cypress.Commands.add("getMaterialUIColumnHeader", getMaterialUIColumnHeader);
 
 Cypress.Commands.add("getMantineNotification", getMantineNotification);
 Cypress.Commands.add(

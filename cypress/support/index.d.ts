@@ -95,6 +95,10 @@ declare namespace Cypress {
         getMaterialUIFormItemError(
             params: IGetChakraUIFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
+        getMaterialUILoadingCircular(): Chainable<JQuery<HTMLElement>>;
+        getMaterialUIColumnHeader(
+            index: number,
+        ): Chainable<JQuery<HTMLElement>>;
 
         interceptGETPost(): Chainable<null>;
         interceptGETPosts(): Chainable<null>;
