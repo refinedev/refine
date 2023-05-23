@@ -50,3 +50,11 @@ export const packageMap: Record<string, string> = {
     "i18next-browser-languagedetector": "I18NextBrowserLanguageDetector",
     "i18next-xhr-backend": "I18NextXhrBackend",
 };
+
+export const packageScopeMap: Record<string, RegExp> = {
+    "@mui/lab": /@mui\/lab\/.*/,
+    "@mui/material/styles": /@mui\/material\/styles\/.*/,
+    "@mui/material": /@mui\/material\/.*/,
+    "@mui/icons-material": /@mui\/icons-material\/.*/,
+    "@mui/x-data-grid": /@mui\/x-data-grid\/.*/,
+};
