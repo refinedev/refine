@@ -118,14 +118,16 @@ describe("form-chakra-ui-mutation-mode", () => {
     });
 
     it("should undo editing when mutation mode is undoable", () => {
+        cy.wait("@getPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
         cy.wait("@getPost");
-        cy.wait("@getCategories");
         cy.getSaveButton().should("not.be.disabled");
         cy.getChakraUILoadingOverlay().should("not.exist");
+        cy.wait("@getCategories");
 
+        fillForm();
         submitForm();
 
         cy.getChakraUIToast()
