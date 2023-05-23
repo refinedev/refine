@@ -179,13 +179,6 @@ export const createInferencer: CreateInferencer = ({
                 inferredFields: mostCommonFields,
             };
 
-            console.log({
-                allUniqueKeys,
-                inferred,
-                mostCommonFields,
-                mostCommonRecord,
-            });
-
             return response;
         };
 
