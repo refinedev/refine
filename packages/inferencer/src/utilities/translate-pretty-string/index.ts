@@ -6,17 +6,24 @@ export const translatePrettyString = (payload: {
     resource: IResourceItem;
     field: InferField;
     i18n?: boolean;
-    wrapper?: string;
+    noQuotes?: boolean;
+    noBraces?: boolean;
 }) => {
     const { resource, field, i18n } = payload;
-    let { wrapper } = payload;
-    if (wrapper) {
-        wrapper = `"`;
-    }
 
     if (i18n) {
-        return `{translate("${resource.name}.fields.${field.key}")}`;
+        const translate = `translate("${resource.name}.fields.${field.key}")`;
+
+        if (payload.noBraces) {
+            return `${translate}`;
+        }
+        return `{${translate}}`;
     }
 
-    return `${wrapper}${prettyString(field.key)}${wrapper}`;
+    const prettedString = prettyString(field.key);
+    if (payload.noQuotes) {
+        return prettedString;
+    }
+
+    return `"${prettedString}"`;
 };
