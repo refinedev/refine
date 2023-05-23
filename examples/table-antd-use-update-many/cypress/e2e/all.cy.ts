@@ -24,7 +24,7 @@ describe("table-antd-use-update-many", () => {
         cy.get(".ant-btn-primary").eq(0).should("be.disabled");
     });
 
-    it.only("should be able to update all selected rows", () => {
+    it("should be able to update all selected rows", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.get(".ant-table-row .ant-checkbox-input").eq(1).click();
