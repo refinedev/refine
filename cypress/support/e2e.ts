@@ -8,6 +8,11 @@ import {
     getAntdFormItemError,
     getAntdLoadingOverlay,
     getAntdPopoverDeleteButton,
+    getAntdColumnSorter,
+    getAntdFilterTrigger,
+    getAntdPaginationItem,
+    getTableRowExpandButton,
+    setAntdRangeDatePickerToToday,
 } from "./commands/antd";
 import {
     getChakraUIPopoverDeleteButton,
@@ -50,13 +55,20 @@ Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
 Cypress.Commands.add("getDeleteButton", getDeleteButton);
 Cypress.Commands.add("getEditButton", getEditButton);
-
 Cypress.Commands.add("getAntdNotification", getAntdNotification);
 Cypress.Commands.add("setAntdSelect", setAntdSelect);
 Cypress.Commands.add("setAntdDropdown", setAntdDropdown);
 Cypress.Commands.add("getAntdFormItemError", getAntdFormItemError);
 Cypress.Commands.add("getAntdLoadingOverlay", getAntdLoadingOverlay);
 Cypress.Commands.add("getAntdPopoverDeleteButton", getAntdPopoverDeleteButton);
+Cypress.Commands.add("getAntdColumnSorter", getAntdColumnSorter);
+Cypress.Commands.add("getAntdFilterTrigger", getAntdFilterTrigger);
+Cypress.Commands.add("getAntdPaginationItem", getAntdPaginationItem);
+Cypress.Commands.add("getTableRowExpandButton", getTableRowExpandButton);
+Cypress.Commands.add(
+    "setAntdRangeDatePickerToToday",
+    setAntdRangeDatePickerToToday,
+);
 
 Cypress.Commands.add("getChakraUINotification", getChakraUINotification);
 Cypress.Commands.add("getChakraUIFormItemError", getChakraUIFormItemError);

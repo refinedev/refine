@@ -10,6 +10,10 @@ interface ISetAntdSelectParams {
     value: string;
 }
 
+interface ISetAntdRangeDatePickerToTodayParams {
+    id: string;
+}
+
 interface IGetAntdFormItemErrorParams {
     id: string;
 }
@@ -20,7 +24,7 @@ interface IGetChakraUIFormItemErrorParams {
 }
 
 interface IGetMaterialUIFormItemErrorParams {
-      id: string;
+    id: string;
 }
 
 interface IGetMantineFormItemErrorParams {
@@ -54,11 +58,18 @@ declare namespace Cypress {
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
         getAntdLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
         getAntdPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
+        getAntdColumnSorter(index: number): Chainable<JQuery<HTMLElement>>;
+        getAntdFilterTrigger(index: number): Chainable<JQuery<HTMLElement>>;
+        getAntdPaginationItem(index: number): Chainable<JQuery<HTMLElement>>;
+        getTableRowExpandButton(index: number): Chainable<JQuery<HTMLElement>>;
         setAntdDropdown(
             params: ISetAntdDropdownParams,
         ): Chainable<JQuery<HTMLElement>>;
         setAntdSelect(
             params: ISetAntdSelectParams,
+        ): Chainable<JQuery<HTMLElement>>;
+        setAntdRangeDatePickerToToday(
+            params: ISetAntdRangeDatePickerToTodayParams,
         ): Chainable<JQuery<HTMLElement>>;
         getAntdFormItemError(
             params: IGetAntdFormItemErrorParams,

@@ -29,6 +29,17 @@ export const setAntdSelect = ({ id, value }: ISetAntdSelectParams) => {
         .blur();
 };
 
+export const setAntdRangeDatePickerToToday = ({
+    id,
+}: ISetAntdRangeDatePickerToTodayParams) => {
+    return cy
+        .get(`#${id}`)
+        .click({ force: true })
+        .get(".ant-picker-cell-today")
+        .click({ force: true })
+        .click({ force: true });
+};
+
 export const getAntdFormItemError = ({ id }: IGetAntdFormItemErrorParams) => {
     return cy.get(`#${id}_help > .ant-form-item-explain-error`);
 };
@@ -39,4 +50,20 @@ export const getAntdLoadingOverlay = () => {
 
 export const getAntdPopoverDeleteButton = () => {
     return cy.get(".ant-popconfirm-buttons button").contains(/delete/gi);
+};
+
+export const getAntdColumnSorter = (index: number) => {
+    return cy.get(".ant-table-column-sorters").eq(index);
+};
+
+export const getAntdFilterTrigger = (index: number) => {
+    return cy.get(".ant-table-filter-trigger").eq(index);
+};
+
+export const getAntdPaginationItem = (index: number) => {
+    return cy.get(`.ant-pagination-item-${index}`);
+};
+
+export const getTableRowExpandButton = (index: number) => {
+    return cy.get(".ant-table-row-expand-icon").eq(index);
 };
