@@ -44,7 +44,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         formLoading: editFormLoading,
     } = useDrawerForm<IPost>({
         action: "edit",
-        warnWhenUnsavedChanges: true,
         syncWithLocation: true,
     });
 
