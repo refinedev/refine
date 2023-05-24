@@ -5,7 +5,8 @@
     "start": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "dependencies": {
     "@refinedev/chakra-ui": "^2.14.2",
@@ -27,7 +28,8 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.0.0",
     "typescript": "^4.7.4",
-    "vite": "^4.3.1"
+    "vite": "^4.3.1",
+    "cypress": "^12.11.0"
   },
   "version": "3.25.0"
 }
