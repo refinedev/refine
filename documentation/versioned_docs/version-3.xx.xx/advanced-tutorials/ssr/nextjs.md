@@ -420,7 +420,7 @@ Next.js introduced a new way of defining pages within the `app/` directory. _Thi
 
 :::caution
 
-`app/` is currently in beta and is **not recommended** for production use in Next.js. In **refine**, we're providing the `app/` support as experimental and not recommended for production use.
+In **refine**, we're providing the `app/` support as experimental and not recommended for production use.
 
 :::
 
