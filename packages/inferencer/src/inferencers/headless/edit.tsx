@@ -13,6 +13,8 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
+    translateActionTitle,
+    translateButtonTitle,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -406,11 +408,11 @@ export const renderer = ({
                 <div style={{ display: "flex", justifyContent: ${
                     canList ? '"space-between"' : '"flex-start"'
                 } }}>
-                    <h1>${
-                        i18n
-                            ? `{translate("` + resource.name + `.titles.edit")}`
-                            : resource.name + " Edit"
-                    }</h1>
+                    <h1>${translateActionTitle({
+                        resource,
+                        action: "edit",
+                        i18n,
+                    })}</h1>
                     ${
                         canList
                             ? jsx`
@@ -420,13 +422,11 @@ export const renderer = ({
                                     list("${resource.name}");
                                 }}
                         >
-                            ${
-                                i18n
-                                    ? `{translate("` +
-                                      resource.name +
-                                      `.titles.list")}`
-                                    : resource.name + " List"
-                            }
+                            ${translateActionTitle({
+                                resource,
+                                action: "list",
+                                i18n,
+                            })}
                         </button>
                     </div>
                     `
@@ -437,9 +437,10 @@ export const renderer = ({
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                         ${renderedFields.join("")}
                         <div>
-                            <input type="submit" value=${
-                                i18n ? `{translate("buttons.save")}` : "Save"
-                            } />
+                            <input type="submit" value=${translateButtonTitle({
+                                action: "save",
+                                i18n,
+                            })} />
                         </div>
                     </div>
                 </form>

@@ -6,8 +6,9 @@ import {
     printImports,
     noOp,
     getVariableName,
-    toSingular,
     translatePrettyString,
+    translateActionTitle,
+    translateButtonTitle,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -652,34 +653,32 @@ export const renderer = ({
         return (
             <div style={{ padding: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <h1>
-                    ${
-                        i18n
-                            ? `{translate("` + resource.name + `.titles.show")}`
-                            : resource.name + " Show"
-                    }
-                </h1>
+                <h1>${translateActionTitle({
+                    resource,
+                    action: "show",
+                    i18n,
+                })}</h1>
                 <div style={{ display: "flex", gap: "8px" }}>
                 ${
                     canList
                         ? jsx`<button onClick={() => list("${
                               resource.name
-                          }")}>${
-                              i18n
-                                  ? `{translate("` +
-                                    resource.name +
-                                    `.titles.list")}`
-                                  : resource.name + " List"
-                          }</button>`
+                          }")}>${translateActionTitle({
+                              resource,
+                              action: "list",
+                              i18n,
+                          })}</button>`
                         : ""
                 }
                 ${
                     canEdit
                         ? jsx`<button onClick={() => edit("${resource.name}", ${
                               isCustomPage ? `"${id}"` : "id ?? ''"
-                          })}>${
-                              i18n ? `{translate("buttons.edit")}` : "Edit"
-                          }</button>`
+                          })}>${translateButtonTitle({
+                              action: "edit",
+                              i18n,
+                              noQuotes: true,
+                          })}</button>`
                         : ""
                 }
                 </div>

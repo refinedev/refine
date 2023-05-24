@@ -11,6 +11,8 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
+    translateButtonTitle,
+    translateActionTitle,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -633,7 +635,11 @@ export const renderer = ({
                             show("${resource.name}", getValue() as string);
                         }}
                     >
-                        ${i18n ? `{translate("buttons.show")}` : `"Show"`}
+                        ${translateButtonTitle({
+                            action: "show",
+                            i18n,
+                            noQuotes: true,
+                        })}
                     </button>
                     `
                         : ""
@@ -646,7 +652,11 @@ export const renderer = ({
                                 edit("${resource.name}", getValue() as string);
                             }}
                         >
-                            ${i18n ? `{translate("buttons.edit")}` : `"Edit"`}
+                            ${translateButtonTitle({
+                                action: "edit",
+                                i18n,
+                                noQuotes: true,
+                            })}
                         </button>
                     `
                             : ""
@@ -762,18 +772,20 @@ export const renderer = ({
         return (
             <div style={{ padding: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <h1>${
-                    i18n
-                        ? `{translate("` + resource.name + `.titles.list")}`
-                        : resource.name + " List"
-                }</h1>
+                <h1>${translateActionTitle({
+                    resource,
+                    action: "list",
+                    i18n,
+                })}</h1>
                 ${
                     canCreate
                         ? jsx`<button onClick={() => create("${
                               resource.name
-                          }")}>${
-                              i18n ? `{translate("buttons.create")}` : "Create"
-                          }</button>`
+                          }")}>${translateButtonTitle({
+                              action: "create",
+                              i18n,
+                              noQuotes: true,
+                          })}</button>`
                         : ""
                 }
             </div>

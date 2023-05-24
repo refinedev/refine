@@ -10,6 +10,8 @@ export { prettierFormat } from "./prettier-format";
 export { prettySpaces } from "./pretty-spaces";
 export { prettyString } from "./pretty-string";
 export { translatePrettyString } from "./translate-pretty-string";
+export { translateActionTitle } from "./translate-action-title";
+export { translateButtonTitle } from "./translate-button-title";
 
 export { removeRelationSuffix } from "./remove-relation-suffix";
 export { replaceExports } from "./replace-exports";
