@@ -621,7 +621,7 @@ import { useDocumentTitle } from "@refinedev/nextjs-router";
 
 const PostList = () => {
     // highlight-next-line
-    useDocumentTitle("Posts | Refine");
+    useDocumentTitle("Posts | refine");
 
     return (
         <List>
