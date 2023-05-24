@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("auth-antd", () => {
+describe("with-nextjs-auth", () => {
     const BASE_URL = "http://localhost:3000";
 
     const submitAuthForm = () => {
@@ -26,8 +26,8 @@ describe("auth-antd", () => {
     it("should login", () => {
         login();
         cy.location("pathname").should("eq", "/");
-        cy.getAllLocalStorage().then((ls) => {
-            expect(ls[BASE_URL]).to.have.property("email");
+        cy.getAllCookies().then((cookies) => {
+            expect(cookies[0]).to.have.property("name", "auth");
         });
     });
 
@@ -43,7 +43,7 @@ describe("auth-antd", () => {
         login();
         cy.visit(`${BASE_URL}/test`);
         cy.location("pathname").should("eq", "/test");
-        cy.clearAllLocalStorage();
+        cy.clearAllCookies();
         cy.reload();
         cy.location("search").should("contains", "to=%2Ftest");
         cy.location("pathname").should("eq", "/login");
@@ -65,8 +65,8 @@ describe("auth-antd", () => {
         cy.location("pathname").should("eq", "/register");
         login();
         cy.location("pathname").should("eq", "/");
-        cy.getAllLocalStorage().then((ls) => {
-            expect(ls[BASE_URL]).to.have.property("email");
+        cy.getAllCookies().then((cookies) => {
+            expect(cookies[0]).to.have.property("name", "auth");
         });
     });
 
@@ -78,7 +78,7 @@ describe("auth-antd", () => {
         cy.get("#email").clear().type("test@test.com");
         cy.get("#password").clear().type("test");
         submitAuthForm();
-        cy.getAntdNotification().contains(/invalid email/i);
+        cy.getAntdNotification().contains(/register failed/i);
         cy.location("pathname").should("eq", "/register");
     });
 
@@ -86,7 +86,7 @@ describe("auth-antd", () => {
         cy.visit(`${BASE_URL}/forgot-password`);
         cy.get("#email").clear().type("test@test.com");
         submitAuthForm();
-        cy.getAntdNotification().contains(/invalid email/i);
+        cy.getAntdNotification().contains(/forgot password failed/i);
         cy.location("pathname").should("eq", "/forgot-password");
     });
 
@@ -95,7 +95,7 @@ describe("auth-antd", () => {
         cy.get("#password").clear().type("123456");
         cy.get("#confirmPassword").clear().type("123456");
         submitAuthForm();
-        cy.getAntdNotification().contains(/invalid password/i);
+        cy.getAntdNotification().contains(/update password failed/i);
         cy.location("pathname").should("eq", "/update-password");
 
         cy.get("#password").clear().type("12345");
