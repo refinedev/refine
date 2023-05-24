@@ -2,6 +2,7 @@ import { IResourceItem } from "@refinedev/core";
 import { translateActionTitle } from ".";
 import { prettyString } from "../pretty-string";
 import { toSingular } from "../to-singular";
+import { toPlural } from "../to-plural";
 
 describe("translateActionTitle", () => {
     const resource: IResourceItem = {
@@ -32,7 +33,7 @@ describe("translateActionTitle", () => {
             ).toBe(`translate("${resource.name}.titles.${action}")`);
         },
     );
-    it.each(["list", "create", "edit", "show"] as const)(
+    it.each(["create", "edit", "show"] as const)(
         "action %s, without i18n",
         async (action) => {
             expect(
@@ -48,4 +49,19 @@ describe("translateActionTitle", () => {
             );
         },
     );
+    it("action list, without i18n", async () => {
+        expect(
+            translateActionTitle({
+                resource,
+                action: "list",
+                i18n: false,
+            }),
+        ).toBe(
+            prettyString(
+                toPlural(
+                    resource.label ?? resource?.meta?.label ?? resource.name,
+                ),
+            ),
+        );
+    });
 });

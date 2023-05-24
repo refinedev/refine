@@ -14,7 +14,7 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
         </h1>
         <div>
           <button>
-            Post List
+            Posts
           </button>
         </div>
       </div>
@@ -2981,7 +2981,7 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        Post List
+                                        Posts
               </span>
             </div>
             <div

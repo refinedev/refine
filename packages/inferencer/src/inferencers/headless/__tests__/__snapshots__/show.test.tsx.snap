@@ -16,7 +16,7 @@ exports[`HeadlessShowInferencer should match the snapshot 1`] = `
           style="display: flex; gap: 8px;"
         >
           <button>
-            Post List
+            Posts
           </button>
         </div>
       </div>
@@ -2818,7 +2818,7 @@ exports[`HeadlessShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                Post List
+                Posts
               </span>
               <span
                 class="token tag punctuation"

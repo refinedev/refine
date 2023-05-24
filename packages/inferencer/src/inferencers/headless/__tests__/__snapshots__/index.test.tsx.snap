@@ -10,7 +10,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
         style="display: flex; align-items: center; justify-content: space-between;"
       >
         <h1>
-          Post List
+          Posts
         </h1>
       </div>
       <div
@@ -9852,7 +9852,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                Post List
+                Posts
               </span>
               <span
                 class="token tag punctuation"
@@ -14595,7 +14595,7 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
         </h1>
         <div>
           <button>
-            Post List
+            Posts
           </button>
         </div>
       </div>
@@ -16916,7 +16916,7 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
               <span
                 class="token plain-text"
               >
-                                        Post List
+                                        Posts
               </span>
             </div>
             <div
@@ -26668,7 +26668,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         </h1>
         <div>
           <button>
-            Post List
+            Posts
           </button>
         </div>
       </div>
@@ -29823,7 +29823,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
               <span
                 class="token plain-text"
               >
-                                        Post List
+                                        Posts
               </span>
             </div>
             <div
@@ -40283,7 +40283,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
           style="display: flex; gap: 8px;"
         >
           <button>
-            Post List
+            Posts
           </button>
         </div>
       </div>
@@ -43113,7 +43113,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               <span
                 class="token plain-text"
               >
-                Post List
+                Posts
               </span>
               <span
                 class="token tag punctuation"

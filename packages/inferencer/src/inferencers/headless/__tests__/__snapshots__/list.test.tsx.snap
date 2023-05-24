@@ -10,7 +10,7 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
         style="display: flex; align-items: center; justify-content: space-between;"
       >
         <h1>
-          Post List
+          Posts
         </h1>
       </div>
       <div
@@ -9749,7 +9749,7 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                Post List
+                Posts
               </span>
               <span
                 class="token tag punctuation"
