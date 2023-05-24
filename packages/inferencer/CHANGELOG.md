@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 3.5.0
+
+### Minor Changes
+
+-   [#4382](https://github.com/refinedev/refine/pull/4382) [`83ff1076f5c`](https://github.com/refinedev/refine/commit/83ff1076f5c25257b4a8a0c7f3695eab046be452) Thanks [@aliemir](https://github.com/aliemir)! - Updated the inference process for `list` and `create` actions to use all items in the list instead of just the first item. This is done to avoid breaking the output when a single record is corrupted or wrongfully inferred.
+
+    Now, for the `list` and `create` actions, each item in the list response will be used to infer the fields then the most repeated fields will be accepted as the type for the field.
+
+### Patch Changes
+
+-   [#4383](https://github.com/refinedev/refine/pull/4383) [`8b3137e9e9d`](https://github.com/refinedev/refine/commit/8b3137e9e9ddeb81ed10c77327662f52f87d19da) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the code generation issue with Mantine's `create` and `edit` inferencers when used with `meta` values.
+
 ## 3.4.0
 
 ### Minor Changes
