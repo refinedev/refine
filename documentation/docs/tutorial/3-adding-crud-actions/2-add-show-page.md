@@ -142,7 +142,12 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/mui";
-import { MuiShowInferencer } from "@refinedev/inferencer/mui";
+import {
+  MuiListInferencer,
+  MuiCreateInferencer,
+  MuiEditInferencer,
+  MuiShowInferencer,
+} from "@refinedev/inferencer/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -169,11 +174,24 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
+const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+  return <MuiListInferencer />;
+};
+
+const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
+  return <MuiCreateInferencer />;
+};
+
+const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
+  return <MuiEditInferencer />;
+};
+
 // visible-block-start
 const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
   return <MuiShowInferencer />;
 };
 // visible-block-end
+
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -199,8 +217,8 @@ function App() {
                 {
                   name: "blog_posts",
                   list: "/blog-posts",
-                  // create: "/blog-posts/create",
-                  // edit: "/blog-posts/edit/:id",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
                   show: "/blog-posts/show/:id",
                   meta: {
                     canDelete: true,
@@ -244,6 +262,9 @@ function App() {
                     element={<NavigateToResource resource="blog_posts" />}
                   />
                   <Route path="/blog-posts">
+                    <Route index element={<BlogPostList />} />
+                    <Route path="create" element={<BlogPostCreate />} />
+                    <Route path="edit/:id" element={<BlogPostEdit />} />
                     <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />

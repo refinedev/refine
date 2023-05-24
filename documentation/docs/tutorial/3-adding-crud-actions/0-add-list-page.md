@@ -225,6 +225,7 @@ This time, no `Show the auto-generated code` button is available as we did not u
 ```tsx live previewOnly previewHeight=600px url=http://localhost:5173/blog-posts
 setInitialRoutes(["/blog-posts"]);
 
+
 import { Authenticated, GitHubBanner, IResourceComponentsProps, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -235,7 +236,11 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/mui";
-import { MuiListInferencer } from "@refinedev/inferencer/mui";
+import { MuiListInferencer,
+         MuiCreateInferencer,
+         MuiEditInferencer,
+         MuiShowInferencer,        
+} from "@refinedev/inferencer/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -265,6 +270,18 @@ const BlogPostList: React.FC<IResourceComponentsProps> = () => {
 };
 // visible-block-end
 
+const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
+  return <MuiCreateInferencer />;
+};
+
+const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
+  return <MuiEditInferencer />;
+};
+
+const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
+  return <MuiShowInferencer />;
+};
+
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -289,23 +306,13 @@ function App() {
                 {
                   name: "blog_posts",
                   list: "/blog-posts",
-                  // create: "/blog-posts/create",
-                  // edit: "/blog-posts/edit/:id",
-                  // show: "/blog-posts/show/:id",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
                   meta: {
                     canDelete: true,
                   },
                 },
-                // {
-                //   name: "categories",
-                //   list: "/categories",
-                //   create: "/categories/create",
-                //   edit: "/categories/edit/:id",
-                //   show: "/categories/show/:id",
-                //   meta: {
-                //     canDelete: true,
-                //   },
-                // },
               ]}
               options={{
                 syncWithLocation: true,
@@ -335,6 +342,9 @@ function App() {
                   />
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
+                    <Route path="create" element={<BlogPostCreate />} />
+                    <Route path="edit/:id" element={<BlogPostEdit />} />
+                    <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
