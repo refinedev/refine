@@ -435,7 +435,6 @@ export const renderer = ({
     };
 
     const basicFields = (field: InferField) => {
-        console.log("resource", resource);
         if (field && (field.type === "text" || field.type === "number")) {
             const dataIndex =
                 field.accessor &&

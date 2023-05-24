@@ -197,7 +197,7 @@ export const renderer = ({
                         )} as any[])?.map((item, index) => (
                             <Form.Item
                                 key={index}
-                                label={${translatePrettyString({
+                                label=${translatePrettyString({
                                     resource,
                                     field,
                                     i18n,
