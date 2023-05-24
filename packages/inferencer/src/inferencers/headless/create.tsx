@@ -264,7 +264,6 @@ export const renderer = ({
 
     noOp(imports);
     const useTranslateHook = i18n && `const translate = useTranslate();`;
-    const singulaResourceName = toSingular(resource.label ?? resource.name);
 
     return jsx`
     ${printImports(imports)}
@@ -325,9 +324,9 @@ export const renderer = ({
                     <h1>${
                         i18n
                             ? `{translate("` +
-                              singulaResourceName +
+                              resource.name +
                               `.titles.create")}`
-                            : singulaResourceName + " Create"
+                            : resource.name + " Create"
                     }</h1>
                     ${
                         canList
@@ -341,9 +340,9 @@ export const renderer = ({
                             ${
                                 i18n
                                     ? `{translate("` +
-                                      singulaResourceName +
+                                      resource.name +
                                       `.titles.list")}`
-                                    : singulaResourceName + " List"
+                                    : resource.name + " List"
                             }
                         </button>
                         </div>

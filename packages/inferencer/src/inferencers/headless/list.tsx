@@ -11,7 +11,6 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
-    toSingular,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -685,7 +684,6 @@ export const renderer = ({
     noOp(imports);
 
     const useTranslateHook = i18n && `const translate = useTranslate();`;
-    const singulaResourceName = toSingular(resource.label ?? resource.name);
 
     return jsx`
     ${printImports(imports)}
@@ -766,10 +764,8 @@ export const renderer = ({
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <h1>${
                     i18n
-                        ? `{translate("` +
-                          singulaResourceName +
-                          `.titles.list")}`
-                        : singulaResourceName + " List"
+                        ? `{translate("` + resource.name + `.titles.list")}`
+                        : resource.name + " List"
                 }</h1>
                 ${
                     canCreate
@@ -839,14 +835,14 @@ export const renderer = ({
                         {">>"}
                     </button>
                     <span>
-                        Page
                         <strong>
-                            {getState().pagination.pageIndex + 1} of{" "}
-                            {getPageCount()}
+                            {" "} {getState().pagination.pageIndex + 1} / {" "} {getPageCount()} {" "}
                         </strong>
                     </span>
                     <span>
-                        | Go to page:
+                        | ${
+                            i18n ? `{translate("pagination.go")}` : "Go to Page"
+                        }:{" "}
                         <input
                             type="number"
                             defaultValue={getState().pagination.pageIndex + 1}
@@ -866,7 +862,11 @@ export const renderer = ({
                     >
                         {[10, 20, 30, 40, 50].map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
+                                ${
+                                    i18n
+                                        ? `{translate("pagination.show")}`
+                                        : "Show"
+                                } {pageSize}
                             </option>
                         ))}
                     </select>
