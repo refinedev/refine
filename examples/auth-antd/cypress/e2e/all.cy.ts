@@ -10,9 +10,9 @@ describe("auth-antd", () => {
 
     const login = () => {
         cy.get("#email").clear();
-        cy.get("#email").type("admin@refine.dev");
+        cy.get("#email").type("demo@refine.dev");
         cy.get("#password").clear();
-        cy.get("#password").type("admin");
+        cy.get("#password").type("demodemo");
         submitAuthForm();
     };
 
