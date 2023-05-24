@@ -18,7 +18,7 @@ describe("generateDocumentTitle", () => {
                 { name: "posts" },
                 "list",
             ),
-        ).toBe("Posts | Refine");
+        ).toBe("Posts | refine");
     });
 
     it("should return `Create new resource name` when action is `create`", () => {
@@ -28,7 +28,7 @@ describe("generateDocumentTitle", () => {
                 { name: "posts" },
                 "create",
             ),
-        ).toBe("Create new Post | Refine");
+        ).toBe("Create new Post | refine");
     });
 
     it("should return `#id Edit resource name` when action is `edit`", () => {
@@ -39,7 +39,7 @@ describe("generateDocumentTitle", () => {
                 "edit",
                 "1",
             ),
-        ).toBe("#1 Edit Post | Refine");
+        ).toBe("#1 Edit Post | refine");
     });
 
     it("should return `#id Show resource name` when action is `show`", () => {
@@ -50,7 +50,7 @@ describe("generateDocumentTitle", () => {
                 "show",
                 "1",
             ),
-        ).toBe("#1 Show Post | Refine");
+        ).toBe("#1 Show Post | refine");
     });
 
     it("should pass `id` to `translate` function", () => {
@@ -63,7 +63,7 @@ describe("generateDocumentTitle", () => {
             expect(translateMock).toHaveBeenCalledWith(
                 "documentTitle.posts.show",
                 { id: "1" },
-                "#1 Show Post | Refine",
+                "#1 Show Post | refine",
             );
     });
 });

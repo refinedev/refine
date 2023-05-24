@@ -315,13 +315,13 @@ Before we get started, let's look at which parts are going to be translated:
         "title": "Dashboard"
     },
     "documentTitle": {
-        "default": "Refine",
-        "suffix": " | Refine",
+        "default": "refine",
+        "suffix": " | refine",
         "post": {
-            "list": "Posts | Refine",
-            "show": "#{{id}} Show Post | Refine",
-            "edit": "#{{id}} Edit Post | Refine",
-            "create": "Create new Post | Refine",
+            "list": "Posts | refine",
+            "show": "#{{id}} Show Post | refine",
+            "edit": "#{{id}} Edit Post | refine",
+            "create": "Create new Post | refine",
         }
     }
 }
@@ -488,13 +488,13 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "actions": "Actions"
     },
     "documentTitle": {
-        "default": "Refine",
-        "suffix": " | Refine",
+        "default": "refine",
+        "suffix": " | refine",
         "post": {
-            "list": "Posts | Refine",
-            "show": "#{{id}} Show Post | Refine",
-            "edit": "#{{id}} Edit Post | Refine",
-            "create": "Create new Post | Refine",
+            "list": "Posts | refine",
+            "show": "#{{id}} Show Post | refine",
+            "edit": "#{{id}} Edit Post | refine",
+            "create": "Create new Post | refine",
         }
     }
 }
@@ -645,13 +645,13 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "actions": "Aktionen"
     },
     "documentTitle": {
-        "default": "Refine",
-        "suffix": " | Refine",
+        "default": "refine",
+        "suffix": " | refine",
         "post": {
-            "list": "Beiträge | Refine",
-            "show": "#{{id}} Beitrag anzeigen | Refine",
-            "edit": "#{{id}} Beitrag bearbeiten | Refine",
-            "create": "Neuen Beitrag erstellen | Refine"
+            "list": "Beiträge | refine",
+            "show": "#{{id}} Beitrag anzeigen | refine",
+            "edit": "#{{id}} Beitrag bearbeiten | refine",
+            "create": "Neuen Beitrag erstellen | refine"
         }
     }
 }

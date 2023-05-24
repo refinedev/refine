@@ -556,11 +556,11 @@ Note that this component currently only works in the `pages` directory.
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
 
--   list    : `Posts | Refine`
--   edit    : `#{id} Edit Post | Refine`
--   show    : `#{id} Show Post | Refine`
--   create  : `Create new Post | Refine`
--   default : `Refine`
+-   list    : `Posts | refine`
+-   edit    : `#{id} Edit Post | refine`
+-   show    : `#{id} Show Post | refine`
+-   create  : `Create new Post | refine`
+-   default : `refine`
 
 
 ```tsx
@@ -656,7 +656,7 @@ const PostList = () => {
     const setTitle = useDocumentTitle();
 
     useEffect(() => {
-        setTitle("Posts | Refine");
+        setTitle("Posts | refine");
     }, []);
 
     return (
