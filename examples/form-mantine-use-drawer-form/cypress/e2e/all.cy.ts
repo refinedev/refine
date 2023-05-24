@@ -10,6 +10,10 @@ describe("form-mantine-use-drawer-form", () => {
         status: "Draft",
     };
 
+    const isDrawerVisible = () => {
+        return cy.get(".mantine-Drawer-drawer").should("be.visible");
+    };
+
     const fillForm = () => {
         cy.get("#title").clear().type(mockPost.title);
         cy.get("#content textarea")
@@ -90,5 +94,39 @@ describe("form-mantine-use-drawer-form", () => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
+    });
+
+    it("should create form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.getCreateButton().click();
+        isDrawerVisible();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+
+        cy.reload();
+        isDrawerVisible();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+    });
+
+    it("should edit form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.getEditButton().first().click();
+        cy.wait("@getPost");
+
+        isDrawerVisible();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
+
+        cy.reload();
+        isDrawerVisible();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
     });
 });

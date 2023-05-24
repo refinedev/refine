@@ -118,4 +118,38 @@ describe("form-antd-use-modal-form", () => {
             cy.getAntdNotification().should("contain", "Success");
         });
     });
+
+    it("should create form sync with location", () => {
+        cy.wait("@getPosts");
+
+        openModal();
+        isModalVisible();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+
+        cy.reload();
+        isModalVisible();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+    });
+
+    it("should edit form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.getEditButton().first().click();
+        cy.wait("@getPost");
+
+        isModalVisible();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
+
+        cy.reload();
+        isModalVisible();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
+    });
 });

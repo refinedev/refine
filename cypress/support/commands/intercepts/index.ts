@@ -8,6 +8,7 @@ Cypress.Commands.add("interceptGETPosts", () => {
         .intercept(
             {
                 method: "GET",
+                hostname: "api.fake-rest.refine.dev",
                 pathname: "/posts",
             },
             {
@@ -24,6 +25,7 @@ Cypress.Commands.add("interceptGETPost", () => {
             return cy.intercept(
                 {
                     method: "GET",
+                    hostname: "api.fake-rest.refine.dev",
                     pathname: "/posts/*",
                 },
 
@@ -49,6 +51,7 @@ Cypress.Commands.add("interceptPOSTPost", () => {
             .intercept(
                 {
                     method: "POST",
+                    hostname: "api.fake-rest.refine.dev",
                     pathname: "/posts",
                 },
                 (req) => {
@@ -70,6 +73,7 @@ Cypress.Commands.add("interceptPATCHPost", () => {
             return cy.intercept(
                 {
                     method: "PATCH",
+                    hostname: "api.fake-rest.refine.dev",
                     pathname: "/posts/*",
                 },
 
@@ -93,6 +97,7 @@ Cypress.Commands.add("interceptDELETEPost", () => {
         .intercept(
             {
                 method: "DELETE",
+                hostname: "api.fake-rest.refine.dev",
                 pathname: "/posts/*",
             },
             {},
@@ -105,6 +110,7 @@ Cypress.Commands.add("interceptGETCategories", () => {
         .intercept(
             {
                 method: "GET",
+                hostname: "api.fake-rest.refine.dev",
                 pathname: "/categories",
             },
             { fixture: "categories.json" },
