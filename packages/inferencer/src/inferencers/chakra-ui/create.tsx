@@ -107,6 +107,7 @@ export const renderer = ({
                     resource,
                     field,
                     i18n,
+                    noQuotes: true,
                 })}</FormLabel>
                 <Select
                     placeholder="Select ${toSingular(field.resource.name)}"
@@ -168,6 +169,7 @@ export const renderer = ({
                         resource,
                         field,
                         i18n,
+                        noQuotes: true,
                     })}</FormLabel>
                     <Input
                         ${
@@ -221,6 +223,7 @@ export const renderer = ({
                         resource,
                         field,
                         i18n,
+                        noQuotes: true,
                     })}</FormLabel>
                     <Checkbox
                         {...register("${dotAccessor(
