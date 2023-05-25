@@ -1,5 +1,5 @@
-import React from "react";
-import { useResource } from "@refinedev/core";
+import React, { useContext } from "react";
+import { useResource, TranslationContext } from "@refinedev/core";
 
 import {
     CreateInferencer,
@@ -67,6 +67,7 @@ export const createInferencer: CreateInferencer = ({
         id?: string | number;
     }) => {
         const { resource, resources } = useResource(resourceName);
+        const { i18nProvider } = useContext(TranslationContext);
 
         const { resource: resourceFromURL } = useResource();
 
@@ -336,6 +337,7 @@ export const createInferencer: CreateInferencer = ({
                     meta,
                     isCustomPage: resource.name !== resourceFromURL?.name,
                     id,
+                    i18n: !!i18nProvider,
                 });
             }
             return "";

@@ -13,7 +13,6 @@ import { createInferencer } from "@/create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     isIDKey,
@@ -21,6 +20,7 @@ import {
     dotAccessor,
     noOp,
     getVariableName,
+    translatePrettyString,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -44,6 +44,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -53,10 +54,15 @@ export const renderer = ({
     const imports: Array<
         [element: string, module: string, isDefaultImport?: boolean]
     > = [
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["Edit", "@refinedev/mantine"],
         ["useForm", "@refinedev/mantine"],
     ];
     let initialValues: Record<string, any> = {};
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -138,9 +144,11 @@ export const renderer = ({
                 imports.push(["MultiSelect", "@mantine/core"]);
 
                 return jsx`
-                    <MultiSelect mt="sm" label="${prettyString(
-                        field.key,
-                    )}" {...getInputProps("${dotAccessor(
+                    <MultiSelect mt="sm" label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })} {...getInputProps("${dotAccessor(
                     field.key,
                     undefined,
                 )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
@@ -150,9 +158,11 @@ export const renderer = ({
             imports.push(["Select", "@mantine/core"]);
 
             return jsx`
-                <Select mt="sm" label="${prettyString(
-                    field.key,
-                )}" {...getInputProps("${dotAccessor(
+                <Select mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -187,9 +197,13 @@ export const renderer = ({
                         recordName,
                         field.key,
                     )}?.map((item: any, index: number) => (
-                        <TextInput mt="sm" key={index} label={\`${prettyString(
-                            field.key,
-                        )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        <TextInput mt="sm" key={index} label=${translatePrettyString(
+                            {
+                                resource,
+                                field,
+                                i18n,
+                            },
+                        )} {...getInputProps(\`${val}\`)} />
                     ))}
                 </Group>
                 `;
@@ -198,9 +212,11 @@ export const renderer = ({
             return jsx`
                 <TextInput mt="sm" ${
                     isIDKey(field.key) ? "disabled" : ""
-                } label="${prettyString(
-                field.key,
-            )}" {...getInputProps("${dotAccessor(
+                } label=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -244,18 +260,24 @@ export const renderer = ({
                         recordName,
                         field.key,
                     )}?.map((item: any, index: number) => (
-                        <Checkbox mt="sm" key={index} label={\`${prettyString(
-                            field.key,
-                        )} \${index + 1} \`} {...getInputProps(\`${val}\`, { type: 'checkbox' })} />
+                        <Checkbox mt="sm" key={index} label=${translatePrettyString(
+                            {
+                                resource,
+                                field,
+                                i18n,
+                            },
+                        )} {...getInputProps(\`${val}\`, { type: 'checkbox' })} />
                     ))}
                 </Group>
                 `;
             }
 
             return jsx`
-                <Checkbox mt="sm" label="${prettyString(
-                    field.key,
-                )}" {...getInputProps("${dotAccessor(
+                <Checkbox mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -302,18 +324,24 @@ export const renderer = ({
                         recordName,
                         field.key,
                     )}?.map((item: any, index: number) => (
-                        <Textarea mt="sm" key={index} label={\`${prettyString(
-                            field.key,
-                        )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        <Textarea mt="sm" key={index} label=${translatePrettyString(
+                            {
+                                resource,
+                                field,
+                                i18n,
+                            },
+                        )} {...getInputProps(\`${val}\`)} />
                     ))}
                 </Group>
                 `;
             }
 
             return jsx`
-                <Textarea mt="sm" label="${prettyString(
-                    field.key,
-                )}" autosize {...getInputProps("${dotAccessor(
+                <Textarea mt="sm" label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })} autosize {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -344,9 +372,13 @@ export const renderer = ({
                         recordName,
                         field.key,
                     )}?.map((item: any, index: number) => (
-                        <NumberInput mt="sm" key={index} label={\`${prettyString(
-                            field.key,
-                        )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        <NumberInput mt="sm" key={index} label=${translatePrettyString(
+                            {
+                                resource,
+                                field,
+                                i18n,
+                            },
+                        )} {...getInputProps(\`${val}\`)} />
                     ))}
                 </Group>
                 `;
@@ -355,9 +387,11 @@ export const renderer = ({
             return jsx`
                 <NumberInput mt="sm" ${
                     isIDKey(field.key) ? "disabled" : ""
-                } label="${prettyString(
-                field.key,
-            )}" {...getInputProps("${dotAccessor(
+                } label=${translatePrettyString({
+                resource,
+                field,
+                i18n,
+            })} {...getInputProps("${dotAccessor(
                 field.key,
                 undefined,
                 field.accessor,
@@ -401,11 +435,13 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { queryResult } } = useForm({
             initialValues: ${JSON.stringify(initialValues)},
             ${

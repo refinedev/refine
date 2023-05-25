@@ -33,12 +33,12 @@ import { createInferencer } from "@/create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     dotAccessor,
     noOp,
     getVariableName,
+    translatePrettyString,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -69,6 +69,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -96,6 +97,10 @@ export const renderer = ({
         ["IconChevronRight", "@tabler/icons"],
         ["IconChevronLeft", "@tabler/icons"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -165,7 +170,12 @@ export const renderer = ({
             }
 
             const id = `id: "${field.key}"`;
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
             const accessorKey = getAccessorKey(field);
 
             let cell = "";
@@ -266,7 +276,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -327,7 +342,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -378,7 +398,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -429,7 +454,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -479,7 +509,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -528,7 +563,12 @@ export const renderer = ({
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -575,7 +615,12 @@ export const renderer = ({
         if (field && (field.type === "text" || field.type === "number")) {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = "";
 
@@ -713,11 +758,14 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     import React from "react";
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
         ], []);

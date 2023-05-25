@@ -5,12 +5,14 @@ import { createInferencer } from "@/create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     dotAccessor,
     noOp,
     getVariableName,
+    translatePrettyString,
+    translateButtonTitle,
+    translateActionTitle,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -42,6 +44,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -56,6 +59,10 @@ export const renderer = ({
         ["ColumnDef", "@tanstack/react-table"],
         ["flexRender", "@tanstack/react-table"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -125,7 +132,12 @@ export const renderer = ({
             }
 
             const id = `id: "${field.key}"`;
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
             const accessorKey = getAccessorKey(field);
 
             let cell = "";
@@ -240,7 +252,12 @@ export const renderer = ({
         if (field.type === "image") {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -299,7 +316,12 @@ export const renderer = ({
         if (field.type === "email") {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -353,7 +375,12 @@ export const renderer = ({
         if (field.type === "url") {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -407,7 +434,12 @@ export const renderer = ({
         if (field?.type === "boolean") {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -457,7 +489,12 @@ export const renderer = ({
         if (field.type === "date") {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = jsx`
                 cell: function render({ getValue }) {
@@ -511,7 +548,12 @@ export const renderer = ({
         ) {
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
-            const header = `header: "${prettyString(field.key)}"`;
+            const header = `header: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let cell = "";
 
@@ -566,13 +608,15 @@ export const renderer = ({
 
     const { canEdit, canShow, canCreate } = resource ?? {};
 
+    const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
+
     const actionButtons =
         canEdit || canShow
             ? jsx`
     {
         id: "actions",
         accessorKey: "id",
-        header: "Actions",
+        header: ${actionColumnTitle},
         cell: function render({ getValue }) {
             return (
                 <div
@@ -591,7 +635,11 @@ export const renderer = ({
                             show("${resource.name}", getValue() as string);
                         }}
                     >
-                        Show
+                        ${translateButtonTitle({
+                            action: "show",
+                            i18n,
+                            noQuotes: true,
+                        })}
                     </button>
                     `
                         : ""
@@ -604,7 +652,11 @@ export const renderer = ({
                                 edit("${resource.name}", getValue() as string);
                             }}
                         >
-                            Edit
+                            ${translateButtonTitle({
+                                action: "edit",
+                                i18n,
+                                noQuotes: true,
+                            })}
                         </button>
                     `
                             : ""
@@ -641,10 +693,13 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
         ], []);
@@ -717,10 +772,20 @@ export const renderer = ({
         return (
             <div style={{ padding: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <h1>${prettyString(resource.label ?? resource.name)}</h1>
+                <h1>${translateActionTitle({
+                    resource,
+                    action: "list",
+                    i18n,
+                })}</h1>
                 ${
                     canCreate
-                        ? jsx`<button onClick={() => create("${resource.name}")}>Create</button>`
+                        ? jsx`<button onClick={() => create("${
+                              resource.name
+                          }")}>${translateButtonTitle({
+                              action: "create",
+                              i18n,
+                              noQuotes: true,
+                          })}</button>`
                         : ""
                 }
             </div>
@@ -782,14 +847,14 @@ export const renderer = ({
                         {">>"}
                     </button>
                     <span>
-                        Page
                         <strong>
-                            {getState().pagination.pageIndex + 1} of{" "}
-                            {getPageCount()}
+                            {" "} {getState().pagination.pageIndex + 1} / {" "} {getPageCount()} {" "}
                         </strong>
                     </span>
                     <span>
-                        | Go to page:
+                        | ${
+                            i18n ? `{translate("pagination.go")}` : "Go to Page"
+                        }:{" "}
                         <input
                             type="number"
                             defaultValue={getState().pagination.pageIndex + 1}
@@ -809,7 +874,11 @@ export const renderer = ({
                     >
                         {[10, 20, 30, 40, 50].map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
+                                ${
+                                    i18n
+                                        ? `{translate("pagination.show")}`
+                                        : "Show"
+                                } {pageSize}
                             </option>
                         ))}
                     </select>
