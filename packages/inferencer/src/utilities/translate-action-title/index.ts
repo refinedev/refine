@@ -1,6 +1,7 @@
 import { IResourceItem } from "@refinedev/core";
 import { prettyString } from "../pretty-string";
 import { toSingular } from "../to-singular";
+import { toPlural } from "../to-plural";
 
 export const translateActionTitle = (payload: {
     resource: IResourceItem;
@@ -16,6 +17,12 @@ export const translateActionTitle = (payload: {
             return translateKey;
         }
         return `{${translateKey}}`;
+    }
+
+    if (action === "list") {
+        return prettyString(
+            toPlural(resource.label ?? resource?.meta?.label ?? resource.name),
+        );
     }
 
     return `${prettyString(toSingular(resource.name))} ${prettyString(action)}`;
