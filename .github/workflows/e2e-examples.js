@@ -2,6 +2,8 @@
 
 const fs = require("fs");
 const { exec, execSync } = require('child_process');
+const KEY = process.env.KEY;
+const CI_BUILD_ID = process.env.CI_BUILD_ID;
 
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
@@ -24,7 +26,7 @@ for (const path of hasE2EExamples) {
     });
     console.log("|- start: ", path);
     const start = exec(`npm run start -- --scope ${path}`);
-    execSync(`npm run lerna run cypress:run -- --scope ${path}`, {
+    execSync(`npm run lerna run cypress:run --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} -- --scope ${path}`, {
         stdio: 'inherit',
     });
     console.log("|- finished: ", path);
