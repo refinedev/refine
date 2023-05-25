@@ -100,6 +100,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                     })}
                 >
                     <TextInput
+                        name="password"
                         type="password"
                         label={translate(
                             "pages.updatePassword.fields.password",
@@ -110,6 +111,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                     />
                     <TextInput
                         mt="md"
+                        name="confirmPassword"
                         type="password"
                         label={translate(
                             "pages.updatePassword.fields.confirmPassword",
