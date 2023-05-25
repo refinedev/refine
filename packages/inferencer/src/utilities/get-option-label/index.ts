@@ -1,4 +1,4 @@
-import { InferField } from "@/types";
+import { InferField } from "../../types";
 
 export const getOptionLabel = (field: InferField) => {
     if (field.relationInfer && field.relationInfer.accessor) {

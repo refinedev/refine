@@ -1,5 +1,5 @@
-import { FieldInferencer } from "@/types";
-import { pickInferredField } from "@/utilities";
+import { FieldInferencer } from "../types";
+import { pickInferredField } from "../utilities";
 
 /**
  * Compose multiple field inferencers into one

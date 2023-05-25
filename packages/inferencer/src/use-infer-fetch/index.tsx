@@ -1,9 +1,9 @@
 import React from "react";
 import { useDataProvider, useResource, BaseKey } from "@refinedev/core";
 
-import { pickDataProvider, dataProviderFromResource } from "@/utilities";
-import { InferencerComponentProps } from "@/types";
-import { pickMeta } from "@/utilities/get-meta-props";
+import { pickDataProvider, dataProviderFromResource } from "../utilities";
+import { InferencerComponentProps } from "../types";
+import { pickMeta } from "../utilities/get-meta-props";
 
 /**
  * This hook will handle the data fetching for the inferencer with `loading` and `initial` states.

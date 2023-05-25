@@ -2,9 +2,9 @@ import React from "react";
 import * as Icons from "@ant-design/icons";
 import { Button, Modal, Space } from "antd";
 
-import { prettierFormat } from "@/utilities";
-import { CreateInferencerConfig } from "@/types";
-import { CodeHighlight } from "@/components";
+import { prettierFormat } from "../../utilities";
+import { CreateInferencerConfig } from "../../types";
+import { CodeHighlight } from "../../components";
 
 /**
  * @deprecated Please use `SharedCodeViewer` instead
