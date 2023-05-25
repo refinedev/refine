@@ -128,6 +128,26 @@
       "show": "Show Blog Post"
     }
   },
+  "blog-posts": {
+    "blog_posts": "Blog Posts",
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "content": "Content",
+      "status": "Status",
+      "category": "Category",
+      "categoryId" : "Category",
+      "category_id": "Category",
+      "createdAt": "Created At",
+      "created_at": "Created At"
+    },
+    "titles": {
+      "create": "Create Blog Post",
+      "edit": "Edit Blog Post",
+      "list": "Blog Posts",
+      "show": "Show Blog Post"
+    }
+  },
   "categories": {
     "categories": "Categories",
     "fields": {
