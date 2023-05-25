@@ -224,6 +224,175 @@ const publish = usePublish();
 
 > For more information, refer to the [usePublish documentation&#8594](/api-reference/core/hooks/live/usePublish.md)
 
+## Creating a live provider for GraphQL subscriptions
+
+In this section, we will create a live provider for GraphQL subscriptions from scratch. We will use [Hasura](https://hasura.io/) as an example, but the same logic can be applied to any GraphQL subscription provider.
+
+`@refinedev/hasura` has a built-in live provider for Hasura subscriptions, but we will create our own from scratch to learn how it works.
+
+Before diving into the code, let's see the difference between GraphQL queries and subscriptions.
+
+**GraphQL queries**
+
+```ts
+query GetPosts {
+  posts {
+    id
+    title
+    content
+  }
+}
+```
+
+**GraphQL subscriptions**
+
+```ts
+subscription GetPosts {
+  posts {
+    id
+    title
+    content
+  }
+}
+```
+
+As you can see, the only difference between queries and subscriptions is the `subscription` keyword. This means that we can use the same logic for both queries and subscriptions. We already have a data provider for creating GraphQL queries, so we will use the same logic for GraphQL subscriptions.
+
+Let's create a live provider for GraphQL subscriptions.
+
+### `subscribe`
+
+When you call the [`useList`](/docs/api-reference/core/hooks/data/useList/), [`useOne`](/docs/api-reference/core/hooks/data/useOne/) or [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hooks, they will call the `subscribe` method of the live provider.
+
+Thus, we will be able to create subscription queries using the parameters of these hooks. After creating the subscription query, we will listen it using the [`graphql-ws`](https://github.com/enisdenjo/graphql-ws) client and return the unsubscribe method to use in the `unsubscribe` method of the live provider.
+
+```ts title="liveProvider.ts"
+import { LiveProvider } from "@refinedev/core";
+import { Client } from "graphql-ws";
+
+import {
+    genareteUseListSubscription,
+    genareteUseManySubscription,
+    genareteUseOneSubscription,
+} from "../utils";
+
+const subscriptions = {
+    useList: genareteUseListSubscription,
+    useOne: genareteUseOneSubscription,
+    useMany: genareteUseManySubscription,
+};
+
+export const liveProvider = (client: Client): LiveProvider => {
+    return {
+        subscribe: ({ callback, params }) => {
+            const {
+                resource,
+                meta,
+                pagination,
+                sorters,
+                filters,
+                subscriptionType,
+                id,
+                ids,
+            } = params ?? {};
+
+            if (!meta) {
+                throw new Error(
+                    "[useSubscription]: `meta` is required in `params` for graphql subscriptions",
+                );
+            }
+
+            if (!subscriptionType) {
+                throw new Error(
+                    "[useSubscription]: `subscriptionType` is required in `params` for graphql subscriptions",
+                );
+            }
+
+            if (!resource) {
+                throw new Error(
+                    "[useSubscription]: `resource` is required in `params` for graphql subscriptions",
+                );
+            }
+
+            const genareteSubscription = subscriptions[subscriptionType];
+
+            const { query, variables, operation } = genareteSubscription({
+                ids,
+                id,
+                resource,
+                filters,
+                meta,
+                pagination,
+                sorters,
+            });
+
+            const onNext = (payload: any) => {
+                callback(payload.data[operation]);
+            };
+
+            const unsubscribe = client.subscribe(
+                {
+                    query,
+                    variables,
+                },
+                {
+                    next: onNext,
+                    error: () => null,
+                    complete: () => null,
+                },
+            );
+
+            return unsubscribe;
+        },
+    };
+};
+```
+
+:::info
+
+`genareteUseListSubscription`, `genareteUseOneSubscription` and `genareteUseManySubscription` are helper functions that generate subscription queries. They are same as the methods in the data provider of `@refinedev/hasura`. You can check them out [here](https://github.com/refinedev/refine/tree/next/packages/hasura/src/utils).
+
+:::
+
+### `unsubscribe`
+
+We will call the `unsubscribe` method that we returned from the `subscribe` method to unsubscribe from the subscription query.
+
+```ts title="liveProvider.ts"
+import { LiveProvider } from "@refinedev/core";
+import { Client } from "graphql-ws";
+
+...
+
+export const liveProvider = (client: Client): LiveProvider => {
+    return {
+        ...
+        unsubscribe: (unsubscribe) => {
+            unsubscribe();
+        },
+    };
+};
+```
+
+### Usage of the live provider
+
+Now that we have created our live provider, we can use it in `<Refine>` like following:
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+import { createClient } from "graphql-ws";
+
+import { liveProvider } from "./liveProvider";
+
+const gqlWebSocketClient = createClient({
+    url: "YOUR_WS_URL",
+});
+
+const App: React.FC = () => {
+    return <Refine ... liveProvider={liveProvider(gqlWebSocketClient)} />;
+};
+```
+
 ## `liveMode`
 
 `liveMode` must be passed to `<Refine>` in `options` or [supported hooks](#supported-hooks) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` in `options` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
