@@ -11,6 +11,10 @@ const mockUsers = [
         email: "editor@refine.dev",
         roles: ["editor"],
     },
+    {
+        email: "demo@refine.dev",
+        roles: ["user"],
+    },
 ];
 
 const COOKIE_NAME = "user";

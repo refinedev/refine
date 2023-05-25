@@ -10,6 +10,10 @@ const mockUsers = [
         email: "editor@refine.dev",
         roles: ["editor"],
     },
+    {
+        email: "demo@refine.dev",
+        roles: ["user"],
+    },
 ];
 
 export const authProvider: AuthBindings = {

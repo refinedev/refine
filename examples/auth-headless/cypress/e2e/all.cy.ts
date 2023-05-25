@@ -9,8 +9,12 @@ describe("auth-headless", () => {
     };
 
     const login = () => {
-        cy.get('input[name="email"]').clear().type("demo@refine.dev");
-        cy.get('input[name="password"]').clear().type("demodemo");
+        cy.fixture("demo-auth-credentials").then((auth) => {
+            cy.get('input[name="email"]').clear();
+            cy.get('input[name="email"]').type(auth.email);
+            cy.get('input[name="password"]').clear();
+            cy.get('input[name="password"]').type(auth.password);
+        });
         submitAuthForm();
     };
 
@@ -21,31 +25,56 @@ describe("auth-headless", () => {
         cy.visit(BASE_URL);
     });
 
-    it("should login", () => {
-        login();
-        cy.location("pathname").should("eq", "/posts");
-        cy.getAllLocalStorage().then((ls) => {
-            expect(ls[BASE_URL]).to.have.property("email");
+    describe("login", () => {
+        it("should login", () => {
+            login();
+            cy.location("pathname").should("eq", "/posts");
+            cy.getAllLocalStorage().then((ls) => {
+                expect(ls[BASE_URL]).to.have.property("email");
+            });
+        });
+
+        it("should has 'to' param on URL after redirected to /login", () => {
+            login();
+            cy.location("pathname").should("eq", "/posts");
+
+            cy.visit(`${BASE_URL}/test`);
+            cy.location("pathname").should("eq", "/test");
+            cy.clearAllLocalStorage();
+            cy.reload();
+            cy.location("search").should("contains", "to=%2Ftest");
+            cy.location("pathname").should("eq", "/login");
+        });
+
+        it("should redirect to /login?to= if user not authenticated", () => {
+            cy.visit(`${BASE_URL}/test-route`);
+            cy.get("h1").contains(/sign in to your account/i);
+            cy.location("search").should("contains", "to=%2Ftest");
+            cy.location("pathname").should("eq", "/login");
         });
     });
 
-    it("should register", () => {
-        cy.get("a")
-            .contains(/sign up/i)
-            .click();
-        cy.location("pathname").should("eq", "/register");
-        login();
-        cy.location("pathname").should("eq", "/posts");
-        cy.getAllLocalStorage().then((ls) => {
-            expect(ls[BASE_URL]).to.have.property("email");
+    describe("register", () => {
+        it("should register", () => {
+            cy.get("a")
+                .contains(/sign up/i)
+                .click();
+            cy.location("pathname").should("eq", "/register");
+            login();
+            cy.location("pathname").should("eq", "/posts");
+            cy.getAllLocalStorage().then((ls) => {
+                expect(ls[BASE_URL]).to.have.property("email");
+            });
         });
     });
 
-    it("should logout", () => {
-        login();
-        cy.get("button")
-            .contains(/logout/i)
-            .click();
-        cy.location("pathname").should("eq", "/login");
+    describe("logout", () => {
+        it("should logout", () => {
+            login();
+            cy.get("button")
+                .contains(/logout/i)
+                .click();
+            cy.location("pathname").should("eq", "/login");
+        });
     });
 });

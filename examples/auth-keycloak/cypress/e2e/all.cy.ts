@@ -4,18 +4,16 @@
 describe("auth-keycloak", () => {
     const BASE_URL = "http://localhost:3000";
 
-    const authCredentials = {
-        email: "refine",
-        password: "refine",
-    };
-
     const login = () => {
         cy.get("button")
             .contains(/sign in/i)
             .click();
 
-        cy.get("#username").type(authCredentials.email);
-        cy.get("#password").type(authCredentials.password);
+        cy.fixture("keycloak-credentials").then((auth) => {
+            cy.get("#username").type(auth.email);
+            cy.get("#password").type(auth.password);
+        });
+
         cy.get("[type=submit]").click();
     };
 
@@ -26,30 +24,38 @@ describe("auth-keycloak", () => {
         cy.visit(BASE_URL);
     });
 
-    it("should login", () => {
-        login();
-        cy.location("pathname").should("eq", "/posts");
+    describe("login", () => {
+        it("should login", () => {
+            login();
+            cy.location("pathname").should("eq", "/posts");
+        });
+
+        it("should redirect to /login if user not authenticated", () => {
+            login();
+            cy.visit(`${BASE_URL}/test-route`);
+            cy.clearAllCookies();
+            cy.reload();
+            cy.location("pathname").should("eq", "/login");
+            cy.location("search").should("contains", "?to=%2Ftest-route");
+        });
     });
 
-    it("should logout", () => {
-        login();
-        cy.get(".ant-menu-title-content")
-            .contains(/logout/i)
-            .click();
-        cy.location("pathname").should("eq", "/login");
+    describe("logout", () => {
+        it("should logout", () => {
+            login();
+            cy.get(".ant-menu-title-content")
+                .contains(/logout/i)
+                .click();
+            cy.location("pathname").should("eq", "/login");
+        });
     });
 
-    it("should redirect to /login if user not authenticated", () => {
-        login();
-        cy.visit(`${BASE_URL}/test-route`);
-        cy.clearAllCookies();
-        cy.reload();
-        cy.location("pathname").should("eq", "/login");
-        cy.location("search").should("contains", "?to=%2Ftest-route");
-    });
-
-    it("should render getIdentity response on header", () => {
-        login();
-        cy.get(".ant-typography").contains(authCredentials.email);
+    describe("get identity", () => {
+        it("should render getIdentity response on header", () => {
+            login();
+            cy.fixture("keycloak-credentials").then((auth) => {
+                cy.get(".ant-typography").contains(auth.email);
+            });
+        });
     });
 });
