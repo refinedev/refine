@@ -524,6 +524,12 @@ class PersonalSubscription implements IPersonalSubscription<TAccount<AccountType
 
 In the above code, for `BillingSchedule` we have used a numeric enum with all uninitialized members. The first member is therefore assigned `0` and subsequent ones get auto-incremented by `1`. We have used generics to pass in `AccountType` and `BillingSchedule` types to `TAccount` and `IBilling` respectively so their use becomes more flexible in the `PersonalAccount` and `FreeBilling` classes as well as in the `IPersonalSubscription` type, where we are using enum members both as constant values as well as type definitions.
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Summary
 

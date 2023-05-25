@@ -566,6 +566,13 @@ By default, a date picker shows a calendar where users can select a date. Use th
 
 <br/>
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
 ## Conclusion
 
 Date pickers are sometimes a web application’s most important feature. In this article, we showed how to create basic React date picker using **react-datepicker** package, implementing advanced features and their possible use cases.
