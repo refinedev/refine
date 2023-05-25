@@ -63,6 +63,7 @@ describe("with-nextjs-auth", () => {
             .contains(/sign up/i)
             .click();
         cy.location("pathname").should("eq", "/register");
+        cy.get(".ant-card-head-title > .ant-typography").contains(/sign up/i);
         login();
         cy.location("pathname").should("eq", "/");
         cy.getAllCookies().then((cookies) => {
@@ -74,9 +75,10 @@ describe("with-nextjs-auth", () => {
         cy.get("a")
             .contains(/sign up/i)
             .click();
-
-        cy.get("#email").clear().type("test@test.com");
-        cy.get("#password").clear().type("test");
+        cy.location("pathname").should("eq", "/register");
+        cy.get(".ant-card-head-title > .ant-typography").contains(/sign up/i);
+        cy.get("#email").type("test@test.com");
+        cy.get("#password").type("test");
         submitAuthForm();
         cy.getAntdNotification().contains(/register failed/i);
         cy.location("pathname").should("eq", "/register");
