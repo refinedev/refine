@@ -25,8 +25,8 @@ for (const path of hasE2EExamples) {
         stdio: 'inherit',
     });
     console.log("|- start: ", path);
-    const start = exec(`npm run start --port 3000 --host 127.0.0.1 -- --scope ${path}`);
-    execSync(`npm run lerna run cypress:run --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} -- --scope ${path}`, {
+    const start = exec(`npm run start -- --scope ${path} -- --port 3000 --host 127.0.0.1`);
+    execSync(`npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}`, {
         stdio: 'inherit',
     });
     console.log("|- finished: ", path);
