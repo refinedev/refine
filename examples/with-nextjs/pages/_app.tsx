@@ -10,6 +10,7 @@ import {
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
+    DocumentTitleHandler,
     UnsavedChangesNotifier,
 } from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
@@ -70,6 +71,7 @@ function MyApp({ Component, pageProps }: ExtendedAppProps): JSX.Element {
                 >
                     {renderComponent()}
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </>
