@@ -62,7 +62,6 @@ export default function DocPage(props) {
             <DocPageMetadata {...props} />
             <HtmlClassNameProvider
                 className={clsx(
-                    // TODO: it should be removed from here
                     ThemeClassNames.wrapper.docsPages,
                     ThemeClassNames.page.docsDocPage,
                     props.versionMetadata.className,
@@ -71,14 +70,16 @@ export default function DocPage(props) {
                 <DocsVersionProvider version={versionMetadata}>
                     <DocsSidebarProvider
                         name={
-                            isTutorial
-                                ? sidebarName ?? fallbackSidebarName
-                                : sidebarName
+                            sidebarName ?? fallbackSidebarName
+                            // isTutorial
+                            //     ? sidebarName ?? fallbackSidebarName
+                            //     : sidebarName
                         }
                         items={
-                            isTutorial
-                                ? sidebarItems ?? fallbackSidebarItems
-                                : sidebarItems
+                            sidebarItems ?? fallbackSidebarItems
+                            // isTutorial
+                            //     ? sidebarItems ?? fallbackSidebarItems
+                            //     : sidebarItems
                         }
                     >
                         <DocPageLayout>{docElement}</DocPageLayout>

@@ -1,0 +1,156 @@
+/* Firefox */
+.scrollbar-slim {
+    scrollbar-width: thin;
+    scrollbar-color: red blue;
+}
+
+/* Chrome, Edge, and Safari */
+.scrollbar-slim::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollbar-slim::-webkit-scrollbar-track {
+    background: #14141F;
+    border-radius: 5px;
+}
+
+.scrollbar-slim::-webkit-scrollbar-thumb {
+    background-color: #303450;
+    border-radius: 12px;
+    border: 3px solid #14141F;
+}
+
+.refine-prose {
+    @apply font-normal prose prose-invert;
+    @apply prose-a:text-refine-link prose-a:font-normal;
+    @apply prose-h1:text-[2.5rem] prose-h1:leading-[3.5rem] prose-h1:text-gray-0 prose-h1:mb-8 prose-h1:font-semibold;
+    @apply prose-h2:text-[2rem] prose-h2:leading-[2.5rem] prose-h2:text-gray-100 prose-h2:mb-6 prose-h2:font-semibold;
+    @apply prose-h3:text-[1.5rem] prose-h3:leading-[2rem] prose-h3:text-gray-200 prose-h3:mb-6 prose-h3:font-semibold;
+    @apply prose-h4:text-[1rem] prose-h4:leading-[1.5rem] prose-h4:text-gray-300 prose-h4:mb-4 prose-h4:font-semibold;
+    @apply prose-p:mb-6 prose-p:mt-0;
+    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4 prose-blockquote:border-l-gray-600  prose-blockquote:rounded-lg prose-blockquote:p-4 prose-blockquote:bg-gray-800 prose-blockquote:font-normal prose-blockquote:text-gray-300 prose-blockquote:not-italic;
+    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:text-xs prose-code:leading-6 prose-code:bg-gray-300 prose-code:bg-opacity-30 prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-code:font-normal;
+    @apply prose-code:decoration-clone;
+    @apply prose-code:border-none;
+}
+
+.refine-prose *:last-child:not(header h1) {
+    margin-bottom: 0;
+}
+
+.refine-prose h1 code,
+.refine-prose h2 code,
+.refine-prose h3 code {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.refine-prose blockquote,
+.refine-prose blockquote p {
+    @apply after:content-none before:content-none;
+}
+
+.refine-prose table {
+    @apply prose-table:border-separate border border-gray-700;
+}
+
+.refine-prose table th,
+.refine-prose table td {
+    @apply leading-6 px-2 border-gray-700 border py-2 text-sm;
+}
+
+.refine-prose table th {
+    @apply text-gray-200 font-semibold text-sm leading-6;
+}
+
+.refine-prose table tbody tr:nth-child(odd) {
+    @apply bg-gray-700 bg-opacity-30;
+}
+
+.refine-toc-item code::before,
+.refine-toc-item code::after {
+    content: "`";
+}
+
+.refine-toc-item code {
+    @apply font-mono bg-gray-600 bg-opacity-30 py-0.5 px-1 rounded;
+    font-size: 12px;
+}
+
+.admonition.admonition-caution code {
+    @apply bg-refine-orange bg-opacity-20;
+}
+
+.admonition.admonition-caution a {
+    @apply text-refine-orange;
+}
+
+.admonition.admonition-danger code {
+    @apply bg-refine-red bg-opacity-20;
+}
+
+.admonition.admonition-danger a {
+    @apply text-refine-red;
+}
+
+.admonition.admonition-info code {
+    @apply bg-refine-blue bg-opacity-20;
+}
+
+.admonition.admonition-info a {
+    @apply text-refine-blue;
+}
+
+.admonition.admonition-tip code {
+    @apply bg-refine-green bg-opacity-20;
+}
+
+.admonition.admonition-tip a {
+    @apply text-refine-green;
+}
+
+.admonition.admonition-note code {
+    @apply bg-refine-cyan bg-opacity-20;
+}
+
+.admonition.admonition-note a {
+    @apply text-refine-cyan;
+}
+
+.admonition.admonition-additional code {
+    @apply bg-refine-cyan bg-opacity-20;
+}
+
+.admonition.admonition-additional a {
+    @apply text-refine-cyan;
+}
+
+.admonition.admonition-info-tip code {
+    @apply bg-refine-blue bg-opacity-20;
+}
+
+.admonition.admonition-info-tip a {
+    @apply text-refine-blue;
+}
+
+.refine-details > summary + div > div {
+    @apply border-t-0 mt-0 pt-0;
+}
+
+.refine-details-content {
+    @apply p-4;
+}
+
+.refine-details .refine-details-content > div > *:last-child {
+    @apply !mb-0;
+}
+
+.refine-details > summary .refine-details-triangle {
+    @apply transition-transform duration-200 ease-in-out;
+    @apply -rotate-90;
+}
+
+.refine-details[open] > summary .refine-details-triangle {
+    @apply rotate-0;
+}

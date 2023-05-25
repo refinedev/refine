@@ -24,10 +24,18 @@ const Card = ({ name, title, selected, onClick }: CardProps) => (
     <button
         type="button"
         onClick={onClick}
-        className={clsx(styles.card, selected && styles.cardSelected)}
+        className={clsx(
+            "rounded-lg",
+            "p-4",
+            "flex flex-col",
+            "justify-between",
+            "items-center",
+            "gap-3",
+            "bg-gray-800",
+        )}
     >
         <img
-            className="max-w-[90px]"
+            className="max-w-[50px]"
             src={`${selected ? coloredIconUrl : grayscaleIconUrl}${name}.svg`}
             alt={title}
             width="100%"

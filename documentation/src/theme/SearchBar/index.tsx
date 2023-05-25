@@ -1,4 +1,4 @@
-import { DocSearchButton, useDocSearchKeyboardEvents } from "@docsearch/react";
+import { useDocSearchKeyboardEvents } from "@docsearch/react";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import { useHistory } from "@docusaurus/router";
@@ -12,6 +12,7 @@ import {
 } from "@docusaurus/theme-search-algolia/client";
 import Translate from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
 import translations from "@theme/SearchTranslations";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -155,7 +156,6 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
                 onMouseOver={importDocSearchModalIfNeeded}
                 onClick={onOpen}
                 ref={searchButtonRef}
-                translations={translations.button}
                 className="refine-docsearch-button"
             />
 

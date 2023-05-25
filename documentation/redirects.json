@@ -820,6 +820,10 @@
     {
       "from": "/docs/examples/import-export",
       "to": "/docs/examples/import-export/antd"
+    },
+    {
+      "from": "/docs/api-reference/",
+      "to": "/docs/api-reference/general-concepts/"
     }
   ]
 }

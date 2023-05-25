@@ -3,6 +3,7 @@ import { useReward } from "react-rewards";
 
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { useTutorialChecklists } from "../../hooks/use-tutorial-checklists";
+import clsx from "clsx";
 
 const CheckMarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -13,7 +14,7 @@ const CheckMarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="feather feather-check-circle"
+        className="feather feather-check-circle pointer-events-none"
         {...props}
     >
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -57,13 +58,37 @@ const Checklist: React.FC<Props> = ({ children }) => {
     }, [allChecked, celebrated]);
 
     return (
-        <div className="checklist-container">
-            <h3 className="checklist-container__title">
-                <CheckMarkIcon className="w-7 h-7" /> Checklist
-            </h3>
-            <div>{children}</div>
-            <div className="flex items-center justify-center">
-                <div id={`checklist-${id}`} />
+        <div
+            className={clsx(
+                "bg-refine-link bg-opacity-10 border-l-refine-link",
+            )}
+        >
+            <div
+                className={clsx(
+                    "border-l-4",
+                    "border-l-solid",
+                    "border-l-inherit",
+                    "rounded-tl-lg",
+                    "rounded-bl-lg",
+                    "p-4",
+                    "flex flex-col",
+                )}
+            >
+                <h3
+                    className={clsx(
+                        "text-refine-link",
+                        "font-semibold",
+                        "mt-0",
+                        "flex items-center",
+                        "gap-3",
+                    )}
+                >
+                    <CheckMarkIcon className="w-7 h-7" /> Checklist
+                </h3>
+                <div>{children}</div>
+                <div className="flex items-center justify-center">
+                    <div id={`checklist-${id}`} />
+                </div>
             </div>
         </div>
     );

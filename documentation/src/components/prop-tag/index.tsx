@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 type Props = {
@@ -18,7 +19,20 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 }) => {
     if (deprecated) {
         return (
-            <div className="prop--tag prop--tag__deprecated" title={alt}>
+            <div
+                className={clsx(
+                    "inline",
+                    "text-gray-0",
+                    "text-xs",
+                    "leading-6",
+                    "py-0.5",
+                    "px-2",
+                    "rounded",
+                    "bg-refine-orange",
+                    "tracking-wide",
+                )}
+                title={alt}
+            >
                 {children ?? "deprecated"}
             </div>
         );
@@ -26,7 +40,20 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (asterisk) {
         return (
-            <div className="prop--tag__required" title={alt}>
+            <div
+                className={clsx(
+                    "inline",
+                    "text-gray-0",
+                    "text-xs",
+                    "leading-6",
+                    "py-0.5",
+                    "px-2",
+                    "rounded",
+                    "bg-refine-blue",
+                    "tracking-wide",
+                )}
+                title={alt}
+            >
                 {children ?? "﹡"}
             </div>
         );
@@ -34,7 +61,20 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (required) {
         return (
-            <div className="prop--tag prop--tag__required" title={alt}>
+            <div
+                className={clsx(
+                    "inline",
+                    "text-gray-0",
+                    "text-xs",
+                    "leading-6",
+                    "py-0.5",
+                    "px-2",
+                    "rounded",
+                    "bg-refine-indigo",
+                    "tracking-wide",
+                )}
+                title={alt}
+            >
                 {children ?? "required"}
             </div>
         );
@@ -42,7 +82,20 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (featured) {
         return (
-            <div className="prop--tag prop--tag__featured" title={alt}>
+            <div
+                className={clsx(
+                    "inline",
+                    "text-gray-0",
+                    "text-xs",
+                    "leading-6",
+                    "py-0.5",
+                    "px-2",
+                    "rounded",
+                    "bg-refine-green",
+                    "tracking-wide",
+                )}
+                title={alt}
+            >
                 {children ?? "featured"}
             </div>
         );
@@ -50,7 +103,20 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (children) {
         return (
-            <div className="prop--tag" title={alt}>
+            <div
+                className={clsx(
+                    "inline",
+                    "text-gray-0",
+                    "text-xs",
+                    "leading-6",
+                    "py-0.5",
+                    "px-2",
+                    "rounded",
+                    "bg-gray-800",
+                    "tracking-wide",
+                )}
+                title={alt}
+            >
                 {children}
             </div>
         );

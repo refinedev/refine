@@ -64,7 +64,7 @@
     --ifm-alert-shadow: 0.5px 1px 1px 0px rgba(0, 0, 0, 0.15);
     /* var(--ifm-font-size-base)/var(--ifm-line-height-base) var(--ifm-font-family-base) */
     --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a8a8a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-up'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
-    --ifm-font-family-base: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans",
+    --ifm-font-family-base: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans",
         sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
         "Segoe UI Symbol";
     /* aliemir theme overrides end */
@@ -565,10 +565,6 @@ html[data-page="index"] {
     scroll-behavior: smooth;
 }
 
-#__docusaurus .main-wrapper {
-    padding-top: 64px;
-}
-
 #__docusaurus .text-color-base {
     color: var(--ifm-font-color-base);
 }
@@ -905,11 +901,6 @@ html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar .hea
     margin: 0 auto;
 }
 
-#__docusaurus .markdown h1:first-child {
-    --ifm-h1-font-size: 2.85rem;
-    margin-top: 0.25rem;
-}
-
 #__docusaurus .tabs-container > ul.tabs {
     position: relative;
     padding-left: 1rem;
@@ -929,11 +920,6 @@ html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar .hea
 }
 #__docusaurus .tabs-container > ul.tabs .tabs__item {
     padding: 0.75rem;
-}
-
-#__docusaurus .theme-code-block {
-    /* color:  #bfc7d5; */
-    background-color: #292d3e !important;
 }
 
 #__docusaurus .theme-code-block pre.prism-code {
@@ -1090,5 +1076,3 @@ html[data-theme="dark"] .sourcecode-badge {
     width: 13px;
     margin-bottom: -2px;
 }
-
-@import "refine-docs.css";

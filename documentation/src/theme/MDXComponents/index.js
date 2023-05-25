@@ -1,7 +1,6 @@
 import React from "react";
+
 import MDXComponents from "@theme-original/MDXComponents";
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 
 import DiscordBanner from "@site/src/components/blog/discord-banner";
 import GithubBanner from "@site/src/components/blog/github-banner";
@@ -16,6 +15,10 @@ import ExampleLocalPrompt from "@site/src/components/example-local-prompt";
 import Checklist from "@site/src/components/checklist";
 import ChecklistItem from "@site/src/components/checklist-item";
 import GeneralConceptsLink from "@site/src/components/general-concepts-link";
+import CommonTabs from "@site/src/refine-theme/common-tabs";
+import CommonTabItem from "@site/src/refine-theme/common-tab-item";
+import CommonDetails from "@site/src/refine-theme/common-details";
+import CommonSummary from "@site/src/refine-theme/common-summary";
 
 export default {
     ...MDXComponents,
@@ -27,9 +30,11 @@ export default {
     TwitterBanner: TwitterBanner,
     PropsTable: PropsTable,
     PropTag: PropTag,
+    details: CommonDetails,
+    summary: CommonSummary,
     PromotionBanner: PromotionBanner,
-    Tabs: Tabs,
-    TabItem: TabItem,
+    Tabs: CommonTabs,
+    TabItem: CommonTabItem,
     GeneralConceptsLink,
     CodeSandboxExample,
     ExampleLocalPrompt,
