@@ -1,9 +1,10 @@
-import {
+import type {
     GridSortModel,
     GridFilterModel,
-    GridLinkOperator,
     GridFilterItem,
 } from "@mui/x-data-grid";
+import { GridLinkOperator } from "@mui/x-data-grid";
+
 import {
     CrudFilters,
     CrudOperators,

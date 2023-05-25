@@ -50,7 +50,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -86,7 +86,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -125,7 +125,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout({ redirectPath: "/custom-path" });
@@ -159,7 +159,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             try {
@@ -188,7 +188,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             try {
@@ -214,7 +214,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             }),
         });
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -245,7 +245,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             }),
         });
 
-        const { mutate: checkError } = result.current!;
+        const { mutate: checkError } = result.current;
 
         await act(async () => {
             await checkError({});
@@ -279,7 +279,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
         );
 
-        const { mutate: logout } = result.current!;
+        const { mutate: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -331,7 +331,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -360,7 +360,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -393,7 +393,7 @@ describe("useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout({ redirectPath: "/custom-path" });
@@ -425,7 +425,7 @@ describe("useLogout Hook", () => {
             },
         );
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -453,7 +453,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
 
         await act(async () => {
             await logout();
@@ -481,7 +481,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutateAsync: logout } = result.current!;
+        const { mutateAsync: logout } = result.current;
         await act(async () => {
             await logout();
         });
@@ -509,7 +509,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutate: onError } = result.current!;
+        const { mutate: onError } = result.current;
 
         await act(async () => {
             await onError({});
@@ -543,9 +543,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -576,9 +574,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -612,9 +608,7 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -658,9 +652,7 @@ describe("useLogout Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -698,9 +690,7 @@ describe("useLogout Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});

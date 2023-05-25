@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 import { Sider as DefaultSider } from "@refinedev/mui";
 
-import {
-    Box,
-    Drawer,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Collapse,
-    Tooltip,
-    Button,
-    IconButton,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import Tooltip from "@mui/material/Tooltip";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 
-import { List as MuiList } from "@mui/material";
-import {
-    ListOutlined,
-    Logout,
-    ExpandLess,
-    ExpandMore,
-    ChevronLeft,
-    ChevronRight,
-    MenuRounded,
-    Dashboard,
-} from "@mui/icons-material";
+import MuiList from "@mui/material/List";
+import ListOutlined from "@mui/icons-material/ListOutlined";
+import Logout from "@mui/icons-material/Logout";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
+import MenuRounded from "@mui/icons-material/MenuRounded";
+import Dashboard from "@mui/icons-material/Dashboard";
 import {
     CanAccess,
     ITreeMenu,

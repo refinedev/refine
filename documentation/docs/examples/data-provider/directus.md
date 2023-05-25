@@ -1,7 +1,7 @@
 ---
 id: directus
 title: Directus
-example-tags: [antd,community,data-provider,directus]
+example-tags: [community,data-provider]
 ---
 
 **refine** full-featured [Directus](https://directus.io/) Data Provider it allows you to get to your data quickly without requiring any additional setup or code. This example will show how to utilize the **refine** Directus Provider in this project.

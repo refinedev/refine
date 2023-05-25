@@ -5,7 +5,10 @@ import {
     useResource,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons";
 
@@ -58,6 +61,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             }
             loading={isFetching}
             data-testid={RefineButtonTestIds.RefreshButton}
+            className={RefineButtonClassNames.RefreshButton}
             {...(variant
                 ? {
                       variant: mapButtonVariantToActionIconVariant(variant),
@@ -76,6 +80,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
                 onClick ? onClick(e) : refetch()
             }
             data-testid={RefineButtonTestIds.RefreshButton}
+            className={RefineButtonClassNames.RefreshButton}
             {...rest}
         >
             {children ?? translate("buttons.refresh", "Refresh")}

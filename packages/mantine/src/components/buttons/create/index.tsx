@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons";
 
@@ -98,6 +101,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                           }
                         : { variant: "filled" })}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     {...commonProps}
                 >
                     <IconSquarePlus size={18} {...svgIconProps} />
@@ -108,6 +112,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
+                    className={RefineButtonClassNames.CreateButton}
                     color="primary"
                     variant="filled"
                     {...rest}

@@ -1,15 +1,18 @@
 import {
     CreateButtonProps,
     DeleteButtonProps,
+    EditButtonProps,
+    RefreshButtonProps,
+    ListButtonProps,
     SaveButtonProps,
-} from "@components/buttons";
-import {
-    BoxProps,
-    CardActionsProps,
-    CardContentProps,
-    CardHeaderProps,
-    CardProps,
-} from "@mui/material";
+} from "../buttons/types";
+
+import type { BoxProps } from "@mui/material/Box";
+import type { CardActionsProps } from "@mui/material/CardActions";
+import type { CardContentProps } from "@mui/material/CardContent";
+import type { CardHeaderProps } from "@mui/material/CardHeader";
+import type { CardProps } from "@mui/material/Card";
+
 import {
     RefineCrudCreateProps,
     RefineCrudEditProps,
@@ -35,7 +38,9 @@ export type EditProps = RefineCrudEditProps<
     CardProps,
     CardHeaderProps,
     CardContentProps,
-    {}
+    {},
+    RefreshButtonProps,
+    ListButtonProps
 >;
 
 export type ListProps = RefineCrudListProps<
@@ -53,5 +58,9 @@ export type ShowProps = RefineCrudShowProps<
     CardProps,
     CardHeaderProps,
     CardContentProps,
-    {}
+    {},
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
+    ListButtonProps
 >;

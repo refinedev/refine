@@ -12,7 +12,10 @@ import {
     useLink,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { ListButtonProps } from "../types";
 
@@ -95,6 +98,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
                 data-testid={RefineButtonTestIds.ListButton}
+                className={RefineButtonClassNames.ListButton}
                 {...rest}
             >
                 {!hideText &&

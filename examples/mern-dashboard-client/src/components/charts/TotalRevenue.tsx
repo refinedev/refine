@@ -1,6 +1,8 @@
 import ReactApexChart from "react-apexcharts";
-import { Box, Typography, Stack } from "@mui/material";
-import { ArrowCircleUpRounded } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import ArrowCircleUpRounded from "@mui/icons-material/ArrowCircleUpRounded";
 
 import { TotalRevenueOptions, TotalRevenueSeries } from "./chart.config";
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { Edit } from "@refinedev/mui";
-import { Box, TextField, Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm } from "@refinedev/react-hook-form";
 

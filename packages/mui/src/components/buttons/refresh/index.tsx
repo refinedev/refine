@@ -5,9 +5,13 @@ import {
     useResource,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { LoadingButton } from "@mui/lab";
-import { RefreshOutlined } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+import RefreshOutlined from "@mui/icons-material/RefreshOutlined";
 
 import { RefreshButtonProps } from "../types";
 
@@ -58,6 +62,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             onClick={(e) => (onClick ? onClick(e) : refetch())}
             sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.RefreshButton}
+            className={RefineButtonClassNames.RefreshButton}
             {...restProps}
         >
             {hideText ? (

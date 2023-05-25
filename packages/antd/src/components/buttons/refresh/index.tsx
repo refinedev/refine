@@ -7,7 +7,10 @@ import {
     useResource,
     pickNotDeprecated,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { RefreshButtonProps } from "../types";
 
@@ -53,6 +56,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             onClick={(e) => (onClick ? onClick(e as any) : refetch())}
             icon={<RedoOutlined spin={isFetching} />}
             data-testid={RefineButtonTestIds.RefreshButton}
+            className={RefineButtonClassNames.RefreshButton}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.refresh", "Refresh"))}

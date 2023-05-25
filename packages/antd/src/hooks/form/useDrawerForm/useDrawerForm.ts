@@ -120,8 +120,6 @@ export const useDrawerForm = <
     TResponse,
     TResponseError
 > => {
-    const initiallySynced = React.useRef(false);
-
     const { visible, show, close } = useModal({
         defaultVisible,
     });
@@ -136,7 +134,7 @@ export const useDrawerForm = <
     >({
         ...rest,
     });
-
+    const [initiallySynced, setInitiallySynced] = React.useState(false);
     const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
@@ -146,8 +144,10 @@ export const useDrawerForm = <
 
     const action = rest.action ?? actionFromParams ?? "";
 
-    const syncingId =
-        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+    const syncingId = !(
+        typeof syncWithLocation === "object" &&
+        syncWithLocation?.syncId === false
+    );
 
     const syncWithLocationKey =
         typeof syncWithLocation === "object" && "key" in syncWithLocation
@@ -157,7 +157,7 @@ export const useDrawerForm = <
             : undefined;
 
     React.useEffect(() => {
-        if (initiallySynced.current === false && syncWithLocationKey) {
+        if (initiallySynced === false && syncWithLocationKey) {
             const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
             if (typeof openStatus === "boolean") {
                 openStatus ? show() : close();
@@ -174,12 +174,12 @@ export const useDrawerForm = <
                 }
             }
 
-            initiallySynced.current = true;
+            setInitiallySynced(true);
         }
-    }, [syncWithLocationKey, parsed, syncingId, setId]);
+    }, [syncWithLocationKey, parsed, syncingId, setId, initiallySynced]);
 
     React.useEffect(() => {
-        if (initiallySynced.current === true) {
+        if (initiallySynced === true) {
             if (visible && syncWithLocationKey) {
                 go({
                     query: {
@@ -202,7 +202,15 @@ export const useDrawerForm = <
                 });
             }
         }
-    }, [id, visible, show, close, syncWithLocationKey, syncingId]);
+    }, [
+        id,
+        visible,
+        show,
+        close,
+        syncWithLocationKey,
+        syncingId,
+        initiallySynced,
+    ]);
 
     const translate = useTranslate();
 

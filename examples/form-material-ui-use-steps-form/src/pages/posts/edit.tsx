@@ -2,16 +2,14 @@ import { HttpError } from "@refinedev/core";
 import { Edit, useAutocomplete, SaveButton } from "@refinedev/mui";
 import { useTheme } from "@mui/material/styles";
 
-import {
-    Box,
-    TextField,
-    Autocomplete,
-    Button,
-    Step,
-    StepButton,
-    Stepper,
-    useMediaQuery,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Button from "@mui/material/Button";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
+import Stepper from "@mui/material/Stepper";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { useStepsForm } from "@refinedev/react-hook-form";
 
@@ -53,6 +51,7 @@ export const PostEdit: React.FC = () => {
             case 0:
                 return (
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -76,6 +75,7 @@ export const PostEdit: React.FC = () => {
                             defaultValue={null as any}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="status"
                                     options={["published", "draft", "rejected"]}
                                     {...field}
                                     onChange={(_, value) => {
@@ -103,6 +103,7 @@ export const PostEdit: React.FC = () => {
                             defaultValue={null as any}
                             render={({ field }) => (
                                 <Autocomplete
+                                    id="category"
                                     {...autocompleteProps}
                                     {...field}
                                     onChange={(_, value) => {
@@ -144,6 +145,7 @@ export const PostEdit: React.FC = () => {
                 return (
                     <>
                         <TextField
+                            id="slug"
                             {...register("slug", {
                                 required: "This field is required",
                             })}
@@ -154,6 +156,7 @@ export const PostEdit: React.FC = () => {
                             label="Slug"
                         />
                         <TextField
+                            id="content"
                             {...register("content", {
                                 required: "This field is required",
                             })}
@@ -177,6 +180,7 @@ export const PostEdit: React.FC = () => {
                 <>
                     {currentStep > 0 && (
                         <Button
+                            disabled={formLoading}
                             onClick={() => {
                                 gotoStep(currentStep - 1);
                             }}
@@ -186,6 +190,7 @@ export const PostEdit: React.FC = () => {
                     )}
                     {currentStep < stepTitles.length - 1 && (
                         <Button
+                            disabled={formLoading}
                             onClick={() => {
                                 gotoStep(currentStep + 1);
                             }}

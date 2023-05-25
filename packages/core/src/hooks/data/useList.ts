@@ -240,7 +240,7 @@ export const useList = <
                 sort: prefferedSorters,
                 sorters: prefferedSorters,
                 meta: {
-                    ...(combinedMeta || {}),
+                    ...combinedMeta,
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -248,7 +248,7 @@ export const useList = <
                     },
                 },
                 metaData: {
-                    ...(combinedMeta || {}),
+                    ...combinedMeta,
                     queryContext: {
                         queryKey,
                         pageParam,

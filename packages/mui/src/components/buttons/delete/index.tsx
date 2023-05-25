@@ -8,10 +8,19 @@ import {
     pickNotDeprecated,
     useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
-import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
-import { DeleteOutline } from "@mui/icons-material";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
+
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+
+import DeleteOutline from "@mui/icons-material/DeleteOutline";
 
 import { DeleteButtonProps } from "../types";
 
@@ -119,6 +128,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}
                 data-testid={RefineButtonTestIds.DeleteButton}
+                className={RefineButtonClassNames.DeleteButton}
                 {...restProps}
             >
                 {hideText ? (

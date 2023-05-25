@@ -1,16 +1,14 @@
 import { HttpError } from "@refinedev/core";
 import { SaveButton, useAutocomplete } from "@refinedev/mui";
 
-import {
-    Autocomplete,
-    Box,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    TextField,
-} from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
 
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
@@ -45,6 +43,7 @@ export const CreatePostModal: React.FC<
                     sx={{ display: "flex", flexDirection: "column" }}
                 >
                     <TextField
+                        id="title"
                         {...register("title", {
                             required: "This field is required",
                         })}
@@ -61,6 +60,7 @@ export const CreatePostModal: React.FC<
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
                             <Autocomplete
+                                id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
                                 onChange={(_, value) => {
@@ -86,6 +86,7 @@ export const CreatePostModal: React.FC<
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
                             <Autocomplete
+                                id="category"
                                 {...autocompleteProps}
                                 {...field}
                                 onChange={(_, value) => {
@@ -119,6 +120,7 @@ export const CreatePostModal: React.FC<
                         )}
                     />
                     <TextField
+                        id="content"
                         {...register("content", {
                             required: "This field is required",
                         })}

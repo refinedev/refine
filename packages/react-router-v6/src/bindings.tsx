@@ -8,7 +8,13 @@ import {
 } from "@refinedev/core";
 import { useCallback, useContext } from "react";
 import { parse, stringify } from "qs";
-import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
+import {
+    useNavigate,
+    useLocation,
+    Link,
+    matchPath,
+    useParams,
+} from "react-router-dom";
 import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
 
 export const stringifyConfig = {
@@ -85,13 +91,19 @@ export const routerBindings: RouterBindings = {
         return fn;
     },
     parse: () => {
-        const params = useParams();
+        let params = useParams();
         const { pathname, search } = useLocation();
         const { resources } = useContext(ResourceContext);
 
         const { resource, action } = React.useMemo(() => {
             return matchResourceFromRoute(pathname, resources);
         }, [resources, pathname]);
+
+        // params is empty when useParams is used in a component that is not a child of a Route
+        if (Object.entries(params).length === 0 && resource && action) {
+            params = matchPath(resource[action] as string, pathname)
+                ?.params as any;
+        }
 
         const fn = useCallback(() => {
             const parsedSearch = parse(search, { ignoreQueryPrefix: true });

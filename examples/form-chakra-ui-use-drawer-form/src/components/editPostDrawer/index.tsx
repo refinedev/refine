@@ -14,12 +14,14 @@ import {
     Select,
 } from "@chakra-ui/react";
 
-import { useSelect } from "@refinedev/core";
+import { HttpError, useSelect } from "@refinedev/core";
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const EditPostDrawer: React.FC<UseModalFormReturnType<IPost>> = ({
+export const EditPostDrawer: React.FC<
+    UseModalFormReturnType<IPost, HttpError, IPost>
+> = ({
     saveButtonProps,
     modal: { visible, close },
     register,
@@ -63,7 +65,7 @@ export const EditPostDrawer: React.FC<UseModalFormReturnType<IPost>> = ({
                         <FormControl mb="3" isInvalid={!!errors?.status}>
                             <FormLabel>Status</FormLabel>
                             <Select
-                                id="content"
+                                id="status"
                                 placeholder="Select Post Status"
                                 {...register("status", {
                                     required: "Status is required",
@@ -77,10 +79,10 @@ export const EditPostDrawer: React.FC<UseModalFormReturnType<IPost>> = ({
                                 {`${errors.status?.message}`}
                             </FormErrorMessage>
                         </FormControl>
-                        <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+                        <FormControl mb="3" isInvalid={!!errors?.category?.id}>
                             <FormLabel>Category</FormLabel>
                             <Select
-                                id="category.id"
+                                id="categoryId"
                                 placeholder="Select Category"
                                 {...register("category.id", {
                                     required: "Category is required",
@@ -96,7 +98,7 @@ export const EditPostDrawer: React.FC<UseModalFormReturnType<IPost>> = ({
                                 ))}
                             </Select>
                             <FormErrorMessage>
-                                {`${errors.categoryId?.message}`}
+                                {`${errors.category?.id?.message}`}
                             </FormErrorMessage>
                         </FormControl>
                     </Edit>

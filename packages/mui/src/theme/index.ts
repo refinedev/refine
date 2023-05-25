@@ -1,4 +1,5 @@
-import { createTheme, Theme, ThemeOptions } from "@mui/material";
+import type { Theme, ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
 import { lightPalette } from "./palette/lightPalette";
 import { darkPalette } from "./palette/darkPalette";

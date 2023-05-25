@@ -8,7 +8,10 @@ import {
     useRouterType,
     useLink,
 } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconEye } from "@tabler/icons";
 
@@ -94,6 +97,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     isDisabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
+                    className={RefineButtonClassNames.ShowButton}
                     {...rest}
                 >
                     <IconEye size={20} {...svgIconProps} />
@@ -105,6 +109,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     leftIcon={<IconEye size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
+                    className={RefineButtonClassNames.ShowButton}
                     {...rest}
                 >
                     {children ?? translate("buttons.show", "Show")}

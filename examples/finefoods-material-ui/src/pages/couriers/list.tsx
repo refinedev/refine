@@ -6,9 +6,13 @@ import {
     useNavigation,
 } from "@refinedev/core";
 import { useDataGrid, List } from "@refinedev/mui";
-import { Stack, Avatar, Typography, Tooltip } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
 import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import { Edit, Close } from "@mui/icons-material";
+import Edit from "@mui/icons-material/Edit";
+import Close from "@mui/icons-material/Close";
 
 import { ICourier } from "interfaces";
 

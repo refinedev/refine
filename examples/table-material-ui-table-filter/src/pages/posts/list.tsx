@@ -7,20 +7,18 @@ import {
 } from "@refinedev/core";
 import { useDataGrid, TagField, List, useAutocomplete } from "@refinedev/mui";
 
-import {
-    Grid,
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    InputAdornment,
-    TextField,
-    Autocomplete,
-} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { SearchOutlined } from "@mui/icons-material";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";

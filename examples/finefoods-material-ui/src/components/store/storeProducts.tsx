@@ -3,20 +3,19 @@ import { useTranslate, useTable, useUpdate, HttpError } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 import { CreateButton } from "@refinedev/mui";
 
-import {
-    Grid,
-    Paper,
-    Typography,
-    Box,
-    InputBase,
-    IconButton,
-    Stack,
-    Pagination,
-    Modal,
-    Fade,
-} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Pagination from "@mui/material/Pagination";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
 
-import { SearchOutlined, CloseOutlined } from "@mui/icons-material";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import {
     CategoryFilter,

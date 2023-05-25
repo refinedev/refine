@@ -2,7 +2,10 @@ import React from "react";
 import { Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+    RefineButtonClassNames,
+    RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
 import { SaveButtonProps } from "../types";
 
@@ -24,6 +27,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             type="primary"
             icon={<SaveOutlined />}
             data-testid={RefineButtonTestIds.SaveButton}
+            className={RefineButtonClassNames.SaveButton}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.save", "Save"))}

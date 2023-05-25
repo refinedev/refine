@@ -12,7 +12,8 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
 function App() {
     return (

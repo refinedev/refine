@@ -7,20 +7,18 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { Edit } from "@refinedev/mui";
 
-import {
-    FormControl,
-    FormControlLabel,
-    Avatar,
-    FormLabel,
-    Grid,
-    Radio,
-    RadioGroup,
-    Stack,
-    TextField,
-    Typography,
-    FormHelperText,
-    TextFieldProps,
-} from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Avatar from "@mui/material/Avatar";
+import FormLabel from "@mui/material/FormLabel";
+import Grid from "@mui/material/Grid";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import FormHelperText from "@mui/material/FormHelperText";
+import type { TextFieldProps } from "@mui/material/TextField";
 
 import InputMask from "react-input-mask";
 

@@ -661,7 +661,19 @@ render(
 
 ### `headerButtons`
 
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+:::caution
+
+If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
+
+If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
+
+If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not render and `editButtonProps` will be `undefined`.
+
+:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
@@ -678,6 +690,84 @@ const PostShow: React.FC = () => {
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            // highlight-end
+        >
+            <span>Rest of your page here</span>
+        </Show>
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
+```
+
+Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] components.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
+import {
+    Show,
+    ListButton,
+    EditButton,
+    DeleteButton,
+    RefreshButton,
+} from "@refinedev/mui";
+import { Button } from "@mui/material";
+
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <Show
+            // highlight-start
+            headerButtons={({
+                deleteButtonProps,
+                editButtonProps,
+                listButtonProps,
+                refreshButtonProps,
+            }) => (
+                <>
+                    <Button type="primary">Custom Button</Button>
+                    {listButtonProps && (
+                        <ListButton
+                            {...listButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    {editButtonProps && (
+                        <EditButton
+                            {...editButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    {deleteButtonProps && (
+                        <DeleteButton
+                            {...deleteButtonProps}
+                            meta={{ foo: "bar" }}
+                        />
+                    )}
+                    <RefreshButton
+                        {...refreshButtonProps}
+                        meta={{ foo: "bar" }}
+                    />
                 </>
             )}
             // highlight-end
@@ -979,3 +1069,8 @@ const Wrapper = ({ children }) => {
     );
 };
 ```
+
+[list-button]: /docs/api-reference/mui/components/buttons/list-button/
+[refresh-button]: /docs/api-reference/mui/components/buttons/refresh-button/
+[edit-button]: /docs/api-reference/mui/components/buttons/edit-button/
+[delete-button]: /docs/api-reference/mui/components/buttons/delete-button/

@@ -16,9 +16,11 @@ export const PostList: React.FC = () => {
 
     const createModalFormReturnValues = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "create" },
+        syncWithLocation: true,
     });
     const editModalFormReturnValues = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "edit" },
+        syncWithLocation: true,
     });
 
     const {

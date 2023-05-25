@@ -21,8 +21,13 @@ import {
     ListButton,
     RefreshButton,
     Breadcrumb,
+    ListButtonProps,
+    EditButtonProps,
+    DeleteButtonProps,
+    RefreshButtonProps,
 } from "@components";
 import { ShowProps } from "../types";
+import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Show: React.FC<ShowProps> = (props) => {
     const {
@@ -71,66 +76,69 @@ export const Show: React.FC<ShowProps> = (props) => {
             ? globalBreadcrumb
             : breadcrumbFromProps;
 
+    const hasList = resource?.list && !recordItemId;
     const isDeleteButtonVisible =
         canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
     const isEditButtonVisible =
         canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
+    const listButtonProps: ListButtonProps | undefined = hasList
+        ? {
+              ...(isLoading ? { disabled: true } : {}),
+              resource:
+                  routerType === "legacy"
+                      ? resource?.route
+                      : resource?.identifier ?? resource?.name,
+          }
+        : undefined;
+    const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
+        ? {
+              colorScheme: "brand",
+              ...(isLoading ? { disabled: true } : {}),
+              resource:
+                  routerType === "legacy"
+                      ? resource?.route
+                      : resource?.identifier ?? resource?.name,
+              recordItemId: id,
+          }
+        : undefined;
+    const deleteButtonProps: DeleteButtonProps | undefined =
+        isDeleteButtonVisible
+            ? {
+                  ...(isLoading ? { disabled: true } : {}),
+                  resource:
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
+                  recordItemId: id,
+                  onSuccess: () => {
+                      if (routerType === "legacy") {
+                          legacyGoList(resource?.route ?? resource?.name ?? "");
+                      } else {
+                          go({ to: goListPath });
+                      }
+                  },
+                  dataProviderName,
+              }
+            : undefined;
+    const refreshButtonProps: RefreshButtonProps = {
+        ...(isLoading ? { disabled: true } : {}),
+        resource:
+            routerType === "legacy"
+                ? resource?.route
+                : resource?.identifier ?? resource?.name,
+        recordItemId: id,
+        dataProviderName,
+    };
+
     const defaultHeaderButtons = (
         <>
-            {!recordItemId && (
-                <ListButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                />
-            )}
+            {listButtonProps && <ListButton {...listButtonProps} />}
             {isEditButtonVisible && (
-                <EditButton
-                    colorScheme="brand"
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                    recordItemId={id}
-                />
+                <EditButton colorScheme="brand" {...editButtonProps} />
             )}
-            {isDeleteButtonVisible && (
-                <DeleteButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    resource={
-                        routerType === "legacy"
-                            ? resource?.route
-                            : resource?.identifier ?? resource?.name
-                    }
-                    recordItemId={id}
-                    onSuccess={() => {
-                        if (routerType === "legacy") {
-                            legacyGoList(
-                                resource?.route ?? resource?.name ?? "",
-                            );
-                        } else {
-                            go({ to: goListPath });
-                        }
-                    }}
-                    dataProviderName={dataProviderName}
-                />
-            )}
-            <RefreshButton
-                {...(isLoading ? { disabled: true } : {})}
-                resource={
-                    routerType === "legacy"
-                        ? resource?.route
-                        : resource?.identifier ?? resource?.name
-                }
-                recordItemId={id}
-                dataProviderName={dataProviderName}
-            />
+            {isDeleteButtonVisible && <DeleteButton {...deleteButtonProps} />}
+            <RefreshButton {...refreshButtonProps} />
         </>
     );
 
@@ -160,6 +168,10 @@ export const Show: React.FC<ShowProps> = (props) => {
         ? typeof headerButtonsFromProps === "function"
             ? headerButtonsFromProps({
                   defaultButtons: defaultHeaderButtons,
+                  deleteButtonProps,
+                  editButtonProps,
+                  listButtonProps,
+                  refreshButtonProps,
               })
             : headerButtonsFromProps
         : defaultHeaderButtons;
@@ -176,7 +188,11 @@ export const Show: React.FC<ShowProps> = (props) => {
         if (title) {
             if (typeof title === "string" || typeof title === "number") {
                 return (
-                    <Heading as="h3" size="lg">
+                    <Heading
+                        as="h3"
+                        size="lg"
+                        className={RefinePageHeaderClassNames.Title}
+                    >
                         {title}
                     </Heading>
                 );
@@ -186,7 +202,11 @@ export const Show: React.FC<ShowProps> = (props) => {
         }
 
         return (
-            <Heading as="h3" size="lg">
+            <Heading
+                as="h3"
+                size="lg"
+                className={RefinePageHeaderClassNames.Title}
+            >
                 {translate(
                     `${resource?.name}.titles.show`,
                     `Show ${userFriendlyResourceName(

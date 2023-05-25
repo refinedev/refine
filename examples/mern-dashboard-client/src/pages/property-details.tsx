@@ -1,14 +1,14 @@
-import { Typography, Box, Stack } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import { useDelete, useGetIdentity, useShow } from "@refinedev/core";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-    ChatBubble,
-    Delete,
-    Edit,
-    Phone,
-    Place,
-    Star,
-} from "@mui/icons-material";
+import ChatBubble from "@mui/icons-material/ChatBubble";
+import Delete from "@mui/icons-material/Delete";
+import Edit from "@mui/icons-material/Edit";
+import Phone from "@mui/icons-material/Phone";
+import Place from "@mui/icons-material/Place";
+import Star from "@mui/icons-material/Star";
 
 import { CustomButton } from "components";
 
