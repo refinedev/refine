@@ -362,6 +362,7 @@ useSubscription({
     enabled: true,
     types: ["insert", "update", "delete"],
     onLiveEvent: (event) => {
+        // called when a live event is received
         console.log(event);
     },
 });
