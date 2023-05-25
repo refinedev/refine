@@ -1,5 +1,23 @@
 # @pankod/refine-core
 
+## 4.16.0
+
+### Minor Changes
+
+-   [#4313](https://github.com/refinedev/refine/pull/4313) [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657) Thanks [@abdellah711](https://github.com/abdellah711)! - feat: implement `generateDefaultDocumentTitle` function
+
+    This function generates a default document title based on the current route by following these rules (`resource` in this case is "Post"):
+
+    -   list -> `Posts | refine`
+    -   edit -> `#{id} Edit Post | refine`
+    -   show -> `#{id} Show Post | refine`
+    -   create -> `Create new Post | refine`
+    -   default (not a `resource`) -> `refine`
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: export `TranslationContext`
+
 ## 4.15.0
 
 ### Minor Changes

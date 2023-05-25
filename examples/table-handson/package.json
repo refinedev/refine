@@ -8,9 +8,9 @@
     "refine": "refine"
   },
   "dependencies": {
-    "@refinedev/core": "^4.15.0",
+    "@refinedev/core": "^4.16.0",
     "@refinedev/cli": "^2.5.5",
-    "@refinedev/react-router-v6": "^4.2.0",
+    "@refinedev/react-router-v6": "^4.3.0",
     "@refinedev/simple-rest": "^4.5.0",
     "@handsontable/react": "^12.1.2",
     "handsontable": "^12.1.2",
