@@ -35,21 +35,7 @@ const liveProvider = {
 
 :::
 
-## Usage
-
-You must pass a live provider to the `liveProvider` prop of `<Refine>`.
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-
-import liveProvider from "./liveProvider";
-
-const App: React.FC = () => {
-    return <Refine liveProvider={liveProvider} />;
-};
-```
-
-## Creating a live provider
+## Creating a live provider with Ably
 
 We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
 
@@ -224,6 +210,20 @@ const publish = usePublish();
 
 > For more information, refer to the [usePublish documentation&#8594](/api-reference/core/hooks/live/usePublish.md)
 
+### Usage
+
+Now that we have created our live provider, we can use it in our application like below:
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+
+import liveProvider from "./liveProvider";
+
+const App: React.FC = () => {
+    return <Refine ... liveProvider={liveProvider} />;
+};
+```
+
 ## Creating a live provider for GraphQL subscriptions
 
 In this section, we will create a live provider for GraphQL subscriptions from scratch. We will use [Hasura](https://hasura.io/) as an example, but the same logic can be applied to any GraphQL subscription provider.
@@ -257,8 +257,6 @@ subscription GetPosts {
 ```
 
 As you can see, the only difference between queries and subscriptions is the `subscription` keyword. This means that we can use the same logic for both queries and subscriptions. We already have a data provider for creating GraphQL queries, so we will use the same logic for GraphQL subscriptions.
-
-Let's create a live provider for GraphQL subscriptions.
 
 ### `subscribe`
 
@@ -374,9 +372,9 @@ export const liveProvider = (client: Client): LiveProvider => {
 };
 ```
 
-### Usage of the live provider
+### Usage
 
-Now that we have created our live provider, we can use it in `<Refine>` like following:
+Now that we have created our live provider, we can use it in our application like below:
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
