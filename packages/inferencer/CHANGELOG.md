@@ -1,5 +1,16 @@
 # @pankod/refine-mantine
 
+## 3.5.1
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: support i18n
+
+    Supports i18n if [`i18nProvider`](https://refine.dev/docs/api-reference/core/providers/i18n-provider/) is defined.
+
+-   Updated dependencies [[`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873), [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657)]:
+    -   @refinedev/core@4.15.0
+
 ## 3.5.0
 
 ### Minor Changes
