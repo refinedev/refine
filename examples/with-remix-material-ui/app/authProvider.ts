@@ -30,6 +30,66 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
+            error: {
+                message: "Login failed",
+                name: "Invalid email or password",
+            },
+        };
+    },
+    register: async (params) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.email === params.email);
+
+        if (user) {
+            Cookies.set(COOKIE_NAME, JSON.stringify(user));
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
+        return {
+            success: false,
+            error: {
+                message: "Register failed",
+                name: "Invalid email or password",
+            },
+        };
+    },
+    forgotPassword: async (params) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.email === params.email);
+
+        if (user) {
+            //we can send email with reset password link here
+            return {
+                success: true,
+            };
+        }
+        return {
+            success: false,
+            error: {
+                message: "Forgot password failed",
+                name: "Invalid email",
+            },
+        };
+    },
+    updatePassword: async (params) => {
+        // Suppose we actually send a request to the back end here.
+        const isPasswordInvalid =
+            params.password === "123456" || !params.password;
+
+        if (isPasswordInvalid) {
+            return {
+                success: false,
+                error: {
+                    message: "Update password failed",
+                    name: "Invalid password",
+                },
+            };
+        }
+
+        return {
+            success: true,
         };
     },
     logout: async () => {
@@ -91,6 +151,13 @@ export const authProvider: AuthBindings = {
         return null;
     },
     getIdentity: async () => {
-        return null;
+        const cookie = Cookies.get(COOKIE_NAME);
+        if (!cookie) return null;
+
+        return {
+            id: 1,
+            name: "Jane Doe",
+            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+        };
     },
 };

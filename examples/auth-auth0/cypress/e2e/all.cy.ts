@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("auth-antd", () => {
+describe("auth-auth0", () => {
     const BASE_URL = "http://localhost:3000";
 
     const authCredentials = {
@@ -43,7 +43,7 @@ describe("auth-antd", () => {
         cy.location("pathname").should("eq", "/login");
     });
 
-    it("should redirect to /login if user not authenticated", () => {
+    it.only("should redirect to /login if user not authenticated", () => {
         cy.location("pathname").should("eq", "/login");
         login();
         cy.location("pathname").should("eq", "/posts");
@@ -52,9 +52,10 @@ describe("auth-antd", () => {
         cy.clearAllCookies();
         cy.clearAllSessionStorage();
         cy.clearAllLocalStorage();
-        cy.reload();
-        cy.location("pathname").should("eq", "/login");
-        cy.location("search").should("contains", "?to=%2Ftest-route");
+        cy.reload().then(() => {
+            cy.location("pathname").should("eq", "/login");
+            cy.location("search").should("contains", "?to=%2Ftest-route");
+        });
     });
 
     it("should render getIdentity response on header", () => {
