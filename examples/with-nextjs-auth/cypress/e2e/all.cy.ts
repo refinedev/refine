@@ -118,3 +118,5 @@ describe("with-nextjs-auth", () => {
         cy.get(".ant-avatar > img").should("have.attr", "src");
     });
 });
+
+export {};
