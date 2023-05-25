@@ -224,7 +224,7 @@ const App: React.FC = () => {
 };
 ```
 
-## Creating a live provider for GraphQL subscriptions
+## Creating a live provider with GraphQL subscriptions
 
 In this section, we will create a live provider for GraphQL subscriptions from scratch. We will use [Hasura](https://hasura.io/) as an example, but the same logic can be applied to any GraphQL subscription provider.
 
@@ -351,6 +351,24 @@ export const liveProvider = (client: Client): LiveProvider => {
 `genareteUseListSubscription`, `genareteUseOneSubscription` and `genareteUseManySubscription` are helper functions that generate subscription queries. They are same as the methods in the data provider of `@refinedev/hasura`. You can check them out [here](https://github.com/refinedev/refine/tree/next/packages/hasura/src/utils).
 
 :::
+
+
+**refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
+
+```ts
+import { useSubscription } from "@refinedev/core";
+
+useSubscription({
+    channel: "channel-name",
+    onLiveEvent: (event) => {},
+});
+```
+
+:::caution
+The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for unsubscription must be returned from `subscribe` method.
+:::
+
+> For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
 
 ### `unsubscribe`
 
