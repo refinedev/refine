@@ -352,15 +352,18 @@ export const liveProvider = (client: Client): LiveProvider => {
 
 :::
 
-
 **refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
 
 ```ts
 import { useSubscription } from "@refinedev/core";
 
 useSubscription({
-    channel: "channel-name",
-    onLiveEvent: (event) => {},
+    channel: "resources/posts",
+    enabled: true,
+    types: ["insert", "update", "delete"],
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
 });
 ```
 
