@@ -116,7 +116,10 @@
       "content": "Content",
       "status": "Status",
       "category": "Category",
-      "createdAt": "Created At"
+      "categoryId" : "Category",
+      "category_id": "Category",
+      "createdAt": "Created At",
+      "created_at": "Created At"
     },
     "titles": {
       "create": "Create Blog Post",
@@ -130,7 +133,8 @@
     "fields": {
       "id": "Id",
       "title": "Title",
-      "createdAt": "Created At"
+      "createdAt": "Created At",
+      "created_at": "Created At"
     },
     "titles": {
       "create": "Create Category",

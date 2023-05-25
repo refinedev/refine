@@ -116,7 +116,10 @@
       "content": "Inhalt",
       "status": "Status",
       "category": "Kategorien",
-      "createdAt": "Erstellt am"
+      "categoryId": "Kategorien",
+      "category_id": "Kategorien",
+      "createdAt": "Erstellt am",
+      "created_at": "Erstellt am"
     },
     "titles": {
       "create": "Erstellen",
@@ -130,7 +133,8 @@
     "fields": {
       "id": "Id",
       "title": "Titel",
-      "createdAt": "Erstellt am"
+      "createdAt": "Erstellt am",
+      "created_at": "Erstellt am"
     },
     "titles": {
       "create": "Erstellen",
