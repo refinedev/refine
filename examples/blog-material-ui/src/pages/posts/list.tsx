@@ -7,7 +7,7 @@ import {
     List,
 } from "@refinedev/mui";
 
-import { Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { IPost } from "interfaces";

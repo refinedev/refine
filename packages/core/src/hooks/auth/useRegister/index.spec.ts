@@ -427,9 +427,7 @@ describe("useRegister Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -460,9 +458,7 @@ describe("useRegister Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -496,9 +492,7 @@ describe("useRegister Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -540,9 +534,7 @@ describe("useRegister Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -582,9 +574,7 @@ describe("useRegister Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});

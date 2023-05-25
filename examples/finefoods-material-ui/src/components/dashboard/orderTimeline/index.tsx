@@ -1,16 +1,18 @@
 //TODO: refine-mui doesn't have the following components:
-import {
-    Timeline,
-    TimelineConnector,
-    TimelineContent,
-    TimelineDot,
-    TimelineItem,
-    TimelineOppositeContent,
-    TimelineSeparator,
-} from "@mui/lab";
+import Timeline from "@mui/lab/Timeline";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import { useTranslate, useNavigation, useTable } from "@refinedev/core";
 import { useTheme } from "@mui/material/styles";
-import { Box, Button, Tooltip, Typography, Pagination } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import Pagination from "@mui/material/Pagination";
 import dayjs from "dayjs";
 
 import { IOrder } from "interfaces";

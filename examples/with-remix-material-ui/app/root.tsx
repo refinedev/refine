@@ -18,6 +18,7 @@ import routerProvider, {
 } from "@refinedev/remix-router";
 
 import { withEmotionCache } from "@emotion/react";
+// eslint-disable-next-line no-restricted-imports
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import { authProvider } from "~/authProvider";

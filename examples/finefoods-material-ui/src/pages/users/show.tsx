@@ -2,19 +2,17 @@ import React from "react";
 import { DateField, List, NumberField, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
-import {
-    Avatar,
-    Grid,
-    Paper,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
 
 import {
     HttpError,

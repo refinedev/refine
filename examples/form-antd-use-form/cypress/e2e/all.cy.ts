@@ -158,4 +158,31 @@ describe("form-antd-use-form", () => {
         cy.getAntdFormItemError({ id: "title" }).should("not.exist");
         cy.getAntdFormItemError({ id: "content" }).should("not.exist");
     });
+
+    it("should create form warn when unsaved changes", () => {
+        cy.wait("@getPosts");
+        cy.getCreateButton().click();
+        cy.get("#title").type("any value");
+        cy.get(".ant-page-header-back-button > .ant-btn").click();
+        cy.on("window:confirm", (str) => {
+            expect(str).to.includes("You have unsaved changes");
+        });
+    });
+
+    it("should edit form warn when unsaved changes", () => {
+        cy.wait("@getPosts");
+        cy.getEditButton().first().click();
+
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        cy.getSaveButton().should("not.be.disabled");
+        cy.getAntdLoadingOverlay().should("not.exist");
+
+        cy.get("#title").clear();
+        cy.get("#title").type("any value");
+        cy.get(".ant-page-header-back-button > .ant-btn").click();
+        cy.on("window:confirm", (str) => {
+            expect(str).to.includes("You have unsaved changes");
+        });
+    });
 });

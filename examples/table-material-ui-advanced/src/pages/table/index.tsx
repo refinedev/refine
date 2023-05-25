@@ -10,25 +10,23 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import { DeleteButton, EditButton, SaveButton, List } from "@refinedev/mui";
 
-import {
-    Button,
-    TextField,
-    Stack,
-    Toolbar,
-    Typography,
-    MenuItem,
-    Box,
-    TableContainer,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    Checkbox,
-    CheckboxProps,
-    TableBody,
-    TableSortLabel,
-    TablePagination,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import Checkbox from "@mui/material/Checkbox";
+import TableBody from "@mui/material/TableBody";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import TablePagination from "@mui/material/TablePagination";
+import type { CheckboxProps } from "@mui/material/Checkbox";
 
 import { useForm } from "@refinedev/react-hook-form";
 

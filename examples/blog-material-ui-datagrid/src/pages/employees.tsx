@@ -1,7 +1,8 @@
 import React from "react";
 import { useDataGrid, List } from "@refinedev/mui";
 
-import { FormControlLabel, Checkbox } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import { DataGrid, GridColumns, GridToolbar } from "@mui/x-data-grid";
 
 const EmployeeList: React.FC = () => {

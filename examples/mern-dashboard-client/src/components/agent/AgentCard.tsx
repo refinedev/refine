@@ -1,6 +1,11 @@
-import { EmailOutlined, LocationCity, Phone, Place } from "@mui/icons-material";
+import EmailOutlined from "@mui/icons-material/EmailOutlined";
+import LocationCity from "@mui/icons-material/LocationCity";
+import Phone from "@mui/icons-material/Phone";
+import Place from "@mui/icons-material/Place";
 import { useGetIdentity } from "@refinedev/core";
-import { Box, Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
 import { AgentCardProp, InfoBarProps } from "interfaces/agent";

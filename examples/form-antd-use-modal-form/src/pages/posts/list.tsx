@@ -36,6 +36,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         formLoading: createFormLoading,
     } = useModalForm<IPost>({
         action: "create",
+        syncWithLocation: true,
     });
 
     // Edit Modal
@@ -46,7 +47,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         formLoading: editFormLoading,
     } = useModalForm<IPost>({
         action: "edit",
-        warnWhenUnsavedChanges: true,
+        syncWithLocation: true,
     });
 
     // Show Modal

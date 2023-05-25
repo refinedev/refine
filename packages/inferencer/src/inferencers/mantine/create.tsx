@@ -355,13 +355,11 @@ export const renderer = ({
                           meta,
                           "getOne",
                       )
-                    ? `{
-                      refineCoreProps: { ${getMetaProps(
+                    ? `refineCoreProps: { ${getMetaProps(
                           resource.identifier ?? resource.name,
                           meta,
                           "getOne",
-                      )} }
-                      }`
+                      )} }`
                     : ""
             }
         });

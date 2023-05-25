@@ -21,6 +21,7 @@ export const PostList: React.FC = () => {
 
     const createDrawerFormProps = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "create" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showCreateDrawer },
@@ -28,6 +29,7 @@ export const PostList: React.FC = () => {
 
     const editDrawerFormProps = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "edit" },
+        syncWithLocation: true,
     });
     const {
         modal: { show: showEditDrawer },

@@ -14,7 +14,6 @@ const mockFn = jest.fn();
 const mockRouterProvider = {
     ...mockLegacyRouterProvider(),
     useHistory: () => ({
-        push: mockFn,
         replace: mockFn,
     }),
     useLocation: () => ({}),
@@ -62,9 +61,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             },
         );
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123", confirmPassword: "321" });
@@ -97,9 +94,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             },
         );
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123" });
@@ -144,9 +139,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123", confirmPassword: "321" });
@@ -187,9 +180,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123", confirmPassword: "321" });
@@ -224,9 +215,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123" });
@@ -266,9 +255,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123", confirmPassword: "321" });
@@ -309,9 +296,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ confirmPassword: "321" });
@@ -349,9 +334,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -383,9 +366,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -420,9 +401,7 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: forgotPassword } = result.current;
 
         await act(async () => {
             forgotPassword({});
@@ -467,9 +446,7 @@ describe("useUpdatePassword Hook authProvider selection", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -512,9 +489,7 @@ describe("useUpdatePassword Hook authProvider selection", () => {
             },
         );
 
-        const { mutate: login } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: login } = result.current;
 
         await act(async () => {
             login({});
@@ -565,9 +540,7 @@ describe("useUpdatePassword Hook with v3LegacyAuthProviderCompatible", () => {
             },
         );
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123", confirmPassword: "321" });
@@ -613,9 +586,7 @@ describe("useUpdatePassword Hook with v3LegacyAuthProviderCompatible", () => {
             },
         );
 
-        const { mutate: updatePassword } = result.current ?? {
-            mutate: () => 0,
-        };
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
             updatePassword({ password: "123", confirmPassword: "321" });

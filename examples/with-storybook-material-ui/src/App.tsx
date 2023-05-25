@@ -11,7 +11,8 @@ import {
     WelcomePage,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

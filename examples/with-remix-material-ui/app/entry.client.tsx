@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { RemixBrowser } from "@remix-run/react";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import { ColorModeContextProvider } from "~/contexts/ColorModeContext";
 import { ClientStyleCacheProvider } from "~/contexts/ClientStyleContext";
 
