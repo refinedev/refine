@@ -34,7 +34,9 @@ describe("auth-antd", () => {
     });
 
     it("should logout", () => {
+        cy.location("pathname").should("eq", "/login");
         login();
+        cy.location("pathname").should("eq", "/posts");
         cy.get(".ant-menu-title-content")
             .contains(/logout/i)
             .click();
@@ -42,8 +44,12 @@ describe("auth-antd", () => {
     });
 
     it("should redirect to /login if user not authenticated", () => {
+        cy.location("pathname").should("eq", "/login");
         login();
+        cy.location("pathname").should("eq", "/posts");
         cy.visit(`${BASE_URL}/test-route`);
+        cy.get(".ant-result-404").should("exist");
+        cy.clearAllCookies();
         cy.clearAllSessionStorage();
         cy.clearAllLocalStorage();
         cy.reload();
