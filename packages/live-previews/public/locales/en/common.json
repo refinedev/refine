@@ -141,5 +141,9 @@
   },
   "table": {
     "actions": "Actions"
+  },
+  "pagination": {
+    "go": "Go to Page",
+    "show": "Show"
   }
 }

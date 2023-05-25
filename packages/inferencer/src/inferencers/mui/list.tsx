@@ -19,12 +19,12 @@ import { createInferencer } from "@/create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     isIDKey,
     noOp,
     getVariableName,
+    translatePrettyString,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -48,6 +48,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -63,7 +64,12 @@ export const renderer = ({
         ["ShowButton", "@refinedev/mui"],
         ["DeleteButton", "@refinedev/mui"],
         ["List", "@refinedev/mui"],
+        ["IResourceComponentsProps", "@refinedev/core"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -150,7 +156,12 @@ export const renderer = ({
         },`
                     : "";
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             let renderCell = "";
 
@@ -227,7 +238,12 @@ export const renderer = ({
         if (field.type === "image") {
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -289,7 +305,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -353,7 +374,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -417,7 +443,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -479,7 +510,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -536,7 +572,12 @@ export const renderer = ({
 
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -592,7 +633,12 @@ export const renderer = ({
         if (field && (field.type === "text" || field.type === "number")) {
             const fieldProperty = `field: "${field.key}"`;
 
-            const headerProperty = `headerName: "${prettyString(field.key)}"`;
+            const headerProperty = `headerName: ${translatePrettyString({
+                resource,
+                field,
+                i18n,
+                noBraces: true,
+            })}`;
 
             const valueGetterProperty =
                 field.accessor &&
@@ -671,12 +717,13 @@ export const renderer = ({
         imports.push(["DeleteButton", "@refinedev/mui"]);
     }
 
+    const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
     const actionButtons =
         canEdit || canShow || canDelete
             ? jsx`
             {
                 field: "actions",
-                headerName: "Actions",
+                headerName: ${actionColumnTitle},
                 sortable: false,
                 renderCell: function render({ row }) {
                     return (
@@ -731,11 +778,13 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { dataGridProps } = useDataGrid(
             ${
                 isCustomPage

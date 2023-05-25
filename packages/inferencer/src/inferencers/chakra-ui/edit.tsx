@@ -22,6 +22,7 @@ import {
     getOptionLabel,
     noOp,
     getVariableName,
+    translatePrettyString,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -46,6 +47,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -54,12 +56,17 @@ export const renderer = ({
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
         ["React", "react", true],
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["Edit", "@refinedev/chakra-ui"],
         ["FormControl", "@chakra-ui/react"],
         ["FormLabel", "@chakra-ui/react"],
         ["FormErrorMessage", "@chakra-ui/react"],
         ["useForm", "@refinedev/react-hook-form"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -126,7 +133,12 @@ export const renderer = ({
                 field.key,
                 undefined,
             )}}>
-                <FormLabel>${prettyString(field.key)}</FormLabel>
+                <FormLabel>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</FormLabel>
                 <Select
                     placeholder="Select ${toSingular(field.resource.name)}"
                     {...register("${dotAccessor(
@@ -184,9 +196,12 @@ export const renderer = ({
                             field.key,
                         )}?.map((item: any, index: number) => (
                             <FormControl key={index} mb="3" isInvalid={!!${valError}}>
-                                <FormLabel>${prettyString(
-                                    field.key,
-                                )} #{index + 1}</FormLabel>
+                                <FormLabel>${translatePrettyString({
+                                    resource,
+                                    field,
+                                    i18n,
+                                    noQuotes: true,
+                                })}</FormLabel>
                                 <Input
                                     {...register(\`${val}\`, {
                                         required: "This field is required",
@@ -212,7 +227,12 @@ export const renderer = ({
                     field.accessor,
                     false,
                 )}}>
-                    <FormLabel>${prettyString(field.key)}</FormLabel>
+                    <FormLabel>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</FormLabel>
                     <Input
                         ${isIDKey(field.key) ? "disabled" : ""}
                         ${
@@ -265,9 +285,12 @@ export const renderer = ({
                             field.key,
                         )}?.map((item: any, index: number) => (
                             <FormControl key={index} mb="3" isInvalid={!!${errorVal}}>
-                                <FormLabel>${prettyString(
-                                    field.key,
-                                )} #{index + 1}</FormLabel>
+                                <FormLabel>${translatePrettyString({
+                                    resource,
+                                    field,
+                                    i18n,
+                                    noQuotes: true,
+                                })}</FormLabel>
                                 <Checkbox
                                     {...register(\`${val}.\${index}\`, {
                                         required: "This field is required",
@@ -289,7 +312,12 @@ export const renderer = ({
                     field.accessor,
                     false,
                 )}}>
-                    <FormLabel>${prettyString(field.key)}</FormLabel>
+                    <FormLabel>${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                        noQuotes: true,
+                    })}</FormLabel>
                     <Checkbox
                         {...register("${dotAccessor(
                             field.key,
@@ -353,10 +381,13 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const {
             refineCore: { formLoading, queryResult },
             saveButtonProps,
