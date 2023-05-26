@@ -63,7 +63,7 @@ const runTests = () => {
             });
         }, 5000);
 
-        // start.kill("SIGTERM");
+        start.kill("SIGTERM");
     }
 };
 
