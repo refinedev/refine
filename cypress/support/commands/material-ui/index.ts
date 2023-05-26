@@ -14,3 +14,11 @@ export const getMaterialUIFormItemError = ({
 }: IGetMaterialUIFormItemErrorParams) => {
     return cy.get(`#${id}-helper-text`);
 };
+
+export const getMaterialUILoadingCircular = () => {
+    return cy.get(".MuiCircularProgress-root");
+};
+
+export const getMaterialUIColumnHeader = (index: number) => {
+    return cy.get(`.MuiDataGrid-columnHeader[aria-colindex="${index}"]`);
+};

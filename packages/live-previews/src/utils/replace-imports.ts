@@ -1,4 +1,4 @@
-import { packageMap } from "@/src/scope/map";
+import { packageMap, packageScopeMap } from "@/src/scope/map";
 import { isDevelopmentModeByCookie } from "./development-cookie";
 import { prettySpaces } from "./pretty-spaces";
 
@@ -17,7 +17,31 @@ export const replaceImports = (content: string): string => {
     for (const match of matches) {
         const [, defaultImport, namedImports, namespaceImport, packageName] =
             match;
-        //
+
+        const regexMatch = Object.entries(packageScopeMap).find(
+            ([key, value]) =>
+                // value is regexp, key is package name
+                value.test(packageName),
+        );
+        const regexPackage = regexMatch ? regexMatch[0] : null;
+
+        if (regexPackage && !(packageName in packageMap)) {
+            const importName = packageMap[regexPackage];
+
+            if (defaultImport) {
+                imports.add(`const { ${defaultImport} } = ${importName};`);
+            }
+
+            if (namedImports) {
+                imports.add(
+                    `const${namedImports.replace(
+                        nameChangeRegex,
+                        `$1: $3$4`,
+                    )} = ${importName};`,
+                );
+            }
+        }
+
         if (packageName in packageMap) {
             const importName = packageMap[packageName];
 

@@ -13,3 +13,7 @@ export const getDeleteButton = () => {
 export const getEditButton = () => {
     return cy.get(".refine-edit-button");
 };
+
+export const getPageHeaderTitle = () => {
+    return cy.get(".refine-pageHeader-title");
+};

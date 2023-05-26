@@ -36,6 +36,7 @@ export const PostList: React.FC = () => {
     const createDrawerForm = useDrawerForm({
         refineCoreProps: { action: "create" },
         initialValues,
+        syncWithLocation: true,
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>
@@ -55,6 +56,7 @@ export const PostList: React.FC = () => {
     const editDrawerForm = useDrawerForm({
         refineCoreProps: { action: "edit" },
         initialValues,
+        syncWithLocation: true,
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>

@@ -113,4 +113,38 @@ describe("form-material-ui-use-modal-form", () => {
             assertSuccessResponse(response);
         });
     });
+
+    it("should create form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.get("button").contains("Create Post").click();
+        isModalOpen();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+
+        cy.reload();
+        isModalOpen();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+    });
+
+    it("should edit form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.get("button").contains(/edit/i).first().click();
+        cy.wait("@getPost");
+
+        isModalOpen();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
+
+        cy.reload();
+        isModalOpen();
+        cy.location("search").should("include", "modal-posts-edit[open]=true");
+        cy.location("search").should("include", "modal-posts-edit[id]");
+    });
 });

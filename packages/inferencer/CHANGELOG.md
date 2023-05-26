@@ -1,5 +1,69 @@
 # @pankod/refine-mantine
 
+## 3.5.5
+
+### Patch Changes
+
+-   [#4402](https://github.com/refinedev/refine/pull/4402) [`4c41be2a2ae`](https://github.com/refinedev/refine/commit/4c41be2a2ae294cb5a7e18754c63b0c0c504300d) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `translate` function dependency to the table hooks if `i18n` is enabled.
+
+## 3.5.4
+
+### Patch Changes
+
+-   [#4398](https://github.com/refinedev/refine/pull/4398) [`8a424c227a8`](https://github.com/refinedev/refine/commit/8a424c227a8c14d5a1d227bf50b96af1f625cc82) Thanks [@aliemir](https://github.com/aliemir)! - Updated the type imports in the files to get the `tsc` working for the type definitions in the `dist` folder. This will fix the issue with the components not being properly typed in user projects.
+
+## 3.5.3
+
+### Patch Changes
+
+-   [#4398](https://github.com/refinedev/refine/pull/4398) [`8a424c227a8`](https://github.com/refinedev/refine/commit/8a424c227a8c14d5a1d227bf50b96af1f625cc82) Thanks [@aliemir](https://github.com/aliemir)! - Updated the type imports in the files to get the `tsc` working for the type definitions in the `dist` folder. This will fix the issue with the components not being properly typed in user projects.
+
+## 3.5.2
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: support i18n
+
+    Supports i18n if [`i18nProvider`](https://refine.dev/docs/api-reference/core/providers/i18n-provider/) is defined.
+
+-   Updated dependencies [[`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873), [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657)]:
+    -   @refinedev/core@4.16.0
+
+## 3.5.1
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: support i18n
+
+    Supports i18n if [`i18nProvider`](https://refine.dev/docs/api-reference/core/providers/i18n-provider/) is defined.
+
+-   Updated dependencies [[`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873), [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657)]:
+    -   @refinedev/core@4.15.0
+
+## 3.5.0
+
+### Minor Changes
+
+-   [#4382](https://github.com/refinedev/refine/pull/4382) [`83ff1076f5c`](https://github.com/refinedev/refine/commit/83ff1076f5c25257b4a8a0c7f3695eab046be452) Thanks [@aliemir](https://github.com/aliemir)! - Updated the inference process for `list` and `create` actions to use all items in the list instead of just the first item. This is done to avoid breaking the output when a single record is corrupted or wrongfully inferred.
+
+    Now, for the `list` and `create` actions, each item in the list response will be used to infer the fields then the most repeated fields will be accepted as the type for the field.
+
+### Patch Changes
+
+-   [#4383](https://github.com/refinedev/refine/pull/4383) [`8b3137e9e9d`](https://github.com/refinedev/refine/commit/8b3137e9e9ddeb81ed10c77327662f52f87d19da) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the code generation issue with Mantine's `create` and `edit` inferencers when used with `meta` values.
+
+## 3.4.0
+
+### Minor Changes
+
+-   [#4382](https://github.com/refinedev/refine/pull/4382) [`83ff1076f5c`](https://github.com/refinedev/refine/commit/83ff1076f5c25257b4a8a0c7f3695eab046be452) Thanks [@aliemir](https://github.com/aliemir)! - Updated the inference process for `list` and `create` actions to use all items in the list instead of just the first item. This is done to avoid breaking the output when a single record is corrupted or wrongfully inferred.
+
+    Now, for the `list` and `create` actions, each item in the list response will be used to infer the fields then the most repeated fields will be accepted as the type for the field.
+
+### Patch Changes
+
+-   [#4383](https://github.com/refinedev/refine/pull/4383) [`8b3137e9e9d`](https://github.com/refinedev/refine/commit/8b3137e9e9ddeb81ed10c77327662f52f87d19da) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the code generation issue with Mantine's `create` and `edit` inferencers when used with `meta` values.
+
 ## 3.3.6
 
 ### Patch Changes

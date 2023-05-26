@@ -1,4 +1,4 @@
-import { FieldTransformer, InferField } from "@/types";
+import { FieldTransformer, InferField } from "../types";
 
 const imageFieldLikeRegexp = /(image|photo|avatar|cover|thumbnail|icon)/i;
 

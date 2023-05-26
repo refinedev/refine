@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
-import { useSelect, useApiUrl } from "@refinedev/core";
+import { useSelect, useApiUrl, useBack } from "@refinedev/core";
 
 import axios from "axios";
 
 export const PostCreate: React.FC = () => {
     const [isUploading, setIsUploading] = useState<boolean>(false);
+    const back = useBack();
     const {
         refineCore: { onFinish, formLoading },
         register,
@@ -97,6 +98,7 @@ export const PostCreate: React.FC = () => {
             {errors.thumbnail && <span>This field is required</span>}
             <br />
             <br />
+            <button onClick={back}>Cancel</button>
             <input type="submit" disabled={isUploading} value="Submit" />
             {formLoading && <p>Loading</p>}
         </form>
