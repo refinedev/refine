@@ -324,7 +324,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 sorters,
             });
 
-            const onNext = (payload: any) => {
+            const onNext = (payload: { data: any }) => {
                 callback(payload.data[operation]);
             };
 
@@ -354,16 +354,37 @@ export const liveProvider = (client: Client): LiveProvider => {
 
 **refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
 
+It will create a subscription query using the parameters of the `useSubscription` hook and listen to it. When a live event is received, it will call the `onLiveEvent` method of the `useSubscription` hook.
+
 ```ts
 import { useSubscription } from "@refinedev/core";
 
 useSubscription({
-    channel: "resources/posts",
+    channel: "posts",
     enabled: true,
-    types: ["insert", "update", "delete"],
     onLiveEvent: (event) => {
         // called when a live event is received
         console.log(event);
+    },
+    params: {
+        resource: "posts",
+        meta: {
+            fields: [
+                "id",
+                "title",
+                {
+                    category: ["title"],
+                },
+                "content",
+                "category_id",
+                "created_at",
+            ],
+        },
+        pagination: {
+            current: 1,
+            pageSize: 10,
+        },
+        subscriptionType: "useList",
     },
 });
 ```
