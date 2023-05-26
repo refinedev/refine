@@ -702,7 +702,7 @@ export const renderer = ({
         ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
-        ], []);
+        ], [${i18n ? "translate" : ""}]);
 
         ${
             canEdit || canShow
