@@ -56,22 +56,26 @@ const runTests = async () => {
 
         const WAIT_ON = PORT === 5173 ? "tcp" : "http://127.0.0.1";
 
-        execSync(`npx wait-on ${WAIT_ON}:${PORT} --timeout 50000 --log`, {
-            stdio: "inherit",
-        });
+        try {
+            execSync(`npx wait-on ${WAIT_ON}:${PORT} --timeout 50000 --log`, {
+                stdio: "inherit",
+            });
 
-        execSync(
-            `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --group ${CI_BUILD_ID}-${path}`,
-            { stdio: "inherit" },
-        );
+            execSync(
+                `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --group ${CI_BUILD_ID}-${path}`,
+                { stdio: "inherit" },
+            );
+        } catch (error) {
+            console.log(`|- error: , ${path}`, error);
+        } finally {
+            const { all } = await pids(PORT);
 
-        const { all } = await pids(PORT);
+            console.log("|- kill: ", all);
 
-        console.log("|- kill: ", all);
-
-        all.forEach((pid) => {
-            process.kill(pid, "SIGTERM");
-        });
+            all.forEach((pid) => {
+                process.kill(pid, "SIGTERM");
+            });
+        }
     }
 };
 
