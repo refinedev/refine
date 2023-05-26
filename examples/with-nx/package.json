@@ -11,7 +11,7 @@
   "dependencies": {
     "@refinedev/cli": "^2.5.5",
     "@refinedev/core": "^4.16.0",
-    "@refinedev/inferencer": "^3.5.3",
+    "@refinedev/inferencer": "^3.5.4",
     "@refinedev/kbar": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
