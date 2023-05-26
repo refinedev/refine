@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 2.14.4
+
+### Patch Changes
+
+-   [#4391](https://github.com/refinedev/refine/pull/4391) [`5fcc36c0272`](https://github.com/refinedev/refine/commit/5fcc36c0272993897b7b074215a4228ca5bb53aa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: name attribute to input fields in `forgotPassword`, `register` and `updatePassword` forms
+
+## 2.14.3
+
+### Patch Changes
+
+-   [#4391](https://github.com/refinedev/refine/pull/4391) [`5fcc36c0272`](https://github.com/refinedev/refine/commit/5fcc36c0272993897b7b074215a4228ca5bb53aa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: name attribute to input fields in `forgotPassword`, `register` and `updatePassword` forms
+
 ## 2.14.2
 
 ### Patch Changes

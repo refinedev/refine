@@ -2,6 +2,10 @@ export const getChakraUINotification = () => {
     return cy.get(".chakra-alert");
 };
 
+export const getChakraUIToast = () => {
+    return cy.get(".chakra-toast");
+};
+
 export const getChakraUIFormItemError = ({
     id,
     type = "text",

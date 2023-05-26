@@ -204,13 +204,12 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
           &gt;&gt;
         </button>
         <span>
-          Page
           <strong>
-            1 of 1
+              1 /   1  
           </strong>
         </span>
         <span>
-          | Go to page:
+          | Go to Page: 
           <input
             type="number"
             value="1"
@@ -12651,16 +12650,6 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                    Page
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain-text"
-              >
                                     
               </span>
               <span
@@ -12680,6 +12669,37 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 &gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                                        
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                " "
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
               </span>
               <span
                 class="token plain-text"
@@ -12771,38 +12791,7 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                 of
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                " "
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain-text"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain-text"
-              >
-                                        
+                 / 
               </span>
               <span
                 class="token punctuation"
@@ -12827,6 +12816,24 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 )
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                " "
               </span>
               <span
                 class="token punctuation"
@@ -12938,8 +12945,29 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                    | Go to page:
+                                    | Go to Page:
               </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                " "
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain-text"
+              />
             </div>
             <div
               class="token-line"

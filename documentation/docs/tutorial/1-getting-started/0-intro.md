@@ -196,11 +196,11 @@ In this unit, we will be covering the following steps:
 
 <UIConditional is="antd">
 
-[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2).
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/a4f6eb83-2dd7-453b-b26a-4d3f48eeb543).
 
 
  <div className="centered-image"  >
-<a href="https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2">
+<a href="https://refine.new/preview/a4f6eb83-2dd7-453b-b26a-4d3f48eeb543">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
   </a>
 </div>
@@ -209,11 +209,11 @@ In this unit, we will be covering the following steps:
 
 <UIConditional is="chakra-ui">
 
-[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/cc646686-c243-4cf9-8a32-3cd0b6294486).
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/abc18685-8a6d-4511-aedd-860ca1b0b5a6).
 
 
  <div className="centered-image">
-<a href="https://refine.new/preview/cc646686-c243-4cf9-8a32-3cd0b6294486">
+<a href="https://refine.new/preview/abc18685-8a6d-4511-aedd-860ca1b0b5a6">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/chakra-intro.png" alt="tutorial chakra" />
   </a>
 </div>
@@ -221,11 +221,11 @@ In this unit, we will be covering the following steps:
 
 <UIConditional is="headless">
 
-[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/58e74e1e-cd45-4da0-aa0d-7715c7ed1cb4).
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/c8958d55-8995-4bb7-b91e-e5f924b53aa7).
 
 
  <div className="centered-image">
-<a href="https://refine.new/preview/58e74e1e-cd45-4da0-aa0d-7715c7ed1cb4">
+<a href="https://refine.new/preview/c8958d55-8995-4bb7-b91e-e5f924b53aa7">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/headless-intro.png" alt="tutorial headless" />
   </a>
 </div>
@@ -235,11 +235,11 @@ In this unit, we will be covering the following steps:
 <UIConditional is="mantine">
 
 
-[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/798fafde-866d-4c8d-9478-37cbb1b4b8e7).
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/3fd65b0d-534f-4a4b-89eb-c0a325cf6213).
 
 
  <div className="centered-image">
-<a href="https://refine.new/preview/798fafde-866d-4c8d-9478-37cbb1b4b8e7">
+<a href="https://refine.new/preview/3fd65b0d-534f-4a4b-89eb-c0a325cf6213">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/mantine-intro.png" alt="tutorial mantine" />
   </a>
 </div>
@@ -247,11 +247,11 @@ In this unit, we will be covering the following steps:
 
 <UIConditional is="mui">
 
-[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/7281d6a6-4929-4657-a61c-4f5002c8eab5).
+[refine.new](https://refine.new/) is an interactive tool that lets you create **refine** apps right in your browser. You can view the app we'll build during the tutorial from [this link](https://refine.new/preview/9203fae6-02ef-4c77-a196-5532e953e29d).
 
 
  <div className="centered-image"  >
-<a href="https://refine.new/preview/7281d6a6-4929-4657-a61c-4f5002c8eab5">
+<a href="https://refine.new/preview/9203fae6-02ef-4c77-a196-5532e953e29d">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/mui-intro.png" alt="tutorial antd" />
 
   </a>

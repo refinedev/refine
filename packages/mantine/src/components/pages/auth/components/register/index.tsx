@@ -150,6 +150,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     })}
                 >
                     <TextInput
+                        name="email"
                         label={translate(
                             "pages.register.fields.email",
                             "Email",
@@ -162,6 +163,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     />
                     <PasswordInput
                         mt="md"
+                        name="password"
                         label={translate(
                             "pages.register.fields.password",
                             "Password",

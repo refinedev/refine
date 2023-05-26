@@ -1,9 +1,9 @@
 import React from "react";
 import { useDataProvider, useResource, BaseKey } from "@refinedev/core";
 
-import { pickDataProvider, dataProviderFromResource } from "@/utilities";
-import { InferencerComponentProps } from "@/types";
-import { pickMeta } from "@/utilities/get-meta-props";
+import { pickDataProvider, dataProviderFromResource } from "../utilities";
+import { InferencerComponentProps } from "../types";
+import { pickMeta } from "../utilities/get-meta-props";
 
 /**
  * This hook will handle the data fetching for the inferencer with `loading` and `initial` states.
@@ -30,6 +30,9 @@ export const useInferFetch = (
     const [data, setData] = React.useState<Record<string, unknown> | undefined>(
         undefined,
     );
+    const [datas, setDatas] = React.useState<
+        Array<Record<string, unknown>> | undefined
+    >(undefined);
     const [initial, setInitial] = React.useState<boolean>(true);
     const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -64,6 +67,7 @@ export const useInferFetch = (
                             );
                         }
                         setData(r);
+                        setDatas(response.data);
                         setTimeout(() => {
                             setLoading(false);
                         }, 500);
@@ -121,6 +125,7 @@ export const useInferFetch = (
 
     return {
         data,
+        datas,
         loading,
         initial,
         error,

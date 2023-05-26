@@ -322,6 +322,13 @@ export const getServerSideProps = async ({ res }) => {
 };
 ```
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
 ## Conclusion
 In this article, we looked at the several ways through which you can leverage Next.js' capabilities to easily configure redirects based on a variety of criteria, including URL matching, query parameters, cookies, headers, and more.
 

@@ -166,4 +166,30 @@ describe("form-material-ui-use-form", () => {
         cy.getMaterialUIFormItemError({ id: "title" }).should("not.exist");
         cy.getMaterialUIFormItemError({ id: "content" }).should("not.exist");
     });
+
+    it("should create form warn when unsaved changes", () => {
+        cy.wait("@getPosts");
+        cy.getCreateButton().click();
+        cy.get("#title").type("any value");
+        cy.get(".MuiCardHeader-avatar > .MuiButtonBase-root").click();
+        // cy.on("window:confirm", (str) => {
+        //     expect(str).to.includes("You have unsaved changes");
+        // });
+    });
+
+    it("should edit form warn when unsaved changes", () => {
+        cy.wait("@getPosts");
+        cy.getEditButton().first().click();
+
+        // wait loading state and render to be finished
+        cy.wait("@getPost");
+        cy.getSaveButton().should("not.be.disabled");
+
+        cy.get("#title").clear();
+        cy.get("#title").type("any value");
+        cy.get(".MuiCardHeader-avatar > .MuiButtonBase-root").click();
+        cy.on("window:confirm", (str) => {
+            expect(str).to.includes("You have unsaved changes");
+        });
+    });
 });

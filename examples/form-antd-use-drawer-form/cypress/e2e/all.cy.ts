@@ -103,4 +103,38 @@ describe("form-antd-use-drawer-form", () => {
             assertSuccessResponse(response);
         });
     });
+
+    it("should create form sync with location", () => {
+        cy.wait("@getPosts");
+
+        openDrawer();
+        isDrawerVisible();
+        cy.location("search").should(
+            "include",
+            "drawer-posts-create[open]=true",
+        );
+
+        cy.reload();
+        isDrawerVisible();
+        cy.location("search").should(
+            "include",
+            "drawer-posts-create[open]=true",
+        );
+    });
+
+    it("should edit form sync with location", () => {
+        cy.wait("@getPosts");
+
+        cy.getEditButton().first().click();
+        cy.wait("@getPost");
+
+        isDrawerVisible();
+        cy.location("search").should("include", "drawer-posts-edit[open]=true");
+        cy.location("search").should("include", "drawer-posts-edit[id]");
+
+        cy.reload();
+        isDrawerVisible();
+        cy.location("search").should("include", "drawer-posts-edit[open]=true");
+        cy.location("search").should("include", "drawer-posts-edit[id]");
+    });
 });

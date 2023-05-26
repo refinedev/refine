@@ -30,6 +30,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps: createSaveButtonProps,
     } = useDrawerForm<IPost>({
         action: "create",
+        syncWithLocation: true,
     });
 
     // Edit Drawer
@@ -43,7 +44,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         formLoading: editFormLoading,
     } = useDrawerForm<IPost>({
         action: "edit",
-        warnWhenUnsavedChanges: true,
+        syncWithLocation: true,
     });
 
     // Show Drawer
