@@ -55,7 +55,7 @@ const runTests = () => {
 
         const WAIT_ON = PORT === 5173 ? "tcp" : "http://127.0.0.1";
 
-        execSync(`npx wait-on ${WAIT_ON}:${PORT} --timeout 15000 --log`, {
+        execSync(`npx wait-on ${WAIT_ON}:${PORT} --timeout 50000 --log`, {
             stdio: "inherit",
         });
 
