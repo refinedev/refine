@@ -61,7 +61,7 @@ const runTests = async () => {
         });
 
         execSync(
-            `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --group ${CI_BUILD_ID}`,
+            `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --group ${CI_BUILD_ID}-${path}`,
             { stdio: "inherit" },
         );
 
