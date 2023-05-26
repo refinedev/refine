@@ -22,42 +22,46 @@ EXAMPLES.split(",").map((path) => {
 });
 console.log("|- examples: ", hasE2EExamples);
 
-for (const path of hasE2EExamples) {
-    console.log("|- run: ", path);
+const runTests = async () => {
+    for (const path of hasE2EExamples) {
+        console.log("|- run: ", path);
 
-    console.log("|- bootstrap: ", path);
-    execSync(`npm run bootstrap -- --scope ${path}`, {
-        stdio: "inherit",
-    });
-
-    execSync(`npm run build -- --scope base-antd --include-dependencies`, {
-        stdio: "inherit",
-    });
-
-    console.log("|- start: ", path);
-
-    const start = exec(`npm run start -- --scope ${path}`, {});
-
-    start.stdout.on("data", (data) => console.log(data));
-    start.stderr.on("data", (data) => console.log(data));
-
-    const tests = exec(
-        `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
-    );
-
-    tests.stdout.on("data", (data) => console.log(data));
-    tests.stderr.on("data", (data) => console.log(data));
-
-    tests.on("exit", async (code) => {
-        console.log("|- exiting");
-        pids(3000).then((pids) => {
-            console.log("|- kill: ", pids.all);
-            pids.all.forEach((pid) => {
-                process.kill(pid, "SIGTERM");
-            });
+        console.log("|- bootstrap: ", path);
+        execSync(`npm run bootstrap -- --scope ${path}`, {
+            stdio: "inherit",
         });
-        start.kill("SIGTERM");
 
-        console.log("|- exited: ", path);
-    });
-}
+        execSync(`npm run build -- --scope base-antd --include-dependencies`, {
+            stdio: "inherit",
+        });
+
+        console.log("|- start: ", path);
+
+        const start = exec(`npm run start -- --scope ${path}`, {});
+
+        start.stdout.on("data", (data) => console.log(data));
+        start.stderr.on("data", (data) => console.log(data));
+
+        const tests = exec(
+            `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
+        );
+
+        tests.stdout.on("data", (data) => console.log(data));
+        tests.stderr.on("data", (data) => console.log(data));
+
+        tests.on("exit", async (code) => {
+            console.log("|- exiting");
+            pids(3000).then((pids) => {
+                console.log("|- kill: ", pids.all);
+                pids.all.forEach((pid) => {
+                    process.kill(pid, "SIGTERM");
+                });
+            });
+            start.kill("SIGTERM");
+
+            console.log("|- exited: ", path);
+        });
+    }
+};
+
+runTests();
