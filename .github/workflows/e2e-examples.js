@@ -48,8 +48,8 @@ for (const path of hasE2EExamples) {
 
     tests.on("exit", (code) => {
         console.log("|- exiting");
-        start.kill("SIGTERM");
         execSync(`npx kill-port 3000`);
+        start.kill("SIGTERM");
         console.log("|- exited: ", path);
     });
 }
