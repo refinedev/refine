@@ -119,7 +119,10 @@
       "categoryId": "Kategorien",
       "category_id": "Kategorien",
       "createdAt": "Erstellt am",
-      "created_at": "Erstellt am"
+      "created_at": "Erstellt am",
+      "updatedAt": "Aktualisiert am",
+      "publishedAt": "Veröffentlicht am",
+      "locale": "Lokal"
     },
     "titles": {
       "create": "Erstellen",
@@ -139,7 +142,10 @@
       "categoryId": "Kategorien",
       "category_id": "Kategorien",
       "createdAt": "Erstellt am",
-      "created_at": "Erstellt am"
+      "created_at": "Erstellt am",
+      "updatedAt": "Aktualisiert am",
+      "publishedAt": "Veröffentlicht am",
+      "locale": "Lokal"
     },
     "titles": {
       "create": "Erstellen",
@@ -154,7 +160,10 @@
       "id": "Id",
       "title": "Titel",
       "createdAt": "Erstellt am",
-      "created_at": "Erstellt am"
+      "created_at": "Erstellt am",
+      "updatedAt": "Aktualisiert am",
+      "publishedAt": "Veröffentlicht am",
+      "locale": "Lokal"
     },
     "titles": {
       "create": "Erstellen",
