@@ -26,8 +26,7 @@ for (const path of hasE2EExamples) {
     });
     console.log("|- start: ", path);
     const start = exec(`npm run start -- --scope ${path}`);
-    execSync(`npx wait-on http://localhost:3000`)
-    execSync(`npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`, {
+    execSync(`npx wait-on http://localhost:3000 && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`, {
         stdio: 'inherit',
     });
     console.log("|- finished: ", path);
