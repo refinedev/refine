@@ -2,6 +2,8 @@
 
 const fs = require("fs");
 const { exec, execSync } = require("child_process");
+const pids = require("port-pid");
+
 const KEY = process.env.KEY;
 const CI_BUILD_ID = process.env.CI_BUILD_ID;
 
@@ -46,10 +48,15 @@ for (const path of hasE2EExamples) {
     tests.stdout.on("data", (data) => console.log(data));
     tests.stderr.on("data", (data) => console.log(data));
 
-    tests.on("exit", (code) => {
+    tests.on("exit", async (code) => {
         console.log("|- exiting");
-        execSync(`npx kill-port 3000`);
         start.kill("SIGTERM");
+        pids(3000).then((pids) => {
+            pids.all.forEach((pid) => {
+                process.kill(pid, "SIGTERM");
+            });
+        });
+
         console.log("|- exited: ", path);
     });
 }
