@@ -6,7 +6,7 @@ import Menu from "@mui/icons-material/Menu";
 import type { ExtendButtonBase } from "@mui/material/ButtonBase";
 import type { IconButtonTypeMap } from "@mui/material/IconButton";
 
-import { useSiderVisible } from "@hooks";
+import { useSiderState } from "@hooks";
 
 const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
     props: React.PropsWithChildren,
@@ -23,28 +23,28 @@ const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
 
 export const HamburgerMenu: React.FC = () => {
     const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useSiderState();
 
     return (
         <>
             <HamburgerIcon
-                onClick={() => setDrawerSiderVisible?.(!drawerSiderVisible)}
+                onClick={() => setSiderCollapsed(!siderCollapsed)}
                 sx={{
                     mr: 2,
                     display: { xs: "none", md: "flex" },
-                    ...(drawerSiderVisible && { display: "none" }),
+                    ...(!siderCollapsed && { display: "none" }),
                 }}
             />
             <HamburgerIcon
-                onClick={() => setSiderVisible?.(!siderVisible)}
+                onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
                 sx={{
                     mr: 2,
                     display: { xs: "flex", md: "none" },
-                    ...(siderVisible && { display: "none" }),
+                    ...(mobileSiderOpen && { display: "none" }),
                 }}
             />
         </>
