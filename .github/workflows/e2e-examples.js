@@ -32,16 +32,14 @@ for (const path of hasE2EExamples) {
 
     start.stdout.on("data", (data) => console.log(data));
 
-    const tests = exec(
-        `npx wait-on tcp:3000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
+    execSync(
+        `npx wait-on tcp:3000 -i 1000 -d 10000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel && npx kill-port 3000`,
         {
             stdio: "inherit",
         },
     );
 
-    tests.on("exit", (code) => {
-        start.kill("SIGINT");
-    });
-
     console.log("|- finished: ", path);
+
+    start.kill("SIGTERM");
 }
