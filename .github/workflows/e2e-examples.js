@@ -40,7 +40,8 @@ EXAMPLES.split(",").map((path) => {
 });
 
 console.log(`|- examples: , ${hasE2EExamples.join(",")}`);
-const runTests = () => {
+
+const runTests = async () => {
     for (const path of hasE2EExamples) {
         const PORT = getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
@@ -64,14 +65,16 @@ const runTests = () => {
             { stdio: "inherit" },
         );
 
-        pids(PORT).then((pids) => {
-            console.log("|- kill: ", pids.all);
+        const { all } = await pids(PORT);
 
-            pids.all.forEach((pid) => {
-                process.kill(pid, "SIGTERM");
-            });
+        console.log("|- kill: ", all);
+
+        all.forEach((pid) => {
+            process.kill(pid, "SIGTERM");
         });
     }
 };
 
-runTests();
+runTests()
+    .then(() => console.log("|- done"))
+    .catch(console.error);
