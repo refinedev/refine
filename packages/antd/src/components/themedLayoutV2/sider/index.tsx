@@ -201,9 +201,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     height: "calc(100% - 72px)",
                 }}
                 onClick={() => {
-                    setMobileSiderOpen?.(false);
+                    setMobileSiderOpen(false);
                     if (!breakpoint.lg) {
-                        setSiderCollapsed?.(true);
+                        setSiderCollapsed(true);
                     }
                 }}
             >
@@ -217,7 +217,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             <>
                 <Drawer
                     open={mobileSiderOpen}
-                    onClose={() => setMobileSiderOpen?.(false)}
+                    onClose={() => setMobileSiderOpen(false)}
                     placement="left"
                     closable={false}
                     width={200}
@@ -255,7 +255,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <Button
                     style={drawerButtonStyles}
                     size="large"
-                    onClick={() => setMobileSiderOpen?.(true)}
+                    onClick={() => setMobileSiderOpen(true)}
                     icon={<BarsOutlined />}
                 ></Button>
             </>
@@ -294,7 +294,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 collapsed={siderCollapsed}
                 onCollapse={(collapsed, type) => {
                     if (type === "clickTrigger") {
-                        setSiderCollapsed?.(collapsed);
+                        setSiderCollapsed(collapsed);
                     }
                 }}
                 collapsedWidth={80}

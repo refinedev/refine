@@ -5,6 +5,8 @@ import { IThemedLayoutContext } from "./IThemedLayoutContext";
 export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>({
     siderCollapsed: false,
     mobileSiderOpen: false,
+    setSiderCollapsed: () => undefined,
+    setMobileSiderOpen: () => undefined,
 });
 
 export const ThemedLayoutContextProvider: React.FC<{

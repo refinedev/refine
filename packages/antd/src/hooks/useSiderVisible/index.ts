@@ -5,8 +5,8 @@ import { ThemedLayoutContext } from "@contexts";
 export type UseSiderVisibleType = {
     siderVisible: boolean;
     drawerSiderVisible: boolean;
-    setSiderVisible?: (visible: boolean) => void;
-    setDrawerSiderVisible?: (visible: boolean) => void;
+    setSiderVisible: (visible: boolean) => void;
+    setDrawerSiderVisible: (visible: boolean) => void;
 };
 
 /**
