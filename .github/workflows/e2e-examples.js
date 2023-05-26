@@ -39,11 +39,7 @@ const runTests = () => {
 
         console.log("|- start: ", path);
 
-        const start = spawn(
-            "npm",
-            [`run`, `start`, `--`, `--scope`, `${path}`],
-            { detached: true, stdio: "inherit" },
-        );
+        const start = exec(`cd examples/${path} && npm run start`);
 
         // start.stdout.on("data", (data) => console.log(data));
         // start.stderr.on("data", (data) => console.log(data));
@@ -65,7 +61,8 @@ const runTests = () => {
         //     });
         // });
 
-        process.kill(-start.pid);
+        // process.kill(-start.pid, "SIGINT");
+
         // start.kill("SIGTERM");
     }
 };
