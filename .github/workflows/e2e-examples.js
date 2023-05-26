@@ -28,7 +28,9 @@ for (const path of hasE2EExamples) {
         stdio: "inherit",
     });
     console.log("|- start: ", path);
-    const start = exec(`npm run start -- --scope ${path}`);
+    const start = exec(
+        `npm run start -- --scope ${path} -- --host --port 3000`,
+    );
 
     start.stdout.on("data", (data) => console.log(data));
 
