@@ -37,6 +37,7 @@ EXAMPLES.split(",").map((path) => {
     }
 });
 
+console.log(`|- examples: , ${hasE2EExamples.join(",")}`);
 const runTests = () => {
     for (const path of hasE2EExamples) {
         const PORT = getProjectPort(`${EXAMPLES_DIR}/${path}`);
