@@ -36,7 +36,7 @@ for (const path of hasE2EExamples) {
 
     console.log("|- start: ", path);
 
-    const start = exec(`npm run start -- --scope ${path}`);
+    const start = exec(`npm run start -- --scope ${path}`, {});
 
     start.stdout.on("data", (data) => console.log(data));
     start.stderr.on("data", (data) => console.log(data));
@@ -53,12 +53,10 @@ for (const path of hasE2EExamples) {
         pids(3000).then((pids) => {
             console.log("|- kill: ", pids.all);
             pids.all.forEach((pid) => {
-                process.kill(pid, "SIGINT");
+                process.kill(pid, "SIGTERM");
             });
         });
-        start.kill("SIGINT");
-
-        process.exit();
+        start.kill("SIGTERM");
 
         console.log("|- exited: ", path);
     });
