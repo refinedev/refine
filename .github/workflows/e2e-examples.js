@@ -47,9 +47,8 @@ for (const path of hasE2EExamples) {
     tests.stderr.on("data", (data) => console.log(data));
 
     tests.on("exit", (code) => {
-        console.log("EXITING");
-        start.kill("SIGINT");
+        console.log("|- exiting", code);
+        start.kill("SIGTERM");
+        console.log("|- exited: ", path);
     });
-
-    console.log("|- finished: ", path);
 }
