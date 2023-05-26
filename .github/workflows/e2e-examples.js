@@ -34,13 +34,14 @@ for (const path of hasE2EExamples) {
 
     console.log("|- start: ", path);
 
-    const start = exec(`npm run start -- --scope ${path} -- --port 3000`);
+    const start = exec(`npm run start -- --scope ${path}`);
 
     start.stdout.on("data", (data) => console.log(data));
     start.stderr.on("data", (data) => console.log(data));
 
     execSync(
         `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
+        { stdio: "inherit" },
     );
 
     console.log("|- finished: ", path);
