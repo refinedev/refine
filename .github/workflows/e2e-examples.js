@@ -33,13 +33,13 @@ const runTests = () => {
             stdio: "inherit",
         });
 
-        // execSync(`npm run build -- --scope base-antd --include-dependencies`, {
-        //     stdio: "inherit",
-        // });
+        execSync(`npm run build -- --scope base-antd --include-dependencies`, {
+            stdio: "inherit",
+        });
 
-        // console.log("|- start: ", path);
+        console.log("|- start: ", path);
 
-        // const start = exec(`npm run start -- --scope ${path}`);
+        const start = exec(`npm run start -- --scope ${path}`);
 
         // start.stdout.on("data", (data) => console.log(data));
         // start.stderr.on("data", (data) => console.log(data));
@@ -54,12 +54,14 @@ const runTests = () => {
         //     { stdio: "inherit" },
         // );
 
-        // pids(3000).then((pids) => {
-        //     console.log("|- kill: ", pids.all);
-        //     pids.all.forEach((pid) => {
-        //         process.kill(pid, "SIGTERM");
-        //     });
-        // });
+        setTimeout(() => {
+            pids(3000).then((pids) => {
+                console.log("|- kill: ", pids.all);
+                pids.all.forEach((pid) => {
+                    process.kill(pid, "SIGTERM");
+                });
+            });
+        }, 5000);
 
         // start.kill("SIGTERM");
     }
