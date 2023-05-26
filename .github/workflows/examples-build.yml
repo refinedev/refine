@@ -81,12 +81,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
@@ -120,14 +114,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_2 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-3:
     runs-on: ubuntu-latest
@@ -155,14 +150,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_3 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-4:
     runs-on: ubuntu-latest
@@ -190,14 +186,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_4 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-5:
     runs-on: ubuntu-latest
@@ -225,14 +222,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_5 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-6:
     runs-on: ubuntu-latest
@@ -260,14 +258,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_6 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-7:
     runs-on: ubuntu-latest
@@ -295,14 +294,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_7 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-8:
     runs-on: ubuntu-latest
@@ -330,11 +330,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      # - name: Install Dependencies
-      #   run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-      # - name: Bootstrap
-      #   run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
-      # - name: Build
-      #   run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+      - name: Run E2E Tests
+        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_8 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
