@@ -6,7 +6,7 @@ import {
     IconMenu2,
 } from "@tabler/icons";
 
-import { useSiderVisible } from "@hooks";
+import { useSiderState } from "@hooks";
 
 const HamburgerIcon: ComponentWithAs<"button", IconButtonProps> = (
     props: React.PropsWithChildren,
@@ -24,11 +24,11 @@ const HamburgerIcon: ComponentWithAs<"button", IconButtonProps> = (
 
 export const HamburgerMenu: React.FC = () => {
     const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useSiderState();
 
     return (
         <>
@@ -36,17 +36,17 @@ export const HamburgerMenu: React.FC = () => {
                 display={{ base: "none", md: "inline-block" }}
                 aria-label="drawer-sidebar-toggle"
                 as={
-                    drawerSiderVisible
-                        ? IconLayoutSidebarLeftCollapse
-                        : IconLayoutSidebarLeftExpand
+                    siderCollapsed
+                        ? IconLayoutSidebarLeftExpand
+                        : IconLayoutSidebarLeftCollapse
                 }
-                onClick={() => setDrawerSiderVisible?.(!drawerSiderVisible)}
+                onClick={() => setSiderCollapsed(!siderCollapsed)}
             />
             <HamburgerIcon
                 display={{ base: "inline-block", md: "none" }}
                 aria-label="sidebar-toggle"
                 as={IconMenu2}
-                onClick={() => setSiderVisible?.(!siderVisible)}
+                onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
             />
         </>
     );
