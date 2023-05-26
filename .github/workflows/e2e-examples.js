@@ -14,7 +14,9 @@ const hasE2EExamples = [];
 
 const getProjectPort = (path) => {
     // read package.json
-    const packageJson = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
+    const packageJson = JSON.parse(
+        fs.readFileSync(`${path}/package.json`, "utf8"),
+    );
 
     const dependencies = Object.keys(packageJson.dependencies || {});
     const devDependencies = Object.keys(packageJson.devDependencies || {});
@@ -25,7 +27,7 @@ const getProjectPort = (path) => {
     }
 
     return 3000;
-}
+};
 
 EXAMPLES.split(",").map((path) => {
     const dir = EXAMPLES_DIR + "/" + path;
@@ -50,10 +52,9 @@ const runTests = () => {
         start.stdout.on("data", (data) => console.log(data));
         start.stderr.on("data", (data) => console.log(data));
 
-        execSync(
-            `npx wait-on tcp:${PORT}`,
-            { stdio: "inherit" },
-        );
+        execSync(`npx wait-on tcp:${PORT} -d 5000 --timeout 25000 --verbose`, {
+            stdio: "inherit",
+        });
 
         execSync(
             `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
