@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-const { exec, execSync } = require("child_process");
+const { exec, execSync, spawn } = require("child_process");
 const pids = require("port-pid");
 
 const KEY = process.env.KEY;
@@ -39,7 +39,11 @@ const runTests = () => {
 
         console.log("|- start: ", path);
 
-        const start = exec(`npm run start -- --scope ${path}`);
+        const start = spawn(
+            "npm",
+            [`run`, `start`, `--`, `--scope`, `${path}`],
+            { detached: true, stdio: "inherit" },
+        );
 
         // start.stdout.on("data", (data) => console.log(data));
         // start.stderr.on("data", (data) => console.log(data));
@@ -54,16 +58,15 @@ const runTests = () => {
         //     { stdio: "inherit" },
         // );
 
-        setTimeout(() => {
-            pids(3000).then((pids) => {
-                console.log("|- kill: ", pids.all);
-                pids.all.forEach((pid) => {
-                    process.kill(pid, "SIGTERM");
-                });
-            });
-        }, 5000);
+        // pids(3000).then((pids) => {
+        //     console.log("|- kill: ", pids.all);
+        //     pids.all.forEach((pid) => {
+        //         process.kill(pid, "SIGTERM");
+        //     });
+        // });
 
-        start.kill("SIGTERM");
+        process.kill(-start.pid);
+        // start.kill("SIGTERM");
     }
 };
 
