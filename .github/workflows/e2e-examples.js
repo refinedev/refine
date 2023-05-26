@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-const { exec, execSync, spawn } = require("child_process");
+const { exec, execSync } = require("child_process");
 const pids = require("port-pid");
 
 const KEY = process.env.KEY;
@@ -11,6 +11,21 @@ const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
 
 const hasE2EExamples = [];
+
+const getProjectPort = (path) => {
+    // read package.json
+    const packageJson = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
+
+    const dependencies = Object.keys(packageJson.dependencies || {});
+    const devDependencies = Object.keys(packageJson.devDependencies || {});
+
+    // check for vite
+    if (dependencies.includes("vite") || devDependencies.includes("vite")) {
+        return 5173;
+    }
+
+    return 3000;
+}
 
 EXAMPLES.split(",").map((path) => {
     const dir = EXAMPLES_DIR + "/" + path;
@@ -24,28 +39,30 @@ EXAMPLES.split(",").map((path) => {
 
 console.log("|- examples: ", hasE2EExamples);
 
+console.log("|- bootstrap");
+execSync(`npm run bootstrap -- --scope ${hasE2EExamples.join(",")}`, {
+    stdio: "inherit",
+});
+
+console.log("|- build");
+execSync(`npm run build -- --scope ${hasE2EExamples.join(",")} --include-dependencies`, {
+    stdio: "inherit",
+});
+
 const runTests = () => {
     for (const path of hasE2EExamples) {
         console.log("|- run: ", path);
-
-        console.log("|- bootstrap: ", path);
-        execSync(`npm run bootstrap -- --scope ${path}`, {
-            stdio: "inherit",
-        });
-
-        execSync(`npm run build -- --scope base-antd --include-dependencies`, {
-            stdio: "inherit",
-        });
+        const PORT = getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
         console.log("|- start: ", path);
 
-        const start = exec(`cd examples/${path} && npm run start`);
+        const start = exec(`cd ${EXAMPLES_DIR}/${path} && npm run start`);
 
         start.stdout.on("data", (data) => console.log(data));
         start.stderr.on("data", (data) => console.log(data));
 
         execSync(
-            `npx wait-on tcp:3000 -i 1000 -d 5000 --timeout 25000 --verbose`,
+            `npx wait-on tcp:${PORT} --verbose`,
             { stdio: "inherit" },
         );
 
@@ -54,7 +71,7 @@ const runTests = () => {
             { stdio: "inherit" },
         );
 
-        pids(3000).then((pids) => {
+        pids(PORT).then((pids) => {
             console.log("|- kill: ", pids.all);
 
             pids.all.forEach((pid) => {
