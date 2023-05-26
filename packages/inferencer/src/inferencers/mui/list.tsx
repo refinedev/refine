@@ -813,7 +813,7 @@ export const renderer = ({
 
         const columns = React.useMemo<GridColumns<any>>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",\r\n")}
-        ], [${relationVariableNames.join(",")}]);
+        ], [${i18n ? "translate, " : ""}${relationVariableNames.join(",")}]);
 
         return (
             <List>
