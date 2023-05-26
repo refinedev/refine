@@ -6,15 +6,15 @@ import {
     IconIndentIncrease,
 } from "@tabler/icons";
 
-import { useSiderVisible } from "@hooks";
+import { useSiderState } from "@hooks";
 
 export const HamburgerMenu: React.FC = () => {
     const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useSiderState();
 
     return (
         <>
@@ -26,9 +26,9 @@ export const HamburgerMenu: React.FC = () => {
                         border: "none",
                     }}
                     size="lg"
-                    onClick={() => setDrawerSiderVisible?.(!drawerSiderVisible)}
+                    onClick={() => setSiderCollapsed(!siderCollapsed)}
                 >
-                    {drawerSiderVisible ? (
+                    {mobileSiderOpen ? (
                         <IconIndentIncrease size={20} />
                     ) : (
                         <IconIndentDecrease size={20} />
@@ -43,7 +43,7 @@ export const HamburgerMenu: React.FC = () => {
                         border: "none",
                     }}
                     size="lg"
-                    onClick={() => setSiderVisible?.(!siderVisible)}
+                    onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
                 >
                     <IconMenu2 size={20} />
                 </ActionIcon>
