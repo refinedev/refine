@@ -40,6 +40,14 @@ for (const path of hasE2EExamples) {
 
     start.stdout.on("data", (data) => console.log(data));
     start.stderr.on("data", (data) => console.log(data));
+    start.on("exit", (code) => {
+        pids(3000).then((pids) => {
+            console.log("|- kill: ", pids.all);
+            pids.all.forEach((pid) => {
+                process.kill(pid, "SIGINT");
+            });
+        });
+    });
 
     const tests = exec(
         `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
@@ -50,12 +58,7 @@ for (const path of hasE2EExamples) {
 
     tests.on("exit", async (code) => {
         console.log("|- exiting");
-        start.kill("SIGTERM");
-        pids(3000).then((pids) => {
-            pids.all.forEach((pid) => {
-                process.kill(pid, "SIGTERM");
-            });
-        });
+        start.kill("SIGINT");
 
         console.log("|- exited: ", path);
     });
