@@ -10,18 +10,6 @@ const CI_BUILD_ID = process.env.CI_BUILD_ID;
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
 
-console.log("|- examples: ", EXAMPLES);
-
-console.log("|- bootstrap");
-execSync(`npm run bootstrap -- --scope ${EXAMPLES.join(",")}`, {
-    stdio: "inherit",
-});
-
-console.log("|- build");
-execSync(`npm run build -- --scope ${EXAMPLES.join(",")} --include-dependencies`, {
-    stdio: "inherit",
-});
-
 const hasE2EExamples = [];
 
 const getProjectPort = (path) => {
