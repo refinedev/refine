@@ -16,7 +16,7 @@ describe("table-material-ui-advanced", () => {
         cy.get(".MuiDataGrid-menu > div > .MuiList-root")
             .children()
             .eq(3)
-            .click();
+            .click({ force: true });
 
         cy.intercept(
             {

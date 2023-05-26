@@ -32,7 +32,7 @@ describe("table-material-ui-advanced", () => {
     it("should select the row when click the checkbox in the row", () => {
         cy.wait("@getPosts");
 
-        cy.get("#row-select").first().click();
+        cy.get("#row-select").first().click({ force: true });
 
         cy.get("#row-select").first().should("be.checked");
     });
@@ -72,7 +72,7 @@ describe("table-material-ui-advanced", () => {
         });
 
         cy.get(".MuiTableCell-root #title")
-            .clear()
+            .clear({ force: true })
             .type("Fuga eos enim autem eos.");
 
         cy.interceptPATCHPost();
