@@ -6,10 +6,6 @@ describe("table-antd-advanced", () => {
         cy.visit("http://localhost:3000/categories");
     });
 
-    it("should be view list page", () => {
-        cy.resourceList();
-    });
-
     it("expanded row should be display the table with the posts data", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
