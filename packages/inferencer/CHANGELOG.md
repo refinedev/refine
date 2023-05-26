@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 3.5.5
+
+### Patch Changes
+
+-   [#4402](https://github.com/refinedev/refine/pull/4402) [`4c41be2a2ae`](https://github.com/refinedev/refine/commit/4c41be2a2ae294cb5a7e18754c63b0c0c504300d) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `translate` function dependency to the table hooks if `i18n` is enabled.
+
 ## 3.5.4
 
 ### Patch Changes
