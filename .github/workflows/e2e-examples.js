@@ -11,6 +11,7 @@ const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
 
 const hasE2EExamples = [];
+
 EXAMPLES.split(",").map((path) => {
     const dir = EXAMPLES_DIR + "/" + path;
     if (
@@ -20,9 +21,10 @@ EXAMPLES.split(",").map((path) => {
         hasE2EExamples.push(path);
     }
 });
+
 console.log("|- examples: ", hasE2EExamples);
 
-const runTests = async () => {
+const runTests = () => {
     for (const path of hasE2EExamples) {
         console.log("|- run: ", path);
 
@@ -37,30 +39,29 @@ const runTests = async () => {
 
         console.log("|- start: ", path);
 
-        const start = exec(`npm run start -- --scope ${path}`, {});
+        const start = exec(`npm run start -- --scope ${path}`);
 
         start.stdout.on("data", (data) => console.log(data));
         start.stderr.on("data", (data) => console.log(data));
 
-        const tests = exec(
-            `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
+        execSync(
+            `npx wait-on tcp:3000 -i 1000 -d 5000 --timeout 25000 --verbose`,
+            { stdio: "inherit" },
         );
 
-        tests.stdout.on("data", (data) => console.log(data));
-        tests.stderr.on("data", (data) => console.log(data));
+        execSync(
+            `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
+            { stdio: "inherit" },
+        );
 
-        tests.on("exit", async (code) => {
-            console.log("|- exiting");
-            pids(3000).then((pids) => {
-                console.log("|- kill: ", pids.all);
-                pids.all.forEach((pid) => {
-                    process.kill(pid, "SIGTERM");
-                });
+        pids(3000).then((pids) => {
+            console.log("|- kill: ", pids.all);
+            pids.all.forEach((pid) => {
+                process.kill(pid, "SIGTERM");
             });
-            start.kill("SIGTERM");
-
-            console.log("|- exited: ", path);
         });
+
+        start.kill("SIGTERM");
     }
 };
 
