@@ -54,12 +54,12 @@ const runTests = () => {
         //     { stdio: "inherit" },
         // );
 
-        // pids(3000).then((pids) => {
-        //     console.log("|- kill: ", pids.all);
-        //     pids.all.forEach((pid) => {
-        //         process.kill(pid, "SIGTERM");
-        //     });
-        // });
+        pids(3000).then((pids) => {
+            console.log("|- kill: ", pids.all);
+            pids.all.forEach((pid) => {
+                process.kill(pid, "SIGTERM");
+            });
+        });
 
         // process.kill(-start.pid, "SIGINT");
 
