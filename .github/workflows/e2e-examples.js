@@ -39,7 +39,7 @@ EXAMPLES.split(",").map((path) => {
 
 const runTests = () => {
     for (const path of hasE2EExamples) {
-        console.log("|- run: ", path);
+        console.log(`|- run: , ${path}:${port}`);
         const PORT = getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
         console.log("|- start: ", path);
@@ -50,7 +50,7 @@ const runTests = () => {
         start.stderr.on("data", (data) => console.log(data));
 
         execSync(
-            `npx wait-on tcp:${PORT} --verbose`,
+            `npx wait-on tcp:${PORT}`,
             { stdio: "inherit" },
         );
 
