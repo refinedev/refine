@@ -10,7 +10,7 @@ describe("table-antd-table-filter", () => {
         cy.resourceList();
     });
 
-    it.only("the table should be filterable by form", () => {
+    it("the table should be filterable by form", () => {
         cy.get("#q").type("lorem");
         cy.setAntdDropdown({ id: "category", selectIndex: 1 });
         cy.setAntdSelect({ id: "status", value: "Published" });

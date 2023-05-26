@@ -10,7 +10,7 @@ describe("table-antd-advanced", () => {
         cy.resourceList();
     });
 
-    it.only("expanded row should be display the table with the posts data", () => {
+    it("expanded row should be display the table with the posts data", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.interceptGETPosts();

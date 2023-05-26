@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@refinedev/cli": "^2.5.5",
-    "@refinedev/core": "^4.14.3",
-    "@refinedev/inferencer": "^3.5.0",
+    "@refinedev/core": "^4.16.0",
+    "@refinedev/inferencer": "^3.5.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -17,10 +17,10 @@
     "web-vitals": "^1.1.1",
     "@refinedev/strapi-v4": "^5.0.2",
     "axios": "^0.26.1",
-    "@refinedev/mantine": "^2.14.2",
+    "@refinedev/mantine": "^2.14.4",
     "@refinedev/react-table": "^5.4.0",
     "@tabler/icons": "^1.1.0",
-    "@refinedev/react-router-v6": "^4.1.0"
+    "@refinedev/react-router-v6": "^4.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

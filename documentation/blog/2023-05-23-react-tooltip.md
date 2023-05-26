@@ -576,6 +576,12 @@ react-tooltip also provides a feature that allows you to create clickable toolti
 
 <br/>
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Conclusion
 
