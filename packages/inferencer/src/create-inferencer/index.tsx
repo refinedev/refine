@@ -6,18 +6,18 @@ import {
     InferencerComponentProps,
     InferencerResultComponent,
     InferField,
-} from "@/types";
+} from "../types";
 
-import { composeInferencers } from "@/compose-inferencers";
-import { composeTransformers } from "@/compose-transformers";
+import { composeInferencers } from "../compose-inferencers";
+import { composeTransformers } from "../compose-transformers";
 
-import { defaultElements } from "@/field-inferencers";
-import { defaultTransformers } from "@/field-transformers";
-import { LiveComponent } from "@/components";
-import { useInferFetch } from "@/use-infer-fetch";
-import { useRelationFetch } from "@/use-relation-fetch";
+import { defaultElements } from "../field-inferencers";
+import { defaultTransformers } from "../field-transformers";
+import { LiveComponent } from "../components";
+import { useInferFetch } from "../use-infer-fetch";
+import { useRelationFetch } from "../use-relation-fetch";
 
-import { prepareLiveCode, componentName, removeHiddenCode } from "@/utilities";
+import { prepareLiveCode, componentName, removeHiddenCode } from "../utilities";
 
 /**
  * CreateInferencer is a function that creates a Inferencer component.
