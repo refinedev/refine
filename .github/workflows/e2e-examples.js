@@ -40,7 +40,7 @@ for (const path of hasE2EExamples) {
     start.stderr.on("data", (data) => console.log(data));
 
     execSync(
-        `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel`,
+        `npx wait-on tcp:3000 -i 1000 -d 10000 --timeout 25000 --verbose && npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID} --parallel && npx kill-port 3000`,
         { stdio: "inherit" },
     );
 
