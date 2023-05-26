@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. **refine** can work with any i18n framework, but needs an `i18nProvider` to be created based on the chosen library.
 
-This document will help you if you want to use other languages, but if your application uses English, the default language of **refine**, you can skip it.
+This document will help you add languages other than English, the default language of **refine**, to your app. If you don't want to do that, you can skip it.
 
 ## Usage
 
