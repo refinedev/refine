@@ -93,8 +93,9 @@ const runTests = async () => {
 
         console.log("|-- Starting the dev server");
 
+        let start;
         try {
-            const start = exec(
+            start = exec(
                 `cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start`,
             );
 
