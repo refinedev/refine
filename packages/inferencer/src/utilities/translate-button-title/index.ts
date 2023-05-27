@@ -1,4 +1,5 @@
 import { prettyString } from "../pretty-string";
+
 export const translateButtonTitle = (payload: {
     action: "list" | "create" | "edit" | "show" | "save" | "delete";
     i18n?: boolean;

@@ -3,8 +3,8 @@ import * as RefineCore from "@refinedev/core";
 
 import { LivePreview, LiveProvider, ContextProps } from "@aliemir/react-live";
 
-import { replaceImports, replaceExports } from "@/utilities";
-import { AdditionalScopeType, LiveComponentProps } from "@/types";
+import { replaceImports, replaceExports } from "../../utilities";
+import { AdditionalScopeType, LiveComponentProps } from "../../types";
 
 const defaultScope: Array<AdditionalScopeType> = [
     ["react", "React", React],

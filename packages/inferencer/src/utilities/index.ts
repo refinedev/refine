@@ -42,3 +42,5 @@ export { isIDKey } from "./is-id-key";
 export { getOptionLabel } from "./get-option-label";
 export { noOp } from "./no-op";
 export { getVariableName } from "./get-variable-name";
+
+export { getMetaProps } from "./get-meta-props";

@@ -1,7 +1,7 @@
 import { useTable } from "@refinedev/react-table";
 import { flexRender } from "@tanstack/react-table";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
@@ -13,19 +13,19 @@ import {
     translatePrettyString,
     translateButtonTitle,
     translateActionTitle,
-} from "@/utilities";
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 const getAccessorKey = (field: InferField) => {
     return Array.isArray(field.accessor) || field.multiple
@@ -702,7 +702,7 @@ export const renderer = ({
         ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
-        ], []);
+        ], [${i18n ? "translate" : ""}]);
 
         ${
             canEdit || canShow

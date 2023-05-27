@@ -1,4 +1,4 @@
-import { FieldInferencer, InferType } from "@/types";
+import { FieldInferencer, InferType } from "../types";
 
 export const arrayInfer: FieldInferencer = (key, value, record, infer) => {
     const isArray = Array.isArray(value);

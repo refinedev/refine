@@ -14,7 +14,7 @@ import { useTable } from "@refinedev/react-table";
 import { ScrollArea, Table, Pagination, Group, Image } from "@mantine/core";
 import { flexRender } from "@tanstack/react-table";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
@@ -24,18 +24,18 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
-} from "@/utilities";
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 const getAccessorKey = (field: InferField) => {
     return Array.isArray(field.accessor) || field.multiple
@@ -741,7 +741,7 @@ export const renderer = ({
         ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
-        ], []);
+        ], [${i18n ? "translate" : ""}]);
 
         const {
             getHeaderGroups,

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CreateInferencerConfig } from "@/types";
+import { CreateInferencerConfig } from "../../types";
 
 export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
     error,

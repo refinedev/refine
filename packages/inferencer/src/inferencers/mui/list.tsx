@@ -15,7 +15,7 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 import Checkbox from "@mui/material/Checkbox";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
@@ -25,19 +25,19 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
-} from "@/utilities";
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for list page in Material UI
@@ -813,7 +813,7 @@ export const renderer = ({
 
         const columns = React.useMemo<GridColumns<any>>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",\r\n")}
-        ], [${relationVariableNames.join(",")}]);
+        ], [${i18n ? "translate, " : ""}${relationVariableNames.join(",")}]);
 
         return (
             <List>

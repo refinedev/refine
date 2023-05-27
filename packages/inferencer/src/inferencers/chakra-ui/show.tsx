@@ -11,7 +11,7 @@ import {
 } from "@refinedev/chakra-ui";
 import { Heading, HStack, Image } from "@chakra-ui/react";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
@@ -20,18 +20,18 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
-} from "@/utilities";
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for show page in Chakra UI

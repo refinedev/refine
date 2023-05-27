@@ -1,4 +1,4 @@
-import { FieldInferencer } from "@/types";
+import { FieldInferencer } from "../types";
 
 export const textInfer: FieldInferencer = (key, value) => {
     const isText = typeof value === "string";

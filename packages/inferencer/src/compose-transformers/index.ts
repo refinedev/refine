@@ -1,4 +1,4 @@
-import { FieldTransformer } from "@/types";
+import { FieldTransformer } from "../types";
 
 /**
  * Compose multiple field transformers into one

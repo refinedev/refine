@@ -2,7 +2,7 @@ import { Edit, useForm, useSelect, getValueFromEvent } from "@refinedev/antd";
 import { Form, Input, Select, Upload, Checkbox, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
@@ -13,20 +13,20 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
-} from "@/utilities";
+    getMetaProps,
+    shouldDotAccess,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { shouldDotAccess } from "@/utilities/accessor";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for edit page in Ant Design

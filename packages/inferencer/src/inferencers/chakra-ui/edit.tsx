@@ -9,11 +9,10 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     toSingular,
@@ -23,19 +22,19 @@ import {
     noOp,
     getVariableName,
     translatePrettyString,
-} from "@/utilities";
+    getMetaProps,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for edit page in Chakra UI
