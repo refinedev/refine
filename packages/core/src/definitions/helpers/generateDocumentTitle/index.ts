@@ -26,10 +26,15 @@ export function generateDefaultDocumentTitle(
         list: "",
     };
 
-    const resourceName = userFriendlyResourceName(
-        resource?.name,
-        action === "list" ? "plural" : "singular",
-    );
+    const resourceName =
+        resource?.label ??
+        resource?.meta?.label ??
+        capitalize(
+            userFriendlyResourceName(
+                resource?.name,
+                action === "list" ? "plural" : "singular",
+            ),
+        );
 
     const defaultTitle = translate("documentTitle.default", "refine");
     const suffix = translate("documentTitle.suffix", " | refine");
@@ -43,7 +48,7 @@ export function generateDefaultDocumentTitle(
                 actionPrefixMatcher[
                     action as keyof typeof actionPrefixMatcher
                 ] ?? ""
-            }${capitalize(resourceName)}${suffix}`,
+            }${resourceName}${suffix}`,
         );
     }
 
