@@ -20,6 +20,7 @@ export function generateDefaultDocumentTitle(
 ) {
     const actionPrefixMatcher = {
         create: "Create new ",
+        clone: `#${id ?? ""} Clone `,
         edit: `#${id ?? ""} Edit `,
         show: `#${id ?? ""} Show `,
         list: "",
@@ -39,7 +40,9 @@ export function generateDefaultDocumentTitle(
             `documentTitle.${resource.name}.${action}`,
             { id },
             `${
-                actionPrefixMatcher[action as keyof typeof actionPrefixMatcher]
+                actionPrefixMatcher[
+                    action as keyof typeof actionPrefixMatcher
+                ] ?? ""
             }${capitalize(resourceName)}${suffix}`,
         );
     }
