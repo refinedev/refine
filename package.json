@@ -69,5 +69,9 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "dependencies": {
+    "pidtree": "^0.6.0",
+    "wait-on": "^7.0.1"
   }
 }

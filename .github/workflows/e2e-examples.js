@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-const { exec, execSync } = require("child_process");
-const pids = require("port-pid");
+const waitOn = require("wait-on");
+const pidtree = require("pidtree");
+const { join: pathJoin } = require("path");
+const { promisify } = require("util");
+const { exec } = require("child_process");
 
 const KEY = process.env.KEY;
 const CI_BUILD_ID = process.env.CI_BUILD_ID;
@@ -10,13 +13,15 @@ const CI_BUILD_ID = process.env.CI_BUILD_ID;
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
 
-const hasE2EExamples = [];
-
-const getProjectPort = (path) => {
+const getProjectPort = async (path) => {
     // read package.json
-    const packageJson = JSON.parse(
-        fs.readFileSync(`${path}/package.json`, "utf8"),
+    const pkg = await promisify(fs.readFile)(
+        pathJoin(path, "package.json"),
+        "utf8",
     );
+
+    // parse package.json
+    const packageJson = JSON.parse(pkg);
 
     const dependencies = Object.keys(packageJson.dependencies || {});
     const devDependencies = Object.keys(packageJson.devDependencies || {});
@@ -29,53 +34,76 @@ const getProjectPort = (path) => {
     return 3000;
 };
 
-EXAMPLES.split(",").map((path) => {
-    const dir = EXAMPLES_DIR + "/" + path;
-    if (
-        fs.statSync(dir).isDirectory() &&
-        fs.existsSync(`${dir}/cypress.config.ts`)
-    ) {
-        hasE2EExamples.push(path);
-    }
-});
+/**
+ * @returns {Promise<string[]>}
+ */
+const getProjectsWithE2E = async () => {
+    return (
+        await Promise.all(
+            EXAMPLES.split(",").map(async (path) => {
+                const dir = pathJoin(EXAMPLES_DIR, path);
+                const isDirectory = (
+                    await promisify(fs.stat)(dir)
+                ).isDirectory();
+                const isConfigExists = await promisify(fs.exists)(
+                    pathJoin(dir, "cypress.config.ts"),
+                );
 
-console.log(`|- examples: , ${hasE2EExamples.join(",")}`);
+                if (isDirectory && isConfigExists) {
+                    return path;
+                }
+            }),
+        )
+    ).filter(Boolean);
+};
 
 const runTests = async () => {
-    for (const path of hasE2EExamples) {
+    const examplesToRun = getProjectsWithE2E();
+
+    console.log(`|- Examples to run: , ${examplesToRun.join(", ")} \n\n`);
+
+    for await (const path of examplesToRun) {
         const PORT = getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
-        console.log(`|- run: , ${path}:${PORT}`);
+        console.log(`|- Running project ${path} at port ${PORT}`);
 
-        console.log("|- start: ", path);
+        console.log("|-- Starting the dev server");
 
-        const start = exec(`cd ${EXAMPLES_DIR}/${path} && npm run start`);
+        const start = exec(
+            `cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start`,
+        );
 
-        start.stdout.on("data", (data) => console.log(data));
-        start.stderr.on("data", (data) => console.log(data));
+        start.stdout.on("data", console.log);
+        start.stderr.on("data", console.error);
 
-        const WAIT_ON = PORT === 5173 ? "tcp" : "http://127.0.0.1";
+        console.log(`|- Waiting for the server to start at port ${PORT}`);
 
-        console.log(`|- wait-on: ${WAIT_ON}:${PORT}`);
+        await waitOn({
+            resources:
+                PORT === 5173 ? [`tcp:${PORT}`] : [`http://localhost:${PORT}`],
+            timeout: 60000,
+            log: true,
+        });
+
+        
         try {
-            execSync(`npx wait-on ${WAIT_ON}:${PORT} --timeout 120000 --log`, {
-                stdio: "inherit",
-            });
-
-            execSync(
-                `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`,
-                { stdio: "inherit" },
-            );
+            const runner = `npm run lerna run cypress:run -- --scope ${path} -- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+            
+            await promisify(exec)(runner);
         } catch (error) {
-            console.log(`|- error: , ${path}`, error);
+            console.log(`|- Error occured on tests for ${path}`, error);
+            return Promise.reject(error);
         } finally {
-            const { all } = await pids(PORT);
+            console.log("|- Killing the dev server");
+            const pidsOfStart = await pidtree(start.pid, { root: true });
 
-            console.log("|- kill: ", all);
-
-            all.forEach((pid) => {
-                process.kill(pid, "SIGTERM");
+            pidsOfStart.forEach((pid) => {
+                process.kill(pid, "SIGINT");
             });
+
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            console.log("|- Done killing the dev server");
         }
     }
 };
