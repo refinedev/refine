@@ -93,23 +93,37 @@ const runTests = async () => {
 
         console.log("|-- Starting the dev server");
 
-        const start = exec(
-            `cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start`,
-        );
+        try {
+            const start = exec(
+                `cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start`,
+            );
 
-        start.stdout.on("data", console.log);
-        start.stderr.on("data", console.error);
+            start.stdout.on("data", console.log);
+            start.stderr.on("data", console.error);
+        } catch (error) {
+            console.log(`|- Error occured on starting the dev server`, error);
+            return Promise.reject(error);
+        }
 
-        console.log(`|- Waiting for the server to start at port ${PORT}`);
+        try {
+            console.log(`|- Waiting for the server to start at port ${PORT}`);
 
-        await waitOn({
-            resources:
-                PORT === 5173 ? [`tcp:${PORT}`] : [`http://localhost:${PORT}`],
-            timeout: 60000,
-            log: true,
-        });
+            await waitOn({
+                resources:
+                    PORT === 5173
+                        ? [`tcp:${PORT}`]
+                        : [`http://localhost:${PORT}`],
+                timeout: 60000,
+                log: true,
+            });
+        } catch (error) {
+            console.log(
+                `|- Error occured on waiting for the server to start`,
+                error,
+            );
+            return Promise.reject(error);
+        }
 
-        
         try {
             const params = `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
             const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
@@ -122,15 +136,26 @@ const runTests = async () => {
             return Promise.reject(error);
         } finally {
             console.log("|- Killing the dev server");
-            const pidsOfStart = await pidtree(start.pid, { root: true });
+            try {
+                if (start.pid) {
+                    const pidsOfStart = await pidtree(start.pid, {
+                        root: true,
+                    });
 
-            pidsOfStart.forEach((pid) => {
-                process.kill(pid, "SIGINT");
-            });
+                    pidsOfStart.forEach((pid) => {
+                        process.kill(pid, "SIGINT");
+                    });
 
-            await new Promise((resolve) => setTimeout(resolve, 500));
+                    await new Promise((resolve) => setTimeout(resolve, 500));
 
-            console.log("|- Done killing the dev server");
+                    console.log("|- Done killing the dev server");
+                }
+            } catch (error) {
+                console.log(
+                    `|- Error occured on killing the dev server`,
+                    error,
+                );
+            }
         }
     }
 };
