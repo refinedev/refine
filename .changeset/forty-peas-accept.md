@@ -5,7 +5,7 @@
 "@refinedev/mui": minor
 ---
 
-refactor: fix name and state inconsistency in `<ThemedLayoutV2>`.
+refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
 
 `useSiderVisible` is deprecated, instead we created a new hook `useSiderState` for it. `useSiderState` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
 
