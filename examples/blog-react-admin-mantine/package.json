@@ -5,7 +5,7 @@
   "dependencies": {
     "@refinedev/cli": "^2.5.5",
     "@refinedev/core": "^4.16.0",
-    "@refinedev/inferencer": "^3.5.3",
+    "@refinedev/inferencer": "^3.5.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
