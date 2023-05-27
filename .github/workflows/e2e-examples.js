@@ -58,7 +58,7 @@ const getProjectsWithE2E = async () => {
 };
 
 const runTests = async () => {
-    const examplesToRun = getProjectsWithE2E();
+    const examplesToRun = await getProjectsWithE2E();
 
     console.log(`|- Examples to run: , ${examplesToRun.join(", ")} \n\n`);
 
