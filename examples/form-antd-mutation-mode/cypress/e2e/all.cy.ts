@@ -12,15 +12,13 @@ describe("form-antd-mutation-mode", () => {
     };
 
     const fillForm = () => {
-        const title = cy.get("#title");
-        title.clear();
-        title.should("be.not.disabled");
-        title.type(mockPost.title);
+        cy.get("#title").clear();
+        cy.get("#title").should("be.not.disabled");
+        cy.get("#title").type(mockPost.title);
 
-        const content = cy.get("#content textarea");
-        content.clear();
-        content.should("be.not.disabled");
-        content.type(mockPost.content);
+        cy.get("#content textarea").clear();
+        cy.get("#content textarea").should("be.not.disabled");
+        cy.get("#content textarea").type(mockPost.content);
 
         cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
         cy.setAntdSelect({ id: "status", value: mockPost.status });
@@ -65,9 +63,8 @@ describe("form-antd-mutation-mode", () => {
 
     it("should edit record when mutation mode is pessimistic", () => {
         cy.get("input[value=pessimistic]").check();
-        const editButton = cy.getEditButton().first();
-        editButton.should("not.be.disabled");
-        editButton.click();
+        cy.getEditButton().first().should("not.be.disabled");
+        cy.getEditButton().first().click();
         // wait loading state and render to be finished
         cy.wait("@getPost");
         waitForLoading();
