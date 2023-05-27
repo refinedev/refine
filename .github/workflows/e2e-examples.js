@@ -103,7 +103,7 @@ const runTests = async () => {
             start.stderr.on("data", console.error);
         } catch (error) {
             console.log(`|- Error occured on starting the dev server`, error);
-            return Promise.reject(error);
+            return { error, success: false };
         }
 
         try {
@@ -122,11 +122,11 @@ const runTests = async () => {
                 `|- Error occured on waiting for the server to start`,
                 error,
             );
-            return Promise.reject(error);
+            return { success: false, error };
         }
 
         try {
-            const params = `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+            const params = "" ?? `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
             const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
 
             const { promise } = execPromise(runner);
@@ -134,7 +134,7 @@ const runTests = async () => {
             await promise;
         } catch (error) {
             console.log(`|- Error occured on tests for ${path}`, error);
-            return Promise.reject(error);
+            return { success: false, error };
         } finally {
             console.log("|- Killing the dev server");
             try {
@@ -156,17 +156,25 @@ const runTests = async () => {
                     `|- Error occured on killing the dev server`,
                     error,
                 );
+                return { success: false, error };
             }
         }
     }
+
+    return { success: true };
 };
 
 runTests()
-    .then(() => {
-        console.log("|- All tests passed");
-        process.exit(0);
+    .then(({ error, success }) => {
+        if (success) {
+            console.log("|- All tests passed");
+            process.exitCode = 0;
+        } else {
+            console.log("|- Errors occured", error);
+            process.exitCode = 1;
+        }
     })
     .catch((error) => {
         console.log("|- error", error);
-        process.exit(1);
+        process.exitCode = 1;
     });
