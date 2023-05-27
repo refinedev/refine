@@ -58,9 +58,17 @@ const getProjectPort = async (path) => {
     return 3000;
 };
 
-/**
- * @returns {Promise<string[]>}
- */
+const prettyLog = (bg, ...args) => {
+    const colors = {
+        blue: "\x1b[44m",
+        red: "\x1b[41m",
+        green: "\x1b[42m",
+    };
+    const code = colors[bg] || colors.blue;
+
+    console.log(code, ...args, "\x1b[0m");
+};
+
 const getProjectsWithE2E = async () => {
     return (
         await Promise.all(
@@ -84,30 +92,36 @@ const getProjectsWithE2E = async () => {
 const runTests = async () => {
     const examplesToRun = await getProjectsWithE2E();
 
-    console.log(`|- Examples to run: , ${examplesToRun.join(", ")} \n\n`);
+    if (examplesToRun.length === 0) {
+        return { success: true, empty: true };
+    }
+
+    prettyLog("blue", "Running Tests for Examples");
+    prettyLog("blue", `Examples: ${examplesToRun.join(", ")}`);
+    console.log("\n");
 
     for await (const path of examplesToRun) {
         const PORT = await getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
-        console.log(`|- Running project ${path} at port ${PORT}`);
+        prettyLog("blue", `Running for ${path} at port ${PORT}`);
 
-        console.log("|-- Starting the dev server");
+        prettyLog("blue", `Starting the dev server`);
 
         let start;
+
         try {
-            start = exec(
-                `cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start`,
-            );
+            start = exec(`cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start`);
 
             start.stdout.on("data", console.log);
             start.stderr.on("data", console.error);
         } catch (error) {
-            console.log(`|- Error occured on starting the dev server`, error);
+            prettyLog("red", `Error occured on starting the dev server`);
+
             return { error, success: false };
         }
 
         try {
-            console.log(`|- Waiting for the server to start at port ${PORT}`);
+            prettyLog("blue", `Waiting for the server to start at port ${PORT}`);
 
             await waitOn({
                 resources:
@@ -118,25 +132,37 @@ const runTests = async () => {
                 log: true,
             });
         } catch (error) {
-            console.log(
-                `|- Error occured on waiting for the server to start`,
-                error,
-            );
+            prettyLog(
+                "red",
+                `Error occured on waiting for the server to start`,
+            )
+            if (error) console.log(error);
+
             return { success: false, error };
         }
 
         try {
-            const params = "" ?? `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+            const params =
+                "" ??
+                `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
             const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
+
+            prettyLog("blue", `Running tests for ${path}`);
 
             const { promise } = execPromise(runner);
 
             await promise;
+
+            prettyLog("green", `Tests for ${path} finished`);
+
         } catch (error) {
-            console.log(`|- Error occured on tests for ${path}`, error);
+            prettyLog("red", `Error occured on tests for ${path}`);
+            if (error) console.log(error);
+
             return { success: false, error };
         } finally {
-            console.log("|- Killing the dev server");
+            prettyLog("blue", `Killing the dev server`);
+
             try {
                 if (start.pid) {
                     const pidsOfStart = await pidtree(start.pid, {
@@ -149,32 +175,38 @@ const runTests = async () => {
 
                     await new Promise((resolve) => setTimeout(resolve, 500));
 
-                    console.log("|- Done killing the dev server");
+                    prettyLog("green", `Killed the dev server`);
                 }
             } catch (error) {
-                console.log(
-                    `|- Error occured on killing the dev server`,
-                    error,
-                );
+                prettyLog("red", `Error occured on killing the dev server`);
+                if (error) console.log(error);
+
                 return { success: false, error };
             }
         }
+
+        prettyLog("green", `Tests for ${path} finished successfully`);
     }
 
     return { success: true };
 };
 
 runTests()
-    .then(({ error, success }) => {
+    .then(({ error, success, empty }) => {
         if (success) {
-            console.log("|- All tests passed");
+            prettyLog(
+                "green",
+                empty ? "No Examples To Run" : "All Tests Passed",
+            );
             process.exitCode = 0;
         } else {
-            console.log("|- Errors occured", error);
+            prettyLog("red", "Tests Failed or an Error Occured");
+            if (error) console.log(error);
             process.exitCode = 1;
         }
     })
     .catch((error) => {
-        console.log("|- error", error);
+        prettyLog("red", "Tests Failed or an Error Occured");
+        if (error) console.log(error);
         process.exitCode = 1;
     });
