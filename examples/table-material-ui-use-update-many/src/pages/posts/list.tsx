@@ -98,6 +98,7 @@ export const PostList: React.FC = () => {
             wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
             headerButtons={
                 <Button
+                    id="update-selected"
                     onClick={() => updateSelectedItems()}
                     disabled={!hasSelected}
                     size="small"

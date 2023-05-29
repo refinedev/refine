@@ -116,7 +116,36 @@
       "content": "Inhalt",
       "status": "Status",
       "category": "Kategorien",
-      "createdAt": "Erstellt am"
+      "categoryId": "Kategorien",
+      "category_id": "Kategorien",
+      "createdAt": "Erstellt am",
+      "created_at": "Erstellt am",
+      "updatedAt": "Aktualisiert am",
+      "publishedAt": "Veröffentlicht am",
+      "locale": "Lokal"
+    },
+    "titles": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "list": "Einträge",
+      "show": "Eintrag zeigen"
+    }
+  },
+  "blog-posts": {
+    "blog_posts": "Blogeinträge",
+    "fields": {
+      "id": "Id",
+      "title": "Titel",
+      "content": "Inhalt",
+      "status": "Status",
+      "category": "Kategorien",
+      "categoryId": "Kategorien",
+      "category_id": "Kategorien",
+      "createdAt": "Erstellt am",
+      "created_at": "Erstellt am",
+      "updatedAt": "Aktualisiert am",
+      "publishedAt": "Veröffentlicht am",
+      "locale": "Lokal"
     },
     "titles": {
       "create": "Erstellen",
@@ -130,7 +159,11 @@
     "fields": {
       "id": "Id",
       "title": "Titel",
-      "createdAt": "Erstellt am"
+      "createdAt": "Erstellt am",
+      "created_at": "Erstellt am",
+      "updatedAt": "Aktualisiert am",
+      "publishedAt": "Veröffentlicht am",
+      "locale": "Lokal"
     },
     "titles": {
       "create": "Erstellen",
@@ -141,5 +174,9 @@
   },
   "table": {
     "actions": "Aktionen"
+  },
+  "pagination": {
+    "go": "Gehen Sie zur Seite",
+    "show": "Zeigen"
   }
 }

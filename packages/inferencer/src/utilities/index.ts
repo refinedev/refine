@@ -9,6 +9,9 @@ export { pickInferredField } from "./pick-inferred-field";
 export { prettierFormat } from "./prettier-format";
 export { prettySpaces } from "./pretty-spaces";
 export { prettyString } from "./pretty-string";
+export { translatePrettyString } from "./translate-pretty-string";
+export { translateActionTitle } from "./translate-action-title";
+export { translateButtonTitle } from "./translate-button-title";
 
 export { removeRelationSuffix } from "./remove-relation-suffix";
 export { replaceExports } from "./replace-exports";
@@ -39,3 +42,5 @@ export { isIDKey } from "./is-id-key";
 export { getOptionLabel } from "./get-option-label";
 export { noOp } from "./no-op";
 export { getVariableName } from "./get-variable-name";
+
+export { getMetaProps } from "./get-meta-props";

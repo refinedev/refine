@@ -1,4 +1,4 @@
-import { FieldInferencer } from "@/types";
+import { FieldInferencer } from "../types";
 
 export const nullishInfer: FieldInferencer = (key, value) => {
     const isUndefined = typeof value === "undefined";

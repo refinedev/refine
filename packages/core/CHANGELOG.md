@@ -1,5 +1,53 @@
 # @pankod/refine-core
 
+## 4.16.1
+
+### Patch Changes
+
+-   [#4407](https://github.com/refinedev/refine/pull/4407) [`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `clone` action for document title generation. This fixes the issue of the document title not being generated when the `clone` action is used.
+
+    This change introduces the `documentTitle.{resourceName}.clone` key to the list of `i18n` keys that are used to generate the document title.
+
+    Default title for the `clone` action is `"#{{id}} Clone {{resourceName}} | refine"`.
+
+-   [#4407](https://github.com/refinedev/refine/pull/4407) [`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of `label` not taken into account with auto generated document titles. `label` will be prioritized over the resource name when generating the document title and the `label` will not be capitalized.
+
+## 4.16.0
+
+### Minor Changes
+
+-   [#4313](https://github.com/refinedev/refine/pull/4313) [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657) Thanks [@abdellah711](https://github.com/abdellah711)! - feat: implement `generateDefaultDocumentTitle` function
+
+    This function generates a default document title based on the current route by following these rules (`resource` in this case is "Post"):
+
+    -   list -> `Posts | refine`
+    -   edit -> `#{id} Edit Post | refine`
+    -   show -> `#{id} Show Post | refine`
+    -   create -> `Create new Post | refine`
+    -   default (not a `resource`) -> `refine`
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: export `TranslationContext`
+
+## 4.15.0
+
+### Minor Changes
+
+-   [#4313](https://github.com/refinedev/refine/pull/4313) [`28fe67047a0`](https://github.com/refinedev/refine/commit/28fe67047a084dff37fbdbee6a132f85f9413657) Thanks [@abdellah711](https://github.com/abdellah711)! - feat: implement `generateDefaultDocumentTitle` function
+
+    This function generates a default document title based on the current route by following these rules (`resource` in this case is "Post"):
+
+    -   list -> `Posts | refine`
+    -   edit -> `#{id} Edit Post | refine`
+    -   show -> `#{id} Show Post | refine`
+    -   create -> `Create new Post | refine`
+    -   default (not a `resource`) -> `refine`
+
+### Patch Changes
+
+-   [#4381](https://github.com/refinedev/refine/pull/4381) [`500cf2becc2`](https://github.com/refinedev/refine/commit/500cf2becc242e01d93a5576957f003851190873) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - feat: export `TranslationContext`
+
 ## 4.14.3
 
 ### Patch Changes

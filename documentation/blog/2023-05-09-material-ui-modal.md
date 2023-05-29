@@ -416,6 +416,12 @@ Here’s the result:
 <br/>
 
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Conclusion
 Material UI Modal is an excellent tool for creating a modal window with a native look and feel. It provides a great user experience with its simple and intuitive design. It is also highly customizable, allowing developers to create modal windows with their custom styles. This article thoroughly reviewed the MUI Modal component and explored a use case in the form of an editable contact page UI.  With its responsive design and wide range of options, Material UI Modal is a great solution for web developers looking to create modal windows for their projects.
