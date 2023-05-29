@@ -109,9 +109,7 @@ const getProjectsWithE2E = async () => {
                 }
             }),
         )
-    )
-        .filter(Boolean)
-        .slice(0, 3);
+    ).filter(Boolean);
 };
 
 const waitForServer = async (port) => {
@@ -261,8 +259,6 @@ const runTests = async () => {
 
         console.log(`::endgroup::`);
     }
-
-    return { success: false };
 
     return { success: true };
 };
