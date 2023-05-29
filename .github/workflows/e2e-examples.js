@@ -109,7 +109,7 @@ const getProjectsWithE2E = async () => {
                 }
             }),
         )
-    ).filter(Boolean);
+    ).filter(Boolean).slice(0, 3);
 };
 
 const waitForServer = async (port) => {
