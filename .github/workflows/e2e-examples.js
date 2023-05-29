@@ -113,17 +113,17 @@ const waitForServer = async (port) => {
     try {
         const tcp = waitOn({
             resources: [`tcp:${port}`],
-            timeout: 60000,
+            timeout: 15000,
             log: true,
         });
         const localhost = waitOn({
             resources: [`http://localhost:${port}`],
-            timeout: 60000,
+            timeout: 15000,
             log: true,
         });
         const host = waitOn({
             resources: [`http://127.0.0.1:${port}`],
-            timeout: 60000,
+            timeout: 15000,
             log: true,
         });
 
@@ -147,6 +147,8 @@ const runTests = async () => {
     console.log("\n");
 
     for await (const path of examplesToRun) {
+        console.log(`::group::Example ${path}`)
+
         const PORT = await getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
         prettyLog("blue", `Running for ${path} at port ${PORT}`);
@@ -232,6 +234,8 @@ const runTests = async () => {
         }
 
         prettyLog("green", `Tests for ${path} finished successfully`);
+
+        console.log(`::endgroup::`)
     }
 
     return { success: true };
