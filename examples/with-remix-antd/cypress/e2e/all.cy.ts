@@ -8,7 +8,47 @@ Cypress.on("uncaught:exception", () => {
 describe("with-remix-antd", () => {
     const BASE_URL = "http://localhost:3000";
 
+    const mockPost = {
+        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        status: "Published",
+    };
+
+    const fillForm = () => {
+        cy.get("#title").clear();
+        cy.get("#title").type(mockPost.title);
+        cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+        cy.setAntdSelect({ id: "status", value: mockPost.status });
+    };
+
+    const assertSuccessResponse = (response: any) => {
+        const body = response?.body;
+
+        expect(response?.statusCode).to.eq(200);
+        expect(body).to.have.property("id");
+        expect(body).to.have.property("category");
+        expect(body?.title).to.eq(mockPost.title);
+        expect(body?.status?.toLowerCase()).to.eq(
+            mockPost?.status?.toLowerCase(),
+        );
+
+        cy.getAntdNotification().should("contain", "Success");
+        cy.location().should((loc) => {
+            expect(loc.pathname).to.eq("/posts");
+        });
+    };
+
+    const submitForm = () => {
+        return cy.getSaveButton().click();
+    };
+
     beforeEach(() => {
+        cy.interceptGETPost();
+        cy.interceptPOSTPost();
+        cy.interceptPATCHPost();
+        cy.interceptDELETEPost();
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
@@ -147,6 +187,131 @@ describe("with-remix-antd", () => {
             login();
             cy.get(".ant-typography").contains(/jane doe/i);
             cy.get(".ant-avatar > img").should("have.attr", "src");
+        });
+    });
+
+    describe("crud", () => {
+        beforeEach(() => {
+            login();
+        });
+
+        it("should create record", () => {
+            cy.getCreateButton().click();
+
+            fillForm();
+            submitForm();
+
+            cy.wait("@postPost").then((interception) => {
+                const response = interception?.response;
+                assertSuccessResponse(response);
+            });
+        });
+
+        it("should edit record", () => {
+            cy.getEditButton().first().click();
+
+            // wait loading state and render to be finished
+            cy.wait("@getPost");
+            cy.getSaveButton().should("not.be.disabled");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            fillForm();
+            submitForm();
+
+            cy.wait("@patchPost").then((interception) => {
+                const response = interception?.response;
+                assertSuccessResponse(response);
+            });
+        });
+
+        it("should delete record", () => {
+            cy.getEditButton().first().click();
+
+            // wait loading state and render to be finished
+            cy.wait("@getPost");
+            cy.getSaveButton().should("not.be.disabled");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.getDeleteButton().first().click();
+            cy.getAntdPopoverDeleteButton().click();
+
+            cy.wait("@deletePost").then((interception) => {
+                const response = interception?.response;
+
+                expect(response?.statusCode).to.eq(200);
+                cy.getAntdNotification().should("contain", "Success");
+                cy.location().should((loc) => {
+                    expect(loc.pathname).to.eq("/posts");
+                });
+            });
+        });
+
+        it("should create form render errors", () => {
+            cy.getCreateButton().click();
+
+            submitForm();
+            cy.getAntdFormItemError({ id: "title" }).contains(
+                /please enter title/gi,
+            );
+            cy.getAntdFormItemError({ id: "category_id" }).contains(
+                /please enter category/gi,
+            );
+            cy.getAntdFormItemError({ id: "status" }).contains(
+                /please enter status/gi,
+            );
+
+            fillForm();
+
+            cy.getAntdFormItemError({ id: "title" }).should("not.exist");
+            cy.getAntdFormItemError({ id: "category_id" }).should("not.exist");
+            cy.getAntdFormItemError({ id: "status" }).should("not.exist");
+        });
+
+        it("should edit form render errors", () => {
+            cy.getEditButton().first().click();
+
+            // wait loading state and render to be finished
+            cy.wait("@getPost");
+            cy.getSaveButton().should("not.be.disabled");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.get("#title").should("not.have.value", "");
+            cy.get("#title").clear();
+
+            cy.getAntdFormItemError({ id: "title" }).contains(
+                /please enter title/gi,
+            );
+
+            fillForm();
+
+            cy.getAntdFormItemError({ id: "title" }).should("not.exist");
+        });
+
+        it("should create form warn when unsaved changes", () => {
+            cy.wait("@getPosts");
+            cy.getCreateButton().click();
+            cy.get("#title").type("any value");
+            cy.get(".ant-page-header-back-button > .ant-btn").click();
+            cy.on("window:confirm", (str) => {
+                expect(str).to.includes("You have unsaved changes");
+            });
+        });
+
+        it("should edit form warn when unsaved changes", () => {
+            cy.wait("@getPosts");
+            cy.getEditButton().first().click();
+
+            // wait loading state and render to be finished
+            cy.wait("@getPost");
+            cy.getSaveButton().should("not.be.disabled");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.get("#title").clear();
+            cy.get("#title").type("any value");
+            cy.get(".ant-page-header-back-button > .ant-btn").click();
+            cy.on("window:confirm", (str) => {
+                expect(str).to.includes("You have unsaved changes");
+            });
         });
     });
 });
