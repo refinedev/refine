@@ -273,7 +273,7 @@ runTests()
             );
             process.exitCode = 0;
         } else {
-            console.log(`::endgroup::`);
+            // console.log(`::endgroup::`);
 
             prettyLog("red", "Tests Failed or an Error Occured");
             if (error) console.log(error);
@@ -281,7 +281,7 @@ runTests()
         }
     })
     .catch((error) => {
-        console.log(`::endgroup::`);
+        // console.log(`::endgroup::`);
 
         prettyLog("red", "Tests Failed or an Error Occured");
         if (error) console.log(error);
