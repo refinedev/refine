@@ -202,9 +202,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 }}
                 onClick={() => {
                     setMobileSiderOpen(false);
-                    if (!breakpoint.lg) {
-                        setSiderCollapsed(true);
-                    }
                 }}
             >
                 {renderSider()}
