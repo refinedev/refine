@@ -71,7 +71,6 @@ const App: React.FC = () => {
         check: async () => {
             try {
                 const { token } = keycloak;
-                console.log(token);
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token}`,
