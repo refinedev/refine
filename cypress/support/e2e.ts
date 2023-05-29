@@ -104,3 +104,13 @@ Cypress.Commands.add(
 );
 Cypress.Commands.add("getMantineFormItemError", getMantineFormItemError);
 Cypress.Commands.add("getMantineLoadingOverlay", getMantineLoadingOverlay);
+
+/**
+ * Disable telemetry calls
+ */
+beforeEach(() => {
+    cy.intercept("https://telemetry.refine.dev/**", {
+        body: "Disabled telemetry to avoid unwanted entries in the database",
+        statusCode: 200,
+    }).as("telemetry");
+});
