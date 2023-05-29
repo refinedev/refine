@@ -6,7 +6,8 @@
     "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "build": "refine build && rm -rf .next/cache",
     "start:prod": "refine start",
-    "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "dependencies": {
     "@refinedev/antd": "^5.18.2",
@@ -26,6 +27,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/parser": "5.48.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "cypress": "^12.11.0"
   }
 }
