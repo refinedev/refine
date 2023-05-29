@@ -1,4 +1,4 @@
-import { IResourceComponentsProps } from "@refinedev/core";
+import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
 
 import {
     List,
@@ -15,7 +15,7 @@ import { Table, Space, Select } from "antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorters, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
@@ -39,13 +39,14 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="id"
                     title="ID"
                     sorter
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
                 />
                 <Table.Column
                     key="title"
                     dataIndex="title"
                     title="Title"
                     sorter
+                    defaultSortOrder={getDefaultSortOrder("title", sorters)}
                 />
                 <Table.Column
                     key="categoryId"
@@ -53,7 +54,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     title="Category"
                     defaultSortOrder={getDefaultSortOrder(
                         "categories.title",
-                        sorter,
+                        sorters,
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "categoryId",
+                        filters,
+                        "in",
                     )}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>

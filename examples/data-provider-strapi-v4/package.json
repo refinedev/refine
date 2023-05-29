@@ -26,7 +26,8 @@
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "refine": "refine"
+    "refine": "refine",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "browserslist": {
     "production": [
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
-    "http-proxy-middleware": "^2.0.6"
+    "http-proxy-middleware": "^2.0.6",
+    "cypress": "^12.11.0"
   }
 }
