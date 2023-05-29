@@ -7,7 +7,7 @@ Cypress.on("uncaught:exception", () => {
 
 describe("base-mantine", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
@@ -18,11 +18,11 @@ describe("base-mantine", () => {
     });
 
     it("should be create page", () => {
-        cy.resourceCreate();
+        cy.resourceCreate({ ui: "mantine" });
     });
 
     it("should be edit page", () => {
-        cy.resourceEdit();
+        cy.resourceEdit({ ui: "mantine" });
     });
 
     it("should be show page", () => {
