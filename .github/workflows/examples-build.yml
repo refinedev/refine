@@ -139,7 +139,7 @@ jobs:
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
 
       - name: Run E2E Tests
-        run: EXAMPLES=${{ needs.chunks.outputs.CHUNK_2 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-2-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
+        run: REFINE_NO_TELEMETRY=true EXAMPLES=${{ needs.chunks.outputs.CHUNK_2 }} KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-2-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
 
   build-chunk-3:
     runs-on: ubuntu-latest
