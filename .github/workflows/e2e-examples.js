@@ -250,12 +250,16 @@ runTests()
             );
             process.exitCode = 0;
         } else {
+            console.log(`::endgroup::`)
+
             prettyLog("red", "Tests Failed or an Error Occured");
             if (error) console.log(error);
             process.exitCode = 1;
         }
     })
     .catch((error) => {
+        console.log(`::endgroup::`)
+
         prettyLog("red", "Tests Failed or an Error Occured");
         if (error) console.log(error);
         process.exitCode = 1;
