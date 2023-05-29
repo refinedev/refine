@@ -59,23 +59,26 @@ const getProjectPort = async (path) => {
 };
 
 const getAdditionalStartParams = async (path) => {
-        // read package.json
-        const pkg = await promisify(fs.readFile)(
-            pathJoin(path, "package.json"),
-            "utf8",
-        );
-    
-        // parse package.json
-        const packageJson = JSON.parse(pkg);
-    
-        const dependencies = Object.keys(packageJson.dependencies || {});
-        const devDependencies = Object.keys(packageJson.devDependencies || {});
+    // read package.json
+    const pkg = await promisify(fs.readFile)(
+        pathJoin(path, "package.json"),
+        "utf8",
+    );
 
-        if (dependencies.includes("react-scripts") || devDependencies.includes("react-scripts")) {
-            return "-- --host 127.0.0.1";
-        }
+    // parse package.json
+    const packageJson = JSON.parse(pkg);
 
-        return "";
+    const dependencies = Object.keys(packageJson.dependencies || {});
+    const devDependencies = Object.keys(packageJson.devDependencies || {});
+
+    if (
+        dependencies.includes("react-scripts") ||
+        devDependencies.includes("react-scripts")
+    ) {
+        return "-- --host 127.0.0.1";
+    }
+
+    return "";
 };
 
 const prettyLog = (bg, ...args) => {
@@ -110,29 +113,37 @@ const getProjectsWithE2E = async () => {
 };
 
 const waitForServer = async (port) => {
-    try {
-        const tcp = waitOn({
-            resources: [`tcp:${port}`],
-            timeout: 15000,
-            log: true,
-        });
-        const localhost = waitOn({
-            resources: [`http://localhost:${port}`],
-            timeout: 15000,
-            log: true,
-        });
-        const host = waitOn({
-            resources: [`http://127.0.0.1:${port}`],
-            timeout: 15000,
-            log: true,
-        });
+    return new Promise(async (resolve, reject) => {
+        setTimeout(() => {
+            resolve(false);
+        }, 30000);
 
-        await Promise.any([tcp, localhost, host]);
-        return true;
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
+        try {
+            const tcp = waitOn({
+                resources: [`tcp:${port}`],
+                timeout: 15000,
+                log: true,
+            });
+            const localhost = waitOn({
+                resources: [`http://localhost:${port}`],
+                timeout: 15000,
+                log: true,
+            });
+            const host = waitOn({
+                resources: [`http://127.0.0.1:${port}`],
+                timeout: 15000,
+                log: true,
+            });
+
+            await Promise.any([tcp, localhost, host]);
+
+            resolve(true);
+        } catch (error) {
+            if (error) console.log(error);
+
+            resolve(false);
+        }
+    });
 };
 
 const runTests = async () => {
@@ -147,7 +158,7 @@ const runTests = async () => {
     console.log("\n");
 
     for await (const path of examplesToRun) {
-        console.log(`::group::Example ${path}`)
+        console.log(`::group::Example ${path}`);
 
         const PORT = await getProjectPort(`${EXAMPLES_DIR}/${path}`);
 
@@ -158,9 +169,16 @@ const runTests = async () => {
         let start;
 
         try {
-            const additionalParams = await getAdditionalStartParams(`${EXAMPLES_DIR}/${path}`);
+            const additionalParams = await getAdditionalStartParams(
+                `${EXAMPLES_DIR}/${path}`,
+            );
 
-            start = exec(`cd ${pathJoin(EXAMPLES_DIR, path)} && npm run start ${additionalParams}`);
+            start = exec(
+                `cd ${pathJoin(
+                    EXAMPLES_DIR,
+                    path,
+                )} && npm run start ${additionalParams}`,
+            );
 
             start.stdout.on("data", console.log);
             start.stderr.on("data", console.error);
@@ -171,11 +189,17 @@ const runTests = async () => {
         }
 
         try {
-            prettyLog("blue", `Waiting for the server to start at port ${PORT}`);
+            prettyLog(
+                "blue",
+                `Waiting for the server to start at port ${PORT}`,
+            );
 
             const status = await waitForServer(PORT);
             if (!status) {
-                prettyLog("red", `Error occured on waiting for the server to start`);
+                prettyLog(
+                    "red",
+                    `Error occured on waiting for the server to start`,
+                );
 
                 return { success: false };
             }
@@ -183,7 +207,7 @@ const runTests = async () => {
             prettyLog(
                 "red",
                 `Error occured on waiting for the server to start`,
-            )
+            );
             if (error) console.log(error);
 
             return { success: false, error };
@@ -202,7 +226,6 @@ const runTests = async () => {
             await promise;
 
             prettyLog("green", `Tests for ${path} finished`);
-
         } catch (error) {
             prettyLog("red", `Error occured on tests for ${path}`);
             if (error) console.log(error);
@@ -235,7 +258,7 @@ const runTests = async () => {
 
         prettyLog("green", `Tests for ${path} finished successfully`);
 
-        console.log(`::endgroup::`)
+        console.log(`::endgroup::`);
     }
 
     return { success: true };
@@ -250,7 +273,7 @@ runTests()
             );
             process.exitCode = 0;
         } else {
-            console.log(`::endgroup::`)
+            console.log(`::endgroup::`);
 
             prettyLog("red", "Tests Failed or an Error Occured");
             if (error) console.log(error);
@@ -258,7 +281,7 @@ runTests()
         }
     })
     .catch((error) => {
-        console.log(`::endgroup::`)
+        console.log(`::endgroup::`);
 
         prettyLog("red", "Tests Failed or an Error Occured");
         if (error) console.log(error);
