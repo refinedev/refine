@@ -11,6 +11,8 @@ describe("table-chakra-ui-advanced", () => {
     it("the row should be expandable", () => {
         cy.wait("@getPosts");
 
+        cy.get("tbody tr").should("exist");
+
         cy.get("#expanded-row").should("not.exist");
 
         cy.get(".icon-tabler-chevron-right").first().click();
