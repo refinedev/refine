@@ -151,11 +151,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     render={(_, record) => {
                         return (
                             <Space>
-                                <ShowButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
                                 <EditButton
                                     hideText
                                     size="small"
