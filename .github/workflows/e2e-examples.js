@@ -262,6 +262,8 @@ const runTests = async () => {
         console.log(`::endgroup::`);
     }
 
+    return { success: false };
+
     return { success: true };
 };
 
@@ -273,12 +275,14 @@ runTests()
                 empty ? "No Examples To Run" : "All Tests Passed",
             );
             process.exitCode = 0;
+            process.exit(0);
         } else {
             // console.log(`::endgroup::`);
 
             prettyLog("red", "Tests Failed or an Error Occured");
             if (error) console.log(error);
             process.exitCode = 1;
+            process.exit(1);
         }
     })
     .catch((error) => {
@@ -287,4 +291,5 @@ runTests()
         prettyLog("red", "Tests Failed or an Error Occured");
         if (error) console.log(error);
         process.exitCode = 1;
+        process.exit(1);
     });
