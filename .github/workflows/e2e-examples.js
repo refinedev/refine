@@ -109,7 +109,9 @@ const getProjectsWithE2E = async () => {
                 }
             }),
         )
-    ).filter(Boolean).slice(0, 3);
+    )
+        .filter(Boolean)
+        .slice(0, 3);
 };
 
 const waitForServer = async (port) => {
@@ -121,17 +123,14 @@ const waitForServer = async (port) => {
         try {
             const tcp = waitOn({
                 resources: [`tcp:${port}`],
-                timeout: 15000,
                 log: true,
             });
             const localhost = waitOn({
                 resources: [`http://localhost:${port}`],
-                timeout: 15000,
                 log: true,
             });
             const host = waitOn({
                 resources: [`http://127.0.0.1:${port}`],
-                timeout: 15000,
                 log: true,
             });
 
@@ -247,6 +246,8 @@ const runTests = async () => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
 
                     prettyLog("green", `Killed the dev server`);
+                } else {
+                    return { success: false };
                 }
             } catch (error) {
                 prettyLog("red", `Error occured on killing the dev server`);
