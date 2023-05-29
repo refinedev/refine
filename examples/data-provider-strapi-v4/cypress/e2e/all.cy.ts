@@ -31,6 +31,7 @@ describe("data-provider-strapi-v4", () => {
         cy.interceptStrapiV4PUTPost();
         cy.interceptStrapiV4DELETEPost();
         cy.interceptStrapiV4GETCategories();
+        cy.interceptStrapiV4GETCategory();
 
         cy.visit(BASE_URL);
     });
@@ -175,6 +176,44 @@ describe("data-provider-strapi-v4", () => {
             cy.location("pathname").should("eq", "/posts");
             cy.wait("@strapiV4GetPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
+        });
+
+        it("should show", () => {
+            cy.getShowButton().first().click();
+
+            cy.location("pathname").should("include", "/posts/show/");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.wait("@strapiV4GetPost").then(({ request, response }) => {
+                expect(request.query).to.deep.equal({
+                    populate: ["category", "cover"],
+                });
+                expect(response?.body).to.deep.equal({
+                    data: {
+                        id: 1,
+                        title: "Ut Voluptatem Est",
+                        content:
+                            "Repellendus temporibus provident nobis. Non adipisci quod et est dolorem sed qui. A ut omnis. Et perspiciatis quibusdam maiores aliquid est fugit nam odit. Aut aliquam consectetur deleniti commodi velit. Eum eum aperiam voluptate quos quo. Ut quia doloribus a. Molestiae non est fugit enim fugiat non ea quas accusamus. Consequuntur voluptatem nesciunt dolorum expedita optio deserunt. Illo dolorem et similique.",
+                        category: {
+                            id: 1,
+                        },
+                        status: "published",
+                        createdAt: "2022-06-12T11:03:09.829Z",
+                        slug: "ut-voluptatem-est",
+                    },
+                    meta: {},
+                });
+            });
+
+            cy.wait("@strapiV4GetCategory").then(({ request, response }) => {
+                expect(request.url).to.includes("/categories/1");
+                expect(response?.body).to.deep.equal({
+                    data: {
+                        id: 1,
+                        title: "Sint Ipsam Tempora",
+                    },
+                });
+            });
         });
 
         it("should create", () => {

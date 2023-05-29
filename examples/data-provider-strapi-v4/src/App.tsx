@@ -22,7 +22,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList } from "pages/users";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
@@ -140,6 +140,7 @@ const App: React.FC = () => {
                             list: "/posts",
                             create: "/posts/create",
                             edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
                             meta: {
                                 canDelete: true,
                             },
@@ -184,6 +185,7 @@ const App: React.FC = () => {
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
                             </Route>
 
                             <Route path="/categories">

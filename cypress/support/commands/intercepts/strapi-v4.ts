@@ -29,7 +29,7 @@ Cypress.Commands.add("interceptStrapiV4GETPost", () => {
                 {
                     method: "GET",
                     hostname: hostname,
-                    pathname: `${BASE_PATH}/posts/**`,
+                    pathname: `${BASE_PATH}/posts/*`,
                 },
 
                 (req) => {
@@ -124,4 +124,35 @@ Cypress.Commands.add("interceptStrapiV4GETCategories", () => {
             { fixture: "categories.json" },
         )
         .as("strapiV4GetCategories");
+});
+
+Cypress.Commands.add("interceptStrapiV4GETCategory", () => {
+    return cy
+        .fixture("categories")
+        .then((categories) => {
+            return cy.intercept(
+                {
+                    method: "GET",
+                    hostname: hostname,
+                    pathname: `${BASE_PATH}/categories/*`,
+                },
+
+                (req) => {
+                    const id = getIdFromURL(req.url);
+                    const category = categories.find(
+                        (category) => category.id.toString() === id.toString(),
+                    );
+
+                    if (!category) {
+                        req.reply(404, {});
+                        return;
+                    }
+
+                    req.reply({
+                        data: category,
+                    });
+                },
+            );
+        })
+        .as("strapiV4GetCategory");
 });
