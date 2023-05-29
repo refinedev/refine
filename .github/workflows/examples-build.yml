@@ -144,7 +144,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
 
     name: Build All Examples (Chunk 3)
 
