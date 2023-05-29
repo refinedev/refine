@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 4.16.2
+
+### Patch Changes
+
+-   [#4407](https://github.com/refinedev/refine/pull/4407) [`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `clone` action for document title generation. This fixes the issue of the document title not being generated when the `clone` action is used.
+
+    This change introduces the `documentTitle.{resourceName}.clone` key to the list of `i18n` keys that are used to generate the document title.
+
+    Default title for the `clone` action is `"#{{id}} Clone {{resourceName}} | refine"`.
+
+-   [#4407](https://github.com/refinedev/refine/pull/4407) [`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of `label` not taken into account with auto generated document titles. `label` will be prioritized over the resource name when generating the document title and the `label` will not be capitalized.
+
 ## 4.16.1
 
 ### Patch Changes
