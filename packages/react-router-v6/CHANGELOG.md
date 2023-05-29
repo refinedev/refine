@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 4.3.1
+
+### Patch Changes
+
+-   [#4406](https://github.com/refinedev/refine/pull/4406) [`ad1856f741f`](https://github.com/refinedev/refine/commit/ad1856f741ff9ea97832526935bcf93d1bcc3140) Thanks [@aliemir](https://github.com/aliemir)! - Fix the issue of `matchPath` when the resource action is defined as a function or an object. Switched to using matched route string instead of using the route value from the `resource` definition.
+
 ## 4.3.0
 
 ### Minor Changes
