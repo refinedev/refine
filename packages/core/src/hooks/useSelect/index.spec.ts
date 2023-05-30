@@ -466,7 +466,7 @@ describe("useSelect Hook", () => {
     });
 
     // case: undefined means defaultValueQueryOptions should not provided, queryOptions.enabled should be false
-    // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled override each other
+    // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled to test not override each other
     it.each([true, false, undefined])(
         `should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)`,
         async (enabled) => {
