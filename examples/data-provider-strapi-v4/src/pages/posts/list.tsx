@@ -11,6 +11,7 @@ import {
     EditButton,
     DeleteButton,
     ImageField,
+    ShowButton,
 } from "@refinedev/antd";
 
 import { Table, Select, Space, Form, Radio, Tag } from "antd";
@@ -147,20 +148,27 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column<{ id: string }>
                     title="Actions"
                     dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
+                    render={(_, record) => {
+                        return (
+                            <Space>
+                                <ShowButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <DeleteButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </Space>
+                        );
+                    }}
                 />
             </Table>
         </List>

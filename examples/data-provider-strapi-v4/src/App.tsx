@@ -22,7 +22,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList } from "pages/users";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
@@ -35,23 +35,36 @@ const App: React.FC = () => {
 
     const authProvider: AuthBindings = {
         login: async ({ email, password }) => {
-            const { data, status } = await strapiAuthHelper.login(
-                email,
-                password,
-            );
-            if (status === 200) {
-                localStorage.setItem(TOKEN_KEY, data.jwt);
+            try {
+                const { data, status } = await strapiAuthHelper.login(
+                    email,
+                    password,
+                );
+                if (status === 200) {
+                    localStorage.setItem(TOKEN_KEY, data.jwt);
 
-                // set header axios instance
-                axiosInstance.defaults.headers.common[
-                    "Authorization"
-                ] = `Bearer ${data.jwt}`;
+                    // set header axios instance
+                    axiosInstance.defaults.headers.common[
+                        "Authorization"
+                    ] = `Bearer ${data.jwt}`;
 
+                    return {
+                        success: true,
+                        redirectTo: "/",
+                    };
+                }
+            } catch (error: any) {
+                const errorObj =
+                    error?.response?.data?.message?.[0]?.messages?.[0];
                 return {
-                    success: true,
-                    redirectTo: "/",
+                    success: false,
+                    error: {
+                        message: errorObj?.mesage || "Login failed",
+                        name: errorObj?.id || "Invalid email or password",
+                    },
                 };
             }
+
             return {
                 success: false,
                 error: {
@@ -127,6 +140,10 @@ const App: React.FC = () => {
                             list: "/posts",
                             create: "/posts/create",
                             edit: "/posts/edit/:id",
+                            show: "/posts/show/:id",
+                            meta: {
+                                canDelete: true,
+                            },
                         },
                         {
                             name: "categories",
@@ -168,6 +185,7 @@ const App: React.FC = () => {
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
                             </Route>
 
                             <Route path="/categories">
