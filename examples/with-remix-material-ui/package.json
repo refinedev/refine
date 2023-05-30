@@ -6,7 +6,8 @@
     "build": "refine build",
     "start": "refine dev",
     "start:prod": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "dependencies": {
     "nookies": "^2.5.2",
@@ -35,7 +36,8 @@
     "@remix-run/dev": "^1.6.7",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "cypress": "^12.11.0"
   },
   "engines": {
     "node": ">=14"
