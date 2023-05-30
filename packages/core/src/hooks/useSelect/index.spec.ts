@@ -465,40 +465,73 @@ describe("useSelect Hook", () => {
         expect(mockFunc).toBeCalled();
     });
 
-    it.each([true, false])(
+    it.each([true, false, undefined])(
         `should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)`,
         async (enabled) => {
-            const { result } = renderHook(
+            const mockDataProvider = {
+                default: {
+                    ...MockJSONServer.default,
+                    getList: jest.fn(() =>
+                        Promise.resolve({ data: [], total: 0 }),
+                    ),
+                    getMany: jest.fn(() => Promise.resolve({ data: [] })),
+                },
+            } as IDataMultipleContextProvider;
+
+            renderHook(
                 () =>
                     useSelect({
                         resource: "posts",
                         defaultValue: ["1", "2", "3", "4"],
-                        defaultValueQueryOptions: {
-                            enabled: !enabled,
-                        },
+                        ...(typeof enabled === "undefined"
+                            ? {}
+                            : {
+                                  defaultValueQueryOptions: {
+                                      enabled: !enabled,
+                                  },
+                              }),
                         queryOptions: {
-                            enabled: enabled,
+                            enabled: !!enabled,
                         },
                     }),
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
+                        dataProvider: mockDataProvider,
                         resources: [{ name: "posts" }],
                     }),
                 },
             );
 
             await waitFor(() => {
+                if (typeof enabled === "undefined") {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        0,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        0,
+                    );
+                    return;
+                }
+
                 if (enabled) {
-                    expect(
-                        result.current.defaultValueQueryResult.isSuccess,
-                    ).toBeFalsy();
-                    expect(result.current.queryResult.isSuccess).toBeTruthy();
-                } else {
-                    expect(
-                        result.current.defaultValueQueryResult.isSuccess,
-                    ).toBeTruthy();
-                    expect(result.current.queryResult.isSuccess).toBeFalsy();
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        1,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        0,
+                    );
+
+                    return;
+                }
+
+                if (!enabled && typeof enabled !== "undefined") {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        0,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        1,
+                    );
+                    return;
                 }
             });
         },
