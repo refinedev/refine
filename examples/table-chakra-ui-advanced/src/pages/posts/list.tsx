@@ -88,6 +88,7 @@ export const PostList: React.FC = () => {
                             {(table.getIsSomeRowsSelected() === true ||
                                 table.getIsAllRowsSelected() === true) && (
                                 <Button
+                                    id="delete-selected"
                                     size="xs"
                                     color="red"
                                     variant="outline"
@@ -112,6 +113,7 @@ export const PostList: React.FC = () => {
                     return (
                         <HStack spacing="3">
                             <Checkbox
+                                id="row-select"
                                 isChecked={row.getIsSelected()}
                                 isIndeterminate={row.getIsSomeSelected()}
                                 onChange={row.getToggleSelectedHandler()}
@@ -291,7 +293,7 @@ export const PostList: React.FC = () => {
                         </Td>
                         <Td>{id}</Td>
                         <Td>
-                            <Input {...register("title")} />
+                            <Input id="title-input" {...register("title")} />
                         </Td>
                         <Td>
                             <Select {...register("status")}>
@@ -400,7 +402,7 @@ export const PostList: React.FC = () => {
                                             </Tr>
 
                                             {row.getIsExpanded() && (
-                                                <Tr>
+                                                <Tr id="expanded-row">
                                                     <Td
                                                         colSpan={
                                                             row.getVisibleCells()
