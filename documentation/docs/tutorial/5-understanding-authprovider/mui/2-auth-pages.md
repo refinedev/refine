@@ -110,6 +110,7 @@ const App: React.FC = () => {
                                     </Authenticated>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
                                     <Route
@@ -247,6 +248,7 @@ const App: React.FC = () => {
                                     </Authenticated>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
@@ -375,6 +377,7 @@ const App: React.FC = () => {
                                     </Authenticated>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
@@ -507,6 +510,7 @@ const App: React.FC = () => {
                                     </Authenticated>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
@@ -644,6 +648,7 @@ const App: React.FC = () => {
                                     </Authenticated>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 <Route path="blog-posts">
                                     <Route index element={<BlogPostList />} />
                                 </Route>
