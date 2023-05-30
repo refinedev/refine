@@ -1,3 +1,3 @@
 export * from "./usePagination";
 export * from "./useSiderVisible";
-export * from "./useSiderState";
+export * from "./useThemedLayoutContext";

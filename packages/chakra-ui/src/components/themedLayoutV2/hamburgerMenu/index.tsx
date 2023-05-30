@@ -6,7 +6,7 @@ import {
     IconMenu2,
 } from "@tabler/icons";
 
-import { useSiderState } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 const HamburgerIcon: ComponentWithAs<"button", IconButtonProps> = (
     props: React.PropsWithChildren,
@@ -28,7 +28,7 @@ export const HamburgerMenu: React.FC = () => {
         setSiderCollapsed,
         mobileSiderOpen,
         setMobileSiderOpen,
-    } = useSiderState();
+    } = useThemedLayoutContext();
 
     return (
         <>
