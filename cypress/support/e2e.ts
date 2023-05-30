@@ -24,6 +24,7 @@ import {
     fillChakraUIForm,
 } from "./commands/chakra-ui";
 import {
+    fillMantineForm,
     getMantineFormItemError,
     getMantineLoadingOverlay,
     getMantineNotification,
@@ -107,6 +108,7 @@ Cypress.Commands.add(
 );
 Cypress.Commands.add("getMaterialUIColumnHeader", getMaterialUIColumnHeader);
 
+Cypress.Commands.add("fillMantineForm", fillMantineForm);
 Cypress.Commands.add("getMantineNotification", getMantineNotification);
 Cypress.Commands.add(
     "getMantinePopoverDeleteButton",

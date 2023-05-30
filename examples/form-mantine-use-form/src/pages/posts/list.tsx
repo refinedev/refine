@@ -2,7 +2,13 @@ import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
-import { List, EditButton, DeleteButton, DateField } from "@refinedev/mantine";
+import {
+    List,
+    EditButton,
+    DeleteButton,
+    DateField,
+    ShowButton,
+} from "@refinedev/mantine";
 
 import {
     Box,
@@ -88,6 +94,10 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <Group spacing="xs" noWrap>
+                            <ShowButton
+                                hideText
+                                recordItemId={getValue() as number}
+                            />
                             <EditButton
                                 hideText
                                 recordItemId={getValue() as number}

@@ -1,10 +1,5 @@
 /// <reference types="cypress" />
-
-const mockPost = {
-    title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
-    content: `Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
-    status: "Published",
-};
+/// <reference types="../index.d.ts" />
 
 const assertNotification = (ui: UITypes) => {
     switch (ui) {
@@ -17,6 +12,10 @@ const waitLoadingOverlay = (ui: UITypes) => {
     switch (ui) {
         case "antd":
             return cy.getAntdLoadingOverlay().should("not.exist");
+        case "chakra-ui":
+            return cy.getChakraUILoadingOverlay().should("not.exist");
+        case "mantine":
+            return cy.getMantineLoadingOverlay().should("not.exist");
     }
 };
 
@@ -26,6 +25,8 @@ const fillForm = (ui: UITypes) => {
             return cy.fillAntdForm();
         case "chakra-ui":
             return cy.fillChakraUIForm();
+        case "mantine":
+            return cy.fillMantineForm();
     }
 };
 
@@ -39,7 +40,25 @@ const assertFormShouldHaveResponseValues = (response: any, ui: UITypes) => {
         case "chakra-ui":
             cy.get("#title").should("have.value", body?.title);
             cy.get("#status").should("have.value", body?.status);
+            cy.get("#content").should("have.value", body?.content);
             cy.get("#categoryId").should("have.value", body?.category?.id);
+            break;
+
+        case "mantine":
+            cy.get("#title").should("have.value", body?.title);
+            cy.get("#content textarea").should("have.value", body?.content);
+            cy.get("#status").should(($status) => {
+                return (
+                    $status.val()?.toString().toLowerCase() ===
+                    body?.status.toLowerCase()
+                );
+            });
+            cy.fixture("categories").then((categories) => {
+                const category = categories.find(
+                    (category) => category.id === body?.category?.id,
+                );
+                cy.get("#categoryId").should("have.value", category?.title);
+            });
             break;
     }
 };
@@ -50,9 +69,14 @@ const assertSuccessResponse = (response: any, ui: UITypes) => {
     expect(response?.statusCode).to.eq(200);
     expect(body).to.have.property("id");
     expect(body).to.have.property("category");
-    expect(body?.title).to.eq(mockPost.title);
-    expect(body?.content).to.eq(mockPost.content);
-    expect(body?.status?.toLowerCase()).to.eq(mockPost?.status?.toLowerCase());
+
+    cy.fixture("mock-post").then((mockPost) => {
+        expect(body?.title).to.eq(mockPost.title);
+        expect(body?.content).to.eq(mockPost.content);
+        expect(body?.status?.toLowerCase()).to.eq(
+            mockPost?.status?.toLowerCase(),
+        );
+    });
 
     assertNotification(ui);
     cy.location().should((loc) => {
@@ -173,6 +197,8 @@ export const resourceDelete = ({ ui }: IResourceDeleteParams) => {
         case "chakra-ui":
             cy.getChakraUIPopoverDeleteButton().click();
             break;
+        case "mantine":
+            cy.getMantinePopoverDeleteButton().click();
     }
 
     cy.wait("@deletePost").then((interception) => {

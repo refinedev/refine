@@ -108,6 +108,7 @@ declare namespace Cypress {
             params: IGetMantineFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
         getMantineLoadingOverlay(): Chainable<JQuery<HTMLElement>>;
+        fillMantineForm: () => void;
 
         getMaterialUINotification(): Chainable<JQuery<HTMLElement>>;
         getMaterialUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
