@@ -59,6 +59,7 @@
     "lerna": "^6.1.0",
     "lint-staged": "^10.5.4",
     "patch-package": "^6.4.7",
+    "port-pid": "^0.0.7",
     "prettier": "^2.7.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -68,5 +69,9 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "dependencies": {
+    "pidtree": "^0.6.0",
+    "wait-on": "^7.0.1"
   }
 }

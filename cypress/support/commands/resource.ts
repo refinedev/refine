@@ -26,7 +26,6 @@ export const list = () => {
     cy.url().should("include", "/posts");
     cy.get(".refine-pageHeader-title").should("contain", "Posts");
 
-    // check title
     cy.assertDocumentTitle("Posts", "list");
 };
 
@@ -36,7 +35,6 @@ export const create = ({ ui }: IResourceCreateParams) => {
     cy.getCreateButton().click();
     cy.url().should("include", "/posts/create");
 
-    // check title
     cy.assertDocumentTitle("Post", "create");
 
     switch (ui) {
@@ -66,7 +64,6 @@ export const edit = ({ ui }: IResourceEditParams) => {
     cy.wait("@getPost");
     cy.wait(500);
 
-    // check title
     cy.assertDocumentTitle("Post", "edit");
 
     switch (ui) {
@@ -90,7 +87,6 @@ export const show = () => {
     cy.get(".refine-show-button").first().click();
     cy.intercept("GET", "/posts/*").as("getPost");
 
-    // check title
     cy.assertDocumentTitle("Post", "show");
 
     cy.wait("@getPost").then((interception) => {
