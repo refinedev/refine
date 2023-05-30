@@ -232,7 +232,7 @@ export const useSelect = <
             ...defaultValueQueryOptions,
             enabled:
                 defaultValues.length > 0 &&
-                (defaultValueQueryOptionsFromProps?.enabled ?? true),
+                (defaultValueQueryOptions?.enabled ?? true),
             onSuccess: (data) => {
                 defaultValueQueryOnSuccess(data);
                 defaultValueQueryOptions?.onSuccess?.(data);

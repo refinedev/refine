@@ -54,6 +54,7 @@ declare namespace Cypress {
         getCreateButton(): Chainable<JQuery<HTMLElement>>;
         getDeleteButton(): Chainable<JQuery<HTMLElement>>;
         getEditButton(): Chainable<JQuery<HTMLElement>>;
+        getShowButton(): Chainable<JQuery<HTMLElement>>;
         getPageHeaderTitle(): Chainable<JQuery<HTMLElement>>;
 
         getAntdNotification(): Chainable<JQuery<HTMLElement>>;
@@ -108,5 +109,19 @@ declare namespace Cypress {
         interceptPATCHPost(): Chainable<null>;
         interceptDELETEPost(): Chainable<null>;
         interceptGETCategories(): Chainable<null>;
+
+        interceptSupabaseGETPosts(): Chainable<null>;
+        interceptSupabasePOSTPost(): Chainable<null>;
+        interceptSupabasePATCHPost(): Chainable<null>;
+        interceptSupabaseDELETEPost(): Chainable<null>;
+        interceptSupabaseGETCategories(): Chainable<null>;
+
+        interceptStrapiV4GETPost(): Chainable<null>;
+        interceptStrapiV4GETPosts(): Chainable<null>;
+        interceptStrapiV4POSTPost(): Chainable<null>;
+        interceptStrapiV4PUTPost(): Chainable<null>;
+        interceptStrapiV4DELETEPost(): Chainable<null>;
+        interceptStrapiV4GETCategories(): Chainable<null>;
+        interceptStrapiV4GETCategory(): Chainable<null>;
     }
 }

@@ -465,6 +465,80 @@ describe("useSelect Hook", () => {
         expect(mockFunc).toBeCalled();
     });
 
+    // case: undefined means defaultValueQueryOptions should not provided, queryOptions.enabled should be false
+    // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled to test not override each other
+    it.each([true, false, undefined])(
+        `should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)`,
+        async (enabled) => {
+            const mockDataProvider = {
+                default: {
+                    ...MockJSONServer.default,
+                    getList: jest.fn(() =>
+                        Promise.resolve({ data: [], total: 0 }),
+                    ),
+                    getMany: jest.fn(() => Promise.resolve({ data: [] })),
+                },
+            } as IDataMultipleContextProvider;
+
+            renderHook(
+                () =>
+                    useSelect({
+                        resource: "posts",
+                        defaultValue: ["1", "2", "3", "4"],
+                        ...(typeof enabled === "undefined"
+                            ? {}
+                            : {
+                                  defaultValueQueryOptions: {
+                                      enabled: !enabled,
+                                  },
+                              }),
+                        queryOptions: {
+                            enabled: !!enabled,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: mockDataProvider,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                if (typeof enabled === "undefined") {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        0,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        0,
+                    );
+                    return;
+                }
+
+                if (enabled) {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        1,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        0,
+                    );
+
+                    return;
+                }
+
+                if (!enabled && typeof enabled !== "undefined") {
+                    expect(mockDataProvider.default?.getList).toBeCalledTimes(
+                        0,
+                    );
+                    expect(mockDataProvider.default?.getMany).toBeCalledTimes(
+                        1,
+                    );
+                    return;
+                }
+            });
+        },
+    );
+
     it("should use fetchSize option as pageSize when fetching list", async () => {
         const posts = [
             {

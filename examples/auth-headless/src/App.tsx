@@ -57,6 +57,7 @@ const App: React.FC = () => {
         },
         register: async ({ email, password }) => {
             if (email && password) {
+                localStorage.setItem("email", email);
                 return {
                     success: true,
                     redirectTo: "/",

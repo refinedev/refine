@@ -145,7 +145,8 @@
       "created_at": "Erstellt am",
       "updatedAt": "Aktualisiert am",
       "publishedAt": "Veröffentlicht am",
-      "locale": "Lokal"
+      "locale": "Lokal",
+      "Posts": "Einträge"
     },
     "titles": {
       "create": "Erstellen",

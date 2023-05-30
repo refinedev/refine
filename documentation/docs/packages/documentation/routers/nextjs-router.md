@@ -560,6 +560,7 @@ The default title generation rules are as follows:
 -   edit    : `#{id} Edit Post | refine`
 -   show    : `#{id} Show Post | refine`
 -   create  : `Create new Post | refine`
+-   clone   : `#{id} Clone Post | refine`
 -   default : `refine`
 
 

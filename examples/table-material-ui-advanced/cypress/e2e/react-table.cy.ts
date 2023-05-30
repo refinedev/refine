@@ -3,11 +3,13 @@
 
 describe("table-material-ui-advanced", () => {
     beforeEach(() => {
+        cy.interceptGETPosts();
+
         cy.visit("http://localhost:3000/posts/react-table");
     });
 
     it("the row should be expandable", () => {
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.wait("@getPosts");
 
         cy.get("#expanded-row").should("not.exist");
 
@@ -17,9 +19,11 @@ describe("table-material-ui-advanced", () => {
     });
 
     it("should select all rows when click the checkbox in the table header", () => {
-        cy.getEditButton().should("exist");
+        cy.wait("@getPosts");
 
-        cy.get(".MuiTableCell-head input[type=checkbox]").click();
+        cy.get(".MuiTableCell-head input[type=checkbox]").click({
+            force: true,
+        });
 
         cy.get("#row-select").each((checkbox) => {
             expect(checkbox).to.be.checked;
@@ -27,29 +31,29 @@ describe("table-material-ui-advanced", () => {
     });
 
     it("should select the row when click the checkbox in the row", () => {
-        cy.getEditButton().should("exist");
+        cy.wait("@getPosts");
 
-        cy.get("#row-select").first().click();
+        cy.get("#row-select").first().click({ force: true });
 
         cy.get("#row-select").first().should("be.checked");
     });
 
     it("delete button should only be showed when at least one row is selected", () => {
-        cy.getEditButton().should("exist");
+        cy.wait("@getPosts");
 
         cy.get("#delete-selected").should("not.exist");
 
-        cy.get("#row-select").first().click();
+        cy.get("#row-select").first().click({ force: true });
 
         cy.get("#delete-selected").should("exist");
     });
 
     it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.getEditButton().should("exist");
+        cy.wait("@getPosts");
 
         cy.interceptGETPost();
 
-        cy.getEditButton().first().click();
+        cy.getEditButton().first().click({ force: true });
 
         cy.get(".MuiTableCell-root #title").should("exist");
         cy.get(".MuiTableCell-root .MuiSelect-nativeInput").should("exist");
@@ -69,7 +73,7 @@ describe("table-material-ui-advanced", () => {
         });
 
         cy.get(".MuiTableCell-root #title")
-            .clear()
+            .clear({ force: true })
             .type("Fuga eos enim autem eos.");
 
         cy.interceptPATCHPost();

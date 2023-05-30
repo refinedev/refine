@@ -163,7 +163,8 @@
       "created_at": "Created At",
       "publishedAt": "Published At",
       "updatedAt": "Updated At",
-      "locale": "Locale"
+      "locale": "Locale",
+      "Posts": "Posts"
     },
     "titles": {
       "create": "Create Category",

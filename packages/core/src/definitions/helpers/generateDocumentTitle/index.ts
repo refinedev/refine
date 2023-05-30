@@ -20,15 +20,21 @@ export function generateDefaultDocumentTitle(
 ) {
     const actionPrefixMatcher = {
         create: "Create new ",
+        clone: `#${id ?? ""} Clone `,
         edit: `#${id ?? ""} Edit `,
         show: `#${id ?? ""} Show `,
         list: "",
     };
 
-    const resourceName = userFriendlyResourceName(
-        resource?.name,
-        action === "list" ? "plural" : "singular",
-    );
+    const resourceName =
+        resource?.label ??
+        resource?.meta?.label ??
+        capitalize(
+            userFriendlyResourceName(
+                resource?.name,
+                action === "list" ? "plural" : "singular",
+            ),
+        );
 
     const defaultTitle = translate("documentTitle.default", "refine");
     const suffix = translate("documentTitle.suffix", " | refine");
@@ -39,8 +45,10 @@ export function generateDefaultDocumentTitle(
             `documentTitle.${resource.name}.${action}`,
             { id },
             `${
-                actionPrefixMatcher[action as keyof typeof actionPrefixMatcher]
-            }${capitalize(resourceName)}${suffix}`,
+                actionPrefixMatcher[
+                    action as keyof typeof actionPrefixMatcher
+                ] ?? ""
+            }${resourceName}${suffix}`,
         );
     }
 

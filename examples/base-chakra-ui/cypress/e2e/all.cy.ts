@@ -7,7 +7,7 @@ Cypress.on("uncaught:exception", () => {
 
 describe("base-chakra-ui", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:5173");
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
