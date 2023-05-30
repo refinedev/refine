@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-export const documentTitle = (resource: string, action?: IAction) => {
+export const assertDocumentTitle = (resource: string, action?: IAction) => {
     switch (action) {
         case "list":
             cy.document().its("title").should("eq", `${resource} | refine`);

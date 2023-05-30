@@ -52,7 +52,10 @@ declare namespace Cypress {
         ): Chainable<JQuery<HTMLElement>>;
         resourceShow(): Chainable<void>;
 
-        documentTitle(resource: string, action?: IAction): Chainable<void>;
+        assertDocumentTitle(
+            resource: string,
+            action?: IAction,
+        ): Chainable<void>;
 
         getSaveButton(): Chainable<JQuery<HTMLElement>>;
         getCreateButton(): Chainable<JQuery<HTMLElement>>;

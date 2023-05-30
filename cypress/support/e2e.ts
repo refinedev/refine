@@ -36,7 +36,7 @@ import {
     getShowButton,
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
-import { documentTitle } from "./commands/document-title-handler";
+import { assertDocumentTitle } from "./commands/document-title-handler";
 
 // add commands to the Cypress chain
 import "./commands/intercepts";
@@ -52,7 +52,7 @@ Cypress.Keyboard.defaults({
     keystrokeDelay: 0,
 });
 
-Cypress.Commands.add("documentTitle", documentTitle);
+Cypress.Commands.add("assertDocumentTitle", assertDocumentTitle);
 
 Cypress.Commands.add("resourceList", list);
 Cypress.Commands.add("resourceCreate", create);
