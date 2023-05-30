@@ -6,7 +6,7 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("base-antd", () => {
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "http://localhost:5173";
 
     beforeEach(() => {
         cy.visit(BASE_URL);
