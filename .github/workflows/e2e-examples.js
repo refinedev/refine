@@ -116,7 +116,7 @@ const waitForServer = async (port) => {
     return new Promise(async (resolve, reject) => {
         setTimeout(() => {
             resolve(false);
-        }, 60000);
+        }, 120000);
 
         try {
             const tcp = waitOn({
