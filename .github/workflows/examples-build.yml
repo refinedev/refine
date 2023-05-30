@@ -132,7 +132,7 @@ jobs:
         run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
