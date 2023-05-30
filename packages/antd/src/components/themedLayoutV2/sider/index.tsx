@@ -28,7 +28,7 @@ import {
 import { drawerButtonStyles } from "./styles";
 import { RefineThemedLayoutV2SiderProps } from "../types";
 import { ThemedTitleV2 } from "@components";
-import { useSiderState } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 const { SubMenu } = Menu;
 const { useToken } = theme;
@@ -45,7 +45,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         setSiderCollapsed,
         mobileSiderOpen,
         setMobileSiderOpen,
-    } = useSiderState();
+    } = useThemedLayoutContext();
 
     const isExistAuthentication = useIsExistAuthentication();
     const routerType = useRouterType();
