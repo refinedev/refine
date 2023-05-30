@@ -465,6 +465,45 @@ describe("useSelect Hook", () => {
         expect(mockFunc).toBeCalled();
     });
 
+    it.each([true, false])(
+        `should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)`,
+        async (enabled) => {
+            const { result } = renderHook(
+                () =>
+                    useSelect({
+                        resource: "posts",
+                        defaultValue: ["1", "2", "3", "4"],
+                        defaultValueQueryOptions: {
+                            enabled: !enabled,
+                        },
+                        queryOptions: {
+                            enabled: enabled,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                if (enabled) {
+                    expect(
+                        result.current.defaultValueQueryResult.isSuccess,
+                    ).toBeFalsy();
+                    expect(result.current.queryResult.isSuccess).toBeTruthy();
+                } else {
+                    expect(
+                        result.current.defaultValueQueryResult.isSuccess,
+                    ).toBeTruthy();
+                    expect(result.current.queryResult.isSuccess).toBeFalsy();
+                }
+            });
+        },
+    );
+
     it("should use fetchSize option as pageSize when fetching list", async () => {
         const posts = [
             {
