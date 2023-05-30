@@ -37,7 +37,7 @@ import {
 import { RefineThemedLayoutV2SiderProps } from "../types";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
-import { useSiderState } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
@@ -49,7 +49,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         setSiderCollapsed,
         mobileSiderOpen,
         setMobileSiderOpen,
-    } = useSiderState();
+    } = useThemedLayoutContext();
 
     const drawerWidth = () => {
         if (siderCollapsed) return 56;

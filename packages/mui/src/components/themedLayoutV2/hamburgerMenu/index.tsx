@@ -6,7 +6,7 @@ import Menu from "@mui/icons-material/Menu";
 import type { ExtendButtonBase } from "@mui/material/ButtonBase";
 import type { IconButtonTypeMap } from "@mui/material/IconButton";
 
-import { useSiderState } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
     props: React.PropsWithChildren,
@@ -27,7 +27,7 @@ export const HamburgerMenu: React.FC = () => {
         setSiderCollapsed,
         mobileSiderOpen,
         setMobileSiderOpen,
-    } = useSiderState();
+    } = useThemedLayoutContext();
 
     return (
         <>
