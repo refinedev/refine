@@ -154,6 +154,8 @@ const runTests = async () => {
     prettyLog("blue", `Examples: ${examplesToRun.join(", ")}`);
     console.log("\n");
 
+    const failedExamples = []; // { name: string; error: any };
+
     for await (const path of examplesToRun) {
         console.log(`::group::Example ${path}`);
 
@@ -165,6 +167,9 @@ const runTests = async () => {
 
         let start;
 
+        let failed = false;
+
+        // starting the dev server
         try {
             const additionalParams = await getAdditionalStartParams(
                 `${EXAMPLES_DIR}/${path}`,
@@ -181,8 +186,7 @@ const runTests = async () => {
             start.stderr.on("data", console.error);
         } catch (error) {
             prettyLog("red", `Error occured on starting the dev server`);
-
-            return { error, success: false };
+            failed = true;
         }
 
         try {
@@ -197,8 +201,7 @@ const runTests = async () => {
                     "red",
                     `Error occured on waiting for the server to start`,
                 );
-
-                return { success: false };
+                failed = true;
             }
         } catch (error) {
             prettyLog(
@@ -207,27 +210,29 @@ const runTests = async () => {
             );
             if (error) console.log(error);
 
-            return { success: false, error };
+            failed = true;
         }
 
         try {
-            const params =
-                "" ??
-                `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
-            const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
+            if (!failed) {
+                const params =
+                    "" ??
+                    `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+                const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
 
-            prettyLog("blue", `Running tests for ${path}`);
+                prettyLog("blue", `Running tests for ${path}`);
 
-            const { promise } = execPromise(runner);
+                const { promise } = execPromise(runner);
 
-            await promise;
+                await promise;
 
-            prettyLog("green", `Tests for ${path} finished`);
+                prettyLog("green", `Tests for ${path} finished`);
+            }
         } catch (error) {
             prettyLog("red", `Error occured on tests for ${path}`);
             if (error) console.log(error);
 
-            return { success: false, error };
+            failed = true;
         } finally {
             prettyLog("blue", `Killing the dev server`);
 
@@ -245,26 +250,34 @@ const runTests = async () => {
 
                     prettyLog("green", `Killed the dev server`);
                 } else {
-                    return { success: false };
+                    failed = true;
                 }
             } catch (error) {
                 prettyLog("red", `Error occured on killing the dev server`);
                 if (error) console.log(error);
-
-                return { success: false, error };
+                failed = true;
             }
         }
 
-        prettyLog("green", `Tests for ${path} finished successfully`);
+        if (!failed) {
+            prettyLog("green", `Tests for ${path} finished successfully`);
+        } else {
+            failedExamples.push({ name: path });
+            prettyLog("red", `Tests for ${path} failed.`);
+        }
 
         console.log(`::endgroup::`);
+    }
+
+    if (failedExamples.length > 0) {
+        return { success: false, failedExamples };
     }
 
     return { success: true };
 };
 
 runTests()
-    .then(({ error, success, empty }) => {
+    .then(({ error, success, empty, failedExamples }) => {
         if (success) {
             prettyLog(
                 "green",
@@ -273,17 +286,16 @@ runTests()
             process.exitCode = 0;
             process.exit(0);
         } else {
-            // console.log(`::endgroup::`);
-
             prettyLog("red", "Tests Failed or an Error Occured");
             if (error) console.log(error);
+
+            if (failedExamples) prettyLog("red", `Failed Examples: \n${failedExamples.map(({ name }) => `  |-- ${name}`).join("\n")}`);
+
             process.exitCode = 1;
             process.exit(1);
         }
     })
     .catch((error) => {
-        // console.log(`::endgroup::`);
-
         prettyLog("red", "Tests Failed or an Error Occured");
         if (error) console.log(error);
         process.exitCode = 1;
