@@ -25,6 +25,14 @@ import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 
+/**
+ *  mock auth credentials to simulate authentication
+ */
+const authCredentials = {
+    email: "demo@refine.dev",
+    password: "demodemo",
+};
+
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
         login: async ({ providerName, email }) => {
@@ -44,7 +52,7 @@ const App: React.FC = () => {
                 };
             }
 
-            if (email) {
+            if (email === authCredentials.email) {
                 localStorage.setItem("email", email);
                 return {
                     success: true,
@@ -61,7 +69,7 @@ const App: React.FC = () => {
             };
         },
         register: async (params) => {
-            if (params.email && params.password) {
+            if (params.email === authCredentials.email && params.password) {
                 localStorage.setItem("email", params.email);
                 return {
                     success: true,
@@ -77,7 +85,7 @@ const App: React.FC = () => {
             };
         },
         updatePassword: async (params) => {
-            if (params.newPassword) {
+            if (params.password === authCredentials.password) {
                 //we can update password here
                 return {
                     success: true,
@@ -92,7 +100,7 @@ const App: React.FC = () => {
             };
         },
         forgotPassword: async (params) => {
-            if (params.email) {
+            if (params.email === authCredentials.email) {
                 //we can send email with reset password link here
                 return {
                     success: true,
@@ -220,6 +228,11 @@ const App: React.FC = () => {
                                     element={
                                         <AuthPage
                                             type="login"
+                                            formProps={{
+                                                initialValues: {
+                                                    ...authCredentials,
+                                                },
+                                            }}
                                             providers={[
                                                 {
                                                     name: "google",

@@ -19,7 +19,7 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: PostList,
+                        list: "/posts",
                     },
                 ]}
                 options={{

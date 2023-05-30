@@ -33,6 +33,7 @@ import {
     getEditButton,
     getPageHeaderTitle,
     getSaveButton,
+    getShowButton,
 } from "./commands/refine";
 import { list, create, edit, show } from "./commands/resource";
 import { documentTitle } from "./commands/document-title-handler";
@@ -62,6 +63,7 @@ Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
 Cypress.Commands.add("getDeleteButton", getDeleteButton);
 Cypress.Commands.add("getEditButton", getEditButton);
+Cypress.Commands.add("getShowButton", getShowButton);
 Cypress.Commands.add("getPageHeaderTitle", getPageHeaderTitle);
 
 Cypress.Commands.add("getAntdNotification", getAntdNotification);
@@ -107,3 +109,13 @@ Cypress.Commands.add(
 );
 Cypress.Commands.add("getMantineFormItemError", getMantineFormItemError);
 Cypress.Commands.add("getMantineLoadingOverlay", getMantineLoadingOverlay);
+
+/**
+ * Disable telemetry calls
+ */
+beforeEach(() => {
+    cy.intercept("https://telemetry.refine.dev/**", {
+        body: "Disabled telemetry to avoid unwanted entries in the database",
+        statusCode: 200,
+    }).as("telemetry");
+});
