@@ -44,6 +44,7 @@ import { assertDocumentTitle } from "./commands/document-title-handler";
 // add commands to the Cypress chain
 import "./commands/intercepts";
 import {
+    fillMaterialUIForm,
     getMaterialUIColumnHeader,
     getMaterialUIDeletePopoverButton,
     getMaterialUIFormItemError,
@@ -116,6 +117,7 @@ Cypress.Commands.add(
 );
 Cypress.Commands.add("getMantineFormItemError", getMantineFormItemError);
 Cypress.Commands.add("getMantineLoadingOverlay", getMantineLoadingOverlay);
+Cypress.Commands.add("fillMaterialUIForm", fillMaterialUIForm);
 
 /**
  * Disable telemetry calls

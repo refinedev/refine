@@ -119,6 +119,7 @@ declare namespace Cypress {
         getMaterialUIColumnHeader(
             index: number,
         ): Chainable<JQuery<HTMLElement>>;
+        fillMaterialUIForm: () => void;
 
         interceptGETPost(): Chainable<null>;
         interceptGETPosts(): Chainable<null>;

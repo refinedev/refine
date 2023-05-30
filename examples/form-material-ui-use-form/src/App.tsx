@@ -18,6 +18,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostShow } from "pages/posts/show";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
                                 list: "/posts",
                                 create: "/posts/create",
                                 edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
                                 meta: {
                                     canDelete: true,
                                 },
@@ -75,6 +77,10 @@ const App: React.FC = () => {
                                     <Route
                                         path="edit/:id"
                                         element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
                                     />
                                 </Route>
 

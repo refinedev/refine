@@ -5,6 +5,12 @@ const assertNotification = (ui: UITypes) => {
     switch (ui) {
         case "antd":
             return cy.getAntdNotification().should("contain", "Success");
+        case "chakra-ui":
+            return cy.getChakraUINotification().should("contain", "Success");
+        case "mantine":
+            return cy.getMantineNotification().should("contain", "Success");
+        case "material-ui":
+            return cy.getMaterialUINotification().should("contain", "Success");
     }
 };
 
@@ -16,6 +22,8 @@ const waitLoadingOverlay = (ui: UITypes) => {
             return cy.getChakraUILoadingOverlay().should("not.exist");
         case "mantine":
             return cy.getMantineLoadingOverlay().should("not.exist");
+        case "material-ui":
+            return cy.getMaterialUILoadingCircular().should("not.exist");
     }
 };
 
@@ -27,6 +35,8 @@ const fillForm = (ui: UITypes) => {
             return cy.fillChakraUIForm();
         case "mantine":
             return cy.fillMantineForm();
+        case "material-ui":
+            return cy.fillMaterialUIForm();
     }
 };
 
@@ -36,12 +46,34 @@ const assertFormShouldHaveResponseValues = (response: any, ui: UITypes) => {
     // assert response values are equal to the form values
     switch (ui) {
         case "antd":
+            cy.get("#title").should("have.value", body?.title);
+            cy.get("#content textarea").should("have.value", body?.content);
+            cy.get("#status")
+                .parent()
+                .siblings()
+                .last()
+                .should(($status) => {
+                    return (
+                        $status.val()?.toString().toLowerCase() ===
+                        body?.status.toLowerCase()
+                    );
+                });
+            cy.get("#category_id")
+                .parent()
+                .siblings()
+                .last()
+                .should(($category_id) => {
+                    return (
+                        $category_id.val()?.toString().toLowerCase() ===
+                        body?.status.toLowerCase()
+                    );
+                });
             break;
         case "chakra-ui":
             cy.get("#title").should("have.value", body?.title);
             cy.get("#status").should("have.value", body?.status);
             cy.get("#content").should("have.value", body?.content);
-            cy.get("#categoryId").should("have.value", body?.category?.id);
+            cy.get("#category_id").should("have.value", body?.category?.id);
             break;
 
         case "mantine":
@@ -58,6 +90,18 @@ const assertFormShouldHaveResponseValues = (response: any, ui: UITypes) => {
                     (category) => category.id === body?.category?.id,
                 );
                 cy.get("#categoryId").should("have.value", category?.title);
+            });
+            break;
+
+        case "material-ui":
+            cy.get("#title").should("have.value", body?.title);
+            cy.get("#content").should("have.value", body?.content);
+            cy.get("#status").should("have.value", body?.status);
+            cy.fixture("categories").then((categories) => {
+                const category = categories.find(
+                    (category) => category.id === body?.category?.id,
+                );
+                cy.get("#category").should("have.value", category?.title);
             });
             break;
     }
@@ -199,6 +243,10 @@ export const resourceDelete = ({ ui }: IResourceDeleteParams) => {
             break;
         case "mantine":
             cy.getMantinePopoverDeleteButton().click();
+            break;
+        case "material-ui":
+            cy.getMaterialUIDeletePopoverButton().click();
+            break;
     }
 
     cy.wait("@deletePost").then((interception) => {
