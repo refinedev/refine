@@ -27,7 +27,7 @@ describe("base-antd", () => {
         });
     });
 
-    it.only("should edit resource", () => {
+    it("should edit resource", () => {
         cy.resourceEdit({ ui: "antd" });
     });
 
