@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+type UITypes = "antd" | "material-ui" | "chakra-ui" | "mantine";
+
 interface ISetAntdDropdownParams {
     id: string;
     selectIndex?: number;
@@ -32,11 +34,15 @@ interface IGetMantineFormItemErrorParams {
 }
 
 interface IResourceCreateParams {
-    ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
+    ui: UITypes;
 }
 
 interface IResourceEditParams {
-    ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
+    ui: UITypes;
+}
+
+interface IResourceDeleteParams {
+    ui: UITypes;
 }
 
 type IAction = "list" | "edit" | "show" | "create" | "clone" | "default";
@@ -51,6 +57,7 @@ declare namespace Cypress {
             params: IResourceCreateParams,
         ): Chainable<JQuery<HTMLElement>>;
         resourceShow(): Chainable<void>;
+        resourceDelete(params: IResourceCreateParams): Chainable<void>;
 
         assertDocumentTitle(
             resource: string,
@@ -83,6 +90,7 @@ declare namespace Cypress {
         getAntdFormItemError(
             params: IGetAntdFormItemErrorParams,
         ): Chainable<JQuery<HTMLElement>>;
+        fillAntdForm: () => void;
 
         getChakraUINotification(): Chainable<JQuery<HTMLElement>>;
         getChakraUIToast(): Chainable<JQuery<HTMLElement>>;
@@ -92,6 +100,7 @@ declare namespace Cypress {
         getChakraUIDeletePopoverButton(): Chainable<JQuery<HTMLElement>>;
         getChakraUILoadingOverlay(): Chainable<JQuery<HTMLElement>>;
         getChakraUIPopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
+        fillChakraUIForm: () => void;
 
         getMantineNotification(): Chainable<JQuery<HTMLElement>>;
         getMantinePopoverDeleteButton(): Chainable<JQuery<HTMLElement>>;
@@ -116,6 +125,7 @@ declare namespace Cypress {
         interceptPATCHPost(): Chainable<null>;
         interceptDELETEPost(): Chainable<null>;
         interceptGETCategories(): Chainable<null>;
+        interceptGETCategory(): Chainable<null>;
 
         interceptSupabaseGETPosts(): Chainable<null>;
         interceptSupabasePOSTPost(): Chainable<null>;

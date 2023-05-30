@@ -13,6 +13,7 @@ import {
     getAntdPaginationItem,
     getTableRowExpandButton,
     setAntdRangeDatePickerToToday,
+    fillAntdForm,
 } from "./commands/antd";
 import {
     getChakraUIPopoverDeleteButton,
@@ -20,6 +21,7 @@ import {
     getChakraUILoadingOverlay,
     getChakraUINotification,
     getChakraUIToast,
+    fillChakraUIForm,
 } from "./commands/chakra-ui";
 import {
     getMantineFormItemError,
@@ -35,7 +37,7 @@ import {
     getSaveButton,
     getShowButton,
 } from "./commands/refine";
-import { list, create, edit, show } from "./commands/resource";
+import { list, create, edit, show, resourceDelete } from "./commands/resource";
 import { assertDocumentTitle } from "./commands/document-title-handler";
 
 // add commands to the Cypress chain
@@ -58,6 +60,7 @@ Cypress.Commands.add("resourceList", list);
 Cypress.Commands.add("resourceCreate", create);
 Cypress.Commands.add("resourceEdit", edit);
 Cypress.Commands.add("resourceShow", show);
+Cypress.Commands.add("resourceDelete", resourceDelete);
 
 Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
@@ -66,6 +69,7 @@ Cypress.Commands.add("getEditButton", getEditButton);
 Cypress.Commands.add("getShowButton", getShowButton);
 Cypress.Commands.add("getPageHeaderTitle", getPageHeaderTitle);
 
+Cypress.Commands.add("fillAntdForm", fillAntdForm);
 Cypress.Commands.add("getAntdNotification", getAntdNotification);
 Cypress.Commands.add("setAntdSelect", setAntdSelect);
 Cypress.Commands.add("setAntdDropdown", setAntdDropdown);
@@ -81,6 +85,7 @@ Cypress.Commands.add(
     setAntdRangeDatePickerToToday,
 );
 
+Cypress.Commands.add("fillChakraUIForm", fillChakraUIForm);
 Cypress.Commands.add("getChakraUINotification", getChakraUINotification);
 Cypress.Commands.add("getChakraUIToast", getChakraUIToast);
 Cypress.Commands.add("getChakraUIFormItemError", getChakraUIFormItemError);
