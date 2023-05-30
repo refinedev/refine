@@ -6,7 +6,7 @@ import {
     IconIndentIncrease,
 } from "@tabler/icons";
 
-import { useSiderState } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 export const HamburgerMenu: React.FC = () => {
     const {
@@ -14,7 +14,7 @@ export const HamburgerMenu: React.FC = () => {
         setSiderCollapsed,
         mobileSiderOpen,
         setMobileSiderOpen,
-    } = useSiderState();
+    } = useThemedLayoutContext();
 
     return (
         <>

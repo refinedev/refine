@@ -3,9 +3,9 @@ import { useContext } from "react";
 import { ThemedLayoutContext } from "@contexts";
 import { IThemedLayoutContext } from "@contexts/themedLayoutContext/IThemedLayoutContext";
 
-export type UseSiderStateType = IThemedLayoutContext;
+export type UseThemedLayoutContextType = IThemedLayoutContext;
 
-export const useSiderState = (): UseSiderStateType => {
+export const useThemedLayoutContext = (): UseThemedLayoutContextType => {
     const {
         mobileSiderOpen,
         siderCollapsed,

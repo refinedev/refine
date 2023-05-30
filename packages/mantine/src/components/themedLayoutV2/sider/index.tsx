@@ -32,7 +32,7 @@ import {
 import { IconList, IconPower, IconDashboard } from "@tabler/icons";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
-import { useSiderState } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 import { RefineThemedLayoutV2SiderProps } from "../types";
 
@@ -45,7 +45,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 }) => {
     const theme = useMantineTheme();
     const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
-        useSiderState();
+        useThemedLayoutContext();
 
     const routerType = useRouterType();
     const NewLink = useLink();
