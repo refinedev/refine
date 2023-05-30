@@ -39,6 +39,8 @@ interface IResourceEditParams {
     ui: "antd" | "material-ui" | "chakra-ui" | "mantine";
 }
 
+type IAction = "list" | "edit" | "show" | "create" | "clone" | "default";
+
 declare namespace Cypress {
     interface Chainable {
         resourceList(): Chainable<void>;
@@ -49,6 +51,8 @@ declare namespace Cypress {
             params: IResourceCreateParams,
         ): Chainable<JQuery<HTMLElement>>;
         resourceShow(): Chainable<void>;
+
+        documentTitle(resource: string, action?: IAction): Chainable<void>;
 
         getSaveButton(): Chainable<JQuery<HTMLElement>>;
         getCreateButton(): Chainable<JQuery<HTMLElement>>;
