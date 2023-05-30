@@ -63,6 +63,8 @@ export const PostList: React.FC = () => {
                             />{" "}
                             {table.getIsSomeRowsSelected() && (
                                 <button
+                                    id="delete-selected"
+                                    type="button"
                                     onClick={() =>
                                         deleteSelectedItems(
                                             table
@@ -90,7 +92,10 @@ export const PostList: React.FC = () => {
                                     onChange: row.getToggleSelectedHandler(),
                                 }}
                             />
-                            <span onClick={() => row.toggleExpanded()}>
+                            <span
+                                id="expand-toggle"
+                                onClick={() => row.toggleExpanded()}
+                            >
                                 {row.getIsExpanded() ? "👇" : "👉"}
                             </span>
                         </>
@@ -262,7 +267,7 @@ export const PostList: React.FC = () => {
                         </td>
                         <td>
                             <input
-                                id="title"
+                                id="title-input"
                                 type="text"
                                 defaultValue={title}
                                 {...register("title", {
@@ -272,7 +277,7 @@ export const PostList: React.FC = () => {
                         </td>
                         <td>
                             <select
-                                id="category.id"
+                                id="category-select"
                                 {...register("category.id", {
                                     required: "Category title is required",
                                 })}
@@ -402,7 +407,7 @@ export const PostList: React.FC = () => {
                                         </tr>
 
                                         {row.getIsExpanded() ? (
-                                            <tr>
+                                            <tr id="expanded-row">
                                                 <td
                                                     colSpan={
                                                         row.getVisibleCells()

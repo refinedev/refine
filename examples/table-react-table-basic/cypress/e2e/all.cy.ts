@@ -1,19 +1,21 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("table-material-ui-use-data-grid", () => {
+describe("table-react-table-basic", () => {
     beforeEach(() => {
+        cy.interceptGETPosts();
+
         cy.visit("http://localhost:3000");
     });
 
     it("should work with sorter", () => {
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.wait("@getPosts");
 
         cy.intercept(
             {
                 url: "/posts*",
                 query: {
-                    _sort: "title",
+                    _sort: "id",
                     _order: "desc",
                 },
             },
@@ -22,11 +24,11 @@ describe("table-material-ui-use-data-grid", () => {
             },
         ).as("getDescPosts");
 
-        cy.getMaterialUIColumnHeader(2).click();
+        cy.get("thead th div").contains("ID").click();
 
         cy.url().should(
             "include",
-            "sorters[0][field]=title&sorters[0][order]=desc",
+            "sorters[0][field]=id&sorters[0][order]=desc",
         );
 
         cy.wait("@getDescPosts");
@@ -34,17 +36,32 @@ describe("table-material-ui-use-data-grid", () => {
         cy.intercept(
             {
                 url: "/posts*",
+                query: {
+                    _sort: "id",
+                    _order: "asc",
+                },
             },
             {
                 fixture: "posts.json",
             },
-        ).as("getPosts");
+        ).as("getAscPosts");
 
-        cy.getMaterialUIColumnHeader(2).click();
+        cy.get("thead th div").contains("ID").click();
+
+        cy.url().should(
+            "include",
+            "sorters[0][field]=id&sorters[0][order]=asc",
+        );
+
+        cy.wait("@getAscPosts");
+
+        cy.interceptGETPosts();
+
+        cy.get("thead th div").contains("ID").click();
 
         cy.url().should(
             "not.include",
-            "sorters[0][field]=title&sorters[0][order]=desc",
+            "sorters[0][field]=id&sorters[0][order]=desc",
         );
 
         cy.wait("@getPosts").then((interception) => {
@@ -54,41 +71,10 @@ describe("table-material-ui-use-data-grid", () => {
             expect(_sort).to.undefined;
             expect(_order).to.undefined;
         });
-
-        cy.intercept(
-            {
-                url: "/posts*",
-                query: {
-                    _sort: "title",
-                    _order: "asc",
-                },
-            },
-            {
-                fixture: "posts.json",
-            },
-        ).as("getAscPosts");
-
-        cy.getMaterialUIColumnHeader(2).click();
-
-        cy.url().should(
-            "include",
-            "sorters[0][field]=title&sorters[0][order]=asc",
-        );
-
-        cy.wait("@getAscPosts");
     });
 
     it("should work with filter", () => {
-        cy.getMaterialUILoadingCircular().should("not.exist");
-
-        cy.getMaterialUIColumnHeader(2).within(() =>
-            cy.get(`.MuiDataGrid-menuIcon > button`).click({ force: true }),
-        );
-
-        cy.get(".MuiDataGrid-menu > div > .MuiList-root")
-            .children()
-            .eq(3)
-            .click();
+        cy.wait("@getPosts");
 
         cy.intercept(
             {
@@ -102,18 +88,18 @@ describe("table-material-ui-use-data-grid", () => {
             },
         ).as("getFilteredPosts");
 
-        cy.get("[placeholder='Filter value']").type("lorem");
+        cy.get("#title").type("lorem");
 
         cy.url().should(
             "include",
-            `filters[0][field]=title&filters[0][value]=lorem&filters[0][operator]=contains`,
+            `filters[0][field]=title&filters[0][operator]=contains&filters[0][value]=lorem`,
         );
 
         cy.wait("@getFilteredPosts");
     });
 
     it("should work with pagination", () => {
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.wait("@getPosts");
 
         cy.intercept(
             {
@@ -128,7 +114,7 @@ describe("table-material-ui-use-data-grid", () => {
             },
         ).as("getSecondPagePosts");
 
-        cy.get("[title='Go to next page']").click();
+        cy.get("#next-button").click();
 
         cy.url().should("include", "current=2");
 
@@ -147,7 +133,7 @@ describe("table-material-ui-use-data-grid", () => {
             },
         ).as("getFirstPagePosts");
 
-        cy.get("[title='Go to previous page']").click();
+        cy.get("#previous-button").click();
 
         cy.url().should("include", "current=1");
 
@@ -155,20 +141,11 @@ describe("table-material-ui-use-data-grid", () => {
     });
 
     it("should set current `1` when filter changed", () => {
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.wait("@getPosts");
 
-        cy.get("[title='Go to next page']").click();
+        cy.get("#next-button").click();
 
-        cy.getMaterialUIColumnHeader(2).within(() =>
-            cy.get(`.MuiDataGrid-menuIcon > button`).click({ force: true }),
-        );
-
-        cy.get(".MuiDataGrid-menu > div > .MuiList-root")
-            .children()
-            .eq(3)
-            .click();
-
-        cy.get("[placeholder='Filter value']").type("lorem");
+        cy.get("#title").type("lorem");
 
         cy.url().should("include", "current=1");
     });
