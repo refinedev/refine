@@ -112,29 +112,15 @@ const getProjectsWithE2E = async () => {
     ).filter(Boolean);
 };
 
-const waitForServer = async (port) => {
+const waitOnFor = (resource) => {
     return new Promise(async (resolve, reject) => {
-        setTimeout(() => {
-            resolve(false);
-        }, 120000);
-
         try {
-            const tcp = waitOn({
-                resources: [`tcp:${port}`],
-                log: true,
-            });
-            const localhost = waitOn({
-                resources: [`http://localhost:${port}`],
-                log: true,
-            });
-            const host = waitOn({
-                resources: [`http://127.0.0.1:${port}`],
+            await waitOn({
+                resources: [resource],
                 log: true,
             });
 
-            await Promise.any([tcp, localhost, host]);
-
-            resolve(true);
+            resolve(resource);
         } catch (error) {
             if (error) console.log(error);
 
@@ -142,6 +128,50 @@ const waitForServer = async (port) => {
         }
     });
 };
+
+const waitForServer = async (port) => {
+    return new Promise(async (resolve, reject) => {
+        setTimeout(() => {
+            resolve(false);
+        }, 120000);
+
+        try {
+            const resolvedResource = await Promise.any([
+                waitOnFor(`tcp:${port}`),
+                waitOnFor(`http://localhost:${port}`),
+                waitOnFor(`http://127.0.0.1:${port}`),
+            ]);
+
+            resolve(resolvedResource)
+        } catch (error) {
+            if (error) console.log(error);
+
+            resolve(false);
+        }
+    });
+};
+
+const waitForClose = (resource) => {
+    return new Promise(async (resolve, reject) => {
+        setTimeout(() => {
+            resolve(false);
+        }, 120000);
+
+        try {
+            await waitOn({
+                resources: [resource],
+                reverse: true,
+                log: true,
+            });
+
+            resolve(resource);
+        } catch (error) {
+            if (error) console.log(error);
+
+            resolve(false);
+        }
+    });
+}
 
 const runTests = async () => {
     const examplesToRun = await getProjectsWithE2E();
@@ -189,6 +219,8 @@ const runTests = async () => {
             failed = true;
         }
 
+        let respondedUrl = false;
+
         try {
             prettyLog(
                 "blue",
@@ -202,6 +234,9 @@ const runTests = async () => {
                     `Error occured on waiting for the server to start`,
                 );
                 failed = true;
+            } else {
+                respondedUrl = status;
+                prettyLog("green", `Server started at ${status}`);
             }
         } catch (error) {
             prettyLog(
@@ -246,7 +281,7 @@ const runTests = async () => {
                         process.kill(pid, "SIGINT");
                     });
 
-                    await new Promise((resolve) => setTimeout(resolve, 500));
+                    await waitForClose(respondedUrl);
 
                     prettyLog("green", `Killed the dev server`);
                 } else {
@@ -289,7 +324,13 @@ runTests()
             prettyLog("red", "Tests Failed or an Error Occured");
             if (error) console.log(error);
 
-            if (failedExamples) prettyLog("red", `Failed Examples: \n${failedExamples.map(({ name }) => `  |-- ${name}`).join("\n")}`);
+            if (failedExamples)
+                prettyLog(
+                    "red",
+                    `Failed Examples: \n${failedExamples
+                        .map(({ name }) => `  |-- ${name}`)
+                        .join("\n")}`,
+                );
 
             process.exitCode = 1;
             process.exit(1);
