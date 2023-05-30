@@ -10,7 +10,7 @@ export type UseSiderVisibleType = {
 };
 
 /**
- * @deprecated Please use `useSiderState` instead.
+ * @deprecated Please use `useThemedLayoutContext` instead.
  */
 export const useSiderVisible = (): UseSiderVisibleType => {
     const {

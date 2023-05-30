@@ -716,9 +716,9 @@ Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayo
 ...
 ```
 
-## collapse/uncollapse `Sider` component with `useSiderState` hook
+## collapse/uncollapse `Sider` component with `useThemedLayoutContext` hook
 
-The `useSiderState` hook is that is used to collapse/uncollapse the `Sider` component. You can do this anywhere you want using the `useSiderState` hook. Below you can see an example put on the dashboard page.
+The `useThemedLayoutContext` hook is that is used to collapse/uncollapse the `Sider` component. You can do this anywhere you want using the `useThemedLayoutContext` hook. Below you can see an example put on the dashboard page.
 
 ```tsx live previewHeight=300px hideCode url=http://localhost:3000/
 setInitialRoutes(["/"]);
@@ -727,7 +727,7 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, RefineThemes, useSiderState } from "@refinedev/antd";
+import { ThemedLayoutV2, RefineThemes, useThemedLayoutContext } from "@refinedev/antd";
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -747,7 +747,7 @@ const DashboardPage = () => {
         setSiderCollapsed,
         mobileSiderOpen,
         setMobileSiderOpen,
-    } = useSiderState();
+    } = useThemedLayoutContext();
 
     return (
         <Space style={{ paddingTop: 30 }}>
