@@ -7,6 +7,7 @@ import {
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -30,6 +31,7 @@ function App() {
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
                 <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
             </Refine>
         </BrowserRouter>
     );

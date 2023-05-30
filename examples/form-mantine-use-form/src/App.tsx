@@ -9,6 +9,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -81,6 +82,7 @@ const App: React.FC = () => {
                         </Routes>
                     </Refine>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </NotificationsProvider>
             </MantineProvider>
         </BrowserRouter>
