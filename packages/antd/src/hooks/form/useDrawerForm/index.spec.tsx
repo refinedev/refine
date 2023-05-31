@@ -135,6 +135,10 @@ describe("useDrawerForm Hook", () => {
             result.current.formProps.onFinish?.({});
         });
 
+        await waitFor(() =>
+            expect(result.current.drawerProps.open).toBe(false),
+        );
+
         expect(result.current.drawerProps.open).toBe(false);
     });
 
