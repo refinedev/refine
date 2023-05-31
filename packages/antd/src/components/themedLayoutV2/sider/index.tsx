@@ -28,7 +28,7 @@ import {
 import { drawerButtonStyles } from "./styles";
 import { RefineThemedLayoutV2SiderProps } from "../types";
 import { ThemedTitleV2 } from "@components";
-import { useSiderVisible } from "@hooks";
+import { useThemedLayoutContext } from "@hooks";
 
 const { SubMenu } = Menu;
 const { useToken } = theme;
@@ -41,11 +41,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 }) => {
     const { token } = useToken();
     const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
 
     const isExistAuthentication = useIsExistAuthentication();
     const routerType = useRouterType();
@@ -122,7 +122,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route ?? ""}>{label}</Link>
-                        {!drawerSiderVisible && isSelected && (
+                        {!siderCollapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
                     </Menu.Item>
@@ -162,7 +162,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     const dashboard = hasDashboard ? (
         <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
             <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
-            {!drawerSiderVisible && selectedKey === "/" && (
+            {!siderCollapsed && selectedKey === "/" && (
                 <div className="ant-menu-tree-arrow" />
             )}
         </Menu.Item>
@@ -176,7 +176,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 dashboard,
                 items,
                 logout,
-                collapsed: drawerSiderVisible,
+                collapsed: siderCollapsed,
             });
         }
         return (
@@ -201,10 +201,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     height: "calc(100% - 72px)",
                 }}
                 onClick={() => {
-                    setSiderVisible?.(false);
-                    if (!breakpoint.lg) {
-                        setDrawerSiderVisible?.(true);
-                    }
+                    setMobileSiderOpen(false);
                 }}
             >
                 {renderSider()}
@@ -216,8 +213,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         return (
             <>
                 <Drawer
-                    open={siderVisible}
-                    onClose={() => setSiderVisible?.(false)}
+                    open={mobileSiderOpen}
+                    onClose={() => setMobileSiderOpen(false)}
                     placement="left"
                     closable={false}
                     width={200}
@@ -255,7 +252,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <Button
                     style={drawerButtonStyles}
                     size="large"
-                    onClick={() => setSiderVisible?.(true)}
+                    onClick={() => setMobileSiderOpen(true)}
                     icon={<BarsOutlined />}
                 ></Button>
             </>
@@ -283,7 +280,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             {fixed && (
                 <div
                     style={{
-                        width: drawerSiderVisible ? "80px" : "200px",
+                        width: siderCollapsed ? "80px" : "200px",
                         transition: "all 0.2s",
                     }}
                 />
@@ -291,10 +288,10 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             <Layout.Sider
                 style={siderStyles}
                 collapsible
-                collapsed={drawerSiderVisible}
+                collapsed={siderCollapsed}
                 onCollapse={(collapsed, type) => {
                     if (type === "clickTrigger") {
-                        setDrawerSiderVisible?.(collapsed);
+                        setSiderCollapsed(collapsed);
                     }
                 }}
                 collapsedWidth={80}
@@ -309,7 +306,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             backgroundColor: token.colorBgElevated,
                         }}
                     >
-                        {drawerSiderVisible ? (
+                        {siderCollapsed ? (
                             <RightOutlined
                                 style={{
                                     color: token.colorPrimary,
@@ -327,10 +324,10 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             >
                 <div
                     style={{
-                        width: drawerSiderVisible ? "80px" : "200px",
-                        padding: drawerSiderVisible ? "0" : "0 16px",
+                        width: siderCollapsed ? "80px" : "200px",
+                        padding: siderCollapsed ? "0" : "0 16px",
                         display: "flex",
-                        justifyContent: drawerSiderVisible
+                        justifyContent: siderCollapsed
                             ? "center"
                             : "flex-start",
                         alignItems: "center",
@@ -340,7 +337,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         borderBottom: `1px solid ${token.colorBorder}`,
                     }}
                 >
-                    <RenderToTitle collapsed={drawerSiderVisible} />
+                    <RenderToTitle collapsed={siderCollapsed} />
                 </div>
                 {renderMenu()}
             </Layout.Sider>

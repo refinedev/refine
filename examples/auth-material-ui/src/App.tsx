@@ -22,6 +22,7 @@ import routerProvider, {
     NavigateToResource,
     CatchAllNavigate,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
@@ -339,6 +340,7 @@ const App: React.FC = () => {
                             </Route>
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

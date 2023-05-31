@@ -12,6 +12,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
@@ -60,6 +61,7 @@ function App() {
                             </Route>
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

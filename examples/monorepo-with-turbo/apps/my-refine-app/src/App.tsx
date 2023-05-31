@@ -14,6 +14,7 @@ import routerBindings, {
     NavigateToResource,
     CatchAllNavigate,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import {
     BlogPostList,
@@ -157,6 +158,7 @@ function App() {
 
                         <RefineKbar />
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </ColorModeContextProvider>
             </RefineKbarProvider>

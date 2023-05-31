@@ -3,6 +3,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -45,6 +46,7 @@ const App: React.FC = () => {
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
                 <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
             </Refine>
         </BrowserRouter>
     );

@@ -6,6 +6,7 @@ import {
     FormLabel,
     Input,
     Select,
+    Textarea,
 } from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -18,7 +19,7 @@ export const PostEdit = () => {
         saveButtonProps,
         register,
         formState: { errors },
-        resetField,
+        setValue,
     } = useForm<IPost>();
 
     const { options } = useSelect({
@@ -29,7 +30,7 @@ export const PostEdit = () => {
     });
 
     useEffect(() => {
-        resetField("category.id");
+        setValue("category.id", queryResult?.data?.data?.category?.id || 1);
     }, [options]);
 
     return (
@@ -48,7 +49,7 @@ export const PostEdit = () => {
             <FormControl mb="3" isInvalid={!!errors?.status}>
                 <FormLabel>Status</FormLabel>
                 <Select
-                    id="content"
+                    id="status"
                     placeholder="Select Post Status"
                     {...register("status", {
                         required: "Status is required",
@@ -65,7 +66,7 @@ export const PostEdit = () => {
             <FormControl mb="3" isInvalid={!!errors?.categoryId}>
                 <FormLabel>Category</FormLabel>
                 <Select
-                    id="ca"
+                    id="categoryId"
                     placeholder="Select Category"
                     {...register("category.id", {
                         required: true,
@@ -79,6 +80,19 @@ export const PostEdit = () => {
                 </Select>
                 <FormErrorMessage>
                     {`${errors.categoryId?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+
+            <FormControl mb="3" isInvalid={!!errors?.content}>
+                <FormLabel>Content</FormLabel>
+                <Textarea
+                    id="content"
+                    {...register("content", {
+                        required: "content is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {`${errors.content?.message}`}
                 </FormErrorMessage>
             </FormControl>
         </Edit>
