@@ -795,6 +795,38 @@ const myDataProvider = {
 };
 ```
 
+### `queryMeta`
+
+In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` property to the `useForm` hook. This property is used to pass additional information to the `useOne` hook that is used to fetch the data in the `edit` and `clone` modes. This is useful when you have to apply different values to the `useOne` hook from the `useCreate` or `useUpdate` hook mutations.
+
+```tsx
+useForm({
+    queryMeta: {
+        querySpecificValue: "someValue",
+    },
+});
+```
+
+:::tip
+If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+:::
+
+### `mutationMeta`
+
+In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta` property to the `useForm` hook. This property is used to pass additional information to the `useCreate` or `useUpdate` hook mutations. This is useful when you have to apply different values to the `useCreate` or `useUpdate` hooks from the `useOne` hook query.
+
+```tsx
+useForm({
+    mutationMeta: {
+        mutationSpecificValue: "someValue",
+    },
+});
+```
+
+:::tip
+If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+:::
+
 ### `queryOptions`
 
 > Works only in `action: "edit"` or `action: "clone"` mode.
@@ -1043,6 +1075,10 @@ export const UserCreate: React.FC = () => {
     );
 };
 ```
+
+### How to pass `meta` values only for the mutation or query?
+
+You can use `meta` property to pass common values to the mutation and the query. But in some cases, you may want to pass different values to the mutation and the query. To do this, you can use `mutationMeta` and `queryMeta` properties.
 
 ## API
 
