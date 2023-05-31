@@ -16,7 +16,7 @@ describe("table-antd-table-filter", () => {
         cy.resourceList();
     });
 
-    it.only("the table should be filterable by form", () => {
+    it("the table should be filterable by form", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
         cy.interceptGETCategories().wait("@getCategories");
 
