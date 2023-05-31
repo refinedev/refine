@@ -9,27 +9,33 @@ describe("base-antd", () => {
     const BASE_URL = "http://localhost:5173";
 
     beforeEach(() => {
-        cy.visit(BASE_URL);
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.interceptGETPosts();
+        cy.visit(BASE_URL);
     });
 
-    it("should be view list page", () => {
+    it("should list resource", () => {
         cy.resourceList();
     });
 
-    it("should be create page", () => {
+    it("should create resource", () => {
         cy.resourceCreate({
             ui: "antd",
         });
     });
 
-    it("should be edit page", () => {
+    it("should edit resource", () => {
         cy.resourceEdit({ ui: "antd" });
     });
 
-    it("should be show page", () => {
+    it("should show resource", () => {
         cy.resourceShow();
+    });
+
+    it("should delete resource", () => {
+        cy.resourceDelete({ ui: "antd" });
     });
 });

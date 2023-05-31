@@ -11,6 +11,7 @@ import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -165,6 +166,7 @@ const App: React.FC = () => {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </RefineWithConnect>
             </ConfigProvider>
         </BrowserRouter>

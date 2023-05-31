@@ -13,6 +13,7 @@ import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -299,6 +300,7 @@ const App: React.FC = () => {
                                 </Route>
                             </Routes>
                             <UnsavedChangesNotifier />
+                            <DocumentTitleHandler />
                         </Refine>
                     </RefineSnackbarProvider>
                 </ColorModeContextProvider>

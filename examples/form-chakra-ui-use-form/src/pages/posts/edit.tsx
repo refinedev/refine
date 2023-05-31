@@ -6,6 +6,7 @@ import {
     FormLabel,
     Input,
     Select,
+    Textarea,
 } from "@chakra-ui/react";
 import { HttpError, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -78,6 +79,18 @@ export const PostEdit = () => {
                 </Select>
                 <FormErrorMessage>
                     {`${errors.category?.id?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.content}>
+                <FormLabel>Content</FormLabel>
+                <Textarea
+                    id="content"
+                    {...register("content", {
+                        required: "content is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {`${errors.content?.message}`}
                 </FormErrorMessage>
             </FormControl>
         </Edit>

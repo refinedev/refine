@@ -16,6 +16,7 @@ import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { ConfigProvider, notification } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
@@ -388,6 +389,7 @@ const App: React.FC = () => {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>
