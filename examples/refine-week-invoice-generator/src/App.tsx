@@ -23,6 +23,7 @@ import routerBindings, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { ClientList } from "pages/clients";
@@ -194,6 +195,7 @@ function App() {
 
                         <RefineKbar />
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </ColorModeContextProvider>
             </RefineKbarProvider>

@@ -2,6 +2,7 @@ import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Outlet, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
@@ -119,6 +120,7 @@ const App: React.FC = () => {
                     </Route>
                 </Routes>
                 <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
             </Refine>
         </BrowserRouter>
     );

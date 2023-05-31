@@ -83,7 +83,6 @@ const App: React.FC = () => {
                                     <NavigateToResource resource="blog_posts" />
                                 }
                             />
-
                             {/* highlight-start */}
                             <Route path="blog-posts">
                                 <Route index element={<AntdInferencer />} />
@@ -221,7 +220,6 @@ const App: React.FC = () => {
                                     <NavigateToResource resource="blog_posts" />
                                 }
                             />
-
                             <Route path="blog-posts">
                                 <Route index element={<BlogPostList />} />
                                 <Route
