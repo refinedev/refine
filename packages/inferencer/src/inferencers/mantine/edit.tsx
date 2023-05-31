@@ -22,6 +22,7 @@ import {
     getVariableName,
     translatePrettyString,
     getMetaProps,
+    idQuoteWrapper,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -448,7 +449,7 @@ export const renderer = ({
                 isCustomPage
                     ? `refineCoreProps: {
                         resource: "${resource.name}",
-                        id: ${id},
+                        id: ${idQuoteWrapper(id)},
                         action: "edit",
                         ${getMetaProps(
                             resource?.identifier ?? resource?.name,
