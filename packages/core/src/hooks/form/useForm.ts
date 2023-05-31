@@ -441,7 +441,7 @@ export const useForm = <
                 redirect: designatedRedirectAction,
                 resource,
                 id,
-                meta: metaData,
+                meta: pickNotDeprecated(meta, metaData),
             });
         };
 
@@ -518,7 +518,7 @@ export const useForm = <
                 redirect: designatedRedirectAction,
                 resource,
                 id,
-                meta: metaData,
+                meta: pickNotDeprecated(meta, metaData),
             });
         };
 
@@ -589,7 +589,7 @@ export const useForm = <
                         : "edit",
                 resource,
                 id: idFromFunction ?? id,
-                meta: metaData,
+                meta: pickNotDeprecated(meta, metaData),
             });
         },
     };
