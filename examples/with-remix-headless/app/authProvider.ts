@@ -11,6 +11,10 @@ const mockUsers = [
         email: "editor@refine.dev",
         roles: ["editor"],
     },
+    {
+        email: "demo@refine.dev",
+        roles: ["user"],
+    },
 ];
 
 const COOKIE_NAME = "user";
@@ -30,6 +34,25 @@ export const authProvider: AuthBindings = {
 
         return {
             success: false,
+        };
+    },
+    register: async (params) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.email === params.email);
+
+        if (user) {
+            Cookies.set(COOKIE_NAME, JSON.stringify(user));
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
+        return {
+            success: false,
+            error: {
+                message: "Register failed",
+                name: "Invalid email or password",
+            },
         };
     },
     logout: async () => {

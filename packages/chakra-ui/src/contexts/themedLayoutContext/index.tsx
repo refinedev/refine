@@ -3,28 +3,28 @@ import React, { ReactNode, useState } from "react";
 import { IThemedLayoutContext } from "./IThemedLayoutContext";
 
 export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>({
-    siderVisible: false,
-    drawerSiderVisible: true,
+    siderCollapsed: false,
+    mobileSiderOpen: false,
+    setSiderCollapsed: () => undefined,
+    setMobileSiderOpen: () => undefined,
 });
 
 export const ThemedLayoutContextProvider: React.FC<{
     children: ReactNode;
     initialSiderCollapsed?: boolean;
 }> = ({ children, initialSiderCollapsed }) => {
-    const [siderVisible, setSiderVisible] = useState(false);
-    const [drawerSiderVisible, setDrawerSiderVisible] = useState(
-        typeof initialSiderCollapsed === "undefined"
-            ? true
-            : !initialSiderCollapsed,
+    const [siderCollapsed, setSiderCollapsed] = useState(
+        initialSiderCollapsed ?? false,
     );
+    const [mobileSiderOpen, setMobileSiderOpen] = useState(false);
 
     return (
         <ThemedLayoutContext.Provider
             value={{
-                siderVisible,
-                drawerSiderVisible,
-                setSiderVisible,
-                setDrawerSiderVisible,
+                siderCollapsed,
+                mobileSiderOpen,
+                setSiderCollapsed,
+                setMobileSiderOpen,
             }}
         >
             {children}

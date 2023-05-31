@@ -38,12 +38,14 @@ export const PostCreate: React.FC = () => {
         <Create saveButtonProps={saveButtonProps}>
             <form>
                 <TextInput
+                    id="title"
                     mt={8}
                     label="Title"
                     placeholder="Title"
                     {...getInputProps("title")}
                 />
                 <Select
+                    id="status"
                     mt={8}
                     label="Status"
                     placeholder="Pick one"
@@ -55,6 +57,7 @@ export const PostCreate: React.FC = () => {
                     ]}
                 />
                 <Select
+                    id="categoryId"
                     mt={8}
                     label="Category"
                     placeholder="Pick one"
@@ -62,6 +65,7 @@ export const PostCreate: React.FC = () => {
                     {...selectProps}
                 />
                 <MultiSelect
+                    id="tags"
                     {...getInputProps("tags")}
                     {...tagSelectProps}
                     mt={8}
@@ -76,6 +80,7 @@ export const PostCreate: React.FC = () => {
                     Content
                 </Text>
                 <MDEditor
+                    id="content"
                     data-color-mode="light"
                     {...getInputProps("content")}
                 />

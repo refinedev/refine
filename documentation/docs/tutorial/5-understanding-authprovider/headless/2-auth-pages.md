@@ -90,6 +90,7 @@ const App = () => {
                             </Authenticated>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<HeadlessInferencer />} />
                             <Route
@@ -195,6 +196,7 @@ const App = () => {
                             </Authenticated>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<BlogPostList />} />
                         </Route>
@@ -291,6 +293,7 @@ const App = () => {
                             </Authenticated>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<BlogPostList />} />
                         </Route>
@@ -391,6 +394,7 @@ const App = () => {
                             </Authenticated>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<BlogPostList />} />
                         </Route>
@@ -496,6 +500,7 @@ const App = () => {
                             </Authenticated>
                         }
                     >
+                        <Route index element={<NavigateToResource resource="blog_posts" />} />
                         <Route path="blog-posts">
                             <Route index element={<BlogPostList />} />
                         </Route>
