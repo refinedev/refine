@@ -1,5 +1,5 @@
 ---
-"@refinedev/chakra-ui": minor
+"@refinedev/mantine": minor
 ---
 
 refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
@@ -9,7 +9,7 @@ refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
 Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
 
 ```tsx
-import { useThemedLayoutContext } from '@refinedev/chakra-ui';
+import { useThemedLayoutContext } from '@refinedev/mantine';
 
 const {
     siderCollapsed,
@@ -18,4 +18,3 @@ const {
     setMobileSiderOpen,
 } = useThemedLayoutContext();
 ```
-

@@ -1,4 +1,3 @@
-
 <br/>
 
 <div align="center" style="margin: 30px;">
@@ -15,8 +14,7 @@
     <a href="https://discord.gg/refine">Discord</a> |
     <a href="https://refine.dev/examples/">Examples</a> | 
     <a href="https://refine.dev/blog/">Blog</a> | 
-    <a href="https://refine.dev/docs/">Documentation</a> | 
-    <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
+    <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 
 <br />
@@ -25,9 +23,6 @@
  <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/blog/2022-03-22-refine-with-react95/social.jpg?raw=true"   style="width:650px;" align="center" />
  </a>
 </div>
-
-
-
 
 ## About
 
@@ -39,29 +34,28 @@ The tutorial section will take you through the steps involved in creating a mode
 
 This just a fun example app that we built to demonstrate the power of refine. You can use any design or UI framework of your choice with refine.
 
-
 <div align="center">
 <a href="https://github.com/refinedev/refine">
  <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/blog/2022-03-22-refine-with-react95/overview.gif?raw=true" style="width:650px;  align="center" />
  </a>
 </div>
 
-
 <br/>
 
 ## What is refine?
-[**refine**](https://github.com/refinedev/refine) is a React-based framework for the rapid  development of CRUD web applications. It shines✨ on data-intensive applications like admin panels, dashboards and internal tools. Thanks to the built-in SSR support, refine can also power customer-facing applications like storefronts.
 
+[**refine**](https://github.com/refinedev/refine) is a React-based framework for the rapid development of CRUD web applications. It shines✨ on data-intensive applications like admin panels, dashboards and internal tools. Thanks to the built-in SSR support, refine can also power customer-facing applications like storefronts.
 
-It's *headless by design*, thereby offering unlimited styling and customization options.
+It's _headless by design_, thereby offering unlimited styling and customization options.
 
 [**refine**](https://github.com/refinedev/refine) seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
-
 ### Live CodeSandbox Example
-[You can also reach to the same app on CodeSandbox 	➡️ ](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/#live-codesandbox-example)
+
+[You can also reach to the same app on CodeSandbox ➡️ ](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/#live-codesandbox-example)
 
 ## Community
+
 Join our community to get help, share ideas and connect with other developers.
 
 <br>
