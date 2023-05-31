@@ -87,6 +87,14 @@ type ActionFormProps<
      */
     metaData?: MetaQuery;
     /**
+     * Metadata to pass for the `useOne` query
+     */
+    queryMeta?: MetaQuery;
+    /**
+     * Metadata to pass for the mutation (`useCreate` for `create` and `clone` actions, `useUpdate` for `edit` action)
+     */
+    mutationMeta?: MetaQuery;
+    /**
      * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
      * @default `"pessimistic"*`
      */
@@ -228,6 +236,8 @@ export const useForm = <
     errorNotification,
     meta,
     metaData,
+    queryMeta,
+    mutationMeta,
     mutationMode: mutationModeProp,
     liveMode,
     onLiveEvent,
@@ -402,8 +412,8 @@ export const useForm = <
         liveMode,
         onLiveEvent,
         liveParams,
-        meta: combinedMeta,
-        metaData: combinedMeta,
+        meta: { ...combinedMeta, ...queryMeta },
+        metaData: { ...combinedMeta, ...queryMeta },
         dataProviderName,
     });
 
@@ -465,8 +475,8 @@ export const useForm = <
                         resource: resource.name,
                         successNotification,
                         errorNotification,
-                        meta: combinedMeta,
-                        metaData: combinedMeta,
+                        meta: { ...combinedMeta, ...mutationMeta },
+                        metaData: { ...combinedMeta, ...mutationMeta },
                         dataProviderName,
                         invalidates,
                     },
@@ -507,8 +517,8 @@ export const useForm = <
             undoableTimeout,
             successNotification,
             errorNotification,
-            meta: combinedMeta,
-            metaData: combinedMeta,
+            meta: { ...combinedMeta, ...mutationMeta },
+            metaData: { ...combinedMeta, ...mutationMeta },
             dataProviderName,
             invalidates,
         };
