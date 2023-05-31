@@ -9,8 +9,8 @@
     "cypress": "cypress open -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/mantine": "^2.14.4",
-    "@refinedev/core": "^4.16.2",
+    "@refinedev/mantine": "^2.15.0",
+    "@refinedev/core": "^4.16.3",
     "@refinedev/cli": "^2.5.5",
     "@refinedev/react-router-v6": "^4.3.2",
     "@refinedev/simple-rest": "^4.5.0",
@@ -25,7 +25,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1"
-    
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
