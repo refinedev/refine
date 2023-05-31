@@ -14,6 +14,7 @@ import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { authProvider, axiosInstance } from "./authProvider";
@@ -111,6 +112,7 @@ function App() {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ChakraProvider>
         </BrowserRouter>

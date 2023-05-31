@@ -119,3 +119,32 @@ Cypress.Commands.add("interceptGETCategories", () => {
         )
         .as("getCategories");
 });
+
+Cypress.Commands.add("interceptGETCategory", () => {
+    return cy
+        .fixture("categories")
+        .then((categories) => {
+            return cy.intercept(
+                {
+                    method: "GET",
+                    hostname: hostname,
+                    pathname: "/categories/*",
+                },
+
+                (req) => {
+                    const id = getIdFromURL(req.url);
+                    const category = categories.find(
+                        (category) => category.id.toString() === id.toString(),
+                    );
+
+                    if (!category) {
+                        req.reply(404, {});
+                        return;
+                    }
+
+                    req.reply(category);
+                },
+            );
+        })
+        .as("getCategory");
+});
