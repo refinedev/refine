@@ -19775,10 +19775,10 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                  
               </span>
               <span
-                class="token number"
-                style="color: rgb(181, 206, 168);"
+                class="token string"
+                style="color: rgb(206, 145, 120);"
               >
-                11
+                "11"
               </span>
               <span
                 class="token punctuation"
@@ -24882,10 +24882,10 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                  
               </span>
               <span
-                class="token number"
-                style="color: rgb(181, 206, 168);"
+                class="token string"
+                style="color: rgb(206, 145, 120);"
               >
-                21
+                "21"
               </span>
               <span
                 class="token punctuation"
