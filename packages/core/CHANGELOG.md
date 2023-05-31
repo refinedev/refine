@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.16.3
+
+### Patch Changes
+
+-   [#4415](https://github.com/refinedev/refine/pull/4415) [`54837825fcc`](https://github.com/refinedev/refine/commit/54837825fccb180e84c988ea669f0cc595e4ed33) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `queryOptions` not working as expected in `useSelect` hook.
+
 ## 4.16.2
 
 ### Patch Changes

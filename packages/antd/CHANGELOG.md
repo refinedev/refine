@@ -1,5 +1,26 @@
 # @pankod/refine-antd
 
+## 5.19.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/antd";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
 ## 5.18.2
 
 ### Patch Changes
