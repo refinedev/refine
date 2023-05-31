@@ -1,9 +1,13 @@
+import React from "react";
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, act } from "@test";
+import {
+    MockJSONServer,
+    TestWrapper,
+    act,
+    mockLegacyRouterProvider,
+} from "@test";
 import { useForm } from "./useForm";
-
-import React from "react";
 
 import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
@@ -305,5 +309,431 @@ describe("useForm Hook", () => {
                 }),
             }),
         );
+    });
+
+    it("if id is not provided while using legacy router provider, it should infer id from route when resources are matched", async () => {
+        const legacyRouterProvider = {
+            ...mockLegacyRouterProvider(),
+            useParams: () => ({
+                resource: "posts",
+                action: "edit",
+                id: "1",
+            }),
+        } as any;
+
+        const { result } = renderHook(
+            () =>
+                useForm({
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    legacyRouterProvider: legacyRouterProvider,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        expect(result.current.id).toEqual("1");
+    });
+
+    it("legacy router provider should infer resource, action and id from route", async () => {
+        const updateMock = jest.fn();
+        const legacyRouterProvider = {
+            ...mockLegacyRouterProvider(),
+            useParams: () => ({
+                resource: "posts",
+                action: "edit",
+                id: "1",
+            }),
+        } as any;
+
+        const { result } = renderHook(() => useForm({}), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        update: updateMock,
+                    },
+                },
+                legacyRouterProvider: legacyRouterProvider,
+                resources: [
+                    {
+                        name: "posts",
+                    },
+                ],
+            }),
+        });
+
+        result.current.onFinish({});
+
+        await waitFor(() => {
+            expect(updateMock).toBeCalled();
+        });
+
+        expect(updateMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+                id: "1",
+            }),
+        );
+    });
+
+    it("redirect method should redirect to correct path", () => {
+        const goMock = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useForm({
+                    resource: "posts",
+                    action: "create",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            go: () => {
+                                return ({ to, type, ...rest }) => {
+                                    if (type === "path") return to;
+                                    goMock({ to, type, ...rest });
+                                    return undefined;
+                                };
+                            },
+                        },
+                    }),
+                    resources: [
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            edit: "/posts/edit/:id",
+                        },
+                    ],
+                }),
+            },
+        );
+
+        result.current.redirect("edit", 1);
+
+        expect(goMock).toBeCalledWith({
+            to: "/posts/edit/1",
+            type: "push",
+        });
+    });
+
+    it("redirect method should redirect to correct path with id", () => {
+        const goMock = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useForm({
+                    resource: "posts",
+                    action: "create",
+                    id: "123",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            go: () => {
+                                return ({ to, type, ...rest }) => {
+                                    if (type === "path") return to;
+                                    goMock({ to, type, ...rest });
+                                    return undefined;
+                                };
+                            },
+                        },
+                    }),
+                    resources: [
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            edit: "/posts/edit/:id",
+                        },
+                    ],
+                }),
+            },
+        );
+
+        result.current.redirect("edit");
+
+        expect(goMock).toBeCalledWith({
+            to: "/posts/edit/123",
+            type: "push",
+        });
+    });
+
+    describe("action 'create'", () => {
+        it("onFinish should trigger create dataProvider method", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(
+                () => useForm({ resource: "posts", action: "create" }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                create: createMock,
+                            },
+                        },
+                        routerProvider: mockRouterBindings(),
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({
+                title: "foo",
+            });
+
+            await waitFor(() => {
+                expect(createMock).toBeCalled();
+            });
+
+            expect(createMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                    variables: {
+                        title: "foo",
+                    },
+                }),
+            );
+        });
+
+        it("onFinish should not trigger create dataProvider method if resource not found", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useForm({ action: "create" }), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            create: createMock,
+                        },
+                    },
+                    routerProvider: mockRouterBindings(),
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.onFinish({
+                title: "foo",
+            });
+
+            await waitFor(() => {
+                expect(createMock).not.toBeCalled();
+            });
+        });
+
+        it("should call `onMutationSuccess` with correct parameters", async () => {
+            const onMutationSuccessMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "create",
+                        onMutationSuccess: onMutationSuccessMock,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({ title: "foo" });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult.isSuccess).toBeTruthy();
+            });
+
+            expect(onMutationSuccessMock).toBeCalledWith(
+                { data: posts[0] },
+                {
+                    title: "foo",
+                },
+                undefined,
+            );
+        });
+
+        it("should call `onMutationError` with correct parameters", async () => {
+            const createMock = jest.fn().mockRejectedValue(new Error("Error"));
+            const onMutationErrorMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "create",
+                        onMutationError: onMutationErrorMock,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                create: createMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({ title: "foo" });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult.isError).toBeTruthy();
+            });
+
+            expect(onMutationErrorMock).toBeCalledWith(
+                new Error("Error"),
+                {
+                    title: "foo",
+                },
+                undefined,
+            );
+        });
+    });
+
+    describe("action 'edit'", () => {
+        it("onFinish should trigger edit dataProvider method", async () => {
+            const updateMock = jest.fn();
+
+            const { result } = renderHook(
+                () => useForm({ resource: "posts", action: "edit" }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                update: updateMock,
+                            },
+                        },
+                        routerProvider: mockRouterBindings(),
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({
+                title: "foo",
+            });
+
+            await waitFor(() => {
+                expect(updateMock).toBeCalled();
+            });
+
+            expect(updateMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                    variables: {
+                        title: "foo",
+                    },
+                }),
+            );
+        });
+
+        it("onFinish should not trigger edit dataProvider method if resource not found", async () => {
+            const updateMock = jest.fn();
+
+            const { result } = renderHook(() => useForm({ action: "edit" }), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            update: updateMock,
+                        },
+                    },
+                    routerProvider: mockRouterBindings(),
+                    resources: [{ name: "posts" }],
+                }),
+            });
+
+            result.current.onFinish({
+                title: "foo",
+            });
+
+            await waitFor(() => {
+                expect(updateMock).not.toBeCalled();
+            });
+        });
+
+        it("should call `onMutationSuccess` with correct parameters", async () => {
+            const onMutationSuccessMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        onMutationSuccess: onMutationSuccessMock,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({ title: "foo" });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult.isSuccess).toBeTruthy();
+            });
+
+            expect(onMutationSuccessMock).toBeCalledWith(
+                { data: posts[0] },
+                {
+                    title: "foo",
+                },
+                expect.anything(),
+            );
+        });
+
+        it("should call `onMutationError` with correct parameters", async () => {
+            const updateMock = jest.fn().mockRejectedValue(new Error("Error"));
+            const onMutationErrorMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        onMutationError: onMutationErrorMock,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                update: updateMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({ title: "foo" });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult.isError).toBeTruthy();
+            });
+
+            expect(onMutationErrorMock).toBeCalledWith(
+                new Error("Error"),
+                {
+                    title: "foo",
+                },
+                expect.anything(),
+            );
+        });
     });
 });
