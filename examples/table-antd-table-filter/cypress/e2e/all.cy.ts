@@ -10,7 +10,7 @@ describe("table-antd-table-filter", () => {
         cy.resourceList();
     });
 
-    it.only("the table should be filterable by form", () => {
+    it("the table should be filterable by form", () => {
         cy.interceptGETPosts().wait("@getPosts");
         cy.interceptGETPosts().wait("@getPosts");
         cy.interceptGETCategories().wait("@getCategories");
