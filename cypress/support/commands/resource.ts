@@ -73,7 +73,7 @@ const assertFormShouldHaveResponseValues = (response: any, ui: UITypes) => {
             cy.get("#title").should("have.value", body?.title);
             cy.get("#status").should("have.value", body?.status);
             cy.get("#content").should("have.value", body?.content);
-            cy.get("#category_id").should("have.value", body?.category?.id);
+            cy.get("#categoryId").should("have.value", body?.category?.id);
             break;
 
         case "mantine":
