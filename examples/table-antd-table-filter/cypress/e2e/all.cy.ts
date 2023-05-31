@@ -3,18 +3,22 @@
 
 describe("table-antd-table-filter", () => {
     beforeEach(() => {
+        cy.interceptGETPosts();
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
         cy.visit("http://localhost:3000");
+        cy.wait("@getPosts");
+        cy.wait("@getPosts");
+        cy.wait("@getCategories");
     });
 
     it("should be view list page", () => {
         cy.resourceList();
     });
 
-    it("the table should be filterable by form", () => {
-        cy.interceptGETPosts().wait("@getPosts");
-        cy.interceptGETPosts().wait("@getPosts");
-        cy.interceptGETCategories().wait("@getCategories");
+    it.only("the table should be filterable by form", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
+        cy.interceptGETCategories().wait("@getCategories");
 
         cy.get("#q").type("lorem");
         cy.setAntdDropdown({ id: "category", selectIndex: 1 });

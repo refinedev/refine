@@ -113,7 +113,7 @@ Cypress.Commands.add("interceptGETCategories", () => {
             {
                 method: "GET",
                 hostname: hostname,
-                pathname: "/categories",
+                pathname: "/categories**",
             },
             { fixture: "categories.json" },
         )
