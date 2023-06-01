@@ -26,15 +26,15 @@ type AuthActionResponse = {
 ```
 
 -   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   When an `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values `{ name: "Register Error", message: "Error while registering" }`.
+    -   When an `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Register Error", message: "Error while registering" }`.
 -   `redirectTo`: If has a value, the app will be redirected to the given URL.
 -   `error`: If has a value, a notification will be shown with the error message and name.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
-Normally refine provides a default register page. If you prefer to use this default register page, there is no need to handle the register flow manually.  
-If we want to build a custom register page instead of the default one that comes with **refine**, `useRegister` can be used like this:
+**refine** provides a default registration page, page which handles the registration flow manually.
+If you want to use a custom registration page however, you can use the `useRegister` hook like this:
 
 ```tsx title="pages/customRegisterPage"
 import { useRegister } from "@refinedev/core";
@@ -64,7 +64,7 @@ export const RegisterPage = () => {
 ```
 
 :::tip
-`mutate` acquired from `useRegister` can accept any kind of object for values since `register` method from `authProvider` doesn't have a restriction on its parameters.  
+`mutate` acquired from the `useRegister` hook can accept any kind of object for values since the `register` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useRegister`.
 
 ```tsx
@@ -75,7 +75,7 @@ const { mutate: register } = useRegister<{ email: string; password: string }>();
 
 ## Logged In after successful registration
 
-If you want to log in to the user after successful registration, you can use `useLogin` hook after `useRegister` hook `onSuccess` callback.
+If you want to log in to the user after successful registration, you can use `useLogin` hook after the `useRegister` hook's `onSuccess` callback:
 
 ```tsx title="pages/customRegisterPage"
 import { useRegister, useLogin } from "@refinedev/core";
@@ -113,7 +113,7 @@ export const RegisterPage = () => {
 
 ## Redirection after register
 
-A custom URL can be given to mutate the function from the `useRegister` hook if you want to redirect yourself to a certain URL.
+A custom URL can be given to mutate the function from the `useRegister` hook if you want to redirect yourself to a certain URL:
 
 ```tsx
 import { useRegister } from "@refinedev/core";
@@ -123,7 +123,7 @@ const { mutate: register } = useRegister();
 register({ redirectPath: "/custom-url" });
 ```
 
-Then, you can handle this URL in your `register` method of the `authProvider`.
+Then, you can handle this URL in your `register` method of the `authProvider`:
 
 ```tsx
 const authProvider: AuthBindings = {
@@ -140,7 +140,7 @@ const authProvider: AuthBindings = {
 
 ## Error handling
 
-Since the methods of `authProvider` always return a resolved promise, you can handle errors by using the `success` value in the response.
+Since the methods of `authProvider` always return a resolved promise, you can handle errors by using the `success` value in the response:
 
 ```tsx
 import { useRegister } from "@refinedev/core";
@@ -166,6 +166,6 @@ register(
 
 :::caution
 
-The `onError` callback of the `useRegister` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+The `onError` callback of the `useRegister` hook will not be called if `success` is `false`. This is because the `authProvider` methods always return a resolved promise, and the callback is only triggered when the promise is rejected.
 
 :::
