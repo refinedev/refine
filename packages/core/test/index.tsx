@@ -230,6 +230,8 @@ export {
     mockRouterBindings,
     MockAccessControlProvider,
     MockLiveProvider,
+    mockLegacyAuthProvider,
+    mockAuthProvider,
 } from "./dataMocks";
 
 // re-export everything

@@ -140,4 +140,43 @@ describe("useBreadcrumb Hook", () => {
             { label: "Create" },
         ]);
     });
+
+    it("should return `[]` if resource not found", async () => {
+        const { result } = renderHook(() => useBreadcrumb(), {
+            wrapper: renderWrapper({
+                resources: [],
+                routerProvider: mockRouterBindings(),
+            }),
+        });
+
+        expect(result.current.breadcrumbs).toEqual([]);
+    });
+
+    it("should work with i18nProvider", async () => {
+        jest.spyOn(console, "warn");
+
+        const { result } = renderHook(() => useBreadcrumb(), {
+            wrapper: renderWrapper({
+                resources: [{ name: "posts" }],
+                routerProvider: mockRouterBindings({
+                    action: "show",
+                    resource: { name: "posts" },
+                }),
+                i18nProvider: {
+                    translate: (key: string) => key,
+                    changeLocale: () => Promise.resolve(),
+                    getLocale: () => "en",
+                },
+            }),
+        });
+
+        expect(console.warn).toBeCalledWith(
+            `[useBreadcrumb]: Breadcrumb missing translate key for the "show" action. Please add "actions.show" key to your translation file.\nFor more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
+        );
+
+        expect(result.current.breadcrumbs).toEqual([
+            { label: "posts.posts", href: undefined, icon: undefined },
+            { label: "buttons.show" },
+        ]);
+    });
 });

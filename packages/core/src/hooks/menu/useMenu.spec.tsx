@@ -1,6 +1,10 @@
 import { renderHook } from "@testing-library/react";
 
-import { TestWrapper, mockRouterBindings } from "@test";
+import {
+    TestWrapper,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useMenu } from ".";
 import { legacyResourceTransform } from "@definitions/helpers";
@@ -414,6 +418,33 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({ name: "org-users" }),
+            ]),
+        );
+    });
+});
+
+describe("legacy roter provider", () => {
+    it("should contain resources", () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        list: () => null,
+                    },
+                ],
+                legacyRouterProvider: {
+                    ...mockLegacyRouterProvider(),
+                    useLocation: () => ({
+                        pathname: "/posts",
+                    }),
+                },
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "posts" }),
             ]),
         );
     });

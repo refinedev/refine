@@ -4,62 +4,6 @@ import { MockJSONServer, TestWrapper } from "@test";
 
 import { usePermissions } from "./";
 
-// NOTE : Will be removed in v5
-describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
-    it("returns authenticated userPermissions", async () => {
-        const { result } = renderHook(
-            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
-            {
-                wrapper: TestWrapper({
-                    legacyAuthProvider: {
-                        login: () => Promise.resolve(),
-                        checkAuth: () => Promise.resolve(),
-                        checkError: () => Promise.resolve(),
-                        getPermissions: () => Promise.resolve(["admin"]),
-                        logout: () => Promise.resolve(),
-                    },
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(result.current.data).toEqual(["admin"]);
-    });
-
-    it("returns error for not authenticated", async () => {
-        jest.spyOn(console, "error").mockImplementation((message) => {
-            if (!message.includes("Not Authenticated")) console.warn(message);
-        });
-
-        const { result } = renderHook(
-            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
-            {
-                wrapper: TestWrapper({
-                    legacyAuthProvider: {
-                        login: () => Promise.resolve(),
-                        checkAuth: () => Promise.reject("Not Authenticated"),
-                        checkError: () => Promise.resolve(),
-                        getPermissions: () =>
-                            Promise.reject("Not Authenticated"),
-                        logout: () => Promise.resolve(),
-                    },
-                }),
-            },
-        );
-
-        await waitFor(() => {
-            expect(result.current.isError).toBeTruthy();
-        });
-
-        expect(result.current.error).toEqual("Not Authenticated");
-    });
-});
-
 describe("usePermissions Hook", () => {
     it("returns authenticated userPermissions", async () => {
         const { result } = renderHook(() => usePermissions(), {
@@ -105,6 +49,103 @@ describe("usePermissions Hook", () => {
         });
 
         expect(result.current.data).toEqual("Not Authenticated");
+    });
+
+    it("should resolve undefined if no authProvider is provided", async () => {
+        const { result } = renderHook(() => usePermissions(), {
+            wrapper: TestWrapper({
+                legacyAuthProvider: {
+                    login: () => Promise.resolve(),
+                    checkAuth: () => Promise.resolve(),
+                    checkError: () => Promise.resolve(),
+                    getPermissions: undefined,
+                },
+            }),
+        });
+
+        result.current.refetch();
+        expect(result.current.data).toBeUndefined();
+    });
+});
+
+// NOTE : Will be removed in v5
+describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
+    it("returns authenticated userPermissions", async () => {
+        const getPermissionMock = jest.fn(() => Promise.resolve(["admin"]));
+
+        const { result } = renderHook(
+            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: getPermissionMock,
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeFalsy();
+        });
+        expect(getPermissionMock).toHaveBeenCalledTimes(1);
+        expect(result.current.data).toEqual(["admin"]);
+
+        result.current.refetch();
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeFalsy();
+        });
+        expect(getPermissionMock).toHaveBeenCalledTimes(2);
+        expect(result.current.data).toEqual(["admin"]);
+    });
+    it("returns error for not authenticated", async () => {
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (!message.includes("Not Authenticated")) console.warn(message);
+        });
+
+        const { result } = renderHook(
+            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.reject("Not Authenticated"),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () =>
+                            Promise.reject("Not Authenticated"),
+                        logout: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isError).toBeTruthy();
+        });
+
+        expect(result.current.error).toEqual("Not Authenticated");
+    });
+
+    it("should resolve undefined if no authProvider is provided", async () => {
+        const { result } = renderHook(
+            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: undefined,
+                    },
+                }),
+            },
+        );
+
+        result.current.refetch();
+        expect(result.current.data).toBeUndefined();
     });
 });
 
