@@ -10,9 +10,7 @@ describe("checkRouterPropMisuse", () => {
 
     it("should return true when pass legacyRouterProvider", () => {
         expect(
-            checkRouterPropMisuse({
-                ...mockLegacyRouterProvider(),
-            }),
+            checkRouterPropMisuse(mockLegacyRouterProvider()),
         ).toBeTruthy();
     });
 });
