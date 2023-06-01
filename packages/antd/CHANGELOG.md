@@ -1,5 +1,42 @@
 # @pankod/refine-antd
 
+## 5.21.0
+
+### Minor Changes
+
+-   [#4430](https://github.com/refinedev/refine/pull/4430) [`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `useForm`, `useModalForm`, `useDrawerForm` and `useStepsForm` to accept `queryMeta` and `mutationMeta` properties of the `useForm` hook of `@refinedev/core`. These properties are used to pass specific meta values to the query or mutation. This is useful when you have overlapping values in your data provider's `getOne` and `update` methods. For example, you may want to change the `method` of the mutation to `PATCH` but if you pass it in the `meta` property, you'll end up changing the method of the `getOne` request as well.
+
+    `queryMeta` and `mutationMeta` has precedence over `meta`. This means that if you have the same property in `queryMeta` and `meta`, the value in `queryMeta` will be used.
+
+    **Usage**
+
+    ```tsx
+    import { useForm } from "@refinedev/core";
+
+    export const MyEditPage = () => {
+        const form = useForm({
+            // this is passed both to the mutation and the query requests
+            meta: {
+                myValue: "myValue",
+            },
+            // this is only passed to the query request
+            queryMeta: {
+                propertyOnlyWorksForQuery: "propertyOnlyWorksForQuery",
+            },
+            // this is only passed to the mutation request
+            mutationMeta: {
+                propertyOnlyWorksForMutation: "propertyOnlyWorksForMutation",
+            },
+        });
+    };
+    ```
+
+### Patch Changes
+
+-   [#4429](https://github.com/refinedev/refine/pull/4429) [`63daabcb703`](https://github.com/refinedev/refine/commit/63daabcb7037860bc36dff8cc417e9426e9ec027) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of `formLoading` property in return values of `useStepsForm` hook which was not being toggled correctly when the form was submitted or the form data was being fetched.
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
 ## 5.20.0
 
 ### Minor Changes
