@@ -35,6 +35,20 @@ describe("generateDocumentTitle", () => {
         ).toBe("Posts Label | refine");
     });
 
+    it("should return the meta.label of the resource when it is provided", () => {
+        expect(
+            generateDefaultDocumentTitle(
+                translateMock,
+                {
+                    name: "posts",
+                    label: undefined,
+                    meta: { label: "Meta Label" },
+                },
+                "list",
+            ),
+        ).toBe("Meta Label | refine");
+    });
+
     it("should return `Create new resource name` when action is `create`", () => {
         expect(
             generateDefaultDocumentTitle(
