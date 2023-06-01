@@ -47,7 +47,14 @@ type RegisterVariables = {
 export const RegisterPage = () => {
     const { mutate: register } = useRegister<RegisterVariables>();
 
-    const onSubmit = (values: RegisterVariables) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const values = {
+            email: e.currentTarget.email.value,
+            password: e.currentTarget.password.value,
+        };
+
         register(values);
     };
 
@@ -89,7 +96,14 @@ export const RegisterPage = () => {
     const { mutate: register } = useRegister<FormVariables>();
     const { mutate: login } = useLogin<FormVariables>();
 
-    const onSubmit = (values: FormVariables) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const values = {
+            email: e.currentTarget.email.value,
+            password: e.currentTarget.password.value,
+        };
+
         register(values, {
             //highlight-start
             onSuccess: () => {

@@ -49,7 +49,14 @@ type LoginVariables = {
 export const LoginPage = () => {
     const { mutate: login } = useLogin<LoginVariables>();
 
-    const onSubmit = (values: LoginVariables) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const values = {
+            username: e.currentTarget.username.value,
+            password: e.currentTarget.password.value,
+        };
+
         login(values);
     };
 
