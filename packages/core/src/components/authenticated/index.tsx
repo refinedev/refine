@@ -86,7 +86,7 @@ export function Authenticated(
 export function Authenticated(props: AuthenticatedProps): JSX.Element | null;
 
 /**
- * `<Authenticated>` is the component form of {@link https://refine.dev/docs/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
+ * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
  *
  * @see {@link https://refine.dev/docs/core/components/auth/authenticated `<Authenticated>`} component for more details.
  */

@@ -91,9 +91,9 @@ export function useLogout<TVariables = {}>(
 ): UseLogoutCombinedReturnType<TVariables>;
 
 /**
- * `useLogout` calls the `logout` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ * `useLogout` calls the `logout` method from the {@link https://refine.dev/docs/api-reference/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useLogout} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useLogout} for more details.
  *
  */
 export function useLogout<TVariables = {}>({

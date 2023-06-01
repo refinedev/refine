@@ -113,7 +113,7 @@ export const useBreadcrumb = ({
         if (typeof i18nProvider !== "undefined" && actionLabel === key) {
             warnOnce(
                 true,
-                `[useBreadcrumb]: Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file.\nFor more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
+                `[useBreadcrumb]: Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file.\nFor more information, see https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/#i18n-support`,
             );
             breadcrumbs.push({
                 label: translate(`buttons.${action}`, humanizeString(action)),

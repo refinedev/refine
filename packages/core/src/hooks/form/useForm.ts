@@ -200,7 +200,7 @@ export type UseFormReturnType<
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/form/useForm} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/useForm} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

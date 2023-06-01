@@ -48,7 +48,7 @@ export function usePermissions<TData = any>(
 /**
  * `usePermissions` calls the `getPermissions` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/usePermissions} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/usePermissions} for more details.
  *
  * @typeParam TData - Result data of the query
  *
