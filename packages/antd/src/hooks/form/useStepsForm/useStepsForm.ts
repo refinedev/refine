@@ -130,6 +130,7 @@ export const useStepsForm = <
     return {
         ...useFormProps,
         ...stepsPropsSunflower,
+        formLoading: useFormProps.formLoading,
         formProps: {
             ...stepsPropsSunflower.formProps,
             ...useFormProps.formProps,
