@@ -16,6 +16,7 @@ import {
     translateActionTitle,
     translateButtonTitle,
     getMetaProps,
+    idQuoteWrapper,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -374,7 +375,7 @@ export const renderer = ({
             { 
                 refineCoreProps: {
                     resource: "${resource.name}",
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     action: "edit",
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
