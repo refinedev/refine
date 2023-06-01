@@ -13,7 +13,7 @@ import { DateFieldProps } from "../types";
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/fields/date} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/date} for more details.
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,

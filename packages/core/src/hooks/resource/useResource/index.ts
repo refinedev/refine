@@ -67,7 +67,7 @@ export function useResource<TIdentifier = UseResourceParam>(
 /**
  * `useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
  *
- * @see {@link https://refine.dev/docs/core/hooks/resource/useResource} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/resource/useResource} for more details.
  */
 export function useResource(
     args?: UseResourceLegacyProps | UseResourceParam,

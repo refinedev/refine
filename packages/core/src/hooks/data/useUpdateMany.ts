@@ -97,7 +97,7 @@ export type UseUpdateManyProps<
  *
  * It uses `updateMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/core/hooks/data/useUpdateMany} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}

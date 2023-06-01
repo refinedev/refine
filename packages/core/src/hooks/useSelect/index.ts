@@ -147,7 +147,7 @@ export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
  * It uses `getList` method as query function from the dataProvider that is
  * passed to {@link https://refine.dev/docs/api-reference/core/components/refine-config/ `<Refine>`}.
  *
- * @see {@link https://refine.dev/docs/core/hooks/useSelect} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/useSelect} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

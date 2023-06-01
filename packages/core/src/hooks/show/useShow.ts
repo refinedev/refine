@@ -82,7 +82,7 @@ export type useShowProps<
  * It uses `getOne` method as query function from the dataProvider that is
  * passed to {@link https://refine.dev/docs/api-reference/core/components/refine-config/ `<Refine>`}.
  *
- * @see {@link https://refine.dev/docs/core/hooks/show/useShow} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/show/useShow} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
