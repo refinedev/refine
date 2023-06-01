@@ -4,9 +4,7 @@ import { checkRouterPropMisuse } from ".";
 describe("checkRouterPropMisuse", () => {
     it("should return false when pass routerBindings", () => {
         expect(
-            checkRouterPropMisuse({
-                ...mockRouterBindings(),
-            }),
+            checkRouterPropMisuse(mockRouterBindings()),
         ).toBeFalsy();
     });
 
