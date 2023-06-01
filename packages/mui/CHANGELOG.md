@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 4.18.2
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
 ## 4.18.1
 
 ### Patch Changes
