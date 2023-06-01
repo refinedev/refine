@@ -43,11 +43,17 @@ type updatePasswordVariables = {
     password: string;
 };
 
-export const updatePasswordPage = () => {
+export const UpdatePasswordPage = () => {
     const { mutate: updatePassword } =
         useUpdatePassword<updatePasswordVariables>();
 
-    const onSubmit = (values: updatePasswordVariables) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const values = {
+            password: e.currentTarget.password.value,
+        };
+
         updatePassword(values);
     };
 
