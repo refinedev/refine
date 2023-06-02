@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@ant-design/charts": "^1.2.0",
-    "@refinedev/antd": "^5.20.0",
-    "@refinedev/core": "^4.16.4",
+    "@refinedev/antd": "^5.22.0",
+    "@refinedev/core": "^4.18.0",
     "@refinedev/cli": "^2.5.5",
     "@refinedev/react-router-v6": "^4.3.2",
     "@refinedev/supabase": "^5.5.2",

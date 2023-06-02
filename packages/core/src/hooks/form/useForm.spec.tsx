@@ -69,6 +69,52 @@ describe("useForm Hook", () => {
         );
     });
 
+    it("should use the correct meta values when fetching data", async () => {
+        const getOneMock = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useForm({
+                    resource: "posts",
+                    action: "edit",
+                    id: 1,
+                    meta: { foo: "baz", bar: "tux" },
+                    queryMeta: { foo: "bar", baz: "qux" },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getOne: getOneMock,
+                        },
+                    },
+                    routerProvider: mockRouterBindings(),
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(!result.current.formLoading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            expect(getOneMock).toBeCalled();
+        });
+
+        expect(getOneMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+                meta: expect.objectContaining({
+                    foo: "bar",
+                    baz: "qux",
+                    bar: "tux",
+                }),
+            }),
+        );
+    });
+
     it("correctly render edit form from route", async () => {
         const { result } = renderHook(() => useForm(), {
             wrapper: EditWrapperWithRoute,
@@ -503,6 +549,49 @@ describe("useForm Hook", () => {
             );
         });
 
+        it("should call the `create` method with correct meta values", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "create",
+                        meta: { method: "POST", foo: "bar" },
+                        mutationMeta: { method: "PATCH", baz: "qux" },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                create: createMock,
+                            },
+                        },
+                        routerProvider: mockRouterBindings(),
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({});
+
+            await waitFor(() => {
+                expect(createMock).toBeCalled();
+            });
+
+            expect(createMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                    meta: expect.objectContaining({
+                        method: "PATCH",
+                        foo: "bar",
+                        baz: "qux",
+                    }),
+                }),
+            );
+        });
+
         it("onFinish should not trigger create dataProvider method if resource not found", async () => {
             const createMock = jest.fn();
 
@@ -635,6 +724,50 @@ describe("useForm Hook", () => {
                     variables: {
                         title: "foo",
                     },
+                }),
+            );
+        });
+
+        it("should call edit dataProvider method with correct meta values", async () => {
+            const updateMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        meta: { method: "POST", foo: "bar" },
+                        queryMeta: { method: "GET" },
+                        mutationMeta: { method: "PATCH", baz: "qux" },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                update: updateMock,
+                            },
+                        },
+                        routerProvider: mockRouterBindings(),
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            result.current.onFinish({});
+
+            await waitFor(() => {
+                expect(updateMock).toBeCalled();
+            });
+
+            expect(updateMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                    meta: expect.objectContaining({
+                        method: "PATCH",
+                        foo: "bar",
+                        baz: "qux",
+                    }),
                 }),
             );
         });

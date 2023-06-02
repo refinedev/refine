@@ -44,11 +44,17 @@ type forgotPasswordVariables = {
     email: string;
 };
 
-export const forgotPasswordPage = () => {
+export const ForgotPasswordPage = () => {
     const { mutate: forgotPassword } =
         useForgotPassword<forgotPasswordVariables>();
 
-    const onSubmit = (values: forgotPasswordVariables) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const values = {
+            email: e.currentTarget.email.value,
+        };
+
         forgotPassword(values);
     };
 

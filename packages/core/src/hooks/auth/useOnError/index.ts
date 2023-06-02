@@ -49,7 +49,7 @@ export function useOnError(
 /**
  * `useOnError` calls the `checkError` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useCheckError} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useCheckError} for more details.
  *
  */
 export function useOnError({

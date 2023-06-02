@@ -8,7 +8,7 @@ import { BooleanFieldProps } from "../types";
 /**
  * This field is used to display boolean values. It uses the {@link https://ant.design/components/tooltip/#header `<Tooltip>`} values from Ant Design.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/fields/boolean} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,
