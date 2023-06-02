@@ -123,6 +123,7 @@ export const TestWrapper: (
                 resources={resources.map((r) => ({
                     ...r,
                     options: {
+                        ...r.options,
                         route: r.options?.route ?? r.route,
                     },
                 }))}

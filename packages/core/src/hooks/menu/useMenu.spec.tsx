@@ -421,8 +421,77 @@ describe("useMenu Hook", () => {
             ]),
         );
     });
+
+    it("should hide item if parameter is missing", async () => {
+        const { result } = renderHook(
+            () => useMenu({ hideOnMissingParameter: true }),
+            {
+                wrapper: TestWrapper({
+                    resources: legacyResourceTransform([
+                        {
+                            name: "visible",
+                            list: () => null,
+                        },
+                        {
+                            name: "org-users",
+                            list: "orgs/:orgId/users",
+                        },
+                    ]),
+                }),
+            },
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+            ]),
+        );
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "org-users" }),
+            ]),
+        );
+    });
+
+    // NOTE: Will be removed in the refine v5
+    it("should work with deprecated props", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        options: {
+                            icon: "X",
+                            label: "Best Posts",
+                        },
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                ],
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: "posts",
+                    icon: "X",
+                    label: "Best Posts",
+                    options: { icon: "X", label: "Best Posts" },
+                }),
+                expect.not.objectContaining({ name: "categories" }),
+            ]),
+        );
+    });
 });
 
+// NOTE: Will be removed in the refine v5
 describe("legacy roter provider", () => {
     it("should contain resources", () => {
         const { result } = renderHook(() => useMenu(), {

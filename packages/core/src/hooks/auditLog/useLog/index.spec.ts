@@ -188,8 +188,7 @@ describe("useLog Hook", () => {
         );
     });
 
-    // TODO: deprecated values not working
-    it.skip.each([
+    it.each([
         "meta.audit",
         "options.audit", // deprecated value
         "options.audit.auditLog.permissions", // deprecated value
@@ -227,7 +226,6 @@ describe("useLog Hook", () => {
                 resources: [
                     {
                         name: "posts",
-                        meta: { audit: ["create"] },
                         ...resourceAudit,
                     },
                 ],
