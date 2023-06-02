@@ -40,14 +40,8 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     const { mutate: forgotPassword, isLoading } =
         useForgotPassword<ForgotPasswordFormTypes>();
 
-    const renderLink = (link: React.ReactNode, text?: string) => {
-        if (link) {
-            if (typeof link === "string") {
-                return <ActiveLink to={link}>{text}</ActiveLink>;
-            }
-            return link;
-        }
-        return null;
+    const renderLink = (link: string, text?: string) => {
+        return <ActiveLink to={link}>{text}</ActiveLink>;
     };
 
     const content = (
@@ -73,13 +67,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label>
+                    <label htmlFor="email-input">
                         {translate(
                             "pages.forgotPassword.fields.email",
                             "Email",
                         )}
                     </label>
                     <input
+                        id="email-input"
                         name="email"
                         type="mail"
                         autoCorrect="off"
