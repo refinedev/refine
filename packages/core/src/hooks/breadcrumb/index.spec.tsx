@@ -171,7 +171,7 @@ describe("useBreadcrumb Hook", () => {
         });
 
         expect(console.warn).toBeCalledWith(
-            `[useBreadcrumb]: Breadcrumb missing translate key for the "show" action. Please add "actions.show" key to your translation file.\nFor more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
+            `[useBreadcrumb]: Breadcrumb missing translate key for the "show" action. Please add "actions.show" key to your translation file.\nFor more information, see https://refine.dev/docs/api-reference/core/hooks/useBreadcrumb/#i18n-support`,
         );
 
         expect(result.current.breadcrumbs).toEqual([
