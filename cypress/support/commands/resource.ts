@@ -136,7 +136,10 @@ export const list = () => {
 };
 
 export const create = ({ ui }: IResourceCreateParams) => {
+    cy.interceptGETCategories();
+
     cy.getCreateButton().click();
+    cy.wait("@getCategories");
     cy.location("pathname").should("eq", "/posts/create");
 
     cy.assertDocumentTitle("Post", "create");
@@ -221,6 +224,7 @@ export const show = () => {
 };
 
 export const resourceDelete = ({ ui }: IResourceDeleteParams) => {
+    cy.interceptGETCategories();
     cy.wait("@getPosts");
     waitLoadingOverlay(ui);
 
