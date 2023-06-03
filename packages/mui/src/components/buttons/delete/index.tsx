@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useDelete,
     useTranslate,
@@ -7,6 +7,7 @@ import {
     useResource,
     pickNotDeprecated,
     useWarnAboutChange,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -51,8 +52,15 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const translate = useTranslate();
 
     const { id, resource } = useResource(
