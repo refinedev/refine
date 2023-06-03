@@ -27,6 +27,13 @@ export type CanReturnType = {
 
 export interface IAccessControlContext {
     can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
+    options?: {
+        buttons: {
+            hideIfUnauthorized: boolean;
+            enableAccessControl: boolean;
+        };
+    };
 }
 
-export type AccessControlProvider = Required<IAccessControlContext>;
+export type AccessControlProvider = Partial<IAccessControlContext> &
+    Required<Pick<IAccessControlContext, "can">>;
