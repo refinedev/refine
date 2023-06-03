@@ -86,6 +86,52 @@ export const buttonDeleteTests = function (
             );
         });
 
+        it("should be enabled when enableAccessControl is false", async () => {
+            const { container, getByText } = render(
+                <DeleteButton>Clone</DeleteButton>,
+                {
+                    wrapper: TestWrapper({
+                        accessControlProvider: {
+                            can: () => Promise.resolve({ can: false }),
+                            options: {
+                                buttons: {
+                                    enableAccessControl: false,
+                                    hideIfUnauthorized: false,
+                                },
+                            },
+                        },
+                    }),
+                },
+            );
+
+            expect(container).toBeTruthy();
+
+            expect(getByText("Clone").closest("button")).not.toBeDisabled();
+        });
+
+        it("should be hidden when hideIfUnauthorized is true", async () => {
+            const { container, queryByText } = render(
+                <DeleteButton hideIfUnauthorized>Clone</DeleteButton>,
+                {
+                    wrapper: TestWrapper({
+                        accessControlProvider: {
+                            can: () => Promise.resolve({ can: false }),
+                            options: {
+                                buttons: {
+                                    enableAccessControl: true,
+                                    hideIfUnauthorized: true,
+                                },
+                            },
+                        },
+                    }),
+                },
+            );
+
+            expect(container).toBeTruthy();
+
+            expect(queryByText("Clone")).not.toBeInTheDocument();
+        });
+
         it("should be disabled when recordId not allowed", async () => {
             const { container, getByTestId } = render(
                 <DeleteButton recordItemId="1">Delete</DeleteButton>,
