@@ -1,14 +1,14 @@
+import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
-import { useDataGrid, List } from "@refinedev/mui";
 
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { DataGrid, GridColumns, GridToolbar } from "@mui/x-data-grid";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps, setFilters } = useDataGrid();
 
-    const columns = React.useMemo<GridColumns>(
+    const columns = React.useMemo<GridColDef[]>(
         () => [
             { field: "id", headerName: "ID", Width: 30 },
             {

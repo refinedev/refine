@@ -1,13 +1,13 @@
-import React from "react";
-import { useNavigation, useTranslate, useUpdate } from "@refinedev/core";
-import { NumberField, useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridActionsCellItem, GridColumns } from "@mui/x-data-grid";
+import CheckOutlined from "@mui/icons-material/CheckOutlined";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import CheckOutlined from "@mui/icons-material/CheckOutlined";
-import CloseOutlined from "@mui/icons-material/CloseOutlined";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { useNavigation, useTranslate, useUpdate } from "@refinedev/core";
+import { NumberField, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
 import { OrderStatus } from "components/orderStatus";
 import { IOrder } from "interfaces";
@@ -36,7 +36,7 @@ export const RecentOrders: React.FC = () => {
         syncWithLocation: false,
     });
 
-    const columns = React.useMemo<GridColumns<IOrder>>(
+    const columns = React.useMemo<GridColDef<IOrder>[]>(
         () => [
             {
                 field: "avatar",
@@ -152,7 +152,6 @@ export const RecentOrders: React.FC = () => {
                 type: "actions",
                 width: 80,
                 getActions: ({ id }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         icon={<CheckOutlined color="success" />}
@@ -172,7 +171,6 @@ export const RecentOrders: React.FC = () => {
                             });
                         }}
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={2}
                         icon={<CloseOutlined color="error" />}
@@ -203,9 +201,9 @@ export const RecentOrders: React.FC = () => {
             {...dataGridProps}
             columns={columns}
             autoHeight
-            headerHeight={0}
+            columnHeaderHeight={0}
             rowHeight={200}
-            rowsPerPageOptions={[4, 10, 25, 50, 100]}
+            pageSizeOptions={[4, 10, 25, 50, 100]}
             sx={{
                 paddingX: { xs: 3 },
                 border: "none",
