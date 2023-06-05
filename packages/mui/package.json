@@ -47,7 +47,7 @@
     "postcss": "^8.1.4",
     "react-router-dom": "^6.8.1",
     "ts-jest": "^29.0.3",
-    "tsup": "^5.11.13",
+    "tsup": "^6.7.0",
     "typescript": "^4.7.4"
   },
   "dependencies": {
