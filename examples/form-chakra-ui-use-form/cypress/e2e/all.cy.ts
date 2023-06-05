@@ -93,7 +93,7 @@ describe("form-chakra-ui-use-form", () => {
         });
     });
 
-    it.only("should edit form warn when unsaved changes", () => {
+    it("should edit form warn when unsaved changes", () => {
         cy.getChakraUILoadingOverlay().should("not.exist");
 
         cy.interceptGETPost();
