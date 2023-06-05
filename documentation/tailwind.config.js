@@ -2,7 +2,6 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    important: "#__docusaurus",
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
@@ -20,6 +19,8 @@ module.exports = {
                     purple: "#8000FF",
                     pink: "#ED5EC9",
                     bg: "#0A0A29",
+                    kdb: "#DBDBF0",
+                    "bg-alt": "#262640",
                     link: "#6EB3F7",
                 },
                 gray: {
@@ -54,7 +55,12 @@ module.exports = {
             },
             screens: {
                 content: "656px",
-                short: { raw: "(max-height: 650px) and (min-width: 1024px)" },
+                "landing-2xl": "1440px",
+                "landing-xl": "1200px",
+                "landing-lg": "960px",
+                "landing-md": "640px",
+                "landing-sm": "480px",
+                "landing-xs": "360px",
             },
         },
     },
