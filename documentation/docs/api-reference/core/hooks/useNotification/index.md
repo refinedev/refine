@@ -76,9 +76,9 @@ open?.({
     message: "Progress",
     undoableTimeout: 5,
     cancelMutation: () => {
-        // when undo button is clicked run this callback
-    },
-});
+    // when undo button is clicked, run this callback
+    }
+})
 ```
 
 ## API Reference
