@@ -78,8 +78,12 @@ export async function postTransform(files: any, flags: any) {
         ) {
             delete dependencies[dep];
 
-            dependencies[dep.replace("@pankod/refine-", "@refinedev/")] =
-                "latest";
+            const isMUI = dep.includes("@pankod/refine-mui");
+            const migratableMUIVersion = "^4.18.2";
+
+            dependencies[dep.replace("@pankod/refine-", "@refinedev/")] = isMUI
+                ? migratableMUIVersion
+                : "latest";
         }
     });
 
