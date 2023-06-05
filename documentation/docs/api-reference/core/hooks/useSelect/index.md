@@ -53,7 +53,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [creating a data provider&#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/])
+> For more information, refer to the [creating a data provider&#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
 
 ### `optionLabel` and `optionValue`
 
