@@ -79,7 +79,7 @@ const SidebarCategory = ({
                 !line && "pl-0",
                 line && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 border-l-gray-700",
+                line && "border-l-2 dark:border-l-gray-700",
             )}
         >
             <Comp
@@ -94,7 +94,9 @@ const SidebarCategory = ({
                     "border-0",
                     "appearance-none",
                     "focus:outline-none",
-                    isActive && !isHeader ? "text-gray-0" : "text-gray-400",
+                    isActive && !isHeader
+                        ? "dark:text-gray-0"
+                        : "dark:text-gray-400",
                     isHeader ? "uppercase" : "",
                     "font-normal",
                     "flex items-center",
@@ -106,7 +108,7 @@ const SidebarCategory = ({
                     "relative",
                     !isHeader && "group",
                     "transition-colors duration-200 ease-in-out",
-                    !isHeader && "hover:text-gray-0",
+                    !isHeader && "hover:dark:text-gray-0",
                 )}
             >
                 <div
@@ -115,7 +117,7 @@ const SidebarCategory = ({
                         "opacity-0",
                         "rounded-lg",
                         "group-hover:opacity-50",
-                        "bg-gray-700 bg-opacity-50",
+                        "bg-gray-50 dark:bg-gray-700 bg-opacity-50",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "right-0",
@@ -141,7 +143,7 @@ const SidebarCategory = ({
                             !isActive &&
                             !isSame &&
                             "group-hover:opacity-50",
-                        "bg-gray-700 bg-opacity-50",
+                        "bg-gray-50 dark:bg-gray-700 bg-opacity-50",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "right-0",
@@ -205,7 +207,9 @@ const SidebarLink = ({
             className={clsx(
                 "relative",
                 "min-h-[40px]",
-                isActive ? "text-gray-0" : "text-gray-400",
+                isActive
+                    ? "dark:text-gray-0 text-gray-900"
+                    : "dark:text-gray-400 text-gray-500",
                 "text-sm leading-6 font-normal",
                 "flex items-start justify-start",
                 "p-2",
@@ -213,11 +217,11 @@ const SidebarLink = ({
                 line && !dashed && "pl-5",
                 line && dashed && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 border-l-gray-700",
+                line && "border-l-2 dark:border-l-gray-700",
                 "relative",
                 "group",
                 "transition-colors duration-200 ease-in-out",
-                "hover:text-gray-0",
+                "hover:dark:text-gray-0 hover:text-gray-900",
             )}
         >
             {dashed && <DashIcon className="w-6 h-6 flex-shrink-0 z-[1]" />}
@@ -227,10 +231,7 @@ const SidebarLink = ({
                     "absolute",
                     isActive && isSame ? "opacity-100" : "opacity-0",
                     "rounded-lg",
-                    !isActive && !isSame && "group-hover:opacity-50",
-                    "bg-gray-700 bg-opacity-50",
-                    "transition-opacity",
-                    "duration-200 ease-in-out",
+                    "bg-gray-50 dark:bg-gray-700",
                     "right-0",
                     "top-0",
                     "w-[calc(280px-24px)]",
