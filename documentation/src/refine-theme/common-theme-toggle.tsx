@@ -1,8 +1,12 @@
 import clsx from "clsx";
 import React from "react";
 import { LightModeIcon } from "./icons/light-mode";
+import { useColorMode } from "@docusaurus/theme-common";
 
 export const CommonThemeToggle = () => {
+    const { colorMode, setColorMode } = useColorMode();
+    console.log(colorMode);
+
     return (
         <button
             type="button"
