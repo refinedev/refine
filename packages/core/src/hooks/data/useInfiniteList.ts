@@ -107,7 +107,7 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
  *
  * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/core/hooks/data/useInfiniteList} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

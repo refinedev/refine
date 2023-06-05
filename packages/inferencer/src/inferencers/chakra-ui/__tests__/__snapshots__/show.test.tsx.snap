@@ -13,7 +13,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
           class="css-gqssyb"
         >
           <div
-            class="chakra-stack css-84zodg"
+            class="chakra-stack css-1igwmid"
           >
             <button
               aria-label="back"
@@ -296,7 +296,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
           Tags
         </h5>
         <div
-          class="chakra-stack css-he6z7n"
+          class="chakra-stack css-qlxuh7"
         >
           <span
             class="css-1qm7lvz"

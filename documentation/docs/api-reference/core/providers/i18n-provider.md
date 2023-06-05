@@ -322,6 +322,7 @@ Before we get started, let's look at which parts are going to be translated:
             "show": "#{{id}} Show Post | refine",
             "edit": "#{{id}} Edit Post | refine",
             "create": "Create new Post | refine",
+            "clone": "#{{id}} Clone Post | refine"
         }
     }
 }
@@ -495,6 +496,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "show": "#{{id}} Show Post | refine",
             "edit": "#{{id}} Edit Post | refine",
             "create": "Create new Post | refine",
+            "clone": "#{{id}} Clone Post | refine"
         }
     }
 }
@@ -651,7 +653,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "list": "Beiträge | refine",
             "show": "#{{id}} Beitrag anzeigen | refine",
             "edit": "#{{id}} Beitrag bearbeiten | refine",
-            "create": "Neuen Beitrag erstellen | refine"
+            "create": "Neuen Beitrag erstellen | refine",
+            "clone" : "#{{id}} Beitrag klonen | refine"
         }
     }
 }

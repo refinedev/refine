@@ -135,7 +135,9 @@ describe("useDrawerForm Hook", () => {
             result.current.formProps.onFinish?.({});
         });
 
-        expect(result.current.drawerProps.open).toBe(false);
+        await waitFor(() =>
+            expect(result.current.drawerProps.open).toBe(false),
+        );
     });
 
     it("when 'autoSubmitClose' is false, 'close' should not be called when 'submit' is called", async () => {

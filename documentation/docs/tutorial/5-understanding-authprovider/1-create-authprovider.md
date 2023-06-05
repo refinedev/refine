@@ -604,7 +604,7 @@ if (data?.includes("admin")) {
 :::info
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](docs/api-reference/core/providers/accessControl-provider/)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/api-reference/core/providers/accessControl-provider/)
 :::
 
 > For more information, refer to the [`usePermissions` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions/)
@@ -716,7 +716,7 @@ const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
 const authProvider: AuthBindings = {
     // ---
-    register: async async ({ email }) => {
+    register: async ({ email }) => {
         const user = mockUsers.find((user) => user.email === email);
 
         if (user) {

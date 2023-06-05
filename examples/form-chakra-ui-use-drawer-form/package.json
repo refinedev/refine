@@ -6,14 +6,15 @@
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",
-    "cypress": "cypress open -C ./cypress.config.ts"
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/chakra-ui": "^2.14.2",
+    "@refinedev/chakra-ui": "^2.16.2",
     "@tabler/icons": "^1.1.0",
-    "@refinedev/core": "^4.16.0",
+    "@refinedev/core": "^4.18.0",
     "@refinedev/cli": "^2.5.5",
-    "@refinedev/react-router-v6": "^4.3.0",
+    "@refinedev/react-router-v6": "^4.3.2",
     "@refinedev/simple-rest": "^4.5.0",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",

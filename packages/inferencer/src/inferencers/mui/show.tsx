@@ -23,6 +23,7 @@ import {
     getVariableName,
     translatePrettyString,
     getMetaProps,
+    idQuoteWrapper,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -619,7 +620,7 @@ export const renderer = ({
             isCustomPage
                 ? `{ 
                     resource: "${resource.name}", 
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
                         meta,

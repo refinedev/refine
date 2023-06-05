@@ -14,7 +14,7 @@ import { routeGenerator } from "../routeGenerator";
 export const legacyResourceTransform = (resources: ResourceProps[]) => {
     const _resources: IResourceItem[] = [];
 
-    resources?.forEach((resource) => {
+    resources.forEach((resource) => {
         _resources.push({
             ...resource,
             label: resource.meta?.label ?? resource.options?.label,

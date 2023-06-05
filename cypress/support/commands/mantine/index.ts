@@ -15,3 +15,14 @@ export const getMantineFormItemError = ({
 export const getMantineLoadingOverlay = () => {
     return cy.get(".mantine-LoadingOverlay-root");
 };
+
+export const fillMantineForm = () => {
+    cy.fixture("mock-post").then((mockPost) => {
+        cy.get("#title").clear().type(mockPost.title);
+        cy.get("#content textarea")
+            .clear({ force: true })
+            .type(mockPost.content);
+        cy.get("#status").click().get("#status-0").click();
+        cy.get("#categoryId").clear().get("#categoryId-1").click();
+    });
+};

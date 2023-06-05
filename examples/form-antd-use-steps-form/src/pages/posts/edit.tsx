@@ -17,8 +17,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         formProps,
         saveButtonProps,
         queryResult,
+        formLoading,
     } = useStepsForm<IPost>();
-    const formLoading = queryResult?.isFetching || queryResult?.isLoading;
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({

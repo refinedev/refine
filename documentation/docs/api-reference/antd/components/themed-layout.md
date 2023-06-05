@@ -716,9 +716,9 @@ Fixed some UI problems with `ThemedLayoutV2`. If you are still using `ThemedLayo
 ...
 ```
 
-## collapse/uncollapse `Sider` component with `useSiderVisible` hook
+## collapse/uncollapse `Sider` component with `useThemedLayoutContext` hook
 
-The `useSiderVisible` hook is that is used to collapse/uncollapse the `Sider` component. You can do this anywhere you want using the `useSiderVisible` hook. Below you can see an example put on the dashboard page.
+The `useThemedLayoutContext` hook is that is used to collapse/uncollapse the `Sider` component. You can do this anywhere you want using the `useThemedLayoutContext` hook. Below you can see an example put on the dashboard page.
 
 ```tsx live previewHeight=300px hideCode url=http://localhost:3000/
 setInitialRoutes(["/"]);
@@ -727,7 +727,7 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, RefineThemes, useSiderVisible } from "@refinedev/antd";
+import { ThemedLayoutV2, RefineThemes, useThemedLayoutContext } from "@refinedev/antd";
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -743,25 +743,25 @@ const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 const DashboardPage = () => {
     const {
-        siderVisible,
-        setSiderVisible,
-        drawerSiderVisible,
-        setDrawerSiderVisible,
-    } = useSiderVisible();
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
 
     return (
         <Space style={{ paddingTop: 30 }}>
             <Button
                 type="primary"
-                onClick={() => setSiderVisible?.(!siderVisible)}
+                onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
             >
-                toggle visible for mobile
+                toggle mobile sider
             </Button>
             <Button
                 type="primary"
-                onClick={() => setDrawerSiderVisible?.(!drawerSiderVisible)}
+                onClick={() => setSiderCollapsed(!siderCollapsed)}
             >
-                toggle drawer
+                toggle collapse of sider
             </Button>
         </Space>
     );

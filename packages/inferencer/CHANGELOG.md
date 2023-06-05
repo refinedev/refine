@@ -1,5 +1,32 @@
 # @pankod/refine-mantine
 
+## 3.5.8
+
+### Patch Changes
+
+-   [#4427](https://github.com/refinedev/refine/pull/4427) [`b4298166b6f`](https://github.com/refinedev/refine/commit/b4298166b6f3f4260129c0171891f9203e3d4183) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Inferencer assumes `id` is number in custom pages.
+    From now on, if `id` is `typeof string`, and `inferencer` will infer it as `string`.
+-   Updated dependencies [[`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527), [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f), [`0602f4cdf1c`](https://github.com/refinedev/refine/commit/0602f4cdf1c38f2b9dea8a293680a1872f4a448d), [`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527)]:
+    -   @refinedev/core@4.18.0
+
+## 3.5.7
+
+### Patch Changes
+
+-   [#4427](https://github.com/refinedev/refine/pull/4427) [`b4298166b6f`](https://github.com/refinedev/refine/commit/b4298166b6f3f4260129c0171891f9203e3d4183) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Inferencer assumes `id` is number in custom pages.
+    From now on, if `id` is `typeof string`, and `inferencer` will infer it as `string`.
+-   Updated dependencies [[`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527), [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f), [`0602f4cdf1c`](https://github.com/refinedev/refine/commit/0602f4cdf1c38f2b9dea8a293680a1872f4a448d), [`cf07d59587f`](https://github.com/refinedev/refine/commit/cf07d59587fae2adce97a79b40fdb60b9d9a9527)]:
+    -   @refinedev/core@4.17.0
+
+## 3.5.6
+
+### Patch Changes
+
+-   [#4402](https://github.com/refinedev/refine/pull/4402) [`4c41be2a2ae`](https://github.com/refinedev/refine/commit/4c41be2a2ae294cb5a7e18754c63b0c0c504300d) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `translate` function dependency to the table hooks if `i18n` is enabled.
+
+-   Updated dependencies [[`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389), [`473bbe5b31d`](https://github.com/refinedev/refine/commit/473bbe5b31de91f338733aeb34571dba8e44e389)]:
+    -   @refinedev/core@4.16.2
+
 ## 3.5.5
 
 ### Patch Changes

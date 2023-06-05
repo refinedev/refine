@@ -44,6 +44,7 @@ import routerBindings, {
     NavigateToResource,
     UnsavedChangesNotifier,
     CatchAllNavigate,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 
 import { ConfigProvider } from "antd";
@@ -297,6 +298,7 @@ const App: React.FC = () => {
                      * It's useful when preventing data loss while developing apps with long forms.
                      */}
                     <UnsavedChangesNotifier message="You have unsaved changes! Your changes will be lost if you close this page." />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

@@ -21,7 +21,7 @@ export type AuthProps = AuthPageProps<BoxProps, CardProps, FormPropsType>;
 
 /**
  * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page/} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {
     const { type } = props;
