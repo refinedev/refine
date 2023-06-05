@@ -20,11 +20,13 @@ export const DocPaginator = (props) => {
                         "flex-1",
                         "p-4",
                         "rounded-lg",
-                        "border border-gray-700",
+                        "border border-gray-200 dark:border-gray-700",
+                        "hover:bg-gray-100 hover:dark:bg-gray-700",
+                        "hover:no-underline",
                     )}
                 >
                     <div className="flex-1 flex items-start justify-center flex-col gap-2 text-left">
-                        <span className="text-sm leading-6 text-gray-0 font-light">
+                        <span className="text-sm leading-6 text-gray-500 dark:text-gray-300">
                             Previous
                         </span>
                         <span className="text-base text-refine-link underline break-all">
@@ -40,15 +42,17 @@ export const DocPaginator = (props) => {
                         "flex-1",
                         "p-4",
                         "rounded-lg",
-                        "border border-gray-700",
+                        "border border-gray-200 dark:border-gray-700",
+                        "hover:bg-gray-100 hover:dark:bg-gray-700",
+                        "hover:no-underline",
                         !previous && "col-start-2",
                     )}
                 >
                     <div className="flex-1 flex items-end justify-center flex-col gap-2 text-right">
-                        <span className="text-sm leading-6 text-gray-0 font-light">
+                        <span className="text-sm leading-6 text-gray-500 dark:text-gray-300">
                             Next
                         </span>
-                        <span className="text-base text-refine-link underline break-all">
+                        <span className="text-base text-refine-blue underline break-all">
                             {next.title}
                         </span>
                     </div>

@@ -6,12 +6,13 @@ export const CommonSummary = ({ children, className, ...props }) => {
     return (
         <summary
             className={clsx(
-                "bg-gray-800",
+                "bg-gray-50",
+                "dark:bg-gray-800",
                 "p-2",
                 "flex items-center gap-2",
                 "before:hidden",
                 "-mb-px",
-                "border-b border-b-gray-700",
+                "dark:border-b dark:border-b-gray-700",
             )}
             {...props}
         >
@@ -22,7 +23,7 @@ export const CommonSummary = ({ children, className, ...props }) => {
                     className={clsx("refine-details-triangle", "text-gray-500")}
                 />
             </div>
-            <span className="text-gray-0">{children}</span>
+            <span className="text-gray-900 dark:text-gray-0">{children}</span>
         </summary>
     );
 };
