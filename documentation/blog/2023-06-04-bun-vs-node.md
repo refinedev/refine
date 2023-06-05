@@ -1,10 +1,10 @@
 ---
-title: Bun vs. Node.js - Benchmarking runtime
+title: Bun vs. Node.js
 description: We'll go over the new Bun runtime that has created a buzz in the tech space lately.
 slug: bun-js-vs-node
 authors: victor_uma
 tags: [javascript, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/social-2.png
 hide_table_of_contents: false
 ---
 
@@ -110,12 +110,11 @@ Once the installation is finished, you will have successfully installed Bun. You
 In this section, we'll look at how Bun compares to Node and do some benchmarking between this two runtime. 
 
 
-1. **Language Support**: While Node.js supports a broad range of programming languages, including JavaScript and its variants like TypeScript, Bun primarily focuses on JavaScript and TypeScript.
-2. **Performance**: Bun emphasizes faster startup times and runtime performance by utilizing the JavaScriptCore engine from WebKit, renowned for its speed. In contrast, Node.js relies on the V8 engine, which is also highly optimized but may have performance distinctions compared to JavaScriptCore.
-3. **Size and Dependencies**: Bun strives to be a lightweight runtime with a smaller codebase and minimal dependencies. It incorporates built-in tools like a bundler and transpiler, reducing reliance on external dependencies. In contrast, Node.js is a more comprehensive runtime with a larger codebase and extensive support for external modules and libraries.
-4. **Compatibility**: Although Bun aims to serve as a drop-in replacement for Node.js, there may be variances in API compatibility. While Bun natively implements many Node.js and Web APIs, some specific Node.js modules or APIs might not be fully supported.
-5. **Tooling**: Bun provides an integrated toolkit for JavaScript development, including a bundler, transpiler, and package manager. Node.js, on the other hand, boasts a rich ecosystem of third-party tools and libraries for diverse development tasks, such as popular bundlers like Webpack and package managers like npm or Yarn.
-6. **Community and Ecosystem**: Node.js benefits from a mature and extensive community, offering substantial support, well-documented resources, and a vast ecosystem of modules and libraries. In contrast, Bun, being relatively newer, may have a smaller community and a more focused ecosystem.
+1. **Performance**: Bun emphasizes faster startup times and runtime performance by utilizing the JavaScriptCore engine from WebKit, renowned for its speed. In contrast, Node.js relies on the V8 engine, which is also highly optimized but may have performance distinctions compared to JavaScriptCore.
+2. **Size and Dependencies**: Bun strives to be a lightweight runtime with a smaller codebase and minimal dependencies. It incorporates built-in tools like a bundler and transpiler, reducing reliance on external dependencies. In contrast, Node.js is a more comprehensive runtime with a larger codebase and extensive support for external modules and libraries.
+3. **Compatibility**: Although Bun aims to serve as a drop-in replacement for Node.js, there may be variances in API compatibility. While Bun natively implements many Node.js and Web APIs, some specific Node.js modules or APIs might not be fully supported.
+4. **Tooling**: Bun provides an integrated toolkit for JavaScript development, including a bundler, transpiler, and package manager. Node.js, on the other hand, boasts a rich ecosystem of third-party tools and libraries for diverse development tasks, such as popular bundlers like Webpack and package managers like npm or Yarn.
+5. **Community and Ecosystem**: Node.js benefits from a mature and extensive community, offering substantial support, well-documented resources, and a vast ecosystem of modules and libraries. In contrast, Bun, being relatively newer, may have a smaller community and a more focused ecosystem.
 
 ---
 
