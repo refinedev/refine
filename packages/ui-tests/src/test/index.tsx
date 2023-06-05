@@ -11,7 +11,10 @@ import {
     DataProvider,
     NotificationProvider,
     IResourceItem,
+    RouterBindings,
+    IRouterProvider,
 } from "@refinedev/core";
+import { IRouterContext } from "@refinedev/core/dist/interfaces";
 
 /* interface ITestWrapperProps {
     authProvider?: IAuthContext;
@@ -36,6 +39,8 @@ export interface ITestWrapperProps {
     notificationProvider?: NotificationProvider;
     accessControlProvider?: AccessControlProvider;
     i18nProvider?: I18nProvider;
+    legacyRouterProvider?: IRouterContext;
+    routerProvider?: RouterBindings;
     routerInitialEntries?: string[];
     DashboardPage?: React.FC;
 }
@@ -50,6 +55,8 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     routerInitialEntries,
     DashboardPage,
     i18nProvider,
+    routerProvider,
+    legacyRouterProvider,
 }) => {
     // Previously, MemoryRouter was used in this wrapper. However, the
     // recommendation by react-router developers (see
@@ -73,7 +80,10 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                     }}
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
-                    legacyRouterProvider={MockRouterProvider}
+                    routerProvider={routerProvider}
+                    legacyRouterProvider={
+                        legacyRouterProvider ?? MockRouterProvider
+                    }
                     legacyAuthProvider={legacyAuthProvider}
                     authProvider={authProvider}
                     notificationProvider={notificationProvider}
@@ -92,6 +102,10 @@ export {
     MockRouterProvider,
     MockAccessControlProvider,
     MockLiveProvider,
+    mockRouterBindings,
+    mockAuthProvider,
+    mockLegacyAuthProvider,
+    mockLegacyRouterProvider,
 } from "./dataMocks";
 
 // re-export everything
