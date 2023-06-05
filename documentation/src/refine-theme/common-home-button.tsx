@@ -16,7 +16,7 @@ export const CommonHomeButton = () => {
                 "ease-in-out",
             )}
         >
-            Go to Home
+            refine Home
         </Link>
     );
 };
