@@ -6,7 +6,7 @@ title: useShow
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useShow` is an extended version of [`useOne`](/docs/api-reference/core/hooks/data/useOne/). It supports all the features of `useOne` and adds some extra features.
+`useShow` is an extended version of [`useOne`](/docs/api-reference/core/hooks/data/useOne/) that supports all of its features and adds some more.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
@@ -20,11 +20,13 @@ If you define `resource` and `id` on the hook, when these properties are changed
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
 When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -95,8 +97,6 @@ useShow({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
-
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
@@ -134,6 +134,8 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `dataProviderName`
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
@@ -148,8 +150,6 @@ useShow({
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
-
 ```tsx
 useShow({
     queryOptions: {
@@ -159,9 +159,13 @@ useShow({
 });
 ```
 
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data is fetched successfully, `useShow` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -179,7 +183,9 @@ useShow({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data fetching is failed, `useShow` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -197,10 +203,11 @@ useShow({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useShow({
@@ -208,9 +215,13 @@ useShow({
 });
 ```
 
+> For more information, refer to the [Live / Realtime page&#8594](/docs/api-reference/core/providers/live-provider/#livemode)
+
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -224,7 +235,9 @@ useShow({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
@@ -234,7 +247,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 It is TanStack Query's `useQuery` return values.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ### `showId`
 

@@ -4,13 +4,13 @@ title: useModal
 source: packages/core/src/hooks/modal/useModal/index.tsx
 ---
 
-`useModal` hook allows you to manage a modal. Since it is designed as headless, it returns the `show` and `close` functions, and the `visible` state. It expects you to handle the UI.
+`useModal` hook allows you to manage a modal. Since it is designed as headless, it returns the `show` and `close` functions and the `visible` state. It expects you to handle the UI.
 
 ```ts
 const { show, close, visible } = useModal();
 ```
 
-You can use `visible` state to show or hide the modal. The `show` and `close` functions allow changing the `visible` state. It does not provide any functionality besides this. You can use this hook anywhere.
+You can use the `visible` state to show or hide the modal. The `show` and `close` functions' only use is changing the `visible` state. You can use this hook anywhere.
 
 ## Basic Usage
 
@@ -44,7 +44,7 @@ export const PostList: React.FC = () => {
 
 Here, we show a button somewhere on the page and use `show` on its `onClick` callback to trigger the opening of the `<YourModalComponent>`. When the user clicks on the button, the `<YourModalComponent>` appears.
 
-We also created a `<button>` to close the `<YourModalComponent>` and gave the onClick function `close`, the modal dialog will be closed. We do this to demonstrate `close` function.
+We also created a `<button>` to close the `<YourModalComponent>` and gave the `onClick` function `close`, the modal dialog will be closed. We do this to demonstrate `close` function.
 
 ## Properties
 

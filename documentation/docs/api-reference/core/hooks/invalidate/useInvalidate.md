@@ -4,18 +4,20 @@ title: useInvalidate
 source: /packages/core/src/hooks/invalidate
 ---
 
-> **refine** uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. More information about invalidation please read the TanStack Query's [invalidation](https://tanstack.com/query/v4/docs/react/guides/query-invalidation) docs.
+`useInvalidate` is a hook that can be used to invalidate the state of a particular `resource` or [`dataProvider`][data-provider] (with dataProviderName).
 
-<br/>
-
-`useInvalidate` can be used to invalidate the state of a particular `resource` or [`dataProvider`][data-provider] (with dataProviderName).
-
-This hook is used on mutation hooks. when a mutation is success, this hook will called. For example, creating a `Posts` with [useCreate](/docs/api-reference/core/hooks/data/useCreate/) hook will invalidate the `list` ([useList](/docs/api-reference/core/hooks/data/useList/)) and `many` ([useMany](/docs/api-reference/core/hooks/data/useMany/)) state of the `Posts` resource.
+This hook will be called when a mutation hook is successful. For example, creating a `Posts` with the [useCreate](/docs/api-reference/core/hooks/data/useCreate/) hook will invalidate the `list` ([useList](/docs/api-reference/core/hooks/data/useList/)) and `many` ([useMany](/docs/api-reference/core/hooks/data/useMany/)) state of the `Posts` resource.
 
 :::info-tip
 
-The hook is used internally by **refine**. In most of the cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
+The hook is used internally by **refine**. In most cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
 
+:::
+
+---
+
+:::info-tip
+**refine** uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v4/docs/react/guides/query-invalidation) docs.
 :::
 
 ## Basic Usage
@@ -33,7 +35,7 @@ invalidate({
 
 ## Examples
 
--   To invalidate the `"list"` and `"many"` states of the Posts `resource`.
+To invalidate the `"list"` and `"many"` states of the Posts `resource`.
 
 ```ts
 invalidate({
@@ -42,7 +44,7 @@ invalidate({
 });
 ```
 
--   To invalidate the state of a Posts with an id of `1`.
+To invalidate the state of a Posts with an id of `1`.
 
 ```ts
 invalidate({
@@ -52,7 +54,7 @@ invalidate({
 });
 ```
 
--   To invalidate the `"list"` and `"many"` states of the Posts `resource` of the [`dataProvider`][data-provider] named `"second-data-provider"`.
+To invalidate the `"list"` and `"many"` states of the Posts `resource` of the [`dataProvider`][data-provider] named `"second-data-provider"`.
 
 ```ts
 invalidate({
@@ -62,7 +64,7 @@ invalidate({
 });
 ```
 
--   To invalidate all states of the [`dataProvider`][data-provider] named `"second-data-provider"`.
+To invalidate all states of the [`dataProvider`][data-provider] named `"second-data-provider"`.
 
 ```ts
 invalidate({
@@ -71,7 +73,7 @@ invalidate({
 });
 ```
 
--   To invalidate all states of the Posts.
+To invalidate all states of the Posts.
 
 ```ts
 invalidate({
@@ -84,7 +86,7 @@ invalidate({
 
 ### `resource`
 
-A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It is used to invalidate the state of a particular resource.
+A `resource` represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It is used to invalidate the state of a particular resource.
 
 ### `id`
 
@@ -92,7 +94,7 @@ The `id` to use when invalidating the `"detail"` state.
 
 ### `dataProviderName`
 
-If there is more than one [`dataProvider`][data-provider], you should use the `dataProviderName` that you will use.
+If there is more than one [`dataProvider`][data-provider], you should specify which one to use by passing the `dataProviderName` prop.
 
 ### `invalidates` <PropTag required />
 
