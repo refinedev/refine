@@ -11,14 +11,14 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                 type="button"
                 {...props}
                 className={clsx(
-                    "text-gray-0",
+                    "dark:text-gray-0 text-gray-500",
                     "py-2 pr-2 pl-4",
                     "rounded-lg",
                     "flex items-center justify-between",
-                    "bg-gray-700",
+                    "dark:bg-gray-700 bg-gray-0",
                     "gap-5",
                     "text-base",
-                    "hover:bg-gray-600",
+                    "hover:dark:bg-gray-600",
                     "transition-all",
                     "duration-200",
                     "ease-in-out",
@@ -29,10 +29,10 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                     className={clsx(
                         "py-1 px-2",
                         "rounded",
-                        "border border-gray-600",
-                        "bg-gray-900",
+                        "border dark:border-gray-600 border-gray-200",
+                        "dark:bg-gray-900 bg-gray-100",
                         "text-sm leading-4",
-                        "text-gray-400",
+                        "dark:text-gray-400 text-gray-500",
                     )}
                 >
                     ⌘K

@@ -19,7 +19,7 @@ export const DocHeader = () => {
                 "z-10",
                 "sticky",
                 "top-0",
-                "bg-gray-800",
+                "dark:bg-gray-800 bg-gray-50",
                 "border-b dark:border-gray-700 border-gray-200",
                 "py-3 px-6",
             )}
@@ -34,13 +34,19 @@ export const DocHeader = () => {
                 <div className={clsx("flex", "items-center")}>
                     <Link
                         to="/docs"
-                        className={clsx("flex", "justify-center", "gap-3")}
+                        className={clsx(
+                            "flex",
+                            "justify-center",
+                            "gap-3",
+                            "hover:no-underline",
+                        )}
                     >
-                        <RefineLogoIcon className="text-gray-0" />
+                        <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
                         <span
                             className={clsx(
-                                "text-base leading-none text-gray-0 font-normal",
+                                "text-base leading-none font-normal",
                                 "mt-1.5",
+                                "dark:text-gray-0 text-gray-500",
                             )}
                         >
                             Documentation
@@ -63,15 +69,30 @@ export const DocHeader = () => {
                 <div className={clsx("flex justify-end", "items-center")}>
                     <DocVersionDropdown />
                     <div
-                        className={clsx("h-6", "w-px", "mx-4", "bg-gray-600")}
+                        className={clsx(
+                            "h-6",
+                            "w-px",
+                            "mx-4",
+                            "dark:bg-gray-600 bg-gray-200",
+                        )}
                     />
                     <CommonGithubStarButton />
                     <div
-                        className={clsx("h-6", "w-px", "mx-4", "bg-gray-600")}
+                        className={clsx(
+                            "h-6",
+                            "w-px",
+                            "mx-4",
+                            "dark:bg-gray-600 bg-gray-200",
+                        )}
                     />
                     <CommonHomeButton />
                     <div
-                        className={clsx("h-6", "w-px", "mx-4", "bg-gray-600")}
+                        className={clsx(
+                            "h-6",
+                            "w-px",
+                            "mx-4",
+                            "dark:bg-gray-600 bg-gray-200",
+                        )}
                     />
                     <CommonThemeToggle />
                 </div>
