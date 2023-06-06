@@ -13,7 +13,7 @@ import {
     Log,
     DraftResource,
     Config,
-    CloudQuery,
+    ConnectQuery,
     Storage,
 } from "./services";
 
@@ -140,8 +140,8 @@ class Client {
         return new Config(this);
     }
 
-    get cloudQuery(): CloudQuery {
-        return new CloudQuery(this);
+    get connectQuery(): ConnectQuery {
+        return new ConnectQuery(this);
     }
 
     get storage(): Storage {
