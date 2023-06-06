@@ -5,7 +5,7 @@ const waitOn = require("wait-on");
 const pidtree = require("pidtree");
 const { join: pathJoin } = require("path");
 const { promisify } = require("util");
-const { exec, spawn, execSync } = require("child_process");
+const { exec } = require("child_process");
 
 const KEY = process.env.KEY;
 const CI_BUILD_ID = process.env.CI_BUILD_ID;
@@ -142,7 +142,7 @@ const waitForServer = async (port) => {
                 waitOnFor(`http://127.0.0.1:${port}`),
             ]);
 
-            resolve(resolvedResource)
+            resolve(resolvedResource);
         } catch (error) {
             if (error) console.log(error);
 
@@ -171,7 +171,7 @@ const waitForClose = (resource) => {
             resolve(false);
         }
     });
-}
+};
 
 const runTests = async () => {
     const examplesToRun = await getProjectsWithE2E();
@@ -250,9 +250,7 @@ const runTests = async () => {
 
         try {
             if (!failed) {
-                const params =
-                    "" ??
-                    `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+                const params = `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
                 const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
 
                 prettyLog("blue", `Running tests for ${path}`);
