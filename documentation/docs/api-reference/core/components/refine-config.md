@@ -42,7 +42,7 @@ export default App;
 <br/>
 
 A [`dataProvider`](/api-reference/core/providers/data-provider.md) is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.  
+Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
 A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
 
 [Refer to the Data Provider documentation for detailed information. &#8594](/api-reference/core/providers/data-provider.md)
@@ -445,8 +445,8 @@ const App: React.FC = () => {
 
 ### `undoableTimeout`
 
-The duration of the timeout period in **undoable** mode is shown in milliseconds. Mutations can be canceled during this period. This period can also be set on the supported data hooks.  
-The value set in hooks will override the value set with `undoableTimeout`.  
+The duration of the timeout period in **undoable** mode is shown in milliseconds. Mutations can be canceled during this period. This period can also be set on the supported data hooks.
+The value set in hooks will override the value set with `undoableTimeout`.
 `undoableTimeout` has a default value of `5000`.
 
 ```tsx title="App.tsx"
@@ -463,7 +463,8 @@ const App: React.FC = () => {
 
 ### `syncWithLocation`
 
-List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
+List query parameter values can be edited manually by typing directly in the URL.
+`syncWithLocation`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
 :::info
 
@@ -479,14 +480,12 @@ When `syncWithLocation` is active, the URL on the listing page shows query param
 
 Users can change the current page, items count per page, and sort and filter parameters.
 
-The default value is `false`.
-
 ### `warnWhenUnsavedChanges`
 
 When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
-To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
+`warnWhenUnsavedChanges`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
-:::info
+:::caution
 This feature also requires `UnsavedChangesNotifier` component to be mounted. You can import this component from your router package.
 :::
 
@@ -497,21 +496,18 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/warnwhen.png" />
 
 </div>
-<br/>
-
-The default value is `false`.
 
 ### `liveMode`
 
-Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
+`liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is recieved. The `off` value can be used to avoid creating a subscription all together.
 
-[Refer to live provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#livemode)
+> For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#livemode)
 
 ### `disableTelemetry`
 
 **refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **refine** experience. You can disable this by setting `disableTelemetry` to `true`.
 
-[Refer to refine telemetry documentation for detailed information. &#8594](/further-readings/telemetry.md)
+> For more information, refer to the [refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
 ### `redirect`
 
@@ -559,8 +555,6 @@ Config for React Query client that **refine** uses.
 }
 ```
 
-[Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
-
 ```tsx
 const App: React.FC = () => (
     <Refine
@@ -603,9 +597,11 @@ const App: React.FC = () => (
 );
 ```
 
+> For more information, refer to the [QueryClient documentation &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
+
 #### `devtoolConfig`
 
-Config for customizing React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
+Config for customizing the React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
 
 **refine** uses some defaults that apply to react-query devtool:
 
@@ -615,8 +611,6 @@ Config for customizing React Query Devtools. If you want to disable the Devtools
     position: "bottom-right"
 }
 ```
-
-[Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
 
 ```tsx {4-7}
 const App: React.FC = () => (
@@ -636,13 +630,13 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
+> For more information, refer to the [Devtools documentation &#8594](https://react-query.tanstack.com/devtools#options)
 
 ## `onLiveEvent`
 
 Callback to handle all live events.
 
-[Refer to live provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#refine)
+> For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#refine)
 
 ## ~~`catchAll`~~
 
@@ -669,8 +663,6 @@ const App: React.FC = () => {
 };
 ```
 
-<br />
-
 ## ~~`LoginPage`~~
 
 :::caution Deprecated
@@ -695,8 +687,6 @@ const App: React.FC = () => (
     />
 );
 ```
-
-<br />
 
 ## ~~`DashboardPage`~~
 
@@ -723,8 +713,6 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
-
 ## ~~`ReadyPage`~~
 
 :::caution Deprecated
@@ -750,8 +738,6 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
-
 ## ~~`Sider`~~
 
 :::caution Deprecated
@@ -764,9 +750,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
-[Refer to the `useMenu` hook documentation for detailed sidebar customization. &#8594](/api-reference/core/hooks/ui/useMenu.md)
-
-<br />
+> For more information, refer to the [`useMenu` hook documentation &#8594](/api-reference/core/hooks/ui/useMenu.md)
 
 ## ~~`Footer`~~
 
@@ -790,8 +774,6 @@ const App: React.FC = () => (
     />
 );
 ```
-
-<br />
 
 ## ~~`Header`~~
 
@@ -857,8 +839,6 @@ const App: React.FC = () => (
 );
 ```
 
-<br />
-
 A completely custom layout can also be implemented instead of the **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
 ```tsx title="App.tsx"
@@ -877,11 +857,11 @@ const App: React.FC = () => (
 );
 ```
 
-[Refer to the Custom Layout documentation for detailed information. &#8594](/advanced-tutorials/custom-layout.md)
+:::note
+children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
+:::
 
-> `children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
-
-<br />
+> For more information, refer to the [Custom Layout documentation &#8594](/advanced-tutorials/custom-layout.md)
 
 ## ~~`OffLayoutArea`~~
 
