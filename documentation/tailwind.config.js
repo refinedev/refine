@@ -54,6 +54,49 @@ module.exports = {
                 startTiles: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
             },
+            backgroundImage: {
+                "landing-stars": [
+                    "linear-gradient(180deg, rgba(10,10,41,0.6) 0%, rgba(10, 10, 41, 0.4) 100%)",
+                    "url(/assets/landing-stars.webp)",
+                ],
+                "landing-text-bg":
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%)",
+                "landing-rainbow":
+                    "conic-gradient(from 180deg at 50% 50%, #3FDCF7 0deg, #1890FF 51.43deg, #6813CB 102.86deg, #FF003D 154.29deg, #FF8A00 205.71deg, #FFD600 257.14deg, #67BE23 308.57deg, #3FDCF7 360deg)",
+                "landing-ghost":
+                    "conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.25) 10%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.25) 30%, rgba(255, 255, 255, 0.25) 60%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0.25) 80%, rgba(255, 255, 255, 0.25) 100%)",
+                "landing-hero-video-bg": "url('/assets/hero-video-bg.webp')",
+                "landing-hero-bottom-bg": "url('/assets/hero-bottom-bg.svg')",
+                "landing-video-bottom-line":
+                    "url('/assets/landing-video-bottom-line.svg')",
+                "landing-video-bottom-line-glow":
+                    "url('/assets/landing-video-bottom-line-glow.svg')",
+                "landing-linear-spectrum":
+                    "linear-gradient(90deg, #FFFE00 0%, #FF9933 12.5%, #FF4C4D 25%, #ED5EC9 37.5%, #8000FF 50%, #3333FF 62.5%, #0080FF 75%, #47EBEB 87.5%, #26D97F 100%)",
+            },
+            animation: {
+                "spin-slow": "spin 3s linear infinite",
+                beat: "2s ease-in-out 1.5s infinite normal forwards running landing-hero-beat",
+            },
+            keyframes: {
+                "landing-hero-beat": {
+                    "0%": {
+                        opacity: 0.4,
+                    },
+                    "5%": {
+                        opacity: 0.4,
+                    },
+                    "50%": {
+                        opacity: 1,
+                    },
+                    "95%": {
+                        opacity: 0.4,
+                    },
+                    "100%": {
+                        opacity: 0.4,
+                    },
+                },
+            },
         },
         screens: {
             ...defaultTheme.screens,
