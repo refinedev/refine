@@ -79,7 +79,7 @@ const SidebarCategory = ({
                 !line && "pl-0",
                 line && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 dark:border-l-gray-700",
+                line && "border-l-2 dark:border-l-gray-700 border-l-gray-100",
             )}
         >
             <Comp
@@ -217,7 +217,7 @@ const SidebarLink = ({
                 line && !dashed && "pl-5",
                 line && dashed && "pl-5",
                 line && "ml-[11px]",
-                line && "border-l-2 dark:border-l-gray-700",
+                line && "border-l-2 dark:border-l-gray-700 border-l-gray-100",
                 "relative",
                 "group",
                 "transition-colors duration-200 ease-in-out",
@@ -335,7 +335,7 @@ export const DocSidebar = () => {
                     "pl-3",
                     "pr-3",
                     "py-12",
-                    "border-r border-r-gray-700",
+                    "border-r dark:border-r-gray-700 border-r-gray-200",
                 )}
             >
                 {renderItems({

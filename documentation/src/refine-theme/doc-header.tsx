@@ -27,7 +27,7 @@ export const DocHeader = () => {
                 "top-0",
                 "py-3 px-6",
                 "bg-gray-800",
-                "border-b border-gray-700",
+                "border-b dark:border-gray-700 border-gray-200",
             )}
         >
             <div

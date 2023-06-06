@@ -1,6 +1,9 @@
 import React from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
+import { ArrowLeftIcon } from "./icons/arrow-left";
+import { ArrowRightIcon } from "./icons/arrow-right";
+import { ChevronDownIcon } from "./icons/chevron-down";
 
 export const DocPaginator = (props) => {
     const { previous, next } = props;
@@ -26,9 +29,12 @@ export const DocPaginator = (props) => {
                     )}
                 >
                     <div className="flex-1 flex items-start justify-center flex-col gap-2 text-left">
-                        <span className="text-sm leading-6 text-gray-500 dark:text-gray-300">
+                        <div className="flex items-center gap-2 text-sm leading-6 text-gray-500 dark:text-gray-300">
+                            <span className="bg-gray-50 dark:bg-gray-800 dark:bg-opacity-50 p-2 rounded">
+                                <ArrowLeftIcon />
+                            </span>
                             Previous
-                        </span>
+                        </div>
                         <span className="text-base text-refine-link underline break-all">
                             {previous.title}
                         </span>
@@ -49,9 +55,13 @@ export const DocPaginator = (props) => {
                     )}
                 >
                     <div className="flex-1 flex items-end justify-center flex-col gap-2 text-right">
-                        <span className="text-sm leading-6 text-gray-500 dark:text-gray-300">
+                        <div className="flex items-center gap-2 text-sm leading-6 text-gray-500 dark:text-gray-300">
                             Next
-                        </span>
+                            <span className="bg-gray-50 dark:bg-gray-800 dark:bg-opacity-50 p-2 rounded">
+                                <ArrowRightIcon />
+                            </span>
+                        </div>
+
                         <span className="text-base text-refine-blue underline break-all">
                             {next.title}
                         </span>
