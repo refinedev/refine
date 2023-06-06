@@ -32,7 +32,7 @@ const Desktop = () => {
             className={clsx("w-full", "hidden lg:flex items-center", "mx-auto")}
         >
             <RefineLogo
-                className={clsx("min-w-[256px]")}
+                className={clsx("lg:min-w-[256px]")}
                 title="Documentation"
             />
             <div className={clsx("w-full", "flex items-center justify-center")}>
@@ -81,10 +81,7 @@ export const Mobile = () => {
                 "flex lg:hidden items-center justify-between",
             )}
         >
-            <RefineLogo
-                className={clsx("min-w-[256px]")}
-                title="Documentation"
-            />
+            <RefineLogo title="Documentation" />
             <div className={clsx("flex items-center gap-4")}>
                 <SearchBar iconOnly />
                 <CommonThemeToggle />
@@ -108,11 +105,11 @@ export const DocHeader = () => {
         <div
             className={clsx(
                 "flex items-center",
-                "h-16",
+                "h-12 sm:h-16",
                 "z-10",
                 "sticky",
                 "top-0",
-                "py-3 px-6",
+                "py-2 px-4  sm:py-3 sm:px-6",
                 "bg-gray-800",
                 "border-b border-gray-700",
             )}

@@ -33,9 +33,10 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
         <>
             <div
                 className={clsx(
-                    "flex-1",
-                    "flex flex-col",
+                    "flex flex-1 flex-col",
                     "items-center justify-start",
+                    "px-4 sm:px-0 py-4 sm:py-14",
+                    "w-full",
                 )}
             >
                 <div className={clsx("max-w-screen-content w-full")}>
@@ -72,6 +73,7 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
             </div>
             <div
                 className={clsx(
+                    "hidden xl:block",
                     "w-full",
                     "sticky right-0 top-[67px]",
                     "max-w-[280px]",

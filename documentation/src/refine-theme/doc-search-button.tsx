@@ -20,7 +20,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                 className={clsx(
                     "text-gray-0",
                     "rounded-lg",
-                    "flex items-center justify-between",
+                    "flex items-center",
                     "bg-gray-700",
                     "gap-5",
                     "text-base",
@@ -29,9 +29,11 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                     "duration-200",
                     "ease-in-out",
                     {
+                        "w-8 h-8 sm:w-10 sm:h-10": iconOnly,
                         "text-gray-500 dark:text-gray-400": iconOnly,
                         "bg-gray-200 dark:bg-gray-700": iconOnly,
-                        "p-3": iconOnly,
+                        "justify-center": iconOnly,
+                        "justify-between": !iconOnly,
                         "py-2 pr-2 pl-4": !iconOnly,
                         "rounded-full": iconOnly,
                         "rounded-lg": !iconOnly,

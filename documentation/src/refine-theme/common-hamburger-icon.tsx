@@ -13,7 +13,7 @@ export const CommonHamburgerIcon = ({ active, className, onClick }: Props) => {
     return (
         <button
             className={clsx(
-                "w-10 h-10",
+                "w-8 h-8 sm:w-10 sm:h-10",
                 "flex items-center justify-center flex-shrink-0",
                 "text-gray-500 dark:text-gray-400",
                 "rounded-full",

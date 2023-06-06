@@ -30,7 +30,6 @@ export const DocItemLayout = ({ children }) => {
                     "flex flex-col",
                     "items-center justify-start",
                     "px-4 sm:px-0 py-4 sm:py-14",
-                    "mx-auto",
                     "w-full",
                 )}
             >

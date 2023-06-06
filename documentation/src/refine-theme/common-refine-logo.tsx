@@ -13,13 +13,13 @@ export const RefineLogo = ({ title, className }: Props) => {
         <div className={clsx("flex", "items-center", className)}>
             <Link
                 to="/docs"
-                className={clsx("flex", "justify-center", "gap-3")}
+                className={clsx("flex", "items-center justify-center", "gap-3")}
             >
-                <RefineLogoIcon className="text-gray-0" />
+                <RefineLogoIcon className="w-[58px] h-[16px] sm:w-[88px] sm:h-[24px] text-gray-0" />
                 {title && (
                     <span
                         className={clsx(
-                            "text-base leading-none text-gray-0 font-normal",
+                            "text-xs sm:text-base leading-none text-gray-0 font-normal",
                             "mt-1.5",
                         )}
                     >

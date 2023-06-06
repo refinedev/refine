@@ -20,8 +20,8 @@ export const CommonThemeToggle = ({ className }: Props) => {
         <button
             type="button"
             className={clsx(
+                "w-8 h-8 sm:w-10 sm:h-10",
                 "bg-gray-200 dark:bg-gray-700",
-                "w-10 h-10",
                 "rounded-full",
                 "border-0",
                 "appearance-none",
@@ -42,7 +42,7 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-10 h-10",
+                    "w-8 h-8 sm:w-10 sm:h-10",
                     "flex items-center justify-center",
                     "flex-shrink-0",
                     "top-10",
@@ -57,7 +57,7 @@ export const CommonThemeToggle = ({ className }: Props) => {
             <div
                 className={clsx(
                     "absolute",
-                    "w-10 h-10",
+                    "w-8 h-8 sm:w-10 sm:h-10",
                     "flex items-center justify-center",
                     "flex-shrink-0",
                     "top-0",
