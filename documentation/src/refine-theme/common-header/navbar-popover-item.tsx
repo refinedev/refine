@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 import { ChevronDownIcon } from "../icons/chevron-down";
 import { NavbarPopoverItemType } from "./constants";
+import { PointIcon } from "../icons/popover";
 
 type NavbarPopoverItemProps = {
     item: NavbarPopoverItemType;
@@ -72,11 +73,19 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                     >
                         <Popover.Panel
                             className={clsx("absolute", "z-50", "top-12", {
-                                "-left-32":
+                                "-left-32 center-point":
                                     item.label === "Community" ||
                                     item.label === "Company",
+                                "left-point": item.label === "Open-source",
                             })}
                         >
+                            <PointIcon
+                                className={clsx("absolute", "top-[-9px]", {
+                                    "left-1/2": item.label !== "Open-source",
+                                    "left-12": item.label === "Open-source",
+                                })}
+                                style={{ transform: "translateX(-50%)" }}
+                            />
                             <div
                                 className={clsx(
                                     "overflow-hidden",
