@@ -14,3 +14,6 @@ export * from "./github-star";
 export * from "./github";
 export * from "./discord";
 export * from "./twitter";
+export * from "./chevron-right";
+export * from "./chevron-down";
+export * from "./two-toned-cloud-icon";
