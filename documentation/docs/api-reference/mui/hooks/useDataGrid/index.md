@@ -26,7 +26,7 @@ In basic usage, `useDataGrid` returns the data as it comes from the endpoint. By
 
 ## Pagination
 
-The hook handles pagination by setting the `paginationMode`, `page`, `onPageChange`, `pageSize`, and `onPageSizeChange` props that are compatible with `<DataGrid>`.
+The hook handles pagination by setting the `paginationMode`, `paginationModel` and `onPaginationModelChange` props that are compatible with `<DataGrid>`.
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
@@ -41,10 +41,8 @@ export const PostsList: React.FC = () => {
     const {
         //highlight-start
         paginationMode,
-        page,
-        onPageChange,
-        pageSize,
-        onPageSizeChange,
+        paginationModel,
+        onPaginationModelChange,
         //highlight-end
         ...restDataGridProps
     } = dataGridProps;
@@ -56,10 +54,8 @@ export const PostsList: React.FC = () => {
                 {...restDataGridProps}
                 //highlight-start
                 paginationMode={paginationMode}
-                page={page}
-                onPageChange={onPageChange}
-                pageSize={pageSize}
-                onPageSizeChange={onPageSizeChange}
+                paginationModel={paginationModel}
+                onPaginationModelChange={onPaginationModelChange}
                 //highlight-end
                 autoHeight
             />
@@ -105,9 +101,9 @@ If you want to sort externally from the `<DataGrid>` component. You can use `set
 ```tsx
 import { useDataGrid, List } from "@refinedev/mui";
 import { Button, ButtonGroup } from "@mui/material";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     {
         field: "id",
         headerName: "ID",
@@ -196,8 +192,8 @@ If you want to filter externally from the `<DataGrid>` component. You can use `s
 ```tsx
 import { useDataGrid, List } from "@refinedev/mui";
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-const columns: GridColumns = [
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+const columns: GridColDef[] = [
     {
         field: "id",
         headerName: "ID",

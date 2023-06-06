@@ -25,9 +25,9 @@ import {
     // highlight-next-line
     ExportButton,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     { field: "id", headerName: "ID", type: "number" },
     { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
 ];

@@ -1,11 +1,11 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useMany } from "@refinedev/core";
+import { useDataGrid } from "@refinedev/mui";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
-import { RefineWithoutLayout } from "../../../.storybook/preview";
 import { ICategory, IPost } from "interfaces";
+import { RefineWithoutLayout } from "../../../.storybook/preview";
 
 export default {
     title: "Hooks / DataGrid",
@@ -25,7 +25,7 @@ export const Basic: ComponentStory<typeof DataGrid> = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",

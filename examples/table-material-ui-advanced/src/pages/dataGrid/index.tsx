@@ -1,12 +1,12 @@
-import React from "react";
 import { Option, useSelect } from "@refinedev/core";
-import { useDataGrid, List } from "@refinedev/mui";
+import { List, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
 import {
     DataGrid,
-    GridColumns,
-    GridToolbar,
     GridActionsCellItem,
+    GridColDef,
+    GridToolbar,
     GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
@@ -22,7 +22,7 @@ export const BasicDataGrid: React.FC = () => {
         resource: "categories",
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
