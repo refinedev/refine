@@ -24,11 +24,13 @@ export const buttonDeleteTests = function (
         });
 
         it("should render button successfuly", async () => {
-            const { container } = render(<DeleteButton />, {
+            const { container, getByText } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
             });
 
             expect(container).toBeTruthy();
+
+            expect(getByText("Delete").closest("button")).not.toBeDisabled();
         });
 
         it("should have the correct test-id", async () => {

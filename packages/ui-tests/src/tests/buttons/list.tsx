@@ -14,11 +14,16 @@ export const buttonListTests = function (
         const list = jest.fn();
 
         it("should render button successfuly", async () => {
-            const { container } = render(<ListButton />, {
-                wrapper: TestWrapper({}),
-            });
+            const { container, getByText } = render(
+                <ListButton>List</ListButton>,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
 
             expect(container).toBeTruthy();
+
+            expect(getByText("List").closest("button")).not.toBeDisabled();
         });
 
         it("should have the correct test-id", async () => {

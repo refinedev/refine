@@ -18,11 +18,13 @@ export const buttonCreateTests = function (
         const create = jest.fn();
 
         it("should render button successfuly", async () => {
-            const { container } = render(<CreateButton />, {
+            const { container, getByText } = render(<CreateButton />, {
                 wrapper: TestWrapper({}),
             });
 
             expect(container).toBeTruthy();
+
+            expect(getByText("Create").closest("button")).not.toBeDisabled();
         });
 
         it("should have the correct test-id", async () => {

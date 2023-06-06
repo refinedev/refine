@@ -16,11 +16,13 @@ export const buttonCloneTests = function (
         });
 
         it("should render button successfuly", async () => {
-            const { container } = render(<CloneButton />, {
+            const { container, getByText } = render(<CloneButton />, {
                 wrapper: TestWrapper({}),
             });
 
             expect(container).toBeTruthy();
+
+            expect(getByText("Clone").closest("button")).not.toBeDisabled();
         });
 
         it("should have the correct test-id", async () => {

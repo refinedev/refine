@@ -18,11 +18,13 @@ export const buttonShowTests = function (
         });
 
         it("should render button successfuly", async () => {
-            const { container } = render(<ShowButton />, {
+            const { container, getByText } = render(<ShowButton />, {
                 wrapper: TestWrapper({}),
             });
 
             expect(container).toBeTruthy();
+
+            expect(getByText("Show").closest("button")).not.toBeDisabled();
         });
 
         it("should have the correct test-id", async () => {
