@@ -37,7 +37,12 @@ function mergeFacetFilters(f1, f2) {
     const normalize = (f) => (typeof f === "string" ? [f] : f);
     return [...normalize(f1), ...normalize(f2)];
 }
-function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
+function DocSearch({
+    contextualSearch,
+    externalUrlRegex,
+    CustomButton,
+    ...props
+}: any) {
     const { siteMetadata } = useDocusaurusContext();
     const processSearchResultUrl = useSearchResultUrlProcessor();
     const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
@@ -137,6 +142,9 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
         onInput,
         searchButtonRef,
     });
+
+    const SearchButton = CustomButton ?? DocSearchButton;
+
     return (
         <>
             <Head>
@@ -150,7 +158,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
                 />
             </Head>
 
-            <DocSearchButton
+            <SearchButton
                 onTouchStart={importDocSearchModalIfNeeded}
                 onFocus={importDocSearchModalIfNeeded}
                 onMouseOver={importDocSearchModalIfNeeded}
@@ -184,11 +192,12 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
         </>
     );
 }
-export default function SearchBar() {
+export default function SearchBar({ CustomButton }) {
     const { siteConfig } = useDocusaurusContext();
     return (
         <DocSearch
             {...(siteConfig.themeConfig.algolia as Record<string, any>)}
+            CustomButton={CustomButton}
         />
     );
 }
