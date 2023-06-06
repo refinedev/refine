@@ -25,12 +25,21 @@ export const AccessControlContextProvider: React.FC<
         <AccessControlContext.Provider
             value={{
                 can,
-                options: options ?? {
-                    buttons: {
-                        hideIfUnauthorized: false,
-                        enableAccessControl: true,
-                    },
-                },
+                options: options
+                    ? {
+                          ...options,
+                          buttons: {
+                              hideIfUnauthorized: false,
+                              enableAccessControl: true,
+                              ...options.buttons,
+                          },
+                      }
+                    : {
+                          buttons: {
+                              hideIfUnauthorized: false,
+                              enableAccessControl: true,
+                          },
+                      },
             }}
         >
             {children}
