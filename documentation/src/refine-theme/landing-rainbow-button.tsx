@@ -1,0 +1,61 @@
+import React from "react";
+import clsx from "clsx";
+import Link from "@docusaurus/Link";
+
+import { PlayOutlinedIcon } from "./icons/play-outlined";
+
+export const LandingRainbowButton = () => {
+    return (
+        <Link
+            href="#form"
+            className={clsx(
+                "relative",
+                "text-refine-bg",
+                "hover:no-underline",
+                "hover:text-refine-bg",
+                "z-[1]",
+                "group",
+            )}
+        >
+            <div
+                className={clsx(
+                    "absolute",
+                    "-left-0.5",
+                    "-top-0.5",
+                    "blur",
+                    "overflow-hidden",
+                    "rounded-lg",
+                    "w-[calc(100%+0.25rem)] h-[calc(100%+0.25rem)]",
+                    "z-[-1]",
+                )}
+            >
+                <div
+                    className={clsx(
+                        "absolute",
+                        "w-[125%] aspect-square h-auto",
+                        "left-[-12.5%]",
+                        "top-[-100px]",
+                        "bg-landing-rainbow",
+                        "animate-spin-slow",
+                        "animation-slower-speed",
+                    )}
+                />
+            </div>
+            <div className={clsx("bg-gray-0", "rounded-lg", "px-10 py-3")}>
+                <div
+                    className={clsx(
+                        "gap-2",
+                        "flex items-center justify-center",
+                        "group-hover:scale-105",
+                        "duration-100 ease-in-out transition-transform",
+                    )}
+                >
+                    <PlayOutlinedIcon />
+                    <span className="text-base font-semibold">
+                        Try it online!
+                    </span>
+                </div>
+            </div>
+        </Link>
+    );
+};
