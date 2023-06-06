@@ -1,31 +1,19 @@
 import React from "react";
 
-import { IAccessControlContext } from "./IAccessControlContext";
+import {
+    IAccessControlContext,
+    IAccessControlContextReturnType,
+} from "./IAccessControlContext";
 
 /** @deprecated default value for access control context has no use and is an empty object. */
 export const defaultAccessControlContext: IAccessControlContext = {};
 
-export const AccessControlContext = React.createContext<
-    Partial<IAccessControlContext> &
-        Required<Pick<IAccessControlContext, "options">>
->({
-    options: {
-        buttons: { enableAccessControl: true, hideIfUnauthorized: false },
-    },
-});
-
-const accessControlProvider: IAccessControlContext = {
-    can: ({ resource, action, params }: CanParams): Promise<CanReturnType> => ({
-        can: true,
-    }),
-    // Global settings
-    options: {
-        buttons: {
-            enableAccessControl: true,
-            hideIfUnauthorized: true,
+export const AccessControlContext =
+    React.createContext<IAccessControlContextReturnType>({
+        options: {
+            buttons: { enableAccessControl: true, hideIfUnauthorized: false },
         },
-    },
-};
+    });
 
 export { IAccessControlContext };
 
