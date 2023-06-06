@@ -45,7 +45,7 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                 <>
                     <Popover.Button
                         className={clsx(
-                            "inline-flex items-center gap-2",
+                            "inline-flex items-center",
                             "text-base",
                             "font-medium",
                         )}
@@ -55,6 +55,8 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                             aria-hidden="true"
                             className={clsx(
                                 "transition duration-150 ease-in-out",
+                                "opacity-50",
+                                "-mb-0.5",
                                 {
                                     "opacity-100": isShowing,
                                 },
