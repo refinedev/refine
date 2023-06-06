@@ -1,9 +1,9 @@
 import type {
-    GridSortModel,
-    GridFilterModel,
     GridFilterItem,
+    GridFilterModel,
+    GridSortModel,
 } from "@mui/x-data-grid";
-import { GridLinkOperator } from "@mui/x-data-grid";
+import { GridLogicOperator } from "@mui/x-data-grid";
 
 import {
     CrudFilters,
@@ -70,15 +70,15 @@ export const transformMuiOperatorToCrudOperator = (
 
 export const transformFilterModelToCrudFilters = ({
     items,
-    linkOperator,
+    logicOperator,
 }: GridFilterModel): CrudFilters => {
-    const filters = items.map(({ columnField, value, operatorValue }) => ({
-        field: columnField,
+    const filters = items.map(({ field, value, operator }) => ({
+        field: field,
         value: value ?? "",
-        operator: transformMuiOperatorToCrudOperator(operatorValue),
+        operator: transformMuiOperatorToCrudOperator(operator),
     }));
 
-    if (linkOperator === GridLinkOperator.Or) {
+    if (logicOperator === GridLogicOperator.Or) {
         return [{ operator: "or", value: filters }];
     }
     return filters;
@@ -179,8 +179,8 @@ export const transformCrudFiltersToFilterModel = (
                 const columnType = columnsType[field];
 
                 gridFilterItems.push({
-                    columnField: field,
-                    operatorValue: transformCrudOperatorToMuiOperator(
+                    field: field,
+                    operator: transformCrudOperatorToMuiOperator(
                         operator,
                         columnType,
                     ),
@@ -194,8 +194,8 @@ export const transformCrudFiltersToFilterModel = (
                     const columnType = columnsType[field];
 
                     gridFilterItems.push({
-                        columnField: field,
-                        operatorValue: transformCrudOperatorToMuiOperator(
+                        field: field,
+                        operator: transformCrudOperatorToMuiOperator(
                             operator,
                             columnType,
                         ),
@@ -210,8 +210,8 @@ export const transformCrudFiltersToFilterModel = (
     return {
         items: gridFilterItems,
         // If there is "or" filter, default link operator is "or"
-        linkOperator: isExistOrFilter
-            ? GridLinkOperator.Or
-            : GridLinkOperator.And,
+        logicOperator: isExistOrFilter
+            ? GridLogicOperator.Or
+            : GridLogicOperator.And,
     };
 };

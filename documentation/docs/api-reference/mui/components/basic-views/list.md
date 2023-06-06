@@ -14,7 +14,7 @@ We will show what `<List>` does using properties with examples.
 import React from "react";
 import { useMany } from "@refinedev/core";
 import { List, useDataGrid, DateField } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const SampleList = () => {
     const { dataGridProps } = useDataGrid();
@@ -27,7 +27,7 @@ const SampleList = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<any>>(
+    const columns = React.useMemo<GridColDef<any>[]>(
         () => [
             {
                 field: "id",
