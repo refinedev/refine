@@ -1,4 +1,3 @@
-
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
@@ -11,8 +10,7 @@
     <a href="https://discord.gg/refine">Discord</a> |
     <a href="https://refine.dev/examples/">Examples</a> | 
     <a href="https://refine.dev/blog/">Blog</a> | 
-    <a href="https://refine.dev/docs/">Documentation</a> | 
-    <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
+    <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
 
@@ -22,7 +20,6 @@
 
 <br />
 <br />
-
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
@@ -42,4 +39,3 @@ npm create refine-app@latest -- --example use-infinite-list
 <br/>
 
 [![Open useInfiniteList hook example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/use-infinite-list?terminal=start&preset=node)
-        

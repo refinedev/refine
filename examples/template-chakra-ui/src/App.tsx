@@ -10,6 +10,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ChakraProvider>
         </BrowserRouter>

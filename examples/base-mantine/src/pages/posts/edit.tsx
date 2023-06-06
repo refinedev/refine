@@ -50,12 +50,14 @@ export const PostEdit: React.FC = () => {
             <form>
                 <TextInput
                     mt={8}
+                    id="title"
                     label="Title"
                     placeholder="Title"
                     {...getInputProps("title")}
                 />
                 <Select
                     mt={8}
+                    id="status"
                     label="Status"
                     placeholder="Pick one"
                     {...getInputProps("status")}
@@ -67,6 +69,7 @@ export const PostEdit: React.FC = () => {
                 />
                 <Select
                     mt={8}
+                    id="categoryId"
                     label="Category"
                     placeholder="Pick one"
                     {...getInputProps("category.id")}
@@ -76,6 +79,7 @@ export const PostEdit: React.FC = () => {
                     {...getInputProps("tags")}
                     {...tagSelectProps}
                     mt={8}
+                    id="tags"
                     label="Tags"
                     placeholder="Pick multiple"
                     defaultValue={defaultTags}
@@ -87,6 +91,7 @@ export const PostEdit: React.FC = () => {
                     Content
                 </Text>
                 <MDEditor
+                    id="content"
                     data-color-mode="light"
                     {...getInputProps("content")}
                 />

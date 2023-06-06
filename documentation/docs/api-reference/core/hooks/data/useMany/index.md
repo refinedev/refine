@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useMany.ts
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
+`useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
 -   It uses the `getMany` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
@@ -15,12 +15,12 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 It is useful when you want to fetch multiple records from the API. It will return the data and some functions to control the query.
 
 :::caution
-If your data provider does not have a `getMany` method, `useMany` will use the `getOne` method instead. It is not recommended, because it will make requests one by one for each id. It is better to implement the `getMany` method in the data provider.
+If your data provider does not have a `getMany` method, `useMany` will use the `getOne` method instead. This is not recommended, as it will make requests one by one for each id. It is better to implement the `getMany` method in the data provider.
 :::
 
 ## Basic Usage
 
-The `useMany` hook expects a `resource` and `ids` property. It will be passed to the `getMany` method from the `dataProvider` as a parameter.
+The `useMany` hook expects a `resource` and `ids` property, which will be passed to the `getMany` method from the `dataProvider` as a parameter.
 
 When these properties are changed, the `useMany` hook will trigger a new request.
 
@@ -28,17 +28,19 @@ When these properties are changed, the `useMany` hook will trigger a new request
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
 When the `useMany` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getMany` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getMany` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
+This parameter will be passed to the `getMany` method from the `dataProvider` as a parameter. t is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getMany` method.
 
 ```tsx
 useMany({
@@ -46,9 +48,11 @@ useMany({
 });
 ```
 
+> For more information, refer to the [creating a data provider tutorial &#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
+
 ### `ids` <PropTag required />
 
-It will be passed to the `getMany` method from the `dataProvider` as a parameter. It is used to determine which records to fetch.
+This prop will be passed to the `getMany` method from the `dataProvider` as a parameter. It is used to determine which records to fetch.
 
 ```tsx
 useMany({
@@ -58,7 +62,7 @@ useMany({
 
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
 useMany({
@@ -70,8 +74,6 @@ useMany({
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
-
 ```tsx
 useMany({
     queryOptions: {
@@ -81,14 +83,14 @@ useMany({
 });
 ```
 
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+
 ### `meta`
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
-
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -129,9 +131,13 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data is fetched successfully, `useMany` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -149,7 +155,9 @@ useMany({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data fetching is failed, `useMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -167,10 +175,10 @@ useMany({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
-
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useMany({
@@ -178,9 +186,13 @@ useMany({
 });
 ```
 
+> For more information, refer to the [Live / Realtime page&#8594](/docs/api-reference/core/providers/live-provider/#livemode)
+
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -194,7 +206,9 @@ useMany({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
@@ -202,13 +216,13 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 Returns an object with TanStack Query's `useQuery` return values.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [ `useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ## API
 
 ### Properties
 
-<PropsTable module="@refinedev/core/useMany" 
+<PropsTable module="@refinedev/core/useMany"
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

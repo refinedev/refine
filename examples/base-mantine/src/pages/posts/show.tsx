@@ -22,7 +22,7 @@ export const PostShow: React.FC = () => {
         resource: "tags",
         ids: record?.tags || [],
         queryOptions: {
-            enabled: !!record?.tags.length,
+            enabled: !!record?.tags?.length,
         },
     });
 

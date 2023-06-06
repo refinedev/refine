@@ -4,14 +4,15 @@ siderbar_label: useCreateMany
 source: packages/core/src/hooks/data/useCreateMany.ts
 ---
 
-`useCreateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
+`useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
--   It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
-
-It is useful when you want to create multiple records.
+It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 :::caution
-If your data provider does not have a `createMany` method, `useCreateMany` will use the `create` method instead. It is not recommended, because it will make requests one by one for each record. It is better to implement the `createMany` method in the data provider.
+If your data provider does not have a `createMany` method, `useCreateMany` will use the `create` method instead. This is not recommended, since it will make requests one by one for each record.
+
+It is better to implement the `createMany` method in the data provider.
+
 :::
 
 ## Basic Usage
@@ -40,25 +41,29 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
 When the `useCreateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Invalidating Queries
 
-When the `useCreateMany` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks in the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
+When the `useCreateMany` mutation runs successfully, it will invalidate the following queries from the current `resource`: `"list"` and `"many"` by default. Which means that, if you use `useList` or `useMany` hooks in the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
-[Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
+> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+:::caution
+This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+:::
 
 When the `useCreateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
 
-[Refer to the `auditLogProvider` documentation for more information &#8594](/docs/api-reference/core/providers/audit-log-provider/)
+> For more information, refer to the [`auditLogProvider` documentation &#8594](/docs/api-reference/core/providers/audit-log-provider/)
 
 ## Properties
 
@@ -114,7 +119,7 @@ mutate(
 
 ### `resource` <PropTag required />
 
-It will be passed to the `create` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `create` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
+This parameter will be passed to the `create` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `create` method.
 
 ```tsx
 const { mutate } = useCreateMany();
@@ -124,9 +129,11 @@ mutate({
 });
 ```
 
+> For more information, refer to the [creating a data provider tutorial &#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
+
 ### `values` <PropTag required />
 
-It will be passed to the `create` method from the `dataProvider` as a parameter. The parameter is usually used as the data to be created. It contains the data that will be sent to the server.
+This prop will be passed to the `create` method from the `dataProvider` as a parameter. It is usually used as the data to be created and contains the data that will be sent to the server.
 
 ```tsx
 const { mutate } = useCreateMany();
@@ -147,9 +154,11 @@ mutate({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data is fetched successfully, `useCreateMany` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreateMany` calls the `open` function from `NotificationProvider`:
 
 ```tsx
 const { mutate } = useCreateMany();
@@ -167,9 +176,11 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data fetching is failed, `useCreateMany` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
+This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreateMany` calls the `open` function from `NotificationProvider`
 
 ```tsx
 const { mutate } = useCreateMany();
@@ -192,9 +203,7 @@ mutate({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
-
-In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. You can pass any properties to specifically handle the data provider methods with similar logic,.
 
 ```tsx
 const { mutate } = useCreateMany();
@@ -233,9 +242,11 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
 const { mutate } = useCreateMany();
@@ -263,7 +274,7 @@ mutate({
 
 Returns an object with TanStack Query's `useMutation` return values.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
+> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ## API
 

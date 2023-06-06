@@ -95,14 +95,13 @@ export const routerBindings: RouterBindings = {
         const { pathname, search } = useLocation();
         const { resources } = useContext(ResourceContext);
 
-        const { resource, action } = React.useMemo(() => {
+        const { resource, action, matchedRoute } = React.useMemo(() => {
             return matchResourceFromRoute(pathname, resources);
         }, [resources, pathname]);
 
         // params is empty when useParams is used in a component that is not a child of a Route
-        if (Object.entries(params).length === 0 && resource && action) {
-            params = matchPath(resource[action] as string, pathname)
-                ?.params as any;
+        if (Object.entries(params).length === 0 && matchedRoute) {
+            params = matchPath(matchedRoute, pathname)?.params || {};
         }
 
         const fn = useCallback(() => {

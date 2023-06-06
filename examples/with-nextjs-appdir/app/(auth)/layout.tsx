@@ -1,16 +1,24 @@
-"use client";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { authProvider } from "src/authProvider";
 
-import { Authenticated } from "@refinedev/core";
-import { NavigateToResource } from "@refinedev/nextjs-router/app";
+async function checkAuth(authCokkie: string | undefined) {
+    return await authProvider.check(authCokkie);
+}
 
-export default function ProtectedLayout({
+export default async function ProtectedLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    return (
-        <Authenticated fallback={children}>
-            <NavigateToResource />
-        </Authenticated>
-    );
+    const cookieStore = cookies();
+    const auth = cookieStore.get("auth");
+
+    const { authenticated } = await checkAuth(auth?.value);
+
+    if (authenticated) {
+        return redirect("/");
+    } else {
+        return children;
+    }
 }

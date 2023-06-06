@@ -1,4 +1,4 @@
-import { relationRegexp } from "@/field-inferencers/relation";
+import { relationRegexp } from "../../field-inferencers/relation";
 
 /**
  * Removes the relation suffix from a string.

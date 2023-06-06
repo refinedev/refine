@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -43,6 +44,7 @@ function App() {
                         </Routes>
                     </Refine>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </RefineSnackbarProvider>
             </ThemeProvider>
         </BrowserRouter>

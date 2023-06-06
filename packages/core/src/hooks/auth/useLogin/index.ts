@@ -97,9 +97,9 @@ export function useLogin<TVariables = {}>(
 ): UseLoginCombinedReturnType<TVariables>;
 
 /**
- * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-reference/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useLogin} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useLogin} for more details.
  *
  * @typeParam TData - Result data of the query
  * @typeParam TVariables - Values for mutation function. default `{}`

@@ -92,6 +92,7 @@ export type RendererContext = {
     infer: FieldInferencer;
     isCustomPage: boolean;
     id?: string | number;
+    i18n?: boolean;
 };
 
 export type CreateInferencerConfig = {

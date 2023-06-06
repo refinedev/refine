@@ -1,3 +1,4 @@
+import { AuthBindings } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 /* import {
@@ -81,4 +82,14 @@ export const MockLiveProvider: any = {
     subscribe: () => ({}),
     unsubscribe: () => ({}),
     publish: () => ({}),
+};
+
+export const MockAuthProvider: AuthBindings = {
+    login: async () => ({ success: true }),
+    check: async () => ({ authenticated: true }),
+    onError: async () => ({}),
+    logout: async () => ({ success: true }),
+    forgotPassword: jest.fn().mockResolvedValue({ success: true }),
+    register: jest.fn().mockResolvedValue({ success: true }),
+    updatePassword: jest.fn().mockResolvedValue({ success: true }),
 };

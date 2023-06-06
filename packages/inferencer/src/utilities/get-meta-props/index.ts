@@ -1,4 +1,4 @@
-import { InferencerComponentProps } from "@/types";
+import { InferencerComponentProps } from "../../types";
 
 type Action = keyof NonNullable<InferencerComponentProps["meta"]>[string];
 

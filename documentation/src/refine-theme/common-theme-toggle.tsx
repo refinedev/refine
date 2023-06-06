@@ -30,6 +30,7 @@ export const CommonThemeToggle = () => {
                 "duration-200",
                 "ease-in-out",
                 "overflow-hidden",
+                "flex-shrink-0",
             )}
             onClick={toggle}
         >

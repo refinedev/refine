@@ -40,6 +40,7 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
         if (!FilterComponent && !!state) {
             return (
                 <TextInput
+                    id={column.id}
                     autoComplete="off"
                     value={state.value}
                     onChange={(e) => change(e.target.value)}

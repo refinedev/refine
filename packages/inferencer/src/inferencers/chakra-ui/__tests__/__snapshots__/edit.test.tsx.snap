@@ -13,7 +13,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
           class="css-gqssyb"
         >
           <div
-            class="chakra-stack css-15lgeks"
+            class="chakra-stack css-9hjtr8"
           >
             <button
               aria-label="back"
@@ -772,6 +772,89 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
               <span
                 class="token imports maybe-class-name"
               >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 useSelect 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/core"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
                 Edit
               </span>
               <span
@@ -1083,73 +1166,6 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                import
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token imports"
-              >
-                 useSelect 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                from
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "@refinedev/core"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -1186,10 +1202,54 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostEdit
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"

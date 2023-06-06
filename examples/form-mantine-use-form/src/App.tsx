@@ -9,12 +9,13 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
-import { PostCreate, PostEdit, PostList } from "./pages";
+import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -39,6 +40,7 @@ const App: React.FC = () => {
                                 list: "/posts",
                                 create: "/posts/create",
                                 edit: "/posts/edit/:id",
+                                show: "/posts/show/:id",
                                 meta: {
                                     canDelete: true,
                                 },
@@ -74,13 +76,18 @@ const App: React.FC = () => {
                                         path="edit/:id"
                                         element={<PostEdit />}
                                     />
+                                    <Route
+                                        path="show/:id"
+                                        element={<PostShow />}
+                                    />
                                 </Route>
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>
+                        <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
-                    <UnsavedChangesNotifier />
                 </NotificationsProvider>
             </MantineProvider>
         </BrowserRouter>

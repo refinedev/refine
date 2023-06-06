@@ -6,26 +6,36 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("base-mantine", () => {
+    const BASE_URL = "http://localhost:5173";
+
     beforeEach(() => {
-        cy.visit("http://localhost:3000");
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.interceptGETPosts();
+        cy.visit(BASE_URL);
     });
 
-    it("should be view list page", () => {
+    it("should list resource", () => {
         cy.resourceList();
     });
 
-    it("should be create page", () => {
-        cy.resourceCreate();
+    it("should create resource", () => {
+        cy.resourceCreate({
+            ui: "mantine",
+        });
     });
 
-    it("should be edit page", () => {
-        cy.resourceEdit();
+    it("should edit resource", () => {
+        cy.resourceEdit({ ui: "mantine" });
     });
 
-    it("should be show page", () => {
+    it("should show resource", () => {
         cy.resourceShow();
+    });
+
+    it("should delete resource", () => {
+        cy.resourceDelete({ ui: "mantine" });
     });
 });

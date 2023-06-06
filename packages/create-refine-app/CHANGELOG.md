@@ -1,5 +1,17 @@
 # create-refine-app
 
+## 1.9.0
+
+### Minor Changes
+
+-   [#4438](https://github.com/refinedev/refine/pull/4438) [`cd5a8bfa27b`](https://github.com/refinedev/refine/commit/cd5a8bfa27b36bf0c0f41b41e515e18028c03615) Thanks [@aliemir](https://github.com/aliemir)! - Ability to disable telemetry through `--disable-telemetry` flag
+
+## 1.8.0
+
+### Minor Changes
+
+-   [#4438](https://github.com/refinedev/refine/pull/4438) [`cd5a8bfa27b`](https://github.com/refinedev/refine/commit/cd5a8bfa27b36bf0c0f41b41e515e18028c03615) Thanks [@aliemir](https://github.com/aliemir)! - Ability to disable telemetry through `--disable-telemetry` flag
+
 ## 1.7.3
 
 ### Patch Changes

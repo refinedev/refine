@@ -22,7 +22,7 @@ import { DeleteButtonProps } from "../types";
  * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button>`} and {@link https://mantine.dev/core/modal/ `<Modal>`} components.
  * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/delete-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resource: resourceNameFromProps,

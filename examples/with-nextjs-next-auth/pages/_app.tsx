@@ -11,6 +11,7 @@ import {
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
 
@@ -131,6 +132,7 @@ const App = (props: React.PropsWithChildren) => {
                 >
                     {props.children}
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </>

@@ -16,7 +16,6 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -96,7 +95,10 @@ export const PostList: React.FC = () => {
                                     onChange: row.getToggleSelectedHandler(),
                                 }}
                             />
-                            <span onClick={() => row.toggleExpanded()}>
+                            <span
+                                id="expand-toggle"
+                                onClick={() => row.toggleExpanded()}
+                            >
                                 {row.getIsExpanded() ? "👇" : "👉"}
                             </span>
                         </Stack>
@@ -170,7 +172,7 @@ export const PostList: React.FC = () => {
             }
         }, [ref, indeterminate]);
 
-        return <Checkbox {...rest} inputRef={ref} />;
+        return <Checkbox {...rest} id="row-select" inputRef={ref} />;
     }
 
     const {
@@ -337,7 +339,12 @@ export const PostList: React.FC = () => {
                         ? `${numSelected} selected`
                         : "Not selected any row"}
                 </Typography>
-                {numSelected > 0 && <DeleteButton onClick={() => onDelete()} />}
+                {numSelected > 0 && (
+                    <DeleteButton
+                        id="delete-selected"
+                        onClick={() => onDelete()}
+                    />
+                )}
             </Toolbar>
         );
     };
@@ -466,6 +473,7 @@ export const PostList: React.FC = () => {
                                             {row.getIsExpanded() ? (
                                                 <TableRow>
                                                     <TableCell
+                                                        id="expanded-row"
                                                         colSpan={
                                                             row.getVisibleCells()
                                                                 .length

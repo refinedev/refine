@@ -20,6 +20,7 @@ export {
     toSingular,
     printImports,
     removeRelationSuffix,
+    idQuoteWrapper,
 } from "./utilities";
 
 export type {

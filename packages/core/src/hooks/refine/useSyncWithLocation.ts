@@ -11,7 +11,7 @@ type UseSyncWithLocationType = () => {
  * List query parameter values can be edited manually by typing directly in the URL.
  * To activate this feature `syncWithLocation` needs to be set to `true`.
  *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#syncwithlocation} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/components/refine-config/#syncwithlocation} for more details.
  */
 export const useSyncWithLocation: UseSyncWithLocationType = () => {
     const { syncWithLocation } = useContext(RefineContext);

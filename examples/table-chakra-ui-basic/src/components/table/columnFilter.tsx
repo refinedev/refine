@@ -48,6 +48,7 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
         if (!FilterComponent && !!state) {
             return (
                 <Input
+                    id={column.id}
                     borderRadius="md"
                     size="sm"
                     autoComplete="off"

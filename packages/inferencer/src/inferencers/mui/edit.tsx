@@ -9,30 +9,31 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 import { Controller } from "react-hook-form";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     isIDKey,
     dotAccessor,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+    idQuoteWrapper,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for edit page in Material UI
@@ -44,6 +45,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -54,7 +56,12 @@ export const renderer = ({
         ["Edit", "@refinedev/mui"],
         ["Box", "@mui/material"],
         ["useForm", "@refinedev/react-hook-form"],
+        ["IResourceComponentsProps", "@refinedev/core"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -182,7 +189,11 @@ export const renderer = ({
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    label="${prettyString(field.key)}"
+                                    label=${translatePrettyString({
+                                        resource,
+                                        field,
+                                        i18n,
+                                    })}
                                     margin="normal"
                                     variant="outlined"
                                     error={!!${accessor(
@@ -256,9 +267,11 @@ export const renderer = ({
                                         : ""
                                 }
                                 ${field.type === "richtext" ? "multiline" : ""}
-                                label={\`${prettyString(
-                                    field.key,
-                                )} \${index+1}\`}
+                                label=${translatePrettyString({
+                                    resource,
+                                    field,
+                                    i18n,
+                                })}
                                 name={\`${dotAccessor(
                                     field.key,
                                     undefined,
@@ -300,7 +313,11 @@ export const renderer = ({
                             : ""
                     }
                     ${field.type === "richtext" ? "multiline" : ""}
-                    label="${prettyString(field.key)}"
+                    label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })}
                     name="${dotAccessor(field.key, undefined, field.accessor)}"
                     ${isIDKey(field.key) ? "disabled" : ""}
                 />
@@ -335,9 +352,13 @@ export const renderer = ({
                                 // eslint-disable-next-line
                                 defaultValue={null as any}
                                 render={({ field }) => (
-                                    <FormControlLabel label={\`${prettyString(
-                                        field.key,
-                                    )} \${index+1}\`} control={
+                                    <FormControlLabel label=${translatePrettyString(
+                                        {
+                                            resource,
+                                            field,
+                                            i18n,
+                                        },
+                                    )} control={
                                         <Checkbox
                                             {...field}
                                             checked={field.value}
@@ -360,9 +381,11 @@ export const renderer = ({
                     // eslint-disable-next-line
                     defaultValue={null as any}
                     render={({ field }) => (
-                        <FormControlLabel label="${prettyString(
-                            field.key,
-                        )}" control={
+                        <FormControlLabel label=${translatePrettyString({
+                            resource,
+                            field,
+                            i18n,
+                        })} control={
                             <Checkbox
                                 {...field}
                                 checked={field.value}
@@ -415,11 +438,13 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
 
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const {
             saveButtonProps,
             refineCore: { queryResult },
@@ -432,7 +457,7 @@ export const renderer = ({
                     ? `{
                 refineCoreProps: {
                     resource: "${resource.name}",
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     action: "edit",
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,

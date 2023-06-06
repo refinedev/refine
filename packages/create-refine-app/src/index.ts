@@ -44,6 +44,7 @@ const bootstrap = () => {
             "zip",
         )
         .option("-p, --project <project-name>", "specify a project type to use")
+        .option("--disable-telemetry", "disable telemetry data collection")
         .allowUnknownOption(true)
         .allowExcessArguments(true)
         .action((_, command: Command) => {
@@ -78,6 +79,9 @@ const bootstrap = () => {
                         command.getOptionValue("lucky") ? "--lucky" : "",
                         command.getOptionValue("download")
                             ? "--download=" + command.getOptionValue("download")
+                            : "",
+                        command.getOptionValue("disableTelemetry")
+                            ? "--disable-telemetry"
                             : "",
                     ],
                     {

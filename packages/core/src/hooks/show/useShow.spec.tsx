@@ -2,19 +2,28 @@ import React from "react";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
-import { mockRouterBindings, posts } from "@test/dataMocks";
+import {
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+    posts,
+} from "@test/dataMocks";
+import * as useResourceWithRoute from "../resource/useResourceWithRoute";
+import * as pickResource from "../../definitions/helpers/pick-resource";
 
 import { useShow } from "./useShow";
+import { IResourceItem } from "@contexts/resource";
+
+const routerProvider = mockRouterBindings({
+    action: "show",
+    resource: { name: "posts" },
+    id: "1",
+    pathname: "/posts/show/1",
+});
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
     resources: [{ name: "posts" }],
-    routerProvider: mockRouterBindings({
-        action: "show",
-        resource: { name: "posts" },
-        id: "1",
-        pathname: "/posts/show/1",
-    }),
+    routerProvider: routerProvider,
 });
 
 const WrapperWithRoute: React.FC<{ children: React.ReactNode }> = ({
@@ -249,4 +258,112 @@ describe("useShow Hook", () => {
             }),
         );
     });
+
+    it.each(["resourceFromRouter", "resourceFromProp"] as const)(
+        "should work with both %s with legacy router provider",
+        async (testCase) => {
+            const isFromProp = testCase === "resourceFromProp";
+
+            const { result } = renderHook(
+                () => useShow(isFromProp ? { resource: "posts", id: "1" } : {}),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                        routerProvider,
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.queryResult.isSuccess).toBeTruthy();
+                expect(result.current.queryResult.data?.data).toEqual(posts[0]);
+            });
+        },
+    );
+
+    it("should work resourceFromRouter is string", async () => {
+        jest.spyOn(pickResource, "pickResource").mockReturnValueOnce({
+            name: "posts",
+            route: "/posts",
+        });
+
+        const { result, rerender } = renderHook(() => useShow(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                    },
+                },
+                resources: [{ name: "posts" }],
+                routerProvider: mockRouterBindings({
+                    action: "show",
+                    resource: "posts" as unknown as IResourceItem,
+                    id: "1",
+                    pathname: "/posts/show/1",
+                }),
+            }),
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+            expect(result.current.queryResult.data?.data).toEqual(posts[0]);
+        });
+
+        jest.spyOn(pickResource, "pickResource").mockReturnValueOnce(undefined);
+
+        rerender();
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+            expect(result.current.queryResult.data?.data).toEqual(posts[0]);
+        });
+    });
+
+    // NOTE : Will be removed in v5
+    it.each([{ resource: "posts", id: "1" }, undefined])(
+        "should work with legacy router provider. params: %s",
+        async (useShowParams) => {
+            const mockResourceWithRoute = jest.fn();
+            jest.spyOn(
+                useResourceWithRoute,
+                "useResourceWithRoute",
+            ).mockReturnValue(mockResourceWithRoute);
+            mockResourceWithRoute.mockReturnValue({
+                name: "posts",
+                route: "/posts/show/1",
+            });
+
+            const { result } = renderHook(() => useShow(useShowParams), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                        useParams: () =>
+                            ({
+                                resource: "posts",
+                                id: "1",
+                            } as any),
+                    },
+                }),
+            });
+
+            expect(result.current.showId).toEqual("1");
+            expect(mockResourceWithRoute).toBeCalled();
+
+            await waitFor(() => {
+                expect(result.current.queryResult.isSuccess).toBeTruthy();
+                expect(result.current.queryResult.data?.data).toEqual(posts[0]);
+            });
+        },
+    );
 });
