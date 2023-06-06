@@ -21,23 +21,23 @@ export default function BlogPostItem({ className }) {
 
     return (
         <BlogPostItemContainer className={className}>
-            <div className="blog-post-item-shadow flex h-full flex-col overflow-hidden rounded-[10px]">
+            <div className="flex h-full flex-col rounded-[10px]">
                 <Link itemProp="url" to={permalink}>
-                    <div className="relative m-0 h-40 overflow-hidden pt-[56.25%] hover:brightness-90">
+                    <div className="relative m-0 h-40 hover:brightness-90">
                         <img
                             src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                                 "https://refine.ams3.cdn.digitaloceanspaces.com",
                                 "",
                             )}?w=500`}
                             alt="Post image"
-                            className="absolute inset-0 h-full w-full rounded-tl-[10px] rounded-tr-[10px] object-cover transition duration-150"
+                            className="absolute inset-0 h-full w-full rounded-[10px] object-cover transition duration-150 mt-0"
                             loading="lazy"
                         />
                     </div>
                 </Link>
                 <div className="flex h-full flex-col justify-between gap-3 p-3">
                     <div>
-                        <div className="text-[10px] font-medium text-[#9696B4]">
+                        {/* <div className="text-[10px] font-medium text-[#9696B4]">
                             <Date date={date} formattedDate={formattedDate} />
                             {typeof readingTime !== "undefined" && (
                                 <>
@@ -45,7 +45,7 @@ export default function BlogPostItem({ className }) {
                                     <ReadingTime readingTime={readingTime} />
                                 </>
                             )}
-                        </div>
+                        </div> */}
                         <div className="mt-1">
                             <Link
                                 itemProp="url"

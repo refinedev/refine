@@ -61,7 +61,7 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
         <BlogLayout sidebar={sidebar}>
             <TagsList tags={tags} activeTag={tag} collapsable={false} />
             <br />
-            <h1 className="font-montserrat">{title}</h1>
+            <h1>{title}</h1>
             <BlogPostItems items={items} showTitle={false} />
             <br />
             <BlogListPaginator

@@ -22,7 +22,7 @@ export default function BlogTagsListPage({ tags, sidebar }) {
             <PageMetadata title={title} />
             <SearchMetadata tag="blog_tags_list" />
             <BlogLayout sidebar={sidebar}>
-                <h1 className="font-montserrat">{title}</h1>
+                <h1 className="">{title}</h1>
                 <TagsList tags={tags} />
             </BlogLayout>
         </HtmlClassNameProvider>

@@ -10,14 +10,14 @@
 }
 
 .scrollbar-slim::-webkit-scrollbar-track {
-    background: #14141F;
+    background: #14141f;
     border-radius: 5px;
 }
 
 .scrollbar-slim::-webkit-scrollbar-thumb {
     background-color: #303450;
     border-radius: 12px;
-    border: 3px solid #14141F;
+    border: 3px solid #14141f;
 }
 
 .refine-prose {
@@ -33,6 +33,7 @@
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;
+    @apply max-w-none;
 }
 
 .refine-prose *:last-child:not(header h1) {

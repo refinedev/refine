@@ -21,7 +21,7 @@ export const FeaturedBlogPostItem = () => {
 
     return (
         <BlogPostItemContainer>
-            <div className="blog-post-item-shadow flex h-full flex-col overflow-hidden rounded-[10px] lg:h-[210px] lg:flex-row">
+            <div className="flex h-full flex-row overflow-hidden rounded-[10px] lg:h-[210px] lg:flex-row">
                 <Link itemProp="url" to={permalink}>
                     <div className="relative h-40 w-full hover:brightness-90 lg:h-full lg:w-44">
                         <img
@@ -55,7 +55,7 @@ export const FeaturedBlogPostItem = () => {
                                 className="hover:no-underline"
                             >
                                 <div className="text-color-base text-base font-bold transition duration-150 hover:text-stone-600">
-                                    {title}
+                                    ----{title}
                                 </div>
                             </Link>
                             <div className="text-color-base line-clamp-3 mt-4 text-xs">

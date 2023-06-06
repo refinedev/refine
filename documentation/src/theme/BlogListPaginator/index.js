@@ -20,7 +20,7 @@ export default function BlogListPaginator(props) {
 
     return (
         <nav
-            className="font-montserrat flex justify-end"
+            className="flex justify-end"
             aria-label={translate({
                 id: "theme.blog.paginator.navAriaLabel",
                 message: "Blog list page navigation",
@@ -51,7 +51,11 @@ export default function BlogListPaginator(props) {
                 </li>
                 {paginationRange.map((pageNumber) => {
                     if (pageNumber === DOTS) {
-                        return <li className="dots">&#8230;</li>;
+                        return (
+                            <li key={`page:${pageNumber}`} className="dots">
+                                &#8230;
+                            </li>
+                        );
                     }
 
                     return (
