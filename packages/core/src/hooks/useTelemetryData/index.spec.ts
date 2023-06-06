@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 import { useTelemetryData } from ".";
 
 describe("useTelemetryData Hook", () => {
@@ -119,6 +119,24 @@ describe("useTelemetryData Hook", () => {
             const { providers } = result.current;
             expect(providers.live).toBeTruthy();
         });
+
+        it("must be true", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    liveProvider: {
+                        subscribe: undefined as any,
+                        unsubscribe: () => {
+                            return;
+                        },
+                    },
+                }),
+            });
+
+            const { providers } = result.current;
+            expect(providers.live).toBeTruthy();
+        });
     });
 
     describe("i18nProvider", () => {
@@ -149,6 +167,46 @@ describe("useTelemetryData Hook", () => {
                         getLocale: () => {
                             return "";
                         },
+                    },
+                }),
+            });
+
+            const { providers } = result.current;
+            expect(providers.i18n).toBeTruthy();
+        });
+
+        it("must be true", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    i18nProvider: {
+                        changeLocale: undefined as any,
+                        translate: () => {
+                            return "";
+                        },
+                        getLocale: () => {
+                            return "";
+                        },
+                    },
+                }),
+            });
+
+            const { providers } = result.current;
+            expect(providers.i18n).toBeTruthy();
+        });
+
+        it("must be true", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    i18nProvider: {
+                        translate: () => {
+                            return "";
+                        },
+                        changeLocale: undefined as any,
+                        getLocale: undefined as any,
                     },
                 }),
             });
@@ -214,6 +272,24 @@ describe("useTelemetryData Hook", () => {
 
             const { providers } = result.current;
             expect(providers.accessControl).toBeTruthy();
+        });
+    });
+
+    describe("legacy routeProvider", () => {
+        it("must be true", async () => {
+            const { result } = renderHook(() => useTelemetryData(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                        useHistory: undefined as any,
+                    },
+                }),
+            });
+
+            const { providers } = result.current;
+            expect(providers.router).toBeTruthy();
         });
     });
 });

@@ -3,6 +3,7 @@ import { renderHook } from "@testing-library/react";
 import { useInvalidate } from ".";
 
 import * as ReactQuery from "@tanstack/react-query";
+import { IQueryKeys } from "src/interfaces";
 
 describe("useInvalidate", () => {
     it("with empty invalidations array", async () => {
@@ -133,5 +134,30 @@ describe("useInvalidate", () => {
         expect(dispatch).toBeCalledWith(["rest", "posts", "list", {}]);
         expect(dispatch).toBeCalledWith(["rest", "posts", "getMany", {}]);
         expect(dispatch).toBeCalledWith(["rest", "posts", "detail", "1", {}]);
+    });
+
+    it("with 'wrong invalidate key' ", async () => {
+        const dispatch = jest.fn();
+        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+
+        useReducerSpy.mockImplementation(
+            () =>
+                ({
+                    invalidateQueries: dispatch,
+                } as any),
+        );
+
+        const { result } = renderHook(() => useInvalidate(), {
+            wrapper: TestWrapper({}),
+        });
+
+        result.current({
+            resource: "posts",
+            invalidates: ["wrong-key"] as unknown as (keyof IQueryKeys)[],
+            dataProviderName: "rest",
+            id: "1",
+        });
+
+        expect(dispatch).not.toBeCalled();
     });
 });

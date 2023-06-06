@@ -3,6 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, act, mockRouterBindings } from "@test";
 
 import { useSelect } from "./";
+import * as pickResource from "../../definitions/helpers/pick-resource";
 import {
     CrudFilters,
     IDataContext,
@@ -290,6 +291,15 @@ describe("useSelect Hook", () => {
         onSearch("3");
         await waitFor(() => {
             expect(getListMock).toBeCalledTimes(4);
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
+        onSearch("");
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(5);
         });
 
         await waitFor(() => {
@@ -944,5 +954,38 @@ describe("useSelect Hook", () => {
                 }),
             }),
         );
+    });
+
+    it("should use resourceFromProps", async () => {
+        jest.spyOn(pickResource, "pickResource").mockReturnValue(undefined);
+
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
+        const { options } = result.current;
+
+        await waitFor(() => expect(options).toHaveLength(2));
+
+        expect(options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
+        ]);
     });
 });

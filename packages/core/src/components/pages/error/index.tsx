@@ -30,9 +30,9 @@ export const ErrorComponent: React.FC = () => {
                     "pages.error.info",
                     {
                         action: action,
-                        resource: resource?.name,
+                        resource: resource.name,
                     },
-                    `You may have forgotten to add the "${action}" component to "${resource?.name}" resource.`,
+                    `You may have forgotten to add the "${action}" component to "${resource.name}" resource.`,
                 ),
             );
         }

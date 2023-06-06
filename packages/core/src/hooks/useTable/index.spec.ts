@@ -1,10 +1,16 @@
 import { act } from "react-dom/test-utils";
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import {
+    MockJSONServer,
+    TestWrapper,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useTable } from ".";
-import { CrudFilters, CrudSorting } from "src/interfaces";
+import { CrudFilters, CrudSorting, Pagination } from "src/interfaces";
+import * as useRouterType from "../../contexts/router-picker";
 
 const defaultPagination = {
     pageSize: 10,
@@ -1391,5 +1397,153 @@ describe("useTable Filters", () => {
                 }),
             }),
         );
+    });
+
+    // NOTE : legacy Will be removed in v5
+    it.each(["new", "legacy"] as const)(
+        "should createLinkForSyncWithLocation with %s router provider",
+        async (testCase) => {
+            const goMock = jest.fn(() => "go mock");
+            const useLocationMock = jest.fn(() => ({
+                search: ``,
+                pathname: "/posts",
+            }));
+
+            jest.spyOn(useRouterType, "useRouterType").mockReturnValue(
+                testCase,
+            );
+
+            const mockRouterProvider =
+                testCase === "new"
+                    ? {
+                          routerProvider: {
+                              ...routerProvider,
+                              go: () => goMock,
+                          },
+                      }
+                    : {
+                          legacyRouterProvider: {
+                              ...mockLegacyRouterProvider(),
+                              useLocation: useLocationMock,
+                          },
+                      };
+
+            const { result } = renderHook(
+                () =>
+                    useTable({
+                        syncWithLocation: true,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        dataProvider: MockJSONServer,
+                        ...mockRouterProvider,
+                    }),
+                },
+            );
+
+            const link = result.current.createLinkForSyncWithLocation({
+                filters: [],
+                sorters: [],
+                pagination: {
+                    current: 1,
+                    pageSize: 10,
+                },
+            });
+
+            if (testCase === "new") {
+                expect(link).toEqual("go mock");
+            } else {
+                expect(link).toEqual("/posts?pageSize=10&current=1");
+            }
+        },
+    );
+});
+
+// NOTE : Will be removed in v5
+describe("legacy Router Provider", () => {
+    it("should set current, pageSize, sorters, filters to initial values after search", async () => {
+        const mockInitialValues = {
+            current: 2,
+            pageSize: 20,
+            sorters: [],
+            filters: [],
+        };
+
+        const defaultValues: {
+            pagination: Pagination;
+            sorters: {
+                initial: CrudSorting;
+            };
+            filters: {
+                initial: CrudFilters;
+            };
+        } = {
+            pagination: {
+                current: 1,
+                pageSize: 10,
+            },
+            sorters: {
+                initial: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
+            },
+            filters: {
+                initial: [
+                    {
+                        field: "name",
+                        operator: "contains",
+                        value: "test",
+                    },
+                ],
+            },
+        };
+
+        const useLocationMock = jest.fn(() => ({
+            search: `?current=${mockInitialValues.current}&pageSize=${mockInitialValues.pageSize}&sorters=""&filters=""`,
+            pathname: "/posts",
+        }));
+
+        const { result, rerender } = renderHook(
+            () =>
+                useTable({
+                    syncWithLocation: true,
+                    ...defaultValues,
+                }),
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    dataProvider: MockJSONServer,
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                        useLocation: useLocationMock,
+                    },
+                }),
+            },
+        );
+
+        // should be mockInitialValues because of syncWithLocation
+        expect(result.current.current).toEqual(mockInitialValues.current);
+        expect(result.current.pageSize).toEqual(mockInitialValues.pageSize);
+        expect(result.current.sorters).toEqual(mockInitialValues.sorters);
+        expect(result.current.filters).toEqual(mockInitialValues.filters);
+        // send empty search
+        useLocationMock.mockImplementationOnce(() => ({
+            search: "",
+            pathname: "/posts",
+        }));
+        rerender();
+        // should be defaultValues because of empty search
+        expect(result.current.current).toEqual(
+            defaultValues.pagination.current,
+        );
+        expect(result.current.pageSize).toEqual(
+            defaultValues.pagination.pageSize,
+        );
+        expect(result.current.sorters).toEqual(defaultValues.sorters.initial);
+        expect(result.current.filters).toEqual(defaultValues.filters.initial);
     });
 });

@@ -43,14 +43,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
-    const renderLink = (link: React.ReactNode, text?: string) => {
-        if (link) {
-            if (typeof link === "string") {
-                return <ActiveLink to={link}>{text}</ActiveLink>;
-            }
-            return link;
-        }
-        return null;
+    const renderLink = (link: string, text?: string) => {
+        return <ActiveLink to={link}>{text}</ActiveLink>;
     };
 
     const renderProviders = () => {
@@ -106,10 +100,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label>
+                    <label htmlFor="email-input">
                         {translate("pages.register.fields.email", "Email")}
                     </label>
                     <input
+                        id="email-input"
                         name="email"
                         type="email"
                         size={20}
@@ -120,13 +115,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <label>
+                    <label htmlFor="password-input">
                         {translate(
                             "pages.register.fields.password",
                             "Password",
                         )}
                     </label>
                     <input
+                        id="password-input"
                         name="password"
                         type="password"
                         required
