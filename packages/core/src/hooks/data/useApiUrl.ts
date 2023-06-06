@@ -1,3 +1,4 @@
+import { pickNotDeprecated } from "@definitions/index";
 import { useDataProvider, useResource } from "@hooks";
 
 export const useApiUrl = (dataProviderName?: string): string => {
@@ -6,8 +7,8 @@ export const useApiUrl = (dataProviderName?: string): string => {
 
     const { getApiUrl } = dataProvider(
         dataProviderName ??
-            resource?.options?.dataProviderName ??
-            resource?.meta?.dataProviderName,
+            pickNotDeprecated(resource?.options, resource?.meta)
+                ?.dataProviderName,
     );
 
     return getApiUrl();
