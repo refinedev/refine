@@ -29,9 +29,12 @@
     @apply prose-h3:text-[1.5rem] prose-h3:leading-[2rem] prose-h3:text-gray-700 prose-h3:dark:text-gray-200 prose-h3:mb-6 prose-h3:font-semibold;
     @apply prose-h4:text-[1rem] prose-h4:leading-[1.5rem] prose-h4:text-gray-600 prose-h4:dark:text-gray-300 prose-h4:mb-4 prose-h4:font-semibold;
     @apply prose-p:mb-6 prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mt-0;
-    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4 prose-blockquote:border-l-gray-600  prose-blockquote:rounded-lg prose-blockquote:p-4 prose-blockquote:bg-gray-800 prose-blockquote:font-normal prose-blockquote:text-gray-300 prose-blockquote:not-italic;
-    @apply prose-code:text-gray-700;
-    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:text-xs prose-code:bg-gray-200 prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4  prose-blockquote:rounded-lg prose-blockquote:p-4 prose-blockquote:font-normal prose-blockquote:not-italic;
+    @apply prose-blockquote:bg-gray-50 prose-blockquote:text-gray-700 prose-blockquote:border-l-gray-400;
+    @apply prose-blockquote:dark:bg-gray-800 prose-blockquote:dark:text-gray-0 prose-blockquote:dark:border-l-gray-600;
+    @apply prose-code:text-gray-700 prose-code:bg-gray-200;
+    @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-700;
+    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:text-xs prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;
