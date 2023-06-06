@@ -10,9 +10,9 @@ source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 This hook can only be used if `authProvider` is provided.
 :::
 
-`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useForgotPassword` calls the `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 
 Data that is resolved from `forgotPassword` will be returned as the `data` in the query result with the following type:
 
@@ -26,15 +26,16 @@ type AuthActionResponse = {
 ```
 
 -   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   When `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values `{ name: "Forgot Password Error", message: "Invalid credentials" }`.
--   `redirectTo`: If has a value, the app will be redirected to the given URL.
--   `error`: If has a value, a notification will be shown with the error message and name.
+    -   If `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Forgot Password Error", message: "Invalid credentials" }`.
+-   `redirectTo`: If it has a value, the app will be redirected to the given URL.
+-   `error`: If it has a value, a notification will be shown with the error message and name.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
-Normally refine provides a default forgot password page. If you prefer to use this default forgot password page, there is no need to handle forgot password flow manually.  
-If we want to build a custom forgotPassword page instead of the default one that comes with **refine**, `useForgotPassword` can be used like this:
+**refine** provides a default 'forgot password' page which handles the forgot password flow manually.
+
+If you want to use a custom 'forgot password' page however, you can use the `useForgotPassword` hook like this:
 
 ```tsx title="pages/customForgotPasswordPage"
 import { useForgotPassword } from "@refinedev/core";
@@ -43,11 +44,17 @@ type forgotPasswordVariables = {
     email: string;
 };
 
-export const forgotPasswordPage = () => {
+export const ForgotPasswordPage = () => {
     const { mutate: forgotPassword } =
         useForgotPassword<forgotPasswordVariables>();
 
-    const onSubmit = (values: forgotPasswordVariables) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const values = {
+            email: e.currentTarget.email.value,
+        };
+
         forgotPassword(values);
     };
 
@@ -62,8 +69,8 @@ export const forgotPasswordPage = () => {
 ```
 
 :::tip
-`mutate` acquired from `useForgotPassword` can accept any kind of object for values since `forgotPassword` method from `authProvider` doesn't have a restriction on its parameters.  
-A type parameter for the values can be provided to `useForgotPassword`.
+`mutate` acquired from the `useForgotPassword` hook can accept any kind of object for values because the `forgotPassword` method from `authProvider` doesn't have a restriction on its parameters.
+A type parameter for the values can be provided to `useForgotPassword`:
 
 ```tsx
 import { useForgotPassword } from "@refinedev/core";
@@ -129,6 +136,6 @@ forgotPassword(
 
 :::caution
 
-The `onError` callback of the `useForgotPassword` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+The `onError` callback of the `useForgotPassword` hook will not be called if `success` is `false`. This is because the `authProvider` methods always return a resolved promise, and the callback is only triggered when the promise is rejected.
 
 :::

@@ -36,6 +36,7 @@ export const setAntdRangeDatePickerToToday = ({
         .get(`#${id}`)
         .click({ force: true })
         .get(".ant-picker-cell-today")
+        .eq(0)
         .click({ force: true })
         .click({ force: true });
 };
@@ -66,4 +67,15 @@ export const getAntdPaginationItem = (index: number) => {
 
 export const getTableRowExpandButton = (index: number) => {
     return cy.get(".ant-table-row-expand-icon").eq(index);
+};
+
+export const fillAntdForm = () => {
+    cy.fixture("mock-post").then((mockPost) => {
+        cy.get("#title").clear();
+        cy.get("#title").type(mockPost.title);
+        cy.get("#content textarea").clear();
+        cy.get("#content textarea").type(mockPost.content);
+        cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+        cy.setAntdSelect({ id: "status", value: mockPost.status });
+    });
 };

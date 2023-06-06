@@ -1,6 +1,13 @@
 import React, { FC } from "react";
 
-import { render, TestWrapper } from "@test";
+import {
+    fireEvent,
+    mockAuthProvider,
+    mockLegacyAuthProvider,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 import { UpdatePasswordPageProps } from "@refinedev/core";
 
 export const pageUpdatePasswordTests = function (
@@ -65,6 +72,39 @@ export const pageUpdatePasswordTests = function (
             expect(queryByTestId("custom-content")).toBeInTheDocument();
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = render(
+                <UpdatePasswordPage title={false} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(queryByText(/refine project/i)).not.toBeInTheDocument();
+        });
+
+        it("should pass contentProps", async () => {
+            const { getByTestId } = render(
+                <UpdatePasswordPage contentProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
+        it("should pass wrapperProps", async () => {
+            const { getByTestId } = render(
+                <UpdatePasswordPage wrapperProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
         it("should customizable with renderContent", async () => {
             const { queryByText, queryByTestId, getByLabelText } = render(
                 <UpdatePasswordPage
@@ -90,6 +130,103 @@ export const pageUpdatePasswordTests = function (
             expect(queryByTestId("custom-content")).toBeInTheDocument();
             expect(getByLabelText("New Password")).toBeInTheDocument();
             expect(getByLabelText("Confirm New Password")).toBeInTheDocument();
+        });
+
+        it("should run updatePassword mutation when form is submitted", async () => {
+            const updatePasswordMock = jest
+                .fn()
+                .mockResolvedValue({ success: true });
+            const { getAllByLabelText, getByLabelText, getAllByText } = render(
+                <UpdatePasswordPage />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: {
+                            ...mockAuthProvider,
+                            updatePassword: updatePasswordMock,
+                        },
+                    }),
+                },
+            );
+
+            fireEvent.change(getAllByLabelText(/password/i)[0], {
+                target: { value: "demo" },
+            });
+
+            fireEvent.change(getByLabelText(/confirm new password/i), {
+                target: { value: "demo" },
+            });
+
+            fireEvent.click(getAllByText(/update/i)[0]);
+
+            await waitFor(() => {
+                expect(updatePasswordMock).toBeCalledTimes(1);
+            });
+
+            expect(updatePasswordMock).toBeCalledWith({
+                password: "demo",
+                confirmPassword: "demo",
+            });
+        });
+
+        it("should run updatePassword mutation when form is submitted with legacy authProvider", async () => {
+            const updatePasswordMock = jest
+                .fn()
+                .mockResolvedValue({ success: true });
+            const { getAllByLabelText, getByLabelText, getAllByText } = render(
+                <UpdatePasswordPage />,
+                {
+                    wrapper: TestWrapper({
+                        legacyAuthProvider: {
+                            ...mockLegacyAuthProvider,
+                            updatePassword: updatePasswordMock,
+                        },
+                    }),
+                },
+            );
+
+            fireEvent.change(getAllByLabelText(/password/i)[0], {
+                target: { value: "demo" },
+            });
+
+            fireEvent.change(getByLabelText(/confirm new password/i), {
+                target: { value: "demo" },
+            });
+
+            fireEvent.click(getAllByText(/update/i)[0]);
+
+            await waitFor(() => {
+                expect(updatePasswordMock).toBeCalledTimes(1);
+            });
+
+            expect(updatePasswordMock).toBeCalledWith({
+                password: "demo",
+                confirmPassword: "demo",
+            });
+        });
+
+        it("if passwords are not matched, should display the validation error", async () => {
+            const { getAllByLabelText, getByLabelText, getByText } = render(
+                <UpdatePasswordPage />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                    }),
+                },
+            );
+
+            fireEvent.change(getAllByLabelText(/password/i)[0], {
+                target: { value: "demo" },
+            });
+
+            fireEvent.change(getByLabelText(/confirm new password/i), {
+                target: { value: "demo2" },
+            });
+
+            fireEvent.click(getByText(/update/i));
+
+            await waitFor(() => {
+                expect(getByText(/asswords do not match/i)).toBeInTheDocument();
+            });
         });
     });
 };

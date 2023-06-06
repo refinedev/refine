@@ -20,95 +20,22 @@ describe("form-antd-use-form", () => {
         cy.setAntdSelect({ id: "status", value: mockPost.status });
     };
 
-    const assertSuccessResponse = (response: any) => {
-        const body = response?.body;
-
-        expect(response?.statusCode).to.eq(200);
-        expect(body).to.have.property("id");
-        expect(body).to.have.property("category");
-        expect(body?.title).to.eq(mockPost.title);
-        expect(body?.content).to.eq(mockPost.content);
-        expect(body?.status?.toLowerCase()).to.eq(
-            mockPost?.status?.toLowerCase(),
-        );
-
-        cy.getAntdNotification().should("contain", "Success");
-        cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
-        });
-    };
-
     const submitForm = () => {
         return cy.getSaveButton().click();
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
-        cy.interceptGETCategories();
-
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
+        cy.interceptGETPosts();
         cy.visit(BASE_URL);
     });
 
-    it("should create record", () => {
-        cy.getCreateButton().click();
-
-        fillForm();
-        submitForm();
-
-        cy.wait("@postPost").then((interception) => {
-            const response = interception?.response;
-            assertSuccessResponse(response);
-        });
-    });
-
-    it("should edit record", () => {
-        cy.getEditButton().first().click();
-
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getAntdLoadingOverlay().should("not.exist");
-
-        fillForm();
-        submitForm();
-
-        cy.wait("@patchPost").then((interception) => {
-            const response = interception?.response;
-            assertSuccessResponse(response);
-        });
-    });
-
-    it("should delete record", () => {
-        cy.getEditButton().first().click();
-
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getAntdLoadingOverlay().should("not.exist");
-
-        cy.getDeleteButton().first().click();
-        cy.getAntdPopoverDeleteButton().click();
-
-        cy.wait("@deletePost").then((interception) => {
-            const response = interception?.response;
-
-            expect(response?.statusCode).to.eq(200);
-            cy.getAntdNotification().should("contain", "Success");
-            cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
-            });
-        });
-    });
-
     it("should create form render errors", () => {
+        cy.interceptGETPost();
+
         cy.getCreateButton().click();
 
         submitForm();
@@ -134,6 +61,8 @@ describe("form-antd-use-form", () => {
     });
 
     it("should edit form render errors", () => {
+        cy.interceptGETPost();
+
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
@@ -160,6 +89,8 @@ describe("form-antd-use-form", () => {
     });
 
     it("should create form warn when unsaved changes", () => {
+        cy.interceptGETPost();
+
         cy.wait("@getPosts");
         cy.getCreateButton().click();
         cy.get("#title").type("any value");
@@ -170,6 +101,8 @@ describe("form-antd-use-form", () => {
     });
 
     it("should edit form warn when unsaved changes", () => {
+        cy.interceptGETPost();
+
         cy.wait("@getPosts");
         cy.getEditButton().first().click();
 

@@ -11,13 +11,13 @@ import { useBack } from "@hooks/router/use-back";
 export type HistoryType = "push" | "replace";
 
 /**
- * `refine` uses {@link https://reactrouter.com/web/api/Hooks `React Router`} and comes with all redirects out of the box.
+ * `refine` uses {@link https://reactrouter.com/en/hooks/use-navigate `React Router`} and comes with all redirects out of the box.
  * It allows you to manage your routing operations in refine.
  * Using this hook, you can manage all the routing operations of your application very easily.
  *
  * @internal This is an internal hook of refine. Do not use it directly.
  *
- * @see {@link https://refine.dev/docs/core/hooks/navigation/useNavigation} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
     const { resources } = useResource();

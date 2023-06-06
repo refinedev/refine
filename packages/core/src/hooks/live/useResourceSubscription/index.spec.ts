@@ -6,6 +6,15 @@ import { useResourceSubscription } from "./";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../../interfaces";
 
+const invalidateQueriesMock = jest.fn();
+jest.mock("@tanstack/react-query", () => ({
+    ...jest.requireActual("@tanstack/react-query"),
+    useQueryClient: () => ({
+        ...jest.requireActual("@tanstack/react-query").useQueryClient(),
+        invalidateQueries: invalidateQueriesMock,
+    }),
+}));
+
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
     ...defaultRefineOptions,
@@ -14,6 +23,10 @@ const mockRefineProvider: IRefineContextProvider = {
 
 const onLiveEventMock = jest.fn();
 describe("useResourceSubscription Hook", () => {
+    beforeEach(() => {
+        invalidateQueriesMock.mockReset();
+    });
+
     it("useResourceSubscription enabled and all types", async () => {
         const onSubscribeMock = jest.fn();
 
@@ -81,7 +94,12 @@ describe("useResourceSubscription Hook", () => {
     });
 
     it("useResourceSubscription liveMode on context off, params auto", async () => {
-        const onSubscribeMock = jest.fn();
+        const onLiveEventFromContextCallbackMock = jest.fn();
+
+        const mockCallbackEventPayload = { type: "mock" };
+        const onSubscribeMock = jest.fn(({ callback }) =>
+            callback(mockCallbackEventPayload),
+        );
 
         const subscriptionParams = {
             channel: "channel",
@@ -105,6 +123,7 @@ describe("useResourceSubscription Hook", () => {
                     },
                     refineProvider: {
                         ...mockRefineProvider,
+                        onLiveEvent: onLiveEventFromContextCallbackMock,
                         liveMode: "off",
                     },
                 }),
@@ -112,6 +131,11 @@ describe("useResourceSubscription Hook", () => {
         );
 
         expect(onSubscribeMock).toBeCalled();
+        expect(invalidateQueriesMock).toBeCalledTimes(1);
+        expect(onLiveEventMock).toBeCalledWith(mockCallbackEventPayload);
+        expect(onLiveEventFromContextCallbackMock).toBeCalledWith(
+            mockCallbackEventPayload,
+        );
     });
 
     it("useResourceSubscription subscribe undefined", async () => {

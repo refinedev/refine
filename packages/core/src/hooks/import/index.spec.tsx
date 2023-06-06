@@ -1,5 +1,5 @@
 import { TestWrapper, MockJSONServer, mockRouterBindings } from "@test";
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 import * as papaparse from "papaparse";
 
 import { useImport } from ".";
@@ -496,6 +496,47 @@ describe("useImport hook", () => {
             await act(async () => {
                 await result.current.handleChange({
                     file: file,
+                });
+            });
+        });
+
+        it("should onChange call handleChange", async () => {
+            const onProgressMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useImport({
+                        batchSize: 1,
+                        onProgress: onProgressMock,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings({
+                            pathname: "/posts",
+                            resource: { name: "posts" },
+                        }),
+                    }),
+                },
+            );
+
+            const {
+                inputProps: { onChange },
+            } = result.current;
+
+            await act(async () => {
+                onChange({ target: { files: [file] } } as any);
+            });
+
+            await waitFor(() => {
+                expect(result.current.isLoading).toBe(false);
+            });
+
+            await waitFor(() => {
+                expect(onProgressMock).toBeCalledWith({
+                    totalAmount: parsedData.length,
+                    processedAmount: 3,
                 });
             });
         });

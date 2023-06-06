@@ -4,6 +4,7 @@ import Head from "next/head";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/nextjs-router";
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -43,6 +44,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     </Layout>
                 </ChakraProvider>
                 <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
             </Refine>
             <div
                 hidden

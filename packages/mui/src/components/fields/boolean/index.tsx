@@ -9,7 +9,7 @@ import { BooleanFieldProps } from "../types";
 /**
  * This field is used to display boolean values. It uses the {@link https://mui.com/material-ui/react-tooltip/#main-content `<Tooltip>`} values from Materila UI.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/fields/boolean} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,

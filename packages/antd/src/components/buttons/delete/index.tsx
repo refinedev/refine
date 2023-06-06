@@ -21,7 +21,7 @@ import { DeleteButtonProps } from "../types";
  * `<DeleteButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} and {@link https://ant.design/components/button/ `<Popconfirm>`} components.
  * When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/delete-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resource: resourceNameFromProps,

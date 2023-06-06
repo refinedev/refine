@@ -53,6 +53,8 @@ describe("useUpdate Hook", () => {
     });
 
     it("should works with undoable update", async () => {
+        const onCancelMock = jest.fn();
+
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -63,6 +65,7 @@ describe("useUpdate Hook", () => {
         result.current.mutate({
             resource: "posts",
             mutationMode: "undoable",
+            onCancel: onCancelMock,
             undoableTimeout: 0,
             id: "1",
             values: { id: "1", title: "undoable test" },
@@ -72,6 +75,7 @@ describe("useUpdate Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
+        expect(onCancelMock).toHaveBeenCalledTimes(1);
         const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();

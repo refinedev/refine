@@ -3,6 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import {
     TestWrapper,
     act,
+    mockLegacyAuthProvider,
     mockLegacyRouterProvider,
     mockRouterBindings,
 } from "@test";
@@ -107,6 +108,94 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
         const { error } = result.current ?? { error: undefined };
 
         expect(error).toEqual(new Error("Missing fields"));
+    });
+
+    it("should open notification when has success is false, error is undefined", async () => {
+        const updatePasswordMock = jest.fn();
+        const openNotificationMock = jest.fn();
+        const closeNotificationMock = jest.fn();
+
+        const { result } = renderHook(
+            () => useUpdatePassword({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    notificationProvider: {
+                        open: openNotificationMock,
+                        close: closeNotificationMock,
+                    },
+                    legacyAuthProvider: {
+                        ...mockLegacyAuthProvider,
+                        updatePassword: updatePasswordMock,
+                    },
+                    routerProvider: mockRouterProvider,
+                }),
+            },
+        );
+
+        const { mutate: updatePassword } = result.current;
+
+        updatePasswordMock.mockRejectedValueOnce({});
+        await act(async () => {
+            updatePassword({});
+        });
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "update-password-error",
+                type: "error",
+                message: "Update Password Error",
+                description: "Error while updating password",
+            });
+        });
+
+        updatePasswordMock.mockResolvedValueOnce({
+            success: true,
+        });
+        await act(async () => {
+            updatePassword({});
+        });
+        await waitFor(() => {
+            expect(closeNotificationMock).toBeCalledWith(
+                "update-password-error",
+            );
+        });
+    });
+
+    it("should open notification when throw error", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(
+            () => useUpdatePassword({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    notificationProvider: {
+                        open: openNotificationMock,
+                    },
+                    routerProvider: mockRouterProvider,
+                    legacyAuthProvider: {
+                        ...mockLegacyAuthProvider,
+                        updatePassword: () => {
+                            throw new Error("Unhandled error");
+                            return Promise.resolve();
+                        },
+                    },
+                }),
+            },
+        );
+
+        const { mutate: updatePassword } = result.current;
+
+        await act(async () => {
+            updatePassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "update-password-error",
+                type: "error",
+                message: "Error",
+                description: "Unhandled error",
+            });
+        });
     });
 });
 
@@ -334,10 +423,10 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current;
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
-            forgotPassword({});
+            updatePassword({});
         });
 
         await waitFor(() => {
@@ -351,25 +440,31 @@ describe("useUpdatePassword Hook", () => {
     });
 
     it("should open notification when has success is false, error is undefined", async () => {
+        const updatePasswordMock = jest.fn();
         const openNotificationMock = jest.fn();
+        const closeNotificationMock = jest.fn();
 
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 notificationProvider: {
                     open: openNotificationMock,
+                    close: closeNotificationMock,
                 },
                 authProvider: {
                     ...mockAuthProvider,
-                    updatePassword: () => Promise.resolve({ success: false }),
+                    updatePassword: updatePasswordMock,
                 },
-                legacyRouterProvider: mockRouterProvider,
+                routerProvider: mockRouterProvider,
             }),
         });
 
-        const { mutate: forgotPassword } = result.current;
+        const { mutate: updatePassword } = result.current;
 
+        updatePasswordMock.mockResolvedValueOnce({
+            success: false,
+        });
         await act(async () => {
-            forgotPassword({});
+            updatePassword({});
         });
 
         await waitFor(() => {
@@ -379,6 +474,18 @@ describe("useUpdatePassword Hook", () => {
                 message: "Update Password Error",
                 description: "Error while updating password",
             });
+        });
+
+        updatePasswordMock.mockResolvedValueOnce({
+            success: true,
+        });
+        await act(async () => {
+            updatePassword({});
+        });
+        await waitFor(() => {
+            expect(closeNotificationMock).toBeCalledWith(
+                "update-password-error",
+            );
         });
     });
 
@@ -390,7 +497,7 @@ describe("useUpdatePassword Hook", () => {
                 notificationProvider: {
                     open: openNotificationMock,
                 },
-                legacyRouterProvider: mockRouterProvider,
+                routerProvider: mockRouterProvider,
                 authProvider: {
                     ...mockAuthProvider,
                     updatePassword: () => {
@@ -401,10 +508,10 @@ describe("useUpdatePassword Hook", () => {
             }),
         });
 
-        const { mutate: forgotPassword } = result.current;
+        const { mutate: updatePassword } = result.current;
 
         await act(async () => {
-            forgotPassword({});
+            updatePassword({});
         });
 
         await waitFor(() => {
@@ -414,6 +521,65 @@ describe("useUpdatePassword Hook", () => {
                 message: "Error",
                 description: "Unhandled error",
             });
+        });
+    });
+
+    it("should work notificationProvider", async () => {
+        const onErrorMock = jest.fn();
+        const onSuccessMock = jest.fn();
+        const updatePasswordMock = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useUpdatePassword({
+                    mutationOptions: {
+                        onSuccess: onSuccessMock,
+                        onError: onErrorMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider: mockRouterProvider,
+                    notificationProvider: {
+                        open: undefined,
+                        close: undefined,
+                    },
+                    authProvider: {
+                        ...mockAuthProvider,
+                        updatePassword: updatePasswordMock,
+                    },
+                }),
+            },
+        );
+
+        const { mutate: updatePassword } = result.current;
+
+        updatePasswordMock.mockRejectedValueOnce(new Error("Error"));
+        await act(async () => {
+            updatePassword({});
+        });
+        await waitFor(() => {
+            expect(onErrorMock).toBeCalledTimes(1);
+        });
+
+        updatePasswordMock.mockResolvedValueOnce({
+            success: false,
+        });
+        await act(async () => {
+            updatePassword({});
+        });
+        await waitFor(() => {
+            expect(onSuccessMock).toBeCalledTimes(1);
+        });
+
+        updatePasswordMock.mockResolvedValueOnce({
+            success: true,
+        });
+        await act(async () => {
+            updatePassword({});
+        });
+        await waitFor(() => {
+            expect(onSuccessMock).toBeCalledTimes(2);
         });
     });
 });

@@ -28,6 +28,21 @@ describe("definitions/table", () => {
         expect(getDefaultSortOrder("view", sorter)).toEqual("desc");
     });
 
+    it("getDefaultSortOrder pass empty sorter", () => {
+        expect(getDefaultSortOrder("title", undefined)).toEqual(undefined);
+    });
+
+    it("getDefaultSortOrder pass different column name", () => {
+        expect(
+            getDefaultSortOrder("title", [
+                {
+                    field: "foo",
+                    order: "asc",
+                },
+            ]),
+        ).toEqual(undefined);
+    });
+
     it("getDefaultFilter", () => {
         const filters: CrudFilters = [
             {
@@ -601,5 +616,24 @@ describe("definitions/table", () => {
                 },
             ),
         ).toBe(true);
+    });
+
+    it("parseTableParams default sorter and filters", () => {
+        expect(parseTableParams(`?current=1&pageSize=10`)).toStrictEqual({
+            parsedCurrent: 1,
+            parsedFilters: [],
+            parsedPageSize: 10,
+            parsedSorter: [],
+        });
+    });
+
+    it("stringifyTableParams default pagination", () => {
+        expect(
+            stringifyTableParams({
+                pagination: undefined,
+                sorters: [],
+                filters: [],
+            }),
+        ).toEqual("");
     });
 });

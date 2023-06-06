@@ -190,7 +190,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                   class="css-0"
                 >
                   <div
-                    class="chakra-stack css-84zodg"
+                    class="chakra-stack css-1igwmid"
                   >
                     <img
                       class="chakra-image css-1cooswl"
@@ -202,7 +202,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                   class="css-0"
                 >
                   <div
-                    class="chakra-stack css-84zodg"
+                    class="chakra-stack css-1igwmid"
                   >
                     <span
                       class="css-1qm7lvz"
@@ -289,7 +289,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                   class="css-0"
                 >
                   <div
-                    class="chakra-stack css-84zodg"
+                    class="chakra-stack css-1igwmid"
                   >
                     <img
                       class="chakra-image css-1cooswl"
@@ -301,7 +301,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                   class="css-0"
                 >
                   <div
-                    class="chakra-stack css-84zodg"
+                    class="chakra-stack css-1igwmid"
                   >
                     <span
                       class="css-1qm7lvz"
@@ -328,7 +328,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
           class="css-1bvc4cc"
         >
           <div
-            class="chakra-stack css-142j3rd"
+            class="chakra-stack css-cfcsvg"
           >
             <button
               class="chakra-button css-4xx2wk"
@@ -14572,7 +14572,7 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
             />
           </nav>
           <div
-            class="chakra-stack css-84zodg"
+            class="chakra-stack css-1igwmid"
           >
             <button
               aria-label="back"
@@ -15149,6 +15149,89 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
               <span
                 class="token imports maybe-class-name"
               >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 useSelect 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/core"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
                 Create
               </span>
               <span
@@ -15460,73 +15543,6 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                import
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token imports"
-              >
-                 useSelect 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                from
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "@refinedev/core"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -15563,10 +15579,54 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostCreate
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -25516,7 +25576,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             />
           </nav>
           <div
-            class="chakra-stack css-15lgeks"
+            class="chakra-stack css-9hjtr8"
           >
             <button
               aria-label="back"
@@ -26204,6 +26264,89 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
               <span
                 class="token imports maybe-class-name"
               >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 useSelect 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/core"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
                 Edit
               </span>
               <span
@@ -26515,73 +26658,6 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                import
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token imports"
-              >
-                 useSelect 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                from
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "@refinedev/core"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -26618,10 +26694,54 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostEdit
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -27009,10 +27129,10 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
                  
               </span>
               <span
-                class="token number"
-                style="color: rgb(181, 206, 168);"
+                class="token string"
+                style="color: rgb(206, 145, 120);"
               >
-                11
+                "11"
               </span>
               <span
                 class="token punctuation"
@@ -38097,7 +38217,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
             />
           </nav>
           <div
-            class="chakra-stack css-84zodg"
+            class="chakra-stack css-1igwmid"
           >
             <button
               aria-label="back"
@@ -38309,7 +38429,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
           Tags
         </h5>
         <div
-          class="chakra-stack css-he6z7n"
+          class="chakra-stack css-qlxuh7"
         >
           <span
             class="css-1qm7lvz"
@@ -38480,8 +38600,16 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useShow
+                    useShow
               </span>
               <span
                 class="token imports punctuation"
@@ -38491,8 +38619,21 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useOne
+                    
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                IResourceComponentsProps
               </span>
               <span
                 class="token imports punctuation"
@@ -38502,9 +38643,53 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useMany 
+                    useOne
               </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              >
+                    useMany
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -38911,10 +39096,54 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostShow
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -39102,10 +39331,10 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
                  
               </span>
               <span
-                class="token number"
-                style="color: rgb(181, 206, 168);"
+                class="token string"
+                style="color: rgb(206, 145, 120);"
               >
-                21
+                "21"
               </span>
               <span
                 class="token punctuation"

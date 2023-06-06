@@ -5,6 +5,7 @@ import {
     FormLabel,
     Input,
     Select,
+    Textarea,
 } from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -39,7 +40,7 @@ export const PostCreate = () => {
             <FormControl mb="3" isInvalid={!!errors?.status}>
                 <FormLabel>Status</FormLabel>
                 <Select
-                    id="content"
+                    id="status"
                     placeholder="Select Post Status"
                     {...register("status", {
                         required: "Status is required",
@@ -58,7 +59,7 @@ export const PostCreate = () => {
                 <Select
                     id="categoryId"
                     placeholder="Select Category"
-                    {...register("categoryId", {
+                    {...register("category.id", {
                         required: "Category is required",
                     })}
                 >
@@ -70,6 +71,19 @@ export const PostCreate = () => {
                 </Select>
                 <FormErrorMessage>
                     {`${errors.categoryId?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+
+            <FormControl mb="3" isInvalid={!!errors?.content}>
+                <FormLabel>Content</FormLabel>
+                <Textarea
+                    id="content"
+                    {...register("content", {
+                        required: "content is required",
+                    })}
+                />
+                <FormErrorMessage>
+                    {`${errors.content?.message}`}
                 </FormErrorMessage>
             </FormControl>
         </Create>

@@ -4,23 +4,21 @@ siderbar_label: useCustom
 source: packages/core/src/hooks/data/useCustom.ts
 ---
 
-`useCustom` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
+`useCustom` is used to send custom query requests using the Tanstack Query advantages. It is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) and not only supports all features of the mutation but also adds some extra features.
 
--   It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
-
-It is useful when you want to send a custom query request using the TanStack Query advantages.
+It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 :::danger attention
-`useCustom` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
+`useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/)
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
+If you need to customize the mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook instead.
 :::
 
 ## Basic Usage
 
-The `useCustom` hook expects a `url` and `method` properties. These parameters will be passed to the `custom` method from the `dataProvider` as a parameter.
+The `useCustom` hook expects the `url` and `method` properties, which will be passed to the `custom` method from the `dataProvider` as parameters.
 
 When properties are changed, the `useCustom` hook will trigger a new request.
 
@@ -51,7 +49,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
 
 ### `url` <PropTag required />
 
-It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
+This prop will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
 
 ```tsx
 useCustom({
@@ -156,7 +154,7 @@ Use `config.sorters` instead.
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ```tsx
 useCustom({
@@ -174,9 +172,7 @@ useCustom({
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
-
-In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter.
+In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter:
 
 ```tsx
 useCustom({
@@ -207,9 +203,11 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
 useCustom({
@@ -219,9 +217,11 @@ useCustom({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data is fetched successfully, `useCustom` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustom` calls the `open` function from `NotificationProvider`:
 
 ```tsx
 useCustom({
@@ -237,9 +237,11 @@ useCustom({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data fetching is failed, `useCustom` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
+This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCustom` calls the `open` function from `NotificationProvider`
 
 ```tsx
 useCustom({
@@ -257,7 +259,7 @@ useCustom({
 
 ### How to invalidate the custom query?
 
-To invalidate a query, you can use the `invalidateQueries` method from the `useQueryClient` hook provided by the `@tanstack/react-query` library.
+To invalidate a query, you can use the `invalidateQueries` method from the `useQueryClient` hook provided by the `@tanstack/react-query` library:
 
 ```tsx
 import { useQueryClient } from "@tanstack/react-query";
@@ -267,7 +269,7 @@ const queryClient = useQueryClient();
 queryClient.invalidateQueries(["custom-key"]);
 ```
 
-Note that you'll need to know the query key to invalidate the query. If you don't know the query key, you can use the `queryOptions` property of the `useCustom` hook.
+Note that you'll need to know the query key to invalidate the query. If you don't know the query key, you can use the `queryOptions` property of the `useCustom` hook:
 
 ```tsx
 import { useCustom } from "@refinedev/core";

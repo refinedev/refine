@@ -1,6 +1,13 @@
 import React, { FC } from "react";
 
-import { render, TestWrapper } from "@test";
+import {
+    fireEvent,
+    mockAuthProvider,
+    mockRouterBindings,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 import { RegisterPageProps } from "@refinedev/core";
 
 export const pageRegisterTests = function (
@@ -105,6 +112,36 @@ export const pageRegisterTests = function (
             expect(queryByTestId("refine-logo")).not.toBeInTheDocument();
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = render(<RegisterPage title={false} />, {
+                wrapper: TestWrapper({}),
+            });
+
+            expect(queryByText(/refine project/i)).not.toBeInTheDocument();
+        });
+
+        it("should pass contentProps", async () => {
+            const { getByTestId } = render(
+                <RegisterPage contentProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
+        it("should pass wrapperProps", async () => {
+            const { getByTestId } = render(
+                <RegisterPage wrapperProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
         it("should renderContent only", async () => {
             const {
                 queryByText,
@@ -167,6 +204,95 @@ export const pageRegisterTests = function (
                 }),
             ).toBeInTheDocument();
             expect(queryByTestId("custom-content")).toBeInTheDocument();
+        });
+
+        it("should run register mutation when form is submitted", async () => {
+            const registerMock = jest.fn().mockResolvedValue({ success: true });
+            const { getByLabelText, getAllByText } = render(<RegisterPage />, {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        register: registerMock,
+                    },
+                }),
+            });
+
+            fireEvent.change(getByLabelText(/email/i), {
+                target: { value: "demo@refine.dev" },
+            });
+
+            fireEvent.change(getByLabelText(/password/i), {
+                target: { value: "demo" },
+            });
+
+            fireEvent.click(getAllByText(/sign up/i)[1]);
+
+            await waitFor(() => {
+                expect(registerMock).toBeCalledTimes(1);
+            });
+
+            expect(registerMock).toBeCalledWith({
+                email: "demo@refine.dev",
+                password: "demo",
+            });
+        });
+
+        it("should run register mutation when provider button is clicked", async () => {
+            const registerMock = jest.fn().mockResolvedValue({ success: true });
+            const { getByText } = render(
+                <RegisterPage
+                    providers={[
+                        {
+                            name: "Google",
+                            label: "Google",
+                        },
+                    ]}
+                />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: {
+                            ...mockAuthProvider,
+                            register: registerMock,
+                        },
+                    }),
+                },
+            );
+
+            expect(getByText(/google/i)).toBeInTheDocument();
+
+            fireEvent.click(getByText(/google/i));
+
+            await waitFor(() => {
+                expect(registerMock).toBeCalledTimes(1);
+            });
+
+            expect(registerMock).toBeCalledWith({
+                providerName: "Google",
+            });
+        });
+
+        it("should work with new router provider Link", async () => {
+            jest.spyOn(console, "error").mockImplementation((message) => {
+                console.warn(message);
+            });
+            const LinkComponentMock = jest.fn();
+
+            render(<RegisterPage />, {
+                wrapper: TestWrapper({
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            Link: LinkComponentMock,
+                        },
+                    }),
+                }),
+            });
+
+            expect(LinkComponentMock).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/login",
+                }),
+                {},
+            );
         });
     });
 };

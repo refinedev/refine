@@ -82,6 +82,7 @@ export const PostList: React.FC = () => {
                                                 </div>
                                                 <div>
                                                     <input
+                                                        id={header.id}
                                                         value={
                                                             (header.column.getFilterValue() as string) ??
                                                             ""
@@ -128,12 +129,17 @@ export const PostList: React.FC = () => {
                     {"<<"}
                 </button>
                 <button
+                    id="previous-button"
                     onClick={() => previousPage()}
                     disabled={!getCanPreviousPage()}
                 >
                     {"<"}
                 </button>
-                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
+                <button
+                    id="next-button"
+                    onClick={() => nextPage()}
+                    disabled={!getCanNextPage()}
+                >
                     {">"}
                 </button>
                 <button

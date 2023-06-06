@@ -7,7 +7,7 @@ import { BooleanFieldProps } from "../types";
 /**
  * This field is used to display boolean values. It uses the {@link https://chakra-ui.com/docs/components/tooltip `<Tooltip>`} values from Chakra UI.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/fields/boolean} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,
