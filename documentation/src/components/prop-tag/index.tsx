@@ -49,7 +49,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "py-0.5",
                     "px-2",
                     "rounded",
-                    "bg-refine-blue",
+                    "bg-refine-yellow",
                     "tracking-wide",
                 )}
                 title={alt}
@@ -70,7 +70,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "py-0.5",
                     "px-2",
                     "rounded",
-                    "bg-refine-indigo",
+                    "bg-refine-red",
                     "tracking-wide",
                 )}
                 title={alt}

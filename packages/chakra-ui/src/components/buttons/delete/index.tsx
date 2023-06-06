@@ -32,7 +32,7 @@ import { DeleteButtonProps } from "../types";
  * `<DeleteButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button>`} and {@link https://chakra-ui.com/docs/components/popover `<Popover>`} components.
  * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/delete-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resource: resourceNameFromProps,

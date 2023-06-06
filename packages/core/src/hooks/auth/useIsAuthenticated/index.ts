@@ -42,7 +42,7 @@ export function useIsAuthenticated(
 /**
  *  `useIsAuthenticated` calls the `checkAuth` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useAuthenticated} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated} for more details.
  */
 export function useIsAuthenticated({
     v3LegacyAuthProviderCompatible = false,

@@ -20,7 +20,7 @@ export type AuthProps = AuthPageProps<LayoutProps, CardProps, FormProps> & {
 /**
  * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/authpage/} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/components/antd-auth-page/} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {
     const { type } = props;

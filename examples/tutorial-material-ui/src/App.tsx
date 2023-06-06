@@ -13,6 +13,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -83,6 +84,7 @@ function App() {
                             </Routes>
                         </ThemedLayoutV2>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

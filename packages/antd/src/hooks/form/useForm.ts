@@ -65,10 +65,10 @@ export type UseFormReturnType<
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/form/useForm} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/useForm} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences/#httperror `HttpError`}
  * @typeParam TVariables - Values for params. default `{}`
  * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  * @typeParam TResponse - Result data returned by the mutation function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TData`
@@ -95,6 +95,8 @@ export const useForm = <
     errorNotification,
     meta,
     metaData,
+    queryMeta,
+    mutationMeta,
     liveMode,
     liveParams,
     mutationMode,
@@ -146,6 +148,8 @@ export const useForm = <
         errorNotification,
         meta: pickNotDeprecated(meta, metaData),
         metaData: pickNotDeprecated(meta, metaData),
+        queryMeta,
+        mutationMeta,
         liveMode,
         liveParams,
         mutationMode,

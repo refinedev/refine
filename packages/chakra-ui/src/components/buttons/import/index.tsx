@@ -10,10 +10,10 @@ import { IconFileImport } from "@tabler/icons";
 import { ImportButtonProps } from "../types";
 
 /**
- * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
+ * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.
  * It uses uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/import-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     inputProps,

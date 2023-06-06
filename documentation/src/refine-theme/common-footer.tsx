@@ -8,8 +8,8 @@ export const CommonFooter = () => {
             className={clsx(
                 "py-5",
                 "px-6",
-                "bg-gray-800",
-                "border-t border-t-gray-700",
+                "dark:bg-gray-800 bg-gray-100",
+                "border-t dark:border-t-gray-700 border-t-gray-100",
             )}
         >
             <div
@@ -19,13 +19,17 @@ export const CommonFooter = () => {
                 )}
             >
                 <div
-                    className={clsx("text-base", "font-light", "text-gray-400")}
+                    className={clsx(
+                        "text-base",
+                        "font-light",
+                        "dark:text-gray-400 text-gray-700",
+                    )}
                 >
                     Refine © 2023
                 </div>
                 <div
                     className={clsx(
-                        "text-gray-400",
+                        "dark:text-gray-400 text-gray-700",
                         "text-base",
                         "font-light",
                         "flex",

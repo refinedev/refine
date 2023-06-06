@@ -54,4 +54,17 @@ describe("routeGenerator", () => {
         );
         expect(route).toEqual("/posts/active/first");
     });
+
+    it("should return exect route with meta.route", async () => {
+        const route = routeGenerator(
+            {
+                ...mockItemResourcePropsWithTwoParent,
+                meta: {
+                    route: "foo",
+                },
+            },
+            mockResources,
+        );
+        expect(route).toEqual("/posts/active/foo");
+    });
 });

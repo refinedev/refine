@@ -218,7 +218,7 @@ export type useTableReturnType<
  * Ant Design {@link https://ant.design/components/table/ `<Table>`} component.
  * All features such as sorting, filtering and pagination comes as out of box.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/useTable} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

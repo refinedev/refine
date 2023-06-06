@@ -33,6 +33,9 @@ export const PostList: React.FC = () => {
             },
         ],
         syncWithLocation: true,
+        pagination: {
+            mode: "client",
+        },
     });
 
     const {
@@ -88,6 +91,7 @@ export const PostList: React.FC = () => {
         [options, isLoading],
     );
 
+    console.log("dataGridProps", dataGridProps);
     return (
         <List>
             <DataGridPro

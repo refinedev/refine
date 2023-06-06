@@ -74,10 +74,10 @@ export type UseStepsFormProps<
 /**
  * `useStepsForm` hook allows you to split your form under an Ant Design based {@link https://ant.design/components/steps/ Steps} component and provides you with a few useful functionalities that will help you manage your form.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/form/useStepsForm} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/form/useStepsForm} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences/#httperror `HttpError`}
  * @typeParam TVariables - Values for params. default `{}`
  *
  *
@@ -130,6 +130,7 @@ export const useStepsForm = <
     return {
         ...useFormProps,
         ...stepsPropsSunflower,
+        formLoading: useFormProps.formLoading,
         formProps: {
             ...stepsPropsSunflower.formProps,
             ...useFormProps.formProps,

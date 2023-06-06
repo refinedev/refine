@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
 import { Layout } from "@components/Layout";
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     <Component {...pageProps} />
                 </Layout>
                 <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
             </Refine>
         </>
     );

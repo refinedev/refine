@@ -21,10 +21,10 @@ import { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
- * It uses the  {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/list-button} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/components/buttons/list-button} for more details.
  */
 export const ListButton: React.FC<ListButtonProps> = ({
     resource: resourceNameFromProps,

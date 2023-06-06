@@ -14,6 +14,7 @@ import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -127,6 +128,7 @@ function App() {
                             </Route>
                         </Routes>
                         <UnsavedChangesNotifier />
+                        <DocumentTitleHandler />
                     </Refine>
                 </RefineSnackbarProvider>
             </ThemeProvider>

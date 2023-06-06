@@ -2,7 +2,12 @@ import React from "react";
 
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import {
+    MockJSONServer,
+    TestWrapper,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useResource } from "./";
 
@@ -104,6 +109,19 @@ describe("useResource Hook without prop", () => {
 
         expect(result.current.action).toBe("list");
     });
+
+    it("should return resource which route is custom route and with identifier", async () => {
+        const { result } = renderHook(() => useResource("posts"), {
+            wrapper: TestWrapper({
+                routerProvider: mockRouterBindings({
+                    action: "list",
+                }),
+            }),
+        });
+
+        expect(result.current.action).toBe("list");
+        expect(result.current.resource).toEqual({ name: "posts" });
+    });
 });
 
 describe("useResource Hook with resourceName:propResourceName prop", () => {
@@ -157,5 +175,71 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
 
         expect(result.current.resource?.name).toBe("refine-makes");
         expect(result.current.action).toBe("list");
+    });
+});
+
+// NOTE: Will be removed in the refine v5
+describe("legacy router provider", () => {
+    it("should use `resource` from `resourceNameOrRouteName` prop", async () => {
+        const { result } = renderHook(
+            () =>
+                useResource({
+                    resourceNameOrRouteName: "resourceNameOrRouteName",
+                }),
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                        useParams: () =>
+                            ({
+                                resource: "posts",
+                                action: "list",
+                            } as any),
+                    },
+                }),
+            },
+        );
+
+        expect(result.current.resource?.name).toBe("resourceNameOrRouteName");
+        expect(result.current.action).toBe("list");
+    });
+
+    it("should use `resource` from `useParams`", async () => {
+        const { result } = renderHook(() => useResource(), {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                legacyRouterProvider: {
+                    ...mockLegacyRouterProvider(),
+                    useParams: () =>
+                        ({
+                            resource: "posts",
+                            action: "show",
+                            id: "1",
+                        } as any),
+                },
+            }),
+        });
+
+        expect(result.current.resource?.name).toBe("posts");
+        expect(result.current.action).toBe("show");
+        expect(result.current.id).toBe("1");
+    });
+
+    it("should work without `resourceName` and `recordItemId`", async () => {
+        const { result } = renderHook(
+            () => useResource({ resourceName: "posts", recordItemId: "1" }),
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    legacyRouterProvider: {
+                        ...mockLegacyRouterProvider(),
+                    },
+                }),
+            },
+        );
+
+        expect(result.current.resourceName).toBe("posts");
+        expect(result.current.id).toBe("1");
     });
 });

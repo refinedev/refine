@@ -13,6 +13,7 @@ import {
     getAntdPaginationItem,
     getTableRowExpandButton,
     setAntdRangeDatePickerToToday,
+    fillAntdForm,
 } from "./commands/antd";
 import {
     getChakraUIPopoverDeleteButton,
@@ -20,8 +21,10 @@ import {
     getChakraUILoadingOverlay,
     getChakraUINotification,
     getChakraUIToast,
+    fillChakraUIForm,
 } from "./commands/chakra-ui";
 import {
+    fillMantineForm,
     getMantineFormItemError,
     getMantineLoadingOverlay,
     getMantineNotification,
@@ -33,14 +36,19 @@ import {
     getEditButton,
     getPageHeaderTitle,
     getSaveButton,
+    getShowButton,
 } from "./commands/refine";
-import { list, create, edit, show } from "./commands/resource";
+import { list, create, edit, show, resourceDelete } from "./commands/resource";
+import { assertDocumentTitle } from "./commands/document-title-handler";
 
 // add commands to the Cypress chain
 import "./commands/intercepts";
 import {
+    fillMaterialUIForm,
+    getMaterialUIColumnHeader,
     getMaterialUIDeletePopoverButton,
     getMaterialUIFormItemError,
+    getMaterialUILoadingCircular,
     getMaterialUINotifications,
 } from "./commands/material-ui";
 
@@ -48,17 +56,22 @@ Cypress.Keyboard.defaults({
     keystrokeDelay: 0,
 });
 
+Cypress.Commands.add("assertDocumentTitle", assertDocumentTitle);
+
 Cypress.Commands.add("resourceList", list);
 Cypress.Commands.add("resourceCreate", create);
 Cypress.Commands.add("resourceEdit", edit);
 Cypress.Commands.add("resourceShow", show);
+Cypress.Commands.add("resourceDelete", resourceDelete);
 
 Cypress.Commands.add("getSaveButton", getSaveButton);
 Cypress.Commands.add("getCreateButton", getCreateButton);
 Cypress.Commands.add("getDeleteButton", getDeleteButton);
 Cypress.Commands.add("getEditButton", getEditButton);
+Cypress.Commands.add("getShowButton", getShowButton);
 Cypress.Commands.add("getPageHeaderTitle", getPageHeaderTitle);
 
+Cypress.Commands.add("fillAntdForm", fillAntdForm);
 Cypress.Commands.add("getAntdNotification", getAntdNotification);
 Cypress.Commands.add("setAntdSelect", setAntdSelect);
 Cypress.Commands.add("setAntdDropdown", setAntdDropdown);
@@ -74,6 +87,7 @@ Cypress.Commands.add(
     setAntdRangeDatePickerToToday,
 );
 
+Cypress.Commands.add("fillChakraUIForm", fillChakraUIForm);
 Cypress.Commands.add("getChakraUINotification", getChakraUINotification);
 Cypress.Commands.add("getChakraUIToast", getChakraUIToast);
 Cypress.Commands.add("getChakraUIFormItemError", getChakraUIFormItemError);
@@ -89,7 +103,13 @@ Cypress.Commands.add(
     getMaterialUIDeletePopoverButton,
 );
 Cypress.Commands.add("getMaterialUIFormItemError", getMaterialUIFormItemError);
+Cypress.Commands.add(
+    "getMaterialUILoadingCircular",
+    getMaterialUILoadingCircular,
+);
+Cypress.Commands.add("getMaterialUIColumnHeader", getMaterialUIColumnHeader);
 
+Cypress.Commands.add("fillMantineForm", fillMantineForm);
 Cypress.Commands.add("getMantineNotification", getMantineNotification);
 Cypress.Commands.add(
     "getMantinePopoverDeleteButton",
@@ -97,3 +117,14 @@ Cypress.Commands.add(
 );
 Cypress.Commands.add("getMantineFormItemError", getMantineFormItemError);
 Cypress.Commands.add("getMantineLoadingOverlay", getMantineLoadingOverlay);
+Cypress.Commands.add("fillMaterialUIForm", fillMaterialUIForm);
+
+/**
+ * Disable telemetry calls
+ */
+beforeEach(() => {
+    cy.intercept("https://telemetry.refine.dev/**", {
+        body: "Disabled telemetry to avoid unwanted entries in the database",
+        statusCode: 200,
+    }).as("telemetry");
+});

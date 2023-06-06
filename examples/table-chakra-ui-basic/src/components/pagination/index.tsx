@@ -26,6 +26,7 @@ export const Pagination: FC<PaginationProps> = ({
             <HStack my="3" spacing="1">
                 {pagination?.prev && (
                     <IconButton
+                        id="prev-page"
                         aria-label="previous page"
                         onClick={() => setCurrent(current - 1)}
                         disabled={!pagination?.prev}
@@ -52,6 +53,7 @@ export const Pagination: FC<PaginationProps> = ({
                 })}
                 {pagination?.next && (
                     <IconButton
+                        id="next-page"
                         aria-label="next page"
                         onClick={() => setCurrent(current + 1)}
                         variant="outline"

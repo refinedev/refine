@@ -12,7 +12,8 @@ This hook can only be used if the `authProvider` is provided.
 
 `useIsAuthenticated` calls the `check` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
-It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.  
+It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.
+
 Data that is resolved from the `useIsAuthenticated` will be returned as the `data` in the query result with the following type:
 
 ```ts
@@ -33,11 +34,11 @@ type CheckResponse = {
 
 `useIsAuthenticated` can be useful when you want to check for authentication and handle the result manually.
 
-We have used this hook in refine's [`<Authenticated>`](/api-reference/core/components/auth/authenticated.md) component which allows only authenticated users to access the page or any part of the code.
+We have used this hook in refine's [`<Authenticated>`](/api-reference/core/components/auth/authenticated.md) component, which allows only authenticated users to access the page or any part of the code.
 
-We will demonstrate a similar basic implementation below. Imagine that you have a public page but you want to make some specific fields private.
+We will demonstrate a similar basic implementation below. Imagine that you have a public page, but you want to make some specific fields private.
 
-We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `check` method like below.
+We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `check` method like below:
 
 ```tsx
 const authProvider: AuthBindings = {
@@ -51,8 +52,8 @@ const authProvider: AuthBindings = {
             : {
                   authenticated: false,
                   error: {
-                    message: "Check failed",
-                    name: "Not authenticated",
+                      message: "Check failed",
+                      name: "Not authenticated",
                   },
                   logout: true,
                   redirectTo: "/login",
@@ -64,7 +65,7 @@ const authProvider: AuthBindings = {
 
 <br/>
 
-Let's create a wrapper component that renders children if `check` method returns the Promise resolved.
+Let's create a wrapper component that renders children if `check` method returns the Promise resolved:
 
 ```tsx title="components/authenticated.tsx"
 // highlight-next-line
@@ -108,7 +109,7 @@ type AuthenticatedProps = {
 
 <br />
 
-Now, only authenticated users can see the price field.
+Now, only authenticated users can see the price field:
 
 ```tsx title="components/postShow"
 // highlight-next-line

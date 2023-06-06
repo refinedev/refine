@@ -55,7 +55,7 @@ export const CommonLayout = (props: any) => {
         <LayoutProvider>
             <PageMetadata title={title} description={description} />
             <SkipToContent />
-            <div className={clsx("main-wrapper", "bg-gray-900")}>
+            <div className={clsx("main-wrapper", "dark:bg-gray-900 bg-white")}>
                 <ErrorBoundary
                     fallback={(params) => <ErrorPageContent {...params} />}
                 >

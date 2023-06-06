@@ -21,7 +21,7 @@ export type UseLogProps<TQueryFnData, TError, TData> = {
 /**
  * useLogList is used to get and filter audit logs.
  *
- * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLogList} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/audit-log/useLogList} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function.
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

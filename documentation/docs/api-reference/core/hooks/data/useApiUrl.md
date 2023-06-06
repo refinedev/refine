@@ -4,9 +4,7 @@ title: useApiUrl
 source: packages/core/src/hooks/data/useApiUrl.ts
 ---
 
-`useApiUrl` is a React hook that returns the API URL.
-
--   It uses the `getApiUrl` method to get the API URL from the [`dataProvider`][data provider].
+`useApiUrl` is a React hook that returns the API URL. It uses the `getApiUrl` method to get the API URL from the [`dataProvider`][data provider].
 
 It is useful when you want to use the API URL in your custom hooks.
 

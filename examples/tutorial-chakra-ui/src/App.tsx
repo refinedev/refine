@@ -3,6 +3,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import {
     notificationProvider,
@@ -75,6 +76,7 @@ function App() {
                         </Routes>
                     </ThemedLayoutV2>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ChakraProvider>
         </BrowserRouter>

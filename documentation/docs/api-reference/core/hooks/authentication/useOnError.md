@@ -26,15 +26,13 @@ type OnErrorResponse = {
 
 According to the `onError` method's returned values, the following process will be executed:
 
--   `redirectTo`: If has a value, the app will be redirected to the given URL.
--   `logout`: If is `true`, `useOnError` calls the `logout` method.
+-   `redirectTo`: If it has a value, the app will be redirected to the given URL.
+-   `logout`: If it is `true`, `useOnError` calls the `logout` method.
 -   `error`: An Error object representing any errors that may have occurred during the operation.
 
 ## Internal Usage
 
 **refine** uses `useOnError` internally in the data hooks to handle errors in a unified way.
-
-[Refer to Data Provider documentation for more information about data hooks. → ](/docs/api-reference/core/providers/data-provider/#supported-hooks)
 
 When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider], which can be utilized to redirect the user or to log them out.
 
@@ -67,9 +65,11 @@ const authProvider: AuthBindings = {
 };
 ```
 
+> For more information about data hooks, refer to the [Data Provider documentation&#8594](/docs/api-reference/core/providers/data-provider/#supported-hooks)
+
 ## Usage
 
-Imagine that we make a payment request which is declined by the API. If the error status code is `418`, the user will be logged out for security reasons.
+Let's say that a payment request was declined by the API. If the error status code is `418`, the user will be logged out for security reasons:
 
 ```tsx
 import { useOnError } from "@refinedev/core";
@@ -82,10 +82,6 @@ fetch("http://example.com/payment")
     // highlight-next-line
     .catch((error) => onError(error));
 ```
-
-> Any error passed to `mutate` function will be available in the `onError` in the `authProvider`.
-
-<br />
 
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `onError` method like below.
 
@@ -117,6 +113,12 @@ const authProvider: AuthBindings = {
     // ---
 };
 ```
+
+:::note
+
+Any error passed to `mutate` function will be available in the `onError` in the `authProvider`.
+
+:::
 
 [on-error]: /docs/api-reference/core/providers/auth-provider/#onerror-
 [auth-provider]: /docs/api-reference/core/providers/auth-provider/

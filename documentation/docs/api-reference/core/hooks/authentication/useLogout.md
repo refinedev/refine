@@ -12,7 +12,8 @@ This hook can only be used if the `authProvider` is provided.
 
 `useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
+
 Data that is resolved from `logout` will be returned as the `data` in the query result with the following type:
 
 ```ts
@@ -25,15 +26,16 @@ type AuthActionResponse = {
 ```
 
 -   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   When `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values `{ name: "useLogout Error", message: "Something went wrong during logout" }`.
--   `redirectTo`: If has a value, the app will be redirected to the given URL.
--   `error`: If has a value, a notification will be shown with the error message and name.
+    -   If `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "useLogout Error", message: "Something went wrong during logout" }`.
+-   `redirectTo`: If it has a value, the app will be redirected to the given URL.
+-   `error`: If it has a value, a notification will be shown with the error message and name.
 -   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
-By default, Refine already provides a logout button on the sider and if you want to use this default button you won't need to handle the logout flow manually.
-If you want to build a custom logout button instead of the default one, `useLogout` can be used like this:
+**refine** provides a default logout page which handles the logout flow manually.
+
+If you want to use a custom logout page however, you can use the `useLogout` hook like this:
 
 ```tsx title="components/customLogoutButton"
 import { useLogout } from "@refinedev/core";
@@ -67,7 +69,7 @@ const { mutate: logout } = useLogout();
 logout({ redirectPath: "/custom-url" });
 ```
 
-Then, you can handle this URL in your `logout` method of the `authProvider`.
+Then, you can handle this URL in your `logout` method of the `authProvider`:
 
 ```tsx
 import type { AuthBindings } from "@refinedev/core";
@@ -111,6 +113,6 @@ logout(
 
 :::caution
 
-The `onError` callback of the `useLogout` hook will not be called if `success` is `false` because the callback is triggered only when the promise is rejected. However, the methods of `authProvider` always return a resolved promise.
+The `onError` callback of the `useLogout` hook will not be called if `success` is `false`. This is because the `authProvider` methods always return a resolved promise, and the callback is only triggered when the promise is rejected.
 
 :::

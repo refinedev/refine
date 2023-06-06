@@ -33,3 +33,12 @@ export const getChakraUIPopoverDeleteButton = () => {
 export const getChakraUILoadingOverlay = () => {
     return cy.get(".chakra-spinner");
 };
+
+export const fillChakraUIForm = () => {
+    cy.fixture("mock-post").then((mockPost) => {
+        cy.get("#title").clear().type(mockPost.title);
+        cy.get("#status").select(mockPost.status.toLowerCase());
+        cy.get("#categoryId").select(2);
+        cy.get("#content").clear().type(mockPost.content);
+    });
+};

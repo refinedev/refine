@@ -13,9 +13,9 @@ import {
     IconCheck,
 } from "@tabler/icons";
 
-import { prettierFormat } from "@/utilities";
-import { CreateInferencerConfig } from "@/types";
-import { CodeHighlight } from "@/components";
+import { prettierFormat } from "../../utilities";
+import { CreateInferencerConfig } from "../../types";
+import { CodeHighlight } from "../../components";
 
 /**
  * @deprecated Please use `SharedCodeViewer` instead

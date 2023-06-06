@@ -25,10 +25,26 @@ const PostEdit: React.FC<{ initialData: GetOneResponse<IPost> }> = ({
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
+                <Form.Item
+                    label="Title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    name="title"
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Status" name="status">
+                <Form.Item
+                    label="Status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    name="status"
+                >
                     <Select
                         options={[
                             {
@@ -46,7 +62,15 @@ const PostEdit: React.FC<{ initialData: GetOneResponse<IPost> }> = ({
                         ]}
                     />
                 </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
+                <Form.Item
+                    label="Category"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    name={["category", "id"]}
+                >
                     <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>

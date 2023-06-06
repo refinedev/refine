@@ -37,12 +37,15 @@ jobs:
           repository: refinedev/refine/refine-store
           tag_with_sha: true
           dockerfile: examples/store/Dockerfile
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          personalAccessToken: ${{ secrets.REFINE_DIGITALOCEAN_TOKEN }}
-          clusterName: refine-k8s
-          expirationTime: 1200
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: AWS EKS kubeconfig
+        run: |
+          aws eks --region eu-west-1 update-kubeconfig --name refine
       - name: Get nodes
         run: kubectl get nodes
       - name: Deploy refine-store to k8s

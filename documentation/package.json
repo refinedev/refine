@@ -16,7 +16,7 @@
     "@docusaurus/core": "2.4.0",
     "@docusaurus/plugin-client-redirects": "2.4.0",
     "@docusaurus/preset-classic": "2.4.0",
-    "@headlessui/react": "^1.7.5",
+    "@headlessui/react": "^1.7.15",
     "@mdx-js/react": "^1.6.22",
     "@tailwindcss/line-clamp": "^0.4.2",
     "autoprefixer": "^10.4.8",

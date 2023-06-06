@@ -3,16 +3,17 @@
   "version": "3.25.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=3002 refine dev",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "build": "refine build && rm -rf .next/cache",
     "start:prod": "refine start",
-    "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "cypress": "cypress open -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.18.2",
-    "@refinedev/core": "^4.14.3",
+    "@refinedev/antd": "^5.22.0",
+    "@refinedev/core": "^4.18.1",
     "@refinedev/cli": "^2.5.5",
-    "@refinedev/nextjs-router": "^5.1.6",
+    "@refinedev/nextjs-router": "^5.3.0",
     "@refinedev/simple-rest": "^4.5.0",
     "next": "13.0.6",
     "cross-env": "^7.0.3",
@@ -26,6 +27,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/parser": "5.48.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "cypress": "^12.11.0"
   }
 }

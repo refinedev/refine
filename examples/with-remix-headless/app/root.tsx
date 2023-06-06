@@ -15,7 +15,7 @@ import routerProvider, {
 
 import { authProvider } from "./authProvider";
 import { API_URL } from "./constants";
-
+import styles from "~/styles/global.css";
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
     title: "New Remix + Refine App",
@@ -57,4 +57,8 @@ export default function App() {
             </body>
         </html>
     );
+}
+
+export function links() {
+    return [{ rel: "stylesheet", href: styles }];
 }
