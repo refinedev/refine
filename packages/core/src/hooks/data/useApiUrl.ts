@@ -7,7 +7,7 @@ export const useApiUrl = (dataProviderName?: string): string => {
 
     const { getApiUrl } = dataProvider(
         dataProviderName ??
-            pickNotDeprecated(resource?.options, resource?.meta)
+            pickNotDeprecated(resource?.meta, resource?.options)
                 ?.dataProviderName,
     );
 
