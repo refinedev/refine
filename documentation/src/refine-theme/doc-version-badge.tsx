@@ -12,7 +12,7 @@ export const DocVersionBadge = ({ version }: Props) => {
                 "text-gray-900",
                 "py-2 px-3",
                 "rounded",
-                "dark-bg-gray-700",
+                "dark:bg-gray-700",
                 "bg-gray-100",
                 "font-mono",
             )}

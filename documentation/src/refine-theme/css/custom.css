@@ -86,7 +86,7 @@
 }
 
 .refine-toc-item code {
-    @apply font-mono bg-gray-600 bg-opacity-30 py-0.5 px-1 rounded;
+    @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded;
     font-size: 12px;
 }
 

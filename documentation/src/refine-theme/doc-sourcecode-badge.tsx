@@ -22,6 +22,7 @@ export const SourceCodeBadge = ({ path }: { path?: string }) => {
                 "bg-refine-pink",
                 "font-mono",
                 "flex gap-2 items-center",
+                "hover:no-underline hover:text-gray-0",
             )}
         >
             <GithubIcon className="w-4 h-4" />
