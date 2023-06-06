@@ -1,7 +1,15 @@
 import React, { FC } from "react";
-
-import { render, TestWrapper } from "@test";
 import { ForgotPasswordPageProps } from "@refinedev/core";
+
+import {
+    fireEvent,
+    mockAuthProvider,
+    mockRouterBindings,
+    MockRouterProvider,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 
 export const pageForgotPasswordTests = function (
     ForgotPasswordPage: FC<ForgotPasswordPageProps<any, any, any>>,
@@ -84,6 +92,39 @@ export const pageForgotPasswordTests = function (
             expect(queryByTestId("refine-logo")).not.toBeInTheDocument();
         });
 
+        it("should not render title when is false", async () => {
+            const { queryByText } = render(
+                <ForgotPasswordPage title={false} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(queryByText(/refine project/i)).not.toBeInTheDocument();
+        });
+
+        it("should pass contentProps", async () => {
+            const { getByTestId } = render(
+                <ForgotPasswordPage contentProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
+        it("should pass wrapperProps", async () => {
+            const { getByTestId } = render(
+                <ForgotPasswordPage wrapperProps={{ "data-testid": "test" }} />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(getByTestId("test")).toBeInTheDocument();
+        });
+
         it("should renderContent only", async () => {
             const {
                 queryByText,
@@ -144,6 +185,85 @@ export const pageForgotPasswordTests = function (
                 }),
             ).toBeInTheDocument();
             expect(queryByTestId("custom-content")).toBeInTheDocument();
+        });
+
+        it("should run forgotPassword mutation when form is submitted", async () => {
+            const forgotPasswordMock = jest
+                .fn()
+                .mockResolvedValue({ success: true });
+
+            const { getByLabelText, getByText } = render(
+                <ForgotPasswordPage />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: {
+                            ...mockAuthProvider,
+                            forgotPassword: forgotPasswordMock,
+                        },
+                    }),
+                },
+            );
+
+            fireEvent.change(getByLabelText(/email/i), {
+                target: { value: "demo@refine.dev" },
+            });
+
+            fireEvent.click(getByText(/send reset instructions/i));
+
+            await waitFor(() => {
+                expect(forgotPasswordMock).toBeCalledTimes(1);
+            });
+
+            expect(forgotPasswordMock).toBeCalledWith({
+                email: "demo@refine.dev",
+            });
+        });
+
+        it("should work with legacy router provider Link", async () => {
+            jest.spyOn(console, "error").mockImplementation((message) => {
+                console.warn(message);
+            });
+            const LinkComponentMock = jest.fn();
+
+            render(<ForgotPasswordPage />, {
+                wrapper: TestWrapper({
+                    legacyRouterProvider: {
+                        ...MockRouterProvider,
+                        Link: LinkComponentMock,
+                    },
+                }),
+            });
+
+            expect(LinkComponentMock).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/login",
+                }),
+                {},
+            );
+        });
+
+        it("should work with new router provider Link", async () => {
+            jest.spyOn(console, "error").mockImplementation((message) => {
+                console.warn(message);
+            });
+            const LinkComponentMock = jest.fn();
+
+            render(<ForgotPasswordPage />, {
+                wrapper: TestWrapper({
+                    routerProvider: mockRouterBindings({
+                        fns: {
+                            Link: LinkComponentMock,
+                        },
+                    }),
+                }),
+            });
+
+            expect(LinkComponentMock).toBeCalledWith(
+                expect.objectContaining({
+                    to: "/login",
+                }),
+                {},
+            );
         });
     });
 };

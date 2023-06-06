@@ -1,9 +1,10 @@
 import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
-import { posts } from "@test/dataMocks";
+import { mockRouterBindings, posts } from "@test/dataMocks";
 
 import { useExport } from "./";
+import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
 
 const generateCsvMock = jest.fn();
 
@@ -162,4 +163,52 @@ describe("useExport Hook", () => {
 
         expect(generateCsvMock).not.toBeCalled();
     });
+
+    it.each(["identifier", "name"])(
+        "should use identifier, before resource.name when selecting dataProvider. test case: %s",
+        async (testCase) => {
+            const isIdentifier = testCase === "identifier";
+
+            const pickDataProviderSpy = jest.spyOn(
+                pickDataProvider,
+                "pickDataProvider",
+            );
+
+            const { result } = renderHook(() => useExport(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    routerProvider: mockRouterBindings({
+                        resource: {
+                            name: "postsName",
+                            identifier: isIdentifier
+                                ? "postsIdentifier"
+                                : undefined,
+                        },
+                    }),
+                }),
+            });
+
+            await act(async () => {
+                await result.current.triggerExport();
+            });
+
+            expect(generateCsvMock).toBeCalledWith(posts);
+
+            if (isIdentifier) {
+                expect(pickDataProviderSpy).toBeCalledWith(
+                    "postsIdentifier",
+                    undefined,
+                    [],
+                );
+            } else {
+                expect(pickDataProviderSpy).toBeCalledWith(
+                    "postsName",
+                    undefined,
+                    [],
+                );
+            }
+
+            jest.clearAllMocks();
+        },
+    );
 });
