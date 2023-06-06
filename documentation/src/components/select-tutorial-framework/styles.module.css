@@ -19,16 +19,17 @@
 
 .cardSelected {
     background: var(--tutorial-card-bg-hover);
-    box-shadow: 2.7px 5.3px 10.7px 0px #2A2A4240;
+    box-shadow: 2.7px 5.3px 10.7px 0px #2a2a4240;
 }
 
-[data-theme="dark"] .cardSelected, [data-theme="dark"] .card:hover {
+[data-theme="dark"] .cardSelected,
+[data-theme="dark"] .card:hover {
     border: 1px solid var(--ifm-color-primary);
 }
 
 .card:hover {
     background: var(--tutorial-card-bg-hover);
-    box-shadow: 2.7px 5.3px 10.7px 0px #2A2A4240;
+    box-shadow: 2.7px 5.3px 10.7px 0px #2a2a4240;
 }
 
 .card span {
