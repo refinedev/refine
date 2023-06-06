@@ -5,7 +5,9 @@ export const useApiUrl = (dataProviderName?: string): string => {
     const { resource } = useResource();
 
     const { getApiUrl } = dataProvider(
-        dataProviderName ?? resource?.meta?.dataProviderName,
+        dataProviderName ??
+            resource?.options?.dataProviderName ??
+            resource?.meta?.dataProviderName,
     );
 
     return getApiUrl();
