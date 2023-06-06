@@ -8,7 +8,7 @@ export const GitHubStar: React.FC = () => {
     const { starCount, loading } = useGithubContext();
 
     const formattedStarCount = useMemo(() => {
-        if (loading || !starCount) return "";
+        if (loading || !starCount) return <div className="w-5 h-5" />;
 
         return new Intl.NumberFormat("en", {
             notation: "compact",
