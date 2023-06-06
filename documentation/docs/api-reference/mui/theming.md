@@ -1067,7 +1067,7 @@ import {
     Edit,
     useAutocomplete,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Typography, TextField, Autocomplete } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -1139,7 +1139,7 @@ const SampleList = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<any>>(
+    const columns = React.useMemo<GridColDef<any>[]>(
         () => [
             {
                 field: "id",

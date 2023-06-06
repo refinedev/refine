@@ -73,7 +73,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
-    "@mui/x-data-grid": "^5.12.1",
+    "@mui/x-data-grid": "^6.6.0",
     "@ant-design/icons": "5.0.1",
     "@chakra-ui/react": "^2.5.1",
     "@mantine/core": "^5.10.4",

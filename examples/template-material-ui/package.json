@@ -24,7 +24,7 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
     "cross-env": "^7.0.3",
-    "@mui/x-data-grid": "^5.12.1"
+    "@mui/x-data-grid": "^6.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

@@ -1,14 +1,14 @@
-import { CrudSorting, CrudFilters } from "@refinedev/core";
-import type { GridSortModel, GridFilterModel } from "@mui/x-data-grid";
-import { GridLinkOperator } from "@mui/x-data-grid";
+import type { GridFilterModel, GridSortModel } from "@mui/x-data-grid";
+import { GridLogicOperator } from "@mui/x-data-grid";
+import { CrudFilters, CrudSorting } from "@refinedev/core";
 
 import {
-    transformSortModelToCrudSorting,
+    transformCrudFiltersToFilterModel,
+    transformCrudOperatorToMuiOperator,
     transformCrudSortingToSortModel,
     transformFilterModelToCrudFilters,
     transformMuiOperatorToCrudOperator,
-    transformCrudOperatorToMuiOperator,
-    transformCrudFiltersToFilterModel,
+    transformSortModelToCrudSorting,
 } from ".";
 
 describe("transformSortModelToCrudSorting", () => {
@@ -65,18 +65,18 @@ describe("transformFilterModelToCrudFilters", () => {
             items: [
                 {
                     id: 1,
-                    columnField: "rating",
-                    operatorValue: ">",
+                    field: "rating",
+                    operator: ">",
                     value: 4,
                 },
                 {
                     id: 2,
-                    columnField: "isAdmin",
-                    operatorValue: "is",
+                    field: "isAdmin",
+                    operator: "is",
                     value: true,
                 },
             ],
-            linkOperator: GridLinkOperator.Or,
+            logicOperator: GridLogicOperator.Or,
         };
 
         const crudFilters: CrudFilters = [
@@ -107,18 +107,19 @@ describe("transformFilterModelToCrudFilters", () => {
             items: [
                 {
                     id: 1,
-                    columnField: "rating",
-                    operatorValue: ">",
+                    field: "rating",
+
+                    operator: ">",
                     value: 4,
                 },
                 {
                     id: 2,
-                    columnField: "isAdmin",
-                    operatorValue: "is",
+                    field: "isAdmin",
+                    operator: "is",
                     value: true,
                 },
             ],
-            linkOperator: GridLinkOperator.And,
+            logicOperator: GridLogicOperator.And,
         };
 
         const crudFilters: CrudFilters = [
@@ -144,14 +145,14 @@ describe("transformFilterModelToCrudFilters", () => {
             items: [
                 {
                     id: 1,
-                    columnField: "rating",
-                    operatorValue: ">",
+                    field: "rating",
+                    operator: ">",
                     value: 4,
                 },
                 {
                     id: 2,
-                    columnField: "isAdmin",
-                    operatorValue: "is",
+                    field: "isAdmin",
+                    operator: "is",
                     value: true,
                 },
             ],
@@ -289,19 +290,19 @@ describe("transformCrudFiltersToFilterModel", () => {
         const filterModel: GridFilterModel = {
             items: [
                 {
-                    columnField: "rating",
-                    operatorValue: ">",
+                    field: "rating",
+                    operator: ">",
                     value: 4,
                     id: "ratinggt",
                 },
                 {
-                    columnField: "isAdmin",
-                    operatorValue: "is",
+                    field: "isAdmin",
+                    operator: "is",
                     value: true,
                     id: "isAdmineq",
                 },
             ],
-            linkOperator: GridLinkOperator.Or,
+            logicOperator: GridLogicOperator.Or,
         };
 
         expect(
@@ -331,19 +332,19 @@ describe("transformCrudFiltersToFilterModel", () => {
         const filterModel: GridFilterModel = {
             items: [
                 {
-                    columnField: "rating",
-                    operatorValue: ">",
+                    field: "rating",
+                    operator: ">",
                     value: 4,
                     id: "ratinggt",
                 },
                 {
-                    columnField: "isAdmin",
-                    operatorValue: "is",
+                    field: "isAdmin",
+                    operator: "is",
                     value: true,
                     id: "isAdmineq",
                 },
             ],
-            linkOperator: GridLinkOperator.And,
+            logicOperator: GridLogicOperator.And,
         };
 
         expect(
@@ -388,19 +389,19 @@ describe("transformCrudFiltersToFilterModel", () => {
         const filterModel: GridFilterModel = {
             items: [
                 {
-                    columnField: "rating",
-                    operatorValue: ">",
+                    field: "rating",
+                    operator: ">",
                     value: 4,
                     id: "ratinggt",
                 },
                 {
-                    columnField: "isAdmin",
-                    operatorValue: "is",
+                    field: "isAdmin",
+                    operator: "is",
                     value: true,
                     id: "isAdmineq",
                 },
             ],
-            linkOperator: GridLinkOperator.Or,
+            logicOperator: GridLogicOperator.Or,
         };
 
         expect(
@@ -417,7 +418,7 @@ describe("transformCrudFiltersToFilterModel", () => {
             transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
         ).toEqual({
             items: [],
-            linkOperator: "and",
+            logicOperator: "and",
         });
     });
 });
