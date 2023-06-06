@@ -6,7 +6,8 @@
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",
-    "cypress": "cypress open -C ./cypress.config.ts"
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
     "@refinedev/core": "^4.18.1",
