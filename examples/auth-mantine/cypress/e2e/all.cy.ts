@@ -2,7 +2,7 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-mantine", () => {
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "http://localhost:5173";
 
     const submitAuthForm = () => {
         return cy.get("button[type=submit]").click();
