@@ -90,7 +90,7 @@ export const buttonDeleteTests = function (
 
         it("should be enabled when enableAccessControl is false", async () => {
             const { container, getByText } = render(
-                <DeleteButton>Clone</DeleteButton>,
+                <DeleteButton>Delete</DeleteButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -108,12 +108,12 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("Clone").closest("button")).not.toBeDisabled();
+            expect(getByText("Delete").closest("button")).not.toBeDisabled();
         });
 
         it("should be hidden when hideIfUnauthorized is true", async () => {
             const { container, queryByText } = render(
-                <DeleteButton hideIfUnauthorized>Clone</DeleteButton>,
+                <DeleteButton hideIfUnauthorized>Delete</DeleteButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -131,7 +131,7 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(queryByText("Clone")).not.toBeInTheDocument();
+            expect(queryByText("Delete")).not.toBeInTheDocument();
         });
 
         it("should be disabled when recordId not allowed", async () => {

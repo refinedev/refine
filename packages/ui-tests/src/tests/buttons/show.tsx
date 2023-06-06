@@ -79,7 +79,7 @@ export const buttonShowTests = function (
 
         it("should be enabled when enableAccessControl is false", async () => {
             const { container, getByText } = render(
-                <ShowButton>Clone</ShowButton>,
+                <ShowButton>Show</ShowButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -97,12 +97,12 @@ export const buttonShowTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("Clone").closest("button")).not.toBeDisabled();
+            expect(getByText("Show").closest("button")).not.toBeDisabled();
         });
 
         it("should be hidden when hideIfUnauthorized is true", async () => {
             const { container, queryByText } = render(
-                <ShowButton hideIfUnauthorized>Clone</ShowButton>,
+                <ShowButton hideIfUnauthorized>Show</ShowButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -120,7 +120,7 @@ export const buttonShowTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(queryByText("Clone")).not.toBeInTheDocument();
+            expect(queryByText("Show")).not.toBeInTheDocument();
         });
 
         it("should be disabled when recordId not allowed", async () => {

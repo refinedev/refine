@@ -113,7 +113,7 @@ export const buttonListTests = function (
 
         it("should be enabled when enableAccessControl is false", async () => {
             const { container, getByText } = render(
-                <ListButton>Clone</ListButton>,
+                <ListButton>List</ListButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -131,12 +131,12 @@ export const buttonListTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("Clone").closest("button")).not.toBeDisabled();
+            expect(getByText("List").closest("button")).not.toBeDisabled();
         });
 
         it("should be hidden when hideIfUnauthorized is true", async () => {
             const { container, queryByText } = render(
-                <ListButton hideIfUnauthorized>Clone</ListButton>,
+                <ListButton hideIfUnauthorized>List</ListButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -154,7 +154,7 @@ export const buttonListTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(queryByText("Clone")).not.toBeInTheDocument();
+            expect(queryByText("List")).not.toBeInTheDocument();
         });
 
         it("should skip access control", async () => {
