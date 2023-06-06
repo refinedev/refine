@@ -94,7 +94,7 @@ export const Admonition = ({ type, title, children }: Props) => {
                     "rounded-bl-lg",
                     "p-4",
                     "flex flex-col",
-                    "gap-4",
+                    "gap-2 sm:gap-4",
                 )}
             >
                 {(title || titles[type]) && (
@@ -103,7 +103,7 @@ export const Admonition = ({ type, title, children }: Props) => {
                             "flex",
                             "items-center",
                             "gap-2",
-                            "text-base",
+                            "text-xs sm:text-base",
                             "font-semibold",
                             clsText,
                         )}

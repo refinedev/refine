@@ -29,7 +29,9 @@ export const DocItemLayout = ({ children }) => {
                     "flex-1",
                     "flex flex-col",
                     "items-center justify-start",
-                    "py-14",
+                    "px-4 sm:px-0 py-4 sm:py-14",
+                    "mx-auto",
+                    "w-full",
                 )}
             >
                 <div className={clsx("max-w-screen-content w-full")}>

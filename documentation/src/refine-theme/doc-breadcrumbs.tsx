@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useRef } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import {
@@ -8,14 +8,38 @@ import {
 import { translate } from "@docusaurus/Translate";
 import { HomeIcon } from "./icons/home";
 import { ChevronRightIcon } from "./icons/chevron-right";
+import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
+
+const hiddenBreadcrumbText = "...";
 
 export const DocBreadcrumbs = () => {
+    const breakpoints = useTWBreakpoints();
     const breadcrumbs = useSidebarBreadcrumbs();
     const homePageRoute = useHomePageRoute();
 
     if (!breadcrumbs) {
         return null;
     }
+
+    const breadcrumbList = useMemo(() => {
+        const breadcrumbsLength = breadcrumbs.length;
+        const shouldRenderDotdotdot = breadcrumbsLength >= 3 && !breakpoints.sm;
+
+        if (!shouldRenderDotdotdot) {
+            return breadcrumbs;
+        }
+
+        const firstBreadcrumb = breadcrumbs[0];
+        const lastBreadcrumb = breadcrumbs[breadcrumbsLength - 1];
+        const secondLastBreadcrumb = breadcrumbs[breadcrumbsLength - 2];
+
+        return [
+            firstBreadcrumb,
+            hiddenBreadcrumbText,
+            lastBreadcrumb,
+            secondLastBreadcrumb,
+        ];
+    }, [breadcrumbs]);
 
     return (
         <nav
@@ -27,7 +51,7 @@ export const DocBreadcrumbs = () => {
             })}
         >
             <ul
-                className={clsx("breadcrumbs", "flex items-center")}
+                className={clsx("breadcrumbs", "flex flex-wrap items-center")}
                 itemScope
                 itemType="https://schema.org/BreadcrumbList"
             >
@@ -38,7 +62,8 @@ export const DocBreadcrumbs = () => {
                         </Link>
                     </li>
                 )}
-                {breadcrumbs.map((item, idx) => {
+                {breadcrumbList.map((item, idx) => {
+                    const isHidden = item === hiddenBreadcrumbText;
                     const isLast = idx === breadcrumbs.length - 1;
 
                     return (
@@ -47,7 +72,10 @@ export const DocBreadcrumbs = () => {
                             className={clsx("flex flex-row flex-nowrap")}
                         >
                             <ChevronRightIcon className="text-gray-500" />
-                            {item.href && !isLast ? (
+
+                            {isHidden ? (
+                                <div className="text-gray-400">...</div>
+                            ) : item.href && !isLast ? (
                                 <Link
                                     href={item.href}
                                     className={clsx(

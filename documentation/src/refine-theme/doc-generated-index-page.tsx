@@ -36,7 +36,6 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
                     "flex-1",
                     "flex flex-col",
                     "items-center justify-start",
-                    "py-14",
                 )}
             >
                 <div className={clsx("max-w-screen-content w-full")}>

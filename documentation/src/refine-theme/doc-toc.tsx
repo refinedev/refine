@@ -101,6 +101,7 @@ export const DocTOC = () => {
     return (
         <div
             className={clsx(
+                "hidden xl:block",
                 "w-full",
                 "sticky right-0 top-[67px]",
                 "max-w-[280px]",

@@ -1,10 +1,17 @@
 import clsx from "clsx";
 import React from "react";
+import { MagnifierIcon } from "./icons/magnifier";
 
-type Props = React.ComponentProps<"button">;
+type Props = React.ComponentProps<"button"> & {
+    iconOnly?: boolean;
+    iconClassName?: string;
+};
 
 export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
-    function DocSearchButtonComponent({ className, ...props }, ref) {
+    function DocSearchButtonComponent(
+        { iconOnly = false, iconClassName, ...props },
+        ref,
+    ) {
         return (
             <button
                 ref={ref}
@@ -12,7 +19,6 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                 {...props}
                 className={clsx(
                     "text-gray-0",
-                    "py-2 pr-2 pl-4",
                     "rounded-lg",
                     "flex items-center justify-between",
                     "bg-gray-700",
@@ -22,21 +28,40 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                     "transition-all",
                     "duration-200",
                     "ease-in-out",
+                    {
+                        "text-gray-500 dark:text-gray-400": iconOnly,
+                        "bg-gray-200 dark:bg-gray-700": iconOnly,
+                        "p-3": iconOnly,
+                        "py-2 pr-2 pl-4": !iconOnly,
+                        "rounded-full": iconOnly,
+                        "rounded-lg": !iconOnly,
+                    },
                 )}
             >
-                <span className="opacity-75">Search in documentation</span>
-                <kbd
-                    className={clsx(
-                        "py-1 px-2",
-                        "rounded",
-                        "border border-gray-600",
-                        "bg-gray-900",
-                        "text-sm leading-4",
-                        "text-gray-400",
-                    )}
-                >
-                    ⌘K
-                </kbd>
+                {iconOnly && <MagnifierIcon className={clsx(iconClassName)} />}
+                {!iconOnly && (
+                    <div
+                        className={clsx(
+                            "flex items-center justify-between gap-5",
+                        )}
+                    >
+                        <span className="opacity-75">
+                            Search in documentation
+                        </span>
+                        <kbd
+                            className={clsx(
+                                "py-1 px-2",
+                                "rounded",
+                                "border border-gray-600",
+                                "bg-gray-900",
+                                "text-sm leading-4",
+                                "text-gray-400",
+                            )}
+                        >
+                            ⌘K
+                        </kbd>
+                    </div>
+                )}
             </button>
         );
     },

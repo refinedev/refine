@@ -5,7 +5,11 @@ import { useColorMode } from "@docusaurus/theme-common";
 import { LightModeIcon } from "./icons/light-mode";
 import { DarkModeIcon } from "./icons/dark-mode";
 
-export const CommonThemeToggle = () => {
+type Props = {
+    className?: string;
+};
+
+export const CommonThemeToggle = ({ className }: Props) => {
     const { colorMode, setColorMode } = useColorMode();
 
     const toggle = () => {
@@ -30,6 +34,8 @@ export const CommonThemeToggle = () => {
                 "duration-200",
                 "ease-in-out",
                 "overflow-hidden",
+                "flex-shrink-0",
+                className,
             )}
             onClick={toggle}
         >

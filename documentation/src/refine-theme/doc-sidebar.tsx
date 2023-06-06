@@ -13,6 +13,8 @@ import { DashIcon } from "./icons/dash";
 import { ChevronDownIcon } from "./icons/chevron-down";
 import { HEADER_HEIGHT } from "./doc-header";
 
+type Variant = "desktop" | "mobile";
+
 type SidebarCategoryItem = {
     collapsible: boolean;
     collapsed: boolean;
@@ -46,10 +48,14 @@ const SidebarCategory = ({
     item,
     path,
     line,
+    variant,
+    onLinkClick,
 }: {
     item: SidebarCategoryItem;
     path: string;
     line?: boolean;
+    variant: Variant;
+    onLinkClick?: () => void;
 }) => {
     const isHeader = item.className === "category-as-header";
     const isActive = isActiveSidebarItem(item, path);
@@ -118,9 +124,13 @@ const SidebarCategory = ({
                         "bg-gray-700 bg-opacity-50",
                         "transition-opacity",
                         "duration-200 ease-in-out",
-                        "right-0",
                         "top-0",
-                        "w-[calc(280px-24px)]",
+                        {
+                            "right-0": variant === "desktop",
+                            "-right-2": variant === "mobile",
+                            "w-[calc(280px-24px)]": variant === "desktop",
+                            "w-[calc(480px-16px)]": variant === "mobile",
+                        },
                         "h-full",
                     )}
                 />
@@ -144,9 +154,13 @@ const SidebarCategory = ({
                         "bg-gray-700 bg-opacity-50",
                         "transition-opacity",
                         "duration-200 ease-in-out",
-                        "right-0",
                         "top-0",
-                        "w-[calc(280px-24px)]",
+                        {
+                            "right-0": variant === "desktop",
+                            "-right-2": variant === "mobile",
+                            "w-[calc(280px-24px)]": variant === "desktop",
+                            "w-[calc(480px-16px)]": variant === "mobile",
+                        },
                         "h-full",
                     )}
                 />
@@ -166,6 +180,8 @@ const SidebarCategory = ({
                     path: path,
                     line: !isHeader,
                     fromHeader: isHeader,
+                    variant,
+                    onLinkClick,
                 })}
             </div>
         </div>
@@ -177,11 +193,15 @@ const SidebarLink = ({
     path,
     dashed,
     line,
+    variant,
+    onClick,
 }: {
     item: SidebarLinkItem;
     path: string;
     dashed?: boolean;
     line?: boolean;
+    variant: Variant;
+    onClick?: () => void;
 }) => {
     const ref = React.useRef<HTMLAnchorElement>(null);
     const isActive = isActiveSidebarItem(item, path);
@@ -202,6 +222,7 @@ const SidebarLink = ({
             ref={ref}
             href={item.href}
             isNavLink
+            onClick={onClick}
             className={clsx(
                 "relative",
                 "min-h-[40px]",
@@ -214,7 +235,6 @@ const SidebarLink = ({
                 line && dashed && "pl-5",
                 line && "ml-[11px]",
                 line && "border-l-2 border-l-gray-700",
-                "relative",
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "hover:text-gray-0",
@@ -231,9 +251,13 @@ const SidebarLink = ({
                     "bg-gray-700 bg-opacity-50",
                     "transition-opacity",
                     "duration-200 ease-in-out",
-                    "right-0",
+                    {
+                        "right-0": variant === "desktop",
+                        "-right-2": variant === "mobile",
+                        "w-[calc(280px-24px)]": variant === "desktop",
+                        "w-[calc(480px-16px)]": variant === "mobile",
+                    },
                     "top-0",
-                    "w-[calc(280px-24px)]",
                     "h-full",
                 )}
             />
@@ -245,10 +269,12 @@ const SidebarHtml = ({
     item,
     path,
     line,
+    variant,
 }: {
     item: SidebarHtmlItem;
     path: string;
     line?: boolean;
+    variant: Variant;
 }) => {
     return null;
 };
@@ -259,6 +285,8 @@ type RenderItemConfig = {
     root?: boolean;
     line?: boolean;
     fromHeader?: boolean;
+    variant: Variant;
+    onLinkClick?: () => void;
 };
 
 const renderItems = ({
@@ -267,6 +295,8 @@ const renderItems = ({
     root,
     line,
     fromHeader,
+    variant,
+    onLinkClick,
 }: RenderItemConfig) => {
     const hasCategory = items?.some((item) => item.type === "category");
     const isDashed = !root && hasCategory;
@@ -281,6 +311,8 @@ const renderItems = ({
                             item={item}
                             path={path}
                             line={!!line}
+                            variant={variant}
+                            onLinkClick={onLinkClick}
                         />
                     );
                 case "html":
@@ -290,6 +322,7 @@ const renderItems = ({
                             item={item}
                             path={path}
                             line={!!line}
+                            variant={variant}
                         />
                     );
                 case "link":
@@ -300,6 +333,8 @@ const renderItems = ({
                             path={path}
                             dashed={isDashed}
                             line={!!line}
+                            variant={variant}
+                            onClick={onLinkClick}
                         />
                     );
                 default:
@@ -316,6 +351,7 @@ export const DocSidebar = () => {
     return (
         <div
             className={clsx(
+                "hidden lg:block",
                 "sticky",
                 "left-0",
                 "overflow-auto",
@@ -330,8 +366,7 @@ export const DocSidebar = () => {
         >
             <div
                 className={clsx(
-                    // "mr-3",
-                    "pl-3",
+                    "pl-5",
                     "pr-3",
                     "py-12",
                     "border-r border-r-gray-700",
@@ -341,8 +376,32 @@ export const DocSidebar = () => {
                     items: sidebar?.items,
                     path: pathname,
                     root: true,
+                    variant: "desktop",
                 })}
             </div>
         </div>
     );
+};
+
+type UseSidebarItemsProps = {
+    variant: Variant;
+    onLinkClick?: () => void;
+};
+
+export const useSidebarItems = ({
+    variant,
+    onLinkClick,
+}: UseSidebarItemsProps) => {
+    const sidebar = useDocsSidebar() as SidebarType;
+    const { pathname } = useLocation();
+
+    return {
+        items: renderItems({
+            items: sidebar?.items,
+            path: pathname,
+            root: true,
+            variant,
+            onLinkClick,
+        }),
+    };
 };
