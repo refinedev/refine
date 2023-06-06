@@ -8,6 +8,8 @@ import {
     RouterBindings,
     ParsedParams,
     IResourceItem,
+    LegacyAuthProvider,
+    AuthBindings,
 } from "../src/interfaces";
 
 export const posts = [
@@ -151,4 +153,22 @@ export const mockLegacyRouterProvider = () => {
     };
 
     return provider;
+};
+
+export const mockLegacyAuthProvider: LegacyAuthProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve(["admin"]),
+    getUserIdentity: () =>
+        Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
+};
+
+export const mockAuthProvider: AuthBindings = {
+    login: async () => ({ success: true }),
+    logout: async () => ({ success: true }),
+    onError: async () => ({}),
+    check: async () => ({ authenticated: true }),
+    getIdentity: async () => ({ name: "John Doe", avatar: "localhost:3000" }),
 };

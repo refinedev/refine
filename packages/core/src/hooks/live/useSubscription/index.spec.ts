@@ -134,4 +134,17 @@ describe("useSubscribe Hook", () => {
         expect(onUnsubscribeMock).toBeCalledWith(true);
         expect(onUnsubscribeMock).toBeCalledTimes(1);
     });
+
+    it("should not throw error when liveProvider is undefined", async () => {
+        renderHook(
+            () =>
+                useSubscription({
+                    channel: "channel",
+                    onLiveEvent: onLiveEventMock,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+    });
 });

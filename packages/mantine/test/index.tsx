@@ -94,6 +94,7 @@ export {
     MockRouterProvider,
     MockAccessControlProvider,
     MockLiveProvider,
+    MockAuthProvider,
 } from "./dataMocks";
 
 // re-export everything
