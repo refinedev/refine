@@ -10,9 +10,22 @@ export const AccessControlContext = React.createContext<
         Required<Pick<IAccessControlContext, "options">>
 >({
     options: {
-        buttons: { hideIfUnauthorized: false, enableAccessControl: true },
+        buttons: { enableAccessControl: true, hideIfUnauthorized: false },
     },
 });
+
+const accessControlProvider: IAccessControlContext = {
+    can: ({ resource, action, params }: CanParams): Promise<CanReturnType> => ({
+        can: true,
+    }),
+    // Global settings
+    options: {
+        buttons: {
+            enableAccessControl: true,
+            hideIfUnauthorized: true,
+        },
+    },
+};
 
 export { IAccessControlContext };
 
@@ -29,15 +42,15 @@ export const AccessControlContextProvider: React.FC<
                     ? {
                           ...options,
                           buttons: {
-                              hideIfUnauthorized: false,
                               enableAccessControl: true,
+                              hideIfUnauthorized: false,
                               ...options.buttons,
                           },
                       }
                     : {
                           buttons: {
-                              hideIfUnauthorized: false,
                               enableAccessControl: true,
+                              hideIfUnauthorized: false,
                           },
                       },
             }}

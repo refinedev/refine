@@ -29,8 +29,8 @@ export interface IAccessControlContext {
     can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
     options?: {
         buttons?: {
-            hideIfUnauthorized?: boolean;
             enableAccessControl?: boolean;
+            hideIfUnauthorized?: boolean;
         };
     };
 }
