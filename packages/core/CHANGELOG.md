@@ -1,5 +1,13 @@
 # @pankod/refine-core
 
+## 4.18.1
+
+### Patch Changes
+
+-   [#4446](https://github.com/refinedev/refine/pull/4446) [`5936d9cd4d4`](https://github.com/refinedev/refine/commit/5936d9cd4d451e50c922b0a81d2d48123927594c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: increase accessibility of auth page components
+
+    add `htmlFor` to `label` elements to associate them with their inputs
+
 ## 4.18.0
 
 ### Minor Changes
