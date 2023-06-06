@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useApiUrl } from "./";
 import * as UseResource from "../../hooks/resource/useResource";
@@ -31,14 +31,6 @@ describe("useApiUrl Hook", () => {
 
             describe('when current resource has "dataProviderName" meta', () => {
                 it("returns resource's dataProvider", async () => {
-                    jest.spyOn(UseResource, "useResource").mockReturnValue({
-                        resource: {
-                            name: "categories",
-                            [key]: { dataProviderName: "categories" },
-                        },
-                        resources: [],
-                    });
-
                     const { result } = renderHook(() => useApiUrl(), {
                         wrapper: TestWrapper({
                             dataProvider: MockJSONServer,
@@ -49,6 +41,12 @@ describe("useApiUrl Hook", () => {
                                     [key]: { dataProviderName: "categories" },
                                 },
                             ],
+                            routerProvider: mockRouterBindings({
+                                resource: {
+                                    name: "categories",
+                                    [key]: { dataProviderName: "categories" },
+                                },
+                            }),
                         }),
                     });
 
@@ -60,23 +58,22 @@ describe("useApiUrl Hook", () => {
 
             describe('when current resource does *not* have "dataProviderName" meta', () => {
                 it("returns default dataProvider", async () => {
-                    jest.spyOn(UseResource, "useResource").mockReturnValue({
-                        resource: {
-                            name: "categories",
-                        },
-                        resources: [],
-                    });
-
                     const { result } = renderHook(() => useApiUrl(), {
                         wrapper: TestWrapper({
                             dataProvider: MockJSONServer,
                             resources: [
-                                { name: "posts" },
+                                {
+                                    name: "posts",
+                                },
                                 {
                                     name: "categories",
-                                    [key]: { dataProviderName: "categories" },
                                 },
                             ],
+                            routerProvider: mockRouterBindings({
+                                resource: {
+                                    name: "categories",
+                                },
+                            }),
                         }),
                     });
 
@@ -89,17 +86,16 @@ describe("useApiUrl Hook", () => {
 
         describe("when dataProvider is provided", () => {
             it("returns provided data provider", async () => {
-                jest.spyOn(UseResource, "useResource").mockReturnValue({
-                    resource: {
-                        name: "posts",
-                    },
-                    resources: [],
-                });
-
                 const { result } = renderHook(() => useApiUrl("categories"), {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
                         resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings({
+                            resource: {
+                                name: "posts",
+                                [key]: { dataProviderName: "posts" },
+                            },
+                        }),
                     }),
                 });
 
