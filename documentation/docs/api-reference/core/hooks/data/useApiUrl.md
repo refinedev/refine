@@ -56,7 +56,7 @@ export const App: React.FC = () => {
 </Refine>
 
 
-const apiUrl = useApiUrl('other')
+const apiUrl = useApiUrl("other");
 // https://other-api.fake-rest.refine.dev/
 ```
 
