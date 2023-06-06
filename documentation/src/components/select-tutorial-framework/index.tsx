@@ -31,17 +31,29 @@ const Card = ({ name, title, selected, onClick }: CardProps) => (
             "justify-between",
             "items-center",
             "gap-3",
-            "bg-gray-800",
+            "shadow-lg",
+            "border-2 dark:border-gray-700 border-gray-200",
+            selected && "dark:border-refine-blue border-refine-blue",
         )}
     >
         <img
-            className="max-w-[50px]"
+            className="max-w-[48px] mt-2 mb-2"
             src={`${selected ? coloredIconUrl : grayscaleIconUrl}${name}.svg`}
             alt={title}
             width="100%"
             height="100%"
         />
-        {title && <span>{title}</span>}
+        {title && (
+            <span
+                className={clsx(
+                    "text-gray-500",
+                    "dark:text-gray-500",
+                    selected && "text-gray-900 dark:text-gray-0",
+                )}
+            >
+                {title}
+            </span>
+        )}
     </button>
 );
 

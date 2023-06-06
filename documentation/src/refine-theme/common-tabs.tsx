@@ -51,8 +51,8 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                 "m-0",
                 "px-4",
                 "flex items-end gap-4",
-                "border-b border-b-gray-700",
-                "bg-gray-800",
+                "border-b dark:border-b-gray-700 border-b-gray-200",
+                "dark:bg-gray-800 bg-gray-50",
                 "rounded-tl-lg rounded-tr-lg",
             )}
         >
@@ -78,10 +78,13 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                         "min-w-[60px]",
                         "cursor-pointer",
                         "transition-all duration-200 ease-in-out",
-                        selectedValue !== value && "text-gray-500",
+                        selectedValue !== value &&
+                            "dark:text-gray-500 text-gray-500",
                         selectedValue === value && "border-b-refine-blue",
-                        selectedValue === value && "text-gray-0",
-                        "bg-gradient-to-t from-refine-indigo via-transparent to-transparent",
+                        selectedValue === value &&
+                            "dark:text-gray-0 text-gray-900",
+                        "dark:bg-gradient-to-t dark:from-refine-indigo dark:via-transparent dark:to-transparent",
+                        "bg-gradient-to-t from-refine-blue via-transparent to-transparent",
                         "bg-no-repeat",
                     )}
                     style={{
@@ -131,7 +134,7 @@ function TabsComponent(props) {
                 "tabs-container",
                 "rounded-lg",
                 "border",
-                "border-gray-700",
+                "dark:border-gray-700 border-gray-200",
                 "mb-6",
             )}
         >

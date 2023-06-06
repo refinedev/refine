@@ -18,7 +18,7 @@ export const CommonDetails = (props) => {
             className={clsx(
                 props.className,
                 "refine-details",
-                "border border-gray-700",
+                "border dark:border-gray-700 border-gray-200",
                 "rounded-lg",
                 "overflow-hidden",
                 "mb-4",
