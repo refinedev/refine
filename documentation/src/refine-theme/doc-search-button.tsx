@@ -1,10 +1,17 @@
 import clsx from "clsx";
 import React from "react";
 
-type Props = React.ComponentProps<"button">;
+type Props = React.ComponentProps<"button"> & {
+    docSearchButton?: {
+        placeholder?: string;
+    };
+};
 
 export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
-    function DocSearchButtonComponent({ className, ...props }, ref) {
+    function DocSearchButtonComponent(
+        { className, docSearchButton, ...props },
+        ref,
+    ) {
         return (
             <button
                 ref={ref}
@@ -22,9 +29,12 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                     "transition-all",
                     "duration-200",
                     "ease-in-out",
+                    "min-w-[144px]",
                 )}
             >
-                <span className="opacity-75">Search in documentation</span>
+                <span className="opacity-75">
+                    {docSearchButton?.placeholder ?? "Search in documentation"}
+                </span>
                 <kbd
                     className={clsx(
                         "py-1 px-2",
