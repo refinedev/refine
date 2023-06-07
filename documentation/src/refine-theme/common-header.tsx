@@ -9,6 +9,7 @@ import { HamburgerIcon } from "./icons/hamburger";
 import { GitHubStar } from "./common-header/github-star";
 import { MobileMenuModal } from "./common-header/mobile-menu-model";
 import { Menu } from "./common-header/menu";
+import { DocSearchButton } from "./doc-search-button";
 
 export const CommonHeader = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,9 +32,13 @@ export const CommonHeader = () => {
                     </div>
                     <div className="hidden header-md:flex items-center justify-end gap-8">
                         <SearchBar
-                            docSearchButton={{
-                                placeholder: "Search",
-                            }}
+                            CustomButton={(props) => (
+                                <DocSearchButton
+                                    {...props}
+                                    placeholder="Search"
+                                    className="min-w-[144px]"
+                                />
+                            )}
                         />
                         <div className="flex items-center gap-2">
                             <GitHubStar />
