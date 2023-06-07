@@ -22,18 +22,25 @@
 
 .refine-prose {
     @apply font-normal prose prose-invert;
+    @apply prose-strong:dark:text-gray-300 prose-strong:text-gray-700;
     @apply prose-a:text-refine-link prose-a:font-normal;
-    @apply prose-h1:text-[2.5rem] prose-h1:leading-[3.5rem] prose-h1:text-gray-0 prose-h1:mb-8 prose-h1:font-semibold;
-    @apply prose-h2:text-[2rem] prose-h2:leading-[2.5rem] prose-h2:text-gray-100 prose-h2:mb-6 prose-h2:font-semibold;
-    @apply prose-h3:text-[1.5rem] prose-h3:leading-[2rem] prose-h3:text-gray-200 prose-h3:mb-6 prose-h3:font-semibold;
-    @apply prose-h4:text-[1rem] prose-h4:leading-[1.5rem] prose-h4:text-gray-300 prose-h4:mb-4 prose-h4:font-semibold;
-    @apply prose-p:mb-6 prose-p:mt-0;
-    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4 prose-blockquote:border-l-gray-600  prose-blockquote:rounded-lg prose-blockquote:p-4 prose-blockquote:bg-gray-800 prose-blockquote:font-normal prose-blockquote:text-gray-300 prose-blockquote:not-italic;
-    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:text-xs prose-code:leading-6 prose-code:bg-gray-300 prose-code:bg-opacity-30 prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-h1:text-[2.5rem] prose-h1:leading-[3.5rem] prose-h1:text-gray-900 prose-h1:dark:text-gray-0 prose-h1:mb-8 prose-h1:font-semibold;
+    @apply prose-h2:text-[2rem] prose-h2:leading-[2.5rem] prose-h2:text-gray-800 prose-h2:dark:text-gray-100 prose-h2:mb-6 prose-h2:font-semibold;
+    @apply prose-h3:text-[1.5rem] prose-h3:leading-[2rem] prose-h3:text-gray-700 prose-h3:dark:text-gray-200 prose-h3:mb-6 prose-h3:font-semibold;
+    @apply prose-h4:text-[1rem] prose-h4:leading-[1.5rem] prose-h4:text-gray-600 prose-h4:dark:text-gray-300 prose-h4:mb-4 prose-h4:font-semibold;
+    @apply prose-p:mb-6 prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mt-0;
+    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4  prose-blockquote:rounded-lg prose-blockquote:p-4 prose-blockquote:font-normal prose-blockquote:not-italic;
+    @apply prose-blockquote:bg-gray-50 prose-blockquote:text-gray-700 prose-blockquote:border-l-gray-400;
+    @apply prose-blockquote:dark:bg-gray-800 prose-blockquote:dark:text-gray-0 prose-blockquote:dark:border-l-gray-600;
+    @apply prose-code:text-gray-700 prose-code:bg-gray-200;
+    @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-700;
+    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:text-xs prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;
     @apply max-w-none;
+    @apply prose-ul:pl-8 prose-ul:ml-0 prose-ul:dark:text-gray-300 prose-ul:text-gray-700;
+    @apply prose-ol:pl-8 prose-ol:ml-0 prose-ol:dark:text-gray-300 prose-ol:text-gray-700;
 }
 
 .refine-prose *:last-child:not(header h1) {
@@ -53,20 +60,25 @@
 }
 
 .refine-prose table {
-    @apply prose-table:border-separate border border-gray-700;
+    @apply prose-table:border-none;
 }
 
 .refine-prose table th,
 .refine-prose table td {
-    @apply leading-6 px-2 border-gray-700 border py-2 text-sm;
+    @apply leading-6 px-2 dark:border-gray-700 border-gray-200 border py-2 text-sm text-gray-900 dark:text-gray-100;
 }
 
 .refine-prose table th {
-    @apply text-gray-200 font-semibold text-sm leading-6;
+    @apply dark:text-gray-200 text-gray-900 font-semibold text-sm leading-6;
 }
 
 .refine-prose table tbody tr:nth-child(odd) {
-    @apply bg-gray-700 bg-opacity-30;
+    @apply dark:bg-gray-700 dark:bg-opacity-30;
+    @apply bg-gray-50 bg-opacity-10;
+}
+
+.refine-prose table thead tr {
+    @apply border-none;
 }
 
 .refine-toc-item code::before,
@@ -75,7 +87,7 @@
 }
 
 .refine-toc-item code {
-    @apply font-mono bg-gray-600 bg-opacity-30 py-0.5 px-1 rounded;
+    @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded;
     font-size: 12px;
 }
 

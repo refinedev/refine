@@ -43,8 +43,8 @@ export const DocVersionDropdown = () => {
                                 "items-center",
                                 "justify-center",
                                 "gap-2",
-                                "bg-gray-800",
-                                "hover:bg-gray-700",
+                                "dark:bg-gray-800 bg-gray-50",
+                                "hover:dark:bg-gray-700 hover:bg-gray-100",
                                 "transition-colors",
                                 "duration-200",
                                 "ease-in-out",
@@ -99,6 +99,7 @@ export const DocVersionDropdown = () => {
                                                     className={clsx(
                                                         "px-2 py-1",
                                                         "rounded-[4px]",
+                                                        "hover:no-underline",
                                                         {
                                                             "text-white": true,
                                                             "dark:text-gray-900":

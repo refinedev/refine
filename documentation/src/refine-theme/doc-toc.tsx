@@ -61,17 +61,16 @@ const TOCItem = ({
                 level === 3 && "pl-7",
                 level === 4 && "pl-11",
                 "py-2",
-                activeId !== id && "hover:bg-gray-700 hover:bg-opacity-50",
-                activeId === id && "bg-gray-700",
-                activeId !== id && "bg-transparent",
+                activeId === id &&
+                    `text-gray-900 dark:bg-gray-700 dark:text-gray-0 bg-gray-50 hover:text-gray-900`,
+                activeId !== id &&
+                    `dark:text-gray-500 hover:text-gray-900 text-gray-500`,
                 "rounded-lg",
                 "transition-colors duration-200 ease-in-out",
                 "block",
-                activeId === id && "text-gray-0",
-                activeId !== id && "text-gray-500",
-                activeId !== id && "hover:text-gray-0",
                 "text-sm",
                 "leading-6",
+                "no-underline hover:no-underline",
             )}
             dangerouslySetInnerHTML={{
                 __html: value,
@@ -109,7 +108,7 @@ export const DocTOC = () => {
                 "pl-3",
                 "pr-3",
                 "py-12",
-                "border-l border-l-gray-700",
+                "border-l dark:border-l-gray-700 border-l-gray-100",
                 !hasTOC && "invisible",
             )}
         >

@@ -76,11 +76,13 @@ const Checklist: React.FC<Props> = ({ children }) => {
             >
                 <h3
                     className={clsx(
-                        "text-refine-link",
                         "font-semibold",
                         "mt-0",
                         "flex items-center",
                         "gap-3",
+                        "dark:text-gray-300 text-gray-500",
+                        "uppercase",
+                        "text-lg",
                     )}
                 >
                     <CheckMarkIcon className="w-7 h-7" /> Checklist

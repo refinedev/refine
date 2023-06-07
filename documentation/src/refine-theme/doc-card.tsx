@@ -14,10 +14,11 @@ function CardContainer({ href, children }) {
             className={clsx(
                 "no-underline",
                 "rounded-lg",
-                "bg-gray-800",
+                "dark:bg-gray-800 bg-gray-50",
                 "p-4",
                 "flex flex-col",
                 "gap-4",
+                "hover:no-underline",
             )}
         >
             {children}
@@ -32,7 +33,7 @@ function CardLayout({ href, icon, title, description }) {
                 className={clsx(
                     "line-clamp-1",
                     "text-base",
-                    "text-gray-200",
+                    "dark:text-gray-200 text-gray-900",
                     "font-semibold",
                     "m-0",
                 )}
@@ -46,7 +47,7 @@ function CardLayout({ href, icon, title, description }) {
                         "line-clamp-3",
                         "m-0",
                         "text-sm leading-6",
-                        "text-gray-400",
+                        "dark:text-gray-400 text-gray-700",
                         "font-normal",
                     )}
                     title={description}
