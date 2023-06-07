@@ -91,13 +91,13 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                         >
                             <div
                                 className={clsx(
-                                    "w-full max-w-[336px] headerSm:max-w-[624px] max-h-full",
+                                    "w-full max-w-[336px] header-sm:max-w-[624px] max-h-full",
                                     "overflow-auto",
                                     "border border-gray-200 rounded-lg",
                                     "bg-white",
                                     "text-left",
                                     "align-middle",
-                                    "flex flex-col headerSm:flex-row",
+                                    "flex flex-col header-sm:flex-row",
                                 )}
                             >
                                 <div className="flex-grow">
@@ -155,18 +155,18 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                 </div>
                                 <div
                                     className={clsx(
-                                        "headerSm:w-[288px] max-h-[calc(100vh-97px)]",
-                                        "headerSm:bg-gray-50",
-                                        "headerSm:flex headerSm:flex-col headerSm:justify-between",
+                                        "header-sm:w-[288px] max-h-[calc(100vh-97px)]",
+                                        "header-sm:bg-gray-50",
+                                        "header-sm:flex header-sm:flex-col header-sm:justify-between",
                                         "sticky top-0",
                                     )}
                                 >
                                     <div
                                         className={clsx(
-                                            "bg-white headerSm:bg-inherit",
+                                            "bg-white header-sm:bg-inherit",
                                             "flex justify-between items-center",
-                                            "headerSm:flex-col headerSm:gap-4",
-                                            "headerSm:border-b border-gray-200",
+                                            "header-sm:flex-col header-sm:gap-4",
+                                            "header-sm:border-b border-gray-200",
                                             "py-3 px-4",
                                         )}
                                     >

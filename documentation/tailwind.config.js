@@ -56,8 +56,8 @@ module.exports = {
             screens: {
                 content: "656px",
                 short: { raw: "(max-height: 650px) and (min-width: 1024px)" },
-                headerSm: "640px",
-                headerMd: "1200px",
+                "header-sm": "640px",
+                "header-md": "1200px",
             },
         },
     },

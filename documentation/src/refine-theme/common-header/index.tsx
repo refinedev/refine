@@ -29,12 +29,14 @@ export const CommonHeader = () => {
                 className={clsx(
                     "max-w-[1440px]",
                     "mx-auto",
-                    "px-4 headerMd:px-8 py-4 headerMd:py-9",
+                    "px-4 header-md:px-8 py-4 header-md:py-9",
                 )}
             >
                 <div className="flex items-center justify-between">
-                    <RefineLogoIcon className="text-gray-0" />
-                    <div className="hidden headerMd:flex gap-8">
+                    <div className="header-md:w-[260px]">
+                        <RefineLogoIcon className="text-gray-0" />
+                    </div>
+                    <div className="hidden header-md:flex gap-8">
                         {MENU_ITEMS.map((item) => {
                             if (item.isPopover) {
                                 return (
@@ -165,7 +167,7 @@ export const CommonHeader = () => {
                             );
                         })}
                     </div>
-                    <div className="hidden headerMd:flex items-center justify-end gap-8">
+                    <div className="hidden header-md:flex items-center justify-end gap-8">
                         <SearchBar
                             docSearchButton={{
                                 placeholder: "Search",
@@ -178,7 +180,7 @@ export const CommonHeader = () => {
                     </div>
                     <button
                         type="button"
-                        className="block headerMd:hidden"
+                        className="block header-md:hidden"
                         onClick={() => setIsModalOpen(true)}
                     >
                         <HamburgerIcon />
