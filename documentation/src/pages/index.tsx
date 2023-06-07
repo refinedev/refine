@@ -20,9 +20,9 @@ function Home() {
 
     return (
         <>
-            {/* <Head>
-                <html data-page="index" data-customized="true" />
-            </Head> */}
+            <Head>
+                <html data-active-page="index" />
+            </Head>
             <CommonLayout>
                 <div
                     className={clsx(
