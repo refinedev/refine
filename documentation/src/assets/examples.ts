@@ -1,46 +1,51 @@
-import { Examples } from "../types/examples";
+import { Example, Examples } from "../types/examples";
 
-export const SHOW_CASES: Examples = [
+export const SHOW_CASES: (Example & { image2x: string })[] = [
     {
-        title: "refine SWAG STORE",
+        title: "refine Swag Store",
         description:
             "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
-        image: "/examples/swag-store.png",
+        image: "/examples/swag-store.jpg",
+        image2x: "/examples/swag-store2x.jpg",
         button: {
-            text: "VIEW DEMO",
+            text: "Demo",
             link: "https://store.refine.dev",
         },
         source: "https://github.com/refinedev/refine/tree/master/examples/store",
     },
     {
-        title: "FINEFOODS ADMIN PANEL [ANT DESIGN]",
-        description:
-            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
-        image: "/examples/antd-finefoods.png",
-        button: {
-            text: "VIEW DEMO",
-            link: "https://example.admin.refine.dev",
-        },
-        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-antd",
-    },
-    {
-        title: "FINEFOODS STOREFRONT",
+        title: "FineFoods Storefront",
         description:
             "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
-        image: "/examples/food-delivery.png",
+        image: "/examples/food-delivery.jpg",
+        image2x: "/examples/food-delivery2x.jpg",
         button: {
-            text: "VIEW DEMO",
+            text: "Demo",
             link: "https://example.refine.dev",
         },
         source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
     },
     {
-        title: "FINEFOODS ADMIN PANEL [MATERIAL UI]",
+        title: "FineFoods Ant Design Admin Panel",
+        description:
+            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+        image: "/examples/antd-finefoods.jpg",
+        image2x: "/examples/antd-finefoods2x.jpg",
+        button: {
+            text: "Demo",
+            link: "https://example.admin.refine.dev",
+        },
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-antd",
+    },
+
+    {
+        title: "FineFoods Material UI Admin Panel",
         description:
             "Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
-        image: "/examples/mui-finefoods.png",
+        image: "/examples/mui-finefoods.jpg",
+        image2x: "/examples/mui-finefoods2x.jpg",
         button: {
-            text: "VIEW DEMO",
+            text: "Demo",
             link: "https://example.mui.admin.refine.dev",
         },
         source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui",
