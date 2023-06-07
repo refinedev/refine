@@ -5,12 +5,12 @@ import { SectionBullets } from "./section-bullets";
 import { SectionNoConstraints } from "./section-no-constraints";
 import { SectionUseCase } from "./section-use-case";
 import SectionReady from "./section-ready";
-import { CommonHeader } from "@site/src/refine-theme/common-header";
+import { LandingHeader } from "@site/src/refine-theme/landing-header";
 
 export const Landing: React.FC = () => {
     return (
         <main id="landing_main">
-            <CommonHeader />
+            <LandingHeader />
             {/* <SectionHero />
             <SectionFreeStart />
             <SectionBullets />

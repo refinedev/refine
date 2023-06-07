@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import SearchBar from "@site/src/theme/SearchBar";
 import clsx from "clsx";
 
-import { HeaderDiscordIcon } from "../icons/header-discord";
-import { RefineLogoIcon } from "../icons/refine-logo";
+import { HeaderDiscordIcon } from "./icons/header-discord";
+import { RefineLogoIcon } from "./icons/refine-logo";
+import { HamburgerIcon } from "./icons/hamburger";
 
-import { GitHubStar } from "./github-star";
-import { HamburgerIcon } from "../icons/hamburger";
-import { MobileMenuModal } from "./mobile-menu-model";
-import { Menu } from "./menu";
+import { GitHubStar } from "./common-header/github-star";
+import { MobileMenuModal } from "./common-header/mobile-menu-model";
+import { Menu } from "./common-header/menu";
 
-export const CommonHeader = () => {
+export const LandingHeader = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
