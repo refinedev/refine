@@ -1,13 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import Translate, { translate } from "@docusaurus/Translate";
+import { translate } from "@docusaurus/Translate";
 import {
     PageMetadata,
     HtmlClassNameProvider,
     ThemeClassNames,
     usePluralForm,
 } from "@docusaurus/theme-common";
-import Link from "@docusaurus/Link";
 import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
@@ -55,13 +54,17 @@ function BlogTagsPostsPageMetadata({ tag }) {
 }
 
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
-    const title = useBlogTagsPostsPageTitle(tag);
-
     return (
         <BlogLayout sidebar={sidebar}>
-            <TagsList tags={tags} activeTag={tag} collapsable={false} />
+            <TagsList tags={tags} />
             <br />
-            <h1>{title}</h1>
+            <div className="px-3">
+                <div className="text-gray-500 dark:text-gray-400">
+                    Posts tagged with
+                </div>
+                <h1>{tag.label}</h1>
+            </div>
+
             <BlogPostItems items={items} showTitle={false} />
             <br />
             <BlogListPaginator

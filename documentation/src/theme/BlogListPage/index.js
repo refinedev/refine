@@ -11,7 +11,6 @@ import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
-import TagsList from "@theme/TagsList";
 
 import { FeaturedBlogPostItems } from "../../components/blog";
 
@@ -32,7 +31,7 @@ function BlogListPageMetadata(props) {
 }
 
 function BlogListPageContent(props) {
-    const { metadata, items } = props;
+    const { metadata, tags, items } = props;
 
     const isFirstPage = metadata.page === 1;
 
@@ -47,8 +46,7 @@ function BlogListPageContent(props) {
     return (
         <BlogLayout>
             {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
-            <TagsList tags={props.tags} />
-            <BlogPostItems items={paginatedPosts} />
+            <BlogPostItems items={paginatedPosts} tags={tags} />
             <BlogListPaginator metadata={metadata} />
         </BlogLayout>
     );

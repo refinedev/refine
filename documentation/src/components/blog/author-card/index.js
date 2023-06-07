@@ -24,10 +24,52 @@ const AuthorCard = ({ author, className }) => {
     return (
         <div
             className={clsx(
-                "blog-post-item-shadow rounded-[10px] p-4",
-                className,
+                "flex",
+                "justify-between",
+                "items-center",
+                // "border-b border-gray-200",
+                // "mb-8"
             )}
         >
+            <div className="flex items-center">
+                <Link to={`/blog/author/${author?.key}`} itemProp="url">
+                    <img
+                        src={author?.imageURL}
+                        alt={author?.name}
+                        loading="lazy"
+                        className="flex h-[120px] w-[120px] rounded-full object-cover"
+                    />
+                </Link>
+                <div className="ml-3">
+                    <h1 className="m-0 p-0 leading-0">{author?.name}</h1>
+                    <div className="text-gray-600">{author?.title}</div>
+                </div>
+            </div>
+
+            {authorHasSocialInfo && (
+                <div className="flex justify-center gap-3">
+                    {author?.github && (
+                        <Link to={author?.github}>
+                            <Github className="h-6 w-6" />
+                        </Link>
+                    )}
+                    {author?.twitter && (
+                        <Link to={author?.twitter}>
+                            <Twitter className="h-6 w-6" />
+                        </Link>
+                    )}
+                    {author?.linkedin && (
+                        <Link to={author?.linkedin}>
+                            <Linkedin className="h-6 w-6" />
+                        </Link>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+
+    return (
+        <div className={clsx("p-4", className)}>
             <figcaption className="flex flex-col items-center">
                 <Link to={`/blog/author/${author?.key}`} itemProp="url">
                     <img

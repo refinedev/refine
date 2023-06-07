@@ -30,17 +30,17 @@ function BlogPostPageContent({ children }) {
                     <TOC
                         className="custom-table-of-contents blog-post-item-shadow rounded-[10px]"
                         toc={toc}
-                        minHeadingLevel={tocMinHeadingLevel}
-                        maxHeadingLevel={tocMaxHeadingLevel}
+                        // minHeadingLevel={tocMinHeadingLevel}
+                        // maxHeadingLevel={tocMaxHeadingLevel}
                     />
                 ) : undefined
             }
         >
-            <BlogPostPageView>{children}</BlogPostPageView>
+            {/* <BlogPostPageView>{children}</BlogPostPageView>
             <br />
             <PostPaginator title="Related Articles" posts={relatedPosts} />
             <br />
-            <PostPaginator title="From Same Author" posts={authorPosts} />
+            <PostPaginator title="From Same Author" posts={authorPosts} /> */}
         </BlogLayout>
     );
 }

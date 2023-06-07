@@ -43,9 +43,9 @@
     @apply prose-ol:pl-8 prose-ol:ml-0 prose-ol:dark:text-gray-300 prose-ol:text-gray-700;
 }
 
-.refine-prose *:last-child:not(header h1) {
+/* .refine-prose *:last-child:not(header h1) {
     margin-bottom: 0;
-}
+} */
 
 .refine-prose h1 code,
 .refine-prose h2 code,
