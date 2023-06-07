@@ -31,7 +31,7 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-gray-800" />
+                    <div className="fixed inset-0 bg-gray-50 dark:bg-gray-800" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -74,12 +74,12 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                                 <div
                                     className={clsx(
                                         "relative",
-                                        "bg-gray-900",
+                                        "bg-gray-0 dark:bg-gray-900",
                                         "w-full max-w-[480px] h-[80%]",
                                         "mx-auto my-auto",
                                         "overflow-scroll",
                                         "rounded-lg",
-                                        "border border-gray-600",
+                                        "border border-gray-200 dark:border-gray-600",
                                     )}
                                 >
                                     <div
@@ -87,13 +87,17 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                                             "sticky top-0 left-0 right-0",
                                             "z-10",
                                             "h-12",
-                                            "bg-gray-700",
-                                            "border-b border-gray-600",
+                                            "bg-gray-50 dark:bg-gray-700",
+                                            "border-b border-gray-200 dark:border-gray-600",
                                             "flex items-center gap-5",
                                             "px-4 py-3",
                                         )}
                                     >
-                                        <span className={clsx("text-gray-400")}>
+                                        <span
+                                            className={clsx(
+                                                "text-gray-500 dark:text-gray-400",
+                                            )}
+                                        >
                                             Version
                                         </span>
                                         <DocVersionTabs />

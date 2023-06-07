@@ -12,7 +12,7 @@ export const CommonHomeButton = ({ className }: Props) => {
             href="/"
             className={clsx(
                 "text-base",
-                "text-gray-400",
+                "text-gray-500 dark:text-gray-400",
                 // "hover:underline",
                 "hover:text-refine-link",
                 "transition-colors",

@@ -30,8 +30,8 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                                     "items-center",
                                     "justify-center",
                                     "gap-2",
-                                    "bg-gray-800",
-                                    "hover:bg-gray-700",
+                                    "bg-gray-50 dark:bg-gray-800",
+                                    "hover:bg-gray-100 dark:hover:bg-gray-700",
                                     "transition-colors",
                                     "duration-200",
                                     "ease-in-out",
@@ -43,14 +43,14 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                             >
                                 <span
                                     className={clsx(
-                                        "text-gray-400",
+                                        "text-gray-500 dark:text-gray-400",
                                         "text-base",
                                         "block",
                                     )}
                                 >
                                     {docContext.activeVersion.label}
                                 </span>
-                                <TriangleDownIcon className="text-gray-500" />
+                                <TriangleDownIcon className="text-gray-400 dark:text-gray-500" />
                             </Menu.Button>
                         </span>
 
@@ -89,18 +89,12 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                                                             "px-2 py-1",
                                                             "rounded-[4px]",
                                                             {
-                                                                "text-white":
-                                                                    true,
-                                                                "dark:text-gray-900":
+                                                                "hover:text-white text-white":
+                                                                    isActive,
+                                                                "text-gray-300 dark:text-gray-700":
                                                                     !isActive,
-                                                            },
-                                                            {
                                                                 "bg-refine-blue":
                                                                     isActive,
-                                                                "hover:bg-gray-600":
-                                                                    !isActive,
-                                                                "dark:hover:bg-gray-100":
-                                                                    !isActive,
                                                             },
                                                         )}
                                                     >

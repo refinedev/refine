@@ -19,7 +19,7 @@ const Divider = () => {
                 "h-6",
                 "w-px",
                 "mx-4",
-                "bg-gray-600",
+                "bg-gray-200 dark:bg-gray-600",
             )}
         />
     );
@@ -107,8 +107,8 @@ export const DocHeader = () => {
                 "sticky",
                 "top-0",
                 "py-2 px-4  sm:py-3 sm:px-6",
-                "bg-gray-800",
-                "border-b border-gray-700",
+                "bg-gray-50 dark:bg-gray-800",
+                "border-b border-gray-100 dark:border-gray-700",
             )}
         >
             <Desktop />

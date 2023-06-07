@@ -103,7 +103,7 @@ export const Admonition = ({ type, title, children }: Props) => {
                             "flex",
                             "items-center",
                             "gap-2",
-                            "text-xs sm:text-base",
+                            "text-xs sm:text-base 2xl:text-xl",
                             "font-semibold",
                             clsText,
                         )}

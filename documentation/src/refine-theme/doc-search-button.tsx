@@ -32,6 +32,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                         "text-gray-500 dark:text-gray-400": iconOnly,
                         "bg-gray-200 dark:bg-gray-700": iconOnly,
                         "justify-center": iconOnly,
+                        "hover:brightness-110": iconOnly,
                         "dark:text-gray-0 text-gray-500": !iconOnly,
                         "dark:bg-gray-700 bg-gray-0": !iconOnly,
                         "hover:dark:bg-gray-600": !iconOnly,

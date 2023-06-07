@@ -18,7 +18,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
             rel="noreferrer"
             className={clsx(
                 "text-base",
-                "text-gray-400",
+                "text-gray-500 dark:text-gray-400",
                 "flex gap-2 items-center",
                 // "hover:underline",
                 "hover:text-refine-link",

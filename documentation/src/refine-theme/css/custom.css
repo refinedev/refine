@@ -55,7 +55,7 @@
     @apply prose-h4:mb-4 sm:prose-h4:mb-6 2xl:prose-h4:mb-8;
 
     @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-4 prose-p:mt-0;
-    @apply prose-p:text-xs sm:prose-p:text-base;
+    @apply prose-p:text-xs sm:prose-p:text-base 2xl:prose-p:text-xl;
 
     @apply prose-li:text-xs sm:prose-li:text-base 2xl:prose-li:text-xl;
     @apply prose-ul:pl-8 prose-ul:ml-0 prose-ul:dark:text-gray-300 prose-ul:text-gray-700;
@@ -65,9 +65,10 @@
     @apply prose-blockquote:bg-gray-50 prose-blockquote:text-gray-700 prose-blockquote:border-l-gray-400;
     @apply prose-blockquote:dark:bg-gray-800 prose-blockquote:dark:text-gray-0 prose-blockquote:dark:border-l-gray-600;
 
+    @apply prose-code:text-xs sm:prose-code:text-base;
     @apply prose-code:text-gray-700 prose-code:bg-gray-200;
     @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-700;
-    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:text-xs prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-code:px-1.5 prose-code:pt-[3px] prose-code:pb-[4px] prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;

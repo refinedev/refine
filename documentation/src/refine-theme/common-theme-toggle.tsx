@@ -29,7 +29,6 @@ export const CommonThemeToggle = ({ className }: Props) => {
                 "relative",
                 "text-gray-500 dark:text-gray-400",
                 "hover:brightness-110",
-                "dark:hover:brightness-110",
                 "transition-all",
                 "duration-200",
                 "ease-in-out",
