@@ -6,6 +6,9 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
+            zIndex: {
+                modal: 100,
+            },
             colors: {
                 discord: "#5865F2",
                 twitter: "#00AAEC",
@@ -102,7 +105,11 @@ module.exports = {
         },
         screens: {
             ...defaultTheme.screens,
-            content: "656px",
+            "content-sm": "480px",
+            "content-md": "656px",
+            "content-2xl": "864px",
+            "header-sm": "640px",
+            "header-md": "1200px",
             "landing-xs": "360px",
             "landing-sm": "480px",
             "landing-md": "640px",

@@ -57,7 +57,8 @@ export const routerBindings: RouterBindings = {
                     urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
                 }
 
-                const cleanPathname = pathname.split("?")[0].split("#")[0];
+                const cleanPathname =
+                    pathname?.split("?")[0].split("#")[0] ?? "";
 
                 const urlTo = to || cleanPathname;
 

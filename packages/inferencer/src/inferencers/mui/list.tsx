@@ -1,41 +1,41 @@
 import {
-    useDataGrid,
-    EditButton,
-    SaveButton,
-    DeleteButton,
-    List,
-    TagField,
-    EmailField,
-    UrlField,
     DateField,
+    DeleteButton,
+    EditButton,
+    EmailField,
+    List,
     MarkdownField,
+    SaveButton,
     ShowButton,
+    TagField,
+    UrlField,
+    useDataGrid,
 } from "@refinedev/mui";
 
-import { DataGrid } from "@mui/x-data-grid";
 import Checkbox from "@mui/material/Checkbox";
+import { DataGrid } from "@mui/x-data-grid";
 
 import { createInferencer } from "../../create-inferencer";
 import {
-    jsx,
-    componentName,
     accessor,
-    printImports,
-    isIDKey,
-    noOp,
-    getVariableName,
-    translatePrettyString,
+    componentName,
     getMetaProps,
+    getVariableName,
+    isIDKey,
+    jsx,
+    noOp,
+    printImports,
+    translatePrettyString,
 } from "../../utilities";
 
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
+    ImportElement,
     InferencerResultComponent,
     InferField,
-    ImportElement,
     RendererContext,
 } from "../../types";
 
@@ -59,7 +59,7 @@ export const renderer = ({
         ["React", "react", true],
         ["useDataGrid", "@refinedev/mui"],
         ["DataGrid", "@mui/x-data-grid"],
-        ["GridColumns", "@mui/x-data-grid"],
+        ["GridColDef", "@mui/x-data-grid"],
         ["EditButton", "@refinedev/mui"],
         ["ShowButton", "@refinedev/mui"],
         ["DeleteButton", "@refinedev/mui"],
@@ -705,7 +705,14 @@ export const renderer = ({
         return undefined;
     };
 
-    const { canEdit, canShow, canDelete } = resource ?? {};
+    const {
+        canEdit,
+        canShow,
+        canDelete: canDeleteProp,
+        meta: resourceMeta,
+    } = resource ?? {};
+
+    const canDelete = canDeleteProp || resourceMeta?.canDelete;
 
     if (canEdit) {
         imports.push(["EditButton", "@refinedev/mui"]);
@@ -811,7 +818,7 @@ export const renderer = ({
     
         ${relationHooksCode}
 
-        const columns = React.useMemo<GridColumns<any>>(() => [
+        const columns = React.useMemo<GridColDef[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",\r\n")}
         ], [${i18n ? "translate, " : ""}${relationVariableNames.join(",")}]);
 
