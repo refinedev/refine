@@ -1,6 +1,6 @@
 import { Client } from "../client";
 
-class CloudQuery {
+class ConnectQuery {
     private client: Client;
 
     constructor(client: Client) {
@@ -32,4 +32,4 @@ class CloudQuery {
     }
 }
 
-export { CloudQuery };
+export { ConnectQuery };

@@ -78,8 +78,10 @@ describe("useDataGrid Hook", () => {
 
             expect(result.current.dataGridProps).toEqual(
                 expect.objectContaining({
-                    pageSize: 25,
-                    page: 0,
+                    paginationModel: expect.objectContaining({
+                        pageSize: 25,
+                        page: 0,
+                    }),
                 }),
             );
         },
@@ -100,8 +102,10 @@ describe("useDataGrid Hook", () => {
 
         expect(result.current.dataGridProps).toEqual(
             expect.not.objectContaining({
-                pageSize: 25,
-                page: 0,
+                paginationModel: expect.objectContaining({
+                    pageSize: 25,
+                    page: 0,
+                }),
             }),
         );
         expect(result.current.dataGridProps).toEqual(

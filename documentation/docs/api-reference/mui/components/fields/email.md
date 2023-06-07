@@ -22,9 +22,9 @@ import {
     // highlight-next-line
     EmailField,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     { field: "id", headerName: "ID", type: "number" },
     { field: "firstName", headerName: "First Name", minWidth: 80 },
     { field: "lastName", headerName: "Last Name", minWidth: 80 },

@@ -1,8 +1,8 @@
-import React from "react";
-import { Option, useSelect } from "@refinedev/core";
-import { useDataGrid, List } from "@refinedev/mui";
 import { GridValueFormatterParams } from "@mui/x-data-grid";
-import { DataGridPro, GridColumns } from "@mui/x-data-grid-pro";
+import { DataGridPro, GridColDef } from "@mui/x-data-grid-pro";
+import { Option, useSelect } from "@refinedev/core";
+import { List, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -46,7 +46,7 @@ export const PostList: React.FC = () => {
         hasPagination: false,
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
@@ -66,13 +66,13 @@ export const PostList: React.FC = () => {
                 valueFormatter: (params: GridValueFormatterParams<Option>) => {
                     return params.value;
                 },
-                renderCell: function render({ row }) {
+                renderCell: function render({ row }: any) {
                     if (isLoading) {
                         return "Loading...";
                     }
 
                     const category = options.find(
-                        (item) =>
+                        (item: any) =>
                             item.value.toString() ===
                             row.category.id.toString(),
                     );
@@ -98,7 +98,7 @@ export const PostList: React.FC = () => {
                 {...dataGridProps}
                 columns={columns}
                 autoHeight
-                rowsPerPageOptions={[10, 20, 30, 50, 100]}
+                pageSizeOptions={[10, 20, 30, 50, 100]}
             />
         </List>
     );

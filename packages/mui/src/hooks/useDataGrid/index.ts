@@ -1,16 +1,16 @@
-import { useState } from "react";
 import {
     BaseRecord,
     CrudFilters,
     HttpError,
+    Pagination,
+    pickNotDeprecated,
+    Prettify,
+    useLiveMode,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
-    useLiveMode,
-    pickNotDeprecated,
-    Pagination,
-    Prettify,
 } from "@refinedev/core";
+import { useState } from "react";
 
 import type {
     DataGridProps,
@@ -18,16 +18,16 @@ import type {
     GridSortModel,
 } from "@mui/x-data-grid";
 
-import { useTheme, darken } from "@mui/material/styles";
+import { darken, useTheme } from "@mui/material/styles";
 
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 
 import {
-    transformCrudSortingToSortModel,
-    transformSortModelToCrudSorting,
-    transformFilterModelToCrudFilters,
     transformCrudFiltersToFilterModel,
+    transformCrudSortingToSortModel,
+    transformFilterModelToCrudFilters,
+    transformSortModelToCrudSorting,
 } from "@definitions";
 
 type DataGridPropsType = Required<
@@ -42,18 +42,14 @@ type DataGridPropsType = Required<
         | "filterMode"
         | "onFilterModelChange"
         | "sx"
-        | "disableSelectionOnClick"
+        | "disableRowSelectionOnClick"
         | "onStateChange"
         | "paginationMode"
     >
 > &
     Pick<
         DataGridProps,
-        | "page"
-        | "onPageChange"
-        | "pageSize"
-        | "onPageSizeChange"
-        | "filterModel"
+        "paginationModel" | "onPaginationModelChange" | "filterModel"
     >;
 
 export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
@@ -244,14 +240,22 @@ export function useDataGrid<
         }
     };
 
-    const dataGridPaginationValues = () => {
+    const dataGridPaginationValues = (): Pick<
+        DataGridProps,
+        "paginationModel" | "onPaginationModelChange"
+    > &
+        Required<Pick<DataGridProps, "paginationMode">> => {
         if (isPaginationEnabled) {
             return {
                 paginationMode: "server" as const,
-                page: current - 1,
-                onPageChange: handlePageChange,
-                pageSize,
-                onPageSizeChange: handlePageSizeChange,
+                paginationModel: {
+                    page: current - 1,
+                    pageSize,
+                },
+                onPaginationModelChange: (model) => {
+                    handlePageChange(model.page);
+                    handlePageSizeChange(model.pageSize);
+                },
             };
         }
 
@@ -263,7 +267,7 @@ export function useDataGrid<
     return {
         tableQueryResult,
         dataGridProps: {
-            disableSelectionOnClick: true,
+            disableRowSelectionOnClick: true,
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
             rowCount: data?.total || 0,

@@ -648,7 +648,14 @@ export const renderer = ({
         return undefined;
     };
 
-    const { canEdit, canShow, canDelete } = resource ?? {};
+    const {
+        canEdit,
+        canShow,
+        canDelete: canDeleteProp,
+        meta: resourceMeta,
+    } = resource ?? {};
+
+    const canDelete = canDeleteProp || resourceMeta?.canDelete;
 
     if (canEdit) {
         imports.push(["EditButton", "@refinedev/mantine"]);

@@ -22,9 +22,9 @@ import {
     // highlight-next-line
     TextFieldComponent as TextField,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     { field: "id", headerName: "ID", type: "number" },
     {
         field: "title",

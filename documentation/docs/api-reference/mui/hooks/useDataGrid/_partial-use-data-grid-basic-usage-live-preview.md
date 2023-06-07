@@ -4,7 +4,7 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
 import { useDataGrid, List } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 interface IPost {
     id: number;
@@ -16,7 +16,7 @@ interface IPost {
 const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
