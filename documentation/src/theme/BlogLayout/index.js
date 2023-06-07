@@ -3,14 +3,14 @@ import clsx from "clsx";
 
 import { AuthorCardWithHook } from "../../components/blog";
 import { RefineBlogLayout } from "@site/src/refine-theme/blog-layout";
-import { BlogHeader } from "@site/src/refine-theme/blog-header";
+import { CommonHeader } from "@site/src/refine-theme/common-header";
 
 export default function BlogLayout(props) {
     const { children, toc, sidebar, ...layoutProps } = props;
 
     return (
         <RefineBlogLayout {...layoutProps}>
-            <BlogHeader />
+            <CommonHeader />
             <div className="margin-vert--lg container  max-w-[1040px]">
                 <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
                     {sidebar ??

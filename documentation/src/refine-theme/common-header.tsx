@@ -10,6 +10,7 @@ import { GitHubStar } from "./common-header/github-star";
 import { MobileMenuModal } from "./common-header/mobile-menu-model";
 import { Menu } from "./common-header/menu";
 import { DocSearchButton } from "./doc-search-button";
+import { CommonThemeToggle } from "./common-theme-toggle";
 
 export const CommonHeader = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,9 +41,10 @@ export const CommonHeader = () => {
                                 />
                             )}
                         />
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                             <GitHubStar />
                             <HeaderDiscordIcon />
+                            <CommonThemeToggle />
                         </div>
                     </div>
                     <button
