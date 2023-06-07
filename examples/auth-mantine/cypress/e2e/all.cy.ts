@@ -69,8 +69,13 @@ describe("auth-mantine", () => {
             cy.get("a")
                 .contains(/sign up/i)
                 .click();
-            cy.location("pathname").should("eq", "/register");
+
+            cy.location("pathname").as("registerPath");
+
+            cy.get("@registerPath").should("eq", "/register");
+
             login();
+
             cy.location("pathname").should("eq", "/posts");
             cy.getAllLocalStorage().then((ls) => {
                 expect(ls[BASE_URL]).to.have.property("email");
@@ -82,9 +87,16 @@ describe("auth-mantine", () => {
                 .contains(/sign up/i)
                 .click();
 
-            cy.get('input[name="email"]').clear().type("test@test.com");
-            cy.get('input[name="password"]').clear().type("test");
+            cy.get('input[name="email"]').as("emailInput").clear();
+
+            cy.get("@emailInput").type("test@test.com");
+
+            cy.get('input[name="password"]').as("passwordInput").clear();
+
+            cy.get("@passwordInput").type("test");
+
             submitAuthForm();
+
             cy.getMantineNotification().contains(/invalid email/i);
             cy.location("pathname").should("eq", "/register");
         });
