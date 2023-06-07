@@ -35,7 +35,7 @@ export const BlogPostPageView = ({ children }) => {
     } = useDocusaurusContext();
 
     return (
-        <BlogPostItemContainer className="blog-post-item-shadow rounded-[10px] p-4">
+        <BlogPostItemContainer className="p-4">
             <div className="relative">
                 <div className="absolute top-0 right-0 rounded-bl-[10px] bg-white">
                     <div className="flex items-center space-x-2 px-2 py-1">
