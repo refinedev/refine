@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import HamburgerIcon from "./icons/hamburger";
+import { HamburgerIcon } from "./icons/hamburger";
 import { CloseIcon } from "./icons/close";
 
 type Props = {

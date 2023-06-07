@@ -60,6 +60,8 @@ module.exports = {
                 "content-md": "656px",
                 "content-2xl": "864px",
                 short: { raw: "(max-height: 650px) and (min-width: 1024px)" },
+                "header-sm": "640px",
+                "header-md": "1200px",
             },
         },
     },

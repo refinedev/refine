@@ -434,22 +434,6 @@
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
 
-.refine-docsearch-button {
-    @apply flex h-7 w-7 cursor-pointer appearance-none items-center justify-between rounded-2xl border-none bg-[#f6f6f9] px-2 py-0 md:w-[150px] md:px-3 xl:w-[196px];
-}
-
-.refine-docsearch-button .DocSearch-Button-Placeholder {
-    @apply font-montserrat hidden text-xs font-semibold text-[#2A2A42] md:block;
-}
-
-.refine-docsearch-button .DocSearch-Search-Icon {
-    @apply -mt-px h-3 w-3 stroke-[2px];
-}
-
-.refine-docsearch-button .DocSearch-Button-Keys {
-    @apply hidden w-auto min-w-0 md:flex;
-}
-
 #__docusaurus .navbar .navbar__items .navbar__item {
     @apply hidden lg:inline-block;
 }

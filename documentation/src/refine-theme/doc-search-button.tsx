@@ -5,11 +5,12 @@ import { MagnifierIcon } from "./icons/magnifier";
 type Props = React.ComponentProps<"button"> & {
     iconOnly?: boolean;
     iconClassName?: string;
+    placeholder?: string;
 };
 
 export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
     function DocSearchButtonComponent(
-        { iconOnly = false, iconClassName, ...props },
+        { iconOnly = false, iconClassName, className, placeholder, ...props },
         ref,
     ) {
         return (
@@ -41,6 +42,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                         "rounded-full": iconOnly,
                         "rounded-lg": !iconOnly,
                     },
+                    className,
                 )}
             >
                 {iconOnly && <MagnifierIcon className={clsx(iconClassName)} />}
@@ -51,7 +53,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                         )}
                     >
                         <span className="opacity-75">
-                            Search in documentation
+                            {placeholder ?? "Search in documentation"}
                         </span>
                         <kbd
                             className={clsx(
