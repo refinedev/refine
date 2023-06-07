@@ -87,6 +87,8 @@ describe("form-mantine-use-drawer-form", () => {
             );
         });
 
+        cy.wait("@getPost");
+
         fillForm();
         submitForm();
 
