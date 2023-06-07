@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    important: "html",
     darkMode: ["class", '[data-theme="dark"]'],
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
@@ -55,6 +56,8 @@ module.exports = {
             screens: {
                 content: "656px",
                 short: { raw: "(max-height: 650px) and (min-width: 1024px)" },
+                "header-sm": "640px",
+                "header-md": "1200px",
             },
         },
     },

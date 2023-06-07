@@ -157,6 +157,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
                 onClick={onOpen}
                 ref={searchButtonRef}
                 className="refine-docsearch-button"
+                docSearchButton={props.docSearchButton}
             />
 
             {isOpen &&
@@ -184,10 +185,11 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }: any) {
         </>
     );
 }
-export default function SearchBar() {
+export default function SearchBar(props) {
     const { siteConfig } = useDocusaurusContext();
     return (
         <DocSearch
+            {...props}
             {...(siteConfig.themeConfig.algolia as Record<string, any>)}
         />
     );
