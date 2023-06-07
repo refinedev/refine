@@ -3,30 +3,30 @@ import { SVGProps } from "react";
 
 export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={20}
-        height={20}
-        viewBox="0 0 20 20"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
         fill="none"
+        xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
         <rect
-            width={24}
-            height={2}
-            x={0.808}
-            y={17.778}
+            x="6.80786"
+            y="23.7783"
+            width="24"
+            height="2"
+            rx="1"
+            transform="rotate(-45 6.80786 23.7783)"
             fill="currentColor"
-            rx={1}
-            transform="rotate(-45 .808 17.778)"
         />
         <rect
-            width={24}
-            height={2}
-            x={2.222}
-            y={0.808}
+            x="8.22192"
+            y="6.80762"
+            width="24"
+            height="2"
+            rx="1"
+            transform="rotate(45 8.22192 6.80762)"
             fill="currentColor"
-            rx={1}
-            transform="rotate(45 2.222 .808)"
         />
     </svg>
 );

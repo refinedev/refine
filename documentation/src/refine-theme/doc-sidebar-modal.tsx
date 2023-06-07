@@ -24,7 +24,7 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
             <Dialog as="div" className="relative z-modal" onClose={onClose}>
                 <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
+                    enter="ease-out duration-200"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
                     leave="ease-in duration-200"
@@ -38,7 +38,7 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                     <div className="flex min-h-full items-start justify-center">
                         <Transition.Child
                             as={Fragment}
-                            enter="ease-out duration-300"
+                            enter="ease-out duration-200"
                             enterFrom="opacity-0 scale-95"
                             enterTo="opacity-100 scale-100"
                             leave="ease-in duration-200"
