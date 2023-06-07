@@ -10,7 +10,7 @@ It is useful when you want to use the API URL in your custom hooks.
 
 ## Usage
 
-The `useApiUrl` hook does not expect any parameter. It will run the `getApiUrl` method from the `dataProvider` and return the result.
+`useApiUrl` hook will invoke the `getApiUrl` method from the current resource's `dataProvider` and return the result. If no resource can be inferred, it will return default data provider's URL.
 
 ```tsx
 //highlight-next-line
@@ -33,6 +33,31 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
         },
     },
 });
+```
+
+`useApiUrl` hook also accepts optional `dataProviderName` parameter to explicitly get specific `dataProvider`'s URL regardless of current resource's `dataProvider`.
+
+```tsx
+export const App: React.FC = () => {
+    return (
+        <Refine
+            // highlight-start
+            dataProvider={{
+                default: dataProvider("https://api.fake-rest.refine.dev/"),
+                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+            }}
+            // highlight-end
+        >
+            {/* ... */}
+        </Refine>
+    );
+};
+    ...
+</Refine>
+
+
+const apiUrl = useApiUrl("other");
+// https://other-api.fake-rest.refine.dev/
 ```
 
 ## API

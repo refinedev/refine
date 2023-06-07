@@ -1,8 +1,8 @@
-import React from "react";
 import { useMany } from "@refinedev/core";
-import { useDataGrid, List, EditButton } from "@refinedev/mui";
+import { EditButton, List, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -20,7 +20,7 @@ export const PostList: React.FC = () => {
         });
     const categoriesData = categories?.data || [];
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",

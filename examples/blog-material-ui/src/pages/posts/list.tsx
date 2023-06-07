@@ -1,14 +1,14 @@
-import React from "react";
 import {
-    useDataGrid,
-    EditButton,
-    DeleteButton,
     DateField,
+    DeleteButton,
+    EditButton,
     List,
+    useDataGrid,
 } from "@refinedev/mui";
+import React from "react";
 
 import Stack from "@mui/material/Stack";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { IPost } from "interfaces";
 
@@ -19,7 +19,7 @@ export const PostList: React.FC = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
             {
