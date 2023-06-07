@@ -27,7 +27,8 @@ const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
-        <List // highlight-next-line
+        <List 
+        // highlight-next-line
             headerButtons={<CreateButton />}
         >
             <Table {...tableProps} rowKey="id">
