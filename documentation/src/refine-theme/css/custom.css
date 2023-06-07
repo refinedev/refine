@@ -166,3 +166,7 @@
 .refine-details[open] > summary .refine-details-triangle {
     @apply rotate-0;
 }
+
+html .no-underline {
+    text-decoration: none;
+}
