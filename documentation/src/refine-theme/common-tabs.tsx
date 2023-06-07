@@ -48,7 +48,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
             className={clsx(
                 className,
                 "list-none",
-                "m-0",
+                "m-0 mb-0 mt-0",
                 "px-4",
                 "flex items-end gap-4",
                 "border-b dark:border-b-gray-700 border-b-gray-200",
