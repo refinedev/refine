@@ -13,6 +13,7 @@ import { SwizzleBadge } from "./doc-swizzle-badge";
 import { SourceCodeBadge } from "./doc-sourcecode-badge";
 import { useDocsVersion } from "@docusaurus/theme-common/internal";
 import { DocVersionBadge } from "./doc-version-badge";
+import { DocTOCMobile } from "./doc-toc-mobile";
 
 export const DocItemLayout = ({ children }) => {
     // const docTOC = useDocTOCwithTutorial();
@@ -50,7 +51,7 @@ export const DocItemLayout = ({ children }) => {
                             {source && <SourceCodeBadge path={source} />}
                         </div>
                     </div>
-                    {/* {docTOC.mobile} */}
+                    <DocTOCMobile />
                     <div className={clsx("refine-prose")}>
                         <DocItemContent>{children}</DocItemContent>
                     </div>
