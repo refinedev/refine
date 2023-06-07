@@ -1,4 +1,4 @@
-import { FieldInferencer } from "@/types";
+import { FieldInferencer } from "../types";
 
 const imageRegexp = /\.(gif|jpe?g|tiff?|png|webp|bmp|svg)$/i;
 

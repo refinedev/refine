@@ -9,7 +9,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 
-`useInfiniteList` is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
+The `useInfiniteList` hook is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
 -   It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
@@ -23,9 +23,9 @@ Here is a basic example of how to use the `useInfiniteList` hook.
 
 ## Pagination
 
-`useInfiniteList` hook supports pagination properties just like [`useList`](/docs/api-reference/core/hooks/data/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports pagination properties just like [`useList`](/docs/api-reference/core/hooks/data/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
 
-Dynamically changing the `pagination` properties will trigger a new request. Also, the `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
+Dynamically changing the `pagination` properties will trigger a new request. The `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request as well.
 
 ```ts
 import { useInfiniteList } from "@refinedev/core";
@@ -38,7 +38,7 @@ const postListQueryResult = useInfiniteList({
 
 ## Sorting
 
-The `useInfiniteList` hook supports the sorting feature. You can pass the `sorters` property to enable sorting. To handle sorting, the `useInfiniteList` hook passes the `sorters` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports the sorting feature, which you can enable by passing the `sorters` property. `useInfiniteList` will then pass this property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `sorters` property will trigger a new request.
 
@@ -46,7 +46,7 @@ Dynamically changing the `sorters` property will trigger a new request.
 
 ## Filtering
 
-The `useInfiniteList` hook supports the filtering feature. You can pass the `filters` property to enable filtering. To handle filtering, the `useInfiniteList` hook passes the `filters` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports the filtering feature, which you can enable by passing the `filters` property. `useInfiniteList` will then pass this property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `filters` property will trigger a new request.
 
@@ -54,17 +54,19 @@ Dynamically changing the `filters` property will trigger a new request.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::caution
+This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+:::
 
-When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
+When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. This is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
+This parameter will be passed to the `getList` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getList` method.
 
 ```tsx
 useInfiniteList({
@@ -72,9 +74,11 @@ useInfiniteList({
 });
 ```
 
+> For more information, refer to the [creating a data provider tutorial &#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
+
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
 useInfiniteList({
@@ -85,8 +89,6 @@ useInfiniteList({
 ### `filters`
 
 `filters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send filter query parameters to the API.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useInfiniteList({
@@ -100,11 +102,11 @@ useInfiniteList({
 });
 ```
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### `sorters`
 
 `sorters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
-
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useInfiniteList({
@@ -116,6 +118,8 @@ useInfiniteList({
     ],
 });
 ```
+
+> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ### `pagination`
 
@@ -147,7 +151,7 @@ useInfiniteList({
 
 #### `mode`
 
-It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
+This property can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useInfiniteList({
@@ -161,8 +165,6 @@ useInfiniteList({
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
-
 ```tsx
 useInfiniteList({
     queryOptions: {
@@ -171,14 +173,14 @@ useInfiniteList({
 });
 ```
 
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+
 ### `meta`
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
-
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -219,9 +221,13 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data is fetched successfully, `useInfiniteList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -239,9 +245,11 @@ useInfiniteList({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
-After data fetching is failed, `useInfiniteList` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useInfiniteList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useInfiniteList({
@@ -257,10 +265,11 @@ useInfiniteList({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useInfiniteList({
@@ -268,9 +277,13 @@ useInfiniteList({
 });
 ```
 
+> For more information, refer to the [Live / Realtime page&#8594](/docs/api-reference/core/providers/live-provider/#livemode)
+
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -284,7 +297,9 @@ useInfiniteList({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
@@ -312,7 +327,7 @@ useInfiniteList({
 
 Returns an object with TanStack Query's `useInfiniteQuery` return values.
 
-[Refer to the `useInfiniteQuery` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery)
+> For more information, refer to the [`useInfiniteQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery)
 
 ## FAQ
 
@@ -401,7 +416,7 @@ When you override this method, you can access the `lastPage` and `allPages`.
 
 ### Properties
 
-<PropsTable module="@refinedev/core/useInfiniteList" 
+<PropsTable module="@refinedev/core/useInfiniteList"
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

@@ -14,7 +14,7 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
         </h1>
         <div>
           <button>
-            Posts List
+            Posts
           </button>
         </div>
       </div>
@@ -445,8 +445,16 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useNavigation
+                    useNavigation
               </span>
               <span
                 class="token imports punctuation"
@@ -456,9 +464,58 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useSelect 
+                    
               </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              >
+                    useSelect
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -606,10 +663,54 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token function-variable function"
-                style="color: rgb(220, 220, 170);"
+                class="token maybe-class-name"
               >
                 PostEdit
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token constant"
+                style="color: rgb(100, 102, 149);"
+              >
+                FC
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token maybe-class-name"
+              >
+                IResourceComponentsProps
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain"
@@ -2880,7 +2981,7 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        Posts List
+                                        Posts
               </span>
             </div>
             <div

@@ -24,4 +24,4 @@ export { composeRoute } from "./router/compose-route";
 export { useActiveAuthProvider } from "./useActiveAuthProvider";
 export { handlePaginationParams } from "./handlePaginationParams";
 export { useMediaQuery } from "./useMediaQuery";
-export { generateDefaultDocumentTitle } from './generateDocumentTitle'
+export { generateDefaultDocumentTitle } from "./generateDocumentTitle";

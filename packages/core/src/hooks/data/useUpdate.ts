@@ -121,10 +121,10 @@ export type UseUpdateProps<
  *
  * It uses `update` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useUpdate} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useUpdate} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences/#httperror `HttpError`}
  * @typeParam TVariables - Values for mutation function
  *
  */

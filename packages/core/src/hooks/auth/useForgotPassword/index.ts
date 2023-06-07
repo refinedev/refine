@@ -87,9 +87,9 @@ export function useForgotPassword<TVariables = {}>(
 ): UseForgotPasswordCombinedReturnType<TVariables>;
 
 /**
- * `useForgotPassword` calls `forgotPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ * `useForgotPassword` calls `forgotPassword` method from {@link https://refine.dev/docs/api-reference/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useForgotPassword} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useForgotPassword} for more details.
  *
  * @typeParam TData - Result data of the query
  * @typeParam TVariables - Values for mutation function. default `{}`

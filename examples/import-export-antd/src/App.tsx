@@ -3,6 +3,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
+    DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
@@ -62,6 +63,7 @@ const App: React.FC = () => {
                         </Route>
                     </Routes>
                     <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
                 </Refine>
             </ConfigProvider>
         </BrowserRouter>

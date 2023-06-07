@@ -2,7 +2,7 @@ import { Create, useForm, useSelect, getValueFromEvent } from "@refinedev/antd";
 import { Form, Input, Select, Upload, Checkbox, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
@@ -13,20 +13,21 @@ import {
     noOp,
     getOptionLabel,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+    shouldDotAccess,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     ImportElement,
     RendererContext,
-} from "@/types";
-import { shouldDotAccess } from "@/utilities/accessor";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for create page in Ant Design
@@ -37,6 +38,7 @@ export const renderer = ({
     fields,
     meta,
     isCustomPage,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -50,6 +52,10 @@ export const renderer = ({
         ["useForm", "@refinedev/antd"],
         ["Input", "antd"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -115,7 +121,11 @@ export const renderer = ({
 
             return jsx`
                 <Form.Item
-                    label="${prettyString(field.key)}"
+                    label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })}
                     name={${name}}
                     rules={[
                         {
@@ -151,7 +161,11 @@ export const renderer = ({
 
             return jsx`
                 <Form.Item
-                    label="${prettyString(field.key)}"
+                    label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })}
                     name={["${field.key}"${
                 field.accessor ? ', "' + field.accessor + '"' : ""
             }]}
@@ -192,7 +206,11 @@ export const renderer = ({
             }
 
             return jsx`
-                <Form.Item label="${prettyString(field.key)}">
+                <Form.Item label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })}>
                     <Form.Item
                         name="${field.key}"
                         ${valueProps}
@@ -230,7 +248,11 @@ export const renderer = ({
 
             return jsx`
                 <Form.Item
-                    label="${prettyString(field.key)}"
+                    label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })}
                     valuePropName="checked"
                     name={["${field.key}"${
                 field.accessor ? ', "' + field.accessor + '"' : ""
@@ -258,7 +280,11 @@ export const renderer = ({
 
             return jsx`
                 <Form.Item
-                    label="${prettyString(field.key)}"
+                    label=${translatePrettyString({
+                        resource,
+                        field,
+                        i18n,
+                    })}
                     name={["${field.key}"${
                 field.accessor ? ', "' + field.accessor + '"' : ""
             }]}
@@ -280,7 +306,11 @@ export const renderer = ({
         if (field.type === "richtext") {
             return jsx`
             <Form.Item
-                label="${prettyString(field.key)}"
+                label=${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                })}
                 name="${field.key}"
                 rules={[
                     {
@@ -320,10 +350,13 @@ export const renderer = ({
 
     noOp(imports);
 
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
+
     return jsx`
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { formProps, saveButtonProps, queryResult } = useForm(${
             isCustomPage
                 ? `{

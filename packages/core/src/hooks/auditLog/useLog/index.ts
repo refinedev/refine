@@ -57,7 +57,7 @@ export type UseLogMutationProps<
 
 /**
  * useLog is used to `create` a new and `rename` the existing audit log.
- * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLog} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/core/hooks/audit-log/useLog} for more details.
  */
 
 export const useLog = <

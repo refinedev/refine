@@ -1,4 +1,4 @@
-import { FieldInferencer } from "@/types";
+import { FieldInferencer } from "../types";
 
 export const numberInfer: FieldInferencer = (key, value) => {
     const isNonEmptyString = typeof value === "string" && value.length > 0;

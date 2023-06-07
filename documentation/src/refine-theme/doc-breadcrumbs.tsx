@@ -58,7 +58,7 @@ export const DocBreadcrumbs = () => {
                 {homePageRoute && (
                     <li>
                         <Link href="/docs">
-                            <HomeIcon className="text-gray-500" />
+                            <HomeIcon className="text-gray-400 dark:text-gray-400" />
                         </Link>
                     </li>
                 )}
@@ -71,15 +71,16 @@ export const DocBreadcrumbs = () => {
                             key={idx}
                             className={clsx("flex flex-row flex-nowrap")}
                         >
-                            <ChevronRightIcon className="text-gray-500" />
-
+                            <ChevronRightIcon className="text-gray-300" />
                             {isHidden ? (
-                                <div className="text-gray-400">...</div>
+                                <div className="text-gray-600 dark:text-gray-400">
+                                    {hiddenBreadcrumbText}
+                                </div>
                             ) : item.href && !isLast ? (
                                 <Link
                                     href={item.href}
                                     className={clsx(
-                                        "text-gray-400",
+                                        "text-gray-600 dark:text-gray-400",
                                         "text-sm",
                                         "leading-6",
                                     )}
@@ -91,7 +92,7 @@ export const DocBreadcrumbs = () => {
                                     className={clsx(
                                         isLast
                                             ? "text-gray-500"
-                                            : "text-gray-400",
+                                            : "text-gray-600 dark:text-gray-400",
                                         "text-sm",
                                         "leading-6",
                                     )}

@@ -18,7 +18,7 @@ export type useModalProps = {
 /**
  * By using `useModal` you get props for your records from API in accordance with Ant Design {@link https://ant.design/components/modal/ `<Modal>`} component.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/ui/useModal} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/antd/hooks/ui/useModal} for more details.
  */
 export const useModal = ({
     modalProps = {},

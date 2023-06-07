@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import SearchBar from "@theme/SearchBar";
-import { useActiveDocContext } from "@docusaurus/plugin-content-docs/client";
 import { DocVersionDropdown } from "./doc-version-dropdown";
 import { CommonThemeToggle } from "./common-theme-toggle";
 import { CommonHomeButton } from "./common-home-button";
@@ -99,8 +98,6 @@ export const Mobile = () => {
 };
 
 export const DocHeader = () => {
-    const x = useActiveDocContext();
-
     return (
         <div
             className={clsx(

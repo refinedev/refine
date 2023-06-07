@@ -1,6 +1,10 @@
 import { renderHook } from "@testing-library/react";
 
-import { TestWrapper, mockRouterBindings } from "@test";
+import {
+    TestWrapper,
+    mockLegacyRouterProvider,
+    mockRouterBindings,
+} from "@test";
 
 import { useMenu } from ".";
 import { legacyResourceTransform } from "@definitions/helpers";
@@ -414,6 +418,102 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({ name: "org-users" }),
+            ]),
+        );
+    });
+
+    it("should hide item if parameter is missing", async () => {
+        const { result } = renderHook(
+            () => useMenu({ hideOnMissingParameter: true }),
+            {
+                wrapper: TestWrapper({
+                    resources: legacyResourceTransform([
+                        {
+                            name: "visible",
+                            list: () => null,
+                        },
+                        {
+                            name: "org-users",
+                            list: "orgs/:orgId/users",
+                        },
+                    ]),
+                }),
+            },
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+            ]),
+        );
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "org-users" }),
+            ]),
+        );
+    });
+
+    // NOTE: Will be removed in the refine v5
+    it("should work with deprecated props", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        options: {
+                            icon: "X",
+                            label: "Best Posts",
+                        },
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                ],
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: "posts",
+                    icon: "X",
+                    label: "Best Posts",
+                    options: { icon: "X", label: "Best Posts" },
+                }),
+                expect.not.objectContaining({ name: "categories" }),
+            ]),
+        );
+    });
+});
+
+// NOTE: Will be removed in the refine v5
+describe("legacy roter provider", () => {
+    it("should contain resources", () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        list: () => null,
+                    },
+                ],
+                legacyRouterProvider: {
+                    ...mockLegacyRouterProvider(),
+                    useLocation: () => ({
+                        pathname: "/posts",
+                    }),
+                },
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "posts" }),
             ]),
         );
     });

@@ -41,7 +41,7 @@ export const Login: React.FC = () => {
             }
         }, [clientId, window.google, divRef.current]);
 
-        return <div ref={divRef} />;
+        return <div ref={divRef} id="login-with-google-button" />;
     };
 
     return (

@@ -82,7 +82,7 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
                     "pl-3",
                     "pr-3",
                     "py-12",
-                    "border-l border-l-gray-700",
+                    "border-l dark:border-l-gray-700 border-l-gray-100",
                     "invisible",
                 )}
             />

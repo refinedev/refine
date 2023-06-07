@@ -1,5 +1,71 @@
 # @pankod/refine-mantine
 
+## 2.16.2
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
+## 2.16.1
+
+### Patch Changes
+
+-   [#4431](https://github.com/refinedev/refine/pull/4431) [`c29a3618cf6`](https://github.com/refinedev/refine/commit/c29a3618cf6b577c36e90ec514f3a691c87aad8f) Thanks [@aliemir](https://github.com/aliemir)! - Updated the TSDoc comments to fix the broken links in the documentation.
+
+## 2.16.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/mantine";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
+## 2.15.0
+
+### Minor Changes
+
+-   [#4404](https://github.com/refinedev/refine/pull/4404) [`f67967e8c87`](https://github.com/refinedev/refine/commit/f67967e8c871b2252b4c1b827de3656bf153d1ee) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: fix name and state inconsistency in `<ThemedLayoutV2>`
+
+    `useSiderVisible` is deprecated, instead we created a new hook `useThemedLayoutContext` for it. `useThemedLayoutContext` similar to `useSiderVisible` but it returns more meaningful state names. However, `useSiderVisible` is still available for backward compatibility.
+
+    Updated `Sider` and `HamburgerMenu` components using `useThemedLayoutContext`.
+
+    ```tsx
+    import { useThemedLayoutContext } from "@refinedev/mantine";
+
+    const {
+        siderCollapsed,
+        setSiderCollapsed,
+        mobileSiderOpen,
+        setMobileSiderOpen,
+    } = useThemedLayoutContext();
+    ```
+
+## 2.14.4
+
+### Patch Changes
+
+-   [#4391](https://github.com/refinedev/refine/pull/4391) [`5fcc36c0272`](https://github.com/refinedev/refine/commit/5fcc36c0272993897b7b074215a4228ca5bb53aa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: name attribute to input fields in `forgotPassword`, `register` and `updatePassword` forms
+
+## 2.14.3
+
+### Patch Changes
+
+-   [#4391](https://github.com/refinedev/refine/pull/4391) [`5fcc36c0272`](https://github.com/refinedev/refine/commit/5fcc36c0272993897b7b074215a4228ca5bb53aa) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: name attribute to input fields in `forgotPassword`, `register` and `updatePassword` forms
+
 ## 2.14.2
 
 ### Patch Changes

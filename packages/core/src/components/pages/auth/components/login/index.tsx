@@ -37,14 +37,8 @@ export const LoginPage: React.FC<LoginProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
-    const renderLink = (link: React.ReactNode, text?: string) => {
-        if (link) {
-            if (typeof link === "string") {
-                return <ActiveLink to={link}>{text}</ActiveLink>;
-            }
-            return link;
-        }
-        return null;
+    const renderLink = (link: string, text?: string) => {
+        return <ActiveLink to={link}>{text}</ActiveLink>;
     };
 
     const renderProviders = () => {
@@ -100,10 +94,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label>
+                    <label htmlFor="email-input">
                         {translate("pages.login.fields.email", "Email")}
                     </label>
                     <input
+                        id="email-input"
                         name="email"
                         type="text"
                         size={20}
@@ -114,10 +109,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <label>
+                    <label htmlFor="password-input">
                         {translate("pages.login.fields.password", "Password")}
                     </label>
                     <input
+                        id="password-input"
                         type="password"
                         name="password"
                         required
@@ -127,12 +123,13 @@ export const LoginPage: React.FC<LoginProps> = ({
                     />
                     {rememberMe ?? (
                         <>
-                            <label>
+                            <label htmlFor="remember-me-input">
                                 {translate(
                                     "pages.login.buttons.rememberMe",
                                     "Remember me",
                                 )}
                                 <input
+                                    id="remember-me-input"
                                     name="remember"
                                     type="checkbox"
                                     size={20}

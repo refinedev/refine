@@ -92,12 +92,7 @@ const App: React.FC = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
@@ -168,6 +163,7 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -212,6 +208,7 @@ const App: React.FC = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
@@ -262,6 +259,7 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -306,6 +304,7 @@ const App: React.FC = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
@@ -356,6 +355,7 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -400,6 +400,7 @@ const App: React.FC = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />
@@ -450,6 +451,7 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, {
+    NavigateToResource,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -494,6 +496,7 @@ const App: React.FC = () => {
                                     </ThemedLayoutV2>
                                 }
                             >
+                                <Route index element={<NavigateToResource resource="blog_posts" />} />
                                 {/* highlight-start */}
                                 <Route path="blog-posts">
                                     <Route index element={<MuiInferencer />} />

@@ -11,28 +11,29 @@ import {
 } from "@refinedev/mantine";
 import { Title, Group, Image } from "@mantine/core";
 
-import { createInferencer } from "@/create-inferencer";
+import { createInferencer } from "../../create-inferencer";
 import {
     jsx,
     componentName,
-    prettyString,
     accessor,
     printImports,
     toSingular,
     noOp,
     getVariableName,
-} from "@/utilities";
+    translatePrettyString,
+    getMetaProps,
+    idQuoteWrapper,
+} from "../../utilities";
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-import { SharedCodeViewer } from "@/components/shared-code-viewer";
+import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
     InferencerResultComponent,
     InferField,
     RendererContext,
-} from "@/types";
-import { getMetaProps } from "@/utilities/get-meta-props";
+} from "../../types";
 
 /**
  * a renderer function for show page in Mantine
@@ -44,6 +45,7 @@ export const renderer = ({
     meta,
     isCustomPage,
     id,
+    i18n,
 }: RendererContext) => {
     const COMPONENT_NAME = componentName(
         resource.label ?? resource.name,
@@ -51,10 +53,15 @@ export const renderer = ({
     );
     const recordName = "record";
     const imports: Array<[element: string, module: string]> = [
+        ["IResourceComponentsProps", "@refinedev/core"],
         ["useShow", "@refinedev/core"],
         ["Show", "@refinedev/mantine"],
         ["Title", "@mantine/core"],
     ];
+
+    if (i18n) {
+        imports.push(["useTranslate", "@refinedev/core"]);
+    }
 
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
@@ -141,7 +148,12 @@ export const renderer = ({
                 );
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${variableIsLoading} ? <>Loading...</> : (
                     <>
                     ${(() => {
@@ -178,7 +190,12 @@ export const renderer = ({
                 `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 {${variableIsLoading} ? <>Loading...</> : (
                     <>
                     ${(() => {
@@ -224,7 +241,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
@@ -233,7 +255,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <TextField value={${accessor(
                     recordName,
                     field.key,
@@ -254,7 +281,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
@@ -263,7 +295,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Image sx={{ maxWidth: 200 }} src={${accessor(
                     recordName,
                     field.key,
@@ -288,7 +325,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
@@ -297,7 +339,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <EmailField value={${accessor(
                     recordName,
                     field.key,
@@ -322,7 +369,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
@@ -331,7 +383,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <UrlField value={${accessor(
                     recordName,
                     field.key,
@@ -356,7 +413,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(
                         recordName,
@@ -368,7 +430,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <BooleanField value={${accessor(
                     recordName,
                     field.key,
@@ -390,7 +457,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <DateField value={${val}} key={${val}} />
@@ -399,7 +471,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <DateField value={${accessor(
                     recordName,
                     field.key,
@@ -416,7 +493,12 @@ export const renderer = ({
             imports.push(["MarkdownField", "@refinedev/mantine"]);
 
             return jsx`
-                <Title mt="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title mt="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <MarkdownField value={${accessor(
                     recordName,
                     field.key,
@@ -442,7 +524,12 @@ export const renderer = ({
                 const val = accessor("item", undefined, field.accessor);
 
                 return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <Group spacing="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
@@ -451,7 +538,12 @@ export const renderer = ({
             `;
             }
             return jsx`
-                <Title my="xs" order={5}>${prettyString(field.key)}</Title>
+                <Title my="xs" order={5}>${translatePrettyString({
+                    resource,
+                    field,
+                    i18n,
+                    noQuotes: true,
+                })}</Title>
                 <NumberField value={${accessor(
                     recordName,
                     field.key,
@@ -498,16 +590,18 @@ export const renderer = ({
     });
 
     noOp(imports);
+    const useTranslateHook = i18n && `const translate = useTranslate();`;
 
     return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME} = () => {
+    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+        ${useTranslateHook}
         const { queryResult } = useShow(${
             isCustomPage
                 ? `{ 
                     resource: "${resource.name}", 
-                    id: ${id},
+                    id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
                         meta,
