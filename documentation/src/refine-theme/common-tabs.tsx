@@ -67,14 +67,12 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                     onClick={handleTabChange}
                     {...attributes}
                     className={clsx(
-                        "m-0",
-                        "px-2",
-                        "py-3",
+                        "m-0 mt-0",
+                        "py-3 px-1",
                         "flex items-center justify-center",
-                        "h-[47px]",
                         "border-b border-b-transparent",
                         "-mb-px",
-                        "text-base",
+                        "text-xs md:text-base 2xl:text-xl",
                         "min-w-[60px]",
                         "cursor-pointer",
                         "transition-all duration-200 ease-in-out",
@@ -83,8 +81,10 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                         selectedValue === value && "border-b-refine-blue",
                         selectedValue === value &&
                             "dark:text-gray-0 text-gray-900",
-                        "dark:bg-gradient-to-t dark:from-refine-indigo dark:via-transparent dark:to-transparent",
-                        "bg-gradient-to-t from-refine-blue via-transparent to-transparent",
+                        selectedValue === value &&
+                            "dark:bg-gradient-to-t dark:from-refine-indigo dark:via-transparent dark:to-transparent",
+                        selectedValue === value &&
+                            "bg-gradient-to-t from-refine-blue via-transparent to-transparent",
                         "bg-no-repeat",
                     )}
                     style={{
