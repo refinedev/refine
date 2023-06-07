@@ -1,8 +1,8 @@
+import { DeleteButton, EditButton, List, useDataGrid } from "@refinedev/mui";
 import React from "react";
-import { useDataGrid, List, EditButton, DeleteButton } from "@refinedev/mui";
 
 import Stack from "@mui/material/Stack";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 interface IPost {
     firstName: string;
@@ -13,7 +13,7 @@ interface IPost {
 function UserList() {
     const { dataGridProps } = useDataGrid<IPost>();
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "firstName",

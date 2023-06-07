@@ -4,7 +4,7 @@ import { useDoc } from "@docusaurus/theme-common/internal";
 // import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
 import { useLocation } from "@docusaurus/router";
 
-const TOCItem = ({
+export const TOCItem = ({
     id,
     value,
     level,
@@ -80,26 +80,13 @@ const TOCItem = ({
 };
 
 export const DocTOC = () => {
-    const { hash } = useLocation();
-
-    const baseActiveId = `${hash}`.replace("#", "");
-
-    const [activeId, setActiveId] = React.useState<string | undefined>(
-        baseActiveId,
-    );
-
-    React.useEffect(() => {
-        setActiveId(baseActiveId);
-    }, [baseActiveId]);
-
     // const docTOC = useDocTOCwithTutorial();
-    const { toc } = useDoc();
-
-    const hasTOC = toc?.length > 0;
+    const { toc, hasTOC, activeId, setActiveId } = useTOC();
 
     return (
         <div
             className={clsx(
+                "hidden xl:block",
                 "w-full",
                 "sticky right-0 top-[67px]",
                 "max-w-[280px]",
@@ -137,4 +124,30 @@ export const DocTOC = () => {
             </ul>
         </div>
     );
+};
+
+export const useTOC = () => {
+    const { hash } = useLocation();
+
+    const baseActiveId = `${hash}`.replace("#", "");
+
+    const [activeId, setActiveId] = React.useState<string | undefined>(
+        baseActiveId,
+    );
+
+    React.useEffect(() => {
+        setActiveId(baseActiveId);
+    }, [baseActiveId]);
+
+    // const docTOC = useDocTOCwithTutorial();
+    const { toc } = useDoc();
+
+    const hasTOC = toc?.length > 0;
+
+    return {
+        toc,
+        activeId,
+        setActiveId,
+        hasTOC,
+    };
 };

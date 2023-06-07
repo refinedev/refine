@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from "react";
+import { SVGProps } from "react";
 
-export const CloseIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width="32"
         height="32"
@@ -16,7 +17,7 @@ export const CloseIcon = (props: React.SVGProps<SVGSVGElement>) => (
             height="2"
             rx="1"
             transform="rotate(-45 6.80786 23.7783)"
-            fill="#0A0A29"
+            fill="currentColor"
         />
         <rect
             x="8.22192"
@@ -25,7 +26,7 @@ export const CloseIcon = (props: React.SVGProps<SVGSVGElement>) => (
             height="2"
             rx="1"
             transform="rotate(45 8.22192 6.80762)"
-            fill="#0A0A29"
+            fill="currentColor"
         />
     </svg>
 );

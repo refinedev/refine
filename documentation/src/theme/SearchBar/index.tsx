@@ -164,8 +164,8 @@ function DocSearch({
                 onMouseOver={importDocSearchModalIfNeeded}
                 onClick={onOpen}
                 ref={searchButtonRef}
-                className="refine-docsearch-button"
                 docSearchButton={props.docSearchButton}
+                {...props}
             />
 
             {isOpen &&
@@ -193,6 +193,7 @@ function DocSearch({
         </>
     );
 }
+
 export default function SearchBar({ CustomButton }) {
     const { siteConfig } = useDocusaurusContext();
     return (

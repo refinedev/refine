@@ -827,7 +827,7 @@ const SampleList = () => {
             },
         });
 
-    const columns = React.useMemo<GridColumns<any>>(
+    const columns = React.useMemo<GridColDef<any>[]>(
         () => [
             {
                 field: "id",

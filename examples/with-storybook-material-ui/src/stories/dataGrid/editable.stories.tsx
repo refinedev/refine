@@ -1,7 +1,7 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useUpdate } from "@refinedev/core";
+import { useDataGrid } from "@refinedev/mui";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 
@@ -18,7 +18,7 @@ export default {
     decorators: [(Story) => RefineWithoutLayout(Story)],
 } as ComponentMeta<typeof DataGrid>;
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     {
         field: "id",
         headerName: "ID",
@@ -42,7 +42,6 @@ export const Editable: ComponentStory<typeof DataGrid> = (args) => {
         <div style={{ height: 700, width: "100%" }}>
             <DataGrid
                 {...dataGridProps}
-                experimentalFeatures={{ newEditingApi: true }}
                 processRowUpdate={(newRow) => {
                     mutate({
                         id: newRow.id,
