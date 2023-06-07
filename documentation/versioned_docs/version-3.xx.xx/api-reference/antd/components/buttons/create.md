@@ -20,20 +20,17 @@ import {
     List,
     useTable,
     // highlight-next-line
-    CreateButton
+    CreateButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
-        <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                // highlight-next-line
-                headerButtons={<CreateButton />}
-            >
+        <List // highlight-next-line
+            headerButtons={<CreateButton />}
+        >
+            <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" width="100%" />
             </Table>
@@ -81,7 +78,7 @@ const MyCreateComponent = () => {
     return (
         <CreateButton
             // highlight-next-line
-            resourceNameOrRouteName="categories" 
+            resourceNameOrRouteName="categories"
         />
     );
 };
