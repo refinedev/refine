@@ -32,13 +32,18 @@ export const LandingHeroVideo = () => {
                 )}
             >
                 <video
-                    src="assets/hero-video.mov"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    playsInline={true}
+                    controls={false}
                     className="w-full h-full mt-auto opacity-[0.99]"
-                />
+                >
+                    <source
+                        src="assets/hero-video.mov"
+                        type='video/mp4; codecs="hvc1"'
+                    />
+                </video>
             </div>
         </div>
     );
