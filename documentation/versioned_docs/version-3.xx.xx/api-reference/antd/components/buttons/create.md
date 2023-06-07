@@ -28,7 +28,7 @@ const PostList: React.FC = () => {
 
     return (
         <List 
-        // highlight-next-line
+            // highlight-next-line
             headerButtons={<CreateButton />}
         >
             <Table {...tableProps} rowKey="id">
