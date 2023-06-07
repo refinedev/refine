@@ -145,6 +145,15 @@ function DocSearch({
 
     const SearchButton = CustomButton ?? DocSearchButton;
 
+    const {
+        apiKey: _apiKey,
+        appId: _appId,
+        searchPagePath: _searchPagePath,
+        indexName: _indexName,
+        searchParameters: _searchParameters,
+        ...buttonProps
+    } = props;
+
     return (
         <>
             <Head>
@@ -164,8 +173,7 @@ function DocSearch({
                 onMouseOver={importDocSearchModalIfNeeded}
                 onClick={onOpen}
                 ref={searchButtonRef}
-                docSearchButton={props.docSearchButton}
-                {...props}
+                {...buttonProps}
             />
 
             {isOpen &&
