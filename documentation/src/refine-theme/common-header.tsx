@@ -58,7 +58,7 @@ export const CommonHeader = () => {
                         />
                         <div className="flex items-center gap-3">
                             <GitHubStar />
-                            <HeaderDiscordIcon />
+                            <HeaderDiscordIcon className="text-gray-500 dark:text-gray-400" />
                             <CommonThemeToggle />
                         </div>
                     </div>
@@ -67,7 +67,7 @@ export const CommonHeader = () => {
                         className="block header-md:hidden"
                         onClick={() => setIsModalOpen(true)}
                     >
-                        <HamburgerIcon />
+                        <HamburgerIcon className="text-gray-500 dark:text-gray-400" />
                     </button>
                 </div>
             </div>

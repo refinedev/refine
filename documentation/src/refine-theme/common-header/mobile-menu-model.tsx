@@ -9,7 +9,7 @@ import {
     DiscordIcon,
     TwitterIcon,
 } from "../icons/popover";
-import { RefineDarkLogoIcon } from "../icons/refine-dark-logo";
+import { RefineLogoIcon } from "../icons/refine-logo";
 import { CloseIcon } from "../icons/close";
 import { MENU_ITEMS, NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
@@ -40,24 +40,30 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className={clsx("fixed inset-0", "bg-gray-100")}>
+                    <div
+                        className={clsx(
+                            "fixed inset-0",
+                            "bg-gray-100 dark:bg-gray-800",
+                        )}
+                    >
                         <div
                             className={clsx(
                                 "flex items-center justify-between",
                                 "p-4",
                             )}
                         >
-                            <RefineDarkLogoIcon />
+                            <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
                             <button
                                 type="button"
                                 className={clsx(
                                     "rounded-lg",
-                                    "hover:bg-gray-200",
+                                    "hover:brightness-105",
                                     "active:scale-90",
                                     "transition-all duration-200 ease-in-out",
                                 )}
                             >
                                 <CloseIcon
+                                    className="text-gray-900 dark:text-gray-400"
                                     onClick={() => setIsModalOpen(false)}
                                 />
                             </button>
@@ -93,8 +99,8 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                 className={clsx(
                                     "w-full max-w-[336px] header-sm:max-w-[624px] max-h-full",
                                     "overflow-auto",
-                                    "border border-gray-200 rounded-lg",
-                                    "bg-white",
+                                    "border border-gray-200 dark:border-gray-600 rounded-lg",
+                                    "bg-white dark:bg-gray-900",
                                     "text-left",
                                     "align-middle",
                                     "flex flex-col header-sm:flex-row",
@@ -156,21 +162,21 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                 <div
                                     className={clsx(
                                         "header-sm:w-[288px] max-h-[calc(100vh-97px)]",
-                                        "header-sm:bg-gray-50",
+                                        "header-sm:bg-gray-50 header-sm:dark:bg-gray-700",
                                         "header-sm:flex header-sm:flex-col header-sm:justify-between",
                                         "sticky top-0",
                                     )}
                                 >
                                     <div
                                         className={clsx(
-                                            "bg-white header-sm:bg-inherit",
+                                            "bg-white dark:bg-gray-700 header-sm:bg-inherit",
                                             "flex justify-between items-center",
                                             "header-sm:flex-col header-sm:gap-4",
-                                            "header-sm:border-b border-gray-200",
+                                            "header-sm:border-b border-gray-200 dark:border-gray-600",
                                             "py-3 px-4",
                                         )}
                                     >
-                                        <p className="text-gray-500 font-semibold">
+                                        <p className="text-gray-500 dark:text-gray-300 font-semibold">
                                             Join the party!
                                         </p>
                                         <div className="flex gap-4">
@@ -191,7 +197,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                     >
                                         <div
                                             className={clsx(
-                                                "bg-gray-50",
+                                                "bg-gray-50 dark:bg-gray-700",
                                                 "flex items-center",
                                                 "p-4",
                                             )}
@@ -200,7 +206,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                             <p
                                                 className={clsx(
                                                     "ml-4",
-                                                    "text-gray-600 text-xs",
+                                                    "text-gray-600 dark:text-gray-400 text-xs",
                                                 )}
                                             >
                                                 If you like refine, don’t forget

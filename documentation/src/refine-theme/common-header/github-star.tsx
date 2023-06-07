@@ -17,8 +17,14 @@ export const GitHubStar: React.FC = () => {
 
     return (
         <div className="flex items-center">
-            <HeaderGithubIcon />
-            <span className={clsx("ml-2", "text-sm font-medium text-white")}>
+            <HeaderGithubIcon className="text-gray-500 dark:gray-400" />
+            <span
+                className={clsx(
+                    "ml-2",
+                    "text-sm font-medium ",
+                    "text-gray-500 dark:text-gray-400",
+                )}
+            >
                 {formattedStarCount}
             </span>
         </div>
