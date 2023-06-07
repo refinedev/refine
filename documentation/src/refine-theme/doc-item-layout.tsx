@@ -13,6 +13,7 @@ import { SwizzleBadge } from "./doc-swizzle-badge";
 import { SourceCodeBadge } from "./doc-sourcecode-badge";
 import { useDocsVersion } from "@docusaurus/theme-common/internal";
 import { DocVersionBadge } from "./doc-version-badge";
+import { DocTOCMobile } from "./doc-toc-mobile";
 
 export const DocItemLayout = ({ children }) => {
     // const docTOC = useDocTOCwithTutorial();
@@ -29,7 +30,8 @@ export const DocItemLayout = ({ children }) => {
                     "flex-1",
                     "flex flex-col",
                     "items-center justify-start",
-                    "py-14",
+                    "px-4 sm:px-0 py-4 sm:py-14",
+                    "w-full",
                 )}
             >
                 <div className={clsx("max-w-screen-content w-full")}>
@@ -49,7 +51,7 @@ export const DocItemLayout = ({ children }) => {
                             {source && <SourceCodeBadge path={source} />}
                         </div>
                     </div>
-                    {/* {docTOC.mobile} */}
+                    <DocTOCMobile />
                     <div className={clsx("refine-prose")}>
                         <DocItemContent>{children}</DocItemContent>
                     </div>

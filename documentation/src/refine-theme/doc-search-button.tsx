@@ -1,13 +1,16 @@
 import clsx from "clsx";
 import React from "react";
+import { MagnifierIcon } from "./icons/magnifier";
 
 type Props = React.ComponentProps<"button"> & {
+    iconOnly?: boolean;
+    iconClassName?: string;
     placeholder?: string;
 };
 
 export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
     function DocSearchButtonComponent(
-        { className, placeholder, ...props },
+        { iconOnly = false, iconClassName, className, placeholder, ...props },
         ref,
     ) {
         return (
@@ -16,35 +19,54 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                 type="button"
                 {...props}
                 className={clsx(
-                    "dark:text-gray-0 text-gray-500",
-                    "py-2 pr-2 pl-4",
                     "rounded-lg",
-                    "flex items-center justify-between",
-                    "dark:bg-gray-700 bg-gray-0",
+                    "flex items-center",
                     "gap-5",
                     "text-base",
-                    "hover:dark:bg-gray-600",
                     "transition-all",
                     "duration-200",
                     "ease-in-out",
+                    {
+                        "w-8 h-8 sm:w-10 sm:h-10": iconOnly,
+                        "text-gray-500 dark:text-gray-400": iconOnly,
+                        "bg-gray-200 dark:bg-gray-700": iconOnly,
+                        "justify-center": iconOnly,
+                        "hover:brightness-110": iconOnly,
+                        "dark:text-gray-0 text-gray-500": !iconOnly,
+                        "dark:bg-gray-700 bg-gray-0": !iconOnly,
+                        "hover:dark:bg-gray-600": !iconOnly,
+                        "justify-between": !iconOnly,
+                        "py-2 pr-2 pl-4": !iconOnly,
+                        "rounded-full": iconOnly,
+                        "rounded-lg": !iconOnly,
+                    },
                     className,
                 )}
             >
-                <span className="opacity-75">
-                    {placeholder ?? "Search in documentation"}
-                </span>
-                <kbd
-                    className={clsx(
-                        "py-1 px-2",
-                        "rounded",
-                        "border dark:border-gray-600 border-gray-200",
-                        "dark:bg-gray-900 bg-gray-100",
-                        "text-sm leading-4",
-                        "dark:text-gray-400 text-gray-500",
-                    )}
-                >
-                    ⌘K
-                </kbd>
+                {iconOnly && <MagnifierIcon className={clsx(iconClassName)} />}
+                {!iconOnly && (
+                    <div
+                        className={clsx(
+                            "flex items-center justify-between gap-5",
+                        )}
+                    >
+                        <span className="opacity-75">
+                            {placeholder ?? "Search in documentation"}
+                        </span>
+                        <kbd
+                            className={clsx(
+                                "py-1 px-2",
+                                "rounded",
+                                "border dark:border-gray-600 border-gray-200",
+                                "dark:bg-gray-900 bg-gray-100",
+                                "text-sm leading-4",
+                                "dark:text-gray-400 text-gray-500",
+                            )}
+                        >
+                            ⌘K
+                        </kbd>
+                    </div>
+                )}
             </button>
         );
     },
