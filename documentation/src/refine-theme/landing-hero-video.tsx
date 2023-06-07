@@ -36,6 +36,7 @@ export const LandingHeroVideo = () => {
                     autoPlay
                     muted
                     loop
+                    playsInline
                     className="w-full h-full mt-auto opacity-[0.99]"
                 />
             </div>
