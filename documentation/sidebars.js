@@ -569,6 +569,7 @@ module.exports = {
                             ],
                         },
                         "api-reference/mui/theming",
+                        "api-reference/mui/migration-guide/v4-to-v5",
                     ],
                 },
 

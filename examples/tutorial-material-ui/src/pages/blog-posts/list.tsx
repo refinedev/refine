@@ -1,15 +1,15 @@
-import React from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useMany } from "@refinedev/core";
 import {
-    useDataGrid,
-    EditButton,
-    ShowButton,
+    DateField,
     DeleteButton,
+    EditButton,
     List,
     MarkdownField,
-    DateField,
+    ShowButton,
+    useDataGrid,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { useMany } from "@refinedev/core";
+import React from "react";
 
 export const BlogPostList = () => {
     const { dataGridProps } = useDataGrid();
@@ -22,7 +22,7 @@ export const BlogPostList = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<any>>(
+    const columns = React.useMemo<GridColDef<any>[]>(
         () => [
             {
                 field: "id",

@@ -6,6 +6,9 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
+            zIndex: {
+                modal: 100,
+            },
             colors: {
                 discord: "#5865F2",
                 twitter: "#00AAEC",
@@ -53,8 +56,12 @@ module.exports = {
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
             },
             screens: {
-                content: "656px",
+                "content-sm": "480px",
+                "content-md": "656px",
+                "content-2xl": "864px",
                 short: { raw: "(max-height: 650px) and (min-width: 1024px)" },
+                "header-sm": "640px",
+                "header-md": "1200px",
             },
         },
     },

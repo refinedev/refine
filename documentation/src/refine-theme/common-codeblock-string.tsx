@@ -132,6 +132,7 @@ export const CodeBlockString = ({
                                                 ) &&
                                                     "bg-gray-600 bg-opacity-50",
                                                 "px-4",
+                                                "text-xs sm:text-sm 2xl:text-base",
                                             )}
                                             showLineNumbers={showLineNumbers}
                                         />

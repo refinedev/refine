@@ -1,6 +1,6 @@
-import React from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { DateField, List, NumberField, useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import React from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
@@ -21,10 +21,10 @@ import {
     useTranslate,
 } from "@refinedev/core";
 
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 import { CustomTooltip, OrderStatus } from "components";
 
@@ -78,7 +78,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         syncWithLocation: false,
     });
 
-    const columns = React.useMemo<GridColumns<IOrder>>(
+    const columns = React.useMemo<GridColDef<IOrder>[]>(
         () => [
             {
                 field: "orderNumber",
@@ -224,7 +224,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                             {...dataGridProps}
                             columns={columns}
                             autoHeight
-                            rowsPerPageOptions={[4, 10, 20, 100]}
+                            pageSizeOptions={[4, 10, 20, 100]}
                         />
                     </List>
                     <TableContainer component={Paper}>

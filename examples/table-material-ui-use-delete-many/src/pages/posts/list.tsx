@@ -1,11 +1,11 @@
+import { Option, useDeleteMany, useSelect } from "@refinedev/core";
+import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
-import { Option, useSelect, useDeleteMany } from "@refinedev/core";
-import { useDataGrid, List } from "@refinedev/mui";
 
 import Button from "@mui/material/Button";
 import {
     DataGrid,
-    GridColumns,
+    GridColDef,
     GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
@@ -45,7 +45,7 @@ export const PostList: React.FC = () => {
         hasPagination: false,
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
@@ -112,11 +112,11 @@ export const PostList: React.FC = () => {
                 columns={columns}
                 autoHeight
                 checkboxSelection
-                onSelectionModelChange={(newSelectionModel) => {
+                onRowSelectionModelChange={(newSelectionModel) => {
                     setSelectedRowKeys(newSelectionModel as React.Key[]);
                 }}
-                rowsPerPageOptions={[10, 20, 50, 100]}
-                selectionModel={selectedRowKeys}
+                pageSizeOptions={[10, 20, 50, 100]}
+                rowSelectionModel={selectedRowKeys}
             />
         </List>
     );

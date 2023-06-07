@@ -4,7 +4,11 @@ import { useGithubContext } from "../context/GithubContext";
 import { GithubIcon } from "../components/landing/icons";
 import { Spinner } from "./spinner";
 
-export const CommonGithubStarButton = () => {
+type Props = {
+    className?: string;
+};
+
+export const CommonGithubStarButton = ({ className }: Props) => {
     const { loading, starCount } = useGithubContext();
 
     return (
@@ -14,13 +18,14 @@ export const CommonGithubStarButton = () => {
             rel="noreferrer"
             className={clsx(
                 "text-base",
-                "text-gray-400",
+                "text-gray-500 dark:text-gray-400",
                 "flex gap-2 items-center",
                 // "hover:underline",
                 "hover:text-refine-link",
                 "transition-colors",
                 "duration-200",
                 "ease-in-out",
+                className,
             )}
         >
             <GithubIcon className={clsx("w-6 h-6")} />

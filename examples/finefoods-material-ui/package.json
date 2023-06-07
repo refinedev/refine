@@ -5,7 +5,7 @@
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
     "@types/google.maps": "^3.50.4",
-    "@refinedev/core": "^4.18.1",
+    "@refinedev/core": "^4.18.2",
     "@refinedev/cli": "^2.5.5",
     "@refinedev/mui": "^4.18.2",
     "@refinedev/kbar": "1.1.0",
@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
-    "@mui/x-data-grid": "^5.12.1",
+    "@mui/x-data-grid": "^6.6.0",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

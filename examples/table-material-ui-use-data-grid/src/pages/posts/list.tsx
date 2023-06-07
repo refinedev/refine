@@ -1,10 +1,10 @@
-import React from "react";
 import { Option, useSelect } from "@refinedev/core";
-import { useDataGrid, List } from "@refinedev/mui";
+import { List, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
 import {
     DataGrid,
-    GridColumns,
+    GridColDef,
     GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
@@ -37,7 +37,7 @@ export const PostList: React.FC = () => {
         resource: "categories",
     });
 
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColDef<IPost>[]>(
         () => [
             {
                 field: "id",
@@ -89,7 +89,7 @@ export const PostList: React.FC = () => {
                 {...dataGridProps}
                 columns={columns}
                 autoHeight
-                rowsPerPageOptions={[10, 20, 30, 50, 100]}
+                pageSizeOptions={[10, 20, 30, 50, 100]}
             />
         </List>
     );
