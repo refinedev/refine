@@ -78,6 +78,22 @@ module.exports = {
                     "url('/assets/landing-video-bottom-line-glow.svg')",
                 "landing-linear-spectrum":
                     "linear-gradient(90deg, #FFFE00 0%, #FF9933 12.5%, #FF4C4D 25%, #ED5EC9 37.5%, #8000FF 50%, #3333FF 62.5%, #0080FF 75%, #47EBEB 87.5%, #26D97F 100%)",
+                "landing-planar-grid": "url('/assets/landing-planar-grid.svg')",
+                "landing-planar-grid-reversed":
+                    "url('/assets/landing-planar-grid-reversed.svg')",
+                "landing-tile-image-bg":
+                    "radial-gradient(50.33% 83.06% at -0.33% 100%, rgba(77, 77, 179, 0.5) 0%, rgba(77, 77, 179, 0) 100%)",
+                "landing-tile-tile-bg":
+                    "radial-gradient(232% 232% at 100% 100%, rgba(77, 77, 179, 0) 0%, rgba(77, 77, 179, 0.05) 33.33%, rgba(77, 77, 179, 0.1) 66.67%, rgba(77, 77, 179, 0.2) 100%)",
+                "landing-tile-border-bg":
+                    "radial-gradient(100% 100% at 0% 0%, #4D4DB3 0%, rgba(77, 77, 179, 0.05) 50%, rgba(77, 77, 179, 0.5) 100%)",
+                "landing-tile-grid-bg": "url('/assets/landing-tile-grid.svg')",
+                "landing-stats-bg": [
+                    "radial-gradient(59.21% 56.25% at 0% 0%, #17174F 0%, rgba(23, 23, 79, 0) 100%)",
+                    "linear-gradient(180deg, rgba(0, 0, 0, 0.33) 0%, rgba(0, 0, 0, 0.165) 100%)",
+                ],
+                "landing-stats-border-bg":
+                    "conic-gradient(from -90deg at 50% 50%, rgba(77, 77, 179, 0) 0deg, #4D4DB3 39.37deg, rgba(77, 77, 179, 0) 86.25deg, rgba(77, 77, 179, 0) 198.75deg, #4D4DB3 232.5deg, rgba(77, 77, 179, 0) 275.62deg, rgba(77, 77, 179, 0) 360deg)",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -113,6 +129,7 @@ module.exports = {
             "landing-xs": "360px",
             "landing-sm": "480px",
             "landing-md": "640px",
+            "landing-content": "944px",
             "landing-lg": "960px",
             "landing-xl": "1200px",
             "landing-2xl": "1440px",
