@@ -138,7 +138,15 @@ const SidebarCategory = ({
                 />
                 {!isHeader && (
                     <ChevronDownIcon
-                        className={clsx("w-6 h-6", "flex-shrink-0", "z-[1]")}
+                        className={clsx(
+                            "w-6 h-6",
+                            "flex-shrink-0",
+                            "z-[1]",
+                            "transition-transform duration-200 ease-in-out",
+                            {
+                                "transform -rotate-90": collapsed,
+                            },
+                        )}
                     />
                 )}
                 <span className="z-[1]">{item.label}</span>
