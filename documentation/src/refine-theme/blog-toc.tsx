@@ -78,7 +78,6 @@ export const BlogTOCItem = ({
 };
 
 export const BlogTOC = (props) => {
-    console.log("props", props);
     const { toc, hasTOC, activeId, setActiveId } = useTOC(props.toc);
 
     return (

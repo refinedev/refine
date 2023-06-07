@@ -10,37 +10,21 @@ import {
 } from "@docusaurus/theme-common/internal";
 import BlogLayout from "@theme/BlogLayout";
 import BlogPostPageMetadata from "@theme/BlogPostPage/Metadata";
-import TOC from "@theme/TOC";
+import { BlogTOC } from "../../refine-theme/blog-toc";
 
 import { BlogPostPageView, PostPaginator } from "../../components/blog";
 
 function BlogPostPageContent({ children }) {
     const { metadata, toc } = useBlogPost();
-    const { frontMatter, relatedPosts, authorPosts } = metadata;
-    const {
-        hide_table_of_contents: hideTableOfContents,
-        toc_min_heading_level: tocMinHeadingLevel,
-        toc_max_heading_level: tocMaxHeadingLevel,
-    } = frontMatter;
+    const { relatedPosts, authorPosts } = metadata;
 
     return (
-        <BlogLayout
-            toc={
-                !hideTableOfContents && toc.length > 0 ? (
-                    <TOC
-                        className="custom-table-of-contents blog-post-item-shadow rounded-[10px]"
-                        toc={toc}
-                        // minHeadingLevel={tocMinHeadingLevel}
-                        // maxHeadingLevel={tocMaxHeadingLevel}
-                    />
-                ) : undefined
-            }
-        >
-            {/* <BlogPostPageView>{children}</BlogPostPageView>
+        <BlogLayout toc={<BlogTOC toc={toc} />}>
+            <BlogPostPageView>{children}</BlogPostPageView>
             <br />
             <PostPaginator title="Related Articles" posts={relatedPosts} />
             <br />
-            <PostPaginator title="From Same Author" posts={authorPosts} /> */}
+            <PostPaginator title="From Same Author" posts={authorPosts} />
         </BlogLayout>
     );
 }
