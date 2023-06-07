@@ -108,6 +108,14 @@
     @apply bg-gray-50 bg-opacity-10;
 }
 
+.refine-prose table tbody tr:nth-child(even) {
+    @apply dark:bg-gray-900 bg-gray-50;
+}
+
+.refine-prose table thead {
+    @apply dark:bg-gray-900 bg-gray-50;
+}
+
 .refine-prose table thead tr {
     @apply border-none;
 }
