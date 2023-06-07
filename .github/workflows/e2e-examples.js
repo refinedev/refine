@@ -180,7 +180,7 @@ const runTests = async () => {
         return { success: true, empty: true };
     }
 
-    prettyLog("blue", "Running Tests for Examples");
+    prettyLog("blue", `Running Tests for ${examplesToRun.length} Examples`);
     prettyLog("blue", `Examples: ${examplesToRun.join(", ")}`);
     console.log("\n");
 
