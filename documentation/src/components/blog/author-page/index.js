@@ -29,7 +29,7 @@ const AuthorPage = (props) => {
             <BlogListPageMetadata />
             <BlogLayout>
                 <AuthorCardWithProps author={author} />
-                <div className="border-b border-gray-200 mb-6" />
+                <div className="border-b border-gray-200 dark:border-gray-700 mb-6" />
                 <h1 className="text-4xl">Posts</h1>
                 <BlogPostItems items={items} showTitle={false} />
             </BlogLayout>
