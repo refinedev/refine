@@ -85,13 +85,13 @@ There are a lot of benefits to using refine in your applications, to name a few:
 -   Authentication, state management, data fetching, and routing come out of the box.
 -   refine is open source, so you don't have to worry about constraints.
 
-One of refine's core features is its out-of-the-box integration with UI frameworks such as MUI and Ant design. We'll look at how to use the latter in this guide.
+One of refine's core features is its out-of-the-box integration with UI frameworks such as Material UI and Ant design. We'll look at how to use the latter in this guide.
 
 ## Project setup
 
 Before we go any further, let's set up a refine sample CRUD app project and install the required packages using superplate.
 
-Superplate is a CLI tool for quickly bootstrapping a refine project. The tool provides the option of setting up a headless refine project or a project paired with third-party UI libraries such as [Ant design](https://ant.design/) and [Material UI](https://mui.com/). We'll be using the latter for this tutorial.
+Superplate is a CLI tool for quickly bootstrapping a refine project. The tool provides the option of setting up a headless refine project or a project paired with third-party UI libraries such as [Ant design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/). We'll be using the latter for this tutorial.
 
 As a first step, run the following command on your command line tool:
 

@@ -37,7 +37,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 **refine** offers you almost everything you need while developing an `Admin Panel`, `Dashboard`, `B2B` or `B2C` application, with many features it provides. It does not limit you in situations that may arise during project development and offers you the opportunity to customize it.
 
-With the Data Provider feature it provides, you don't need to think about your API or GraphQL queries and write extra queries! Thanks to Refine hooks, you can easily fetching the data in your database and manage your state structure. In addition to quickly fetch and manage your data, you can easily design your UI with [Ant Design](https://ant.design/) and [Material UI (comming soon)](https://mui.com/) ready components used as out-of-the-box by **refine**.
+With the Data Provider feature it provides, you don't need to think about your API or GraphQL queries and write extra queries! Thanks to Refine hooks, you can easily fetching the data in your database and manage your state structure. In addition to quickly fetch and manage your data, you can easily design your UI with [Ant Design](https://ant.design/) and [Material UI (comming soon)](https://mui.com/material-ui/getting-started/overview/) ready components used as out-of-the-box by **refine**.
 
 **refine** is a `headless` React framework. It can be used independently of the UI. You can easily use all the features of refinement with any UI library.
 

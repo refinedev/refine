@@ -37,7 +37,7 @@ Table of Contents
 4. [Supabase](#supabase)
 5. [Tailwind](#tailwind)
 6. [Ant Design](#antd)
-7. [Material-UI](#mui)
+7. [Material UI](#material-ui)
 8. [auth0](#auth0)
 9. [cerbos](#cerbos)
 10. [Refine](#refine)
@@ -89,9 +89,9 @@ It's fast, flexible, and reliable — with zero-runtime.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/antd.jpg" alt="antd" />
 
-### 7. Material UI <a name="mui"></a>
+### 7. Material UI <a name="material-ui"></a>
 
-**[Material UI](https://mui.com/)** offers a comprehensive suite of UI tools to help you ship new features faster. Start with Material UI, our fully-loaded component library, or bring your own design system to our production-ready components.
+**[Material UI](https://mui.com/material-ui/getting-started/overview/)** offers a comprehensive suite of UI tools to help you ship new features faster. Start with Material UI, our fully-loaded component library, or bring your own design system to our production-ready components.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/mui.jpg" alt="mui" />
   

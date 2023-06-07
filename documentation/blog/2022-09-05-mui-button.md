@@ -1,6 +1,6 @@
 ---
 title: Material UI button in React
-description: A complete guide on using Material UI (MUI) button in a React app
+description: A complete guide on using Material UI button in a React app
 slug: mui-button-in-react
 authors: doro_onome
 tags: [material-ui, react]
@@ -11,16 +11,16 @@ hide_table_of_contents: false
 ## Introduction
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`. 
 
-In this article, we will deeply explore the MUI `Button` component, its variants, and the different ways it can be used in a React application.  
+In this article, we will deeply explore the Material UI `Button` component, its variants, and the different ways it can be used in a React application.  
 
 <!--truncate-->
 
 Steps we'll cover:
 - [What is Material UI](#what-is-material-ui)
-- [Getting Started with the MUI Button component](#getting-started-with-the-mui-button-component)
+- [Getting Started with the Material UI Button component](#getting-started-with-the-material-ui-button-component)
 - [How to use Material UI Button Component in your React project](#how-to-use-material-ui-button-component-in-your-react-project)
  
-- [Creating a Calculator UI with light and dark mode using React MUI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-mui-button-component)
+- [Creating a Calculator UI with light and dark mode using React Material UI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-material-ui-button-component)
 
   
 
@@ -29,7 +29,7 @@ Material UI is a React component library that is open source and based on Google
 
 The categories of components that Material UI can provide you include Layout components, Navigation components, Input components, and Data Display components. The `Button` is enlisted among the `Input` components. 
 
-Install the MUI library into your project as part of your `package.json` dependencies with the following command:
+Install the Material UI library into your project as part of your `package.json` dependencies with the following command:
 
 Use npm
 `npm install @mui/material @emotion/react @emotion/styled`
@@ -37,7 +37,7 @@ Use npm
 Use yarn
 `npm install @mui/material @emotion/react @emotion/styled`
 
-## Getting Started with the MUI Button component
+## Getting Started with the Material UI Button component
 The Material UI `Button` component provides developers with the tools that are needed to allow users perform actions and make decisions with a single tap/click. Buttons represent actions that users can take. 
 They are typically placed throughout your user interface in forms, navigation bars, cards, modal popups e.t.c.
 
@@ -46,7 +46,7 @@ The **Material UI Button** component typically comes in three variants:
 * Contained Button
 * Outlined Button
 
-Here’s an illustration of how you can apply these MUI Button variants in your React application:
+Here’s an illustration of how you can apply these Material UI Button variants in your React application:
 
 ```tsx
 import * as React from 'react';
@@ -76,7 +76,7 @@ Here’s what they look like:
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/button1.png" alt="button1" />
 </div>
 
-### MUI Button Colors
+### Material UI Button Colors
 You can use the `color` prop to apply a colour to Material UI buttons from the theme palette.
 
 ```tsx
@@ -90,7 +90,7 @@ You can use the `color` prop to apply a colour to Material UI buttons from the t
 ```
 
 
-### MUI Button Sizes
+### Material UI Button Sizes
 You can customise the size of Material UI buttons with the `size` prop:
 
 ```tsx
@@ -157,7 +157,7 @@ Here’s the result:
 ### Text Button
 Text buttons are typically used for less visible actions, such as those found in dialogs and cards. Text buttons in cards help to keep the focus on the card content. 
 
-Here’s a simple illustration of the MUI Text Button
+Here’s a simple illustration of the Material UI Text Button
 
 ```tsx
 <Button>Primary</Button>
@@ -175,7 +175,7 @@ Here’s a simple illustration of the MUI Text Button
 This is the default state for the **Material UI Button** component so you do not necessarily have to define this particular variant prop when calling the `Button` component.
 
 ### Contained Button
-Contained Buttons are high-emphasis buttons that can be identified by their elevation and fill. They indicate the primary actions of your apps. To use a contained button, you need to set the variant `contained` when calling the MUI `Button` component. 
+Contained Buttons are high-emphasis buttons that can be identified by their elevation and fill. They indicate the primary actions of your apps. To use a contained button, you need to set the variant `contained` when calling the Material UI `Button` component. 
 
 Here’s an example:
 
@@ -197,7 +197,7 @@ Here’s an example:
 ### Outlined Button
 Outlined buttons are medium-emphasis buttons that contain actions that are crucial but not the primary action in your app. Additionally, outlined buttons can be used as a higher emphasis alternative to text buttons or a lower emphasis alternative to contained buttons. 
 
-You can use Outlined **MUI button** by specifying the `outlined` prop when calling the `Button` component. 
+You can use Outlined **Material UI button** by specifying the `outlined` prop when calling the `Button` component. 
 
 ```tsx
 <Button variant="outlined">Primary Outlined Button</Button>
@@ -343,7 +343,7 @@ export default IconLabelButtons
 </div>
 
 
-## Creating a Calculator UI with light and dark mode using React MUI Button Component
+## Creating a Calculator UI with light and dark mode using React Material UI Button Component
 **Material UI Buttons** can be used for a variety of purposes in your React application. You can use them to take actions, switch directories and execute specific commands in your app. We can showcase some of their uses and function in a Calculator UI with light and dark mode toggling features.
 
 The app will have two components:
@@ -502,7 +502,6 @@ Here’s what our final app looks like:
 
 ## Conclusion
 This article covered **Material UI Buttons** and their applications in different areas of a React application. We also explored a possible use case in a calculator user interface with light and dark mode themes. You can access the source code on my [GitHub Repo](https://github.com/Nomzy-kush/Calculator-UI-with-Light-and-Dark-mode-React-MUI).
-You can also see the deployed application [here](https://calculator-ui-with-light-and-dark-mode-react-mui.vercel.app/).   
-
+You can also see the deployed application [here](https://calculator-ui-with-light-and-dark-mode-react-mui.vercel.app/).
 
 

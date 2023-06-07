@@ -215,7 +215,7 @@ Refer to the documentation to learn more about the [`resources`](https://refine.
 
 ## Listing Records
 
-With the setup out of the way, we can populate the List page with data from the API using MUI’s `<DataGrid>` component before we delve into the form creation process.
+With the setup out of the way, we can populate the List page with data from the API using MUI X’s `<DataGrid>` component before we delve into the form creation process.
 
 ``<DataGrid>`` is a component for rendering tabular data in React. The component comes with several features out of the box, with the prominent ones being automatic pagination, sorting, and filtering.
 
@@ -231,7 +231,7 @@ import React from "react";
 import { useDataGrid, DataGrid, List } from "@refinedev/mui";
 ```
 
-`useDataGrid` is a refine hook that fetches data from the API and wraps them with various helper hooks required for MUI components, such as the `<DataGrid>` component to render data.
+`useDataGrid` is a refine hook that fetches data from the API and wraps them with various helper hooks required for Material UI components, such as the MUI X `<DataGrid>` component to render data.
 
 Next, add the following code before the return statement inside the `UserList` function:
 
@@ -353,7 +353,7 @@ Right now, the form lacks the functionality of an actual form. To make it functi
 
 ## Using the controller component
 
-The `Controller` component is a wrapper for controlled inputs. It lets us register controlled input components from external UI libraries such as MUI and Ant design to React hook form.
+The `Controller` component is a wrapper for controlled inputs. It lets us register controlled input components from external UI libraries such as Material UI and Ant design to React hook form.
 
 The Controller component accepts three major props:
 
@@ -779,9 +779,9 @@ The `Box` component will create a Flexbox context around both components and ali
 
 
 
-Alternatively, we can use a MUI bin icon instead of a button. This will give the form a better aesthetical feel.
+Alternatively, we can use a Material UI bin icon instead of a button. This will give the form a better aesthetical feel.
 
-To do this, import the `DeleteIcon` icon component from MUI like so:
+To do this, import the `DeleteIcon` icon component from Material UI like so:
 
 ```tsx title="src/pages/UserCreate.tsx"
 import DeleteIcon from "@mui/icons-material/Delete";

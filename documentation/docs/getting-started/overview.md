@@ -14,7 +14,7 @@ slug: /
 
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your _UI_ _components_ and _business logic_, so they never keep you from customizing your _UI_ or coding your own flow.
 
-refine also ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+refine also ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
 All in all, **refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_.
 
