@@ -164,7 +164,6 @@ function DocSearch({
                 onMouseOver={importDocSearchModalIfNeeded}
                 onClick={onOpen}
                 ref={searchButtonRef}
-                className="refine-docsearch-button"
                 docSearchButton={props.docSearchButton}
                 {...props}
             />

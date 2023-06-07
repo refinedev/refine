@@ -64,9 +64,10 @@
     --ifm-alert-shadow: 0.5px 1px 1px 0px rgba(0, 0, 0, 0.15);
     /* var(--ifm-font-size-base)/var(--ifm-line-height-base) var(--ifm-font-family-base) */
     --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a8a8a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-up'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
-    --ifm-font-family-base: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans",
-        sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-        "Segoe UI Symbol";
+    --ifm-font-family-base: "Outfit", system-ui, -apple-system, "Segoe UI",
+        Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont,
+        "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
     /* aliemir theme overrides end */
     --tutorial-card-bg: var(--ifm-card-background-color);
     ---tutorial-card-bg-hover: var(--ifm-card-background-color);
@@ -299,7 +300,8 @@
 }
 
 .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist::after {
-    filter: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%);
+    filter: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg)
+        brightness(104%) contrast(98%);
 }
 
 .navbar-sidebar__back {
@@ -442,18 +444,6 @@
     @apply hidden xl:inline-block;
 }
 
-.refine-docsearch-button .DocSearch-Button-Keys kbd {
-    background: none;
-    @apply font-montserrat text-xs font-semibold text-[#2A2A42];
-    @apply mr-0 h-auto w-auto appearance-none border-0 border-none bg-transparent pb-0 pt-0.5 shadow-none;
-}
-
-.refine-docsearch-button .DocSearch-Button-Keys kbd:last-child::before {
-    position: relative;
-    display: block;
-    content: "+";
-}
-
 .navbar-sidebar__item.menu .menu__list {
     padding-left: 0;
 }
@@ -470,14 +460,20 @@
     transform: translate3d(calc(100% * -1), 0, 0);
 }
 
-#__docusaurus .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist::after {
+#__docusaurus
+    .navbar-sidebar__items
+    .menu__list
+    .menu__link.menu__link--sublist::after {
     display: block;
     position: relative;
     margin-top: -20px;
     filter: none;
 }
 
-#__docusaurus .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist[role="button"]::after {
+#__docusaurus
+    .navbar-sidebar__items
+    .menu__list
+    .menu__link.menu__link--sublist[role="button"]::after {
     bottom: unset;
     margin-top: 0;
     top: -26px;
@@ -635,17 +631,23 @@ html[data-page="index"] {
     @apply fixed md:relative;
 }
 
-.navbar-sidebar__items.navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu .menu__list,
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .navbar-sidebar__item.menu
+    .menu__list,
 .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list-item,
 .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
     text-align: left !important;
 }
 
-#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list {
+#__docusaurus
+    .navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .menu__list {
     padding-left: 0.75rem;
 }
 
-#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
+#__docusaurus
+    .navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .menu__link {
     padding-left: 0;
 }
 
@@ -676,7 +678,9 @@ html[data-page="index"] {
 /* #__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary {
 } */
 
-html[data-customized="true"] #__docusaurus .navbar__item.dropdown.dropdown--hoverable.dropdown--right {
+html[data-customized="true"]
+    #__docusaurus
+    .navbar__item.dropdown.dropdown--hoverable.dropdown--right {
     display: none;
 }
 
@@ -688,7 +692,9 @@ html[data-customized="true"] #__docusaurus .navbar__item.dropdown.dropdown--hove
     background-color: #f6f6f9;
 }
 
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus footer.refine-footer {
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    footer.refine-footer {
     background-color: #272729;
 }
 
@@ -709,26 +715,40 @@ html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar {
     @apply border-0 border-b border-solid border-b-[#2A2A42] border-opacity-80 bg-[#272729] bg-opacity-80;
 }
 
-html:not([data-theme="dark"]):not([data-customized="true"]) #__docusaurus .navbar {
+html:not([data-theme="dark"]):not([data-customized="true"])
+    #__docusaurus
+    .navbar {
     @apply border-0 border-b border-solid border-b-[#F6F6F9] border-opacity-80 bg-white bg-opacity-80;
 }
 
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .refine-docsearch-button {
-    @apply bg-[#1b1b1d];
-}
-
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .DocSearch-Button-Placeholder,
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .DocSearch-Search-Icon,
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .DocSearch-Button-Keys kbd {
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    .DocSearch-Button-Placeholder,
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    .DocSearch-Search-Icon,
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    .DocSearch-Button-Keys
+    kbd {
     @apply text-[#F6F6F9];
 }
 
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar .navbar__item,
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar .navbar__link {
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    .navbar
+    .navbar__item,
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    .navbar
+    .navbar__link {
     @apply text-[#F6F6F9];
 }
 
-html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar .header-github-link::before {
+html[data-theme="dark"]:not([data-customized="true"])
+    #__docusaurus
+    .navbar
+    .header-github-link::before {
     @apply brightness-[50];
 }
 
@@ -924,7 +944,11 @@ html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar .hea
 }
 
 @media (min-width: 997px) and (max-width: 1280px) {
-    aside.theme-doc-sidebar-container + main div.container div.row div.col.col--3 {
+    aside.theme-doc-sidebar-container
+        + main
+        div.container
+        div.row
+        div.col.col--3 {
         min-width: 30% !important;
     }
 }

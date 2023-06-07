@@ -21,10 +21,8 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                 className={clsx(
                     "rounded-lg",
                     "flex items-center",
-                    "bg-gray-700",
                     "gap-5",
                     "text-base",
-
                     "transition-all",
                     "duration-200",
                     "ease-in-out",

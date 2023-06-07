@@ -8,6 +8,7 @@ import { CommonGithubStarButton } from "./common-github-star-button";
 import { DocSidebarModal } from "./doc-sidebar-modal";
 import { RefineLogo } from "./common-refine-logo";
 import { CommonHamburgerIcon } from "./common-hamburger-icon";
+import { DocSearchButton } from "./doc-search-button";
 
 export const HEADER_HEIGHT = 67;
 
@@ -54,7 +55,9 @@ const Desktop = () => {
                     )}
                 >
                     <div className={clsx("xl:hidden flex")}>
-                        <SearchBar iconOnly />
+                        <SearchBar
+                            CustomButton={() => <DocSearchButton iconOnly />}
+                        />
                     </div>
                     <Divider />
                     <DocVersionDropdown />
@@ -82,7 +85,7 @@ export const Mobile = () => {
         >
             <RefineLogo title="Documentation" />
             <div className={clsx("flex items-center gap-4")}>
-                <SearchBar iconOnly />
+                <SearchBar CustomButton={() => <DocSearchButton iconOnly />} />
                 <CommonThemeToggle />
                 <CommonHamburgerIcon
                     onClick={() => setIsSidebarOpen(true)}
