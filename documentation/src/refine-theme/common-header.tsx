@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "@site/src/theme/SearchBar";
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import { HeaderDiscordIcon } from "./icons/header-discord";
@@ -7,7 +8,7 @@ import { RefineLogoIcon } from "./icons/refine-logo";
 import { HamburgerIcon } from "./icons/hamburger";
 
 import { GitHubStar } from "./common-header/github-star";
-import { MobileMenuModal } from "./common-header/mobile-menu-model";
+import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 import { Menu } from "./common-header/menu";
 import { DocSearchButton } from "./doc-search-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
@@ -41,7 +42,9 @@ export const CommonHeader = () => {
             <div className={clsx("max-w-[1440px]", "mx-auto")}>
                 <div className="flex items-center justify-between">
                     <div className="header-md:w-[260px]">
-                        <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                        <Link to="/">
+                            <RefineLogoIcon className="dark:text-gray-0 text-gray-900" />
+                        </Link>
                     </div>
                     <div className="hidden header-md:flex gap-8">
                         <Menu />
@@ -58,7 +61,14 @@ export const CommonHeader = () => {
                         />
                         <div className="flex items-center gap-3">
                             <GitHubStar />
-                            <HeaderDiscordIcon className="text-gray-500 dark:text-gray-400" />
+                            <Link
+                                to="https://discord.gg/refine"
+                                className={clsx(
+                                    "no-underline, hover:text-inherit",
+                                )}
+                            >
+                                <HeaderDiscordIcon className="text-gray-500 dark:text-gray-400" />
+                            </Link>
                             <CommonThemeToggle />
                         </div>
                     </div>
