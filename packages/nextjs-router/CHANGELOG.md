@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 5.3.2
+
+### Patch Changes
+
+-   [#4466](https://github.com/refinedev/refine/pull/4466) [`a398c19b023`](https://github.com/refinedev/refine/commit/a398c19b023e16e12f208d7972374826fc28cb8c) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the unhandled nullable `pathname` issue returning from `usePathname` hook for the `appDir` router.
+
 ## 5.3.1
 
 ### Patch Changes
