@@ -1,5 +1,11 @@
 # @pankod/refine-codemod
 
+## 4.1.6
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - The latest major update in `@refinedev/mui` to support `@mui/x-data-grid@6` has been released. This update introduces some changes to the existing codebases that `refine-v3-to-v4` codemod cannot cover or has no relation to. We've updated the codemod to install the `v4` version of `@refinedev/mui` to avoid any issues.
+
 ## 4.1.5
 
 ### Patch Changes
