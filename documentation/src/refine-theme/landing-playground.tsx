@@ -2,8 +2,52 @@ import React from "react";
 import clsx from "clsx";
 import { LandingRainbowButton } from "./landing-rainbow-button";
 import { PlayOutlinedIcon } from "./icons/play-outlined";
+import { useLocation } from "@docusaurus/router";
 
 export const LandingPlayground = () => {
+    const { search } = useLocation();
+
+    const params = React.useMemo(() => {
+        const _params = new URLSearchParams(search);
+        const paramsObj: Record<string, string> = {};
+
+        // @ts-expect-error no downlevel iteration
+        for (const [key, value] of _params.entries()) {
+            paramsObj[key] = value;
+        }
+
+        return paramsObj;
+    }, [search]);
+
+    const [playgroundVisible, setPlaygroundVisible] = React.useState(
+        !!params?.playground,
+    );
+
+    React.useEffect(() => {
+        if (params.playground) {
+            setPlaygroundVisible(true);
+            // scroll to element with id=playground
+            const playgroundElement = document.getElementById("playground");
+            if (playgroundElement) {
+                playgroundElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest",
+                });
+            }
+        }
+    }, [params.playground]);
+
+    const openPlayground = React.useCallback(() => {
+        setPlaygroundVisible(true);
+        // add playground to url without reloading
+        window.history.pushState(
+            {},
+            "",
+            `${window.location.pathname}?playground=true`,
+        );
+    }, []);
+
     return (
         <div className={clsx("mb-12")}>
             <div className={clsx("w-full", "relative", "z-[1]")}>
@@ -27,6 +71,7 @@ export const LandingPlayground = () => {
                     )}
                 />
                 <div
+                    id="playground"
                     className={clsx(
                         "my-12",
                         "max-w-screen-landing-content",
@@ -79,9 +124,8 @@ export const LandingPlayground = () => {
                             "landing-md:max-w-[624px]",
                             "h-[288px]",
                             "landing-lg:max-w-[944px]",
-                            "landing-lg:h-[512px]",
-                            "rounded-xl",
-                            "overflow-hidden",
+                            "landing-lg:h-[515px]",
+                            // "overflow-hidden",
                             "flex",
                         )}
                     >
@@ -92,135 +136,182 @@ export const LandingPlayground = () => {
                                 "h-full",
                                 "flex",
                                 "bg-landing-playground-bg",
+                                "border-opacity-50",
                                 "backdrop-blur-xl",
-                                "border",
+                                "border-[1.5px]",
                                 "border-refine-landing-playground-border",
                                 "rounded-xl",
                                 "overflow-hidden",
                             )}
                         >
-                            <div className={clsx("flex-1", "min-w-[50%]")}>
-                                <div
+                            <div
+                                className={clsx("flex-1", "w-full", "h-full", {
+                                    hidden: !playgroundVisible,
+                                    flex: playgroundVisible,
+                                    "scale-100": playgroundVisible,
+                                    "scale-0": !playgroundVisible,
+                                })}
+                            >
+                                <iframe
+                                    src="https://refine.new/embed-form"
                                     className={clsx(
-                                        "h-full w-full",
-                                        "flex items-start justify-center",
-                                        "flex-col",
-                                        "py-14",
-                                        "px-14",
-                                        "gap-6",
+                                        "w-full",
+                                        "h-full",
+                                        "border-none",
                                     )}
-                                >
-                                    <div
-                                        className={clsx(
-                                            "w-full",
-                                            "bg-landing-text-bg",
-                                            "bg-clip-text",
-                                            "text-transparent",
-                                            "text-[16px]",
-                                            "leading-[24px]",
-                                            "landing-lg:text-[24px]",
-                                            "landing-lg:leading-[32px]",
-                                            "text-center",
-                                            "landing-md:text-left",
-                                            "max-w-[304px]",
-                                            "mx-auto",
-                                            "landing-md:mx-0",
-                                        )}
-                                    >
-                                        Starting a new Refine project{" "}
-                                        <span className="block landing-lg:inline font-semibold">
-                                            takes less than one minute.
-                                        </span>
-                                    </div>
-                                    <div
-                                        className={clsx(
-                                            "w-full",
-                                            "text-[12px]",
-                                            "leading-[16px]",
-                                            "landing-lg:text-[16px]",
-                                            "landing-lg:leading-[24px]",
-                                            "text-gray-0",
-                                            "text-center",
-                                            "landing-md:text-left",
-                                            "max-w-[240px]",
-                                            "landing-md:max-w-[304px]",
-                                            "mx-auto",
-                                            "landing-md:mx-0",
-                                        )}
-                                    >
-                                        Use the setup wizard to create
-                                        tailor-made architectures for your
-                                        project.
-                                    </div>
-                                    <div
-                                        className={clsx(
-                                            "w-full",
-                                            "flex",
-                                            "justify-center",
-                                            "landing-md:justify-start",
-                                        )}
-                                    >
-                                        <LandingRainbowButton href="#form">
-                                            <PlayOutlinedIcon />
-                                            <span className="text-base font-semibold">
-                                                Start Now!
-                                            </span>
-                                        </LandingRainbowButton>
-                                    </div>
-                                </div>
+                                />
                             </div>
                             <div
                                 className={clsx(
+                                    {
+                                        hidden: playgroundVisible,
+                                        flex: !playgroundVisible,
+                                        "scale-0": playgroundVisible,
+                                        "scale-100": !playgroundVisible,
+                                    },
+                                    "flex",
                                     "flex-1",
-                                    "hidden landing-md:block",
-                                    "min-w-[50%]",
+                                    "w-full",
+                                    "h-full",
                                 )}
                             >
+                                <div className={clsx("flex-1", "min-w-[50%]")}>
+                                    <div
+                                        className={clsx(
+                                            "h-full w-full",
+                                            "flex items-start justify-center",
+                                            "flex-col",
+                                            "py-14",
+                                            "px-14",
+                                            "gap-6",
+                                        )}
+                                    >
+                                        <div
+                                            className={clsx(
+                                                "w-full",
+                                                "bg-landing-text-bg",
+                                                "bg-clip-text",
+                                                "text-transparent",
+                                                "text-[16px]",
+                                                "leading-[24px]",
+                                                "landing-lg:text-[24px]",
+                                                "landing-lg:leading-[32px]",
+                                                "text-center",
+                                                "landing-md:text-left",
+                                                "max-w-[304px]",
+                                                "mx-auto",
+                                                "landing-md:mx-0",
+                                            )}
+                                        >
+                                            Starting a new Refine project{" "}
+                                            <span className="block landing-lg:inline font-semibold">
+                                                takes less than one minute.
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={clsx(
+                                                "w-full",
+                                                "text-[12px]",
+                                                "leading-[16px]",
+                                                "landing-lg:text-[16px]",
+                                                "landing-lg:leading-[24px]",
+                                                "text-gray-0",
+                                                "text-center",
+                                                "landing-md:text-left",
+                                                "max-w-[240px]",
+                                                "landing-md:max-w-[304px]",
+                                                "mx-auto",
+                                                "landing-md:mx-0",
+                                            )}
+                                        >
+                                            Use the setup wizard to create
+                                            tailor-made architectures for your
+                                            project.
+                                        </div>
+                                        <div
+                                            className={clsx(
+                                                "w-full",
+                                                "flex",
+                                                "justify-center",
+                                                "landing-md:justify-start",
+                                            )}
+                                        >
+                                            <LandingRainbowButton
+                                                onClick={openPlayground}
+                                            >
+                                                <PlayOutlinedIcon />
+                                                <span className="text-base font-semibold">
+                                                    Start Now!
+                                                </span>
+                                            </LandingRainbowButton>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div
                                     className={clsx(
-                                        "w-full h-full",
-                                        "flex",
-                                        "justify-end",
-                                        "pr-8",
-                                        "landing-lg:pr-16",
-                                        "gap-4 landing-lg:gap-8",
+                                        "flex-1",
+                                        "hidden landing-md:block",
+                                        "min-w-[50%]",
                                     )}
                                 >
                                     <div
                                         className={clsx(
-                                            "-mt-[10%]",
-                                            "h-[120%]",
-                                            "w-[90px]",
-                                            "landing-lg:w-[177px]",
-                                            "rotate-[15deg]",
-                                            "bg-landing-playground-slide-left-bg",
-                                            "bg-[length:88px_1655px]",
-                                            "landing-lg:bg-[length:177px_3329px]",
-                                            "bg-[position:top_0px_left]",
-                                            "landing-md:animate-playground-slide-down-mobile",
-                                            "landing-lg:animate-playground-slide-down",
-                                            "landing-playground-slide-mask",
-                                            "bg-repeat-y",
+                                            "w-full h-full",
+                                            "flex",
+                                            "justify-end",
+                                            "pr-8",
+                                            "landing-lg:pr-16",
+                                            "gap-4 landing-lg:gap-8",
                                         )}
-                                    />
-                                    <div
-                                        className={clsx(
-                                            "-mt-[10%]",
-                                            "h-[120%]",
-                                            "w-[90px]",
-                                            "landing-lg:w-[177px]",
-                                            "rotate-[15deg]",
-                                            "bg-landing-playground-slide-right-bg",
-                                            "bg-[length:88px_1655px]",
-                                            "landing-lg:bg-[length:177px_3328px]",
-                                            "bg-[position:top_0px_left]",
-                                            "landing-md:animate-playground-slide-up-mobile",
-                                            "landing-lg:animate-playground-slide-up",
-                                            "landing-playground-slide-mask",
-                                            "bg-repeat-y",
-                                        )}
-                                    />
-                                    {/* <img src="assets/landing-playground-slide-left.svg" /> */}
+                                    >
+                                        <div
+                                            className={clsx(
+                                                "-mt-[10%]",
+                                                "h-[120%]",
+                                                "w-[90px]",
+                                                "landing-lg:w-[177px]",
+                                                "rotate-[15deg]",
+                                                "bg-landing-playground-slide-left-bg",
+                                                "bg-[length:88px_1655px]",
+                                                "landing-lg:bg-[length:177px_3329px]",
+                                                "bg-[position:top_0px_left]",
+                                                "landing-md:animate-playground-slide-down-mobile",
+                                                "landing-lg:animate-playground-slide-down",
+                                                "landing-playground-slide-mask",
+                                                "bg-repeat-y",
+                                            )}
+                                            style={{
+                                                animationPlayState:
+                                                    playgroundVisible
+                                                        ? "paused"
+                                                        : "running",
+                                            }}
+                                        />
+                                        <div
+                                            className={clsx(
+                                                "-mt-[10%]",
+                                                "h-[120%]",
+                                                "w-[90px]",
+                                                "landing-lg:w-[177px]",
+                                                "rotate-[15deg]",
+                                                "bg-landing-playground-slide-right-bg",
+                                                "bg-[length:88px_1655px]",
+                                                "landing-lg:bg-[length:177px_3328px]",
+                                                "bg-[position:top_0px_left]",
+                                                "landing-md:animate-playground-slide-up-mobile",
+                                                "landing-lg:animate-playground-slide-up",
+                                                "landing-playground-slide-mask",
+                                                "bg-repeat-y",
+                                            )}
+                                            style={{
+                                                animationPlayState:
+                                                    playgroundVisible
+                                                        ? "paused"
+                                                        : "running",
+                                            }}
+                                        />
+                                        {/* <img src="assets/landing-playground-slide-left.svg" /> */}
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -7,13 +7,20 @@ import { PlayOutlinedIcon } from "./icons/play-outlined";
 type Props = {
     children?: React.ReactNode;
     href?: string;
+    onClick?: () => void;
 };
 
-export const LandingRainbowButton = ({ children, href }: Props) => {
+export const LandingRainbowButton = ({ children, href, onClick }: Props) => {
+    const Comp = href ? Link : "button";
     return (
-        <Link
-            href={href}
+        <Comp
+            {...(href ? { href, to: href } : {})}
+            {...(onClick ? { onClick } : {})}
             className={clsx(
+                "z-[1]",
+                "appearance-none",
+                "focus:outline-none",
+                "block",
                 "relative",
                 "text-refine-bg",
                 "hover:no-underline",
@@ -43,6 +50,8 @@ export const LandingRainbowButton = ({ children, href }: Props) => {
                         "bg-landing-rainbow",
                         "animate-spin-slow",
                         "animation-slower-speed",
+                        "animation-paused",
+                        "group-hover:animation-running",
                     )}
                 />
             </div>
@@ -67,6 +76,6 @@ export const LandingRainbowButton = ({ children, href }: Props) => {
                     )}
                 </div>
             </div>
-        </Link>
+        </Comp>
     );
 };

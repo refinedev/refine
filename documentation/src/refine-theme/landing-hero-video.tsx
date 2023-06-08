@@ -4,7 +4,7 @@ import { LandingHeroMobileAnimation } from "./icons/landing-hero-mobile";
 
 export const LandingHeroVideo = () => {
     return (
-        <div className="relative">
+        <div className="relative pointer-events-none">
             <div
                 className={clsx(
                     "w-full",

@@ -12,12 +12,27 @@ import { LandingPlayground } from "../refine-theme/landing-playground";
 
 function Home() {
     React.useEffect(() => {
-        return () => {
-            // scroll to top after unmount with set timeout
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 0);
-        };
+        // if (typeof window !== "undefined" && window.location.hash) {
+        //     const id = window.location.hash.replace("#", "");
+        //     const element = document.getElementById(id);
+        //     if (element) {
+        //         element.scrollIntoView();
+        //     }
+        // }
+        // return () => {
+        //     // scroll to top after unmount with set timeout
+        //     setTimeout(() => {
+        //         if (typeof window !== "undefined" && window.location.hash) {
+        //             const id = window.location.hash.replace("#", "");
+        //             const element = document.getElementById(id);
+        //             if (element) {
+        //                 element.scrollIntoView();
+        //             }
+        //         } else {
+        //             window.scrollTo(0, 0);
+        //         }
+        //     }, 0);
+        // };
     }, []);
 
     return (

@@ -46,7 +46,7 @@
         mask-repeat: no-repeat;
     }
     .landing-playground-slide-mask {
-        mask-image: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.25) 100%);
+        mask-image: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.25) 100%);
         mask-size: 100% 100%;
         mask-position: center;
         mask-repeat: no-repeat;
