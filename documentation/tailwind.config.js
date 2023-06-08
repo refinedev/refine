@@ -27,6 +27,7 @@ module.exports = {
                     "bg-alt": "#262640",
                     link: "#6EB3F7",
                     "landing-tile-icon-border": "#4D4DB2",
+                    "landing-playground-border": "#4D4DB2",
                     "landing-tile-image-border": "#272762",
                     "landing-stats-fallback-bg": "#242442",
                     "landing-footer-bg": "#0F0F3D",
@@ -109,6 +110,10 @@ module.exports = {
                 ],
                 "landing-stats-border-bg":
                     "conic-gradient(from -90deg at 50% 50%, rgba(77, 77, 179, 0) 0deg, #4D4DB3 39.37deg, rgba(77, 77, 179, 0) 86.25deg, rgba(77, 77, 179, 0) 198.75deg, #4D4DB3 232.5deg, rgba(77, 77, 179, 0) 275.62deg, rgba(77, 77, 179, 0) 360deg)",
+                "landing-playground-bg": [
+                    "linear-gradient(90deg, rgba(23, 23, 79, 0) 0%, #17174F 100%)",
+                    "linear-gradient(180deg, rgba(0, 0, 0, 0.165) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.165) 100%)",
+                ],
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",

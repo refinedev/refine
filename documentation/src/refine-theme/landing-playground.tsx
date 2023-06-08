@@ -82,10 +82,24 @@ export const LandingPlayground = () => {
                             "flex",
                         )}
                     >
-                        <iframe
+                        <div
+                            className={clsx(
+                                "flex-1",
+                                "w-full",
+                                "h-full",
+                                "flex",
+                                "bg-landing-playground-bg",
+                                "backdrop-blur-xl",
+                                "border",
+                                "border-refine-landing-playground-border",
+                                "rounded-xl",
+                                "overflow-hidden",
+                            )}
+                        ></div>
+                        {/* <iframe
                             className="w-full h-full flex-1 bg-gray-100 rounded-xl"
                             srcDoc="<div>iframe</div>"
-                        />
+                        /> */}
                     </div>
                 </div>
                 <div
