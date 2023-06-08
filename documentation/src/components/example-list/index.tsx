@@ -479,7 +479,7 @@ const ExampleList: React.FC = () => {
                             "hidden md:block",
                             "not-prose",
                             "mb-0 mt-0",
-                            "text-sm",
+                            "text-2xl",
                             "text-gray-700 dark:text-gray-200",
                         )}
                     >
