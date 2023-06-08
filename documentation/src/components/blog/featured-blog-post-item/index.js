@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
-import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
+import { Date } from "@site/src/components/blog/common";
 import clsx from "clsx";
 
 export const FeaturedBlogPostItem = () => {
@@ -13,7 +13,6 @@ export const FeaturedBlogPostItem = () => {
         title,
         date,
         formattedDate,
-        readingTime,
         frontMatter,
         description,
         tags,

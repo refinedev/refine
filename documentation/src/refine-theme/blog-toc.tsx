@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useLocation } from "@docusaurus/router";
+import { Tags } from "@site/src/components/blog";
 
 export const BlogTOCItem = ({
     id,
@@ -96,6 +97,7 @@ export const BlogTOC = (props) => {
                 !hasTOC && "invisible",
             )}
         >
+            <Tags />
             <ul className="list-none m-0 p-0">
                 {toc.map((item) => {
                     return (

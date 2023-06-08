@@ -16,15 +16,12 @@ import { BlogPostPageView, PostPaginator } from "../../components/blog";
 
 function BlogPostPageContent({ children }) {
     const { metadata, toc } = useBlogPost();
-    const { relatedPosts, authorPosts } = metadata;
+    const { relatedPosts } = metadata;
 
     return (
         <BlogLayout toc={<BlogTOC toc={toc} />}>
             <BlogPostPageView>{children}</BlogPostPageView>
-            <br />
             <PostPaginator title="Related Articles" posts={relatedPosts} />
-            <br />
-            <PostPaginator title="From Same Author" posts={authorPosts} />
         </BlogLayout>
     );
 }

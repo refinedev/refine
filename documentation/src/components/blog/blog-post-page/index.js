@@ -14,8 +14,8 @@ import {
     LinkedinIcon,
 } from "react-share";
 
-import { Tags } from "@site/src/components/blog";
-import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
+import { Date, ReadingTime } from "@site/src/components/blog/common";
+import clsx from "clsx";
 
 export const BlogPostPageView = ({ children }) => {
     const { metadata, isBlogPostPage } = useBlogPost();
@@ -28,64 +28,106 @@ export const BlogPostPageView = ({ children }) => {
         frontMatter,
         tags,
         description,
+        authors,
     } = metadata;
+    const author = authors[0];
 
     const {
         siteConfig: { url },
     } = useDocusaurusContext();
 
     return (
-        <BlogPostItemContainer className="p-4">
-            <div className="relative">
-                <div className="absolute top-0 right-0 rounded-bl-[10px] bg-white">
-                    <div className="flex items-center space-x-2 px-2 py-1">
-                        <TwitterShareButton
-                            windowWidth={750}
-                            windowHeight={800}
-                            url={url + permalink}
-                            className="flex"
-                            title={title}
-                            hashtags={tags.map((tag) => tag.label)}
-                        >
-                            <TwitterIcon size={26} round />
-                        </TwitterShareButton>
-                        <RedditShareButton
-                            className="flex"
-                            windowWidth={750}
-                            windowHeight={600}
-                            url={url + permalink}
-                            title={title}
-                        >
-                            <RedditIcon size={26} round />
-                        </RedditShareButton>
-                        <LinkedinShareButton
-                            url={url + permalink}
-                            title={title}
-                            source={url}
-                            summary={description}
-                            className="flex"
-                        >
-                            <LinkedinIcon size={26} round />
-                        </LinkedinShareButton>
-                    </div>
+        <BlogPostItemContainer className="py-3 px-3 md:py-6 md:px-14">
+            <div className={clsx("flex", "justify-between", "items-center")}>
+                <Link
+                    to="/blog"
+                    className={clsx("text-gray-500 text-sm no-underline")}
+                >
+                    ← Back to blog
+                </Link>
+                <div className="flex items-center space-x-2 px-2 py-1">
+                    <span className="text-gray-500 text-sm">Share on</span>
+                    <TwitterShareButton
+                        windowWidth={750}
+                        windowHeight={800}
+                        url={url + permalink}
+                        className="flex"
+                        title={title}
+                        hashtags={tags.map((tag) => tag.label)}
+                    >
+                        <TwitterIcon size={26} round />
+                    </TwitterShareButton>
+                    <RedditShareButton
+                        className="flex"
+                        windowWidth={750}
+                        windowHeight={600}
+                        url={url + permalink}
+                        title={title}
+                    >
+                        <RedditIcon size={26} round />
+                    </RedditShareButton>
+                    <LinkedinShareButton
+                        url={url + permalink}
+                        title={title}
+                        source={url}
+                        summary={description}
+                        className="flex"
+                    >
+                        <LinkedinIcon size={26} round />
+                    </LinkedinShareButton>
                 </div>
+            </div>
+            <div className="">
                 <img
                     className="mb-2 rounded-xl"
                     src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                         "https://refine.ams3.cdn.digitaloceanspaces.com",
                         "",
                     )}?w=800`}
-                    alt="Post image"
+                    alt={title}
                 />
             </div>
-            <div className="mb-8 text-sm text-[#525860]">
-                <Date date={date} formattedDate={formattedDate} />
-                {typeof readingTime !== "undefined" && (
-                    <>
-                        <Spacer />
-                        <ReadingTime readingTime={readingTime} />
-                    </>
-                )}
+            <div className="mb-6 text-sm text-[#525860]">
+                <div
+                    className={clsx("flex", "justify-between", "items-center")}
+                >
+                    <div className="flex justify-center items-center gap-2">
+                        <Link to={`/blog/author/${author?.key}`} itemProp="url">
+                            <img
+                                src={author?.imageURL}
+                                alt={author?.name}
+                                loading="lazy"
+                                className="flex h-[32px] w-[32px] rounded-full object-cover"
+                            />
+                        </Link>
+                        <Link
+                            to={`/blog/author/${author?.key}`}
+                            itemProp="url"
+                            className={clsx(
+                                "flex-1",
+                                "text-gray-900 dark:text-gray-200",
+                                "text-sm",
+                                "no-underline",
+                                "hover:no-underline",
+                            )}
+                        >
+                            {author?.name}
+                        </Link>
+                        <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                            {author?.title}
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <Date date={date} formattedDate={formattedDate} />
+                        {typeof readingTime !== "undefined" && (
+                            <>
+                                <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                                <ReadingTime readingTime={readingTime} />
+                            </>
+                        )}
+                    </div>
+                </div>
             </div>
             <h1 className="text-[2rem] md:text-5xl" itemProp="headline">
                 {isBlogPostPage ? (
@@ -102,8 +144,6 @@ export const BlogPostPageView = ({ children }) => {
                 itemProp="articleBody"
             >
                 <MDXContent>{children}</MDXContent>
-                <br />
-                <Tags />
             </div>
         </BlogPostItemContainer>
     );

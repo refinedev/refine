@@ -56,21 +56,23 @@ function BlogTagsPostsPageMetadata({ tag }) {
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
     return (
         <BlogLayout sidebar={sidebar}>
-            <TagsList tags={tags} />
-            <br />
-            <div className="px-3">
-                <div className="text-gray-500 dark:text-gray-400">
-                    Posts tagged with
+            <div className="pt-8 py-6">
+                <TagsList tags={tags} />
+                <br />
+                <div className="px-3">
+                    <div className="text-gray-500 dark:text-gray-400">
+                        Posts tagged with
+                    </div>
+                    <h1>{tag.label}</h1>
                 </div>
-                <h1>{tag.label}</h1>
-            </div>
 
-            <BlogPostItems items={items} showTitle={false} />
-            <br />
-            <BlogListPaginator
-                metadata={listMetadata}
-                basePath={`/blog/tags/${tag.label}`}
-            />
+                <BlogPostItems items={items} showTitle={false} />
+                <br />
+                <BlogListPaginator
+                    metadata={listMetadata}
+                    basePath={`/blog/tags/${tag.label}`}
+                />
+            </div>
         </BlogLayout>
     );
 }
