@@ -67,6 +67,7 @@ module.exports = {
                 "landing-stars": [
                     "linear-gradient(180deg, rgba(10,10,41,0.6) 0%, rgba(10, 10, 41, 0.4) 100%)",
                     "url(/assets/landing-stars.webp)",
+                    "url(/assets/landing-noise.webp)",
                 ],
                 "landing-text-bg":
                     "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%)",
