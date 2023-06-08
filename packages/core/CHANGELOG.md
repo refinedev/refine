@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 4.19.0
+
+### Minor Changes
+
+-   [#4448](https://github.com/refinedev/refine/pull/4448) [`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: useApiUrl hook tries to infer data provider from current resource. If current resource has a different data provider than the default one, it will be inferred without needing to explicitly pass data provider name.
+
 ## 4.18.2
 
 ### Patch Changes

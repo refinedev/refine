@@ -1,5 +1,14 @@
 # @pankod/refine-live-previews
 
+## 0.3.3
+
+### Patch Changes
+
+-   Updated dependencies [[`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0)]:
+    -   @refinedev/inferencer@4.0.0
+    -   @refinedev/core@4.19.0
+    -   @refinedev/mui@5.0.0
+
 ## 0.3.2
 
 ### Patch Changes
