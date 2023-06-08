@@ -957,47 +957,6 @@ html[data-theme="dark"]:not([data-customized="true"])
     padding-top: 1.125rem;
 }
 
-#__docusaurus .tutorial__item-link {
-    color: var(--tutorial-toc-text-color);
-}
-
-#__docusaurus .tutorial__item--toc-item {
-    color: var(--tutorial-toc-text-color);
-}
-
-#__docusaurus .tutorial__item--toc-item.active,
-#__docusaurus .tutorial__item--toc-item.active:hover,
-#__docusaurus .tutorial__item--toc-item.active:active {
-    color: var(--ifm-color-primary);
-}
-
-#__docusaurus .tutorial__item--unit-item {
-    position: relative;
-}
-
-#__docusaurus .tutorial__item--unit-item::before {
-    content: "";
-    display: block;
-    width: 7px;
-    height: 7px;
-    background-color: var(--tutorial-toc-bg-color);
-    position: absolute;
-    right: -7px;
-    bottom: 0;
-}
-
-#__docusaurus .tutorial__item--unit-item::after {
-    content: "";
-    display: block;
-    width: 7px;
-    height: 7px;
-    background-color: var(--ifm-background-color);
-    position: absolute;
-    right: -7px;
-    bottom: 0;
-    border-bottom-left-radius: 100px;
-}
-
 .checklist-container {
     @apply rounded px-6 py-5 mb-7;
     border-left: 5px solid var(--ifm-color-primary);
@@ -1029,10 +988,6 @@ html[data-theme="dark"]:not([data-customized="true"])
     text-align: center;
     background-color: var(--tutorial-toc-bg-color);
     @apply px-[10px] pt-[7px] pb-[10px];
-}
-
-.tutorial--framework-select--container {
-    @apply mt-4;
 }
 
 .tutorial--framework-select__title {
