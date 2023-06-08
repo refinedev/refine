@@ -92,6 +92,11 @@
 
 .refine-prose table {
     @apply prose-table:border-none;
+    @apply table;
+}
+
+.refine-prose table tr {
+    border-top: unset;
 }
 
 .refine-prose table th,
@@ -108,6 +113,14 @@
     @apply bg-gray-50 bg-opacity-10;
 }
 
+.refine-prose table tbody tr:nth-child(even) {
+    @apply dark:bg-gray-900 bg-gray-50;
+}
+
+.refine-prose table thead {
+    @apply dark:bg-gray-900 bg-gray-50;
+}
+
 .refine-prose table thead tr {
     @apply border-none;
 }
@@ -120,6 +133,14 @@
 .refine-toc-item code {
     @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded;
     font-size: 12px;
+}
+
+a:has(> code) {
+    text-decoration: none !important;
+}
+
+a:has(> code) code {
+    @apply !text-refine-blue dark:!text-refine-link;
 }
 
 .admonition.admonition-caution code {

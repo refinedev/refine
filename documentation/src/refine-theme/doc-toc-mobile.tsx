@@ -74,7 +74,7 @@ export const DocTOCMobile = () => {
                                                     level === 2 && "pl-3",
                                                     level === 3 && "pl-7",
                                                     level === 4 && "pl-11",
-                                                    "py-2",
+                                                    "py-2 pr-3",
                                                     "rounded-lg",
                                                     "transition-colors duration-200 ease-in-out",
                                                     "block",
