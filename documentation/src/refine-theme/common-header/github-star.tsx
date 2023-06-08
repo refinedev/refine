@@ -4,7 +4,11 @@ import clsx from "clsx";
 import { useGithubContext } from "@site/src/context/GithubContext";
 import { HeaderGithubIcon } from "../icons/header-github";
 
-export const GitHubStar: React.FC = () => {
+type GitHubStarProps = {
+    isPermanentDark?: boolean;
+};
+
+export const GitHubStar: React.FC<GitHubStarProps> = ({ isPermanentDark }) => {
     const { starCount, loading } = useGithubContext();
 
     const formattedStarCount = useMemo(() => {
@@ -17,12 +21,18 @@ export const GitHubStar: React.FC = () => {
 
     return (
         <div className="flex items-center">
-            <HeaderGithubIcon className="text-gray-500 dark:gray-400" />
+            <HeaderGithubIcon
+                className={clsx(
+                    "text-gray-500 dark:gray-400",
+                    isPermanentDark && "!text-white",
+                )}
+            />
             <span
                 className={clsx(
                     "ml-2",
                     "text-sm font-medium ",
                     "text-gray-500 dark:text-gray-400",
+                    isPermanentDark && "!text-white",
                 )}
             >
                 {formattedStarCount}

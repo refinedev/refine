@@ -9,10 +9,12 @@ import { PointIcon } from "../icons/popover";
 
 type NavbarPopoverItemProps = {
     item: NavbarPopoverItemType;
+    isPermanentDark?: boolean;
 };
 
 export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
     item,
+    isPermanentDark,
     children,
 }) => {
     const [isShowing, setIsShowing] = useState(false);
@@ -50,15 +52,25 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                             "font-medium",
                         )}
                     >
-                        <span className="text-gray-900 dark:text-white">
+                        <span
+                            className={clsx(
+                                "text-gray-900 dark:text-white",
+                                isPermanentDark && "!text-white",
+                            )}
+                        >
                             {item.label}
                         </span>
                         <ChevronDownIcon
                             aria-hidden="true"
                             className={clsx(
                                 "transition duration-150 ease-in-out",
-                                "-mb-0.5 -mr-2",
+                                "-mr-2",
                                 "text-gray-400 dark:text-gray-500",
+                                isShowing && isPermanentDark
+                                    ? "!text-white"
+                                    : isPermanentDark
+                                    ? "!text-gray-500"
+                                    : "",
                                 {
                                     "dark:text-white text-gray-900": isShowing,
                                 },

@@ -6,11 +6,19 @@ type Props = React.ComponentProps<"button"> & {
     iconOnly?: boolean;
     iconClassName?: string;
     placeholder?: string;
+    isPermanentDark?: boolean;
 };
 
 export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
     function DocSearchButtonComponent(
-        { iconOnly = false, iconClassName, className, placeholder, ...props },
+        {
+            iconOnly = false,
+            iconClassName,
+            className,
+            placeholder,
+            isPermanentDark,
+            ...props
+        },
         ref,
     ) {
         return (
@@ -39,6 +47,10 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                         "py-2 pr-2 pl-4": !iconOnly,
                         "rounded-full": iconOnly,
                         "rounded-lg": !iconOnly,
+                        "!text-gray-400 !bg-gray-700":
+                            iconOnly && isPermanentDark,
+                        "!text-gray-0 !bg-gray-700 hover:!bg-gray-600":
+                            !iconOnly && isPermanentDark,
                     },
                     className,
                 )}
@@ -61,6 +73,8 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                                 "dark:bg-gray-900 bg-gray-100",
                                 "text-sm leading-4",
                                 "dark:text-gray-400 text-gray-500",
+                                isPermanentDark &&
+                                    "!text-gray-400 !bg-gray-900 !border-gray-600",
                             )}
                         >
                             ⌘K
