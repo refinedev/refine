@@ -32,6 +32,7 @@ function Home() {
                             "top-section",
                             "bg-landing-stars",
                             "mb-12",
+                            "landing-mask-image-hero-wide",
                         )}
                     >
                         <LandingHeader />
