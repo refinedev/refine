@@ -110,16 +110,80 @@ const TutorialUIStatus = () => {
     );
 };
 
+type TocLinkProps = {
+    item: any;
+    activeId?: string;
+    setActiveId?: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
+    const { hash: locationHash } = useLocation();
+
+    React.useEffect(() => {
+        const targetElement = document.getElementById(item.id);
+
+        if (targetElement) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const hash = `#${item.id}`;
+                            if (hash !== locationHash) {
+                                setActiveId(item.id);
+                                if (typeof window !== "undefined") {
+                                    window.history.replaceState(
+                                        undefined,
+                                        undefined,
+                                        hash,
+                                    );
+                                }
+                            }
+                        }
+                    });
+                },
+                {
+                    rootMargin: "0px 0px -80% 0px",
+                },
+            );
+
+            observer.observe(targetElement);
+
+            return () => {
+                observer.unobserve(targetElement);
+            };
+        }
+    }, [item.id]);
+
+    return (
+        <a
+            href={`#${item.id}`}
+            dangerouslySetInnerHTML={{ __html: item.value }}
+            className={clsx(
+                "text-gray-500 hover:!text-refine-link active:!text-refine-link",
+                activeId === item.id && "!text-refine-link",
+            )}
+        ></a>
+    );
+};
+
 export const TutorialTOC = () => {
     const {
         toc,
         metadata: { id: currentDocId },
     } = useDoc();
     const currentTutorial = useCurrentTutorial();
-
     const { hash } = useLocation();
 
+    const baseActiveId = `${hash}`.replace("#", "");
+
     const [selectedUnit, setSelectedUnit] = useState(currentTutorial.unit);
+    const [activeId, setActiveId] = React.useState<string | undefined>(
+        baseActiveId,
+    );
+
+    React.useEffect(() => {
+        setActiveId(baseActiveId);
+    }, [baseActiveId]);
 
     const renderTocItem = (item: (typeof toc)[number]) => {
         return (
@@ -130,14 +194,11 @@ export const TutorialTOC = () => {
                 }}
                 className="mb-1"
             >
-                <a
-                    dangerouslySetInnerHTML={{ __html: item.value }}
-                    href={`#${item.id}`}
-                    className={clsx(
-                        "text-gray-500 hover:!text-refine-link active:!text-refine-link",
-                        hash.slice(1) === item.id && "!text-refine-link",
-                    )}
-                ></a>
+                <TocLink
+                    item={item}
+                    activeId={activeId}
+                    setActiveId={setActiveId}
+                />
             </li>
         );
     };
