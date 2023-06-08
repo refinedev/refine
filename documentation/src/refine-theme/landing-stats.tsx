@@ -256,7 +256,8 @@ export const LandingStats = () => {
         >
             <div
                 className={clsx(
-                    "bg-landing-text-bg",
+                    "z-[1]",
+                    "bg-landing-text-bg-alt",
                     "bg-clip-text",
                     "text-transparent",
                     "text-[1.5rem]",

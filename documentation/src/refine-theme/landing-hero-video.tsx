@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { LandingHeroMobileAnimation } from "./icons/landing-hero-mobile";
 
 export const LandingHeroVideo = () => {
     return (
@@ -39,11 +40,13 @@ export const LandingHeroVideo = () => {
                     "aspect-[592/348]",
                     "w-full h-full",
                     "z-[1]",
-                    "bg-landing-hero-mobile-animation-bg",
-                    "bg-contain bg-no-repeat bg-bottom",
+                    // "bg-landing-hero-mobile-animation-bg",
+                    // "bg-contain bg-no-repeat bg-bottom",
                     "relative",
                 )}
-            />
+            >
+                <LandingHeroMobileAnimation className="w-full h-auto" />
+            </div>
             <div
                 className={clsx(
                     "hidden landing-lg:block",

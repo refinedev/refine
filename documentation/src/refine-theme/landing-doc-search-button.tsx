@@ -23,7 +23,7 @@ export const LandingDocSearchButton = React.forwardRef<
                 "leading-5",
                 "flex items-center justify-between",
                 "hover:brightness-110",
-                "transition-all",
+                "transition-[filter]",
                 "duration-200",
                 "ease-in-out",
             )}

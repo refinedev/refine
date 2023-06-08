@@ -17,42 +17,22 @@ export const LandingTile = ({
             className={clsx(
                 "rounded-xl",
                 "p-px",
-                "relative",
-                "z-[1]",
                 "overflow-hidden",
                 "group",
                 "max-w-[304px]",
                 "row-span-1",
                 "h-[96px]",
                 "landing-lg:h-auto",
+                "bg-landing-tile-border-bg",
             )}
         >
             <div
                 className={clsx(
-                    "z-[-1]",
-                    "absolute",
-                    "w-full",
-                    "h-auto",
-                    "bg-landing-tile-border-bg",
-                    "bg-[length:150%]",
-                    "aspect-square",
-                    "w-[150%]",
-                    "-left-1/4",
-                    "-top-1/2",
-                    "animate-spin-slow",
-                    "animation-paused",
-                    "group-hover:animation-running",
-                    "group-hover:brightness-125",
-                )}
-            />
-            <div
-                className={clsx(
-                    "z-[1]",
                     "w-full",
                     "h-full",
                     "bg-refine-bg",
                     "bg-landing-tile-tile-bg",
-                    "rounded-xl",
+                    "rounded-[13px]",
                     "overflow-hidden",
                     "p-2",
                 )}

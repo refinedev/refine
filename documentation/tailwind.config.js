@@ -70,6 +70,8 @@ module.exports = {
                 ],
                 "landing-text-bg":
                     "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%)",
+                "landing-text-bg-alt":
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.4) 80%, rgba(255,255,255,0.4) 100%)",
                 "landing-sliding-highlight-bg":
                     "linear-gradient(180deg, #3FDCF7 0%, rgba(63, 220, 247, 0.6) 100%)",
                 "landing-rainbow":
