@@ -228,6 +228,8 @@ const ExampleList: React.FC = () => {
                             "flex items-center gap-2",
                             "no-underline",
                         )}
+                        target="_blank"
+                        rel="noreferrer"
                     >
                         <GithubIconOutlined
                             className={clsx("w-4 h-4 2xl:w-6 2xl:h-6")}
