@@ -61,6 +61,54 @@ const colorByHash = (input: string) => {
     return color;
 };
 
+const addColorToTags = (tags: string[]) => {
+    let colors = [
+        "#ef4444",
+        "#f97316",
+        "#f59e0b",
+        "#eab308",
+        "#84cc16",
+        "#22c55e",
+        "#10b981",
+        "#14b8a6",
+        "#06b6d4",
+        "#0ea5e9",
+        "#3b82f6",
+        "#6366f1",
+        "#8b5cf6",
+        "#a855f7",
+        "#d946ef",
+        "#ec4899",
+        "#f43f5e",
+    ];
+
+    // if there are more tags than colors, we will reuse colors.
+    // multiply the colors array until it is bigger than the tags array
+    while (colors.length < tags.length) {
+        colors = [...colors, ...colors];
+    }
+
+    const selectedColorIndexes: number[] = [];
+    const tagsWithColor = tags.map((tag) => {
+        // pick a random color
+        let randomColorIndex = Math.floor(Math.random() * colors.length);
+        // if the color is already used, pick another one
+        while (selectedColorIndexes.includes(randomColorIndex)) {
+            randomColorIndex = Math.floor(Math.random() * colors.length);
+        }
+
+        const color = colors[randomColorIndex];
+        selectedColorIndexes.push(randomColorIndex);
+
+        return {
+            name: tag,
+            color: color,
+        };
+    });
+
+    return tagsWithColor;
+};
+
 export default function plugin(): Plugin {
     return {
         name: "docusaurus-plugin-refine-examples",
@@ -140,10 +188,7 @@ export default function plugin(): Plugin {
 
                 const data = {
                     examples: allExamples,
-                    tags: allTags.map((tag) => ({
-                        name: tag,
-                        color: colorByHash(tag),
-                    })),
+                    tags: addColorToTags(allTags),
                 };
 
                 await createData(`examples-data.json`, JSON.stringify(data));
