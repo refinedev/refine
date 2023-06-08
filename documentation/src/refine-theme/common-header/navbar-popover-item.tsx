@@ -57,7 +57,7 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                             aria-hidden="true"
                             className={clsx(
                                 "transition duration-150 ease-in-out",
-                                "-mb-0.5",
+                                "-mb-0.5 -mr-2",
                                 "text-gray-400 dark:text-gray-500",
                                 {
                                     "dark:text-white text-gray-900": isShowing,
