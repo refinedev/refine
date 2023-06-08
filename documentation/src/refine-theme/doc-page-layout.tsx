@@ -11,7 +11,11 @@ export const DocPageLayout = ({ children }: Props) => {
         <div className="">
             <DocHeader />
             <div
-                className={clsx("flex", "items-start justify-start", "w-full")}
+                className={clsx(
+                    "flex items-start justify-start",
+                    "w-full max-w-[1664px]",
+                    "mx-auto",
+                )}
             >
                 <DocSidebar />
                 {children}

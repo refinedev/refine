@@ -61,6 +61,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                                 "dark:bg-gray-900 bg-gray-100",
                                 "text-sm leading-4",
                                 "dark:text-gray-400 text-gray-500",
+                                "shadow-none",
                             )}
                         >
                             ⌘K
