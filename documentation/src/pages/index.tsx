@@ -38,11 +38,11 @@ function Home() {
                         <LandingHeader />
                         <LandingHero />
                     </div>
-                    {/* <LandingTiles />
+                    <LandingTiles />
                     <LandingPlayground />
                     <LandingStats />
-                    <div className="h-[160px]" />
-                    <LandingFooter /> */}
+                    <div className="h-[96px] landing-lg:h-[160px]" />
+                    <LandingFooter />
                 </div>
             </CommonLayout>
         </>
