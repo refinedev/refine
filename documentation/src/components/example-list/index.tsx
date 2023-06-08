@@ -3,12 +3,12 @@ import { useLocation, useHistory } from "@docusaurus/router";
 
 /** @ts-expect-error Docusaurus and Typescript doesn't play well together. */
 import data from "@examples/examples-data.json";
-import { SHOW_CASES } from "@site/src/assets/examples";
+import { EXAMPLES, SHOW_CASES } from "@site/src/assets/examples";
 import clsx from "clsx";
 import { GithubIconOutlined } from "@site/src/refine-theme/icons/github";
-import { ShareIcon } from "@site/src/refine-theme/icons/share";
 import { ArrowUpIcon } from "@site/src/refine-theme/icons/arrow-up";
 import { AnimatePresence, motion } from "framer-motion";
+import { Example } from "@site/src/types/examples";
 
 type ExampleDoc = Record<
     "id" | "title" | "description" | "permalink" | "displayTitle",
@@ -70,7 +70,7 @@ const PREDEFINED_NAMES = {
 };
 
 const ExampleList: React.FC = () => {
-    const examplesContainerRef = React.useRef<HTMLDivElement>(null);
+    const [showMore, setShowMore] = React.useState(false);
 
     const [query] = React.useState("");
     const [filters, setFilters] = React.useState<Set<string>>(
@@ -173,102 +173,117 @@ const ExampleList: React.FC = () => {
         }
     };
 
-    const renderFeaturedExamples = () => {
+    const renderShowcaseExampleCard = (example: Example) => {
         return (
             <div
+                key={example.title}
                 className={clsx(
-                    "flex flex-row justify-center items-center flex-wrap",
-                    "gap-4 2xl:gap-8",
+                    "max-w-[100%] 2xl:max-w-[416px]",
+                    "flex flex-col",
+                    "mx-auto",
+                    "px-2 pb-6 pt-2 2xl:px-4 2xl:py-6",
+                    "bg-gray-50 dark:bg-gray-800",
+                    "rounded-lg",
                 )}
             >
-                {SHOW_CASES.map((example) => {
-                    return (
-                        <div
-                            key={example.title}
-                            className={clsx(
-                                "max-w-[320px] 2xl:max-w-[416px]",
-                                "flex flex-col",
-                                "px-4 py-6",
-                                "bg-gray-50 dark:bg-gray-800",
-                                "rounded-lg",
-                            )}
-                        >
-                            <h2
+                <h3
+                    className={clsx(
+                        "not-prose",
+                        "mb-0 mt-0",
+                        "text-base 2xl:text-xl",
+                        "text-gray-900 dark:text-gray-200",
+                    )}
+                >
+                    {example.title}
+                </h3>
+                <img
+                    className={clsx(
+                        "mb-0 mt-2 2xl:mt-6",
+                        "w-full max-h-[360px] 2xl:max-h-[242px]",
+                        "object-cover",
+                        "rounded-[2px]",
+                    )}
+                    src={example.image}
+                    srcSet={example.image2x}
+                    alt={example.title}
+                />
+                <p
+                    className={clsx(
+                        "not-prose",
+                        "px-2 mb-0",
+                        "text-gray-700 dark:text-gray-400",
+                        "mt-4 2xl:mt-6",
+                    )}
+                    dangerouslySetInnerHTML={{ __html: example.description }}
+                />
+                <div
+                    className={clsx(
+                        "flex justify-between items-center",
+                        "px-2 2xl:px-0 pt-4 2xl:pt-6 mt-auto",
+                    )}
+                >
+                    <a
+                        href={example.source}
+                        className={clsx(
+                            "flex items-center gap-2",
+                            "no-underline",
+                        )}
+                    >
+                        <GithubIconOutlined
+                            className={clsx("w-4 h-4 2xl:w-6 2xl:h-6")}
+                        />
+                        <span>Code</span>
+                    </a>
+                    {example.buttons.map((button, i) => {
+                        return (
+                            <a
+                                key={i}
+                                href={button.link}
                                 className={clsx(
-                                    "mb-0 mt-0",
-                                    "text-base 2xl:text-xl",
-                                    "text-gray-900 dark:text-gray-200",
+                                    "flex items-center gap-2",
+                                    "no-underline",
                                 )}
+                                target="_blank"
+                                rel="noreferrer"
                             >
-                                {example.title}
-                            </h2>
-                            <img
-                                className={clsx(
-                                    "mb-0 mt-2 2xl:mt-6",
-                                    "w-full max-h-[192px] 2xl:max-h-[242px]",
-                                    "object-cover",
-                                    "rounded-[2px]",
-                                )}
-                                src={example.image}
-                                srcSet={example.image2x}
-                                alt={example.title}
-                            />
-                            <p
-                                className={clsx(
-                                    "px-2 mb-0",
-                                    "text-gray-700 dark:text-gray-400",
-                                    "mt-4 2xl:mt-6",
-                                )}
-                            >
-                                {example.description}
-                            </p>
-                            <div
-                                className={clsx(
-                                    "flex justify-between items-center",
-                                    "mt-6",
-                                )}
-                            >
-                                <a
-                                    href={example.source}
-                                    className={clsx("flex items-center gap-2 ")}
-                                >
-                                    <GithubIconOutlined
-                                        className={clsx("w-6 h-6")}
-                                    />
-                                    <span>Code</span>
-                                </a>
-                                <a
-                                    href={example.button.link}
-                                    className={clsx("flex items-center gap-2")}
-                                >
-                                    <ShareIcon className={clsx("w-6 h-6")} />
-                                    <span>Demo</span>
-                                </a>
-                            </div>
-                        </div>
-                    );
-                })}
+                                {button.icon({
+                                    className: clsx("w-6 h-6"),
+                                })}
+                                <span>{button.text}</span>
+                            </a>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    };
 
+    const renderShowcaseExamples = () => {
+        const list = showMore ? [...SHOW_CASES, ...EXAMPLES] : SHOW_CASES;
+
+        return (
+            <>
+                <div
+                    className={clsx(
+                        // "flex flex-row justify-center flex-wrap",
+                        "grid grid-cols-1 lg:grid-cols-2",
+                        "gap-4 2xl:gap-8",
+                    )}
+                >
+                    {list.map((example) => {
+                        return renderShowcaseExampleCard(example);
+                    })}
+                </div>
                 <button
                     className={clsx(
-                        "w-full h-12 2xl:h-16 ",
+                        "w-full h-12 2xl:h-16",
                         "flex justify-center items-center gap-4",
                         "bg-gray-100 dark:bg-gray-700",
                         "rounded-lg",
-                        "py-2",
+                        "mt-4 sm:mt-8 2xl:mt-10 py-2",
                     )}
                     onClick={() => {
-                        if (examplesContainerRef.current) {
-                            // we need to offset because of the sticky header
-                            const position =
-                                examplesContainerRef.current.getBoundingClientRect()
-                                    .top;
-                            const offset = 64;
-                            window.scrollTo({
-                                top: position + window.pageYOffset - offset,
-                                behavior: "smooth",
-                            });
-                        }
+                        setShowMore((prev) => !prev);
                     }}
                 >
                     <div
@@ -281,7 +296,9 @@ const ExampleList: React.FC = () => {
                         )}
                     >
                         <ArrowUpIcon
-                            className={clsx("w-3 h-3", "transform rotate-180")}
+                            className={clsx("w-3 h-3", {
+                                "transform rotate-180": !showMore,
+                            })}
                         />
                     </div>
                     <span
@@ -290,25 +307,26 @@ const ExampleList: React.FC = () => {
                             "text-sm 2xl:text-base font-semibold",
                         )}
                     >
-                        Show More
+                        {showMore ? "Show Less" : "Show More"}
                     </span>
                 </button>
-            </div>
+            </>
         );
     };
 
     const renderFilters = () => {
         return (
             <div className="flex flex-col">
-                <h2
+                <h3
                     className={clsx(
+                        "not-prose",
                         "mb-0 mt-0",
                         "text-[32px] leading-[40px] 2xl:text-[40px] 2xl:leading-[48px]",
                         "text-gray-700 dark:text-gray-200",
                     )}
                 >
                     Other Examples
-                </h2>
+                </h3>
                 <div
                     className={clsx(
                         "flex items-center justify-between mt-8 2xl:mt-10 pb-4",
@@ -317,6 +335,7 @@ const ExampleList: React.FC = () => {
                 >
                     <h3
                         className={clsx(
+                            "not-prose",
                             "mb-0 mt-0",
                             "text-2xl 2xl:text-[32px] 2xl:leading-[40px]",
                             "text-gray-700 dark:text-gray-200",
@@ -337,8 +356,6 @@ const ExampleList: React.FC = () => {
                     {sortedTags.sort().map(({ name, color }) => {
                         const isActive = filters.has(name);
                         const allSelected = filters.size === tags.length;
-                        const atleastOneSelected =
-                            filters.size > 0 && !allSelected;
 
                         const tagColor = getTagColor(name) ?? color;
 
@@ -350,12 +367,9 @@ const ExampleList: React.FC = () => {
                                     "select-none",
                                     "rounded-lg",
                                     "flex items-center justify-center",
-                                    "gap-2 px-3 py-[4px] 2xl:px-5 2xl:py-2",
-                                    "text-sm 2xl:text-lg",
+                                    "gap-2 px-3 py-[4px]",
+                                    "text-sm",
                                     "cursor-pointer",
-                                    "shadow-sm",
-                                    "hover:shadow",
-                                    "transition-all duration-200 ease-in-out",
                                     {
                                         "text-gray-600 dark:text-gray-400":
                                             !isActive || allSelected,
@@ -363,12 +377,13 @@ const ExampleList: React.FC = () => {
                                             isActive && !allSelected,
                                         "bg-gray-100 dark:bg-gray-800":
                                             !isActive || allSelected,
-                                        "opacity-50":
-                                            atleastOneSelected && !isActive,
                                     },
                                 )}
                                 style={{
-                                    border: `1px solid ${tagColor}40`,
+                                    border:
+                                        isActive &&
+                                        !allSelected &&
+                                        `1px solid ${tagColor}40`,
                                     backgroundColor:
                                         isActive && !allSelected
                                             ? `${tagColor}33`
@@ -407,11 +422,7 @@ const ExampleList: React.FC = () => {
                     "flex flex-col h-full",
                     "rounded-lg",
                     "no-underline",
-                    "group",
-                    "shadow-sm",
-                    "hover:shadow-md",
                     "py-4 2xl:py-6 pt-2 2xl:pt-6 pb-3 2xl:pb-4 px-4 2xl:px-6",
-                    "transition-all duration-200 ease-in-out",
                     "bg-gray-50 dark:bg-gray-800",
                 )}
             >
@@ -419,7 +430,6 @@ const ExampleList: React.FC = () => {
                     className={clsx(
                         "cursor-pointer",
                         "no-underline",
-                        "group-hover:underline",
                         "font-bold",
                         "text-base 2xl:text-xl",
                         "text-gray-900 dark:text-gray-200",
@@ -483,9 +493,8 @@ const ExampleList: React.FC = () => {
     const renderCards = () => {
         return (
             <div
-                ref={examplesContainerRef}
                 className={clsx(
-                    "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-2",
+                    "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2",
                     "gap-4 2xl:gap-x-8 2xl:gap-y-12",
                 )}
             >
@@ -511,7 +520,7 @@ const ExampleList: React.FC = () => {
 
     return (
         <div className="">
-            <div className="mt-10">{renderFeaturedExamples()}</div>
+            <div className="mt-10">{renderShowcaseExamples()}</div>
             <div className="mt-16">{renderFilters()}</div>
             <div className="mt-10">{renderCards()}</div>
         </div>
