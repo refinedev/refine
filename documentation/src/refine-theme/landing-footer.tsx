@@ -17,8 +17,14 @@ export const LandingFooter = () => {
                     "border-t-refine-landing-footer-border",
                     "bg-refine-landing-footer-bg",
                     "w-full",
-                    "px-[88px]",
-                    "py-11",
+                    "py-6",
+                    "landing-sm:py-8",
+                    "landing-md:py-11",
+                    "px-4",
+                    "landing-sm:px-8",
+                    "landing-md:px-8",
+                    "landing-lg:px-12",
+                    "landing-xl:px-20",
                 )}
             >
                 <div
@@ -26,7 +32,9 @@ export const LandingFooter = () => {
                         "max-w-screen-landing-2xl",
                         "w-full",
                         "flex flex-col",
-                        "gap-9",
+                        "gap-6",
+                        "landing-sm:gap-4",
+                        "landing-md:gap-9",
                         "mx-auto",
                     )}
                 >
@@ -36,22 +44,55 @@ export const LandingFooter = () => {
                     <div
                         className={clsx(
                             "flex",
+                            "flex-col",
+                            "landing-xl:flex-row",
                             "items-start",
                             "justify-between",
+                            "landing-lg:gap-8",
                         )}
                     >
                         <div
                             className={clsx(
-                                "text-base",
+                                "text-xs",
+                                "opacity-75",
+                                "landing-lg:opacity-100",
+                                "landing-lg:text-base",
                                 "text-gray-0",
                                 "max-w-[300px]",
                                 "w-full",
                                 "flex-shrink-0",
+                                "mb-6",
+                                "landing-xl:mb-0",
                             )}
                         >
                             {`Refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.`}
+                            <div className="mt-4">
+                                <a
+                                    href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <img
+                                        src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=dark&period=daily"
+                                        alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
+                                        style={{
+                                            width: "200px",
+                                            height: "42px",
+                                        }}
+                                        width="250"
+                                        height="54"
+                                    />
+                                </a>
+                            </div>
                         </div>
-                        <div className={clsx("grid grid-cols-5", "gap-4")}>
+                        <div
+                            className={clsx(
+                                "w-full",
+                                "landing-lg:w-auto",
+                                "grid grid-cols-2 landing-md:grid-cols-3 landing-lg:grid-cols-5",
+                                "gap-4",
+                            )}
+                        >
                             <div className={clsx("flex flex-col gap-4")}>
                                 <div className="text-base font-semibold text-gray-0">
                                     Resources
@@ -112,7 +153,13 @@ export const LandingFooter = () => {
                                     Company
                                 </div>
                                 <div className="flex flex-col gap-2">
-                                    {["About", "Store"].map((item) => (
+                                    {[
+                                        "About",
+                                        "Store",
+                                        "Terms & Conditions",
+                                        "Privacy Policy",
+                                        "License",
+                                    ].map((item) => (
                                         <a
                                             href="#"
                                             key={item}
@@ -130,7 +177,11 @@ export const LandingFooter = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div className={clsx("col-span-2")}>
+                            <div
+                                className={clsx(
+                                    "landing-md:col-span-3 landing-lg:col-span-2",
+                                )}
+                            >
                                 <div className={clsx("flex flex-col gap-4")}>
                                     <div className="text-base font-semibold text-gray-0">
                                         Contact
@@ -142,13 +193,13 @@ export const LandingFooter = () => {
                                         )}
                                     >
                                         <div className={clsx("opacity-75")}>
-                                            Refine Dev Corporation
-                                            <br />
-                                            256 Chapman Road STE 105-4
-                                            <br />
+                                            Refine Dev Corporation{" "}
+                                            <br className="landing-md:hidden landing-xl:inline" />
+                                            256 Chapman Road STE 105-4{" "}
+                                            <br className="landing-md:hidden landing-xl:inline" />
                                             Newark, DE 19702
-                                            <br />
-                                            <br />
+                                            <br className="landing-md:hidden landing-xl:inline" />
+                                            <br className="landing-md:hidden landing-xl:inline" />
                                         </div>
                                         <a
                                             href="mailto:info@refine.dev"
@@ -175,7 +226,11 @@ export const LandingFooter = () => {
                     "border-t-refine-landing-footer-border",
                     "bg-refine-landing-footer-bg",
                     "w-full",
-                    "px-[88px]",
+                    "px-4",
+                    "landing-sm:px-8",
+                    "landing-md:px-8",
+                    "landing-lg:px-12",
+                    "landing-xl:px-20",
                     "py-6",
                 )}
             >
@@ -184,7 +239,9 @@ export const LandingFooter = () => {
                         "mx-auto",
                         "max-w-screen-landing-2xl",
                         "w-full",
+                        "gap-6 landing-lg:gap-2",
                         "flex items-center justify-between",
+                        "flex-col-reverse landing-lg:flex-row",
                     )}
                 >
                     <div className={clsx("text-base", "text-gray-0")}>
@@ -192,97 +249,87 @@ export const LandingFooter = () => {
                         with{" "}
                         <HeartOutlinedIcon className="text-refine-red inline ml-2 leading-6" />
                     </div>
-                    <div className={clsx("flex items-center", "gap-4")}>
-                        <a
-                            href="#"
+                    <div
+                        className={clsx(
+                            "flex items-center",
+                            "gap-4",
+                            "flex-col landing-lg:flex-row",
+                            "max-w-[382px] landing-lg:max-w-none",
+                        )}
+                    >
+                        <span
                             className={clsx(
-                                "text-base text-gray-0",
-                                "no-underline",
-                                "hover:text-gray-0 hover:no-underline",
+                                "text-gray-0",
+                                "opacity-75 text-center landing-lg:text-left",
                             )}
                         >
-                            Terms & Conditions
-                        </a>
-                        <a
-                            href="#"
-                            className={clsx(
-                                "text-base text-gray-0",
-                                "no-underline",
-                                "hover:text-gray-0 hover:no-underline",
-                            )}
-                        >
-                            Privacy Policy
-                        </a>
-                        <a
-                            href="#"
-                            className={clsx(
-                                "text-base text-gray-0",
-                                "no-underline",
-                                "hover:text-gray-0 hover:no-underline",
-                            )}
-                        >
-                            License
-                        </a>
-                    </div>
-                    <div className={clsx("flex items-center", "gap-4")}>
-                        <span className={clsx("text-gray-0", "opacity-75")}>
                             Join us on
                         </span>
-                        <a
-                            href="#"
+                        <div
                             className={clsx(
-                                "text-gray-0",
-                                "opacity-75",
-                                "no-underline",
-                                "hover:no-underline hover:text-gray-0",
+                                "flex",
+                                "flex-row",
+                                "items-center",
+                                "gap-4",
+                                "justify-between",
                             )}
                         >
-                            <FooterGithubIcon />
-                        </a>
-                        <a
-                            href="#"
-                            className={clsx(
-                                "text-gray-0",
-                                "opacity-75",
-                                "no-underline",
-                                "hover:no-underline hover:text-gray-0",
-                            )}
-                        >
-                            <FooterDiscordIcon />
-                        </a>
-                        <a
-                            href="#"
-                            className={clsx(
-                                "text-gray-0",
-                                "opacity-75",
-                                "no-underline",
-                                "hover:no-underline hover:text-gray-0",
-                            )}
-                        >
-                            <FooterRedditIcon />
-                        </a>
-                        <a
-                            href="#"
-                            className={clsx(
-                                "text-gray-0",
-                                "opacity-75",
-                                "no-underline",
-                                "hover:no-underline hover:text-gray-0",
-                            )}
-                        >
-                            <FooterTwitterIcon />
-                        </a>
-                        <a
-                            href="#"
-                            className={clsx(
-                                "text-gray-0",
-                                "opacity-75",
-                                "no-underline",
-                                "hover:no-underline hover:text-gray-0",
-                            )}
-                        >
-                            <FooterLinkedinIcon />
-                        </a>
+                            <a
+                                href="#"
+                                className={clsx(
+                                    "text-gray-0",
+                                    "opacity-75",
+                                    "no-underline",
+                                    "hover:no-underline hover:text-gray-0",
+                                )}
+                            >
+                                <FooterGithubIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                            </a>
+                            <a
+                                href="#"
+                                className={clsx(
+                                    "text-gray-0",
+                                    "opacity-75",
+                                    "no-underline",
+                                    "hover:no-underline hover:text-gray-0",
+                                )}
+                            >
+                                <FooterDiscordIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                            </a>
+                            <a
+                                href="#"
+                                className={clsx(
+                                    "text-gray-0",
+                                    "opacity-75",
+                                    "no-underline",
+                                    "hover:no-underline hover:text-gray-0",
+                                )}
+                            >
+                                <FooterRedditIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                            </a>
+                            <a
+                                href="#"
+                                className={clsx(
+                                    "text-gray-0",
+                                    "opacity-75",
+                                    "no-underline",
+                                    "hover:no-underline hover:text-gray-0",
+                                )}
+                            >
+                                <FooterTwitterIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                            </a>
+                            <a
+                                href="#"
+                                className={clsx(
+                                    "text-gray-0",
+                                    "opacity-75",
+                                    "no-underline",
+                                    "hover:no-underline hover:text-gray-0",
+                                )}
+                            >
+                                <FooterLinkedinIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
