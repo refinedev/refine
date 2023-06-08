@@ -4,9 +4,11 @@ import clsx from "clsx";
 
 import { CommonLayout } from "../refine-theme/common-layout";
 import { LandingHeader } from "../refine-theme/landing-header";
-import { LandingHeroTop } from "../refine-theme/landing-hero-top";
-import { LandingHeroVideo } from "../refine-theme/landing-hero-video";
-import { LandingHeroBottom } from "../refine-theme/landing-hero-bottom";
+import { LandingTiles } from "../refine-theme/landing-tiles";
+import { LandingHero } from "../refine-theme/landing-hero";
+import { LandingStats } from "../refine-theme/landing-stats";
+import { LandingFooter } from "../refine-theme/landing-footer";
+import { LandingPlayground } from "../refine-theme/landing-playground";
 
 function Home() {
     React.useEffect(() => {
@@ -24,18 +26,22 @@ function Home() {
                 <html data-active-page="index" />
             </Head>
             <CommonLayout>
-                <div
-                    className={clsx(
-                        "bg-refine-bg",
-                        // "bg-landing-linear-spectrum",
-                    )}
-                >
-                    <div className={clsx("top-section", "bg-landing-stars")}>
+                <div className={clsx("bg-refine-bg")}>
+                    <div
+                        className={clsx(
+                            "top-section",
+                            "bg-landing-stars",
+                            "mb-12",
+                        )}
+                    >
                         <LandingHeader />
-                        <LandingHeroTop />
-                        <LandingHeroVideo />
-                        <LandingHeroBottom />
+                        <LandingHero />
                     </div>
+                    <LandingTiles />
+                    <LandingPlayground />
+                    <LandingStats />
+                    <div className="h-[160px]" />
+                    <LandingFooter />
                 </div>
             </CommonLayout>
         </>
