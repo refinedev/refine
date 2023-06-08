@@ -70,6 +70,7 @@ export const LandingHeroVideo = () => {
                         src="assets/hero-video.mov"
                         type='video/mp4; codecs="hvc1"'
                     />
+                    <source src="assets/hero-video.webm" type="video/webm;" />
                 </video>
             </div>
         </div>
