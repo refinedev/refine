@@ -7,12 +7,19 @@ export const LandingPlayground = () => {
             <div className={clsx("w-full", "relative", "z-[1]")}>
                 <div
                     className={clsx(
-                        "-mt-[256px]",
-                        "bg-landing-planar-grid",
+                        "bg-landing-planar-grid-mobile",
+                        "landing-lg:bg-landing-planar-grid",
                         "w-full",
-                        "h-[312px]",
+                        "h-[156px]",
+                        "-mt-[64px]",
+                        "-mb-[140px]",
+                        "landing-md:-mb-[112px]",
+                        "landing-lg:mb-0",
+                        "landing-lg:-mt-[256px]",
+                        "landing-lg:h-[312px]",
                         "max-w-screen-landing-2xl",
-                        "bg-[length:1440px_312px]",
+                        "bg-[length:720px_156px]",
+                        "landing-lg:bg-[length:1440px_312px]",
                         "bg-center bg-no-repeat",
                     )}
                 />
@@ -23,30 +30,62 @@ export const LandingPlayground = () => {
                         "w-full",
                         "mx-auto",
                         "flex flex-col items-center justify-center",
-                        "gap-12",
+                        "gap-6",
+                        "landing-lg:gap-12",
                     )}
                 >
                     <div
                         className={clsx(
-                            "bg-landing-text-bg",
-                            "bg-clip-text",
-                            "text-transparent",
-                            "text-[40px]",
-                            "leading-[48px]",
+                            "text-[1.5rem]",
+                            "leading-[2rem]",
+                            "landing-md:text-[2rem]",
+                            "landing-md:leading-[2.5rem]",
+                            "landing-lg:text-[2.5rem]",
+                            "landing-lg:leading-[3rem]",
                             "font-semibold",
+                            "text-center",
                         )}
                     >
-                        Develop with your favorite tech stack
+                        <span
+                            className={clsx(
+                                "block landing-md:inline",
+                                "bg-landing-text-bg",
+                                "bg-clip-text",
+                                "text-transparent",
+                            )}
+                        >
+                            Develop with your
+                        </span>{" "}
+                        <span
+                            className={clsx(
+                                "block landing-md:inline",
+                                "bg-landing-text-bg",
+                                "bg-clip-text",
+                                "text-transparent",
+                            )}
+                        >
+                            favorite tech stack
+                        </span>
                     </div>
                     <div
                         className={clsx(
+                            "px-2 landing-md:px-0",
+                            "mx-auto",
                             "w-full",
-                            "h-[512px]",
+                            "max-w-[464px]",
+                            "landing-md:max-w-[624px]",
+                            "h-[288px]",
+                            "landing-lg:max-w-[944px]",
+                            "landing-lg:h-[512px]",
                             "rounded-xl",
-                            "bg-gray-300",
+                            "overflow-hidden",
+                            "flex",
                         )}
                     >
-                        iframex
+                        <iframe
+                            className="w-full h-full flex-1 bg-gray-100 rounded-xl"
+                            srcDoc="<div>iframe</div>"
+                        />
                     </div>
                 </div>
                 <div
@@ -64,7 +103,7 @@ export const LandingPlayground = () => {
                         className={clsx(
                             "w-full",
                             "max-w-[1440px]",
-                            "mt-[250px]",
+                            "landing-lg:mt-[250px]",
                             "h-[250px]",
                             "bg-landing-linear-spectrum",
                             "bg-center",
@@ -77,12 +116,18 @@ export const LandingPlayground = () => {
                 </div>
                 <div
                     className={clsx(
-                        "-mb-[240px]",
-                        "bg-landing-planar-grid-reversed",
+                        "bg-landing-planar-grid-reversed-mobile",
+                        "landing-lg:bg-landing-planar-grid-reversed",
                         "w-full",
-                        "h-[312px]",
+                        "h-[156px]",
+                        "-mt-[50px]",
+                        "landing-lg:mt-0",
+                        "-mb-[140px]",
+                        "landing-lg:-mb-[240px]",
+                        "landing-lg:h-[312px]",
                         "max-w-screen-landing-2xl",
-                        "bg-[length:1440px_312px]",
+                        "bg-[length:720px_156px]",
+                        "landing-lg:bg-[length:1440px_312px]",
                         "bg-center bg-no-repeat",
                     )}
                 />

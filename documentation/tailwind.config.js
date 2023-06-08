@@ -90,6 +90,10 @@ module.exports = {
                 "landing-planar-grid": "url('/assets/landing-planar-grid.svg')",
                 "landing-planar-grid-reversed":
                     "url('/assets/landing-planar-grid-reversed.svg')",
+                "landing-planar-grid-mobile":
+                    "url('/assets/landing-planar-grid-mobile.svg')",
+                "landing-planar-grid-reversed-mobile":
+                    "url('/assets/landing-planar-grid-reversed-mobile.svg')",
                 "landing-tile-image-bg":
                     "radial-gradient(50.33% 83.06% at -0.33% 100%, rgba(77, 77, 179, 0.5) 0%, rgba(77, 77, 179, 0) 100%)",
                 "landing-tile-tile-bg":
@@ -97,6 +101,8 @@ module.exports = {
                 "landing-tile-border-bg":
                     "radial-gradient(100% 100% at 0% 0%, #4D4DB3 0%, rgba(77, 77, 179, 0.05) 50%, rgba(77, 77, 179, 0.5) 100%)",
                 "landing-tile-grid-bg": "url('/assets/landing-tile-grid.svg')",
+                "landing-tile-grid-mobile-bg":
+                    "url('/assets/landing-tile-grid-mobile.svg')",
                 "landing-stats-bg": [
                     "radial-gradient(59.21% 56.25% at 0% 0%, #17174F 0%, rgba(23, 23, 79, 0) 100%)",
                     "linear-gradient(180deg, rgba(0, 0, 0, 0.33) 0%, rgba(0, 0, 0, 0.165) 100%)",
