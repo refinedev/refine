@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SearchBar from "@site/src/theme/SearchBar";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
@@ -13,30 +13,33 @@ import { Menu } from "./common-header/menu";
 import { DocSearchButton } from "./doc-search-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
 
-export const CommonHeader = () => {
+export const CommonHeader = ({ hasSticky }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sticky, setSticky] = useState(false);
-
-    const isSticky = () => {
-        const scrollTop = window.scrollY;
-        setSticky(scrollTop >= 150);
-    };
+    const header = useRef(null);
 
     useEffect(() => {
-        window.addEventListener("scroll", isSticky);
-        return () => {
-            window.removeEventListener("scroll", isSticky);
+        const fixedTop = header?.current.offsetTop;
+        const windowScrollListener = () => {
+            if (window.pageYOffset > fixedTop) {
+                setSticky(true);
+            } else {
+                setSticky(false);
+            }
         };
-    });
+        window.addEventListener("scroll", windowScrollListener);
+    }, []);
 
     return (
         <div
+            ref={header}
             className={clsx(
                 "dark:bg-gray-800 dark:border-b dark:border-gray-700",
                 " bg-gray-50 border-b border-gray-100",
                 "px-4 header-md:px-8",
-                !sticky && "py-4 header-md:py-9",
-                sticky && "py-4 header-md:py-2 sticky top-0 z-10",
+                !hasSticky && "py-4 header-md:py-9",
+                hasSticky && !sticky && "py-4 header-md:py-9",
+                hasSticky && sticky && "py-6 header-md:py-3 sticky top-0 z-10",
             )}
         >
             <div className={clsx("max-w-[1440px]", "mx-auto")}>
