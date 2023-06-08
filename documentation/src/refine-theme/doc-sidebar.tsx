@@ -115,6 +115,7 @@ const SidebarCategory = ({
                     !isHeader && "group",
                     "transition-colors duration-200 ease-in-out",
                     !isHeader && "hover:dark:text-gray-0",
+                    !isHeader && "no-underline",
                 )}
             >
                 <div
@@ -250,6 +251,7 @@ const SidebarLink = ({
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "hover:dark:text-gray-0 hover:text-gray-900",
+                "no-underline",
             )}
         >
             {dashed && <DashIcon className="w-6 h-6 flex-shrink-0 z-[1]" />}
