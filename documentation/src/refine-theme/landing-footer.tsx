@@ -58,7 +58,7 @@ export const LandingFooter = () => {
                                 "landing-lg:opacity-100",
                                 "landing-lg:text-base",
                                 "text-gray-0",
-                                "max-w-[300px]",
+                                "landing-xl:max-w-[300px]",
                                 "w-full",
                                 "flex-shrink-0",
                                 "mb-6",
@@ -66,7 +66,7 @@ export const LandingFooter = () => {
                             )}
                         >
                             {`Refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.`}
-                            <div className="mt-4">
+                            <div className="mt-4 w-fit mx-auto landing-xl:mx-0">
                                 <a
                                     href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
                                     target="_blank"
