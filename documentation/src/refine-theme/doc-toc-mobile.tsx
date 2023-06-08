@@ -36,7 +36,7 @@ export const DocTOCMobile = () => {
                                 className={clsx(
                                     "h-5 w-5",
                                     "text-gray-400 dark:text-gray-500",
-                                    "transition-all duration-200 ease-in-out",
+                                    "transition-transform duration-200 ease-in-out",
                                     {
                                         "transform -rotate-90": !open,
                                     },

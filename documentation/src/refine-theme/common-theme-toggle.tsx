@@ -29,7 +29,7 @@ export const CommonThemeToggle = ({ className }: Props) => {
                 "relative",
                 "text-gray-500 dark:text-gray-400",
                 "hover:brightness-110",
-                "transition-all",
+                "transition-[filter]",
                 "duration-200",
                 "ease-in-out",
                 "overflow-hidden",
@@ -48,7 +48,7 @@ export const CommonThemeToggle = ({ className }: Props) => {
                     "dark:top-0",
                     "duration-200",
                     "ease-in-out",
-                    "transition-all",
+                    "transition-[top]",
                 )}
             >
                 <LightModeIcon />
@@ -63,7 +63,7 @@ export const CommonThemeToggle = ({ className }: Props) => {
                     "dark:top-10",
                     "duration-200",
                     "ease-in-out",
-                    "transition-all",
+                    "transition-[top]",
                 )}
             >
                 <DarkModeIcon />
