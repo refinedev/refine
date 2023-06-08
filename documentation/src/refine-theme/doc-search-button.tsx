@@ -75,6 +75,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                                 "dark:text-gray-400 text-gray-500",
                                 isPermanentDark &&
                                     "!text-gray-400 !bg-gray-900 !border-gray-600",
+                                "shadow-none",
                             )}
                         >
                             ⌘K
