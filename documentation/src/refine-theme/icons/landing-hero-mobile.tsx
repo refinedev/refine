@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 export const LandingHeroMobileAnimation = (
@@ -9,6 +10,9 @@ export const LandingHeroMobileAnimation = (
         height={174}
         fill="none"
         viewBox="0 0 296 174"
+        style={{
+            transform: "translate3d(0,0,1px)",
+        }}
         {...props}
     >
         <style>
