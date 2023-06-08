@@ -13,7 +13,7 @@ const GithubStats = () => {
                 "p-px",
                 "relative",
                 "overflow-hidden",
-                "bg-[#242442]",
+                "bg-refine-landing-stats-fallback-bg",
                 "bg-landing-stats-border-bg",
                 "group",
             )}
@@ -130,7 +130,7 @@ const DiscordStats = () => {
                 "p-px",
                 "relative",
                 "overflow-hidden",
-                "bg-[#242442]",
+                "bg-refine-landing-stats-fallback-bg",
                 "bg-landing-stats-border-bg",
                 "group",
             )}
@@ -194,7 +194,7 @@ const TwitterStats = () => {
                 "p-px",
                 "relative",
                 "overflow-hidden",
-                "bg-[#242442]",
+                "bg-refine-landing-stats-fallback-bg",
                 "bg-landing-stats-border-bg",
                 "group",
             )}

@@ -54,7 +54,7 @@ export const LandingTileWithImage = ({ image, children }: Props) => {
                         "h-[183px]",
                         "w-full",
                         "border-b",
-                        "border-b-[#272762]",
+                        "border-b-refine-landing-tile-image-border",
                         "flex items-center justify-center",
                         "backdrop-blur-md",
                         "group-hover:brightness-105",

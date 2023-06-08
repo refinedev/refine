@@ -31,6 +31,7 @@ export const LandingHeader = () => {
                 "landing-md:py-9",
                 "landing-xl:py-11",
                 "flex items-center justify-between",
+                "mx-auto",
             )}
         >
             <div

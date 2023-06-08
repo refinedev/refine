@@ -67,7 +67,7 @@ export const LandingTile = ({ icon, children }: Props) => {
                                 "w-16",
                                 "h-16",
                                 "flex-shrink-0",
-                                "border border-[#4D4DB2]",
+                                "border border-refine-landing-tile-icon-border",
                                 "rounded-full",
                                 "bg-refine-bg",
                                 "flex items-center justify-center",

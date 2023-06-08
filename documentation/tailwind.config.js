@@ -26,6 +26,11 @@ module.exports = {
                     kdb: "#DBDBF0",
                     "bg-alt": "#262640",
                     link: "#6EB3F7",
+                    "landing-tile-icon-border": "#4D4DB2",
+                    "landing-tile-image-border": "#272762",
+                    "landing-stats-fallback-bg": "#242442",
+                    "landing-footer-bg": "#0F0F3D",
+                    "landing-footer-border": "#2E2E78",
                 },
                 gray: {
                     0: "#FFFFFF",
