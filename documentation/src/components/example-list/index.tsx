@@ -199,7 +199,7 @@ const ExampleList: React.FC = () => {
                 <img
                     className={clsx(
                         "mb-0 mt-2 2xl:mt-6",
-                        "w-full max-h-[360px] 2xl:max-h-[242px]",
+                        "w-full sm:max-h-[360px] md:h-[360px] lg:h-[192px] 2xl:h-[242px]",
                         "object-cover",
                         "rounded-[2px]",
                     )}

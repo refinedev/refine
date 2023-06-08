@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "@docusaurus/router";
 
-const Examples = () => {
+const Examples: React.FC = () => {
     return <Redirect to="/docs/examples/" />;
 };
 
