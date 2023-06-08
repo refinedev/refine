@@ -116,10 +116,22 @@ module.exports = {
                     "linear-gradient(90deg, rgba(23, 23, 79, 0) 0%, #17174F 100%)",
                     "linear-gradient(180deg, rgba(0, 0, 0, 0.165) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.165) 100%)",
                 ],
+                "landing-playground-slide-left-bg":
+                    "url('/assets/landing-playground-slide-left.svg')",
+                "landing-playground-slide-right-bg":
+                    "url('/assets/landing-playground-slide-right.svg')",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
                 beat: "2s ease-in-out 1.5s infinite normal forwards running landing-hero-beat",
+                "playground-slide-down":
+                    "playground-slide-down 45s linear infinite",
+                "playground-slide-down-mobile":
+                    "playground-slide-down-mobile 45s linear infinite",
+                "playground-slide-up":
+                    "playground-slide-up 45s linear infinite",
+                "playground-slide-up-mobile":
+                    "playground-slide-up-mobile 45s linear infinite",
             },
             keyframes: {
                 "landing-hero-beat": {
@@ -137,6 +149,50 @@ module.exports = {
                     },
                     "100%": {
                         opacity: 0.4,
+                    },
+                },
+                "playground-slide-down-mobile": {
+                    "0%": {
+                        "background-position": "top 0px left",
+                    },
+                    "99.99%": {
+                        "background-position": "top 1655px left",
+                    },
+                    "100%": {
+                        "background-position": "top 0px left",
+                    },
+                },
+                "playground-slide-down": {
+                    "0%": {
+                        "background-position": "top 0px left",
+                    },
+                    "99.99%": {
+                        "background-position": "top 3329px left",
+                    },
+                    "100%": {
+                        "background-position": "top 0px left",
+                    },
+                },
+                "playground-slide-up-mobile": {
+                    "0%": {
+                        "background-position": "top 0px left",
+                    },
+                    "99.99%": {
+                        "background-position": "top -1655px left",
+                    },
+                    "100%": {
+                        "background-position": "top 0px left",
+                    },
+                },
+                "playground-slide-up": {
+                    "0%": {
+                        "background-position": "top 0px left",
+                    },
+                    "99.99%": {
+                        "background-position": "top -3328px left",
+                    },
+                    "100%": {
+                        "background-position": "top 0px left",
                     },
                 },
             },

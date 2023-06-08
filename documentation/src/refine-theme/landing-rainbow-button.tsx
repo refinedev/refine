@@ -4,10 +4,15 @@ import Link from "@docusaurus/Link";
 
 import { PlayOutlinedIcon } from "./icons/play-outlined";
 
-export const LandingRainbowButton = () => {
+type Props = {
+    children?: React.ReactNode;
+    href?: string;
+};
+
+export const LandingRainbowButton = ({ children, href }: Props) => {
     return (
         <Link
-            href="#form"
+            href={href}
             className={clsx(
                 "relative",
                 "text-refine-bg",
@@ -50,10 +55,16 @@ export const LandingRainbowButton = () => {
                         "duration-100 ease-in-out transition-transform",
                     )}
                 >
-                    <PlayOutlinedIcon />
-                    <span className="text-base font-semibold">
-                        Try it online!
-                    </span>
+                    {children ? (
+                        children
+                    ) : (
+                        <>
+                            <PlayOutlinedIcon />
+                            <span className="text-base font-semibold">
+                                Try it online!
+                            </span>
+                        </>
+                    )}
                 </div>
             </div>
         </Link>
