@@ -37,7 +37,9 @@ export const LandingHeroTop = () => {
                             "font-semibold",
                         )}
                     >
-                        Open-source enterprise application platform
+                        Open-source enterprise{" "}
+                        <br className="inline landing-md:hidden" />
+                        application platform
                     </span>
                     <span
                         className={clsx(
