@@ -7,6 +7,7 @@ export const LandingHeroBottom = () => {
         <div className="relative min-h-[288px]">
             <div
                 className={clsx(
+                    "hidden landing-lg:block",
                     "w-full",
                     "h-[288px]",
                     "-mt-[14px]",
@@ -16,6 +17,22 @@ export const LandingHeroBottom = () => {
             />
             <div
                 className={clsx(
+                    "block landing-lg:hidden",
+                    "w-full",
+                    "h-[288px]",
+                    "-mt-[14px]",
+                    "bg-refine-bg",
+                    "bg-transparent",
+                    "bg-landing-video-bottom-mobile-bg",
+                    "bg-[length:620px_350px]",
+                    "landing-sm:bg-[length:720px_316px]",
+                    "landing-md:bg-[length:1080px_474px]",
+                    "bg-top",
+                )}
+            />
+            <div
+                className={clsx(
+                    "hidden landing-lg:block",
                     "absolute",
                     "left-0",
                     "bg-landing-video-bottom-line",
@@ -29,6 +46,7 @@ export const LandingHeroBottom = () => {
             />
             <div
                 className={clsx(
+                    "hidden landing-lg:block",
                     "absolute",
                     "left-0",
                     "bg-landing-video-bottom-line-glow",
@@ -46,7 +64,9 @@ export const LandingHeroBottom = () => {
                     "z-[1]",
                     "block",
                     "w-full",
-                    "-mt-[288px]",
+                    "-mt-[290px]",
+                    "landing-sm:-mt-[304px]",
+                    "landing-lg:-mt-[288px]",
                     "relative",
                 )}
             >
@@ -59,7 +79,13 @@ export const LandingHeroBottom = () => {
                 >
                     <div
                         className={clsx(
-                            "text-2xl font-normal bg-landing-text-bg bg-clip-text text-transparent",
+                            "text-base",
+                            "landing-md:text-2xl",
+                            "font-normal",
+                            "bg-landing-text-bg bg-clip-text",
+                            "text-transparent",
+                            "mb-2",
+                            "landing-md:mb-0",
                         )}
                     >
                         Your application with enterprise-grade
@@ -67,7 +93,7 @@ export const LandingHeroBottom = () => {
                     <div className="relative w-[300px]">
                         <LandingSlidingHighlights />
                     </div>
-                    <div className="pt-12">
+                    <div className="pt-16 landing-md:pt-12">
                         <a
                             href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
                             target="_blank"

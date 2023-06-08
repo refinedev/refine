@@ -24,9 +24,9 @@ export const LandingHeader = () => {
                 "max-w-screen-landing-2xl",
                 "px-4",
                 "landing-sm:px-6",
-                "landing-lg:px-8",
+                "landing-md:px-8",
                 "landing-xl:px-12",
-                "landing-2xl:px-20",
+                "landing-2xl:px-[88px]",
                 "py-5",
                 "landing-md:py-9",
                 "landing-xl:py-11",
@@ -81,7 +81,7 @@ export const LandingHeader = () => {
                 </div>
                 <button
                     type="button"
-                    className="block landing-xl:hidden"
+                    className="block landing-xl:hidden text-gray-0"
                     onClick={() => setIsModalOpen(true)}
                 >
                     <HamburgerIcon />

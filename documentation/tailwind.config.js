@@ -77,6 +77,10 @@ module.exports = {
                     "conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.25) 10%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.25) 30%, rgba(255, 255, 255, 0.25) 60%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0.25) 80%, rgba(255, 255, 255, 0.25) 100%)",
                 "landing-hero-video-bg": "url('/assets/hero-video-bg.webp')",
                 "landing-hero-bottom-bg": "url('/assets/hero-bottom-bg.svg')",
+                "landing-hero-mobile-animation-bg":
+                    "url('/assets/hero-mobile-animation.svg')",
+                "landing-video-bottom-mobile-bg":
+                    "url('/assets/hero-video-bottom-mobile.svg')",
                 "landing-video-bottom-line":
                     "url('/assets/landing-video-bottom-line.svg')",
                 "landing-video-bottom-line-glow":
