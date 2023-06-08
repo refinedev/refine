@@ -96,7 +96,7 @@ export const BlogTOC = (props) => {
                 !hasTOC && "invisible",
             )}
         >
-            <ul>
+            <ul className="list-none m-0 p-0">
                 {toc.map((item) => {
                     return (
                         <li key={item.id}>
