@@ -24,6 +24,11 @@ function Home() {
         <>
             <Head>
                 <html data-active-page="index" />
+                <link
+                    rel="preload"
+                    href="https://refine.new/embed-form"
+                    as="document"
+                />
             </Head>
             <CommonLayout>
                 <div className={clsx("bg-refine-bg")}>
