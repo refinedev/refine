@@ -824,10 +824,6 @@
     {
       "from": "/docs/api-reference/",
       "to": "/docs/api-reference/general-concepts/"
-    },
-    {
-      "from": "/examples/",
-      "to": "/docs/examples/"
     }
   ]
 }
