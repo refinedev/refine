@@ -30,14 +30,6 @@ import {
 export const integrations: IntegrationsType = {
     "ui-framework-packages": [
         {
-            name: "Ant Design",
-            icon: Antd,
-            description:
-                "<strong>Ant Design</strong> System UI Framework support. 20+ framework-specific <strong>hooks</strong> and  <strong>components</strong> incl. Table, Form, Select, Menu, Layout, Notification and CRUD components.",
-            url: "https://www.npmjs.com/package/@refinedev/antd",
-            status: "stable",
-        },
-        {
             name: "Material UI",
             icon: Mui,
             description:
@@ -46,11 +38,11 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Mantine UI",
-            icon: Mantine,
+            name: "Ant Design",
+            icon: Antd,
             description:
-                " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
-            url: "https://www.npmjs.com/package/@refinedev/mantine",
+                "<strong>Ant Design</strong> System UI Framework support. 20+ framework-specific <strong>hooks</strong> and  <strong>components</strong> incl. Table, Form, Select, Menu, Layout, Notification and CRUD components.",
+            url: "https://www.npmjs.com/package/@refinedev/antd",
             status: "stable",
         },
         {
@@ -59,6 +51,14 @@ export const integrations: IntegrationsType = {
             description:
                 " <strong>Chakra UI</strong> Framework support. 20+ framework-specific components incl. Layout, Feedback, and CRUD components.",
             url: "https://www.npmjs.com/package/@refinedev/chakra-ui",
+            status: "stable",
+        },
+        {
+            name: "Mantine UI",
+            icon: Mantine,
+            description:
+                " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
+            url: "https://www.npmjs.com/package/@refinedev/mantine",
             status: "stable",
         },
     ],
