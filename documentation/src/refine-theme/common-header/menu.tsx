@@ -3,8 +3,12 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import { MENU_ITEMS, NavbarItemType } from "./constants";
-import { GithubIcon } from "../icons/github";
-import { GithubStarIcon, DiscordIcon, TwitterIcon } from "../icons/popover";
+import {
+    GithubStarIcon,
+    GithubIcon,
+    DiscordIcon,
+    TwitterIcon,
+} from "../icons/popover";
 import { MenuItem } from "./menu-item";
 import { NavbarItem } from "./navbar-item";
 import { NavbarPopoverItem } from "./navbar-popover-item";
@@ -48,7 +52,7 @@ export const Menu = () => {
                                             )}
                                         >
                                             <GithubStarIcon />
-                                            <p
+                                            <div
                                                 className={clsx(
                                                     "ml-4",
                                                     "text-gray-600",
@@ -56,7 +60,7 @@ export const Menu = () => {
                                             >
                                                 If you like refine, don’t forget
                                                 to star us on GitHub!
-                                            </p>
+                                            </div>
                                         </div>
                                     </Link>
                                 </>
@@ -86,9 +90,9 @@ export const Menu = () => {
                                             "py-4 px-7",
                                         )}
                                     >
-                                        <p className="text-gray-600">
+                                        <div className="text-gray-600">
                                             Join the party!
-                                        </p>
+                                        </div>
                                         <div className="flex gap-4">
                                             <Link to="https://github.com/refinedev/refine">
                                                 <GithubIcon />

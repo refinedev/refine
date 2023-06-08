@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
@@ -7,6 +7,7 @@ import {
     ChevronRightIcon,
     TwoTonedCloudIcon,
 } from "../icons/popover";
+import { CloudIcon } from "../icons/cloud";
 
 type MobileNavItemProps = {
     label: string;
@@ -21,8 +22,17 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
     component,
     open,
 }) => {
+    const [theme, setTheme] = useState(null);
+
     const Component = component ?? Link;
     const isCollapseble = open !== undefined && href === undefined;
+
+    useEffect(() => {
+        const currentTheme = document
+            .querySelector("html")
+            .getAttribute("data-theme");
+        setTheme(currentTheme);
+    }, []);
 
     return (
         <Component
@@ -30,15 +40,18 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
                 "w-full",
                 "flex justify-between items-center",
                 "p-4",
-                "border-b border-gray-100",
+                "border-b border-gray-100 dark:border-gray-700",
                 "no-underline",
             )}
             {...(href ? { to: href } : {})}
         >
-            <div className="text-gray-800 font-semibold">{label}</div>
+            <div className="text-gray-800 dark:text-white font-semibold">
+                {label}
+            </div>
             {isCollapseble &&
                 (open ? <ChevronDownIcon /> : <ChevronRightIcon />)}
-            {label === "Cloud" && <TwoTonedCloudIcon />}
+            {label === "Cloud" &&
+                (theme === "light" ? <TwoTonedCloudIcon /> : <CloudIcon />)}
         </Component>
     );
 };

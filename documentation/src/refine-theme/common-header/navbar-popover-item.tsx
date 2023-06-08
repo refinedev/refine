@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
@@ -15,7 +15,7 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
     item,
     children,
 }) => {
-    const [isShowing, setIsShowing] = React.useState(false);
+    const [isShowing, setIsShowing] = useState(false);
     const timeoutRef = React.useRef(null);
     const timeoutEnterRef = React.useRef(null);
     const location = useLocation();
@@ -50,15 +50,17 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                             "font-medium",
                         )}
                     >
-                        <span className="text-white">{item.label}</span>
+                        <span className="text-gray-900 dark:text-white">
+                            {item.label}
+                        </span>
                         <ChevronDownIcon
                             aria-hidden="true"
                             className={clsx(
                                 "transition duration-150 ease-in-out",
-                                "opacity-50",
                                 "-mb-0.5",
+                                "text-gray-400 dark:text-gray-500",
                                 {
-                                    "opacity-100": isShowing,
+                                    "dark:text-white text-gray-900": isShowing,
                                 },
                             )}
                         />
