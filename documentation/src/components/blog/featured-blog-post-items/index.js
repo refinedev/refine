@@ -9,9 +9,9 @@ export const FeaturedBlogPostItems = ({ items }) => {
         <div className="mb-6 mx-2">
             <h2
                 className={clsx(
-                    "text-4xl leading-10 text-gray-900",
+                    "text-xl lg:text-4xl leading-10 text-gray-900",
                     "dark:text-gray-0",
-                    "mb-8",
+                    "mb-4 lg:mb-8",
                     "px-4",
                 )}
             >
