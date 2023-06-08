@@ -245,13 +245,13 @@ export const LandingPlayground = () => {
                         className={clsx(
                             "w-full",
                             "max-w-[1440px]",
-                            "landing-lg:mt-[250px]",
-                            "h-[250px]",
+                            "landing-lg:mt-[110px]",
+                            "h-[200px]",
                             "bg-landing-linear-spectrum",
                             "bg-center",
                             "bg-no-repeat",
                             "bg-[length:1200px]",
-                            "blur-[100px]",
+                            "blur-[128px]",
                             "opacity-50",
                         )}
                     />
