@@ -7,6 +7,7 @@ import { FooterRedditIcon } from "./icons/footer-reddit";
 import { FooterTwitterIcon } from "./icons/footer-twitter";
 import { FooterLinkedinIcon } from "./icons/footer-linkedin";
 import { RefineLogoIcon } from "./icons/refine-logo";
+import { footerDescription, menuItems, socialLinks } from "./footer-data";
 
 export const LandingFooter = () => {
     return (
@@ -65,7 +66,7 @@ export const LandingFooter = () => {
                                 "landing-xl:mb-0",
                             )}
                         >
-                            {`Refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.`}
+                            {footerDescription}
                             <div className="mt-4 w-fit mx-auto landing-xl:mx-0">
                                 <a
                                     href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
@@ -93,90 +94,34 @@ export const LandingFooter = () => {
                                 "gap-4",
                             )}
                         >
-                            <div className={clsx("flex flex-col gap-4")}>
-                                <div className="text-base font-semibold text-gray-0">
-                                    Resources
+                            {menuItems.map((menu) => (
+                                <div
+                                    className={clsx("flex flex-col gap-4")}
+                                    key={menu.label}
+                                >
+                                    <div className="text-base font-semibold text-gray-0">
+                                        {menu.label}
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        {menu.items.map((item) => (
+                                            <a
+                                                href={item.href}
+                                                key={item.label}
+                                                className={clsx(
+                                                    "text-base",
+                                                    "text-gray-0",
+                                                    "opacity-75",
+                                                    "hover:opacity-100",
+                                                    "hover:no-underline",
+                                                    "hover:text-gray-0",
+                                                )}
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
-                                <div className="flex flex-col gap-2">
-                                    {[
-                                        "Getting Started",
-                                        "Tutorials",
-                                        "Blog",
-                                    ].map((item) => (
-                                        <a
-                                            href="#"
-                                            key={item}
-                                            className={clsx(
-                                                "text-base",
-                                                "text-gray-0",
-                                                "opacity-75",
-                                                "hover:opacity-100",
-                                                "hover:no-underline",
-                                                "hover:text-gray-0",
-                                            )}
-                                        >
-                                            {item}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className={clsx("flex flex-col gap-4")}>
-                                <div className="text-base font-semibold text-gray-0">
-                                    Product
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                    {[
-                                        "Examples",
-                                        "Integrations",
-                                        "Become an Expert",
-                                        "Cloud",
-                                    ].map((item) => (
-                                        <a
-                                            href="#"
-                                            key={item}
-                                            className={clsx(
-                                                "text-base",
-                                                "text-gray-0",
-                                                "opacity-75",
-                                                "hover:opacity-100",
-                                                "hover:no-underline",
-                                                "hover:text-gray-0",
-                                            )}
-                                        >
-                                            {item}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className={clsx("flex flex-col gap-4")}>
-                                <div className="text-base font-semibold text-gray-0">
-                                    Company
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                    {[
-                                        "About",
-                                        "Store",
-                                        "Terms & Conditions",
-                                        "Privacy Policy",
-                                        "License",
-                                    ].map((item) => (
-                                        <a
-                                            href="#"
-                                            key={item}
-                                            className={clsx(
-                                                "text-base",
-                                                "text-gray-0",
-                                                "opacity-75",
-                                                "hover:opacity-100",
-                                                "hover:no-underline",
-                                                "hover:text-gray-0",
-                                            )}
-                                        >
-                                            {item}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
+                            ))}
                             <div
                                 className={clsx(
                                     "landing-md:col-span-3 landing-lg:col-span-2",
@@ -274,61 +219,22 @@ export const LandingFooter = () => {
                                 "justify-between",
                             )}
                         >
-                            <a
-                                href="#"
-                                className={clsx(
-                                    "text-gray-0",
-                                    "opacity-75",
-                                    "no-underline",
-                                    "hover:no-underline hover:text-gray-0",
-                                )}
-                            >
-                                <FooterGithubIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
-                            </a>
-                            <a
-                                href="#"
-                                className={clsx(
-                                    "text-gray-0",
-                                    "opacity-75",
-                                    "no-underline",
-                                    "hover:no-underline hover:text-gray-0",
-                                )}
-                            >
-                                <FooterDiscordIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
-                            </a>
-                            <a
-                                href="#"
-                                className={clsx(
-                                    "text-gray-0",
-                                    "opacity-75",
-                                    "no-underline",
-                                    "hover:no-underline hover:text-gray-0",
-                                )}
-                            >
-                                <FooterRedditIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
-                            </a>
-                            <a
-                                href="#"
-                                className={clsx(
-                                    "text-gray-0",
-                                    "opacity-75",
-                                    "no-underline",
-                                    "hover:no-underline hover:text-gray-0",
-                                )}
-                            >
-                                <FooterTwitterIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
-                            </a>
-                            <a
-                                href="#"
-                                className={clsx(
-                                    "text-gray-0",
-                                    "opacity-75",
-                                    "no-underline",
-                                    "hover:no-underline hover:text-gray-0",
-                                )}
-                            >
-                                <FooterLinkedinIcon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
-                            </a>
+                            {socialLinks.map(({ href, icon: Icon }) => (
+                                <a
+                                    href={href}
+                                    key={href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={clsx(
+                                        "text-gray-0",
+                                        "opacity-75",
+                                        "no-underline",
+                                        "hover:no-underline hover:text-gray-0",
+                                    )}
+                                >
+                                    <Icon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>
