@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useHistory } from "@docusaurus/router";
-
+import { Disclosure, Transition } from "@headlessui/react";
 /** @ts-expect-error Docusaurus and Typescript doesn't play well together. */
 import data from "@examples/examples-data.json";
 import { EXAMPLES, SHOW_CASES } from "@site/src/assets/examples";
@@ -9,6 +9,7 @@ import { GithubIconOutlined } from "@site/src/refine-theme/icons/github";
 import { ArrowUpIcon } from "@site/src/refine-theme/icons/arrow-up";
 import { AnimatePresence, motion } from "framer-motion";
 import { Example } from "@site/src/types/examples";
+import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
 
 type ExampleDoc = Record<
     "id" | "title" | "description" | "permalink" | "displayTitle",
@@ -181,7 +182,7 @@ const ExampleList: React.FC = () => {
                     "max-w-[100%] 2xl:max-w-[416px]",
                     "flex flex-col",
                     "mx-auto",
-                    "px-2 pb-6 pt-2 2xl:px-4 2xl:py-6",
+                    "px-2 pb-4 pt-2 2xl:px-4 2xl:py-4",
                     "bg-gray-50 dark:bg-gray-800",
                     "rounded-lg",
                 )}
@@ -190,16 +191,17 @@ const ExampleList: React.FC = () => {
                     className={clsx(
                         "not-prose",
                         "mb-0 mt-0",
-                        "text-base 2xl:text-xl",
+                        "text-sm sm:text-base 2xl:text-xl",
                         "text-gray-900 dark:text-gray-200",
+                        "px-2 lg:px-2 xl:px-0",
                     )}
                 >
                     {example.title}
                 </h3>
                 <img
                     className={clsx(
-                        "mb-0 mt-2 2xl:mt-6",
-                        "w-full sm:max-h-[360px] md:h-[360px] lg:h-[192px] 2xl:h-[242px]",
+                        "mb-0 mt-2 2xl:mt-4",
+                        "w-full max-h-[456px]  md:h-[192px]  2xl:h-[242px]",
                         "object-cover",
                         "rounded-[2px]",
                     )}
@@ -210,6 +212,7 @@ const ExampleList: React.FC = () => {
                 <p
                     className={clsx(
                         "not-prose",
+                        "text-xs sm:text-sm 2xl:text-base",
                         "px-2 mb-0",
                         "text-gray-700 dark:text-gray-400",
                         "mt-4 2xl:mt-6",
@@ -220,6 +223,7 @@ const ExampleList: React.FC = () => {
                     className={clsx(
                         "flex justify-between items-center",
                         "px-2 2xl:px-0 pt-4 2xl:pt-6 mt-auto",
+                        "text-sm 2xl:text-base",
                     )}
                 >
                     <a
@@ -249,7 +253,7 @@ const ExampleList: React.FC = () => {
                                 rel="noreferrer"
                             >
                                 {button.icon({
-                                    className: clsx("w-6 h-6"),
+                                    className: clsx("w-4 h-4 2xl:w-6 2xl:h-6"),
                                 })}
                                 <span>{button.text}</span>
                             </a>
@@ -267,8 +271,7 @@ const ExampleList: React.FC = () => {
             <>
                 <div
                     className={clsx(
-                        // "flex flex-row justify-center flex-wrap",
-                        "grid grid-cols-1 lg:grid-cols-2",
+                        "grid grid-cols-1 md:grid-cols-2",
                         "gap-4 2xl:gap-8",
                     )}
                 >
@@ -316,6 +319,142 @@ const ExampleList: React.FC = () => {
         );
     };
 
+    const renderFilterList = () => {
+        return (
+            <div className="flex justify-start gap-2 flex-wrap mt-0 md:mt-4 2xl:mt-10">
+                {sortedTags.sort().map(({ name, color }) => {
+                    const isActive = filters.has(name);
+                    const allSelected = filters.size === tags.length;
+
+                    const tagColor = getTagColor(name) ?? color;
+
+                    return (
+                        <button
+                            key={name}
+                            className={clsx(
+                                "appearance-none",
+                                "select-none",
+                                "rounded-lg",
+                                "flex items-center justify-center",
+                                "gap-2 px-3 py-[4px]",
+                                "text-sm",
+                                "cursor-pointer",
+                                {
+                                    "text-gray-600 dark:text-gray-400":
+                                        !isActive || allSelected,
+                                    "text-gray-900 dark:text-gray-0":
+                                        isActive && !allSelected,
+                                    "bg-gray-100 dark:bg-gray-800":
+                                        !isActive || allSelected,
+                                },
+                            )}
+                            style={{
+                                borderWidth: "1px",
+                                borderColor:
+                                    isActive && !allSelected
+                                        ? `${tagColor}40`
+                                        : "transparent",
+                                backgroundColor:
+                                    isActive && !allSelected
+                                        ? `${tagColor}33`
+                                        : "",
+                            }}
+                            onClick={() => updateFilters(name)}
+                        >
+                            <div
+                                className={clsx("w-2 h-2 rounded-full", {
+                                    "bg-gray-400 dark:bg-gray-600":
+                                        !isActive || allSelected,
+                                })}
+                                style={{
+                                    backgroundColor:
+                                        isActive && !allSelected
+                                            ? tagColor
+                                            : "",
+                                }}
+                            />
+                            {getTagName(name)}
+                        </button>
+                    );
+                })}
+            </div>
+        );
+    };
+
+    const renderDisclosureFilterList = () => {
+        return (
+            <Disclosure>
+                {({ open }) => (
+                    <div
+                        className={clsx(
+                            "rounded-[4px]",
+                            "border border-gray-100 dark:border-gray-700",
+                        )}
+                    >
+                        <Disclosure.Button
+                            className={clsx(
+                                "w-full",
+                                "flex items-center gap-3",
+                                "px-2 py-2",
+                                "bg-gray-100 dark:bg-gray-800",
+                                {
+                                    "border-b border-gray-100 dark:border-gray-700":
+                                        open,
+                                },
+                            )}
+                        >
+                            <TriangleDownIcon
+                                className={clsx(
+                                    "h-5 w-5",
+                                    "text-gray-400 dark:text-gray-500",
+                                    "transition-all duration-200 ease-in-out",
+                                    {
+                                        "transform -rotate-90": !open,
+                                    },
+                                )}
+                            />
+                            <div
+                                className={clsx(
+                                    "w-full flex items-center justify-between gap-2",
+                                )}
+                            >
+                                <span
+                                    className={clsx(
+                                        "text-sm",
+                                        "text-gray-500 dark:text-gray-400",
+                                    )}
+                                >
+                                    Filters
+                                </span>
+                                <span
+                                    className={clsx(
+                                        "text-sm",
+                                        "text-gray-500 dark:text-gray-400",
+                                    )}
+                                >
+                                    {filteredExamples.length} examples
+                                </span>
+                            </div>
+                        </Disclosure.Button>
+                        <Transition
+                            show={open}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                        >
+                            <Disclosure.Panel className="p-2">
+                                {renderFilterList()}
+                            </Disclosure.Panel>
+                        </Transition>
+                    </div>
+                )}
+            </Disclosure>
+        );
+    };
+
     const renderFilters = () => {
         return (
             <div className="flex flex-col">
@@ -332,83 +471,33 @@ const ExampleList: React.FC = () => {
                 <div
                     className={clsx(
                         "flex items-center justify-between mt-8 2xl:mt-10 pb-4",
-                        "border-b border-gray-200 dark:border-gray-700",
+                        "md:border-b border-gray-200 dark:border-gray-700",
                     )}
                 >
-                    <h3
+                    <span
                         className={clsx(
+                            "hidden md:block",
                             "not-prose",
                             "mb-0 mt-0",
-                            "text-2xl 2xl:text-[32px] 2xl:leading-[40px]",
+                            "text-sm",
                             "text-gray-700 dark:text-gray-200",
                         )}
                     >
                         Filters
-                    </h3>
+                    </span>
                     <span
                         className={clsx(
-                            "text-base 2xl:text-xl",
+                            "hidden md:block",
+                            "text-base",
                             "text-gray-500",
                         )}
                     >
                         {filteredExamples.length} examples
                     </span>
                 </div>
-                <div className="flex justify-start gap-2 flex-wrap mt-4 2xl:mt-10">
-                    {sortedTags.sort().map(({ name, color }) => {
-                        const isActive = filters.has(name);
-                        const allSelected = filters.size === tags.length;
-
-                        const tagColor = getTagColor(name) ?? color;
-
-                        return (
-                            <button
-                                key={name}
-                                className={clsx(
-                                    "appearance-none",
-                                    "select-none",
-                                    "rounded-lg",
-                                    "flex items-center justify-center",
-                                    "gap-2 px-3 py-[4px]",
-                                    "text-sm",
-                                    "cursor-pointer",
-                                    {
-                                        "text-gray-600 dark:text-gray-400":
-                                            !isActive || allSelected,
-                                        "text-gray-900 dark:text-gray-0":
-                                            isActive && !allSelected,
-                                        "bg-gray-100 dark:bg-gray-800":
-                                            !isActive || allSelected,
-                                    },
-                                )}
-                                style={{
-                                    border:
-                                        isActive &&
-                                        !allSelected &&
-                                        `1px solid ${tagColor}40`,
-                                    backgroundColor:
-                                        isActive && !allSelected
-                                            ? `${tagColor}33`
-                                            : "",
-                                }}
-                                onClick={() => updateFilters(name)}
-                            >
-                                <div
-                                    className={clsx("w-2 h-2 rounded-full", {
-                                        "bg-gray-400 dark:bg-gray-600":
-                                            !isActive || allSelected,
-                                    })}
-                                    style={{
-                                        backgroundColor:
-                                            isActive && !allSelected
-                                                ? tagColor
-                                                : "",
-                                    }}
-                                />
-                                {getTagName(name)}
-                            </button>
-                        );
-                    })}
+                <div className="hidden md:flex">{renderFilterList()}</div>
+                <div className="block md:hidden">
+                    {renderDisclosureFilterList()}
                 </div>
             </div>
         );
@@ -443,8 +532,8 @@ const ExampleList: React.FC = () => {
                     className={clsx(
                         "cursor-pointer",
                         "no-underline",
-                        "line-clamp-3",
-                        "text-[14px] leading-[28px]",
+                        "line-clamp-4 sm:line-clamp-3",
+                        "text-xs sm:text-sm 2xl:text-base",
                         "text-gray-700 dark:text-gray-400",
                         "my-2 2xl:my-6",
                     )}
