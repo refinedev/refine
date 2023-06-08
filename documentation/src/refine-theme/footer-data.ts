@@ -10,11 +10,11 @@ export const menuItems = [
         items: [
             {
                 label: "Getting Started",
-                href: "/docs/getting-started",
+                href: "/docs/getting-started/quickstart",
             },
             {
                 label: "Tutorials",
-                href: "/docs/tutorial",
+                href: "/docs/tutorial/introduction/index",
             },
             {
                 label: "Blog",
