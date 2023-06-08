@@ -11,22 +11,25 @@ type CountingNumberProps = {
 };
 
 export const CountingNumber: React.FC<CountingNumberProps> = ({
-    from,
+    // from,
     to,
-    duration,
+    // duration,
     format,
-    once,
+    // once,
 }) => {
-    const ref = React.useRef<HTMLSpanElement>(null);
-    const inView = useInView(ref, { once });
+    // const ref = React.useRef<HTMLSpanElement>(null);
+    // const inView = useInView(ref, { once });
 
-    const counter = useAnimatedCounter(inView ? to : from ?? 0, from, duration);
+    // const counter = useAnimatedCounter(inView ? to : from ?? 0, from, duration);
 
-    const rounded = Math.round(counter);
+    // const rounded = Math.round(counter);
 
     return (
-        <span ref={ref}>
-            {format ? rounded.toLocaleString("en-US") : rounded}
+        <span
+        /* ref={ref} */
+        >
+            {/* {format ? rounded.toLocaleString("en-US") : rounded} */}
+            {format ? to.toLocaleString("en-US") : to}
         </span>
     );
 };
