@@ -92,7 +92,7 @@
 
 .refine-prose table {
     @apply prose-table:border-none;
-    @apply table
+    @apply table;
 }
 
 .refine-prose table tr {
@@ -133,6 +133,14 @@
 .refine-toc-item code {
     @apply font-mono dark:bg-gray-600 dark:bg-opacity-30 py-0.5 px-1 rounded;
     font-size: 12px;
+}
+
+a:has(> code) {
+    text-decoration: none !important;
+}
+
+a:has(> code) code {
+    @apply !text-refine-blue dark:!text-refine-link;
 }
 
 .admonition.admonition-caution code {
