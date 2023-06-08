@@ -16,6 +16,10 @@ export const LandingTileWithImage = ({ image, children }: Props) => {
                 "z-[1]",
                 "overflow-hidden",
                 "group",
+                "max-w-[304px]",
+                "row-span-1",
+                "landing-md:row-span-3",
+                "landing-lg:row-span-1",
             )}
         >
             <div

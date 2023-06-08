@@ -29,8 +29,12 @@ export const LandingTiles = () => {
                     "bg-landing-text-bg",
                     "bg-clip-text",
                     "text-transparent",
-                    "text-[2.5rem]",
-                    "leading-[3rem]",
+                    "text-[1.5rem]",
+                    "leading-[2rem]",
+                    "landing-md:text-[2rem]",
+                    "landing-md:leading-[2.5rem]",
+                    "landing-lg:text-[2.5rem]",
+                    "landing-lg:leading-[3rem]",
                     "text-center",
                 )}
             >
@@ -38,7 +42,17 @@ export const LandingTiles = () => {
                 <span className="font-semibold">Refine</span>
                 <span className="font-light">?</span>
             </div>
-            <div className={clsx("w-full", "grid", "grid-cols-3", "gap-4")}>
+            <div
+                className={clsx(
+                    "w-full",
+                    "grid",
+                    "grid-cols-[repeat(1,304px)]",
+                    "landing-md:grid-cols-[repeat(2,304px)]",
+                    "landing-lg:grid-cols-[repeat(3,304px)]",
+                    "place-content-center",
+                    "gap-4",
+                )}
+            >
                 <LandingTileWithImage image={<LandingTileListIcon />}>
                     <>
                         Eliminates repetitive tasks for{" "}
@@ -68,7 +82,13 @@ export const LandingTiles = () => {
                     library with a{" "}
                     <span className="font-semibold">minimal footprint</span>.
                 </LandingTile>
-                <LandingTile icon={<LandingAutomateIcon />}>
+                <LandingTile
+                    alignmentClass={clsx(
+                        "flex-row-reverse",
+                        "landing-lg:flex-col",
+                    )}
+                    icon={<LandingAutomateIcon />}
+                >
                     <span className="font-semibold">
                         Automated interface generation
                     </span>{" "}
@@ -79,15 +99,29 @@ export const LandingTiles = () => {
                     <span className="font-semibold">Authentication</span> and{" "}
                     <span className="font-semibold">Access Control</span> flows.
                 </LandingTile>
-                <LandingTile icon={<LandingIntegrationIcon />}>
+                <LandingTile
+                    alignmentClass={clsx(
+                        "flex-row-reverse",
+                        "landing-md:flex-row",
+                        "landing-lg:flex-col",
+                    )}
+                    icon={<LandingIntegrationIcon />}
+                >
                     Seamless integration with{" "}
                     <span className="font-semibold">
                         existing React projects
                     </span>
                     .
                 </LandingTile>
-                <div className="empty-placeholder" />
-                <LandingTile icon={<LandingReactIcon />}>
+                <div className="empty-placeholder hidden landing-lg:block" />
+                <LandingTile
+                    alignmentClass={clsx(
+                        "flex-row",
+                        "landing-md:flex-row-reverse",
+                        "landing-lg:flex-col",
+                    )}
+                    icon={<LandingReactIcon />}
+                >
                     Runs on{" "}
                     <span className="font-semibold">every platform</span> that
                     supports React.

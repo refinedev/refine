@@ -4,9 +4,14 @@ import clsx from "clsx";
 type Props = {
     icon: React.ReactNode;
     children: React.ReactNode;
+    alignmentClass?: string;
 };
 
-export const LandingTile = ({ icon, children }: Props) => {
+export const LandingTile = ({
+    icon,
+    children,
+    alignmentClass = "landing-lg:flex-col",
+}: Props) => {
     return (
         <div
             className={clsx(
@@ -16,6 +21,10 @@ export const LandingTile = ({ icon, children }: Props) => {
                 "z-[1]",
                 "overflow-hidden",
                 "group",
+                "max-w-[304px]",
+                "row-span-1",
+                "h-[96px]",
+                "landing-lg:h-auto",
             )}
         >
             <div
@@ -50,22 +59,34 @@ export const LandingTile = ({ icon, children }: Props) => {
             >
                 <div
                     className={clsx(
-                        "flex flex-col gap-4",
-                        "p-6",
-                        "bg-landing-tile-grid-bg",
-                        "bg-contain",
+                        "h-full",
+                        "flex",
+                        "gap-4",
+                        alignmentClass,
+                        "px-2",
+                        "landing-lg:px-6",
+                        "pt-2",
+                        "landing-lg:pt-6",
+                        "pb-0",
+                        "landing-lg:pb-6",
+                        "bg-landing-tile-grid-mobile-bg",
+                        "landing-lg:bg-landing-tile-grid-bg",
+                        "bg-[length:100%_100%]",
+                        "landing-lg:bg-contain",
                     )}
                 >
                     <div
                         className={clsx(
-                            "w-full",
-                            "flex items-center justify-start",
+                            // "landing-lg:w-full",
+                            "flex items-start landing-lg:items-center justify-start",
                         )}
                     >
                         <div
                             className={clsx(
-                                "w-16",
-                                "h-16",
+                                "w-12",
+                                "h-12",
+                                "landing-lg:w-16",
+                                "landing-lg:h-16",
                                 "flex-shrink-0",
                                 "border border-refine-landing-tile-icon-border",
                                 "rounded-full",
