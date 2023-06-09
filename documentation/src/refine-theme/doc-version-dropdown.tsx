@@ -88,13 +88,16 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                                                         className={clsx(
                                                             "px-2 py-1",
                                                             "rounded-[4px]",
+                                                            "no-underline",
                                                             {
-                                                                "hover:text-white text-white":
+                                                                "text-white hover:text-white":
+                                                                    isActive,
+                                                                "bg-refine-blue":
                                                                     isActive,
                                                                 "text-gray-300 dark:text-gray-700":
                                                                     !isActive,
-                                                                "bg-refine-blue":
-                                                                    isActive,
+                                                                "hover:bg-gray-600 hover:dark:bg-gray-100 hover:text-gray-300 dark:hover:text-gray-700":
+                                                                    !isActive,
                                                             },
                                                         )}
                                                     >
