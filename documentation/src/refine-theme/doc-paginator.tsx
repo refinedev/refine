@@ -35,7 +35,7 @@ export const DocPaginator = (props) => {
                             </span>
                             Previous
                         </div>
-                        <span className="text-base text-refine-link underline break-all">
+                        <span className="text-base text-refine-link-light dark:text-refine-dark underline break-all">
                             {previous.title}
                         </span>
                     </div>

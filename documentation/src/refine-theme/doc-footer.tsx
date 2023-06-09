@@ -40,7 +40,11 @@ function EditMetaRow({
                     href={editUrl}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className={clsx("text-refine-link", "text-xs", "underline")}
+                    className={clsx(
+                        "text-refine-link-light dark:text-refine-dark",
+                        "text-xs",
+                        "underline",
+                    )}
                 >
                     Edit this page
                 </a>

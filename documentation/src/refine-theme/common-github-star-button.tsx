@@ -21,7 +21,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
                 "text-gray-500 dark:text-gray-400",
                 "flex gap-2 items-center",
                 // "hover:underline",
-                "hover:text-refine-link",
+                "hover:light:text-refine-link-light hover:dark:text-refine-link-dark",
                 "transition-colors",
                 "duration-200",
                 "ease-in-out",

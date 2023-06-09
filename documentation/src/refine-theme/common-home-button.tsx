@@ -14,7 +14,7 @@ export const CommonHomeButton = ({ className }: Props) => {
                 "text-base",
                 "text-gray-500 dark:text-gray-400",
                 // "hover:underline",
-                "hover:text-refine-link",
+                "hover:light:text-refine-link:light hover:dark:text-refine-link:dark",
                 "transition-colors",
                 "duration-200",
                 "ease-in-out",

@@ -73,7 +73,7 @@ export const LandingHeader = () => {
                             "items-center justify-center",
                             "text-gray-0",
                             "focus:no-underline",
-                            "hover:text-refine-link",
+                            "hover:dark:text-refine-link-dark hover:light:text-refine-link-light",
                         )}
                     >
                         <DiscordIcon />
