@@ -54,7 +54,7 @@ The `type` parameter is the type of navigation you want to perform. It can be on
 
 -   `push`: It adds a new entry to the history stack.
 -   `replace`: It replaces the current entry on the history stack.
--   `path`: Returns the navigation path for the given config. Doesn't mutate the history stack at all.
+-   `path`: Returns the navigation path for the given config. Doesn't mutate the history stack.
 
 ### `hash`
 
@@ -70,6 +70,6 @@ The `options.keepHash` parameter is a boolean that determines whether the curren
 
 ## Return Value
 
-`useGo` is not returning any value except for the `path` type which returns the navigation path for the given config without mutating the history stack.
+`useGo` does not return any value except for the `path` type, which returns the navigation path for the given config without mutating the history stack.
 
 [routerprovider]: /docs/api-reference/core/providers/router-provider.md
