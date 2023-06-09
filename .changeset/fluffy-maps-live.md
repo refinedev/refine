@@ -5,7 +5,7 @@
 "@refinedev/mui": minor
 ---
 
-feat: updated Created, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
 
 fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
 
@@ -21,4 +21,4 @@ const accessControlProvider: IAccessControlContext = {
 
 If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
 
-This is the default behaviour for Create, Show, List, Edit buttons already.
+This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
