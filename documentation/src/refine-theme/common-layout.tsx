@@ -29,7 +29,10 @@ export const CommonLayout = (props: any) => {
 
     React.useEffect(() => {
         if (typeof window !== "undefined" && !isMobile) {
-            if (location.pathname.startsWith("/blog")) {
+            if (
+                location.pathname.startsWith("/blog") ||
+                location.pathname.startsWith("/")
+            ) {
                 window?.Intercom?.("update", { hide_default_launcher: true });
             } else {
                 window?.Intercom?.("update", { hide_default_launcher: false });
