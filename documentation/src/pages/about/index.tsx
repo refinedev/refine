@@ -294,27 +294,36 @@ const About: React.FC = () => {
                             "align-top",
                         )}
                     >
-                        {team.map(
-                            ({ name, avatar, avatar2x, role1, role2 }) => (
-                                <div
-                                    key={name}
-                                    className="flex justify-start flex-col text-center"
+                        {team.map(({ name, avatar, role1, role2 }) => (
+                            <div
+                                key={name}
+                                className="flex justify-start flex-col text-center"
+                            >
+                                <img
+                                    srcSet={`${avatar} 1500w`}
+                                    src={avatar}
+                                    alt={name}
+                                    className="w-full not-prose m-0 mb-6"
+                                />
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-900 dark:text-gray-0 font-semibold",
+                                    )}
                                 >
-                                    <img
-                                        srcSet={`${avatar2x} 1500w`}
-                                        src={avatar}
-                                        alt={name}
-                                        className="w-full not-prose m-0 mb-6"
-                                    />
-                                    <span
-                                        className={clsx(
-                                            "text-xs leading-4",
-                                            "lg:text-base lg:leading-6",
-                                            "text-gray-900 dark:text-gray-0 font-semibold",
-                                        )}
-                                    >
-                                        {name}
-                                    </span>
+                                    {name}
+                                </span>
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-500 dark:text-gray-400",
+                                    )}
+                                >
+                                    {role1}
+                                </span>
+                                {role2 && (
                                     <span
                                         className={clsx(
                                             "text-xs leading-4",
@@ -322,22 +331,11 @@ const About: React.FC = () => {
                                             "text-gray-500 dark:text-gray-400",
                                         )}
                                     >
-                                        {role1}
+                                        {role2}
                                     </span>
-                                    {role2 && (
-                                        <span
-                                            className={clsx(
-                                                "text-xs leading-4",
-                                                "lg:text-base lg:leading-6",
-                                                "text-gray-500 dark:text-gray-400",
-                                            )}
-                                        >
-                                            {role2}
-                                        </span>
-                                    )}
-                                </div>
-                            ),
-                        )}
+                                )}
+                            </div>
+                        ))}
                         <div className="flex justify-center flex-col text-center">
                             <div className="w-full not-prose m-0 mb-6">
                                 <JoinUsIcon className="w-full" />
@@ -422,27 +420,36 @@ const About: React.FC = () => {
                             "align-top",
                         )}
                     >
-                        {backedBy.map(
-                            ({ name, avatar, avatar2x, role1, role2 }) => (
-                                <div
-                                    key={name}
-                                    className="flex justify-start flex-col text-center"
+                        {backedBy.map(({ name, avatar, role1, role2 }) => (
+                            <div
+                                key={name}
+                                className="flex justify-start flex-col text-center"
+                            >
+                                <img
+                                    srcSet={`${avatar} 1500w`}
+                                    src={avatar}
+                                    alt={name}
+                                    className="w-full not-prose m-0 mb-6"
+                                />
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-900 dark:text-gray-0 font-semibold",
+                                    )}
                                 >
-                                    <img
-                                        srcSet={`${avatar2x} 1500w`}
-                                        src={avatar}
-                                        alt={name}
-                                        className="w-full not-prose m-0 mb-6"
-                                    />
-                                    <span
-                                        className={clsx(
-                                            "text-xs leading-4",
-                                            "lg:text-base lg:leading-6",
-                                            "text-gray-900 dark:text-gray-0 font-semibold",
-                                        )}
-                                    >
-                                        {name}
-                                    </span>
+                                    {name}
+                                </span>
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-500 dark:text-gray-400",
+                                    )}
+                                >
+                                    {role1}
+                                </span>
+                                {role2 && (
                                     <span
                                         className={clsx(
                                             "text-xs leading-4",
@@ -450,22 +457,11 @@ const About: React.FC = () => {
                                             "text-gray-500 dark:text-gray-400",
                                         )}
                                     >
-                                        {role1}
+                                        {role2}
                                     </span>
-                                    {role2 && (
-                                        <span
-                                            className={clsx(
-                                                "text-xs leading-4",
-                                                "lg:text-base lg:leading-6",
-                                                "text-gray-500 dark:text-gray-400",
-                                            )}
-                                        >
-                                            {role2}
-                                        </span>
-                                    )}
-                                </div>
-                            ),
-                        )}
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div
