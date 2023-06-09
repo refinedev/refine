@@ -67,124 +67,296 @@ export const buttonDeleteTests = function (
             expect(queryByText("Delete")).not.toBeInTheDocument();
         });
 
-        it("should be disabled when user not have access", async () => {
-            const { container, getByTestId } = render(
-                <DeleteButton>Delete</DeleteButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () => Promise.resolve({ can: false }),
-                        },
-                    }),
-                },
-            );
-
-            expect(container).toBeTruthy();
-
-            await waitFor(() =>
-                expect(
-                    getByTestId(RefineButtonTestIds.DeleteButton),
-                ).toBeDisabled(),
-            );
-        });
-
-        it("should be enabled when enableAccessControl is false", async () => {
-            const { container, getByText } = render(
-                <DeleteButton>Delete</DeleteButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () => Promise.resolve({ can: false }),
-                            options: {
-                                buttons: {
-                                    enableAccessControl: false,
-                                    hideIfUnauthorized: false,
+        describe("access control", () => {
+            describe("with global access control only", () => {
+                describe("with default behaviour", () => {
+                    describe("when user not have access", () => {
+                        it("should render disabled button with reason text", async () => {
+                            const { container, getByText } = render(
+                                <DeleteButton recordItemId="1">
+                                    Delete
+                                </DeleteButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async ({ params, action }) => {
+                                                if (
+                                                    action === "delete" &&
+                                                    params?.id === "1"
+                                                ) {
+                                                    return {
+                                                        can: false,
+                                                        reason: "Access Denied",
+                                                    };
+                                                }
+                                                return {
+                                                    can: true,
+                                                };
+                                            },
+                                        },
+                                    }),
                                 },
-                            },
-                        },
-                    }),
-                },
-            );
+                            );
 
-            expect(container).toBeTruthy();
+                            expect(container).toBeTruthy();
 
-            expect(getByText("Delete").closest("button")).not.toBeDisabled();
-        });
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Delete").closest("button"),
+                                ).toBeDisabled(),
+                            );
 
-        it("should be hidden when hideIfUnauthorized is true", async () => {
-            const { container, queryByText } = render(
-                <DeleteButton hideIfUnauthorized>Delete</DeleteButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () => Promise.resolve({ can: false }),
-                            options: {
-                                buttons: {
-                                    enableAccessControl: true,
-                                    hideIfUnauthorized: true,
+                            waitFor(() =>
+                                expect(
+                                    getByText("Delete")
+                                        .closest("button")
+                                        ?.getAttribute("title"),
+                                ).toBe("Access Denied"),
+                            );
+                        });
+                    });
+
+                    describe("when user have access", () => {
+                        it("should render enabled button", async () => {
+                            const { container, getByText } = render(
+                                <DeleteButton recordItemId="2">
+                                    Delete
+                                </DeleteButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async ({ params, action }) => {
+                                                if (
+                                                    action === "delete" &&
+                                                    params?.id === "1"
+                                                ) {
+                                                    return {
+                                                        can: false,
+                                                    };
+                                                }
+                                                return {
+                                                    can: true,
+                                                };
+                                            },
+                                        },
+                                    }),
                                 },
+                            );
+
+                            expect(container).toBeTruthy();
+
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Delete").closest("button"),
+                                ).not.toBeDisabled(),
+                            );
+                        });
+                    });
+                });
+
+                describe("when hideIfUnauthorized is true", () => {
+                    it("should not render button", async () => {
+                        const { container, queryByText } = render(
+                            <DeleteButton>Delete</DeleteButton>,
+                            {
+                                wrapper: TestWrapper({
+                                    accessControlProvider: {
+                                        can: async () => ({ can: false }),
+                                        options: {
+                                            buttons: {
+                                                hideIfUnauthorized: true,
+                                            },
+                                        },
+                                    },
+                                }),
                             },
-                        },
-                    }),
-                },
-            );
+                        );
 
-            expect(container).toBeTruthy();
+                        expect(container).toBeTruthy();
 
-            expect(queryByText("Delete")).not.toBeInTheDocument();
-        });
+                        expect(queryByText("Delete")).not.toBeInTheDocument();
+                    });
+                });
 
-        it("should be disabled when recordId not allowed", async () => {
-            const { container, getByTestId } = render(
-                <DeleteButton recordItemId="1">Delete</DeleteButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: ({ params }) => {
-                                if (params?.id === "1") {
-                                    return Promise.resolve({ can: false });
-                                }
-                                return Promise.resolve({ can: true });
+                describe("when access control is disabled explicitly", () => {
+                    it("should render enabled button", async () => {
+                        const { container, getByText } = render(
+                            <DeleteButton>Delete</DeleteButton>,
+                            {
+                                wrapper: TestWrapper({
+                                    accessControlProvider: {
+                                        can: async () => ({ can: false }),
+                                        options: {
+                                            buttons: {
+                                                enableAccessControl: false,
+                                                hideIfUnauthorized: true,
+                                            },
+                                        },
+                                    },
+                                }),
                             },
-                        },
-                    }),
-                },
-            );
+                        );
 
-            expect(container).toBeTruthy();
+                        expect(container).toBeTruthy();
 
-            await waitFor(() =>
-                expect(
-                    getByTestId(RefineButtonTestIds.DeleteButton),
-                ).toBeDisabled(),
-            );
-        });
+                        expect(
+                            getByText("Delete").closest("button"),
+                        ).not.toBeDisabled();
+                    });
+                });
+            });
 
-        it("should skip access control", async () => {
-            const { container, getByTestId } = render(
-                <DeleteButton
-                    accessControl={{
-                        enabled: false,
-                    }}
-                >
-                    Delete
-                </DeleteButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () => Promise.resolve({ can: false }),
-                        },
-                    }),
-                },
-            );
+            describe("with global config and accessControl prop", () => {
+                describe("when access control enabled globally", () => {
+                    describe("when access control is disabled with prop", () => {
+                        it("should render enabled button", async () => {
+                            const { container, getByText } = render(
+                                <DeleteButton
+                                    accessControl={{ enabled: false }}
+                                >
+                                    Delete
+                                </DeleteButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async () => {
+                                                return {
+                                                    can: false,
+                                                };
+                                            },
+                                            options: {
+                                                buttons: {
+                                                    enableAccessControl: true,
+                                                    hideIfUnauthorized: true,
+                                                },
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
 
-            expect(container).toBeTruthy();
+                            expect(container).toBeTruthy();
 
-            await waitFor(() =>
-                expect(
-                    getByTestId(RefineButtonTestIds.DeleteButton),
-                ).not.toBeDisabled(),
-            );
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Delete").closest("button"),
+                                ).not.toBeDisabled(),
+                            );
+                        });
+                    });
+
+                    describe("when hideIfUnauthorized false globally", () => {
+                        describe("when hideIfUnauthorized enabled with prop", () => {
+                            it("should not render button", async () => {
+                                const { container, queryByText } = render(
+                                    <DeleteButton
+                                        accessControl={{
+                                            hideIfUnauthorized: true,
+                                        }}
+                                    >
+                                        Delete
+                                    </DeleteButton>,
+                                    {
+                                        wrapper: TestWrapper({
+                                            accessControlProvider: {
+                                                can: async () => ({
+                                                    can: false,
+                                                }),
+                                                options: {
+                                                    buttons: {
+                                                        hideIfUnauthorized:
+                                                            false,
+                                                    },
+                                                },
+                                            },
+                                        }),
+                                    },
+                                );
+
+                                expect(container).toBeTruthy();
+
+                                expect(
+                                    queryByText("Delete"),
+                                ).not.toBeInTheDocument();
+                            });
+                        });
+                    });
+                });
+
+                describe("when access control disabled globally", () => {
+                    describe("when access control enabled with prop", () => {
+                        it("should render disabled button with reason text", async () => {
+                            const { container, getByText } = render(
+                                <DeleteButton accessControl={{ enabled: true }}>
+                                    Delete
+                                </DeleteButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async () => {
+                                                return {
+                                                    can: false,
+                                                    reason: "Access Denied",
+                                                };
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
+
+                            expect(container).toBeTruthy();
+
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Delete").closest("button"),
+                                ).toBeDisabled(),
+                            );
+
+                            waitFor(() =>
+                                expect(
+                                    getByText("Delete")
+                                        .closest("button")
+                                        ?.getAttribute("title"),
+                                ).toBe("Access Denied"),
+                            );
+                        });
+                    });
+                });
+
+                describe("when hideIfUnauthorized enabled globally", () => {
+                    describe("when hideIfUnauthorized disabled with prop", () => {
+                        it("should render button", async () => {
+                            const { container, queryByText } = render(
+                                <DeleteButton
+                                    accessControl={{
+                                        hideIfUnauthorized: false,
+                                    }}
+                                >
+                                    Delete
+                                </DeleteButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async () => ({
+                                                can: false,
+                                            }),
+                                            options: {
+                                                buttons: {
+                                                    hideIfUnauthorized: true,
+                                                },
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
+
+                            expect(container).toBeTruthy();
+
+                            expect(queryByText("Delete")).toBeInTheDocument();
+                        });
+                    });
+                });
+            });
         });
 
         it("should render called function successfully if click the button", async () => {
