@@ -66,13 +66,14 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                                 "transition duration-150 ease-in-out",
                                 "-mr-2",
                                 "text-gray-400 dark:text-gray-500",
+                                isShowing ? "translate-y-1" : "",
                                 isShowing && isPermanentDark
-                                    ? "!text-white"
+                                    ? "!text-gray-0 opacity-100"
                                     : isPermanentDark
-                                    ? "!text-gray-500"
+                                    ? "!text-gray-0 opacity-50"
                                     : "",
                                 {
-                                    "dark:text-white text-gray-900": isShowing,
+                                    "dark:text-gray-0 text-gray-900": isShowing,
                                 },
                             )}
                         />
