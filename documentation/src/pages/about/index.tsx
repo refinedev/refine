@@ -402,11 +402,11 @@ const About: React.FC = () => {
                                 "w-[144px] h-[144px]",
                                 "md:w-[192px] md:h-[192px]",
                                 "rounded-full ",
-                                "bg-gray-900",
+                                "bg-gray-900 dark:bg-gray-0",
                                 "shrink-0",
                             )}
                         >
-                            <Istanbul500Icon className="text-gray-0" />
+                            <Istanbul500Icon className="text-gray-0 dark:text-gray-700" />
                         </div>
                     </div>
 
