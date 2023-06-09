@@ -27,7 +27,9 @@ export const LandingPlaygroundModal = () => {
         };
     }, []);
 
-    const params = React.useMemo(() => {
+    const [params, setParams] = React.useState<Record<string, string>>({});
+
+    React.useEffect(() => {
         const _params = new URLSearchParams(search);
         const paramsObj: Record<string, string> = {};
 
@@ -36,7 +38,7 @@ export const LandingPlaygroundModal = () => {
             paramsObj[key] = value;
         }
 
-        return paramsObj;
+        setParams(paramsObj);
     }, [search]);
 
     React.useEffect(() => {
