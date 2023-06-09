@@ -25,7 +25,7 @@ export const RefineLogo = ({ title, className }: Props) => {
                     <span
                         className={clsx(
                             "text-gray-500 dark:text-gray-0",
-                            "text-xs sm:text-base leading-none text-gray-0 font-normal",
+                            "text-xs sm:text-base leading-none font-normal",
                             "mt-1.5",
                         )}
                     >
