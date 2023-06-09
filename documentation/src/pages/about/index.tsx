@@ -13,6 +13,7 @@ import { JoinUsIcon } from "@site/src/refine-theme/icons/join-us";
 import { Istanbul500Icon } from "@site/src/refine-theme/icons/500";
 import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
 import { MailIcon } from "@site/src/refine-theme/icons/mail";
+import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 
 const About: React.FC = () => {
     return (
@@ -22,7 +23,6 @@ const About: React.FC = () => {
             </Head>
             <div className="refine-prose">
                 <CommonHeader hasSticky={true} />
-
                 <div
                     className={clsx(
                         "xl:max-w-[944px] xl:py-16",
@@ -33,7 +33,7 @@ const About: React.FC = () => {
                         "w-full mx-auto",
                     )}
                 >
-                    <h1 className="text-gray-900 dark:text-gray-0">
+                    <h1 className="text-gray-900 dark:text-gray-0 text-center">
                         We&apos;re helping organizations to build better web
                         applications, in{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#0FBDBD] to-[#26D97F]">
@@ -46,7 +46,6 @@ const About: React.FC = () => {
                         .
                     </h1>
                 </div>
-
                 <div
                     className={clsx(
                         "xl:max-w-[1120px] xl:py-16",
@@ -91,7 +90,6 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
                 <div
                     className={clsx(
                         "xl:max-w-[1024px] xl:py-16",
@@ -267,7 +265,6 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
                 <div
                     className={clsx(
                         "lg:max-w-[912px] lg:py-16",
@@ -301,7 +298,7 @@ const About: React.FC = () => {
                             ({ name, avatar, avatar2x, role1, role2 }) => (
                                 <div
                                     key={name}
-                                    className="flex justify-center flex-col text-center"
+                                    className="flex justify-start flex-col text-center"
                                 >
                                     <img
                                         srcSet={`${avatar2x} 1500w`}
@@ -372,7 +369,6 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
                 <div
                     className={clsx(
                         "lg:max-w-[912px] lg:py-16",
@@ -430,7 +426,7 @@ const About: React.FC = () => {
                             ({ name, avatar, avatar2x, role1, role2 }) => (
                                 <div
                                     key={name}
-                                    className="flex justify-center flex-col text-center"
+                                    className="flex justify-start flex-col text-center"
                                 >
                                     <img
                                         srcSet={`${avatar2x} 1500w`}
@@ -472,7 +468,6 @@ const About: React.FC = () => {
                         )}
                     </div>
                 </div>
-
                 <div
                     className={clsx(
                         "xl:max-w-[1016px] lg:py-16",
@@ -542,6 +537,7 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
+                <BlogFooter />
             </div>
         </CommonLayout>
     );

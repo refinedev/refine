@@ -4,14 +4,14 @@ import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { footerDescription, menuItems, socialLinks } from "./footer-data";
 
-export const LandingFooter = () => {
+export const BlogFooter = () => {
     return (
         <>
             <div
                 className={clsx(
                     "border-t",
-                    "border-t-refine-landing-footer-border",
-                    "bg-refine-landing-footer-bg",
+                    "border-t-gray-100 dark:border-t-gray-700",
+                    "bg-gray-50 dark:bg-gray-800",
                     "w-full",
                     "py-6",
                     "landing-sm:py-8",
@@ -35,7 +35,7 @@ export const LandingFooter = () => {
                     )}
                 >
                     <div className={clsx()}>
-                        <RefineLogoIcon className="text-gray-0" />
+                        <RefineLogoIcon className="text-gray-900 dark:text-gray-0" />
                     </div>
                     <div
                         className={clsx(
@@ -53,7 +53,7 @@ export const LandingFooter = () => {
                                 "opacity-75",
                                 "landing-lg:opacity-100",
                                 "landing-lg:text-base",
-                                "text-gray-0",
+                                "text-gray-500 dark:text-gray-500",
                                 "landing-xl:max-w-[300px]",
                                 "w-full",
                                 "flex-shrink-0",
@@ -94,7 +94,7 @@ export const LandingFooter = () => {
                                     className={clsx("flex flex-col gap-4")}
                                     key={menu.label}
                                 >
-                                    <div className="text-base font-semibold text-gray-0">
+                                    <div className="text-base font-semibold text-gray-900 dark:text-gray-0">
                                         {menu.label}
                                     </div>
                                     <div className="flex flex-col gap-2">
@@ -104,11 +104,10 @@ export const LandingFooter = () => {
                                                 key={item.label}
                                                 className={clsx(
                                                     "text-base",
-                                                    "text-gray-0",
+                                                    "text-gray-700 dark:text-gray-400",
                                                     "opacity-75",
-                                                    "hover:opacity-100",
-                                                    "hover:no-underline",
-                                                    "hover:text-gray-0",
+                                                    "no-underline hover:no-underline",
+                                                    "hover:text-gray-700 hover:dark:text-gray-400",
                                                 )}
                                             >
                                                 {item.label}
@@ -123,13 +122,13 @@ export const LandingFooter = () => {
                                 )}
                             >
                                 <div className={clsx("flex flex-col gap-4")}>
-                                    <div className="text-base font-semibold text-gray-0">
+                                    <div className="text-base font-semibold text-gray-900 dark:text-gray-0">
                                         Contact
                                     </div>
                                     <div
                                         className={clsx(
                                             "text-base",
-                                            "text-gray-0",
+                                            "text-gray-700 dark:text-gray-400",
                                         )}
                                     >
                                         <div className={clsx("opacity-75")}>
@@ -144,11 +143,9 @@ export const LandingFooter = () => {
                                         <a
                                             href="mailto:info@refine.dev"
                                             className={clsx(
-                                                "text-gray-0",
-                                                "opacity-75",
-                                                "hover:opacity-100",
-                                                "hover:no-underline",
-                                                "hover:text-gray-0",
+                                                "text-gray-700 dark:text-gray-400",
+                                                "no-underline hover:no-underline",
+                                                "hover:text-gray-700 hover:dark:text-gray-400",
                                             )}
                                         >
                                             info@refine.dev
@@ -163,8 +160,8 @@ export const LandingFooter = () => {
             <div
                 className={clsx(
                     "border-t",
-                    "border-t-refine-landing-footer-border",
-                    "bg-refine-landing-footer-bg",
+                    "border-t-gray-100 dark:border-t-gray-700",
+                    "bg-gray-50 dark:bg-gray-800",
                     "w-full",
                     "px-4",
                     "landing-sm:px-8",
@@ -184,7 +181,12 @@ export const LandingFooter = () => {
                         "flex-col-reverse landing-lg:flex-row",
                     )}
                 >
-                    <div className={clsx("text-base", "text-gray-0")}>
+                    <div
+                        className={clsx(
+                            "text-base",
+                            "text-gray-500 dark:text-gray-400",
+                        )}
+                    >
                         © 2023, refine from Delaware to wherever you&apos;re
                         with{" "}
                         <HeartOutlinedIcon className="text-refine-red inline ml-2 leading-6" />
@@ -199,7 +201,7 @@ export const LandingFooter = () => {
                     >
                         <span
                             className={clsx(
-                                "text-gray-0",
+                                "text-gray-500 dark:text-gray-400",
                                 "opacity-75 text-center landing-lg:text-left",
                             )}
                         >
@@ -221,10 +223,10 @@ export const LandingFooter = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                     className={clsx(
-                                        "text-gray-0",
+                                        "text-gray-500 dark:text-gray-400",
                                         "opacity-75",
                                         "no-underline",
-                                        "hover:no-underline hover:text-gray-0",
+                                        "hover:no-underline hover:text-gray-500 hover:dark:text-gray-400",
                                     )}
                                 >
                                     <Icon className="w-9 h-9 landing-lg:w-6 landing-lg:h-6" />

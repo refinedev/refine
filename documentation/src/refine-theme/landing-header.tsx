@@ -5,7 +5,7 @@ import SearchBar from "@theme/SearchBar";
 import Link from "@docusaurus/Link";
 
 import { Menu } from "./common-header/menu";
-import { MobileMenuModal } from "./common-header/mobile-menu-model";
+import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 
 import { LandingDocSearchButton } from "./landing-doc-search-button";
 import { LandingGithubStarButton } from "./landing-github-star-button";
