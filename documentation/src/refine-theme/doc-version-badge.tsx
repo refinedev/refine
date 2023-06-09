@@ -8,7 +8,7 @@ export const DocVersionBadge = ({ version }: Props) => {
         <div
             className={clsx(
                 "text-xs",
-                "dark-text-gray-0",
+                "dark:text-white",
                 "text-gray-900",
                 "py-2 px-3",
                 "rounded",

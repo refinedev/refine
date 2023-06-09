@@ -46,7 +46,7 @@ export const LandingHeader = () => {
                 </Link>
             </div>
             <div className={clsx("hidden landing-xl:flex", "gap-8")}>
-                <Menu />
+                <Menu isPermanentDark />
             </div>
             <div
                 className={clsx(
@@ -73,10 +73,10 @@ export const LandingHeader = () => {
                             "items-center justify-center",
                             "text-gray-0",
                             "focus:no-underline",
-                            "hover:text-refine-link",
+                            "hover:text-gray-0",
                         )}
                     >
-                        <DiscordIcon />
+                        <DiscordIcon className="text-gray-0" />
                     </a>
                 </div>
                 <button

@@ -1,6 +1,6 @@
-import React from "react";
-import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
+import Layout from "@theme/Layout";
+import React from "react";
 import * as Icons from "../../../static/become-a-refine-expert/icons";
 
 const icons = [
@@ -106,7 +106,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                         /become-a-refine-expert/img/dashboard-2x.png 1x"
                         src="/become-a-refine-expert/img/dashboard-2x.png"
                         sizes="100vw"
-                        alt="Refine app screenshot"
+                        alt="refine app screenshot"
                         className="block object-cover"
                     />
                 </div>

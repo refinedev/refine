@@ -1,19 +1,19 @@
-import React from "react";
 import Head from "@docusaurus/Head";
+import { RedditIcon } from "@site/src/components/landing/icons/gray-social-icons";
+import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
-import { OpenSourceIcon } from "@site/src/refine-theme/icons/open-source";
-import { GithubIcon } from "@site/src/refine-theme/icons/github";
-import clsx from "clsx";
-import { DiscordIcon, TwitterIcon } from "@site/src/refine-theme/icons/popover";
-import { RedditIcon } from "@site/src/components/landing/icons/gray-social-icons";
-import { team } from "../../assets/team";
-import { backedBy } from "../../assets/backed-by";
-import { JoinUsIcon } from "@site/src/refine-theme/icons/join-us";
 import { Istanbul500Icon } from "@site/src/refine-theme/icons/500";
-import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
+import { GithubIcon } from "@site/src/refine-theme/icons/github";
+import { JoinUsIcon } from "@site/src/refine-theme/icons/join-us";
 import { MailIcon } from "@site/src/refine-theme/icons/mail";
-import { BlogFooter } from "@site/src/refine-theme/blog-footer";
+import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
+import { OpenSourceIcon } from "@site/src/refine-theme/icons/open-source";
+import { DiscordIcon, TwitterIcon } from "@site/src/refine-theme/icons/popover";
+import clsx from "clsx";
+import React from "react";
+import { backedBy } from "../../assets/backed-by";
+import { team } from "../../assets/team";
 
 const About: React.FC = () => {
     return (
@@ -64,13 +64,13 @@ const About: React.FC = () => {
                         )}
                     >
                         <div className="bg-gray-50 text-2xl flex justify-center items-center font-semibold px-16 py-36 rounded-xl">
-                            10k+ Github Star & YC kutlaması etkinliginde topluca
+                            10k+ GitHub Star & YC kutlaması etkinliginde topluca
                             çekindigimiz foto. (Ya da video?)
                         </div>
                         <div className="flex flex-col justify-center text-2xl text-gray-700">
                             <p>
                                 Shortly after its initial release on September
-                                2021, Refine has gained attraction of
+                                2021, refine has gained attraction of
                                 open-source community and has become
                                 increasingly popular among web application
                                 frameworks.
@@ -170,7 +170,7 @@ const About: React.FC = () => {
                                         className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
                                         rel="noreferrer"
                                     >
-                                        Github Repo
+                                        GitHub Repo
                                     </a>
                                 </div>
                             </div>
@@ -294,27 +294,36 @@ const About: React.FC = () => {
                             "align-top",
                         )}
                     >
-                        {team.map(
-                            ({ name, avatar, avatar2x, role1, role2 }) => (
-                                <div
-                                    key={name}
-                                    className="flex justify-start flex-col text-center"
+                        {team.map(({ name, avatar, role1, role2 }) => (
+                            <div
+                                key={name}
+                                className="flex justify-start flex-col text-center"
+                            >
+                                <img
+                                    srcSet={`${avatar} 1500w`}
+                                    src={avatar}
+                                    alt={name}
+                                    className="w-full not-prose m-0 mb-6"
+                                />
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-900 dark:text-gray-0 font-semibold",
+                                    )}
                                 >
-                                    <img
-                                        srcSet={`${avatar2x} 1500w`}
-                                        src={avatar}
-                                        alt={name}
-                                        className="w-full not-prose m-0 mb-6"
-                                    />
-                                    <span
-                                        className={clsx(
-                                            "text-xs leading-4",
-                                            "lg:text-base lg:leading-6",
-                                            "text-gray-900 dark:text-gray-0 font-semibold",
-                                        )}
-                                    >
-                                        {name}
-                                    </span>
+                                    {name}
+                                </span>
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-500 dark:text-gray-400",
+                                    )}
+                                >
+                                    {role1}
+                                </span>
+                                {role2 && (
                                     <span
                                         className={clsx(
                                             "text-xs leading-4",
@@ -322,22 +331,11 @@ const About: React.FC = () => {
                                             "text-gray-500 dark:text-gray-400",
                                         )}
                                     >
-                                        {role1}
+                                        {role2}
                                     </span>
-                                    {role2 && (
-                                        <span
-                                            className={clsx(
-                                                "text-xs leading-4",
-                                                "lg:text-base lg:leading-6",
-                                                "text-gray-500 dark:text-gray-400",
-                                            )}
-                                        >
-                                            {role2}
-                                        </span>
-                                    )}
-                                </div>
-                            ),
-                        )}
+                                )}
+                            </div>
+                        ))}
                         <div className="flex justify-center flex-col text-center">
                             <div className="w-full not-prose m-0 mb-6">
                                 <JoinUsIcon className="w-full" />
@@ -422,27 +420,36 @@ const About: React.FC = () => {
                             "align-top",
                         )}
                     >
-                        {backedBy.map(
-                            ({ name, avatar, avatar2x, role1, role2 }) => (
-                                <div
-                                    key={name}
-                                    className="flex justify-start flex-col text-center"
+                        {backedBy.map(({ name, avatar, role1, role2 }) => (
+                            <div
+                                key={name}
+                                className="flex justify-start flex-col text-center"
+                            >
+                                <img
+                                    srcSet={`${avatar} 1500w`}
+                                    src={avatar}
+                                    alt={name}
+                                    className="w-full not-prose m-0 mb-6"
+                                />
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-900 dark:text-gray-0 font-semibold",
+                                    )}
                                 >
-                                    <img
-                                        srcSet={`${avatar2x} 1500w`}
-                                        src={avatar}
-                                        alt={name}
-                                        className="w-full not-prose m-0 mb-6"
-                                    />
-                                    <span
-                                        className={clsx(
-                                            "text-xs leading-4",
-                                            "lg:text-base lg:leading-6",
-                                            "text-gray-900 dark:text-gray-0 font-semibold",
-                                        )}
-                                    >
-                                        {name}
-                                    </span>
+                                    {name}
+                                </span>
+                                <span
+                                    className={clsx(
+                                        "text-xs leading-4",
+                                        "lg:text-base lg:leading-6",
+                                        "text-gray-500 dark:text-gray-400",
+                                    )}
+                                >
+                                    {role1}
+                                </span>
+                                {role2 && (
                                     <span
                                         className={clsx(
                                             "text-xs leading-4",
@@ -450,22 +457,11 @@ const About: React.FC = () => {
                                             "text-gray-500 dark:text-gray-400",
                                         )}
                                     >
-                                        {role1}
+                                        {role2}
                                     </span>
-                                    {role2 && (
-                                        <span
-                                            className={clsx(
-                                                "text-xs leading-4",
-                                                "lg:text-base lg:leading-6",
-                                                "text-gray-500 dark:text-gray-400",
-                                            )}
-                                        >
-                                            {role2}
-                                        </span>
-                                    )}
-                                </div>
-                            ),
-                        )}
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div

@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
 import clsx from "clsx";
+import React, { useMemo } from "react";
 
-import Card from "../../components/integrations/card";
-import { integrations as integrationsData } from "../../assets/integrations";
 import IntegrationsLayout from "@site/src/components/integrations/layout";
 import { Integration } from "@site/src/types/integrations";
+import { integrations as integrationsData } from "../../assets/integrations";
+import Card from "../../components/integrations/card";
 
 const Title = ({
     children,
@@ -87,7 +87,7 @@ const Integrations: React.FC = () => {
                         "mt-4 sm:mt-8",
                     )}
                 >
-                    List of packages to extend your Refine prject with UI
+                    List of packages to extend your refine prject with UI
                     frameworks, backend connectors and other powerful tools.
                 </div>
             </div>

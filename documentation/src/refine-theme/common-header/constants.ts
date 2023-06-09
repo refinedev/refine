@@ -1,13 +1,13 @@
-import { CloudIcon } from "../icons/cloud";
+// import { CloudIcon } from "../icons/cloud";
 import {
     DocumentsIcon,
     IntegrationsIcon,
     TutorialIcon,
     ExamplesIcon,
     AwesomeIcon,
-    UseCasesIcon,
+    // UseCasesIcon,
     ContributeIcon,
-    RefineWeekIcon,
+    // RefineWeekIcon,
     HackathonsIcon,
     AboutUsIcon,
     StoreIcon,
@@ -71,38 +71,38 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
         ],
     },
-    {
-        isPopover: false,
-        label: "Cloud",
-        icon: CloudIcon,
-        href: "#cloud",
-    },
+    // {
+    //     isPopover: false,
+    //     label: "Cloud",
+    //     icon: CloudIcon,
+    //     href: "#cloud",
+    // },
     {
         isPopover: true,
         label: "Community",
         items: [
-            {
-                label: "Use cases",
-                description: "Inspiring projects built with refine.",
-                link: "/use-cases",
-                icon: UseCasesIcon,
-            },
+            // {
+            //     label: "Use cases",
+            //     description: "Inspiring projects built with refine.",
+            //     link: "/use-cases",
+            //     icon: UseCasesIcon,
+            // },
             {
                 label: "Contributing",
                 description: "Join open-source contributors.",
                 link: "/docs/contributing/",
                 icon: ContributeIcon,
             },
-            {
-                label: "refineweeks",
-                description: "Weekly projects to practice refine.",
-                link: "/week-of-refine",
-                icon: RefineWeekIcon,
-            },
+            // {
+            //     label: "refineweeks",
+            //     description: "Weekly projects to practice refine.",
+            //     link: "/week-of-refine",
+            //     icon: RefineWeekIcon,
+            // },
             {
                 label: "Hackathons",
                 description: "Compete in hackathons and earn prizes!",
-                link: "#",
+                link: "https://github.com/refinedev/refine/blob/next/hackathon/refine-hackathon.md",
                 icon: HackathonsIcon,
             },
         ],

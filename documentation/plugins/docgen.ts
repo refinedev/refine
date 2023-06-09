@@ -92,7 +92,7 @@ const replacementProps: Record<string, string> = {
         "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
 };
 
-const spinner = ora("Generating Refine declarations...");
+const spinner = ora("Generating refine declarations...");
 
 /** HELPERS */
 const getPackageNamePathMap = async (directory: string) => {
@@ -361,7 +361,7 @@ export default function plugin(): Plugin<DocgenContent> {
         },
         async contentLoaded({ content, actions }): Promise<void> {
             if (!process.env.DISABLE_DOCGEN) {
-                ora("Creating Refine declaration files...").succeed();
+                ora("Creating refine declaration files...").succeed();
 
                 const { createData } = actions;
 

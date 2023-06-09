@@ -29,7 +29,12 @@ const Divider = () => {
 const Desktop = () => {
     return (
         <div
-            className={clsx("w-full", "hidden lg:flex items-center", "mx-auto")}
+            className={clsx(
+                "w-full",
+                "hidden lg:flex items-center",
+                "mx-auto",
+                "max-w-[1644px]",
+            )}
         >
             <RefineLogo
                 className={clsx("lg:min-w-[256px]")}
@@ -56,7 +61,9 @@ const Desktop = () => {
                 >
                     <div className={clsx("xl:hidden flex")}>
                         <SearchBar
-                            CustomButton={() => <DocSearchButton iconOnly />}
+                            CustomButton={(props) => (
+                                <DocSearchButton {...props} iconOnly />
+                            )}
                         />
                     </div>
                     <Divider />
@@ -109,7 +116,7 @@ export const DocHeader = () => {
                 "z-10",
                 "sticky",
                 "top-0",
-                "py-2 px-4  sm:py-3 sm:px-6",
+                "py-2 sm:py-3 px-4 sm:px-6",
                 "bg-gray-50 dark:bg-gray-800",
                 "border-b border-gray-100 dark:border-gray-700",
             )}
