@@ -392,7 +392,7 @@ const About: React.FC = () => {
                     <div
                         className={clsx(
                             "flex justify-center items-center w-full",
-                            "bg-gray-100",
+                            "bg-gray-100 dark:bg-gray-700",
                             "rounded-xl",
                             "py-6",
                             "mb-16",
