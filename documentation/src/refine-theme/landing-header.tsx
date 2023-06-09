@@ -46,7 +46,7 @@ export const LandingHeader = () => {
                 </Link>
             </div>
             <div className={clsx("hidden landing-xl:flex", "gap-8")}>
-                <Menu />
+                <Menu isPermanentDark />
             </div>
             <div
                 className={clsx(
