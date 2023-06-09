@@ -14,10 +14,8 @@ import clsx from "clsx";
 import React from "react";
 import { backedBy } from "../../assets/backed-by";
 import { team } from "../../assets/team";
-import { useColorMode } from "@docusaurus/theme-common";
 
 const About: React.FC = () => {
-    const { colorMode } = useColorMode();
     return (
         <>
             <Head title="About | refine">
@@ -29,13 +27,19 @@ const About: React.FC = () => {
                     className={clsx(
                         "xl:max-w-[944px] xl:py-16",
                         "lg:max-w-[912px] lg:py-10",
-                        "md:max-w-[624px] md:text-4xl py-6",
+                        "md:max-w-[624px] md:text-4xl  md:pb-6 pt-6",
                         "sm:max-w-[480px] text-xl",
                         "max-w-[328px]",
                         "w-full mx-auto",
                     )}
                 >
-                    <h1 className="text-gray-900 dark:text-gray-0 text-center">
+                    <h1
+                        className={clsx(
+                            "!mb-0",
+                            "text-gray-900 dark:text-gray-0",
+                            "text-xl md:text-[40px] md:leading-[56px]",
+                        )}
+                    >
                         We&apos;re helping organizations to build better web
                         applications, in{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#0FBDBD] to-[#26D97F]">
@@ -398,12 +402,12 @@ const About: React.FC = () => {
                                 "flex justify-center items-center",
                                 "w-[144px] h-[144px]",
                                 "md:w-[192px] md:h-[192px]",
-                                "rounded-full ",
+                                "rounded-full",
                                 "bg-gray-900 dark:bg-gray-0",
                                 "shrink-0",
                             )}
                         >
-                            <Istanbul500Icon className="text-gray-0 dark:text-gray-700" />
+                            <Istanbul500Icon className="text-gray-0 dark:text-gray-700 h-auto w-[102px] md:w-[136px]" />
                         </div>
                     </div>
 

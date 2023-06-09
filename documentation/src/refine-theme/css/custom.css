@@ -55,7 +55,7 @@
     @apply prose-h4:mb-4 sm:prose-h4:mb-6 2xl:prose-h4:mb-8;
 
     @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-4 prose-p:mt-0;
-    @apply prose-p:text-xs sm:prose-p:text-base 2xl:prose-p:text-xl;
+    @apply prose-p:text-base 2xl:prose-p:text-xl;
 
     @apply prose-li:text-xs sm:prose-li:text-base 2xl:prose-li:text-xl;
     @apply prose-ul:pl-8 prose-ul:ml-0 prose-ul:dark:text-gray-300 prose-ul:text-gray-700;

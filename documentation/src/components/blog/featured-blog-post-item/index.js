@@ -23,14 +23,14 @@ export const FeaturedBlogPostItem = () => {
     return (
         <BlogPostItemContainer>
             <Link itemProp="url" to={permalink}>
-                <div className="relative m-0 h-64 hover:brightness-90">
+                <div className="relative m-0 h-40 md:h-64 hover:brightness-90">
                     <img
                         src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                             "https://refine.ams3.cdn.digitaloceanspaces.com",
                             "",
                         )}?h=256`}
                         alt={title}
-                        className="absolute inset-0 h-full w-full rounded object-cover mt-0"
+                        className="absolute inset-0 h-full w-full rounded-[10px] object-cover mt-0"
                         loading="lazy"
                     />
                 </div>
