@@ -167,8 +167,10 @@ const About: React.FC = () => {
                                         Visit our
                                     </div>
                                     <a
-                                        href="#"
+                                        target="_blank"
+                                        href="https://github.com/refinedev/refine"
                                         className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
+                                        rel="noreferrer"
                                     >
                                         Github Repo
                                     </a>
@@ -194,8 +196,10 @@ const About: React.FC = () => {
                                         Join our
                                     </div>
                                     <a
-                                        href="#"
+                                        target="_blank"
+                                        href="https://discord.gg/refine"
                                         className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
+                                        rel="noreferrer"
                                     >
                                         Discord Server
                                     </a>
@@ -222,8 +226,10 @@ const About: React.FC = () => {
                                         Follow us on
                                     </div>
                                     <a
-                                        href="#"
+                                        target="_blank"
+                                        href="https://reddit.com/r/refine"
                                         className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
+                                        rel="noreferrer"
                                     >
                                         Reddit
                                     </a>
@@ -249,8 +255,10 @@ const About: React.FC = () => {
                                         Follow us on
                                     </div>
                                     <a
-                                        href="#"
+                                        target="_blank"
+                                        href="https://twitter.com/refine_dev"
                                         className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
+                                        rel="noreferrer"
                                     >
                                         Twitter
                                     </a>
