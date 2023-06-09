@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import clsx from "clsx";
-import copy from "copy-text-to-clipboard";
 import { SubtractIcon } from "./icons/subtract";
 
 export const CommonCopyButton = ({ code, className }) => {
@@ -8,11 +7,14 @@ export const CommonCopyButton = ({ code, className }) => {
     const copyTimeout = useRef(undefined);
 
     const handleCopyCode = useCallback(() => {
-        copy(code);
-        setIsCopied(true);
-        copyTimeout.current = window.setTimeout(() => {
-            setIsCopied(false);
-        }, 1000);
+        try {
+            navigator.clipboard.writeText(code).then(() => {
+                setIsCopied(true);
+                copyTimeout.current = window.setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
+            });
+        } catch (error) {}
     }, [code]);
 
     useEffect(() => () => window.clearTimeout(copyTimeout.current), []);
