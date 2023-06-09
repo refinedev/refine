@@ -1,3 +1,4 @@
+import Link from "@docusaurus/Link";
 import React, { useMemo } from "react";
 import clsx from "clsx";
 
@@ -20,7 +21,10 @@ export const GitHubStar: React.FC<GitHubStarProps> = ({ isPermanentDark }) => {
     }, [starCount, loading]);
 
     return (
-        <div className="flex items-center">
+        <Link
+            className="flex items-center no-underline"
+            to="https://github.com/refinedev/refine"
+        >
             <HeaderGithubIcon
                 className={clsx(
                     "text-gray-500 dark:gray-400",
@@ -37,6 +41,6 @@ export const GitHubStar: React.FC<GitHubStarProps> = ({ isPermanentDark }) => {
             >
                 {formattedStarCount}
             </span>
-        </div>
+        </Link>
     );
 };

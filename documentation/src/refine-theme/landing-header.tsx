@@ -73,10 +73,10 @@ export const LandingHeader = () => {
                             "items-center justify-center",
                             "text-gray-0",
                             "focus:no-underline",
-                            "hover:dark:text-refine-link-dark hover:light:text-refine-link-light",
+                            "hover:text-gray-0",
                         )}
                     >
-                        <DiscordIcon />
+                        <DiscordIcon className="text-gray-0" />
                     </a>
                 </div>
                 <button

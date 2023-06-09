@@ -19,7 +19,7 @@ export const LandingGithubStarButton = () => {
                 "text-gray-0",
                 "flex gap-2.5 items-center",
                 "hover:no-underline",
-                "hover:dark:text-refine-link-dark hover:light:text-refine-link-light",
+                "hover:text-gray-0",
                 "transition-colors",
                 "duration-200",
                 "ease-in-out",
