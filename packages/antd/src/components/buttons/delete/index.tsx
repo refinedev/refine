@@ -75,6 +75,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
     });
 
+    const disabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
+
     const { setWarnWhen } = useWarnAboutChange();
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
@@ -126,6 +136,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 danger
                 loading={(recordItemId ?? id) === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
+                title={disabledTitle()}
                 disabled={data?.can === false}
                 data-testid={RefineButtonTestIds.DeleteButton}
                 className={RefineButtonClassNames.DeleteButton}

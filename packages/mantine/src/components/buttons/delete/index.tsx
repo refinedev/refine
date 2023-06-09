@@ -75,6 +75,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
     });
 
+    const disabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
+
     const [opened, setOpened] = useState(false);
 
     const onConfirm = () => {
@@ -153,6 +163,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         loading={
                             (recordItemId ?? id) === variables?.id && isLoading
                         }
+                        title={disabledTitle()}
                         leftIcon={<IconTrash size={18} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         className={RefineButtonClassNames.DeleteButton}
