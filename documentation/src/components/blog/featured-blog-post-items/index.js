@@ -8,8 +8,8 @@ export const FeaturedBlogPostItems = ({ items }) => {
     return (
         <div
             className={clsx(
-                "xl:max-w-[1008px] xl:py-20",
-                "lg:max-w-[944px] lg:py-16",
+                "xl:max-w-[1008px]",
+                "lg:max-w-[944px]",
                 "md:max-w-[480px] py-10",
                 "sm:max-w-[328px]",
                 "max-w-[328px]",
