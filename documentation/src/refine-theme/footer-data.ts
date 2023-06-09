@@ -14,7 +14,7 @@ export const menuItems = [
             },
             {
                 label: "Tutorials",
-                href: "/docs/tutorial/introduction/index",
+                href: "/docs/tutorial/introduction/index/",
             },
             {
                 label: "Blog",
