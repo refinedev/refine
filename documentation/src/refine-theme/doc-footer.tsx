@@ -41,7 +41,7 @@ function EditMetaRow({
                     target="_blank"
                     rel="noreferrer noopener"
                     className={clsx(
-                        "text-refine-link-light dark:text-refine-dark",
+                        "text-refine-link-light dark:text-refine-link-dark",
                         "text-xs",
                         "underline",
                     )}
