@@ -1,11 +1,12 @@
-import React from "react";
 import clsx from "clsx";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
+import React from "react";
 
 import {
     Airtable,
     Antd,
     Appwrite,
+    Chakra,
     Graphql,
     Hasura,
     Mantine,
@@ -14,7 +15,6 @@ import {
     Rest,
     Strapi,
     Supabase,
-    Chakra,
 } from "../assets/integration-icons";
 
 const dataItems = [
@@ -427,7 +427,7 @@ export const LandingMagic = () => {
                                         "w-full",
                                     )}
                                 >
-                                    <div>{`import dataProvider from "@refinedev/hasura";`}</div>
+                                    <div>{`import dataProvider from "@refinedev/supabase";`}</div>
                                     <div>{`import { Table, Layout } from "antd";`}</div>
                                     <div>{`import { useTable } from "@refinedev/antd";`}</div>
                                 </div>
