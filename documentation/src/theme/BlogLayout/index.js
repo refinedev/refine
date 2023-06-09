@@ -15,21 +15,6 @@ export default function BlogLayout(props) {
                 <div>{children}</div>
                 {toc && <div className="w-[280px] hidden xl:block">{toc}</div>}
             </div>
-            {/* <div className="container max-w-[1008px]">
-                <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
-                    <main
-                        className={clsx({
-                            "w-full lg:w-3/4": toc,
-                            "w-full": !toc,
-                        })}
-                        itemScope
-                        itemType="http://schema.org/Blog"
-                    >
-                        {children}
-                    </main>
-                    
-                </div>
-            </div> */}
             <BlogFooter />
         </RefineBlogLayout>
     );

@@ -8,12 +8,12 @@ type Props = React.PropsWithChildren<{}>;
 
 export const DocPageLayout = ({ children }: Props) => {
     return (
-        <div className="">
+        <>
             <DocHeader />
             <div
                 className={clsx(
                     "flex items-start justify-start",
-                    "w-full max-w-[1664px]",
+                    "w-full flex-1 max-w-[1664px]",
                     "mx-auto",
                 )}
             >
@@ -21,6 +21,6 @@ export const DocPageLayout = ({ children }: Props) => {
                 {children}
             </div>
             <CommonFooter />
-        </div>
+        </>
     );
 };
