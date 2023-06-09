@@ -11,7 +11,10 @@ export default function BlogLayout(props) {
     return (
         <RefineBlogLayout {...layoutProps}>
             <CommonHeader hasSticky={true} />
-            {children}
+            <div className="flex justify-center max-w-[1304px] mx-auto">
+                <div>{children}</div>
+                {toc && <div className="w-[280px] hidden xl:block">{toc}</div>}
+            </div>
             {/* <div className="container max-w-[1008px]">
                 <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
                     <main
@@ -24,7 +27,7 @@ export default function BlogLayout(props) {
                     >
                         {children}
                     </main>
-                    {toc && <div className="w-full lg:w-1/4">{toc}</div>}
+                    
                 </div>
             </div> */}
             <BlogFooter />

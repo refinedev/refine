@@ -36,9 +36,24 @@ export const BlogPostPageView = ({ children }) => {
         siteConfig: { url },
     } = useDocusaurusContext();
 
+    // data-className="py-3 px-3 md:py-6 md:px-14"
     return (
-        <BlogPostItemContainer className="py-3 px-3 md:py-6 md:px-14">
-            <div className={clsx("flex", "justify-between", "items-center")}>
+        <BlogPostItemContainer
+            className={clsx(
+                "lg:max-w-[864px] lg:py-16", // lg:py-16
+                "md:max-w-[656px] py-9", // py-10
+                "max-w-[360px]",
+                "w-full mx-auto",
+            )}
+        >
+            <div
+                className={clsx(
+                    "flex",
+                    "justify-between",
+                    "items-center",
+                    "md:px-6",
+                )}
+            >
                 <Link
                     to="/blog"
                     className={clsx("text-gray-500 text-sm no-underline")}
@@ -77,9 +92,9 @@ export const BlogPostPageView = ({ children }) => {
                     </LinkedinShareButton>
                 </div>
             </div>
-            <div className="">
+            <div>
                 <img
-                    className="mb-2 rounded-xl"
+                    className="mb-2 w-full rounded-xl"
                     src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                         "https://refine.ams3.cdn.digitaloceanspaces.com",
                         "",
@@ -87,63 +102,72 @@ export const BlogPostPageView = ({ children }) => {
                     alt={title}
                 />
             </div>
-            <div className="mb-6 text-sm text-[#525860]">
-                <div
-                    className={clsx("flex", "justify-between", "items-center")}
-                >
-                    <div className="flex justify-center items-center gap-2">
-                        <Link to={`/blog/author/${author?.key}`} itemProp="url">
-                            <img
-                                src={author?.imageURL}
-                                alt={author?.name}
-                                loading="lazy"
-                                className="flex h-[32px] w-[32px] rounded-full object-cover"
-                            />
-                        </Link>
-                        <Link
-                            to={`/blog/author/${author?.key}`}
-                            itemProp="url"
-                            className={clsx(
-                                "flex-1",
-                                "text-gray-900 dark:text-gray-200",
-                                "text-sm",
-                                "no-underline",
-                                "hover:no-underline",
-                            )}
-                        >
-                            {author?.name}
-                        </Link>
-                        <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
-                        <span className="text-gray-600 dark:text-gray-400">
-                            {author?.title}
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                        <Date date={date} formattedDate={formattedDate} />
-                        {typeof readingTime !== "undefined" && (
-                            <>
-                                <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
-                                <ReadingTime readingTime={readingTime} />
-                            </>
+            <div className="md:px-6">
+                <div className="mb-6 text-sm">
+                    <div
+                        className={clsx(
+                            "flex",
+                            "justify-between",
+                            "sm:flex-row flex-col",
                         )}
+                    >
+                        <div className="flex justify-center items-center gap-2">
+                            <Link
+                                to={`/blog/author/${author?.key}`}
+                                itemProp="url"
+                            >
+                                <img
+                                    src={author?.imageURL}
+                                    alt={author?.name}
+                                    loading="lazy"
+                                    className="flex h-[32px] w-[32px] rounded-full object-cover"
+                                />
+                            </Link>
+                            <Link
+                                to={`/blog/author/${author?.key}`}
+                                itemProp="url"
+                                className={clsx(
+                                    "flex-1",
+                                    "text-gray-900 dark:text-gray-200",
+                                    "text-sm",
+                                    "no-underline",
+                                    "hover:no-underline",
+                                )}
+                            >
+                                {author?.name}
+                            </Link>
+                            <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                            <span className="text-gray-600 dark:text-gray-400">
+                                {author?.title}
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                            <Date date={date} formattedDate={formattedDate} />
+                            {typeof readingTime !== "undefined" && (
+                                <>
+                                    <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                                    <ReadingTime readingTime={readingTime} />
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <h1 className="text-[2rem] md:text-5xl" itemProp="headline">
-                {isBlogPostPage ? (
-                    title
-                ) : (
-                    <Link itemProp="url" to={permalink}>
-                        {title}
-                    </Link>
-                )}
-            </h1>
-            <div
-                id={blogPostContainerID}
-                className="markdown"
-                itemProp="articleBody"
-            >
-                <MDXContent>{children}</MDXContent>
+                <h1 className="text-xl md:text-4xl" itemProp="headline">
+                    {isBlogPostPage ? (
+                        title
+                    ) : (
+                        <Link itemProp="url" to={permalink}>
+                            {title}
+                        </Link>
+                    )}
+                </h1>
+                <div
+                    id={blogPostContainerID}
+                    className="markdown"
+                    itemProp="articleBody"
+                >
+                    <MDXContent>{children}</MDXContent>
+                </div>
             </div>
         </BlogPostItemContainer>
     );

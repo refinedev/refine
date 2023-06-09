@@ -25,7 +25,7 @@ export default function BlogPostItems({
         >
             <div
                 className={clsx(
-                    "flex flex-col items-start",
+                    "flex flex-col lg:flex-row items-start justify-between",
                     "px-0 md:px-6",
                     "mb-8 md:mb-12",
                 )}
@@ -40,7 +40,12 @@ export default function BlogPostItems({
                 >
                     All Posts
                 </h2>
-                <p className={clsx("text-sm md:text-base xl:text-xl")}>
+                <p
+                    className={clsx(
+                        "text-sm md:text-base xl:text-xl",
+                        "lg:max-w-[624px]",
+                    )}
+                >
                     <b>refine technical blog</b> - a resource for refine,
                     front-end ecosystem, and web development. Here, we publish
                     insightful articles that demystify complex concepts, explore
