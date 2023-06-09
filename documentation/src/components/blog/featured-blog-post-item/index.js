@@ -20,27 +20,22 @@ export const FeaturedBlogPostItem = () => {
 
     const author = metadata.authors[0];
 
-    // 480 / 303 = 1.5841584158415842
-    // 468 / 288 = 1.625
-
     return (
         <BlogPostItemContainer>
-            <div className="mb-3">
-                <Link itemProp="url" to={permalink}>
-                    <div className="relative m-0 h-72 hover:brightness-90">
-                        <img
-                            src={`https://refine-web.imgix.net${frontMatter.image?.replace(
-                                "https://refine.ams3.cdn.digitaloceanspaces.com",
-                                "",
-                            )}?w=500`}
-                            alt={title}
-                            className="absolute inset-0 h-full w-full rounded-[10px] object-cover transition duration-150 mt-0"
-                            loading="lazy"
-                        />
-                    </div>
-                </Link>
-            </div>
-            <div className="p-3">
+            <Link itemProp="url" to={permalink}>
+                <div className="relative m-0 h-72 hover:brightness-90">
+                    <img
+                        src={`https://refine-web.imgix.net${frontMatter.image?.replace(
+                            "https://refine.ams3.cdn.digitaloceanspaces.com",
+                            "",
+                        )}?w=500`}
+                        alt={title}
+                        className="absolute inset-0 h-full w-full rounded object-cover mt-0"
+                        loading="lazy"
+                    />
+                </div>
+            </Link>
+            <div className="py-4 md:px-6">
                 <div className="flex gap-1 mb-2">
                     {tags.map((tag) => (
                         <label
@@ -67,7 +62,7 @@ export const FeaturedBlogPostItem = () => {
                         <div
                             className={clsx(
                                 "text-color-base",
-                                "text-2xl",
+                                "text-sm md:text-2xl xl:text-3xl ",
                                 "font-lg",
                                 "font-bold",
                             )}

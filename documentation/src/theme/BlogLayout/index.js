@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { RefineBlogLayout } from "@site/src/refine-theme/blog-layout";
-import { CommonFooter } from "@site/src/refine-theme/common-footer";
+import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 
 export default function BlogLayout(props) {
@@ -11,7 +11,8 @@ export default function BlogLayout(props) {
     return (
         <RefineBlogLayout {...layoutProps}>
             <CommonHeader hasSticky={true} />
-            <div className="container max-w-[1008px]">
+            {children}
+            {/* <div className="container max-w-[1008px]">
                 <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
                     <main
                         className={clsx({
@@ -25,8 +26,8 @@ export default function BlogLayout(props) {
                     </main>
                     {toc && <div className="w-full lg:w-1/4">{toc}</div>}
                 </div>
-            </div>
-            <CommonFooter />
+            </div> */}
+            <BlogFooter />
         </RefineBlogLayout>
     );
 }
