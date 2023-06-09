@@ -33,7 +33,7 @@ const AuthorCard = ({ author }) => {
                     />
                 </Link>
                 <div className="ml-3">
-                    <h1 className="m-0 p-0 leading-0">{author?.name}</h1>
+                    <h1 className="!m-0 !p-0 leading-0">{author?.name}</h1>
                     <div className="text-gray-600">{author?.title}</div>
                 </div>
             </div>
