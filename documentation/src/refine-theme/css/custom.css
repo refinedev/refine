@@ -72,11 +72,13 @@
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;
+
+    @apply max-w-none;
 }
 
-.refine-prose *:last-child:not(header h1) {
+/* .refine-prose *:last-child:not(header h1) {
     margin-bottom: 0;
-}
+} */
 
 .refine-prose h1 code,
 .refine-prose h2 code,

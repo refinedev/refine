@@ -84,9 +84,7 @@ Installing devDependencies (yarn):
 
 When the installation is complete, open `tsconfig.json` and you'll see it populated with values like below: 
 
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/tsconfig.png" alt="tsconfig" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/tsconfig.png" alt="tsconfig" />
 
 <br/>
 

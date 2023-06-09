@@ -46,7 +46,7 @@
         mask-repeat: no-repeat;
     }
     .landing-playground-slide-mask {
-        mask-image: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.25) 100%);
+        mask-image: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 27.5%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 72.5%, rgba(0,0,0,0.2) 100%);
         mask-size: 100% 100%;
         mask-position: center;
         mask-repeat: no-repeat;
@@ -131,12 +131,14 @@
     --tutorial-toc-text-color-light: #dddee0;
 }
 .img-container {
-    display: flex;
-    flex-direction: column;
-    border-radius: 6.4px;
-    overflow: auto;
-    box-shadow: var(--ifm-alert-shadow);
+    /* deprecated */
 }
+
+.window {
+    display: none;
+    /* deprecated */
+}
+
 .centered-image {
     display: flex;
     flex-direction: column;
@@ -161,53 +163,6 @@
     line-height: 1.4;
     margin-bottom: 25px;
     text-align: center;
-}
-
-.window {
-    display: flex;
-    align-items: center;
-    padding: 0px 16px;
-    background: #292d3e;
-    height: 32px;
-}
-
-.window .control {
-    width: 16px;
-    height: 16px;
-    border-radius: 999px;
-}
-
-.window .control:nth-child(2),
-.control:nth-child(3) {
-    margin-left: 8px;
-}
-
-.window .control.red {
-    background: rgb(230, 54, 54);
-}
-
-.window .control.orange {
-    background: rgb(217, 119, 6);
-}
-
-.window .control.green {
-    background: rgb(5, 150, 105);
-}
-
-@media screen and (max-width: 650px) {
-    .window {
-        height: 16px;
-    }
-
-    .window .control {
-        width: 8px;
-        height: 8px;
-    }
-
-    .window .control:nth-child(2),
-    .control:nth-child(3) {
-        margin-left: 4px;
-    }
 }
 
 .docusaurus-highlight-code-line {
@@ -596,19 +551,6 @@ html[data-page="index"] {
 
 #__docusaurus .blog-post-item-shadow {
     box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
-}
-
-#__docusaurus .pagination-item {
-    @apply flex h-8 w-8 items-center justify-center rounded-lg border border-solid border-gray-200 leading-tight transition duration-200 ease-in-out hover:border-[#1890FF] hover:text-[#1890FF];
-    color: var(--ifm-font-color-base);
-}
-
-#__docusaurus .pagination-item.disabled {
-    @apply text-gray-200 cursor-not-allowed hover:border-gray-200 hover:text-gray-200;
-}
-
-#__docusaurus .pagination-item.active {
-    @apply border-[#1890FF] text-[#1890FF];
 }
 
 #__docusaurus .dots {
@@ -1083,4 +1025,8 @@ html[data-theme="dark"] .sourcecode-badge {
     height: 13px;
     width: 13px;
     margin-bottom: -2px;
+}
+
+#__docusaurus .theme-code-block-highlighted-line {
+    margin: 0;
 }

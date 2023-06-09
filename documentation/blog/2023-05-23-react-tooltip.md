@@ -20,14 +20,7 @@ You can see a tooltip in action through the following GIF example:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/first.gif" alt="react tooltip" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/first.gif" alt="react tooltip" />
 
 <br/>
 
@@ -51,14 +44,7 @@ Upon clicking the button, you’ll be presented with a stepper component that le
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/select.png" alt="react tooltip" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/select.png" alt="react tooltip" />
 
 <br/>
 
@@ -91,14 +77,7 @@ These commands will install the necessary dependencies for your project and star
 
 <br/>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/welcome.png" alt="react tooltip" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/welcome.png" alt="react tooltip" />
 
 <br/>
 

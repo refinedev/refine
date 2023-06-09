@@ -74,6 +74,7 @@ function getReletadPosts(allBlogPosts, metadata) {
     const filteredPostInfos = randomThreeRelatedPosts.map((post) => {
         return {
             title: post.metadata.title,
+            description: post.metadata.description,
             permalink: post.metadata.permalink,
             formattedDate: post.metadata.formattedDate,
             authors: post.metadata.authors,
@@ -98,6 +99,7 @@ function getAuthorPosts(allBlogPosts, metadata) {
     const filteredPostInfos = randomThreeAuthorPosts.map((post) => {
         return {
             title: post.metadata.title,
+            description: post.metadata.description,
             permalink: post.metadata.permalink,
             formattedDate: post.metadata.formattedDate,
             authors: post.metadata.authors,

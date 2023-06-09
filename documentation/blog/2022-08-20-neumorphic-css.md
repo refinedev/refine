@@ -52,9 +52,7 @@ Let's see how Neumorphism affects the user interface using what we know about it
 Neumorphism requires little or no use of flashy elements. The properties needed are shadows and lights.  
 Neuomorphism makes UI elements appear inside or directly on the background layer, in contrast to other design trends that make items appear above the background.
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/card.png" alt="card image" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/card.png" alt="card image" />
 
 
 <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"><i>From: Neumorphism in user interfaces by Michal Malewicz</i></a>
@@ -64,9 +62,7 @@ Neuomorphism makes UI elements appear inside or directly on the background layer
 
 The image below illustrates the simplest UI design template for Neumorphism; feel free to modify it as you see fit.
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/background.png" alt="background image" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/background.png" alt="background image" />
 
 
 <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"><i>From: Neumorphism in user interfaces by Michal Malewicz</i></a>
@@ -85,9 +81,7 @@ The main issue Neumorphism has in terms of accessibility is contrast; you'll not
 
 The image below displays an original Neumorphic design and the outcome under low vision.
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/vision.png" alt="background image" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/vision.png" alt="background image" />
 
 
 <a href="https://axesslab.com/neumorphism/"><i>From: Neumorphism – the accessible and inclusive way by Hampus Sethfors</i></a>
@@ -138,14 +132,10 @@ button:hover {
 ```
 
 #### Normal State
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/normal_state.png" alt="normal state" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/normal_state.png" alt="normal state" />
 
 #### Hover State
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/hover_state.png" alt="hover state" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/hover_state.png" alt="hover state" />
 
 <br/>
 
@@ -193,9 +183,7 @@ body {
 </style>
 ```
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/cards.png" alt="cards" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/cards.png" alt="cards" />
 
 <br/>
 
@@ -242,9 +230,7 @@ form input[type="text"] {
 }
 </style>
 ```
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/textbox.png" alt="textbox" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/textbox.png" alt="textbox" />
 
 <br/>
 
@@ -323,17 +309,13 @@ form .form_group .checked {
 ```
 
 ##### Unchecked
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/unchecked.png" alt="unchecked" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/unchecked.png" alt="unchecked" />
 
 <br/>
 
 ##### Checked
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/checked.png" alt="checked" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/checked.png" alt="checked" />
 
 <br/>
 

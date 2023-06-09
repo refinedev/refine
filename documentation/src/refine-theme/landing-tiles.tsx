@@ -39,7 +39,7 @@ export const LandingTiles = () => {
                 )}
             >
                 <span className="font-light">Why </span>
-                <span className="font-semibold">Refine</span>
+                <span className="font-semibold">refine</span>
                 <span className="font-light">?</span>
             </div>
             <div

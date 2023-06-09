@@ -112,7 +112,9 @@ export const CodeBlockString = ({
                                 className,
                                 "bg-transparent",
                                 "m-0",
-                                "p-0",
+                                "px-0",
+                                "pt-0",
+                                "pb-px",
                                 "font-mono",
                                 "thin-scrollbar",
                             )}

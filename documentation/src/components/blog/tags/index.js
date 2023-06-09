@@ -1,26 +1,29 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
+import clsx from "clsx";
 
 export const Tags = () => {
     const { metadata } = useBlogPost();
 
     return (
-        <div className="font-montserrat">
-            <span className="font-bold">Tags: </span>
-            <div className="inline-flex flex-wrap gap-2">
-                {metadata.tags.map((tag, index) => (
-                    <Link
-                        key={index}
-                        to={tag.permalink}
-                        className="no-underline"
-                    >
-                        <span className="rounded border border-solid border-[#2A2A42] bg-[#F6F6F9] px-2 py-1 text-[10px] capitalize text-[#2A2A42] transition duration-150 hover:border-[#1890FF] hover:text-[#1890FF]">
-                            {tag.label}
-                        </span>
-                    </Link>
-                ))}
-            </div>
+        <div className="flex gap-2 ml-2 mb-3">
+            {metadata.tags.map((tag) => (
+                <Link
+                    to={tag.permalink}
+                    className={clsx(
+                        "text-xs",
+                        "bg-gray-100 dark:bg-gray-700",
+                        "text-gray-600 dark:text-gray-400",
+                        "rounded",
+                        "p-1",
+                        "no-underline hover:no-underline",
+                    )}
+                    key={tag.permalink}
+                >
+                    {tag.label}
+                </Link>
+            ))}
         </div>
     );
 };

@@ -1,87 +1,122 @@
-import React from "react";
-import Head from "@docusaurus/Head";
+import React, { useMemo } from "react";
+import clsx from "clsx";
 
-import Layout from "../../theme/Layout";
 import Card from "../../components/integrations/card";
-import LargeCard from "../../components/integrations/large-card";
-import { integrations } from "../../assets/integrations";
-import styles from "./styles.module.css";
-import { Integration } from "../../types/integrations";
+import { integrations as integrationsData } from "../../assets/integrations";
+import IntegrationsLayout from "@site/src/components/integrations/layout";
+import { Integration } from "@site/src/types/integrations";
+
+const Title = ({
+    children,
+    className,
+}: React.PropsWithChildren<{ className?: string }>) => {
+    return (
+        <div
+            className={clsx(
+                "font-semibold",
+                "text-gray-700 dark:text-gray-200",
+                "text-base sm:text-2xl",
+                className,
+            )}
+        >
+            {children}
+        </div>
+    );
+};
+
+const List = ({ data }: { data: Integration[] }) => {
+    return (
+        <div
+            className={clsx(
+                "grid",
+                "grid-cols-1 lg:grid-cols-2",
+                "gap-8",
+                "mt-8",
+            )}
+        >
+            {data.map((item) => (
+                <Card
+                    key={item.name}
+                    title={item.name}
+                    description={item.description}
+                    linkUrl={item.url}
+                    icon={item.icon}
+                    contributors={item.contributors}
+                />
+            ))}
+        </div>
+    );
+};
 
 const Integrations: React.FC = () => {
-    const integrationFields = Object.keys(integrations);
-
-    const renderIntegration = (integration: Integration, field: string) => {
-        switch (field) {
-            case "ui-framework-packages":
-            case "frameworks":
-                return (
-                    <LargeCard
-                        status={integration.status}
-                        title={integration.name}
-                        description={integration.description}
-                        linkUrl={integration.url}
-                        icon={integration.icon}
-                    />
-                );
-            default:
-                return (
-                    <Card
-                        status={integration.status}
-                        title={integration.name}
-                        description={integration.description}
-                        linkUrl={integration.url}
-                        icon={integration.icon}
-                        contributer={integration?.contributors?.[0]}
-                    />
-                );
-        }
-    };
+    const {
+        communityPackages,
+        dataProviderPackages,
+        frameworks,
+        integrations,
+        liveProviders,
+        uiPackages,
+    } = useMemo(() => {
+        return {
+            uiPackages: integrationsData["ui-framework-packages"],
+            dataProviderPackages: integrationsData["data-provider-packages"],
+            frameworks: integrationsData["frameworks"],
+            integrations: integrationsData["integrations"],
+            liveProviders: integrationsData["live-providers"],
+            communityPackages: integrationsData["community-packages"],
+        };
+    }, []);
 
     return (
-        <Layout>
-            <Head title="Integrations | refine">
-                <html data-page="integrations" data-customized="true" />
-            </Head>
-            <div className={styles.integrations_container}>
-                <div className={styles.header}>
-                    <div className={styles.headerTitle}>
-                        <span>SEAMLESS INTEGRATION WITH YOUR</span>
-                        <span className={styles.headerTitleBold}>
-                            EXISTING ECOSYSTEM.
-                        </span>
-                    </div>
-                    <p className={styles.headerText}>
-                        LIST OF PACKAGES TO EXTEND YOUR REFINE PROJECT WITH UI
-                        FRAMEWORKS, BACKEND CONNECTORS AND OTHER POWERFUL TOOLS.
-                    </p>
+        <IntegrationsLayout>
+            <div className={clsx("max-w-[624px]")}>
+                <div
+                    className={clsx(
+                        "font-semibold",
+                        "text-gray-700 dark:text-gray-200",
+                        "text-xl sm:text-[40px] sm:leading-[56px]",
+                    )}
+                >
+                    Seamless integration with your existing ecosystem.
                 </div>
-                <div className={styles.integrationsWrapper}>
-                    <span
-                        className="fixed -left-10 bottom-[20vh] z-10 "
-                        id="leftReward"
-                    />
-                    <span
-                        className="fixed -right-10 bottom-[20vh] z-10 "
-                        id="rightReward"
-                    />
-                    {integrationFields.map((field) => {
-                        return (
-                            <div key={field}>
-                                <div className={styles.integrationTitle}>
-                                    {field.replace(/-/g, " ").toUpperCase()}
-                                </div>
-                                <div className={styles.integrations}>
-                                    {integrations[field].map((integration) =>
-                                        renderIntegration(integration, field),
-                                    )}
-                                </div>
-                            </div>
-                        );
-                    })}
+                <div
+                    className={clsx(
+                        "font-semibold",
+                        "text-gray-700 dark:text-gray-300",
+                        "text-xs sm:text-base",
+                        "mt-4 sm:mt-8",
+                    )}
+                >
+                    List of packages to extend your Refine prject with UI
+                    frameworks, backend connectors and other powerful tools.
                 </div>
             </div>
-        </Layout>
+
+            <div
+                className={clsx(
+                    "my-10",
+                    "border-b border-gray-200 dark:border-gray-700",
+                )}
+            />
+
+            <Title>UI Framework Packages</Title>
+            <List data={uiPackages} />
+
+            <Title className="mt-20">Data Provider Packages</Title>
+            <List data={dataProviderPackages} />
+
+            <Title className="mt-20">Frameworks</Title>
+            <List data={frameworks} />
+
+            <Title className="mt-20">Integrations</Title>
+            <List data={integrations} />
+
+            <Title className="mt-20">Live Providers</Title>
+            <List data={liveProviders} />
+
+            <Title className="mt-20">Community Packages</Title>
+            <List data={communityPackages} />
+        </IntegrationsLayout>
     );
 };
 

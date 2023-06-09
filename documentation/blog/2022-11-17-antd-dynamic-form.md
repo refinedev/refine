@@ -59,15 +59,7 @@ For example, say you want to create a form that lets users provide optional exte
 
 For context, here's an example of the final CRUD app product of the dynamic form we'll be building in this tutorial:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-1.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-1.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -103,15 +95,7 @@ The command will prompt you to choose your preferences for the project.
 
 Select the following options to proceed:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-cli.png"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-cli.png"  alt="dynamic form antd" />
 
 <br />
 
@@ -124,15 +108,7 @@ npm run dev
 
 After running the command, the development server will automatically preview our app in the default browser. If it doesn't, open the browser manually and navigate to [http://localhost:3000](http://localhost:3000).
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.png"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.png"  alt="dynamic form antd" />
 
 <br />
 
@@ -276,15 +252,7 @@ On the other hand, the `dataIndex` property is used to map the component to a ma
 
 That's it for the list page, save your progress and go back to the browser. You should see a nicely rendered table with pagination and routing implemented automatically.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-list-page.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-list-page.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -354,15 +322,7 @@ The `saveButtonProps` property handles the submission functionality of the form 
 
 If you save your progress at this point and go back to the browser, you'll notice that our form still lacks the basic functionalities of a form and looks desolate.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-create.png"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-create.png"  alt="dynamic form antd" />
 
 <br />
 
@@ -401,15 +361,7 @@ Here, we're using the `name` and `label` props to assign each input field a uniq
 
 We also gave the `<Form>` component a `layout` prop with a `vertical` value. This will let the labels display on a block layout rather than the default inline layout.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items.png"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items.png"  alt="dynamic form antd" />
 
 <br />
 
@@ -427,15 +379,7 @@ We can also add a basic validation to both fields by passing an array of objects
 </Form.Item>
 ```
 
-  <div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items-2.png"  alt="dynamic form antd" />
-
-</div>
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items-2.png"  alt="dynamic form antd" />
 
 <br />
 
@@ -541,15 +485,7 @@ What we can do first is destructure the `add()` and `remove()` functions from th
 
 Now, the `Add a skill` button is functional. If you save your progress and test it out, you should be able to add dynamic fields to the form.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -613,15 +549,7 @@ To do so, create a button below the `<Form.item>` component inside the map callb
 
 Unlike the former, we're passing the field name as an argument to the `remove()` function. Since each name is unique to its respective component, the function will only delete the field whose button is clicked.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions-2.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions-2.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -677,15 +605,7 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
 </Space>
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon.png"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon.png"  alt="dynamic form antd" />
 
 <br />
 
@@ -697,15 +617,7 @@ Using the same process, we can also add icons to the `Add a skill` button.
 </Button>
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon-2.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon-2.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -858,15 +770,7 @@ All we need to do is add a `hasFeedback` prop to each `<Form.item>` like so:
 </Form.Item>
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -874,15 +778,7 @@ There you have it, an adequately validated **dynamic form** without the help of 
 
 Now, our form is ready to validate input values and perform `POST` requests to our fake API endpoint.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation-2.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation-2.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -947,15 +843,7 @@ Refer to the `<EditButton>` [documentation](https://refine.dev/docs/api-referenc
 
 In the example above, we're using the `render` prop to choose the appropriate record on the table, and passing its `id` to the `recordItemId` prop on the `<EditButton>` component. This way, the button will only redirect us to the edit page of the record being clicked on.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page.gif"  alt="dynamic form antd" />
 
 <br />
 
@@ -1109,15 +997,7 @@ This is a duplicate of the form component we created inside the `PostCreate` pag
 
 `<Edit>` is a refine component for wrapping form components that are meant for editing and updating data responses. The `<Edit>` component provides actions such as `save`, `delete`, and `refresh` buttons that can be used in a form.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page-2.gif"  alt="dynamic form antd" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page-2.gif"  alt="dynamic form antd" />
 
 <br />
 

@@ -39,7 +39,7 @@ export const LandingHeroTop = () => {
                     >
                         Open-source enterprise{" "}
                         <br className="inline landing-md:hidden" />
-                        application platform
+                        application framework
                     </span>
                     <span
                         className={clsx(

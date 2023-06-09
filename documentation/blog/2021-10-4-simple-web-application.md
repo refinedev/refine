@@ -32,14 +32,7 @@ Alternatively, you may use the create-react-app tool to create an empty React ap
 
 I will use superplate-cli and select a Supabase. You can customize other options as you wish.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/cli.png" alt="cli" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/cli.png" alt="cli" />
 <br />
 
 ## Create admin panel with refine
@@ -236,14 +229,7 @@ export const Login: React.FC = () => {
 
 You can use default user for login.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/signin.png" alt="signin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/signin.png" alt="signin" />
 <br />
 
 -   Create movies list page with add a resource in _App.tsx_
@@ -369,14 +355,7 @@ export interface IMovies {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/movies.png" alt="movies" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/movies.png" alt="movies" />
 <br />
 
 -   Now we will add create page
@@ -525,14 +504,7 @@ export const normalizeFile = (event: EventArgs) => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/create.png" alt="create" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/create.png" alt="create" />
 <br />
 
 ## Edit page
@@ -641,14 +613,7 @@ export const AdminMovieEdit: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/edit.png" alt="edit" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/edit.png" alt="edit" />
 <br />
 
 ## Show page
@@ -728,14 +693,7 @@ export const AdminMovieShow: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/show.png" alt="show" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/show.png" alt="show" />
 <br />
 
 Final version of our `<Resource>`.
@@ -889,14 +847,7 @@ export const MoviesList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/movies_all.png" alt="movies_all" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/movies_all.png" alt="movies_all" />
 <br />
 
 ### Movies detail page
@@ -969,14 +920,7 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/detailed.png" alt="detailed" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-simple-web-application/detailed.png" alt="detailed" />
 <br />
 
 ## Example

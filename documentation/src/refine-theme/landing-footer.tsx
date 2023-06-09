@@ -1,11 +1,6 @@
 import clsx from "clsx";
 import React from "react";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
-import { FooterGithubIcon } from "./icons/footer-github";
-import { FooterDiscordIcon } from "./icons/footer-discord";
-import { FooterRedditIcon } from "./icons/footer-reddit";
-import { FooterTwitterIcon } from "./icons/footer-twitter";
-import { FooterLinkedinIcon } from "./icons/footer-linkedin";
 import { RefineLogoIcon } from "./icons/refine-logo";
 import { footerDescription, menuItems, socialLinks } from "./footer-data";
 

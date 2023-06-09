@@ -169,9 +169,7 @@ this command must be repeated each time the Less files are modified and the appl
 :::
 
 You should now have 2 CSS files inside the public folder: `antd.dark-theme.css`and `antd.light-theme.css`
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/css.png" alt="signin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/css.png" alt="signin" />
 
 ## Adapt the Refine application to be able to switch between the 2 styles
 
@@ -285,22 +283,8 @@ export const Header: React.FC = () => {
 };
 ```
 You should now have a light/dark mode switcher in the header:
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/light.png" alt="signin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/light.png" alt="signin" />
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/dark.png" alt="signin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/dark.png" alt="signin" />
 <br />
