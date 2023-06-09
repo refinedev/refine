@@ -1,19 +1,19 @@
-import React from "react";
 import Head from "@docusaurus/Head";
+import { RedditIcon } from "@site/src/components/landing/icons/gray-social-icons";
+import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
-import { OpenSourceIcon } from "@site/src/refine-theme/icons/open-source";
-import { GithubIcon } from "@site/src/refine-theme/icons/github";
-import clsx from "clsx";
-import { DiscordIcon, TwitterIcon } from "@site/src/refine-theme/icons/popover";
-import { RedditIcon } from "@site/src/components/landing/icons/gray-social-icons";
-import { team } from "../../assets/team";
-import { backedBy } from "../../assets/backed-by";
-import { JoinUsIcon } from "@site/src/refine-theme/icons/join-us";
 import { Istanbul500Icon } from "@site/src/refine-theme/icons/500";
-import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
+import { GithubIcon } from "@site/src/refine-theme/icons/github";
+import { JoinUsIcon } from "@site/src/refine-theme/icons/join-us";
 import { MailIcon } from "@site/src/refine-theme/icons/mail";
-import { BlogFooter } from "@site/src/refine-theme/blog-footer";
+import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
+import { OpenSourceIcon } from "@site/src/refine-theme/icons/open-source";
+import { DiscordIcon, TwitterIcon } from "@site/src/refine-theme/icons/popover";
+import clsx from "clsx";
+import React from "react";
+import { backedBy } from "../../assets/backed-by";
+import { team } from "../../assets/team";
 
 const About: React.FC = () => {
     return (
@@ -70,7 +70,7 @@ const About: React.FC = () => {
                         <div className="flex flex-col justify-center text-2xl text-gray-700">
                             <p>
                                 Shortly after its initial release on September
-                                2021, Refine has gained attraction of
+                                2021, refine has gained attraction of
                                 open-source community and has become
                                 increasingly popular among web application
                                 frameworks.

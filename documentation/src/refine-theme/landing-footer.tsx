@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import React from "react";
+import { footerDescription, menuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
 import { RefineLogoIcon } from "./icons/refine-logo";
-import { footerDescription, menuItems, socialLinks } from "./footer-data";
 
 export const LandingFooter = () => {
     return (
@@ -133,7 +133,7 @@ export const LandingFooter = () => {
                                         )}
                                     >
                                         <div className={clsx("opacity-75")}>
-                                            Refine Dev Corporation{" "}
+                                            refine Dev Corporation{" "}
                                             <br className="landing-md:hidden landing-xl:inline" />
                                             256 Chapman Road STE 105-4{" "}
                                             <br className="landing-md:hidden landing-xl:inline" />

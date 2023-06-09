@@ -1,17 +1,17 @@
-import React, { useMemo, useRef } from "react";
-import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
-import { RefineHatIcon, TimelineIcon } from "../../components/landing/icons";
+import Layout from "@theme/Layout";
 import clsx from "clsx";
+import React, { useMemo, useRef } from "react";
+import { Tweet } from "react-twitter-widgets";
+import GradientButton from "../../components/gradient-button";
+import { TimelineIcon } from "../../components/landing/icons";
 import {
-    RedditIcon,
     DiscordIcon,
-    TwitterIcon,
     GithubIcon,
+    RedditIcon,
+    TwitterIcon,
 } from "../../components/landing/icons/gray-social-icons";
 import LinkButton from "../../components/link-button";
-import GradientButton from "../../components/gradient-button";
-import { Tweet } from "react-twitter-widgets";
 
 const timeline = [
     {
@@ -125,7 +125,7 @@ const RefineWeek = () => {
 
     return (
         <Layout>
-            <Head title="Week of Refine | refine">
+            <Head title="Week of refine | refine">
                 <html data-page="week-of-refine" data-customized="true" />
             </Head>
             <div className="relative px-2 pt-0 pb-24 md:px-4 md:pt-12 lg:px-0 lg:pb-48 lg:pt-24">
@@ -135,12 +135,12 @@ const RefineWeek = () => {
                             <div className="flex items-center gap-2">
                                 <img
                                     src="/week-of-refine/refine-week-calendar.png"
-                                    alt="Refine week calendar logo"
+                                    alt="refine week calendar logo"
                                     className="block h-[48px] w-[48px]"
                                 />
                                 <img
                                     src="/week-of-refine/refine-week-ft-supabase.png"
-                                    alt="Refine week ft. supabase logo"
+                                    alt="refine week ft. supabase logo"
                                     className="block h-[46px] w-[160px]"
                                 />
                             </div>
@@ -176,7 +176,7 @@ const RefineWeek = () => {
                         <div className="min-h-[318px] flex-1 lg:translate-x-[80px]">
                             <img
                                 src="/week-of-refine/refine-week-pixel-logo.png"
-                                alt="Refine Pixel app logo"
+                                alt="refine Pixel app logo"
                                 className="block"
                             />
                         </div>

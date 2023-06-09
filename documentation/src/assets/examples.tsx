@@ -1,11 +1,11 @@
-import React from "react";
-import { ShareIcon } from "@site/src/refine-theme/icons/share";
 import { PageIcon } from "@site/src/refine-theme/icons/page";
+import { ShareIcon } from "@site/src/refine-theme/icons/share";
+import React from "react";
 import { Examples } from "../types/examples";
 
 export const SHOW_CASES: Examples = [
     {
-        title: "Refine Swag Store",
+        title: "refine Swag Store",
         description:
             "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
         image: "/examples/swag-store.jpg",
@@ -113,7 +113,7 @@ export const EXAMPLES: Examples = [
         source: "https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator",
     },
     {
-        title: "Refine Pixels!",
+        title: "refine Pixels!",
         description:
             "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>refine</strong>.",
         image: "/examples/refine-pixels.jpg",

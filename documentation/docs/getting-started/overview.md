@@ -22,7 +22,7 @@ All in all, **refine** just works _seamlessly_ with any _custom designs_ or _UI 
 
 **refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_. Thanks to the built-in **SSR support**, **refine** can also power _customer-facing_ applications like _storefronts_.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="Refine diagram" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine diagram" />
 
 ## Key Features
 

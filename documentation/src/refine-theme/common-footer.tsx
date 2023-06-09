@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import React from "react";
-import { FooterRedditIcon } from "./icons/footer-reddit";
-import { FooterTwitterIcon } from "./icons/footer-twitter";
+import { FooterDiscordIcon } from "./icons/footer-discord";
 import { FooterGithubIcon } from "./icons/footer-github";
 import { FooterLinkedinIcon } from "./icons/footer-linkedin";
-import { FooterDiscordIcon } from "./icons/footer-discord";
+import { FooterRedditIcon } from "./icons/footer-reddit";
+import { FooterTwitterIcon } from "./icons/footer-twitter";
 
 export const CommonFooter = () => {
     return (
@@ -31,7 +31,7 @@ export const CommonFooter = () => {
                         "mt-4 sm:mt-0",
                     )}
                 >
-                    Refine © 2023
+                    refine © 2023
                 </div>
 
                 <div

@@ -112,7 +112,7 @@ const replacementProps = {
         "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
 };
 
-const spinner = _ora2.default.call(void 0, "Generating Refine declarations...");
+const spinner = _ora2.default.call(void 0, "Generating refine declarations...");
 
 /** HELPERS */
 const getPackageNamePathMap = async (directory) => {
@@ -425,7 +425,7 @@ function plugin() {
         async contentLoaded({ content, actions }) {
             if (!process.env.DISABLE_DOCGEN) {
                 _ora2.default
-                    .call(void 0, "Creating Refine declaration files...")
+                    .call(void 0, "Creating refine declaration files...")
                     .succeed();
 
                 const { createData } = actions;

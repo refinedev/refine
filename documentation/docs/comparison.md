@@ -12,7 +12,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 -   🔶 &nbsp;Supported and documented, but requires extra user-code to implement
 -   🛑 &nbsp;Not officially supported or documented.
 
-| Features                             | Refine                                                                   | React-Admin [_(Website)_][react-admin]     | AdminBro[_(Website)_][adminjs]   | Retool[_(Website)_][retool] | Redwood[_(Website)_][redwood]                         |
+| Features                             | refine                                                                   | React-Admin [_(Website)_][react-admin]     | AdminBro[_(Website)_][adminjs]   | Retool[_(Website)_][retool] | Redwood[_(Website)_][redwood]                         |
 | ------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------ | -------------------------------- | --------------------------- | ----------------------------------------------------- |
 | Github Repo / Stars                  | [![][stars-refine]][gh-refine]                                           | [![][stars-react-admin]][gh-react-admin]   | [![][stars-adminjs]][gh-adminjs] | -                           | [![][stars-redwood]][gh-redwood]                      |
 | Bundle Size                          | [![][bp-refine]][bpl-refine] 🚀 🚀                                       | [![][bp-react-admin]][bpl-react-admin]     | [![][bp-adminjs]][bpl-adminjs]   | -                           | [![][bp-redwood]][bpl-redwood]                        |

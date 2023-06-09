@@ -1,9 +1,9 @@
-import React from "react";
+import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
-import { LandingRainbowButton } from "./landing-rainbow-button";
+import React from "react";
 import { PlayOutlinedIcon } from "./icons/play-outlined";
-import { useLocation, useHistory } from "@docusaurus/router";
 import { LandingPlaygroundModal } from "./landing-playground-modal";
+import { LandingRainbowButton } from "./landing-rainbow-button";
 
 export const LandingPlayground = () => {
     const { search } = useLocation();
@@ -208,7 +208,7 @@ export const LandingPlayground = () => {
                                                     "landing-md:mx-0",
                                                 )}
                                             >
-                                                Starting a new Refine project{" "}
+                                                Starting a new refine project{" "}
                                                 <span className="block landing-lg:inline font-semibold">
                                                     takes less than one minute.
                                                 </span>

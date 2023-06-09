@@ -1,14 +1,14 @@
-import React from "react";
 import Head from "@docusaurus/Head";
 import clsx from "clsx";
+import React from "react";
 
 import { CommonLayout } from "../refine-theme/common-layout";
-import { LandingHeader } from "../refine-theme/landing-header";
-import { LandingTiles } from "../refine-theme/landing-tiles";
-import { LandingHero } from "../refine-theme/landing-hero";
-import { LandingStats } from "../refine-theme/landing-stats";
 import { LandingFooter } from "../refine-theme/landing-footer";
+import { LandingHeader } from "../refine-theme/landing-header";
+import { LandingHero } from "../refine-theme/landing-hero";
 import { LandingPlayground } from "../refine-theme/landing-playground";
+import { LandingStats } from "../refine-theme/landing-stats";
+import { LandingTiles } from "../refine-theme/landing-tiles";
 
 function Home() {
     React.useEffect(() => {
@@ -47,7 +47,7 @@ function Home() {
             </Head>
             <CommonLayout
                 title={`refine | Build your React-based CRUD applications, without constraints!`}
-                description="Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design System, an enterprise-level UI toolkit."
+                description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design System, an enterprise-level UI toolkit."
             >
                 <div className={clsx("bg-refine-bg")}>
                     <div
