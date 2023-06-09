@@ -45,7 +45,10 @@ function Home() {
                     as="document"
                 />
             </Head>
-            <CommonLayout>
+            <CommonLayout
+                title={`refine | Build your React-based CRUD applications, without constraints!`}
+                description="Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design System, an enterprise-level UI toolkit."
+            >
                 <div className={clsx("bg-refine-bg")}>
                     <div
                         className={clsx(
