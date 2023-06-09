@@ -1026,3 +1026,7 @@ html[data-theme="dark"] .sourcecode-badge {
     width: 13px;
     margin-bottom: -2px;
 }
+
+#__docusaurus .theme-code-block-highlighted-line {
+    margin: 0;
+}
