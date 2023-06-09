@@ -25,10 +25,10 @@ export const CommonCopyButton = ({ code, className }) => {
             className={clsx(
                 "w-8 h-8",
                 "flex justify-center items-center",
-                "bg-gray-900",
+                "!bg-gray-900",
                 "bg-opacity-50",
                 "rounded",
-                "hover:bg-gray-900 hover:bg-opacity-75",
+                "hover:!bg-gray-900 hover:bg-opacity-75",
                 isCopied && "bg-opacity-100",
                 "group",
                 "transition-[background-color] duration-200 ease-in-out",
