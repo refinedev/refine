@@ -72,14 +72,7 @@ export default function BasicModal() {
 The code above illustrates how to use a simple MUI Modal with the provided utilities to convey a message or display an alert like this:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/first-min.gif" alt="MUI Modal" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/first-min.gif" alt="MUI Modal" />
 
 <br/>
 
@@ -180,14 +173,7 @@ export default function TransitionsModal() {
 When the modal is closed and fully transitioned, the `onEnter` and `onExited` events allow it to unmount the child content like this:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/transition-min.gif" alt="MUI Modal" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/transition-min.gif" alt="MUI Modal" />
 
 <br/>
 
@@ -281,14 +267,7 @@ The code above showcases MUI Modal components nested as two clickable modal comp
 
 Here’s the result:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/nested-min.gif" alt="MUI Modal" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/nested-min.gif" alt="MUI Modal" />
 
 <br/>
 
@@ -404,14 +383,7 @@ The code above represents a simple contact management page UI where users can ea
 Here’s the result:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/edit-form-min.gif" alt="MUI Modal" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/edit-form-min.gif" alt="MUI Modal" />
 
 <br/>
 

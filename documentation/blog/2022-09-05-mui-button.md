@@ -72,9 +72,7 @@ Here’s what they look like:
 
 <br />
 
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/button1.png" alt="button1" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/button1.png" alt="button1" />
 
 ### MUI Button Colors
 You can use the `color` prop to apply a colour to Material UI buttons from the theme palette.
@@ -138,9 +136,7 @@ export default ButtonSizes
 Here’s the result:
 
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/buttonSize.png" alt="buttonSize" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/buttonSize.png" alt="buttonSize" />
 
 
 
@@ -166,9 +162,7 @@ Here’s a simple illustration of the MUI Text Button
 ```
 
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/textButton.png" alt="textButton" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/textButton.png" alt="textButton" />
 
 <br />
 
@@ -190,9 +184,7 @@ Here’s an example:
 ```
 
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/containedButton.png" alt="containedButton" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/containedButton.png" alt="containedButton" />
 
 ### Outlined Button
 Outlined buttons are medium-emphasis buttons that contain actions that are crucial but not the primary action in your app. Additionally, outlined buttons can be used as a higher emphasis alternative to text buttons or a lower emphasis alternative to contained buttons. 
@@ -210,9 +202,7 @@ You can use Outlined **MUI button** by specifying the `outlined` prop when calli
 ```
 
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/outlinedButton.png" alt="outlinedButton" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/outlinedButton.png" alt="outlinedButton" />
 
 ### IconButton
 An Icon button is a button represented by an icon set to perform a particular action. Icon buttons are typically found in app bars and toolbars. Icons are also appropriate for toggle buttons that allow for the selection or deselection of a single option, such as adding or removing a star from an item. 
@@ -258,9 +248,7 @@ export default IconButtons
 Here’s the result:
 
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/IconButton.png" alt="IconButton" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/IconButton.png" alt="IconButton" />
 
 ### Loading Button
 
@@ -306,9 +294,7 @@ export default LoadingButtons;
 
  Here’s the result:
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/loadingButton.gif" alt="loadingButton" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/loadingButton.gif" alt="loadingButton" />
 
 
 ### Icon and Label Buttons
@@ -338,9 +324,7 @@ import Stack from '@mui/material/Stack';
 export default IconLabelButtons
 ```
 <br />
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/labelButton.png" alt="labelButton" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/labelButton.png" alt="labelButton" />
 
 
 ## Creating a Calculator UI with light and dark mode using React MUI Button Component
@@ -394,14 +378,7 @@ Here’s the result:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/navbar.gif" alt="navbar" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/navbar.gif" alt="navbar" />
 
 
 <br/>
@@ -450,14 +427,7 @@ export default Main;
 
 Here’s the result:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/mainComponent.png" alt="mainComponent" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/mainComponent.png" alt="mainComponent" />
 
 <br/>
 
@@ -491,14 +461,7 @@ export default App;
 
 Here’s what our final app looks like:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/final.gif" alt="final" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/final.gif" alt="final" />
 
 ## Conclusion
 This article covered **Material UI Buttons** and their applications in different areas of a React application. We also explored a possible use case in a calculator user interface with light and dark mode themes. You can access the source code on my [GitHub Repo](https://github.com/Nomzy-kush/Calculator-UI-with-Light-and-Dark-mode-React-MUI).

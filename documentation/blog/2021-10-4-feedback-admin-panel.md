@@ -49,14 +49,7 @@ After the installation is complete, the tab will automatically open in the brows
 
 Quite simply, a feedback should have a `description` text field, A `page` text field that shows the page the feedback was sent from, and a `type` enumeration field indicating the type of feedback (issue, idea, other, archive).
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/strapi_content.png" alt="content" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/strapi_content.png" alt="content" />
 <br />
 
 ### Creating panel with `refine`
@@ -108,14 +101,7 @@ Now, bootstrap the app with the following command:
 npm run dev
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/refine_welcome.png" alt="welcome" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/refine_welcome.png" alt="welcome" />
 <br />
 
 Now let's list the changes we will make:
@@ -170,38 +156,17 @@ export default App;
 
 After adding the resource, our auth provider was activated.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/signin.png" alt="signin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/signin.png" alt="signin" />
 <br />
 
 Now let's create a user on the Strapi to be able to login to the application.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/user.png" alt="user" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/user.png" alt="user" />
 <br />
 
 We created a user and login to the application with this user.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback.png" alt="feedback" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback.png" alt="feedback" />
 <br />
 
 Let's customize the layout component, remove the sider and add a header.
@@ -261,26 +226,12 @@ export const Header: React.FC = () => {
 
 In the new view, there are no siders anymore and the header we have customized is here.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/header.png" alt="header" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/header.png" alt="header" />
 <br />
 
 Now we come to the part where we can list our feedback and make changes to it. Before that, let's create dummy feedback records on Strapi.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedbacks.png" alt="feedbacks" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedbacks.png" alt="feedbacks" />
 <br />
 
 
@@ -459,14 +410,7 @@ See detailed usage of useSimpleList for adding new filters, adding search entrie
 
 ### Overview
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback_overview.gif" alt="feedback_overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback_overview.gif" alt="feedback_overview" />
 <br />
 
  
@@ -477,14 +421,7 @@ You can look at the code of the component I developed [here](https://github.com/
 
 Now let's add this component to the `OfflayouArea` component and create feedback on the page and see how it comes to our feedback list.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/widgets.gif" alt="widgets" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/widgets.gif" alt="widgets" />
 <br />
 
 You can find the source code of the project here: https://github.com/refinedev/refine/tree/master/examples/blog-refeedback

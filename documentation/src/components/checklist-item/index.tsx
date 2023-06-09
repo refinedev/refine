@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { useTutorialChecklists } from "../../hooks/use-tutorial-checklists";
+import clsx from "clsx";
 
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -38,7 +39,16 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
     };
 
     return (
-        <label className="mb-3 flex items-start flex-nowrap gap-1.5 cursor-pointer">
+        <label
+            className={clsx(
+                "mb-3",
+                "flex",
+                "items-start",
+                "flex-nowrap",
+                "gap-2",
+                "cursor-pointer",
+            )}
+        >
             <div className="flex-shrink-0 w-5 h-5 mt-[3px]">
                 <button
                     type="button"
@@ -54,7 +64,14 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
                     )}
                 </button>
             </div>
-            <div className={checked ? "line-through" : ""}>{children}</div>
+            <div
+                className={clsx(
+                    checked && "line-through dark:text-gray-400 text-gray-500",
+                    !checked && "text-gray-900 dark:text-gray-0",
+                )}
+            >
+                {children}
+            </div>
         </label>
     );
 };

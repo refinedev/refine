@@ -1,25 +1,17 @@
-import React from "react";
+import React, { HTMLAttributes, useState } from "react";
 import snarkdown from "snarkdown";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { useWindowSize } from "@docusaurus/theme-common";
 // @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
-
-// @ts-expect-error no types
-import DocItemTOCMobile from "@theme/DocItem/TOC/Mobile";
-// @ts-expect-error no types
-import DocItemTOCDesktop from "@theme/DocItem/TOC/Desktop";
+import { useLocation } from "@docusaurus/router";
+import clsx from "clsx";
 
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
-import { useLocation } from "@docusaurus/router";
 import { UnitCircle } from "../unit-circle";
 import { TutorialCircle } from "../tutorial-circle";
-import { SelectTutorialFramework } from "../select-tutorial-framework";
 import { useTutorialUIPackage } from "../../hooks/use-tutorial-ui-package";
 import { PreferredUIPackage } from "../../context/TutorialUIPackageContext";
-// import { useTutorialConfig } from "../../hooks/use-tutorial-config";
-// import useGlobalData from "@docusaurus/useGlobalData";
-import { HTMLAttributes } from "react";
+
 const uiNames: Record<PreferredUIPackage, string> = {
     headless: "Headless",
     antd: "Ant Design",
@@ -49,9 +41,12 @@ const LinkWithId = ({
         <a
             {...rest}
             href={toUrl}
-            className={`${className || ""} ${
-                isCurrent ? "text-black" : "text-gray-600 hover:text-black"
-            }`}
+            className={clsx(
+                className,
+                isCurrent
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-500 hover:!text-refine-link-light active:!text-refine-link-light dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
+            )}
             dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         />
     );
@@ -71,25 +66,40 @@ const TutorialUIStatus = () => {
     const { preferred: preferredUIPackage } = useTutorialUIPackage();
 
     return (
-        <div className="tutorial--framework-select--container">
-            <div className="tutorial--framework-select--wrapper rounded-md">
-                <div className="tutorial--framework-select__title">
-                    CURRENT UI FRAMEWORK
+        <div className="mt-4">
+            <div
+                className={clsx(
+                    "rounded",
+                    " bg-gray-50 dark:bg-gray-800",
+                    "p-4",
+                )}
+            >
+                <div className={clsx("font-semibold text-sm leading-6")}>
+                    Current Framework
                 </div>
-                <div className="tutorial--framework-select__box">
+                <div
+                    className={clsx(
+                        "flex items-center justify-between",
+                        "pt-3",
+                    )}
+                >
                     <div className="flex items-center gap-2">
                         <img
                             src={`${baseIconUrl}${preferredUIPackage}.svg`}
-                            className="h-auto w-5"
+                            className="h-auto w-6"
                         />
-                        <span className="font-semibold">
+                        <span className="text-sm leading-6">
                             {uiNames[preferredUIPackage]}
                         </span>
                     </div>
                     <div>
                         <LinkWithId
                             id="tutorial/introduction/select-framework"
-                            className="tutorial--framework-select--button"
+                            className={clsx(
+                                "!text-refine-blue",
+                                "underline",
+                                "text-sm",
+                            )}
                         >
                             change
                         </LinkWithId>
@@ -100,21 +110,81 @@ const TutorialUIStatus = () => {
     );
 };
 
-export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
-    // const tutorialConfig = useTutorialConfig();
+type TocLinkProps = {
+    item: any;
+    activeId?: string;
+    setActiveId?: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
+    const { hash: locationHash } = useLocation();
+
+    React.useEffect(() => {
+        const targetElement = document.getElementById(item.id);
+
+        if (targetElement) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const hash = `#${item.id}`;
+                            if (hash !== locationHash) {
+                                setActiveId(item.id);
+                                if (typeof window !== "undefined") {
+                                    window.history.replaceState(
+                                        undefined,
+                                        undefined,
+                                        hash,
+                                    );
+                                }
+                            }
+                        }
+                    });
+                },
+                {
+                    rootMargin: "0px 0px -80% 0px",
+                },
+            );
+
+            observer.observe(targetElement);
+
+            return () => {
+                observer.unobserve(targetElement);
+            };
+        }
+    }, [item.id]);
+
+    return (
+        <a
+            href={`#${item.id}`}
+            dangerouslySetInnerHTML={{ __html: item.value }}
+            className={clsx(
+                "text-gray-500 hover:!text-refine-link active:!text-refine-link dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
+                activeId === item.id &&
+                    "!text-refine-link-light dark:!text-refine-link-dark",
+            )}
+        ></a>
+    );
+};
+
+export const TutorialTOC = () => {
     const {
-        /* frontMatter, */ toc,
+        toc,
         metadata: { id: currentDocId },
     } = useDoc();
     const currentTutorial = useCurrentTutorial();
-
     const { hash } = useLocation();
 
-    const [selectedUnit, setSelectedUnit] = React.useState(
-        currentTutorial.unit,
+    const baseActiveId = `${hash}`.replace("#", "");
+
+    const [selectedUnit, setSelectedUnit] = useState(currentTutorial.unit);
+    const [activeId, setActiveId] = React.useState<string | undefined>(
+        baseActiveId,
     );
 
-    // const test = useGlobalData();
+    React.useEffect(() => {
+        setActiveId(baseActiveId);
+    }, [baseActiveId]);
 
     const renderTocItem = (item: (typeof toc)[number]) => {
         return (
@@ -125,13 +195,11 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 }}
                 className="mb-1"
             >
-                <a
-                    dangerouslySetInnerHTML={{ __html: item.value }}
-                    href={`#${item.id}`}
-                    className={`tutorial__item--toc-item ${
-                        `${hash}`.slice(1) === item.id ? "active" : ""
-                    }`}
-                ></a>
+                <TocLink
+                    item={item}
+                    activeId={activeId}
+                    setActiveId={setActiveId}
+                />
             </li>
         );
     };
@@ -151,21 +219,23 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
         const formattedTitle = markdownConverter(doc.title);
 
         return (
-            <li key={doc.id} className="flex flex-row items-start gap-2 pb-2">
-                <div className="mt-0.5 h-5 w-5 flex-shrink-0">
+            <li
+                key={doc.id}
+                className={clsx("flex flex-row items-start gap-2", "pb-2")}
+            >
+                <div className={clsx("mt-0.5", "h-5 w-5", "flex-shrink-0")}>
                     <TutorialCircle id={doc.id} width="100%" height="100%" />
                 </div>
                 <div className="flex flex-col gap-2">
                     <LinkWithId
                         id={doc.id}
                         isCurrent={doc.current}
-                        className={`tutorial__item-link ${
-                            currentDocId === doc.id ? "font-semibold" : ""
-                        } leading-[22px] ${
-                            doc.current
-                                ? "hover:cursor-default hover:no-underline"
-                                : ""
-                        }`}
+                        className={clsx("text-gray-500", "leading-[22px]", {
+                            "text-gray-900 dark:text-white":
+                                currentDocId === doc.id,
+                            "hover:cursor-default hover:no-underline hover:text-gray-900":
+                                doc.current,
+                        })}
                         dangerouslySetInnerHTML={{ __html: formattedTitle }}
                     />
 
@@ -180,7 +250,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     ) => {
         return (
             <div>
-                <ul className="list-none pl-0">
+                <ul className={clsx("list-none", "pl-0")}>
                     {unit?.docs
                         .sort((a, b) =>
                             `${a.title}`?.localeCompare(`${b.title}`),
@@ -197,21 +267,19 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 key={unit.no}
                 type="button"
                 onClick={() => setSelectedUnit(unit.unit)}
-                style={{
-                    backgroundColor:
-                        unit.unit === selectedUnit
-                            ? "var(--tutorial-toc-bg-color)"
-                            : "transparent",
-                    boxShadow:
-                        unit.unit === selectedUnit
-                            ? "0 -1px 0px 0px rgb(255 255 255 / 10%)"
-                            : "none",
-                }}
-                className={`${
-                    unit.unit === selectedUnit
-                        ? "tutorial__item--unit-item"
-                        : ""
-                } -mb-1 flex h-[30px] w-[28px] cursor-pointer items-start justify-center rounded-tl-[24px] rounded-tr-[24px] border-none px-[3.5px] pt-0 font-semibold`}
+                className={clsx(
+                    unit.unit === selectedUnit &&
+                        "bg-gradient-to-t from-gray-50 dark:from-gray-800 from-40% to-gray-200 dark:to-gray-700",
+                    "-mb-1",
+                    "px-[3.5px] pt-0.5",
+                    "flex items-start justify-center",
+                    "h-[32px] w-[32px]",
+                    "cursor-pointer",
+                    "rounded-tl-[24px] rounded-tr-[24px]",
+                    "border-none",
+                    " -[24px]",
+                    "font-semibold",
+                )}
             >
                 <UnitCircle unit={unit.unit} width="100%" height="28px" />
             </button>
@@ -229,32 +297,26 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
             ?.no === 1;
 
     return (
-        <div
-            className="max-h-[calc(100vh-6rem] sticky top-[5rem]"
-            style={{
-                color: "var(--tutorial-toc-text-color)",
-            }}
-        >
-            <div className="unit-tabs mb-1 flex gap-0.5">
+        <div className={clsx("max-h-[calc(100vh-6rem]")}>
+            <div className={clsx("mb-1", "flex gap-0.5")}>
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div
-                className={`unit-list-container rounded-md px-3 py-3 ${
-                    currentUnit?.no === 1 ? "rounded-tl-none" : ""
-                }`}
-                style={{
-                    backgroundColor: "var(--tutorial-toc-bg-color)",
-                }}
+                className={clsx(
+                    "rounded",
+                    "px-3 py-3",
+                    "bg-gray-50 dark:bg-gray-800",
+                    {
+                        "rounded-tl-none": currentUnit?.no === 1,
+                    },
+                )}
             >
-                <div
-                    className="mb-2 text-sm font-bold"
-                    style={{
-                        color: "var(--tutorial-toc-text-color)",
-                    }}
-                >
+                {/* <div className={clsx("mb-2", "text-sm font-bold")}>
                     {currentUnit?.title ?? currentUnit?.unit ?? "-"}
+                </div> */}
+                <div className={clsx("text-sm", "mt-2")}>
+                    {renderUnitDocs(currentUnit)}
                 </div>
-                <div className="text-sm">{renderUnitDocs(currentUnit)}</div>
             </div>
             {!isFirstUnit &&
                 currentDocId !== "tutorial/introduction/select-framework" && (
@@ -267,31 +329,12 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
 export const useDocTOCwithTutorial = () => {
     const tutorial = useCurrentTutorial();
     const { frontMatter, toc } = useDoc();
-    const windowSize = useWindowSize();
     const hidden = frontMatter.hide_table_of_contents;
     const canRender = (!hidden && toc.length > 0) || tutorial?.isTutorial;
-    const mobile = canRender ? (
-        tutorial?.isTutorial ? (
-            windowSize === "mobile" ? (
-                <div className="my-4">
-                    <TutorialTOC isMobile />
-                </div>
-            ) : null
-        ) : (
-            <DocItemTOCMobile />
-        )
-    ) : undefined;
-    const desktop =
-        canRender && (windowSize === "desktop" || windowSize === "ssr") ? (
-            tutorial?.isTutorial ? (
-                <TutorialTOC />
-            ) : (
-                <DocItemTOCDesktop />
-            )
-        ) : undefined;
+    const tutorialTOC = canRender ? <TutorialTOC /> : undefined;
+
     return {
         hidden,
-        mobile,
-        desktop,
+        tutorialTOC,
     };
 };

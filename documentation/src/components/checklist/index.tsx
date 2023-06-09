@@ -3,6 +3,7 @@ import { useReward } from "react-rewards";
 
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { useTutorialChecklists } from "../../hooks/use-tutorial-checklists";
+import clsx from "clsx";
 
 const CheckMarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -13,7 +14,7 @@ const CheckMarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="feather feather-check-circle"
+        className="feather feather-check-circle pointer-events-none"
         {...props}
     >
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -57,13 +58,41 @@ const Checklist: React.FC<Props> = ({ children }) => {
     }, [allChecked, celebrated]);
 
     return (
-        <div className="checklist-container">
-            <h3 className="checklist-container__title">
-                <CheckMarkIcon className="w-7 h-7" /> Checklist
-            </h3>
-            <div>{children}</div>
-            <div className="flex items-center justify-center">
-                <div id={`checklist-${id}`} />
+        <div
+            className={clsx(
+                "bg-opacity-10",
+                "dark:bg-refine-link-dark dark:border-l-refine-link-dark",
+                "bg-refine-link-light border-l-refine-link-light",
+            )}
+        >
+            <div
+                className={clsx(
+                    "border-l-4",
+                    "border-l-solid",
+                    "border-l-inherit",
+                    "rounded-tl-lg",
+                    "rounded-bl-lg",
+                    "p-4",
+                    "flex flex-col",
+                )}
+            >
+                <h3
+                    className={clsx(
+                        "font-semibold",
+                        "mt-0",
+                        "flex items-center",
+                        "gap-3",
+                        "dark:text-gray-300 text-gray-500",
+                        "uppercase",
+                        "text-lg",
+                    )}
+                >
+                    <CheckMarkIcon className="w-7 h-7" /> Checklist
+                </h3>
+                <div>{children}</div>
+                <div className="flex items-center justify-center">
+                    <div id={`checklist-${id}`} />
+                </div>
             </div>
         </div>
     );

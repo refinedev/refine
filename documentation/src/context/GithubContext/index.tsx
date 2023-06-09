@@ -18,7 +18,7 @@ export const GithubContext = createContext<IGithubContext | undefined>(
 );
 
 export const GithubProvider: FC = ({ children }) => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [starCount, setStarCount] = useState(0);
 
     const fetchStarCount = useCallback(async () => {

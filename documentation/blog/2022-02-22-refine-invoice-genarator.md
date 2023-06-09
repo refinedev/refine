@@ -215,14 +215,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 -   email: Email
 -   Website: Text
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/company.png" alt="Strapi Company Collection" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/company.png" alt="Strapi Company Collection" />
 <br />
 
 `Client:`
@@ -230,14 +223,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 -   Name: Text
 -   Contacts: Relation with Contact
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/client.png" alt="Strapi Client Collection" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/client.png" alt="Strapi Client Collection" />
 <br />
 
 `Contact:`
@@ -249,14 +235,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 -   Job: Text
 -   Client: Relation with Client
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
 <br />
 
 We have created our collections by Strapi, now we can create Clients and their contacts with **refine**.
@@ -413,14 +392,7 @@ function App() {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_company.png" alt="Refine Company List" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_company.png" alt="Refine Company List" />
 <br />
 
 We fetch the data of the `Company` collection that we created by Strapi, thanks to the **refine** `dataProvider`, and put it into the card component we created.
@@ -517,14 +489,7 @@ export const ContactsList: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_contacts.png" alt="Refine Contacts List" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_contacts.png" alt="Refine Contacts List" />
 <br />
 
 ## Client List Page
@@ -909,14 +874,7 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
 
 We created our `Client` and `Contact` pages. Now, let's create a Client with **refine** and define contacts for our clients.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.gif" alt="Refine Clients Overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.gif" alt="Refine Clients Overview" />
 <br />
 
 ## Example

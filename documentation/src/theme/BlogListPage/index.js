@@ -8,10 +8,9 @@ import {
     ThemeClassNames,
 } from "@docusaurus/theme-common";
 import BlogLayout from "@theme/BlogLayout";
-import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
-import TagsList from "@theme/TagsList";
+import BlogListPaginator from "@theme/BlogListPaginator";
 
 import { FeaturedBlogPostItems } from "../../components/blog";
 
@@ -32,7 +31,7 @@ function BlogListPageMetadata(props) {
 }
 
 function BlogListPageContent(props) {
-    const { metadata, items } = props;
+    const { metadata, tags, items } = props;
 
     const isFirstPage = metadata.page === 1;
 
@@ -47,18 +46,24 @@ function BlogListPageContent(props) {
     return (
         <BlogLayout>
             {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
-            {/*    {isFirstPage && (
-                <Link to="https://s.refine.dev/hackathon">
-                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png"></img>
-                </Link>
-            )} */}
-            <br />
-            <TagsList tags={props.tags} />
-            <br />
-            <br />
-
-            <BlogPostItems items={paginatedPosts} />
-            <br />
+            <div
+                className={clsx(
+                    "xl:max-w-[1008px]",
+                    "lg:max-w-[944px]",
+                    "md:max-w-[480px]",
+                    "sm:max-w-[328px]",
+                    "max-w-[328px]",
+                    "w-full mx-auto",
+                    "hidden lg:block",
+                )}
+            >
+                <div className="border-b border-gray-100 dark:border-gray-700"></div>
+            </div>
+            <BlogPostItems
+                items={paginatedPosts}
+                tags={tags}
+                metadata={metadata}
+            />
             <BlogListPaginator metadata={metadata} />
         </BlogLayout>
     );

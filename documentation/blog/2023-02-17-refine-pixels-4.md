@@ -87,15 +87,7 @@ Now, let's try opening the app in two browsers, one with Google account and one 
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Fliveprovider-prop-min.gif"  alt="supabase realtime" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Fliveprovider-prop-min.gif"  alt="supabase realtime" />
 
 <br />
 

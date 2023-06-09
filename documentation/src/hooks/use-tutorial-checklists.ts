@@ -53,21 +53,23 @@ export function useTutorialChecklists() {
     const { store, toggle } = React.useContext(TutorialChecklistContext);
 
     const merged = React.useMemo(() => {
-        return (data as TutorialChecklistData).items.map((item) => {
-            const { id } = item;
+        return (
+            (data as TutorialChecklistData)?.items.map((item) => {
+                const { id } = item;
 
-            return {
-                ...item,
-                checklist: item.checklist
-                    .map((checklistItem) => {
-                        return {
-                            ...checklistItem,
-                            checked: store[id]?.[checklistItem.id] ?? false,
-                        };
-                    })
-                    .sort((a, b) => a.index - b.index),
-            };
-        });
+                return {
+                    ...item,
+                    checklist: item.checklist
+                        .map((checklistItem) => {
+                            return {
+                                ...checklistItem,
+                                checked: store[id]?.[checklistItem.id] ?? false,
+                            };
+                        })
+                        .sort((a, b) => a.index - b.index),
+                };
+            }) ?? []
+        );
     }, [store]);
 
     return {

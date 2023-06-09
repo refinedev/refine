@@ -221,9 +221,7 @@ As you can see `<Post />` does not depend on `likesCount` but is re-rendered by 
 
 If we check our Chrome's console we have `<Post />` rendering again and again following an interval:
 
- <div class="img-container">
-    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo1.png"  alt="memo1" />
-</div>
+ <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo1.png"  alt="memo1" />
 
 <br/>
 
@@ -252,9 +250,7 @@ export default React.memo(Post);
 Looking at the console, we can see that `Post` is no longer re-rendered at 3s intervals:
 
 
- <div class="img-container">
-     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo2.png" alt="memo2" />
-</div>
+ <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo2.png" alt="memo2" />
 
 <br/>
 
@@ -281,9 +277,7 @@ console.log(signedIn);
 When we click on the `Sign Out` button in the navbar, we can see in the console that `<Post />` re-renders after `<LatestPost />`:
 
 
-<div class="img-container">
-    <img width="400px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo3.png" style={{alignSelf:"center"}} alt="memo3" />
-</div>
+<img width="400px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo3.png" style={{alignSelf:"center"}} alt="memo3" />
 
 <br/>
 
@@ -334,9 +328,7 @@ export default React.memo(Post, customComparator);
 Here, we are omiting `signedIn` from being compared by comparing only `post` 's values. Now, if we click on `Sign Out` button, `Post` is not being re-rendered:
 
 
-<div class="img-container">
-     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo4.png" alt="memo4" />
-</div>
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo4.png" alt="memo4" />
 
 <br/>
 

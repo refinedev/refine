@@ -60,14 +60,7 @@ To use Google lighthouse in Chrome DevTools, navigate to the site you want to au
 
 You  can open Chrome DevTools by pressing the <kbd> F12 </kbd>  key. Click the lighthouse tab after that.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/checked-categories.png" alt="Lighthouse checked" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/checked-categories.png" alt="Lighthouse checked" />
 
 <br/>
 
@@ -88,14 +81,7 @@ After successfully analyzing the page, Google lighthouse will present the lighth
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-all-categories.png" alt="Lighthouse scores for all categories" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-all-categories.png" alt="Lighthouse scores for all categories" />
 
 <br/>
 
@@ -241,14 +227,7 @@ Like using Google lighthouse in chrome DevTools, start by navigating to the site
 Open the Google lighthouse chrome extension popup by clicking the extension icon in the Chrome toolbar.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png" alt="Lighthouse extension dropdown" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png" alt="Lighthouse extension dropdown" />
 
 <br/>
 
@@ -268,14 +247,7 @@ As pointed out above, Google lighthouse can audit a website for performance, bes
 
 If you navigate to the [refine landing page](https://refine.dev/) and use Lighthouse to audit the site for PWA features and best practices, you will get a report similar to the image below. Because [refine](https://refine.dev/) is not a PWA, most of the tests will fail. Google lighthouse will highlight the failing test and provide a link to documentation that explains the feature.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-pwa-category.png" alt="Lighthouse pwa" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-pwa-category.png" alt="Lighthouse pwa" />
 
 <br/>
 
