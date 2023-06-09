@@ -36,7 +36,7 @@ export const DocTOCMobile = () => {
                                 className={clsx(
                                     "h-5 w-5",
                                     "text-gray-400 dark:text-gray-500",
-                                    "transition-all duration-200 ease-in-out",
+                                    "transition-transform duration-200 ease-in-out",
                                     {
                                         "transform -rotate-90": !open,
                                     },
@@ -74,7 +74,7 @@ export const DocTOCMobile = () => {
                                                     level === 2 && "pl-3",
                                                     level === 3 && "pl-7",
                                                     level === 4 && "pl-11",
-                                                    "py-2",
+                                                    "py-2 pr-3",
                                                     "rounded-lg",
                                                     "transition-colors duration-200 ease-in-out",
                                                     "block",

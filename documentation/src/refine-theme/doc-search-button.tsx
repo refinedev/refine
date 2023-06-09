@@ -31,7 +31,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                     "flex items-center",
                     "gap-5",
                     "text-base",
-                    "transition-all",
+                    "transition-[filter]",
                     "duration-200",
                     "ease-in-out",
                     {
@@ -75,6 +75,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                                 "dark:text-gray-400 text-gray-500",
                                 isPermanentDark &&
                                     "!text-gray-400 !bg-gray-900 !border-gray-600",
+                                "shadow-none",
                             )}
                         >
                             ⌘K

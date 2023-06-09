@@ -19,7 +19,7 @@ export const CommonWordWrapButton = ({ onClick, isEnabled }) => {
                 "hover:bg-gray-900 hover:bg-opacity-75",
                 isEnabled && "bg-opacity-100",
                 "group",
-                "transition-all duration-200 ease-in-out",
+                "transition-[background-color] duration-200 ease-in-out",
             )}
             aria-label={"Toggle word wrap"}
             title={"Toggle word wrap"}
@@ -29,8 +29,8 @@ export const CommonWordWrapButton = ({ onClick, isEnabled }) => {
                     "w-4 h-4",
                     "text-gray-500",
                     isEnabled && "rotate-[360deg]",
-                    "group-hover:w-[18px] group-hover:h-[18px]",
-                    "transition-all duration-200 ease-in-out",
+                    "group-hover:scale-110",
+                    "transition-transform duration-200 ease-in-out",
                 )}
             />
         </button>

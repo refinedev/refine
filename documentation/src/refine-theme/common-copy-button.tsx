@@ -31,7 +31,7 @@ export const CommonCopyButton = ({ code, className }) => {
                 "hover:bg-gray-900 hover:bg-opacity-75",
                 isCopied && "bg-opacity-100",
                 "group",
-                "transition-all duration-200 ease-in-out",
+                "transition-[background-color] duration-200 ease-in-out",
             )}
             onClick={handleCopyCode}
         >
@@ -40,8 +40,8 @@ export const CommonCopyButton = ({ code, className }) => {
                     "w-4 h-4",
                     "text-gray-500",
                     isCopied && "rotate-[360deg]",
-                    "group-hover:w-[18px] group-hover:h-[18px]",
-                    "transition-all duration-200 ease-in-out",
+                    "group-hover:scale-110",
+                    "transition-transform duration-200 ease-in-out",
                 )}
             />
         </button>

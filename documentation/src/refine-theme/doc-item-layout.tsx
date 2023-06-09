@@ -5,7 +5,7 @@ import DocItemPaginator from "@theme/DocItem/Paginator";
 import DocVersionBanner from "@theme/DocVersionBanner";
 import DocItemFooter from "@theme/DocItem/Footer";
 import DocItemContent from "@theme/DocItem/Content";
-// import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
+import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
 import { useCurrentTutorial } from "../hooks/use-current-tutorial";
 import { DocTOC } from "./doc-toc";
 import { DocBreadcrumbs } from "./doc-breadcrumbs";
@@ -16,7 +16,7 @@ import { DocVersionBadge } from "./doc-version-badge";
 import { DocTOCMobile } from "./doc-toc-mobile";
 
 export const DocItemLayout = ({ children }) => {
-    // const docTOC = useDocTOCwithTutorial();
+    const docTOC = useDocTOCwithTutorial();
     const tutorial = useCurrentTutorial();
     const {
         frontMatter: { swizzle, source },
@@ -51,7 +51,13 @@ export const DocItemLayout = ({ children }) => {
                             {source && <SourceCodeBadge path={source} />}
                         </div>
                     </div>
-                    <DocTOCMobile />
+                    {tutorial?.isTutorial ? (
+                        <div className={clsx("my-4", "xl:hidden block")}>
+                            {docTOC.tutorialTOC}
+                        </div>
+                    ) : (
+                        <DocTOCMobile />
+                    )}
                     <div className={clsx("refine-prose")}>
                         <DocItemContent>{children}</DocItemContent>
                     </div>
@@ -61,7 +67,20 @@ export const DocItemLayout = ({ children }) => {
                     <DocItemPaginator />
                 </div>
             </div>
-            <DocTOC />
+            {tutorial?.isTutorial ? (
+                <div
+                    className={clsx(
+                        "hidden xl:block",
+                        "sticky top-[120px]",
+                        "w-[280px]",
+                        "px-3",
+                    )}
+                >
+                    {docTOC.tutorialTOC}
+                </div>
+            ) : (
+                <DocTOC />
+            )}
         </>
     );
 };

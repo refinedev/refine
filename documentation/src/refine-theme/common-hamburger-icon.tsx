@@ -18,7 +18,7 @@ export const CommonHamburgerIcon = ({ active, className, onClick }: Props) => {
                 "text-gray-500 dark:text-gray-400",
                 "rounded-full",
                 "hover:bg-gray-200 hover:dark:bg-gray-700",
-                "transition-all",
+                "transition-[background-color]",
                 "duration-200",
                 "ease-in-out",
                 className,

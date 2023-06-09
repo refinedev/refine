@@ -5,6 +5,7 @@ const SvgAbly = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={48}
         height={40}
+        viewBox="0 0 48 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}

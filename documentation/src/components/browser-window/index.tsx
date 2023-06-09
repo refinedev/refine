@@ -75,7 +75,7 @@ export default function BrowserWindow({
                 <div
                     className={clsx(
                         "rounded-lg",
-                        "px-2 py-1",
+                        "p-2",
                         "bg-gray-800",
                         "flex items-center justify-center",
                         "text-gray-400",

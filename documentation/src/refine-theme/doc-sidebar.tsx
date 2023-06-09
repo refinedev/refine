@@ -115,6 +115,7 @@ const SidebarCategory = ({
                     !isHeader && "group",
                     "transition-colors duration-200 ease-in-out",
                     !isHeader && "hover:dark:text-gray-0",
+                    !isHeader && "no-underline",
                 )}
             >
                 <div
@@ -138,7 +139,15 @@ const SidebarCategory = ({
                 />
                 {!isHeader && (
                     <ChevronDownIcon
-                        className={clsx("w-6 h-6", "flex-shrink-0", "z-[1]")}
+                        className={clsx(
+                            "w-6 h-6",
+                            "flex-shrink-0",
+                            "z-[1]",
+                            "transition-transform duration-200 ease-in-out",
+                            {
+                                "transform -rotate-90": collapsed,
+                            },
+                        )}
                     />
                 )}
                 <span className="z-[1]">{item.label}</span>
@@ -174,7 +183,6 @@ const SidebarCategory = ({
                     !collapsed && "max-h-[2000px] opacity-100",
                     !collapsed && !settled && "max-h-screen",
                     !collapsed && settled && "max-h-[2500px]",
-                    "transition-all duration-200 ease-in-out",
                 )}
             >
                 {renderItems({
@@ -242,6 +250,7 @@ const SidebarLink = ({
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "hover:dark:text-gray-0 hover:text-gray-900",
+                "no-underline",
             )}
         >
             {dashed && <DashIcon className="w-6 h-6 flex-shrink-0 z-[1]" />}
