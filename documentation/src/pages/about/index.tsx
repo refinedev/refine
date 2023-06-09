@@ -64,7 +64,7 @@ const About: React.FC = () => {
                         )}
                     >
                         <div className="bg-gray-50 text-2xl flex justify-center items-center font-semibold px-16 py-36 rounded-xl">
-                            10k+ Github Star & YC kutlaması etkinliginde topluca
+                            10k+ GitHub Star & YC kutlaması etkinliginde topluca
                             çekindigimiz foto. (Ya da video?)
                         </div>
                         <div className="flex flex-col justify-center text-2xl text-gray-700">
@@ -170,7 +170,7 @@ const About: React.FC = () => {
                                         className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
                                         rel="noreferrer"
                                     >
-                                        Github Repo
+                                        GitHub Repo
                                     </a>
                                 </div>
                             </div>
