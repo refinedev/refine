@@ -65,6 +65,10 @@ module.exports = {
                 menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
             },
             backgroundImage: {
+                "selected-tab-light":
+                    "linear-gradient(180deg, rgba(110, 179, 247, 0) 50%, rgba(0, 128, 255, 0.25) 100%)",
+                "selected-tab-dark":
+                    "linear-gradient(180deg, rgba(110, 179, 247, 0) 50%, rgba(0, 128, 255, 0.25) 100%)",
                 "landing-stars": [
                     "linear-gradient(180deg, rgba(10,10,41,0.6) 0%, rgba(10, 10, 41, 0.4) 100%)",
                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-stars.webp)",

@@ -82,9 +82,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
                         selectedValue === value &&
                             "dark:text-gray-0 text-gray-900",
                         selectedValue === value &&
-                            "dark:bg-gradient-to-t dark:from-refine-indigo dark:via-transparent dark:to-transparent",
-                        selectedValue === value &&
-                            "bg-gradient-to-t from-refine-blue via-transparent to-transparent",
+                            "bg-selected-tab-light dark:bg-selected-tab-dark",
                         "bg-no-repeat",
                     )}
                     style={{
