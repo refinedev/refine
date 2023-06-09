@@ -56,7 +56,7 @@ function BlogListPageContent(props) {
                     "hidden lg:block",
                 )}
             >
-                <div className="border-b border-gray-100"></div>
+                <div className="border-b border-gray-100 dark:border-gray-700"></div>
             </div>
             <BlogPostItems
                 items={paginatedPosts}
