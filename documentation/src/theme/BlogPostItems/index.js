@@ -33,7 +33,7 @@ export default function BlogPostItems({
                     >
                         <h2
                             className={clsx(
-                                "m-0 p-0",
+                                "!m-0 !mt-0 !mb-0 p-0",
                                 "xl:mb-12 lg:mb-8 mb-8",
                                 "xl:text-5xl lg:text-4xl text-xl",
                                 "text-gray-900 dark:text-gray-0",

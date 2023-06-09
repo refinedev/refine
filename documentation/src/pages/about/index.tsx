@@ -10,6 +10,7 @@ import { MailIcon } from "@site/src/refine-theme/icons/mail";
 import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
 import { OpenSourceIcon } from "@site/src/refine-theme/icons/open-source";
 import { DiscordIcon, TwitterIcon } from "@site/src/refine-theme/icons/popover";
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 import { backedBy } from "../../assets/backed-by";
@@ -488,11 +489,13 @@ const About: React.FC = () => {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:gap-16 gap-8">
                         <div className="lg:w-[590px] lg:h-[416px] w-full lg:order-last shrink-0">
-                            <img
-                                className="m-0 p-0"
-                                src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map.png"
-                                srcSet="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map2x.png 1500w"
-                            />
+                            <Link to="https://goo.gl/maps/D4NZ5gn6VsWaRtXT6">
+                                <img
+                                    className="m-0 p-0"
+                                    src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map.png"
+                                    srcSet="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map2x.png 1500w"
+                                />
+                            </Link>
                         </div>
                         <div className="flex justify-start flex-col items-start gap-8 lg:pt-12 pt-6">
                             <div className="flex justify-center items-center gap-6">
