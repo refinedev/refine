@@ -1,13 +1,13 @@
-import React from "react";
-import clsx from "clsx";
 import Link from "@docusaurus/Link";
+import clsx from "clsx";
+import React from "react";
 
 import { DocItemOutlined } from "./icons/doc-item-outlined";
 
 export const LandingGhostButton = () => {
     return (
         <Link
-            href="/docs/getting-started/quickstart"
+            href="/docs/tutorial/introduction/index/"
             className={clsx(
                 "relative",
                 "text-gray-0",
