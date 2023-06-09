@@ -828,6 +828,10 @@
     {
       "from": "/examples/",
       "to": "/docs/examples/"
+    },
+    {
+      "from": "/become-a-refine-expert/",
+      "to": "/"
     }
   ]
 }
