@@ -35,7 +35,7 @@
         animation-duration: 1s;
     }
     .landing-mask-image-bg {
-        mask-image: url("./../../static/assets/hero-bottom-bg.svg");
+        mask-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/hero-bottom-bg.svg");
         mask-size: 1920px 288px;
         mask-position: center;
     }
