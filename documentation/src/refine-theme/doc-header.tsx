@@ -56,7 +56,9 @@ const Desktop = () => {
                 >
                     <div className={clsx("xl:hidden flex")}>
                         <SearchBar
-                            CustomButton={() => <DocSearchButton iconOnly />}
+                            CustomButton={(props) => (
+                                <DocSearchButton {...props} iconOnly />
+                            )}
                         />
                     </div>
                     <Divider />

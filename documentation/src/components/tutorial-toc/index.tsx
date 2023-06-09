@@ -45,7 +45,7 @@ const LinkWithId = ({
                 className,
                 isCurrent
                     ? "text-gray-900 dark:text-white"
-                    : "text-gray-500 hover:!text-refine-link active:!text-refine-link",
+                    : "text-gray-500 hover:!text-refine-link-light active:!text-refine-link-light dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
             )}
             dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         />
@@ -159,8 +159,9 @@ const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
             href={`#${item.id}`}
             dangerouslySetInnerHTML={{ __html: item.value }}
             className={clsx(
-                "text-gray-500 hover:!text-refine-link active:!text-refine-link",
-                activeId === item.id && "!text-refine-link",
+                "text-gray-500 hover:!text-refine-link active:!text-refine-link dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
+                activeId === item.id &&
+                    "!text-refine-link-light dark:!text-refine-link-dark",
             )}
         ></a>
     );

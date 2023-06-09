@@ -36,7 +36,10 @@ export const CommonShowSourcePrompt = ({ path }: Props) => {
                 href={path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={clsx("text-refine-link", "underline")}
+                className={clsx(
+                    "text-refine-link-light dark:text-refine-link-dark",
+                    "underline",
+                )}
             >
                 <span>View Source Code</span>
             </a>

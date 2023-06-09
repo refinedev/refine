@@ -24,7 +24,7 @@
     max-width: 100% !important;
     @apply font-normal prose prose-invert;
     @apply prose-strong:dark:text-gray-300 prose-strong:text-gray-700;
-    @apply prose-a:text-refine-link prose-a:font-normal;
+    @apply prose-a:text-refine-link-light prose-a:dark:text-refine-link-dark  prose-a:font-normal;
 
     @apply prose-h1:font-semibold;
     @apply prose-h1:text-gray-900 prose-h1:dark:text-gray-0;
@@ -142,7 +142,7 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-    @apply !text-refine-blue dark:!text-refine-link;
+    @apply !text-refine-link-light dark:!text-refine-link-dark;
 }
 
 .admonition.admonition-caution code {

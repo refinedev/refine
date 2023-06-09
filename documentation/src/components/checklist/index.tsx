@@ -60,7 +60,9 @@ const Checklist: React.FC<Props> = ({ children }) => {
     return (
         <div
             className={clsx(
-                "bg-refine-link bg-opacity-10 border-l-refine-link",
+                "bg-opacity-10",
+                "dark:bg-refine-link-dark dark:border-l-refine-link-dark",
+                "bg-refine-link-light border-l-refine-link-light",
             )}
         >
             <div
