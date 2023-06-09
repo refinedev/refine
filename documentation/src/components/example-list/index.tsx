@@ -187,17 +187,17 @@ const ExampleList: React.FC = () => {
                     "rounded-lg",
                 )}
             >
-                <h3
+                <div
                     className={clsx(
                         "not-prose",
                         "mb-0 mt-0",
-                        "text-sm sm:text-base 2xl:text-xl",
+                        "text-sm sm:text-base 2xl:text-xl font-semibold",
                         "text-gray-900 dark:text-gray-200",
                         "px-2 lg:px-2 xl:px-0",
                     )}
                 >
                     {example.title}
-                </h3>
+                </div>
                 <img
                     className={clsx(
                         "mb-0 mt-2 2xl:mt-4",
@@ -217,12 +217,15 @@ const ExampleList: React.FC = () => {
                         "text-gray-700 dark:text-gray-400",
                         "mt-4 2xl:mt-6",
                     )}
+                    style={{
+                        marginBottom: "0rem",
+                    }}
                     dangerouslySetInnerHTML={{ __html: example.description }}
                 />
                 <div
                     className={clsx(
                         "flex justify-between items-center",
-                        "px-2 2xl:px-0 pt-4 2xl:pt-6 mt-auto",
+                        "px-2 2xl:px-0 pt-4 2xl:pt-6 2xl:pb-2 mt-auto",
                         "text-sm 2xl:text-base",
                     )}
                 >
@@ -458,16 +461,16 @@ const ExampleList: React.FC = () => {
     const renderFilters = () => {
         return (
             <div className="flex flex-col">
-                <h3
+                <div
                     className={clsx(
-                        "not-prose",
                         "mb-0 mt-0",
                         "text-[32px] leading-[40px] 2xl:text-[40px] 2xl:leading-[48px]",
                         "text-gray-700 dark:text-gray-200",
+                        "font-semibold",
                     )}
                 >
                     Other Examples
-                </h3>
+                </div>
                 <div
                     className={clsx(
                         "flex items-center justify-between mt-8 2xl:mt-10 pb-4",
@@ -477,10 +480,10 @@ const ExampleList: React.FC = () => {
                     <span
                         className={clsx(
                             "hidden md:block",
-                            "not-prose",
                             "mb-0 mt-0",
                             "text-2xl",
                             "text-gray-700 dark:text-gray-200",
+                            "font-semibold",
                         )}
                     >
                         Filters
@@ -513,7 +516,7 @@ const ExampleList: React.FC = () => {
                     "flex flex-col h-full",
                     "rounded-lg",
                     "no-underline",
-                    "py-4 2xl:py-6 pt-2 2xl:pt-6 pb-3 2xl:pb-4 px-4 2xl:px-6",
+                    "py-4 2xl:py-6 pt-2 2xl:pt-6 pb-3 2xl:pb-4",
                     "bg-gray-50 dark:bg-gray-800",
                 )}
             >
@@ -524,6 +527,7 @@ const ExampleList: React.FC = () => {
                         "font-bold",
                         "text-base 2xl:text-xl",
                         "text-gray-900 dark:text-gray-200",
+                        "px-4 2xl:px-6",
                     )}
                 >
                     {beautify(displayTitle)}
@@ -536,15 +540,24 @@ const ExampleList: React.FC = () => {
                         "text-xs sm:text-sm 2xl:text-base",
                         "text-gray-700 dark:text-gray-400",
                         "my-2 2xl:my-6",
+                        "px-4 2xl:px-6",
                     )}
                 >
                     {description}
                 </div>
+
                 <div
                     className={clsx(
-                        "flex flex-wrap gap-4 pt-1 pb-1 mt-auto",
-                        "border-t border-gray-200 dark:border-gray-700",
+                        "mt-2 2xl:mt-0",
+                        "w-full h-[1px]",
+                        "bg-gray-200 dark:bg-gray-700",
+                    )}
+                />
+                <div
+                    className={clsx(
                         "pt-3 2xl:pt-4",
+                        "flex flex-wrap gap-4 pt-1 pb-1 mt-auto",
+                        "px-4 2xl:px-6",
                     )}
                 >
                     {example.tags.map((tag) => (
