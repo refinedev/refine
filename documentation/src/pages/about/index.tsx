@@ -493,8 +493,8 @@ const About: React.FC = () => {
                         <div className="lg:w-[624px] lg:h-[416px] w-full lg:order-last shrink-0">
                             <img
                                 className="m-0 p-0"
-                                src="/about/images/map.png"
-                                srcSet="/about/images/map2x.png 1500w"
+                                src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map.png"
+                                srcSet="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map2x.png 1500w"
                             />
                         </div>
                         <div className="flex justify-start flex-col items-start gap-8 lg:pt-12 pt-6">
