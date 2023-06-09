@@ -20,11 +20,14 @@ export const FeaturedBlogPostItem = () => {
 
     const author = metadata.authors[0];
 
+    // 480 / 303 = 1.5841584158415842
+    // 468 / 288 = 1.625
+
     return (
         <BlogPostItemContainer>
             <div className="mb-3">
                 <Link itemProp="url" to={permalink}>
-                    <div className="relative m-0 h-40 hover:brightness-90">
+                    <div className="relative m-0 h-72 hover:brightness-90">
                         <img
                             src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                                 "https://refine.ams3.cdn.digitaloceanspaces.com",

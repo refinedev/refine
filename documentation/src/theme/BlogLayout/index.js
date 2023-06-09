@@ -11,7 +11,7 @@ export default function BlogLayout(props) {
     return (
         <RefineBlogLayout {...layoutProps}>
             <CommonHeader hasSticky={true} />
-            <div className="container max-w-[1040px]">
+            <div className="container max-w-[1008px]">
                 <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
                     <main
                         className={clsx({

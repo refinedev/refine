@@ -13,7 +13,8 @@ import { Menu } from "./common-header/menu";
 import { DocSearchButton } from "./doc-search-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
 
-export const CommonHeader = ({ hasSticky }) => {
+export const CommonHeader = (props) => {
+    const { hasSticky } = props;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sticky, setSticky] = useState(false);
     const header = useRef(null);
