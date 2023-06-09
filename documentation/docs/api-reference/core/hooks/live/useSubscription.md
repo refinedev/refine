@@ -25,15 +25,15 @@ useSubscription({
 
 ### Properties
 
-Will be passed to the [subscribe][live-provider-subscribe] method from the [liveProvider][live-provider] as a parameter. You can use these properties from the [`liveProvider`][live-provider]'s [`subscribe`][live-provider-subscribe] method and use them to subscribe to a channel.
+`useSubscription` will be passed to the [subscribe][live-provider-subscribe] method from the [liveProvider][live-provider] as a parameter. You can use the following properties of this method while subcribing to a channel.
 
 ### channel <PropTag required/>
 
-Channel name to subscribe.
+Channel name to subscribe to.
 
 ### onLiveEvent <PropTag required/>
 
-Callback that is run when new events from subscription arrive.
+Callback that is run when new events from the subscription arrive.
 
 ### types
 
@@ -45,13 +45,15 @@ Type of events to subscribe. `"\*"` means all events.
 
 > Default: `true`
 
+You can disable the subscription by setting this prop to `false` and vice versa.
+
 ### params
 
 You can pass any additional parameters to the [`liveProvider`][live-provider]'s [`subscribe`][live-provider-subscribe] method.
 
-Hooks that use `useSubscription` internally, send the query's parameters(pagination, meta, sort, filters, etc.) information along with this prop.
+Hooks that use `useSubscription` internally send the query's parameters' (pagination, meta, sort, filters, etc.) information along with this prop.
 
-[Refer to LiveProvider's "Supported Hooks Subscription" section for which hooks are using `useSubscription` internally &#8594][supported-hooks-subscription]
+> For more information on which hooks use `useSubcription` internally, refer to the [LiveProvider's "Supported Hooks Subscription" section&#8594][supported-hooks-subscription]
 
 ## API Reference
 
@@ -61,4 +63,4 @@ Hooks that use `useSubscription` internally, send the query's parameters(paginat
 
 [live-provider]: /docs/api-reference/core/providers/live-provider
 [live-provider-subscribe]: /docs/api-reference/core/providers/live-provider/#subscribe
-[supported-hooks-subscription]: /docs/api-reference/core/providers/live-provider/#supported-hooks-subscription
+[supported-hooks-subscription]: /docs/api-reference/core/providers/live-provider/#supported-hooks-subscriptions

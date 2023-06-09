@@ -1,11 +1,16 @@
+---
+id: useGetLocale
+title: useGetLocale
+---
+
 If you need to know the current locale, refine provides the `useGetLocale` hook. It returns the `getLocale` method from `i18nProvider` under the hood.
 
 ## Usage
 
-You can get the `locale` value from the `i18nProvider` that you provided.  
+You can get the `locale` value from the `i18nProvider` that you provided.
 For example, `<LanguageSwitcher>` component needs to know the current locale in order to disable the button for the current language.
 
-```tsx 
+```tsx
 import { useTranslate, useGetLocale, useSetLocale } from "@refinedev/core";
 
 export const LanguageSwitcher = () => {

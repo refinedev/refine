@@ -11,7 +11,7 @@ import DefaultValueLivePreview from "./default-value-live-preview.md";
 
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
-This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/api-reference/core/hooks/data/useList/)
+This hook uses the `useList` hook for fetching data.
 
 :::info-tip DERIVATIVES
 
@@ -23,6 +23,8 @@ If you're looking for a complete select library, refine has out-of-the-box suppo
 
 :::
 
+> For more information, refer to the [useList hook→](/docs/api-reference/core/hooks/data/useList/)
+
 ## Basic Usage
 
 Here is a basic example of how to use `useSelect` hook.
@@ -31,17 +33,19 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+:::caution
+This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
+:::
 
 When `useSelect` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resource are handled.
+It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method.
 
 ```tsx
 useSelect({
@@ -49,9 +53,11 @@ useSelect({
 });
 ```
 
+> For more information, refer to the [creating a data provider&#8594](/docs/tutorial/understanding-dataprovider/create-dataprovider/)
+
 ### `optionLabel` and `optionValue`
 
-Allows you to change the `value` and `label` of your options.  
+Allows you to change the `value` and `label` of your options.
 Default values are `optionLabel = "title"` and `optionValue = "id"`
 
 ```tsx
@@ -80,8 +86,6 @@ const { options } = useSelect({
 
 It allows to show the options in the desired order. `sorters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
-
 ```tsx
 useSelect({
     sorters: [
@@ -95,11 +99,11 @@ useSelect({
 
 <SortLivePreview />
 
+> For more information, refer to the [`CrudSorting` interface &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
 ### `filters`
 
 It is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSelect({
@@ -113,6 +117,8 @@ useSelect({
 });
 ```
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### `defaultValue`
 
 Allows to make options selected by default. Adds extra options to `<select>` component. In some cases like there are many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A seperate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
@@ -123,7 +129,7 @@ useSelect({
 });
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useMany)
+> For more information, refer to the [`useMany` documentation&#8594](/docs/api-reference/core/hooks/data/useMany)
 
 ### `debounce`
 
@@ -140,8 +146,6 @@ useSelect({
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
-
 ```tsx
 useSelect({
     queryOptions: {
@@ -149,6 +153,8 @@ useSelect({
     },
 });
 ```
+
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ### `pagination`
 
@@ -180,7 +186,7 @@ useSelect({
 
 #### `mode`
 
-It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
+Is used to determine whether to use server-side pagination or not. It can be `"off"`, `"client"` or `"server"`
 
 ```tsx
 useSelect({
@@ -209,8 +215,6 @@ const { options } = useSelect({
 
 It allows us to `AutoComplete` the `options`.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
-
 <OnSearchLivePreview />
 
 :::tip
@@ -221,14 +225,14 @@ The HTML select tag does not natively support AutoComplete. If AutoComplete is d
 If `onSearch` is used, it will override the existing `filters`.
 :::
 
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
 ### `meta`
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
 -   Customizing the data provider methods for specific use cases.
 -   Generating GraphQL queries using plain JavaScript Objects (JSON).
-
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -266,6 +270,8 @@ const myDataProvider = {
 };
 ```
 
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+
 ### `dataProviderName`
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
@@ -278,7 +284,9 @@ useSelect({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -296,7 +304,9 @@ useSelect({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::caution
+[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+:::
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -314,8 +324,9 @@ useSelect({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
-
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
@@ -327,7 +338,9 @@ useSelect({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -341,7 +354,9 @@ useSelect({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::caution
+[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+:::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
@@ -373,7 +388,9 @@ useSelect({
 
 You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/docs/api-reference/core/hooks/useSelect/#haspagination) prop.
 
-> Don't forget to implement it in the [data provider](/docs/api-reference/core/providers/data-provider/#getlist).
+:::caution
+Don't forget to implement it in the [data provider](/docs/api-reference/core/providers/data-provider/#getlist).
+:::
 
 ### How to add search to options (Autocomplete)?
 
@@ -383,7 +400,7 @@ You may want to get all the data without pagination. In this case you should use
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and marks it as seleted.
 
 <DefaultValueLivePreview />
 
