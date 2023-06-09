@@ -99,10 +99,10 @@ const GithubStats = ({ className }: { className?: string }) => {
                         )}
                     >
                         <div className={clsx("hidden landing-md:block")}>
-                            <NumberField number={140} label="Contributors" />
+                            <NumberField number={150} label="Contributors" />
                         </div>
                         <div className={clsx("block", "landing-md:hidden")}>
-                            <NumberField number={11000} label="GitHub Stars" />
+                            <NumberField number={11300} label="GitHub Stars" />
                         </div>
                         <div
                             className={clsx(
@@ -111,16 +111,16 @@ const GithubStats = ({ className }: { className?: string }) => {
                                 "flex-row landing-md:flex-row landing-lg:flex-col gap-6",
                             )}
                         >
-                            <NumberField number={3400} label="Commits" />
+                            <NumberField number={5000} label="Commits" />
                             <div className={clsx("block landing-md:hidden")}>
                                 <NumberField
-                                    number={140}
+                                    number={150}
                                     label="Contributors"
                                 />
                             </div>
                             <div className={clsx("hidden", "landing-md:block")}>
                                 <NumberField
-                                    number={11000}
+                                    number={11300}
                                     label="GitHub Stars"
                                 />
                             </div>
@@ -135,8 +135,8 @@ const GithubStats = ({ className }: { className?: string }) => {
                         "grid grid-cols-2 place-content-start w-full justify-center items-center landing-md:hidden",
                     )}
                 >
-                    <NumberField number={140} label="Contributors" />
-                    <NumberField number={3400} label="Commits" />
+                    <NumberField number={150} label="Contributors" />
+                    <NumberField number={5000} label="Commits" />
                 </div>
             </div>
         </div>
@@ -184,7 +184,7 @@ const DiscordStats = () => {
                     />
                 </div>
                 <div className={clsx("flex flex-col gap-6")}>
-                    <NumberField number={1500} label="Discord Members" />
+                    <NumberField number={2000} label="Discord Members" />
                 </div>
             </div>
         </div>
@@ -232,7 +232,7 @@ const TwitterStats = () => {
                     />
                 </div>
                 <div className={clsx("flex flex-col gap-6")}>
-                    <NumberField number={1600} label="Twitter Followers" />
+                    <NumberField number={2000} label="Twitter Followers" />
                 </div>
             </div>
         </div>
