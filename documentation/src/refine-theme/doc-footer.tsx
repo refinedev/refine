@@ -30,8 +30,8 @@ function EditMetaRow({
     return (
         <div
             className={clsx(
-                "flex items-center justify-between",
-                "flex-col md:flex-row",
+                "flex items-start justify-between content-md:items-center",
+                "flex-col content-md:flex-row",
                 "gap-4",
             )}
         >
@@ -42,14 +42,19 @@ function EditMetaRow({
                     rel="noreferrer noopener"
                     className={clsx(
                         "text-refine-link-light dark:text-refine-link-dark",
-                        "text-xs",
+                        "text-xs content-4xl:text-sm",
                         "underline",
                     )}
                 >
                     Edit this page
                 </a>
             </div>
-            <div className={clsx("text-gray-500", "text-xs")}>
+            <div
+                className={clsx(
+                    "text-gray-500",
+                    "text-xs leading-4 content-4xl:text-base content-4xl:leading-6",
+                )}
+            >
                 <span>Last updated on </span>
                 <span>{formattedLastUpdatedAt} </span>
                 <span>by {lastUpdatedBy}</span>

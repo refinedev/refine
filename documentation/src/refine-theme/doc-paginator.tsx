@@ -3,23 +3,17 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { ArrowLeftIcon } from "./icons/arrow-left";
 import { ArrowRightIcon } from "./icons/arrow-right";
-import { ChevronDownIcon } from "./icons/chevron-down";
 
 export const DocPaginator = (props) => {
     const { previous, next } = props;
 
     return (
-        <div
-            className={clsx(
-                "grid grid-cols-1 md:grid-cols-2",
-                "gap-4",
-                "w-full",
-            )}
-        >
+        <div className={clsx("grid grid-cols-2", "gap-4", "w-full")}>
             {previous && (
                 <Link
                     href={previous.permalink}
                     className={clsx(
+                        "group",
                         "flex-1",
                         "p-4",
                         "rounded-lg",
@@ -29,13 +23,35 @@ export const DocPaginator = (props) => {
                     )}
                 >
                     <div className="flex-1 flex items-start justify-center flex-col gap-2 text-left">
-                        <div className="flex items-center gap-2 text-sm leading-6 text-gray-500 dark:text-gray-300">
-                            <span className="bg-gray-50 dark:bg-gray-800 dark:bg-opacity-50 p-2 rounded">
+                        <div
+                            className={clsx(
+                                "flex items-center gap-2",
+                                "text-xs leading-3 content-md:text-sm content-md:leading-6",
+                                "text-gray-500 dark:text-gray-300",
+                                "text-xs content-md:text-sm content-4xl:text-lg",
+                            )}
+                        >
+                            <span
+                                className={clsx(
+                                    "bg-gray-100 dark:bg-gray-800",
+                                    "dark:bg-opacity-50",
+                                    "group-hover:bg-gray-50 dark:group-hover:bg-gray-800 dark:group-hover:bg-opacity-100",
+                                    "flex items-center justify-center",
+                                    "rounded",
+                                    "p-1 content-md:p-2",
+                                )}
+                            >
                                 <ArrowLeftIcon />
                             </span>
                             Previous
                         </div>
-                        <span className="text-base text-refine-link-light dark:text-refine-link-dark underline break-all">
+                        <span
+                            className={clsx(
+                                "text-xs content-md:text-base content-4xl:text-xl",
+                                "text-refine-link-light dark:text-refine-link-dark",
+                                "underline",
+                            )}
+                        >
                             {previous.title}
                         </span>
                     </div>
@@ -45,6 +61,7 @@ export const DocPaginator = (props) => {
                 <Link
                     href={next.permalink}
                     className={clsx(
+                        "group",
                         "flex-1",
                         "p-4",
                         "rounded-lg",
@@ -55,14 +72,36 @@ export const DocPaginator = (props) => {
                     )}
                 >
                     <div className="flex-1 flex items-end justify-center flex-col gap-2 text-right">
-                        <div className="flex items-center gap-2 text-sm leading-6 text-gray-500 dark:text-gray-300">
+                        <div
+                            className={clsx(
+                                "flex items-center gap-2",
+                                "text-xs leading-3 content-md:text-sm content-md:leading-6",
+                                "text-gray-500 dark:text-gray-300",
+                                "text-xs content-md:text-sm content-4xl:text-lg",
+                            )}
+                        >
                             Next
-                            <span className="bg-gray-50 dark:bg-gray-800 dark:bg-opacity-50 p-2 rounded">
+                            <span
+                                className={clsx(
+                                    "bg-gray-100 dark:bg-gray-800",
+                                    "dark:bg-opacity-50",
+                                    "group-hover:bg-gray-50 dark:group-hover:bg-gray-800 dark:group-hover:bg-opacity-100",
+                                    "flex items-center justify-center",
+                                    "rounded",
+                                    "p-1 content-md:p-2",
+                                )}
+                            >
                                 <ArrowRightIcon />
                             </span>
                         </div>
 
-                        <span className="text-base text-refine-blue underline break-all">
+                        <span
+                            className={clsx(
+                                "text-xs content-md:text-base content-4xl:text-xl",
+                                "text-refine-link-light dark:text-refine-link-dark",
+                                "underline",
+                            )}
+                        >
                             {next.title}
                         </span>
                     </div>

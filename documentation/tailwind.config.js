@@ -204,6 +204,7 @@ module.exports = {
             "content-sm": "480px",
             "content-md": "656px",
             "content-2xl": "864px",
+            "content-4xl": "1536px",
             "header-sm": "640px",
             "header-md": "1200px",
             "landing-xs": "360px",
