@@ -128,7 +128,7 @@
 
 .refine-toc-item code::before,
 .refine-toc-item code::after {
-    content: "`";
+    content: "";
 }
 
 .refine-toc-item code {
