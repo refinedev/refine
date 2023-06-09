@@ -44,7 +44,7 @@ export const PostList: React.FC = () => {
 
 Here, we show a button somewhere on the page and use `show` on its `onClick` callback to trigger the opening of the `<YourModalComponent>`. When the user clicks on the button, the `<YourModalComponent>` appears.
 
-We also created a `<button>` to close the `<YourModalComponent>` and gave the `onClick` function `close`, the modal dialog will be closed. We do this to demonstrate `close` function.
+To demonstrate the `close` function, we created a `<button>` that uses it in its `onClick` property to close `<YourModalComponent>`
 
 ## Properties
 
