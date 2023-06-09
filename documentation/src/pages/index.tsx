@@ -9,6 +9,7 @@ import { LandingHero } from "../refine-theme/landing-hero";
 import { LandingPlayground } from "../refine-theme/landing-playground";
 import { LandingStats } from "../refine-theme/landing-stats";
 import { LandingTiles } from "../refine-theme/landing-tiles";
+import { LandingMagic } from "../refine-theme/landing-magic";
 
 function Home() {
     React.useEffect(() => {
@@ -61,6 +62,7 @@ function Home() {
                         <LandingHeader />
                         <LandingHero />
                     </div>
+                    <LandingMagic />
                     <LandingTiles />
                     <LandingPlayground />
                     <LandingStats />

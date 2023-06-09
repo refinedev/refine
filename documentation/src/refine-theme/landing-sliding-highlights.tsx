@@ -106,11 +106,13 @@ export const LandingSlidingHighlights = () => {
                 type: "spring",
                 bounce: 0.5,
                 stiffness: 100,
+                onComplete: () => {
+                    if (isGoingToLast) {
+                        y.stop();
+                        y.set(0);
+                    }
+                },
             });
-
-            if (isGoingToLast) {
-                y.set(0);
-            }
         }, 4200);
         return () => {
             clearInterval(interval);
