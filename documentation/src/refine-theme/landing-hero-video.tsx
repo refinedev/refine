@@ -23,6 +23,9 @@ export const LandingHeroVideo = () => {
                     "landing-sm:opacity-25",
                     "landing-lg:opacity-25",
                 )}
+                style={{
+                    transform: "translateZ(0)",
+                }}
             ></div>
             <div
                 className={clsx(

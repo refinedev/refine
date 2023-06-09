@@ -345,6 +345,9 @@ export const LandingPlayground = () => {
                             "blur-[128px]",
                             "opacity-50",
                         )}
+                        style={{
+                            transform: "translateZ(0)",
+                        }}
                     />
                 </div>
                 <div
