@@ -72,7 +72,7 @@ export const buttonDeleteTests = function (
                 describe("with default behaviour", () => {
                     describe("when user not have access", () => {
                         it("should render disabled button with reason text", async () => {
-                            const { container, getByText } = render(
+                            const { container, getByTestId } = render(
                                 <DeleteButton recordItemId="1">
                                     Delete
                                 </DeleteButton>,
@@ -102,13 +102,17 @@ export const buttonDeleteTests = function (
 
                             await waitFor(() =>
                                 expect(
-                                    getByText("Delete").closest("button"),
+                                    getByTestId(
+                                        RefineButtonTestIds.DeleteButton,
+                                    ).closest("button"),
                                 ).toBeDisabled(),
                             );
 
-                            waitFor(() =>
+                            await waitFor(() =>
                                 expect(
-                                    getByText("Delete")
+                                    getByTestId(
+                                        RefineButtonTestIds.DeleteButton,
+                                    )
                                         .closest("button")
                                         ?.getAttribute("title"),
                                 ).toBe("Access Denied"),
@@ -118,7 +122,7 @@ export const buttonDeleteTests = function (
 
                     describe("when user have access", () => {
                         it("should render enabled button", async () => {
-                            const { container, getByText } = render(
+                            const { container, getByTestId } = render(
                                 <DeleteButton recordItemId="2">
                                     Delete
                                 </DeleteButton>,
@@ -147,7 +151,9 @@ export const buttonDeleteTests = function (
 
                             await waitFor(() =>
                                 expect(
-                                    getByText("Delete").closest("button"),
+                                    getByTestId(
+                                        RefineButtonTestIds.DeleteButton,
+                                    ).closest("button"),
                                 ).not.toBeDisabled(),
                             );
                         });
@@ -180,7 +186,7 @@ export const buttonDeleteTests = function (
 
                 describe("when access control is disabled explicitly", () => {
                     it("should render enabled button", async () => {
-                        const { container, getByText } = render(
+                        const { container, getByTestId } = render(
                             <DeleteButton>Delete</DeleteButton>,
                             {
                                 wrapper: TestWrapper({
@@ -200,7 +206,9 @@ export const buttonDeleteTests = function (
                         expect(container).toBeTruthy();
 
                         expect(
-                            getByText("Delete").closest("button"),
+                            getByTestId(
+                                RefineButtonTestIds.DeleteButton,
+                            ).closest("button"),
                         ).not.toBeDisabled();
                     });
                 });
@@ -210,7 +218,7 @@ export const buttonDeleteTests = function (
                 describe("when access control enabled globally", () => {
                     describe("when access control is disabled with prop", () => {
                         it("should render enabled button", async () => {
-                            const { container, getByText } = render(
+                            const { container, getByTestId } = render(
                                 <DeleteButton
                                     accessControl={{ enabled: false }}
                                 >
@@ -239,7 +247,9 @@ export const buttonDeleteTests = function (
 
                             await waitFor(() =>
                                 expect(
-                                    getByText("Delete").closest("button"),
+                                    getByTestId(
+                                        RefineButtonTestIds.DeleteButton,
+                                    ).closest("button"),
                                 ).not.toBeDisabled(),
                             );
                         });
@@ -286,7 +296,7 @@ export const buttonDeleteTests = function (
                 describe("when access control disabled globally", () => {
                     describe("when access control enabled with prop", () => {
                         it("should render disabled button with reason text", async () => {
-                            const { container, getByText } = render(
+                            const { container, getByTestId } = render(
                                 <DeleteButton accessControl={{ enabled: true }}>
                                     Delete
                                 </DeleteButton>,
@@ -308,13 +318,17 @@ export const buttonDeleteTests = function (
 
                             await waitFor(() =>
                                 expect(
-                                    getByText("Delete").closest("button"),
+                                    getByTestId(
+                                        RefineButtonTestIds.DeleteButton,
+                                    ).closest("button"),
                                 ).toBeDisabled(),
                             );
 
-                            waitFor(() =>
+                            await waitFor(() =>
                                 expect(
-                                    getByText("Delete")
+                                    getByTestId(
+                                        RefineButtonTestIds.DeleteButton,
+                                    )
                                         .closest("button")
                                         ?.getAttribute("title"),
                                 ).toBe("Access Denied"),
