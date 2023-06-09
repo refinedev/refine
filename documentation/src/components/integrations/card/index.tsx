@@ -26,7 +26,7 @@ const Card: React.FC<LargeCardProps> = ({
                 "no-underline",
                 "p-4 sm:p-8",
                 "border border-gray-200 dark:border-gray-700",
-                "rounded-md",
+                "rounded-2xl",
             )}
             rel="noreferrer"
         >
