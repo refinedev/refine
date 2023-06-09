@@ -54,7 +54,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                     "rounded-lg",
                                     "hover:bg-gray-200",
                                     "active:scale-90",
-                                    "transition-all duration-200 ease-in-out",
+                                    "transition-transform duration-200 ease-in-out",
                                 )}
                             >
                                 <CloseIcon

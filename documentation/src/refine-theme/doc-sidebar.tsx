@@ -183,7 +183,6 @@ const SidebarCategory = ({
                     !collapsed && "max-h-[2000px] opacity-100",
                     !collapsed && !settled && "max-h-screen",
                     !collapsed && settled && "max-h-[2500px]",
-                    "transition-all duration-200 ease-in-out",
                 )}
             >
                 {renderItems({

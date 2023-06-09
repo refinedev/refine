@@ -12,6 +12,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+@layer utilities {
+    .animation-running { 
+        animation-play-state: running;
+    }
+    .animation-paused { 
+        animation-play-state: paused;
+    }
+    .animation-slower-speed {
+        animation-duration: 5s;
+    }
+    .animation-slow-speed {
+        animation-duration: 4s;
+    }
+    .animation-normal-speed {
+        animation-duration: 3s;
+    }
+    .animation-fast-speed {
+        animation-duration: 2s;
+    }
+    .animation-faster-speed {
+        animation-duration: 1s;
+    }
+    .landing-mask-image-bg {
+        mask-image: url("./../../static/assets/hero-bottom-bg.svg");
+        mask-size: 1920px 288px;
+        mask-position: center;
+    }
+    .landing-wide-mask {
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 1%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 99%, rgba(0,0,0,0) 100%);
+        mask-size: 1440px 100%;
+        mask-position: center;
+        mask-repeat: no-repeat;
+    }
+    .landing-playground-slide-mask {
+        mask-image: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.25) 100%);
+        mask-size: 100% 100%;
+        mask-position: center;
+        mask-repeat: no-repeat;
+    }
+}
+
+.landing-mask-image-hero-wide {
+    @apply landing-xl:landing-wide-mask;
+}
+
 /* You can override the default Infima variables here. */
 :root {
     --ifm-color-primary: rgb(24, 144, 255);
