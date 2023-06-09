@@ -8,7 +8,6 @@ import {
     ThemeClassNames,
 } from "@docusaurus/theme-common";
 import BlogLayout from "@theme/BlogLayout";
-import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 
@@ -46,8 +45,24 @@ function BlogListPageContent(props) {
     return (
         <BlogLayout>
             {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
-            <BlogPostItems items={paginatedPosts} tags={tags} />
-            <BlogListPaginator metadata={metadata} />
+            <div
+                className={clsx(
+                    "xl:max-w-[1008px]",
+                    "lg:max-w-[944px]",
+                    "md:max-w-[480px]",
+                    "sm:max-w-[328px]",
+                    "max-w-[328px]",
+                    "w-full mx-auto",
+                    "hidden lg:block",
+                )}
+            >
+                <div className="border-b border-gray-100"></div>
+            </div>
+            <BlogPostItems
+                items={paginatedPosts}
+                tags={tags}
+                metadata={metadata}
+            />
         </BlogLayout>
     );
 }
