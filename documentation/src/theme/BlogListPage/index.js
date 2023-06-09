@@ -10,6 +10,7 @@ import {
 import BlogLayout from "@theme/BlogLayout";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
+import BlogListPaginator from "@theme/BlogListPaginator";
 
 import { FeaturedBlogPostItems } from "../../components/blog";
 
@@ -63,6 +64,7 @@ function BlogListPageContent(props) {
                 tags={tags}
                 metadata={metadata}
             />
+            <BlogListPaginator metadata={metadata} />
         </BlogLayout>
     );
 }

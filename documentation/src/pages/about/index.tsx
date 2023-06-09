@@ -14,10 +14,12 @@ import clsx from "clsx";
 import React from "react";
 import { backedBy } from "../../assets/backed-by";
 import { team } from "../../assets/team";
+import { useColorMode } from "@docusaurus/theme-common";
 
 const About: React.FC = () => {
+    const { colorMode } = useColorMode();
     return (
-        <CommonLayout>
+        <>
             <Head title="About | refine">
                 <html data-page="about" data-customized="true" />
             </Head>
@@ -48,9 +50,9 @@ const About: React.FC = () => {
                 </div>
                 <div
                     className={clsx(
-                        "xl:max-w-[1120px] xl:py-16",
-                        "lg:max-w-[912px] lg:py-10",
-                        "md:max-w-[624px] py-6",
+                        "xl:max-w-[1120px]",
+                        "lg:max-w-[912px]",
+                        "md:max-w-[624px]",
                         "sm:max-w-[480px]",
                         "max-w-[328px]",
                         "w-full mx-auto",
@@ -63,9 +65,8 @@ const About: React.FC = () => {
                             "grid-cols-1 lg:gap-8 gap-4",
                         )}
                     >
-                        <div className="bg-gray-50 text-2xl flex justify-center items-center font-semibold px-16 py-36 rounded-xl">
-                            10k+ GitHub Star & YC kutlaması etkinliginde topluca
-                            çekindigimiz foto. (Ya da video?)
+                        <div className="flex justify-center items-center rounded-lg">
+                            <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/about.jpg" />
                         </div>
                         <div className="flex flex-col justify-center text-2xl text-gray-700">
                             <p>
@@ -145,13 +146,17 @@ const About: React.FC = () => {
                             </div>
                         </div>
                         <div className="xl:w-[400px] w-full shrink-0 grid grid-cols-2 gap-4 xl:py-5">
-                            <div
+                            <a
+                                target="_blank"
+                                href="https://github.com/refinedev/refine"
                                 className={clsx(
                                     "flex flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
+                                    "no-underline hover:no-underline",
                                 )}
+                                rel="noreferrer"
                             >
                                 <div>
                                     <GithubIcon
@@ -164,22 +169,21 @@ const About: React.FC = () => {
                                     <div className="mb-0 text-gray-500 dark:text-gray-400">
                                         Visit our
                                     </div>
-                                    <a
-                                        target="_blank"
-                                        href="https://github.com/refinedev/refine"
-                                        className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
-                                        rel="noreferrer"
-                                    >
+                                    <div className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline">
                                         GitHub Repo
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div
+                            </a>
+                            <a
+                                target="_blank"
+                                href="https://discord.gg/refine"
+                                rel="noreferrer"
                                 className={clsx(
                                     "flex flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
+                                    "no-underline hover:no-underline",
                                 )}
                             >
                                 <div>
@@ -193,22 +197,21 @@ const About: React.FC = () => {
                                     <div className="mb-0 text-gray-500 dark:text-gray-400">
                                         Join our
                                     </div>
-                                    <a
-                                        target="_blank"
-                                        href="https://discord.gg/refine"
-                                        className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
-                                        rel="noreferrer"
-                                    >
+                                    <div className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline">
                                         Discord Server
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div
+                            </a>
+                            <a
+                                target="_blank"
+                                href="https://reddit.com/r/refine"
+                                rel="noreferrer"
                                 className={clsx(
                                     "flex flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
+                                    "no-underline hover:no-underline",
                                 )}
                             >
                                 <div>
@@ -223,22 +226,21 @@ const About: React.FC = () => {
                                     <div className="mb-0 text-gray-500 dark:text-gray-400">
                                         Follow us on
                                     </div>
-                                    <a
-                                        target="_blank"
-                                        href="https://reddit.com/r/refine"
-                                        className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
-                                        rel="noreferrer"
-                                    >
+                                    <div className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline">
                                         Reddit
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div
+                            </a>
+                            <a
+                                target="_blank"
+                                href="https://twitter.com/refine_dev"
+                                rel="noreferrer"
                                 className={clsx(
                                     "flex flex-row justify-start gap-3",
                                     "dark:bg-gray-900",
                                     "border border-gray-200 dark:border-gray-700",
                                     "p-4 rounded-xl",
+                                    "no-underline hover:no-underline",
                                 )}
                             >
                                 <div>
@@ -252,24 +254,19 @@ const About: React.FC = () => {
                                     <div className="mb-0 text-gray-500 dark:text-gray-400">
                                         Follow us on
                                     </div>
-                                    <a
-                                        target="_blank"
-                                        href="https://twitter.com/refine_dev"
-                                        className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline"
-                                        rel="noreferrer"
-                                    >
+                                    <div className="font-semibold text-gray-900 dark:text-gray-0 no-underline hover:no-underline">
                                         Twitter
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div
                     className={clsx(
-                        "lg:max-w-[912px] lg:py-16",
-                        "md:max-w-[624px] md:py-10",
-                        "sm:max-w-[480px] py-6",
+                        "lg:max-w-[912px] lg:py-8",
+                        "md:max-w-[624px] md:py-4",
+                        "sm:max-w-[480px] py-3",
                         "max-w-[328px]",
                         "w-full mx-auto",
                     )}
@@ -337,7 +334,7 @@ const About: React.FC = () => {
                             </div>
                         ))}
                         <div className="flex justify-center flex-col text-center">
-                            <div className="w-full not-prose m-0 mb-6">
+                            <div className="w-full not-prose m-0 mb-6 mt-6">
                                 <JoinUsIcon className="w-full" />
                             </div>
                             <a
@@ -535,8 +532,14 @@ const About: React.FC = () => {
                 </div>
                 <BlogFooter />
             </div>
-        </CommonLayout>
+        </>
     );
 };
 
-export default About;
+export default function AboutPage() {
+    return (
+        <CommonLayout>
+            <About />
+        </CommonLayout>
+    );
+}
