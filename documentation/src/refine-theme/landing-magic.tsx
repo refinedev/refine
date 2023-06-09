@@ -167,7 +167,7 @@ export const LandingMagic = () => {
     }, [dataY]);
 
     return (
-        <div className="w-full relative pb-12">
+        <div className="w-full relative pb-12 max-w-screen-landing-2xl mx-auto">
             <div
                 className={clsx(
                     "w-full h-full",
