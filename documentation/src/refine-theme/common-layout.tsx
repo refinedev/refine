@@ -62,7 +62,7 @@ export const CommonLayout = (props: any) => {
                     <LivePreviewProvider>{children}</LivePreviewProvider>
                 </ErrorBoundary>
             </div>
-            {showGithubCta && <BrowserOnly>{() => <GithubCTA />}</BrowserOnly>}
+            {/* {showGithubCta && <BrowserOnly>{() => <GithubCTA />}</BrowserOnly>} */}
         </LayoutProvider>
     );
 };

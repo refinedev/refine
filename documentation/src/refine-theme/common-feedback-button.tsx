@@ -20,7 +20,7 @@ export const CommonFeedbackButton = () => {
                 "hover:brightness-125",
                 "focus:brightness-110",
                 "active:brightness-110",
-                "transition-all",
+                "transition-[filter]",
                 "duration-200",
                 "ease-in-out",
             )}

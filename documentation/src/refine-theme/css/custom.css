@@ -225,6 +225,12 @@ a:has(> code) code {
 .max-w-screen-content {
     @apply max-w-screen-content-sm md:max-w-screen-content-md 2xl:max-w-screen-content-2xl;
 }
+
 html .no-underline {
     text-decoration: none;
+}
+
+html[data-active-page="index"],
+html[data-active-page="index"] body {
+    @apply bg-refine-bg;
 }

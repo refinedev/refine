@@ -1,74 +1,96 @@
-import React, { useState } from "react";
-import SearchBar from "@site/src/theme/SearchBar";
 import clsx from "clsx";
+import React from "react";
+
+import SearchBar from "@theme/SearchBar";
 import Link from "@docusaurus/Link";
 
-import { HeaderDiscordIcon } from "./icons/header-discord";
-import { RefineLogoIcon } from "./icons/refine-logo";
-import { HamburgerIcon } from "./icons/hamburger";
-
-import { GitHubStar } from "./common-header/github-star";
-import { MobileMenuModal } from "./common-header/mobile-menu-modal";
 import { Menu } from "./common-header/menu";
-import { DocSearchButton } from "./doc-search-button";
+import { MobileMenuModal } from "./common-header/mobile-menu-modal";
+
+import { LandingDocSearchButton } from "./landing-doc-search-button";
+import { LandingGithubStarButton } from "./landing-github-star-button";
+
+import { DiscordIcon } from "./icons/discord";
+import { HamburgerIcon } from "./icons/hamburger";
+import { RefineLogoIcon } from "./icons/refine-logo";
 
 export const LandingHeader = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
 
     return (
-        <>
+        <header
+            className={clsx(
+                "w-full",
+                "max-w-screen-landing-2xl",
+                "px-4",
+                "landing-sm:px-6",
+                "landing-md:px-8",
+                "landing-xl:px-12",
+                "landing-2xl:px-[88px]",
+                "py-5",
+                "landing-md:py-9",
+                "landing-xl:py-11",
+                "flex items-center justify-between",
+                "mx-auto",
+            )}
+        >
             <div
                 className={clsx(
-                    "max-w-[1440px]",
-                    "mx-auto",
-                    "px-4 header-md:px-8 py-4 header-md:py-9",
+                    "flex",
+                    "items-center justify-start",
+                    "landing-xl:w-[264px]",
                 )}
             >
-                <div className="flex items-center justify-between">
-                    <div className="header-md:w-[260px]">
-                        <Link to="/">
-                            <RefineLogoIcon className="text-gray-0" />
-                        </Link>
-                    </div>
-                    <div className="hidden header-md:flex gap-8">
-                        <Menu isPermanentDark />
-                    </div>
-                    <div className="hidden header-md:flex items-center justify-end gap-8">
-                        <SearchBar
-                            CustomButton={(props) => (
-                                <DocSearchButton
-                                    {...props}
-                                    placeholder="Search"
-                                    className="min-w-[144px]"
-                                    isPermanentDark
-                                />
-                            )}
-                        />
-                        <div className="flex items-center gap-2">
-                            <GitHubStar isPermanentDark />
-                            <Link
-                                to="https://discord.gg/refine"
-                                className={clsx(
-                                    "no-underline, hover:text-inherit",
-                                )}
-                            >
-                                <HeaderDiscordIcon className="text-white" />
-                            </Link>
-                        </div>
-                    </div>
-                    <button
-                        type="button"
-                        className="block header-md:hidden"
-                        onClick={() => setIsModalOpen(true)}
+                <Link to="/" className={clsx("flex", "justify-center")}>
+                    <RefineLogoIcon className="text-gray-0 h-6 w-auto" />
+                </Link>
+            </div>
+            <div className={clsx("hidden landing-xl:flex", "gap-8")}>
+                <Menu />
+            </div>
+            <div
+                className={clsx(
+                    "flex items-center justify-end",
+                    "gap-6",
+                    "landing-xl:w-[264px]",
+                )}
+            >
+                <div
+                    className={clsx(
+                        "hidden landing-xl:flex",
+                        "items-center gap-6",
+                    )}
+                >
+                    <SearchBar CustomButton={LandingDocSearchButton} />
+                    <LandingGithubStarButton />
+                    <a
+                        href="https://discord.gg/refine"
+                        target="_blank"
+                        rel="noreferrer"
+                        className={clsx(
+                            "w-6 h-6",
+                            "flex",
+                            "items-center justify-center",
+                            "text-gray-0",
+                            "focus:no-underline",
+                            "hover:text-refine-link",
+                        )}
                     >
-                        <HamburgerIcon className="text-white" />
-                    </button>
+                        <DiscordIcon />
+                    </a>
                 </div>
+                <button
+                    type="button"
+                    className="block landing-xl:hidden text-gray-0"
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    <HamburgerIcon />
+                </button>
             </div>
             <MobileMenuModal
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
             />
-        </>
+        </header>
     );
 };

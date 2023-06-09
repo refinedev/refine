@@ -5,9 +5,9 @@ const SvgEntRefine = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={60}
         height={60}
+        viewBox="0 0 1500 1500"
         xmlns="http://www.w3.org/2000/svg"
         xmlSpace="preserve"
-        viewBox="0 0 1538 850"
         {...props}
     >
         <rect width="100%" height="100%" fill="#001529" />

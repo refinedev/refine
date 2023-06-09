@@ -31,7 +31,7 @@ export const DocSearchButton = React.forwardRef<HTMLButtonElement, Props>(
                     "flex items-center",
                     "gap-5",
                     "text-base",
-                    "transition-all",
+                    "transition-[filter]",
                     "duration-200",
                     "ease-in-out",
                     {
