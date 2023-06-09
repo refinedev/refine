@@ -92,7 +92,11 @@ export const Mobile = () => {
         >
             <RefineLogo title="Documentation" />
             <div className={clsx("flex items-center gap-4")}>
-                <SearchBar CustomButton={() => <DocSearchButton iconOnly />} />
+                <SearchBar
+                    CustomButton={(props) => (
+                        <DocSearchButton {...props} iconOnly />
+                    )}
+                />
                 <CommonThemeToggle />
                 <CommonHamburgerIcon
                     onClick={() => setIsSidebarOpen(true)}
