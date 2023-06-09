@@ -94,7 +94,6 @@
 
 .refine-prose table {
     @apply prose-table:border-none;
-    @apply table;
 }
 
 .refine-prose table tr {
