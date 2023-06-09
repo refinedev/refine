@@ -97,7 +97,7 @@ export const CodeBlockString = ({
             )}
         >
             {title && <CodeBlockTitle icon={icon}>{title}</CodeBlockTitle>}
-            <div className={clsx("relative", "py-4")}>
+            <div className={clsx("relative", "py-4", "not-prose")}>
                 <Highlight
                     {...defaultProps}
                     theme={prismTheme}
