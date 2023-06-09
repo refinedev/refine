@@ -1,7 +1,8 @@
 import React from "react";
+import { Redirect } from "@docusaurus/router";
 
-const BecomeAnRefineExpert: React.FC = () => {
-    return null;
+const BecomeARefineExpert: React.FC = () => {
+    return <Redirect to="/" />;
 };
 
-export default BecomeAnRefineExpert;
+export default BecomeARefineExpert;

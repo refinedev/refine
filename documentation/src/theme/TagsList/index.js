@@ -57,7 +57,7 @@ export default function TagsList({ tags }) {
         "comparison",
     ];
 
-    const sortedTags = tags.sort((a, b) => {
+    const sortedTags = (tags ?? []).sort((a, b) => {
         let aIndex = priorityTags.indexOf(a.label);
         let bIndex = priorityTags.indexOf(b.label);
 

@@ -834,11 +834,11 @@
       "to": "/"
     },
     {
-      "from": "/use-cases",
+      "from": "/use-cases/",
       "to": "/"
     },
     {
-      "from": "/week-of-refine",
+      "from": "/week-of-refine/",
       "to": "/"
     }
   ]

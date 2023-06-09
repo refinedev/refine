@@ -1,5 +1,8 @@
+import React from "react";
+import { Redirect } from "@docusaurus/router";
+
 const RefineWeek = () => {
-    return null;
+    return <Redirect to="/" />;
 };
 
 export default RefineWeek;
