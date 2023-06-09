@@ -111,6 +111,8 @@ export const CodeBlockString = ({
                             className={clsx(
                                 className,
                                 "bg-transparent",
+                                "!mt-0",
+                                "!mb-0",
                                 "m-0",
                                 "px-0",
                                 "pt-0",

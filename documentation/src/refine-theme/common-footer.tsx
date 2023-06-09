@@ -1,10 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { FooterDiscordIcon } from "./icons/footer-discord";
-import { FooterGithubIcon } from "./icons/footer-github";
-import { FooterLinkedinIcon } from "./icons/footer-linkedin";
-import { FooterRedditIcon } from "./icons/footer-reddit";
-import { FooterTwitterIcon } from "./icons/footer-twitter";
+import { socialLinks } from "./footer-data";
 
 export const CommonFooter = () => {
     return (
@@ -56,31 +52,25 @@ export const CommonFooter = () => {
                             "mt-4 sm:mt-0",
                         )}
                     >
-                        <div className={clsx("flex items-center gap-4")}>
-                            <FooterGithubIcon
-                                className={clsx("w-9 h-9 sm:w-6 sm:h-6")}
-                            />
-                        </div>
-                        <div className={clsx("flex items-center gap-4")}>
-                            <FooterDiscordIcon
-                                className={clsx("w-9 h-9 sm:w-6 sm:h-6")}
-                            />
-                        </div>
-                        <div className={clsx("flex items-center gap-4")}>
-                            <FooterRedditIcon
-                                className={clsx("w-9 h-9 sm:w-6 sm:h-6")}
-                            />
-                        </div>
-                        <div className={clsx("flex items-center gap-4")}>
-                            <FooterTwitterIcon
-                                className={clsx("w-9 h-9 sm:w-6 sm:h-6")}
-                            />
-                        </div>
-                        <div className={clsx("flex items-center gap-4")}>
-                            <FooterLinkedinIcon
-                                className={clsx("w-9 h-9 sm:w-6 sm:h-6")}
-                            />
-                        </div>
+                        {socialLinks.map(({ href, icon: Icon }, i) => {
+                            return (
+                                <a
+                                    key={i}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={clsx(
+                                        "flex items-center gap-4 no-underline",
+                                    )}
+                                >
+                                    <Icon
+                                        className={clsx(
+                                            "w-9 h-9 sm:w-6 sm:h-6",
+                                        )}
+                                    />
+                                </a>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

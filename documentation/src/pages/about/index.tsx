@@ -483,7 +483,7 @@ const About: React.FC = () => {
                     </h4>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:gap-16 gap-8">
-                        <div className="lg:w-[624px] lg:h-[416px] w-full lg:order-last shrink-0">
+                        <div className="lg:w-[590px] lg:h-[416px] w-full lg:order-last shrink-0">
                             <img
                                 className="m-0 p-0"
                                 src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map.png"
