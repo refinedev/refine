@@ -427,9 +427,97 @@ export const LandingMagic = () => {
                                         "w-full",
                                     )}
                                 >
-                                    <div>{`import dataProvider from "@refinedev/supabase";`}</div>
-                                    <div>{`import { Table, Layout } from "antd";`}</div>
-                                    <div>{`import { useTable } from "@refinedev/antd";`}</div>
+                                    <pre className="bg-transparent p-0 m-0">
+                                        <code className="text-gray-0 bg-transparent p-0 m-0">
+                                            <span
+                                                style={{
+                                                    color: "rgb(235, 187, 255)",
+                                                }}
+                                            >
+                                                import
+                                            </span>{" "}
+                                            dataProvider{" "}
+                                            <span
+                                                style={{
+                                                    color: "rgb(235, 187, 255)",
+                                                }}
+                                            >
+                                                from
+                                            </span>{" "}
+                                            <span
+                                                style={{
+                                                    color: "rgb(209, 241, 169)",
+                                                }}
+                                            >
+                                                &quot;@refinedev/supabase&quot;
+                                            </span>
+                                            {";\n"}
+                                            <span
+                                                style={{
+                                                    color: "rgb(235, 187, 255)",
+                                                }}
+                                            >
+                                                import
+                                            </span>
+                                            {" { "}
+                                            <span
+                                                style={{
+                                                    color: "#C1D9FC",
+                                                }}
+                                            >
+                                                Table
+                                            </span>
+                                            {", "}
+                                            <span
+                                                style={{
+                                                    color: "#C1D9FC",
+                                                }}
+                                            >
+                                                Layout
+                                            </span>
+                                            {" } "}
+                                            <span
+                                                style={{
+                                                    color: "rgb(235, 187, 255)",
+                                                }}
+                                            >
+                                                from
+                                            </span>{" "}
+                                            <span
+                                                style={{
+                                                    color: "rgb(209, 241, 169)",
+                                                }}
+                                            >
+                                                &quot;antd&quot;
+                                            </span>
+                                            {";\n"}
+                                            <span
+                                                style={{
+                                                    color: "rgb(235, 187, 255)",
+                                                }}
+                                            >
+                                                import
+                                            </span>
+                                            {" { "}
+                                            <span>useTable</span>
+                                            {" } "}
+                                            <span
+                                                style={{
+                                                    color: "rgb(235, 187, 255)",
+                                                }}
+                                            >
+                                                from
+                                            </span>{" "}
+                                            <span
+                                                style={{
+                                                    color: "rgb(209, 241, 169)",
+                                                }}
+                                            >
+                                                &quot;@refinedev/antd&quot;
+                                            </span>
+                                            {";\n"}
+                                        </code>
+                                    </pre>
                                 </div>
                             </div>
                         </div>
