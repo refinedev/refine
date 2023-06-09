@@ -63,7 +63,7 @@ export const team = [
         avatar: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/necati.png",
         avatar2x:
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars/necati2x.png",
-        role1: "Head of Content",
+        role1: "Head of Growth",
     },
     {
         name: "Recep Kütük",
