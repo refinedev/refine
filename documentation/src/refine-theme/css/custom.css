@@ -200,6 +200,10 @@ a:has(> code) code {
     @apply text-refine-blue;
 }
 
+.admonition pre.prism-code code {
+    @apply bg-transparent;
+}
+
 .refine-details > summary + div > div {
     @apply border-t-0 mt-0 pt-0;
 }
