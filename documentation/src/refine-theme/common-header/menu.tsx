@@ -3,13 +3,21 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import { MENU_ITEMS, NavbarItemType } from "./constants";
-import { GithubIcon } from "../icons/github";
-import { GithubStarIcon, DiscordIcon, TwitterIcon } from "../icons/popover";
+import {
+    GithubStarIcon,
+    GithubIcon,
+    DiscordIcon,
+    TwitterIcon,
+} from "../icons/popover";
 import { MenuItem } from "./menu-item";
 import { NavbarItem } from "./navbar-item";
 import { NavbarPopoverItem } from "./navbar-popover-item";
 
-export const Menu = () => {
+type MenuProps = {
+    isPermanentDark?: boolean;
+};
+
+export const Menu: React.FC<MenuProps> = ({ isPermanentDark }) => {
     return (
         <>
             {MENU_ITEMS.map((item) => {
@@ -17,6 +25,7 @@ export const Menu = () => {
                     return (
                         <NavbarPopoverItem
                             key={`navbar-${item.label}`}
+                            isPermanentDark={isPermanentDark}
                             item={item}
                         >
                             {item.label === "Open-source" && (
@@ -32,6 +41,7 @@ export const Menu = () => {
                                         {item.items.map((subItem) => (
                                             <MenuItem
                                                 key={subItem.label}
+                                                isPermanentLight
                                                 item={subItem}
                                             />
                                         ))}
@@ -48,7 +58,7 @@ export const Menu = () => {
                                             )}
                                         >
                                             <GithubStarIcon />
-                                            <p
+                                            <div
                                                 className={clsx(
                                                     "ml-4",
                                                     "text-gray-600",
@@ -56,7 +66,7 @@ export const Menu = () => {
                                             >
                                                 If you like refine, don’t forget
                                                 to star us on GitHub!
-                                            </p>
+                                            </div>
                                         </div>
                                     </Link>
                                 </>
@@ -75,6 +85,7 @@ export const Menu = () => {
                                         {item.items.map((subItem) => (
                                             <MenuItem
                                                 key={subItem.label}
+                                                isPermanentLight
                                                 item={subItem}
                                             />
                                         ))}
@@ -86,12 +97,18 @@ export const Menu = () => {
                                             "py-4 px-7",
                                         )}
                                     >
-                                        <p className="text-gray-600">
+                                        <div className="text-gray-600">
                                             Join the party!
-                                        </p>
+                                        </div>
                                         <div className="flex gap-4">
-                                            <Link to="https://github.com/refinedev/refine">
-                                                <GithubIcon />
+                                            <Link
+                                                to="https://github.com/refinedev/refine"
+                                                className={clsx(
+                                                    "no-underline",
+                                                    "hover:text-inherit",
+                                                )}
+                                            >
+                                                <GithubIcon className="text-[#333333]" />
                                             </Link>
                                             <Link to="https://discord.com/invite/refine">
                                                 <DiscordIcon />
@@ -116,6 +133,7 @@ export const Menu = () => {
                                     {item.items.map((subItem) => (
                                         <MenuItem
                                             key={subItem.label}
+                                            isPermanentLight
                                             item={subItem}
                                         />
                                     ))}
@@ -129,6 +147,7 @@ export const Menu = () => {
                     <NavbarItem
                         key={`navbar-${item.label}`}
                         item={item as NavbarItemType}
+                        isPermanentDark={isPermanentDark}
                     />
                 );
             })}

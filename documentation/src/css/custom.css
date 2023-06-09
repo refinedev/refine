@@ -598,19 +598,6 @@ html[data-page="index"] {
     box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
 }
 
-#__docusaurus .pagination-item {
-    @apply flex h-8 w-8 items-center justify-center rounded-lg border border-solid border-gray-200 leading-tight transition duration-200 ease-in-out hover:border-[#1890FF] hover:text-[#1890FF];
-    color: var(--ifm-font-color-base);
-}
-
-#__docusaurus .pagination-item.disabled {
-    @apply text-gray-200 cursor-not-allowed hover:border-gray-200 hover:text-gray-200;
-}
-
-#__docusaurus .pagination-item.active {
-    @apply border-[#1890FF] text-[#1890FF];
-}
-
 #__docusaurus .dots {
     @apply h-8 border-none cursor-default;
 }
