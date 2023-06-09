@@ -122,14 +122,7 @@ interface PostUniqueCheckRequestQuery {
 
 <>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/examples/form/custom-form-validation.gif" alt="custom form validation" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/examples/form/custom-form-validation.gif" alt="custom form validation" />
 <br/>
 </>
 

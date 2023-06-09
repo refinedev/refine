@@ -81,14 +81,7 @@ If you set `display: flex`, it creates a flex layout. You'll notice that you don
   background: white;
 }
 ```
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-1.png" alt="Control of Child Elements" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-1.png" alt="Control of Child Elements" />
 
 <br/>
 
@@ -99,14 +92,7 @@ Basically, child elements have control because the parent element delegates it t
 So, we need to be careful while using flexbox.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-2.png" alt="Control of Child Elements" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-2.png" alt="Control of Child Elements" />
 
 <br/>
 <br/>
@@ -124,14 +110,7 @@ So, we need to be careful while using flexbox.
 }
 ``` 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-3.png" alt="Control of Child Elements" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-3.png" alt="Control of Child Elements" />
 
 <br/>
 
@@ -141,14 +120,7 @@ Nothing will happen if we change `display: flex` to `display: grid` You have to 
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-4.png" alt="Control of Child Elements" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-4.png" alt="Control of Child Elements" />
 
 <br/>
 
@@ -252,14 +224,7 @@ Flexbox figures out content size in the first place. When you do `display:flex`,
 If you display flex in the product meta, two columns will take width according to the content size. It will help in creating the desired layout. So, dynamic columns can fit into this layout. 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-5.png" alt="Control of Child Elements" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-5.png" alt="Control of Child Elements" />
 
 <br/>
 <br />
@@ -276,14 +241,7 @@ Unlike grid, where each column will take full width, or you need to specify the 
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-6.png" alt="Control of Child Elements" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-6.png" alt="Control of Child Elements" />
 
 <br/>
 
@@ -317,14 +275,10 @@ Use grid:
 
 ## Browser Support
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/grid.png" alt="grid" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/grid.png" alt="grid" />
 
 <br/>
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/flex.png" alt="flex" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/flex.png" alt="flex" />
 
 <br/>
 

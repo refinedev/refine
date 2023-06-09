@@ -70,11 +70,7 @@ npm create refine-app@latest dynamic-form-example -- -b v3
 The installer will prompt you to select your preference for the project. Select the following options to proceed:
 
 
-<div class="img-container">
-
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/cli.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/cli.png"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -98,15 +94,7 @@ If your default browser doesn't automatically open the app after starting the se
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/welcome.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/welcome.png"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -133,15 +121,7 @@ export default UserCreate;
 These components provide a layout to display the List, Create, and Edit pages. They do not contain any logic, but they add action buttons like the `Create` and `save` buttons on the list and create pages.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-1-min.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-1-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -280,15 +260,7 @@ Now save your progress and return to the browser; you should see a rendered tabl
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-2.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-2.png"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -337,15 +309,7 @@ If you go to the browser after saving your progress and route to the `create` pa
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-3.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-3.png"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -564,15 +528,7 @@ Next, declare the button component with an event handler below the dynamic field
 That's all it takes to use `useFieldArray` actions in a form. If you save your progress and return to the browser, you should be able to perform the actions shown in the gif below:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-4-min.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-4-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -582,26 +538,14 @@ As you might have noticed in the previous section, our dynamic field values are 
 
 
 
-<div class="img-container">
-   
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/small.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/small.png"  alt="react hook form dynamic forms" />
 
 <br />
 
 
 This is because the `useFieldArray` returns an array of objects with each field value instead of string values.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-5.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-5.png"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -683,15 +627,7 @@ Refer to the documentation to learn more about the [`onFinish`](https://refine.d
 
 Now, if you save your progress and go back to the browser, everything should work as expected.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-6-min.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-6-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -721,15 +657,7 @@ To use this method, we'll add a button inside the callback function, below the `
 
 That's it. Now we can remove appended fields by clicking the delete button rendered alongside them.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-7-min.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-7-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -765,15 +693,7 @@ To align the fields and `delete` buttons horizontally on the same axis, we can w
 
 The `Box` component will create a Flexbox context around both components and align them side-by-side on the y-axis.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-8.png"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-8.png"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -825,15 +745,7 @@ Then remove the `delete` button and add the icon in its place:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-9-min.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-9-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -864,15 +776,7 @@ The form composition is complete. Next, we'll look at how to set up the Edit pag
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-validation.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-validation.gif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -1072,15 +976,7 @@ This way, when the edit icon is clicked, refine will know to redirect users to t
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-10-min.gif"  alt="react hook form dynamic forms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-10-min.gif"  alt="react hook form dynamic forms" />
 
 <br />
 

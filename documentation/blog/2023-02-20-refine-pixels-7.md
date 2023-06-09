@@ -490,15 +490,7 @@ We are doing this to make sure that we are getting only the logs for the current
 With this completed, if we ask for the modal in the `CanvasShow` page, we should be able to see the pixels log list:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Flog_list.png"  alt="react crud app" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Flog_list.png"  alt="react crud app" />
 
 <br />
 
@@ -506,15 +498,7 @@ We don't have a case for creating a pixel in the **Pixels Admin** app. But we ca
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Flog_list_2.png"  alt="react crud app" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Flog_list_2.png"  alt="react crud app" />
 
 <br />
 

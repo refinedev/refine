@@ -96,9 +96,7 @@ npm create refine-app@latest refine-storefront -- -p refine-nextjs -b v3
 
 After running the command, you’ll be prompted to choose your preferences for the project. Select the following options to proceed:
 
- <div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/cli.png" alt="cli" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/cli.png" alt="cli" />
 
 <br/>
 
@@ -200,14 +198,7 @@ Run npm run dev to start the refine development server.
 Within seconds it should automatically bring up your default browser with the preview of the app. If it does not, open the browser manually and navigate to http://localhost:3000.
 
 
- <div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/welcome.png" alt="welcome" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/welcome.png" alt="welcome" />
 
 
 ## Adding a Data provider 
@@ -375,14 +366,7 @@ export default MyApp;
     
 Now if you save your progress and go back to the browser, you should see the Layout component rendered successfully.
 
- <div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/layout.png" alt="layout" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/layout.png" alt="layout" />
 
 <br/>
 
@@ -581,14 +565,7 @@ Also we created a `ProductCard` component and use it to render the query results
 
 If you save your progress and go back to the browser, you should see a nicely rendered grid of product cards.
 
- <div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/final.png" alt="final" />
-</div>
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/final.png" alt="final" />
 
 <br/>
 <br/>
@@ -610,14 +587,7 @@ Generating a manifest file manually is tedious. Fortunately for us, we can use s
 
  Head over to [SimiCart manifest generator](https://www.simicart.com/manifest-generator.html/) or any site you trust and generate your manifest with the following example:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/manifest.png" alt="manifest" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/manifest.png" alt="manifest" />
 
 <br/>
 
@@ -711,14 +681,7 @@ After starting the server, head over to your browser and visit http://localhost:
 
 <br/>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/pwa.png" alt="pwa" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/pwa.png" alt="pwa" />
 
 <br/>
 
