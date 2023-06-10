@@ -63,7 +63,7 @@ export const useRelationFetch = ({
                                               ? get(el, field.accessor)
                                               : el;
                                       },
-                                  )[0]
+                                  )[0] ?? []
                                 : field.accessor
                                 ? get(record[field.key], field.accessor)
                                 : record[field.key];

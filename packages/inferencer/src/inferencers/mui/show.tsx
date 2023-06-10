@@ -180,11 +180,11 @@ export const renderer = ({
                                         field.relationInfer.accessor,
                                     );
                                     return `
-                                        <Stack direction="row" spacing={1}>
+                                        {record.${field.key}.length ? <Stack direction="row" spacing={1}>
                                             {${variableName}?.data?.map((${mapItemName}: any) => (
                                                 <TagField key={${val}} value={${val}} />
                                             ))}
-                                        </Stack>
+                                        </Stack>: <></>}
                                     `;
                                 }
                             } else {
