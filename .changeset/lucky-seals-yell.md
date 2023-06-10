@@ -2,4 +2,4 @@
 "@refinedev/inferencer": patch
 ---
 
-fix: show code button for inferencer isn't visible on tutorials.
+fix: show code button for inferencers was not visible in smaller screens.
