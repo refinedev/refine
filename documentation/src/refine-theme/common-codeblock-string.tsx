@@ -123,24 +123,21 @@ export const CodeBlockString = ({
                         >
                             <code className={clsx("bg-transparent")}>
                                 {tokens.map((line, i) => (
-                                    <>
-                                        <Line
-                                            key={i}
-                                            line={line}
-                                            getLineProps={getLineProps}
-                                            getTokenProps={getTokenProps}
-                                            classNames={clsx(
-                                                lineClassNames[i],
-                                                lineClassNames[i]?.includes(
-                                                    "theme-code-block-highlighted-line",
-                                                ) &&
-                                                    "bg-gray-600 bg-opacity-50",
-                                                "px-4",
-                                                "text-xs sm:text-sm 2xl:text-base",
-                                            )}
-                                            showLineNumbers={showLineNumbers}
-                                        />
-                                    </>
+                                    <Line
+                                        key={i}
+                                        line={line}
+                                        getLineProps={getLineProps}
+                                        getTokenProps={getTokenProps}
+                                        classNames={clsx(
+                                            lineClassNames[i],
+                                            lineClassNames[i]?.includes(
+                                                "theme-code-block-highlighted-line",
+                                            ) && "bg-gray-600 bg-opacity-50",
+                                            "px-4",
+                                            "text-xs sm:text-sm 2xl:text-base",
+                                        )}
+                                        showLineNumbers={showLineNumbers}
+                                    />
                                 ))}
                             </code>
                         </pre>

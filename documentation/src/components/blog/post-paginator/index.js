@@ -17,7 +17,7 @@ export const PostPaginator = ({ posts, title }) => {
             <div className="flex flex-col">
                 {posts.map((post) => (
                     <div
-                        key={post.id}
+                        key={post.permalink ?? post.id}
                         className={clsx(
                             "flex",
                             "flex-col",
