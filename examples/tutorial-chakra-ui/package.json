@@ -21,7 +21,7 @@
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.1.0",
     "@refinedev/react-router-v6": "^4.3.2",
-    "@refinedev/inferencer": "^4.1.0",
+    "@refinedev/inferencer": "^4.1.1",
     "cross-env": "^7.0.3",
     "@chakra-ui/react": "^2.5.1"
   },

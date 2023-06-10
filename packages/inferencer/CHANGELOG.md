@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 4.1.1
+
+### Patch Changes
+
+-   [#4499](https://github.com/refinedev/refine/pull/4499) [`b120a0394f8`](https://github.com/refinedev/refine/commit/b120a0394f89474e5d2c0c085dadf264a36e6607) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: show code button for inferencers was not visible in smaller screens.
+
 ## 4.1.0
 
 ### Minor Changes
