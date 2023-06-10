@@ -89,14 +89,7 @@ cd refine-advanced-tutorial
 npm run dev
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.gif" alt="Refine Tutorial" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.gif" alt="Refine Tutorial" />
 <br />
 
 As you have seen, our example project is ready. Now let's examine how the features offered by **refine** are included in a project and how they are used.
@@ -348,14 +341,7 @@ return (
 
 Now our i18n Provider is ready to use, let's test it together.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.gif" alt="Refine i18n Provider" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.gif" alt="Refine i18n Provider" />
 <br />
 
 ### Use the translation with Table Content
@@ -439,14 +425,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.gif" alt="Refine i18n Provider" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.gif" alt="Refine i18n Provider" />
 <br />
 
 You can add the translation you want and organize your content according to different languages ​​together with the **refine** i18n Provider.
@@ -540,14 +519,7 @@ Our project is now Realtime! Thanks to **refine** Live Provider, we made our pro
 
 Let's see how our RealTime Project works.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/realtime.gif" alt="Refine Live Provider" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/realtime.gif" alt="Refine Live Provider" />
 <br />
 
 ## Add Access Control to Your Project with Refine
@@ -636,14 +608,7 @@ export const Header: React.FC<HeaderProps> = ({ role }) => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access_button.png" alt="Refine Access Control Provider" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access_button.png" alt="Refine Access Control Provider" />
 <br />
 
 In this article, we will use [Cerbos](https://cerbos.dev/) to **refine** Access Control.
@@ -863,14 +828,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
 Here, if the selected role is Admin, the 'Hit' section will appear in our Table. We have stated that the Editor role cannot display this section.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.gif" alt="Refine Access Control Provider" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.gif" alt="Refine Access Control Provider" />
 <br />
 
 Check out [**refine** Access Control](https://refine.dev/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide

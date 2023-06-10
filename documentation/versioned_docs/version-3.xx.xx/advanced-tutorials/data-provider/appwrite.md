@@ -154,14 +154,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 -   Title: text
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/category.png" alt="category" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/category.png" alt="category" />
 
 <br/>
 
@@ -172,27 +165,13 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 -   Content: text
 -   Images: wilcard
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/posts.png" alt="posts" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/posts.png" alt="posts" />
 
 <br/>
 
 Then we need to create an appwrite user to be able to login with **refine**.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/user.png" alt="user" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/user.png" alt="user" />
 
 <br/>
 
@@ -202,14 +181,7 @@ In order to list posts and categories, you need to give read and write permissio
 
 Example: `Post Collection Permissons`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/permission.png" alt="permission" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/permission.png" alt="permission" />
 <br/>
 
 We indicate that the read and write permission is open to everyone by giving the "\*" parameter.
@@ -359,14 +331,7 @@ export const Login: React.FC = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/login.png" alt="login" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/login.png" alt="login" />
 
 <br/>
 
@@ -512,14 +477,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/list.png" alt="list" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/list.png" alt="list" />
 
 <br/>
 
@@ -647,14 +605,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/create.gif" alt="create" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/create.gif" alt="create" />
 
 <br/>
 
@@ -801,14 +752,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/edit.png" alt="edit" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/edit.png" alt="edit" />
 
 ## Example
 

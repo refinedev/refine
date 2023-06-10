@@ -22,14 +22,7 @@ We'll be building a demo app to manage hackathons with [refine](https://refine.d
 
 <!--truncate-->
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-manage-hackathons/hackathons.png" alt="hackathons" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-manage-hackathons/hackathons.png" alt="hackathons" />
 <br/>
 
 We'll use [supabase](https://supabase.io/) as the backend service. **refine** comes with a builtin data provider for supabase thus it's very easy to create crud pages.
@@ -199,14 +192,7 @@ export default App;
 
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-manage-hackathons/create.png" alt="create" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-manage-hackathons/create.png" alt="create" />
 <br/>
 
 **refine** comes with builtin hooks for Ant design components. You can find detailed usage for the hooks and supabase in the [documentation](https://refine.dev/docs/)

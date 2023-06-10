@@ -43,30 +43,14 @@ yarn create strapi-starter project-name next-blog
 Once the installation is complete, Strapi will launch the admin panel. You will have to create your admin account by filling out the form.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-login-page.png"  alt="best headless cms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-login-page.png"  alt="best headless cms" />
 
 <br />
 
 After creating your admin account, the Strapi dashboard looks like the image below. The Strapi documentation has detailed getting-started guides you can use to explore the main features of Strapi.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-dashboard.png"  alt="best headless cms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-dashboard.png"  alt="best headless cms" />
 
 <br />
 
@@ -125,15 +109,7 @@ The Hasura console doesn't provide functionality for managing content like the o
 Hasura cloud is the fastest way to start using Hasura.  You can create an account using your email id or log in using GitHub or Google.  
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhasura-cloud-login-page.png"  alt="best headless cms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhasura-cloud-login-page.png"  alt="best headless cms" />
 
 <br />
 
@@ -192,15 +168,7 @@ Hygraph provides a generous community plan for free without even asking for a cr
 To start using [Hygraph](https://hygraph.com/), you need to have an account. If you haven't, create an account using your email id or log in with your Google, Facebook, or GitHub account. You can create a new project or use one of the available starter projects after setting up an account to explore Hygraph.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhygraph-login-page.png"  alt="best headless cms" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhygraph-login-page.png"  alt="best headless cms" />
 
 <br />
 

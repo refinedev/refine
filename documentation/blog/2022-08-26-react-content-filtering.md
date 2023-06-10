@@ -50,14 +50,7 @@ Steps we'll cover:
 Today we will be building a filtering system that will let us sort the results through filter buttons and custom search queries.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/demo.png" alt="demo" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/demo.png" alt="demo" />
 
 <br/>
 
@@ -83,9 +76,7 @@ The content cards will be listed directly below.
 When putting everything into the wireframe, we get the following schema:
 
 
-<div class="img-container">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.png" alt="wireframe" /> 
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.png" alt="wireframe" />
 
 <br/>
 
@@ -97,9 +88,7 @@ The recommended way to set up the refine project is to use [superplate](https://
 Run `npm create refine-app@latest tutorial -- -p refine-react -b v3` and select your package manager, project name, user interface framework, router, data, auth provider, and internationalization library.
 
 
-<div class="img-container">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/terminal.png" alt="terminal" /> 
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/terminal.png" alt="terminal" />
 
 <br/>
 
@@ -110,14 +99,7 @@ Within seconds it should automatically bring up your default browser with the pr
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/boilerplate.png" alt="boilerplate" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/boilerplate.png" alt="boilerplate" />
 
 <br/>
 
@@ -570,14 +552,7 @@ Check if your development server is still running in the terminal. If it is not 
 First, we will test the functionality of the filter buttons.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.gif" alt="filters" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.gif" alt="filters" />
 
 <br/>
 
@@ -585,14 +560,7 @@ If the filter button is pressed, only the corresponding cards of that category i
 
 Now type in some search queries in the search bar.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.gif" alt="search" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.gif" alt="search" />
 
 <br/>
 
@@ -601,14 +569,7 @@ Search results are fully dynamic, meaning the filtering is updated each time you
 Finally, let's test the app on different screen sizes.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/mobile.gif" alt="mobile" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/mobile.gif" alt="mobile" />
 
 <br/>
 

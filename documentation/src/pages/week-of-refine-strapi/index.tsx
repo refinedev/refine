@@ -115,7 +115,7 @@ const RefineWeek = () => {
 
     return (
         <Layout>
-            <Head title="Week of Refine | refine">
+            <Head title="Week of refine | refine">
                 <html data-page="week-of-refine" data-customized="true" />
             </Head>
             <div className="relative px-2 pb-24 pt-0 md:px-4 md:pt-12 lg:px-0 lg:pb-48 lg:pt-24">
@@ -125,12 +125,12 @@ const RefineWeek = () => {
                             <div className="flex items-center gap-2">
                                 <img
                                     src="/week-of-refine/refine-week-calendar.png"
-                                    alt="Refine week calendar logo"
+                                    alt="refine week calendar logo"
                                     className="block h-[48px] w-[48px]"
                                 />
                                 <img
                                     src="/week-of-refine/refine-week-ft-strapi.png"
-                                    alt="Refine week ft. supabase logo"
+                                    alt="refine week ft. supabase logo"
                                     className="block h-[46px]"
                                 />
                             </div>
@@ -166,7 +166,7 @@ const RefineWeek = () => {
                         <div className="min-h-[318px] flex-1 lg:translate-x-[80px]">
                             <img
                                 src="/week-of-refine/refine-week-invoicer-logo.png"
-                                alt="Refine invoicer app logo"
+                                alt="refine invoicer app logo"
                                 className="block"
                             />
                         </div>

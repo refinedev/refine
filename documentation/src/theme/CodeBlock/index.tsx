@@ -1,5 +1,5 @@
 import React from "react";
-import CodeBlock from "@theme-original/CodeBlock";
+import { CodeBlock } from "./base";
 import { LivePreview } from "../../components/live-preview";
 import { LivePreviewShared } from "../../components/live-preview-shared";
 import { LivePreviewSharedCss } from "../../components/live-preview-shared-css";
@@ -19,5 +19,5 @@ export default function CodeBlockWrapper(
         return <LivePreview {...props} />;
     }
 
-    return <CodeBlock {...props} />;
+    return <CodeBlock {...(props as any)} />;
 }

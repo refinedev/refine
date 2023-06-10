@@ -705,14 +705,7 @@ export default App;
 
 Now our page looks like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/basic.png" alt="A custom page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/basic.png" alt="A custom page" />
 <br />
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
@@ -827,14 +820,7 @@ export const PostReview = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/gif.gif" alt="A custom page in action" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/gif.gif" alt="A custom page in action" />
 <br />
 
 ## Example

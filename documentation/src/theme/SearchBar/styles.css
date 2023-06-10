@@ -10,5 +10,5 @@
 }
 
 .DocSearch-Container {
-  z-index: calc(var(--ifm-z-index-fixed) + 1);
+  z-index: 11;
 }

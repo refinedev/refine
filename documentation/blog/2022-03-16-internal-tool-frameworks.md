@@ -86,14 +86,7 @@ npm install -g blitz
 
 You can quickly create the project containing **refine** and all the features you will use with it, thanks to **refine**'s Project Creator CLI (Superplate). No extra setup required!
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/superplate.gif" alt="Refine Project Creator CLI" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/superplate.gif" alt="Refine Project Creator CLI" />
 <br />
 
 If you want, you can manually install the refine packages.
@@ -106,27 +99,13 @@ npm i @refinedev/core @refinedev/antd
 
 [**Refine** Admin Panel Example](https://example.admin.refine.dev/?current=1&pageSize=5)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine-admin-panel.png" alt="Refine Admin Panel Example" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine-admin-panel.png" alt="Refine Admin Panel Example" />
 
 <br/>
 
 [**Refine** Headless + Tailwind CSS Client(B2C) Example](https://example.refine.dev/)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine_client.png" alt="Refine Client Example" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine_client.png" alt="Refine Client Example" />
 
 ## 3. RedwoodJS
 
@@ -154,14 +133,7 @@ Redwood includes deploy support for Netlify, Vercel, Render.com, AWS and more. B
 
 [Link](https://github.com/redwoodjs/example-blog)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/redwood.png" alt="Redwood Example" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/redwood.png" alt="Redwood Example" />
 
 ## 4. React Admin
 
@@ -190,14 +162,7 @@ yarn add react-admin
 
 [Link](https://marmelab.com/react-admin-demo/#/)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/react_admin.png" alt="React Admin Example" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/react_admin.png" alt="React Admin Example" />
 
 <br/>
 <br/>

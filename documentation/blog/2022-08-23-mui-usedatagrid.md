@@ -81,9 +81,7 @@ In the command above, the `-p` flag specifies the project type which in our case
 You will be asked a few questions by the installer. Select the following options to proceed:
 
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/cli.png" alt="cli" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/cli.png" alt="cli" />
 
 <br/>
 
@@ -91,14 +89,7 @@ You will be asked a few questions by the installer. Select the following options
 After superplate has finished creating our app, run `npm run dev` to start the development server and then navigate to `localhost:8000` in the browser to view the app. If each went smoothly, the following should be rendered on the browser:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/welcome.png" alt="welcome" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/welcome.png" alt="welcome" />
 
 <br/>
 
@@ -345,14 +336,7 @@ We also added a layout component (`Layout.tsx`) to the `Layout` prop. This is to
 Now, if you navigate to `localhost:8000/employees`, you should see the following:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_list.png" alt="employees list" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_list.png" alt="employees list" />
 
 <br/>
 
@@ -367,14 +351,7 @@ The `useDataGrid` hook simplifies operations such as pagination, sorting, and fi
 
 Pagination lets us display a certain number of rows on a DataGrid at a time and is enabled by default. It cannot be disabled either. It is available at the bottom of the DataGrid component like so:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/pagination.png" alt="pagination" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/pagination.png" alt="pagination" />
 
 <br/>
 
@@ -424,14 +401,7 @@ export default EmployeeList;
 
 Which renders our grid like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/grid.png" alt="grid" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/grid.png" alt="grid" />
 
 <br/>
 
@@ -453,14 +423,7 @@ We can sort the rows in three orders: ascending (ASC), descending (DESC) or null
 To sort the rows, click or hover on any column header, this displays an arrow indicator pointing up or down depending on your sorting order. When it's ascending the arrow points upward, and points downward for descending. Alternatively, we can also access it from the grid column menu.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sorting.png" alt="sorting" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sorting.png" alt="sorting" />
 
 <br/>
 
@@ -477,14 +440,7 @@ const { dataGridProps } = useDataGrid({
 The above example will sort the rows using the *level* column on the initial render in descending order like so: 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sorting_employees.png" alt="sortingEmployees" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sorting_employees.png" alt="sortingEmployees" />
 
 <br/>
 
@@ -593,14 +549,7 @@ export default EmployeeList;
 
 Here's a GIF showing the result of the above example.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_gif.gif" alt="employees Gif" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_gif.gif" alt="employees Gif" />
 
 <br/>
 
@@ -616,22 +565,13 @@ Filtering lets us search the rows for values in the DataGrid component based on 
 
 We can access the sort feature by either clicking on the *filter* item in the column menu: 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filtering_column.png" alt="filtering Column" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filtering_column.png" alt="filtering Column" />
 
 <br/>
 
 or by using the filter button in the grid toolbar:
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filtering_tab.png" alt="filtering tab" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filtering_tab.png" alt="filtering tab" />
 
 <br/>
 
@@ -653,14 +593,7 @@ The filter feature works by searching the rows for values that match a given fil
 
 For instance in our employees table we can filter the *department* column for rows that contain a `Support` value by using any of the above methods. 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_filter.png" alt="employees filter" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_filter.png" alt="employees filter" />
 
 <br/>
 
@@ -825,14 +758,7 @@ Which gives the following result when you click on the checkbox:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_checkbox.png" alt="employees check" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_checkbox.png" alt="employees check" />
 
 <br/>
 

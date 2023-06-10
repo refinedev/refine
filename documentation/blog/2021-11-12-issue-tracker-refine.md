@@ -33,14 +33,7 @@ We will use [Supabase](https://supabase.io/) in backend. Let's start by creating
 We have to go to [Supabase](https://supabase.io/) and create an organization and database. Then we can start creating our tables.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/start.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/start.png" alt="overview" />
 <br />
  
 The tables we need to create for our project are as follows:
@@ -51,14 +44,7 @@ The tables we need to create for our project are as follows:
 * `color`: varchar
 
 <br />
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_table.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_table.png" alt="overview" />
 <br />
 
 > priority 
@@ -66,14 +52,7 @@ The tables we need to create for our project are as follows:
 * `title` varchar
 
 <br />
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 <br />
  
 
@@ -82,14 +61,7 @@ The tables we need to create for our project are as follows:
 * `title` varchar
 
 <br />
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 <br />
 
 > users
@@ -97,14 +69,7 @@ The tables we need to create for our project are as follows:
 * `id` uuid
 
 <br />
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/user_table.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/user_table.png" alt="overview" />
 <br />
 
  
@@ -120,14 +85,7 @@ The tables we need to create for our project are as follows:
 * `users` uuid
 
 <br />
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_table.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_table.png" alt="overview" />
 <br />
  
 
@@ -154,51 +112,23 @@ Now let's go to the Supabase Table editor and create our constant values.
 
 `Label Table`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_value.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_value.png" alt="overview" />
 <br />
 
 `Priority Table`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/priority_value.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/priority_value.png" alt="overview" />
 <br />
 
  
 `Status Table`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/status_value.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/status_value.png" alt="overview" />
 <br />
  
 Let's create a test task to better understand key relation. 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.gif" alt="overview" />
 <br />
 
 As you can see, since we have defined the ids of our label, status, priority and users tables as references to our tasks table, we can now use their values.
@@ -583,14 +513,7 @@ export default App;
 
 Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/api-references/providers/router-provider/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
 <br />
  
 
@@ -651,14 +574,7 @@ export default App;
 
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/list.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/list.png" alt="overview" />
 <br />
  
 We can now create lists of tasks and make changes to them.
@@ -1060,14 +976,7 @@ export interface ITaskFilterVariables {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="overview" />
 <br />
 
  Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering. 
@@ -1156,14 +1065,7 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
 
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.gif" alt="overview" />
 <br />
 
 
@@ -1232,14 +1134,7 @@ export const EditTask: React.FC<IResourceComponentsProps> = () => {
 
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/edit_test.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/edit_test.gif" alt="overview" />
 <br />
 
 ## Show Task
@@ -1312,14 +1207,7 @@ export const TaskShow: React.FC = () => {
 };
 
 ```
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/show.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/show.png" alt="overview" />
 <br />
  
 
@@ -1467,14 +1355,7 @@ export const Dashboard = () => {
 
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dash_overview.png" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dash_overview.png" alt="overview" />
 <br/>
 
 
@@ -1547,38 +1428,17 @@ Our project is done. Lets see how its look like.
 
 `Overview`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/overview-project.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/overview-project.gif" alt="overview" />
 <br />
 
 `Task Filter`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/filter.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/filter.gif" alt="overview" />
 <br />
 
 `Dashboard Page`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
 <br />
 
 As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider. 

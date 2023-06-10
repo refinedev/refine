@@ -30,7 +30,7 @@ It's specifically tailored for data-intensive applications like admin panels, da
 
 <div align="center" >
   <a href="https://github.com/refinedev/refine">
-  <img style="width: 700px" src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine banner" />
+  <img style={{ width: "700px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine banner" />
 </a>
 </div>
 
@@ -60,7 +60,7 @@ The refine is **headless by design**, offering unlimited styling and customizati
 
 <div align="center" >
   <a href="https://refine.new/">
-  <img style="width: 800px"  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" alt="refine banner" />
+  <img style={{ width: "800px" }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif" alt="refine banner" />
 </a>
 </div>
 
@@ -93,7 +93,7 @@ View the example refine app built using refine.new from [this link](https://refi
 
  <div align="center" >
 <a href="https://refine.new/preview/a54be867-0838-4078-b9a5-fce7ab7174a2">
-  <img style="width: 800px" src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
+  <img style={{ width: "800px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
   </a>
 </div>
 

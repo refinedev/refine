@@ -27,17 +27,15 @@ const AuthorPage = (props) => {
     return (
         <>
             <BlogListPageMetadata />
-            <BlogLayout
-                sidebar={
-                    <div className="w-full lg:w-1/4 mb-6">
-                        <AuthorCardWithProps
-                            author={author}
-                            className="sticky-author-card"
-                        />
-                    </div>
-                }
-            >
-                <BlogPostItems items={items} showTitle={false} />
+            <BlogLayout>
+                <AuthorCardWithProps author={author} />
+                <div className="border-b border-gray-200 dark:border-gray-700 mb-6" />
+                <h1 className="text-4xl">Posts</h1>
+                <BlogPostItems
+                    items={items}
+                    showTitle={false}
+                    isAuthorPage={true}
+                />
             </BlogLayout>
         </>
     );

@@ -182,14 +182,7 @@ export const Login: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login.gif" alt="ethereum-login" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login.gif" alt="ethereum-login" />
 <br/>
 
 ## Create Dashboard
@@ -249,14 +242,7 @@ export const DashboardPage: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.png" alt="refine-dashboard" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.png" alt="refine-dashboard" />
 <br/>
 
 Now lets customize **refine** dashboard. Send your test ethereum via **refine** dashboard and Metamask.
@@ -406,26 +392,12 @@ export const DashboardPage: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.png" alt="refine-customize" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.png" alt="refine-customize" />
 <br/>
 
 We can now request to send ethereum through our **refine** dashboard and also view your account details on [Etherscan Ropsten Test Network](https://ropsten.etherscan.io/)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview.gif" alt="refine-overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview.gif" alt="refine-overview" />
 <br/>
 
 ## Example

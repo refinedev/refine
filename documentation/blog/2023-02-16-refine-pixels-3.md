@@ -538,15 +538,7 @@ If you are already looking at the [`useSimpleList()` argument object's propertie
 With this set up - and connected to the Internet - if we run the dev server with `yarn dev` and navigate to `http://localhost:3000`, we are faced with a login screen:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/login.png"  alt="react crud app supabase" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/login.png"  alt="react crud app supabase" />
 
 <br />
 
@@ -609,15 +601,7 @@ Now, if we refresh our browser at `/`, we see it redirected to `/canvases`. This
 At the moment, we don't have any `canvas` created in our app yet, so at `/canvases` we don't see the gallery:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/empty_canvas.png"  alt="react crud app supabase" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/empty_canvas.png"  alt="react crud app supabase" />
 
 <br />
 
@@ -911,15 +895,7 @@ Now if we click on the `Create` canvas button on the navbar, we should be presen
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/create_canvas.png"  alt="react crud app supabase" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/create_canvas.png"  alt="react crud app supabase" />
 
 <br />
 
@@ -1279,15 +1255,7 @@ And now, since we are logged in, we should be able to create a canvas. After suc
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/registering.png"  alt="react crud app supabase" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/registering.png"  alt="react crud app supabase" />
 
 <br />
 
@@ -1337,15 +1305,7 @@ I've done that and the featured canvases are listed in the `Home` route:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/public_last.png"  alt="react crud app supabase" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/public_last.png"  alt="react crud app supabase" />
 
 <br />
 

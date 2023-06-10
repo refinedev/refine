@@ -18,14 +18,7 @@ Just be aware that the source code example in this post have been updated to ver
 
 :::
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
 <br />
 
 In this article, we will create the e-commerce client of our [Strapi-Multitenancy](/docs/advanced-tutorials/multi-tenancy/strapi-v4) admin panel that we have done before.
@@ -196,14 +189,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/layout.png" alt="layout" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/layout.png" alt="layout" />
 <br />
 
 ## Product Card Design with Chakra-UI
@@ -263,14 +249,7 @@ export const ProductCard: React.FC<ProductProps> = ({
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/sample_product.png" alt="sample_product" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/sample_product.png" alt="sample_product" />
 <br />
 
 We created our Product Card component. Now let's move on to the process of fetch and showing our products from the Strapi.
@@ -373,14 +352,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/products.png" alt="products" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/products.png" alt="products" />
 <br />
 
 ## Adding Store-based Filtering
@@ -527,14 +499,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/pagination.gif" alt="pagination" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/pagination.gif" alt="pagination" />
 <br />
 
 ## Adding Pagination
@@ -674,14 +639,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/page_size.gif" alt="page_size" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/page_size.gif" alt="page_size" />
 <br />
 
 ## Adding Basket and Payment features with Snipcart
@@ -802,14 +760,7 @@ export const ProductCard: React.FC<ProductProps> = ({
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
 <br />
 
 ## Conclusion
