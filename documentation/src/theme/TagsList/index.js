@@ -71,6 +71,7 @@ export default function TagsList({ tags }) {
     return (
         <div
             className={clsx(
+                "no-prose",
                 "flex",
                 "justify-between",
                 "items-start",
