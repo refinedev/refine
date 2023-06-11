@@ -15,6 +15,9 @@ export default function BlogPostItems({
     return (
         <div
             className={clsx(
+                "px-4",
+                "blog-md:px-7",
+                "blog-2xl:px-0",
                 !isAuthorPage && !isTagsPage && "blog-lg:py-20",
                 !isAuthorPage && !isTagsPage && "blog-md:py-16",
                 !isAuthorPage && !isTagsPage && "py-10",
