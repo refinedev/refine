@@ -116,7 +116,7 @@ The following example shows a basic usage of the `DataGrid` component:
   columns={[{ field: 'name' }]}
   rows={[
     { id: 1, name: 'React' },
-    { id: 2, name: 'MUI' },
+    { id: 2, name: 'MUI X' },
   ]}
 />
 ```
@@ -172,7 +172,7 @@ Above, we're creating a div to wrap our app content through the `children` prop 
 
 ## refine's `useDataGrid` hook
 
-In addition to integrating MUI components, **refine** provides a clean interface through the `useDataGrid` hook for implementing some properties that can be used with MUI `<DataGrid/>` component. The hook simplifies working with features such as pagination, sorting, and filtering which come as out-of-box.
+In addition to integrating Material UI components, **refine** provides a clean interface through the `useDataGrid` hook for implementing some properties that can be used with MUI X `<DataGrid/>` component. The hook simplifies working with features such as pagination, sorting, and filtering which come as out-of-box.
 
 For instance, if you have a page component where you want to render tabular data, you might do something like the below:
 
@@ -340,7 +340,7 @@ Now, if you navigate to `localhost:8000/employees`, you should see the following
 
 <br/>
 
-Voila! We've successfully displayed our data from a REST API in a MUI DataGrid component. In the next section we'll look at how we can use the `useDataGrid` hook to simplify operations such as pagination, sorting, and filtering.
+Voila! We've successfully displayed our data from a REST API in a MUI X DataGrid component. In the next section we'll look at how we can use the `useDataGrid` hook to simplify operations such as pagination, sorting, and filtering.
 
 
 ## Pagination, Filtering, and Sorting using the `useDataGrid` hook
@@ -769,7 +769,7 @@ Refer to the filtering [documentation](https://mui.com/x/react-data-grid/filteri
 
 ## Conclusion
 
-In this article we introduced you to the MUI `<DataGrid/>` component and how to use it to render tabular data. We also learned how to simplify operations such as pagination, sorting and filtering on the component using the `useDataGrid` hook.
+In this article we introduced you to the MUI X `<DataGrid/>` component and how to use it to render tabular data. We also learned how to simplify operations such as pagination, sorting and filtering on the component using the `useDataGrid` hook.
 
 We hope this article helps you in getting started with the `<DataGrid/>` component in your refine applications.
 

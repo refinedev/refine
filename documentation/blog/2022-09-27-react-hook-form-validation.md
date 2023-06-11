@@ -289,7 +289,7 @@ export default Create;
  </p>
 </details>
 
-Here, we created a regular HTML form using a form element and the MUI TextField form control components.  
+Here, we created a regular HTML form using a form element and the Material UI TextField form control components.  
 Each `<TextField>` will be used for getting the first name, last name, address, employment status, place of work, role, and phone number values. We also created an interface object of the form, we’ll be using this later in the article.
 
 If you save your progress and open up the browser, you should see a form similar to the one below.
@@ -332,7 +332,7 @@ const {
 });
 ```
 
-The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as MUI. 
+The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as Materal UI. 
 
 The component takes care of the registration process of components that don't expose input's ref but rely on a state. So it's a register method, but for controlled inputs.
 
@@ -368,7 +368,7 @@ Here's a basic usage of the controller component:
 
 In the example above, we're passing the controller properties to the `<TextField>` component via the field parameter and rendering it with the `<Controller>` render property.
 
-Since we're using MUI for our project, our focus will be on the Controller hook.
+Since we're using Material UI for our project, our focus will be on the Controller hook.
 
 Now to integrate React Hook Form into our application, we'll import the Controller component and the `useForm` hook inside the `create.tsx` file like so:
 
@@ -735,7 +735,7 @@ That’s all we have to do to set up our schema, next we’ll look at a new way 
 </div>
 
 ## Handling errors
-Handling errors with MUI's TextField component is fairly straightforward, all we have to do is destructure the errors property from the useForm’s formState method:
+Handling errors with Material UI's TextField component is fairly straightforward, all we have to do is destructure the errors property from the useForm’s formState method:
 
 ```tsx
 const { control, formState: { errors }} = useForm<IFormValue>

@@ -32,7 +32,7 @@ React has a number of frameworks that are competing to be the best framework in 
 Table of Contents
 
 1. [Create React App](#cra)
-2. [Material-UI](#mui)
+2. [Material UI](#material-ui)
 3. [Ant Design](#antd)
 4. [React Bootstrap](#react-bootstrap)
 5. [Refine](#refine)
@@ -59,11 +59,11 @@ npm start
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/create-react-app.png" alt="create-react-app" />
 
 
-### 2. Material UI <a name="mui"></a>
+### 2. Material UI <a name="material-ui"></a>
 
 First up, [Material UI](https://mui.com/getting-started/installation/) is an excellent React UI framework with multiple pre-built components and templates. Material UI is a great framework for building UI components. It has a large community of developers and is very popular.
 
-MUI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your design system and develop React applications faster.
+Material UI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your design system and develop React applications faster.
 
 ```
 // with npm
