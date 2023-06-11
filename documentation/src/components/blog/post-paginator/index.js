@@ -10,7 +10,7 @@ export const PostPaginator = ({ posts, title }) => {
     }
 
     return (
-        <div className="py-3 px-3 md:py-6 md:px-14">
+        <div className="py-3 px-3 blog-sm:py-6 blog-md:py-16 blog-sm:px-14">
             <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4">
                 {title}
             </h2>
