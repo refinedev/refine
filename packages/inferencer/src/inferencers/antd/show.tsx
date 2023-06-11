@@ -174,7 +174,7 @@ export const renderer = ({
                                         undefined,
                                         field.relationInfer.accessor,
                                     );
-                                    return `{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}`;
+                                    return `{record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />) : <></>}`;
                                 }
                             } else {
                                 return undefined;

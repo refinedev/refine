@@ -173,7 +173,7 @@ export const renderer = ({
                                         undefined,
                                         field.relationInfer.accessor,
                                     );
-                                    return `<HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack>`;
+                                    return `{record?.${field.key}?.length ? <HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack>: <></>}`;
                                 }
                             } else {
                                 return `Not Handled.`;

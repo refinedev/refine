@@ -173,9 +173,9 @@ export const renderer = ({
                                         field.relationInfer.accessor,
                                     );
                                     return `
-                                    <Group spacing="xs">
+                                    {record?.${field.key}?.length ? <Group spacing="xs">
                                         {${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}
-                                    </Group>
+                                    </Group> : <></>}
                                     `;
                                 }
                             } else {

@@ -160,7 +160,7 @@ export const renderer = ({
                                             field.relationInfer.accessor,
                                         );
                                         return jsx`
-                                            {${variableName}?.data?.map((${mapItemName}: any) => <li key={${val}}>{${val}}</li>)}
+                                            {record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <li key={${val}}>{${val}}</li>) : <></>}
                                         `;
                                     }
                                 } else {
