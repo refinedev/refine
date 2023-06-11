@@ -203,7 +203,7 @@ const App: React.FC = () => {
 | [`Title`](#title)    | `React.FC`                                    | Component to render at the top                                                  |
 | `render`             | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSider>` |
 | `meta`               | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                        |
-| `activeItemDisabled` | `boolean`                                     | Whether the clicking on active sider item should reload the page                |
+| `activeItemDisabled` | `boolean`                                     | Whether clicking on an active sider item should reload the page                 |
 
 ```tsx
 type SiderRenderFunction = (props: {

@@ -226,7 +226,7 @@ const App: React.FC = () => {
 | `render`             | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSiderV2>` |
 | `meta`               | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                          |
 | `fixed`              | `boolean`                                     | Whether the sider is fixed or not                                                 |
-| `activeItemDisabled` | `boolean`                                     | Whether the clicking on active sider item should reload the page                  |
+| `activeItemDisabled` | `boolean`                                     | Whether clicking on an active sider item should reload the page                   |
 
 ```tsx
 type SiderRenderFunction = (props: {
@@ -728,7 +728,11 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, RefineThemes, useThemedLayoutContext } from "@refinedev/antd";
+import {
+    ThemedLayoutV2,
+    RefineThemes,
+    useThemedLayoutContext,
+} from "@refinedev/antd";
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
