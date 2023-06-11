@@ -132,9 +132,9 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                     "appearance-none",
                     "p-2",
                     "border-b",
-                    "border-b-gray-900",
+                    "border-b-gray-200 dark:border-b-gray-900",
                     "flex items-center gap-2",
-                    "bg-gray-700",
+                    "bg-gray-100 dark:bg-gray-700",
                     !visible && "rounded-bl-lg",
                     !visible && "rounded-br-lg",
                     "transition-all ease-in-out duration-200",
@@ -147,8 +147,8 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                     className={clsx(
                         "w-8 h-8",
                         "rounded",
-                        "bg-gray-800",
-                        "bg-opacity-50",
+                        "bg-gray-0 dark:bg-gray-800",
+                        "dark:bg-opacity-50",
                         "flex items-center justify-center",
                     )}
                 >
@@ -167,7 +167,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                     className={clsx(
                         "text-sm leading-6",
                         "h-6",
-                        "text-gray-400",
+                        "text-gray-700 dark:text-gray-400",
                         "uppercase",
                         "font-semibold",
                         "block",
@@ -187,7 +187,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                         className={clsx(
                             "block",
                             "transition-transform duration-200 ease-in-out",
-                            "bg-gray-700",
+                            "bg-gray-100 dark:bg-gray-700",
                             visible && "-translate-y-6",
                         )}
                     >
@@ -212,6 +212,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                     language="tsx"
                     style={{
                         borderRadius: 0,
+                        marginBottom: 0,
                     }}
                 >
                     {code}
