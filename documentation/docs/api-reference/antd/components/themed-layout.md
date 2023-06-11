@@ -728,11 +728,7 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import {
-    ThemedLayoutV2,
-    RefineThemes,
-    useThemedLayoutContext,
-} from "@refinedev/antd";
+import { ThemedLayoutV2, RefineThemes, useThemedLayoutContext } from "@refinedev/antd";
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
