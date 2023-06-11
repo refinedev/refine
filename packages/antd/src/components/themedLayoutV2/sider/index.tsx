@@ -38,6 +38,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     render,
     meta,
     fixed,
+    activeItemDisabled = false,
 }) => {
     const { token } = useToken();
     const {
@@ -121,7 +122,16 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         key={item.key}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route ?? ""}>{label}</Link>
+                        <Link
+                            to={route ?? ""}
+                            onClick={(event: React.MouseEvent<HTMLElement>) => {
+                                if (activeItemDisabled && isSelected) {
+                                    event.preventDefault();
+                                }
+                            }}
+                        >
+                            {label}
+                        </Link>
                         {!siderCollapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}

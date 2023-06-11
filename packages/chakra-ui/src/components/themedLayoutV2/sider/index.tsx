@@ -40,6 +40,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
+    activeItemDisabled = false,
 }) => {
     const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
         useThemedLayoutContext();
@@ -160,6 +161,16 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                             borderRightColor: "brand.200",
                                         }}
                                         isActive={isSelected}
+                                        onClick={(
+                                            event: React.MouseEvent<HTMLElement>,
+                                        ) => {
+                                            if (
+                                                activeItemDisabled &&
+                                                isSelected
+                                            ) {
+                                                event.preventDefault();
+                                            }
+                                        }}
                                         {...linkProps}
                                     >
                                         {(mobileSiderOpen ||

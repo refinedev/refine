@@ -42,6 +42,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     render,
     meta,
     Title: TitleFromProps,
+    activeItemDisabled = false,
 }) => {
     const theme = useMantineTheme();
     const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
@@ -145,6 +146,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                                     : "18px"
                             }
                             styles={commonNavLinkStyles}
+                            onClick={(event: React.MouseEvent<HTMLElement>) => {
+                                if (activeItemDisabled && isSelected) {
+                                    event.preventDefault();
+                                }
+                            }}
                             {...additionalLinkProps}
                         >
                             {isParent && renderTreeView(children, selectedKey)}

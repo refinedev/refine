@@ -43,6 +43,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
     meta,
+    activeItemDisabled = false,
 }) => {
     const {
         siderCollapsed,
@@ -221,7 +222,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             component={ActiveLink}
                             to={route}
                             selected={isSelected}
-                            onClick={() => {
+                            onClick={(event: React.MouseEvent<HTMLElement>) => {
+                                if (activeItemDisabled && isSelected) {
+                                    event.preventDefault();
+                                }
+
                                 setMobileSiderOpen(false);
                             }}
                             sx={{
