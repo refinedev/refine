@@ -47,6 +47,7 @@ export const BlogPostPageView = ({ children }) => {
                 "w-full",
                 "mx-auto",
                 "blog-2xl:max-w-none",
+                "blog-lg:px-0",
                 "blog-sm:max-w-screen-blog-sm",
                 "max-w-[512px]",
             )}
@@ -56,7 +57,7 @@ export const BlogPostPageView = ({ children }) => {
                     "flex",
                     "justify-between",
                     "items-center",
-                    "md:px-6",
+                    "blog-sm:px-6",
                 )}
             >
                 <Link
@@ -107,7 +108,7 @@ export const BlogPostPageView = ({ children }) => {
                     alt={title}
                 />
             </div>
-            <div className="md:px-6">
+            <div className="blog-sm:px-6">
                 <div className="mb-6 text-sm">
                     <div
                         className={clsx(

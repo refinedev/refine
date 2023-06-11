@@ -10,66 +10,82 @@ export const PostPaginator = ({ posts, title }) => {
     }
 
     return (
-        <div className="py-3 px-3 blog-sm:py-6 blog-md:py-16 blog-sm:px-14">
-            <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4">
-                {title}
-            </h2>
-            <div className="flex flex-col">
-                {posts.map((post) => (
-                    <div
-                        key={post.permalink ?? post.id}
-                        className={clsx(
-                            "flex",
-                            "flex-col",
-                            "p-5",
-                            "mb-5",
-                            "rounded-md",
-                            "bg-gray-50 dark:bg-gray-800",
-                        )}
-                    >
-                        <Link
-                            to={post.permalink}
-                            rel="dofollow"
-                            className={clsx(
-                                "font-bold",
-                                "text-gray-800 dark:text-gray-200",
-                                "no-underline",
-                                "hover:no-underline hover:text-gray-800",
-                                "mb-2",
-                            )}
-                        >
-                            {post.title}
-                        </Link>
-
-                        <p
-                            className={clsx(
-                                "font-sm",
-                                "text-gray-700 dark:text-gray-400",
-                            )}
-                        >
-                            {post.description}
-                        </p>
-
+        <div
+            className={clsx(
+                "py-10",
+                "blog-sm:py-12",
+                "blog-md:py-16",
+                "px-4",
+                "blog-md:px-8",
+                "w-full",
+                "mx-auto",
+                "blog-2xl:max-w-none",
+                "blog-lg:px-0",
+                "blog-sm:max-w-screen-blog-sm",
+                "max-w-[512px]",
+            )}
+        >
+            <div className="w-full blog-sm:px-6">
+                <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4">
+                    {title}
+                </h2>
+                <div className="flex flex-col">
+                    {posts.map((post) => (
                         <div
-                            id="post-info"
-                            className="text-gray-600 dark:text-gray-400 text-sm flex gap-2 items-center"
+                            key={post.permalink ?? post.id}
+                            className={clsx(
+                                "flex",
+                                "flex-col",
+                                "p-5",
+                                "mb-5",
+                                "rounded-md",
+                                "bg-gray-50 dark:bg-gray-800",
+                            )}
                         >
                             <Link
-                                to={`/blog/author/${post.authors[0]?.key}`}
-                                itemProp="url"
-                                id="author-name"
-                                className="text-gray-600 dark:text-gray-400 no-underline hover:no-underline hover:text-gray-600"
+                                to={post.permalink}
+                                rel="dofollow"
+                                className={clsx(
+                                    "font-bold",
+                                    "text-gray-800 dark:text-gray-200",
+                                    "no-underline",
+                                    "hover:no-underline hover:text-gray-800",
+                                    "mb-2",
+                                )}
                             >
-                                {post.authors[0]?.name}
+                                {post.title}
                             </Link>
-                            <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
-                            <Date
-                                date={post.date}
-                                formattedDate={post.formattedDate}
-                            />
+
+                            <p
+                                className={clsx(
+                                    "font-sm",
+                                    "text-gray-700 dark:text-gray-400",
+                                )}
+                            >
+                                {post.description}
+                            </p>
+
+                            <div
+                                id="post-info"
+                                className="text-gray-600 dark:text-gray-400 text-sm flex gap-2 items-center"
+                            >
+                                <Link
+                                    to={`/blog/author/${post.authors[0]?.key}`}
+                                    itemProp="url"
+                                    id="author-name"
+                                    className="text-gray-600 dark:text-gray-400 no-underline hover:no-underline hover:text-gray-600"
+                                >
+                                    {post.authors[0]?.name}
+                                </Link>
+                                <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                                <Date
+                                    date={post.date}
+                                    formattedDate={post.formattedDate}
+                                />
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );
