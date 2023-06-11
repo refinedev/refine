@@ -126,6 +126,10 @@
     @apply border-none;
 }
 
+.refine-toc-item {
+    @apply cursor-pointer;
+}
+
 .refine-toc-item code::before,
 .refine-toc-item code::after {
     content: "";
