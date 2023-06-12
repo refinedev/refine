@@ -119,8 +119,8 @@ const siteConfig = {
     ],
     themeConfig: {
         prism: {
-            theme: require("prism-react-renderer/themes/vsDark"),
-            darkTheme: require("prism-react-renderer/themes/vsDark"),
+            theme: require("prism-react-renderer/themes/nightOwl"),
+            darkTheme: require("prism-react-renderer/themes/nightOwl"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!
                 {
