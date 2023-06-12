@@ -71,6 +71,7 @@ export default function TagsList({ tags }) {
     return (
         <div
             className={clsx(
+                "not-prose",
                 "flex",
                 "justify-between",
                 "items-start",
@@ -84,11 +85,14 @@ export default function TagsList({ tags }) {
                     "flex-1",
                     "m-0",
                     "p-0",
-                    collapsed && "h-[40px]",
+                    collapsed && "h-8",
                 )}
             >
                 {sortedTags.map((tag) => (
-                    <li className={clsx("inline-flex")} key={tag.permalink}>
+                    <li
+                        className={clsx("inline-flex", "m-1")}
+                        key={tag.permalink}
+                    >
                         <Tag {...tag} label={mapLabel(tag.label)} />
                     </li>
                 ))}
@@ -108,7 +112,7 @@ export default function TagsList({ tags }) {
                     "rounded",
                     "py-1",
                     "px-2",
-                    "mt-2 mr-2",
+                    "mt-1",
                 )}
             >
                 Show More <ChevronDownIcon />

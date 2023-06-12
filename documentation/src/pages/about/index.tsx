@@ -28,6 +28,7 @@ const About: React.FC = () => {
                 <CommonHeader hasSticky={true} />
                 <div
                     className={clsx(
+                        "not-prose",
                         "xl:max-w-[944px] xl:py-16",
                         "lg:max-w-[912px] lg:py-10",
                         "md:max-w-[624px] md:text-4xl  md:pb-6 pt-6",
@@ -38,6 +39,7 @@ const About: React.FC = () => {
                 >
                     <h1
                         className={clsx(
+                            "font-semibold",
                             "!mb-0",
                             "text-gray-900 dark:text-gray-0",
                             "text-xl md:text-[40px] md:leading-[56px]",

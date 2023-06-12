@@ -22,14 +22,35 @@ const AuthorCard = ({ author }) => {
         author.github || author.twitter || author.linkedin;
 
     return (
-        <div className={clsx("flex", "justify-between", "items-center")}>
+        <div
+            className={clsx(
+                "flex",
+                "justify-between",
+                "items-center",
+
+                "px-4",
+                "max-w-[512px]",
+                "blog-md:px-7",
+                "blog-md:max-w-screen-blog-md",
+                "blog-2xl:px-0",
+                "blog-2xl:max-w-screen-blog-md",
+                "w-full",
+                "mx-auto",
+            )}
+        >
             <div className="flex items-center">
                 <Link to={`/blog/author/${author?.key}`} itemProp="url">
                     <img
                         src={author?.imageURL}
                         alt={author?.name}
                         loading="lazy"
-                        className="flex h-[120px] w-[120px] rounded-full object-cover"
+                        className={clsx(
+                            "flex",
+                            "h-12 w-12",
+                            "blog-sm:h-[88px] blog-sm:w-[88px]",
+                            "blog-md:h-[120px] blog-md:w-[120px]",
+                            "rounded-full object-cover",
+                        )}
                     />
                 </Link>
                 <div className="ml-3">

@@ -36,14 +36,21 @@ export const BlogPostPageView = ({ children }) => {
         siteConfig: { url },
     } = useDocusaurusContext();
 
-    // data-className="py-3 px-3 md:py-6 md:px-14"
     return (
         <BlogPostItemContainer
             className={clsx(
-                "lg:max-w-[864px] lg:py-16", // lg:py-16
-                "md:max-w-[656px] py-9", // py-10
-                "max-w-[360px]",
-                "w-full mx-auto",
+                "py-10",
+                "blog-sm:py-12",
+                "blog-md:py-16",
+                "px-4",
+                "blog-md:px-8",
+                "w-full",
+                "mx-auto",
+                "blog-2xl:max-w-none",
+                "blog-xl:px-0",
+                "blog-2xl:px-8",
+                "blog-sm:max-w-screen-blog-sm",
+                "max-w-[512px]",
             )}
         >
             <div
@@ -51,12 +58,12 @@ export const BlogPostPageView = ({ children }) => {
                     "flex",
                     "justify-between",
                     "items-center",
-                    "md:px-6",
+                    "blog-sm:px-6",
                 )}
             >
                 <Link
                     to="/blog"
-                    className={clsx("text-gray-500 text-sm no-underline")}
+                    className={clsx("!text-gray-500 text-sm no-underline")}
                 >
                     ← Back to blog
                 </Link>
@@ -102,7 +109,7 @@ export const BlogPostPageView = ({ children }) => {
                     alt={title}
                 />
             </div>
-            <div className="md:px-6">
+            <div className="blog-sm:px-6">
                 <div className="mb-6 text-sm">
                     <div
                         className={clsx(

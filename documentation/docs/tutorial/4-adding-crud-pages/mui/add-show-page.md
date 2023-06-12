@@ -130,7 +130,7 @@ render(<App />);
 
 -   All other components are **Material UI** components that are used to show the record data.
 
-    > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/)
+    > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 

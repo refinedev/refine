@@ -222,6 +222,12 @@ module.exports = {
             "landing-lg": "960px",
             "landing-xl": "1200px",
             "landing-2xl": "1440px",
+            "blog-sm": "688px",
+            "blog-md": "1000px",
+            "blog-lg": "1280px",
+            "blog-max": "1408px",
+            "blog-xl": "1440px",
+            "blog-2xl": "1584px",
         },
     },
     plugins: [

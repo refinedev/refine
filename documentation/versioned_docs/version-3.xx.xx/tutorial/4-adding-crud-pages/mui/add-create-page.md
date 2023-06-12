@@ -103,7 +103,7 @@ We will go through the create page components and hooks one by one.
 
 -   All other components provided by **Material UI** are used to display the form fields.
 
-    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/)
+    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 

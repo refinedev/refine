@@ -1,6 +1,6 @@
 ---
 title: How to use Material UI Select in React
-description: We'll discover the Material UI (MUI) select component with examples
+description: We'll discover the Material UI select component with examples
 slug: material-ui-select-component
 authors: doro_onome
 tags: [material-ui, react]
@@ -20,19 +20,19 @@ hide_table_of_contents: false
  
 
 ## Introduction
-Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is MUIs Select, which is an input field that showcases a list of customisable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
+Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customisable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
 
 Steps we'll cover:
 - [What is Material UI](#what-is-material-ui)
 - [Getting Started with Material UI Select](#getting-started-with-material-ui-select)
 - [The Option component](#the-option-component)
-- [Other MUI Select features](#other-mui-select-features)
+- [Other Material UI Select features](#other-material-ui-select-features)
   - [Indicator](#indicator)
   - [Decorator](#decorator)
   - [Grouped Options](#grouped-options)
 - [Clearing the Select field](#clearing-the-select-field)
 - [Accessibility](#accessibility)
-- [Building a Sign-up Form UI with React and MUI Select](#building-a-sign-up-form-ui-with-react-and-mui-select)
+- [Building a Sign-up Form UI with React and Material UI Select](#building-a-sign-up-form-ui-with-react-and-material-ui-select)
 
 ## What is Material UI
 Material UI is a React framework based on  [Google's Material Design](https://material.io/design/introduction) that contains all the tools required to create a web application. Material UI empowers developers to build desktop and mobile web apps for companies by leveraging widely available responsive components. Many developers now use Material UI to structure their projects since it simplifies and improves web design.
@@ -81,7 +81,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/first.png"  alt="MUI select initial" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/first.png"  alt="Material UI select initial" />
 </div>
 
 
@@ -160,7 +160,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-option.gif"  alt="MUI select option" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-option.gif"  alt="Material UI select option" />
 </div>
 
 
@@ -172,7 +172,7 @@ Here’s the result:
 
 ---
 
-## Other MUI Select features
+## Other Material UI Select features
 
 ### Indicator
 You can modify the default indicator in the `<Select></Select>` component by using the `indicator` prop. The value of the prop can be a string, array, component, or any other React element.
@@ -216,7 +216,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-indicator.gif"  alt="MUI select indicator" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-indicator.gif"  alt="Material UI select indicator" />
 </div>
 
 
@@ -251,14 +251,14 @@ export default function SelectDecorators() {
 }
 ```
 
-The code above depicts a simple Select field with the start and end decorators represented by MUIs `AttachMoneyIcon` and `AddCircleIcon`, respectively.
+The code above depicts a simple Select field with the start and end decorators represented by Material UI's `AttachMoneyIcon` and `AddCircleIcon`, respectively.
 
 Here’s the result:
 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-decorator.gif"  alt="MUI select decorator" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-decorator.gif"  alt="Material UI select decorator" />
 </div>
 
 
@@ -361,7 +361,7 @@ The preceding code shows a `Select` field with organised input values. As shown 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-grouped.gif"  alt="MUI select grouped" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-grouped.gif"  alt="Material UI select grouped" />
 </div>
 
 
@@ -389,7 +389,7 @@ The preceding code shows a `Select` field with organised input values. As shown 
 </div>
 
 ## Clearing the Select field
-You can clear the values in the **MUI Select** field just like any other input component. Use the `IconButton` component as a Select decorator, then add the logic that clears the values.
+You can clear the values in the **Material UI Select** field just like any other input component. Use the `IconButton` component as a Select decorator, then add the logic that clears the values.
 
 Here’s how:
 
@@ -446,12 +446,12 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-clearing.gif"  alt="MUI select clearing" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-clearing.gif"  alt="Material UI select clearing" />
 </div>
 
 
 ## Accessibility
-To make **MUI Select** accessible, you must associate it with a `label`. The `FormControl` component automatically produces a unique id that ties the `Select` to the `FormLabel` component.
+To make **Material UI Select** accessible, you must associate it with a `label`. The `FormControl` component automatically produces a unique id that ties the `Select` to the `FormLabel` component.
 
 Consider the code below:
 
@@ -478,8 +478,8 @@ Consider the code below:
 
 
 
-## Building a Sign-up Form UI with React and MUI Select
-You can use Material UI `Select` for a wide range of purposes on a website, but nothing fully demonstrates its capabilities like a form component. For the sake of this tutorial, we will showcase the use of MUI `Select` in a simple Sign-up form.
+## Building a Sign-up Form UI with React and Material UI Select
+You can use Material UI `Select` for a wide range of purposes on a website, but nothing fully demonstrates its capabilities like a form component. For the sake of this tutorial, we will showcase the use of Material UI `Select` in a simple Sign-up form.
 
 Here’s the code:
 
@@ -557,12 +557,12 @@ And the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.gif"  alt="MUI select option" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.gif"  alt="Material UI select option" />
 </div>
 
 
 ## Conclusion
-This article covered the **Material UI Select** component, navigated its features, and highlighted its functionalities in a React application. We also investigated a use case by developing a Sign-up form UI in React with **MUI Select**. I hope you find this post helpful. 
+This article covered the **Material UI Select** component, navigated its features, and highlighted its functionalities in a React application. We also investigated a use case by developing a Sign-up form UI in React with **Material UI Select**. I hope you find this post helpful. 
 
  
 

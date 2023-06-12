@@ -59,7 +59,13 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
                                 />
                             )}
                         </header>
-                        <article className={clsx("grid grid-cols-2", "gap-4")}>
+                        <article
+                            className={clsx(
+                                "grid grid-cols-2",
+                                "gap-4",
+                                "not-prose",
+                            )}
+                        >
                             <DocCardList items={category.items} />
                         </article>
                     </div>
