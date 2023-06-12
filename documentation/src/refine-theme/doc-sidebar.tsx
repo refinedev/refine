@@ -185,14 +185,15 @@ const SidebarCategory = ({
                     !collapsed && settled && "max-h-[2500px]",
                 )}
             >
-                {renderItems({
-                    items: item?.items ?? [],
-                    path: path,
-                    line: !isHeader,
-                    fromHeader: isHeader,
-                    variant,
-                    onLinkClick,
-                })}
+                {!collapsed &&
+                    renderItems({
+                        items: item?.items ?? [],
+                        path: path,
+                        line: !isHeader,
+                        fromHeader: isHeader,
+                        variant,
+                        onLinkClick,
+                    })}
             </div>
         </div>
     );
