@@ -21,7 +21,7 @@
     "rc-upload": "^4.3.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "6.11.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
