@@ -24,10 +24,10 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
             <Dialog as="div" className="relative z-modal" onClose={onClose}>
                 <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-200"
+                    enter="ease-out duration-75"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
-                    leave="ease-in duration-200"
+                    leave="ease-in duration-75"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
@@ -38,23 +38,25 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                     <div className="flex min-h-full items-start justify-center">
                         <Transition.Child
                             as={Fragment}
-                            enter="ease-out duration-200"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
+                            enter="ease-out duration-75"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-75"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
                         >
                             <Dialog.Panel
                                 className={clsx(
                                     "w-full h-screen",
                                     "flex flex-col",
-                                    "py-3",
+                                    "py-2 sm:py-3",
+                                    "px-2 sm:px-6",
                                 )}
                             >
                                 <div
                                     className={clsx(
-                                        "w-full px-6",
+                                        "w-full h-8 sm:h-10",
+                                        "px-2 sm:px-0",
                                         "flex items-center justify-between",
                                     )}
                                 >
@@ -75,8 +77,8 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                                     className={clsx(
                                         "relative",
                                         "bg-gray-0 dark:bg-gray-900",
-                                        "w-full max-w-[480px] h-[80%]",
-                                        "mx-auto my-auto",
+                                        "w-full max-w-[480px] h-full",
+                                        "mx-auto mt-4 mb-4 sm:mt-4 sm:mb-8",
                                         "overflow-scroll",
                                         "rounded-lg",
                                         "border border-gray-200 dark:border-gray-600",
@@ -111,7 +113,9 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                                 <div
                                     className={clsx(
                                         "flex items-center justify-between",
-                                        "px-6 mt-auto",
+                                        "mt-2",
+                                        "px-2 sm:px-0",
+                                        "pb-6 sm:pb-3",
                                     )}
                                 >
                                     <CommonHomeButton />
