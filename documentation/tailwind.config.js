@@ -51,7 +51,7 @@ module.exports = {
             },
             fontFamily: {
                 sans: ["Outfit", ...defaultTheme.fontFamily.sans],
-                mono: ["Roboto Mono", ...defaultTheme.fontFamily.mono],
+                mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
