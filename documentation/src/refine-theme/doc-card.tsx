@@ -39,7 +39,8 @@ function CardLayout({ href, icon, title, description }) {
                 )}
                 title={title}
             >
-                {icon} {title}
+                <span className="mr-2">{icon}</span>
+                <span>{title}</span>
             </h2>
             {description && (
                 <p
@@ -49,6 +50,7 @@ function CardLayout({ href, icon, title, description }) {
                         "text-sm leading-6",
                         "dark:text-gray-400 text-gray-700",
                         "font-normal",
+                        "refine-prose",
                     )}
                     title={description}
                 >
