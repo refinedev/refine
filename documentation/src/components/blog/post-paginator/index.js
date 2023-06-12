@@ -25,7 +25,7 @@ export const PostPaginator = ({ posts, title }) => {
                 "max-w-[512px]",
             )}
         >
-            <div className="w-full blog-sm:px-6">
+            <div className="w-full blog-sm:px-6 blog-2xl:px-8">
                 <h2 className="text-gray-900 dark:text-gray-200 text-2xl font-semibold p-0 m-0 mb-4">
                     {title}
                 </h2>
