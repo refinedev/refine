@@ -94,6 +94,7 @@ const SidebarCategory = ({
                 isNavLink
                 href={item.href}
                 className={clsx(
+                    isHeader && item.label !== "Getting Started" && "mt-10",
                     isHeader && "cursor-default",
                     "w-full",
                     "min-h-[40px]",
