@@ -33,10 +33,10 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
             >
                 <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
+                    enter="ease-out duration-75"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
-                    leave="ease-in duration-200"
+                    leave="ease-in duration-75"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
@@ -59,7 +59,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                                     "rounded-lg",
                                     "hover:brightness-105",
                                     "active:scale-90",
-                                    "transition-transform duration-200 ease-in-out",
+                                    "transition-transform duration-75 ease-in-out",
                                 )}
                             >
                                 <CloseIcon
@@ -88,10 +88,10 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                     >
                         <Transition.Child
                             as={Fragment}
-                            enter="ease-out duration-300"
+                            enter="ease-out duration-75"
                             enterFrom="opacity-0 scale-95"
                             enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
+                            leave="ease-in duration-75"
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
