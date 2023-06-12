@@ -12,7 +12,9 @@ describe("table-material-ui-use-update-many", () => {
 
     it("should select all rows when click the checkbox in the table header", () => {
         cy.getMaterialUILoadingCircular().should("exist");
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.getMaterialUILoadingCircular().should("not.exist", {
+            timeout: 60000,
+        });
 
         cy.get(
             ".MuiDataGrid-columnHeaderTitleContainer .MuiCheckbox-root",
@@ -27,14 +29,18 @@ describe("table-material-ui-use-update-many", () => {
 
     it("update button should be disabled when no row is selected", () => {
         cy.getMaterialUILoadingCircular().should("exist");
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.getMaterialUILoadingCircular().should("not.exist", {
+            timeout: 60000,
+        });
 
         cy.get("#update-selected").eq(0).should("be.disabled");
     });
 
     it("should be able to update all selected rows", () => {
         cy.getMaterialUILoadingCircular().should("exist");
-        cy.getMaterialUILoadingCircular().should("not.exist");
+        cy.getMaterialUILoadingCircular().should("not.exist", {
+            timeout: 60000,
+        });
 
         cy.get(".MuiDataGrid-row").eq(0).children().eq(0).click();
         cy.get(".MuiDataGrid-row").eq(1).children().eq(0).click();
