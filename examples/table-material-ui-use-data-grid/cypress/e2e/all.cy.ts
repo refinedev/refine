@@ -31,14 +31,7 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.wait("@getDescPosts");
 
-        cy.intercept(
-            {
-                url: "/posts*",
-            },
-            {
-                fixture: "posts.json",
-            },
-        ).as("getPosts");
+        cy.interceptGETPosts();
 
         cy.getMaterialUIColumnHeader(2).click();
 
