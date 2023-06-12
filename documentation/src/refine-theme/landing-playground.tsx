@@ -269,6 +269,7 @@ export const LandingPlayground = () => {
                                                 "pr-8",
                                                 "landing-lg:pr-16",
                                                 "gap-4 landing-lg:gap-8",
+                                                "animation-parent",
                                             )}
                                         >
                                             <div
@@ -278,22 +279,55 @@ export const LandingPlayground = () => {
                                                     "w-[90px]",
                                                     "landing-lg:w-[177px]",
                                                     "rotate-[15deg]",
-                                                    "bg-landing-playground-slide-left-bg",
-                                                    "bg-[length:88px_1655px]",
-                                                    "landing-lg:bg-[length:177px_3329px]",
-                                                    "bg-[position:top_0px_left]",
-                                                    "landing-md:animate-playground-slide-down-mobile",
-                                                    "landing-lg:animate-playground-slide-down",
+                                                    "overflow-hidden",
+                                                    "animation-parent",
                                                     "landing-playground-slide-mask",
-                                                    "bg-repeat-y",
                                                 )}
-                                                style={{
-                                                    animationPlayState:
-                                                        params.playground
-                                                            ? "paused"
-                                                            : "running",
-                                                }}
-                                            />
+                                            >
+                                                <div
+                                                    className={clsx(
+                                                        "flex flex-col",
+                                                        "animate-playground-slide-down-mobile",
+                                                        "landing-lg:animate-playground-slide-down",
+                                                        "transition-transform duration-100 ease-in-out",
+                                                        "will-change-transform",
+                                                        "animation-parent",
+                                                    )}
+                                                >
+                                                    <img
+                                                        src="assets/landing-playground-slide-left.svg"
+                                                        className={clsx(
+                                                            "w-[90px]",
+                                                            "h-[1655px]",
+                                                            "landing-lg:w-[177px]",
+                                                            "landing-lg:h-[3329px]",
+                                                        )}
+                                                        style={{
+                                                            transform:
+                                                                "translateZ(0)",
+                                                            perspective: "1000",
+                                                            backfaceVisibility:
+                                                                "hidden",
+                                                        }}
+                                                    />
+                                                    <img
+                                                        src="assets/landing-playground-slide-left.svg"
+                                                        className={clsx(
+                                                            "w-[90px]",
+                                                            "h-[1655px]",
+                                                            "landing-lg:w-[177px]",
+                                                            "landing-lg:h-[3329px]",
+                                                        )}
+                                                        style={{
+                                                            transform:
+                                                                "translateZ(0)",
+                                                            perspective: "1000",
+                                                            backfaceVisibility:
+                                                                "hidden",
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
                                             <div
                                                 className={clsx(
                                                     "-mt-[10%]",
@@ -301,22 +335,53 @@ export const LandingPlayground = () => {
                                                     "w-[90px]",
                                                     "landing-lg:w-[177px]",
                                                     "rotate-[15deg]",
-                                                    "bg-landing-playground-slide-right-bg",
-                                                    "bg-[length:88px_1655px]",
-                                                    "landing-lg:bg-[length:177px_3328px]",
-                                                    "bg-[position:top_0px_left]",
-                                                    "landing-md:animate-playground-slide-up-mobile",
-                                                    "landing-lg:animate-playground-slide-up",
+                                                    "overflow-hidden",
+                                                    "animation-parent",
                                                     "landing-playground-slide-mask",
-                                                    "bg-repeat-y",
                                                 )}
-                                                style={{
-                                                    animationPlayState:
-                                                        params.playground
-                                                            ? "paused"
-                                                            : "running",
-                                                }}
-                                            />
+                                            >
+                                                <div
+                                                    className={clsx(
+                                                        "flex flex-col",
+                                                        "animate-playground-slide-up-mobile",
+                                                        "landing-lg:animate-playground-slide-up",
+                                                        "will-change-transform",
+                                                    )}
+                                                >
+                                                    <img
+                                                        src="assets/landing-playground-slide-right.svg"
+                                                        className={clsx(
+                                                            "w-[90px]",
+                                                            "h-[1655px]",
+                                                            "landing-lg:w-[177px]",
+                                                            "landing-lg:h-[3329px]",
+                                                        )}
+                                                        style={{
+                                                            transform:
+                                                                "translateZ(0)",
+                                                            perspective: "1000",
+                                                            backfaceVisibility:
+                                                                "hidden",
+                                                        }}
+                                                    />
+                                                    <img
+                                                        src="assets/landing-playground-slide-right.svg"
+                                                        className={clsx(
+                                                            "w-[90px]",
+                                                            "h-[1655px]",
+                                                            "landing-lg:w-[177px]",
+                                                            "landing-lg:h-[3329px]",
+                                                        )}
+                                                        style={{
+                                                            transform:
+                                                                "translateZ(0)",
+                                                            perspective: "1000",
+                                                            backfaceVisibility:
+                                                                "hidden",
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

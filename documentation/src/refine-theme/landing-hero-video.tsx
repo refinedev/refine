@@ -43,9 +43,8 @@ export const LandingHeroVideo = () => {
                     "aspect-[592/348]",
                     "w-full h-full",
                     "z-[1]",
-                    // "bg-landing-hero-mobile-animation-bg",
-                    // "bg-contain bg-no-repeat bg-bottom",
                     "relative",
+                    "animation-parent",
                 )}
             >
                 <LandingHeroMobileAnimation className="w-full h-auto" />
@@ -62,6 +61,7 @@ export const LandingHeroVideo = () => {
                     "bg-landing-hero-video-bg",
                     "bg-contain bg-no-repeat bg-center",
                     "relative",
+                    "animation-parent",
                 )}
             >
                 <video

@@ -163,46 +163,46 @@ module.exports = {
                 },
                 "playground-slide-down-mobile": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                     "99.99%": {
-                        "background-position": "top 1655px left",
+                        transform: "translateY(-1655px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                 },
                 "playground-slide-down": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                     "99.99%": {
-                        "background-position": "top 3329px left",
+                        transform: "translateY(-3329px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                 },
                 "playground-slide-up-mobile": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-1655px)",
                     },
                     "99.99%": {
-                        "background-position": "top -1655px left",
+                        transform: "translateY(0px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-1655px)",
                     },
                 },
                 "playground-slide-up": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-3328px)",
                     },
                     "99.99%": {
-                        "background-position": "top -3328px left",
+                        transform: "translateY(0px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-3328px)",
                     },
                 },
             },
