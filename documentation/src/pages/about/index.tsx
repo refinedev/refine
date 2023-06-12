@@ -54,7 +54,7 @@ const About: React.FC = () => {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#FF9933] to-[#FF4C4D]">
                             fewer resources
                         </span>
-                        .{colorMode}
+                        .
                     </h1>
                 </div>
                 <div
