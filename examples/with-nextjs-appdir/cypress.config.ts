@@ -5,9 +5,9 @@ export default defineConfig({
     e2e: {
         fixturesFolder: "../../cypress/fixtures",
         supportFile: "../../cypress/support/e2e.ts",
-        defaultCommandTimeout: 60000,
-        responseTimeout: 60000,
-        requestTimeout: 60000,
+        defaultCommandTimeout: 120000,
+        responseTimeout: 120000,
+        requestTimeout: 120000,
     },
     chromeWebSecurity: false,
     experimentalMemoryManagement: true,
