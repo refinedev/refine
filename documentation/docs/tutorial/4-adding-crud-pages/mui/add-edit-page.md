@@ -130,7 +130,7 @@ render(<App />);
 
 -   All other components provided by **Material UI** are used to display the form fields.
 
-    > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/)
+    > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 

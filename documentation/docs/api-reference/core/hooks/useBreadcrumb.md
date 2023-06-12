@@ -130,17 +130,17 @@ If you have a nested resource definition as below:
 
 ### Adding a Home/Root Page
 
-In earlier versions of **refine**, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **refine**, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
+In earlier versions of **refine**, `<Refine>` component accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **refine**, `DashboardPage` is deprecated. You can now define an index route manually in your router package.
 
-In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
+In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, but now it is rendered if you define an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
 
 ```tsx
 [
     {
         name: "dashboard", // name of the resource is not important for the `useBreadcrumb` hook
         list: "/", // If any one of your resources has a list action with `/` route, the home icon will be rendered
-    }
-]
+    },
+];
 ```
 
 ## i18n support
@@ -151,9 +151,9 @@ If the `resource` definition has a `label` property, `useBreadcrumbs` uses the `
 
 If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/api-reference/core/hooks/translate/useTranslate.md) hook to translate the names.
 
-For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate key `` translate(`actions.${action}`) ``.
+For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate the key `` translate(`actions.${action}`) ``.
 
-For example; `create` action should look like : `` translate(`actions.create`) ``
+For example, `create` action should look like: `` translate(`actions.create`) ``
 
 :::
 

@@ -14,7 +14,7 @@ body {
 
 `useMenu` is used to get menu items derived from the resources. These items include a link to the dashboard page (if it exists) and links to the user-defined resources (passed as children to `<Refine>`).
 
-This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) and, [`@refinedev/mantine`](/docs/api-reference/mantine/) packages are using this hook as a base for their menus.
+This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside the [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) and, [`@refinedev/mantine`](/docs/api-reference/mantine/) packages for example use this hook as a base for their menus.
 
 ```ts
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
@@ -155,22 +155,19 @@ const App: React.FC = () => {
 render(App);
 ```
 
-We created `<Layout>` with a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the `useMenu` hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. Also [`useNavigation`][use-navigation] hook can be used to navigate between routes.
+We created `<Layout>` with a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the `useMenu` hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. The [`useNavigation`][use-navigation] hook can be used for navigating between routes as well.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
-:::tip
-
-[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/docs/advanced-tutorials/custom-layout/)  
-:::
-
 After creating the `<Layout/>` component, we can use it in our application. We need to pass it to the `<Refine/>` component as a prop.
+
+> For more information on layout customization, refer to the [Custom Layout guide &#8594](/docs/advanced-tutorials/custom-layout/)
 
 ### Multi Level Menus
 
 `useMenu` hook comes out of the box with multi level menu support, you can render menu items recursively to get a multi level menu.
 
-Update your `resources` in `<Refine/>` with `meta.parent` to nest them inside a label.
+Update your `resources` in `<Refine/>` with `meta.parent` to nest them inside a label:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -317,13 +314,13 @@ However, if you set `hideOnMissingParameter` to `false` when calling `useMenu`, 
 
 ### `meta`
 
-An object of parameters to use when additional parameters are present in the resource paths. Such as, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu, you can do;
+An object of parameters to use when additional parameters are present in the resource paths. For example, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu:
 
 ```ts
 const { menuItems } = useMenu({ meta: { authorId: 123 } });
 ```
 
-If there is already an `authorId` parameter in the current URL or in the `meta` property of the resource definition, useMenu will use this parameter by default. You can override this behavior by passing the `meta` property to the `useMenu` hook.
+If there is already an `authorId` parameter in the current URL or in the `meta` property of the resource definition, `useMenu` will use this parameter by default. You can override this behavior by passing the `meta` property to the `useMenu` hook.
 
 ## Return Values
 

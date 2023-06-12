@@ -58,21 +58,12 @@ function App() {
 export default App;
 ```
 Output:
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/blank-page-error.png" alt="blank" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/blank-page-error.png" alt="blank" />
 
 <br/>
 
 Inspecting the console would throw a similar error as shown below:
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/initialize-error.png" alt="initializeError" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/initialize-error.png" alt="initializeError" />
 <br/>
 
 Newer developers often make this mistake when initializing their state, especially when fetching data from a server or database, as the retrieved data is expected to update the state with the actual user object. However, this is bad practice and could lead to expected behavior, as shown above.
@@ -99,14 +90,7 @@ function App() {
 export default App;
 ```
 Output:
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="fixBlankPage" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="fixBlankPage" />
 
 <br/>
 
@@ -172,9 +156,7 @@ export default App;
 
 Output error:
 
-<div class="img-container">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/chain-error.png" alt="chain" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/chain-error.png" alt="chain" />
 <br/>
 
 
@@ -236,14 +218,7 @@ export default App;
 
 The output:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update.gif" alt="directUpdateGif" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update.gif" alt="directUpdateGif" />
 
 <br/>
 
@@ -281,14 +256,7 @@ function App() {
 
 Pay attention to the bug in the output:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="directUpdateError" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="directUpdateError" />
 
 <br/>
 
@@ -328,14 +296,7 @@ export default App;
 ```
 
 Output:
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="functionalState" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="functionalState" />
 
 <br/>
 
@@ -375,14 +336,7 @@ export default function App() {
 
 Initial state before the button is clicked:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state.png" alt="objectState" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state.png" alt="objectState" />
 
 <br/>
 
@@ -390,14 +344,7 @@ Updated state after the button is clicked:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="objectStateError" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="objectStateError" />
 
 <br/>
 
@@ -434,14 +381,7 @@ export default function App() {
 
 Updated state after the button is clicked:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="objectAssign" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="objectAssign" />
 
 <br/>
 

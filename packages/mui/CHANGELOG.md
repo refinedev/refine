@@ -1,5 +1,41 @@
 # @pankod/refine-mui
 
+## 5.1.0
+
+### Minor Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `@mui/x-data-grid` dependency to the latest version (`v6`). This update introduces some changes to the existing codebases which are addressed in Material UI's migration guide for `@mui/x-data-grid` from `v5` to `v6`. We've created a simple migration guide to navigate refine users through the changes that might be required in their codebases. While this guide does not cover all the changes, it will help you get started with the migration process.
+
+    **Breaking Changes**
+
+    `useDataGrid` no longer returns `page`, `pageSize`, `onPageChange` and `onPageSizeChange`. According to the changes in the `DataGrid` API, `useDataGrid` now returns `paginationModel` and `onPaginationModelChange` props which are used to control the pagination state of the `DataGrid` and contains the previous logic of `page`, `pageSize`, `onPageChange` and `onPageSizeChange`.
+
+    With this release, the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `@context` alias to the declaration configuration, this was causing buildtime errors when creating declarations for the package.
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added `overflow: auto` and `overflow: clip` (if supported) properties to the content container of the `ThemedLayoutV2` to make sure the `DataGrid` component doesn't break the layout.
+
+## 5.0.0
+
+### Major Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `@mui/x-data-grid` dependency to the latest version (`v6`). This update introduces some changes to the existing codebases which are addressed in Material UI's migration guide for `@mui/x-data-grid` from `v5` to `v6`. We've created a simple migration guide to navigate refine users through the changes that might be required in their codebases. While this guide does not cover all the changes, it will help you get started with the migration process.
+
+    **Breaking Changes**
+
+    `useDataGrid` no longer returns `page`, `pageSize`, `onPageChange` and `onPageSizeChange`. According to the changes in the `DataGrid` API, `useDataGrid` now returns `paginationModel` and `onPaginationModelChange` props which are used to control the pagination state of the `DataGrid` and contains the previous logic of `page`, `pageSize`, `onPageChange` and `onPageSizeChange`.
+
+    With this release, the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added missing `@context` alias to the declaration configuration, this was causing buildtime errors when creating declarations for the package.
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Added `overflow: auto` and `overflow: clip` (if supported) properties to the content container of the `ThemedLayoutV2` to make sure the `DataGrid` component doesn't break the layout.
+
 ## 4.18.2
 
 ### Patch Changes
@@ -543,7 +579,7 @@
 
 ### Patch Changes
 
--   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for Material UI
 
 -   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
     -   @refinedev/react-hook-form@4.1.6
@@ -552,7 +588,7 @@
 
 ### Patch Changes
 
--   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for Material UI
 
 -   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
     -   @refinedev/react-hook-form@4.1.5
@@ -657,7 +693,7 @@
 
 ### Minor Changes
 
--   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Material UI components.
 
     ```tsx
     import { Refine } from "@refinedev/core";
@@ -734,7 +770,7 @@
 
 ### Minor Changes
 
--   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Material UI components.
 
     ```tsx
     import { Refine } from "@refinedev/core";

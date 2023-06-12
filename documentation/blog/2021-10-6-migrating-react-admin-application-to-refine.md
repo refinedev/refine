@@ -21,7 +21,7 @@ Recently, our team decided to migrate a B2B admin panel of one of our customers 
 
 [refine](https://refine.dev/) is an extremely customizable [Ant Design](https://ant.design/) based [React](https://reactjs.org/) framework for data-intensive applications and it handles most of the CRUD functionality that can be a requirement in many applications, without much effort. Providing the rest of the desired functionality (outside CRUD) is up to you, like in any <strong>React</strong> application.
 
-[React-Admin](https://marmelab.com/react-admin/) is an amazing B2B application framework based on [Material Design](https://material.io/), using [Material UI](https://mui.com/). It provides ready-to-fetch-data components, so you just compose them together to create an application.
+[React-Admin](https://marmelab.com/react-admin/) is an amazing B2B application framework based on [Material Design](https://material.io/), using [Material UI](https://mui.com/material-ui/getting-started/overview/). It provides ready-to-fetch-data components, so you just compose them together to create an application.
 
 <strong>refine</strong> is different in the way it makes you compose your application. refine directly provides <strong>Ant Design</strong> components and some hooks to work with those components. Hooks give you the required props for those Ant Design components.
 
@@ -35,26 +35,12 @@ To learn more about refine, see: https://refine.dev/docs/
 
 This is how it looks before the migration (React-Admin):
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
 <br/>
 
 And this is how it looks like after the migration (refine):
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
 <br/>
 
 Both of these images show a list page of a resource (campaign).
@@ -97,14 +83,7 @@ export default List;
 
 And looks like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
 <br/>
 
 Here's the code that renders this same list in refine:
@@ -253,14 +232,7 @@ export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
 It is long. Because we had to handle selection and bulk delete button manually. That's because refine is decoupled from Ant Design components' code, too. But the advantage here is that you use Ant Design. You can use the Ant Design's Table as however you like, and then connect its data with refine. The point is customizability.
 And it looks like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
 <br/>
 
 In refine, we use Ant Design's [Table](https://ant.design/components/table/) components.
@@ -318,14 +290,7 @@ export default Create;
 
 And it looks like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png" alt="react-admin" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png" alt="react-admin" />
 <br/>
 
 For refine, code of our campaign create page looks like:

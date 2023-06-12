@@ -65,14 +65,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 
 `<FilterDropdown>` will put two buttons for filtering and clearing filter actions.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
 
 <br/>
 

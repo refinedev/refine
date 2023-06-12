@@ -80,15 +80,7 @@ We will go above and beyond to highlight the pros and cons of online text editor
 To start using Codepen,  sign up using your e-mail id, Facebook, Twitter, or GitHub account. After login, type your HTML, CSS, and JavaScript code in their respective panels. Codepen will automatically update the preview. You can also change the default behavior in the settings.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codepen-ide.png"  alt="codepen ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codepen-ide.png"  alt="codepen ide" />
 
 <br />
 
@@ -123,15 +115,7 @@ To start using StackBlitz, sign in using your GitHub account. You can create a p
 
 As a [refine](https://github.com/refinedev/refine) team, we use +100 example code projects on StackBlitz to showcase the features of the framework. 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/stackblitz.png"  alt="stackblitz ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/stackblitz.png"  alt="stackblitz ide" />
 
 <br />
 
@@ -240,15 +224,7 @@ You must first log into your CodeSandbox account. As pointed out above, you can 
 After logging into your CodeSandbox account, grant CodeSandbox access to your GitHub account. Click the button with three dots on the top right. In the drop-down menu, click Preferences and then Integrations. After that, sign into your GitHub account.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codesandbox-form.png"  alt="codesandboxForm ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codesandbox-form.png"  alt="codesandboxForm ide" />
 
 <br />
 
@@ -258,15 +234,7 @@ After logging into your CodeSandbox account, grant CodeSandbox access to your Gi
 
 After successfully connecting your GitHub account as described above, you can import your GitHub repository by clicking the "Create" button at the top right. After that, select the "Import from GitHub" option. CodeSandbox will prompt you for the GitHub repository URL. Enter the GitHub repository URL and then click the "Import" button.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codesandbox-settings.png"  alt="codesandboxSettings ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codesandbox-settings.png"  alt="codesandboxSettings ide" />
 
 <br />
 
@@ -302,15 +270,7 @@ The process of importing a GitHub repository to CodeSandbox described above requ
 JsFiddle is very similar to Codepen. You can use it to work with HTML, CSS, and JavaScript. It also supports some of the most popular front-end frameworks like React, Vue, and Preact. You don't need to log in to start using JsFiddle. Navigate to the [JsFiddle landing page](https://jsfiddle.net/) to launch the editor straight away.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/jsfiddle-editor.png"  alt="jsFiddle ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/jsfiddle-editor.png"  alt="jsFiddle ide" />
 
 <br />
 
@@ -353,15 +313,7 @@ In your Repl account, create a new Repl by clicking the "Create" button on the l
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/repl-form.png"  alt="replForm ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/repl-form.png"  alt="replForm ide" />
 
 <br />
 
@@ -400,15 +352,7 @@ You can use Glitch to prototype, share, and showcase web projects. Like most of 
 Select the "Import from GitHub" option when creating a new project. Enter the full URL of the GitHub repository. Glitch will clone the repository and create a new project for you.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/glitch.png"  alt="glitch ide" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/glitch.png"  alt="glitch ide" />
 
 <br />
 

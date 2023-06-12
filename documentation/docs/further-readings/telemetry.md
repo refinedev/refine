@@ -17,13 +17,13 @@ Tracking is totally **secure** and **anonymous**. It includes no personally iden
 
 ## Why do we need this?
 
-We try to answer the question **how many users are actively using the Refine framework**. This information is critical for open-source projects like Refine to better understand their communities and measure their growth metrics.
+We try to answer the question **how many users are actively using the refine framework**. This information is critical for open-source projects like refine to better understand their communities and measure their growth metrics.
 
 ## How do we collect data?
 
 <Tabs>
     <TabItem value="refine-core" label="refine core" default>
-The tracking happens when a Refine application is loaded on the user's browser. On application init, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev">https://telemetry.refine.dev</a>. The request body is encoded with Base64 to be decoded on Refine servers.
+The tracking happens when a refine application is loaded on the user's browser. On application init, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev">https://telemetry.refine.dev</a>. The request body is encoded with Base64 to be decoded on refine servers.
 
 There are no consequent requests for that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
 

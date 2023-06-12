@@ -141,14 +141,7 @@ The Sider component allows you to create the groups you want in the sider menu. 
 
 This gives you more control over the side menu and allows you to customize it to better suit your needs.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png" alt="multiLevelMenu" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png" alt="multiLevelMenu" />
 <br />
 
 <br/>

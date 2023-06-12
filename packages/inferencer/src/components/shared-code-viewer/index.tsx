@@ -36,7 +36,7 @@ export const SharedCodeViewer: CreateInferencerConfig["codeViewerComponent"] =
         // Visibility Check
         React.useEffect(() => {
             if (typeof window !== "undefined") {
-                const mediaQuery = window.matchMedia("(max-width: 1024px)");
+                const mediaQuery = window.matchMedia("(max-width: 449px)");
                 if (mediaQuery.matches) {
                     setIsVisible(false);
                 } else {

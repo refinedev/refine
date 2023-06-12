@@ -1,6 +1,6 @@
 import { Plugin } from "@docusaurus/types";
-import path from "path";
 import fs from "fs-extra";
+import path from "path";
 
 type DocusaurusDoc = {
     unversionedId: string;

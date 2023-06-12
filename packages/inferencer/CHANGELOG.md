@@ -1,5 +1,52 @@
 # @pankod/refine-mantine
 
+## 4.1.2
+
+### Patch Changes
+
+-   [#4499](https://github.com/refinedev/refine/pull/4499) [`b120a0394f8`](https://github.com/refinedev/refine/commit/b120a0394f89474e5d2c0c085dadf264a36e6607) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: show code button for inferencers was not visible in smaller screens.
+
+## 4.1.1
+
+### Patch Changes
+
+-   [#4499](https://github.com/refinedev/refine/pull/4499) [`b120a0394f8`](https://github.com/refinedev/refine/commit/b120a0394f89474e5d2c0c085dadf264a36e6607) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: show code button for inferencers was not visible in smaller screens.
+
+## 4.1.0
+
+### Minor Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - According to the changes made in `@refinedev/mui` to support the latest version of the `@mui/x-data-grid` package, we've updated the `@refinedev/inferencer` package to support the changes in the generated codes. While the usage of the components did not change, the generated code in Material UI inferencer components have changed.
+
+    **Breaking Changes**
+
+    With this release, the peer dependency of `@refinedev/mui` is updated to `^5.0.0` and the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `ListInferencer` logic to check for `canDelete` property in resource definitions to decide whether to include `DeleteButton` in the actions column of the `List` view or not.
+
+-   Updated dependencies [[`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c)]:
+    -   @refinedev/core@4.20.0
+
+## 4.0.0
+
+### Major Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - According to the changes made in `@refinedev/mui` to support the latest version of the `@mui/x-data-grid` package, we've updated the `@refinedev/inferencer` package to support the changes in the generated codes. While the usage of the components did not change, the generated code in Material UI inferencer components have changed.
+
+    **Breaking Changes**
+
+    With this release, the peer dependency of `@refinedev/mui` is updated to `^5.0.0` and the peer dependency of `@mui/x-data-grid` is updated to `^6.6.0`.
+
+### Patch Changes
+
+-   [#4454](https://github.com/refinedev/refine/pull/4454) [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0) Thanks [@aliemir](https://github.com/aliemir)! - Updated the `ListInferencer` logic to check for `canDelete` property in resource definitions to decide whether to include `DeleteButton` in the actions column of the `List` view or not.
+
+-   Updated dependencies [[`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0), [`4bae8add99f`](https://github.com/refinedev/refine/commit/4bae8add99fa4717fb205263a5550cc0fcfe30c0)]:
+    -   @refinedev/core@4.19.0
+    -   @refinedev/mui@5.0.0
+
 ## 3.5.8
 
 ### Patch Changes

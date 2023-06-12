@@ -36,11 +36,7 @@ Let's revisit the ERD for our **Pdf Invoice Generator** app:
 
 
 
-<div class="img-container">
- <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/database.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/database.png"  alt="react invoice generator" />
 
 <br />
 
@@ -53,15 +49,7 @@ With this in mind, let's go ahead and create collections in our **Strapi** app.
 
 We should use the `Content-Type Builder` again to define these collections. The `missions` collection should look like this:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/mission_collection.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/mission_collection.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -70,15 +58,7 @@ We should use the `Content-Type Builder` again to define these collections. The 
 
 The `invoices` collection should look as below:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_collection.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_collection.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -88,28 +68,12 @@ The `invoices` collection should look as below:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_company.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_company.png"  alt="react crud app airtable" />
 
 <br />
 
 It also has the same `has one` association with `contacts`
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasone.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasone.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -117,15 +81,7 @@ It also has the same `has one` association with `contacts`
 
 It also maintains a `has many` association with `missions`:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasmany.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasmany.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -139,15 +95,7 @@ Like we did before with the `companies`, `clients` and `contacts` collections, w
 We can do this from the following path in our **Strapi** app: `/admin/settings/users-permissions/roles/1`
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/authenticated.png"  alt="react crud app airtable" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/authenticated.png"  alt="react crud app airtable" />
 
 <br />
 
@@ -570,16 +518,7 @@ It's render is trigerred by a click on the `<EditButton />` placed inside a `<Ta
 Ok. With these views completed, we should be able to create, list and show `missions` records from our app.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/edit_view.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/edit_view.png"  alt="react invoice generator" />
 
 <br />
 
@@ -977,16 +916,7 @@ We are using multiple `useSelect()` hooks that allow us fetch `companies`, `miss
 With these components added, we should be able to create, list and edit invoices.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/useselect.png"  alt="react invoice generator" />
-
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/useselect.png"  alt="react invoice generator" />
 
 <br />
 

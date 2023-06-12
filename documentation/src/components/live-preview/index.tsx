@@ -13,6 +13,7 @@ import { Conditional } from "../conditional";
 import { splitCode } from "../../utils/split-code";
 import { useLivePreviewContext } from "../live-preview-context";
 import Buffer from "buffer";
+import { ArrowUpIcon } from "@site/src/refine-theme/icons/arrow-up";
 
 global.Buffer = global.Buffer || Buffer.Buffer;
 
@@ -98,35 +99,120 @@ const LivePreviewFrame = React.memo(LivePreviewFrameBase, (prev, next) => {
  * Editor with header
  */
 function Editor({ hidden, code }: { hidden: boolean; code: string }) {
+    const ref = React.useRef<HTMLDivElement>(null);
     const [visible, setVisible] = React.useState(!hidden);
+    const [settled, setSettled] = React.useState(!hidden);
+
+    const onToggle = () => {
+        if (!visible) {
+            setSettled(false);
+            setVisible((p) => !p);
+
+            setTimeout(() => {
+                setSettled(true);
+            }, 300);
+        } else {
+            setSettled(false);
+            setTimeout(() => {
+                setVisible((p) => !p);
+                setTimeout(() => {
+                    setSettled(true);
+                }, 300);
+            }, 100);
+        }
+    };
 
     return (
         <>
-            <div className={clsx(styles.playgroundHeader)}>
-                <button
-                    className={clsx(styles.headerButton)}
-                    onClick={() => setVisible((p) => !p)}
+            <button
+                type="button"
+                className={clsx(
+                    "w-full",
+                    "focus:outline-none",
+                    "appearance-none",
+                    "p-2",
+                    "border-b",
+                    "border-b-gray-200 dark:border-b-gray-900",
+                    "flex items-center gap-2",
+                    "bg-gray-100 dark:bg-gray-700",
+                    !visible && "rounded-bl-lg",
+                    !visible && "rounded-br-lg",
+                    "transition-all ease-in-out duration-200",
+                    !visible && "delay-200",
+                    "group",
+                )}
+                onClick={onToggle}
+            >
+                <div
+                    className={clsx(
+                        "w-8 h-8",
+                        "rounded",
+                        "bg-gray-0 dark:bg-gray-800",
+                        "dark:bg-opacity-50",
+                        "flex items-center justify-center",
+                    )}
                 >
-                    {visible ? "Hide" : "Show"} Code
-                </button>
-            </div>
+                    <ArrowUpIcon
+                        className={clsx(
+                            "transition-transform duration-200 ease-in-out",
+                            "text-gray-500",
+                            !visible && "rotate-180",
+                            "w-3 h-3",
+                            "group-hover:w-4 group-hover:h-4",
+                            "transition-all duration-200 ease-in-out",
+                        )}
+                    />
+                </div>
+                <span
+                    className={clsx(
+                        "text-sm leading-6",
+                        "h-6",
+                        "text-gray-700 dark:text-gray-400",
+                        "uppercase",
+                        "font-semibold",
+                        "block",
+                        "overflow-hidden",
+                    )}
+                >
+                    <span
+                        className={clsx(
+                            "block",
+                            visible && "opacity-0",
+                            "transition-opacity duration-200 ease-in-out",
+                        )}
+                    >
+                        Show Code
+                    </span>
+                    <span
+                        className={clsx(
+                            "block",
+                            "transition-transform duration-200 ease-in-out",
+                            "bg-gray-100 dark:bg-gray-700",
+                            visible && "-translate-y-6",
+                        )}
+                    >
+                        Hide Code
+                    </span>
+                </span>
+            </button>
             <div
                 className={clsx(
-                    styles.playgroundEditorWrapper,
-                    "playground-code",
-                    visible && "playground-code-visible",
+                    "bg-gray-700",
+                    "rounded-bl-lg",
+                    "rounded-br-lg",
                 )}
                 style={{
-                    maxHeight: visible ? "4500px" : "0px",
-                    padding: visible ? undefined : "0px",
+                    maxHeight: visible ? (settled ? "unset" : "100vh") : "0px",
                     transition: "0.3s all ease-in-out",
                     overflow: "hidden",
                 }}
+                ref={ref}
             >
                 <CodeBlock
                     language="tsx"
                     style={{
                         borderRadius: 0,
+                        marginBottom: 0,
                     }}
                 >
                     {code}
@@ -179,9 +265,9 @@ const LivePreviewBase = ({
     const { isLast } = useDocsVersion();
 
     return (
-        <div className={styles.playgroundContainer}>
+        <div className={clsx("overflow-hidden", "mb-6")}>
             <>
-                <BrowserWindow url={url}>
+                <BrowserWindow url={url} hasBottom={!previewOnly}>
                     <div
                         className={clsx(
                             styles.playgroundPreview,

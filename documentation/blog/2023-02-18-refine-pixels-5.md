@@ -81,15 +81,7 @@ yarn dev
 And prepare ourselves to the call-to-action at `http://localhost/3000`:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fwelcome.png"  alt="react admin dashboard" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fwelcome.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -479,15 +471,7 @@ export default App;
 Since `authProvider` prop is already passed in by default, after we added the above resources and granted we are connected to the Internet, we will be redirected to the login page:
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fauth-customization.png"  alt="react admin dashboard" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fauth-customization.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -497,15 +481,7 @@ From the `/login` route, logging in should work perfectly with an account alread
 The `name: "users"` property in our first resource is used to define the `/users` route, and `list: UserList` property specifies that `<UserList />` component should be rendered at `/users`.
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fuserlist.png"  alt="react admin dashboard" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fuserlist.png"  alt="react admin dashboard" />
 
 <br />
 
@@ -820,15 +796,7 @@ With these additions, `/canvases` looks like this:
 
 
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fuserlist.png"  alt="react admin dashboard" />
-
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fuserlist.png"  alt="react admin dashboard" />
 
 <br />
 

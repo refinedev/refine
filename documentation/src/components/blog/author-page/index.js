@@ -6,6 +6,7 @@ import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 
 import { AuthorCardWithProps } from "@site/src/components/blog";
+import clsx from "clsx";
 
 const BlogListPageMetadata = () => {
     const {
@@ -27,17 +28,31 @@ const AuthorPage = (props) => {
     return (
         <>
             <BlogListPageMetadata />
-            <BlogLayout
-                sidebar={
-                    <div className="w-full lg:w-1/4 mb-6">
-                        <AuthorCardWithProps
-                            author={author}
-                            className="sticky-author-card"
-                        />
-                    </div>
-                }
-            >
-                <BlogPostItems items={items} showTitle={false} />
+            <BlogLayout>
+                <div className="h-12" />
+                <AuthorCardWithProps author={author} />
+                <div
+                    className={clsx(
+                        "px-4",
+                        "max-w-[512px]",
+                        "blog-md:px-7",
+                        "blog-md:max-w-screen-blog-md",
+                        "blog-2xl:px-0",
+                        "blog-2xl:max-w-screen-blog-md",
+                        "w-full",
+                        "mx-auto",
+                    )}
+                >
+                    <div className="border-b border-gray-200 dark:border-gray-700 mb-8" />
+                    <h1 className="text-4xl !mb-0">Posts</h1>
+                </div>
+                <div className={clsx("px-4", "blog-md:px-7", "blog-2xl:px-0")}>
+                    <BlogPostItems
+                        items={items}
+                        showTitle={false}
+                        isAuthorPage={true}
+                    />
+                </div>
             </BlogLayout>
         </>
     );
