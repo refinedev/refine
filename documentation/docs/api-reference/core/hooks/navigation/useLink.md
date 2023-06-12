@@ -7,9 +7,9 @@ sidebar_label: useLink 🆕
 `useLink` is a hook that leverages the `Link` property of the [`routerProvider`][routerprovider] to create links compatible with the user's router library.
 
 :::info
-It's recommended to use the `Link` component from your router library instead of this hook. This hook is used mostly for internal purposes but also exposed for customization needs.
+It's recommended to use the `Link` component from your router library instead of this hook. This hook is used mostly for internal purposes and is only exposed for customization needs.
 
-`Link` components or the equivalents from the router libraries has better type support and lets you use the full power of the router library.
+The `Link` components or the equivalents from the router libraries has better type support and lets you use the full power of the router library.
 :::
 
 ## Basic Usage

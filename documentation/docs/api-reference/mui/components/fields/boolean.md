@@ -22,10 +22,10 @@ import {
     // highlight-next-line
     BooleanField,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Close, Check } from "@mui/icons-material"
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     { field: "id", headerName: "ID", type: "number" },
     { field: "title", headerName: "Title", minWidth: 100, flex: 1 },
     {

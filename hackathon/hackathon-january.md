@@ -39,7 +39,7 @@ To provide a comprehensive understanding of the submission, add visuals such as 
 ### Set up Project
 In order to get the project up and running on locally, this section need to provide clear steps for successful set-up.
 
-Your submission gives the Refine team an opportunity to not only review it thoroughly, but also allows them to share its valuable insights with the community.
+Your submission gives the refine team an opportunity to not only review it thoroughly, but also allows them to share its valuable insights with the community.
 
 
 ### Prerequisites

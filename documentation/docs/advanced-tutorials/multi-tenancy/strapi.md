@@ -207,14 +207,7 @@ We created three collections on Strapi as store, product, and order and added a 
 -   Relation with Products
 -   Relation with Orders
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/stores.png" alt="stores" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/stores.png" alt="stores" />
 <br/>
 
 `Products`
@@ -225,14 +218,7 @@ We created three collections on Strapi as store, product, and order and added a 
 -   Relation with Stores
 -   Relation with Orders
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/products.png" alt="products" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/products.png" alt="products" />
 <br/>
 
 `Orders`
@@ -244,14 +230,7 @@ We created three collections on Strapi as store, product, and order and added a 
 -   Relation with Stores
 -   Relation with Product
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/orders.png" alt="orders" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/orders.png" alt="orders" />
 <br/>
 
 Now that we have completed the setup and our collections, we can now log in with the **refine** and start the listing processes.
@@ -598,14 +577,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/filter-tenant.gif" alt="Filter Tenant" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/filter-tenant.gif" alt="Filter Tenant" />
 <br/>
 
 :::tip
@@ -759,14 +731,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/create-product.gif" alt="Create Product" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/create-product.gif" alt="Create Product" />
 <br/>
 
 ## Conclusion

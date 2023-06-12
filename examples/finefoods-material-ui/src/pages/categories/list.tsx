@@ -1,45 +1,45 @@
-import React, { useCallback } from "react";
 import {
-    useTranslate,
-    IResourceComponentsProps,
     HttpError,
+    IResourceComponentsProps,
+    useTranslate,
 } from "@refinedev/core";
+import {
+    BooleanField,
+    DateField,
+    EditButton,
+    List,
+    NumberField,
+    SaveButton,
+    useDataGrid,
+} from "@refinedev/mui";
 import { useForm, useModalForm } from "@refinedev/react-hook-form";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
-import {
-    List,
-    BooleanField,
-    EditButton,
-    SaveButton,
-    useDataGrid,
-    DateField,
-    NumberField,
-} from "@refinedev/mui";
+import React, { useCallback } from "react";
 
-import { GridColumns, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 
-import Checkbox from "@mui/material/Checkbox";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import Stack from "@mui/material/Stack";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import Button from "@mui/material/Button";
-import TableCell from "@mui/material/TableCell";
-import TextField from "@mui/material/TextField";
-import TableHead from "@mui/material/TableHead";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import TablePagination from "@mui/material/TablePagination";
 import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
-import Edit from "@mui/icons-material/Edit";
 import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
+import Edit from "@mui/icons-material/Edit";
 import RemoveCircleOutline from "@mui/icons-material/RemoveCircleOutline";
 
-import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components";
+import { ICategory, IProduct } from "interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
@@ -323,7 +323,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         syncWithLocation: false,
     });
 
-    const columns = React.useMemo<GridColumns<IProduct>>(
+    const columns = React.useMemo<GridColDef<IProduct>[]>(
         () => [
             {
                 field: "image",
@@ -396,7 +396,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 type: "actions",
                 getActions: function render({ row }) {
                     return [
-                        // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                         <GridActionsCellItem
                             key={1}
                             label={t("buttons.edit")}
@@ -437,7 +436,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 rowHeight={80}
                 autoHeight
                 density="comfortable"
-                rowsPerPageOptions={[5, 10, 25, 50, 100]}
+                pageSizeOptions={[5, 10, 25, 50, 100]}
             />
             <EditProduct {...editDrawerFormProps} />
         </List>

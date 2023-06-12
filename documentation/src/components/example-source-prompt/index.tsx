@@ -1,5 +1,5 @@
 import React from "react";
-import Admonition from "@theme/Admonition";
+import { CommonShowSourcePrompt } from "../../refine-theme/common-show-source-prompt";
 
 type Props = {
     path: string;
@@ -10,7 +10,7 @@ const ExampleSourcePrompt: React.FC<Props> = ({ path }) => {
 
     const SOURCE_URL = `${REPO_TREE_URL}/master/examples/${path}`;
 
-    return <Admonition type="sourcecode" path={SOURCE_URL} />;
+    return <CommonShowSourcePrompt path={SOURCE_URL} />;
 };
 
 export default ExampleSourcePrompt;

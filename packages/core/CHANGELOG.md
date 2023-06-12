@@ -1,5 +1,33 @@
 # @pankod/refine-core
 
+## 4.20.0
+
+### Minor Changes
+
+-   [#4448](https://github.com/refinedev/refine/pull/4448) [`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: useApiUrl hook tries to infer data provider from current resource. If current resource has a different data provider than the default one, it will be inferred without needing to explicitly pass data provider name.
+
+## 4.19.0
+
+### Minor Changes
+
+-   [#4448](https://github.com/refinedev/refine/pull/4448) [`c82006f712a`](https://github.com/refinedev/refine/commit/c82006f712a875b1af308fec66e4e1187cdd9c0c) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: useApiUrl hook tries to infer data provider from current resource. If current resource has a different data provider than the default one, it will be inferred without needing to explicitly pass data provider name.
+
+## 4.18.2
+
+### Patch Changes
+
+-   [#4446](https://github.com/refinedev/refine/pull/4446) [`5936d9cd4d4`](https://github.com/refinedev/refine/commit/5936d9cd4d451e50c922b0a81d2d48123927594c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: increase accessibility of auth page components
+
+    add `htmlFor` to `label` elements to associate them with their inputs
+
+## 4.18.1
+
+### Patch Changes
+
+-   [#4446](https://github.com/refinedev/refine/pull/4446) [`5936d9cd4d4`](https://github.com/refinedev/refine/commit/5936d9cd4d451e50c922b0a81d2d48123927594c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - refactor: increase accessibility of auth page components
+
+    add `htmlFor` to `label` elements to associate them with their inputs
+
 ## 4.18.0
 
 ### Minor Changes

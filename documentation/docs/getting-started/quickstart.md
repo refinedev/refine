@@ -23,15 +23,7 @@ Choose one of the methods below to bootstrap a refine app:
 
 <br/>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-     <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif"  alt="quick start gif" />
-
-</div>
+<img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start.gif"  alt="quick start gif" />
 
 <br />
 

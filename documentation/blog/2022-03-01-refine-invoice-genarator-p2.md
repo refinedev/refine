@@ -50,14 +50,7 @@ In our Part I article, we created our company, contact and client collections. I
 -   Day: Number
 -   Daily_rate: Number
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/missions.png" alt="Strapi Mission Collection" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/missions.png" alt="Strapi Mission Collection" />
 <br />
 
 `Invoice Collection:`
@@ -71,14 +64,7 @@ In our Part I article, we created our company, contact and client collections. I
 -   Contact: Relation with Contact
 -   Missions: Relation with Mission
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
 <br />
 
 We created our missions and invoice collections fields. Our goal here is to define the products or services you offer specifically to your company and to create invoices based on them. By determining how many working days a product or service will last and its price on a daily basis, the total will be automatically reflected on your invoice. Now let's create our **refine** Missions page using this collection. And let's understand better by creating an example missions with **refine**.
@@ -152,14 +138,7 @@ export const MissionList: React.FC = () => {
 
 We defined the fields we created on the strapi side with the **refine** Table and created our table. Let's take a look at how our table looks like.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Refine Missions Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Refine Missions Page" />
 <br />
 
 As you can see, we were able to create and display our table very simply thanks to the **refine**. Let's learn how to create a Mission from our refine interface now.
@@ -300,14 +279,7 @@ export const MissionList: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Refine Mission Create Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Refine Mission Create Page" />
 <br />
 
 Missions Page is now ready, you can create and manage your business's products or services here with **refine**.
@@ -454,14 +426,7 @@ export const InvoiceList: React.FC = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Refine Invoice List Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Refine Invoice List Page" />
 <br />
 
 As you can see, we were able to list invoices with **refine**. Using the Invoice collection and the fields associated with it, we can create a fully featured Invoice.
@@ -575,14 +540,7 @@ export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Refine Invoice Create" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Refine Invoice Create" />
 <br />
 
 Our invoice generator is almost ready! As you can see, we can now create a fully featured invoice with **refine** and display it in our table. As the last step, let's view and download the invoices we created as PDF.
@@ -1048,14 +1006,7 @@ const styles = StyleSheet.create({
 </p>
 </details>
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.gif" alt="Refine Invoice PDF Export" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.gif" alt="Refine Invoice PDF Export" />
 <br />
 
 ## Example

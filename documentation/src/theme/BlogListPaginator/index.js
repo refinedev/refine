@@ -20,38 +20,50 @@ export default function BlogListPaginator(props) {
 
     return (
         <nav
-            className="font-montserrat flex justify-end"
+            className="flex justify-end"
             aria-label={translate({
                 id: "theme.blog.paginator.navAriaLabel",
                 message: "Blog list page navigation",
                 description: "The ARIA label for the blog pagination",
             })}
         >
-            <ul className="flex list-none items-center space-x-2">
-                <li>
-                    <Link
-                        to={
-                            currentPage === 1
-                                ? undefined
-                                : currentPage - 1 === 1
-                                ? basePath
-                                : `${basePath}/page/${currentPage - 1}`
-                        }
-                        className="hover:no-underline"
-                    >
-                        <div
-                            className={clsx("pagination-item", {
-                                disabled: currentPage === 1,
-                            })}
+            <ul className="flex list-none items-center gap-1">
+                {currentPage !== 1 && (
+                    <li>
+                        <Link
+                            to={
+                                currentPage - 1 === 1
+                                    ? basePath
+                                    : `${basePath}/page/${currentPage - 1}`
+                            }
+                            className={clsx(
+                                "text-gray-500 dark:text-gray-0",
+                                "rounded",
+                                "hover:no-underline",
+                            )}
                         >
-                            <span className="sr-only">Previous</span>
                             <ChevronLeft />
-                        </div>
-                    </Link>
-                </li>
+                        </Link>
+                    </li>
+                )}
+
                 {paginationRange.map((pageNumber) => {
                     if (pageNumber === DOTS) {
-                        return <li className="dots">&#8230;</li>;
+                        return (
+                            <li
+                                key={`page:${pageNumber}`}
+                                className={clsx(
+                                    "flex",
+                                    "text-gray-500 dark:text-gray-0",
+                                    "rounded",
+                                    "hover:no-underline",
+                                    "px-3 py-1",
+                                    "no-underline",
+                                )}
+                            >
+                                &#8230;
+                            </li>
+                        );
                     }
 
                     return (
@@ -62,38 +74,41 @@ export default function BlogListPaginator(props) {
                                         ? basePath
                                         : `${basePath}/page/${pageNumber}`
                                 }
-                                className="hover:no-underline"
+                                className={clsx(
+                                    "flex",
+                                    "text-gray-500 dark:text-gray-0",
+                                    "rounded",
+                                    "hover:no-underline",
+                                    "px-3 py-1",
+                                    "no-underline",
+                                    pageNumber === currentPage &&
+                                        "bg-gray-100 dark:bg-gray-700",
+                                )}
                             >
-                                <div
-                                    className={clsx("pagination-item", {
-                                        active: pageNumber === currentPage,
-                                    })}
-                                >
-                                    {pageNumber}
-                                </div>
+                                {pageNumber}
                             </Link>
                         </li>
                     );
                 })}
-                <li>
-                    <Link
-                        to={
-                            currentPage === lastPage
-                                ? undefined
-                                : `${basePath}/page/${currentPage + 1}`
-                        }
-                        className="hover:no-underline"
-                    >
-                        <div
-                            className={clsx("pagination-item", {
-                                disabled: currentPage === lastPage,
-                            })}
+
+                {currentPage !== lastPage && (
+                    <li>
+                        <Link
+                            to={
+                                currentPage === lastPage
+                                    ? undefined
+                                    : `${basePath}/page/${currentPage + 1}`
+                            }
+                            className={clsx(
+                                "text-gray-500 dark:text-gray-0",
+                                "rounded",
+                                "hover:no-underline",
+                            )}
                         >
-                            <span className="sr-only">Next</span>
                             <ChevronRight />
-                        </div>
-                    </Link>
-                </li>
+                        </Link>
+                    </li>
+                )}
             </ul>
         </nav>
     );

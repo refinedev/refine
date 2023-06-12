@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/mui",
-  "version": "4.18.2",
+  "version": "5.1.0",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "main": "dist/index.js",
@@ -21,14 +21,14 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
-    "@mui/x-data-grid": "^5.12.1",
+    "@mui/x-data-grid": "^6.6.0",
     "@refinedev/react-hook-form": "^4.0.0",
     "react-hook-form": "^7.30.0"
   },
   "devDependencies": {
     "@refinedev/cli": "^2.5.3",
     "@refinedev/ui-tests": "^1.5.0",
-    "@refinedev/core": "^4.18.0",
+    "@refinedev/core": "^4.20.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -47,7 +47,7 @@
     "postcss": "^8.1.4",
     "react-router-dom": "^6.8.1",
     "ts-jest": "^29.0.3",
-    "tsup": "^5.11.13",
+    "tsup": "^6.7.0",
     "typescript": "^4.7.4"
   },
   "dependencies": {
@@ -57,7 +57,7 @@
     "@mui/icons-material": "^5.8.3",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.8.6",
-    "@mui/x-data-grid": "^5.12.1",
+    "@mui/x-data-grid": "^6.6.0",
     "@refinedev/react-hook-form": "^4.4.0",
     "react-hook-form": "^7.30.0",
     "dayjs": "^1.10.7",

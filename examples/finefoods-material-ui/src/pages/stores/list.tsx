@@ -1,25 +1,25 @@
-import React from "react";
-import {
-    useTranslate,
-    useNavigation,
-    useModal,
-    useShow,
-    IResourceComponentsProps,
-} from "@refinedev/core";
-import {
-    List,
-    useDataGrid,
-    DateField,
-    BooleanField,
-    TextFieldComponent,
-} from "@refinedev/mui";
-import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
+import EditOutlined from "@mui/icons-material/EditOutlined";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
-import EditOutlined from "@mui/icons-material/EditOutlined";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import {
+    IResourceComponentsProps,
+    useModal,
+    useNavigation,
+    useShow,
+    useTranslate,
+} from "@refinedev/core";
+import {
+    BooleanField,
+    DateField,
+    List,
+    TextFieldComponent,
+    useDataGrid,
+} from "@refinedev/mui";
+import React from "react";
 
-import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";
+import { IStore } from "interfaces";
 
 export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -36,7 +36,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
         initialPageSize: 10,
     });
 
-    const columns = React.useMemo<GridColumns<IStore>>(
+    const columns = React.useMemo<GridColDef<IStore>[]>(
         () => [
             {
                 field: "avatar",
@@ -115,7 +115,6 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("table.actions"),
                 type: "actions",
                 getActions: ({ row }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         label={t("buttons.edit")}
@@ -123,7 +122,6 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                         showInMenu
                         onClick={() => edit("stores", row.id)}
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         onClick={() => {
                             show();
@@ -152,7 +150,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                     rowHeight={80}
                     autoHeight
                     density="comfortable"
-                    rowsPerPageOptions={[10, 20, 50, 100]}
+                    pageSizeOptions={[10, 20, 50, 100]}
                 />
             </List>
             {record && (

@@ -4,31 +4,22 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            items: ["getting-started/overview", "getting-started/quickstart"],
-            collapsed: false,
-        },
-        {
-            type: "doc",
-            id: "tutorial/introduction/index",
-            label: "Tutorial",
-        },
-        {
-            type: "category",
-            label: "Migration Guide 🚀",
             items: [
-                "migration-guide/3x-to-4x",
-                "migration-guide/auth-provider",
-                "migration-guide/router-provider",
+                "getting-started/overview",
+                "getting-started/quickstart",
+                {
+                    type: "doc",
+                    id: "tutorial/introduction/index",
+                    label: "Tutorial",
+                },
             ],
+            className: "category-as-header",
         },
         {
             type: "category",
+            collapsible: false,
             label: "API Reference",
-            link: {
-                type: "generated-index",
-                title: "API Reference",
-                slug: "/api-reference",
-            },
+            className: "category-as-header",
             items: [
                 "api-reference/general-concepts",
                 {
@@ -578,29 +569,20 @@ module.exports = {
                             ],
                         },
                         "api-reference/mui/theming",
+                        "api-reference/mui/migration-guide/v4-to-v5",
                     ],
                 },
-            ],
-        },
-        {
-            type: "category",
-            label: "Packages",
-            link: {
-                type: "generated-index",
-                title: "Packages",
-                slug: "/packages",
-            },
-            items: [
-                "packages/list-of-packages",
+
                 {
                     type: "category",
-                    label: "Documentation",
+                    label: "Packages",
                     link: {
                         type: "generated-index",
-                        title: "Documentation",
-                        slug: "/packages/documentation",
+                        title: "Packages",
+                        slug: "/packages",
                     },
                     items: [
+                        "packages/list-of-packages",
                         "packages/documentation/cli",
                         {
                             type: "category",
@@ -646,475 +628,492 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Examples",
-            link: {
-                type: "doc",
-                id: "examples/examples",
-            },
+            label: "Guides",
+            className: "category-as-header",
             items: [
                 {
                     type: "category",
-                    label: "Access Control",
-                    items: [
-                        "examples/access-control/casbin",
-                        "examples/access-control/cerbos",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Authentication",
-                    items: [
-                        "examples/authentication/headless",
-                        "examples/authentication/antd",
-                        "examples/authentication/mui",
-                        "examples/authentication/mantine",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Auth Provider",
-                    items: [
-                        "examples/auth-provider/auth0",
-                        "examples/auth-provider/google-auth",
-                        "examples/auth-provider/keycloak",
-                        "examples/auth-provider/otpLogin",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Audit Log",
-                    items: [
-                        "examples/audit-log/audit-log-antd",
-                        "examples/audit-log/audit-log-provider",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Build Systems",
-                    items: [
-                        "examples/build-systems/turbo",
-                        "examples/build-systems/lerna",
-                        "examples/build-systems/nx",
-                    ],
-                },
-                "examples/antd-calendar-example",
-                "examples/command-palette",
-                {
-                    type: "category",
-                    label: "Core",
-                    items: [
-                        "examples/core/useImport",
-                        "examples/core/useMenu",
-                        "examples/core/useModal",
-                        "examples/core/useSelect",
-                        "examples/core/useInfiniteList",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Customization",
+                    label: "Examples",
+                    link: {
+                        type: "doc",
+                        id: "examples/examples",
+                    },
                     items: [
                         {
                             type: "category",
-                            label: "Custom Theme",
+                            label: "Access Control",
                             items: [
-                                "examples/customization/theme/customThemeAntd",
-                                "examples/customization/theme/customThemeChakraUI",
-                                "examples/customization/theme/customThemeMaterialUI",
-                                "examples/customization/theme/customThemeMantine",
-                            ],
-                        },
-                        "examples/customization/customFooter",
-                        "examples/customization/customLogin",
-                        "examples/customization/customSider",
-                        "examples/customization/offLayoutArea",
-                        "examples/customization/rtl",
-                        "examples/customization/topMenuLayout",
-                    ],
-                },
-                "examples/customPages",
-                {
-                    type: "category",
-                    label: "Data Provider",
-                    items: [
-                        "examples/data-provider/airtable",
-                        "examples/data-provider/appwrite",
-                        "examples/data-provider/directus",
-                        "examples/data-provider/elide",
-                        "examples/data-provider/hasura",
-                        "examples/data-provider/multiple",
-                        "examples/data-provider/nestjsxCrud",
-                        "examples/data-provider/nhost",
-                        "examples/data-provider/strapi",
-                        "examples/data-provider/strapi-graphql",
-                        "examples/data-provider/strapi-v4",
-                        "examples/data-provider/supabase",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Field",
-                    items: [
-                        "examples/field/useCheckboxGroup",
-                        "examples/field/useRadioGroup",
-                        "examples/field/useSelect",
-                        "examples/field/useSelect-with-infinite-list",
-                        "examples/field/useAutocomplete",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Form",
-                    items: [
-                        {
-                            type: "category",
-                            label: "Ant Design",
-                            items: [
-                                "examples/form/antd/custom-form-validation",
-                                "examples/form/antd/useDrawerForm",
-                                "examples/form/antd/useForm",
-                                "examples/form/antd/useModalForm",
-                                "examples/form/antd/useStepsForm",
+                                "examples/access-control/casbin",
+                                "examples/access-control/cerbos",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Headless",
+                            label: "Authentication",
                             items: [
-                                "examples/form/headless/save-and-continue",
-                                "examples/form/headless/useForm",
+                                "examples/authentication/headless",
+                                "examples/authentication/antd",
+                                "examples/authentication/mui",
+                                "examples/authentication/mantine",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Mantine",
+                            label: "Auth Provider",
                             items: [
-                                "examples/form/mantine/useDrawerForm",
-                                "examples/form/mantine/useForm",
-                                "examples/form/mantine/useModalForm",
-                                "examples/form/mantine/useStepsForm",
+                                "examples/auth-provider/auth0",
+                                "examples/auth-provider/google-auth",
+                                "examples/auth-provider/keycloak",
+                                "examples/auth-provider/otpLogin",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Material UI",
+                            label: "Audit Log",
                             items: [
-                                "examples/form/mui/useDrawerForm",
-                                "examples/form/mui/useForm",
-                                "examples/form/mui/useModalForm",
-                                "examples/form/mui/useStepsForm",
+                                "examples/audit-log/audit-log-antd",
+                                "examples/audit-log/audit-log-provider",
                             ],
                         },
                         {
                             type: "category",
-                            label: "React Hook Form",
+                            label: "Build Systems",
                             items: [
-                                "examples/form/react-hook-form/useForm",
-                                "examples/form/react-hook-form/useModalForm",
-                                "examples/form/react-hook-form/useStepsForm",
+                                "examples/build-systems/turbo",
+                                "examples/build-systems/lerna",
+                                "examples/build-systems/nx",
                             ],
+                        },
+                        "examples/antd-calendar-example",
+                        "examples/command-palette",
+                        {
+                            type: "category",
+                            label: "Core",
+                            items: [
+                                "examples/core/useImport",
+                                "examples/core/useMenu",
+                                "examples/core/useModal",
+                                "examples/core/useSelect",
+                                "examples/core/useInfiniteList",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Custom Theme",
+                                    items: [
+                                        "examples/customization/theme/customThemeAntd",
+                                        "examples/customization/theme/customThemeChakraUI",
+                                        "examples/customization/theme/customThemeMaterialUI",
+                                        "examples/customization/theme/customThemeMantine",
+                                    ],
+                                },
+                                "examples/customization/customFooter",
+                                "examples/customization/customLogin",
+                                "examples/customization/customSider",
+                                "examples/customization/offLayoutArea",
+                                "examples/customization/rtl",
+                                "examples/customization/topMenuLayout",
+                            ],
+                        },
+                        "examples/customPages",
+                        {
+                            type: "category",
+                            label: "Data Provider",
+                            items: [
+                                "examples/data-provider/airtable",
+                                "examples/data-provider/appwrite",
+                                "examples/data-provider/directus",
+                                "examples/data-provider/elide",
+                                "examples/data-provider/hasura",
+                                "examples/data-provider/multiple",
+                                "examples/data-provider/nestjsxCrud",
+                                "examples/data-provider/nhost",
+                                "examples/data-provider/strapi",
+                                "examples/data-provider/strapi-graphql",
+                                "examples/data-provider/strapi-v4",
+                                "examples/data-provider/supabase",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Field",
+                            items: [
+                                "examples/field/useCheckboxGroup",
+                                "examples/field/useRadioGroup",
+                                "examples/field/useSelect",
+                                "examples/field/useSelect-with-infinite-list",
+                                "examples/field/useAutocomplete",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Form",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Ant Design",
+                                    items: [
+                                        "examples/form/antd/custom-form-validation",
+                                        "examples/form/antd/useDrawerForm",
+                                        "examples/form/antd/useForm",
+                                        "examples/form/antd/useModalForm",
+                                        "examples/form/antd/useStepsForm",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Headless",
+                                    items: [
+                                        "examples/form/headless/save-and-continue",
+                                        "examples/form/headless/useForm",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Mantine",
+                                    items: [
+                                        "examples/form/mantine/useDrawerForm",
+                                        "examples/form/mantine/useForm",
+                                        "examples/form/mantine/useModalForm",
+                                        "examples/form/mantine/useStepsForm",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Material UI",
+                                    items: [
+                                        "examples/form/mui/useDrawerForm",
+                                        "examples/form/mui/useForm",
+                                        "examples/form/mui/useModalForm",
+                                        "examples/form/mui/useStepsForm",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "React Hook Form",
+                                    items: [
+                                        "examples/form/react-hook-form/useForm",
+                                        "examples/form/react-hook-form/useModalForm",
+                                        "examples/form/react-hook-form/useStepsForm",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "i18n",
+                            items: [
+                                "examples/i18n/i18n-nextjs",
+                                "examples/i18n/i18n-react",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Import / Export",
+                            items: [
+                                "examples/import-export/antd",
+                                "examples/import-export/material-ui",
+                                "examples/import-export/mantine",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Inputs",
+                            items: [
+                                "examples/inputs/customInput",
+                                "examples/inputs/datePicker",
+                            ],
+                        },
+                        "examples/javascript",
+                        {
+                            type: "category",
+                            label: "List",
+                            items: ["examples/list/useSimpleList"],
+                        },
+                        {
+                            type: "category",
+                            label: "Live Provider",
+                            items: ["examples/live-provider/ably"],
+                        },
+                        "examples/multi-level-menu/multi-level-menu",
+                        "examples/mutation-mode",
+                        {
+                            type: "category",
+                            label: "Next.js",
+                            items: [
+                                "examples/next-js/nextjs",
+                                "examples/next-js/nextjs-appdir",
+                                "examples/next-js/auth",
+                                "examples/next-js/NextAuth.js",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Notification Provider",
+                            items: [
+                                "examples/notification-provider/react-toastify",
+                            ],
+                        },
+                        "examples/persistQuery",
+                        {
+                            type: "category",
+                            label: "Remix",
+                            items: [
+                                "examples/remix/remix-antd",
+                                "examples/remix/remix-material-ui",
+                                "examples/remix/remix-headless",
+                                "examples/remix/remix-auth",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Search",
+                            items: ["examples/search/search"],
+                        },
+                        {
+                            type: "category",
+                            label: "Storybook",
+                            items: [
+                                "examples/storybook/antd-storybook",
+                                "examples/storybook/material-ui-storybook",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Table",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Ant Design",
+                                    items: [
+                                        "examples/table/antd/advancedTable",
+                                        "examples/table/antd/tableFilter",
+                                        "examples/table/antd/useDeleteMany",
+                                        "examples/table/antd/useEditableTable",
+                                        "examples/table/antd/useTable",
+                                        "examples/table/antd/useUpdateMany",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Mantine",
+                                    items: [
+                                        "examples/table/mantine/advanced-react-table",
+                                        "examples/table/mantine/basic",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Material UI",
+                                    items: [
+                                        "examples/table/mui/advanced",
+                                        "examples/table/mui/cursor-pagination",
+                                        "examples/table/mui/filter",
+                                        "examples/table/mui/useDataGrid",
+                                        "examples/table/mui/useDeleteMany",
+                                        "examples/table/mui/useUpdateMany",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "React Table",
+                                    items: [
+                                        "examples/table/react-table/advanced-react-table",
+                                        "examples/table/react-table/react-table",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Handson Table",
+                                    items: [
+                                        "examples/table/handsontable/handsontable",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "UI",
+                            items: ["examples/ui/useModal"],
+                        },
+                        {
+                            type: "category",
+                            label: "Themes",
+                            items: [
+                                "examples/themes/refine-themes-antd",
+                                "examples/themes/refine-themes-chakra-ui",
+                                "examples/themes/refine-themes-mantine",
+                                "examples/themes/refine-themes-mui",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Tutorial",
+                            items: [
+                                "examples/tutorial/antd-tutorial",
+                                "examples/tutorial/headless-tutorial",
+                                "examples/tutorial/mantine-tutorial",
+                                "examples/tutorial/mui-tutorial",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Upload",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Ant Design",
+                                    items: [
+                                        "examples/upload/antd/base64",
+                                        "examples/upload/antd/multipart",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Mantine",
+                                    items: [
+                                        "examples/upload/mantine/base64",
+                                        "examples/upload/mantine/multipart",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Material UI",
+                                    items: [
+                                        "examples/upload/mui/base64",
+                                        "examples/upload/mui/multipart",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Web3",
+                            items: ["examples/web3/web3Login"],
                         },
                     ],
                 },
                 {
                     type: "category",
-                    label: "i18n",
+                    label: "Advanced Tutorials",
+                    link: {
+                        type: "generated-index",
+                        title: "Advanced Tutorials",
+                        slug: "/advanced-tutorials",
+                    },
                     items: [
-                        "examples/i18n/i18n-nextjs",
-                        "examples/i18n/i18n-react",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Import / Export",
-                    items: [
-                        "examples/import-export/antd",
-                        "examples/import-export/material-ui",
-                        "examples/import-export/mantine",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Inputs",
-                    items: [
-                        "examples/inputs/customInput",
-                        "examples/inputs/datePicker",
-                    ],
-                },
-                "examples/javascript",
-                {
-                    type: "category",
-                    label: "List",
-                    items: ["examples/list/useSimpleList"],
-                },
-                {
-                    type: "category",
-                    label: "Live Provider",
-                    items: ["examples/live-provider/ably"],
-                },
-                "examples/multi-level-menu/multi-level-menu",
-                "examples/mutation-mode",
-                {
-                    type: "category",
-                    label: "Next.js",
-                    items: [
-                        "examples/next-js/nextjs",
-                        "examples/next-js/nextjs-appdir",
-                        "examples/next-js/auth",
-                        "examples/next-js/NextAuth.js",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Notification Provider",
-                    items: ["examples/notification-provider/react-toastify"],
-                },
-                "examples/persistQuery",
-                {
-                    type: "category",
-                    label: "Remix",
-                    items: [
-                        "examples/remix/remix-antd",
-                        "examples/remix/remix-material-ui",
-                        "examples/remix/remix-headless",
-                        "examples/remix/remix-auth",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Search",
-                    items: ["examples/search/search"],
-                },
-                {
-                    type: "category",
-                    label: "Storybook",
-                    items: [
-                        "examples/storybook/antd-storybook",
-                        "examples/storybook/material-ui-storybook",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Table",
-                    items: [
+                        "advanced-tutorials/access-control",
                         {
                             type: "category",
-                            label: "Ant Design",
+                            label: "Auth",
                             items: [
-                                "examples/table/antd/advancedTable",
-                                "examples/table/antd/tableFilter",
-                                "examples/table/antd/useDeleteMany",
-                                "examples/table/antd/useEditableTable",
-                                "examples/table/antd/useTable",
-                                "examples/table/antd/useUpdateMany",
+                                "advanced-tutorials/auth/auth0",
+                                "advanced-tutorials/auth/azure-ad",
+                            ],
+                        },
+                        "advanced-tutorials/custom-layout",
+                        {
+                            type: "category",
+                            label: "Data Provider",
+                            items: [
+                                "advanced-tutorials/data-provider/handling-filters",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Mantine",
+                            label: "Form",
                             items: [
-                                "examples/table/mantine/advanced-react-table",
-                                "examples/table/mantine/basic",
+                                "advanced-tutorials/forms/custom-form-validation",
+                                "advanced-tutorials/forms/save-and-continue",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Material UI",
+                            label: "Import - Export",
                             items: [
-                                "examples/table/mui/advanced",
-                                "examples/table/mui/cursor-pagination",
-                                "examples/table/mui/filter",
-                                "examples/table/mui/useDataGrid",
-                                "examples/table/mui/useDeleteMany",
-                                "examples/table/mui/useUpdateMany",
+                                "advanced-tutorials/import-export/csv-export",
+                                "advanced-tutorials/import-export/csv-import",
+                            ],
+                        },
+                        "advanced-tutorials/real-time",
+                        "advanced-tutorials/multi-level-menu/multi-level-menu",
+                        {
+                            type: "category",
+                            label: "Multitenancy",
+                            items: [
+                                "advanced-tutorials/multi-tenancy/appwrite",
+                                "advanced-tutorials/multi-tenancy/strapi-v4",
+                            ],
+                        },
+                        "advanced-tutorials/mutation-mode",
+                        {
+                            type: "category",
+                            label: "Search",
+                            items: [
+                                "advanced-tutorials/search/list-search",
+                                "advanced-tutorials/search/search",
+                                "advanced-tutorials/search/table-search",
                             ],
                         },
                         {
                             type: "category",
-                            label: "React Table",
+                            label: "Upload",
                             items: [
-                                "examples/table/react-table/advanced-react-table",
-                                "examples/table/react-table/react-table",
+                                "advanced-tutorials/upload/base64-upload",
+                                "advanced-tutorials/upload/multipart-upload",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Handson Table",
-                            items: ["examples/table/handsontable/handsontable"],
+                            label: "Web3",
+                            items: ["advanced-tutorials/web3/ethereum-signin"],
                         },
                     ],
                 },
                 {
-                    type: "category",
-                    label: "UI",
-                    items: ["examples/ui/useModal"],
+                    type: "doc",
+                    id: "faq",
                 },
                 {
-                    type: "category",
-                    label: "Themes",
-                    items: [
-                        "examples/themes/refine-themes-antd",
-                        "examples/themes/refine-themes-chakra-ui",
-                        "examples/themes/refine-themes-mantine",
-                        "examples/themes/refine-themes-mui",
-                    ],
+                    type: "doc",
+                    id: "contributing",
                 },
                 {
-                    type: "category",
-                    label: "Tutorial",
-                    items: [
-                        "examples/tutorial/antd-tutorial",
-                        "examples/tutorial/headless-tutorial",
-                        "examples/tutorial/mantine-tutorial",
-                        "examples/tutorial/mui-tutorial",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Upload",
-                    items: [
-                        {
-                            type: "category",
-                            label: "Ant Design",
-                            items: [
-                                "examples/upload/antd/base64",
-                                "examples/upload/antd/multipart",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Mantine",
-                            items: [
-                                "examples/upload/mantine/base64",
-                                "examples/upload/mantine/multipart",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Material UI",
-                            items: [
-                                "examples/upload/mui/base64",
-                                "examples/upload/mui/multipart",
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Web3",
-                    items: ["examples/web3/web3Login"],
+                    type: "doc",
+                    id: "testing",
                 },
             ],
         },
         {
             type: "category",
-            label: "Advanced Tutorials",
-            link: {
-                type: "generated-index",
-                title: "Advanced Tutorials",
-                slug: "/advanced-tutorials",
-            },
+            label: "Migration Guide 🚀",
+            className: "category-as-header",
             items: [
-                "advanced-tutorials/access-control",
-                {
-                    type: "category",
-                    label: "Auth",
-                    items: [
-                        "advanced-tutorials/auth/auth0",
-                        "advanced-tutorials/auth/azure-ad",
-                    ],
-                },
-                "advanced-tutorials/custom-layout",
-                {
-                    type: "category",
-                    label: "Data Provider",
-                    items: [
-                        "advanced-tutorials/data-provider/handling-filters",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Form",
-                    items: [
-                        "advanced-tutorials/forms/custom-form-validation",
-                        "advanced-tutorials/forms/save-and-continue",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Import - Export",
-                    items: [
-                        "advanced-tutorials/import-export/csv-export",
-                        "advanced-tutorials/import-export/csv-import",
-                    ],
-                },
-                "advanced-tutorials/real-time",
-                "advanced-tutorials/multi-level-menu/multi-level-menu",
-                {
-                    type: "category",
-                    label: "Multitenancy",
-                    items: [
-                        "advanced-tutorials/multi-tenancy/appwrite",
-                        "advanced-tutorials/multi-tenancy/strapi-v4",
-                    ],
-                },
-                "advanced-tutorials/mutation-mode",
-                {
-                    type: "category",
-                    label: "Search",
-                    items: [
-                        "advanced-tutorials/search/list-search",
-                        "advanced-tutorials/search/search",
-                        "advanced-tutorials/search/table-search",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Upload",
-                    items: [
-                        "advanced-tutorials/upload/base64-upload",
-                        "advanced-tutorials/upload/multipart-upload",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Web3",
-                    items: ["advanced-tutorials/web3/ethereum-signin"],
-                },
+                "migration-guide/3x-to-4x",
+                "migration-guide/auth-provider",
+                "migration-guide/router-provider",
             ],
-        },
-        {
-            type: "doc",
-            id: "comparison",
-            label: "Comparison",
-        },
-        {
-            type: "doc",
-            id: "faq",
-        },
-        {
-            type: "doc",
-            id: "contributing",
-        },
-        {
-            type: "doc",
-            id: "testing",
-        },
-        {
-            type: "doc",
-            id: "licence",
         },
         {
             type: "category",
             label: "Further Readings",
-            link: {
-                type: "generated-index",
-                title: "Further Readings",
-                slug: "/further-readings",
-            },
+            className: "category-as-header",
             items: [
                 "further-readings/benchmarks",
                 "further-readings/telemetry",
+                {
+                    type: "doc",
+                    id: "comparison",
+                    label: "Comparison",
+                },
+                {
+                    type: "doc",
+                    id: "licence",
+                },
             ],
         },
     ],

@@ -39,14 +39,7 @@ We will take a file from the user with [FormData](https://developer.mozilla.org/
 </body>
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/upload.png" alt="upload_screen" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/upload.png" alt="upload_screen" />
 <br />
 
 Here we simply created an input and a button. With these HTML elements we have created, we can get the file chosen by the user.
@@ -122,14 +115,7 @@ As you can see, we have created our multer structure and a simple server to run 
 
 The requests we created to send files by JavaScript will now be sent to our local server.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/overview.gif" alt="upload overview" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/overview.gif" alt="upload overview" />
 <br />
 
 ---

@@ -28,7 +28,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
-    title: "Remix + Refine + MUI App",
+    title: "Remix + Refine + Material UI App",
     viewport: "width=device-width,initial-scale=1",
 });
 

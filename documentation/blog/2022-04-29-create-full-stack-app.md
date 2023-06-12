@@ -37,7 +37,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 **refine** offers you almost everything you need while developing an `Admin Panel`, `Dashboard`, `B2B` or `B2C` application, with many features it provides. It does not limit you in situations that may arise during project development and offers you the opportunity to customize it.
 
-With the Data Provider feature it provides, you don't need to think about your API or GraphQL queries and write extra queries! Thanks to Refine hooks, you can easily fetching the data in your database and manage your state structure. In addition to quickly fetch and manage your data, you can easily design your UI with [Ant Design](https://ant.design/) and [Material UI (comming soon)](https://mui.com/) ready components used as out-of-the-box by **refine**.
+With the Data Provider feature it provides, you don't need to think about your API or GraphQL queries and write extra queries! Thanks to Refine hooks, you can easily fetching the data in your database and manage your state structure. In addition to quickly fetch and manage your data, you can easily design your UI with [Ant Design](https://ant.design/) and [Material UI (comming soon)](https://mui.com/material-ui/getting-started/overview/) ready components used as out-of-the-box by **refine**.
 
 **refine** is a `headless` React framework. It can be used independently of the UI. You can easily use all the features of refinement with any UI library.
 
@@ -63,14 +63,7 @@ To learn more about **refine** features, we recommend that you read the [Overvie
 
 **refine**, by removing unnecessary repetition in your code, reduces number of lines of code and makes it easier to maintain. Below is a size comparison for an example project:
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/getting-started/benchmark.png" alt="Refine Benchmark" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/getting-started/benchmark.png" alt="Refine Benchmark" />
 <br />
 
 ## Create Full Stack App
@@ -119,14 +112,7 @@ Let's start by creating our **refine** project. You can use the superplate to cr
 npm create refine-app@latest my-first-refine-project -- -p refine-react -b v3
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/create.gif" alt="Create Refine App" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/create.gif" alt="Create Refine App" />
 <br />
 
 Creating your project is that easy. All the packages you need and choose come ready-made.
@@ -221,14 +207,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/first.png" alt="Refine Posts Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/first.png" alt="Refine Posts Page" />
 <br />
 
 As you have seen, we have listed and paginated the titles coming from an API by writing just a few lines of code, thanks to the **refine** and `refine-antd` package. This is the simplest example of refinement. It is possible to do much more, and the Dashboard you need, B2B, B2C, Admin Panel and any web application you want with refine in a very short time and in a very flexible way.
@@ -237,56 +216,21 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 
 -   Refine Client Example -> [Refine Headless + Refine Core + Next.js (SSR) + Tailwind CSS](https://refine.dev/demo/)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_home.png" alt="Refine Client App" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_home.png" alt="Refine Client App" />
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_menu.png" alt="Refine Client App" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_menu.png" alt="Refine Client App" />
 <br />
 
 -   Refine Admin Panel Example -> [Refine Antd + Refine Core ](https://example.admin.refine.dev/)
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/dashboard.png" alt="Refine Dashboard" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/dashboard.png" alt="Refine Dashboard" />
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/products.png" alt="Refine Admin Panel Producst Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/products.png" alt="Refine Admin Panel Producst Page" />
 <br />
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/reviews.png" alt="Refine Reviews Page" />
-</div>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/reviews.png" alt="Refine Reviews Page" />
 <br />
 
 ## Powerful Features of Refine

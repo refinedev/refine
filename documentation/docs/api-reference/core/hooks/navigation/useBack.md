@@ -4,7 +4,7 @@ title: useBack
 sidebar_label: useBack 🆕
 ---
 
-`useBack` is a hook that leverages the `back` method of the [`routerProvider`][routerprovider] to perform go back operation in the history stack.
+`useBack` is a hook that leverages the `back` method of the [`routerProvider`][routerprovider] to perform the "go back" operation in the history stack.
 
 ## Basic Usage
 

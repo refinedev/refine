@@ -1,18 +1,18 @@
-import React from "react";
+import Close from "@mui/icons-material/Close";
+import Edit from "@mui/icons-material/Edit";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import {
-    useTranslate,
     IResourceComponentsProps,
     useDelete,
     useNavigation,
+    useTranslate,
 } from "@refinedev/core";
-import { useDataGrid, List } from "@refinedev/mui";
-import Stack from "@mui/material/Stack";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
-import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import Edit from "@mui/icons-material/Edit";
-import Close from "@mui/icons-material/Close";
+import { List, useDataGrid } from "@refinedev/mui";
+import React from "react";
 
 import { ICourier } from "interfaces";
 
@@ -31,7 +31,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
-    const columns = React.useMemo<GridColumns<ICourier>>(
+    const columns = React.useMemo<GridColDef<ICourier>[]>(
         () => [
             {
                 field: "name",
@@ -91,7 +91,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 type: "actions",
                 getActions: function render({ row }) {
                     return [
-                        // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                         <GridActionsCellItem
                             key={1}
                             label={t("buttons.edit")}
@@ -99,7 +98,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                             onClick={() => edit("couriers", row.id)}
                             showInMenu
                         />,
-                        // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                         <GridActionsCellItem
                             key={2}
                             label={t("buttons.delete")}
@@ -126,7 +124,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 {...dataGridProps}
                 columns={columns}
                 autoHeight
-                rowsPerPageOptions={[10, 20, 50, 100]}
+                pageSizeOptions={[10, 20, 50, 100]}
                 density="comfortable"
                 sx={{
                     "& .MuiDataGrid-cell:hover": {

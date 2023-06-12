@@ -196,33 +196,3 @@ We recommend to add screenshots and images to show outputs if you building an ex
 Please design your example app outputs to look cool and understandable.
 
 If you want yo use gifs, please optimize gif size before adding to the article. You can use [this](https://ezgif.com/optimize) tool to optimize gif size.
-
-Add your image inside to like in the following code block in your markdown draft:
-
-```
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="alt name related to image name" />
-</div>
-```
-
-The code block adds toolbar to the screenshot in the blog post when published.
-
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-<br/>
-
-<div>Your image will be shown here </div>
-
-<br/>
-</div>
-

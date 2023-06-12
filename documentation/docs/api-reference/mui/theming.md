@@ -10,7 +10,7 @@ Theme specifies the color of the components, the darkness of the surfaces, level
 
 ## Predefined Themes
 
-[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can use them by importing them from `@refinedev/mui` package. It is not required if you decide to use the default MUI theme.
+[`RefineThemes`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can use them by importing them from `@refinedev/mui` package. It is not required if you decide to use the default Material UI theme.
 
 ```ts
 // light themes
@@ -48,7 +48,7 @@ const App: React.FC = () => {
 
 ## Theme Provider
 
-The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-provider) component is a simple wrapper around React's Context API that allows you to inject a Theme object into your application. By default, Material-UI components come with a default Theme. In addition, you can also use the ThemeProvider component to inject a custom theme that you have created yourself. This is a feature that allows for great flexibility in how you design your application.
+The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-provider) component is a simple wrapper around React's Context API that allows you to inject a Theme object into your application. By default, Material UI components come with a default Theme. In addition, you can also use the ThemeProvider component to inject a custom theme that you have created yourself. This is a feature that allows for great flexibility in how you design your application.
 
 ```tsx title="src/App.tsx
 import { Refine } from "@refinedev/core";
@@ -1067,7 +1067,7 @@ import {
     Edit,
     useAutocomplete,
 } from "@refinedev/mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Typography, TextField, Autocomplete } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -1139,7 +1139,7 @@ const SampleList = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<any>>(
+    const columns = React.useMemo<GridColDef<any>[]>(
         () => [
             {
                 field: "id",

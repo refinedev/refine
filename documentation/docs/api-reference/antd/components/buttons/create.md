@@ -27,13 +27,11 @@ const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
-        <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                // highlight-next-line
-                headerButtons={<CreateButton />}
-            >
+        <List
+            // highlight-next-line
+            headerButtons={<CreateButton />}
+        >
+            <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" width="100%" />
             </Table>
@@ -120,9 +118,7 @@ If the `create` action route is defined by the pattern: `/posts/:authorId/create
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <CreateButton meta={{ authorId: "10" }} />
-    );
+    return <CreateButton meta={{ authorId: "10" }} />;
 };
 ```
 

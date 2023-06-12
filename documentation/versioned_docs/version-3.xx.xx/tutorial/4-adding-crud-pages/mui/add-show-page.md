@@ -95,7 +95,7 @@ We will go through the show page components and hooks one by one.
 
 -   All other components are **Material UI** components that are used to show the record data.
 
-    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/)
+    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 

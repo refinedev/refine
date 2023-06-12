@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColumns, GridSelectionModel } from "@mui/x-data-grid";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 import { useDeleteMany } from "@refinedev/core";
+import { useDataGrid } from "@refinedev/mui";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { useState } from "react";
 
 import { RefineWithoutLayout } from "../../../../.storybook/preview";
 
@@ -14,7 +14,7 @@ export default {
     decorators: [(Story) => RefineWithoutLayout(Story)],
 } as ComponentMeta<typeof DataGrid>;
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
     {
         field: "id",
         headerName: "ID",
@@ -25,7 +25,7 @@ const columns: GridColumns = [
 ];
 
 interface CustomToolbarProps {
-    selectedRowIds: GridSelectionModel[];
+    selectedRowIds: GridRowSelectionModel[];
 }
 
 const CustomToolbar: React.FC<CustomToolbarProps> = ({ selectedRowIds }) => {
@@ -59,7 +59,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({ selectedRowIds }) => {
 export const DeleteMany: ComponentStory<typeof DataGrid> = () => {
     const { dataGridProps } = useDataGrid();
 
-    const [selectedRowIds, setSelectedRowIds] = useState<GridSelectionModel>(
+    const [selectedRowIds, setSelectedRowIds] = useState<GridRowSelectionModel>(
         [],
     );
 
@@ -69,8 +69,8 @@ export const DeleteMany: ComponentStory<typeof DataGrid> = () => {
                 {...dataGridProps}
                 columns={columns}
                 checkboxSelection
-                disableSelectionOnClick
-                onSelectionModelChange={(newSelectionModel) => {
+                disableRowSelectionOnClick
+                onRowSelectionModelChange={(newSelectionModel) => {
                     setSelectedRowIds(newSelectionModel);
                 }}
                 components={{
