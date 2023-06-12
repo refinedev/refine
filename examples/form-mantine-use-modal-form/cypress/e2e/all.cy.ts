@@ -69,6 +69,7 @@ describe("form-mantine-use-modal-form", () => {
 
     it("should edit record", () => {
         cy.getEditButton().first().click();
+        isModalVisible();
 
         // assert response values are equal to the form values
         cy.wait("@getPost").then((interception) => {
@@ -77,7 +78,7 @@ describe("form-mantine-use-modal-form", () => {
 
             // wait loading state and render to be finished
             cy.getSaveButton().should("not.be.disabled");
-            cy.getAntdLoadingOverlay().should("not.exist");
+            cy.getMantineLoadingOverlay().should("not.exist");
 
             cy.get("#title").should("have.value", body?.title);
             cy.get("#content textarea").should("have.value", body?.content);

@@ -90,6 +90,7 @@ describe("form-material-ui-use-modal-form", () => {
 
         fillForm();
         submitForm();
+        cy.getSaveButton().should("be.disabled");
 
         cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
@@ -102,6 +103,7 @@ describe("form-material-ui-use-modal-form", () => {
         isDrawerOpen();
 
         // wait loading state and render to be finished
+        cy.wait("@getPost");
         cy.wait("@getPost");
         cy.getSaveButton().should("not.be.disabled");
 
