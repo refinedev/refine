@@ -25,3 +25,4 @@ export { useActiveAuthProvider } from "./useActiveAuthProvider";
 export { handlePaginationParams } from "./handlePaginationParams";
 export { useMediaQuery } from "./useMediaQuery";
 export { generateDefaultDocumentTitle } from "./generateDocumentTitle";
+export { pickResource } from "./pick-resource";
