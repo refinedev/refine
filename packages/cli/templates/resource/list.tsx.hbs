@@ -1,12 +1,14 @@
-import { IResourceComponentsProps, GetListResponse } from "@refinedev/core";
+import { IResourceComponentsProps } from "@refinedev/core";
 {{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}Inferencer } from "@refinedev/inferencer/{{uiFramework}}";
+{{else}}
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 {{/if}}
 
-export const {{capitalize resource}}List: React.FC<IResourceComponentsProps<GetListResponse<{}>>> = () => {
+export const {{capitalize resource}}List: React.FC<IResourceComponentsProps> = () => {
     {{#if uiFramework}}
     return <{{formatInferencerComponent uiFramework}}Inferencer />;
     {{else}}
-    return <span>ListPage</span>;
+    return <HeadlessInferencer />;
     {{/if}}
 };
