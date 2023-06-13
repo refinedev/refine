@@ -21,7 +21,6 @@ import {
     Prettify,
 } from "../../interfaces";
 import { pickNotDeprecated } from "@definitions/helpers";
-import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource/index";
 import { BaseListProps } from "../data/useList";
 
@@ -191,18 +190,13 @@ export const useSelect = <
         dataProviderName,
     } = props;
 
-    const { resources } = useResource();
+    const { resource } = useResource(resourceFromProps);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+
     const getMeta = useMeta();
 
-    /**
-     * Since `identifier` is an optional but prioritized way to match resources, users can provide identifier instead of resource name.
-     */
-    const pickedResource = pickResource(resourceFromProps, resources);
-
-    const resource = pickedResource?.name ?? resourceFromProps;
-
     const combinedMeta = getMeta({
-        resource: pickedResource,
+        resource,
         meta: pickNotDeprecated(meta, metaData),
     });
 
@@ -226,7 +220,7 @@ export const useSelect = <
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
     const defaultValueQueryResult = useMany<TQueryFnData, TError, TData>({
-        resource,
+        resource: resourceIdentifierOrName,
         ids: defaultValues,
         queryOptions: {
             ...defaultValueQueryOptions,
@@ -259,7 +253,7 @@ export const useSelect = <
     );
 
     const queryResult = useList<TQueryFnData, TError, TData>({
-        resource,
+        resource: resourceIdentifierOrName,
         sorters: pickNotDeprecated(sorters, sort),
         filters: filters.concat(search),
         pagination: {
