@@ -4,25 +4,13 @@
 describe("with-nextjs", () => {
     const BASE_URL = "http://localhost:3000";
 
-    const mockPost = {
-        title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        status: "Published",
-    };
-
     const fillForm = () => {
         cy.fixture("mock-post").then((mockPost) => {
             cy.get("#title").clear();
             cy.get("#title").type(mockPost.title);
-            // cy.get("#content textarea").clear();
-            // cy.get("#content textarea").type(mockPost.content);
             cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
             cy.setAntdSelect({ id: "status", value: mockPost.status });
         });
-
-        // cy.get("#title").clear();
-        // cy.get("#title").type(mockPost.title);
-        // cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
-        // cy.setAntdSelect({ id: "status", value: mockPost.status });
     };
 
     const assertSuccessResponse = (response: any) => {
