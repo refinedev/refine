@@ -22,7 +22,7 @@ describe("with-nextjs-appdir", () => {
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
-        cy.visit(BASE_URL, { timeout: 180000 });
+        cy.visit(BASE_URL);
     });
 
     describe("login", () => {
