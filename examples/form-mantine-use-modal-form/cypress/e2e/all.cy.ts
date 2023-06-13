@@ -72,6 +72,7 @@ describe("form-mantine-use-modal-form", () => {
         isModalVisible();
 
         // assert response values are equal to the form values
+        cy.wait("@getPost");
         cy.wait("@getPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
