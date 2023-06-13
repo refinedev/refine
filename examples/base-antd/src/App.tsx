@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine, useLoadingOvertime } from "@refinedev/core";
 import {
     notificationProvider,
     ThemedLayoutV2,
@@ -16,8 +16,30 @@ import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
+import { useState } from "react";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+
+const DashboardPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading,
+        interval: 5000,
+        onInterval(elapsedInterval, context) {
+            console.log("loading overtime", elapsedInterval, context);
+        },
+    });
+
+    return (
+        <section>
+            <h1>Dashboard</h1>
+            <button onClick={() => setIsLoading((prev) => !prev)}>
+                {isLoading ? "Stop" : "Start"} Loading
+            </button>
+            <p>{elapsedTime && `Loading took ${elapsedTime}`} </p>
+        </section>
+    );
+};
 
 const App: React.FC = () => {
     return (
@@ -43,6 +65,10 @@ const App: React.FC = () => {
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
+                        undoableTimeout: 1000000000,
+                        overtime: {
+                            interval: 3000,
+                        },
                     }}
                 >
                     <Routes>
@@ -53,12 +79,7 @@ const App: React.FC = () => {
                                 </ThemedLayoutV2>
                             }
                         >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
+                            <Route index element={<DashboardPage />} />
 
                             <Route path="/posts">
                                 <Route index element={<PostList />} />
