@@ -72,7 +72,6 @@ describe("form-mantine-use-drawer-form", () => {
         isDrawerVisible();
 
         // assert response values are equal to the form values
-        cy.wait("@getPost");
         cy.wait("@getPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
