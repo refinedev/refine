@@ -241,3 +241,30 @@ html[data-active-page="index"],
 html[data-active-page="index"] body {
     @apply bg-refine-bg;
 }
+
+@keyframes element-animation {
+    0%,
+    35%,
+    to {
+        opacity: 0;
+    }
+    30%,
+    5% {
+        opacity: 1;
+    }
+}
+
+.landing-hero-mobile-svg .auth,
+.landing-hero-mobile-svg .backend,
+.landing-hero-mobile-svg .framework,
+.landing-hero-mobile-svg .platform {
+    opacity: 0;
+    animation: element-animation 24s infinite;
+    will-change: opacity;
+}
+
+.animation-parent {
+    transform: translate3d(0,0,1px);
+    backface-visibility: hidden;
+    perspective: 1000;
+}

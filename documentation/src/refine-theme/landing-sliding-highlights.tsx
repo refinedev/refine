@@ -121,7 +121,10 @@ export const LandingSlidingHighlights = () => {
 
     return (
         <div
-            className={clsx("h-8 md:h-12 overflow-hidden w-full max-w-[300px]")}
+            className={clsx(
+                "h-8 md:h-12 overflow-hidden w-full max-w-[300px]",
+                "animation-parent",
+            )}
         >
             <motion.div
                 style={{ translateY }}

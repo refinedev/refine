@@ -99,6 +99,7 @@ export const LandingPlaygroundModal = () => {
                             type="button"
                             className={clsx(
                                 "rounded-lg",
+                                "text-gray-500",
                                 "hover:bg-gray-200",
                                 "active:scale-90",
                                 "transition-transform duration-200 ease-in-out",
