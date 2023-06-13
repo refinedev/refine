@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("form-material-ui-use-modal-form", () => {
+describe("form-material-ui-use-drawer-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {
@@ -74,14 +74,27 @@ describe("form-material-ui-use-modal-form", () => {
         cy.visit(BASE_URL);
     });
 
-    it("open - close modal", () => {
+    it("open - close drawer", () => {
+        cy.wait("@getPosts");
+        cy.wait("@getCategories");
+        cy.getMaterialUILoadingCircular().should("not.exist");
         isDrawerClosed();
 
         cy.getCreateButton().click();
         isDrawerOpen();
+        cy.location("search").should(
+            "include",
+            "modal-posts-create[open]=true",
+        );
+
+        cy.wait("@getPosts");
+        cy.wait("@getCategories");
 
         closeDrawer();
-        isDrawerClosed();
+        cy.location("search").should(
+            "not.include",
+            "modal-posts-create[open]=true",
+        );
     });
 
     it("should create record", () => {
@@ -90,6 +103,7 @@ describe("form-material-ui-use-modal-form", () => {
 
         fillForm();
         submitForm();
+        cy.getSaveButton().should("be.disabled");
 
         cy.wait("@postPost").then((interception) => {
             const response = interception?.response;
@@ -102,6 +116,7 @@ describe("form-material-ui-use-modal-form", () => {
         isDrawerOpen();
 
         // wait loading state and render to be finished
+        cy.wait("@getPost");
         cy.wait("@getPost");
         cy.getSaveButton().should("not.be.disabled");
 
