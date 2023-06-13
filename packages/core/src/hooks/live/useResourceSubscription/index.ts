@@ -14,6 +14,7 @@ import {
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
 import { queryKeys } from "@definitions";
+import { useResource } from "@hooks/resource";
 
 export type UseResourceSubscriptionProps = {
     channel: string;
@@ -49,7 +50,7 @@ export type PublishType = {
 };
 
 export const useResourceSubscription = ({
-    resource,
+    resource: resourceFromProp,
     params,
     channel,
     types,
@@ -58,7 +59,10 @@ export const useResourceSubscription = ({
     onLiveEvent,
 }: UseResourceSubscriptionProps): void => {
     const queryClient = useQueryClient();
-    const queryKey = queryKeys(resource);
+
+    const { resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const queryKey = queryKeys(resourceIdentifierOrName);
 
     const liveDataContext = useContext<ILiveContext>(LiveContext);
     const {
@@ -75,7 +79,7 @@ export const useResourceSubscription = ({
             subscription = liveDataContext?.subscribe({
                 channel,
                 params: {
-                    resource,
+                    resource: resource?.name,
                     ...params,
                 },
                 types,
