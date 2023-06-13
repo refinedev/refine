@@ -357,14 +357,14 @@ export function useTable<
         meta: preferredMeta,
     });
 
-    const resourceInUse = resource?.name;
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     React.useEffect(() => {
         warnOnce(
-            typeof resourceInUse === "undefined",
+            typeof resourceIdentifierOrName === "undefined",
             `useTable: \`resource\` is not defined.`,
         );
-    }, [resourceInUse]);
+    }, [resourceIdentifierOrName]);
 
     const [sorters, setSorters] = useState<CrudSorting>(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
@@ -509,7 +509,7 @@ export function useTable<
     }, [syncWithLocation, current, pageSize, sorters, filters]);
 
     const queryResult = useList<TQueryFnData, TError, TData>({
-        resource: resourceInUse,
+        resource: resourceIdentifierOrName,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
         filters: isServerSideFilteringEnabled
