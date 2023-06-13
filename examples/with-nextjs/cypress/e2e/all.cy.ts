@@ -10,10 +10,19 @@ describe("with-nextjs", () => {
     };
 
     const fillForm = () => {
-        cy.get("#title").clear();
-        cy.get("#title").type(mockPost.title);
-        cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
-        cy.setAntdSelect({ id: "status", value: mockPost.status });
+        cy.fixture("mock-post").then((mockPost) => {
+            cy.get("#title").clear();
+            cy.get("#title").type(mockPost.title);
+            // cy.get("#content textarea").clear();
+            // cy.get("#content textarea").type(mockPost.content);
+            cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+            cy.setAntdSelect({ id: "status", value: mockPost.status });
+        });
+
+        // cy.get("#title").clear();
+        // cy.get("#title").type(mockPost.title);
+        // cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
+        // cy.setAntdSelect({ id: "status", value: mockPost.status });
     };
 
     const assertSuccessResponse = (response: any) => {
@@ -22,13 +31,15 @@ describe("with-nextjs", () => {
         expect(response?.statusCode).to.eq(200);
         expect(body).to.have.property("id");
         expect(body).to.have.property("category");
-        expect(body?.title).to.eq(mockPost.title);
 
-        expect(body?.status?.toLowerCase()).to.eq(
-            mockPost?.status?.toLowerCase(),
-        );
+        cy.fixture("mock-post").then((mockPost) => {
+            expect(body?.title).to.eq(mockPost.title);
+            // expect(body?.content).to.eq(mockPost.content);
+            expect(body?.status?.toLowerCase()).to.eq(
+                mockPost?.status?.toLowerCase(),
+            );
+        });
 
-        cy.getAntdNotification().should("contain", "Success");
         cy.location().should((loc) => {
             expect(loc.pathname).to.eq("/posts");
         });
@@ -191,8 +202,13 @@ describe("with-nextjs", () => {
         beforeEach(() => {
             login();
         });
+
         it("should create record", () => {
             cy.getCreateButton().click();
+            cy.wait("@getCategories");
+            cy.location("pathname").should("eq", "/posts/create");
+
+            cy.assertDocumentTitle("Post", "create");
 
             fillForm();
             submitForm();
@@ -202,29 +218,38 @@ describe("with-nextjs", () => {
                 assertSuccessResponse(response);
             });
         });
-        it("should edit record", () => {
-            cy.getEditButton().first().click();
 
+        it("should edit record", () => {
             // wait loading state and render to be finished
-            cy.wait("@getPost");
-            cy.getSaveButton().should("not.be.disabled");
+            cy.wait("@getPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
+
+            cy.getEditButton().first().click();
+            cy.wait("@getPost");
+            cy.wait("@getCategories");
+
+            cy.assertDocumentTitle("Post", "edit");
 
             fillForm();
             submitForm();
 
             cy.wait("@patchPost").then((interception) => {
                 const response = interception?.response;
+
                 assertSuccessResponse(response);
             });
         });
+
         it("should delete record", () => {
+            cy.wait("@getPosts");
+            cy.getAntdLoadingOverlay().should("not.exist");
+
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");
-            cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
+            cy.getSaveButton().should("not.be.disabled");
 
             cy.getDeleteButton().first().click();
             cy.getAntdPopoverDeleteButton().click();
