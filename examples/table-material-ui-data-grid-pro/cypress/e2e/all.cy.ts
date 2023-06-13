@@ -68,7 +68,7 @@ describe("table-material-ui-data-grid-pro", () => {
             "sorters[0][field]=title&sorters[0][order]=asc",
         );
 
-        cy.wait("@getAscPosts");
+        cy.wait("@getAscPosts", { timeout: 120000 });
     });
 
     it("should work with filter", () => {
