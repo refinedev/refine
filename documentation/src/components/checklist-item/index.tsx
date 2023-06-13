@@ -41,7 +41,7 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
     return (
         <label
             className={clsx(
-                "mb-3",
+                "mt-4",
                 "flex",
                 "items-start",
                 "flex-nowrap",
@@ -49,7 +49,7 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
                 "cursor-pointer",
             )}
         >
-            <div className="flex-shrink-0 w-5 h-5 mt-[3px]">
+            <div className="flex-shrink-0 w-5 h-5 mt-[4px]">
                 <button
                     type="button"
                     onClick={handleToggle}

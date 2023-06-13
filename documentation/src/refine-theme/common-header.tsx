@@ -107,7 +107,7 @@ export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
                 className={clsx(
                     "w-full",
                     hasSticky && [
-                        "z-10",
+                        "z-0",
                         "sticky",
                         "top-14",
                         "header-md:top-16",

@@ -69,7 +69,7 @@
         mask-repeat: no-repeat;
     }
     .landing-playground-slide-mask {
-        mask-image: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 27.5%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 72.5%, rgba(0,0,0,0.2) 100%);
+        mask-image: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,1) 37.5%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 75.5%, rgba(0,0,0,0.2) 100%);
         mask-size: 100% 100%;
         mask-position: center;
         mask-repeat: no-repeat;
@@ -145,7 +145,7 @@
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;
     --ifm-font-color-base: #f6f6f9;
-    --docusaurus-highlighted-code-line-bg: rgb(72 77 91);
+    --docusaurus-highlighted-code-line-bg: #3E425B;
     --browser-window-bezel-color: #292d3e;
     --browser-window-bezel-color-accent: #4e5264;
     --tutorial-toc-bg-color: #27272a;

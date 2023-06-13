@@ -14,12 +14,12 @@ export const LandingHeroMobileAnimation = (
             transform: "translate3d(0,0,1px)",
         }}
         {...props}
+        className={clsx(
+            "landing-hero-mobile-svg",
+            "animation-parent",
+            props.className,
+        )}
     >
-        <style>
-            {
-                "@keyframes element-animation{0%,35%,to{opacity:0}30%,5%{opacity:1}}.auth,.backend,.framework,.platform{opacity:0;animation:element-animation 24s infinite}"
-            }
-        </style>
         <g className="base">
             <path
                 stroke="url(#base1)"

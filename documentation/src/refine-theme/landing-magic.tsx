@@ -283,6 +283,7 @@ export const LandingMagic = () => {
                                             "rounded-lg",
                                             "relative",
                                             "overflow-hidden",
+                                            "animation-parent",
                                         )}
                                     >
                                         <motion.div
@@ -335,6 +336,7 @@ export const LandingMagic = () => {
                                             "rounded-lg",
                                             "relative",
                                             "overflow-hidden",
+                                            "animation-parent",
                                         )}
                                     >
                                         <motion.div
