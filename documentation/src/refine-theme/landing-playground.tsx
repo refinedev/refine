@@ -259,6 +259,8 @@ export const LandingPlayground = () => {
                                             "flex-1",
                                             "hidden landing-md:block",
                                             "min-w-[50%]",
+                                            "pointer-events-none",
+                                            "select-none",
                                         )}
                                     >
                                         <div
@@ -278,11 +280,14 @@ export const LandingPlayground = () => {
                                                     "h-[120%]",
                                                     "w-[90px]",
                                                     "landing-lg:w-[177px]",
-                                                    "rotate-[15deg]",
                                                     "overflow-hidden",
                                                     "animation-parent",
                                                     "landing-playground-slide-mask",
                                                 )}
+                                                style={{
+                                                    transform:
+                                                        "translate3d(0,0,0) rotate(15deg)",
+                                                }}
                                             >
                                                 <div
                                                     className={clsx(
@@ -291,7 +296,6 @@ export const LandingPlayground = () => {
                                                         "landing-lg:animate-playground-slide-down",
                                                         "transition-transform duration-100 ease-in-out",
                                                         "will-change-transform",
-                                                        "animation-parent",
                                                     )}
                                                 >
                                                     <img
@@ -334,11 +338,14 @@ export const LandingPlayground = () => {
                                                     "h-[120%]",
                                                     "w-[90px]",
                                                     "landing-lg:w-[177px]",
-                                                    "rotate-[15deg]",
                                                     "overflow-hidden",
                                                     "animation-parent",
                                                     "landing-playground-slide-mask",
                                                 )}
+                                                style={{
+                                                    transform:
+                                                        "translate3d(0,0,0) rotate(15deg)",
+                                                }}
                                             >
                                                 <div
                                                     className={clsx(
