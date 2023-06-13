@@ -120,7 +120,7 @@ export const useInfiniteList = <
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
 >({
-    resource,
+    resource: resourceFromProp,
     config,
     filters,
     hasPagination,
@@ -140,7 +140,9 @@ export const useInfiniteList = <
     TError,
     TData
 >): InfiniteQueryObserverResult<GetListResponse<TData>, TError> => {
-    const { resources } = useResource();
+    const { resources, resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -151,7 +153,7 @@ export const useInfiniteList = <
     const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
-        resource,
+        resourceIdentifierOrName,
         dataProviderName,
         resources,
     );
@@ -185,18 +187,18 @@ export const useInfiniteList = <
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
     const queryKey = queryKeys(
-        resource,
+        resourceIdentifierOrName,
         pickedDataProvider,
         preferredMeta,
         preferredMeta,
     );
 
-    const combinedMeta = getMeta({ meta: preferredMeta });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
-        resource,
+        resource: resourceIdentifierOrName,
         types: ["*"],
         params: {
             meta: combinedMeta,
@@ -209,7 +211,7 @@ export const useInfiniteList = <
             subscriptionType: "useList",
             ...liveParams,
         },
-        channel: `resources/${resource}`,
+        channel: `resources/${resource?.name}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
@@ -240,7 +242,7 @@ export const useInfiniteList = <
             };
 
             return getList<TQueryFnData>({
-                resource,
+                resource: resource?.name ?? "",
                 pagination: paginationProperties,
                 hasPagination: isServerPagination,
                 filters: prefferedFilters,
@@ -283,7 +285,7 @@ export const useInfiniteList = <
                         ? successNotification(
                               data,
                               notificationValues,
-                              resource,
+                              resourceIdentifierOrName,
                           )
                         : successNotification;
 
@@ -295,11 +297,15 @@ export const useInfiniteList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, notificationValues, resource)
+                        ? errorNotification(
+                              err,
+                              notificationValues,
+                              resourceIdentifierOrName,
+                          )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${resource}-useInfiniteList-notification`,
+                    key: `${resourceIdentifierOrName}-useInfiniteList-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },

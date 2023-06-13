@@ -87,7 +87,7 @@ export const useOne = <
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
 >({
-    resource,
+    resource: resourceFromProp,
     id,
     queryOptions,
     successNotification,
@@ -101,7 +101,9 @@ export const useOne = <
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetOneResponse<TData>
 > => {
-    const { resources } = useResource();
+    const { resources, resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -112,24 +114,26 @@ export const useOne = <
     const getMeta = useMeta();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
+    const pickedDataProvider = pickDataProvider(
+        resourceIdentifierOrName,
+        dataProviderName,
+        resources,
+    );
 
     const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        preferredMeta,
+        resourceIdentifierOrName,
+        pickedDataProvider,
         preferredMeta,
     );
 
-    const { getOne } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
+    const { getOne } = dataProvider(pickedDataProvider);
 
-    const combinedMeta = getMeta({ meta: preferredMeta });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
-        resource,
+        resource: resourceIdentifierOrName,
         types: ["*"],
-        channel: `resources/${resource}`,
+        channel: `resources/${resource?.name}`,
         params: {
             ids: id ? [id] : [],
             id: id,
@@ -141,7 +145,8 @@ export const useOne = <
         enabled:
             typeof queryOptions?.enabled !== "undefined"
                 ? queryOptions?.enabled
-                : typeof resource !== "undefined" && typeof id !== "undefined",
+                : typeof resource?.name !== "undefined" &&
+                  typeof id !== "undefined",
         liveMode,
         onLiveEvent,
     });
@@ -154,7 +159,7 @@ export const useOne = <
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
             getOne<TQueryFnData>({
-                resource: resource!,
+                resource: resource?.name ?? "",
                 id: id!,
                 meta: {
                     ...combinedMeta,
@@ -190,7 +195,7 @@ export const useOne = <
                                   id,
                                   ...combinedMeta,
                               },
-                              resource,
+                              resourceIdentifierOrName,
                           )
                         : successNotification;
 
@@ -208,12 +213,12 @@ export const useOne = <
                                   id,
                                   ...combinedMeta,
                               },
-                              resource,
+                              resourceIdentifierOrName,
                           )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${resource}-getOne-notification`,
+                    key: `${id}-${resourceIdentifierOrName}-getOne-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },

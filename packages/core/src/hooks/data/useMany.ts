@@ -83,7 +83,7 @@ export const useMany = <
     TError extends HttpError = HttpError,
     TData extends BaseRecord = TQueryFnData,
 >({
-    resource,
+    resource: resourceFromProp,
     ids,
     queryOptions,
     successNotification,
@@ -97,7 +97,9 @@ export const useMany = <
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
-    const { resources } = useResource();
+    const { resources, resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -108,25 +110,26 @@ export const useMany = <
     const getMeta = useMeta();
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
-
+    const pickedDataProvider = pickDataProvider(
+        resourceIdentifierOrName,
+        dataProviderName,
+        resources,
+    );
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
     const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        preferredMeta,
+        resourceIdentifierOrName,
+        pickedDataProvider,
         preferredMeta,
     );
 
-    const { getMany, getOne } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
+    const { getMany, getOne } = dataProvider(pickedDataProvider);
 
-    const combinedMeta = getMeta({ meta: preferredMeta });
+    const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
-        resource,
+        resource: resourceIdentifierOrName,
         types: ["*"],
         params: {
             ids: ids,
@@ -135,7 +138,7 @@ export const useMany = <
             subscriptionType: "useMany",
             ...liveParams,
         },
-        channel: `resources/${resource}`,
+        channel: `resources/${resource.name}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
@@ -150,7 +153,7 @@ export const useMany = <
         ({ queryKey, pageParam, signal }) => {
             if (getMany) {
                 return getMany({
-                    resource,
+                    resource: resource?.name,
                     ids,
                     meta: {
                         ...combinedMeta,
@@ -173,7 +176,7 @@ export const useMany = <
                 return handleMultiple(
                     ids.map((id) =>
                         getOne<TQueryFnData>({
-                            resource,
+                            resource: resource?.name,
                             id,
                             meta: {
                                 ...combinedMeta,
@@ -203,7 +206,11 @@ export const useMany = <
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, ids, resource)
+                        ? successNotification(
+                              data,
+                              ids,
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig);
@@ -214,11 +221,11 @@ export const useMany = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, ids, resource)
+                        ? errorNotification(err, ids, resourceIdentifierOrName)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${ids[0]}-${resource}-getMany-notification`,
+                    key: `${ids[0]}-${resourceIdentifierOrName}-getMany-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },
