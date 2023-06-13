@@ -86,6 +86,11 @@ const bootstrap = () => {
                     ],
                     {
                         stdio: "inherit",
+                        env: {
+                            ...process.env,
+                            INITIAL_COMMIT_MESSAGE:
+                                "Initial commit from create-refine-app",
+                        },
                     },
                 );
             } catch (err) {}
