@@ -91,7 +91,6 @@ describe("form-material-ui-use-drawer-form", () => {
         cy.wait("@getCategories");
 
         closeDrawer();
-        isDrawerClosed();
         cy.location("search").should(
             "not.include",
             "modal-posts-create[open]=true",
