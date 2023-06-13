@@ -111,19 +111,18 @@ export const useExport = <
 
     const dataProvider = useDataProvider();
 
-    const { resource, resources } = useResource();
+    const { resource, resources } = useResource(
+        resourceFromProps ?? resourceName,
+    );
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const filename = `${userFriendlyResourceName(
-        resource?.name,
+        resourceIdentifierOrName,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(
-            resource?.identifier ?? resource?.name,
-            dataProviderName,
-            resources,
-        ),
+        pickDataProvider(resourceIdentifierOrName, dataProviderName, resources),
     );
 
     const triggerExport = async () => {
