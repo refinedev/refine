@@ -154,7 +154,7 @@ export const useDeleteMany = <
             );
 
             const resourceIdentifierOrName =
-                resource?.identifier ?? resource?.name;
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
@@ -249,7 +249,7 @@ export const useDeleteMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
@@ -364,7 +364,7 @@ export const useDeleteMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
@@ -401,7 +401,7 @@ export const useDeleteMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // Remove the queries from the cache:
                 ids.forEach((id) =>
@@ -474,7 +474,7 @@ export const useDeleteMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // set back the queries to the context:
                 if (context) {

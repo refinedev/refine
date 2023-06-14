@@ -141,7 +141,7 @@ export const useInfiniteList = <
     TData
 >): InfiniteQueryObserverResult<GetListResponse<TData>, TError> => {
     const { resources, resource } = useResource(resourceFromProp);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const resourceIdentifierOrName = resource.identifier ?? resource.name;
 
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -211,7 +211,7 @@ export const useInfiniteList = <
             subscriptionType: "useList",
             ...liveParams,
         },
-        channel: `resources/${resource?.name}`,
+        channel: `resources/${resource.name}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
@@ -242,7 +242,7 @@ export const useInfiniteList = <
             };
 
             return getList<TQueryFnData>({
-                resource: resource?.name ?? "",
+                resource: resource.name,
                 pagination: paginationProperties,
                 hasPagination: isServerPagination,
                 filters: prefferedFilters,

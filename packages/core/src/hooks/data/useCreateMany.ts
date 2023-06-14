@@ -118,7 +118,7 @@ export const useCreateMany = <
             );
 
             const resourceIdentifierOrName =
-                resource?.identifier ?? resource?.name;
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
@@ -172,7 +172,7 @@ export const useCreateMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const resourcePlural = pluralize.plural(
                     resourceIdentifierOrName,
@@ -255,7 +255,7 @@ export const useCreateMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const notificationConfig =
                     typeof errorNotification === "function"

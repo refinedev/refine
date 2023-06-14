@@ -155,7 +155,7 @@ export const useDelete = <
             );
 
             const resourceIdentifierOrName =
-                resource?.identifier ?? resource?.name;
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
@@ -243,7 +243,7 @@ export const useDelete = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
@@ -335,7 +335,7 @@ export const useDelete = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
@@ -371,7 +371,7 @@ export const useDelete = <
                     routerType,
                 );
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const resourceSingular = pluralize.singular(
                     resourceIdentifierOrName,
@@ -446,7 +446,7 @@ export const useDelete = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // set back the queries to the context:
                 if (context) {

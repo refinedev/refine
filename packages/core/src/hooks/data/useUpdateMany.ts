@@ -161,7 +161,7 @@ export const useUpdateMany = <
             );
 
             const resourceIdentifierOrName =
-                resource?.identifier ?? resource?.name;
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
@@ -258,7 +258,7 @@ export const useUpdateMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const queryKey = queryKeys(
                     resourceIdentifierOrName,
@@ -384,7 +384,7 @@ export const useUpdateMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
                     resource: resourceIdentifierOrName,
@@ -434,7 +434,7 @@ export const useUpdateMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const resourceSingular = pluralize.singular(
                     resourceIdentifierOrName,
@@ -527,7 +527,7 @@ export const useUpdateMany = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // set back the queries to the context:
                 if (context) {

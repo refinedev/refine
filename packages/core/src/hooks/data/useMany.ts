@@ -98,7 +98,7 @@ export const useMany = <
     GetManyResponse<TData>
 > => {
     const { resources, resource } = useResource(resourceFromProp);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const resourceIdentifierOrName = resource.identifier ?? resource.name;
 
     const dataProvider = useDataProvider();
     const translate = useTranslate();

@@ -186,7 +186,7 @@ export const useUpdate = <
             );
 
             const resourceIdentifierOrName =
-                resource?.identifier ?? resource?.name;
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
@@ -274,7 +274,7 @@ export const useUpdate = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
@@ -392,7 +392,7 @@ export const useUpdate = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 invalidateStore({
                     resource: resourceIdentifierOrName,
@@ -430,7 +430,7 @@ export const useUpdate = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const resourceSingular = pluralize.singular(
                     resourceIdentifierOrName,
@@ -519,7 +519,7 @@ export const useUpdate = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 // set back the queries to the context:
                 if (context) {

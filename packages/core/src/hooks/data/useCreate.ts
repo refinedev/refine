@@ -145,7 +145,7 @@ export const useCreate = <
             );
 
             const resourceIdentifierOrName =
-                resource?.identifier ?? resource?.name;
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 resource,
@@ -185,7 +185,7 @@ export const useCreate = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const resourceSingular = pluralize.singular(
                     resourceIdentifierOrName,
@@ -270,7 +270,7 @@ export const useCreate = <
                 );
 
                 const resourceIdentifierOrName =
-                    resource?.identifier ?? resource?.name;
+                    resource.identifier ?? resource.name;
 
                 const resourceSingular = pluralize.singular(
                     resourceIdentifierOrName,
