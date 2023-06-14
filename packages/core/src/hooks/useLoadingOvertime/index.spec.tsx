@@ -65,15 +65,30 @@ describe("useLoadingOvertime Hook", () => {
         expect(elapsedTime).toBe(2000);
     });
 
-    it("should override global interval", () => {
+    it("should override global interval and onInverval", () => {
+        const onInterval = jest.fn();
+        const onIntervalGlobal = jest.fn();
         const { result } = renderHook(
             () =>
                 useLoadingOvertime({
                     isLoading: true,
                     interval: 1000,
+                    onInterval,
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    refineProvider: {
+                        hasDashboard: false,
+                        ...defaultRefineOptions,
+                        options: {
+                            ...defaultRefineOptions,
+                            overtime: {
+                                interval: 5000,
+                                onInterval: onIntervalGlobal,
+                            },
+                        },
+                    },
+                }),
             },
         );
 
@@ -83,38 +98,17 @@ describe("useLoadingOvertime Hook", () => {
 
         const { elapsedTime } = result.current;
         expect(elapsedTime).toBe(2000);
-    });
-
-    it("should run onInterval callback", () => {
-        const onInterval = jest.fn();
-        const { result } = renderHook(
-            () =>
-                useLoadingOvertime({
-                    isLoading: true,
-                    interval: 1000,
-                    onInterval,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        act(() => {
-            jest.advanceTimersByTime(1000);
-        });
-
-        const { elapsedTime } = result.current;
-        expect(elapsedTime).toBe(1000);
         expect(onInterval).toBeCalledTimes(1);
+        // should not be called global interval
+        expect(onIntervalGlobal).toBeCalledTimes(0);
     });
 
-    it("should run global onInterval callback", () => {
+    it("should run global interval and onInterval", () => {
         const onInterval = jest.fn();
         const { result } = renderHook(
             () =>
                 useLoadingOvertime({
                     isLoading: true,
-                    interval: 1000,
                 }),
             {
                 wrapper: TestWrapper({

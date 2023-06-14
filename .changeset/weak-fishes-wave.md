@@ -9,9 +9,30 @@ if you need to do something when the loading time exceeds the specified time, re
 ```tsx
 const { elapsedTime } = useLoadingOvertime({
    isLoading,
-   interval: 5000,
+   interval: 1000,
    onInterval(elapsedInterval, context) {
        console.log("loading overtime", elapsedInterval, context);
    },
 });
+```
+
+`interval` and `onInterval` are optional. It can be controlled globally from `<Refine />` options.
+
+```tsx
+<Refine
+    //...
+    options={{
+        //...
+        overtime: {
+            interval: 2000, // default 1000
+            onInterval(elapsedInterval, context) {
+                console.log(
+                    "loading overtime",
+                    elapsedInterval,
+                    context,
+                );
+            },
+        },
+    }}
+>
 ```
