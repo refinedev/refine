@@ -62,17 +62,19 @@ const Desktop = ({
                 "justify-between",
                 "items-start",
                 "bg-gray-50 dark:bg-gray-800",
-                "p-2 rounded-xl",
+                "rounded-xl p-2",
             )}
         >
             <ul
                 className={clsx(
                     "overflow-hidden",
                     "flex-1",
-                    "m-0",
-                    "p-0",
                     collapsed && "h-8",
                 )}
+                style={{
+                    margin: 0,
+                    padding: 0,
+                }}
             >
                 {tags.map((tag) => (
                     <li
@@ -109,7 +111,7 @@ const Desktop = ({
 
 const Mobile = ({ tags }: { tags: any }) => {
     return (
-        <div className="lg:hidden block w-full mb-10">
+        <div className="mb-10 block w-full lg:hidden">
             <Disclosure>
                 {({ open }) => (
                     <div
@@ -133,15 +135,15 @@ const Mobile = ({ tags }: { tags: any }) => {
                                     "text-gray-400 dark:text-gray-500",
                                     "transition-transform duration-200 ease-in-out",
                                     {
-                                        "transform -rotate-90": !open,
+                                        "-rotate-90 transform": !open,
                                     },
                                 )}
                             />
                             <span
-                                className={clsx("text-sm", {
-                                    "text-gray-900 dark:text-gray-0": open,
-                                    "text-gray-500 dark:text-gray-400": !open,
-                                })}
+                                className={clsx(
+                                    "text-sm",
+                                    "dark:text-gray-0 text-gray-900",
+                                )}
                             >
                                 Blog Post Tags
                             </span>
@@ -155,14 +157,16 @@ const Mobile = ({ tags }: { tags: any }) => {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                         >
-                            <Disclosure.Panel className="p-2 sm:p-6 h-[200px] sm:h-[232px] overflow-auto">
+                            <Disclosure.Panel className="h-[200px] overflow-auto p-2 sm:h-[232px] sm:p-6">
                                 <ul
                                     className={clsx(
                                         "overflow-hidden",
                                         "flex-1",
-                                        "m-0",
-                                        "p-0",
                                     )}
+                                    style={{
+                                        margin: 0,
+                                        padding: 0,
+                                    }}
                                 >
                                     {tags.map((tag) => (
                                         <li
