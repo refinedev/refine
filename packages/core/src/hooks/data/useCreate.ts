@@ -28,7 +28,9 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
+    useRouterType,
 } from "@hooks";
+import { getResourceByName } from "@definitions/helpers/getResourceByName";
 
 type useCreateParams<TData, TError, TVariables> = {
     /**
@@ -121,6 +123,7 @@ export const useCreate = <
     const { log } = useLog();
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
+    const routerType = useRouterType();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -129,20 +132,34 @@ export const useCreate = <
         unknown
     >(
         ({
-            resource,
+            resource: resourceName,
             values,
             meta,
             metaData,
             dataProviderName,
         }: useCreateParams<TData, TError, TVariables>) => {
+            const resource = getResourceByName(
+                resourceName,
+                resources,
+                routerType,
+            );
+
+            const resourceIdentifierOrName =
+                resource?.identifier ?? resource?.name;
+
             const combinedMeta = getMeta({
+                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 
             return dataProvider(
-                pickDataProvider(resource, dataProviderName, resources),
+                pickDataProvider(
+                    resourceIdentifierOrName,
+                    dataProviderName,
+                    resources,
+                ),
             ).create<TData, TVariables>({
-                resource,
+                resource: resource.name,
                 variables: values,
                 meta: combinedMeta,
                 metaData: combinedMeta,
@@ -152,7 +169,7 @@ export const useCreate = <
             onSuccess: (
                 data,
                 {
-                    resource,
+                    resource: resourceName,
                     successNotification: successNotificationFromProp,
                     dataProviderName,
                     invalidates = ["list", "many"],
@@ -161,20 +178,35 @@ export const useCreate = <
                     metaData,
                 },
             ) => {
-                const resourceSingular = pluralize.singular(resource);
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
+                const resourceSingular = pluralize.singular(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof successNotificationFromProp === "function"
-                        ? successNotificationFromProp(data, values, resource)
+                        ? successNotificationFromProp(
+                              data,
+                              values,
+                              resourceIdentifierOrName,
+                          )
                         : successNotificationFromProp;
 
                 handleNotification(notificationConfig, {
-                    key: `create-${resource}-notification`,
+                    key: `create-${resourceIdentifierOrName}-notification`,
                     message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
                                 resourceSingular,
                             ),
                         },
@@ -185,9 +217,9 @@ export const useCreate = <
                 });
 
                 invalidateStore({
-                    resource,
+                    resource: resourceIdentifierOrName,
                     dataProviderName: pickDataProvider(
-                        resource,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -195,7 +227,7 @@ export const useCreate = <
                 });
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "created",
                     payload: {
                         ids: data?.data?.id ? [data.data.id] : undefined,
@@ -208,11 +240,11 @@ export const useCreate = <
 
                 log?.mutate({
                     action: "create",
-                    resource,
+                    resource: resource.name,
                     data: values,
                     meta: {
                         dataProviderName: pickDataProvider(
-                            resource,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -224,27 +256,43 @@ export const useCreate = <
             onError: (
                 err: TError,
                 {
-                    resource,
+                    resource: resourceName,
                     errorNotification: errorNotificationFromProp,
                     values,
                 },
             ) => {
                 checkError(err);
-                const resourceSingular = pluralize.singular(resource);
+
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
+                const resourceSingular = pluralize.singular(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"
-                        ? errorNotificationFromProp(err, values, resource)
+                        ? errorNotificationFromProp(
+                              err,
+                              values,
+                              resourceIdentifierOrName,
+                          )
                         : errorNotificationFromProp;
 
                 handleNotification(notificationConfig, {
-                    key: `create-${resource}-notification`,
+                    key: `create-${resourceIdentifierOrName}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
                                 resourceSingular,
                             ),
                             statusCode: err.statusCode,

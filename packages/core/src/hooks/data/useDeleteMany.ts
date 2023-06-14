@@ -31,6 +31,7 @@ import {
     useLog,
     useOnError,
     useMeta,
+    useRouterType,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -39,6 +40,7 @@ import {
     handleMultiple,
     pickNotDeprecated,
     useActiveAuthProvider,
+    getResourceByName,
 } from "@definitions";
 
 export type DeleteManyParams<TData, TError, TVariables> = {
@@ -126,6 +128,7 @@ export const useDeleteMany = <
     const { resources } = useResource();
     const queryClient = useQueryClient();
     const getMeta = useMeta();
+    const routerType = useRouterType();
 
     const mutation = useMutation<
         DeleteManyResponse<TData>,
@@ -134,7 +137,7 @@ export const useDeleteMany = <
         DeleteContext<TData>
     >(
         ({
-            resource,
+            resource: resourceName,
             ids,
             mutationMode,
             undoableTimeout,
@@ -144,6 +147,15 @@ export const useDeleteMany = <
             dataProviderName,
             values,
         }: DeleteManyParams<TData, TError, TVariables>) => {
+            const resource = getResourceByName(
+                resourceName,
+                resources,
+                routerType,
+            );
+
+            const resourceIdentifierOrName =
+                resource?.identifier ?? resource?.name;
+
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
             });
@@ -155,13 +167,17 @@ export const useDeleteMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             const selectedDataProvider = dataProvider(
-                pickDataProvider(resource, dataProviderName, resources),
+                pickDataProvider(
+                    resourceIdentifierOrName,
+                    dataProviderName,
+                    resources,
+                ),
             );
 
             const mutationFn = () => {
                 if (selectedDataProvider.deleteMany) {
                     return selectedDataProvider.deleteMany<TData, TVariables>({
-                        resource,
+                        resource: resource.name,
                         ids,
                         meta: combinedMeta,
                         metaData: combinedMeta,
@@ -171,7 +187,7 @@ export const useDeleteMany = <
                     return handleMultiple(
                         ids.map((id) =>
                             selectedDataProvider.deleteOne<TData, TVariables>({
-                                resource,
+                                resource: resource.name,
                                 id,
                                 meta: combinedMeta,
                                 metaData: combinedMeta,
@@ -206,7 +222,7 @@ export const useDeleteMany = <
                         type: ActionTypes.ADD,
                         payload: {
                             id: ids,
-                            resource: resource,
+                            resource: resourceIdentifierOrName,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -220,17 +236,30 @@ export const useDeleteMany = <
         {
             onMutate: async ({
                 ids,
-                resource,
+                resource: resourceName,
                 mutationMode,
                 dataProviderName,
                 meta,
                 metaData,
             }) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 const preferredMeta = pickNotDeprecated(meta, metaData);
+
                 const queryKey = queryKeys(
-                    resource,
-                    pickDataProvider(resource, dataProviderName, resources),
-                    preferredMeta,
+                    resourceIdentifierOrName,
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                     preferredMeta,
                 );
 
@@ -322,17 +351,26 @@ export const useDeleteMany = <
                 _data,
                 _error,
                 {
-                    resource,
+                    resource: resourceName,
                     ids,
                     dataProviderName,
                     invalidates = ["list", "many"],
                 },
             ) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
-                    resource,
+                    resource: resourceIdentifierOrName,
                     dataProviderName: pickDataProvider(
-                        resource,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -341,14 +379,14 @@ export const useDeleteMany = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id: ids, resource },
+                    payload: { id: ids, resource: resourceIdentifierOrName },
                 });
             },
             onSuccess: (
                 _data,
                 {
                     ids,
-                    resource,
+                    resource: resourceName,
                     meta,
                     metaData,
                     dataProviderName,
@@ -356,6 +394,15 @@ export const useDeleteMany = <
                 },
                 context,
             ) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 // Remove the queries from the cache:
                 ids.forEach((id) =>
                     queryClient.removeQueries(context?.queryKey.detail(id)),
@@ -363,27 +410,31 @@ export const useDeleteMany = <
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(_data, ids, resource)
+                        ? successNotification(
+                              _data,
+                              ids,
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${ids}-${resource}-notification`,
+                    key: `${ids}-${resourceIdentifierOrName}-notification`,
                     description: translate("notifications.success", "Success"),
                     message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
-                                resource,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
+                                resourceIdentifierOrName,
                             ),
                         },
-                        `Successfully deleted ${resource}`,
+                        `Successfully deleted ${resourceIdentifierOrName}`,
                     ),
                     type: "success",
                 });
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "deleted",
                     payload: { ids },
                     date: new Date(),
@@ -394,11 +445,11 @@ export const useDeleteMany = <
 
                 log?.mutate({
                     action: "deleteMany",
-                    resource,
+                    resource: resource.name,
                     meta: {
                         ids,
                         dataProviderName: pickDataProvider(
-                            resource,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -411,7 +462,20 @@ export const useDeleteMany = <
                     queryClient.removeQueries(context?.queryKey.detail(id)),
                 );
             },
-            onError: (err, { ids, resource, errorNotification }, context) => {
+            onError: (
+                err,
+                { ids, resource: resourceName, errorNotification },
+                context,
+            ) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 // set back the queries to the context:
                 if (context) {
                     for (const query of context.previousQueries) {
@@ -421,15 +485,21 @@ export const useDeleteMany = <
 
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
-                    const resourceSingular = pluralize.singular(resource);
+                    const resourceSingular = pluralize.singular(
+                        resourceIdentifierOrName,
+                    );
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(err, ids, resource)
+                            ? errorNotification(
+                                  err,
+                                  ids,
+                                  resourceIdentifierOrName,
+                              )
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${ids}-${resource}-notification`,
+                        key: `${ids}-${resourceIdentifierOrName}-notification`,
                         message: translate(
                             "notifications.deleteError",
                             {

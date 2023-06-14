@@ -18,6 +18,7 @@ import {
     useLog,
     useOnError,
     useMeta,
+    useRouterType,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -39,6 +40,7 @@ import {
     handleMultiple,
     pickNotDeprecated,
     useActiveAuthProvider,
+    getResourceByName,
 } from "@definitions/helpers";
 
 type UpdateManyParams<TData, TError, TVariables> = {
@@ -133,6 +135,7 @@ export const useUpdateMany = <
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
+    const routerType = useRouterType();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -143,7 +146,7 @@ export const useUpdateMany = <
         ({
             ids,
             values,
-            resource,
+            resource: resourceName,
             onCancel,
             mutationMode,
             undoableTimeout,
@@ -151,6 +154,15 @@ export const useUpdateMany = <
             metaData,
             dataProviderName,
         }: UpdateManyParams<TData, TError, TVariables>) => {
+            const resource = getResourceByName(
+                resourceName,
+                resources,
+                routerType,
+            );
+
+            const resourceIdentifierOrName =
+                resource?.identifier ?? resource?.name;
+
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
             });
@@ -162,13 +174,17 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             const selectedDataProvider = dataProvider(
-                pickDataProvider(resource, dataProviderName, resources),
+                pickDataProvider(
+                    resourceIdentifierOrName,
+                    dataProviderName,
+                    resources,
+                ),
             );
 
             const mutationFn = () => {
                 if (selectedDataProvider.updateMany) {
                     return selectedDataProvider.updateMany<TData, TVariables>({
-                        resource,
+                        resource: resource.name,
                         ids,
                         variables: values,
                         meta: combinedMeta,
@@ -178,7 +194,7 @@ export const useUpdateMany = <
                     return handleMultiple(
                         ids.map((id) =>
                             selectedDataProvider.update<TData, TVariables>({
-                                resource,
+                                resource: resource.name,
                                 id,
                                 variables: values,
                                 meta: combinedMeta,
@@ -213,7 +229,7 @@ export const useUpdateMany = <
                         type: ActionTypes.ADD,
                         payload: {
                             id: ids,
-                            resource: resource,
+                            resource: resourceIdentifierOrName,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -227,7 +243,7 @@ export const useUpdateMany = <
 
         {
             onMutate: async ({
-                resource,
+                resource: resourceName,
                 ids,
                 values,
                 mutationMode,
@@ -235,10 +251,22 @@ export const useUpdateMany = <
                 meta,
                 metaData,
             }) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 const queryKey = queryKeys(
-                    resource,
-                    pickDataProvider(resource, dataProviderName, resources),
-                    pickNotDeprecated(meta, metaData),
+                    resourceIdentifierOrName,
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                     pickNotDeprecated(meta, metaData),
                 );
 
@@ -344,13 +372,25 @@ export const useUpdateMany = <
                     queryKey,
                 };
             },
-            onSettled: (_data, _error, { ids, resource, dataProviderName }) => {
+            onSettled: (
+                _data,
+                _error,
+                { ids, resource: resourceName, dataProviderName },
+            ) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
-                    resource,
+                    resource: resourceIdentifierOrName,
                     invalidates: ["list", "many"],
                     dataProviderName: pickDataProvider(
-                        resource,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -358,10 +398,10 @@ export const useUpdateMany = <
 
                 ids.forEach((id) =>
                     invalidateStore({
-                        resource,
+                        resource: resourceIdentifierOrName,
                         invalidates: ["detail"],
                         dataProviderName: pickDataProvider(
-                            resource,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -371,14 +411,14 @@ export const useUpdateMany = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id: ids, resource },
+                    payload: { id: ids, resource: resourceIdentifierOrName },
                 });
             },
             onSuccess: (
                 data,
                 {
                     ids,
-                    resource,
+                    resource: resourceName,
                     meta,
                     metaData,
                     dataProviderName,
@@ -387,15 +427,30 @@ export const useUpdateMany = <
                 },
                 context,
             ) => {
-                const resourceSingular = pluralize.singular(resource);
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
+                const resourceSingular = pluralize.singular(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { ids, values }, resource)
+                        ? successNotification(
+                              data,
+                              { ids, values },
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${ids}-${resource}-notification`,
+                    key: `${ids}-${resourceIdentifierOrName}-notification`,
                     description: translate(
                         "notifications.success",
                         "Successful",
@@ -404,8 +459,8 @@ export const useUpdateMany = <
                         "notifications.editSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
-                                resource,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
+                                resourceIdentifierOrName,
                             ),
                         },
                         `Successfully updated ${resourceSingular}`,
@@ -414,7 +469,7 @@ export const useUpdateMany = <
                 });
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "updated",
                     payload: {
                         ids: ids.map(String),
@@ -446,13 +501,13 @@ export const useUpdateMany = <
 
                 log?.mutate({
                     action: "updateMany",
-                    resource,
+                    resource: resource.name,
                     data: values,
                     previousData,
                     meta: {
                         ids,
                         dataProviderName: pickDataProvider(
-                            resource,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -462,9 +517,18 @@ export const useUpdateMany = <
             },
             onError: (
                 err: TError,
-                { ids, resource, errorNotification, values },
+                { ids, resource: resourceName, errorNotification, values },
                 context,
             ) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 // set back the queries to the context:
                 if (context) {
                     for (const query of context.previousQueries) {
@@ -475,15 +539,21 @@ export const useUpdateMany = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(resource);
+                    const resourceSingular = pluralize.singular(
+                        resourceIdentifierOrName,
+                    );
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(err, { ids, values }, resource)
+                            ? errorNotification(
+                                  err,
+                                  { ids, values },
+                                  resourceIdentifierOrName,
+                              )
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${ids}-${resource}-updateMany-error-notification`,
+                        key: `${ids}-${resourceIdentifierOrName}-updateMany-error-notification`,
                         message: translate(
                             "notifications.editError",
                             {

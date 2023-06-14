@@ -32,12 +32,14 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
+    useRouterType,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
+    getResourceByName,
 } from "@definitions/helpers";
 
 export type UpdateParams<TData, TError, TVariables> = {
@@ -158,6 +160,7 @@ export const useUpdate = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
+    const routerType = useRouterType();
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -168,7 +171,7 @@ export const useUpdate = <
         ({
             id,
             values,
-            resource,
+            resource: resourceName,
             mutationMode,
             undoableTimeout,
             onCancel,
@@ -176,6 +179,15 @@ export const useUpdate = <
             metaData,
             dataProviderName,
         }) => {
+            const resource = getResourceByName(
+                resourceName,
+                resources,
+                routerType,
+            );
+
+            const resourceIdentifierOrName =
+                resource?.identifier ?? resource?.name;
+
             const combinedMeta = getMeta({
                 meta: pickNotDeprecated(meta, metaData),
             });
@@ -188,9 +200,13 @@ export const useUpdate = <
 
             if (!(mutationModePropOrContext === "undoable")) {
                 return dataProvider(
-                    pickDataProvider(resource, dataProviderName, resources),
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                 ).update<TData, TVariables>({
-                    resource,
+                    resource: resource.name,
                     id,
                     variables: values,
                     meta: combinedMeta,
@@ -202,13 +218,13 @@ export const useUpdate = <
                     const doMutation = () => {
                         dataProvider(
                             pickDataProvider(
-                                resource,
+                                resourceIdentifierOrName,
                                 dataProviderName,
                                 resources,
                             ),
                         )
                             .update<TData, TVariables>({
-                                resource,
+                                resource: resource.name,
                                 id,
                                 variables: values,
                                 meta: combinedMeta,
@@ -230,7 +246,7 @@ export const useUpdate = <
                         type: ActionTypes.ADD,
                         payload: {
                             id: id,
-                            resource: resource,
+                            resource: resourceIdentifierOrName,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -243,7 +259,7 @@ export const useUpdate = <
         },
         {
             onMutate: async ({
-                resource,
+                resource: resourceName,
                 id,
                 mutationMode,
                 values,
@@ -251,11 +267,24 @@ export const useUpdate = <
                 meta,
                 metaData,
             }) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 const preferredMeta = pickNotDeprecated(meta, metaData);
+
                 const queryKey = queryKeys(
-                    resource,
-                    pickDataProvider(resource, dataProviderName, resources),
-                    preferredMeta,
+                    resourceIdentifierOrName,
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                     preferredMeta,
                 );
 
@@ -351,15 +380,24 @@ export const useUpdate = <
                 _error,
                 {
                     id,
-                    resource,
+                    resource: resourceName,
                     dataProviderName,
                     invalidates = ["list", "many", "detail"],
                 },
             ) => {
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
                 invalidateStore({
-                    resource,
+                    resource: resourceIdentifierOrName,
                     dataProviderName: pickDataProvider(
-                        resource,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -369,14 +407,14 @@ export const useUpdate = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id, resource },
+                    payload: { id, resource: resourceIdentifierOrName },
                 });
             },
             onSuccess: (
                 data,
                 {
                     id,
-                    resource,
+                    resource: resourceName,
                     successNotification,
                     dataProviderName,
                     values,
@@ -385,15 +423,30 @@ export const useUpdate = <
                 },
                 context,
             ) => {
-                const resourceSingular = pluralize.singular(resource);
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
+
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
+                const resourceSingular = pluralize.singular(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { id, values }, resource)
+                        ? successNotification(
+                              data,
+                              { id, values },
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${resource}-notification`,
+                    key: `${id}-${resourceIdentifierOrName}-notification`,
                     description: translate(
                         "notifications.success",
                         "Successful",
@@ -402,7 +455,7 @@ export const useUpdate = <
                         "notifications.editSuccess",
                         {
                             resource: translate(
-                                `${resource}.${resource}`,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
                                 resourceSingular,
                             ),
                         },
@@ -412,7 +465,7 @@ export const useUpdate = <
                 });
 
                 publish?.({
-                    channel: `resources/${resource}`,
+                    channel: `resources/${resource.name}`,
                     type: "updated",
                     payload: {
                         ids: data.data?.id ? [data.data.id] : undefined,
@@ -440,13 +493,13 @@ export const useUpdate = <
 
                 log?.mutate({
                     action: "update",
-                    resource,
+                    resource: resource.name,
                     data: values,
                     previousData,
                     meta: {
                         id,
                         dataProviderName: pickDataProvider(
-                            resource,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -456,11 +509,19 @@ export const useUpdate = <
             },
             onError: (
                 err: TError,
-                { id, resource, errorNotification, values },
+                { id, resource: resourceName, errorNotification, values },
                 context,
             ) => {
-                // set back the queries to the context:
+                const resource = getResourceByName(
+                    resourceName,
+                    resources,
+                    routerType,
+                );
 
+                const resourceIdentifierOrName =
+                    resource?.identifier ?? resource?.name;
+
+                // set back the queries to the context:
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query[0], query[1]);
@@ -470,20 +531,26 @@ export const useUpdate = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(resource);
+                    const resourceSingular = pluralize.singular(
+                        resourceIdentifierOrName,
+                    );
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(err, { id, values }, resource)
+                            ? errorNotification(
+                                  err,
+                                  { id, values },
+                                  resourceIdentifierOrName,
+                              )
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${id}-${resource}-notification`,
+                        key: `${id}-${resourceIdentifierOrName}-notification`,
                         message: translate(
                             "notifications.editError",
                             {
                                 resource: translate(
-                                    `${resource}.${resource}`,
+                                    `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
                                     resourceSingular,
                                 ),
                                 statusCode: err.statusCode,
