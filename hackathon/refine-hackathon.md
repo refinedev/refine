@@ -25,11 +25,11 @@ As with the first one, this hackathon is about showcasing your skills, creativit
 We can't wait to see what amazing projects the participants will build projects using **refine**.
 
 
-##   Get your hackathon participation ticket 🎫
+##   Get your hackathon participation ticket 🎟️
 
 We are organizing a raffle for who create a ticket and share it on Twitter. As a gift, we are giving away a refine [cap](https://store.refine.dev/product/refine-cap) and a [coaster](https://store.refine.dev/product/coaster) set valued at $60.
 
-###  🔗 [Generate participation ticket ](https://hackathon.refine.dev)
+###  🔗 [Generate participation ticket](https://hackathon.refine.dev)
 
 
 
