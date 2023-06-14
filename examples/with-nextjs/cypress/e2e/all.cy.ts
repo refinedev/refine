@@ -212,7 +212,7 @@ describe("with-nextjs", () => {
             cy.wait("@getPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
 
-            cy.getEditButton().first().click();
+            cy.getEditButton().last().click();
             cy.wait("@getPost");
             cy.wait("@getCategories");
 
@@ -232,14 +232,14 @@ describe("with-nextjs", () => {
             cy.wait("@getPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
 
-            cy.getEditButton().first().click();
+            cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");
             cy.getAntdLoadingOverlay().should("not.exist");
             cy.getSaveButton().should("not.be.disabled");
 
-            cy.getDeleteButton().first().click();
+            cy.getDeleteButton().last().click();
             cy.getAntdPopoverDeleteButton().click();
 
             cy.wait("@deletePost").then((interception) => {
@@ -275,7 +275,7 @@ describe("with-nextjs", () => {
         });
 
         it("should edit form render errors", () => {
-            cy.getEditButton().first().click();
+            cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");
@@ -306,7 +306,7 @@ describe("with-nextjs", () => {
 
         it("should edit form warn when unsaved changes", () => {
             cy.wait("@getPosts");
-            cy.getEditButton().first().click();
+            cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
             cy.wait("@getPost");
