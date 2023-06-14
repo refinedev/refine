@@ -1,5 +1,45 @@
 # @pankod/refine-core
 
+## 4.21.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: allow access control provider to be configured globally.
+
+    Now `accessControlProvider` accepts `options.buttons` parameter to globally configure UI buttons' behaviour.
+
+    These configuration will be used as a fallback, if no configuration on button prop level is found.
+
+    Default values:
+
+    `options.buttons.enableAccessControl` => `true`
+    `options.buttons.hideIfUnauthorized` => `false`
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (params: CanParams): Promise<CanReturnType> => {
+            return { can: true };
+        },
+        options: {
+            buttons: {
+                enableAccessControl: true,
+                hideIfUnauthorized: false,
+            },
+        },
+    };
+    ```
+
+### Patch Changes
+
+-   [#4521](https://github.com/refinedev/refine/pull/4521) [`a3c8d4f84c7`](https://github.com/refinedev/refine/commit/a3c8d4f84c7b20b6d30f43310f5260b2f57b801a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `useExport`'s `resource` props is not working.
+    With this fix, `useExport` will now work with `resource` props.
+
+    ```ts
+    useExport({
+        resource: "users",
+    });
+    ```
+
 ## 4.20.0
 
 ### Minor Changes
