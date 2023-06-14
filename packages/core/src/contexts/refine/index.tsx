@@ -21,7 +21,7 @@ export const defaultRefineOptions: IRefineContextOptions = {
         afterEdit: "list",
     },
     overtime: {
-        interval: 2000,
+        interval: 1000,
     },
 };
 

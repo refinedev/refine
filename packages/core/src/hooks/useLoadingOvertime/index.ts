@@ -17,7 +17,7 @@ export type UseLoadingOvertimeProps = {
      * The interval in milliseconds. If the loading time exceeds this time, the `onInterval` callback will be called.
      * If not specified, the `interval` value from the `overtime` option of the `RefineProvider` will be used.
      *
-     * @default: 2000 (2 seconds)
+     * @default: 1000 (1 second)
      */
     interval?: number;
 
