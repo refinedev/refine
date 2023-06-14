@@ -20,6 +20,7 @@ import { useState } from "react";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
+// TODO: Add for demo, remove later
 const DashboardPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { elapsedTime } = useLoadingOvertime({
@@ -65,7 +66,7 @@ const App: React.FC = () => {
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
-                        undoableTimeout: 1000000000,
+                        // TODO: Add for demo, remove later
                         overtime: {
                             // interval: 500,
                             // onInterval(elapsedInterval, context) {
