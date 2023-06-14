@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 2.6.0
+
+### Minor Changes
+
+-   [#4516](https://github.com/refinedev/refine/pull/4516) [`6fdf9c002c5`](https://github.com/refinedev/refine/commit/6fdf9c002c55359a7c6fcd7e03b3ca0698a44996) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: added HeadlessInferencer support for the `create-resource` command.
+
 ## 2.5.5
 
 ### Patch Changes

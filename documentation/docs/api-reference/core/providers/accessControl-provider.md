@@ -10,7 +10,7 @@ Access control is a broad topic with lots of advanced solutions that provide dif
 
 **refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/) and [AccessControl.js](https://onury.io/accesscontrol/).
 
-To check if a desired access will be granted, the `accessControlProvider` should have a single asynchronous method named `can` with the following interface:
+To check if a desired access will be granted, the `accessControlProvider` should at least have an asynchronous method named `can` with the following interface:
 
 ```ts
 type CanParams = {
@@ -26,11 +26,69 @@ type CanParams = {
 type CanReturnType = {
     can: boolean;
     reason?: string;
+};
+
+export interface IAccessControlContext {
+    can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
+    options?: {
+        buttons?: {
+            enableAccessControl?: boolean;
+            hideIfUnauthorized?: boolean;
+        };
+    };
 }
 
-const accessControlProvider = {
-    can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
+const accessControlProvider: IAccessControlContext = {
+    can: async ({
+        resource,
+        action,
+        params,
+    }: CanParams): Promise<CanReturnType> => {
+        return { can: true };
+    },
+    options: {
+        buttons: {
+            enableAccessControl: true,
+            hideIfUnauthorized: false,
+        },
+    },
+};
+```
+
+It's also possible to globally configure buttons' behaviour by passing `options` to the `accessControlProvider`.
+You can still change the behaviour of the buttons independently, however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
+By default, `enableAccessControl` is **true** and `hideIfUnauthorized` is **false**.
+
+```ts
+export interface IAccessControlContext {
+    can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
+    options?: {
+        buttons?: {
+            // default is true
+            enableAccessControl?: boolean;
+            // default is false
+            hideIfUnauthorized?: boolean;
+        };
+    };
 }
+
+const accessControlProvider: IAccessControlContext = {
+    can: async ({
+        resource,
+        action,
+        params,
+    }: CanParams): Promise<CanReturnType> => {
+        return { can: true };
+    },
+    // Global settings
+    options: {
+        buttons: {
+            enableAccessControl: true,
+            // hide action buttons if not authorized.
+            hideIfUnauthorized: true,
+        },
+    },
+};
 ```
 
 > For more information, refer to these sections in the Interface References documentation [`IResourceItem`][iresourceitem], [`BaseKey`][basekey], [`CanParams`][canparams], [`CanReturnType`][canreturntype]
@@ -52,6 +110,12 @@ const App: React.FC = () => {
                     }
 
                     return { can: true };
+                },
+                options: {
+                    buttons: {
+                        enableAccessControl: true,
+                        hideIfUnauthorized: false,
+                    },
                 },
             }}
         >

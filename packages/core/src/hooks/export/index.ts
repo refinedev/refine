@@ -112,7 +112,7 @@ export const useExport = <
     const dataProvider = useDataProvider();
 
     const { resource, resources } = useResource(
-        resourceFromProps ?? resourceName,
+        pickNotDeprecated(resourceFromProps, resourceName),
     );
     const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
