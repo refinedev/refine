@@ -24,7 +24,7 @@ const DashboardPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { elapsedTime } = useLoadingOvertime({
         isLoading,
-        interval: 5000,
+        interval: 1000,
         onInterval(elapsedInterval, context) {
             console.log("loading overtime", elapsedInterval, context);
         },
@@ -67,7 +67,14 @@ const App: React.FC = () => {
                         warnWhenUnsavedChanges: true,
                         undoableTimeout: 1000000000,
                         overtime: {
-                            interval: 3000,
+                            // interval: 500,
+                            // onInterval(elapsedInterval, context) {
+                            //     console.log(
+                            //         "loading overtime",
+                            //         elapsedInterval,
+                            //         context,
+                            //     );
+                            // },
                         },
                     }}
                 >
