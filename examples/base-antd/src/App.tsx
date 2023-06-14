@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine, useLoadingOvertime } from "@refinedev/core";
 import {
     notificationProvider,
     ThemedLayoutV2,
@@ -16,8 +16,31 @@ import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
+import { useState } from "react";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+
+// TODO: Add for demo, remove later
+const DashboardPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading,
+        interval: 1000,
+        onInterval(elapsedInterval, context) {
+            console.log("loading overtime", elapsedInterval, context);
+        },
+    });
+
+    return (
+        <section>
+            <h1>Dashboard</h1>
+            <button onClick={() => setIsLoading((prev) => !prev)}>
+                {isLoading ? "Stop" : "Start"} Loading
+            </button>
+            <p>{elapsedTime && `Loading took ${elapsedTime}`} </p>
+        </section>
+    );
+};
 
 const App: React.FC = () => {
     return (
@@ -43,6 +66,17 @@ const App: React.FC = () => {
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
+                        // TODO: Add for demo, remove later
+                        overtime: {
+                            // interval: 500,
+                            // onInterval(elapsedInterval, context) {
+                            //     console.log(
+                            //         "loading overtime",
+                            //         elapsedInterval,
+                            //         context,
+                            //     );
+                            // },
+                        },
                     }}
                 >
                     <Routes>
@@ -53,12 +87,7 @@ const App: React.FC = () => {
                                 </ThemedLayoutV2>
                             }
                         >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
+                            <Route index element={<DashboardPage />} />
 
                             <Route path="/posts">
                                 <Route index element={<PostList />} />

@@ -20,6 +20,9 @@ export const defaultRefineOptions: IRefineContextOptions = {
         afterClone: "list",
         afterEdit: "list",
     },
+    overtime: {
+        interval: 2000,
+    },
 };
 
 export const RefineContext = React.createContext<IRefineContext>({

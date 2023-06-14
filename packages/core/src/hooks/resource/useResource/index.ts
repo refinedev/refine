@@ -37,7 +37,7 @@ export type UseResourceLegacyProps = {
  */
 export type UseResourceParam = string | undefined;
 
-type UseResourceReturnType = {
+export type UseResourceReturnType = {
     resources: IResourceItem[];
     resource?: IResourceItem;
     /**
