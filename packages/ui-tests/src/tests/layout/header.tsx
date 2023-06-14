@@ -1,8 +1,9 @@
 import React from "react";
+
+import { AuthBindings } from "@refinedev/core";
 import { RefineLayoutHeaderProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
-import { AuthBindings } from "@refinedev/core";
 
 const mockLegacyAuthProvider = {
     login: () => Promise.resolve(),
@@ -37,7 +38,10 @@ export const layoutHeaderTests = function (
             });
 
             await findByText("username");
-            expect(getByRole("img")).toHaveAttribute("src", "localhost:3000");
+            expect(getByRole("presentation")).toHaveAttribute(
+                "src",
+                "localhost:3000",
+            );
         });
 
         it("should render successfull user name and avatar in header with authProvider", async () => {
@@ -48,7 +52,10 @@ export const layoutHeaderTests = function (
             });
 
             await findByText("username");
-            expect(getByRole("img")).toHaveAttribute("src", "localhost:3000");
+            expect(getByRole("presentation")).toHaveAttribute(
+                "src",
+                "localhost:3000",
+            );
         });
     });
 };
