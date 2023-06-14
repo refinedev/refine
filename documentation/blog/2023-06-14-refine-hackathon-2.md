@@ -19,7 +19,7 @@ As with the first one, this hackathon is about showcasing your skills, creativit
 ⏰ The hackathon will kick off on June 21, and we're proud to host it on collaboration with the [DEV](https://dev.to/) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
 
 
-🚀 The prizel pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
+🚀 The prize pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
 
 
 
