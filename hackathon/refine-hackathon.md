@@ -61,9 +61,9 @@ Supabase and MUI will also be providing swag kits for the winners.
 
 ## Details
 ### Schedule
-- The Hackathon begins at 9:00am PT Wednesday 21th June 2023
+- The Hackathon begins at Wednesday 21th June 2023
 - Work on your project any time for the next 4 weeks
-- Submission deadline (11:59pm PT Monday 20th July 2023)
+- Submission deadline (Monday 20th July 2023)
 - The winners will be announced on Monday 26th July 2023
 
 
