@@ -3,6 +3,10 @@ import { UseResourceReturnType, useRefineContext, useResource } from "..";
 
 export type IUseLoadingOvertimeOnIntervalContext = UseResourceReturnType;
 
+export type IUseLoadingOvertime = {
+    overtime: UseLoadingOvertimeReturnType;
+};
+
 export type UseLoadingOvertimeReturnType = {
     elapsedTime?: number;
 };
