@@ -9,7 +9,7 @@ export default function Tag({ permalink, label, isActive }) {
             className={clsx(
                 "no-underline hover:no-underline",
                 "text-xs",
-                !isActive && "bg-gray-100 dark:bg-gray-600",
+                !isActive && "bg-gray-100 dark:bg-gray-700",
                 !isActive && "text-gray-600 dark:text-gray-400",
                 "rounded",
                 "py-1",
