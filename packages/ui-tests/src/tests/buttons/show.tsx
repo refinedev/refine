@@ -18,11 +18,13 @@ export const buttonShowTests = function (
         });
 
         it("should render button successfuly", async () => {
-            const { container } = render(<ShowButton />, {
+            const { container, getByText } = render(<ShowButton />, {
                 wrapper: TestWrapper({}),
             });
 
             expect(container).toBeTruthy();
+
+            expect(getByText("Show").closest("button")).not.toBeDisabled();
         });
 
         it("should have the correct test-id", async () => {
@@ -56,98 +58,290 @@ export const buttonShowTests = function (
             expect(queryByText("Show")).not.toBeInTheDocument();
         });
 
-        it("should be disabled when user not have access", async () => {
-            const { container, getByText } = render(
-                <ShowButton>Show</ShowButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () => Promise.resolve({ can: false }),
-                        },
-                    }),
-                },
-            );
+        describe("access control", () => {
+            describe("with global access control only", () => {
+                describe("with default behaviour", () => {
+                    describe("when user not have access", () => {
+                        it("should render disabled button with reason text", async () => {
+                            const { container, getByText } = render(
+                                <ShowButton recordItemId="1">Show</ShowButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async ({ params, action }) => {
+                                                if (
+                                                    action === "show" &&
+                                                    params?.id === "1"
+                                                ) {
+                                                    return {
+                                                        can: false,
+                                                        reason: "Access Denied",
+                                                    };
+                                                }
+                                                return {
+                                                    can: true,
+                                                };
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
 
-            expect(container).toBeTruthy();
+                            expect(container).toBeTruthy();
 
-            waitFor(() =>
-                expect(getByText("Show").closest("button")).toBeDisabled(),
-            );
-        });
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Show").closest("button"),
+                                ).toBeDisabled(),
+                            );
 
-        it("should be disabled when recordId not allowed", async () => {
-            const { container, getByText } = render(
-                <ShowButton recordItemId="1">Show</ShowButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: ({ params }) => {
-                                if (params?.id === "1") {
-                                    return Promise.resolve({ can: false });
-                                }
-                                return Promise.resolve({ can: true });
-                            },
-                        },
-                    }),
-                },
-            );
+                            waitFor(() =>
+                                expect(
+                                    getByText("Show")
+                                        .closest("button")
+                                        ?.getAttribute("title"),
+                                ).toBe("Access Denied"),
+                            );
+                        });
+                    });
 
-            expect(container).toBeTruthy();
+                    describe("when user have access", () => {
+                        it("should render enabled button", async () => {
+                            const { container, getByText } = render(
+                                <ShowButton recordItemId="2">Show</ShowButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async ({ params, action }) => {
+                                                if (
+                                                    action === "show" &&
+                                                    params?.id === "1"
+                                                ) {
+                                                    return {
+                                                        can: false,
+                                                    };
+                                                }
+                                                return {
+                                                    can: true,
+                                                };
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
 
-            waitFor(() =>
-                expect(getByText("Show").closest("button")).toBeDisabled(),
-            );
-        });
+                            expect(container).toBeTruthy();
 
-        it("should skip access control", async () => {
-            const { container, getByText } = render(
-                <ShowButton
-                    accessControl={{
-                        enabled: false,
-                    }}
-                >
-                    Show
-                </ShowButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () => Promise.resolve({ can: false }),
-                        },
-                    }),
-                },
-            );
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Show").closest("button"),
+                                ).not.toBeDisabled(),
+                            );
+                        });
+                    });
+                });
 
-            expect(container).toBeTruthy();
-
-            expect(getByText("Show").closest("button")).not.toBeDisabled();
-        });
-
-        it("should successfully return disabled button custom title", async () => {
-            const { container, getByText } = render(
-                <ShowButton>Show</ShowButton>,
-                {
-                    wrapper: TestWrapper({
-                        accessControlProvider: {
-                            can: () =>
-                                Promise.resolve({
-                                    can: false,
-                                    reason: "Access Denied",
+                describe("when hideIfUnauthorized is true", () => {
+                    it("should not render button", async () => {
+                        const { container, queryByText } = render(
+                            <ShowButton>Show</ShowButton>,
+                            {
+                                wrapper: TestWrapper({
+                                    accessControlProvider: {
+                                        can: async () => ({ can: false }),
+                                        options: {
+                                            buttons: {
+                                                hideIfUnauthorized: true,
+                                            },
+                                        },
+                                    },
                                 }),
-                        },
-                    }),
-                },
-            );
+                            },
+                        );
 
-            expect(container).toBeTruthy();
+                        expect(container).toBeTruthy();
 
-            await waitFor(() =>
-                expect(getByText("Show").closest("button")).toBeDisabled(),
-            );
-            await waitFor(() =>
-                expect(
-                    getByText("Show").closest("button")?.getAttribute("title"),
-                ).toBe("Access Denied"),
-            );
+                        expect(queryByText("Show")).not.toBeInTheDocument();
+                    });
+                });
+
+                describe("when access control is disabled explicitly", () => {
+                    it("should render enabled button", async () => {
+                        const { container, getByText } = render(
+                            <ShowButton>Show</ShowButton>,
+                            {
+                                wrapper: TestWrapper({
+                                    accessControlProvider: {
+                                        can: async () => ({ can: false }),
+                                        options: {
+                                            buttons: {
+                                                enableAccessControl: false,
+                                                hideIfUnauthorized: true,
+                                            },
+                                        },
+                                    },
+                                }),
+                            },
+                        );
+
+                        expect(container).toBeTruthy();
+
+                        expect(
+                            getByText("Show").closest("button"),
+                        ).not.toBeDisabled();
+                    });
+                });
+            });
+
+            describe("with global config and accessControl prop", () => {
+                describe("when access control enabled globally", () => {
+                    describe("when access control is disabled with prop", () => {
+                        it("should render enabled button", async () => {
+                            const { container, getByText } = render(
+                                <ShowButton accessControl={{ enabled: false }}>
+                                    Show
+                                </ShowButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async () => {
+                                                return {
+                                                    can: false,
+                                                };
+                                            },
+                                            options: {
+                                                buttons: {
+                                                    enableAccessControl: true,
+                                                    hideIfUnauthorized: true,
+                                                },
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
+
+                            expect(container).toBeTruthy();
+
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Show").closest("button"),
+                                ).not.toBeDisabled(),
+                            );
+                        });
+                    });
+
+                    describe("when hideIfUnauthorized false globally", () => {
+                        describe("when hideIfUnauthorized enabled with prop", () => {
+                            it("should not render button", async () => {
+                                const { container, queryByText } = render(
+                                    <ShowButton
+                                        accessControl={{
+                                            hideIfUnauthorized: true,
+                                        }}
+                                    >
+                                        Show
+                                    </ShowButton>,
+                                    {
+                                        wrapper: TestWrapper({
+                                            accessControlProvider: {
+                                                can: async () => ({
+                                                    can: false,
+                                                }),
+                                                options: {
+                                                    buttons: {
+                                                        hideIfUnauthorized:
+                                                            false,
+                                                    },
+                                                },
+                                            },
+                                        }),
+                                    },
+                                );
+
+                                expect(container).toBeTruthy();
+
+                                expect(
+                                    queryByText("Show"),
+                                ).not.toBeInTheDocument();
+                            });
+                        });
+                    });
+                });
+
+                describe("when access control disabled globally", () => {
+                    describe("when access control enabled with prop", () => {
+                        it("should render disabled button with reason text", async () => {
+                            const { container, getByText } = render(
+                                <ShowButton accessControl={{ enabled: true }}>
+                                    Show
+                                </ShowButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async () => {
+                                                return {
+                                                    can: false,
+                                                    reason: "Access Denied",
+                                                };
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
+
+                            expect(container).toBeTruthy();
+
+                            await waitFor(() =>
+                                expect(
+                                    getByText("Show").closest("button"),
+                                ).toBeDisabled(),
+                            );
+
+                            waitFor(() =>
+                                expect(
+                                    getByText("Show")
+                                        .closest("button")
+                                        ?.getAttribute("title"),
+                                ).toBe("Access Denied"),
+                            );
+                        });
+                    });
+                });
+
+                describe("when hideIfUnauthorized enabled globally", () => {
+                    describe("when hideIfUnauthorized disabled with prop", () => {
+                        it("should render button", async () => {
+                            const { container, queryByText } = render(
+                                <ShowButton
+                                    accessControl={{
+                                        hideIfUnauthorized: false,
+                                    }}
+                                >
+                                    Show
+                                </ShowButton>,
+                                {
+                                    wrapper: TestWrapper({
+                                        accessControlProvider: {
+                                            can: async () => ({
+                                                can: false,
+                                            }),
+                                            options: {
+                                                buttons: {
+                                                    hideIfUnauthorized: true,
+                                                },
+                                            },
+                                        },
+                                    }),
+                                },
+                            );
+
+                            expect(container).toBeTruthy();
+
+                            expect(queryByText("Show")).toBeInTheDocument();
+                        });
+                    });
+                });
+            });
         });
 
         it("should render called function successfully if click the button", async () => {
@@ -188,7 +382,7 @@ export const buttonShowTests = function (
             expect(window.location.pathname).toBe("/posts/show/1");
         });
 
-        it("should edit page redirect show route called function successfully if click the button", async () => {
+        it("should show page redirect show route called function successfully if click the button", async () => {
             const { getByText } = render(
                 <Routes>
                     <Route
