@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -13,6 +13,8 @@ const mockRefineProvider: IRefineContextProvider = {
 };
 
 describe("useOne Hook", () => {
+    jest.useFakeTimers();
+
     it("with rest json server", async () => {
         const { result } = renderHook(
             () => useOne({ resource: "posts", id: "1" }),
@@ -496,5 +498,40 @@ describe("useOne Hook", () => {
                 expect(onErrorMock).toBeCalledWith(new Error("Error"));
             });
         });
+    });
+
+    it("correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useOne({
+                    resource: "posts",
+                    id: "1",
+                    interval: 500,
+                    onInterval,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        act(() => {
+            // wait 1 second
+            jest.advanceTimersByTime(1000);
+        });
+
+        // to be 1000 after 1 second
+        expect(result.current.overtime.elapsedTime).toBe(1000);
+        expect(onInterval).toBeCalledTimes(1);
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        // to be undefined after data loaded
+        expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
 });
