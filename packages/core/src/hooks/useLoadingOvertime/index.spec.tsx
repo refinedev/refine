@@ -36,8 +36,8 @@ describe("useLoadingOvertime Hook", () => {
         );
 
         act(() => {
-            // default 2000
-            jest.advanceTimersByTime(1000);
+            // default 1000
+            jest.advanceTimersByTime(999);
         });
 
         const { elapsedTime } = result.current;
@@ -57,8 +57,8 @@ describe("useLoadingOvertime Hook", () => {
         );
 
         act(() => {
-            // default 2000
-            jest.advanceTimersByTime(3000);
+            // default 1000
+            jest.advanceTimersByTime(2000);
         });
 
         const { elapsedTime } = result.current;
