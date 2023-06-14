@@ -51,7 +51,7 @@ describe("handleRefineOptions", () => {
             },
             breadcrumb: false,
             overtime: {
-                interval: 2000,
+                interval: 1000,
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);
@@ -158,7 +158,7 @@ describe("handleRefineOptions", () => {
                 afterEdit: "list",
             },
             overtime: {
-                interval: 2000,
+                interval: 1000,
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);
