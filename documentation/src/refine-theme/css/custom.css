@@ -270,7 +270,7 @@ html[data-active-page="index"] body {
 }
 
 .animation-parent {
-    transform: translate3d(0, 0, 1px);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000;
 }
