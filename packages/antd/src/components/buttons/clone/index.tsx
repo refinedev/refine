@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import {
@@ -9,6 +9,7 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonTestIds,
@@ -35,8 +36,16 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
+
     const { cloneUrl: generateCloneUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();

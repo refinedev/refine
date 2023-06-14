@@ -10,8 +10,8 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/core": "^4.20.0",
-    "@refinedev/cli": "^2.5.5",
+    "@refinedev/core": "^4.21.0",
+    "@refinedev/cli": "^2.6.0",
     "@refinedev/react-hook-form": "^4.4.0",
     "@refinedev/react-table": "^5.4.0",
     "@tanstack/react-table": "^8.2.6",

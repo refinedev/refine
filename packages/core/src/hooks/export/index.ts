@@ -111,7 +111,9 @@ export const useExport = <
 
     const dataProvider = useDataProvider();
 
-    const { resource, resources } = useResource();
+    const { resource, resources } = useResource(
+        pickNotDeprecated(resourceFromProps, resourceName),
+    );
 
     const filename = `${userFriendlyResourceName(
         resource?.name,
