@@ -9,17 +9,23 @@ hide_table_of_contents: false
 ---
 
 
+
+
+
+
+
 We're back with another exciting event for the open-source community - the 2nd refine Open Source Hackathon! 
 
 As with the first one, this hackathon is about showcasing your skills, creativity, and innovation using refine.
 
+
 **[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
 
-⏰ The hackathon will kick off on June 21, and we're proud to host it on collaboration with the [DEV](https://dev.to/) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
+⏰ The hackathon will kick off on June 21, and we're proud to host it on collaboration with the [DEV](https://dev.to/refine) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
 
 
-🚀 The prize pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
+🚀 The prizel pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
 
 
 
@@ -28,15 +34,18 @@ As with the first one, this hackathon is about showcasing your skills, creativit
 We can't wait to see what amazing projects the participants will build projects using **refine**.
 
 
+##   Get your hackathon participation ticket 🎟️
 
-###  👉 [Acquire your hackathon participation ticket and get a chance to win surprise refine swag items.](https://hackathon.refine.dev)
+We are organizing a raffle for who create a ticket and share it on Twitter. As a gift, we are giving away a refine [cap](https://store.refine.dev/product/refine-cap) and a [coaster](https://store.refine.dev/product/coaster) set valued at $60.
 
-<br/>
+###  🔗 [Generate participation ticket ](https://hackathon.refine.dev)
+
+
+
 
 [![ticket](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_ticket.jpeg)](https://hackathon.refine.dev)
 
 
-<br/>
 
 ## Together with Open Source Community
 
@@ -48,11 +57,9 @@ It's worth noting that refine has built-in [data provider support](https://refin
 
 Supabase and MUI will also be providing swag kits for the winners.
 
-<br/>
 
 ![sponsors](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/sponsor_banner.png)
 
-<br/>
 
 ## Hackathon Key Facts
 
@@ -73,19 +80,24 @@ Supabase and MUI will also be providing swag kits for the winners.
 
 ### Prizes 🎁
 
-The total prize pool amounts to $10,000. The distribution of prizes will be announced on the official dev.to launch day. There are 5 main categories in which participants can win, and prizes will be awarded for each category. 
-#### For the following three prize category, you can use any data provider or UI framework in the refine app:
+The total prize pool amount is **$10,000**. The distribution of prizes will be announced on the [DEV](https://dev.to/) platform on the launch day. There are five categories in which participants can win, and prizes will be awarded for each category. 
+#### Main Prize Categories 
 - **Best Overall Project**   
 - **Most Visually Pleasing**  
 - **Most Technically Impressive** 
+
+You can use any data provider or UI framework in the refine app for the three main  prize categories above
+
 #### Special sponsors prize categories
-- **Best Project built using Supabase** - The project must use Supabase as a data provider in the refine app
-- **Best Project built using Material UI** - The project must use Material UI as UI framework in the refine app
+- **Best Project built using [Supabase](https://supabase.com/)** 
+  - The project must use Supabase as a data provider in the refine app
+- **Best Project built using [Material UI](https://mui.com/material-ui/getting-started/overview/)** 
+  - The project must use Material UI as UI framework in the refine app
 
 #### Runner-up
 - There will be ten runner up prizes.
 
-⚡  The winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Supabase** and **MUI**.
+⚡ Also, the winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Supabase** and **MUI**.
 
 <br/>
 
@@ -111,12 +123,12 @@ The total prize pool amounts to $10,000. The distribution of prizes will be anno
 
 The **refine** team will be taking part in the Hackathon and you'll find us live building in our Discord all week. 
 
-- Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress. You can also find a potential team mate on [Discord hackathon channel](https://discord.gg/YzKYcpJd).
+- Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress. You can also find a potential team mate on Discord hackathon channel.
   - Forum channel: **hackathon**
 - Follow us on [Twitter](https://twitter.com/refine_dev) for updates and announcements.
 - [Refer to refine GitHub repository](https://github.com/refinedev/refine)
 
-## F.A.Q
+## FAQ
 ### What kind of projects I can submit?
 - You must build an app using refine framework. It can be anything like CRUD app, admin panel, internal tool, forms, storefront and dashboard. Also you can build library, data provider, auth provider or live provider etc. for refine.
 - For the **Best refine Project built using Supabase** category, you need to use Supabase as a data provider in the refine app.
@@ -138,9 +150,9 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 ## Useful resources
 
 - You can step up to complete CRUD app tutorials to learn **refine** and how it works.
-   - 👉 https://refine.dev/docs/tutorial/introduction/index/
+   -  https://refine.dev/docs/tutorial/introduction/index/
 - You can take a look at real use case example projects built with **refine** to get an inspiration.
-   - 👉 https://refine.dev/examples/
+   -  https://refine.dev/examples/
 - Check out the refine Supabase integration docs:
   - https://refine.dev/docs/packages/documentation/data-providers/supabase/
 - Check out the Material UI docs on refine
@@ -148,6 +160,8 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - [Refer to Supabase Docs](https://supabase.com/docs)
 - [Refer to Material UI Docs](https://mui.com/material-ui/getting-started/overview/)
 - [refine 7/24 Discord Support Channel](https://discord.gg/refine)
+
+
 
 
 
