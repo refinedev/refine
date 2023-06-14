@@ -13,12 +13,10 @@ As with the first one, this hackathon is about showcasing your skills, creativit
 **[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
 
+⏰ The hackathon will kick off on June 21, and we're proud to host it on collaboration with the [DEV](https://dev.to/) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
 
 
 🚀 The prizel pool is **$10,000** in total and a special gifts along with **limited edition** swag kits!
-
-
-⏰ The hackathon will kick off on June 21, and we're proud to host it on collaboration with the [DEV](https://dev.to/) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
 
 
 
@@ -68,7 +66,7 @@ Supabase and MUI will also be providing swag kits for the winners.
 - Submission deadline (11:59pm PT Monday 20th July 2023)
 - The winners will be announced on Monday 26th July 2023
 
-Follow [refine Twitter account](https://twitter.com/refine_dev) for updates and announcements on the hackathon.
+
 
 ### Prizes 🎁
 
