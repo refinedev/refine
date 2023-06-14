@@ -70,7 +70,7 @@ Supabase and MUI will also be providing swag kits for the winners.
 
 ### Prizes 🎁
 
-The total prize pool amounts to $10,000. The distribution of prizes will be announced on the official dev.to launch day. There are 5 main categories in which participants can win, and prizes will be awarded for each category. 
+The total prize pool amounts is **$10,000**. The distribution of prizes will be announced on the official dev.to launch day. There are 5 main categories in which participants can win, and prizes will be awarded for each category. 
 #### For the following three prize category, you can use any data provider or UI framework in the refine app:
 - **Best Overall Project**   
 - **Most Visually Pleasing**  
