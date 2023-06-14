@@ -29,7 +29,8 @@ export interface IRefineOptions {
         clientConfig?: QueryClientConfig | InstanceType<typeof QueryClient>;
         devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
     };
-    overtime?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    overtime: Omit<UseLoadingOvertimeProps, "isLoading" | "interval"> &
+        Required<Pick<UseLoadingOvertimeProps, "interval">>;
 }
 
 export interface IRefineContextOptions {
@@ -44,7 +45,8 @@ export interface IRefineContextOptions {
         afterClone: RedirectAction;
         afterEdit: RedirectAction;
     };
-    overtime?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    overtime: Omit<UseLoadingOvertimeProps, "isLoading" | "interval"> &
+        Required<Pick<UseLoadingOvertimeProps, "interval">>;
 }
 
 export interface IRefineContext {

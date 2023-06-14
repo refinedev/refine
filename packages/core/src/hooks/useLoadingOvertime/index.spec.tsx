@@ -1,7 +1,7 @@
 import { act } from "react-dom/test-utils";
 import { renderHook } from "@testing-library/react";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, mockRouterBindings } from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
 import { useLoadingOvertime } from "./";
 
@@ -128,6 +128,11 @@ describe("useLoadingOvertime Hook", () => {
                             },
                         },
                     },
+                    routerProvider: mockRouterBindings({
+                        resource: {
+                            name: "posts",
+                        },
+                    }),
                 }),
             },
         );
@@ -142,20 +147,10 @@ describe("useLoadingOvertime Hook", () => {
         expect(onInterval).toBeCalledWith(1000, {
             action: undefined,
             id: undefined,
-            resource: undefined,
-            resourceName: undefined,
-            resources: [
-                {
-                    canCreate: false,
-                    canDelete: undefined,
-                    canEdit: false,
-                    canShow: false,
-                    label: undefined,
-                    name: "posts",
-                    options: { route: undefined },
-                    route: "/posts",
-                },
-            ],
+            resource: {
+                name: "posts",
+            },
+            resourceName: "posts",
         });
     });
 });
