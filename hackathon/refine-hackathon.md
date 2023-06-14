@@ -41,7 +41,7 @@ We can't wait to see what amazing projects the participants will build projects 
 
 refine draws its strength from the open-source community, and we are grateful to have the support of [Supabase](https://supabase.com/) and [MUI](https://mui.com/material-ui/getting-started/overview/) which has significant contributions to the community. We’re proud to host our second hackathon on collaboration with the [DEV](https://dev.to/refine) platform. 
 
-It's worth noting that refine has built-in data provider support for [Supabase](https://refine.dev/docs/packages/documentation/data-providers/supabase) and UI framework integration for [Material UI](https://refine.dev/docs/api-reference/mui/). So we believe they will be excellent backend and UI solution for your hackathon project.
+It's worth noting that refine has built-in [data provider support](https://refine.dev/docs/packages/documentation/data-providers/supabase) for Supabase and [UI framework integration](https://refine.dev/docs/api-reference/mui/) for Material UI. So we believe they will be excellent backend and UI solution for your hackathon project.
 
 Supabase and MUI will also be providing swag kits for the winners.
 
