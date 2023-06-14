@@ -23,7 +23,7 @@ export type UseLoadingOvertimeProps = {
  * @example
  * const { elapsedTime } = useLoadingOvertime({
  *    isLoading,
- *    interval: 5000,
+ *    interval: 1000,
  *    onInterval(elapsedInterval, context) {
  *        console.log("loading overtime", elapsedInterval, context);
  *    },
@@ -48,17 +48,18 @@ export const useLoadingOvertime = ({
 
     useEffect(() => {
         let intervalFn: ReturnType<typeof setInterval>;
-        if (isLoading) {
+
+        if (isLoading && interval) {
             intervalFn = setInterval(() => {
                 // increase elapsed time
                 setElapsedTime((prevElapsedTime) => {
                     if (prevElapsedTime === undefined) {
-                        return 1000;
+                        return interval;
                     }
 
-                    return prevElapsedTime + 1000;
+                    return prevElapsedTime + interval;
                 });
-            }, 1000);
+            }, interval);
         }
 
         return () => {
@@ -69,7 +70,8 @@ export const useLoadingOvertime = ({
     }, [isLoading]);
 
     useEffect(() => {
-        if (interval && elapsedTime && onInterval && elapsedTime >= interval) {
+        // call onInterval callback
+        if (onInterval && elapsedTime) {
             onInterval(elapsedTime, resourceContextData);
         }
     }, [elapsedTime]);
