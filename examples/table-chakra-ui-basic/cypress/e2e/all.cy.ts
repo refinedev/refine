@@ -3,24 +3,24 @@
 
 describe("table-chakra-ui-basic", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:5173");
     });
 
     it("should work with sorter", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "id",
                     _order: "asc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getAscPosts");
 
@@ -33,7 +33,7 @@ describe("table-chakra-ui-basic", () => {
 
         cy.wait("@getAscPosts");
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.get(".icon-tabler-chevron-down").first().click();
 
@@ -42,7 +42,7 @@ describe("table-chakra-ui-basic", () => {
             "sorters[0][field]=id&sorters[0][order]=desc",
         );
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _sort } = request.query;
 
@@ -51,14 +51,14 @@ describe("table-chakra-ui-basic", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "id",
                     _order: "desc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getDescPosts");
 
@@ -73,17 +73,17 @@ describe("table-chakra-ui-basic", () => {
     });
 
     it("should work with filter", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     title_like: "lorem",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFilteredPosts");
 
@@ -100,18 +100,18 @@ describe("table-chakra-ui-basic", () => {
     });
 
     it("should work with pagination", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _start: "10",
                     _end: "20",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getSecondPagePosts");
 
@@ -131,7 +131,7 @@ describe("table-chakra-ui-basic", () => {
 
         cy.url().should("include", "current=1");
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _start, _end } = request.query;
 
@@ -141,7 +141,7 @@ describe("table-chakra-ui-basic", () => {
     });
 
     it("should set current `1` when filter changed", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#next-page").click();
 

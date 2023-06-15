@@ -3,13 +3,13 @@
 
 describe("table-mantine-advanced", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:5173");
     });
 
     it("the row should be expandable", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#expanded-row").should("not.exist");
 
@@ -19,7 +19,7 @@ describe("table-mantine-advanced", () => {
     });
 
     it("delete button should only be showed when at least one row is selected", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#delete-selected").should("not.exist");
 
@@ -29,15 +29,15 @@ describe("table-mantine-advanced", () => {
     });
 
     it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getEditButton().first().click();
 
         cy.get("#title-input").should("exist");
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const { response } = interception;
             const data = response!.body;
 
@@ -46,11 +46,11 @@ describe("table-mantine-advanced", () => {
 
         cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.get("button").contains("Save").first().click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 

@@ -47,14 +47,14 @@ describe("table-antd-advanced", () => {
     it("should fill the form with the row data when click the edit button and save the form", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getEditButton().first().click();
 
         cy.get(".ant-input").should("exist");
         cy.get(".ant-select").should("exist");
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const { response } = interception;
             const data = response?.body;
 
@@ -63,11 +63,11 @@ describe("table-antd-advanced", () => {
 
         cy.get("#title").clear().type("Fuga eos enim autem eos.");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.getSaveButton().first().click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 
@@ -78,13 +78,13 @@ describe("table-antd-advanced", () => {
     it("expanded row should be display the post content", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.getTableRowExpandButton(0).click();
 
         cy.get(".ant-table-expanded-row").first().should("exist");
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { response } = interception;
             const data = response?.body;
 

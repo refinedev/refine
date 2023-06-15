@@ -3,24 +3,24 @@
 
 describe("table-mantine-basic", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:5173");
     });
 
     it("should work with sorter", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "id",
                     _order: "desc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getDescPosts");
 
@@ -35,14 +35,14 @@ describe("table-mantine-basic", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "id",
                     _order: "asc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getAscPosts");
 
@@ -55,7 +55,7 @@ describe("table-mantine-basic", () => {
 
         cy.wait("@getAscPosts");
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.get(".icon-tabler-chevron-down").first().click();
 
@@ -64,7 +64,7 @@ describe("table-mantine-basic", () => {
             "sorters[0][field]=id&sorters[0][order]=desc",
         );
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _sort } = request.query;
 
@@ -73,17 +73,17 @@ describe("table-mantine-basic", () => {
     });
 
     it("should work with filter", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     title_like: "lorem",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFilteredPosts");
 
@@ -100,13 +100,13 @@ describe("table-mantine-basic", () => {
     });
 
     it("should work with pagination", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get(".mantine-Pagination-item").contains("2").click();
 
         cy.url().should("include", "current=2");
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _start, _end } = request.query;
 
@@ -118,7 +118,7 @@ describe("table-mantine-basic", () => {
 
         cy.url().should("include", "current=1");
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _start, _end } = request.query;
 
@@ -128,7 +128,7 @@ describe("table-mantine-basic", () => {
     });
 
     it("should set current `1` when filter changed", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get(".mantine-Pagination-item").contains("2").click();
 

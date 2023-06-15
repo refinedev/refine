@@ -15,7 +15,7 @@ export const PostList: React.FC = () => {
 
     return (
         <div>
-            <button onClick={() => create("posts")}>Create Post</button>
+            <button onClick={() => create("blog_posts")}>Create Post</button>
             <table>
                 <thead>
                     <tr>
@@ -30,7 +30,9 @@ export const PostList: React.FC = () => {
                             <td>{post.id}</td>
                             <td>{post.title}</td>
                             <td>
-                                <button onClick={() => edit("posts", post.id)}>
+                                <button
+                                    onClick={() => edit("blog_posts", post.id)}
+                                >
                                     Edit
                                 </button>
                             </td>

@@ -17,7 +17,7 @@ const App: React.FC = () => {
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
-                resources={[{ name: "posts", list: "/posts" }]}
+                resources={[{ name: "blog_posts", list: "/blog-posts" }]}
                 options={{
                     syncWithLocation: true,
                     warnWhenUnsavedChanges: true,
@@ -26,7 +26,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route index element={<NavigateToResource />} />
 
-                    <Route path="/posts" element={<PostList />} />
+                    <Route path="/blog-posts" element={<PostList />} />
 
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>

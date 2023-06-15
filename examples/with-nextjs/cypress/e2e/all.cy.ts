@@ -52,11 +52,11 @@ describe("with-nextjs", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -209,11 +209,11 @@ describe("with-nextjs", () => {
 
         it("should edit record", () => {
             // wait loading state and render to be finished
-            cy.wait("@getPosts");
+            cy.wait("@getBlogPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
 
             cy.getEditButton().last().click();
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.wait("@getCategories");
 
             cy.assertDocumentTitle("Post", "edit");
@@ -229,13 +229,13 @@ describe("with-nextjs", () => {
         });
 
         it("should delete record", () => {
-            cy.wait("@getPosts");
+            cy.wait("@getBlogPosts");
             cy.getAntdLoadingOverlay().should("not.exist");
 
             cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getAntdLoadingOverlay().should("not.exist");
             cy.getSaveButton().should("not.be.disabled");
 
@@ -278,7 +278,7 @@ describe("with-nextjs", () => {
             cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
 
@@ -295,7 +295,7 @@ describe("with-nextjs", () => {
         });
 
         it("should create form warn when unsaved changes", () => {
-            cy.wait("@getPosts");
+            cy.wait("@getBlogPosts");
             cy.getCreateButton().click();
             cy.get("#title").type("any value");
             cy.get(".ant-page-header-back-button > .ant-btn").click();
@@ -305,11 +305,11 @@ describe("with-nextjs", () => {
         });
 
         it("should edit form warn when unsaved changes", () => {
-            cy.wait("@getPosts");
+            cy.wait("@getBlogPosts");
             cy.getEditButton().last().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
 

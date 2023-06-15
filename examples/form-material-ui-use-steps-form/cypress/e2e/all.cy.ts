@@ -9,7 +9,6 @@ describe("form-material-ui-use-modal-form", () => {
         content:
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         status: "published",
-        slug: "lorem-ipsum-is-simply-dummy-text-of-the-printing-and-typesetting-industry",
     };
 
     const getNextButton = () => {
@@ -33,8 +32,6 @@ describe("form-material-ui-use-modal-form", () => {
 
         getNextButton().click();
 
-        cy.get("#slug").clear();
-        cy.get("#slug").type(mockPost.slug);
         cy.get("#content").clear();
         cy.get("#content").type(mockPost.content);
     };
@@ -47,14 +44,13 @@ describe("form-material-ui-use-modal-form", () => {
         expect(body).to.have.property("category");
         expect(body?.title).to.eq(mockPost.title);
         expect(body?.content).to.eq(mockPost.content);
-        expect(body?.slug).to.eq(mockPost.slug);
         expect(body?.status?.toLowerCase()).to.eq(
             mockPost?.status?.toLowerCase(),
         );
 
         cy.getMaterialUINotification().contains(/success/i);
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     };
 
@@ -63,11 +59,11 @@ describe("form-material-ui-use-modal-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -83,7 +79,7 @@ describe("form-material-ui-use-modal-form", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -93,7 +89,7 @@ describe("form-material-ui-use-modal-form", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         getNextButton().should("not.be.disabled");
 
         fillForm();
@@ -101,7 +97,7 @@ describe("form-material-ui-use-modal-form", () => {
         cy.getSaveButton().should("not.be.disabled");
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -120,12 +116,9 @@ describe("form-material-ui-use-modal-form", () => {
         cy.get("#title").should("have.value", mockPost.title);
         getNextButton().click();
         getNextButton().click();
-        cy.get("#slug").should("have.value", mockPost.slug);
         cy.get("#content").should("have.value", mockPost.content);
 
         // traverse back and forth and change the form data
-        cy.get("#slug").clear();
-        cy.get("#slug").type("changed");
         cy.get("#content").clear();
         cy.get("#content").type("changed");
         getPreviousButton().click();
@@ -140,7 +133,6 @@ describe("form-material-ui-use-modal-form", () => {
         // traverse back and forth and assert that the form data is preserved
         getNextButton().click();
         getNextButton().click();
-        cy.get("#slug").should("have.value", "changed");
         cy.get("#content").should("have.value", "changed");
         getPreviousButton().click();
         cy.get("#status").should("have.value", "draft");
@@ -154,7 +146,7 @@ describe("form-material-ui-use-modal-form", () => {
         cy.getSaveButton().should("not.be.disabled");
         submitForm();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -163,12 +155,11 @@ describe("form-material-ui-use-modal-form", () => {
             expect(body).to.have.property("category");
             expect(body?.title).to.eq("changed");
             expect(body?.content).to.eq("changed");
-            expect(body?.slug).to.eq("changed");
             expect(body?.status?.toLowerCase()).to.eq("draft");
 
             cy.getMaterialUINotification().contains(/success/i);
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });

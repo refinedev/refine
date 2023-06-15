@@ -32,11 +32,11 @@ describe("table-antd-use-delete-many", () => {
 
         cy.get(".ant-table-row-selected").should("have.length", 2);
 
-        cy.interceptDELETEPost();
+        cy.interceptDELETEBlogPost();
 
         cy.get(".ant-btn-primary").contains("Delete").click();
 
-        cy.wait("@deletePost");
-        cy.wait("@deletePost");
+        cy.wait("@deleteBlogPost");
+        cy.wait("@deleteBlogPost");
     });
 });

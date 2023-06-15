@@ -43,11 +43,11 @@ describe("form-save-and-continue", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -63,20 +63,20 @@ describe("form-save-and-continue", () => {
         fillForm();
         cy.get("button").contains(/save/i).click();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });
 
     it("should create record and continue editing", () => {
         // should return mock post when get post
-        cy.fixture("posts")
+        cy.fixture("blog-posts")
             .then(() => {
-                return cy.intercept("GET", "/posts/*", mockPost);
+                return cy.intercept("GET", "/blog_posts/*", mockPost);
             })
             .as("getNewPost");
 
@@ -87,7 +87,7 @@ describe("form-save-and-continue", () => {
             .contains(/continue/i)
             .click();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -105,7 +105,7 @@ describe("form-save-and-continue", () => {
             cy.get("#status").should("have.value", body.status);
             cy.get("#category").should("have.value", body.category);
             cy.location().should((loc) => {
-                expect(loc.pathname).to.includes("/posts/edit");
+                expect(loc.pathname).to.includes("/blog-posts/edit");
             });
         });
     });
@@ -118,7 +118,7 @@ describe("form-save-and-continue", () => {
             .contains(/add another/i)
             .click();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
 
@@ -130,7 +130,7 @@ describe("form-save-and-continue", () => {
             cy.get("#status").should("have.value", "draft");
             cy.get("#category").should("have.value", null);
             cy.location().should((loc) => {
-                expect(loc.pathname).to.includes("/posts/create");
+                expect(loc.pathname).to.includes("/blog-posts/create");
             });
         });
     });
@@ -139,7 +139,7 @@ describe("form-save-and-continue", () => {
         cy.get("button").contains(/edit/i).first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -155,11 +155,11 @@ describe("form-save-and-continue", () => {
         fillForm();
         cy.get("button").contains(/save/i).click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });
@@ -167,14 +167,14 @@ describe("form-save-and-continue", () => {
     it("should edit record and continue editing", () => {
         cy.get("button").contains(/edit/i).first().click();
 
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         waitForLoading();
         fillForm();
 
         cy.get("button")
             .contains(/continue/i)
             .click();
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -187,27 +187,27 @@ describe("form-save-and-continue", () => {
         cy.get("#status").should("have.value", mockPost.status);
         cy.get("#category").should("have.value", mockPost.category);
         cy.location().should((loc) => {
-            expect(loc.pathname).to.includes("/posts/edit");
+            expect(loc.pathname).to.includes("/blog-posts/edit");
         });
     });
 
     it("should edit record and continue to add new record", () => {
         cy.get("button").contains(/edit/i).first().click();
 
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         waitForLoading();
         fillForm();
         cy.get("button")
             .contains(/add another/i)
             .click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
 
         cy.location().should((loc) => {
-            expect(loc.pathname).to.includes("/posts/create");
+            expect(loc.pathname).to.includes("/blog-posts/create");
         });
     });
 });

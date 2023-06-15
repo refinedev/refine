@@ -32,7 +32,7 @@ describe("with-remix-headless", () => {
     describe("login", () => {
         it.skip("should login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog_posts");
             cy.getAllCookies().then((cookies) => {
                 expect(cookies[0]).to.have.property("name", "user");
             });
@@ -40,7 +40,7 @@ describe("with-remix-headless", () => {
 
         it.skip("should has 'to' param on URL after redirected to /login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog_posts");
 
             cy.visit(`${BASE_URL}/test`);
             cy.location("pathname").should("eq", "/test");
@@ -68,7 +68,7 @@ describe("with-remix-headless", () => {
                 .click();
             cy.location("pathname").should("eq", "/register");
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog_posts");
             cy.getAllCookies().then((cookies) => {
                 expect(cookies[0]).to.have.property("name", "user");
             });

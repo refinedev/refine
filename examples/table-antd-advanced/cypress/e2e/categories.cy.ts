@@ -9,11 +9,11 @@ describe("table-antd-advanced", () => {
     it("expanded row should be display the table with the posts data", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.getTableRowExpandButton(0).click();
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
 
             const { "category.id": categoryId } = request.query;

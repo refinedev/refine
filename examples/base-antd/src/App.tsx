@@ -29,11 +29,11 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(API_URL)}
                     resources={[
                         {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
                             meta: {
                                 canDelete: true,
                             },
@@ -56,11 +56,11 @@ const App: React.FC = () => {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 }
                             />
 
-                            <Route path="/posts">
+                            <Route path="/blog-posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />

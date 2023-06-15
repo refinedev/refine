@@ -29,12 +29,12 @@ describe("form-antd-use-form", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
     });
 
     it("should create form render errors", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getCreateButton().click();
 
@@ -61,12 +61,12 @@ describe("form-antd-use-form", () => {
     });
 
     it("should edit form render errors", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
         cy.getAntdLoadingOverlay().should("not.exist");
 
@@ -89,9 +89,9 @@ describe("form-antd-use-form", () => {
     });
 
     it("should create form warn when unsaved changes", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.getCreateButton().click();
         cy.get("#title").type("any value");
         cy.get(".ant-page-header-back-button > .ant-btn").click();
@@ -101,13 +101,13 @@ describe("form-antd-use-form", () => {
     });
 
     it("should edit form warn when unsaved changes", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
         cy.getAntdLoadingOverlay().should("not.exist");
 

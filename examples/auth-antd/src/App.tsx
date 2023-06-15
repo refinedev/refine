@@ -174,10 +174,10 @@ const App: React.FC = () => {
                             },
                         },
                         {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            edit: "/blog-posts/edit/:id",
                         },
                     ]}
                     notificationProvider={notificationProvider}
@@ -200,7 +200,7 @@ const App: React.FC = () => {
                         >
                             <Route index element={<DashboardPage />} />
 
-                            <Route path="/posts">
+                            <Route path="/blog-posts">
                                 <Route index element={<PostList />} />
                                 <Route path="edit/:id" element={<PostEdit />} />
                                 <Route path="show/:id" element={<PostShow />} />
@@ -210,7 +210,7 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 </Authenticated>
                             }
                         >

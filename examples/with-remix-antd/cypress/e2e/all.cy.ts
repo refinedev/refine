@@ -33,7 +33,7 @@ describe("with-remix-antd", () => {
 
         cy.getAntdNotification().should("contain", "Success");
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     };
 
@@ -42,11 +42,11 @@ describe("with-remix-antd", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -201,7 +201,7 @@ describe("with-remix-antd", () => {
             fillForm();
             submitForm();
 
-            cy.wait("@postPost").then((interception) => {
+            cy.wait("@postBlogPost").then((interception) => {
                 const response = interception?.response;
                 assertSuccessResponse(response);
             });
@@ -211,14 +211,14 @@ describe("with-remix-antd", () => {
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
 
             fillForm();
             submitForm();
 
-            cy.wait("@patchPost").then((interception) => {
+            cy.wait("@patchBlogPost").then((interception) => {
                 const response = interception?.response;
                 assertSuccessResponse(response);
             });
@@ -228,20 +228,20 @@ describe("with-remix-antd", () => {
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
 
             cy.getDeleteButton().first().click();
             cy.getAntdPopoverDeleteButton().click();
 
-            cy.wait("@deletePost").then((interception) => {
+            cy.wait("@deleteBlogPost").then((interception) => {
                 const response = interception?.response;
 
                 expect(response?.statusCode).to.eq(200);
                 cy.getAntdNotification().should("contain", "Success");
                 cy.location().should((loc) => {
-                    expect(loc.pathname).to.eq("/posts");
+                    expect(loc.pathname).to.eq("/blog-posts");
                 });
             });
         });
@@ -271,7 +271,7 @@ describe("with-remix-antd", () => {
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
 
@@ -288,7 +288,7 @@ describe("with-remix-antd", () => {
         });
 
         it("should create form warn when unsaved changes", () => {
-            cy.wait("@getPosts");
+            cy.wait("@getBlogPosts");
             cy.getCreateButton().click();
             cy.get("#title").type("any value");
             cy.get(".ant-page-header-back-button > .ant-btn").click();
@@ -298,11 +298,11 @@ describe("with-remix-antd", () => {
         });
 
         it("should edit form warn when unsaved changes", () => {
-            cy.wait("@getPosts");
+            cy.wait("@getBlogPosts");
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
-            cy.wait("@getPost");
+            cy.wait("@getBlogPost");
             cy.getSaveButton().should("not.be.disabled");
             cy.getAntdLoadingOverlay().should("not.exist");
 

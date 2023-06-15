@@ -18,11 +18,11 @@ describe("table-material-ui-table-filter", () => {
             .get("#category-option-0", { timeout: 3000 })
             .click();
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.get("button[type=submit]").click();
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { query } = interception.request;
 
             expect(query.q).to.equal("lorem");

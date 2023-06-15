@@ -38,11 +38,11 @@ describe("form-antd-use-drawer-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -71,7 +71,7 @@ describe("form-antd-use-drawer-form", () => {
         cy.setAntdSelect({ id: "status", value: mockPost.status });
         cy.getSaveButton().eq(0).click();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -81,7 +81,7 @@ describe("form-antd-use-drawer-form", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         isDrawerVisible();
         cy.getSaveButton().should("not.be.disabled");
         cy.getAntdLoadingOverlay().should("not.exist");
@@ -98,43 +98,49 @@ describe("form-antd-use-drawer-form", () => {
             .blur();
         cy.getSaveButton().eq(1).click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
     });
 
     it("should create form sync with location", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         openDrawer();
         isDrawerVisible();
         cy.location("search").should(
             "include",
-            "drawer-posts-create[open]=true",
+            "drawer-blog-posts-create[open]=true",
         );
 
         cy.reload();
         isDrawerVisible();
         cy.location("search").should(
             "include",
-            "drawer-posts-create[open]=true",
+            "drawer-blog-posts-create[open]=true",
         );
     });
 
     it("should edit form sync with location", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.getEditButton().first().click();
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
 
         isDrawerVisible();
-        cy.location("search").should("include", "drawer-posts-edit[open]=true");
+        cy.location("search").should(
+            "include",
+            "drawer-blog-posts-edit[open]=true",
+        );
         cy.location("search").should("include", "drawer-posts-edit[id]");
 
         cy.reload();
         isDrawerVisible();
-        cy.location("search").should("include", "drawer-posts-edit[open]=true");
+        cy.location("search").should(
+            "include",
+            "drawer-blog-posts-edit[open]=true",
+        );
         cy.location("search").should("include", "drawer-posts-edit[id]");
     });
 });

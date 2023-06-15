@@ -3,13 +3,13 @@
 
 describe("table-material-ui-advanced", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:3000/posts/react-table");
     });
 
     it("the row should be expandable", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#expanded-row").should("not.exist");
 
@@ -19,7 +19,7 @@ describe("table-material-ui-advanced", () => {
     });
 
     it("should select all rows when click the checkbox in the table header", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get(
             ".MuiTableCell-root .MuiCheckbox-root .PrivateSwitchBase-input",
@@ -31,7 +31,7 @@ describe("table-material-ui-advanced", () => {
     });
 
     it("should select the row when click the checkbox in the row", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#row-select").first().check();
 
@@ -39,7 +39,7 @@ describe("table-material-ui-advanced", () => {
     });
 
     it("delete button should only be showed when at least one row is selected", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#delete-selected").should("not.exist");
 
@@ -49,16 +49,16 @@ describe("table-material-ui-advanced", () => {
     });
 
     it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getEditButton().first().click({ force: true });
 
         cy.get(".MuiTableCell-root #title").should("exist");
         cy.get(".MuiTableCell-root .MuiSelect-nativeInput").should("exist");
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const { response } = interception;
             const data = response?.body;
 
@@ -76,11 +76,11 @@ describe("table-material-ui-advanced", () => {
             .clear({ force: true })
             .type("Fuga eos enim autem eos.");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.getSaveButton().first().click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 

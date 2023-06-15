@@ -8,12 +8,10 @@ describe("form-mantine-use-steps-form", () => {
         title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
         content: `Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
         status: "Draft",
-        slug: "lorem-ipsum-is-simply-dummy-text-of-the-printing-and-typesetting-industry",
     };
 
     const fillForm = () => {
         cy.get("#title").clear().type(mockPost.title);
-        cy.get("#slug").clear().type(mockPost.slug);
         getNextStepButton().click();
         cy.get("#status").click().get("#status-1").click();
         getNextStepButton().click();
@@ -28,14 +26,13 @@ describe("form-mantine-use-steps-form", () => {
         expect(response?.statusCode).to.eq(200);
         expect(body).to.have.property("id");
         expect(body?.title).to.eq(mockPost.title);
-        expect(body?.slug).to.eq(mockPost.slug);
         expect(body?.status?.toLowerCase()).to.eq(
             mockPost?.status?.toLowerCase(),
         );
 
         cy.getMantineNotification().contains(/success/gi);
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     };
 
@@ -52,11 +49,11 @@ describe("form-mantine-use-steps-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -72,7 +69,7 @@ describe("form-mantine-use-steps-form", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@postPost").then((createInterception) => {
+        cy.wait("@postBlogPost").then((createInterception) => {
             const createResponse = createInterception?.response;
             assertSuccessResponse(createResponse);
         });
@@ -81,7 +78,7 @@ describe("form-mantine-use-steps-form", () => {
     it("should edit record", () => {
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -90,7 +87,6 @@ describe("form-mantine-use-steps-form", () => {
 
             // assert form values are equal to the response values
             cy.get("#title").should("have.value", body.title);
-            cy.get("#slug").should("have.value", body.slug);
             getNextStepButton().click();
             cy.get("#status").should(
                 "have.value",
@@ -105,7 +101,7 @@ describe("form-mantine-use-steps-form", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -116,7 +112,6 @@ describe("form-mantine-use-steps-form", () => {
 
         // fill first step
         cy.get("#title").clear().type(mockPost.title);
-        cy.get("#slug").clear().type(mockPost.slug);
 
         // go to second step
         getNextStepButton().click();
@@ -139,7 +134,6 @@ describe("form-mantine-use-steps-form", () => {
         getPreviousStepButton().click();
         // assert that first step values are preserved
         cy.get("#title").should("have.value", mockPost.title);
-        cy.get("#slug").should("have.value", mockPost.slug);
 
         // assert second and third step values are still preserved
         // go to second step
@@ -154,7 +148,7 @@ describe("form-mantine-use-steps-form", () => {
 
         // submit form and assert that values
         submitForm();
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });

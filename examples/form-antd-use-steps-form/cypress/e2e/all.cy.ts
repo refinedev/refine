@@ -35,7 +35,7 @@ describe("form-antd-use-steps-form", () => {
 
         cy.getAntdNotification().should("contain", "Success");
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     };
 
@@ -44,11 +44,11 @@ describe("form-antd-use-steps-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -63,7 +63,7 @@ describe("form-antd-use-steps-form", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -72,13 +72,13 @@ describe("form-antd-use-steps-form", () => {
     it("should edit a record", () => {
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getAntdLoadingOverlay().should("not.exist");
 
         fillForm();
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });

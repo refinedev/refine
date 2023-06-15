@@ -3,14 +3,16 @@
 export const assertDocumentTitle = (resource: string, action?: IAction) => {
     switch (action) {
         case "list":
-            cy.document().its("title").should("eq", `${resource} | refine`);
+            cy.document()
+                .its("title")
+                .should("match", new RegExp(`^${resource} | refine$`, "i"));
             break;
         case "edit":
             cy.document()
                 .its("title")
                 .should(
                     "match",
-                    new RegExp(`^#\\d+ Edit ${resource} | refine$`),
+                    new RegExp(`^#\\d+ Edit ${resource} | refine$`, "i"),
                 );
             break;
         case "show":
@@ -18,20 +20,23 @@ export const assertDocumentTitle = (resource: string, action?: IAction) => {
                 .its("title")
                 .should(
                     "match",
-                    new RegExp(`^#\\d+ Show ${resource} | refine$`),
+                    new RegExp(`^#\\d+ Show ${resource} | refine$`, "i"),
                 );
             break;
         case "create":
             cy.document()
                 .its("title")
-                .should("eq", `Create new ${resource} | refine`);
+                .should(
+                    "match",
+                    new RegExp(`^Create new ${resource} | refine$`, "i"),
+                );
             break;
         case "clone":
             cy.document()
                 .its("title")
                 .should(
                     "match",
-                    new RegExp(`^#\\d+ Clone ${resource} | refine$`),
+                    new RegExp(`^#\\d+ Clone ${resource} | refine$`, "i"),
                 );
             break;
         default:

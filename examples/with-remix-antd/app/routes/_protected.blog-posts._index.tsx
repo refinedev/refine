@@ -1,5 +1,3 @@
-import { GetServerSideProps } from "next";
-import { GetListResponse } from "@refinedev/core";
 import {
     useTable,
     List,
@@ -7,17 +5,18 @@ import {
     ShowButton,
     DeleteButton,
 } from "@refinedev/antd";
-import dataProvider from "@refinedev/simple-rest";
 import { Table, Space } from "antd";
-import { parseTableParams } from "@refinedev/nextjs-router";
+import { useLoaderData } from "@remix-run/react";
+import { json, LoaderArgs } from "@remix-run/node";
+import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams } from "@refinedev/remix-router";
 
-import { authProvider } from "src/authProvider";
-import { IPost } from "src/interfaces";
-import { API_URL } from "src/constants";
+import { IPost } from "../interfaces";
+import { API_URL } from "~/constants";
 
-const PostList: React.FC<{ initialData: GetListResponse<IPost> }> = ({
-    initialData,
-}) => {
+const PostList: React.FC = () => {
+    const { initialData } = useLoaderData<typeof loader>();
+
     const { tableProps } = useTable<IPost>({
         queryOptions: {
             initialData,
@@ -37,14 +36,17 @@ const PostList: React.FC<{ initialData: GetListResponse<IPost> }> = ({
                         return (
                             <Space>
                                 <EditButton
+                                    hideText
                                     size="small"
                                     recordItemId={record.id}
                                 />
                                 <ShowButton
+                                    hideText
                                     size="small"
                                     recordItemId={record.id}
                                 />
                                 <DeleteButton
+                                    hideText
                                     size="small"
                                     recordItemId={record.id}
                                 />
@@ -57,33 +59,19 @@ const PostList: React.FC<{ initialData: GetListResponse<IPost> }> = ({
     );
 };
 
-export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
-    const { authenticated, redirectTo } = await authProvider.check(context);
+export default PostList;
 
-    if (!authenticated) {
-        return {
-            props: {},
-            redirect: {
-                destination: redirectTo,
-                permanent: false,
-            },
-        };
-    }
+export async function loader({ request }: LoaderArgs) {
+    const url = new URL(request.url);
 
-    const { pagination, filters, sorters } = parseTableParams(
-        context.resolvedUrl?.split("?")[1] ?? "",
-    );
+    const { pagination, filters, sorters } = parseTableParams(url.search);
 
-    const data = await dataProvider(API_URL).getList({
-        resource: "posts",
+    const data = await dataProvider(API_URL).getList<IPost>({
+        resource: "blog_posts",
         filters,
         pagination,
         sorters,
     });
 
-    return {
-        props: { initialData: data },
-    };
-};
-
-export default PostList;
+    return json({ initialData: data });
+}

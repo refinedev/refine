@@ -30,11 +30,11 @@ const App: React.FC = () => {
                     routerProvider={routerProvider}
                     resources={[
                         {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                            show: "/blog-posts/show/:id",
                         },
                     ]}
                     notificationProvider={notificationProvider}
@@ -54,11 +54,11 @@ const App: React.FC = () => {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 }
                             />
 
-                            <Route path="posts">
+                            <Route path="blog_posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />

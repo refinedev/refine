@@ -38,14 +38,14 @@ describe("form-antd-mutation-mode", () => {
     };
 
     const waitForEditPageLoading = () => {
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.wait("@getCategories");
         cy.getAntdLoadingOverlay().should("not.exist");
         cy.getSaveButton().should("not.be.disabled");
     };
 
     const waitForListPageLoading = () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
         cy.getAntdLoadingOverlay().should("not.exist");
     };
@@ -55,11 +55,11 @@ describe("form-antd-mutation-mode", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -76,16 +76,15 @@ describe("form-antd-mutation-mode", () => {
         cy.getEditButton().first().should("not.be.disabled");
         cy.getEditButton().first().click();
         // wait loading state and render to be finished
-        cy.wait("@getPost");
         waitForEditPageLoading();
 
         fillForm();
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             cy.getAntdNotification().should("contain", "Success");
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
             const response = interception?.response;
             assertSuccessResponse(response);
@@ -98,14 +97,13 @@ describe("form-antd-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-
         waitForEditPageLoading();
         fillForm();
         submitForm();
 
         // should redirect to list page
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
         // should show notification
         cy.getAntdNotification().contains(/seconds to undo/gi);
@@ -115,7 +113,7 @@ describe("form-antd-mutation-mode", () => {
             .should("not.exist");
 
         // should sent a PATCH request after certain time
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.getAntdNotification().should("contain", "Success");
@@ -137,7 +135,7 @@ describe("form-antd-mutation-mode", () => {
             .click();
         cy.getAntdNotification().should("not.exist");
 
-        cy.get("@patchPost").should("be.null");
+        cy.get("@patchBlogPost").should("be.null");
     });
 
     it("should create a record when mutation mode is optimistic", () => {
@@ -153,10 +151,10 @@ describe("form-antd-mutation-mode", () => {
 
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.getAntdNotification().should("contain", "Success");
@@ -175,10 +173,10 @@ describe("form-antd-mutation-mode", () => {
 
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.getAntdNotification().should("contain", "Success");
@@ -196,13 +194,13 @@ describe("form-antd-mutation-mode", () => {
         cy.getDeleteButton().first().click();
         cy.getAntdPopoverDeleteButton().click();
 
-        cy.wait("@deletePost").then((interception) => {
+        cy.wait("@deleteBlogPost").then((interception) => {
             const response = interception?.response;
 
             expect(response?.statusCode).to.eq(200);
             cy.getAntdNotification().should("contain", "Success");
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });
@@ -222,7 +220,7 @@ describe("form-antd-mutation-mode", () => {
         cy.getAntdNotification().contains(/seconds to undo/gi);
         // should still in edit page
         cy.location().should((loc) => {
-            expect(loc.pathname).to.includes("/posts/edit");
+            expect(loc.pathname).to.includes("/blog-posts/edit");
         });
         // notification should disappear after certain time
         cy.getAntdNotification()
@@ -230,10 +228,10 @@ describe("form-antd-mutation-mode", () => {
             .should("not.exist");
 
         // should sent a DELETE request after certain time
-        cy.wait("@deletePost").then(() => {
+        cy.wait("@deleteBlogPost").then(() => {
             cy.getAntdNotification().should("contain", "Success");
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });

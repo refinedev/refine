@@ -58,7 +58,7 @@ export const PostList: React.FC = () => {
     const deleteSelectedItems = (ids: number[]) => {
         mutate(
             {
-                resource: "posts",
+                resource: "blog_posts",
                 ids,
             },
             {

@@ -31,11 +31,11 @@ describe("form-antd-use-modal-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -67,7 +67,7 @@ describe("form-antd-use-modal-form", () => {
             .eq(0)
             .click({ force: true });
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -85,7 +85,7 @@ describe("form-antd-use-modal-form", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         isModalVisible();
         cy.getAntdLoadingOverlay().should("not.exist");
 
@@ -105,7 +105,7 @@ describe("form-antd-use-modal-form", () => {
             .should("not.be.disabled")
             .click({ force: true });
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -120,36 +120,42 @@ describe("form-antd-use-modal-form", () => {
     });
 
     it("should create form sync with location", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         openModal();
         isModalVisible();
         cy.location("search").should(
             "include",
-            "modal-posts-create[open]=true",
+            "modal-blog_posts-create[open]=true",
         );
 
         cy.reload();
         isModalVisible();
         cy.location("search").should(
             "include",
-            "modal-posts-create[open]=true",
+            "modal-blog_posts-create[open]=true",
         );
     });
 
     it("should edit form sync with location", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.getEditButton().first().click();
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
 
         isModalVisible();
-        cy.location("search").should("include", "modal-posts-edit[open]=true");
-        cy.location("search").should("include", "modal-posts-edit[id]");
+        cy.location("search").should(
+            "include",
+            "modal-blog_posts-edit[open]=true",
+        );
+        cy.location("search").should("include", "modal-blog_posts-edit[id]");
 
         cy.reload();
         isModalVisible();
-        cy.location("search").should("include", "modal-posts-edit[open]=true");
-        cy.location("search").should("include", "modal-posts-edit[id]");
+        cy.location("search").should(
+            "include",
+            "modal-blog_posts-edit[open]=true",
+        );
+        cy.location("search").should("include", "modal-blog_posts-edit[id]");
     });
 });

@@ -44,11 +44,11 @@ describe("table-material-ui-use-delete-many", () => {
             2,
         );
 
-        cy.interceptDELETEPost();
+        cy.interceptDELETEBlogPost();
 
         cy.get("#delete-selected").click();
 
-        cy.wait("@deletePost");
-        cy.wait("@deletePost");
+        cy.wait("@deleteBlogPost");
+        cy.wait("@deleteBlogPost");
     });
 });

@@ -195,10 +195,10 @@ const App: React.FC = () => {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "posts",
-                                list: "/posts",
-                                edit: "/posts/edit/:id",
-                                create: "/posts/create",
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                edit: "/blog-posts/edit/:id",
+                                create: "/blog-posts/create",
                             },
                         ]}
                         options={{
@@ -223,11 +223,11 @@ const App: React.FC = () => {
                                 <Route
                                     index
                                     element={
-                                        <NavigateToResource resource="posts" />
+                                        <NavigateToResource resource="blog_posts" />
                                     }
                                 />
 
-                                <Route path="/posts">
+                                <Route path="/blog-posts">
                                     <Route index element={<PostList />} />
                                     <Route
                                         path="create"
@@ -243,7 +243,7 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource resource="posts" />
+                                        <NavigateToResource resource="blog_posts" />
                                     </Authenticated>
                                 }
                             >

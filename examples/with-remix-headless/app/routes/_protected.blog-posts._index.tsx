@@ -3,17 +3,15 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { useNavigation } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
+import { json, LoaderArgs } from "@remix-run/node";
+import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams } from "@refinedev/remix-router";
 
-export interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-}
+import { API_URL } from "~/constants";
+import { IPost } from "~/interfaces";
 
-export const PostList: React.FC = ({}) => {
-    const { initialData } = useLoaderData();
+const PostList: React.FC = () => {
+    const { initialData } = useLoaderData<typeof loader>();
     const { edit, create } = useNavigation();
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -203,3 +201,20 @@ export const PostList: React.FC = ({}) => {
         </>
     );
 };
+
+export default PostList;
+
+export async function loader({ request }: LoaderArgs) {
+    const url = new URL(request.url);
+
+    const { pagination, filters, sorters } = parseTableParams(url.search);
+
+    const data = await dataProvider(API_URL).getList<IPost>({
+        resource: "blog_posts",
+        filters,
+        pagination,
+        sorters,
+    });
+
+    return json({ initialData: data });
+}

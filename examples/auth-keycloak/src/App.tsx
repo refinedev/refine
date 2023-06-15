@@ -123,11 +123,11 @@ const App: React.FC = () => {
                     routerProvider={routerProvider}
                     resources={[
                         {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            edit: "/blog-posts/edit/:id",
+                            create: "/blog-posts/create",
                         },
                     ]}
                     notificationProvider={notificationProvider}
@@ -151,11 +151,11 @@ const App: React.FC = () => {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 }
                             />
 
-                            <Route path="/posts">
+                            <Route path="/blog-posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />
@@ -166,7 +166,7 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 </Authenticated>
                             }
                         >

@@ -27,7 +27,7 @@ describe("auth-keycloak", () => {
     describe("login", () => {
         it("should login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
 
         it("should redirect to /login if user not authenticated", () => {

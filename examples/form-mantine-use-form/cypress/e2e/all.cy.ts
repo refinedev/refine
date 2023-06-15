@@ -13,7 +13,7 @@ describe("form-mantine-use-form", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
     });
 
@@ -51,13 +51,13 @@ describe("form-mantine-use-form", () => {
     });
 
     it("should edit form render errors", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
         cy.interceptGETCategories();
 
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
         cy.getMantineLoadingOverlay().should("not.exist");
 
@@ -73,7 +73,7 @@ describe("form-mantine-use-form", () => {
     });
 
     it("should create form warn when unsaved changes", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.getCreateButton().click();
         cy.get("#title").type("any value");
         cy.getPageHeaderTitle().siblings().first().click();
@@ -83,14 +83,14 @@ describe("form-mantine-use-form", () => {
     });
 
     it("should edit form warn when unsaved changes", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
         cy.interceptGETCategories();
 
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
         cy.getMantineLoadingOverlay().should("not.exist");
 

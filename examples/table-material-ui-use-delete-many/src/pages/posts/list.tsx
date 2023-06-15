@@ -22,7 +22,7 @@ export const PostList: React.FC = () => {
     const deleteSelectedItems = () => {
         mutate(
             {
-                resource: "posts",
+                resource: "blog_posts",
                 ids: selectedRowKeys.map(String),
             },
             {

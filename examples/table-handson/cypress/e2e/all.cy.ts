@@ -3,15 +3,15 @@
 
 describe("table-handson", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:5173");
     });
 
     it("the cell should be update", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.get("tbody tr").eq(0).find("td").eq(1).dblclick();
 
@@ -21,7 +21,7 @@ describe("table-handson", () => {
         );
         cy.get(".handsontableInput").type("{enter}");
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { body } = interception.request;
 
             expect(body.title).to.equal(

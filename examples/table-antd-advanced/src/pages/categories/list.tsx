@@ -55,7 +55,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 
 const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
     const { tableProps: postTableProps } = useTable<IPost>({
-        resource: "posts",
+        resource: "blog_posts",
         permanentFilter: [
             {
                 field: "category.id",
@@ -77,12 +77,12 @@ const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     <Space>
                         <EditButton
                             size="small"
-                            resourceNameOrRouteName="posts"
+                            resourceNameOrRouteName="blog_posts"
                             recordItemId={record.id}
                         />
                         <ShowButton
                             size="small"
-                            resourceNameOrRouteName="posts"
+                            resourceNameOrRouteName="blog_posts"
                             recordItemId={record.id}
                         />
                     </Space>

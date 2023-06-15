@@ -32,17 +32,17 @@ describe("table-antd-use-update-many", () => {
 
         cy.get(".ant-table-row-selected").should("have.length", 2);
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.get(".ant-btn-primary").contains("Update").click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { body } = interception.request;
 
             expect(body).to.have.property("status", "draft");
         });
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { body } = interception.request;
 
             expect(body).to.have.property("status", "draft");

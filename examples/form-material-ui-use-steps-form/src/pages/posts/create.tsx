@@ -17,7 +17,7 @@ import { Controller } from "react-hook-form";
 
 import { ICategory, IPost } from "interfaces";
 
-const stepTitles = ["Title", "Status and category", "Slug and content"];
+const stepTitles = ["Title", "Status and category", "Content"];
 
 export const PostCreate: React.FC = () => {
     const {
@@ -28,11 +28,7 @@ export const PostCreate: React.FC = () => {
         control,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm<
-        IPost,
-        HttpError,
-        IPost & { category: ICategory; slug: string }
-    >();
+    } = useStepsForm<IPost, HttpError, IPost & { category: ICategory }>();
 
     const theme = useTheme();
     const isSmallOrLess = useMediaQuery(theme.breakpoints.down("sm"));
@@ -135,17 +131,6 @@ export const PostCreate: React.FC = () => {
             case 2:
                 return (
                     <>
-                        <TextField
-                            id="slug"
-                            {...register("slug", {
-                                required: "This field is required",
-                            })}
-                            error={!!errors.slug}
-                            helperText={errors.slug?.message}
-                            margin="normal"
-                            fullWidth
-                            label="Slug"
-                        />
                         <TextField
                             id="content"
                             {...register("content", {

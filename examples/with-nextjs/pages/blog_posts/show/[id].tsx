@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     }
 
     const data = await dataProvider(API_URL).getOne({
-        resource: "posts",
+        resource: "blog_posts",
         id: context.params?.id as string,
     });
 

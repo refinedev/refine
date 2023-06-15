@@ -20,13 +20,13 @@ describe("table-material-ui-advanced", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     title_like: "lorem",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFilteredPosts");
 

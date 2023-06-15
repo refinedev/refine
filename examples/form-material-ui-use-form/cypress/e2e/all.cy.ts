@@ -13,7 +13,7 @@ describe("form-material-ui-use-form", () => {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
         cy.visit(BASE_URL);
     });
 
@@ -62,12 +62,12 @@ describe("form-material-ui-use-form", () => {
     });
 
     it("should edit form render errors", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
         cy.interceptGETCategories();
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.wait("@getCategories");
         cy.getSaveButton().should("not.be.disabled");
 
@@ -92,7 +92,7 @@ describe("form-material-ui-use-form", () => {
     });
 
     it("should create form warn when unsaved changes", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.getCreateButton().click();
         cy.get("#title").type("any value");
         cy.get(".MuiCardHeader-avatar > .MuiButtonBase-root").click();
@@ -102,14 +102,14 @@ describe("form-material-ui-use-form", () => {
     });
 
     it("should edit form warn when unsaved changes", () => {
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
         cy.interceptGETCategories();
 
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.wait("@getCategories");
         cy.getSaveButton().should("not.be.disabled");
 

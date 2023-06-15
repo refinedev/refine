@@ -121,11 +121,11 @@ declare namespace Cypress {
         ): Chainable<JQuery<HTMLElement>>;
         fillMaterialUIForm: () => void;
 
-        interceptGETPost(): Chainable<null>;
-        interceptGETPosts(): Chainable<null>;
-        interceptPOSTPost(): Chainable<null>;
-        interceptPATCHPost(): Chainable<null>;
-        interceptDELETEPost(): Chainable<null>;
+        interceptGETBlogPost(): Chainable<null>;
+        interceptGETBlogPosts(): Chainable<null>;
+        interceptPOSTBlogPost(): Chainable<null>;
+        interceptPATCHBlogPost(): Chainable<null>;
+        interceptDELETEBlogPost(): Chainable<null>;
         interceptGETCategories(): Chainable<null>;
         interceptGETCategory(): Chainable<null>;
 

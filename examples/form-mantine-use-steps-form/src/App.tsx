@@ -36,10 +36,10 @@ const App: React.FC = () => {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
+                                name: "blog_posts",
+                                list: "/blog-posts",
+                                create: "/blog-posts/create",
+                                edit: "/blog-posts/edit/:id",
                             },
                         ]}
                         options={{
@@ -58,11 +58,11 @@ const App: React.FC = () => {
                                 <Route
                                     index
                                     element={
-                                        <NavigateToResource resource="posts" />
+                                        <NavigateToResource resource="blog_posts" />
                                     }
                                 />
 
-                                <Route path="/posts">
+                                <Route path="/blog-posts">
                                     <Route index element={<PostList />} />
                                     <Route
                                         path="create"

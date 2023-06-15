@@ -37,10 +37,10 @@ export default function App() {
                     authProvider={authProvider}
                     resources={[
                         {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
                         },
                     ]}
                     options={{

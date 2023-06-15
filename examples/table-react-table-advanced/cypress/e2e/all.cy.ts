@@ -3,13 +3,13 @@
 
 describe("table-react-table-advanced", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:3000");
     });
 
     it("the row should be expandable", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#expand-toggle").click();
 
@@ -17,7 +17,7 @@ describe("table-react-table-advanced", () => {
     });
 
     it("delete button should only be showed when at least one row is selected", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#delete-selected").should("not.exist");
 
@@ -27,16 +27,16 @@ describe("table-react-table-advanced", () => {
     });
 
     it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.get("button").contains("Edit").first().click();
 
         cy.get("#title-input").should("exist");
         cy.get("#category-select").should("exist");
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const { response } = interception;
             const data = response?.body;
 
@@ -46,11 +46,11 @@ describe("table-react-table-advanced", () => {
 
         cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.get("button").contains("Save").first().click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 

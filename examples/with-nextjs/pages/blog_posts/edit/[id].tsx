@@ -1,15 +1,16 @@
 import { useForm, useSelect, Edit } from "@refinedev/antd";
+import { GetOneResponse } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { json, LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { Form, Input, Select } from "antd";
+import { GetServerSideProps } from "next";
 
-import { API_URL } from "~/constants";
-import { IPost } from "../interfaces";
+import { authProvider } from "src/authProvider";
+import { API_URL } from "src/constants";
+import { IPost } from "src/interfaces";
 
-const PostEdit: React.FC = () => {
-    const { initialData } = useLoaderData<typeof loader>();
-
+const PostEdit: React.FC<{ initialData: GetOneResponse<IPost> }> = ({
+    initialData,
+}) => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         queryOptions: {
             initialData,
@@ -77,13 +78,29 @@ const PostEdit: React.FC = () => {
     );
 };
 
-export default PostEdit;
+export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
+    const { authenticated, redirectTo } = await authProvider.check(context);
 
-export async function loader({ params }: LoaderArgs) {
-    const data = await dataProvider(API_URL).getOne<IPost>({
-        resource: "posts",
-        id: params?.id as string,
+    if (!authenticated) {
+        return {
+            props: {},
+            redirect: {
+                destination: redirectTo,
+                permanent: false,
+            },
+        };
+    }
+
+    const data = await dataProvider(API_URL).getOne({
+        resource: "blog_posts",
+        id: context.params?.id as string,
     });
 
-    return json({ initialData: data });
-}
+    return {
+        props: {
+            initialData: data,
+        },
+    };
+};
+
+export default PostEdit;

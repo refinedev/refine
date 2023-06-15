@@ -82,7 +82,7 @@ export default PostEdit;
 
 export async function loader({ params }: LoaderArgs) {
     const data = await dataProvider(API_URL).getOne<IPost>({
-        resource: "posts",
+        resource: "blog_posts",
         id: params?.id as string,
     });
 

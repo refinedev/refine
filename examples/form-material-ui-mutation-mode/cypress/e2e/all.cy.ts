@@ -48,11 +48,11 @@ describe("form-material-ui-mutation-mode", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -67,7 +67,7 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -82,7 +82,7 @@ describe("form-material-ui-mutation-mode", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -92,7 +92,7 @@ describe("form-material-ui-mutation-mode", () => {
         changeMutationMode("undoable");
         cy.getEditButton().first().click();
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const getResponse = interception?.response;
             const body = getResponse?.body;
 
@@ -108,7 +108,7 @@ describe("form-material-ui-mutation-mode", () => {
 
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
         // should show notification
         cy.getMaterialUINotification().contains(/seconds to undo/gi);
@@ -118,7 +118,7 @@ describe("form-material-ui-mutation-mode", () => {
             .should("not.exist");
 
         // should sent a PATCH request after certain time
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.getMaterialUINotification().contains(/success/i);
@@ -130,16 +130,16 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
         submitForm();
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
         cy.get(".SnackbarItem-action > button").click();
         cy.getMaterialUINotification().should("not.exist");
-        cy.get("@patchPost").should("be.null");
+        cy.get("@patchBlogPost").should("be.null");
     });
 
     it("should create record when mutation mode is optimistic", () => {
@@ -151,11 +151,11 @@ describe("form-material-ui-mutation-mode", () => {
 
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
 
         // should sent a POST request after certain time
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.getMaterialUINotification().contains(/success/i);
@@ -167,16 +167,16 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
         fillForm();
         submitForm();
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
         // should sent a PATCH request after certain time
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
             cy.getMaterialUINotification().contains(/success/i);
@@ -188,7 +188,7 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
 
         cy.getDeleteButton()
@@ -198,13 +198,13 @@ describe("form-material-ui-mutation-mode", () => {
             .click();
 
         // should sent a DELETE request after certain time
-        cy.wait("@deletePost").then((interception) => {
+        cy.wait("@deleteBlogPost").then((interception) => {
             const response = interception?.response;
 
             expect(response?.statusCode).to.eq(200);
             cy.getMaterialUINotification().should("contain", "Success");
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });
@@ -214,7 +214,7 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
 
         cy.getDeleteButton()
@@ -228,13 +228,13 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getMaterialUINotification()
             .contains("seconds to undo", { timeout: 10000 })
             .should("not.exist");
-        cy.wait("@deletePost").then((interception) => {
+        cy.wait("@deleteBlogPost").then((interception) => {
             const response = interception?.response;
 
             expect(response?.statusCode).to.eq(200);
             cy.getMaterialUINotification().should("contain", "Success");
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });
@@ -244,7 +244,7 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
 
         cy.getDeleteButton()
@@ -254,7 +254,7 @@ describe("form-material-ui-mutation-mode", () => {
             .click();
         cy.get(".SnackbarItem-action > button").click();
         cy.getMaterialUINotification().should("not.exist");
-        cy.get("@deletePost").should("be.null");
+        cy.get("@deleteBlogPost").should("be.null");
     });
 
     it("should delete record when mutation mode is optimistic", () => {
@@ -262,7 +262,7 @@ describe("form-material-ui-mutation-mode", () => {
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
 
         cy.getDeleteButton()
@@ -273,9 +273,9 @@ describe("form-material-ui-mutation-mode", () => {
 
         // should redirect to list page without waiting for response
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
-        cy.wait("@deletePost").then((interception) => {
+        cy.wait("@deleteBlogPost").then((interception) => {
             const response = interception?.response;
             expect(response?.statusCode).to.eq(200);
             cy.getMaterialUINotification().should("contain", "Success");

@@ -43,7 +43,7 @@ export const PostList: React.FC = () => {
         control,
     } = useForm<IPost>({
         refineCoreProps: {
-            resource: "posts",
+            resource: "blog_posts",
             redirect: false,
             action: "edit",
         },
@@ -54,7 +54,7 @@ export const PostList: React.FC = () => {
     const deleteSelectedItems = (ids: number[]) => {
         mutate(
             {
-                resource: "posts",
+                resource: "blog_posts",
                 ids,
             },
             {

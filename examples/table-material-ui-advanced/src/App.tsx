@@ -38,23 +38,23 @@ const App: React.FC = () => {
                         notificationProvider={notificationProvider}
                         resources={[
                             {
-                                name: "posts",
+                                name: "blog_posts",
                             },
                             {
-                                name: "posts",
-                                list: "/posts/react-table",
+                                name: "blog_posts",
+                                list: "/blog-posts/react-table",
                                 identifier: "react-table",
                                 meta: {
-                                    parent: "posts",
+                                    parent: "blog_posts",
                                     label: "React Table",
                                 },
                             },
                             {
-                                name: "posts",
-                                list: "/posts/data-grid",
+                                name: "blog_posts",
+                                list: "/blog-posts/data-grid",
                                 identifier: "data-grid",
                                 meta: {
-                                    parent: "posts",
+                                    parent: "blog_posts",
                                     label: "Data Grid",
                                 },
                             },
@@ -78,7 +78,7 @@ const App: React.FC = () => {
                                         <NavigateToResource resource="react-table" />
                                     }
                                 />
-                                <Route path="posts">
+                                <Route path="blog_posts">
                                     <Route
                                         path="react-table"
                                         element={<PostList />}

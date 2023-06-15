@@ -34,7 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const {
         tableQueryResult: { data: { data } = { data: [] } },
     } = useTable<IPost>({
-        resource: "posts",
+        resource: "blog_posts",
         hasPagination: false,
     });
 
@@ -68,7 +68,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             }
 
             mutate({
-                resource: "posts",
+                resource: "blog_posts",
                 id,
                 values,
             });

@@ -52,7 +52,7 @@ describe("form-react-hook-form-use-steps-form", () => {
         );
 
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     };
 
@@ -77,11 +77,11 @@ describe("form-react-hook-form-use-steps-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -97,7 +97,7 @@ describe("form-react-hook-form-use-steps-form", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -107,7 +107,7 @@ describe("form-react-hook-form-use-steps-form", () => {
         cy.get("button").contains(/edit/i).first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -129,7 +129,7 @@ describe("form-react-hook-form-use-steps-form", () => {
         fillForm();
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -176,7 +176,7 @@ describe("form-react-hook-form-use-steps-form", () => {
         getNextButton().click();
         submitForm();
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             const body = response?.body;
 
@@ -188,7 +188,7 @@ describe("form-react-hook-form-use-steps-form", () => {
             expect(body?.status?.toLowerCase()).to.eq("draft");
 
             cy.location().should((loc) => {
-                expect(loc.pathname).to.eq("/posts");
+                expect(loc.pathname).to.eq("/blog-posts");
             });
         });
     });

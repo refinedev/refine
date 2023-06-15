@@ -5,30 +5,30 @@ import { getIdFromURL } from "../../../utils";
 
 const hostname = "api.fake-rest.refine.dev";
 
-Cypress.Commands.add("interceptGETPosts", () => {
+Cypress.Commands.add("interceptGETBlogPosts", () => {
     return cy
         .intercept(
             {
                 method: "GET",
                 hostname: hostname,
-                pathname: "/posts",
+                pathname: "/blog_posts",
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         )
-        .as("getPosts");
+        .as("getBlogPosts");
 });
 
-Cypress.Commands.add("interceptGETPost", () => {
+Cypress.Commands.add("interceptGETBlogPost", () => {
     return cy
-        .fixture("posts")
+        .fixture("blog-posts")
         .then((posts) => {
             return cy.intercept(
                 {
                     method: "GET",
                     hostname: hostname,
-                    pathname: "/posts/*",
+                    pathname: "/blog_posts/*",
                 },
 
                 (req) => {
@@ -44,17 +44,17 @@ Cypress.Commands.add("interceptGETPost", () => {
                 },
             );
         })
-        .as("getPost");
+        .as("getBlogPost");
 });
 
-Cypress.Commands.add("interceptPOSTPost", () => {
-    return cy.fixture("posts").then((posts) =>
+Cypress.Commands.add("interceptPOSTBlogPost", () => {
+    return cy.fixture("blog-posts").then((posts) =>
         cy
             .intercept(
                 {
                     method: "POST",
                     hostname: hostname,
-                    pathname: "/posts",
+                    pathname: "/blog_posts",
                 },
                 (req) => {
                     const merged = Object.assign({}, req.body, {
@@ -64,19 +64,19 @@ Cypress.Commands.add("interceptPOSTPost", () => {
                     return req.reply(merged);
                 },
             )
-            .as("postPost"),
+            .as("postBlogPost"),
     );
 });
 
-Cypress.Commands.add("interceptPATCHPost", () => {
+Cypress.Commands.add("interceptPATCHBlogPost", () => {
     return cy
-        .fixture("posts")
+        .fixture("blog-posts")
         .then((posts) => {
             return cy.intercept(
                 {
                     method: "PATCH",
                     hostname: hostname,
-                    pathname: "/posts/*",
+                    pathname: "/blog_posts/*",
                 },
 
                 (req) => {
@@ -91,20 +91,20 @@ Cypress.Commands.add("interceptPATCHPost", () => {
                 },
             );
         })
-        .as("patchPost");
+        .as("patchBlogPost");
 });
 
-Cypress.Commands.add("interceptDELETEPost", () => {
+Cypress.Commands.add("interceptDELETEBlogPost", () => {
     return cy
         .intercept(
             {
                 method: "DELETE",
                 hostname: hostname,
-                pathname: "/posts/*",
+                pathname: "/blog_posts/*",
             },
             {},
         )
-        .as("deletePost");
+        .as("deleteBlogPost");
 });
 
 Cypress.Commands.add("interceptGETCategories", () => {

@@ -75,7 +75,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     );
 
     const data = await dataProvider(API_URL).getList({
-        resource: "posts",
+        resource: "blog_posts",
         filters,
         pagination,
         sorters,

@@ -37,7 +37,7 @@ describe("form-material-ui-use-drawer-form", () => {
         isDrawerClosed();
         cy.getMaterialUINotification().contains(/success/i);
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     };
 
@@ -60,11 +60,11 @@ describe("form-material-ui-use-drawer-form", () => {
     };
 
     beforeEach(() => {
-        cy.interceptGETPost();
-        cy.interceptPOSTPost();
-        cy.interceptPATCHPost();
-        cy.interceptDELETEPost();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPost();
+        cy.interceptPOSTBlogPost();
+        cy.interceptPATCHBlogPost();
+        cy.interceptDELETEBlogPost();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
 
         cy.clearAllCookies();
@@ -105,7 +105,7 @@ describe("form-material-ui-use-drawer-form", () => {
         submitForm();
         cy.getSaveButton().should("be.disabled");
 
-        cy.wait("@postPost").then((interception) => {
+        cy.wait("@postBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
@@ -116,50 +116,56 @@ describe("form-material-ui-use-drawer-form", () => {
         isDrawerOpen();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
+        cy.wait("@getBlogPost");
         cy.getSaveButton().should("not.be.disabled");
 
         fillForm();
         submitForm();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const response = interception?.response;
             assertSuccessResponse(response);
         });
     });
 
     it("should create form sync with location", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.getCreateButton().click();
         isDrawerOpen();
         cy.location("search").should(
             "include",
-            "modal-posts-create[open]=true",
+            "modal-blog_posts-create[open]=true",
         );
 
         cy.reload();
         isDrawerOpen();
         cy.location("search").should(
             "include",
-            "modal-posts-create[open]=true",
+            "modal-blog_posts-create[open]=true",
         );
     });
 
     it("should edit form sync with location", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.getEditButton().first().click();
-        cy.wait("@getPost");
+        cy.wait("@getBlogPost");
 
         isDrawerOpen();
-        cy.location("search").should("include", "modal-posts-edit[open]=true");
-        cy.location("search").should("include", "modal-posts-edit[id]");
+        cy.location("search").should(
+            "include",
+            "modal-blog_posts-edit[open]=true",
+        );
+        cy.location("search").should("include", "modal-blog_posts-edit[id]");
 
         cy.reload();
         isDrawerOpen();
-        cy.location("search").should("include", "modal-posts-edit[open]=true");
-        cy.location("search").should("include", "modal-posts-edit[id]");
+        cy.location("search").should(
+            "include",
+            "modal-blog_posts-edit[open]=true",
+        );
+        cy.location("search").should("include", "modal-blog_posts-edit[id]");
     });
 });

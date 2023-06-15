@@ -3,12 +3,12 @@
 
 describe("table-antd-table-filter", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
+        cy.interceptGETBlogPosts();
         cy.interceptGETCategories();
         cy.visit("http://localhost:3000");
-        cy.wait("@getPosts");
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
+        cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
     });
 
@@ -25,10 +25,10 @@ describe("table-antd-table-filter", () => {
         cy.setAntdSelect({ id: "status", value: "Published" });
         cy.setAntdRangeDatePickerToToday({ id: "createdAt" });
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
         cy.get("button[type=submit]").click();
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { query } = interception.request;
 
             expect(query.q).to.equal("lorem");

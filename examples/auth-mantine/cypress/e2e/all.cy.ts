@@ -27,7 +27,7 @@ describe("auth-mantine", () => {
     describe("login", () => {
         it("should login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.getAllLocalStorage().then((ls) => {
                 expect(ls[BASE_URL]).to.have.property("email");
             });
@@ -43,7 +43,7 @@ describe("auth-mantine", () => {
 
         it.skip("should has 'to' param on URL after redirected to /login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
 
             cy.visit(`${BASE_URL}/test`);
             cy.location("pathname").should("eq", "/test");
@@ -75,8 +75,7 @@ describe("auth-mantine", () => {
             cy.get("@registerPath").should("eq", "/register");
 
             login();
-
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.getAllLocalStorage().then((ls) => {
                 expect(ls[BASE_URL]).to.have.property("email");
             });

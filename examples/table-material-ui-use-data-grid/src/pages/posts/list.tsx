@@ -64,7 +64,7 @@ export const PostList: React.FC = () => {
                     }
 
                     const category = options.find(
-                        (item) =>
+                        (item: any) =>
                             item.value.toString() ===
                             row.category.id.toString(),
                     );

@@ -29,13 +29,13 @@ describe("auth-auth0", () => {
     describe("login", () => {
         it("should login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
 
         it("should redirect to /login if user not authenticated", () => {
             cy.location("pathname").should("eq", "/login");
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.visit(`${BASE_URL}/test-route`);
             cy.get(".ant-result-404").should("exist");
             cy.clearAllCookies();
@@ -52,7 +52,7 @@ describe("auth-auth0", () => {
         it("should logout", () => {
             cy.location("pathname").should("eq", "/login");
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.get(".ant-menu-title-content")
                 .contains(/logout/i)
                 .click();

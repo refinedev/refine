@@ -40,7 +40,9 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <button
-                            onClick={() => edit("posts", getValue() as number)}
+                            onClick={() =>
+                                edit("blog_posts", getValue() as number)
+                            }
                         >
                             Edit
                         </button>
@@ -70,7 +72,9 @@ export const PostList: React.FC = () => {
     return (
         <>
             <div>
-                <button onClick={() => create("posts")}>Create Post</button>
+                <button onClick={() => create("blog_posts")}>
+                    Create Post
+                </button>
                 <br />
                 <br />
                 <label htmlFor="title">Title: </label>

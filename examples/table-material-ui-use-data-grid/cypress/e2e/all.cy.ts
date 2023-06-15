@@ -11,14 +11,14 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "title",
                     _order: "desc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getDescPosts");
 
@@ -31,7 +31,7 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.wait("@getDescPosts");
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.getMaterialUIColumnHeader(2).click();
 
@@ -40,7 +40,7 @@ describe("table-material-ui-use-data-grid", () => {
             "sorters[0][field]=title&sorters[0][order]=desc",
         );
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _sort, _order } = request.query;
 
@@ -50,14 +50,14 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "title",
                     _order: "asc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getAscPosts");
 
@@ -85,13 +85,13 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     title_like: "lorem",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFilteredPosts");
 
@@ -110,14 +110,14 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _start: "10",
                     _end: "20",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getSecondPagePosts");
 
@@ -129,14 +129,14 @@ describe("table-material-ui-use-data-grid", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _start: "0",
                     _end: "10",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFirstPagePosts");
 

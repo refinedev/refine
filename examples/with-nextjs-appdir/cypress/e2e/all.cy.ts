@@ -28,7 +28,7 @@ describe("with-nextjs-appdir", () => {
     describe("login", () => {
         it("should login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.getAllCookies().then((cookies) => {
                 expect(cookies[0]).to.have.property("name", "auth");
             });
@@ -44,7 +44,7 @@ describe("with-nextjs-appdir", () => {
 
         it("should has 'to' param on URL after redirected to /login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
 
             cy.clearAllCookies();
             cy.reload();
@@ -55,7 +55,7 @@ describe("with-nextjs-appdir", () => {
             );
 
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
     });
 
@@ -69,7 +69,7 @@ describe("with-nextjs-appdir", () => {
                 /sign up/i,
             );
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.getAllCookies().then((cookies) => {
                 expect(cookies[0]).to.have.property("name", "auth");
             });

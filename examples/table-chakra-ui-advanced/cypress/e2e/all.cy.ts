@@ -3,13 +3,13 @@
 
 describe("table-chakra-ui-advanced", () => {
     beforeEach(() => {
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.visit("http://localhost:5173");
     });
 
     it("the row should be expandable", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("tbody tr").should("exist");
 
@@ -21,7 +21,7 @@ describe("table-chakra-ui-advanced", () => {
     });
 
     it("should select all rows when click the checkbox in the table header", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("thead tr th .chakra-checkbox").click();
 
@@ -31,7 +31,7 @@ describe("table-chakra-ui-advanced", () => {
     });
 
     it("delete button should only be showed when at least one row is selected", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
         cy.get("#delete-selected").should("not.exist");
 
@@ -41,15 +41,15 @@ describe("table-chakra-ui-advanced", () => {
     });
 
     it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
 
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getEditButton().first().click();
 
         cy.get("#title-input").should("exist");
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const { response } = interception;
             const data = response!.body;
 
@@ -58,11 +58,11 @@ describe("table-chakra-ui-advanced", () => {
 
         cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.getSaveButton().click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 

@@ -50,17 +50,17 @@ describe("table-material-ui-use-update-many", () => {
             2,
         );
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.get("#update-selected").click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { body } = interception.request;
 
             expect(body).to.have.property("status", "approved");
         });
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { body } = interception.request;
 
             expect(body).to.have.property("status", "approved");

@@ -20,8 +20,8 @@ const App: React.FC = () => {
                 dataProvider={dataProvider(API_URL)}
                 resources={[
                     {
-                        name: "posts",
-                        list: "/posts",
+                        name: "blog_posts",
+                        list: "/blog-posts",
                     },
                 ]}
                 options={{
@@ -32,7 +32,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route index element={<NavigateToResource />} />
 
-                    <Route path="/posts" element={<PostList />} />
+                    <Route path="/blog-posts" element={<PostList />} />
 
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>

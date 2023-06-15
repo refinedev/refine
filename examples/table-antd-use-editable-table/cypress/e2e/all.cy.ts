@@ -42,7 +42,7 @@ describe("table-antd-use-update-many", () => {
 
         cy.get("#title").should("exist");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.getSaveButton().first().click();
 
@@ -54,13 +54,13 @@ describe("table-antd-use-update-many", () => {
     it("should fill the form with the row data when click the edit button and save the form", () => {
         cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.interceptGETPost();
+        cy.interceptGETBlogPost();
 
         cy.getEditButton().first().click();
 
         cy.get("#title").should("exist");
 
-        cy.wait("@getPost").then((interception) => {
+        cy.wait("@getBlogPost").then((interception) => {
             const { response } = interception;
             const data = response?.body;
 
@@ -69,11 +69,11 @@ describe("table-antd-use-update-many", () => {
 
         cy.get("#title").clear().type("Fuga eos enim autem eos.");
 
-        cy.interceptPATCHPost();
+        cy.interceptPATCHBlogPost();
 
         cy.getSaveButton().first().click();
 
-        cy.wait("@patchPost").then((interception) => {
+        cy.wait("@patchBlogPost").then((interception) => {
             const { request } = interception;
             const data = request.body;
 

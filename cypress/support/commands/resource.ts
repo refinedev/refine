@@ -124,15 +124,17 @@ const assertSuccessResponse = (response: any, ui: UITypes) => {
 
     assertNotification(ui);
     cy.location().should((loc) => {
-        expect(loc.pathname).to.eq("/posts");
+        expect(loc.pathname).to.eq("/blog-posts");
     });
 };
 
 export const list = () => {
-    cy.url().should("include", "/posts");
-    cy.getPageHeaderTitle().should("contain", "Posts");
+    cy.url().should("include", "/blog-posts");
+    cy.getPageHeaderTitle().then(($title) => {
+        expect($title.text().toLowerCase()).to.eq("blog posts");
+    });
 
-    cy.assertDocumentTitle("Posts", "list");
+    cy.assertDocumentTitle("Blog Posts", "list");
 };
 
 export const create = ({ ui }: IResourceCreateParams) => {
@@ -140,16 +142,16 @@ export const create = ({ ui }: IResourceCreateParams) => {
 
     cy.getCreateButton().click();
     cy.wait("@getCategories");
-    cy.location("pathname").should("eq", "/posts/create");
+    cy.location("pathname").should("eq", "/blog-posts/create");
 
-    cy.assertDocumentTitle("Post", "create");
+    cy.assertDocumentTitle("Blog Post", "create");
 
     fillForm(ui);
 
-    cy.interceptPOSTPost();
+    cy.interceptPOSTBlogPost();
     cy.getSaveButton().click();
 
-    cy.wait("@postPost").then((interception) => {
+    cy.wait("@postBlogPost").then((interception) => {
         const response = interception?.response;
         assertSuccessResponse(response, ui);
     });
@@ -157,51 +159,51 @@ export const create = ({ ui }: IResourceCreateParams) => {
 
 export const edit = ({ ui }: IResourceEditParams) => {
     cy.interceptGETCategories();
-    cy.interceptGETPost();
+    cy.interceptGETBlogPost();
 
     // wait loading state and render to be finished
-    cy.wait("@getPosts");
+    cy.wait("@getBlogPosts");
     waitLoadingOverlay(ui);
 
     cy.getEditButton().first().click();
     cy.wait("@getCategories");
-    cy.wait("@getPost").then((interception) => {
+    cy.wait("@getBlogPost").then((interception) => {
         const getResponse = interception?.response;
 
         // wait loading state and render to be finished
         waitLoadingOverlay(ui);
         cy.getSaveButton().should("not.be.disabled");
-        cy.location("pathname").should("include", "/posts/edit");
+        cy.location("pathname").should("include", "/blog-posts/edit");
 
         assertFormShouldHaveResponseValues(getResponse, ui);
     });
 
-    cy.assertDocumentTitle("Post", "edit");
+    cy.assertDocumentTitle("Blog Post", "edit");
 
     fillForm(ui);
 
-    cy.interceptPATCHPost();
+    cy.interceptPATCHBlogPost();
     cy.getSaveButton().click();
 
-    cy.wait("@patchPost").then((interception) => {
+    cy.wait("@patchBlogPost").then((interception) => {
         const response = interception?.response;
         assertSuccessResponse(response, ui);
     });
 };
 
 export const show = () => {
-    cy.interceptGETPost();
+    cy.interceptGETBlogPost();
     cy.interceptGETCategory();
 
     cy.getShowButton().first().click();
 
-    cy.assertDocumentTitle("Post", "show");
+    cy.assertDocumentTitle("Blog Post", "show");
 
-    cy.wait("@getPost").then((interception) => {
+    cy.wait("@getBlogPost").then((interception) => {
         const response = interception?.response;
 
         const id = response?.body?.id;
-        cy.location("pathname").should("include", `/posts/show/${id}`);
+        cy.location("pathname").should("include", `/blog-posts/show/${id}`);
 
         // should be visible id,title,content
         ["Id", "Title", "Content"].forEach((field) => {
@@ -225,18 +227,18 @@ export const show = () => {
 
 export const resourceDelete = ({ ui }: IResourceDeleteParams) => {
     cy.interceptGETCategories();
-    cy.wait("@getPosts");
+    cy.wait("@getBlogPosts");
     waitLoadingOverlay(ui);
 
-    cy.interceptGETPost();
+    cy.interceptGETBlogPost();
     cy.getEditButton().first().click();
 
     // wait loading state and render to be finished
-    cy.wait("@getPost");
+    cy.wait("@getBlogPost");
     waitLoadingOverlay(ui);
     cy.getSaveButton().should("not.be.disabled");
 
-    cy.interceptDELETEPost();
+    cy.interceptDELETEBlogPost();
     cy.getDeleteButton().first().click();
     switch (ui) {
         case "antd":
@@ -253,13 +255,13 @@ export const resourceDelete = ({ ui }: IResourceDeleteParams) => {
             break;
     }
 
-    cy.wait("@deletePost").then((interception) => {
+    cy.wait("@deleteBlogPost").then((interception) => {
         const response = interception?.response;
 
         expect(response?.statusCode).to.eq(200);
         assertNotification(ui);
         cy.location().should((loc) => {
-            expect(loc.pathname).to.eq("/posts");
+            expect(loc.pathname).to.eq("/blog-posts");
         });
     });
 };

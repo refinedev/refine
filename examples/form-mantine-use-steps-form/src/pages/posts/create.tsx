@@ -22,7 +22,6 @@ export const PostCreate: React.FC = () => {
         initialValues: {
             title: "",
             status: "",
-            slug: "",
             createdAt: new Date(),
             content: "",
         },
@@ -30,7 +29,6 @@ export const PostCreate: React.FC = () => {
             if (currentStep === 0) {
                 return {
                     title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
                 };
             }
 
@@ -75,7 +73,7 @@ export const PostCreate: React.FC = () => {
             >
                 <Stepper.Step
                     label="First Step"
-                    description="Title and Slug"
+                    description="Title"
                     allowStepSelect={currentStep > 0}
                 >
                     <TextInput
@@ -84,13 +82,6 @@ export const PostCreate: React.FC = () => {
                         label="Title"
                         placeholder="Title"
                         {...getInputProps("title")}
-                    />
-                    <TextInput
-                        id="slug"
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
                     />
                 </Stepper.Step>
 

@@ -13,14 +13,14 @@ describe("table-antd-use-table", () => {
     it("should work with sorter", () => {
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "id",
                     _order: "asc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getAscPosts");
 
@@ -36,14 +36,14 @@ describe("table-antd-use-table", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _sort: "id",
                     _order: "desc",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getDescPosts");
 
@@ -56,7 +56,7 @@ describe("table-antd-use-table", () => {
 
         cy.wait("@getDescPosts");
 
-        cy.interceptGETPosts();
+        cy.interceptGETBlogPosts();
 
         cy.getAntdColumnSorter(0).click();
 
@@ -65,7 +65,7 @@ describe("table-antd-use-table", () => {
             "sorters[0][field]=id&sorters[0][order]=desc",
         );
 
-        cy.wait("@getPosts").then((interception) => {
+        cy.wait("@getBlogPosts").then((interception) => {
             const { request } = interception;
             const { _sort, _order } = request.query;
 
@@ -81,13 +81,13 @@ describe("table-antd-use-table", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     title_like: "lorem",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFilteredPosts");
 
@@ -106,14 +106,14 @@ describe("table-antd-use-table", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _start: "10",
                     _end: "20",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getSecondPagePosts");
 
@@ -125,14 +125,14 @@ describe("table-antd-use-table", () => {
 
         cy.intercept(
             {
-                url: "/posts*",
+                url: "/blog_posts*",
                 query: {
                     _start: "0",
                     _end: "10",
                 },
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         ).as("getFirstPagePosts");
 
