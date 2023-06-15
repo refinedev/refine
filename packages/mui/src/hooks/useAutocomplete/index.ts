@@ -4,6 +4,9 @@ import {
     UseSelectProps,
     UseSelectReturnType,
     BaseRecord,
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
 } from "@refinedev/core";
 
 import type { AutocompleteProps } from "@mui/material/Autocomplete";
@@ -18,7 +21,9 @@ export type UseAutocompleteProps<TQueryFnData, TError, TData> = Pick<
     Omit<
         UseSelectProps<TQueryFnData, TError, TData>,
         "optionLabel" | "optionValue"
-    >;
+    > & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 type AutocompletePropsType<TQueryFnData> = Required<
     Pick<
@@ -32,7 +37,7 @@ export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
     "options"
 > & {
     autocompleteProps: AutocompletePropsType<TData>;
-};
+} & IUseLoadingOvertime;
 
 /**
  * `useAutocomplete` hook is used to fetch data from the dataProvider and return the options for the select box.
@@ -61,6 +66,13 @@ export const useAutocomplete = <
         TData
     >(props);
 
+    const { overtimeOptions } = props;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         autocompleteProps: {
             options: unionWith(
@@ -82,5 +94,8 @@ export const useAutocomplete = <
         onSearch,
         queryResult,
         defaultValueQueryResult,
+        overtime: {
+            elapsedTime,
+        },
     };
 };
