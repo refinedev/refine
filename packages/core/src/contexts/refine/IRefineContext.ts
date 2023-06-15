@@ -29,7 +29,7 @@ export interface IRefineOptions {
         clientConfig?: QueryClientConfig | InstanceType<typeof QueryClient>;
         devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
     };
-    overtime: Omit<UseLoadingOvertimeProps, "isLoading" | "interval"> &
+    overtime?: Omit<UseLoadingOvertimeProps, "isLoading" | "interval"> &
         Required<Pick<UseLoadingOvertimeProps, "interval">>;
 }
 
