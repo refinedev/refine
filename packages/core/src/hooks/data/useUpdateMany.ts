@@ -40,6 +40,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 type UpdateManyParams<TData, TError, TVariables> = {
     ids: BaseKey[];
@@ -74,7 +79,8 @@ type UseUpdateManyReturnType<
     TError,
     UpdateManyParams<TData, TError, TVariables>,
     UpdateContext<TData>
->;
+> &
+    IUseLoadingOvertime;
 
 export type UseUpdateManyProps<
     TData extends BaseRecord = BaseRecord,
@@ -90,7 +96,7 @@ export type UseUpdateManyProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
-};
+} & Omit<UseLoadingOvertimeProps, "isLoading">;
 
 /**
  * `useUpdateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple update mutations.
@@ -110,6 +116,8 @@ export const useUpdateMany = <
     TVariables = {},
 >({
     mutationOptions,
+    interval,
+    onInterval,
 }: UseUpdateManyProps<TData, TError, TVariables> = {}): UseUpdateManyReturnType<
     TData,
     TError,
@@ -501,5 +509,11 @@ export const useUpdateMany = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval,
+        onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };
