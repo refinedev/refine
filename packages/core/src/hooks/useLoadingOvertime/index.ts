@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { UseResourceReturnType, useRefineContext, useResource } from "..";
 
-export type IUseLoadingOvertimeOnIntervalContext = UseResourceReturnType;
+export type IUseLoadingOvertimeOnIntervalContext = Omit<
+    UseResourceReturnType,
+    "resources"
+>;
 
 export type IUseLoadingOvertime = {
     overtime: UseLoadingOvertimeReturnType;
@@ -34,7 +37,7 @@ export type UseLoadingOvertimeProps = {
      */
     onInterval?: (
         elapsedInterval: number,
-        context: IUseLoadingOvertimeOnIntervalContext,
+        context?: IUseLoadingOvertimeOnIntervalContext,
     ) => void;
 };
 
@@ -56,7 +59,7 @@ export const useLoadingOvertime = ({
     interval: intervalProp,
     onInterval: onIntervalProp,
 }: UseLoadingOvertimeProps): UseLoadingOvertimeReturnType => {
-    const resourceContextData = useResource();
+    const { resources, ...resourceRest } = useResource();
     const [elapsedTime, setElapsedTime] = useState<number | undefined>(
         undefined,
     );
@@ -65,13 +68,13 @@ export const useLoadingOvertime = ({
     const { overtime } = options;
 
     // pick props or refine context options
-    const interval = intervalProp ?? overtime?.interval;
+    const interval = intervalProp ?? overtime.interval;
     const onInterval = onIntervalProp ?? overtime?.onInterval;
 
     useEffect(() => {
         let intervalFn: ReturnType<typeof setInterval>;
 
-        if (isLoading && interval) {
+        if (isLoading) {
             intervalFn = setInterval(() => {
                 // increase elapsed time
                 setElapsedTime((prevElapsedTime) => {
@@ -94,7 +97,7 @@ export const useLoadingOvertime = ({
     useEffect(() => {
         // call onInterval callback
         if (onInterval && elapsedTime) {
-            onInterval(elapsedTime, resourceContextData);
+            onInterval(elapsedTime, resourceRest);
         }
     }, [elapsedTime]);
 

@@ -77,9 +77,6 @@ describe("handleRefineOptions", () => {
             undoableTimeout: 1000,
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            overtime: {
-                interval: 1000,
-            },
         };
 
         const {
