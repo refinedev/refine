@@ -28,6 +28,11 @@ import {
     pickDataProvider,
     pickNotDeprecated,
 } from "@definitions";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 type useCreateManyParams<TData, TError, TVariables> = {
     resource: string;
@@ -62,7 +67,7 @@ export type UseCreateManyProps<
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
-};
+} & Omit<UseLoadingOvertimeProps, "isLoading">;
 
 /**
  * `useCreateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple create mutations.
@@ -82,11 +87,14 @@ export const useCreateMany = <
     TVariables = {},
 >({
     mutationOptions,
+    interval,
+    onInterval,
 }: UseCreateManyProps<TData, TError, TVariables> = {}): UseCreateManyReturnType<
     TData,
     TError,
     TVariables
-> => {
+> &
+    IUseLoadingOvertime => {
     const dataProvider = useDataProvider();
     const { resources } = useResource();
     const translate = useTranslate();
@@ -240,5 +248,11 @@ export const useCreateMany = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval,
+        onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };
