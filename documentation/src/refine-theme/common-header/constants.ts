@@ -1,4 +1,5 @@
 // import { CloudIcon } from "../icons/cloud";
+import { HackathonAltIcon } from "../icons/hackathon-alt";
 import {
     DocumentsIcon,
     IntegrationsIcon,
@@ -135,5 +136,11 @@ export const MENU_ITEMS: MenuItemType[] = [
         isPopover: false,
         label: "Blog",
         href: "/blog",
+    },
+    {
+        isPopover: false,
+        label: "Hackathon",
+        icon: HackathonAltIcon,
+        href: "https://s.refine.dev/hackathon",
     },
 ];

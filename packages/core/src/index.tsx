@@ -120,3 +120,4 @@ export { generateDefaultDocumentTitle } from "./definitions";
 
 export { ResourceContext } from "./contexts/resource/index";
 export { TranslationContext } from "./contexts/translation/index";
+export { AccessControlContext } from "./contexts/accessControl/index";

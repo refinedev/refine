@@ -1,5 +1,27 @@
 # @pankod/refine-ui-tests
 
+## 1.7.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated button specs to test new access control provider behaviour.
+
+### Patch Changes
+
+-   Updated dependencies [[`a3c8d4f84c7`](https://github.com/refinedev/refine/commit/a3c8d4f84c7b20b6d30f43310f5260b2f57b801a), [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445)]:
+    -   @refinedev/core@4.22.0
+
+## 1.6.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated button specs to test new access control provider behaviour.
+
+### Patch Changes
+
+-   Updated dependencies [[`a3c8d4f84c7`](https://github.com/refinedev/refine/commit/a3c8d4f84c7b20b6d30f43310f5260b2f57b801a), [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445)]:
+    -   @refinedev/core@4.21.0
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useDelete,
     useTranslate,
@@ -7,6 +7,7 @@ import {
     useResource,
     pickNotDeprecated,
     useWarnAboutChange,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -51,8 +52,15 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const translate = useTranslate();
 
     const { id, resource } = useResource(
@@ -73,6 +81,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             enabled: accessControlEnabled,
         },
     });
+
+    const disabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
 
     const [open, setOpen] = React.useState(false);
 
@@ -125,6 +143,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 disabled={data?.can === false}
                 loading={(recordItemId ?? id) === variables?.id && isLoading}
                 startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
+                title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}
                 data-testid={RefineButtonTestIds.DeleteButton}

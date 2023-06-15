@@ -40,25 +40,59 @@ describe("useExport Hook", () => {
         expect(generateCsvMock).toBeCalledWith(posts);
     });
 
-    it("should trigger export correctly with explicit resource configuration", async () => {
-        const { result } = renderHook(
-            () =>
-                useExport({
-                    resource: "posts",
+    it.each(["categories", "posts"])(
+        "should call getList with '%s' resource",
+        async (testCase) => {
+            const getListMock = jest.fn();
+
+            const { result } = renderHook(
+                () =>
+                    useExport({
+                        resource: testCase,
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer.default,
+                            getList: (props) => getListMock(props.resource),
+                        },
+                        resources: [{ name: "posts" }, { name: "categories" }],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                await result.current.triggerExport();
+            });
+
+            expect(getListMock).toBeCalledWith(testCase);
+        },
+    );
+
+    it("should call getList with resource from router provider", async () => {
+        const getListMock = jest.fn();
+
+        const { result } = renderHook(() => useExport(), {
+            wrapper: TestWrapper({
+                routerProvider: mockRouterBindings({
+                    resource: {
+                        name: "posts",
+                        list: "/posts",
+                    },
                 }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+                dataProvider: {
+                    ...MockJSONServer.default,
+                    getList: (props) => getListMock(props.resource),
+                },
+                resources: [{ name: "posts" }, { name: "categories" }],
+            }),
+        });
 
         await act(async () => {
             await result.current.triggerExport();
         });
 
-        expect(generateCsvMock).toBeCalledWith(posts);
+        expect(getListMock).toBeCalledWith("posts");
     });
 
     it("should cut the amount of data to be exported when given maxItemCount", async () => {
