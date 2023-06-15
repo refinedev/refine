@@ -20,6 +20,11 @@ import {
     Prettify,
 } from "../../interfaces";
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 interface UseCustomMutationConfig {
     headers?: {};
@@ -71,7 +76,7 @@ export type UseCustomMutationProps<
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
-};
+} & Omit<UseLoadingOvertimeProps, "isLoading">;
 
 /**
  * `useCustomMutation` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
@@ -92,11 +97,14 @@ export const useCustomMutation = <
     TVariables = {},
 >({
     mutationOptions,
+    interval,
+    onInterval,
 }: UseCustomMutationProps<
     TData,
     TError,
     TVariables
-> = {}): UseCustomMutationReturnType<TData, TError, TVariables> => {
+> = {}): UseCustomMutationReturnType<TData, TError, TVariables> &
+    IUseLoadingOvertime => {
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -195,5 +203,11 @@ export const useCustomMutation = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval,
+        onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };
