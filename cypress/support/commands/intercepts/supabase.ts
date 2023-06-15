@@ -21,7 +21,7 @@ Cypress.Commands.add("interceptSupabaseGETPosts", () => {
         categories = categoriesFixture;
     });
     //  transform fixtures to match supabase response
-    cy.fixture("posts").then((rawPosts) => {
+    cy.fixture("blog-posts").then((rawPosts) => {
         posts = rawPosts.map((post) => {
             // in supabase, the category is not object, but in fixture it is
             // because of that, we need to convert it to categoryId
@@ -63,7 +63,7 @@ Cypress.Commands.add("interceptSupabaseGETPosts", () => {
 });
 
 Cypress.Commands.add("interceptSupabasePOSTPost", () => {
-    return cy.fixture("posts").then((posts) =>
+    return cy.fixture("blog-posts").then((posts) =>
         cy
             .intercept(
                 {
@@ -85,7 +85,7 @@ Cypress.Commands.add("interceptSupabasePOSTPost", () => {
 
 Cypress.Commands.add("interceptSupabasePATCHPost", () => {
     return cy
-        .fixture("posts")
+        .fixture("blog-posts")
         .then((posts) => {
             return cy.intercept(
                 {
