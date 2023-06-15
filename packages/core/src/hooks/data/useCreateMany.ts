@@ -22,7 +22,6 @@ import {
     useInvalidate,
     useLog,
     useMeta,
-    useRouterType,
 } from "@hooks";
 import {
     handleMultiple,
@@ -217,8 +216,13 @@ export const useCreateMany = <
                     date: new Date(),
                 });
 
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
+
                 const { fields, operation, variables, ...rest } =
-                    pickNotDeprecated(meta, metaData) || {};
+                    combinedMeta || {};
 
                 log?.mutate({
                     action: "createMany",

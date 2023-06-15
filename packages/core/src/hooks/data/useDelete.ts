@@ -18,7 +18,6 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
-    useRouterType,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -398,8 +397,13 @@ export const useDelete = <
                     date: new Date(),
                 });
 
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
+
                 const { fields, operation, variables, ...rest } =
-                    pickNotDeprecated(meta, metaData) || {};
+                    combinedMeta || {};
 
                 log?.mutate({
                     action: "delete",

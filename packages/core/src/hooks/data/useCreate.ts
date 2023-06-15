@@ -225,9 +225,13 @@ export const useCreate = <
                     date: new Date(),
                 });
 
-                //TODO
+                const combinedMeta = getMeta({
+                    resource,
+                    meta: pickNotDeprecated(meta, metaData),
+                });
+
                 const { fields, operation, variables, ...rest } =
-                    pickNotDeprecated(meta, metaData) || {};
+                    combinedMeta || {};
 
                 log?.mutate({
                     action: "create",
