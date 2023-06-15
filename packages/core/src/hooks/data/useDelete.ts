@@ -87,7 +87,9 @@ export type UseDeleteProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
-} & Omit<UseLoadingOvertimeProps, "isLoading">;
+} & {
+    overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+};
 
 /**
  * `useDelete` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for delete mutations.
@@ -107,8 +109,7 @@ export const useDelete = <
     TVariables = {},
 >({
     mutationOptions,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseDeleteProps<TData, TError, TVariables> = {}): UseDeleteReturnType<
     TData,
     TError,
@@ -433,8 +434,8 @@ export const useDelete = <
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...mutation, overtime: { elapsedTime } };

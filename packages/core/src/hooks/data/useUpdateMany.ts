@@ -96,7 +96,9 @@ export type UseUpdateManyProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
-} & Omit<UseLoadingOvertimeProps, "isLoading">;
+} & {
+    overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+};
 
 /**
  * `useUpdateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple update mutations.
@@ -116,8 +118,7 @@ export const useUpdateMany = <
     TVariables = {},
 >({
     mutationOptions,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseUpdateManyProps<TData, TError, TVariables> = {}): UseUpdateManyReturnType<
     TData,
     TError,
@@ -511,8 +512,8 @@ export const useUpdateMany = <
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...mutation, overtime: { elapsedTime } };

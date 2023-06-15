@@ -76,7 +76,9 @@ export type UseCustomMutationProps<
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
-} & Omit<UseLoadingOvertimeProps, "isLoading">;
+} & {
+    overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+};
 
 /**
  * `useCustomMutation` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
@@ -97,8 +99,7 @@ export const useCustomMutation = <
     TVariables = {},
 >({
     mutationOptions,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseCustomMutationProps<
     TData,
     TError,
@@ -205,8 +206,8 @@ export const useCustomMutation = <
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...mutation, overtime: { elapsedTime } };

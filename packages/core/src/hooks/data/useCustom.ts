@@ -78,8 +78,9 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
     CustomResponse<TData>,
     TError,
     Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
-> &
-    Omit<UseLoadingOvertimeProps, "isLoading">;
+> & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -112,8 +113,7 @@ export const useCustom = <
     meta,
     metaData,
     dataProviderName,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseCustomProps<
     TQueryFnData,
     TError,
@@ -212,8 +212,8 @@ export const useCustom = <
         });
         const { elapsedTime } = useLoadingOvertime({
             isLoading: queryResponse.isFetching,
-            interval,
-            onInterval,
+            interval: overtimeOptions?.interval,
+            onInterval: overtimeOptions?.onInterval,
         });
 
         return { ...queryResponse, overtime: { elapsedTime } };

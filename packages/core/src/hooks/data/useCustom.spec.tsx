@@ -425,8 +425,10 @@ describe("useCustom Hook", () => {
                 useCustom({
                     url: "remoteUrl",
                     method: "get",
-                    interval: 500,
-                    onInterval,
+                    overtimeOptions: {
+                        interval: 500,
+                        onInterval,
+                    },
                 }),
             {
                 wrapper: TestWrapper({

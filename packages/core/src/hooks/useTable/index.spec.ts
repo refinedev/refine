@@ -432,8 +432,10 @@ describe("useTable Hook", () => {
             () =>
                 useTable({
                     resource: "posts",
-                    interval: 500,
-                    onInterval,
+                    overtimeOptions: {
+                        interval: 500,
+                        onInterval,
+                    },
                 }),
             {
                 wrapper: TestWrapper({

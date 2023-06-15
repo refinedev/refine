@@ -72,8 +72,9 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<{ id?: BaseKey } & MetaQuery>
 > &
-    LiveModeProps &
-    Omit<UseLoadingOvertimeProps, "isLoading">;
+    LiveModeProps & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -104,8 +105,7 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetOneResponse<TData>
 > &
@@ -237,8 +237,8 @@ export const useOne = <
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: queryResponse.isFetching,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...queryResponse, overtime: { elapsedTime } };

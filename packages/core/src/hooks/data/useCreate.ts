@@ -88,7 +88,9 @@ export type UseCreateProps<
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
-} & Omit<UseLoadingOvertimeProps, "isLoading">;
+} & {
+    overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+};
 
 /**
  * `useCreate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
@@ -109,8 +111,7 @@ export const useCreate = <
     TVariables = {},
 >({
     mutationOptions,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseCreateProps<TData, TError, TVariables> = {}): UseCreateReturnType<
     TData,
     TError,
@@ -268,8 +269,8 @@ export const useCreate = <
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...mutation, overtime: { elapsedTime } };

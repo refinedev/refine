@@ -599,8 +599,10 @@ describe("useInfiniteList Hook", () => {
             () =>
                 useInfiniteList({
                     resource: "posts",
-                    interval: 500,
-                    onInterval,
+                    overtimeOptions: {
+                        interval: 500,
+                        onInterval,
+                    },
                 }),
             {
                 wrapper: TestWrapper({

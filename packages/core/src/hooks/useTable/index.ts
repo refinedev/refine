@@ -178,8 +178,9 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps &
-    Omit<UseLoadingOvertimeProps, "isLoading">;
+    LiveModeProps & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -262,8 +263,7 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: useTableProps<TQueryFnData, TError, TData> = {}): useTableReturnType<
     TData,
     TError
@@ -576,8 +576,8 @@ export function useTable<
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: queryResult.isFetching,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return {

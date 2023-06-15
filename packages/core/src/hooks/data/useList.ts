@@ -103,8 +103,9 @@ export type UseListProps<TQueryFnData, TError, TData> = {
         TError,
         Prettify<BaseListProps>
     > &
-    LiveModeProps &
-    Omit<UseLoadingOvertimeProps, "isLoading">;
+    LiveModeProps & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -139,8 +140,7 @@ export const useList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-    interval,
-    onInterval,
+    overtimeOptions,
 }: UseListProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetListResponse<TData>,
     TError
@@ -333,8 +333,8 @@ export const useList = <
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: queryResponse.isFetching,
-        interval,
-        onInterval,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...queryResponse, overtime: { elapsedTime } };

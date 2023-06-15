@@ -507,8 +507,10 @@ describe("useOne Hook", () => {
                 useOne({
                     resource: "posts",
                     id: "1",
-                    interval: 500,
-                    onInterval,
+                    overtimeOptions: {
+                        interval: 500,
+                        onInterval,
+                    },
                 }),
             {
                 wrapper: TestWrapper({
