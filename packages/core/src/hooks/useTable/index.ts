@@ -40,6 +40,11 @@ import {
 } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
 import { BaseListProps } from "../data/useList";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -173,7 +178,8 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps;
+    LiveModeProps &
+    Omit<UseLoadingOvertimeProps, "isLoading">;
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -211,7 +217,7 @@ export type useTableReturnType<
     pageSize: number;
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
     pageCount: number;
-};
+} & IUseLoadingOvertime;
 
 /**
  * By using useTable, you are able to get properties that are compatible with
@@ -256,6 +262,8 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
+    interval,
+    onInterval,
 }: useTableProps<TQueryFnData, TError, TData> = {}): useTableReturnType<
     TData,
     TError
@@ -566,6 +574,12 @@ export function useTable<
         setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
     };
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching,
+        interval,
+        onInterval,
+    });
+
     return {
         tableQueryResult: queryResult,
         sorters,
@@ -582,5 +596,8 @@ export function useTable<
             ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
             : 1,
         createLinkForSyncWithLocation,
+        overtime: {
+            elapsedTime,
+        },
     };
 }
