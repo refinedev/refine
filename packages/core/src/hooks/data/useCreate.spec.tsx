@@ -1,8 +1,10 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useCreate } from "./useCreate";
+import { IRefineContextProvider } from "src/interfaces";
+import { defaultRefineOptions } from "@contexts/refine";
 
 describe("useCreate Hook", () => {
     it("with rest json server", async () => {
@@ -61,6 +63,50 @@ describe("useCreate Hook", () => {
                 }),
             }),
         );
+    });
+
+    it("correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useCreate({
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            create: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            values: {},
+            meta: { foo: "bar" },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
     });
 
     describe("usePublish", () => {
@@ -133,7 +179,6 @@ describe("useCreate Hook", () => {
             });
         });
     });
-
     describe("useLog", () => {
         it("publish log on success", async () => {
             const createMock = jest.fn();
