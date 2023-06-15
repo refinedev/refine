@@ -133,7 +133,7 @@ describe("form-antd-use-drawer-form", () => {
             "include",
             "drawer-blog_posts-edit[open]=true",
         );
-        cy.location("search").should("include", "drawer-posts-edit[id]");
+        cy.location("search").should("include", "drawer-blog_posts-edit[id]");
 
         cy.reload();
         isDrawerVisible();
@@ -141,6 +141,6 @@ describe("form-antd-use-drawer-form", () => {
             "include",
             "drawer-blog_posts-edit[open]=true",
         );
-        cy.location("search").should("include", "drawer-posts-edit[id]");
+        cy.location("search").should("include", "drawer-blog_posts-edit[id]");
     });
 });

@@ -84,7 +84,7 @@ describe("form-material-ui-use-drawer-form", () => {
         isDrawerOpen();
         cy.location("search").should(
             "include",
-            "modal-posts-create[open]=true",
+            "modal-blog_posts-create[open]=true",
         );
 
         cy.wait("@getBlogPosts");
@@ -93,7 +93,7 @@ describe("form-material-ui-use-drawer-form", () => {
         closeDrawer();
         cy.location("search").should(
             "not.include",
-            "modal-posts-create[open]=true",
+            "modal-blog_posts-create[open]=true",
         );
     });
 

@@ -54,7 +54,7 @@ Cypress.Commands.add("interceptStrapiV4GETPost", () => {
 });
 
 Cypress.Commands.add("interceptStrapiV4POSTPost", () => {
-    return cy.fixture("posts").then((posts) =>
+    return cy.fixture("blog-posts").then((posts) =>
         cy
             .intercept(
                 {
