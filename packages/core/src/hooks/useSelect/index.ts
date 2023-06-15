@@ -24,6 +24,11 @@ import { pickNotDeprecated } from "@definitions/helpers";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource/index";
 import { BaseListProps } from "../data/useList";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
     /**
@@ -132,14 +137,16 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps;
+    LiveModeProps & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
     onSearch: (value: string) => void;
     options: Option[];
-};
+} & IUseLoadingOvertime;
 
 /**
  * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.
@@ -189,6 +196,7 @@ export const useSelect = <
         meta,
         metaData,
         dataProviderName,
+        overtimeOptions,
     } = props;
 
     const { resources } = useResource();
@@ -305,6 +313,12 @@ export const useSelect = <
         }
     };
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         queryResult,
         defaultValueQueryResult,
@@ -313,5 +327,6 @@ export const useSelect = <
             [options, selectedOptions],
         ),
         onSearch: debounce(onSearch, debounceValue),
+        overtime: { elapsedTime },
     };
 };
