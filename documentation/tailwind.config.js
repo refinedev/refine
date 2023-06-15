@@ -51,7 +51,7 @@ module.exports = {
             },
             fontFamily: {
                 sans: ["Outfit", ...defaultTheme.fontFamily.sans],
-                mono: ["Roboto Mono", ...defaultTheme.fontFamily.mono],
+                mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
@@ -130,6 +130,8 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-left.svg')",
                 "landing-playground-slide-right-bg":
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
+                "hackathon-button-bg":
+                    "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -142,8 +144,18 @@ module.exports = {
                     "playground-slide-up 45s linear infinite",
                 "playground-slide-up-mobile":
                     "playground-slide-up-mobile 45s linear infinite",
+                "hackathon-button-bg":
+                    "hackathon-button-bg 2s ease-in-out infinite alternate",
             },
             keyframes: {
+                "hackathon-button-bg": {
+                    "0%": {
+                        backgroundPosition: "0% 0%",
+                    },
+                    "100%": {
+                        backgroundPosition: "100% 0%",
+                    },
+                },
                 "landing-hero-beat": {
                     "0%": {
                         opacity: 0.4,
@@ -163,46 +175,46 @@ module.exports = {
                 },
                 "playground-slide-down-mobile": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                     "99.99%": {
-                        "background-position": "top 1655px left",
+                        transform: "translateY(-1655px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                 },
                 "playground-slide-down": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                     "99.99%": {
-                        "background-position": "top 3329px left",
+                        transform: "translateY(-3329px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(0px)",
                     },
                 },
                 "playground-slide-up-mobile": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-1655px)",
                     },
                     "99.99%": {
-                        "background-position": "top -1655px left",
+                        transform: "translateY(0px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-1655px)",
                     },
                 },
                 "playground-slide-up": {
                     "0%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-3328px)",
                     },
                     "99.99%": {
-                        "background-position": "top -3328px left",
+                        transform: "translateY(0px)",
                     },
                     "100%": {
-                        "background-position": "top 0px left",
+                        transform: "translateY(-3328px)",
                     },
                 },
             },

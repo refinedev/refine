@@ -1,3 +1,6 @@
+
+
+
 <br/>
 
 <div align="center" style="margin: 30px;">
@@ -41,6 +44,10 @@
 
 </div>
 
+
+[![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon)
+
+
 <br/>
 <a href="https://refine.dev/">
 <picture>
@@ -48,6 +55,9 @@
   <img alt="how-works-refine" src="https://user-images.githubusercontent.com/18739364/200257209-8fc0c8b1-2568-453e-873f-00513434deed.png">
 </picture>
 </a>
+
+
+
 
 ## What is refine?
 
@@ -60,7 +70,7 @@ It eliminates repetitive tasks demanded by **CRUD** operations and provides indu
 
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from _UI components_ and _business logic_, so that they never keep you from customizing your _UI_ or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## 🔥 Try refine online in just 10 seconds
 

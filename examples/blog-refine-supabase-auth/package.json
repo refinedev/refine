@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/core": "^4.20.0",
-    "@refinedev/cli": "^2.5.5",
+    "@refinedev/core": "^4.22.0",
+    "@refinedev/cli": "^2.7.0",
     "@refinedev/react-router-v6": "^4.3.2",
     "@refinedev/supabase": "^5.5.2",
     "@testing-library/jest-dom": "^5.16.4",
@@ -15,7 +15,7 @@
     "react": "^18.0.0",
     "react-daisyui": "^2.4.1",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
+    "react-router-dom": "6.11.2",
     "react-scripts": "^5.0.0",
     "tailwindcss": "^3.0.11",
     "web-vitals": "^1.1.1"

@@ -23,7 +23,7 @@ export const FeaturedBlogPostItems = ({ items }) => {
                 className={clsx(
                     "m-0 p-0",
                     "blog-lg:mb-12 blog-md:mb-8 mb-10",
-                    "blog-lg:text-5xl blog-md:text-4xl text-xl",
+                    "text-xl blog-sm:text-4xl blog-lg:text-5xl",
                     "text-gray-900 dark:text-gray-0",
                     "px-0 blog-sm:px-6",
                 )}

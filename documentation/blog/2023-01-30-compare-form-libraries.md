@@ -180,7 +180,7 @@ The above code illustrates a simple use case of the Formik library. It has sever
 - It is lightweight. According to [bundlejs.com](https://bundlejs.com/), the gzipped bundle size of Formik is 44.34KB.
 - It has excellent documentation.
 - It is easy to pick up.
-- It has bindings for popular UI frameworks like Ant design, MUI, and Semantic UI.
+- It has bindings for popular UI frameworks like Ant design, Material UI, and Semantic UI.
 
 #### Cons of Formik
 

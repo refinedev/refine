@@ -1,5 +1,49 @@
 # @pankod/refine-mui
 
+## 5.3.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
+## 5.2.0
+
+### Minor Changes
+
+-   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
+
+    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
+
+    Given the following `can` method:
+
+    ```ts
+    const accessControlProvider: IAccessControlContext = {
+        can: async (): Promise<CanReturnType> => {
+            return { can: false, reason: "Access Denied!" };
+        },
+    };
+    ```
+
+    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
+
+    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
+
 ## 5.1.0
 
 ### Minor Changes
@@ -579,7 +623,7 @@
 
 ### Patch Changes
 
--   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for Material UI
 
 -   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
     -   @refinedev/react-hook-form@4.1.6
@@ -588,7 +632,7 @@
 
 ### Patch Changes
 
--   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for MUI
+-   [#4115](https://github.com/refinedev/refine/pull/4115) [`1d44ef15575`](https://github.com/refinedev/refine/commit/1d44ef15575e4537684b3f42e4fcf3535b41905e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed <Sider /> icon and list item spacing for Material UI
 
 -   Updated dependencies [[`1f310bd7b69`](https://github.com/refinedev/refine/commit/1f310bd7b6900f534bb57db90d3fc8a6ea4364c9)]:
     -   @refinedev/react-hook-form@4.1.5
@@ -693,7 +737,7 @@
 
 ### Minor Changes
 
--   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Material UI components.
 
     ```tsx
     import { Refine } from "@refinedev/core";
@@ -770,7 +814,7 @@
 
 ### Minor Changes
 
--   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the MUI components.
+-   [#3949](https://github.com/refinedev/refine/pull/3949) [`836b06a2f67`](https://github.com/refinedev/refine/commit/836b06a2f67ec966247c422e42e11f39e6167288) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - `RefineThemes` added. It contains predefined colors for the Material UI components.
 
     ```tsx
     import { Refine } from "@refinedev/core";

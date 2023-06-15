@@ -28,11 +28,11 @@ React is the most popular JavaScript library for building user interfaces. It's 
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/mui.png" alt="Material UI" />
 
-[MUI](https://mui.com) offers a wide range of high-quality components that have helped us ship features more quickly. With nearly 77k+ stars on [GitHub](https://github.com/mui), the popularity of MUI is rather clear. The Google design system has been integrated into an extended React library with great success.
+[Material UI](https://mui.com/material-ui/getting-started/overview/) offers a wide range of high-quality components that have helped us ship features more quickly. With nearly 77k+ stars on [GitHub](https://github.com/mui/material-ui), the popularity of Material UI is rather clear. The Google design system has been integrated into an extended React library with great success.
 
-MUI is a brand, not just an open-source project. This means that they take care of the style and the documentation so that it all looks perfect; it's one that many people love and use daily!
+Material UI is a brand, not just an open-source project. This means that they take care of the style and the documentation so that it all looks perfect; it's one that many people love and use daily!
 
-The best part of MUI is how many people use it. There are countless free resources to help you get started. Landing page templates, mockups of blog designs, and portfolio styles are all available. If you can't find what you need, someone has probably already created it.
+The best part of Material UI is how many people use it. There are countless free resources to help you get started. Landing page templates, mockups of blog designs, and portfolio styles are all available. If you can't find what you need, someone has probably already created it.
 
 ### Features
 
@@ -128,6 +128,6 @@ It has many examples to help you get started, as well as documentation. Also it 
 -   **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 -   **Out-of-the-box**: Routing, networking, authentication, state management, i18n and UI.
 -   **Backend Agnostic**: Connects to any custom backend.
--   **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/) (It can also be used with any UI Framework).
+-   **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/) (It can also be used with any UI Framework).
 
 👉 [Showcase](https://refine.dev/demo/)

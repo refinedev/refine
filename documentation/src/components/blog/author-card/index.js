@@ -27,7 +27,6 @@ const AuthorCard = ({ author }) => {
                 "flex",
                 "justify-between",
                 "items-center",
-
                 "px-4",
                 "max-w-[512px]",
                 "blog-md:px-7",
@@ -53,9 +52,13 @@ const AuthorCard = ({ author }) => {
                         )}
                     />
                 </Link>
-                <div className="ml-3">
-                    <h1 className="m-0 p-0 leading-0">{author?.name}</h1>
-                    <div className="text-gray-600">{author?.title}</div>
+                <div className="ml-3 not-prose">
+                    <h1 className="m-0 p-0 pb-2 text-4xl font-bold text-gray-900 dark:text-gray-200">
+                        {author?.name}
+                    </h1>
+                    <div className="text-gray-600 dark:text-gray-400">
+                        {author?.title}
+                    </div>
                 </div>
             </div>
 

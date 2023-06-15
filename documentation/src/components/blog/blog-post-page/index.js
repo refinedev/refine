@@ -47,7 +47,8 @@ export const BlogPostPageView = ({ children }) => {
                 "w-full",
                 "mx-auto",
                 "blog-2xl:max-w-none",
-                "blog-lg:px-0",
+                "blog-xl:px-0",
+                "blog-2xl:px-8",
                 "blog-sm:max-w-screen-blog-sm",
                 "max-w-[512px]",
             )}

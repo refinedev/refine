@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@refinedev/cli": "^2.5.1",
-    "@refinedev/core": "^4.20.0",
+    "@refinedev/cli": "^2.7.0",
+    "@refinedev/core": "^4.22.0",
     "@refinedev/inferencer": "^4.1.2",
     "@refinedev/kbar": "^1.1.0",
     "@refinedev/react-hook-form": "^4.1.2",
@@ -18,7 +18,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-i18next": "^11.8.11",
-    "react-router-dom": "^6.8.1",
+    "react-router-dom": "6.11.2",
     "react-toastify": "^9.1.3"
   },
   "devDependencies": {

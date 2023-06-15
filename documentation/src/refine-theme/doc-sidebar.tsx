@@ -94,6 +94,7 @@ const SidebarCategory = ({
                 isNavLink
                 href={item.href}
                 className={clsx(
+                    isHeader && item.label !== "Getting Started" && "mt-10",
                     isHeader && "cursor-default",
                     "w-full",
                     "min-h-[40px]",
@@ -185,14 +186,18 @@ const SidebarCategory = ({
                     !collapsed && settled && "max-h-[2500px]",
                 )}
             >
-                {renderItems({
-                    items: item?.items ?? [],
-                    path: path,
-                    line: !isHeader,
-                    fromHeader: isHeader,
-                    variant,
-                    onLinkClick,
-                })}
+                {
+                    // if category is collapsed, don't render items for performance reasons
+                    !collapsed &&
+                        renderItems({
+                            items: item?.items ?? [],
+                            path: path,
+                            line: !isHeader,
+                            fromHeader: isHeader,
+                            variant,
+                            onLinkClick,
+                        })
+                }
             </div>
         </div>
     );

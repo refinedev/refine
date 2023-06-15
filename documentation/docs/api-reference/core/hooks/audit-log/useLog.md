@@ -66,7 +66,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 | Description                               | Type                                                                                                                                                                      |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData},`<br/>`TError,`<br/>` { id: BaseKey; name: string; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 ## `rename`
 
@@ -107,7 +107,7 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 | Description                               | Type                                                                                                                                                                      |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData},`<br/>`TError,`<br/>` { id: BaseKey; name: string; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 <br />
 
