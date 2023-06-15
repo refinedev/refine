@@ -157,6 +157,7 @@ export const useDeleteMany = <
                 resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
+                resource,
                 meta: pickNotDeprecated(meta, metaData),
             });
 
