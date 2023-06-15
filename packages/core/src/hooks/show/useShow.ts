@@ -151,7 +151,7 @@ export const useShow = <
     );
 
     const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: resource?.name,
+        resource: resourceIdentifierOrName,
         id: showId ?? "",
         queryOptions: {
             enabled: showId !== undefined,

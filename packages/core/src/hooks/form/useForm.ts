@@ -356,7 +356,7 @@ export const useForm = <
     const enableQuery = id !== undefined && (isEdit || isClone);
 
     const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: resource?.name,
+        resource: resourceIdentifierOrName,
         id: id ?? "",
         queryOptions: {
             enabled: enableQuery,
@@ -425,7 +425,7 @@ export const useForm = <
                 return mutateCreate(
                     {
                         values,
-                        resource: resource.name,
+                        resource: resourceIdentifierOrName ?? resource.name,
                         successNotification,
                         errorNotification,
                         meta: { ...combinedMeta, ...mutationMeta },
@@ -465,7 +465,7 @@ export const useForm = <
         const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
             id: id ?? "",
             values,
-            resource: resource.name,
+            resource: resourceIdentifierOrName ?? resource.name,
             mutationMode,
             undoableTimeout,
             successNotification,
