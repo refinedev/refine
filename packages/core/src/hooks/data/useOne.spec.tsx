@@ -497,6 +497,103 @@ describe("useOne Hook", () => {
             });
         });
 
+        it("should select correct dataProviderName", async () => {
+            const getOneDefaultMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+            const getOneFooMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useOne({
+                        resource: "posts",
+                        id: "1",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getOne: getOneDefaultMock,
+                            },
+                            foo: {
+                                ...MockJSONServer.default,
+                                getOne: getOneFooMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "categories",
+                            },
+                            {
+                                name: "posts",
+                                meta: {
+                                    dataProviderName: "foo",
+                                },
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getOneFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(getOneDefaultMock).not.toBeCalled();
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const getOneMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useOne({
+                        resource: "posts",
+                        id: "1",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getOne: getOneMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                                meta: {
+                                    foo: "bar",
+                                },
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getOneMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        foo: "bar",
+                    }),
+                }),
+            );
+        });
+
         describe("when passing `identifier` instead of `name`", () => {
             it("should select correct dataProviderName", async () => {
                 const getOneDefaultMock = jest.fn().mockResolvedValue({

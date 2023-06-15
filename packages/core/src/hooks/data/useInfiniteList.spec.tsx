@@ -591,6 +591,101 @@ describe("useInfiniteList Hook", () => {
         );
     });
 
+    it("should select correct dataProviderName", async () => {
+        const getListDefaultMock = jest.fn().mockResolvedValue({
+            data: [{ id: 1, title: "foo" }],
+        });
+        const getListFooMock = jest.fn().mockResolvedValue({
+            data: [{ id: 1, title: "foo" }],
+        });
+
+        const { result } = renderHook(
+            () =>
+                useInfiniteList({
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: getListDefaultMock,
+                        },
+                        foo: {
+                            ...MockJSONServer.default,
+                            getList: getListFooMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "categories",
+                        },
+                        {
+                            name: "posts",
+                            meta: {
+                                dataProviderName: "foo",
+                            },
+                        },
+                    ],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(getListFooMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+        expect(getListDefaultMock).not.toBeCalled();
+    });
+
+    it("should get correct `meta` of related resource", async () => {
+        const getListMock = jest.fn().mockResolvedValue({
+            data: [{ id: 1, title: "foo" }],
+        });
+
+        const { result } = renderHook(
+            () =>
+                useInfiniteList({
+                    resource: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: getListMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            meta: {
+                                foo: "bar",
+                            },
+                        },
+                    ],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(getListMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                }),
+            }),
+        );
+    });
+
     describe("when passing `identifier` instead of `name`", () => {
         it("should select correct dataProviderName", async () => {
             const getListDefaultMock = jest.fn().mockResolvedValue({

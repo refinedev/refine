@@ -348,6 +348,101 @@ describe("useCreateMany Hook", () => {
         });
     });
 
+    it("should select correct dataProviderName", async () => {
+        const createManyDefaultMock = jest.fn();
+        const createManyFooMock = jest.fn();
+
+        const { result } = renderHook(() => useCreateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        createMany: createManyDefaultMock,
+                    },
+                    foo: {
+                        ...MockJSONServer.default,
+                        createMany: createManyFooMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "posts",
+                        meta: {
+                            dataProviderName: "foo",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: [
+                {
+                    foo: "bar",
+                },
+            ],
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createManyFooMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+        expect(createManyDefaultMock).not.toBeCalled();
+    });
+
+    it("should get correct `meta` of related resource", async () => {
+        const createManyMock = jest.fn();
+
+        const { result } = renderHook(() => useCreateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        createMany: createManyMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "posts",
+                        meta: {
+                            foo: "bar",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            values: [
+                {
+                    title: "awesome post",
+                },
+            ],
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createManyMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                }),
+            }),
+        );
+    });
+
     describe("when passing `identifier` instead of `name`", () => {
         it("should select correct dataProviderName", async () => {
             const createManyDefaultMock = jest.fn();
