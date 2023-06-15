@@ -35,7 +35,7 @@ export const setAntdRangeDatePickerToToday = ({
     return cy
         .get(`#${id}`)
         .click({ force: true })
-        .get(".ant-picker-today-btn")
+        .get(".ant-picker-cell-today")
         .eq(0)
         .click({ force: true })
         .click({ force: true });

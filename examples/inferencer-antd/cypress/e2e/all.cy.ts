@@ -32,15 +32,76 @@ describe("inferencer-antd", () => {
     });
 
     it("should list resource", () => {
-        cy.resourceList();
+        cy.url().should("include", "/blog-posts");
+        cy.getPageHeaderTitle().should("contain", "Blog Posts");
+
+        cy.assertDocumentTitle("Blog Posts", "list");
     });
 
     it("should show resource", () => {
-        cy.resourceShow();
+        cy.interceptGETBlogPost();
+        cy.interceptGETCategory();
+
+        cy.wait("@getBlogPosts");
+        cy.wait("@getCategories");
+        cy.getAntdLoadingOverlay().should("not.exist");
+
+        cy.getShowButton().first().click();
+
+        cy.assertDocumentTitle("Blog Post", "show");
+
+        cy.wait("@getBlogPost").then((interception) => {
+            const response = interception?.response;
+
+            const id = response?.body?.id;
+            cy.location("pathname").should("include", `/blog-posts/show/${id}`);
+
+            // should be visible id,title,content
+            ["Id", "Title", "Content"].forEach((field) => {
+                cy.get("body").should("contain", field);
+            });
+            // should be visible id,title,content values
+            const title = response?.body?.title;
+            const content = response?.body?.content;
+            [id, title, content].forEach((value) => {
+                cy.get("body").should("contain", value);
+            });
+        });
+
+        cy.wait("@getCategory").then((interception) => {
+            const response = interception?.response;
+
+            const category = response?.body;
+            cy.get("body").should("contain", category?.title);
+        });
     });
 
     it("should delete resource", () => {
-        cy.resourceDelete({ ui: "antd" });
+        cy.interceptGETBlogPost();
+        cy.interceptDELETEBlogPost();
+
+        cy.wait("@getBlogPosts");
+        cy.wait("@getCategories");
+        cy.getAntdLoadingOverlay().should("not.exist");
+
+        cy.getEditButton().first().click();
+
+        cy.wait("@getBlogPost");
+        cy.getAntdLoadingOverlay().should("not.exist");
+        cy.getSaveButton().should("not.be.disabled");
+
+        cy.getDeleteButton().first().click();
+        cy.getAntdPopoverDeleteButton().click({ force: true });
+
+        cy.wait("@deleteBlogPost").then((interception) => {
+            const response = interception?.response;
+
+            expect(response?.statusCode).to.eq(200);
+            cy.getAntdNotification().should("contain", "Success");
+            cy.location().should((loc) => {
+                expect(loc.pathname).to.eq("/blog-posts");
+            });
+        });
     });
 
     it("should create resource", () => {
@@ -127,7 +188,12 @@ describe("inferencer-antd", () => {
             cy.get("#status").clear();
             cy.get("#status").type("status");
             cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
-            cy.setAntdRangeDatePickerToToday({ id: "createdAt" });
+            cy.get(`#createdAt`)
+                .click({ force: true })
+                .get(".ant-picker-today-btn")
+                .eq(0)
+                .click({ force: true })
+                .click({ force: true });
 
             cy.getSaveButton().click();
 
