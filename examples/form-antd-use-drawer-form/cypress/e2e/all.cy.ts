@@ -111,14 +111,14 @@ describe("form-antd-use-drawer-form", () => {
         isDrawerVisible();
         cy.location("search").should(
             "include",
-            "drawer-blog-posts-create[open]=true",
+            "drawer-blog_posts-create[open]=true",
         );
 
         cy.reload();
         isDrawerVisible();
         cy.location("search").should(
             "include",
-            "drawer-blog-posts-create[open]=true",
+            "drawer-blog_posts-create[open]=true",
         );
     });
 
@@ -131,7 +131,7 @@ describe("form-antd-use-drawer-form", () => {
         isDrawerVisible();
         cy.location("search").should(
             "include",
-            "drawer-blog-posts-edit[open]=true",
+            "drawer-blog_posts-edit[open]=true",
         );
         cy.location("search").should("include", "drawer-posts-edit[id]");
 
@@ -139,7 +139,7 @@ describe("form-antd-use-drawer-form", () => {
         isDrawerVisible();
         cy.location("search").should(
             "include",
-            "drawer-blog-posts-edit[open]=true",
+            "drawer-blog_posts-edit[open]=true",
         );
         cy.location("search").should("include", "drawer-posts-edit[id]");
     });

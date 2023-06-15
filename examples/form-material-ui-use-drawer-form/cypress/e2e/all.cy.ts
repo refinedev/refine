@@ -75,7 +75,7 @@ describe("form-material-ui-use-drawer-form", () => {
     });
 
     it("open - close drawer", () => {
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
         cy.getMaterialUILoadingCircular().should("not.exist");
         isDrawerClosed();
@@ -87,7 +87,7 @@ describe("form-material-ui-use-drawer-form", () => {
             "modal-posts-create[open]=true",
         );
 
-        cy.wait("@getPosts");
+        cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
 
         closeDrawer();

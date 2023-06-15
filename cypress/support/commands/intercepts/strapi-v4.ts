@@ -15,7 +15,7 @@ Cypress.Commands.add("interceptStrapiV4GETPosts", () => {
                 pathname: `${BASE_PATH}/posts`,
             },
             {
-                fixture: "posts.json",
+                fixture: "blog-posts.json",
             },
         )
         .as("strapiV4GetPosts");
@@ -23,7 +23,7 @@ Cypress.Commands.add("interceptStrapiV4GETPosts", () => {
 
 Cypress.Commands.add("interceptStrapiV4GETPost", () => {
     return cy
-        .fixture("posts")
+        .fixture("blog-posts")
         .then((posts) => {
             return cy.intercept(
                 {
@@ -76,7 +76,7 @@ Cypress.Commands.add("interceptStrapiV4POSTPost", () => {
 
 Cypress.Commands.add("interceptStrapiV4PUTPost", () => {
     return cy
-        .fixture("posts")
+        .fixture("blog-posts")
         .then((posts) => {
             return cy.intercept(
                 {

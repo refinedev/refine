@@ -22,6 +22,9 @@ import { IPost, ICategory } from "../../interfaces";
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost>({
         syncWithLocation: true,
+        queryOptions: {
+            refetchOnWindowFocus: true,
+        },
     });
 
     const categoryIds =
