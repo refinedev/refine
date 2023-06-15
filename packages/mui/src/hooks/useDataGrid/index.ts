@@ -9,6 +9,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
+    useLoadingOvertime,
 } from "@refinedev/core";
 import { useState } from "react";
 
@@ -137,6 +138,7 @@ export function useDataGrid<
     meta,
     metaData,
     dataProviderName,
+    overtimeOptions,
 }: UseDataGridProps<
     TQueryFnData,
     TError,
@@ -264,6 +266,12 @@ export function useDataGrid<
         };
     };
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: tableQueryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         tableQueryResult,
         dataGridProps: {
@@ -329,5 +337,8 @@ export function useDataGrid<
         setFilters,
         search,
         createLinkForSyncWithLocation,
+        overtime: {
+            elapsedTime,
+        },
     };
 }
