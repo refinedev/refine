@@ -745,4 +745,158 @@ describe("useList Hook", () => {
             }),
         );
     });
+
+    describe("when passing `identifier` instead of `name`", () => {
+        it("should select correct dataProviderName", async () => {
+            const getListDefaultMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+            const getListFooMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useList({
+                        resource: "featured-posts",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListDefaultMock,
+                            },
+                            foo: {
+                                ...MockJSONServer.default,
+                                getList: getListFooMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                            },
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: {
+                                    dataProviderName: "foo",
+                                },
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getListFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(getListDefaultMock).not.toBeCalled();
+        });
+
+        it("should create queryKey with `identifier`", async () => {
+            const getListMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useList({
+                        resource: "featured-posts",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        queryContext: expect.objectContaining({
+                            queryKey: [
+                                "default",
+                                "featured-posts",
+                                "list",
+                                expect.any(Object),
+                            ],
+                        }),
+                    }),
+                }),
+            );
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const getListMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useList({
+                        resource: "featured-posts",
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                                identifier: "all-posts",
+                                meta: {
+                                    foo: "bar",
+                                },
+                            },
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: {
+                                    bar: "baz",
+                                },
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        bar: "baz",
+                    }),
+                }),
+            );
+        });
+    });
 });

@@ -531,4 +531,162 @@ describe("useMany Hook", () => {
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
         });
     });
+
+    describe("when passing `identifier` instead of `name`", () => {
+        it("should select correct dataProviderName", async () => {
+            const getManyDefaultMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+            const getManyFooMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useMany({
+                        resource: "featured-posts",
+                        ids: ["1", "2"],
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getMany: getManyDefaultMock,
+                            },
+                            foo: {
+                                ...MockJSONServer.default,
+                                getMany: getManyFooMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                            },
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: {
+                                    dataProviderName: "foo",
+                                },
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getManyFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(getManyDefaultMock).not.toBeCalled();
+        });
+
+        it("should create queryKey with `identifier`", async () => {
+            const getManyMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useMany({
+                        resource: "featured-posts",
+                        ids: ["1", "2"],
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getMany: getManyMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getManyMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        queryContext: expect.objectContaining({
+                            queryKey: [
+                                "default",
+                                "featured-posts",
+                                "getMany",
+                                ["1", "2"],
+                                expect.any(Object),
+                            ],
+                        }),
+                    }),
+                }),
+            );
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const getManyMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useMany({
+                        resource: "featured-posts",
+                        ids: ["1", "2"],
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getMany: getManyMock,
+                            },
+                        },
+                        resources: [
+                            {
+                                name: "posts",
+                                identifier: "all-posts",
+                                meta: {
+                                    foo: "bar",
+                                },
+                            },
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: {
+                                    bar: "baz",
+                                },
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getManyMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        bar: "baz",
+                    }),
+                }),
+            );
+        });
+    });
 });

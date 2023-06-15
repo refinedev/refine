@@ -496,5 +496,163 @@ describe("useOne Hook", () => {
                 expect(onErrorMock).toBeCalledWith(new Error("Error"));
             });
         });
+
+        describe("when passing `identifier` instead of `name`", () => {
+            it("should select correct dataProviderName", async () => {
+                const getOneDefaultMock = jest.fn().mockResolvedValue({
+                    data: [{ id: 1, title: "foo" }],
+                });
+                const getOneFooMock = jest.fn().mockResolvedValue({
+                    data: [{ id: 1, title: "foo" }],
+                });
+
+                const { result } = renderHook(
+                    () =>
+                        useOne({
+                            resource: "featured-posts",
+                            id: "1",
+                        }),
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: {
+                                default: {
+                                    ...MockJSONServer.default,
+                                    getOne: getOneDefaultMock,
+                                },
+                                foo: {
+                                    ...MockJSONServer.default,
+                                    getOne: getOneFooMock,
+                                },
+                            },
+                            resources: [
+                                {
+                                    name: "posts",
+                                },
+                                {
+                                    name: "posts",
+                                    identifier: "featured-posts",
+                                    meta: {
+                                        dataProviderName: "foo",
+                                    },
+                                },
+                            ],
+                        }),
+                    },
+                );
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(getOneFooMock).toBeCalledWith(
+                    expect.objectContaining({
+                        resource: "posts",
+                    }),
+                );
+                expect(getOneDefaultMock).not.toBeCalled();
+            });
+
+            it("should create queryKey with `identifier`", async () => {
+                const getOneMock = jest.fn().mockResolvedValue({
+                    data: [{ id: 1, title: "foo" }],
+                });
+
+                const { result } = renderHook(
+                    () =>
+                        useOne({
+                            resource: "featured-posts",
+                            id: "1",
+                        }),
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: {
+                                default: {
+                                    ...MockJSONServer.default,
+                                    getOne: getOneMock,
+                                },
+                            },
+                            resources: [
+                                {
+                                    name: "posts",
+                                    identifier: "featured-posts",
+                                },
+                            ],
+                        }),
+                    },
+                );
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(getOneMock).toBeCalledWith(
+                    expect.objectContaining({
+                        meta: expect.objectContaining({
+                            queryContext: expect.objectContaining({
+                                queryKey: [
+                                    "default",
+                                    "featured-posts",
+                                    "detail",
+                                    "1",
+                                    expect.any(Object),
+                                ],
+                            }),
+                        }),
+                    }),
+                );
+            });
+
+            it("should get correct `meta` of related resource", async () => {
+                const getOneMock = jest.fn().mockResolvedValue({
+                    data: [{ id: 1, title: "foo" }],
+                });
+
+                const { result } = renderHook(
+                    () =>
+                        useOne({
+                            resource: "featured-posts",
+                            id: "1",
+                        }),
+                    {
+                        wrapper: TestWrapper({
+                            dataProvider: {
+                                default: {
+                                    ...MockJSONServer.default,
+                                    getOne: getOneMock,
+                                },
+                            },
+                            resources: [
+                                {
+                                    name: "posts",
+                                    identifier: "all-posts",
+                                    meta: {
+                                        foo: "bar",
+                                    },
+                                },
+                                {
+                                    name: "posts",
+                                    identifier: "featured-posts",
+                                    meta: {
+                                        bar: "baz",
+                                    },
+                                },
+                            ],
+                        }),
+                    },
+                );
+
+                await waitFor(() => {
+                    expect(result.current.isSuccess).toBeTruthy();
+                });
+
+                expect(getOneMock).toBeCalledWith(
+                    expect.objectContaining({
+                        meta: expect.objectContaining({
+                            bar: "baz",
+                        }),
+                    }),
+                );
+            });
+        });
     });
 });
