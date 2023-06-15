@@ -30,7 +30,6 @@ import {
     useMeta,
     useRouterType,
 } from "@hooks";
-import { getResourceByName } from "@definitions/helpers/getResourceByName";
 
 type useCreateParams<TData, TError, TVariables> = {
     /**
@@ -117,13 +116,12 @@ export const useCreate = <
     });
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const { log } = useLog();
     const handleNotification = useHandleNotification();
     const getMeta = useMeta();
-    const routerType = useRouterType();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -138,11 +136,7 @@ export const useCreate = <
             metaData,
             dataProviderName,
         }: useCreateParams<TData, TError, TVariables>) => {
-            const resource = getResourceByName(
-                resourceName,
-                resources,
-                routerType,
-            );
+            const resource = select(resourceName);
 
             const resourceIdentifierOrName =
                 resource.identifier ?? resource.name;
@@ -178,11 +172,7 @@ export const useCreate = <
                     metaData,
                 },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -235,6 +225,7 @@ export const useCreate = <
                     date: new Date(),
                 });
 
+                //TODO
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
@@ -263,11 +254,7 @@ export const useCreate = <
             ) => {
                 checkError(err);
 
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;

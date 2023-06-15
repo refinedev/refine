@@ -39,7 +39,6 @@ import {
     pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
-    getResourceByName,
 } from "@definitions/helpers";
 
 export type DeleteParams<TData, TError, TVariables> = {
@@ -114,7 +113,7 @@ export const useDelete = <
     });
     const dataProvider = useDataProvider();
 
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const queryClient = useQueryClient();
 
     const {
@@ -129,7 +128,6 @@ export const useDelete = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
-    const routerType = useRouterType();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
@@ -148,11 +146,7 @@ export const useDelete = <
             dataProviderName,
             values,
         }) => {
-            const resource = getResourceByName(
-                resourceName,
-                resources,
-                routerType,
-            );
+            const resource = select(resourceName);
 
             const resourceIdentifierOrName =
                 resource.identifier ?? resource.name;
@@ -237,11 +231,7 @@ export const useDelete = <
                 meta,
                 metaData,
             }) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -329,11 +319,7 @@ export const useDelete = <
                     invalidates = ["list", "many"],
                 },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -366,11 +352,8 @@ export const useDelete = <
                 },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
+
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
 
@@ -440,11 +423,7 @@ export const useDelete = <
                 { id, resource: resourceName, errorNotification },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;

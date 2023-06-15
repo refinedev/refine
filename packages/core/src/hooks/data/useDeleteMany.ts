@@ -31,7 +31,6 @@ import {
     useLog,
     useOnError,
     useMeta,
-    useRouterType,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -40,7 +39,6 @@ import {
     handleMultiple,
     pickNotDeprecated,
     useActiveAuthProvider,
-    getResourceByName,
 } from "@definitions";
 
 export type DeleteManyParams<TData, TError, TVariables> = {
@@ -125,10 +123,9 @@ export const useDeleteMany = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const { log } = useLog();
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const queryClient = useQueryClient();
     const getMeta = useMeta();
-    const routerType = useRouterType();
 
     const mutation = useMutation<
         DeleteManyResponse<TData>,
@@ -147,11 +144,7 @@ export const useDeleteMany = <
             dataProviderName,
             values,
         }: DeleteManyParams<TData, TError, TVariables>) => {
-            const resource = getResourceByName(
-                resourceName,
-                resources,
-                routerType,
-            );
+            const resource = select(resourceName);
 
             const resourceIdentifierOrName =
                 resource.identifier ?? resource.name;
@@ -243,11 +236,7 @@ export const useDeleteMany = <
                 meta,
                 metaData,
             }) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -358,11 +347,7 @@ export const useDeleteMany = <
                     invalidates = ["list", "many"],
                 },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -395,11 +380,7 @@ export const useDeleteMany = <
                 },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -468,11 +449,7 @@ export const useDeleteMany = <
                 { ids, resource: resourceName, errorNotification },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;

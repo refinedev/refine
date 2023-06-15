@@ -32,14 +32,12 @@ import {
     useInvalidate,
     useOnError,
     useMeta,
-    useRouterType,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
     useActiveAuthProvider,
-    getResourceByName,
 } from "@definitions/helpers";
 
 export type UpdateParams<TData, TError, TVariables> = {
@@ -141,7 +139,7 @@ export const useUpdate = <
     TError,
     TVariables
 > => {
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
 
@@ -160,7 +158,6 @@ export const useUpdate = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const getMeta = useMeta();
-    const routerType = useRouterType();
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -179,11 +176,7 @@ export const useUpdate = <
             metaData,
             dataProviderName,
         }) => {
-            const resource = getResourceByName(
-                resourceName,
-                resources,
-                routerType,
-            );
+            const resource = select(resourceName);
 
             const resourceIdentifierOrName =
                 resource.identifier ?? resource.name;
@@ -268,11 +261,7 @@ export const useUpdate = <
                 meta,
                 metaData,
             }) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -386,11 +375,7 @@ export const useUpdate = <
                     invalidates = ["list", "many", "detail"],
                 },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -424,11 +409,7 @@ export const useUpdate = <
                 },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -513,11 +494,7 @@ export const useUpdate = <
                 { id, resource: resourceName, errorNotification, values },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;

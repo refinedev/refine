@@ -25,7 +25,6 @@ import {
     useRouterType,
 } from "@hooks";
 import {
-    getResourceByName,
     handleMultiple,
     pickDataProvider,
     pickNotDeprecated,
@@ -90,14 +89,13 @@ export const useCreateMany = <
     TVariables
 > => {
     const dataProvider = useDataProvider();
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
-    const routerType = useRouterType();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -111,11 +109,7 @@ export const useCreateMany = <
             metaData,
             dataProviderName,
         }: useCreateManyParams<TData, TError, TVariables>) => {
-            const resource = getResourceByName(
-                resourceName,
-                resources,
-                routerType,
-            );
+            const resource = select(resourceName);
 
             const resourceIdentifierOrName =
                 resource.identifier ?? resource.name;
@@ -166,11 +160,7 @@ export const useCreateMany = <
                     metaData,
                 },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -249,11 +239,7 @@ export const useCreateMany = <
                 err: TError,
                 { resource: resourceName, errorNotification, values },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;

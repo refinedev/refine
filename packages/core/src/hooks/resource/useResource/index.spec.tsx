@@ -242,4 +242,118 @@ describe("legacy router provider", () => {
         expect(result.current.resourceName).toBe("posts");
         expect(result.current.id).toBe("1");
     });
+
+    describe("when router type is legacy", () => {
+        it("should return dummy resource, if resource not found", async () => {
+            const { result } = renderHook(() => useResource(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    legacyRouterProvider: mockLegacyRouterProvider(),
+                }),
+            });
+
+            const resource = result.current.select("categories");
+
+            expect(resource).toStrictEqual({
+                name: "categories",
+                identifier: "categories",
+            });
+        });
+
+        it("should return undefined when force is false and resource not found", async () => {
+            const { result } = renderHook(() => useResource(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    legacyRouterProvider: mockLegacyRouterProvider(),
+                }),
+            });
+
+            const resource = result.current.select("categories", false);
+
+            expect(resource).toBeUndefined();
+        });
+
+        it("should return matched resource, if resource is found", async () => {
+            const { result } = renderHook(() => useResource(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts", meta: { label: "Posts" } }],
+                    legacyRouterProvider: mockLegacyRouterProvider(),
+                }),
+            });
+
+            const resource = result.current.select("posts", false);
+
+            expect(resource).toStrictEqual({
+                canCreate: false,
+                canDelete: undefined,
+                canEdit: false,
+                canShow: false,
+                label: "Posts",
+                name: "posts",
+                meta: {
+                    label: "Posts",
+                },
+                options: { route: undefined },
+                route: "/posts",
+            });
+        });
+    });
+
+    describe("when router type is new", () => {
+        it("should return dummy resource, if resource not found", async () => {
+            const { result } = renderHook(() => useResource(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    routerProvider: mockRouterBindings(),
+                }),
+            });
+
+            const resource = result.current.select("categories");
+
+            expect(resource).toStrictEqual({
+                name: "categories",
+                identifier: "categories",
+            });
+        });
+
+        it("should return undefined when force is false and if resource not found", async () => {
+            const { result } = renderHook(() => useResource(), {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    routerProvider: mockRouterBindings(),
+                }),
+            });
+
+            const resource = result.current.select("categories", false);
+
+            expect(resource).toBeUndefined();
+        });
+
+        it("should return matched resource, if resource is found", async () => {
+            const { result } = renderHook(() => useResource(), {
+                wrapper: TestWrapper({
+                    resources: [
+                        { name: "posts", meta: { label: "Featured Posts" } },
+                    ],
+                    routerProvider: mockRouterBindings(),
+                }),
+            });
+
+            const resource = result.current.select("posts", false);
+
+            expect(resource).toStrictEqual({
+                canCreate: false,
+                canDelete: undefined,
+                canEdit: false,
+                canShow: false,
+                label: "Featured Posts",
+                name: "posts",
+                meta: {
+                    label: "Featured Posts",
+                },
+                options: { route: undefined },
+                route: "/posts",
+            });
+        });
+    });
 });

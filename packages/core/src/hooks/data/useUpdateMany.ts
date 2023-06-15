@@ -18,7 +18,6 @@ import {
     useLog,
     useOnError,
     useMeta,
-    useRouterType,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -40,7 +39,6 @@ import {
     handleMultiple,
     pickNotDeprecated,
     useActiveAuthProvider,
-    getResourceByName,
 } from "@definitions/helpers";
 
 type UpdateManyParams<TData, TError, TVariables> = {
@@ -117,7 +115,7 @@ export const useUpdateMany = <
     TError,
     TVariables
 > => {
-    const { resources } = useResource();
+    const { resources, select } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -135,7 +133,6 @@ export const useUpdateMany = <
     const invalidateStore = useInvalidate();
     const { log } = useLog();
     const getMeta = useMeta();
-    const routerType = useRouterType();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -154,11 +151,7 @@ export const useUpdateMany = <
             metaData,
             dataProviderName,
         }: UpdateManyParams<TData, TError, TVariables>) => {
-            const resource = getResourceByName(
-                resourceName,
-                resources,
-                routerType,
-            );
+            const resource = select(resourceName);
 
             const resourceIdentifierOrName =
                 resource.identifier ?? resource.name;
@@ -252,11 +245,7 @@ export const useUpdateMany = <
                 meta,
                 metaData,
             }) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -378,11 +367,7 @@ export const useUpdateMany = <
                 _error,
                 { ids, resource: resourceName, dataProviderName },
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -428,11 +413,7 @@ export const useUpdateMany = <
                 },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;
@@ -521,11 +502,7 @@ export const useUpdateMany = <
                 { ids, resource: resourceName, errorNotification, values },
                 context,
             ) => {
-                const resource = getResourceByName(
-                    resourceName,
-                    resources,
-                    routerType,
-                );
+                const resource = select(resourceName);
 
                 const resourceIdentifierOrName =
                     resource.identifier ?? resource.name;

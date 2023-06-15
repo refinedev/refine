@@ -37,6 +37,10 @@ export type UseResourceLegacyProps = {
  */
 export type UseResourceParam = string | undefined;
 
+type SelectReturnType<T extends boolean> = T extends true
+    ? IResourceItem
+    : undefined;
+
 type UseResourceReturnType = {
     resources: IResourceItem[];
     resource?: IResourceItem;
@@ -46,6 +50,10 @@ type UseResourceReturnType = {
     resourceName?: string;
     id?: BaseKey;
     action?: Action;
+    select: <T extends boolean = true>(
+        resourceName: string,
+        force?: T,
+    ) => SelectReturnType<T>;
 };
 
 type UseResourceReturnTypeWithResource = UseResourceReturnType & {
@@ -89,6 +97,25 @@ export function useResource(
             args && typeof args !== "string" ? args.recordItemId : undefined,
     };
 
+    const select = <T extends boolean = true>(
+        resourceName: string,
+        force = true,
+    ): SelectReturnType<T> => {
+        const isLegacy = routerType === "legacy";
+        const pickedResource = pickResource(resourceName, resources, isLegacy);
+
+        if (pickedResource) return pickedResource as SelectReturnType<T>;
+
+        if (force) {
+            return {
+                name: resourceName,
+                identifier: resourceName,
+            } as SelectReturnType<T>;
+        }
+
+        return undefined as SelectReturnType<T>;
+    };
+
     /**
      * Legacy Router - Start
      *
@@ -119,6 +146,7 @@ export function useResource(
             resourceName: legacyResourceName,
             id: legacyId,
             action: legacyAction,
+            select,
         };
     }
     /** Legacy Router - End */
@@ -147,5 +175,6 @@ export function useResource(
         resourceName: resource?.name,
         id: params.id,
         action: params.action,
+        select,
     };
 }
