@@ -1,16 +1,25 @@
+---
+title: refine Open Source Hackathon 2
+description: The second refine Open Source Hackathon is an excellent opportunity for developers to showcase their skills, learn refine and win prizes!
+slug: refine-hackathon-2
+authors: necati
+tags: [community, refine]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png
+hide_table_of_contents: false
+---
 
 
 
-![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)
 
 
-# The refine Open Source Hackathon #2
+
 
 We're back with another exciting event for the open-source community - the 2nd refine Open Source Hackathon! 
 
-As with the first, this Hackathon is about showcasing your skills, creativity, and innovation using refine.
+As with the first one, this Hackathon is about showcasing your skills, creativity, and innovation using refine.
 
-**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry-standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
+
+**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry-standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools, and storefronts. 
 
 
 ⏰ The Hackathon will kick off on June 21, and we're proud to host it in collaboration with the [DEV](https://dev.to/refine) platform. All the other hackathon details and submission process will be announced on the official launch day on [DEV](https://dev.to/).
@@ -29,36 +38,32 @@ We can't wait to see what unique projects the participants will build projects u
 
 We are organizing a raffle for those who create a ticket and share it on Twitter. As a gift, we are giving away a refine [cap](https://store.refine.dev/product/refine-cap) and a [coaster](https://store.refine.dev/product/coaster) set valued at $60.
 
-###  🔗 [Generate participation ticket](https://hackathon.refine.dev)
+###  🔗 [Generate participation ticket ](https://hackathon.refine.dev)
 
 
 
-<br/>
 
 [![ticket](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_ticket.jpeg)](https://hackathon.refine.dev)
 
 
-<br/>
 
 ## Together with Open Source Community
 
 
 
-refine draws its strength from the open-source community, and we are grateful to have the support of [Supabase](https://supabase.com/) and [MUI](https://mui.com/material-ui/getting-started/overview/), which has significant contributions to the community. We're proud to host our second Hackathon on collaboration with the [DEV](https://dev.to/refine) platform. 
+refine draws its strength from the open-source community, and we are grateful to have the support of [Supabase](https://supabase.com/) and [MUI](https://mui.com/material-ui/getting-started/overview/), which has significant contributions to the community. We're proud to host our second Hackathon in collaboration with the [DEV](https://dev.to/refine) platform. 
 
 It's worth noting that refine has built-in [data provider support](https://refine.dev/docs/packages/documentation/data-providers/supabase) for Supabase and [UI framework integration](https://refine.dev/docs/api-reference/mui/) for Material UI. So we believe they will be excellent backend and UI solutions for your hackathon project.
 
 Supabase and MUI will also be providing swag kits for the winners.
 
-<br/>
 
 ![sponsors](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/sponsor_banner.png)
 
-<br/>
 
 ## Hackathon Key Facts
 
-- You have four weeks to build a cool Open Source project using **refine**.
+- You have 4 weeks to build a cool Open Source project using **refine**.
 - Build a **refine** app. It can be anything like the CRUD app, admin panel, internal tool, forms, storefront, or dashboard. Also you can build a library, data provider, auth provider or live provider etc. for refine.
 - 🔥 You can use [refine browser tool](https://refine.dev/?playground=true) to create a complete refine CRUD app in 10 seconds and built your hackathon project on top of it.
 
@@ -66,7 +71,7 @@ Supabase and MUI will also be providing swag kits for the winners.
 
 ## Details
 ### Schedule
-- The Hackathon begins on Wednesday 21st June 2023
+- The Hackathon begins on Wednesday, 21th June 2023
 - Work on your project any time for the next four weeks
 - Submission deadline (Monday, July 20, 2023)
 - The winners will be announced on Monday, July 26, 2023
@@ -83,7 +88,7 @@ The total prize pool amount is **$10,000**. The distribution of prizes will be a
 
 You can use any data provider or UI framework in the refine app for the three main  prize categories above.
 
-#### Sponsor's Special prize categories
+#### Sponsor's special prize categories
 - **Best Project built using [Supabase](https://supabase.com/)** 
   - The project must use Supabase as a data provider in the refine app
 - **Best Project built using [Material UI](https://mui.com/material-ui/getting-started/overview/)** 
@@ -116,9 +121,9 @@ You can use any data provider or UI framework in the refine app for the three ma
 
 ## Community
 
-The **refine** team will be taking part in the Hackathon and you'll find us live building in our Discord all week. 
+The **refine** team will be taking part in the Hackathon, and you'll find us live building in our Discord all week. 
 
-- Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress. You can also find a potential teammate on Discord hackathon channel.
+- Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress. You can also find a potential teammate on the Discord hackathon channel.
   - Forum channel: **Hackathon**
 - Follow us on [Twitter](https://twitter.com/refine_dev) for updates and announcements.
 - [Refer to refine GitHub repository](https://github.com/refinedev/refine)
@@ -130,7 +135,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - For the **Best refine Project built using Material UI** category, you need to use Material UI as the UI framework in the refine app.
 
 ### How are the prizes given?
-- Prizes will be distributed by DEV platform. 
+- Prizes will be distributed by the DEV platform. 
 
 ### What are the judging criteria?
 -  The Judges will be senior staff from the refine DevRel, Marketing, and Engineering Teams.
@@ -146,7 +151,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 
 - You can step up to complete CRUD app tutorials to learn **refine** and how it works.
    -  https://refine.dev/docs/tutorial/introduction/index/
-- You can look at real use case example projects built with **refine** to get inspiration.
+- You can look at a real use case example projects built with **refine** to get inspiration.
    -  https://refine.dev/examples/
 - Check out the refine Supabase integration docs:
   - https://refine.dev/docs/packages/documentation/data-providers/supabase/
@@ -155,6 +160,8 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - [Refer to Supabase Docs](https://supabase.com/docs)
 - [Refer to Material UI Docs](https://mui.com/material-ui/getting-started/overview/)
 - [refine 7/24 Discord Support Channel](https://discord.gg/refine)
+
+
 
 
 

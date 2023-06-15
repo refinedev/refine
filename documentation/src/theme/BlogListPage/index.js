@@ -45,6 +45,26 @@ function BlogListPageContent(props) {
 
     return (
         <BlogLayout>
+            <div
+                className={clsx(
+                    "px-4",
+                    "max-w-[512px]",
+                    "blog-md:px-7",
+                    "blog-md:max-w-screen-blog-md",
+                    "blog-2xl:px-0",
+                    "blog-2xl:max-w-screen-blog-md",
+                    "w-full",
+                    "mx-auto",
+                )}
+            >
+                <a
+                    href="https://s.refine.dev/hackathon"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" />
+                </a>
+            </div>
             {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
             <div
                 className={clsx(
