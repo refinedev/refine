@@ -164,6 +164,7 @@ export function useDataGrid<
         setSorter,
         pageCount,
         createLinkForSyncWithLocation,
+        overtime,
     } = useTableCore<TQueryFnData, TError, TData>({
         permanentSorter,
         permanentFilter,
@@ -187,6 +188,7 @@ export function useDataGrid<
         meta: pickNotDeprecated(meta, metaData),
         metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
+        overtimeOptions,
     });
 
     const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
@@ -266,12 +268,6 @@ export function useDataGrid<
         };
     };
 
-    const { elapsedTime } = useLoadingOvertime({
-        isLoading: tableQueryResult.isFetching,
-        interval: overtimeOptions?.interval,
-        onInterval: overtimeOptions?.onInterval,
-    });
-
     return {
         tableQueryResult,
         dataGridProps: {
@@ -337,8 +333,6 @@ export function useDataGrid<
         setFilters,
         search,
         createLinkForSyncWithLocation,
-        overtime: {
-            elapsedTime,
-        },
+        overtime,
     };
 }
