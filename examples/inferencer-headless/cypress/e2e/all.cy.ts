@@ -36,6 +36,10 @@ describe("inferencer-headless", () => {
     });
 
     it("should list resource", () => {
+        cy.interceptGETBlogPost();
+        cy.interceptGETCategory();
+        waitForLoading();
+
         cy.url().should("include", "/blog-posts");
         cy.get("h1").should("contain", "Blog Posts");
         cy.assertDocumentTitle("Blog Posts", "list");
@@ -165,7 +169,7 @@ describe("inferencer-headless", () => {
         });
     });
 
-    it.only("should work with pagination", () => {
+    it("should work with pagination", () => {
         cy.wait("@getBlogPosts");
 
         cy.intercept(

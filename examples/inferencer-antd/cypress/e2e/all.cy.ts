@@ -32,6 +32,10 @@ describe("inferencer-antd", () => {
     });
 
     it("should list resource", () => {
+        cy.interceptGETBlogPost();
+        cy.interceptGETCategory();
+        cy.getAntdLoadingOverlay().should("not.exist");
+
         cy.url().should("include", "/blog-posts");
         cy.getPageHeaderTitle().should("contain", "Blog Posts");
 
