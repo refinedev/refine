@@ -238,6 +238,29 @@ mutate({
 });
 ```
 
+### `overtimeOptions`
+
+If you want loading overtime for the mutation, you can pass the `overtimeOptions` prop to the `useCreate` hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCustomMutation({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval, context) {
+            console.log(elapsedInterval, context);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Return Values
 
 Returns an object with TanStack Query's `useMutation` return values.
@@ -270,6 +293,6 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                                                          |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                                | Type                                                                                                                                                               |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |

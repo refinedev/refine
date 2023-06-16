@@ -255,6 +255,29 @@ useCustom({
 });
 ```
 
+### `overtimeOptions`
+
+If you want loading overtime for the mutation, you can pass the `overtimeOptions` prop to the `useCreate` hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCustom({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval, context) {
+            console.log(elapsedInterval, context);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## FAQ
 
 ### How to invalidate the custom query?
