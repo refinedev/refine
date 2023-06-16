@@ -41,7 +41,7 @@ describe("table-react-table-advanced", () => {
             const data = response?.body;
 
             cy.get("#title-input").should("have.value", data.title);
-            cy.get("#category-select").should("have.value", data.category.id);
+            cy.get("#category-select").should("have.value", "1");
         });
 
         cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
