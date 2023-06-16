@@ -108,6 +108,7 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     id: idFromProps,
+    overtimeOptions,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -161,9 +162,11 @@ export const useForm = <
         createMutationOptions,
         updateMutationOptions,
         id: idFromProps,
+        overtimeOptions,
     });
 
-    const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
+    const { formLoading, onFinish, queryResult, id, overtime } =
+        useFormCoreResult;
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -211,5 +214,6 @@ export const useForm = <
         onFinish: async (values?: TVariables) => {
             return await onFinish(values ?? formSF.form.getFieldsValue(true));
         },
+        overtime,
     };
 };
