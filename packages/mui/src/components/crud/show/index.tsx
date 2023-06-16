@@ -74,6 +74,7 @@ export const Show: React.FC<ShowProps> = ({
         action,
         id: idFromParams,
     } = useResource(resourceFromProps);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const goListPath = useToPath({
         resource,
@@ -107,7 +108,7 @@ export const Show: React.FC<ShowProps> = ({
               resource:
                   routerType === "legacy"
                       ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+                      : resourceIdentifierOrName,
           }
         : undefined;
     const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
@@ -116,7 +117,7 @@ export const Show: React.FC<ShowProps> = ({
               resource:
                   routerType === "legacy"
                       ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+                      : resourceIdentifierOrName,
               recordItemId: id,
           }
         : undefined;
@@ -127,7 +128,7 @@ export const Show: React.FC<ShowProps> = ({
                   resource:
                       routerType === "legacy"
                           ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                          : resourceIdentifierOrName,
                   recordItemId: id,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -144,7 +145,7 @@ export const Show: React.FC<ShowProps> = ({
         resource:
             routerType === "legacy"
                 ? resource?.route
-                : resource?.identifier ?? resource?.name,
+                : resourceIdentifierOrName,
         recordItemId: id,
         dataProviderName,
     };
@@ -170,12 +171,12 @@ export const Show: React.FC<ShowProps> = ({
                             className={RefinePageHeaderClassNames.Title}
                         >
                             {translate(
-                                `${resource?.name}.titles.show`,
+                                `${resourceIdentifierOrName}.titles.show`,
                                 `Show ${userFriendlyResourceName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
-                                        resource?.name,
+                                        resourceIdentifierOrName,
                                     "singular",
                                 )}`,
                             )}

@@ -59,6 +59,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { id, resource } = useResource(
         resourceNameFromProps ?? propResourceNameOrRouteName,
     );
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -104,12 +105,12 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             }
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                if ((recordItemId ?? id) && resource?.name) {
+                if ((recordItemId ?? id) && resourceIdentifierOrName) {
                     setWarnWhen(false);
                     mutate(
                         {
                             id: recordItemId ?? id ?? "",
-                            resource: resource?.name,
+                            resource: resourceIdentifierOrName,
                             mutationMode,
                             successNotification,
                             errorNotification,

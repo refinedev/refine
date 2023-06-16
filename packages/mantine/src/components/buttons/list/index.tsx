@@ -60,6 +60,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     const { resource } = useResource(
         resourceNameFromProps ?? resourceNameOrRouteName,
     );
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const { data } = useCan({
         resource: resource?.name,
@@ -135,14 +136,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     {children ??
                         translate(
                             `${
-                                resource?.name ??
+                                resourceIdentifierOrName ??
                                 resourceNameFromProps ??
                                 resourceNameOrRouteName
                             }.titles.list`,
                             userFriendlyResourceName(
                                 resource?.meta?.label ??
                                     resource?.label ??
-                                    resource?.name ??
+                                    resourceIdentifierOrName ??
                                     pickNotDeprecated(
                                         resourceNameFromProps,
                                         resourceNameOrRouteName,

@@ -73,6 +73,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         action,
         id: idFromParams,
     } = useResource(resourceFromProps);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const goListPath = useToPath({
         resource,
@@ -109,7 +110,7 @@ export const Edit: React.FC<EditProps> = (props) => {
               resource:
                   routerType === "legacy"
                       ? resource?.route
-                      : resource?.identifier ?? resource?.name,
+                      : resourceIdentifierOrName,
           }
         : undefined;
 
@@ -118,7 +119,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         resource:
             routerType === "legacy"
                 ? resource?.route
-                : resource?.identifier ?? resource?.name,
+                : resourceIdentifierOrName,
         recordItemId: id,
         dataProviderName,
     };
@@ -130,7 +131,7 @@ export const Edit: React.FC<EditProps> = (props) => {
                   resource:
                       routerType === "legacy"
                           ? resource?.route
-                          : resource?.identifier ?? resource?.name,
+                          : resourceIdentifierOrName,
                   mutationMode,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -218,12 +219,12 @@ export const Edit: React.FC<EditProps> = (props) => {
                                 className={RefinePageHeaderClassNames.Title}
                             >
                                 {translate(
-                                    `${resource?.name}.titles.edit`,
+                                    `${resourceIdentifierOrName}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(
                                         resource?.meta?.label ??
                                             resource?.options?.label ??
                                             resource?.label ??
-                                            resource?.name,
+                                            resourceIdentifierOrName,
                                         "singular",
                                     )}`,
                                 )}
