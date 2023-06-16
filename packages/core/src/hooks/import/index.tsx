@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { parse, ParseConfig } from "papaparse";
 import chunk from "lodash/chunk";
 
-import { useCreate, useCreateMany, useResource } from "@hooks";
+import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
 import { MapDataFn, BaseRecord, HttpError, MetaQuery } from "../../interfaces";
 import {
     importCSVMapper,
@@ -152,9 +152,15 @@ export const useImport = <
     const [isLoading, setIsLoading] = useState(false);
 
     const { resource } = useResource(resourceFromProps ?? resourceName);
+    const getMeta = useMeta();
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
+
+    const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
 
     let mutationResult:
         | UseCreateReturnType<TData, TError, TVariables>
@@ -213,11 +219,8 @@ export const useImport = <
                                         successNotification: false,
                                         errorNotification: false,
                                         dataProviderName,
-                                        meta: pickNotDeprecated(meta, metaData),
-                                        metaData: pickNotDeprecated(
-                                            meta,
-                                            metaData,
-                                        ),
+                                        meta: combinedMeta,
+                                        metaData: combinedMeta,
                                     });
 
                                     return { response, value };
@@ -261,14 +264,8 @@ export const useImport = <
                                             successNotification: false,
                                             errorNotification: false,
                                             dataProviderName,
-                                            meta: pickNotDeprecated(
-                                                meta,
-                                                metaData,
-                                            ),
-                                            metaData: pickNotDeprecated(
-                                                meta,
-                                                metaData,
-                                            ),
+                                            meta: combinedMeta,
+                                            metaData: combinedMeta,
                                         });
 
                                     return {
