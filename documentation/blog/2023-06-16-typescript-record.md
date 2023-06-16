@@ -4,7 +4,7 @@ description: We'll explore TypeScript Record type with examples.
 slug: typescript-record-type
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-21-typescript-enums/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-16-typescript-record/social.png
 hide_table_of_contents: false
 ---
 
