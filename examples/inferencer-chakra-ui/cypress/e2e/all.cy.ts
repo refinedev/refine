@@ -32,9 +32,6 @@ describe("inferencer-chakra-ui", () => {
     });
 
     it("should list resource", () => {
-        cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
-
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
         cy.getChakraUILoadingOverlay().should("not.exist");

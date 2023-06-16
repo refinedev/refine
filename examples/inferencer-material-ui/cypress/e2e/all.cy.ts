@@ -32,9 +32,6 @@ describe("inferencer-material-ui", () => {
     });
 
     it("should list resource", () => {
-        cy.interceptGETBlogPost();
-        cy.interceptGETCategory();
-
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
         cy.getMaterialUILoadingCircular().should("not.exist");
