@@ -1,18 +1,7 @@
 import React from "react";
 
-import {
-    useCan,
-    useParsed,
-    useResource,
-    useRouterContext,
-    useRouterType,
-} from "@hooks";
-import {
-    BaseKey,
-    IResourceItem,
-    ITreeMenu,
-    ResourceRouterParams,
-} from "../../interfaces";
+import { useCan, useResource } from "@hooks";
+import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 
 type CanAccessBaseProps = {
     /**
@@ -58,34 +47,25 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     children,
     ...rest
 }) => {
-    const routerType = useRouterType();
     const {
         resource,
         id: idFromRoute,
         action: actionFromRoute,
     } = useResource(resourceFromProp);
-    const { useParams } = useRouterContext();
-
-    const { resource: resourceFromRouter } = useParsed();
-    const { resource: legacyResourceFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const newResourceNameFromRouter = resourceFromRouter?.name;
+    const { resource: inferedResource } = useResource();
 
     const getDefaultId = () => {
         const idFromPropsOrRoute = params?.id ?? idFromRoute;
 
-        if (!resourceFromProp) return idFromPropsOrRoute;
-
-        if (routerType === "legacy") {
-            if (resourceFromProp === legacyResourceFromRoute)
-                return idFromPropsOrRoute;
-        } else {
-            if (resourceFromProp === newResourceNameFromRouter)
-                return idFromPropsOrRoute;
+        if (
+            resourceFromProp &&
+            resourceFromProp !== inferedResource?.identifier &&
+            resourceFromProp !== inferedResource?.name
+        ) {
+            return params?.id;
         }
 
-        return params?.id;
+        return idFromPropsOrRoute;
     };
     const defaultId = getDefaultId();
 

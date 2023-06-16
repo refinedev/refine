@@ -3,7 +3,6 @@ import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
 import {
-    useRouterContext,
     useWarnAboutChange,
     useCreate,
     useUpdate,
@@ -12,8 +11,6 @@ import {
     useOne,
     useRefineContext,
     useMeta,
-    useParsed,
-    useRouterType,
 } from "@hooks";
 
 import {
@@ -22,7 +19,6 @@ import {
     GetOneResponse,
     HttpError,
     LiveModeProps,
-    ResourceRouterParams,
     RedirectAction,
     SuccessErrorNotification,
     UpdateResponse,
@@ -260,9 +256,7 @@ export const useForm = <
     TResponse,
     TResponseError
 > => {
-    const routerType = useRouterType();
     const { options } = useRefineContext();
-    const { useParams } = useRouterContext();
     const getMeta = useMeta();
 
     const {
@@ -270,32 +264,22 @@ export const useForm = <
         id: idFromRoute,
         action: actionFromRoute,
     } = useResource(resourceFromProps);
-
-    const { resource: resourceFromRouter } = useParsed();
-    const { resource: legacyResourceFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const newResourceNameFromRouter =
-        typeof resourceFromRouter === "string"
-            ? resourceFromRouter
-            : resourceFromRouter?.name;
+    const { resource: inferedResource } = useResource();
 
     /** We only accept `id` from URL params if `resource` is not explicitly passed. */
     /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
     const getDefaultId = () => {
         const idFromPropsOrRoute = idFromProps ?? idFromRoute;
 
-        if (!resourceFromProps) return idFromPropsOrRoute;
-
-        if (routerType === "legacy") {
-            if (resourceFromProps === legacyResourceFromRoute)
-                return idFromPropsOrRoute;
-        } else {
-            if (resourceFromProps === newResourceNameFromRouter)
-                return idFromPropsOrRoute;
+        if (
+            resourceFromProps &&
+            resourceFromProps !== inferedResource?.identifier &&
+            resourceFromProps !== inferedResource?.name
+        ) {
+            return idFromProps;
         }
 
-        return idFromProps;
+        return idFromPropsOrRoute;
     };
     const defaultId = getDefaultId();
 

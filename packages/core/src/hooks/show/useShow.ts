@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
-import { useMeta, useOne, useRouterContext } from "@hooks";
+import { useMeta, useOne } from "@hooks";
 
 import {
-    ResourceRouterParams,
     BaseRecord,
     GetOneResponse,
     SuccessErrorNotification,
@@ -15,8 +14,6 @@ import {
     HttpError,
     Prettify,
 } from "../../interfaces";
-import { useRouterType } from "@contexts/router-picker";
-import { useParsed } from "@hooks/router/use-parsed";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 
@@ -103,30 +100,22 @@ export const useShow = <
     TError,
     TData
 > = {}): useShowReturnType<TData> => {
-    const routerType = useRouterType();
     const { resource, id: idFromRoute } = useResource(resourceFromProp);
-    const { useParams } = useRouterContext();
-    const { resource: resourceFromRouter } = useParsed();
-    const { resource: legacyResourceFromRoute } =
-        useParams<ResourceRouterParams>();
+    const { resource: inferedResource } = useResource();
     const getMeta = useMeta();
-
-    const newResourceNameFromRouter = resourceFromRouter?.name;
 
     const getDefaultId = () => {
         const idFromPropsOrRoute = id ?? idFromRoute;
 
-        if (!resourceFromProp) return idFromPropsOrRoute;
-
-        if (routerType === "legacy") {
-            if (resourceFromProp === legacyResourceFromRoute)
-                return idFromPropsOrRoute;
-        } else {
-            if (resourceFromProp === newResourceNameFromRouter)
-                return idFromPropsOrRoute;
+        if (
+            resourceFromProp &&
+            resourceFromProp !== inferedResource?.identifier &&
+            resourceFromProp !== inferedResource?.name
+        ) {
+            return id;
         }
 
-        return id;
+        return idFromPropsOrRoute;
     };
     const defaultId = getDefaultId();
 
