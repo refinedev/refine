@@ -103,7 +103,7 @@ export const MENU_ITEMS: MenuItemType[] = [
             {
                 label: "Hackathons",
                 description: "Compete in hackathons and earn prizes!",
-                link: "https://github.com/refinedev/refine/blob/next/hackathon/refine-hackathon.md",
+                link: "https://s.refine.dev/hackathon2",
                 icon: HackathonsIcon,
             },
         ],
@@ -141,6 +141,6 @@ export const MENU_ITEMS: MenuItemType[] = [
         isPopover: false,
         label: "Hackathon",
         icon: HackathonAltIcon,
-        href: "https://s.refine.dev/hackathon",
+        href: "https://s.refine.dev/hackathon2",
     },
 ];
