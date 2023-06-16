@@ -31,7 +31,7 @@ describe("inferencer-mantine", () => {
         login();
     });
 
-    it.only("should list resource", () => {
+    it("should list resource", () => {
         cy.wait("@getBlogPosts");
         cy.wait("@getCategories");
         cy.getMantineLoadingOverlay().should("not.exist");
