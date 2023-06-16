@@ -144,6 +144,7 @@ export const useModalForm = <
     const { form, formProps, id, setId, formLoading, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const parsed = useParsed();
     const go = useGo();
@@ -159,7 +160,7 @@ export const useModalForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
+            ? `modal-${resourceIdentifierOrName}-${action}`
             : undefined;
 
     const translate = useTranslate();
@@ -316,13 +317,13 @@ export const useModalForm = <
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
             title: translate(
-                `${resource?.name}.titles.${rest.action}`,
+                `${resourceIdentifierOrName}.titles.${rest.action}`,
                 `${userFriendlyResourceName(
                     `${rest.action} ${
                         resource?.meta?.label ??
                         resource?.options?.label ??
                         resource?.label ??
-                        resource?.name
+                        resourceIdentifierOrName
                     }`,
                     "singular",
                 )}`,

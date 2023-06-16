@@ -49,6 +49,7 @@ export const Create: React.FC<CreateProps> = ({
     const { goBack } = useNavigation();
 
     const { resource, action } = useResource(resourceFromProps);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
@@ -82,12 +83,12 @@ export const Create: React.FC<CreateProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resource?.name}.titles.create`,
+                        `${resourceIdentifierOrName}.titles.create`,
                         `Create ${userFriendlyResourceName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                resource?.name,
+                                resourceIdentifierOrName,
                             "singular",
                         )}`,
                     )
