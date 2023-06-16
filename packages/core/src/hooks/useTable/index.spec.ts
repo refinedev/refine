@@ -425,41 +425,46 @@ describe("useTable Hook", () => {
     });
 
     it("correctly with `interval` and `onInterval` params", async () => {
-        jest.useFakeTimers();
-
         const onInterval = jest.fn();
         const { result } = renderHook(
             () =>
                 useTable({
                     resource: "posts",
                     overtimeOptions: {
-                        interval: 500,
+                        interval: 100,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () => {
+                                return new Promise((res) => {
+                                    setTimeout(
+                                        () => res({ data: [], total: 2 }),
+                                        1000,
+                                    );
+                                });
+                            },
+                        },
+                    },
                     resources: [{ name: "posts" }],
                 }),
             },
         );
 
-        act(() => {
-            // wait 1 second
-            jest.advanceTimersByTime(1000);
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isFetching).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
         });
-
-        // to be 1000 after 1 second
-        expect(result.current.overtime.elapsedTime).toBe(1000);
-        expect(onInterval).toBeCalledTimes(1);
 
         await waitFor(() => {
-            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+            expect(!result.current.tableQueryResult.isFetching).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
-
-        // to be undefined after data loaded
-        expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
 });
 

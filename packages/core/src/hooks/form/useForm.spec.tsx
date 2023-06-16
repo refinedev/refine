@@ -551,6 +551,7 @@ describe("useForm Hook", () => {
         await waitFor(() => {
             expect(result.current.queryResult?.isFetching).toBeTruthy();
             expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
         });
 
         await waitFor(() => {
@@ -780,6 +781,7 @@ describe("useForm Hook", () => {
             await waitFor(() => {
                 expect(result.current.mutationResult?.isLoading).toBeTruthy();
                 expect(result.current.overtime.elapsedTime).toBe(900);
+                expect(onInterval).toBeCalled();
             });
 
             await waitFor(() => {
@@ -1012,6 +1014,7 @@ describe("useForm Hook", () => {
             await waitFor(() => {
                 expect(result.current.mutationResult?.isLoading).toBeTruthy();
                 expect(result.current.overtime.elapsedTime).toBe(900);
+                expect(onInterval).toBeCalled();
             });
 
             await waitFor(() => {

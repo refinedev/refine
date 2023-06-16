@@ -13,8 +13,6 @@ const mockRefineProvider: IRefineContextProvider = {
 };
 
 describe("useOne Hook", () => {
-    jest.useFakeTimers();
-
     it("with rest json server", async () => {
         const { result } = renderHook(
             () => useOne({ resource: "posts", id: "1" }),
@@ -508,32 +506,36 @@ describe("useOne Hook", () => {
                     resource: "posts",
                     id: "1",
                     overtimeOptions: {
-                        interval: 500,
+                        interval: 100,
                         onInterval,
                     },
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getOne: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
+                            },
+                        },
+                    },
                     resources: [{ name: "posts" }],
                 }),
             },
         );
 
-        act(() => {
-            // wait 1 second
-            jest.advanceTimersByTime(1000);
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
         });
-
-        // to be 1000 after 1 second
-        expect(result.current.overtime.elapsedTime).toBe(1000);
-        expect(onInterval).toBeCalledTimes(1);
 
         await waitFor(() => {
             expect(!result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
-
-        // to be undefined after data loaded
-        expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
 });

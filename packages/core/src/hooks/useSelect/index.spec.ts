@@ -1027,6 +1027,7 @@ describe("useSelect Hook", () => {
         await waitFor(() => {
             expect(result.current.queryResult.isLoading).toBeTruthy();
             expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
         });
 
         await waitFor(() => {
