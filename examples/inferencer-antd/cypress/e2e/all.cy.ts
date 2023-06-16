@@ -34,6 +34,9 @@ describe("inferencer-antd", () => {
     it("should list resource", () => {
         cy.interceptGETBlogPost();
         cy.interceptGETCategory();
+
+        cy.wait("@getBlogPosts");
+        cy.wait("@getCategories");
         cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.url().should("include", "/blog-posts");
@@ -149,6 +152,10 @@ describe("inferencer-antd", () => {
     it("should edit resource", () => {
         cy.interceptPATCHBlogPost();
         cy.interceptGETBlogPost();
+
+        cy.wait("@getCategories");
+        cy.wait("@getBlogPosts");
+        cy.getAntdLoadingOverlay().should("not.exist");
 
         cy.getEditButton().first().click();
         cy.location("pathname").should("contain", "/blog-posts/edit");

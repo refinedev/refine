@@ -34,6 +34,9 @@ describe("inferencer-mantine", () => {
     it("should list resource", () => {
         cy.interceptGETBlogPost();
         cy.interceptGETCategory();
+
+        cy.wait("@getBlogPosts");
+        cy.wait("@getCategories");
         cy.getMantineLoadingOverlay().should("not.exist");
 
         cy.url().should("include", "/blog-posts");

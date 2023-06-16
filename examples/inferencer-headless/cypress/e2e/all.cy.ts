@@ -38,6 +38,9 @@ describe("inferencer-headless", () => {
     it("should list resource", () => {
         cy.interceptGETBlogPost();
         cy.interceptGETCategory();
+
+        cy.wait("@getBlogPosts");
+        cy.wait("@getCategories");
         waitForLoading();
 
         cy.url().should("include", "/blog-posts");
@@ -76,14 +79,16 @@ describe("inferencer-headless", () => {
     it("should create resource", () => {
         cy.interceptPOSTBlogPost();
         cy.interceptGETCategory();
+
+        cy.wait("@getBlogPosts");
+        cy.wait("@getCategories");
         waitForLoading();
 
         cy.get("button").contains("Create").click();
+        cy.wait("@getCategories");
         waitForLoading();
         cy.location("pathname").should("contain", "/blog-posts/create");
         cy.assertDocumentTitle("Blog Post", "create");
-
-        cy.wait("@getCategories");
 
         cy.fixture("mock-post").then((mockPost) => {
             const today = new Date();
