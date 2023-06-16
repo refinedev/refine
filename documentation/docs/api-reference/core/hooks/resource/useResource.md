@@ -54,6 +54,10 @@ Resource name of the `resource` object.
 
 `action` from the current route if there is a match.
 
+### `select`
+
+The function allows you to retrieve a resource object by providing either a resource `name` or `identifier`. By default, if there is no match for the given `name` or `identifier`, the function will return the resource object associated with the provided value. If you pass `false` as the second parameter, it will return `undefined` if there is no match.
+
 ## API Reference
 
 ### Properties
@@ -69,6 +73,7 @@ Resource name of the `resource` object.
 | resourceName | `string` \| `undefined`                                                    |
 | id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
+| select       | `(resourceName: string, force?: boolean) => IResourceItem \| undefined`    |
 
 #### Interfaces
 
