@@ -55,7 +55,7 @@ const App: React.FC = () => {
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,
                         overtime: {
-                            interval: 10,
+                            interval: 1000,
                             onInterval(elapsedInterval, context) {
                                 console.log(elapsedInterval, context);
                             },
