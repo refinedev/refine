@@ -140,6 +140,52 @@ describe("useUpdateMany Hook", () => {
         );
     });
 
+    it("correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useUpdateMany({
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            updateMany: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            ids: [1, 2],
+            values: {
+                title: "foo",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
+    });
+
     describe("usePublish", () => {
         it("publish live event on success", async () => {
             const onPublishMock = jest.fn();
