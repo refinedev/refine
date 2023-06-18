@@ -190,7 +190,7 @@ const SidebarCategory = ({
             >
                 {
                     // if category is collapsed, don't render items for performance reasons
-                    ((!collapsed && deferred) || !deferred) &&
+                    (deferred ? !collapsed : true) &&
                         renderItems({
                             items: item?.items ?? [],
                             path: path,
@@ -198,6 +198,7 @@ const SidebarCategory = ({
                             fromHeader: isHeader,
                             variant,
                             onLinkClick,
+                            deferred,
                         })
                 }
             </div>
