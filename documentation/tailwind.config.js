@@ -56,7 +56,6 @@ module.exports = {
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
             boxShadow: {
-                githubFloatingCta: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 modal: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 tile: "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                 integrationTile: "3px 4px 8px 0 rgba(42, 42, 66, 0.25)",

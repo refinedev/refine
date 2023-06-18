@@ -71,7 +71,6 @@ const siteConfig = {
         ],
     ],
     plugins: [
-        path.resolve(__dirname, "plugins/use-case-routes.js"),
         [
             "@docusaurus/plugin-client-redirects",
             {
