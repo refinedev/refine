@@ -46,8 +46,8 @@ import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 export type ActionParams = {
@@ -183,9 +183,8 @@ export type UseFormProps<
     TResponseError
 > &
     ActionParams &
-    LiveModeProps & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -210,7 +209,7 @@ export type UseFormReturnType<
         idFromFunction?: BaseKey | undefined,
         routeParams?: Record<string, string | number>,
     ) => void;
-} & IUseLoadingOvertime;
+} & UseLoadingOvertimeReturnType;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.

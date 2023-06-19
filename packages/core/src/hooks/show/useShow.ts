@@ -28,15 +28,15 @@ import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     showId?: BaseKey;
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
-} & IUseLoadingOvertime;
+} & UseLoadingOvertimeReturnType;
 
 export type useShowProps<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -80,9 +80,8 @@ export type useShowProps<
         GetOneResponse<TData>,
         TError,
         Prettify<{ id?: BaseKey } & MetaQuery>
-    > & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    > &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useShow` hook allows you to fetch the desired record.

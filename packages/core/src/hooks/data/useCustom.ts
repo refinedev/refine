@@ -24,8 +24,8 @@ import {
 } from "../../interfaces";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 interface UseCustomConfig<TQuery, TPayload> {
@@ -78,9 +78,8 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
     CustomResponse<TData>,
     TError,
     Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
-> & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+> &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -121,7 +120,7 @@ export const useCustom = <
     TPayload,
     TData
 >): QueryObserverResult<CustomResponse<TData>, TError> &
-    IUseLoadingOvertime => {
+    UseLoadingOvertimeReturnType => {
     const dataProvider = useDataProvider();
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({

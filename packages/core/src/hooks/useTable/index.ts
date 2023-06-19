@@ -42,8 +42,8 @@ import { useGo } from "@hooks/router/use-go";
 import { BaseListProps } from "../data/useList";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 type SetFilterBehavior = "merge" | "replace";
@@ -178,9 +178,8 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -218,7 +217,7 @@ export type useTableReturnType<
     pageSize: number;
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
     pageCount: number;
-} & IUseLoadingOvertime;
+} & UseLoadingOvertimeReturnType;
 
 /**
  * By using useTable, you are able to get properties that are compatible with

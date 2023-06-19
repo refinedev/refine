@@ -37,8 +37,8 @@ import {
 
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 export interface UseInfiniteListConfig {
@@ -106,9 +106,8 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
         TError,
         Prettify<BaseInfiniteListProps>
     > &
-    LiveModeProps & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useInfiniteList` is a modified version of `react-query`'s {@link https://tanstack.com/query/latest/docs/react/guides/infinite-queries `useInfiniteQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -149,7 +148,7 @@ export const useInfiniteList = <
     TError,
     TData
 >): InfiniteQueryObserverResult<GetListResponse<TData>, TError> &
-    IUseLoadingOvertime => {
+    UseLoadingOvertimeReturnType => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();

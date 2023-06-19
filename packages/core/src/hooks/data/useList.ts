@@ -33,8 +33,8 @@ import {
 } from "@definitions/helpers";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 export interface UseListConfig {
@@ -103,9 +103,8 @@ export type UseListProps<TQueryFnData, TError, TData> = {
         TError,
         Prettify<BaseListProps>
     > &
-    LiveModeProps & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -145,7 +144,7 @@ export const useList = <
     GetListResponse<TData>,
     TError
 > &
-    IUseLoadingOvertime => {
+    UseLoadingOvertimeReturnType => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();

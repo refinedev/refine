@@ -26,8 +26,8 @@ import { useResource } from "../resource/useResource/index";
 import { BaseListProps } from "../data/useList";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
@@ -137,16 +137,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<BaseListProps>
 > &
-    LiveModeProps & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
     onSearch: (value: string) => void;
     options: Option[];
-} & IUseLoadingOvertime;
+} & UseLoadingOvertimeReturnType;
 
 /**
  * `useSelect` hook is used to fetch data from the dataProvider and return the options for the select box.

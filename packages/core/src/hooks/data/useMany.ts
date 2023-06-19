@@ -31,8 +31,8 @@ import {
 } from "@definitions/helpers";
 import {
     useLoadingOvertime,
-    UseLoadingOvertimeProps,
-    IUseLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
@@ -68,9 +68,8 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<GetManyResponse<TData>, TError, BaseKey[]> &
-    LiveModeProps & {
-        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
-    };
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
@@ -105,7 +104,7 @@ export const useMany = <
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetManyResponse<TData>
 > &
-    IUseLoadingOvertime => {
+    UseLoadingOvertimeReturnType => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();

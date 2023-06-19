@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import { UseResourceReturnType, useRefineContext, useResource } from "..";
+import { useRefineContext } from "..";
 
-export type IUseLoadingOvertimeOnIntervalContext = Omit<
-    UseResourceReturnType,
-    "resources"
->;
+export type UseLoadingOvertimeOnIntervalContext = Record<string, any>;
 
-export type IUseLoadingOvertime = {
-    overtime: UseLoadingOvertimeReturnType;
+export type UseLoadingOvertimeOptionsProps = {
+    overtimeOptions?: UseLoadingOvertimeCoreOptions;
 };
 
 export type UseLoadingOvertimeReturnType = {
+    overtime: {
+        elapsedTime?: number;
+    };
+};
+
+type UseLoadingOvertimeCoreOptions = Omit<
+    UseLoadingOvertimeCoreProps,
+    "isLoading"
+>;
+
+type UseLoadingOvertimeCoreReturnType = {
     elapsedTime?: number;
 };
 
-export type UseLoadingOvertimeProps = {
+type UseLoadingOvertimeCoreProps = {
     /**
      * The loading state. If true, the elapsed time will be calculated.
      */
@@ -33,12 +41,8 @@ export type UseLoadingOvertimeProps = {
      * If not specified, the `onInterval` value from the `overtime` option of the `RefineProvider` will be used.
      *
      * @param elapsedInterval The elapsed time in milliseconds.
-     * @param context The context of the resource.
      */
-    onInterval?: (
-        elapsedInterval: number,
-        context?: IUseLoadingOvertimeOnIntervalContext,
-    ) => void;
+    onInterval?: (elapsedInterval: number) => void;
 };
 
 /**
@@ -49,8 +53,8 @@ export type UseLoadingOvertimeProps = {
  * const { elapsedTime } = useLoadingOvertime({
  *    isLoading,
  *    interval: 1000,
- *    onInterval(elapsedInterval, context) {
- *        console.log("loading overtime", elapsedInterval, context);
+ *    onInterval(elapsedInterval) {
+ *        console.log("loading overtime", elapsedInterval);
  *    },
  * });
  */
@@ -58,8 +62,7 @@ export const useLoadingOvertime = ({
     isLoading,
     interval: intervalProp,
     onInterval: onIntervalProp,
-}: UseLoadingOvertimeProps): UseLoadingOvertimeReturnType => {
-    const { resources, ...resourceRest } = useResource();
+}: UseLoadingOvertimeCoreProps): UseLoadingOvertimeCoreReturnType => {
     const [elapsedTime, setElapsedTime] = useState<number | undefined>(
         undefined,
     );
@@ -97,7 +100,7 @@ export const useLoadingOvertime = ({
     useEffect(() => {
         // call onInterval callback
         if (onInterval && elapsedTime) {
-            onInterval(elapsedTime, resourceRest);
+            onInterval(elapsedTime);
         }
     }, [elapsedTime]);
 
