@@ -1,6 +1,3 @@
-
-
-
 <br/>
 
 <div align="center" style="margin: 30px;">
@@ -13,8 +10,8 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
@@ -44,9 +41,7 @@
 
 </div>
 
-
 [![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon2)
-
 
 <br/>
 <a href="https://refine.dev/">
@@ -55,9 +50,6 @@
   <img alt="how-works-refine" src="https://user-images.githubusercontent.com/18739364/200257209-8fc0c8b1-2568-453e-873f-00513434deed.png">
 </picture>
 </a>
-
-
-
 
 ## What is refine?
 
