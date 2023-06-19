@@ -105,7 +105,7 @@ describe("useMany Hook", () => {
         });
 
         await waitFor(() => {
-            expect(!result.current.isLoading).toBeTruthy();
+            expect(result.current.isLoading).toBeFalsy();
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
     });
