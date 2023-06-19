@@ -151,8 +151,10 @@ export const useImport = <
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const { resource } = useResource(resourceFromProps ?? resourceName);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const { resource, identifier } = useResource(
+        resourceFromProps ?? resourceName,
+    );
+
     const getMeta = useMeta();
 
     const createMany = useCreateMany<TData, TError, TVariables>();
@@ -215,8 +217,7 @@ export const useImport = <
                             const valueFns = values.map((value) => {
                                 const fn = async () => {
                                     const response = await create.mutateAsync({
-                                        resource:
-                                            resourceIdentifierOrName ?? "",
+                                        resource: identifier ?? "",
                                         values: value,
                                         successNotification: false,
                                         errorNotification: false,
@@ -261,8 +262,7 @@ export const useImport = <
                                 const fn = async () => {
                                     const response =
                                         await createMany.mutateAsync({
-                                            resource:
-                                                resourceIdentifierOrName ?? "",
+                                            resource: identifier ?? "",
                                             values: chunkedValues,
                                             successNotification: false,
                                             errorNotification: false,

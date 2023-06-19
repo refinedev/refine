@@ -145,10 +145,7 @@ export const useDelete = <
             dataProviderName,
             values,
         }) => {
-            const resource = select(resourceName);
-
-            const resourceIdentifierOrName =
-                resource.identifier ?? resource.name;
+            const { resource, identifier } = select(resourceName);
 
             const combinedMeta = getMeta({
                 resource,
@@ -163,11 +160,7 @@ export const useDelete = <
 
             if (!(mutationModePropOrContext === "undoable")) {
                 return dataProvider(
-                    pickDataProvider(
-                        resourceIdentifierOrName,
-                        dataProviderName,
-                        resources,
-                    ),
+                    pickDataProvider(identifier, dataProviderName, resources),
                 ).deleteOne<TData, TVariables>({
                     resource: resource.name,
                     id,
@@ -182,7 +175,7 @@ export const useDelete = <
                     const doMutation = () => {
                         dataProvider(
                             pickDataProvider(
-                                resourceIdentifierOrName,
+                                identifier,
                                 dataProviderName,
                                 resources,
                             ),
@@ -210,7 +203,7 @@ export const useDelete = <
                         type: ActionTypes.ADD,
                         payload: {
                             id,
-                            resource: resourceIdentifierOrName,
+                            resource: identifier,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -230,20 +223,13 @@ export const useDelete = <
                 meta,
                 metaData,
             }) => {
-                const resource = select(resourceName);
-
-                const resourceIdentifierOrName =
-                    resource.identifier ?? resource.name;
+                const { identifier } = select(resourceName);
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
                 const queryKey = queryKeys(
-                    resourceIdentifierOrName,
-                    pickDataProvider(
-                        resourceIdentifierOrName,
-                        dataProviderName,
-                        resources,
-                    ),
+                    identifier,
+                    pickDataProvider(identifier, dataProviderName, resources),
                     preferredMeta,
                 );
 
@@ -318,16 +304,13 @@ export const useDelete = <
                     invalidates = ["list", "many"],
                 },
             ) => {
-                const resource = select(resourceName);
-
-                const resourceIdentifierOrName =
-                    resource.identifier ?? resource.name;
+                const { identifier } = select(resourceName);
 
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
-                    resource: resourceIdentifierOrName,
+                    resource: identifier,
                     dataProviderName: pickDataProvider(
-                        resourceIdentifierOrName,
+                        identifier,
                         dataProviderName,
                         resources,
                     ),
@@ -336,7 +319,7 @@ export const useDelete = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id, resource: resourceIdentifierOrName },
+                    payload: { id, resource: identifier },
                 });
             },
             onSuccess: (
@@ -351,35 +334,26 @@ export const useDelete = <
                 },
                 context,
             ) => {
-                const resource = select(resourceName);
+                const { resource, identifier } = select(resourceName);
 
-                const resourceIdentifierOrName =
-                    resource.identifier ?? resource.name;
-
-                const resourceSingular = pluralize.singular(
-                    resourceIdentifierOrName,
-                );
+                const resourceSingular = pluralize.singular(identifier);
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(
-                              _data,
-                              id,
-                              resourceIdentifierOrName,
-                          )
+                        ? successNotification(_data, id, identifier)
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${resourceIdentifierOrName}-notification`,
+                    key: `${id}-${identifier}-notification`,
                     description: translate("notifications.success", "Success"),
                     message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
-                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
+                                `${identifier}.${identifier}`,
                                 resourceSingular,
                             ),
                         },
@@ -411,7 +385,7 @@ export const useDelete = <
                     meta: {
                         id,
                         dataProviderName: pickDataProvider(
-                            resourceIdentifierOrName,
+                            identifier,
                             dataProviderName,
                             resources,
                         ),
@@ -427,10 +401,7 @@ export const useDelete = <
                 { id, resource: resourceName, errorNotification },
                 context,
             ) => {
-                const resource = select(resourceName);
-
-                const resourceIdentifierOrName =
-                    resource.identifier ?? resource.name;
+                const { identifier } = select(resourceName);
 
                 // set back the queries to the context:
                 if (context) {
@@ -442,21 +413,15 @@ export const useDelete = <
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
 
-                    const resourceSingular = pluralize.singular(
-                        resourceIdentifierOrName,
-                    );
+                    const resourceSingular = pluralize.singular(identifier);
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(
-                                  err,
-                                  id,
-                                  resourceIdentifierOrName,
-                              )
+                            ? errorNotification(err, id, identifier)
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${id}-${resourceIdentifierOrName}-notification`,
+                        key: `${id}-${identifier}-notification`,
                         message: translate(
                             "notifications.deleteError",
                             {

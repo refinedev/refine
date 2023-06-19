@@ -137,8 +137,7 @@ export const useList = <
     GetListResponse<TData>,
     TError
 > => {
-    const { resources, resource } = useResource(resourceFromProp);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const { resources, resource, identifier } = useResource(resourceFromProp);
 
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -150,7 +149,7 @@ export const useList = <
     const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
-        resourceIdentifierOrName,
+        identifier,
         dataProviderName,
         resources,
     );
@@ -186,16 +185,12 @@ export const useList = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    const queryKey = queryKeys(
-        resourceIdentifierOrName,
-        pickedDataProvider,
-        preferredMeta,
-    );
+    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
 
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
-        resource: resourceIdentifierOrName,
+        resource: identifier,
         types: ["*"],
         params: {
             meta: combinedMeta,
@@ -294,7 +289,7 @@ export const useList = <
                         ? successNotification(
                               data,
                               notificationValues,
-                              resourceIdentifierOrName,
+                              identifier,
                           )
                         : successNotification;
 
@@ -306,15 +301,11 @@ export const useList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(
-                              err,
-                              notificationValues,
-                              resourceIdentifierOrName,
-                          )
+                        ? errorNotification(err, notificationValues, identifier)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${resourceIdentifierOrName}-useList-notification`,
+                    key: `${identifier}-useList-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },

@@ -79,8 +79,8 @@ export const Edit: React.FC<EditProps> = ({
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const goListPath = useToPath({
         resource,
@@ -110,19 +110,13 @@ export const Edit: React.FC<EditProps> = ({
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resourceIdentifierOrName,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
 
     const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resourceIdentifierOrName,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -139,9 +133,7 @@ export const Edit: React.FC<EditProps> = ({
             ? ({
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resourceIdentifierOrName,
+                      routerType === "legacy" ? resource?.route : identifier,
                   mutationMode,
                   variant: "outlined",
                   onSuccess: () => {
@@ -181,12 +173,12 @@ export const Edit: React.FC<EditProps> = ({
                             className={RefinePageHeaderClassNames.Title}
                         >
                             {translate(
-                                `${resourceIdentifierOrName}.titles.edit`,
+                                `${identifier}.titles.edit`,
                                 `Edit ${userFriendlyResourceName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
-                                        resourceIdentifierOrName,
+                                        identifier,
                                     "singular",
                                 )}`,
                             )}

@@ -64,8 +64,8 @@ export const Show: React.FC<ShowProps> = ({
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const goListPath = useToPath({
         resource,
@@ -87,20 +87,14 @@ export const Show: React.FC<ShowProps> = ({
 
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resourceIdentifierOrName,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
     const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
         ? {
               ...(isLoading ? { disabled: true } : {}),
               type: "primary",
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resourceIdentifierOrName,
+              resource: routerType === "legacy" ? resource?.route : identifier,
               recordItemId: id,
           }
         : undefined;
@@ -109,9 +103,7 @@ export const Show: React.FC<ShowProps> = ({
             ? {
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resourceIdentifierOrName,
+                      routerType === "legacy" ? resource?.route : identifier,
                   recordItemId: id,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -125,10 +117,7 @@ export const Show: React.FC<ShowProps> = ({
             : undefined;
     const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resourceIdentifierOrName,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -157,12 +146,12 @@ export const Show: React.FC<ShowProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resourceIdentifierOrName}.titles.show`,
+                        `${identifier}.titles.show`,
                         `Show ${userFriendlyResourceName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                resourceIdentifierOrName,
+                                identifier,
                             "singular",
                         )}`,
                     )

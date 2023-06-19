@@ -190,8 +190,7 @@ export const useSelect = <
         dataProviderName,
     } = props;
 
-    const { resource } = useResource(resourceFromProps);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const { resource, identifier } = useResource(resourceFromProps);
 
     const getMeta = useMeta();
 
@@ -220,7 +219,7 @@ export const useSelect = <
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
     const defaultValueQueryResult = useMany<TQueryFnData, TError, TData>({
-        resource: resourceIdentifierOrName,
+        resource: identifier,
         ids: defaultValues,
         queryOptions: {
             ...defaultValueQueryOptions,
@@ -253,7 +252,7 @@ export const useSelect = <
     );
 
     const queryResult = useList<TQueryFnData, TError, TData>({
-        resource: resourceIdentifierOrName,
+        resource: identifier,
         sorters: pickNotDeprecated(sorters, sort),
         filters: filters.concat(search),
         pagination: {

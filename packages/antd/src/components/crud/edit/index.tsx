@@ -70,8 +70,8 @@ export const Edit: React.FC<EditProps> = ({
         resource,
         action,
         id: idFromParams,
+        identifier,
     } = useResource(resourceFromProps);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const goListPath = useToPath({
         resource,
@@ -94,19 +94,13 @@ export const Edit: React.FC<EditProps> = ({
     const listButtonProps: ListButtonProps | undefined = hasList
         ? {
               ...(isLoading ? { disabled: true } : {}),
-              resource:
-                  routerType === "legacy"
-                      ? resource?.route
-                      : resourceIdentifierOrName,
+              resource: routerType === "legacy" ? resource?.route : identifier,
           }
         : undefined;
 
     const refreshButtonProps: RefreshButtonProps = {
         ...(isLoading ? { disabled: true } : {}),
-        resource:
-            routerType === "legacy"
-                ? resource?.route
-                : resourceIdentifierOrName,
+        resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
         dataProviderName,
     };
@@ -116,9 +110,7 @@ export const Edit: React.FC<EditProps> = ({
             ? {
                   ...(isLoading ? { disabled: true } : {}),
                   resource:
-                      routerType === "legacy"
-                          ? resource?.route
-                          : resourceIdentifierOrName,
+                      routerType === "legacy" ? resource?.route : identifier,
                   mutationMode,
                   onSuccess: () => {
                       if (routerType === "legacy") {
@@ -167,12 +159,12 @@ export const Edit: React.FC<EditProps> = ({
                 title={
                     title ??
                     translate(
-                        `${resourceIdentifierOrName}.titles.edit`,
+                        `${identifier}.titles.edit`,
                         `Edit ${userFriendlyResourceName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                resourceIdentifierOrName,
+                                identifier,
                             "singular",
                         )}`,
                     )

@@ -118,8 +118,11 @@ export const useModalForm = <
         autoResetForm = true,
     } = modalProps ?? {};
 
-    const { resource, action: actionFromParams } = useResource(resourceProp);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+    const {
+        resource,
+        action: actionFromParams,
+        identifier,
+    } = useResource(resourceProp);
 
     const parsed = useParsed();
     const go = useGo();
@@ -135,7 +138,7 @@ export const useModalForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `modal-${resourceIdentifierOrName}-${action}`
+            ? `modal-${identifier}-${action}`
             : undefined;
 
     const useMantineFormResult = useForm<
@@ -270,14 +273,14 @@ export const useModalForm = <
     );
 
     const title = translate(
-        `${resourceIdentifierOrName}.titles.${actionProp}`,
+        `${identifier}.titles.${actionProp}`,
         undefined,
         `${userFriendlyResourceName(
             `${actionProp} ${
                 resource?.meta?.label ??
                 resource?.options?.label ??
                 resource?.label ??
-                resourceIdentifierOrName
+                identifier
             }`,
             "singular",
         )}`,

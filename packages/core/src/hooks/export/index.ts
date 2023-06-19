@@ -111,18 +111,17 @@ export const useExport = <
 
     const dataProvider = useDataProvider();
     const getMeta = useMeta();
-    const { resource, resources } = useResource(
+    const { resource, resources, identifier } = useResource(
         pickNotDeprecated(resourceFromProps, resourceName),
     );
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const filename = `${userFriendlyResourceName(
-        resourceIdentifierOrName,
+        identifier,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(resourceIdentifierOrName, dataProviderName, resources),
+        pickDataProvider(identifier, dataProviderName, resources),
     );
 
     const combinedMeta = getMeta({

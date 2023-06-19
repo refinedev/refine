@@ -263,6 +263,7 @@ export const useForm = <
         resource,
         id: idFromRoute,
         action: actionFromRoute,
+        identifier,
     } = useResource(resourceFromProps);
     const { resource: inferedResource } = useResource();
 
@@ -297,8 +298,6 @@ export const useForm = <
         setId(defaultId);
     }, [defaultId]);
 
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
-
     const getAction = () => {
         if (actionFromProps) return actionFromProps;
         else if (actionFromRoute === "edit" || actionFromRoute === "clone")
@@ -323,7 +322,7 @@ export const useForm = <
         (isClone || isEdit) &&
             Boolean(resourceFromProps) &&
             !Boolean(idFromProps),
-        `[useForm]: action: "${action}", resource: "${resourceIdentifierOrName}", id: ${id} \n\n` +
+        `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
             `If you don't use the \`setId\` method to set the \`id\`, you should pass the \`id\` prop to \`useForm\`. Otherwise, \`useForm\` will not be able to infer the \`id\` from the current URL. \n\n` +
             `See https://refine.dev/docs/api-reference/core/hooks/useForm/#resource`,
     );
@@ -340,7 +339,7 @@ export const useForm = <
     const enableQuery = id !== undefined && (isEdit || isClone);
 
     const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: resourceIdentifierOrName,
+        resource: identifier,
         id: id ?? "",
         queryOptions: {
             enabled: enableQuery,
@@ -409,7 +408,7 @@ export const useForm = <
                 return mutateCreate(
                     {
                         values,
-                        resource: resourceIdentifierOrName ?? resource.name,
+                        resource: identifier ?? resource.name,
                         successNotification,
                         errorNotification,
                         meta: { ...combinedMeta, ...mutationMeta },
@@ -449,7 +448,7 @@ export const useForm = <
         const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
             id: id ?? "",
             values,
-            resource: resourceIdentifierOrName ?? resource.name,
+            resource: identifier ?? resource.name,
             mutationMode,
             undoableTimeout,
             successNotification,
