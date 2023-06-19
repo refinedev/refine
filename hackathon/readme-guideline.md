@@ -1,4 +1,4 @@
-# refine Hackathon #2 - README Guideline
+# refine + DEV Open Source Hackathon #2 - README Guideline
 
 [![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon2)
 
@@ -17,7 +17,7 @@ You can add `refine-hackathon` tag to your repository to make it easier for us t
 
 Provide your GitHub repository with a visually-appealing cover image for an immediate impression of your submission.
 
-[:point_right: You can use our template cover photos on Figma to create your own or you can use whatever you want.](https://www.figma.com/community/file/1251145251163309086)
+[:point_right: You can use our template cover photos on Figma for README cover image.](https://www.figma.com/community/file/1251145251163309086)
 
 ### Project Demo link
 
