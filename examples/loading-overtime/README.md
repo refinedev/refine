@@ -31,11 +31,11 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example overloading
+npm create refine-app@latest -- --example loading-overtime
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open base-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/overloading?view=preview&theme=dark&codemirror=1)
+[![Open base-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/loading-overtime?view=preview&theme=dark&codemirror=1)
