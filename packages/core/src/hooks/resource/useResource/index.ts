@@ -54,6 +54,7 @@ type UseResourceReturnType = {
         resourceName: string,
         force?: T,
     ) => SelectReturnType<T>;
+    identifier?: string;
 };
 
 type UseResourceReturnTypeWithResource = UseResourceReturnType & {
@@ -139,6 +140,8 @@ export function useResource(
         const legacyAction = legacyParams.action;
         const legacyResourceName =
             oldProps?.resourceName ?? legacyResource?.name;
+        const legacyIdentifier =
+            legacyResource?.identifier ?? legacyResource?.name;
 
         return {
             resources,
@@ -147,6 +150,7 @@ export function useResource(
             id: legacyId,
             action: legacyAction,
             select,
+            identifier: legacyIdentifier,
         };
     }
     /** Legacy Router - End */
@@ -176,5 +180,6 @@ export function useResource(
         id: params.id,
         action: params.action,
         select,
+        identifier: resource?.identifier ?? resource?.name,
     };
 }
