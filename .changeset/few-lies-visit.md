@@ -8,4 +8,4 @@ feat: implement following hooks have `useLoadingOvertime` hook
 - [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#overtimeoptions)
 - [`useModalForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useModalForm/#overtimeoptions)
 - [`useStepsForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useStepsForm/#overtimeoptions)
-- [`useSelect`](http://localhost:3000/docs/api-reference/mantine/hooks/useSelect/#overtimeoptions)
+- [`useSelect`](https://refine.dev/docs/api-reference/mantine/hooks/useSelect/#overtimeoptions)
