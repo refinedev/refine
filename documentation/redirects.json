@@ -840,6 +840,10 @@
     {
       "from": "/week-of-refine/",
       "to": "/"
+    },
+    {
+      "from": "/docs/examples/next-js/NextAuth.js/",
+      "to": "/docs/examples/next-js/NextAuth-js/"
     }
   ]
 }

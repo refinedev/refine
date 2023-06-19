@@ -71,7 +71,7 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
                 )}
             >
                 <TagsList tags={tags} />
-                <div className={clsx("pt-8 blog-md:pt-16")}>
+                <div className={clsx("pt-0 blog-md:pt-16")}>
                     <div className="text-gray-500 dark:text-gray-400">
                         Posts tagged with
                     </div>
