@@ -148,9 +148,9 @@ https://api.fake-rest.refine.dev/posts/1
 
 ### `identifier`
 
-The `identifier` value servers as the main matching key for a resource. It allows you to effectively differentiate between multiple resources that share the same `name`.
+The `identifier` value serves as the main matching key for a resource. It allows you to effectively differentiate between multiple resources that share the same `name`.
 
-There are scenarios where you may require multiple resources with the same `name` but distinct `meta` values. For instance, you might want a posts resource utilizing the default data provider and another posts resource utilizing the "typicode" data provider. In this case, you can use the `identifier` to differentiate between them.
+There are scenarios where you may have multiple resources with the same `name` but different `meta` values. For instance, you might want a `posts` resource utilizing the default data provider and another `posts` resource utilizing the "typicode" data provider. In this case, you can use the `identifier` to differentiate between them.
 
 ```tsx
 import { Refine } from "@refinedev/core";
