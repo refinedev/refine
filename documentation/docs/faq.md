@@ -494,13 +494,13 @@ useMany({
 
 **Yes!** You can work with JavaScript!
 
-[Refer to **refine JavaScript** example → ](https://GitHub.com/refinedev/refine/tree/master/examples/with-javascript)
+[Refer to **refine JavaScript** example → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
 
 ## How I can override specific function of Data Providers?
 
 In some cases, you may need to override functions of refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://GitHub.com/refinedev/refine/tree/next/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
+For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
 ```tsx
 import dataProvider from "@refinedev/simple-rest";
@@ -580,7 +580,7 @@ This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mod
 
 > Refer to [`<React.StrictMode>` documentation][react-strict-mode] for more information. &#8594
 
-> Refer to [TanStack Query issue](https://GitHub.com/TanStack/query/issues/3633) for more information. &#8594
+> Refer to [TanStack Query issue](https://github.com/TanStack/query/issues/3633) for more information. &#8594
 
 [react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode
 
@@ -744,9 +744,9 @@ To remove the GitHub Banner, you need to find and remove the `<GitHubBanner/>` c
 
 Here are the locations where you can find and remove the `<GitHubBanner/>` component based on different React platforms:
 
--   Vite: [`src/App.tsx`](https://GitHub.com/refinedev/refine/blob/next/examples/auth-antd/src/App.tsx#L161)
--   Next.js: [`pages/_app.tsx`](https://GitHub.com/refinedev/refine/blob/next/examples/with-nextjs/pages/_app.tsx#L47)
--   Remix: [`app/root.tsx`](https://GitHub.com/refinedev/refine/blob/next/examples/with-remix-antd/app/root.tsx#L37)
+-   Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/next/examples/auth-antd/src/App.tsx#L161)
+-   Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-nextjs/pages/_app.tsx#L47)
+-   Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-remix-antd/app/root.tsx#L37)
 
 ## Module "X" has no exported member "Y"
 
