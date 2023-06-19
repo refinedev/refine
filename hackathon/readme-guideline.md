@@ -1,12 +1,12 @@
-# refine Hackathon 2023 - README Guidelines
+# refine + DEV Open Source Hackathon #2 - README Guideline
 
-![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png)
+[![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png)](https://s.refine.dev/hackathon2)
 
-refine Hackathon 2023 is just around the corner and this repository serves as your go-to source for everything you need to know in order to submit a qualifying entry.  
+refine Open Source Hackathon #2 is just around the corner and this repository serves as your go-to source for everything you need to know in order to submit a qualifying entry.  
 
-[:point_right: Refer to Hackathon January 2023 details.](https://s.refine.dev/hackathon)
+[:point_right: refine Open Source Hackathon #2 details.](https://s.refine.dev/hackathon2)
 
-[:point_right: Please submit your project on refine Devpost Hackathon page.](https://refine-open-source-hackathon.devpost.com/)
+[:point_right: Please submit your project on refine DEV platform announcement post.](#)
 
 From rules and guidelines, it provides all the information necessary for successful GitHub submissions. Please prepare your repository README as shown below
 
@@ -17,7 +17,7 @@ You can add `refine-hackathon` tag to your repository to make it easier for us t
 
 Provide your GitHub repository with a visually-appealing cover image for an immediate impression of your submission.
 
-[:point_right: You can use our template cover photos on Figma to create your own or you can use whatever you want.](https://www.figma.com/community/file/1195374162080322036)
+[:point_right: You can use our template cover photos on Figma for README cover image.](https://www.figma.com/community/file/1251145251163309086)
 
 ### Project Demo link
 
