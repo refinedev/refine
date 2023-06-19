@@ -498,7 +498,7 @@ describe("useOne Hook", () => {
         });
     });
 
-    it("correctly with `interval` and `onInterval` params", async () => {
+    it("works correctly with `interval` and `onInterval` params", async () => {
         const onInterval = jest.fn();
         const { result } = renderHook(
             () =>

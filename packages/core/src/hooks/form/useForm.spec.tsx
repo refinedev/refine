@@ -511,7 +511,7 @@ describe("useForm Hook", () => {
         });
     });
 
-    it("correctly with `interval` and `onInterval` params for query", async () => {
+    it("works correctly with `interval` and `onInterval` params for query", async () => {
         const onInterval = jest.fn();
         const { result } = renderHook(
             () =>
@@ -738,7 +738,7 @@ describe("useForm Hook", () => {
             );
         });
 
-        it("correctly with `interval` and `onInterval` params for create mutation", async () => {
+        it("works correctly with `interval` and `onInterval` params for create mutation", async () => {
             const onInterval = jest.fn();
             const { result } = renderHook(
                 () =>
@@ -970,7 +970,7 @@ describe("useForm Hook", () => {
             );
         });
 
-        it("correctly with `interval` and `onInterval` params for edit mutation", async () => {
+        it("works correctly with `interval` and `onInterval` params for edit mutation", async () => {
             const onInterval = jest.fn();
             const { result } = renderHook(
                 () =>
