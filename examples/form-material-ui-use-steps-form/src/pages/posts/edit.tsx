@@ -15,7 +15,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "interfaces";
 
 const stepTitles = [
     "Edit Title",
@@ -32,11 +32,7 @@ export const PostEdit: React.FC = () => {
         control,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm<
-        IPost,
-        HttpError,
-        IPost & { category: ICategory; slug: string }
-    >();
+    } = useStepsForm<IPost, HttpError, Nullable<IPost>>();
 
     const theme = useTheme();
     const isSmallOrLess = useMediaQuery(theme.breakpoints.down("sm"));
@@ -74,7 +70,7 @@ export const PostEdit: React.FC = () => {
                             // eslint-disable-next-line
                             defaultValue={null as any}
                             render={({ field }) => (
-                                <Autocomplete
+                                <Autocomplete<IStatus>
                                     id="status"
                                     options={["published", "draft", "rejected"]}
                                     {...field}
@@ -102,7 +98,7 @@ export const PostEdit: React.FC = () => {
                             // eslint-disable-next-line
                             defaultValue={null as any}
                             render={({ field }) => (
-                                <Autocomplete
+                                <Autocomplete<ICategory>
                                     id="category"
                                     {...autocompleteProps}
                                     {...field}
