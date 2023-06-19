@@ -314,7 +314,7 @@ export const useSelect = <
     };
 
     const { elapsedTime } = useLoadingOvertime({
-        isLoading: queryResult.isFetching,
+        isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
         interval: overtimeOptions?.interval,
         onInterval: overtimeOptions?.onInterval,
     });
