@@ -265,18 +265,14 @@ export const useForm = <
         action: actionFromRoute,
         identifier,
     } = useResource(resourceFromProps);
-    const { resource: inferedResource } = useResource();
+    const { identifier: inferredIdentifier } = useResource();
 
     /** We only accept `id` from URL params if `resource` is not explicitly passed. */
     /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
     const getDefaultId = () => {
         const idFromPropsOrRoute = idFromProps ?? idFromRoute;
 
-        if (
-            resourceFromProps &&
-            resourceFromProps !== inferedResource?.identifier &&
-            resourceFromProps !== inferedResource?.name
-        ) {
+        if (resourceFromProps && resourceFromProps !== inferredIdentifier) {
             return idFromProps;
         }
 

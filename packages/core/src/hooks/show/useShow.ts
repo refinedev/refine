@@ -105,17 +105,13 @@ export const useShow = <
         id: idFromRoute,
         identifier,
     } = useResource(resourceFromProp);
-    const { resource: inferedResource } = useResource();
+    const { identifier: inferredIdentifier } = useResource();
     const getMeta = useMeta();
 
     const getDefaultId = () => {
         const idFromPropsOrRoute = id ?? idFromRoute;
 
-        if (
-            resourceFromProp &&
-            resourceFromProp !== inferedResource?.identifier &&
-            resourceFromProp !== inferedResource?.name
-        ) {
+        if (resourceFromProp && resourceFromProp !== inferredIdentifier) {
             return id;
         }
 
