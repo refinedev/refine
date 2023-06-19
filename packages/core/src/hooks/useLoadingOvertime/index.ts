@@ -6,6 +6,10 @@ export type IUseLoadingOvertimeOnIntervalContext = Omit<
     "resources"
 >;
 
+export type IUseLoadingOvertime = {
+    overtime: UseLoadingOvertimeReturnType;
+};
+
 export type UseLoadingOvertimeReturnType = {
     elapsedTime?: number;
 };

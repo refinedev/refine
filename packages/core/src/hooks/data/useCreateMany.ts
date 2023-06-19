@@ -28,6 +28,11 @@ import {
     pickDataProvider,
     pickNotDeprecated,
 } from "@definitions";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 type useCreateManyParams<TData, TError, TVariables> = {
     resource: string;
@@ -62,6 +67,8 @@ export type UseCreateManyProps<
         >,
         "mutationFn" | "onError" | "onSuccess"
     >;
+} & {
+    overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
 };
 
 /**
@@ -82,11 +89,13 @@ export const useCreateMany = <
     TVariables = {},
 >({
     mutationOptions,
+    overtimeOptions,
 }: UseCreateManyProps<TData, TError, TVariables> = {}): UseCreateManyReturnType<
     TData,
     TError,
     TVariables
-> => {
+> &
+    IUseLoadingOvertime => {
     const dataProvider = useDataProvider();
     const { resources } = useResource();
     const translate = useTranslate();
@@ -240,5 +249,11 @@ export const useCreateMany = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };

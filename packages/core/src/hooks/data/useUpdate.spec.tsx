@@ -120,6 +120,53 @@ describe("useUpdate Hook", () => {
         );
     });
 
+    it("works correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useUpdate({
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            update: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            id: 1,
+            values: {
+                title: "foo",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeFalsy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
+    });
+
     describe("usePublish", () => {
         it("publish live event on success", async () => {
             const onPublishMock = jest.fn();

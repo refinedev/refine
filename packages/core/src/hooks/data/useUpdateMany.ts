@@ -40,6 +40,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 type UpdateManyParams<TData, TError, TVariables> = {
     ids: BaseKey[];
@@ -74,7 +79,8 @@ type UseUpdateManyReturnType<
     TError,
     UpdateManyParams<TData, TError, TVariables>,
     UpdateContext<TData>
->;
+> &
+    IUseLoadingOvertime;
 
 export type UseUpdateManyProps<
     TData extends BaseRecord = BaseRecord,
@@ -90,6 +96,8 @@ export type UseUpdateManyProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
+} & {
+    overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
 };
 
 /**
@@ -110,6 +118,7 @@ export const useUpdateMany = <
     TVariables = {},
 >({
     mutationOptions,
+    overtimeOptions,
 }: UseUpdateManyProps<TData, TError, TVariables> = {}): UseUpdateManyReturnType<
     TData,
     TError,
@@ -501,5 +510,11 @@ export const useUpdateMany = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };

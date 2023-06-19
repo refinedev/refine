@@ -29,6 +29,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeProps,
+    IUseLoadingOvertime,
+} from "../useLoadingOvertime";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
     /**
@@ -67,7 +72,9 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
     TError,
     Prettify<{ id?: BaseKey } & MetaQuery>
 > &
-    LiveModeProps;
+    LiveModeProps & {
+        overtimeOptions?: Omit<UseLoadingOvertimeProps, "isLoading">;
+    };
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -98,9 +105,11 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    overtimeOptions,
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetOneResponse<TData>
-> => {
+> &
+    IUseLoadingOvertime => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -226,5 +235,11 @@ export const useOne = <
         },
     );
 
-    return queryResponse;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResponse.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...queryResponse, overtime: { elapsedTime } };
 };
