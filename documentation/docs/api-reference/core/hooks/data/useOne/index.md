@@ -220,8 +220,8 @@ const { overtime } = useOne({
     //...
     overtimeOptions: {
         interval: 1000,
-        onInterval(elapsedInterval, context) {
-            console.log(elapsedInterval, context);
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
         },
     }
 });

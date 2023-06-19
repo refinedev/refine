@@ -56,8 +56,8 @@ const App: React.FC = () => {
                         warnWhenUnsavedChanges: true,
                         overtime: {
                             interval: 1000,
-                            onInterval(elapsedInterval, context) {
-                                console.log(elapsedInterval, context);
+                            onInterval(elapsedInterval) {
+                                console.log(elapsedInterval);
                             },
                         },
                     }}

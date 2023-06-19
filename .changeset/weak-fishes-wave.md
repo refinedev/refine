@@ -10,8 +10,8 @@ if you need to do something when the loading time exceeds the specified time, re
 const { elapsedTime } = useLoadingOvertime({
    isLoading,
    interval: 1000,
-   onInterval(elapsedInterval, context) {
-       console.log("loading overtime", elapsedInterval, context);
+   onInterval(elapsedInterval) {
+       console.log("loading overtime", elapsedInterval);
    },
 });
 ```
@@ -25,11 +25,10 @@ const { elapsedTime } = useLoadingOvertime({
         //...
         overtime: {
             interval: 2000, // default 1000
-            onInterval(elapsedInterval, context) {
+            onInterval(elapsedInterval) {
                 console.log(
                     "loading overtime",
                     elapsedInterval,
-                    context,
                 );
             },
         },
