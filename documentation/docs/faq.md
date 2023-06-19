@@ -738,6 +738,16 @@ You can use the command to copy the default `Sider` component to your project. T
 
 [Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)
 
+## How can I remove Github Banner?
+
+To remove the Github Banner, you need to locate and remove the `<GithubBanner/>` component from your React application. The specific location of this component may vary depending on the React platform you are using.
+
+Here are the locations where you can find and remove the `<GithubBanner/>` component based on different React platforms:
+
+-   Vite: The component can be found in the [`src/App.tsx`](https://github.com/refinedev/refine/blob/next/examples/auth-antd/src/App.tsx#L161) file of your Vite project. You can remove it from there.
+-   Next.js: Locate the [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-nextjs/pages/_app.tsx) file in your Next.js project and remove the `<GithubBanner/>` component from there.
+-   Remix: In your Remix project, find the [`app/root.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-remix-antd/app/root.tsx#L37) file and remove the `<GithubBanner/>` component.
+
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [use-form-antd]: /docs/api-reference/antd/hooks/form/useForm/
