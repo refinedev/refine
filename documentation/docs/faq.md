@@ -740,9 +740,9 @@ You can use the command to copy the default `Sider` component to your project. T
 
 ## How can I remove GitHub Banner?
 
-To remove the GitHub Banner, you need to find and remove the `<GitHubBanner/>` component from your React application. The specific location of this component may vary depending on the React platform you are using.
+To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` component from your React application. The specific location of this component may vary depending on the React platform you are using.
 
-Here are the locations where you can find and remove the `<GitHubBanner/>` component based on different React platforms:
+Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
 
 -   Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/next/examples/auth-antd/src/App.tsx#L161)
 -   Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-nextjs/pages/_app.tsx#L47)
