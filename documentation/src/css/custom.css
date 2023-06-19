@@ -13,10 +13,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @layer utilities {
-    .animation-running { 
+    .animation-running {
         animation-play-state: running;
     }
-    .animation-paused { 
+    .animation-paused {
         animation-play-state: paused;
     }
     .animation-slower-speed {
@@ -39,16 +39,16 @@
         mask-size: 1920px 288px;
         mask-position: center;
     }
-    
+
     .landing-image-bottom-mobile-bg {
-        mask-image: url('../../static/assets/hero-video-bottom-mobile.svg');
+        mask-image: url("../../static/assets/hero-video-bottom-mobile.svg");
         mask-size: 620px 350px;
         mask-position: top;
     }
 
     @screen landing-sm {
         .landing-image-bottom-mobile-bg {
-            mask-image: url('../../static/assets/hero-video-bottom-mobile.svg');
+            mask-image: url("../../static/assets/hero-video-bottom-mobile.svg");
             mask-size: 720px 316px;
             mask-position: top;
         }
@@ -56,20 +56,36 @@
 
     @screen landing-md {
         .landing-image-bottom-mobile-bg {
-            mask-image: url('../../static/assets/hero-video-bottom-mobile.svg');
+            mask-image: url("../../static/assets/hero-video-bottom-mobile.svg");
             mask-size: 1080px 474px;
             mask-position: top;
         }
     }
 
     .landing-wide-mask {
-        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 1%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 99%, rgba(0,0,0,0) 100%);
+        mask-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0) 1%,
+            rgba(0, 0, 0, 1) 10%,
+            rgba(0, 0, 0, 1) 90%,
+            rgba(0, 0, 0, 0) 99%,
+            rgba(0, 0, 0, 0) 100%
+        );
         mask-size: 1920px 100%;
         mask-position: center;
         mask-repeat: no-repeat;
     }
     .landing-playground-slide-mask {
-        mask-image: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,1) 37.5%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 75.5%, rgba(0,0,0,0.2) 100%);
+        mask-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.4) 30%,
+            rgba(0, 0, 0, 1) 37.5%,
+            rgba(0, 0, 0, 1) 65%,
+            rgba(0, 0, 0, 0.4) 75.5%,
+            rgba(0, 0, 0, 0.2) 100%
+        );
         mask-size: 100% 100%;
         mask-position: center;
         mask-repeat: no-repeat;
@@ -124,7 +140,7 @@
     --tutorial-toc-text-color-dark: #252527;
     --tutorial-toc-text-color-light: #6b7280;
     --prism-background-color: #292d3e;
-    --docusaurus-highlighted-code-line-bg: #3E425B;
+    --docusaurus-highlighted-code-line-bg: #3e425b;
     --ifm-code-font-size: 85%;
     --browser-window-bezel-color: #ebedf0;
     --browser-window-bezel-color-accent: #ebedf0;
@@ -145,7 +161,7 @@
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;
     --ifm-font-color-base: #f6f6f9;
-    --docusaurus-highlighted-code-line-bg: #3E425B;
+    --docusaurus-highlighted-code-line-bg: #3e425b;
     --browser-window-bezel-color: #292d3e;
     --browser-window-bezel-color-accent: #4e5264;
     --tutorial-toc-bg-color: #27272a;
@@ -888,6 +904,17 @@ html[data-theme="dark"]:not([data-customized="true"])
 .props-table__default-value-cell *,
 .props-list__info-item * {
     margin-bottom: 0;
+}
+
+.props-table--name,
+.props-table__type-cell p,
+.props-table__description-cell p,
+.props-table__default-value-cell p {
+    @apply text-sm 2xl:text-lg;
+}
+
+.props-table__type-cell code p {
+    @apply text-xs 2xl:text-base;
 }
 
 .docs-wrapper table {

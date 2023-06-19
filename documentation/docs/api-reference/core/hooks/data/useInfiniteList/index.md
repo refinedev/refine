@@ -437,7 +437,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 | Description                                       | Type                                                                                                                                                                     |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) |
+| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) |
 
 ## Example
 

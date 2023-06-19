@@ -349,6 +349,6 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 | Description                                | Type                                                                                                                                                                                                              |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; id: BaseKey; values: TVariables; },`<br/>` UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; id: BaseKey; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
 
 > `*` `UpdateContext` is an internal type.
