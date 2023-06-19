@@ -144,13 +144,6 @@ describe("useLoadingOvertime Hook", () => {
         const { elapsedTime } = result.current;
         expect(elapsedTime).toBe(1000);
         expect(onInterval).toBeCalledTimes(1);
-        expect(onInterval).toBeCalledWith(1000, {
-            action: undefined,
-            id: undefined,
-            resource: {
-                name: "posts",
-            },
-            resourceName: "posts",
-        });
+        expect(onInterval).toBeCalledWith(1000);
     });
 });
