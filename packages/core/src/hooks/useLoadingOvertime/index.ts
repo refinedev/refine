@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRefineContext } from "..";
 
-export type UseLoadingOvertimeOnIntervalContext = Record<string, any>;
+export type UseLoadingOvertimeRefineContext = Omit<
+    UseLoadingOvertimeCoreProps,
+    "isLoading" | "interval"
+> &
+    Required<Pick<UseLoadingOvertimeCoreProps, "interval">>;
 
 export type UseLoadingOvertimeOptionsProps = {
     overtimeOptions?: UseLoadingOvertimeCoreOptions;
