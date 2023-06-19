@@ -165,8 +165,7 @@ export const useForm = <
         overtimeOptions,
     });
 
-    const { formLoading, onFinish, queryResult, id, overtime } =
-        useFormCoreResult;
+    const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
 
     const {
         warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
@@ -214,6 +213,5 @@ export const useForm = <
         onFinish: async (values?: TVariables) => {
             return await onFinish(values ?? formSF.form.getFieldsValue(true));
         },
-        overtime,
     };
 };

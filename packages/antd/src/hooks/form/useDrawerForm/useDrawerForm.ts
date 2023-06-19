@@ -135,8 +135,7 @@ export const useDrawerForm = <
         ...rest,
     });
     const [initiallySynced, setInitiallySynced] = React.useState(false);
-    const { form, formProps, formLoading, id, setId, onFinish, overtime } =
-        useFormProps;
+    const { form, formProps, formLoading, id, setId, onFinish } = useFormProps;
 
     const { resource, action: actionFromParams } = useResource(rest.resource);
 
