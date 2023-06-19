@@ -253,12 +253,14 @@ describe("legacy router provider", () => {
                     }),
                 });
 
-                const resource = result.current.select("categories");
+                const { resource, identifier } =
+                    result.current.select("categories");
 
                 expect(resource).toStrictEqual({
                     name: "categories",
                     identifier: "categories",
                 });
+                expect(identifier).toBe("categories");
             });
 
             it("should return undefined when force is false and resource not found", async () => {
@@ -269,28 +271,34 @@ describe("legacy router provider", () => {
                     }),
                 });
 
-                const resource = result.current.select("categories", false);
+                const selectResult = result.current.select("categories", false);
 
-                expect(resource).toBeUndefined();
+                expect(selectResult?.resource).toBeUndefined();
+                expect(selectResult?.identifier).toBeUndefined();
             });
 
             it("should return matched resource, if resource is found", async () => {
                 const { result } = renderHook(() => useResource(), {
                     wrapper: TestWrapper({
                         resources: [
-                            { name: "posts", meta: { label: "Posts" } },
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: { label: "Posts" },
+                            },
                         ],
                         legacyRouterProvider: mockLegacyRouterProvider(),
                     }),
                 });
 
-                const resource = result.current.select("posts", false);
+                const selectResult = result.current.select("posts", false);
 
-                expect(resource).toStrictEqual({
+                expect(selectResult?.resource).toStrictEqual({
                     canCreate: false,
                     canDelete: undefined,
                     canEdit: false,
                     canShow: false,
+                    identifier: "featured-posts",
                     label: "Posts",
                     name: "posts",
                     meta: {
@@ -299,6 +307,7 @@ describe("legacy router provider", () => {
                     options: { route: undefined },
                     route: "/posts",
                 });
+                expect(selectResult?.identifier).toBe("featured-posts");
             });
         });
 
@@ -354,12 +363,14 @@ describe("legacy router provider", () => {
                     }),
                 });
 
-                const resource = result.current.select("categories");
+                const { resource, identifier } =
+                    result.current.select("categories");
 
                 expect(resource).toStrictEqual({
                     name: "categories",
                     identifier: "categories",
                 });
+                expect(identifier).toBe("categories");
             });
 
             it("should return undefined when force is false and if resource not found", async () => {
@@ -370,9 +381,10 @@ describe("legacy router provider", () => {
                     }),
                 });
 
-                const resource = result.current.select("categories", false);
+                const selectResult = result.current.select("categories", false);
 
-                expect(resource).toBeUndefined();
+                expect(selectResult?.resource).toBeUndefined();
+                expect(selectResult?.identifier).toBeUndefined();
             });
 
             it("should return matched resource, if resource is found", async () => {
@@ -381,6 +393,7 @@ describe("legacy router provider", () => {
                         resources: [
                             {
                                 name: "posts",
+                                identifier: "featured-posts",
                                 meta: { label: "Featured Posts" },
                             },
                         ],
@@ -388,13 +401,14 @@ describe("legacy router provider", () => {
                     }),
                 });
 
-                const resource = result.current.select("posts", false);
+                const selectResult = result.current.select("posts", false);
 
-                expect(resource).toStrictEqual({
+                expect(selectResult?.resource).toStrictEqual({
                     canCreate: false,
                     canDelete: undefined,
                     canEdit: false,
                     canShow: false,
+                    identifier: "featured-posts",
                     label: "Featured Posts",
                     name: "posts",
                     meta: {
@@ -403,6 +417,7 @@ describe("legacy router provider", () => {
                     options: { route: undefined },
                     route: "/posts",
                 });
+                expect(selectResult?.identifier).toBe("featured-posts");
             });
         });
 
