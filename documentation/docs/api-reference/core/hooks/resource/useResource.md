@@ -56,7 +56,15 @@ Resource name of the `resource` object.
 
 ### `select`
 
-The function allows you to retrieve a resource object by providing either a resource `name` or `identifier`. By default, if there is no match for the given `name` or `identifier`, the function will return the resource object associated with the provided value. If you pass `false` as the second parameter, it will return `undefined` if there is no match.
+The function allows you to retrieve a `resource` object and matched `identifier` by providing either a resource `name` or `identifier`. By default, if there is no match for the given `name` or `identifier`, the function will return the `resource` object and `identifier` associated with the provided value.
+
+If you don't pass any parameter to `useResource`, it will try to infer the `resource` from the current route. If there is no match, the `resource` and `identifier` will be `undefined`.
+
+The function also accepts a second parameter `force` which is `true` by default. If you set it to `false`, it will not return a `resource` object and `identifier` if there is no match.
+
+### `identifier`
+
+`identifier` parameter of the current route.
 
 ## API Reference
 
@@ -66,14 +74,15 @@ The function allows you to retrieve a resource object by providing either a reso
 
 ### Return value
 
-| Description  | Type                                                                       |
-| ------------ | -------------------------------------------------------------------------- |
-| resources    | [`IResourceItem[]`](#interfaces)                                           |
-| resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
-| resourceName | `string` \| `undefined`                                                    |
-| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
-| action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
-| select       | `(resourceName: string, force?: boolean) => IResourceItem \| undefined`    |
+| Description  | Type                                                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| resources    | [`IResourceItem[]`](#interfaces)                                                                                          |
+| resource     | [`IResourceItem` \| `undefined`](#interfaces)                                                                             |
+| resourceName | `string` \| `undefined`                                                                                                   |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                    |
+| action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"`                                                |
+| select       | `(resourceName: string, force?: boolean) => { resource: IResourceItem` \| `undefined, identifier: string` \| `undefined}` |
+| identifier   | `string` \| `undefined`                                                                                                   |
 
 #### Interfaces
 
