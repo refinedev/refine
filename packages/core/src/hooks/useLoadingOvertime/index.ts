@@ -22,7 +22,7 @@ type UseLoadingOvertimeCoreReturnType = {
     elapsedTime?: number;
 };
 
-type UseLoadingOvertimeCoreProps = {
+export type UseLoadingOvertimeCoreProps = {
     /**
      * The loading state. If true, the elapsed time will be calculated.
      */
