@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, Nullable } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -16,7 +16,7 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm<IPost, HttpError, IPost & { category: ICategory }>({
+    } = useForm<IPost, HttpError, Nullable<IPost>>({
         refineCoreProps: { metaData: { populate: ["category"] } },
     });
 
