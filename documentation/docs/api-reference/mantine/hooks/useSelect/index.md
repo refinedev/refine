@@ -380,7 +380,7 @@ const { overtime } = useSelect({
     }
 });
 
-console.log(overtime.elapsedTime); // 1000, 2000, 3000 4000, ...
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
