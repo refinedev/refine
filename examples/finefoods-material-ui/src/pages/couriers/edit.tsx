@@ -28,7 +28,7 @@ import type { TextFieldProps } from "@mui/material/TextField";
 
 import { useStepsForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { ICourier, IStore } from "interfaces";
+import { ICourier, IStore, Nullable } from "interfaces";
 
 export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -50,9 +50,11 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     } = useStepsForm<
         ICourier,
         HttpError,
-        ICourier & {
-            avatar: any; // eslint-disable-line
-        }
+        Nullable<
+            ICourier & {
+                avatar: any; // eslint-disable-line
+            }
+        >
     >({
         stepsProps: {
             isBackValidate: false,

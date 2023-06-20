@@ -23,7 +23,7 @@ import {
     CreateProduct,
     EditProduct,
 } from "components";
-import { IStore, IProduct } from "interfaces";
+import { IStore, IProduct, Nullable } from "interfaces";
 
 type StoreProductsProps = {
     record: IStore;
@@ -45,7 +45,11 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
             syncWithLocation: false,
         });
 
-    const createDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
+    const createDrawerFormProps = useModalForm<
+        IProduct,
+        HttpError,
+        Nullable<IProduct>
+    >({
         refineCoreProps: {
             action: "create",
             resource: "products",
@@ -57,7 +61,11 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
         modal: { show: showCreateDrawer },
     } = createDrawerFormProps;
 
-    const editDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
+    const editDrawerFormProps = useModalForm<
+        IProduct,
+        HttpError,
+        Nullable<IProduct>
+    >({
         refineCoreProps: {
             action: "edit",
             resource: "products",

@@ -25,10 +25,10 @@ import TextField from "@mui/material/TextField";
 
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-import { ICategory, IProduct } from "interfaces";
+import { ICategory, IFile, IProduct, Nullable } from "interfaces";
 
 export const CreateProduct: React.FC<
-    UseModalFormReturnType<IProduct, HttpError, IProduct>
+    UseModalFormReturnType<IProduct, HttpError, Nullable<IProduct>>
 > = ({
     watch,
     setValue,
@@ -172,7 +172,9 @@ export const CreateProduct: React.FC<
                                                 },
                                             }}
                                             src={
-                                                imageInput && imageInput[0].url
+                                                (imageInput as IFile[]) &&
+                                                ((imageInput as IFile[])[0]
+                                                    .url as string)
                                             }
                                             alt="Store Location"
                                         />

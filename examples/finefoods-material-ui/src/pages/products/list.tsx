@@ -23,7 +23,7 @@ import {
     CreateProduct,
     EditProduct,
 } from "components";
-import { IProduct } from "interfaces";
+import { IProduct, Nullable } from "interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -34,7 +34,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             initialPageSize: 12,
         });
 
-    const createDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
+    const createDrawerFormProps = useModalForm<
+        IProduct,
+        HttpError,
+        Nullable<IProduct>
+    >({
         refineCoreProps: { action: "create" },
     });
 
@@ -42,7 +46,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         modal: { show: showCreateDrawer },
     } = createDrawerFormProps;
 
-    const editDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
+    const editDrawerFormProps = useModalForm<
+        IProduct,
+        HttpError,
+        Nullable<IProduct>
+    >({
         refineCoreProps: { action: "edit" },
     });
 

@@ -29,10 +29,10 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import { ICategory, IProduct } from "interfaces";
+import { ICategory, IFile, IProduct, Nullable } from "interfaces";
 
 export const EditProduct: React.FC<
-    UseModalFormReturnType<IProduct, HttpError, IProduct>
+    UseModalFormReturnType<IProduct, HttpError, Nullable<IProduct>>
 > = ({
     watch,
     setValue,
@@ -173,7 +173,8 @@ export const EditProduct: React.FC<
                                                 },
                                             }}
                                             src={
-                                                imageInput && imageInput[0].url
+                                                (imageInput as IFile[]) &&
+                                                (imageInput as IFile[])[0].url
                                             }
                                             alt="Store Location"
                                         />

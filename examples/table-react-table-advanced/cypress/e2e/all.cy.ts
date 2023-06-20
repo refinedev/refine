@@ -4,6 +4,9 @@
 describe("table-react-table-advanced", () => {
     beforeEach(() => {
         cy.interceptGETPosts();
+        cy.interceptGETPost();
+        cy.interceptPATCHPost();
+        cy.interceptGETCategories();
 
         cy.visit("http://localhost:3000");
     });
@@ -29,8 +32,6 @@ describe("table-react-table-advanced", () => {
     it("should fill the form with the row data when click the edit button and save the form", () => {
         cy.wait("@getPosts");
 
-        cy.interceptGETPost();
-
         cy.get("button").contains("Edit").first().click();
 
         cy.get("#title-input").should("exist");
@@ -45,8 +46,6 @@ describe("table-react-table-advanced", () => {
         });
 
         cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
-
-        cy.interceptPATCHPost();
 
         cy.get("button").contains("Save").first().click();
 

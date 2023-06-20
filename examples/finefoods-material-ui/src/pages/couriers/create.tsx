@@ -29,7 +29,7 @@ import type { TextFieldProps } from "@mui/material/TextField";
 
 import { useStepsForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { ICourier, IStore } from "interfaces";
+import { ICourier, IFile, IStore, Nullable } from "interfaces";
 
 export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -48,7 +48,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
         setValue,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm<ICourier, HttpError, ICourier>({
+    } = useStepsForm<ICourier, HttpError, Nullable<ICourier>>({
         stepsProps: {
             isBackValidate: false,
         },
@@ -145,7 +145,8 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                 },
                                             }}
                                             src={
-                                                imageInput && imageInput[0].url
+                                                (imageInput as IFile[]) &&
+                                                (imageInput as IFile[])[0].url
                                             }
                                             alt="User Picture"
                                         />
