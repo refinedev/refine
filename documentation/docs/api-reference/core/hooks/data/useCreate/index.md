@@ -310,3 +310,4 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | Description                                | Type                                                                                                                                                               |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                         |

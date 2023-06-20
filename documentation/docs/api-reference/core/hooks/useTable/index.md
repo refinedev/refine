@@ -691,7 +691,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useTable();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -867,6 +867,7 @@ errorNotification-default='"There was an error creating resource (status code: `
 | filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
 | setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                         |
+| overtime                      | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
 
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /api-reference/core/interfaces.md#baserecord

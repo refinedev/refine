@@ -358,7 +358,7 @@ Returns an object with TanStack Query's `useInfiniteQuery` return values.
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useInfiniteList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -467,6 +467,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 | Description                                       | Type                                                                                                                                                |
 | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) |
+| overtime                                          | `{ elapsedTime?: number }`                                                                                                                          |
 
 ## Example
 

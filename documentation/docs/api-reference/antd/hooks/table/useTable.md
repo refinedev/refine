@@ -872,7 +872,7 @@ A function creates accessible links for `syncWithLocation`. It takes an [SyncWit
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useTable();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1007,6 +1007,7 @@ const ListPage = () => {
 | ~~setSorter~~    | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
 | filters          | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
 | setFilters       | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| overtime         | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
 
 <br />
 

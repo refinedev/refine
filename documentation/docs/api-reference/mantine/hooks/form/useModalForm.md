@@ -1040,7 +1040,7 @@ return (
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useModalForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1140,7 +1140,8 @@ const UserCreate: React.FC = () => {
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                                   |
 | refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
-| `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
+| `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |                                                                             |
+| overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                  |
 
 <br />
 

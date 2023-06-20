@@ -1213,7 +1213,7 @@ Loading state of a modal. It's `true` when `useForm` is currently being submitte
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1317,6 +1317,7 @@ These props have default values in `RefineContext` and can also be set on **<[Re
 | id             | Record id for `clone` and `create` action              | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                         |
 | setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                               |
 | redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
+| overtime       | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                     |
 
 ## Example
 

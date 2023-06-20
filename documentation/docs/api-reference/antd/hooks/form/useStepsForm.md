@@ -1115,7 +1115,7 @@ When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useStepsForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1187,6 +1187,7 @@ const {
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
 | defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                      |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
+| overtime                 | Overtime loading props                                       | `{ elapsedTime?: number }`                                                     |
 
 ## Example
 

@@ -337,7 +337,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useUpdate();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -378,5 +378,6 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 | Description                                | Type                                                                                                                                                                                   |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; id: BaseKey; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                                             |
 
 > `*` `UpdateContext` is an internal type.

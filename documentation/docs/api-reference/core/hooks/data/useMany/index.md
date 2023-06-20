@@ -247,7 +247,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useMany();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -273,6 +273,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 | Description                               | Type                                                                                                     |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                               |
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

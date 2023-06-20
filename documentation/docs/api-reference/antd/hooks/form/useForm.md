@@ -934,7 +934,7 @@ For example you can [change values before sending to the API](/docs/api-referenc
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1047,6 +1047,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 | formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                          |
 | id              | Record id for `clone` and `create` action               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                             |
 | setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                   |
+| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                         |
 
 ## Example
 

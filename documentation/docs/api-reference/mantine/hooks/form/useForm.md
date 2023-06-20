@@ -1024,7 +1024,7 @@ For example you can [change values before sending to the API](/docs/api-referenc
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1156,6 +1156,7 @@ const {
 | Property        | Description               | Type                                                                             |
 | --------------- | ------------------------- | -------------------------------------------------------------------------------- |
 | saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.FormEvent<HTMLFormElement>) => void; }` |
+| overtime        | Overtime loading props    | `{ elapsedTime?: number }`                                                       |
 
 ### Type Parameters
 

@@ -1075,7 +1075,7 @@ It takes in one argument, step, which is a number representing the index of the 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useStepsForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -1143,6 +1143,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 | steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                               |
 | refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
+| overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                  |
 
 ## Example
 

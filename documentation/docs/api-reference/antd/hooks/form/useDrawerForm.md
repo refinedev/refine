@@ -394,7 +394,7 @@ It renders `<Drawer>` instead of lazy rendering it.
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useDrawerForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -479,6 +479,7 @@ export const UserCreate: React.FC = () => {
 | submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
 | open              | Whether the drawer is open or not                            | `boolean`                                                                      |
 | close             | Specify a function that can close the drawer                 | `() => void`                                                                   |
+| overtime          | Overtime loading props                                       | `{ elapsedTime?: number }`                                                     |
 
 ## Example
 

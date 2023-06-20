@@ -706,7 +706,7 @@ return (
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime } = useModalForm();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
@@ -793,6 +793,7 @@ export const UserCreate: React.FC = () => {
 | setId                    | `id` setter                                                                                                | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                           |
 | queryResult              | Result of the query of a record                                                                            | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                              |
 | mutationResult           | Result of the mutation triggered by submitting the form                                                    | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| overtime                 | Overtime loading props                                                                                     | `{ elapsedTime?: number }`                                                                                                                                 |
 
 ## Example
 
