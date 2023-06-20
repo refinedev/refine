@@ -11,7 +11,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "interfaces";
 import { HttpError } from "@refinedev/core";
 
 export const PostCreate: React.FC = () => {
@@ -25,11 +25,7 @@ export const PostCreate: React.FC = () => {
         setValue,
         setError,
         watch,
-    } = useForm<
-        IPost,
-        HttpError,
-        IPost & { category: ICategory; images: any }
-    >();
+    } = useForm<IPost, HttpError, Nullable<IPost>>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -63,7 +59,7 @@ export const PostCreate: React.FC = () => {
 
             const base64 = await convertBase64(file);
 
-            setValue("images", base64, { shouldValidate: true });
+            setValue("images", base64 as string, { shouldValidate: true });
 
             setIsUploadLoading(false);
         } catch (error) {
@@ -96,7 +92,7 @@ export const PostCreate: React.FC = () => {
                     name="status"
                     rules={{ required: "This field is required" }}
                     render={({ field }) => (
-                        <Autocomplete
+                        <Autocomplete<IStatus>
                             options={["published", "draft", "rejected"]}
                             {...field}
                             onChange={(_, value) => {

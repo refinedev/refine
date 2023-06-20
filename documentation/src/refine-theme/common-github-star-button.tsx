@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useGithubContext } from "../context/GithubContext";
-import { GithubIcon } from "../components/landing/icons";
+import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
 type Props = {

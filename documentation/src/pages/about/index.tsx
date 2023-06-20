@@ -1,5 +1,5 @@
 import Head from "@docusaurus/Head";
-import { RedditIcon } from "@site/src/components/landing/icons/gray-social-icons";
+import { FooterRedditIcon as RedditIcon } from "@site/src/refine-theme/icons/footer-reddit";
 import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";

@@ -56,7 +56,6 @@ module.exports = {
                 inter: ["Inter", ...defaultTheme.fontFamily.serif],
             },
             boxShadow: {
-                githubFloatingCta: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 modal: "4px 8px 16px rgba(42, 42, 66, 0.25)",
                 tile: "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                 integrationTile: "3px 4px 8px 0 rgba(42, 42, 66, 0.25)",
@@ -130,6 +129,8 @@ module.exports = {
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-left.svg')",
                 "landing-playground-slide-right-bg":
                     "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
+                "hackathon-button-bg":
+                    "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
             },
             animation: {
                 "spin-slow": "spin 3s linear infinite",
@@ -142,8 +143,18 @@ module.exports = {
                     "playground-slide-up 45s linear infinite",
                 "playground-slide-up-mobile":
                     "playground-slide-up-mobile 45s linear infinite",
+                "hackathon-button-bg":
+                    "hackathon-button-bg 2s ease-in-out infinite alternate",
             },
             keyframes: {
+                "hackathon-button-bg": {
+                    "0%": {
+                        backgroundPosition: "0% 0%",
+                    },
+                    "100%": {
+                        backgroundPosition: "100% 0%",
+                    },
+                },
                 "landing-hero-beat": {
                     "0%": {
                         opacity: 0.4,

@@ -71,7 +71,6 @@ const siteConfig = {
         ],
     ],
     plugins: [
-        path.resolve(__dirname, "plugins/use-case-routes.js"),
         [
             "@docusaurus/plugin-client-redirects",
             {
@@ -301,6 +300,23 @@ const siteConfig = {
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
         /** ---- */
         tutorial: tutorialData,
+    },
+    webpack: {
+        jsLoader: (isServer) => ({
+            loader: require.resolve("swc-loader"),
+            options: {
+                jsc: {
+                    parser: {
+                        syntax: "typescript",
+                        tsx: true,
+                    },
+                    target: "es2017",
+                },
+                module: {
+                    type: isServer ? "commonjs" : "es6",
+                },
+            },
+        }),
     },
 };
 
