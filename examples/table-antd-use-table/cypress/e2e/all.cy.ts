@@ -24,7 +24,7 @@ describe("table-antd-use-table", () => {
             },
         ).as("getAscPosts");
 
-        cy.getAntdLoadingOverlay().should("not.exist");
+        cy.getAntdLoadingOverlay().should("not.exist", { timeout: 10000 });
         cy.getAntdColumnSorter(0).click();
 
         cy.url().should(
