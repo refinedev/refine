@@ -1,11 +1,11 @@
 import React from "react";
 
 import {
-    UseLoadingOvertimeProps,
+    UseLoadingOvertimeCoreProps,
     useLoadingOvertime,
 } from "../../hooks/useLoadingOvertime";
 
-type PropsWithLoading = CommonProps & UseLoadingOvertimeProps;
+type PropsWithLoading = CommonProps & UseLoadingOvertimeCoreProps;
 
 type PropsWithElapsedTime = CommonProps & {
     /**
