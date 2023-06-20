@@ -33,7 +33,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
-import { IUser, IUserFilterVariables } from "interfaces";
+import { IUser, IUserFilterVariables, Nullable } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -199,7 +199,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             <Controller
                                 control={control}
                                 name="gender"
-                                render={({ field }) => (
+                                render={({ field }: { field: any }) => (
                                     <FormControl margin="normal" size="small">
                                         <InputLabel id="gender-select">
                                             {t("users.filter.gender.label")}
@@ -229,7 +229,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             <Controller
                                 control={control}
                                 name="isActive"
-                                render={({ field }) => (
+                                render={({ field }: { field: any }) => (
                                     <FormControl margin="normal" size="small">
                                         <InputLabel id="isActive-select">
                                             {t("users.filter.isActive.label")}

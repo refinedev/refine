@@ -5,7 +5,7 @@ const waitOn = require("wait-on");
 const pidtree = require("pidtree");
 const { join: pathJoin } = require("path");
 const { promisify } = require("util");
-const { exec, spawn, execSync } = require("child_process");
+const { exec } = require("child_process");
 
 const KEY = process.env.KEY;
 const CI_BUILD_ID = process.env.CI_BUILD_ID;
@@ -37,7 +37,7 @@ const execPromise = (command) => {
     };
 };
 
-const getProjectPort = async (path) => {
+const getProjectInfo = async (path) => {
     // read package.json
     const pkg = await promisify(fs.readFile)(
         pathJoin(path, "package.json"),
@@ -49,36 +49,39 @@ const getProjectPort = async (path) => {
 
     const dependencies = Object.keys(packageJson.dependencies || {});
     const devDependencies = Object.keys(packageJson.devDependencies || {});
+
+    let port = 3000;
+    let command = `npm run start`;
+    let additionalParams = "";
 
     // check for vite
     if (dependencies.includes("vite") || devDependencies.includes("vite")) {
-        return 5173;
+        port = 5173;
     }
 
-    return 3000;
-};
-
-const getAdditionalStartParams = async (path) => {
-    // read package.json
-    const pkg = await promisify(fs.readFile)(
-        pathJoin(path, "package.json"),
-        "utf8",
-    );
-
-    // parse package.json
-    const packageJson = JSON.parse(pkg);
-
-    const dependencies = Object.keys(packageJson.dependencies || {});
-    const devDependencies = Object.keys(packageJson.devDependencies || {});
+    // check for next and remix
+    if (
+        dependencies.includes("next") ||
+        devDependencies.includes("next") ||
+        dependencies.includes("@remix-run/node") ||
+        devDependencies.includes("@remix-run/node")
+    ) {
+        port = 3000;
+        command = "npm run build && npm run start:prod";
+    }
 
     if (
         dependencies.includes("react-scripts") ||
         devDependencies.includes("react-scripts")
     ) {
-        return "-- --host 127.0.0.1";
+        additionalParams = "-- --host 127.0.0.1";
     }
 
-    return "";
+    return {
+        port,
+        command,
+        additionalParams,
+    };
 };
 
 const prettyLog = (bg, ...args) => {
@@ -180,7 +183,7 @@ const runTests = async () => {
         return { success: true, empty: true };
     }
 
-    prettyLog("blue", "Running Tests for Examples");
+    prettyLog("blue", `Running Tests for ${examplesToRun.length} Examples`);
     prettyLog("blue", `Examples: ${examplesToRun.join(", ")}`);
     console.log("\n");
 
@@ -189,9 +192,14 @@ const runTests = async () => {
     for await (const path of examplesToRun) {
         console.log(`::group::Example ${path}`);
 
-        const PORT = await getProjectPort(`${EXAMPLES_DIR}/${path}`);
+        const { port, command, additionalParams } = await getProjectInfo(
+            `${EXAMPLES_DIR}/${path}`,
+        );
+        console.log("port", port);
+        console.log("command", command);
+        console.log("additionalParams", additionalParams);
 
-        prettyLog("blue", `Running for ${path} at port ${PORT}`);
+        prettyLog("blue", `Running for ${path} at port ${port}`);
 
         prettyLog("blue", `Starting the dev server`);
 
@@ -201,15 +209,11 @@ const runTests = async () => {
 
         // starting the dev server
         try {
-            const additionalParams = await getAdditionalStartParams(
-                `${EXAMPLES_DIR}/${path}`,
-            );
-
             start = exec(
                 `cd ${pathJoin(
                     EXAMPLES_DIR,
                     path,
-                )} && npm run start ${additionalParams}`,
+                )} && ${command} ${additionalParams}`,
             );
 
             start.stdout.on("data", console.log);
@@ -224,10 +228,10 @@ const runTests = async () => {
         try {
             prettyLog(
                 "blue",
-                `Waiting for the server to start at port ${PORT}`,
+                `Waiting for the server to start at port ${port}`,
             );
 
-            const status = await waitForServer(PORT);
+            const status = await waitForServer(port);
             if (!status) {
                 prettyLog(
                     "red",
@@ -250,9 +254,7 @@ const runTests = async () => {
 
         try {
             if (!failed) {
-                const params =
-                    "" ??
-                    `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
+                const params = `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
                 const runner = `npm run test:e2e -- --scope ${path} ${params}`;
 
                 prettyLog("blue", `Running tests for ${path}`);

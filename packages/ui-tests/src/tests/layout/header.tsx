@@ -31,28 +31,38 @@ export const layoutHeaderTests = function (
     describe("[@refinedev/ui-tests] Common Tests / Header Element", () => {
         // NOTE : Will be removed in v5
         it("should render successfull user name and avatar in header with legacy authProvider", async () => {
-            const { findByText, getByRole } = render(<HeaderElement />, {
-                wrapper: TestWrapper({
-                    legacyAuthProvider: mockLegacyAuthProvider,
-                }),
-            });
+            const { findByText, queryByRole, queryByAltText } = render(
+                <HeaderElement />,
+                {
+                    wrapper: TestWrapper({
+                        legacyAuthProvider: mockLegacyAuthProvider,
+                    }),
+                },
+            );
 
             await findByText("username");
-            expect(getByRole("presentation")).toHaveAttribute(
+            const imgByRole = queryByRole("img", { queryFallbacks: true });
+            const imgByAltText = queryByAltText("username");
+            expect(imgByRole ?? imgByAltText).toHaveAttribute(
                 "src",
                 "localhost:3000",
             );
         });
 
         it("should render successfull user name and avatar in header with authProvider", async () => {
-            const { findByText, getByRole } = render(<HeaderElement />, {
-                wrapper: TestWrapper({
-                    authProvider: mockAuthProvider,
-                }),
-            });
+            const { findByText, queryByRole, queryByAltText } = render(
+                <HeaderElement />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                    }),
+                },
+            );
 
             await findByText("username");
-            expect(getByRole("presentation")).toHaveAttribute(
+            const imgByRole = queryByRole("img", { queryFallbacks: true });
+            const imgByAltText = queryByAltText("username");
+            expect(imgByRole ?? imgByAltText).toHaveAttribute(
                 "src",
                 "localhost:3000",
             );
