@@ -939,8 +939,8 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```tsx
 (params: SyncWithLocationParams) => string;
 ```
-### Additional Values
-#### `overtime`
+
+### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 

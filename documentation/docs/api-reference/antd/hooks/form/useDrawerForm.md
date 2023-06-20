@@ -389,7 +389,6 @@ Current visible state of `<Drawer>`.
 
 It renders `<Drawer>` instead of lazy rendering it.
 
-### Additional Values
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
