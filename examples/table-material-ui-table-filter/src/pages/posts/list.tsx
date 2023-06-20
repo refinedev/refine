@@ -183,15 +183,13 @@ export const PostList: React.FC = () => {
                                 control={control}
                                 name="status"
                                 render={({ field }) => (
-                                    <Autocomplete
+                                    <Autocomplete<IStatus>
                                         id="status"
-                                        options={
-                                            [
-                                                "published",
-                                                "draft",
-                                                "rejected",
-                                            ] as IStatus[]
-                                        }
+                                        options={[
+                                            "published",
+                                            "draft",
+                                            "rejected",
+                                        ]}
                                         {...field}
                                         onChange={(_, value) => {
                                             field.onChange(value);
