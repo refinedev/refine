@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import { ICategory, IPost, ITag } from "interfaces";
+import { ICategory, IPost, IStatus, ITag, Nullable } from "interfaces";
 import { HttpError } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {
@@ -17,13 +17,7 @@ export const PostEdit: React.FC = () => {
         control,
         formState: { errors },
         getValues,
-    } = useForm<
-        IPost,
-        HttpError,
-        IPost & {
-            category: ICategory;
-        }
-    >();
+    } = useForm<IPost, HttpError, Nullable<IPost>>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -63,7 +57,7 @@ export const PostEdit: React.FC = () => {
                     // eslint-disable-next-line
                     defaultValue={null as any}
                     render={({ field }) => (
-                        <Autocomplete
+                        <Autocomplete<IStatus>
                             options={["published", "draft", "rejected"]}
                             {...field}
                             onChange={(_, value) => {
