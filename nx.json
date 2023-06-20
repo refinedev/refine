@@ -20,12 +20,20 @@
       "!{projectRoot}/cypress/screenshots",
       "!{projectRoot}/cypress/videos/**/*",
       "!{projectRoot}/cypress/screenshots/**/*"
+    ],
+    "ignoreReadme": [
+      "!{projectRoot}/README.md"
     ]
   },
   "targetDefaults": {
     "build": {
       "dependsOn": [
         "^build"
+      ],
+      "inputs": [
+        "default",
+        "ignoreE2E",
+        "ignoreReadme"
       ],
       "outputs": [
         "{projectRoot}/dist",
@@ -36,7 +44,8 @@
     "cypress:run": {
       "inputs": [
         "default",
-        "ignoreE2E"
+        "ignoreE2E",
+        "ignoreReadme"
       ],
       "outputs": [
         "{projectRoot}/cypress/videos",
