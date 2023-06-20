@@ -244,115 +244,221 @@ describe("legacy router provider", () => {
     });
 
     describe("when router type is legacy", () => {
-        it("should return dummy resource, if resource not found", async () => {
-            const { result } = renderHook(() => useResource(), {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    legacyRouterProvider: mockLegacyRouterProvider(),
-                }),
+        describe("test `select` method", () => {
+            it("should return dummy resource, if resource not found", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        legacyRouterProvider: mockLegacyRouterProvider(),
+                    }),
+                });
+
+                const { resource, identifier } =
+                    result.current.select("categories");
+
+                expect(resource).toStrictEqual({
+                    name: "categories",
+                    identifier: "categories",
+                });
+                expect(identifier).toBe("categories");
             });
 
-            const resource = result.current.select("categories");
+            it("should return undefined when force is false and resource not found", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        legacyRouterProvider: mockLegacyRouterProvider(),
+                    }),
+                });
 
-            expect(resource).toStrictEqual({
-                name: "categories",
-                identifier: "categories",
-            });
-        });
+                const selectResult = result.current.select("categories", false);
 
-        it("should return undefined when force is false and resource not found", async () => {
-            const { result } = renderHook(() => useResource(), {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    legacyRouterProvider: mockLegacyRouterProvider(),
-                }),
+                expect(selectResult?.resource).toBeUndefined();
+                expect(selectResult?.identifier).toBeUndefined();
             });
 
-            const resource = result.current.select("categories", false);
+            it("should return matched resource, if resource is found", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: { label: "Posts" },
+                            },
+                        ],
+                        legacyRouterProvider: mockLegacyRouterProvider(),
+                    }),
+                });
 
-            expect(resource).toBeUndefined();
-        });
+                const selectResult = result.current.select("posts", false);
 
-        it("should return matched resource, if resource is found", async () => {
-            const { result } = renderHook(() => useResource(), {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts", meta: { label: "Posts" } }],
-                    legacyRouterProvider: mockLegacyRouterProvider(),
-                }),
-            });
-
-            const resource = result.current.select("posts", false);
-
-            expect(resource).toStrictEqual({
-                canCreate: false,
-                canDelete: undefined,
-                canEdit: false,
-                canShow: false,
-                label: "Posts",
-                name: "posts",
-                meta: {
+                expect(selectResult?.resource).toStrictEqual({
+                    canCreate: false,
+                    canDelete: undefined,
+                    canEdit: false,
+                    canShow: false,
+                    identifier: "featured-posts",
                     label: "Posts",
-                },
-                options: { route: undefined },
-                route: "/posts",
+                    name: "posts",
+                    meta: {
+                        label: "Posts",
+                    },
+                    options: { route: undefined },
+                    route: "/posts",
+                });
+                expect(selectResult?.identifier).toBe("featured-posts");
+            });
+        });
+
+        describe("test `identifier` property", () => {
+            it("should be undefined, if not matched any resource", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        legacyRouterProvider: mockLegacyRouterProvider(),
+                    }),
+                });
+
+                expect(result.current.identifier).toBeUndefined();
+            });
+
+            it("should be matched resource name, if `identifier` is not defined", async () => {
+                const { result } = renderHook(() => useResource("posts"), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        legacyRouterProvider: mockLegacyRouterProvider(),
+                    }),
+                });
+
+                expect(result.current.identifier).toBe("posts");
+            });
+
+            it("should be matched resource `identifier`, if matched resource has `identifier`", async () => {
+                const { result } = renderHook(
+                    () => useResource("awesome-posts"),
+                    {
+                        wrapper: TestWrapper({
+                            resources: [
+                                { name: "posts" },
+                                { name: "posts", identifier: "awesome-posts" },
+                            ],
+                            legacyRouterProvider: mockLegacyRouterProvider(),
+                        }),
+                    },
+                );
+
+                expect(result.current.identifier).toBe("awesome-posts");
             });
         });
     });
 
     describe("when router type is new", () => {
-        it("should return dummy resource, if resource not found", async () => {
-            const { result } = renderHook(() => useResource(), {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    routerProvider: mockRouterBindings(),
-                }),
+        describe("test `select` method", () => {
+            it("should return dummy resource, if resource not found", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings(),
+                    }),
+                });
+
+                const { resource, identifier } =
+                    result.current.select("categories");
+
+                expect(resource).toStrictEqual({
+                    name: "categories",
+                    identifier: "categories",
+                });
+                expect(identifier).toBe("categories");
             });
 
-            const resource = result.current.select("categories");
+            it("should return undefined when force is false and if resource not found", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings(),
+                    }),
+                });
 
-            expect(resource).toStrictEqual({
-                name: "categories",
-                identifier: "categories",
-            });
-        });
+                const selectResult = result.current.select("categories", false);
 
-        it("should return undefined when force is false and if resource not found", async () => {
-            const { result } = renderHook(() => useResource(), {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    routerProvider: mockRouterBindings(),
-                }),
+                expect(selectResult?.resource).toBeUndefined();
+                expect(selectResult?.identifier).toBeUndefined();
             });
 
-            const resource = result.current.select("categories", false);
+            it("should return matched resource, if resource is found", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [
+                            {
+                                name: "posts",
+                                identifier: "featured-posts",
+                                meta: { label: "Featured Posts" },
+                            },
+                        ],
+                        routerProvider: mockRouterBindings(),
+                    }),
+                });
 
-            expect(resource).toBeUndefined();
-        });
+                const selectResult = result.current.select("posts", false);
 
-        it("should return matched resource, if resource is found", async () => {
-            const { result } = renderHook(() => useResource(), {
-                wrapper: TestWrapper({
-                    resources: [
-                        { name: "posts", meta: { label: "Featured Posts" } },
-                    ],
-                    routerProvider: mockRouterBindings(),
-                }),
-            });
-
-            const resource = result.current.select("posts", false);
-
-            expect(resource).toStrictEqual({
-                canCreate: false,
-                canDelete: undefined,
-                canEdit: false,
-                canShow: false,
-                label: "Featured Posts",
-                name: "posts",
-                meta: {
+                expect(selectResult?.resource).toStrictEqual({
+                    canCreate: false,
+                    canDelete: undefined,
+                    canEdit: false,
+                    canShow: false,
+                    identifier: "featured-posts",
                     label: "Featured Posts",
-                },
-                options: { route: undefined },
-                route: "/posts",
+                    name: "posts",
+                    meta: {
+                        label: "Featured Posts",
+                    },
+                    options: { route: undefined },
+                    route: "/posts",
+                });
+                expect(selectResult?.identifier).toBe("featured-posts");
+            });
+        });
+
+        describe("test `identifier` property", () => {
+            it("should be undefined, if not matched any resource", async () => {
+                const { result } = renderHook(() => useResource(), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings(),
+                    }),
+                });
+
+                expect(result.current.identifier).toBeUndefined();
+            });
+
+            it("should be matched resource name, if `identifier` is not defined", async () => {
+                const { result } = renderHook(() => useResource("posts"), {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerProvider: mockRouterBindings(),
+                    }),
+                });
+
+                expect(result.current.identifier).toBe("posts");
+            });
+
+            it("should be matched resource `identifier`, if matched resource has `identifier`", async () => {
+                const { result } = renderHook(
+                    () => useResource("awesome-posts"),
+                    {
+                        wrapper: TestWrapper({
+                            resources: [
+                                { name: "posts" },
+                                { name: "posts", identifier: "awesome-posts" },
+                            ],
+                            routerProvider: mockRouterBindings(),
+                        }),
+                    },
+                );
+
+                expect(result.current.identifier).toBe("awesome-posts");
             });
         });
     });

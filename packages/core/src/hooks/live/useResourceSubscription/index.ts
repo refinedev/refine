@@ -60,9 +60,8 @@ export const useResourceSubscription = ({
 }: UseResourceSubscriptionProps): void => {
     const queryClient = useQueryClient();
 
-    const { resource } = useResource(resourceFromProp);
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
-    const queryKey = queryKeys(resourceIdentifierOrName);
+    const { resource, identifier } = useResource(resourceFromProp);
+    const queryKey = queryKeys(identifier);
 
     const liveDataContext = useContext<ILiveContext>(LiveContext);
     const {

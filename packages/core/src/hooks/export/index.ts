@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useResource, useDataProvider } from "@hooks";
+import { useResource, useDataProvider, useMeta } from "@hooks";
 import {
     BaseRecord,
     MapDataFn,
@@ -110,20 +110,24 @@ export const useExport = <
     const [isLoading, setIsLoading] = useState(false);
 
     const dataProvider = useDataProvider();
-
-    const { resource, resources } = useResource(
+    const getMeta = useMeta();
+    const { resource, resources, identifier } = useResource(
         pickNotDeprecated(resourceFromProps, resourceName),
     );
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const filename = `${userFriendlyResourceName(
-        resourceIdentifierOrName,
+        identifier,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(resourceIdentifierOrName, dataProviderName, resources),
+        pickDataProvider(identifier, dataProviderName, resources),
     );
+
+    const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+    });
 
     const triggerExport = async () => {
         setIsLoading(true);
@@ -144,8 +148,8 @@ export const useExport = <
                         pageSize,
                         mode: "server",
                     },
-                    meta: pickNotDeprecated(meta, metaData),
-                    metaData: pickNotDeprecated(meta, metaData),
+                    meta: combinedMeta,
+                    metaData: combinedMeta,
                 });
 
                 current++;

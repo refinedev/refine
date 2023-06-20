@@ -100,18 +100,18 @@ export const useShow = <
     TError,
     TData
 > = {}): useShowReturnType<TData> => {
-    const { resource, id: idFromRoute } = useResource(resourceFromProp);
-    const { resource: inferedResource } = useResource();
+    const {
+        resource,
+        id: idFromRoute,
+        identifier,
+    } = useResource(resourceFromProp);
+    const { identifier: inferredIdentifier } = useResource();
     const getMeta = useMeta();
 
     const getDefaultId = () => {
         const idFromPropsOrRoute = id ?? idFromRoute;
 
-        if (
-            resourceFromProp &&
-            resourceFromProp !== inferedResource?.identifier &&
-            resourceFromProp !== inferedResource?.name
-        ) {
+        if (resourceFromProp && resourceFromProp !== inferredIdentifier) {
             return id;
         }
 
@@ -125,8 +125,6 @@ export const useShow = <
         setShowId(defaultId);
     }, [defaultId]);
 
-    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
-
     const combinedMeta = getMeta({
         resource,
         meta: pickNotDeprecated(meta, metaData),
@@ -134,13 +132,13 @@ export const useShow = <
 
     warnOnce(
         Boolean(resourceFromProp) && !Boolean(id),
-        `[useShow]: resource: "${resourceIdentifierOrName}", id: ${id} \n\n` +
+        `[useShow]: resource: "${identifier}", id: ${id} \n\n` +
             `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
             `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
     );
 
     const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: resourceIdentifierOrName,
+        resource: identifier,
         id: showId ?? "",
         queryOptions: {
             enabled: showId !== undefined,
