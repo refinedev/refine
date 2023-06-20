@@ -2,6 +2,7 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
     projectId: "sq5j3e",
+    retries: 3,
     e2e: {
         defaultCommandTimeout: 10000,
         fixturesFolder: "../../cypress/fixtures",

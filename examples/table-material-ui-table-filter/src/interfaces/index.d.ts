@@ -3,16 +3,22 @@ export interface ICategory {
     title: string;
 }
 
+export type IStatus = "published" | "draft" | "rejected";
+
 export interface IPost {
     id: number;
     title: string;
     content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+    status: IStatus;
+    category: ICategory;
 }
+
+export type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};
 
 export interface IPostFilterVariables {
     q: string;
     category: string;
-    status: string;
+    status: IStatus;
 }
