@@ -10,6 +10,7 @@ import {
     LiveModeProps,
     RedirectAction,
 } from "../../interfaces";
+import { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
 
 export interface IRefineOptions {
     breadcrumb?: ReactNode;
@@ -28,6 +29,7 @@ export interface IRefineOptions {
         clientConfig?: QueryClientConfig | InstanceType<typeof QueryClient>;
         devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
     };
+    overtime?: UseLoadingOvertimeRefineContext;
 }
 
 export interface IRefineContextOptions {
@@ -42,6 +44,7 @@ export interface IRefineContextOptions {
         afterClone: RedirectAction;
         afterEdit: RedirectAction;
     };
+    overtime: UseLoadingOvertimeRefineContext;
 }
 
 export interface IRefineContext {

@@ -37,6 +37,11 @@ import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
 import { redirectPage } from "@definitions/helpers";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type ActionParams = {
     /**
@@ -171,7 +176,8 @@ export type UseFormProps<
     TResponseError
 > &
     ActionParams &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -196,7 +202,7 @@ export type UseFormReturnType<
         idFromFunction?: BaseKey | undefined,
         routeParams?: Record<string, string | number>,
     ) => void;
-};
+} & UseLoadingOvertimeReturnType;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -241,6 +247,7 @@ export const useForm = <
     queryOptions,
     createMutationOptions,
     updateMutationOptions,
+    overtimeOptions,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -516,6 +523,12 @@ export const useForm = <
 
     const result = isCreate || isClone ? createResult : editResult;
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: result.mutationResult.isLoading || queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         ...result,
         queryResult,
@@ -533,6 +546,9 @@ export const useForm = <
                 id: idFromFunction ?? id,
                 meta: pickNotDeprecated(meta, metaData),
             });
+        },
+        overtime: {
+            elapsedTime,
         },
     };
 };

@@ -40,6 +40,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type DeleteManyParams<TData, TError, TVariables> = {
     ids: BaseKey[];
@@ -66,7 +71,8 @@ export type UseDeleteManyReturnType<
     TError,
     DeleteManyParams<TData, TError, TVariables>,
     unknown
->;
+> &
+    UseLoadingOvertimeReturnType;
 
 export type UseDeleteManyProps<
     TData extends BaseRecord = BaseRecord,
@@ -82,7 +88,7 @@ export type UseDeleteManyProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
-};
+} & UseLoadingOvertimeOptionsProps;
 
 /**
  * `useDeleteMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple delete mutations.
@@ -102,6 +108,7 @@ export const useDeleteMany = <
     TVariables = {},
 >({
     mutationOptions,
+    overtimeOptions,
 }: UseDeleteManyProps<TData, TError, TVariables> = {}): UseDeleteManyReturnType<
     TData,
     TError,
@@ -467,5 +474,11 @@ export const useDeleteMany = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };
