@@ -61,6 +61,17 @@ describe("LoadingOvertimeIndicator", () => {
                 expect(getByText(content)).toBeInTheDocument();
             },
         );
+
+        it("should work without `children`", () => {
+            const { getByText } = render(
+                <LoadingOvertimeIndicator
+                    overtimeComponents={overtimeComponents}
+                    elapsedTime={4000}
+                />,
+            );
+
+            expect(getByText(OvertimeComponentContents[0])).toBeInTheDocument();
+        });
     });
 
     describe("when `isLoading` is passed", () => {
@@ -136,6 +147,21 @@ describe("LoadingOvertimeIndicator", () => {
             });
 
             expect(mockOnInterval).toBeCalledTimes(2);
+        });
+
+        it("should work without `children`", () => {
+            const { getByText } = render(
+                <LoadingOvertimeIndicator
+                    overtimeComponents={overtimeComponents}
+                    isLoading={true}
+                />,
+            );
+
+            act(() => {
+                jest.advanceTimersByTime(4000);
+            });
+
+            expect(getByText(OvertimeComponentContents[0])).toBeInTheDocument();
         });
     });
 });
