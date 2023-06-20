@@ -45,13 +45,6 @@ describe("form-material-ui-use-modal-form", () => {
         return cy.getSaveButton().click();
     };
 
-    const closeModal = () => {
-        return cy
-            .get(".MuiDialogActions-root > .MuiButton-text")
-            .contains(/cancel/i)
-            .click();
-    };
-
     const isModalOpen = () => {
         return cy.get(".MuiDialog-container").should("be.visible");
     };
@@ -93,6 +86,7 @@ describe("form-material-ui-use-modal-form", () => {
         isModalOpen();
 
         // wait loading state and render to be finished
+        cy.wait("@getPost");
         cy.wait("@getPost");
         cy.getSaveButton().should("not.be.disabled");
 

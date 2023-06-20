@@ -7,7 +7,8 @@
     "start": "refine dev",
     "start:prod": "refine start",
     "refine": "refine",
-    "cypress": "cypress open -C ./cypress.config.ts"
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
     "@remix-run/node": "^1.6.7",

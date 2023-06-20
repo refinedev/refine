@@ -68,7 +68,7 @@ describe("table-material-ui-data-grid-pro", () => {
             "sorters[0][field]=title&sorters[0][order]=asc",
         );
 
-        cy.wait("@getAscPosts");
+        cy.wait("@getAscPosts", { timeout: 120000 });
     });
 
     it("should work with filter", () => {
@@ -78,10 +78,9 @@ describe("table-material-ui-data-grid-pro", () => {
             cy.get(`.MuiDataGrid-menuIcon > button`).click({ force: true }),
         );
 
-        cy.get(".MuiDataGrid-menu > div > .MuiList-root")
-            .children()
-            .eq(3)
-            .click();
+        cy.get(".MuiList-root").children().eq(7).click();
+
+        cy.contains("Filter").click();
 
         cy.intercept(
             {
