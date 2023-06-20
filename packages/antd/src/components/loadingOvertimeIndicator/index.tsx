@@ -21,6 +21,10 @@ const AlertComponent = ({ translateKey, message }: AlertComponentProps) => {
     );
 };
 
+/*
+ * The default overtime components to render based on the elapsed time.
+ * The key is the number of milliseconds.
+ */
 export const overtimeComponents = {
     5000: (
         <AlertComponent
@@ -40,4 +44,9 @@ export const overtimeComponents = {
     overtimeComponents: overtimeComponents,
 };
 
+/**
+ * A component that renders children and overtime components based on the elapsed time.
+ * The elapsed time is calculated using the `useLoadingOvertime` hook.
+ * If the `elapsedTime` prop is provided, the component will not use the `useLoadingOvertime` hook.
+ */
 export { LoadingOvertimeIndicator };

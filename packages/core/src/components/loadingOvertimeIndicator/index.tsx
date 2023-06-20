@@ -8,11 +8,22 @@ import {
 type PropsWithLoading = CommonProps & UseLoadingOvertimeProps;
 
 type PropsWithElapsedTime = CommonProps & {
+    /**
+     * The elapsed time in milliseconds.
+     * If this prop is provided, the component will not use the `useLoadingOvertime` hook.
+     */
     elapsedTime: number;
 };
 
 type CommonProps = {
+    /**
+     * Children to render.
+     */
     children?: React.ReactNode;
+    /**
+     * React components to render when the elapsed time is greater than or equal to the key.
+     * The key is the number of milliseconds.
+     */
     overtimeComponents?: {
         [key: number]: React.ReactNode;
     };
@@ -22,6 +33,11 @@ export type LoadingOvertimeIndicatorProps =
     | PropsWithLoading
     | PropsWithElapsedTime;
 
+/**
+ * A component that renders children and overtime components based on the elapsed time.
+ * The elapsed time is calculated using the `useLoadingOvertime` hook.
+ * If the `elapsedTime` prop is provided, the component will not use the `useLoadingOvertime` hook.
+ */
 export function LoadingOvertimeIndicator(props: PropsWithLoading): JSX.Element;
 export function LoadingOvertimeIndicator(
     props: PropsWithElapsedTime,
