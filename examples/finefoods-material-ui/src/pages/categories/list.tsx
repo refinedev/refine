@@ -39,7 +39,7 @@ import Edit from "@mui/icons-material/Edit";
 import RemoveCircleOutline from "@mui/icons-material/RemoveCircleOutline";
 
 import { EditProduct } from "components";
-import { ICategory, IProduct } from "interfaces";
+import { ICategory, IProduct, Nullable } from "interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
@@ -412,7 +412,11 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         [t],
     );
 
-    const editDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
+    const editDrawerFormProps = useModalForm<
+        IProduct,
+        HttpError,
+        Nullable<IProduct>
+    >({
         refineCoreProps: {
             action: "edit",
             resource: "products",
