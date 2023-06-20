@@ -7,3 +7,7 @@ export { Authenticated } from "./authenticated";
 export { RouteChangeHandler } from "./routeChangeHandler";
 export { CanAccess, CanAccessProps } from "./canAccess";
 export { GitHubBanner } from "./gh-banner";
+export {
+    LoadingOvertimeIndicator,
+    LoadingOvertimeIndicatorProps,
+} from "./loadingOvertimeIndicator";
