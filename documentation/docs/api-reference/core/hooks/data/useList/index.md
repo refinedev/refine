@@ -349,7 +349,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 | Description                               | Type                                                                                                                                                 |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

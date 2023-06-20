@@ -5,12 +5,12 @@ import React, { useMemo, useRef } from "react";
 import { Tweet } from "react-twitter-widgets";
 import GradientButton from "../../components/gradient-button";
 import { TimelineIcon } from "../../components/landing/icons";
-
-import { FooterDiscordIcon as DiscordIcon } from "../../refine-theme/icons/footer-discord";
-import { FooterGithubIcon as GithubIcon } from "../../refine-theme/icons/footer-github";
-import { FooterRedditIcon as RedditIcon } from "../../refine-theme/icons/footer-reddit";
-import { FooterTwitterIcon as TwitterIcon } from "../../refine-theme/icons/footer-twitter";
-
+import {
+    DiscordIcon,
+    GithubIcon,
+    RedditIcon,
+    TwitterIcon,
+} from "../../components/landing/icons/gray-social-icons";
 import LinkButton from "../../components/link-button";
 
 const timeline = [
@@ -301,6 +301,40 @@ const RefineWeek = () => {
                             })}
                         </div>
                     </div>
+
+                    {/*       <div className="flex flex-col items-center justify-center mt-16 max-w-[592px] mx-auto">
+                        <div className="flex items-center justify-center">
+                            <RefineHatIcon className="mr-2" />
+                            <h2 className="font-montserrat font-extrabold text-[#242436] tracking-wide text-3xl mb-0">
+                                WIN SWAG
+                            </h2>
+                        </div>
+                        <p className="font-montserrat font-medium text-xs text-[#242436] text-center mb-0 mt-8 px-2 sm:px-0">
+                            If you build something cool during{" "}
+                            <strong className="font-bold">refine WEEK,</strong>{" "}
+                            we’d like to show our appreciation! Build and submit
+                            your coolest projects powered by{" "}
+                            <strong className="font-bold">refine</strong>. To be
+                            eligible, share your project on Twitter with the
+                            hashtag{" "}
+                            <strong className="font-bold">#refineweek</strong>{" "}
+                            and submit a PR to get your project added to our
+                            repo!
+                        </p>
+                        <LinkButton href={tweetUrl} className="mt-8">
+                            <div className="w-[16px] h-[16px] mr-3">
+                                <TwitterIcon
+                                    color="#ffffff"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+                            <span className="font-medium">
+                                #<strong className="font-bold">refine</strong>
+                                week
+                            </span>
+                        </LinkButton>
+                    </div> */}
                 </div>
 
                 <div className="mx-auto mt-16 flex max-w-[800px] flex-col items-center justify-center">

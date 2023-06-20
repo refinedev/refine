@@ -1,5 +1,5 @@
 ---
-id: NextAuth-js
+id: NextAuth.js
 title: Authentication with NextAuth.js
 example-tags: [next.js,auth-provider]
 ---

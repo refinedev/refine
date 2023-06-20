@@ -3,9 +3,9 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.24.0",
-    "@refinedev/core": "^4.22.0",
-    "@refinedev/cli": "^2.7.0",
+    "@refinedev/antd": "^5.23.0",
+    "@refinedev/core": "^4.21.0",
+    "@refinedev/cli": "^2.6.0",
     "@refinedev/nestjsx-crud": "^4.3.2",
     "@refinedev/react-router-v6": "^4.3.2",
     "@types/node": "^18.16.2",

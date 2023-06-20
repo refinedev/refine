@@ -17,7 +17,6 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
     const { items } = useSidebarItems({
         variant: "mobile",
         onLinkClick: onClose,
-        deferred: true,
     });
 
     return (

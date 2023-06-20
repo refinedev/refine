@@ -266,14 +266,8 @@ export const TutorialTOC = () => {
             <button
                 key={unit.no}
                 type="button"
-                data-unit-title={unit.title}
-                data-unit-no={unit.no}
-                data-unit-current={
-                    unit.unit === selectedUnit ? "true" : undefined
-                }
                 onClick={() => setSelectedUnit(unit.unit)}
                 className={clsx(
-                    "tutorial-unit",
                     unit.unit === selectedUnit &&
                         "bg-gradient-to-t from-gray-50 dark:from-gray-800 from-40% to-gray-200 dark:to-gray-700",
                     "-mb-1",
@@ -303,8 +297,8 @@ export const TutorialTOC = () => {
             ?.no === 1;
 
     return (
-        <div className={clsx("tutorial-tracker", "max-h-[calc(100vh-6rem]")}>
-            <div className={clsx("tutorial-units", "mb-1", "flex gap-0.5")}>
+        <div className={clsx("max-h-[calc(100vh-6rem]")}>
+            <div className={clsx("mb-1", "flex gap-0.5")}>
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div

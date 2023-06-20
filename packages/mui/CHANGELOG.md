@@ -1,27 +1,5 @@
 # @pankod/refine-mui
 
-## 5.3.0
-
-### Minor Changes
-
--   [#4449](https://github.com/refinedev/refine/pull/4449) [`cc84d61bc5c`](https://github.com/refinedev/refine/commit/cc84d61bc5c8cfc8ac7da391f965471ecad6c445) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: updated Create, List, Show, Edit, Delete, Clone buttons to respect new global `accessControlProvider` configuration.
-
-    fix: Delete button's text wasn't rendered as `reason` field of `accessControlProvider`.
-
-    Given the following `can` method:
-
-    ```ts
-    const accessControlProvider: IAccessControlContext = {
-        can: async (): Promise<CanReturnType> => {
-            return { can: false, reason: "Access Denied!" };
-        },
-    };
-    ```
-
-    If user is unauthorized, `Delete` button's text should be `Access Denied!` instead of default `Delete`.
-
-    This is the default behaviour for Create, List, Show, Edit, Delete, Clone buttons already.
-
 ## 5.2.0
 
 ### Minor Changes

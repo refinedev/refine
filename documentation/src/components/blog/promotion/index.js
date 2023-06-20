@@ -57,7 +57,7 @@ const PromotionBanner = ({ image, title, description, isDark }) => {
           }`;
 
     return (
-        /*  <div className={`banner-container ${isDark && "dark"}`}>
+        <div className={`banner-container ${isDark && "dark"}`}>
             <div className="banner-header">
                 {title ?? "Does your CRUD app need server state management?"}
             </div>
@@ -76,14 +76,7 @@ const PromotionBanner = ({ image, title, description, isDark }) => {
                 </a>
             </div>
             <br />
-        </div> */
-        <a
-            href="https://s.refine.dev/hackathon2"
-            target="_blank"
-            rel="noreferrer"
-        >
-            <img src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" />
-        </a>
+        </div>
     );
 };
 

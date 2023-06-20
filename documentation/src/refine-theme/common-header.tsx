@@ -21,6 +21,7 @@ type Props = {
 
 export const CommonHeader = ({ hasSticky, trackProgress }: Props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    console.log("contentRef");
     const { scrollYProgress } = useScroll();
 
     const progressPercentage = useTransform(

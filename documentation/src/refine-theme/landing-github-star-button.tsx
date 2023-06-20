@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useGithubContext } from "../context/GithubContext";
-import { GithubIcon } from "./icons/github";
+import { GithubIcon } from "../components/landing/icons";
 import { Spinner } from "./spinner";
 
 export const LandingGithubStarButton = () => {

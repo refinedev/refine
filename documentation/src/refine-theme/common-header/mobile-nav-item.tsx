@@ -8,7 +8,6 @@ import {
     TwoTonedCloudIcon,
 } from "../icons/popover";
 import { CloudIcon } from "../icons/cloud";
-import { HackathonAltIcon } from "../icons/hackathon-alt";
 
 type MobileNavItemProps = {
     label: string;
@@ -47,9 +46,6 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
             {...(href ? { to: href } : {})}
         >
             <div className="text-gray-800 dark:text-white font-semibold">
-                {label === "Hackathon" && (
-                    <HackathonAltIcon className="inline text-[#F93] -mt-1 mr-1.5" />
-                )}
                 {label}
             </div>
             {isCollapseble &&

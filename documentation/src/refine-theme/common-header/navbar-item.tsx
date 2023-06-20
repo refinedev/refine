@@ -48,17 +48,6 @@ export const NavbarItem: React.FC<NavbarItemProps> = ({
                 "text-base font-medium text-gray-900 dark:text-white",
                 "no-underline",
                 isPermanentDark && "!text-white",
-                item.label === "Hackathon"
-                    ? [
-                          "py-1",
-                          "px-2",
-                          "rounded-lg",
-                          "bg-hackathon-button-bg",
-                          "animate-hackathon-button-bg",
-                          "bg-[length:200%_100%]",
-                          "text-[14px]",
-                      ]
-                    : [],
             )}
         >
             {item.icon && <Icon />}

@@ -280,4 +280,4 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 | Description                                | Type                                                                                                                                                                                          |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |

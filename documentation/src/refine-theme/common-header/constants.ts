@@ -1,5 +1,4 @@
 // import { CloudIcon } from "../icons/cloud";
-import { HackathonAltIcon } from "../icons/hackathon-alt";
 import {
     DocumentsIcon,
     IntegrationsIcon,
@@ -103,7 +102,7 @@ export const MENU_ITEMS: MenuItemType[] = [
             {
                 label: "Hackathons",
                 description: "Compete in hackathons and earn prizes!",
-                link: "https://s.refine.dev/hackathon2",
+                link: "https://github.com/refinedev/refine/blob/next/hackathon/refine-hackathon.md",
                 icon: HackathonsIcon,
             },
         ],
@@ -136,11 +135,5 @@ export const MENU_ITEMS: MenuItemType[] = [
         isPopover: false,
         label: "Blog",
         href: "/blog",
-    },
-    {
-        isPopover: false,
-        label: "Hackathon",
-        icon: HackathonAltIcon,
-        href: "https://s.refine.dev/hackathon2",
     },
 ];
