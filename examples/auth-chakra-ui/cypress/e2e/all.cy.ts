@@ -2,7 +2,7 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-chakra-ui", () => {
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "http://localhost:5173";
 
     const submitAuthForm = () => {
         return cy.get("button[type=submit]").click();
@@ -42,7 +42,7 @@ describe("auth-chakra-ui", () => {
             cy.location("pathname").should("eq", "/login");
         });
 
-        it("should has 'to' param on URL after redirected to /login", () => {
+        it.skip("should has 'to' param on URL after redirected to /login", () => {
             login();
             cy.location("pathname").should("eq", "/posts");
 

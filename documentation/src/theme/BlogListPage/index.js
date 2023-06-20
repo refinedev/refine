@@ -58,7 +58,7 @@ function BlogListPageContent(props) {
                 )}
             >
                 <a
-                    href="https://s.refine.dev/hackathon"
+                    href="https://s.refine.dev/hackathon2"
                     target="_blank"
                     rel="noreferrer"
                 >
