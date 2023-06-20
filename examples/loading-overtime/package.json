@@ -10,7 +10,7 @@
     "@refinedev/simple-rest": "^4.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "^6.8.1",
     "@uiw/react-md-editor": "^3.19.5",
     "antd": "^5.0.5"
   },
