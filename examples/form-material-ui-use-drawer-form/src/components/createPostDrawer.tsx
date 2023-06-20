@@ -9,10 +9,10 @@ import { Controller } from "react-hook-form";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 import { HttpError } from "@refinedev/core";
 
-import { IPost } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "interfaces";
 
 export const CreatePostDrawer: React.FC<
-    UseModalFormReturnType<IPost, HttpError, IPost>
+    UseModalFormReturnType<IPost, HttpError, Nullable<IPost>>
 > = ({
     saveButtonProps,
     modal: { visible, close },
@@ -67,7 +67,7 @@ export const CreatePostDrawer: React.FC<
                         name="status"
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
-                            <Autocomplete
+                            <Autocomplete<IStatus>
                                 id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
@@ -93,7 +93,7 @@ export const CreatePostDrawer: React.FC<
                         name="category"
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
-                            <Autocomplete
+                            <Autocomplete<ICategory>
                                 id="category"
                                 {...autocompleteProps}
                                 {...field}

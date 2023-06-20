@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useCan,
     useNavigation,
@@ -9,6 +9,7 @@ import {
     useRouterType,
     useLink,
     pickNotDeprecated,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -38,8 +39,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const { listUrl: generateListUrl } = useNavigation();
     const routerType = useRouterType();
     const Link = useLink();

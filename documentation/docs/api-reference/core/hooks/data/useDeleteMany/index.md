@@ -318,4 +318,4 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 | Description                                | Type                                                                                                                                                                                              |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; ids: BaseKey[]; },`<br/>` DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; ids: BaseKey[]; }, DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |

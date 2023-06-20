@@ -154,3 +154,7 @@ export interface IReview {
     status: "pending" | "approved" | "rejected";
     comment: string[];
 }
+
+export type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};

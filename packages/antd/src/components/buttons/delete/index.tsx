@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
@@ -9,6 +9,7 @@ import {
     useResource,
     pickNotDeprecated,
     useWarnAboutChange,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -43,8 +44,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
+
     const translate = useTranslate();
 
     const { id, resource } = useResource(
@@ -65,6 +74,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             enabled: accessControlEnabled,
         },
     });
+
+    const disabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
 
     const { setWarnWhen } = useWarnAboutChange();
 
@@ -117,6 +136,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 danger
                 loading={(recordItemId ?? id) === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
+                title={disabledTitle()}
                 disabled={data?.can === false}
                 data-testid={RefineButtonTestIds.DeleteButton}
                 className={RefineButtonClassNames.DeleteButton}

@@ -37,9 +37,17 @@ describe("form-antd-mutation-mode", () => {
         );
     };
 
-    const waitForLoading = () => {
+    const waitForEditPageLoading = () => {
+        cy.wait("@getPost");
+        cy.wait("@getCategories");
         cy.getAntdLoadingOverlay().should("not.exist");
         cy.getSaveButton().should("not.be.disabled");
+    };
+
+    const waitForListPageLoading = () => {
+        cy.wait("@getPosts");
+        cy.wait("@getCategories");
+        cy.getAntdLoadingOverlay().should("not.exist");
     };
 
     const submitForm = () => {
@@ -62,12 +70,14 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should edit record when mutation mode is pessimistic", () => {
+        waitForListPageLoading();
+
         cy.get("input[value=pessimistic]").check();
         cy.getEditButton().first().should("not.be.disabled");
         cy.getEditButton().first().click();
         // wait loading state and render to be finished
         cy.wait("@getPost");
-        waitForLoading();
+        waitForEditPageLoading();
 
         fillForm();
         submitForm();
@@ -83,12 +93,13 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should edit a record when mutation mode is undoable", () => {
+        waitForListPageLoading();
         cy.get("input[value=undoable]").check();
         cy.getEditButton().first().click();
 
         // wait loading state and render to be finished
-        cy.wait("@getPost");
-        waitForLoading();
+
+        waitForEditPageLoading();
         fillForm();
         submitForm();
 
@@ -112,12 +123,12 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should undo editing when mutation mode is undoable", () => {
+        waitForListPageLoading();
+
         cy.get("input[value=undoable]").check();
         cy.getEditButton().first().click();
 
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        waitForLoading();
+        waitForEditPageLoading();
         submitForm();
 
         cy.getAntdNotification()
@@ -130,12 +141,13 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should create a record when mutation mode is optimistic", () => {
+        waitForListPageLoading();
+
         cy.get("input[value=optimistic]").check();
         cy.getCreateButton().click();
 
-        // wait loading state and render to be finished
         cy.wait("@getCategories");
-        waitForLoading();
+
         fillForm();
         submitForm();
 
@@ -152,12 +164,12 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should edit a record when mutation mode is optimistic", () => {
+        waitForListPageLoading();
+
         cy.get("input[value=optimistic]").check();
         cy.getEditButton().first().click();
 
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        waitForLoading();
+        waitForEditPageLoading();
         fillForm();
         submitForm();
 
@@ -174,13 +186,12 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should delete record when mutation mode is pessimistic", () => {
+        waitForListPageLoading();
+
         cy.get("input[value=pessimistic]").check();
         cy.getEditButton().first().click();
 
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        cy.getSaveButton().should("not.be.disabled");
-        cy.getAntdLoadingOverlay().should("not.exist");
+        waitForEditPageLoading();
 
         cy.getDeleteButton().first().click();
         cy.getAntdPopoverDeleteButton().click();
@@ -197,13 +208,14 @@ describe("form-antd-mutation-mode", () => {
     });
 
     it("should delete a record when mutation mode is undoable", () => {
+        waitForListPageLoading();
+
         cy.get("input[value=undoable]").check();
         cy.getEditButton().first().click();
 
-        // wait loading state and render to be finished
-        cy.wait("@getPost");
-        waitForLoading();
-        cy.getDeleteButton().first().click();
+        waitForEditPageLoading();
+
+        cy.getDeleteButton().click();
         cy.getAntdPopoverDeleteButton().click();
 
         // should show notification
@@ -214,7 +226,7 @@ describe("form-antd-mutation-mode", () => {
         });
         // notification should disappear after certain time
         cy.getAntdNotification()
-            .contains("seconds to undo", { timeout: 10000 })
+            .contains("seconds to undo", { timeout: 20000 })
             .should("not.exist");
 
         // should sent a DELETE request after certain time

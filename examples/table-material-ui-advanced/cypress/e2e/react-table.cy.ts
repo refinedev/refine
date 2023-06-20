@@ -21,9 +21,9 @@ describe("table-material-ui-advanced", () => {
     it("should select all rows when click the checkbox in the table header", () => {
         cy.wait("@getPosts");
 
-        cy.get(".MuiTableCell-head input[type=checkbox]").click({
-            force: true,
-        });
+        cy.get(
+            ".MuiTableCell-root .MuiCheckbox-root .PrivateSwitchBase-input",
+        ).check();
 
         cy.get("#row-select").each((checkbox) => {
             expect(checkbox).to.be.checked;
@@ -33,7 +33,7 @@ describe("table-material-ui-advanced", () => {
     it("should select the row when click the checkbox in the row", () => {
         cy.wait("@getPosts");
 
-        cy.get("#row-select").first().click({ force: true });
+        cy.get("#row-select").first().check();
 
         cy.get("#row-select").first().should("be.checked");
     });
@@ -43,7 +43,7 @@ describe("table-material-ui-advanced", () => {
 
         cy.get("#delete-selected").should("not.exist");
 
-        cy.get("#row-select").first().click({ force: true });
+        cy.get("#row-select").first().check();
 
         cy.get("#delete-selected").should("exist");
     });
