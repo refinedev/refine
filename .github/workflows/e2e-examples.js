@@ -142,7 +142,7 @@ const waitForServer = async (port) => {
                 waitOnFor(`http://127.0.0.1:${port}`),
             ]);
 
-            resolve(resolvedResource)
+            resolve(resolvedResource);
         } catch (error) {
             if (error) console.log(error);
 
@@ -171,7 +171,7 @@ const waitForClose = (resource) => {
             resolve(false);
         }
     });
-}
+};
 
 const runTests = async () => {
     const examplesToRun = await getProjectsWithE2E();
@@ -253,7 +253,7 @@ const runTests = async () => {
                 const params =
                     "" ??
                     `-- --record --key ${KEY} --ci-build-id=${CI_BUILD_ID}-${path} --group ${CI_BUILD_ID}-${path}`;
-                const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
+                const runner = `npm run test:e2e -- --scope ${path} ${params}`;
 
                 prettyLog("blue", `Running tests for ${path}`);
 

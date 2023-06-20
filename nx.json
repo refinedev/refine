@@ -6,11 +6,21 @@
         "cacheableOperations": [
           "build",
           "lint",
-          "test"
+          "test",
+          "cypress:run"
         ],
         "accessToken": "NGI2NjNiYWItMWNhYi00MDA4LWI1OTMtM2IwYmFmYzRkMjEzfHJlYWQtd3JpdGU="
       }
     }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "ignoreE2E": [
+      "!{projectRoot}/cypress/videos",
+      "!{projectRoot}/cypress/screenshots",
+      "!{projectRoot}/cypress/videos/**/*",
+      "!{projectRoot}/cypress/screenshots/**/*"
+    ]
   },
   "targetDefaults": {
     "build": {
@@ -21,6 +31,16 @@
         "{projectRoot}/dist",
         "{projectRoot}/build",
         "{projectRoot}/.next"
+      ]
+    },
+    "cypress:run": {
+      "inputs": [
+        "default",
+        "ignoreE2E"
+      ],
+      "outputs": [
+        "{projectRoot}/cypress/videos",
+        "{projectRoot}/cypress/screenshots"
       ]
     }
   }
