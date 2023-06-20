@@ -37,9 +37,10 @@ describe("LoadingOvertimeIndicator", () => {
         );
 
         it.each([
-            { elapsedTime: 4000, content: "taking some time to complete" },
-            { elapsedTime: 5000, content: "taking some time to complete" },
-            { elapsedTime: 9000, content: "this is unexpected" },
+            { elapsedTime: 4000, content: OvertimeComponentContents[0] },
+            { elapsedTime: 5000, content: OvertimeComponentContents[0] },
+            { elapsedTime: 9000, content: OvertimeComponentContents[1] },
+            { elapsedTime: 12000, content: OvertimeComponentContents[2] },
             {
                 elapsedTime: 15000,
                 content: "at this point, Im starting to lose my faith",
@@ -82,12 +83,12 @@ describe("LoadingOvertimeIndicator", () => {
         });
 
         it.each([
-            { elapsedTime: 4000, content: "taking some time to complete" },
-            { elapsedTime: 5000, content: "taking some time to complete" },
-            { elapsedTime: 9000, content: "this is unexpected" },
+            { elapsedTime: 4000, content: OvertimeComponentContents[0] },
+            { elapsedTime: 5000, content: OvertimeComponentContents[0] },
+            { elapsedTime: 9000, content: OvertimeComponentContents[1] },
             {
                 elapsedTime: 15000,
-                content: "at this point, Im starting to lose my faith",
+                content: OvertimeComponentContents[2],
             },
         ] as const)(
             "should render the matching overtime component when `isLoading` is true and elapsedTime is %s",
