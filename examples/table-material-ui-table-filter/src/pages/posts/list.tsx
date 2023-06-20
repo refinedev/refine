@@ -185,7 +185,7 @@ export const PostList: React.FC = () => {
                                             "rejected",
                                         ]}
                                         {...field}
-                                        onChange={(_, value) => {
+                                        onChange={(_, value: any) => {
                                             field.onChange(value);
                                         }}
                                         renderInput={(params) => (
