@@ -9,6 +9,7 @@ import React, {
 
 interface IGithubContext {
     starCount: number;
+    commitCount: number;
     loading: boolean;
     refetch: () => Promise<void>;
 }
@@ -20,12 +21,13 @@ export const GithubContext = createContext<IGithubContext | undefined>(
 export const GithubProvider: FC = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [starCount, setStarCount] = useState(0);
+    const [commitCount, setCommitCount] = useState(0);
 
-    const fetchStarCount = useCallback(async () => {
+    const fetchGithubCount = useCallback(async () => {
         try {
             setLoading(true);
 
-            const response = await fetch(`https://stargate.refine.dev/`, {
+            const response = await fetch(`https://stargate.refine.dev/github`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -33,7 +35,8 @@ export const GithubProvider: FC = ({ children }) => {
             });
 
             const json = await response.json();
-            setStarCount(json.stargazers_count);
+            setStarCount(json.starCount);
+            setCommitCount(json.commitCount);
         } catch (error) {
         } finally {
             setLoading(false);
@@ -41,13 +44,14 @@ export const GithubProvider: FC = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        fetchStarCount();
-    }, [fetchStarCount]);
+        fetchGithubCount();
+    }, [fetchGithubCount]);
 
     const value = {
         starCount,
+        commitCount,
         loading,
-        refetch: fetchStarCount,
+        refetch: fetchGithubCount,
     };
 
     return (
