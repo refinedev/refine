@@ -98,10 +98,10 @@ describe("with-remix-material-ui", () => {
             cy.location("pathname").should("eq", "/register");
 
             cy.get("#email").clear().as("email");
-            cy.get("@email").type("test@test.com");
+            cy.get("@email").focus().type("test@test.com");
 
             cy.get("#password").clear().as("password");
-            cy.get("@password").type("test");
+            cy.get("@password").focus().type("test");
 
             submitAuthForm();
             cy.getMaterialUINotification().contains(/register failed/i);
