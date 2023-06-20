@@ -26,12 +26,17 @@ import { useParsed } from "@hooks/router/use-parsed";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     showId?: BaseKey;
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
-};
+} & UseLoadingOvertimeReturnType;
 
 export type useShowProps<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -75,7 +80,8 @@ export type useShowProps<
         GetOneResponse<TData>,
         TError,
         Prettify<{ id?: BaseKey } & MetaQuery>
-    >;
+    > &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -105,6 +111,7 @@ export const useShow = <
     onLiveEvent,
     dataProviderName,
     queryOptions,
+    overtimeOptions,
 }: useShowProps<
     TQueryFnData,
     TError,
@@ -213,9 +220,16 @@ export const useShow = <
         dataProviderName,
     });
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         queryResult,
         showId,
         setShowId,
+        overtime: { elapsedTime },
     };
 };
