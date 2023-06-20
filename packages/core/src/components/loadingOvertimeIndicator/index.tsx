@@ -3,7 +3,7 @@ import React from "react";
 import {
     UseLoadingOvertimeProps,
     useLoadingOvertime,
-} from "@hooks/useLoadingOvertime";
+} from "../../hooks/useLoadingOvertime";
 
 type PropsWithLoading = CommonProps & UseLoadingOvertimeProps;
 
@@ -13,7 +13,7 @@ type PropsWithElapsedTime = CommonProps & {
 
 type CommonProps = {
     children?: React.ReactNode;
-    overtimeComponents: {
+    overtimeComponents?: {
         [key: number]: React.ReactNode;
     };
 };
@@ -30,6 +30,10 @@ export function LoadingOvertimeIndicator(
     props: LoadingOvertimeIndicatorProps,
 ): JSX.Element {
     const { children, overtimeComponents } = props;
+
+    if (!overtimeComponents) {
+        return <>{children}</>;
+    }
 
     const sortedIntervalKeys = React.useMemo(
         () =>
