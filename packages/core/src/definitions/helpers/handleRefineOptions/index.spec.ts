@@ -50,6 +50,9 @@ describe("handleRefineOptions", () => {
                 afterEdit: "show",
             },
             breadcrumb: false,
+            overtime: {
+                interval: 1000,
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -107,6 +110,9 @@ describe("handleRefineOptions", () => {
                 afterCreate: "list",
                 afterEdit: "list",
             },
+            overtime: {
+                interval: 1000,
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -147,6 +153,9 @@ describe("handleRefineOptions", () => {
                 afterClone: "list",
                 afterCreate: "list",
                 afterEdit: "list",
+            },
+            overtime: {
+                interval: 1000,
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);

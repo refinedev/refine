@@ -74,6 +74,7 @@ export const handleRefineOptions = ({
                 options?.redirect?.afterEdit ??
                 defaultRefineOptions.redirect.afterEdit,
         },
+        overtime: options?.overtime ?? defaultRefineOptions.overtime,
     };
 
     const disableTelemetryWithDefault =

@@ -1052,6 +1052,29 @@ const stepsForm = useStepsForm({
 
 <br/>
 
+### `overtimeOptions`
+
+If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useStepsForm({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Return Values
 
 :::tip
@@ -1087,7 +1110,15 @@ A function that can submit the form. It's useful when you want to submit the for
 
 When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from the API and set it as default values. This prop is `true` when the data is being fetched.
 
-<br/>
+### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useStepsForm();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 
 ## FAQ
 
@@ -1156,6 +1187,7 @@ const {
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
 | defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                      |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
+| overtime                 | Overtime loading props                                       | `{ elapsedTime?: number }`                                                     |
 
 ## Example
 

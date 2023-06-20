@@ -39,7 +39,7 @@ export const generateUseListSubscription = ({
 
     const operation = meta.operation ?? camelResource;
 
-    const { query, variables } = gql.query({
+    const { query, variables } = gql.subscription({
         operation,
         variables: {
             ...meta.variables,

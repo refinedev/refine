@@ -55,11 +55,8 @@ export const useAutocomplete = <
 >(
     props: UseAutocompleteProps<TQueryFnData, TError, TData>,
 ): UseAutocompleteReturnType<TData> => {
-    const { queryResult, defaultValueQueryResult, onSearch } = useSelectCore<
-        TQueryFnData,
-        TError,
-        TData
-    >(props);
+    const { queryResult, defaultValueQueryResult, onSearch, overtime } =
+        useSelectCore<TQueryFnData, TError, TData>(props);
 
     return {
         autocompleteProps: {
@@ -82,5 +79,6 @@ export const useAutocomplete = <
         onSearch,
         queryResult,
         defaultValueQueryResult,
+        overtime,
     };
 };
