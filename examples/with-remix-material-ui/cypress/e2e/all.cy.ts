@@ -14,10 +14,11 @@ describe("with-remix-material-ui", () => {
 
     const login = () => {
         cy.fixture("demo-auth-credentials").then((auth) => {
-            cy.get("#email", { timeout: 10000 }).clear();
-            cy.get("#email").type(auth.email);
-            cy.get("#password").clear();
-            cy.get("#password").type(auth.password);
+            cy.get("#email", { timeout: 10000 }).clear().as("email");
+            cy.get("@email").type(auth.email);
+
+            cy.get("#password").clear().as("password");
+            cy.get("@password").type(auth.password);
         });
         submitAuthForm();
     };
@@ -39,9 +40,14 @@ describe("with-remix-material-ui", () => {
         });
 
         it("should throw error if login email is wrong", () => {
-            cy.get("#email").clear().type("test@test.com");
-            cy.get("#password").clear().type("test");
+            cy.get("#email").clear().as("email");
+            cy.get("@email").type("test@test.com");
+
+            cy.get("#password").clear().as("password");
+            cy.get("@password").type("test");
+
             submitAuthForm();
+
             cy.getMaterialUINotification().contains(/login failed/i);
             cy.location("pathname").should("eq", "/login");
         });
@@ -76,7 +82,9 @@ describe("with-remix-material-ui", () => {
                 .contains(/sign up/i)
                 .click();
             cy.location("pathname").should("eq", "/register");
+
             login();
+
             cy.location("pathname").should("eq", "/blog-posts");
             cy.getAllCookies().then((cookies) => {
                 expect(cookies[0]).to.have.property("name", "user");
@@ -89,10 +97,11 @@ describe("with-remix-material-ui", () => {
                 .click();
             cy.location("pathname").should("eq", "/register");
 
-            cy.get("#email").clear();
-            cy.get("#email").type("test@test.com");
-            cy.get("#password").clear();
-            cy.get("#password").type("test");
+            cy.get("#email").clear().as("email");
+            cy.get("@email").type("test@test.com");
+
+            cy.get("#password").clear().as("password");
+            cy.get("@password").type("test");
 
             submitAuthForm();
             cy.getMaterialUINotification().contains(/register failed/i);
