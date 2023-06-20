@@ -488,6 +488,7 @@ return (
 | queryResult             | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | onSearch                | A function to set the search value             | `onSearch: (value: string) => void`                                                           |
+| overtime                | Overtime loading props                         | `{ elapsedTime?: number }`                                                                    |
 
 ## Example
 

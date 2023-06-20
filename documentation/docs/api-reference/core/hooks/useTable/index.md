@@ -686,6 +686,16 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+### Additional Values
+#### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCreate();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ### ~~`sorter`~~
 
 :::caution Deprecated

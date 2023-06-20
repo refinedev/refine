@@ -787,7 +787,16 @@ return (
     </Drawer>
 );
 ```
+### Additional Values
+#### `overtime`
 
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCreate();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ## FAQ
 ### How can I change the form data before submitting it to the API?
 

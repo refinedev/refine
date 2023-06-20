@@ -457,6 +457,7 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 | queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
+| overtime                   | Overtime loading props                         | `{ elapsedTime?: number }`                                                                    |
 
 > #### AutoCompleteReturnValues
 >

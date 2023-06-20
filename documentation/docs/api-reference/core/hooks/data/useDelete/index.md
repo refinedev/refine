@@ -309,6 +309,16 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 > For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
+### Additional Values
+#### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCreate();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ## API
 
 ### Mutation Parameters

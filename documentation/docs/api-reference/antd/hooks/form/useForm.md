@@ -929,6 +929,16 @@ You can override the default behavior by passing an `onFinish` function in the h
 
 For example you can [change values before sending to the API](/docs/api-reference/antd/hooks/form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
+### Additional Values
+#### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCreate();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ## FAQ
 
 ### How can Invalidate other resources?

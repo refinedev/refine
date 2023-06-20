@@ -1110,7 +1110,16 @@ A function that can submit the form. It's useful when you want to submit the for
 
 When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from the API and set it as default values. This prop is `true` when the data is being fetched.
 
-<br/>
+### Additional Values
+#### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useCreate();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 
 ## FAQ
 

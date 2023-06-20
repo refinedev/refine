@@ -331,6 +331,7 @@ By default, the query key is generated based on the properties passed to `useCus
 | Description                             | Type                                                                                                                |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Result of the `useLoadingOvertime`      | `{ overtime: { elapsedTime?: number }}`                                                                             |
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
