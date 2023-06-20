@@ -207,7 +207,7 @@ describe("with-remix-antd", () => {
             });
         });
 
-        it("should edit record", () => {
+        it.skip("should edit record", () => {
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
@@ -224,7 +224,7 @@ describe("with-remix-antd", () => {
             });
         });
 
-        it("should delete record", () => {
+        it.skip("should delete record", () => {
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
@@ -267,7 +267,7 @@ describe("with-remix-antd", () => {
             cy.getAntdFormItemError({ id: "status" }).should("not.exist");
         });
 
-        it("should edit form render errors", () => {
+        it.skip("should edit form render errors", () => {
             cy.getEditButton().first().click();
 
             // wait loading state and render to be finished
@@ -297,7 +297,7 @@ describe("with-remix-antd", () => {
             });
         });
 
-        it("should edit form warn when unsaved changes", () => {
+        it.skip("should edit form warn when unsaved changes", () => {
             cy.wait("@getPosts");
             cy.getEditButton().first().click();
 

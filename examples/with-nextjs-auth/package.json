@@ -7,7 +7,8 @@
     "build": "refine build && rm -rf .next/cache",
     "start:prod": "refine start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "cypress": "cypress open -C ./cypress.config.ts"
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
     "@refinedev/antd": "^5.24.0",

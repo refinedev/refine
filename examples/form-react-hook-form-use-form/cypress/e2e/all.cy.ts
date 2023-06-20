@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("form-material-ui-use-form", () => {
+describe("form-react-hook-form-use-form", () => {
     const BASE_URL = "http://localhost:3000";
 
     const mockPost = {

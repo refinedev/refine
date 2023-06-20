@@ -14,10 +14,10 @@ import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, IStatus, Nullable } from "interfaces";
 
 export const CreatePostModal: React.FC<
-    UseModalFormReturnType<IPost, HttpError, IPost & { category: ICategory }>
+    UseModalFormReturnType<IPost, HttpError, Nullable<IPost>>
 > = ({
     saveButtonProps,
     modal: { visible, close, title },
@@ -59,7 +59,7 @@ export const CreatePostModal: React.FC<
                         name="status"
                         rules={{ required: "This field is required" }}
                         render={({ field }) => (
-                            <Autocomplete
+                            <Autocomplete<IStatus>
                                 id="status"
                                 options={["published", "draft", "rejected"]}
                                 {...field}
