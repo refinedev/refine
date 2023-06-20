@@ -1,5 +1,5 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import { useCommunityNumberContext } from "../context/CommunityNumber";
 import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
@@ -17,7 +17,7 @@ export const LandingGithubStarButton = () => {
             className={clsx(
                 "text-base",
                 "text-gray-0",
-                "flex items-center gap-2.5",
+                "flex gap-2.5 items-center",
                 "hover:no-underline",
                 "hover:text-gray-0",
                 "transition-colors",
@@ -25,11 +25,11 @@ export const LandingGithubStarButton = () => {
                 "ease-in-out",
             )}
         >
-            <GithubIcon className={clsx("h-4 w-4")} />
+            <GithubIcon className={clsx("w-4 h-4")} />
             <div className={clsx("flex items-center", "min-w-8 h-6")}>
                 {loading ? (
                     <Spinner
-                        className={clsx("h-5 w-5")}
+                        className={clsx("w-5 h-5")}
                         wrapperProps={{
                             className: clsx("mx-auto"),
                         }}

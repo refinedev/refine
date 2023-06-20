@@ -1,10 +1,10 @@
-import React from "react";
+import { useCommunityNumberContext } from "@site/src/context/CommunityNumber";
 import clsx from "clsx";
-import { LandingStatsGithubIcon } from "./icons/landing-stats-github";
+import React from "react";
 import { CountingNumber } from "../components/counting-number";
 import { LandingStatsDiscordIcon } from "./icons/landing-stats-discord";
+import { LandingStatsGithubIcon } from "./icons/landing-stats-github";
 import { LandingStatsTwitterIcon } from "./icons/landing-stats-twitter";
-import { useCommunityNumberContext } from "@site/src/context/CommunityNumber";
 
 const NumberField = ({ number, label }: { number: number; label: string }) => {
     return (
@@ -82,7 +82,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                     <div className="flex-shrink-0">
                         <LandingStatsGithubIcon
                             className={clsx(
-                                "h-24 w-24",
+                                "w-24 h-24",
                                 "landing-md:w-16 landing-md:h-16",
                                 "landing-lg:w-24 landing-lg:h-24",
                             )}
@@ -100,7 +100,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                             "gap-6",
                         )}
                     >
-                        <div className={clsx("landing-md:block hidden")}>
+                        <div className={clsx("hidden landing-md:block")}>
                             <NumberField number={150} label="Contributors" />
                         </div>
                         <div className={clsx("block", "landing-md:hidden")}>
@@ -111,16 +111,16 @@ const GithubStats = ({ className }: { className?: string }) => {
                         </div>
                         <div
                             className={clsx(
-                                "landing-md:flex hidden",
+                                "hidden landing-md:flex",
                                 "flex-1",
-                                "landing-md:flex-row landing-lg:flex-col flex-row gap-6",
+                                "flex-row landing-md:flex-row landing-lg:flex-col gap-6",
                             )}
                         >
                             <NumberField
                                 number={githubCommitCount}
                                 label="Commits"
                             />
-                            <div className={clsx("landing-md:hidden block")}>
+                            <div className={clsx("block landing-md:hidden")}>
                                 <NumberField
                                     number={150}
                                     label="Contributors"
@@ -140,7 +140,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                         "mt-4",
                         "pl-2",
                         "pr-6",
-                        "landing-md:hidden grid w-full grid-cols-2 place-content-start items-center justify-center",
+                        "grid grid-cols-2 place-content-start w-full justify-center items-center landing-md:hidden",
                     )}
                 >
                     <NumberField number={150} label="Contributors" />
@@ -186,7 +186,7 @@ const DiscordStats = () => {
                 <div className="flex-shrink-0">
                     <LandingStatsDiscordIcon
                         className={clsx(
-                            "h-24 w-24",
+                            "w-24 h-24",
                             "landing-md:w-16 landing-md:h-16",
                             "landing-lg:w-24 landing-lg:h-24",
                         )}
@@ -237,7 +237,7 @@ const TwitterStats = () => {
                 <div className="flex-shrink-0">
                     <LandingStatsTwitterIcon
                         className={clsx(
-                            "h-24 w-24",
+                            "w-24 h-24",
                             "landing-md:w-16 landing-md:h-16",
                             "landing-lg:w-24 landing-lg:h-24",
                         )}
@@ -258,7 +258,7 @@ export const LandingStats = () => {
                 "w-full",
                 "max-w-[324px]",
                 "landing-md:max-w-screen-landing-md",
-                "landing-lg:px-0 px-2",
+                "px-2 landing-lg:px-0",
                 "landing-lg:max-w-screen-landing-content",
                 "flex flex-col",
                 "gap-12",
@@ -284,7 +284,7 @@ export const LandingStats = () => {
             >
                 <span
                     className={clsx(
-                        "landing-md:inline block",
+                        "block landing-md:inline",
                         "bg-landing-text-bg",
                         "bg-clip-text",
                         "text-transparent",
@@ -294,7 +294,7 @@ export const LandingStats = () => {
                 </span>{" "}
                 <span
                     className={clsx(
-                        "landing-md:inline block",
+                        "block landing-md:inline",
                         "bg-landing-text-bg",
                         "bg-clip-text",
                         "text-transparent",
@@ -314,7 +314,7 @@ export const LandingStats = () => {
             >
                 <GithubStats
                     className={clsx(
-                        "landing-md:col-span-2 landing-lg:col-span-1 col-span-1",
+                        "col-span-1 landing-md:col-span-2 landing-lg:col-span-1",
                     )}
                 />
                 <div
@@ -322,7 +322,7 @@ export const LandingStats = () => {
                         "col-span-1",
                         "landing-md:col-span-2",
                         "landing-lg:col-span-1",
-                        "landing-md:grid-cols-2 landing-lg:grid-cols-1 grid grid-cols-1 gap-4",
+                        "grid grid-cols-1 landing-md:grid-cols-2 landing-lg:grid-cols-1 gap-4",
                     )}
                 >
                     <DiscordStats />
