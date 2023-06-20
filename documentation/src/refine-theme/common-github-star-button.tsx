@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { useGithubContext } from "../context/GithubContext";
+import { useCommunityNumberContext } from "../context/CommunityNumber";
 import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const CommonGithubStarButton = ({ className }: Props) => {
-    const { loading, starCount } = useGithubContext();
+    const { loading, githubStarCount } = useCommunityNumberContext();
 
     return (
         <a
@@ -19,7 +19,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
             className={clsx(
                 "text-base",
                 "text-gray-500 dark:text-gray-400",
-                "flex gap-2 items-center",
+                "flex items-center gap-2",
                 "no-underline",
                 "transition-colors",
                 "duration-200",
@@ -27,19 +27,19 @@ export const CommonGithubStarButton = ({ className }: Props) => {
                 className,
             )}
         >
-            <GithubIcon className={clsx("w-6 h-6")} />
-            <div className={clsx("flex items-center", "min-w-[80px] h-6")}>
+            <GithubIcon className={clsx("h-6 w-6")} />
+            <div className={clsx("flex items-center", "h-6 min-w-[80px]")}>
                 Star:&nbsp;
                 {loading ? (
                     <Spinner
-                        className={clsx("w-5 h-5")}
+                        className={clsx("h-5 w-5")}
                         wrapperProps={{
                             className: clsx("mx-auto"),
                         }}
                     />
                 ) : (
                     <span className={clsx("min-w-10 font-semibold")}>
-                        {starCount?.toLocaleString()}
+                        {githubStarCount?.toLocaleString()}
                     </span>
                 )}
             </div>

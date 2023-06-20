@@ -4,6 +4,7 @@ import { LandingStatsGithubIcon } from "./icons/landing-stats-github";
 import { CountingNumber } from "../components/counting-number";
 import { LandingStatsDiscordIcon } from "./icons/landing-stats-discord";
 import { LandingStatsTwitterIcon } from "./icons/landing-stats-twitter";
+import { useCommunityNumberContext } from "@site/src/context/CommunityNumber";
 
 const NumberField = ({ number, label }: { number: number; label: string }) => {
     return (
@@ -41,6 +42,7 @@ const NumberField = ({ number, label }: { number: number; label: string }) => {
 };
 
 const GithubStats = ({ className }: { className?: string }) => {
+    const { githubStarCount, githubCommitCount } = useCommunityNumberContext();
     return (
         <div
             className={clsx(
@@ -80,7 +82,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                     <div className="flex-shrink-0">
                         <LandingStatsGithubIcon
                             className={clsx(
-                                "w-24 h-24",
+                                "h-24 w-24",
                                 "landing-md:w-16 landing-md:h-16",
                                 "landing-lg:w-24 landing-lg:h-24",
                             )}
@@ -98,21 +100,27 @@ const GithubStats = ({ className }: { className?: string }) => {
                             "gap-6",
                         )}
                     >
-                        <div className={clsx("hidden landing-md:block")}>
+                        <div className={clsx("landing-md:block hidden")}>
                             <NumberField number={150} label="Contributors" />
                         </div>
                         <div className={clsx("block", "landing-md:hidden")}>
-                            <NumberField number={11300} label="GitHub Stars" />
+                            <NumberField
+                                number={githubStarCount}
+                                label="GitHub Stars"
+                            />
                         </div>
                         <div
                             className={clsx(
-                                "hidden landing-md:flex",
+                                "landing-md:flex hidden",
                                 "flex-1",
-                                "flex-row landing-md:flex-row landing-lg:flex-col gap-6",
+                                "landing-md:flex-row landing-lg:flex-col flex-row gap-6",
                             )}
                         >
-                            <NumberField number={5000} label="Commits" />
-                            <div className={clsx("block landing-md:hidden")}>
+                            <NumberField
+                                number={githubCommitCount}
+                                label="Commits"
+                            />
+                            <div className={clsx("landing-md:hidden block")}>
                                 <NumberField
                                     number={150}
                                     label="Contributors"
@@ -120,7 +128,7 @@ const GithubStats = ({ className }: { className?: string }) => {
                             </div>
                             <div className={clsx("hidden", "landing-md:block")}>
                                 <NumberField
-                                    number={11300}
+                                    number={githubStarCount}
                                     label="GitHub Stars"
                                 />
                             </div>
@@ -132,11 +140,11 @@ const GithubStats = ({ className }: { className?: string }) => {
                         "mt-4",
                         "pl-2",
                         "pr-6",
-                        "grid grid-cols-2 place-content-start w-full justify-center items-center landing-md:hidden",
+                        "landing-md:hidden grid w-full grid-cols-2 place-content-start items-center justify-center",
                     )}
                 >
                     <NumberField number={150} label="Contributors" />
-                    <NumberField number={5000} label="Commits" />
+                    <NumberField number={githubCommitCount} label="Commits" />
                 </div>
             </div>
         </div>
@@ -144,6 +152,7 @@ const GithubStats = ({ className }: { className?: string }) => {
 };
 
 const DiscordStats = () => {
+    const { discordMemberCount } = useCommunityNumberContext();
     return (
         <div
             className={clsx(
@@ -177,14 +186,17 @@ const DiscordStats = () => {
                 <div className="flex-shrink-0">
                     <LandingStatsDiscordIcon
                         className={clsx(
-                            "w-24 h-24",
+                            "h-24 w-24",
                             "landing-md:w-16 landing-md:h-16",
                             "landing-lg:w-24 landing-lg:h-24",
                         )}
                     />
                 </div>
                 <div className={clsx("flex flex-col gap-6")}>
-                    <NumberField number={2000} label="Discord Members" />
+                    <NumberField
+                        number={discordMemberCount}
+                        label="Discord Members"
+                    />
                 </div>
             </div>
         </div>
@@ -225,7 +237,7 @@ const TwitterStats = () => {
                 <div className="flex-shrink-0">
                     <LandingStatsTwitterIcon
                         className={clsx(
-                            "w-24 h-24",
+                            "h-24 w-24",
                             "landing-md:w-16 landing-md:h-16",
                             "landing-lg:w-24 landing-lg:h-24",
                         )}
@@ -246,7 +258,7 @@ export const LandingStats = () => {
                 "w-full",
                 "max-w-[324px]",
                 "landing-md:max-w-screen-landing-md",
-                "px-2 landing-lg:px-0",
+                "landing-lg:px-0 px-2",
                 "landing-lg:max-w-screen-landing-content",
                 "flex flex-col",
                 "gap-12",
@@ -272,7 +284,7 @@ export const LandingStats = () => {
             >
                 <span
                     className={clsx(
-                        "block landing-md:inline",
+                        "landing-md:inline block",
                         "bg-landing-text-bg",
                         "bg-clip-text",
                         "text-transparent",
@@ -282,7 +294,7 @@ export const LandingStats = () => {
                 </span>{" "}
                 <span
                     className={clsx(
-                        "block landing-md:inline",
+                        "landing-md:inline block",
                         "bg-landing-text-bg",
                         "bg-clip-text",
                         "text-transparent",
@@ -302,7 +314,7 @@ export const LandingStats = () => {
             >
                 <GithubStats
                     className={clsx(
-                        "col-span-1 landing-md:col-span-2 landing-lg:col-span-1",
+                        "landing-md:col-span-2 landing-lg:col-span-1 col-span-1",
                     )}
                 />
                 <div
@@ -310,7 +322,7 @@ export const LandingStats = () => {
                         "col-span-1",
                         "landing-md:col-span-2",
                         "landing-lg:col-span-1",
-                        "grid grid-cols-1 landing-md:grid-cols-2 landing-lg:grid-cols-1 gap-4",
+                        "landing-md:grid-cols-2 landing-lg:grid-cols-1 grid grid-cols-1 gap-4",
                     )}
                 >
                     <DiscordStats />
