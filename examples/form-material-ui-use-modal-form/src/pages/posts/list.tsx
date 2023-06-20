@@ -5,7 +5,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import React from "react";
 
 import { CreatePostModal, EditPostModal } from "components";
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, Nullable } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
@@ -22,7 +22,7 @@ export const PostList: React.FC = () => {
     const createModalFormProps = useModalForm<
         IPost,
         HttpError,
-        IPost & { category: ICategory }
+        Nullable<IPost>
     >({
         refineCoreProps: { action: "create" },
         syncWithLocation: true,
@@ -31,11 +31,7 @@ export const PostList: React.FC = () => {
         modal: { show: showCreateModal },
     } = createModalFormProps;
 
-    const editModalFormProps = useModalForm<
-        IPost,
-        HttpError,
-        IPost & { category: ICategory }
-    >({
+    const editModalFormProps = useModalForm<IPost, HttpError, Nullable<IPost>>({
         refineCoreProps: { action: "edit" },
         syncWithLocation: true,
     });

@@ -29,7 +29,7 @@ export const generateUseManySubscription = ({
 
     const operation = meta.operation ?? camelResource;
 
-    const { query, variables } = gql.query({
+    const { query, variables } = gql.subscription({
         operation,
         variables: {
             where: {
