@@ -52,12 +52,16 @@ export const CanAccess: React.FC<CanAccessProps> = ({
         id: idFromRoute,
         action: actionFromRoute,
     } = useResource(resourceFromProp);
-    const { identifier } = useResource();
+    const { resource: inferedResource } = useResource();
 
     const getDefaultId = () => {
         const idFromPropsOrRoute = params?.id ?? idFromRoute;
 
-        if (resourceFromProp && resourceFromProp !== identifier) {
+        if (
+            resourceFromProp &&
+            resourceFromProp !== inferedResource?.identifier &&
+            resourceFromProp !== inferedResource?.name
+        ) {
             return params?.id;
         }
 

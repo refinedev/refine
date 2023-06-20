@@ -34,14 +34,14 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { identifier, id } = useResource(
+    const { resource, id } = useResource(
         resourceNameFromProps ?? resourceNameOrRouteName,
     );
 
     const translate = useTranslate();
 
     const { refetch, isFetching } = useOne({
-        resource: identifier,
+        resource: resource?.name,
         id: recordItemId ?? id,
         queryOptions: {
             enabled: false,

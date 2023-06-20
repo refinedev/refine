@@ -97,7 +97,8 @@ export const useMany = <
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
-    const { resources, resource, identifier } = useResource(resourceFromProp);
+    const { resources, resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource.identifier ?? resource.name;
 
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -110,21 +111,25 @@ export const useMany = <
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
     const pickedDataProvider = pickDataProvider(
-        identifier,
+        resourceIdentifierOrName,
         dataProviderName,
         resources,
     );
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
+    const queryKey = queryKeys(
+        resourceIdentifierOrName,
+        pickedDataProvider,
+        preferredMeta,
+    );
 
     const { getMany, getOne } = dataProvider(pickedDataProvider);
 
     const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
-        resource: identifier,
+        resource: resourceIdentifierOrName,
         types: ["*"],
         params: {
             ids: ids,
@@ -201,7 +206,11 @@ export const useMany = <
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, ids, identifier)
+                        ? successNotification(
+                              data,
+                              ids,
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig);
@@ -212,11 +221,11 @@ export const useMany = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, ids, identifier)
+                        ? errorNotification(err, ids, resourceIdentifierOrName)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${ids[0]}-${identifier}-getMany-notification`,
+                    key: `${ids[0]}-${resourceIdentifierOrName}-getMany-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },

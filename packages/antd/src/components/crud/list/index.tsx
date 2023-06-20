@@ -41,7 +41,7 @@ export const List: React.FC<ListProps> = ({
 
     const routerType = useRouterType();
 
-    const { resource, identifier } = useResource(resourceFromProps);
+    const { resource } = useResource(resourceFromProps);
 
     const isCreateButtonVisible =
         canCreate ??
@@ -58,7 +58,9 @@ export const List: React.FC<ListProps> = ({
             ? {
                   size: "middle",
                   resource:
-                      routerType === "legacy" ? resource?.route : identifier,
+                      routerType === "legacy"
+                          ? resource?.route
+                          : resource?.identifier ?? resource?.name,
                   ...createButtonPropsFromProps,
               }
             : undefined;
@@ -74,12 +76,12 @@ export const List: React.FC<ListProps> = ({
                 title={
                     title ??
                     translate(
-                        `${identifier}.titles.list`,
+                        `${resource?.name}.titles.list`,
                         userFriendlyResourceName(
                             resource?.meta?.label ??
                                 resource?.options?.label ??
                                 resource?.label ??
-                                identifier,
+                                resource?.name,
                             "plural",
                         ),
                     )

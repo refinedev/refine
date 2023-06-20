@@ -38,8 +38,8 @@ export type UseResourceLegacyProps = {
 export type UseResourceParam = string | undefined;
 
 type SelectReturnType<T extends boolean> = T extends true
-    ? { resource: IResourceItem; identifier: string }
-    : { resource: IResourceItem; identifier: string } | undefined;
+    ? IResourceItem
+    : undefined;
 
 type UseResourceReturnType = {
     resources: IResourceItem[];
@@ -54,12 +54,10 @@ type UseResourceReturnType = {
         resourceName: string,
         force?: T,
     ) => SelectReturnType<T>;
-    identifier?: string;
 };
 
 type UseResourceReturnTypeWithResource = UseResourceReturnType & {
     resource: IResourceItem;
-    identifier: string;
 };
 
 /**
@@ -106,24 +104,12 @@ export function useResource(
         const isLegacy = routerType === "legacy";
         const pickedResource = pickResource(resourceName, resources, isLegacy);
 
-        if (pickedResource) {
-            return {
-                resource: pickedResource,
-                identifier: pickedResource.identifier ?? pickedResource.name,
-            } as SelectReturnType<T>;
-        }
+        if (pickedResource) return pickedResource as SelectReturnType<T>;
 
         if (force) {
-            const resource: IResourceItem = {
+            return {
                 name: resourceName,
                 identifier: resourceName,
-            };
-
-            const identifier = resource.identifier ?? resource.name;
-
-            return {
-                resource,
-                identifier,
             } as SelectReturnType<T>;
         }
 
@@ -153,8 +139,6 @@ export function useResource(
         const legacyAction = legacyParams.action;
         const legacyResourceName =
             oldProps?.resourceName ?? legacyResource?.name;
-        const legacyIdentifier =
-            legacyResource?.identifier ?? legacyResource?.name;
 
         return {
             resources,
@@ -163,7 +147,6 @@ export function useResource(
             id: legacyId,
             action: legacyAction,
             select,
-            identifier: legacyIdentifier,
         };
     }
     /** Legacy Router - End */
@@ -193,6 +176,5 @@ export function useResource(
         id: params.id,
         action: params.action,
         select,
-        identifier: resource?.identifier ?? resource?.name,
     };
 }

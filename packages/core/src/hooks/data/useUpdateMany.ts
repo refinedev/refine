@@ -151,7 +151,10 @@ export const useUpdateMany = <
             metaData,
             dataProviderName,
         }: UpdateManyParams<TData, TError, TVariables>) => {
-            const { resource, identifier } = select(resourceName);
+            const resource = select(resourceName);
+
+            const resourceIdentifierOrName =
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 resource,
@@ -165,7 +168,11 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             const selectedDataProvider = dataProvider(
-                pickDataProvider(identifier, dataProviderName, resources),
+                pickDataProvider(
+                    resourceIdentifierOrName,
+                    dataProviderName,
+                    resources,
+                ),
             );
 
             const mutationFn = () => {
@@ -216,7 +223,7 @@ export const useUpdateMany = <
                         type: ActionTypes.ADD,
                         payload: {
                             id: ids,
-                            resource: identifier,
+                            resource: resourceIdentifierOrName,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -238,11 +245,18 @@ export const useUpdateMany = <
                 meta,
                 metaData,
             }) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
+
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
 
                 const queryKey = queryKeys(
-                    identifier,
-                    pickDataProvider(identifier, dataProviderName, resources),
+                    resourceIdentifierOrName,
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                     pickNotDeprecated(meta, metaData),
                 );
 
@@ -353,14 +367,16 @@ export const useUpdateMany = <
                 _error,
                 { ids, resource: resourceName, dataProviderName },
             ) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
 
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
-                    resource: identifier,
+                    resource: resourceIdentifierOrName,
                     invalidates: ["list", "many"],
                     dataProviderName: pickDataProvider(
-                        identifier,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -368,10 +384,10 @@ export const useUpdateMany = <
 
                 ids.forEach((id) =>
                     invalidateStore({
-                        resource: identifier,
+                        resource: resourceIdentifierOrName,
                         invalidates: ["detail"],
                         dataProviderName: pickDataProvider(
-                            identifier,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -381,7 +397,7 @@ export const useUpdateMany = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id: ids, resource: identifier },
+                    payload: { id: ids, resource: resourceIdentifierOrName },
                 });
             },
             onSuccess: (
@@ -397,17 +413,26 @@ export const useUpdateMany = <
                 },
                 context,
             ) => {
-                const { resource, identifier } = select(resourceName);
+                const resource = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
+
+                const resourceSingular = pluralize.singular(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { ids, values }, identifier)
+                        ? successNotification(
+                              data,
+                              { ids, values },
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${ids}-${identifier}-notification`,
+                    key: `${ids}-${resourceIdentifierOrName}-notification`,
                     description: translate(
                         "notifications.success",
                         "Successful",
@@ -416,8 +441,8 @@ export const useUpdateMany = <
                         "notifications.editSuccess",
                         {
                             resource: translate(
-                                `${identifier}.${identifier}`,
-                                identifier,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
+                                resourceIdentifierOrName,
                             ),
                         },
                         `Successfully updated ${resourceSingular}`,
@@ -469,7 +494,7 @@ export const useUpdateMany = <
                     meta: {
                         ids,
                         dataProviderName: pickDataProvider(
-                            identifier,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -482,7 +507,10 @@ export const useUpdateMany = <
                 { ids, resource: resourceName, errorNotification, values },
                 context,
             ) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
+
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
 
                 // set back the queries to the context:
                 if (context) {
@@ -494,19 +522,21 @@ export const useUpdateMany = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(identifier);
+                    const resourceSingular = pluralize.singular(
+                        resourceIdentifierOrName,
+                    );
 
                     const notificationConfig =
                         typeof errorNotification === "function"
                             ? errorNotification(
                                   err,
                                   { ids, values },
-                                  identifier,
+                                  resourceIdentifierOrName,
                               )
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${ids}-${identifier}-updateMany-error-notification`,
+                        key: `${ids}-${resourceIdentifierOrName}-updateMany-error-notification`,
                         message: translate(
                             "notifications.editError",
                             {

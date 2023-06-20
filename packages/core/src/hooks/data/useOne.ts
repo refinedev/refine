@@ -101,7 +101,8 @@ export const useOne = <
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetOneResponse<TData>
 > => {
-    const { resources, resource, identifier } = useResource(resourceFromProp);
+    const { resources, resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
 
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -114,19 +115,23 @@ export const useOne = <
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
     const pickedDataProvider = pickDataProvider(
-        identifier,
+        resourceIdentifierOrName,
         dataProviderName,
         resources,
     );
 
-    const queryKey = queryKeys(identifier, pickedDataProvider, preferredMeta);
+    const queryKey = queryKeys(
+        resourceIdentifierOrName,
+        pickedDataProvider,
+        preferredMeta,
+    );
 
     const { getOne } = dataProvider(pickedDataProvider);
 
     const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
     useResourceSubscription({
-        resource: identifier,
+        resource: resourceIdentifierOrName,
         types: ["*"],
         channel: `resources/${resource?.name}`,
         params: {
@@ -190,7 +195,7 @@ export const useOne = <
                                   id,
                                   ...combinedMeta,
                               },
-                              identifier,
+                              resourceIdentifierOrName,
                           )
                         : successNotification;
 
@@ -208,12 +213,12 @@ export const useOne = <
                                   id,
                                   ...combinedMeta,
                               },
-                              identifier,
+                              resourceIdentifierOrName,
                           )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${identifier}-getOne-notification`,
+                    key: `${id}-${resourceIdentifierOrName}-getOne-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },

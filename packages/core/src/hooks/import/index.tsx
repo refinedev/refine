@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { parse, ParseConfig } from "papaparse";
 import chunk from "lodash/chunk";
 
-import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
+import { useCreate, useCreateMany, useResource } from "@hooks";
 import { MapDataFn, BaseRecord, HttpError, MetaQuery } from "../../interfaces";
 import {
     importCSVMapper,
@@ -151,19 +151,10 @@ export const useImport = <
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const { resource, identifier } = useResource(
-        resourceFromProps ?? resourceName,
-    );
-
-    const getMeta = useMeta();
+    const { resource } = useResource(resourceFromProps ?? resourceName);
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
-
-    const combinedMeta = getMeta({
-        resource,
-        meta: pickNotDeprecated(meta, metaData),
-    });
 
     let mutationResult:
         | UseCreateReturnType<TData, TError, TVariables>
@@ -217,13 +208,16 @@ export const useImport = <
                             const valueFns = values.map((value) => {
                                 const fn = async () => {
                                     const response = await create.mutateAsync({
-                                        resource: identifier ?? "",
+                                        resource: resource?.name ?? "",
                                         values: value,
                                         successNotification: false,
                                         errorNotification: false,
                                         dataProviderName,
-                                        meta: combinedMeta,
-                                        metaData: combinedMeta,
+                                        meta: pickNotDeprecated(meta, metaData),
+                                        metaData: pickNotDeprecated(
+                                            meta,
+                                            metaData,
+                                        ),
                                     });
 
                                     return { response, value };
@@ -262,13 +256,19 @@ export const useImport = <
                                 const fn = async () => {
                                     const response =
                                         await createMany.mutateAsync({
-                                            resource: identifier ?? "",
+                                            resource: resource?.name ?? "",
                                             values: chunkedValues,
                                             successNotification: false,
                                             errorNotification: false,
                                             dataProviderName,
-                                            meta: combinedMeta,
-                                            metaData: combinedMeta,
+                                            meta: pickNotDeprecated(
+                                                meta,
+                                                metaData,
+                                            ),
+                                            metaData: pickNotDeprecated(
+                                                meta,
+                                                metaData,
+                                            ),
                                         });
 
                                     return {

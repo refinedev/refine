@@ -56,7 +56,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { resource, identifier } = useResource(
+    const { resource } = useResource(
         resourceNameFromProps ?? propResourceNameOrRouteName,
     );
 
@@ -114,14 +114,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     (children ??
                         translate(
                             `${
-                                identifier ??
+                                resource?.name ??
                                 resourceNameFromProps ??
                                 propResourceNameOrRouteName
                             }.titles.list`,
                             userFriendlyResourceName(
                                 resource?.meta?.label ??
                                     resource?.label ??
-                                    identifier ??
+                                    resource?.name ??
                                     pickNotDeprecated(
                                         resourceNameFromProps,
                                         propResourceNameOrRouteName,

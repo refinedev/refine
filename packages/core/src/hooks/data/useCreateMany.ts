@@ -108,7 +108,10 @@ export const useCreateMany = <
             metaData,
             dataProviderName,
         }: useCreateManyParams<TData, TError, TVariables>) => {
-            const { resource, identifier } = select(resourceName);
+            const resource = select(resourceName);
+
+            const resourceIdentifierOrName =
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 resource,
@@ -116,7 +119,11 @@ export const useCreateMany = <
             });
 
             const selectedDataProvider = dataProvider(
-                pickDataProvider(identifier, dataProviderName, resources),
+                pickDataProvider(
+                    resourceIdentifierOrName,
+                    dataProviderName,
+                    resources,
+                ),
             );
 
             if (selectedDataProvider.createMany) {
@@ -152,23 +159,32 @@ export const useCreateMany = <
                     metaData,
                 },
             ) => {
-                const { resource, identifier } = select(resourceName);
+                const resource = select(resourceName);
 
-                const resourcePlural = pluralize.plural(identifier);
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
+
+                const resourcePlural = pluralize.plural(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(response, values, identifier)
+                        ? successNotification(
+                              response,
+                              values,
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `createMany-${identifier}-notification`,
+                    key: `createMany-${resourceIdentifierOrName}-notification`,
                     message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
-                                `${identifier}.${identifier}`,
-                                identifier,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
+                                resourceIdentifierOrName,
                             ),
                         },
                         `Successfully created ${resourcePlural}`,
@@ -178,9 +194,9 @@ export const useCreateMany = <
                 });
 
                 invalidateStore({
-                    resource: identifier,
+                    resource: resourceIdentifierOrName,
                     dataProviderName: pickDataProvider(
-                        identifier,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -214,7 +230,7 @@ export const useCreateMany = <
                     data: values,
                     meta: {
                         dataProviderName: pickDataProvider(
-                            identifier,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -227,26 +243,33 @@ export const useCreateMany = <
                 err: TError,
                 { resource: resourceName, errorNotification, values },
             ) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
+
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, values, identifier)
+                        ? errorNotification(
+                              err,
+                              values,
+                              resourceIdentifierOrName,
+                          )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `createMany-${identifier}-notification`,
+                    key: `createMany-${resourceIdentifierOrName}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",
                         {
                             resource: translate(
-                                `${identifier}.${identifier}`,
-                                identifier,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
+                                resourceIdentifierOrName,
                             ),
                             statusCode: err.statusCode,
                         },
-                        `There was an error creating ${identifier} (status code: ${err.statusCode}`,
+                        `There was an error creating ${resourceIdentifierOrName} (status code: ${err.statusCode}`,
                     ),
                     type: "error",
                 });

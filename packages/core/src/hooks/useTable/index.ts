@@ -350,19 +350,21 @@ export function useTable<
     /** New way of `replace` calls to the router is using `useGo` */
     const go = useGo();
 
-    const { resource, identifier } = useResource(resourceFromProp);
+    const { resource } = useResource(resourceFromProp);
 
     const combinedMeta = getMeta({
         resource,
         meta: preferredMeta,
     });
 
+    const resourceIdentifierOrName = resource?.identifier ?? resource?.name;
+
     React.useEffect(() => {
         warnOnce(
-            typeof identifier === "undefined",
+            typeof resourceIdentifierOrName === "undefined",
             `useTable: \`resource\` is not defined.`,
         );
-    }, [identifier]);
+    }, [resourceIdentifierOrName]);
 
     const [sorters, setSorters] = useState<CrudSorting>(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
@@ -507,7 +509,7 @@ export function useTable<
     }, [syncWithLocation, current, pageSize, sorters, filters]);
 
     const queryResult = useList<TQueryFnData, TError, TData>({
-        resource: identifier,
+        resource: resourceIdentifierOrName,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
         filters: isServerSideFilteringEnabled

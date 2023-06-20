@@ -176,7 +176,10 @@ export const useUpdate = <
             metaData,
             dataProviderName,
         }) => {
-            const { resource, identifier } = select(resourceName);
+            const resource = select(resourceName);
+
+            const resourceIdentifierOrName =
+                resource.identifier ?? resource.name;
 
             const combinedMeta = getMeta({
                 resource,
@@ -191,7 +194,11 @@ export const useUpdate = <
 
             if (!(mutationModePropOrContext === "undoable")) {
                 return dataProvider(
-                    pickDataProvider(identifier, dataProviderName, resources),
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                 ).update<TData, TVariables>({
                     resource: resource.name,
                     id,
@@ -205,7 +212,7 @@ export const useUpdate = <
                     const doMutation = () => {
                         dataProvider(
                             pickDataProvider(
-                                identifier,
+                                resourceIdentifierOrName,
                                 dataProviderName,
                                 resources,
                             ),
@@ -233,7 +240,7 @@ export const useUpdate = <
                         type: ActionTypes.ADD,
                         payload: {
                             id: id,
-                            resource: identifier,
+                            resource: resourceIdentifierOrName,
                             cancelMutation: cancelMutation,
                             doMutation: doMutation,
                             seconds: undoableTimeoutPropOrContext,
@@ -254,13 +261,20 @@ export const useUpdate = <
                 meta,
                 metaData,
             }) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
+
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
 
                 const preferredMeta = pickNotDeprecated(meta, metaData);
 
                 const queryKey = queryKeys(
-                    identifier,
-                    pickDataProvider(identifier, dataProviderName, resources),
+                    resourceIdentifierOrName,
+                    pickDataProvider(
+                        resourceIdentifierOrName,
+                        dataProviderName,
+                        resources,
+                    ),
                     preferredMeta,
                 );
 
@@ -361,12 +375,15 @@ export const useUpdate = <
                     invalidates = ["list", "many", "detail"],
                 },
             ) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
+
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
 
                 invalidateStore({
-                    resource: identifier,
+                    resource: resourceIdentifierOrName,
                     dataProviderName: pickDataProvider(
-                        identifier,
+                        resourceIdentifierOrName,
                         dataProviderName,
                         resources,
                     ),
@@ -376,7 +393,7 @@ export const useUpdate = <
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
-                    payload: { id, resource: identifier },
+                    payload: { id, resource: resourceIdentifierOrName },
                 });
             },
             onSuccess: (
@@ -392,17 +409,26 @@ export const useUpdate = <
                 },
                 context,
             ) => {
-                const { resource, identifier } = select(resourceName);
+                const resource = select(resourceName);
 
-                const resourceSingular = pluralize.singular(identifier);
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
+
+                const resourceSingular = pluralize.singular(
+                    resourceIdentifierOrName,
+                );
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { id, values }, identifier)
+                        ? successNotification(
+                              data,
+                              { id, values },
+                              resourceIdentifierOrName,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${id}-${identifier}-notification`,
+                    key: `${id}-${resourceIdentifierOrName}-notification`,
                     description: translate(
                         "notifications.success",
                         "Successful",
@@ -411,7 +437,7 @@ export const useUpdate = <
                         "notifications.editSuccess",
                         {
                             resource: translate(
-                                `${identifier}.${identifier}`,
+                                `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
                                 resourceSingular,
                             ),
                         },
@@ -455,7 +481,7 @@ export const useUpdate = <
                     meta: {
                         id,
                         dataProviderName: pickDataProvider(
-                            identifier,
+                            resourceIdentifierOrName,
                             dataProviderName,
                             resources,
                         ),
@@ -468,7 +494,10 @@ export const useUpdate = <
                 { id, resource: resourceName, errorNotification, values },
                 context,
             ) => {
-                const { identifier } = select(resourceName);
+                const resource = select(resourceName);
+
+                const resourceIdentifierOrName =
+                    resource.identifier ?? resource.name;
 
                 // set back the queries to the context:
                 if (context) {
@@ -480,20 +509,26 @@ export const useUpdate = <
                 if (err.message !== "mutationCancelled") {
                     checkError?.(err);
 
-                    const resourceSingular = pluralize.singular(identifier);
+                    const resourceSingular = pluralize.singular(
+                        resourceIdentifierOrName,
+                    );
 
                     const notificationConfig =
                         typeof errorNotification === "function"
-                            ? errorNotification(err, { id, values }, identifier)
+                            ? errorNotification(
+                                  err,
+                                  { id, values },
+                                  resourceIdentifierOrName,
+                              )
                             : errorNotification;
 
                     handleNotification(notificationConfig, {
-                        key: `${id}-${identifier}-notification`,
+                        key: `${id}-${resourceIdentifierOrName}-notification`,
                         message: translate(
                             "notifications.editError",
                             {
                                 resource: translate(
-                                    `${identifier}.${identifier}`,
+                                    `${resourceIdentifierOrName}.${resourceIdentifierOrName}`,
                                     resourceSingular,
                                 ),
                                 statusCode: err.statusCode,

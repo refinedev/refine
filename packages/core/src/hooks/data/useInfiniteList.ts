@@ -140,7 +140,8 @@ export const useInfiniteList = <
     TError,
     TData
 >): InfiniteQueryObserverResult<GetListResponse<TData>, TError> => {
-    const { resources, resource, identifier } = useResource(resourceFromProp);
+    const { resources, resource } = useResource(resourceFromProp);
+    const resourceIdentifierOrName = resource.identifier ?? resource.name;
 
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -152,7 +153,7 @@ export const useInfiniteList = <
     const getMeta = useMeta();
 
     const pickedDataProvider = pickDataProvider(
-        identifier,
+        resourceIdentifierOrName,
         dataProviderName,
         resources,
     );
@@ -186,7 +187,7 @@ export const useInfiniteList = <
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
     const queryKey = queryKeys(
-        identifier,
+        resourceIdentifierOrName,
         pickedDataProvider,
         preferredMeta,
         preferredMeta,
@@ -197,7 +198,7 @@ export const useInfiniteList = <
     const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
-        resource: identifier,
+        resource: resourceIdentifierOrName,
         types: ["*"],
         params: {
             meta: combinedMeta,
@@ -284,7 +285,7 @@ export const useInfiniteList = <
                         ? successNotification(
                               data,
                               notificationValues,
-                              identifier,
+                              resourceIdentifierOrName,
                           )
                         : successNotification;
 
@@ -296,11 +297,15 @@ export const useInfiniteList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, notificationValues, identifier)
+                        ? errorNotification(
+                              err,
+                              notificationValues,
+                              resourceIdentifierOrName,
+                          )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${identifier}-useInfiniteList-notification`,
+                    key: `${resourceIdentifierOrName}-useInfiniteList-notification`,
                     message: translate(
                         "notifications.error",
                         { statusCode: err.statusCode },
