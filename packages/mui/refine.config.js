@@ -626,6 +626,16 @@ module.exports = {
             },
             {
                 group: "Other",
+                label: "LoadingOvertimeIndicator",
+                files: [
+                    {
+                        src: "./src/components/loadingOvertimeIndicator/index.tsx",
+                        dest: "./components/loadingOvertimeIndicator.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Other",
                 label: "ThemedLayout (deprecated use ThemedLayoutV2 instead)",
                 message: `
                 **\`Warning:\`**
