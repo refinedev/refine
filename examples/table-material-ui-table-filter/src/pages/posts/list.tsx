@@ -23,13 +23,19 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost, IPostFilterVariables } from "interfaces";
+import {
+    ICategory,
+    IPost,
+    IPostFilterVariables,
+    IStatus,
+    Nullable,
+} from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps, filters, search } = useDataGrid<
         IPost,
         HttpError,
-        IPostFilterVariables
+        Nullable<IPostFilterVariables>
     >({
         initialPageSize: 10,
         onSearch: (params) => {
@@ -50,7 +56,7 @@ export const PostList: React.FC = () => {
                 {
                     field: "status",
                     operator: "eq",
-                    value: status !== "" ? status : undefined,
+                    value: status ? status : undefined,
                 },
             );
 
@@ -126,7 +132,7 @@ export const PostList: React.FC = () => {
     const { control, register, handleSubmit } = useForm<
         IPost,
         HttpError,
-        IPostFilterVariables
+        Nullable<IPostFilterVariables>
     >({
         defaultValues: {
             q: getDefaultFilter("q", filters, "eq"),
@@ -179,13 +185,15 @@ export const PostList: React.FC = () => {
                                 render={({ field }) => (
                                     <Autocomplete
                                         id="status"
-                                        options={[
-                                            "published",
-                                            "draft",
-                                            "rejected",
-                                        ]}
+                                        options={
+                                            [
+                                                "published",
+                                                "draft",
+                                                "rejected",
+                                            ] as IStatus[]
+                                        }
                                         {...field}
-                                        onChange={(_, value: any) => {
+                                        onChange={(_, value) => {
                                             field.onChange(value);
                                         }}
                                         renderInput={(params) => (

@@ -20,5 +20,5 @@ export type Nullable<T> = {
 export interface IPostFilterVariables {
     q: string;
     category: string;
-    status: string;
+    status: IStatus;
 }
