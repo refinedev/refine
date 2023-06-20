@@ -41,7 +41,7 @@ type SelectReturnType<T extends boolean> = T extends true
     ? { resource: IResourceItem; identifier: string }
     : { resource: IResourceItem; identifier: string } | undefined;
 
-type UseResourceReturnType = {
+export type UseResourceReturnType = {
     resources: IResourceItem[];
     resource?: IResourceItem;
     /**

@@ -22,6 +22,11 @@ import {
     Prettify,
     SuccessErrorNotification,
 } from "../../interfaces";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 interface UseCustomConfig<TQuery, TPayload> {
     /**
@@ -73,7 +78,8 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
     CustomResponse<TData>,
     TError,
     Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
->;
+> &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -106,13 +112,15 @@ export const useCustom = <
     meta,
     metaData,
     dataProviderName,
+    overtimeOptions,
 }: UseCustomProps<
     TQueryFnData,
     TError,
     TQuery,
     TPayload,
     TData
->): QueryObserverResult<CustomResponse<TData>, TError> => {
+>): QueryObserverResult<CustomResponse<TData>, TError> &
+    UseLoadingOvertimeReturnType => {
     const dataProvider = useDataProvider();
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
@@ -201,7 +209,13 @@ export const useCustom = <
                 });
             },
         });
-        return queryResponse;
+        const { elapsedTime } = useLoadingOvertime({
+            isLoading: queryResponse.isFetching,
+            interval: overtimeOptions?.interval,
+            onInterval: overtimeOptions?.onInterval,
+        });
+
+        return { ...queryResponse, overtime: { elapsedTime } };
     } else {
         throw Error("Not implemented custom on data provider.");
     }

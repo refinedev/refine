@@ -29,6 +29,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
     /**
@@ -63,7 +68,8 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
      */
     dataProviderName?: string;
 } & SuccessErrorNotification<GetManyResponse<TData>, TError, BaseKey[]> &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
@@ -94,11 +100,12 @@ export const useMany = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    overtimeOptions,
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetManyResponse<TData>
-> => {
+> &
+    UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);
-
     const dataProvider = useDataProvider();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -229,5 +236,11 @@ export const useMany = <
         },
     );
 
-    return queryResponse;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResponse.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...queryResponse, overtime: { elapsedTime } };
 };

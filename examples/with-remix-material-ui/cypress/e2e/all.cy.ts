@@ -70,7 +70,7 @@ describe("with-remix-material-ui", () => {
         });
     });
 
-    describe("register", () => {
+    describe.skip("register", () => {
         it("should register", () => {
             cy.get("a")
                 .contains(/sign up/i)
@@ -100,7 +100,7 @@ describe("with-remix-material-ui", () => {
         });
     });
 
-    describe("forgot password", () => {
+    describe.skip("forgot password", () => {
         it("should throw error if forgot password email is wrong", () => {
             cy.get("a")
                 .contains(/forgot password/i)

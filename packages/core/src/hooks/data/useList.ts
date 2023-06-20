@@ -31,6 +31,11 @@ import {
     useActiveAuthProvider,
     handlePaginationParams,
 } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export interface UseListConfig {
     pagination?: Pagination;
@@ -98,7 +103,8 @@ export type UseListProps<TQueryFnData, TError, TData> = {
         TError,
         Prettify<BaseListProps>
     > &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -133,10 +139,12 @@ export const useList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    overtimeOptions,
 }: UseListProps<TQueryFnData, TError, TData>): QueryObserverResult<
     GetListResponse<TData>,
     TError
-> => {
+> &
+    UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);
 
     const dataProvider = useDataProvider();
@@ -318,5 +326,11 @@ export const useList = <
         },
     );
 
-    return queryResponse;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResponse.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...queryResponse, overtime: { elapsedTime } };
 };

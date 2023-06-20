@@ -693,6 +693,46 @@ const App: React.FC = () => (
 
 <br />
 
+### `overtime`
+
+If you want loading overtime for the request, you can use the `overtime` object. It is useful when you want to show a loading indicator when the request takes too long.
+
+```tsx
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            overtime: {
+                interval: 1000, // default value is 1000
+                onInterval: (elapsedInterval, context) => {
+                    console.log(elapsedInterval, context);
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
+#### `interval`
+
+The interval value in milliseconds. The default value is `1000`.
+
+#### `onInterval`
+
+The callback function that will be called on every interval. The default value is `undefined`.
+
+The callback function receives two parameters:
+ - `elapsedInterval`: The elapsed interval in milliseconds.
+ - `context`: 
+
+| Description  | Type                                                                       |
+| ------------ | -------------------------------------------------------------------------- |
+| resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
+| resourceName | `string` \| `undefined`                                                    |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
+| action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
+
 ## `onLiveEvent`
 
 Callback to handle all live events.
