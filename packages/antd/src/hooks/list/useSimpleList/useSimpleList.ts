@@ -93,6 +93,7 @@ export const useSimpleList = <
         setSorters,
         createLinkForSyncWithLocation,
         tableQueryResult: queryResult,
+        overtime,
     } = useTableCore({
         resource,
         initialSorter,
@@ -226,5 +227,6 @@ export const useSimpleList = <
         setPageSize,
         pageCount,
         createLinkForSyncWithLocation,
+        overtime,
     };
 };

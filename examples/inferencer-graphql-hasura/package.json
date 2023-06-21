@@ -10,7 +10,7 @@
     "@refinedev/kbar": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "^6.8.1",
     "@refinedev/hasura": "^6.0.0",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",

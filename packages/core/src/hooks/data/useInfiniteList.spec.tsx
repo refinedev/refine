@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -589,5 +589,52 @@ describe("useInfiniteList Hook", () => {
                 sort: [{ field: "id", order: "asc" }],
             }),
         );
+    });
+
+    it("works correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useInfiniteList({
+                    resource: "posts",
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () => {
+                                return new Promise((res) => {
+                                    setTimeout(
+                                        () =>
+                                            res({
+                                                data: [],
+                                                total: 0,
+                                            }),
+                                        1000,
+                                    );
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeFalsy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
     });
 });

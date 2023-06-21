@@ -39,6 +39,11 @@ import {
     pickNotDeprecated,
     useActiveAuthProvider,
 } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type DeleteParams<TData, TError, TVariables> = {
     id: BaseKey;
@@ -65,7 +70,8 @@ export type UseDeleteReturnType<
     TError,
     DeleteParams<TData, TError, TVariables>,
     DeleteContext<TData>
->;
+> &
+    UseLoadingOvertimeReturnType;
 
 export type UseDeleteProps<
     TData extends BaseRecord = BaseRecord,
@@ -81,7 +87,7 @@ export type UseDeleteProps<
         >,
         "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
     >;
-};
+} & UseLoadingOvertimeOptionsProps;
 
 /**
  * `useDelete` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for delete mutations.
@@ -101,6 +107,7 @@ export const useDelete = <
     TVariables = {},
 >({
     mutationOptions,
+    overtimeOptions,
 }: UseDeleteProps<TData, TError, TVariables> = {}): UseDeleteReturnType<
     TData,
     TError,
@@ -423,5 +430,11 @@ export const useDelete = <
         },
     );
 
-    return mutation;
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: mutation.isLoading,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
+    return { ...mutation, overtime: { elapsedTime } };
 };

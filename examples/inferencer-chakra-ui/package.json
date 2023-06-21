@@ -10,7 +10,7 @@
     "@refinedev/kbar": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "^6.8.1",
     "@refinedev/simple-rest": "^4.0.0",
     "@refinedev/chakra-ui": "^2.5.4",
     "@refinedev/react-hook-form": "^4.1.2",
