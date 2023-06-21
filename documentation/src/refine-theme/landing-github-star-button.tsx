@@ -7,7 +7,7 @@ import { Spinner } from "./spinner";
 export const LandingGithubStarButton = () => {
     const { loading, githubStarCount } = useCommunityStatsContext();
 
-    const short = `${Math.floor((githubStarCount ?? 0) / 1000)}k`;
+    const short = `${(githubStarCount / 1000).toFixed(1)}k`;
 
     return (
         <a
