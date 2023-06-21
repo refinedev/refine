@@ -29,22 +29,16 @@ type CommonProps = {
     };
 };
 
-export type LoadingOvertimeIndicatorProps =
-    | PropsWithLoading
-    | PropsWithElapsedTime;
+export type loadingOvertimeProps = PropsWithLoading | PropsWithElapsedTime;
 
 /**
  * A component that renders children and overtime components based on the elapsed time.
  * The elapsed time is calculated using the `useLoadingOvertime` hook.
  * If the `elapsedTime` prop is provided, the component will not use the `useLoadingOvertime` hook.
  */
-export function LoadingOvertimeIndicator(props: PropsWithLoading): JSX.Element;
-export function LoadingOvertimeIndicator(
-    props: PropsWithElapsedTime,
-): JSX.Element;
-export function LoadingOvertimeIndicator(
-    props: LoadingOvertimeIndicatorProps,
-): JSX.Element {
+export function LoadingOvertime(props: PropsWithLoading): JSX.Element;
+export function LoadingOvertime(props: PropsWithElapsedTime): JSX.Element;
+export function LoadingOvertime(props: loadingOvertimeProps): JSX.Element {
     const { children, overtimeComponents } = props;
 
     if (!overtimeComponents) {

@@ -4,7 +4,7 @@ import {
     Edit,
     useForm,
     useSelect,
-    LoadingOvertimeIndicator,
+    LoadingOvertime,
     overtimeComponents,
 } from "@refinedev/antd";
 
@@ -57,7 +57,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <LoadingOvertimeIndicator
+            <LoadingOvertime
                 overtimeComponents={customOvertimeComponents}
                 isLoading={queryResult?.isLoading ?? false}
             >
@@ -122,7 +122,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         <MDEditor data-color-mode="light" />
                     </Form.Item>
                 </Form>
-            </LoadingOvertimeIndicator>
+            </LoadingOvertime>
         </Edit>
     );
 };

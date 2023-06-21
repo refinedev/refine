@@ -307,7 +307,7 @@ Before we get started, let's look at which parts are going to be translated:
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
         "importProgress": "Importing: {{processed}}/{{total}}"
     },
-    "loadingOvertimeIndicator": {
+    "loadingOvertime": {
         "3000": "It's taking a bit longer than expected.",
         "5000": "This is taking longer than expected, please hang on."
     },
@@ -460,7 +460,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
         "importProgress": "Importing: {{processed}}/{{total}}"
     },
-    "loadingOvertimeIndicator": {
+    "loadingOvertime": {
         "3000": "It's taking a bit longer than expected.",
         "5000": "This is taking longer than expected, please hang on."
     },
@@ -622,7 +622,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
         "importProgress": "{{processed}}/{{total}} importiert"
     },
-    "loadingOvertimeIndicator": {
+    "loadingOvertime": {
         "3000": "Es dauert ein bisschen länger als erwartet.",
         "5000": "Dies dauert länger als erwartet, bitte warten Sie."
     },

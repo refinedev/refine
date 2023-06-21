@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    Create,
-    useForm,
-    useSelect,
-    LoadingOvertimeIndicator,
-} from "@refinedev/antd";
+import { Create, useForm, useSelect, LoadingOvertime } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 
@@ -21,7 +16,7 @@ export const PostCreate: React.FC = () => {
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <LoadingOvertimeIndicator elapsedTime={overtime.elapsedTime ?? 0}>
+            <LoadingOvertime elapsedTime={overtime.elapsedTime ?? 0}>
                 <Form {...formProps} layout="vertical">
                     <Form.Item
                         label="Title"
@@ -83,7 +78,7 @@ export const PostCreate: React.FC = () => {
                         <MDEditor data-color-mode="light" />
                     </Form.Item>
                 </Form>
-            </LoadingOvertimeIndicator>
+            </LoadingOvertime>
         </Create>
     );
 };

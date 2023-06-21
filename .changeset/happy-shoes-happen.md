@@ -2,14 +2,14 @@
 "@refinedev/core": minor
 ---
 
-feat: add new `<LoadingOvertimeIndicator>` component
+feat: add new `<LoadingOvertime>` component
 
-The `<LoadingOvertimeIndicator>` component is used to display a loading indicator when the page is taking too long to load. It is useful when you have a page that takes a long time to load and you want to let the user know that the page is still loading.
+The `<LoadingOvertime>` component is used to display a loading indicator when the page is taking too long to load. It is useful when you have a page that takes a long time to load and you want to let the user know that the page is still loading.
 
 It is used like this:
 
 ```tsx
-import { LoadingOvertimeIndicator, useOne } from "@refinedev/core";
+import { LoadingOvertime, useOne } from "@refinedev/core";
 
 const overtimeComponents = {
     3000: <p>It's taking a bit longer than expected.</p>,
@@ -20,13 +20,13 @@ const MyPage = () => {
     const { data, isFetching } = useOne({...});
 
     return (
-        <LoadingOvertimeIndicator
+        <LoadingOvertime
             overtimeComponents={overtimeComponents}
             isLoading={isFetching ?? false}
             interval={1000}
         >
             <YourComponent />
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };
 ```
@@ -34,7 +34,7 @@ const MyPage = () => {
 or like this:
 
 ```tsx
-import { LoadingOvertimeIndicator, useOne } from "@refinedev/core";
+import { LoadingOvertime, useOne } from "@refinedev/core";
 
 const overtimeComponents = {
     3000: <div>It's taking a bit longer than expected.</div>,
@@ -48,16 +48,14 @@ const MyPage = () => {
     } = useOne({...});
 
     return (
-        <LoadingOvertimeIndicator
+        <LoadingOvertime
             overtimeComponents={overtimeComponents}
             elapsedTime={elapsedTime ?? 0}
         >
             <YourComponent />
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };
 ```
 
 You can also use `swizzle` to customize it.
-
-

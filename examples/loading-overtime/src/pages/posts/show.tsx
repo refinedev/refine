@@ -3,7 +3,7 @@ import {
     Show,
     MarkdownField,
     overtimeComponents,
-    LoadingOvertimeIndicator,
+    LoadingOvertime,
 } from "@refinedev/antd";
 import { Typography, Alert } from "antd";
 
@@ -57,7 +57,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     };
 
     return (
-        <LoadingOvertimeIndicator
+        <LoadingOvertime
             overtimeComponents={customOvertimeComponents}
             elapsedTime={overtime.elapsedTime ?? 0}
         >
@@ -78,6 +78,6 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                 <Title level={5}>Content</Title>
                 <MarkdownField value={record?.content} />
             </Show>
-        </LoadingOvertimeIndicator>
+        </LoadingOvertime>
     );
 };

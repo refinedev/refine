@@ -1,5 +1,5 @@
 import React from "react";
-import { LoadingOvertimeIndicator as LoadingOvertimeIndicatorFromCore } from "@refinedev/core";
+import { LoadingOvertime as LoadingOvertimeFromCore } from "@refinedev/core";
 import { render } from "@testing-library/react";
 
 const fallbackMessages = {
@@ -7,11 +7,11 @@ const fallbackMessages = {
     5000: "This is taking longer than expected, please hang on.",
 };
 
-export const loadingOvertimeIndicatorTests = function (
-    LoadingOvertimeIndicator: typeof LoadingOvertimeIndicatorFromCore,
+export const loadingOvertimeTests = function (
+    LoadingOvertime: typeof LoadingOvertimeFromCore,
 ): void {
-    describe("[@refinedev/ui-tests] Common Tests / LoadingOvertimeIndicator", () => {
-        describe("LoadingOvertimeIndicator", () => {
+    describe("[@refinedev/ui-tests] Common Tests / LoadingOvertime", () => {
+        describe("LoadingOvertime", () => {
             it.each([
                 [3000, fallbackMessages[3000]],
                 [4000, fallbackMessages[3000]],
@@ -21,7 +21,7 @@ export const loadingOvertimeIndicatorTests = function (
                 "should render the correct message for %i",
                 (elapsedTime, message) => {
                     const { getByText } = render(
-                        <LoadingOvertimeIndicator elapsedTime={elapsedTime} />,
+                        <LoadingOvertime elapsedTime={elapsedTime} />,
                     );
 
                     expect(getByText(message)).toBeInTheDocument();

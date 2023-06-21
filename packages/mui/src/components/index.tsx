@@ -26,4 +26,4 @@ export * from "./buttons";
 export * from "./circularDeterminate";
 export * from "./fields";
 export * from "./breadcrumb";
-export * from "./loadingOvertimeIndicator";
+export * from "./loadingOvertime";

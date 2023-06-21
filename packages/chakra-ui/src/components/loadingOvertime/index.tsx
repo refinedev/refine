@@ -1,7 +1,6 @@
 import React from "react";
-import { LoadingOvertimeIndicator, useTranslate } from "@refinedev/core";
-import { Alert } from "@mantine/core";
-import { IconAlertCircle } from "@tabler/icons";
+import { LoadingOvertime, useTranslate } from "@refinedev/core";
+import { Alert, AlertIcon } from "@chakra-ui/react";
 
 type AlertComponentProps = {
     translateKey: string;
@@ -12,7 +11,8 @@ const AlertComponent = ({ translateKey, message }: AlertComponentProps) => {
     const translate = useTranslate();
 
     return (
-        <Alert icon={<IconAlertCircle />} color="yellow" mb="1rem">
+        <Alert status="warning" mb="4">
+            <AlertIcon />
             {translate(translateKey, message)}
         </Alert>
     );
@@ -25,19 +25,19 @@ const AlertComponent = ({ translateKey, message }: AlertComponentProps) => {
 export const overtimeComponents = {
     3000: (
         <AlertComponent
-            translateKey="loadingOvertimeIndicator.3000"
+            translateKey="loadingOvertime.3000"
             message="It's taking a bit longer than expected."
         />
     ),
     5000: (
         <AlertComponent
-            translateKey="loadingOvertimeIndicator.5000"
+            translateKey="loadingOvertime.5000"
             message="This is taking longer than expected, please hang on."
         />
     ),
 };
 
-(LoadingOvertimeIndicator as React.FC).defaultProps = {
+(LoadingOvertime as React.FC).defaultProps = {
     overtimeComponents: overtimeComponents,
 };
 
@@ -46,4 +46,4 @@ export const overtimeComponents = {
  * The elapsed time is calculated using the `useLoadingOvertime` hook.
  * If the `elapsedTime` prop is provided, the component will not use the `useLoadingOvertime` hook.
  */
-export { LoadingOvertimeIndicator };
+export { LoadingOvertime };

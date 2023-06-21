@@ -1,7 +1,7 @@
 import React from "react";
 import { act, render } from "@testing-library/react";
 
-import { LoadingOvertimeIndicator } from "./index";
+import { LoadingOvertime } from "./index";
 
 const OvertimeComponentContents = [
     "taking some time to complete",
@@ -15,18 +15,18 @@ const overtimeComponents = {
     12000: <div>{OvertimeComponentContents[2]}</div>,
 };
 
-describe("LoadingOvertimeIndicator", () => {
+describe("LoadingOvertime", () => {
     describe("when elapsedTime is passed", () => {
         it.each([0, 2000])(
             "should not render any overtime component when elapsedTime is %s",
             (elapsedTime) => {
                 const { getByText, queryByText } = render(
-                    <LoadingOvertimeIndicator
+                    <LoadingOvertime
                         overtimeComponents={overtimeComponents}
                         elapsedTime={elapsedTime}
                     >
                         <div>content</div>
-                    </LoadingOvertimeIndicator>,
+                    </LoadingOvertime>,
                 );
 
                 expect(getByText("content")).toBeInTheDocument();
@@ -49,12 +49,12 @@ describe("LoadingOvertimeIndicator", () => {
             "should render the matching overtime component when elapsedTime is %s",
             ({ elapsedTime, content }) => {
                 const { getByText } = render(
-                    <LoadingOvertimeIndicator
+                    <LoadingOvertime
                         overtimeComponents={overtimeComponents}
                         elapsedTime={elapsedTime}
                     >
                         <div>content</div>
-                    </LoadingOvertimeIndicator>,
+                    </LoadingOvertime>,
                 );
 
                 expect(getByText("content")).toBeInTheDocument();
@@ -64,7 +64,7 @@ describe("LoadingOvertimeIndicator", () => {
 
         it("should work without `children`", () => {
             const { getByText } = render(
-                <LoadingOvertimeIndicator
+                <LoadingOvertime
                     overtimeComponents={overtimeComponents}
                     elapsedTime={4000}
                 />,
@@ -79,12 +79,12 @@ describe("LoadingOvertimeIndicator", () => {
 
         it("should not render any overtime component when `isLoading` is false", () => {
             const { getByText, queryByText } = render(
-                <LoadingOvertimeIndicator
+                <LoadingOvertime
                     overtimeComponents={overtimeComponents}
                     isLoading={false}
                 >
                     <div>content</div>
-                </LoadingOvertimeIndicator>,
+                </LoadingOvertime>,
             );
 
             expect(getByText("content")).toBeInTheDocument();
@@ -105,12 +105,12 @@ describe("LoadingOvertimeIndicator", () => {
             "should render the matching overtime component when `isLoading` is true and elapsedTime is %s",
             ({ elapsedTime, content }) => {
                 const { getByText } = render(
-                    <LoadingOvertimeIndicator
+                    <LoadingOvertime
                         overtimeComponents={overtimeComponents}
                         isLoading={true}
                     >
                         <div>content</div>
-                    </LoadingOvertimeIndicator>,
+                    </LoadingOvertime>,
                 );
 
                 act(() => {
@@ -126,14 +126,14 @@ describe("LoadingOvertimeIndicator", () => {
             const mockOnInterval = jest.fn();
 
             render(
-                <LoadingOvertimeIndicator
+                <LoadingOvertime
                     overtimeComponents={overtimeComponents}
                     isLoading={true}
                     interval={4000}
                     onInterval={mockOnInterval}
                 >
                     <div>content</div>
-                </LoadingOvertimeIndicator>,
+                </LoadingOvertime>,
             );
 
             act(() => {
@@ -151,7 +151,7 @@ describe("LoadingOvertimeIndicator", () => {
 
         it("should work without `children`", () => {
             const { getByText } = render(
-                <LoadingOvertimeIndicator
+                <LoadingOvertime
                     overtimeComponents={overtimeComponents}
                     isLoading={true}
                 />,
