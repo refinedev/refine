@@ -21,6 +21,10 @@ describe("auth-keycloak", () => {
         cy.clearAllCookies();
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
+
+        cy.interceptGETPosts();
+        cy.interceptGETCategories();
+
         cy.visit(BASE_URL);
     });
 

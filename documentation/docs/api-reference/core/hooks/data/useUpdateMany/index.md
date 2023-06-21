@@ -92,6 +92,29 @@ mutate(
 
 :::
 
+### `overtimeOptions`
+
+If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useUpdateMany({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Mutation Parameters
 
 ### `resource` <PropTag required />
@@ -105,6 +128,10 @@ mutate({
     resource: "categories",
 });
 ```
+
+If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
+
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
 
 ### `ids` <PropTag required />
 
@@ -303,6 +330,16 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
+### Additional Values
+#### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useUpdateMany();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ## API
 
 ### Mutation Parameters
@@ -335,8 +372,9 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                                                                                 |
-| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; ids: BaseKey[]; values: TVariables; },`<br/>` UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| Description                                | Type                                                                                                                                                                                      |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; ids: BaseKey[]; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                                                |
 
 > `*` `UpdateContext` is an internal type.

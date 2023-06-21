@@ -148,7 +148,62 @@ https://api.fake-rest.refine.dev/posts/1
 
 ### `identifier`
 
-You can pass this value to a resource and it will be used as the main matching key for the resource. This is useful when you have multiple resources with the same `name`.
+The `identifier` value serves as the main matching key for a resource. It allows you to effectively differentiate between multiple resources that share the same `name`.
+
+There are scenarios where you may have multiple resources with the same `name` but different `meta` values. For instance, you might want a `posts` resource utilizing the default data provider and another `posts` resource utilizing the "typicode" data provider. In this case, you can use the `identifier` to differentiate between them.
+
+```tsx
+import { Refine } from "@refinedev/core";
+
+<Refine
+    ...
+    dataProvider={{
+        default: defaultDataProvider,
+        typicode: typicodeDataProvider,
+    }}
+    resources={[
+        {
+            name: "posts",
+            identifier: "posts",
+            meta: {
+                foo: "bar",
+            },
+        },
+        {
+            name: "posts",
+            identifier: "featured-posts",
+            meta: {
+                foo: "baz",
+                filter: {
+                    featured: true,
+                },
+                dataProviderName: "typicode",
+            },
+        },
+    ]}
+>
+...
+</Refine>;
+```
+
+As you can see in the example above, we have two resources with the same `name` but different `identifier` values. Also, both resources have different `meta` values. Using the `identifier`, we can differentiate between the two resources like so:
+
+```tsx
+import { useTable } from "@refinedev/core";
+
+useTable({
+    resource: "featured-posts",
+});
+
+const typicodeDataProvider = {
+    //...
+    getList: async ({ resource, meta }) => {
+        console.log(resource); // "posts"
+        console.log(meta); // { foo: "baz", filter: { featured: true } }
+    },
+    //...
+};
+```
 
 ### `list`
 
@@ -366,7 +421,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 Customize or disable the breadcrumb. By default it uses the Breadcrumb component from respective package.
 
-The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/api-reference/mantine/components/basic-views/create/#breadcrumb), [MUI](/docs/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
+The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/api-reference/mantine/components/basic-views/create/#breadcrumb), [Material UI](/docs/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
 
 [Refer to the Breadcrumb docs for further information. &#8594](/docs/api-reference/antd/components/breadcrumb/)
 
@@ -637,6 +692,46 @@ const App: React.FC = () => (
 ```
 
 <br />
+
+### `overtime`
+
+If you want loading overtime for the request, you can use the `overtime` object. It is useful when you want to show a loading indicator when the request takes too long.
+
+```tsx
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            overtime: {
+                interval: 1000, // default value is 1000
+                onInterval: (elapsedInterval, context) => {
+                    console.log(elapsedInterval, context);
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
+#### `interval`
+
+The interval value in milliseconds. The default value is `1000`.
+
+#### `onInterval`
+
+The callback function that will be called on every interval. The default value is `undefined`.
+
+The callback function receives two parameters:
+ - `elapsedInterval`: The elapsed interval in milliseconds.
+ - `context`: 
+
+| Description  | Type                                                                       |
+| ------------ | -------------------------------------------------------------------------- |
+| resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
+| resourceName | `string` \| `undefined`                                                    |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
+| action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 ## `onLiveEvent`
 

@@ -71,7 +71,6 @@ const siteConfig = {
         ],
     ],
     plugins: [
-        path.resolve(__dirname, "plugins/use-case-routes.js"),
         [
             "@docusaurus/plugin-client-redirects",
             {
@@ -119,8 +118,8 @@ const siteConfig = {
     ],
     themeConfig: {
         prism: {
-            theme: require("prism-react-renderer/themes/vsDark"),
-            darkTheme: require("prism-react-renderer/themes/vsDark"),
+            theme: require("prism-react-renderer/themes/nightOwl"),
+            darkTheme: require("prism-react-renderer/themes/nightOwl"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!
                 {
@@ -301,6 +300,23 @@ const siteConfig = {
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
         /** ---- */
         tutorial: tutorialData,
+    },
+    webpack: {
+        jsLoader: (isServer) => ({
+            loader: require.resolve("swc-loader"),
+            options: {
+                jsc: {
+                    parser: {
+                        syntax: "typescript",
+                        tsx: true,
+                    },
+                    target: "es2017",
+                },
+                module: {
+                    type: isServer ? "commonjs" : "es6",
+                },
+            },
+        }),
     },
 };
 

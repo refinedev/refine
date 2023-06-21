@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
-import {
-    useMeta,
-    useOne,
-    useResourceWithRoute,
-    useRouterContext,
-} from "@hooks";
+import { useMeta, useOne } from "@hooks";
 
 import {
-    ResourceRouterParams,
     BaseRecord,
     GetOneResponse,
     SuccessErrorNotification,
@@ -18,20 +12,21 @@ import {
     LiveModeProps,
     BaseKey,
     HttpError,
-    IResourceItem,
     Prettify,
 } from "../../interfaces";
-import { useRouterType } from "@contexts/router-picker";
-import { useParsed } from "@hooks/router/use-parsed";
-import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     showId?: BaseKey;
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
-};
+} & UseLoadingOvertimeReturnType;
 
 export type useShowProps<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -75,7 +70,8 @@ export type useShowProps<
         GetOneResponse<TData>,
         TError,
         Prettify<{ id?: BaseKey } & MetaQuery>
-    >;
+    > &
+    UseLoadingOvertimeOptionsProps;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -105,85 +101,36 @@ export const useShow = <
     onLiveEvent,
     dataProviderName,
     queryOptions,
+    overtimeOptions,
 }: useShowProps<
     TQueryFnData,
     TError,
     TData
 > = {}): useShowReturnType<TData> => {
-    const routerType = useRouterType();
-    const { resources } = useResource();
-    const { useParams } = useRouterContext();
-    const { resource: resourceFromRouter, id: idFromRouter } = useParsed();
-
-    const { resource: legacyResourceFromRoute, id: legacyIdFromParams } =
-        useParams<ResourceRouterParams>();
+    const {
+        resource,
+        id: idFromRoute,
+        identifier,
+    } = useResource(resourceFromProp);
+    const { identifier: inferredIdentifier } = useResource();
     const getMeta = useMeta();
 
-    const newResourceNameFromRouter = resourceFromRouter?.name;
+    const getDefaultId = () => {
+        const idFromPropsOrRoute = id ?? idFromRoute;
 
-    /** We only accept `id` from URL params if `resource` is not explicitly passed. */
-    /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
-    const defaultId =
-        !resourceFromProp ||
-        resourceFromProp ===
-            (routerType === "legacy"
-                ? legacyResourceFromRoute
-                : newResourceNameFromRouter)
-            ? id ??
-              (routerType === "legacy" ? legacyIdFromParams : idFromRouter)
-            : id;
+        if (resourceFromProp && resourceFromProp !== inferredIdentifier) {
+            return id;
+        }
+
+        return idFromPropsOrRoute;
+    };
+    const defaultId = getDefaultId();
 
     const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
 
     React.useEffect(() => {
         setShowId(defaultId);
     }, [defaultId]);
-
-    /** `resourceName` fallback value depends on the router type */
-    const resourceName =
-        resourceFromProp ??
-        (routerType === "legacy"
-            ? legacyResourceFromRoute
-            : newResourceNameFromRouter);
-
-    let resource: IResourceItem | undefined;
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    if (routerType === "legacy") {
-        if (resourceName) {
-            resource = resourceWithRoute(resourceName);
-        }
-    } else {
-        /** If `resource` is provided by the user, then try to pick the resource of create a dummy one */
-        if (resourceFromProp) {
-            const picked = pickResource(resourceFromProp, resources);
-            if (picked) {
-                resource = picked;
-            } else {
-                resource = {
-                    name: resourceFromProp,
-                    route: resourceFromProp,
-                };
-            }
-        } else {
-            /** If `resource` is not provided, check the resource from the router params */
-            if (typeof resourceFromRouter === "string") {
-                const picked = pickResource(resourceFromRouter, resources);
-                if (picked) {
-                    resource = picked;
-                } else {
-                    resource = {
-                        name: resourceFromRouter,
-                        route: resourceFromRouter,
-                    };
-                }
-            } else {
-                /** If `resource` is passed as an IResourceItem, use it or `resource` is undefined and cannot be inferred. */
-                resource = resourceFromRouter;
-            }
-        }
-    }
 
     const combinedMeta = getMeta({
         resource,
@@ -192,13 +139,13 @@ export const useShow = <
 
     warnOnce(
         Boolean(resourceFromProp) && !Boolean(id),
-        `[useShow]: resource: "${resourceName}", id: ${id} \n\n` +
+        `[useShow]: resource: "${identifier}", id: ${id} \n\n` +
             `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
             `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
     );
 
     const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: resource?.name,
+        resource: identifier,
         id: showId ?? "",
         queryOptions: {
             enabled: showId !== undefined,
@@ -213,9 +160,16 @@ export const useShow = <
         dataProviderName,
     });
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         queryResult,
         showId,
         setShowId,
+        overtime: { elapsedTime },
     };
 };

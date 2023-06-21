@@ -3,6 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useUpdateMany } from "./useUpdateMany";
+import * as UseInvalidate from "../invalidate/index";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
@@ -138,6 +139,53 @@ describe("useUpdateMany Hook", () => {
                 }),
             }),
         );
+    });
+
+    it("works correctly with `interval` and `onInterval` params", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useUpdateMany({
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            updateMany: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
+                            },
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            ids: [1, 2],
+            values: {
+                title: "foo",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeFalsy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
     });
 
     describe("usePublish", () => {
@@ -494,6 +542,246 @@ describe("useUpdateMany Hook", () => {
             });
 
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+    });
+
+    it("should select correct dataProviderName", async () => {
+        const updateManyDefaultMock = jest.fn();
+        const updateManyFooMock = jest.fn();
+
+        const { result } = renderHook(() => useUpdateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        updateMany: updateManyDefaultMock,
+                    },
+                    foo: {
+                        ...MockJSONServer.default,
+                        updateMany: updateManyFooMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "posts",
+                        meta: {
+                            dataProviderName: "foo",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            ids: ["1", "2"],
+            values: {
+                foo: "bar",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(updateManyFooMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+        expect(updateManyDefaultMock).not.toBeCalled();
+    });
+
+    it("should get correct `meta` of related resource", async () => {
+        const updateManyMock = jest.fn();
+
+        const { result } = renderHook(() => useUpdateMany(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        updateMany: updateManyMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "posts",
+                        meta: {
+                            foo: "bar",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            ids: ["1", "2"],
+            values: {
+                title: "awesome post",
+            },
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(updateManyMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                }),
+            }),
+        );
+    });
+
+    describe("when passing `identifier` instead of `name`", () => {
+        it("should select correct dataProviderName", async () => {
+            const updateManyDefaultMock = jest.fn();
+            const updateManyFooMock = jest.fn();
+
+            const { result } = renderHook(() => useUpdateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            updateMany: updateManyDefaultMock,
+                        },
+                        foo: {
+                            ...MockJSONServer.default,
+                            updateMany: updateManyFooMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                dataProviderName: "foo",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                ids: ["1", "2"],
+                values: {
+                    foo: "bar",
+                },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(updateManyFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(updateManyDefaultMock).not.toBeCalled();
+        });
+
+        it("should invalidate query store with `identifier`", async () => {
+            const invalidateStore = jest.fn();
+            jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(
+                invalidateStore,
+            );
+            const updateManyMock = jest.fn();
+
+            const { result } = renderHook(() => useUpdateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            updateMany: updateManyMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                ids: ["1", "2"],
+                values: {
+                    foo: "bar",
+                },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(invalidateStore).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "featured-posts",
+                }),
+            );
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const updateManyMock = jest.fn();
+
+            const { result } = renderHook(() => useUpdateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            updateMany: updateManyMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "all-posts",
+                            meta: {
+                                foo: "bar",
+                            },
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                bar: "baz",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                ids: ["1", "2"],
+                values: {
+                    foo: "bar",
+                },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(updateManyMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        bar: "baz",
+                    }),
+                }),
+            );
         });
     });
 });

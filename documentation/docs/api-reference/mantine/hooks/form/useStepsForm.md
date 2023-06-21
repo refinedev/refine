@@ -1028,6 +1028,29 @@ const stepsForm = useStepsForm({
 });
 ```
 
+### `overtimeOptions`
+
+If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useStepsForm({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Return Values
 
 :::tip
@@ -1047,6 +1070,15 @@ Current step, counting from `0`.
 Is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
 
+### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useStepsForm();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 ## FAQ
 ### How can I change the form data before submitting it to the API?
 
@@ -1111,6 +1143,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 | steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                               |
 | refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
+| overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                  |
 
 ## Example
 

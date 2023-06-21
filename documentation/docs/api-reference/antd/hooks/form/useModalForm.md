@@ -501,6 +501,29 @@ const modalForm = useModalForm({
 });
 ```
 
+### `overtimeOptions`
+
+If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+
+Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useModalForm({
+    //...
+    overtimeOptions: {
+        interval: 1000,
+        onInterval(elapsedInterval) {
+            console.log(elapsedInterval);
+        },
+    }
+});
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// You can use it like this:
+{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+```
 ## Return Values
 
 ### `formProps`
@@ -678,6 +701,15 @@ return (
     </Modal>
 );
 ```
+### `overtime`
+
+`overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
+
+```tsx
+const { overtime } = useModalForm();
+
+console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+```
 
 ## FAQ
 
@@ -746,21 +778,22 @@ export const UserCreate: React.FC = () => {
 
 ### Return Value
 
-| Key                      | Description                                                                                                | Type                                                                                                                                                                                  |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                     | A function that can open the modal                                                                         | `(id?: BaseKey) => void`                                                                                                                                                              |
-| formProps                | [Props needed to manage form component](/docs/api-reference/antd/hooks/form/useModalForm/#formprops)       | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
-| modalProps               | [Props for needed to manage modal component](/docs/api-reference/antd/hooks/form/useModalForm/#modalprops) | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
-| formLoading              | Loading status of form                                                                                     | `boolean`                                                                                                                                                                             |
-| submit                   | Submit method, the parameter is the value of the form fields                                               | `() => void`                                                                                                                                                                          |
-| open                     | Whether the modal dialog is open or not                                                                    | `boolean`                                                                                                                                                                             |
-| close                    | Specify a function that can close the modal                                                                | `() => void`                                                                                                                                                                          |
-| defaultFormValuesLoading | DefaultFormValues loading status of form                                                                   | `boolean`                                                                                                                                                                             |
-| form                     | Ant Design form instance                                                                                   | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
-| id                       | Record id for edit action                                                                                  | [`BaseKey`][basekey] \| `undefined`                                                                                                                                                   |
-| setId                    | `id` setter                                                                                                | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                                                      |
-| queryResult              | Result of the query of a record                                                                            | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
-| mutationResult           | Result of the mutation triggered by submitting the form                                                    | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Key                      | Description                                                                                                | Type                                                                                                                                                       |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| show                     | A function that can open the modal                                                                         | `(id?: BaseKey) => void`                                                                                                                                   |
+| formProps                | [Props needed to manage form component](/docs/api-reference/antd/hooks/form/useModalForm/#formprops)       | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                    |
+| modalProps               | [Props for needed to manage modal component](/docs/api-reference/antd/hooks/form/useModalForm/#modalprops) | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                   |
+| formLoading              | Loading status of form                                                                                     | `boolean`                                                                                                                                                  |
+| submit                   | Submit method, the parameter is the value of the form fields                                               | `() => void`                                                                                                                                               |
+| open                     | Whether the modal dialog is open or not                                                                    | `boolean`                                                                                                                                                  |
+| close                    | Specify a function that can close the modal                                                                | `() => void`                                                                                                                                               |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                                                                   | `boolean`                                                                                                                                                  |
+| form                     | Ant Design form instance                                                                                   | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                             |
+| id                       | Record id for edit action                                                                                  | [`BaseKey`][basekey] \| `undefined`                                                                                                                        |
+| setId                    | `id` setter                                                                                                | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                           |
+| queryResult              | Result of the query of a record                                                                            | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                              |
+| mutationResult           | Result of the mutation triggered by submitting the form                                                    | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| overtime                 | Overtime loading props                                                                                     | `{ elapsedTime?: number }`                                                                                                                                 |
 
 ## Example
 

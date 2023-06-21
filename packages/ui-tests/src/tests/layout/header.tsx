@@ -1,8 +1,9 @@
 import React from "react";
+
+import { AuthBindings } from "@refinedev/core";
 import { RefineLayoutHeaderProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
-import { AuthBindings } from "@refinedev/core";
 
 const mockLegacyAuthProvider = {
     login: () => Promise.resolve(),
@@ -30,25 +31,41 @@ export const layoutHeaderTests = function (
     describe("[@refinedev/ui-tests] Common Tests / Header Element", () => {
         // NOTE : Will be removed in v5
         it("should render successfull user name and avatar in header with legacy authProvider", async () => {
-            const { findByText, getByRole } = render(<HeaderElement />, {
-                wrapper: TestWrapper({
-                    legacyAuthProvider: mockLegacyAuthProvider,
-                }),
-            });
+            const { findByText, queryByRole, queryByAltText } = render(
+                <HeaderElement />,
+                {
+                    wrapper: TestWrapper({
+                        legacyAuthProvider: mockLegacyAuthProvider,
+                    }),
+                },
+            );
 
             await findByText("username");
-            expect(getByRole("img")).toHaveAttribute("src", "localhost:3000");
+            const imgByRole = queryByRole("img", { queryFallbacks: true });
+            const imgByAltText = queryByAltText("username");
+            expect(imgByRole ?? imgByAltText).toHaveAttribute(
+                "src",
+                "localhost:3000",
+            );
         });
 
         it("should render successfull user name and avatar in header with authProvider", async () => {
-            const { findByText, getByRole } = render(<HeaderElement />, {
-                wrapper: TestWrapper({
-                    authProvider: mockAuthProvider,
-                }),
-            });
+            const { findByText, queryByRole, queryByAltText } = render(
+                <HeaderElement />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                    }),
+                },
+            );
 
             await findByText("username");
-            expect(getByRole("img")).toHaveAttribute("src", "localhost:3000");
+            const imgByRole = queryByRole("img", { queryFallbacks: true });
+            const imgByAltText = queryByAltText("username");
+            expect(imgByRole ?? imgByAltText).toHaveAttribute(
+                "src",
+                "localhost:3000",
+            );
         });
     });
 };

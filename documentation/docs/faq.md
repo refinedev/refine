@@ -738,6 +738,31 @@ You can use the command to copy the default `Sider` component to your project. T
 
 [Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)
 
+## How can I remove GitHub Banner?
+
+To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` component from your React application. The specific location of this component may vary depending on the React platform you are using.
+
+Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
+
+-   Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/next/examples/auth-antd/src/App.tsx#L161)
+-   Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-nextjs/pages/_app.tsx#L47)
+-   Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/next/examples/with-remix-antd/app/root.tsx#L37)
+
+## Module "X" has no exported member "Y"
+
+The error message "Module 'X' has no exported member 'Y'" typically occurs when using `pnpm` due to its cache system. We are aware of this issue and are actively working on resolving it by updating our peer dependencies with each version release. However, this is still a work in progress. In the meantime, you can resolve this error by using the `npm i <module-name>@latest` command.
+
+Here are a couple of examples of reported errors and their corresponding fix:
+
+1. Error: "Module '@refinedev/mantine' has no exported member 'HamburgerMenu'"
+
+    - Solution: Run `npm i @refinedev/mantine@latest` to install the latest version of the `@refinedev/mantine` module.
+
+2. Error: "Module '@refinedev/antd' has no exported member 'ThemedLayoutV2'"
+    - Solution: Execute `npm i @refinedev/antd@latest` to install the latest version of the `@refinedev/antd` module.
+
+By following these steps and updating to the latest module versions, you should be able to resolve the "not exported" error.
+
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [use-form-antd]: /docs/api-reference/antd/hooks/form/useForm/

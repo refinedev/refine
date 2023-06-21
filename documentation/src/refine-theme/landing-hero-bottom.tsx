@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 export const LandingHeroBottom = () => {
     return (
-        <div className="relative min-h-[288px]">
+        <div className="relative min-h-[288px] animation-parent">
             <div
                 className={clsx(
                     "hidden landing-lg:block",
@@ -56,6 +56,7 @@ export const LandingHeroBottom = () => {
                     "h-[288px]",
                     "-mt-[14px]",
                     "animate-beat",
+                    "will-change-[opacity]",
                 )}
             />
             <div

@@ -7,7 +7,7 @@ export const Tags = () => {
     const { metadata } = useBlogPost();
 
     return (
-        <div className="flex gap-2 ml-2 mb-3">
+        <div className="flex gap-2 pl-1 pb-6 flex-wrap">
             {metadata.tags.map((tag) => (
                 <Link
                     to={tag.permalink}
@@ -16,8 +16,10 @@ export const Tags = () => {
                         "bg-gray-100 dark:bg-gray-700",
                         "text-gray-600 dark:text-gray-400",
                         "rounded",
-                        "p-1",
+                        "py-1",
+                        "px-2",
                         "no-underline hover:no-underline",
+                        "whitespace-nowrap",
                     )}
                     key={tag.permalink}
                 >

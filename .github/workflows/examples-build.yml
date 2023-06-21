@@ -9,6 +9,9 @@ on:
     paths:
       - "packages/**"
       - "examples/**"
+  push:
+    branches:
+      - next
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:

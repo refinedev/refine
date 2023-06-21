@@ -45,16 +45,38 @@ function BlogListPageContent(props) {
 
     return (
         <BlogLayout>
+            <div
+                className={clsx(
+                    "px-4",
+                    "max-w-[512px]",
+                    "blog-md:px-7",
+                    "blog-md:max-w-screen-blog-md",
+                    "blog-2xl:px-0",
+                    "blog-2xl:max-w-screen-blog-md",
+                    "w-full",
+                    "mx-auto",
+                )}
+            >
+                <a
+                    href="https://s.refine.dev/hackathon2"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" />
+                </a>
+            </div>
             {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
             <div
                 className={clsx(
-                    "xl:max-w-[1008px]",
-                    "lg:max-w-[944px]",
-                    "md:max-w-[480px]",
-                    "sm:max-w-[328px]",
-                    "max-w-[328px]",
-                    "w-full mx-auto",
-                    "hidden lg:block",
+                    "px-4",
+                    "max-w-[512px]",
+                    "blog-md:px-7",
+                    "blog-md:max-w-screen-blog-md",
+                    "blog-2xl:px-0",
+                    "blog-2xl:max-w-screen-blog-md",
+                    "w-full",
+                    "mx-auto",
+                    "hidden blog-md:block",
                 )}
             >
                 <div className="border-b border-gray-100 dark:border-gray-700"></div>
@@ -64,7 +86,9 @@ function BlogListPageContent(props) {
                 tags={tags}
                 metadata={metadata}
             />
-            <BlogListPaginator metadata={metadata} />
+            <div className="blog-md:border-t border-t-gray-200 dark:border-t-gray-700">
+                <BlogListPaginator metadata={metadata} />
+            </div>
         </BlogLayout>
     );
 }

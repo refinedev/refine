@@ -56,22 +56,38 @@ function BlogTagsPostsPageMetadata({ tag }) {
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
     return (
         <BlogLayout sidebar={sidebar}>
-            <div className="pt-8 py-6">
+            <div
+                className={clsx(
+                    "py-8",
+                    "blog-md:py-16",
+                    "px-4",
+                    "max-w-[512px]",
+                    "blog-md:px-7",
+                    "blog-md:max-w-screen-blog-md",
+                    "blog-2xl:px-0",
+                    "blog-2xl:max-w-screen-blog-md",
+                    "w-full",
+                    "mx-auto",
+                )}
+            >
                 <TagsList tags={tags} />
-                <br />
-                <div className="px-3">
+                <div className={clsx("pt-0 blog-md:pt-16")}>
                     <div className="text-gray-500 dark:text-gray-400">
                         Posts tagged with
                     </div>
-                    <h1>{tag.label}</h1>
+                    <h1 className="!mb-0">{tag.label}</h1>
                 </div>
-
-                <BlogPostItems items={items} showTitle={false} />
-                <br />
-                <BlogListPaginator
-                    metadata={listMetadata}
-                    basePath={`/blog/tags/${tag.label}`}
+                <BlogPostItems
+                    items={items}
+                    showTitle={false}
+                    isTagsPage={true}
                 />
+                <div className="blog-md:border-t border-t-gray-200 dark:border-t-gray-700">
+                    <BlogListPaginator
+                        metadata={listMetadata}
+                        basePath={`/blog/tags/${tag.label}`}
+                    />
+                </div>
             </div>
         </BlogLayout>
     );

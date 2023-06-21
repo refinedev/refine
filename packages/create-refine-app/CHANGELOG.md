@@ -1,5 +1,17 @@
 # create-refine-app
 
+## 1.11.0
+
+### Minor Changes
+
+-   [#4518](https://github.com/refinedev/refine/pull/4518) [`d93747281f7`](https://github.com/refinedev/refine/commit/d93747281f76c7a7c90c0278033447d352ca44f3) Thanks [@aliemir](https://github.com/aliemir)! - Updated `superplate-cli` version and updated `superplate` runner command with environment variables.
+
+## 1.10.0
+
+### Minor Changes
+
+-   [#4518](https://github.com/refinedev/refine/pull/4518) [`d93747281f7`](https://github.com/refinedev/refine/commit/d93747281f76c7a7c90c0278033447d352ca44f3) Thanks [@aliemir](https://github.com/aliemir)! - Updated `superplate-cli` version and updated `superplate` runner command with environment variables.
+
 ## 1.9.0
 
 ### Minor Changes

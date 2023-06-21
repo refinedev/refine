@@ -64,6 +64,7 @@ export const CodeBlockString = ({
     showLineNumbers: showLineNumbersProp,
     language: languageProp,
     icon,
+    style,
 }) => {
     const {
         prism: { defaultLanguage, magicComments },
@@ -95,9 +96,10 @@ export const CodeBlockString = ({
                 "bg-gray-700",
                 "mb-6",
             )}
+            style={style}
         >
             {title && <CodeBlockTitle icon={icon}>{title}</CodeBlockTitle>}
-            <div className={clsx("relative", "py-4", "not-prose")}>
+            <div className={clsx("relative", "pt-4", "pb-0", "not-prose")}>
                 <Highlight
                     {...defaultProps}
                     theme={prismTheme}
@@ -119,28 +121,29 @@ export const CodeBlockString = ({
                                 "pb-px",
                                 "font-mono",
                                 "thin-scrollbar",
+                                "pb-4",
                             )}
                         >
-                            <code className={clsx("bg-transparent")}>
+                            <code
+                                className={clsx(
+                                    "bg-transparent",
+                                    "inline-block",
+                                    "min-w-full",
+                                )}
+                            >
                                 {tokens.map((line, i) => (
-                                    <>
-                                        <Line
-                                            key={i}
-                                            line={line}
-                                            getLineProps={getLineProps}
-                                            getTokenProps={getTokenProps}
-                                            classNames={clsx(
-                                                lineClassNames[i],
-                                                lineClassNames[i]?.includes(
-                                                    "theme-code-block-highlighted-line",
-                                                ) &&
-                                                    "bg-gray-600 bg-opacity-50",
-                                                "px-4",
-                                                "text-xs sm:text-sm 2xl:text-base",
-                                            )}
-                                            showLineNumbers={showLineNumbers}
-                                        />
-                                    </>
+                                    <Line
+                                        key={i}
+                                        line={line}
+                                        getLineProps={getLineProps}
+                                        getTokenProps={getTokenProps}
+                                        classNames={clsx(
+                                            lineClassNames[i],
+                                            "px-4",
+                                            "text-xs sm:text-sm 2xl:text-base",
+                                        )}
+                                        showLineNumbers={showLineNumbers}
+                                    />
                                 ))}
                             </code>
                         </pre>

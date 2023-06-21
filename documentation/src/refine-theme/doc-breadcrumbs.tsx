@@ -43,13 +43,30 @@ export const DocBreadcrumbs = () => {
 
     return (
         <nav
-            className={clsx("pb-6")}
+            className={clsx("refine-breadcrumbs", "pb-6")}
             aria-label={translate({
                 id: "theme.docs.breadcrumbs.navAriaLabel",
                 message: "Breadcrumbs",
                 description: "The ARIA label for the breadcrumbs",
             })}
         >
+            {breadcrumbList.find((item) => item.label === "Examples") && (
+                <div
+                    className={clsx(
+                        "example-full-title",
+                        "hidden",
+                        "h-0 w-0",
+                        "overflow-hidden",
+                    )}
+                    aria-hidden={true}
+                >
+                    {breadcrumbList
+                        .slice(2)
+                        .map((item) => item.label)
+                        .join(" ")}
+                    {" Example"}
+                </div>
+            )}
             <ul
                 className={clsx("breadcrumbs", "flex flex-wrap items-center")}
                 itemScope
@@ -59,6 +76,7 @@ export const DocBreadcrumbs = () => {
                     <li>
                         <Link href="/docs">
                             <HomeIcon className="text-gray-400 dark:text-gray-400" />
+                            <span className="sr-only">Documentation</span>
                         </Link>
                     </li>
                 )}

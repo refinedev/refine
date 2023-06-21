@@ -3,7 +3,6 @@ import { renderHook } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useApiUrl } from "./";
-import * as UseResource from "../../hooks/resource/useResource";
 
 describe("useApiUrl Hook", () => {
     describe.each(["meta", "options"])(`should be called with %s`, (key) => {

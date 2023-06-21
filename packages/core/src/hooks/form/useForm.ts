@@ -3,8 +3,6 @@ import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
 import {
-    useResourceWithRoute,
-    useRouterContext,
     useWarnAboutChange,
     useCreate,
     useUpdate,
@@ -21,7 +19,6 @@ import {
     GetOneResponse,
     HttpError,
     LiveModeProps,
-    ResourceRouterParams,
     RedirectAction,
     SuccessErrorNotification,
     UpdateResponse,
@@ -29,7 +26,6 @@ import {
     BaseKey,
     IQueryKeys,
     FormAction,
-    IResourceItem,
     MetaQuery,
 } from "../../interfaces";
 import {
@@ -39,11 +35,13 @@ import {
 } from "../data/useUpdate";
 import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
 import { redirectPage } from "@definitions/helpers";
-import { useRouterType } from "@contexts/router-picker";
-import { useParsed } from "@hooks/router/use-parsed";
-import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
+import {
+    useLoadingOvertime,
+    UseLoadingOvertimeOptionsProps,
+    UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 
 export type ActionParams = {
     /**
@@ -178,7 +176,8 @@ export type UseFormProps<
     TResponseError
 > &
     ActionParams &
-    LiveModeProps;
+    LiveModeProps &
+    UseLoadingOvertimeOptionsProps;
 
 export type UseFormReturnType<
     TQueryFnData extends BaseRecord = BaseRecord,
@@ -203,7 +202,7 @@ export type UseFormReturnType<
         idFromFunction?: BaseKey | undefined,
         routeParams?: Record<string, string | number>,
     ) => void;
-};
+} & UseLoadingOvertimeReturnType;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -248,6 +247,7 @@ export const useForm = <
     queryOptions,
     createMutationOptions,
     updateMutationOptions,
+    overtimeOptions,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -264,37 +264,28 @@ export const useForm = <
     TResponseError
 > => {
     const { options } = useRefineContext();
-    const { resources } = useResource();
-    const routerType = useRouterType();
-    const {
-        resource: resourceFromRouter,
-        id: idFromRouter,
-        action: actionFromRouter,
-    } = useParsed();
-    const { useParams } = useRouterContext();
-    const {
-        resource: legacyResourceFromRoute,
-        action: legacyActionFromRoute,
-        id: legacyIdFromParams,
-    } = useParams<ResourceRouterParams>();
     const getMeta = useMeta();
 
-    const newResourceNameFromRouter =
-        typeof resourceFromRouter === "string"
-            ? resourceFromRouter
-            : resourceFromRouter?.name;
+    const {
+        resource,
+        id: idFromRoute,
+        action: actionFromRoute,
+        identifier,
+    } = useResource(resourceFromProps);
+    const { identifier: inferredIdentifier } = useResource();
 
     /** We only accept `id` from URL params if `resource` is not explicitly passed. */
     /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
-    const defaultId =
-        !resourceFromProps ||
-        resourceFromProps ===
-            (routerType === "legacy"
-                ? legacyResourceFromRoute
-                : newResourceNameFromRouter)
-            ? idFromProps ??
-              (routerType === "legacy" ? legacyIdFromParams : idFromRouter)
-            : idFromProps;
+    const getDefaultId = () => {
+        const idFromPropsOrRoute = idFromProps ?? idFromRoute;
+
+        if (resourceFromProps && resourceFromProps !== inferredIdentifier) {
+            return idFromProps;
+        }
+
+        return idFromPropsOrRoute;
+    };
+    const defaultId = getDefaultId();
 
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
@@ -310,65 +301,13 @@ export const useForm = <
         setId(defaultId);
     }, [defaultId]);
 
-    /** `resourceName` fallback value depends on the router type */
-    const resourceName =
-        resourceFromProps ??
-        (routerType === "legacy"
-            ? legacyResourceFromRoute
-            : newResourceNameFromRouter);
-    /** `action` fallback value depends on the router type */
-    /**
-     * In earlier versions, we've trivially inferred the action type as `create` in `show` types.
-     * This is probably done to cover cases with modals and drawers.
-     *
-     * This is not right, as we should not do trivial inference of the action type.
-     * Users should explicitly pass the action type when needed.
-     */
-    const fallbackAction =
-        routerType === "legacy" ? legacyActionFromRoute : actionFromRouter;
-    const action =
-        actionFromProps ??
-        (fallbackAction === "edit" || fallbackAction === "clone"
-            ? fallbackAction
-            : "create");
-
-    const resourceWithRoute = useResourceWithRoute();
-    let resource: IResourceItem | undefined;
-
-    if (routerType === "legacy") {
-        if (resourceName) {
-            resource = resourceWithRoute(resourceName);
-        }
-    } else {
-        /** If `resource` is provided by the user, then try to pick the resource of create a dummy one */
-        if (resourceFromProps) {
-            const picked = pickResource(resourceFromProps, resources);
-            if (picked) {
-                resource = picked;
-            } else {
-                resource = {
-                    name: resourceFromProps,
-                    route: resourceFromProps,
-                };
-            }
-        } else {
-            /** If `resource` is not provided, check the resource from the router params */
-            if (typeof resourceFromRouter === "string") {
-                const picked = pickResource(resourceFromRouter, resources);
-                if (picked) {
-                    resource = picked;
-                } else {
-                    resource = {
-                        name: resourceFromRouter,
-                        route: resourceFromRouter,
-                    };
-                }
-            } else {
-                /** If `resource` is passed as an IResourceItem, use it or `resource` is undefined and cannot be inferred. */
-                resource = resourceFromRouter;
-            }
-        }
-    }
+    const getAction = () => {
+        if (actionFromProps) return actionFromProps;
+        else if (actionFromRoute === "edit" || actionFromRoute === "clone")
+            return actionFromRoute;
+        else return "create";
+    };
+    const action = getAction();
 
     const combinedMeta = getMeta({
         resource,
@@ -386,7 +325,7 @@ export const useForm = <
         (isClone || isEdit) &&
             Boolean(resourceFromProps) &&
             !Boolean(idFromProps),
-        `[useForm]: action: "${action}", resource: "${resourceName}", id: ${id} \n\n` +
+        `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
             `If you don't use the \`setId\` method to set the \`id\`, you should pass the \`id\` prop to \`useForm\`. Otherwise, \`useForm\` will not be able to infer the \`id\` from the current URL. \n\n` +
             `See https://refine.dev/docs/api-reference/core/hooks/useForm/#resource`,
     );
@@ -403,7 +342,7 @@ export const useForm = <
     const enableQuery = id !== undefined && (isEdit || isClone);
 
     const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: resource?.name,
+        resource: identifier,
         id: id ?? "",
         queryOptions: {
             enabled: enableQuery,
@@ -472,7 +411,7 @@ export const useForm = <
                 return mutateCreate(
                     {
                         values,
-                        resource: resource.name,
+                        resource: identifier ?? resource.name,
                         successNotification,
                         errorNotification,
                         meta: { ...combinedMeta, ...mutationMeta },
@@ -512,7 +451,7 @@ export const useForm = <
         const variables: UpdateParams<TResponse, TResponseError, TVariables> = {
             id: id ?? "",
             values,
-            resource: resource.name,
+            resource: identifier ?? resource.name,
             mutationMode,
             undoableTimeout,
             successNotification,
@@ -584,6 +523,12 @@ export const useForm = <
 
     const result = isCreate || isClone ? createResult : editResult;
 
+    const { elapsedTime } = useLoadingOvertime({
+        isLoading: result.mutationResult.isLoading || queryResult.isFetching,
+        interval: overtimeOptions?.interval,
+        onInterval: overtimeOptions?.onInterval,
+    });
+
     return {
         ...result,
         queryResult,
@@ -601,6 +546,9 @@ export const useForm = <
                 id: idFromFunction ?? id,
                 meta: pickNotDeprecated(meta, metaData),
             });
+        },
+        overtime: {
+            elapsedTime,
         },
     };
 };

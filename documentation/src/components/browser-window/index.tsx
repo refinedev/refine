@@ -33,10 +33,10 @@ export default function BrowserWindow({
                     "rounded-tl-lg",
                     "rounded-tr-lg",
                     "border-b",
-                    "border-b-gray-900",
+                    "border-b-gray-200 dark:border-b-gray-900",
                     "px-4 py-2",
                     "flex items-center justify-center",
-                    "bg-gray-700",
+                    "bg-gray-100 dark:bg-gray-700",
                     "relative",
                 )}
             >
@@ -76,9 +76,9 @@ export default function BrowserWindow({
                     className={clsx(
                         "rounded-lg",
                         "p-2",
-                        "bg-gray-800",
+                        "bg-gray-0 dark:bg-gray-800",
                         "flex items-center justify-center",
-                        "text-gray-400",
+                        "text-gray-500 dark:text-gray-400",
                         "text-xs",
                         "w-full",
                         "max-w-[260px]",
@@ -93,9 +93,9 @@ export default function BrowserWindow({
                     "flex-1",
                     "overflow-hidden",
                     "p-1",
-                    "bg-gray-700",
+                    "bg-gray-100 dark:bg-gray-700",
                     !hasBottom && "rounded-bl-lg rounded-br-lg",
-                    hasBottom && "border-b-gray-900",
+                    hasBottom && "border-b-gray-200 dark:border-b-gray-900",
                     hasBottom && "border-b",
                 )}
                 style={{ minHeight }}

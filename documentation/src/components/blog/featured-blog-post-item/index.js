@@ -44,7 +44,7 @@ export const FeaturedBlogPostItem = () => {
                                 "bg-gray-100 dark:bg-gray-700",
                                 "text-gray-600 dark:text-gray-400",
                                 "rounded",
-                                "p-1",
+                                "py-1 px-2",
                             )}
                             key={tag.permalink}
                         >

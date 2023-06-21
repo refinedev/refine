@@ -102,13 +102,7 @@ export const DocTOC = () => {
             <ul>
                 {toc.map((item) => {
                     return (
-                        <li
-                            key={item.id}
-                            className={
-                                clsx()
-                                // item.level === 1 && "pl-3",
-                            }
-                        >
+                        <li key={item.id}>
                             <TOCItem
                                 id={item.id}
                                 value={item.value}

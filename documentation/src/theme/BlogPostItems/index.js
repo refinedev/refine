@@ -10,32 +10,38 @@ export default function BlogPostItems({
     tags,
     component: BlogPostItemComponent = BlogPostItem,
     isAuthorPage,
+    isTagsPage,
 }) {
     return (
         <div
             className={clsx(
-                "xl:max-w-[1008px] xl:py-20",
-                "lg:max-w-[944px] lg:py-16",
-                "md:max-w-[480px] py-10",
-                "sm:max-w-[328px]",
-                "max-w-[328px]",
-                "w-full mx-auto",
+                "px-4",
+                "blog-md:px-7",
+                "blog-2xl:px-0",
+                !isAuthorPage && !isTagsPage && "blog-lg:py-20",
+                !isAuthorPage && !isTagsPage && "blog-md:py-16",
+                !isAuthorPage && !isTagsPage && "py-10",
+                (isAuthorPage || isTagsPage) && "py-8",
+                "max-w-[512px]",
+                "blog-md:max-w-screen-blog-md",
+                "blog-2xl:max-w-screen-blog-md",
+                "w-full",
+                "mx-auto",
             )}
         >
-            {!isAuthorPage && (
+            {!isAuthorPage && !isTagsPage && (
                 <>
                     <div
                         className={clsx(
-                            "flex flex-col lg:flex-row items-start justify-between",
-                            "px-0 md:px-6",
-                            "mb-8 md:mb-12",
+                            "flex flex-col blog-md:flex-row items-start justify-between",
+                            "mb-2 lg:mb-8",
                         )}
                     >
                         <h2
                             className={clsx(
                                 "!m-0 !mt-0 !mb-0 p-0",
-                                "xl:mb-12 lg:mb-8 mb-8",
-                                "xl:text-5xl lg:text-4xl text-xl",
+                                "blog-lg:mb-12 blog-md:mb-8 mb-8",
+                                "text-xl blog-sm:text-4xl blog-lg:text-5xl",
                                 "text-gray-900 dark:text-gray-0",
                             )}
                         >
@@ -43,8 +49,9 @@ export default function BlogPostItems({
                         </h2>
                         <p
                             className={clsx(
-                                "text-sm md:text-base xl:text-xl",
-                                "lg:max-w-[624px]",
+                                "text-sm blog-md:text-base blog-lg:text-xl",
+                                "blog-md:max-w-[624px]",
+                                "mt-6 lg:mt-0",
                             )}
                         >
                             <b>refine technical blog</b> - a resource for
@@ -61,10 +68,10 @@ export default function BlogPostItems({
             <div
                 className={clsx(
                     "grid",
-                    "grid-cols-1 lg:grid-cols-3",
-                    "gap-4 xl:gap-12",
-                    "py-6 lg:py-12",
-                    isAuthorPage && "-mt-28",
+                    "grid-cols-1 blog-md:grid-cols-3",
+                    "gap-4 blog-lg:gap-12",
+                    "py-6",
+                    isAuthorPage ? "blog-md:pt-0" : "blog-md:py-12",
                 )}
             >
                 {items.map(({ content: BlogPostContent }) => (

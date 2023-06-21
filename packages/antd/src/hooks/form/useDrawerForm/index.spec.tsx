@@ -195,7 +195,6 @@ describe("useDrawerForm Hook", () => {
     });
 
     it("when mutationMode is 'pessimistic', the form should be closed when the mutation is successful", async () => {
-        jest.useFakeTimers();
         const updateMock = jest.fn(
             () => new Promise((resolve) => setTimeout(resolve, 1000)),
         );
@@ -221,7 +220,6 @@ describe("useDrawerForm Hook", () => {
         await act(async () => {
             result.current.show();
             result.current.formProps.onFinish?.({});
-            jest.runAllTimers();
         });
 
         expect(result.current.drawerProps.open).toBe(true);
@@ -237,7 +235,6 @@ describe("useDrawerForm Hook", () => {
     it.each(["optimistic", "undoable"] as const)(
         "when mutationMode is '%s', the form should be closed when the mutation is successful",
         async (mutationMode) => {
-            jest.useFakeTimers();
             const updateMock = jest.fn(
                 () => new Promise((resolve) => setTimeout(resolve, 1000)),
             );
@@ -263,7 +260,6 @@ describe("useDrawerForm Hook", () => {
             await act(async () => {
                 result.current.show();
                 result.current.formProps.onFinish?.({});
-                jest.runAllTimers();
             });
 
             expect(result.current.drawerProps.open).toBe(false);

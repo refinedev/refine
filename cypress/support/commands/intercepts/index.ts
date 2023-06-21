@@ -2,3 +2,4 @@
 import "./api-fake-rest";
 import "./supabase";
 import "./strapi-v4";
+import "./hasura";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     useDelete,
     useTranslate,
@@ -7,6 +7,7 @@ import {
     useResource,
     pickNotDeprecated,
     useWarnAboutChange,
+    AccessControlContext,
 } from "@refinedev/core";
 import {
     RefineButtonClassNames,
@@ -51,11 +52,18 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled ?? true;
-    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
+    const accessControlContext = useContext(AccessControlContext);
+
+    const accessControlEnabled =
+        accessControl?.enabled ??
+        accessControlContext.options.buttons.enableAccessControl;
+
+    const hideIfUnauthorized =
+        accessControl?.hideIfUnauthorized ??
+        accessControlContext.options.buttons.hideIfUnauthorized;
     const translate = useTranslate();
 
-    const { id, resource } = useResource(
+    const { id, resource, identifier } = useResource(
         resourceNameFromProps ?? resourceNameOrRouteName,
     );
 
@@ -74,6 +82,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
     });
 
+    const disabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -85,13 +103,13 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     const handleCloseOnConfirm = () => {
-        if ((recordItemId ?? id) && resource?.name) {
+        if ((recordItemId ?? id) && identifier) {
             setWarnWhen(false);
             setOpen(false);
             mutate(
                 {
                     id: recordItemId ?? id ?? "",
-                    resource: resource?.name,
+                    resource: identifier,
                     mutationMode,
                     successNotification,
                     errorNotification,
@@ -125,6 +143,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 disabled={data?.can === false}
                 loading={(recordItemId ?? id) === variables?.id && isLoading}
                 startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
+                title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}
                 data-testid={RefineButtonTestIds.DeleteButton}

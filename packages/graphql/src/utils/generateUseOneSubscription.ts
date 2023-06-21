@@ -31,7 +31,7 @@ export const generateUseOneSubscription = ({
 
     const operation = meta.operation ?? camelResource;
 
-    const { query, variables } = gql.query({
+    const { query, variables } = gql.subscription({
         operation,
         variables: {
             id: { value: id, type: "ID", required: true },

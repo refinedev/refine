@@ -50,12 +50,14 @@ const SidebarCategory = ({
     line,
     variant,
     onLinkClick,
+    deferred,
 }: {
     item: SidebarCategoryItem;
     path: string;
     line?: boolean;
     variant: Variant;
     onLinkClick?: () => void;
+    deferred?: boolean;
 }) => {
     const isHeader = item.className === "category-as-header";
     const isActive = isActiveSidebarItem(item, path);
@@ -94,6 +96,7 @@ const SidebarCategory = ({
                 isNavLink
                 href={item.href}
                 className={clsx(
+                    isHeader && item.label !== "Getting Started" && "mt-10",
                     isHeader && "cursor-default",
                     "w-full",
                     "min-h-[40px]",
@@ -185,14 +188,19 @@ const SidebarCategory = ({
                     !collapsed && settled && "max-h-[2500px]",
                 )}
             >
-                {renderItems({
-                    items: item?.items ?? [],
-                    path: path,
-                    line: !isHeader,
-                    fromHeader: isHeader,
-                    variant,
-                    onLinkClick,
-                })}
+                {
+                    // if category is collapsed, don't render items for performance reasons
+                    (deferred ? !collapsed : true) &&
+                        renderItems({
+                            items: item?.items ?? [],
+                            path: path,
+                            line: !isHeader,
+                            fromHeader: isHeader,
+                            variant,
+                            onLinkClick,
+                            deferred,
+                        })
+                }
             </div>
         </div>
     );
@@ -301,6 +309,8 @@ type RenderItemConfig = {
     fromHeader?: boolean;
     variant: Variant;
     onLinkClick?: () => void;
+    deferred?: boolean;
+    level?: number;
 };
 
 const renderItems = ({
@@ -311,6 +321,8 @@ const renderItems = ({
     fromHeader,
     variant,
     onLinkClick,
+    deferred,
+    level = 0,
 }: RenderItemConfig) => {
     const hasCategory = items?.some((item) => item.type === "category");
     const isDashed = !root && hasCategory;
@@ -327,6 +339,7 @@ const renderItems = ({
                             line={!!line}
                             variant={variant}
                             onLinkClick={onLinkClick}
+                            deferred={deferred}
                         />
                     );
                 case "html":
@@ -400,11 +413,13 @@ export const DocSidebar = () => {
 type UseSidebarItemsProps = {
     variant: Variant;
     onLinkClick?: () => void;
+    deferred?: boolean;
 };
 
 export const useSidebarItems = ({
     variant,
     onLinkClick,
+    deferred,
 }: UseSidebarItemsProps) => {
     const sidebar = useDocsSidebar() as SidebarType;
     const { pathname } = useLocation();
@@ -416,6 +431,7 @@ export const useSidebarItems = ({
             root: true,
             variant,
             onLinkClick,
+            deferred,
         }),
     };
 };

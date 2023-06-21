@@ -1,26 +1,10 @@
 import React from "react";
 import { useReward } from "react-rewards";
+import clsx from "clsx";
 
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { useTutorialChecklists } from "../../hooks/use-tutorial-checklists";
-import clsx from "clsx";
-
-const CheckMarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="feather feather-check-circle pointer-events-none"
-        {...props}
-    >
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <path d="M22 4 12 14.01l-3-3" />
-    </svg>
-);
+import { CheckListIcon } from "@site/src/refine-theme/icons/check-list";
 
 type Props = React.PropsWithChildren<{}>;
 
@@ -60,9 +44,8 @@ const Checklist: React.FC<Props> = ({ children }) => {
     return (
         <div
             className={clsx(
-                "bg-opacity-10",
-                "dark:bg-refine-link-dark dark:border-l-refine-link-dark",
-                "bg-refine-link-light border-l-refine-link-light",
+                "border-l-gray-400 dark:border-l-gray-600",
+                "dark:bg-gray-800 bg-gray-50",
             )}
         >
             <div
@@ -76,19 +59,21 @@ const Checklist: React.FC<Props> = ({ children }) => {
                     "flex flex-col",
                 )}
             >
-                <h3
-                    className={clsx(
-                        "font-semibold",
-                        "mt-0",
-                        "flex items-center",
-                        "gap-3",
-                        "dark:text-gray-300 text-gray-500",
-                        "uppercase",
-                        "text-lg",
-                    )}
-                >
-                    <CheckMarkIcon className="w-7 h-7" /> Checklist
-                </h3>
+                <div className="border-b border-gray-200 dark:border-gray-600">
+                    <h3
+                        className={clsx(
+                            "font-semibold",
+                            "mt-0 mb-3",
+                            "flex items-center",
+                            "gap-3",
+                            "dark:text-gray-300 text-gray-500",
+                            "uppercase",
+                            "text-base leading-6",
+                        )}
+                    >
+                        <CheckListIcon /> Checklist
+                    </h3>
+                </div>
                 <div>{children}</div>
                 <div className="flex items-center justify-center">
                     <div id={`checklist-${id}`} />

@@ -12,7 +12,7 @@ title: List of Packages
 
 - `@refinedev/antd` -  [Ant Design](https://ant.design/) System UI Framework support.  **20+** *framework-specific*  `hooks` and  `components`  incl. *Table, Form, Select, Menu, Layout, Notification and CRUD components.*
 
-- `@refinedev/mui` - [Material UI](https://mui.com/) Framework support. **20+** *framework-specific*  `hooks` and  `components`  incl. *DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.*
+- `@refinedev/mui` - [Material UI](https://mui.com/material-ui/getting-started/overview/) Framework support. **20+** *framework-specific*  `hooks` and  `components`  incl. *DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.*
 
 - `@refinedev/mantine` - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific **hooks** and **components** incl. *Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.*
 

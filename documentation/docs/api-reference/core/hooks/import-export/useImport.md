@@ -41,6 +41,10 @@ useImport({
 });
 ```
 
+If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
+
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+
 ### `mapData`
 
 If you want to map the data before sending it to a data provider method, you can use the `mapData` property.
@@ -254,7 +258,7 @@ With this code, the parsed data will be mapped to conform to the API requirement
 | inputProps     | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                                                                          |
 | handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                    |
 | isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                     |
-| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`][usemutation]) \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>` { resource: string; values: TVariables[]; },`<br/>` unknown>`][usemutation]) |
+| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]},TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
 
 ### Type Parameters
 

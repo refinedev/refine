@@ -511,6 +511,55 @@ describe("useForm Hook", () => {
         });
     });
 
+    it("works correctly with `interval` and `onInterval` params for query", async () => {
+        const onInterval = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useForm({
+                    resource: "posts",
+                    action: "edit",
+                    id: 1,
+                    overtimeOptions: {
+                        interval: 100,
+                        onInterval,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getOne: () => {
+                                return new Promise((res) => {
+                                    setTimeout(() => res({} as any), 1000);
+                                });
+                            },
+                        },
+                    },
+
+                    resources: [
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            edit: "/posts/edit/:id",
+                        },
+                    ],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult?.isFetching).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBe(900);
+            expect(onInterval).toBeCalled();
+        });
+
+        await waitFor(() => {
+            expect(!result.current.queryResult?.isFetching).toBeTruthy();
+            expect(result.current.overtime.elapsedTime).toBeUndefined();
+        });
+    });
+
     describe("action 'create'", () => {
         it("onFinish should trigger create dataProvider method", async () => {
             const createMock = jest.fn();
@@ -687,6 +736,58 @@ describe("useForm Hook", () => {
                 },
                 undefined,
             );
+        });
+
+        it("works correctly with `interval` and `onInterval` params for create mutation", async () => {
+            const onInterval = jest.fn();
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "create",
+                        overtimeOptions: {
+                            interval: 100,
+                            onInterval,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                create: () => {
+                                    return new Promise((res) => {
+                                        setTimeout(() => res({} as any), 1000);
+                                    });
+                                },
+                            },
+                        },
+
+                        resources: [
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                edit: "/posts/edit/:id",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            result.current.onFinish({
+                title: "foo",
+            });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult?.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBe(900);
+                expect(onInterval).toBeCalled();
+            });
+
+            await waitFor(() => {
+                expect(!result.current.mutationResult?.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBeUndefined();
+            });
         });
     });
 
@@ -867,6 +968,59 @@ describe("useForm Hook", () => {
                 },
                 expect.anything(),
             );
+        });
+
+        it("works correctly with `interval` and `onInterval` params for edit mutation", async () => {
+            const onInterval = jest.fn();
+            const { result } = renderHook(
+                () =>
+                    useForm({
+                        resource: "posts",
+                        action: "edit",
+                        id: 1,
+                        overtimeOptions: {
+                            interval: 100,
+                            onInterval,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                update: () => {
+                                    return new Promise((res) => {
+                                        setTimeout(() => res({} as any), 1000);
+                                    });
+                                },
+                            },
+                        },
+
+                        resources: [
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                edit: "/posts/edit/:id",
+                            },
+                        ],
+                    }),
+                },
+            );
+
+            result.current.onFinish({
+                title: "foo",
+            });
+
+            await waitFor(() => {
+                expect(result.current.mutationResult?.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBe(900);
+                expect(onInterval).toBeCalled();
+            });
+
+            await waitFor(() => {
+                expect(!result.current.mutationResult?.isLoading).toBeTruthy();
+                expect(result.current.overtime.elapsedTime).toBeUndefined();
+            });
         });
     });
 });

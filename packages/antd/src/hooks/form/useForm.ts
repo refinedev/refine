@@ -108,6 +108,7 @@ export const useForm = <
     createMutationOptions,
     updateMutationOptions,
     id: idFromProps,
+    overtimeOptions,
 }: UseFormProps<
     TQueryFnData,
     TError,
@@ -161,6 +162,7 @@ export const useForm = <
         createMutationOptions,
         updateMutationOptions,
         id: idFromProps,
+        overtimeOptions,
     });
 
     const { formLoading, onFinish, queryResult, id } = useFormCoreResult;

@@ -8,27 +8,30 @@ export const FeaturedBlogPostItems = ({ items }) => {
     return (
         <div
             className={clsx(
-                "xl:max-w-[1008px]",
-                "lg:max-w-[944px]",
-                "md:max-w-[480px] py-10",
-                "sm:max-w-[328px]",
-                "max-w-[328px]",
-                "w-full mx-auto",
+                "py-10",
+                "px-4",
+                "max-w-[512px]",
+                "blog-md:px-7",
+                "blog-md:max-w-screen-blog-md",
+                "blog-2xl:px-0",
+                "blog-2xl:max-w-screen-blog-md",
+                "w-full",
+                "mx-auto",
             )}
         >
             <h2
                 className={clsx(
                     "m-0 p-0",
-                    "xl:mb-12 lg:mb-8 mb-10",
-                    "xl:text-5xl lg:text-4xl text-xl",
+                    "blog-lg:mb-12 blog-md:mb-8 mb-10",
+                    "text-xl blog-sm:text-4xl blog-lg:text-5xl",
                     "text-gray-900 dark:text-gray-0",
-                    "px-0 md:px-6",
+                    "px-0 blog-sm:px-6",
                 )}
             >
                 Featured Posts
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:gap-12 gap-8">
+            <div className="grid grid-cols-1 blog-md:grid-cols-2 blog-lg:gap-12 gap-8">
                 {items.map(({ content: BlogPostContent }) => (
                     <BlogPostProvider
                         key={BlogPostContent.metadata.permalink}
