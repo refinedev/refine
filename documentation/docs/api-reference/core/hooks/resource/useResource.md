@@ -64,7 +64,7 @@ The function also accepts a second parameter `force` which is `true` by default.
 
 ### `identifier`
 
-`identifier` parameter of the current route.
+Identifier value for the current resource, this can either be the `identifier` property or the `name` property of the resource.
 
 ## API Reference
 
