@@ -8,16 +8,16 @@ The `<LoadingOvertimeIndicator>` component is used to display a loading indicato
 
 ## Usage
 
-### Usage based on `useLoadingOvertime` hook
+### Usage based on `isLoading`
 
-By default, the `<LoadingOvertimeIndicator>` component uses the `useLoadingOvertime` hook internally. So, you can pass the `isLoading`, `interval`, and `onInterval` props to the component to customize its behavior.
+By default, the `<LoadingOvertimeIndicator>` component calculates the elapsed time based when the `isLoading` prop is `true`. You can provide the `interval` and `onInterval` props to customize the interval and the callback function that will be called on every interval.
 
 ```tsx
 import { LoadingOvertimeIndicator, useOne } from "@refinedev/core";
 
 const overtimeComponents = {
-    4000: <div>It's taking a bit longer than expected.</div>,
-    8000: <div>This is taking longer than expected, please hang on.</div>,
+    3000: <p>It's taking a bit longer than expected.</p>,
+    5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
 const MyPage = () => {
@@ -26,7 +26,9 @@ const MyPage = () => {
     return (
         <LoadingOvertimeIndicator
             overtimeComponents={overtimeComponents}
-            isLoading={isFetching}
+            isLoading={isFetching ?? true}
+            interval={1000}
+            onInterval={(elapsedInterval) => console.log("elapsedInterval")}
         >
             <YourComponent />
         </LoadingOvertimeIndicator>
@@ -34,16 +36,18 @@ const MyPage = () => {
 };
 ```
 
-### Usage with `elapseTime`
+If elapsed time is less than 3000 milliseconds, only the children will be shown. If elapsed time is greater than 3000 milliseconds, the first component and children will be shown. If elapsed time is greater than 5000 milliseconds, the second component and children will be shown.
 
-If the `elapsedTime` prop is provided, the `<LoadingOvertimeIndicator>` component will use it to determine whether to show the indicator or not instead of using the `useLoadingOvertime` hook.
+### Usage based on `elapsedTime`
+
+If the `elapsedTime` prop is provided, the `<LoadingOvertimeIndicator>` component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
 ```tsx
 import { LoadingOvertimeIndicator, useOne } from "@refinedev/core";
 
 const overtimeComponents = {
-    4000: <div>It's taking a bit longer than expected.</div>,
-    8000: <div>This is taking longer than expected, please hang on.</div>,
+    3000: <p>It's taking a bit longer than expected.</p>,
+    5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
 const MyPage = () => {
@@ -55,7 +59,7 @@ const MyPage = () => {
     return (
         <LoadingOvertimeIndicator
             overtimeComponents={overtimeComponents}
-            elapsedTime={elapsedTime}
+            elapsedTime={elapsedTime ?? 0}
         >
             <YourComponent />
         </LoadingOvertimeIndicator>
@@ -63,7 +67,22 @@ const MyPage = () => {
 };
 ```
 
+Same as the previous example, if the `elapsedTime` is less than 3000 milliseconds, only the children will be shown. If the `elapsedTime` is greater than 3000 milliseconds, the first component and children will be shown. If the `elapsedTime` is greater than 5000 milliseconds, the second component and children will be shown.
+
 <br />
+
+:::tip
+
+You can use this component without children. In this case, the component will only render `overtimeComponents` based on the elapsed time.
+
+```tsx
+<LoadingOvertimeIndicator
+    overtimeComponents={overtimeComponents}
+    elapsedTime={4000}
+/>
+```
+
+:::
 
 :::info
 
@@ -75,14 +94,14 @@ The component will not accept both `elapsedTime` and `isLoading`, `interval`, an
 
 ### `overtimeComponents`
 
-An object that contains the components to render based on the elapsed time. The key is the elapsed time in milliseconds and the value is the component to render.
+An object that contains the components to render based on the elapsed time. The key is the elapsed time in milliseconds.
 
-If the `elapsedTime` is less than the key, the component will not be shown. If the `elapsedTime` is greater than the key, the component will be rendered.
+If the `elapsedTime` is less than the key, the component only renders the children. If the `elapsedTime` is greater than the key, the component renders the component and children based on the key.
 
 ```tsx
 const overtimeComponents = {
-    4000: <div>It's taking a bit longer than expected.</div>,
-    8000: <div>This is taking longer than expected, please hang on.</div>,
+    3000: <p>It's taking a bit longer than expected.</p>,
+    5000: <p>This is taking longer than expected, please hang on.</p>,
 };
 
 <LoadingOvertimeIndicator
@@ -95,51 +114,68 @@ const overtimeComponents = {
 
 ### `elapsedTime`
 
-The elapsed time in milliseconds. If provided, the component will use it to determine whether to show the indicator or not instead of using the `useLoadingOvertime` hook.
+The elapsed time in milliseconds. If provided, the component will use it to determine whether to show the indicator or not. So, it will not calculate the elapsed time.
 
 ```tsx
+const overtimeComponents = {
+    3000: <p>It's taking a bit longer than expected.</p>,
+    5000: <p>This is taking longer than expected, please hang on.</p>,
+};
+
 <LoadingOvertimeIndicator
     overtimeComponents={overtimeComponents}
     elapsedTime={4000}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>
+</LoadingOvertimeIndicator>;
 ```
 
 ### `isLoading`
 
-A boolean value that indicates whether the page is loading or not. If provided, the component will pass it to the `useLoadingOvertime` hook to calculate the elapsed time.
+A boolean value that indicates whether the page is loading or not. When the value is `true`, the component will calculate the elapsed time. When the value is `false`, the component will not render the indicator.
 
 ```tsx
+const overtimeComponents = {
+    3000: <p>It's taking a bit longer than expected.</p>,
+    5000: <p>This is taking longer than expected, please hang on.</p>,
+};
+
 <LoadingOvertimeIndicator
     overtimeComponents={overtimeComponents}
     isLoading={true}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>
+</LoadingOvertimeIndicator>;
 ```
 
 ### `interval`
 
-The interval in milliseconds to check the elapsed time. If provided, the component will pass it to the `useLoadingOvertime` hook to set the interval.
+The interval in milliseconds to calculate the elapsed time. The default value is `1000` milliseconds.
 
 ```tsx
+const overtimeComponents = {
+    3000: <p>It's taking a bit longer than expected.</p>,
+    5000: <p>This is taking longer than expected, please hang on.</p>,
+};
+
 <LoadingOvertimeIndicator
     overtimeComponents={overtimeComponents}
-    interval={1000}
+    interval={500}
 >
     {/* Children to render */}
-</LoadingOvertimeIndicator>
+</LoadingOvertimeIndicator>;
 ```
 
 ### `onInterval`
 
-A callback function that will be called on every interval. If provided, the component will pass it to the `useLoadingOvertime` hook to set the callback function.
+A callback function that will be called on every interval. The callback function will receive the elapsed time in milliseconds as the first argument.
 
 ```tsx
 <LoadingOvertimeIndicator
     overtimeComponents={overtimeComponents}
-    onInterval={() => console.log("Interval")}
+    onInterval={(elapsedInterval) =>
+        console.log("elapsedInterval: ", elapsedInterval)
+    }
 >
     {/* Children to render */}
 </LoadingOvertimeIndicator>
