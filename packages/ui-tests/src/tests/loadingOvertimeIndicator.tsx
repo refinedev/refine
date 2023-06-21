@@ -3,8 +3,8 @@ import { LoadingOvertimeIndicator as LoadingOvertimeIndicatorFromCore } from "@r
 import { render } from "@testing-library/react";
 
 const fallbackMessages = {
-    5000: "It's taking a bit longer than expected.",
-    10000: "This is taking longer than expected, please hang on.",
+    3000: "It's taking a bit longer than expected.",
+    5000: "This is taking longer than expected, please hang on.",
 };
 
 export const loadingOvertimeIndicatorTests = function (
@@ -13,10 +13,10 @@ export const loadingOvertimeIndicatorTests = function (
     describe("[@refinedev/ui-tests] Common Tests / LoadingOvertimeIndicator", () => {
         describe("LoadingOvertimeIndicator", () => {
             it.each([
+                [3000, fallbackMessages[3000]],
+                [4000, fallbackMessages[3000]],
                 [5000, fallbackMessages[5000]],
-                [7000, fallbackMessages[5000]],
-                [10000, fallbackMessages[10000]],
-                [12000, fallbackMessages[10000]],
+                [6000, fallbackMessages[5000]],
             ])(
                 "should render the correct message for %i",
                 (elapsedTime, message) => {

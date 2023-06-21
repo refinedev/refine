@@ -23,15 +23,15 @@ const AlertComponent = ({ translateKey, message }: AlertComponentProps) => {
  * The key is the number of milliseconds.
  */
 export const overtimeComponents = {
-    5000: (
+    3000: (
         <AlertComponent
-            translateKey="loadingOvertimeIndicator.5000"
+            translateKey="loadingOvertimeIndicator.3000"
             message="It's taking a bit longer than expected."
         />
     ),
-    10000: (
+    5000: (
         <AlertComponent
-            translateKey="loadingOvertimeIndicator.10000"
+            translateKey="loadingOvertimeIndicator.5000"
             message="This is taking longer than expected, please hang on."
         />
     ),
