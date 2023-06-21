@@ -211,7 +211,7 @@ describe("inferencer-mantine", () => {
         });
     });
 
-    it.only("should change language", () => {
+    it("should change language", () => {
         cy.wait("@getCategories");
         cy.wait("@getBlogPosts");
         cy.getChakraUILoadingOverlay().should("not.exist");
