@@ -7,7 +7,7 @@ import React, {
     useState,
 } from "react";
 
-interface ICommunityNumberContext {
+interface ICommunityStatsContext {
     githubStarCount: number;
     githubCommitCount: number;
     discordMemberCount: number;
@@ -15,11 +15,11 @@ interface ICommunityNumberContext {
     refetch: () => Promise<void>;
 }
 
-export const CommunityNumberContext = createContext<
-    ICommunityNumberContext | undefined
+export const CommunityStatsContext = createContext<
+    ICommunityStatsContext | undefined
 >(undefined);
 
-export const CommunityNumberProvider: FC = ({ children }) => {
+export const CommunityStatsProvider: FC = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [githubStarCount, setGithubStarCount] = useState(0);
     const [githubCommitCount, setGithubCommitCount] = useState(0);
@@ -62,14 +62,14 @@ export const CommunityNumberProvider: FC = ({ children }) => {
     };
 
     return (
-        <CommunityNumberContext.Provider value={value}>
+        <CommunityStatsContext.Provider value={value}>
             {children}
-        </CommunityNumberContext.Provider>
+        </CommunityStatsContext.Provider>
     );
 };
 
-export const useCommunityNumberContext = () => {
-    const context = useContext(CommunityNumberContext);
+export const useCommunityStatsContext = () => {
+    const context = useContext(CommunityStatsContext);
     if (context === undefined) {
         throw new Error(
             "useGithubProvider must be used within a GithubProvider",

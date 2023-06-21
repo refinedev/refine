@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { useCommunityNumberContext } from "../context/CommunityNumber";
+import { useCommunityStatsContext } from "../context/CommunityStats";
 import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const CommonGithubStarButton = ({ className }: Props) => {
-    const { loading, githubStarCount } = useCommunityNumberContext();
+    const { loading, githubStarCount } = useCommunityStatsContext();
 
     return (
         <a

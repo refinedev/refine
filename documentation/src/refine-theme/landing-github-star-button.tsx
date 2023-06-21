@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import React from "react";
-import { useCommunityNumberContext } from "../context/CommunityNumber";
+import { useCommunityStatsContext } from "../context/CommunityStats";
 import { GithubIcon } from "./icons/github";
 import { Spinner } from "./spinner";
 
 export const LandingGithubStarButton = () => {
-    const { loading, githubStarCount } = useCommunityNumberContext();
+    const { loading, githubStarCount } = useCommunityStatsContext();
 
     const short = `${Math.floor((githubStarCount ?? 0) / 1000)}k`;
 

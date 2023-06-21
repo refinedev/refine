@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { CommunityNumberProvider } from "../context/CommunityNumber";
+import { CommunityStatsProvider } from "../context/CommunityStats";
 
 const Root: FC = ({ children }) => {
-    return <CommunityNumberProvider>{children}</CommunityNumberProvider>;
+    return <CommunityStatsProvider>{children}</CommunityStatsProvider>;
 };
 
 export default Root;

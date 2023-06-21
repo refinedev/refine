@@ -1,4 +1,4 @@
-import { useCommunityNumberContext } from "@site/src/context/CommunityNumber";
+import { useCommunityStatsContext } from "@site/src/context/CommunityStats";
 import clsx from "clsx";
 import React from "react";
 import { CountingNumber } from "../components/counting-number";
@@ -42,7 +42,7 @@ const NumberField = ({ number, label }: { number: number; label: string }) => {
 };
 
 const GithubStats = ({ className }: { className?: string }) => {
-    const { githubStarCount, githubCommitCount } = useCommunityNumberContext();
+    const { githubStarCount, githubCommitCount } = useCommunityStatsContext();
     return (
         <div
             className={clsx(
@@ -152,7 +152,7 @@ const GithubStats = ({ className }: { className?: string }) => {
 };
 
 const DiscordStats = () => {
-    const { discordMemberCount } = useCommunityNumberContext();
+    const { discordMemberCount } = useCommunityStatsContext();
     return (
         <div
             className={clsx(
