@@ -3,6 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useDelete } from "./useDelete";
+import * as UseInvalidate from "../invalidate/index";
 
 describe("useDelete Hook", () => {
     it("should works with pessimistic update", async () => {
@@ -443,6 +444,231 @@ describe("useDelete Hook", () => {
             });
 
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+    });
+
+    it("should select correct dataProviderName", async () => {
+        const deleteOneDefaultMock = jest.fn();
+        const deleteOneFooMock = jest.fn();
+
+        const { result } = renderHook(() => useDelete(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        deleteOne: deleteOneDefaultMock,
+                    },
+                    foo: {
+                        ...MockJSONServer.default,
+                        deleteOne: deleteOneFooMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "posts",
+                        meta: {
+                            dataProviderName: "foo",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            id: "1",
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(deleteOneFooMock).toBeCalledWith(
+            expect.objectContaining({
+                resource: "posts",
+            }),
+        );
+        expect(deleteOneDefaultMock).not.toBeCalled();
+    });
+
+    it("should get correct `meta` of related resource", async () => {
+        const deleteOneMock = jest.fn();
+
+        const { result } = renderHook(() => useDelete(), {
+            wrapper: TestWrapper({
+                dataProvider: {
+                    default: {
+                        ...MockJSONServer.default,
+                        deleteOne: deleteOneMock,
+                    },
+                },
+                resources: [
+                    {
+                        name: "posts",
+                        meta: {
+                            foo: "bar",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        result.current.mutate({
+            resource: "posts",
+            id: "1",
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(deleteOneMock).toBeCalledWith(
+            expect.objectContaining({
+                meta: expect.objectContaining({
+                    foo: "bar",
+                }),
+            }),
+        );
+    });
+
+    describe("when passing `identifier` instead of `name`", () => {
+        it("should select correct dataProviderName", async () => {
+            const deleteOneDefaultMock = jest.fn();
+            const deleteOneFooMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneDefaultMock,
+                        },
+                        foo: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneFooMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                dataProviderName: "foo",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(deleteOneFooMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                }),
+            );
+            expect(deleteOneDefaultMock).not.toBeCalled();
+        });
+
+        it("should invalidate query store with `identifier`", async () => {
+            const invalidateStore = jest.fn();
+            jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(
+                invalidateStore,
+            );
+            const deleteOneMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(invalidateStore).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "featured-posts",
+                }),
+            );
+        });
+
+        it("should get correct `meta` of related resource", async () => {
+            const deleteOneMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneMock,
+                        },
+                    },
+                    resources: [
+                        {
+                            name: "posts",
+                            identifier: "all-posts",
+                            meta: {
+                                foo: "bar",
+                            },
+                        },
+                        {
+                            name: "posts",
+                            identifier: "featured-posts",
+                            meta: {
+                                bar: "baz",
+                            },
+                        },
+                    ],
+                }),
+            });
+
+            result.current.mutate({
+                resource: "featured-posts",
+                id: "1",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(deleteOneMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        bar: "baz",
+                    }),
+                }),
+            );
         });
     });
 });
